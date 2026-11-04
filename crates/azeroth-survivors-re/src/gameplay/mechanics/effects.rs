@@ -416,7 +416,7 @@ impl Mechanics {
         if !self.pet_state.started {
             self.pet_state.grants.clear();
             // The independent Hunter switch controls the spawn appearance.
-            self.pet_state.white_devilsaur = class == 3
+            self.effect_state.generic.white_devilsaur = class == 3
                 && allocation.iter().any(|(key, rank)| {
                     key == crate::save::talents::WHITE_DEVILSAUR && *rank != 0
                 });

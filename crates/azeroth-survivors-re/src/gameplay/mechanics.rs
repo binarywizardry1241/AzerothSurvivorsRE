@@ -37,7 +37,8 @@ use azeroth_survivors_re::{
         damage::{self, PowerContext, Victim, VictimContext},
         upgrades::{self, UpgradeKind},
     },
-    run_meter::DamageShare,
+    run_effects::healing::MeterSource,
+    run_meter::{CapturedAttack, DamageShare, DamageShares},
     run_progression::RUN_LEVEL_CAP,
     treasure_chests,
 };
@@ -1682,7 +1683,7 @@ impl Mechanics {
                             ..Default::default()
                         },
                         target_guid: hit.target_guid,
-                        source_guid: hit.owner_guid,
+                        source_guid: hit.effect_owner.unwrap_or(hit.owner_guid),
                         effect,
                         resolves_at: now,
                         spell_id: hit.spell_id,
@@ -2252,6 +2253,64 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         }
         self.healing_source(hit.spell_id)
     }
+
+    fn command_pet_meter_source(entry: u32, white_devilsaur: bool) -> MeterSource {
+        use azeroth_survivors_re::run_effects::pets;
+        let definition = pets::definition(entry).expect("recovered Kill Command pet");
+        let appearance = if white_devilsaur {
+            pets::white_devilsaur_appearance(definition)
+        } else {
+            definition
+        };
+        // The native icon lookup uses the granting talent for these two descriptors.
+        let icon = match appearance.entry {
+            9510 => "Ability_Hunter_BeastTaming",
+            9511 => "Ability_Druid_FerociousBite",
+            _ => appearance.icon.unwrap_or_default(),
+        };
+        MeterSource { name: appearance.name, icon, talent: false }
+    }
+
+    fn packlord_pet_attack(&self, hit: &PendingHit) -> Option<(u32, CapturedAttack)> {
+        let [owner, high, lo, hi] = hit.context.source_words;
+        if owner != 1 || high != 0 {
+            return None;
+        }
+        let index = (u64::from(lo) | (u64::from(hi) << 32)) as usize;
+        match (self.attribution.source_kind, self.equipped.rows.get(index)?.tag()) {
+            (1, 62) => Some((9511, CapturedAttack::single("Bleed"))),
+            (3, 63) => Some((9532, CapturedAttack::single("Shockwave"))),
+            _ => None,
+        }
+    }
+
+    fn hit_meter(
+        &self, hit: &PendingHit, packlord_attack: Option<(u32, CapturedAttack)>,
+    ) -> (MeterSource, Option<(MeterSource, String)>, Option<CapturedAttack>) {
+        let captured = hit.context.meter_attack.or(self.generic.meter_attack);
+        let companion = self.attribution.source_kind == 2;
+        let command_attack = if companion && hit.spell_id == 883 {
+            hit.context.pet_entry.filter(|entry| pets::is_command_pet(*entry)).zip(captured)
+        } else {
+            None
+        };
+        if let Some((entry, attack)) = command_attack.or(packlord_attack) {
+            let source = Self::command_pet_meter_source(entry, self.generic.white_devilsaur);
+            return (source, attack.source_key().map(|key| (source, key)), Some(attack));
+        }
+        let source = self.damage_source(hit);
+        (source, self.damage_attribution(hit, source), captured.filter(|_| companion))
+    }
+
+    fn damage_shares(share: Option<DamageShare>, howl_fraction: f32, white_devilsaur: bool) -> DamageShares {
+        DamageShares {
+            effect: share,
+            howl: (howl_fraction > 0.0).then(|| DamageShare {
+                source: Self::command_pet_meter_source(9510, white_devilsaur),
+                fraction: howl_fraction,
+            }),
+        }
+    }
     fn is_resonant_damage(&self) -> bool {
         // 0x145f90dfa and 0x145fd1c02 bypass the talent descriptor for
         // Resonant Shocks while the actual combat event keeps source kind 3.
@@ -2379,30 +2438,25 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         vitals: Option<&mut Vitals>, share: Option<DamageShare>) -> Option<HitInput> {
         // 0.140.0 0x145f4333b..0x145f434c4 skips pet hits, pet-origin
         // effects and Packlord bleed before looking up the active hero's Howl.
-        let words = hit.context.source_words;
-        let effect_index = (u64::from(words[2]) | (u64::from(words[3]) << 32)) as usize;
-        let packlord_bleed = self.attribution.source_kind == 1 && words[..2] == [1, 0]
-            && self.equipped.rows.get(effect_index).is_some_and(|row| row.tag() == 62);
+        let packlord_attack = self.packlord_pet_attack(&hit);
         let packlord = if self.attribution.source_kind == 2 || hit.context.pet_entry.is_some()
-            || packlord_bleed
+            || packlord_attack.is_some()
         {
             0.0
         } else {
             self.generic.packlord_amplification(hit.target_guid, self.party_healing.source_slot, self.now)
         };
         if self.bosses.iter().any(|row| row.guid == hit.target_guid) {
-            return self.hit_boss(hit, rng, vitals, packlord, share);
+            return self.hit_boss(hit, rng, vitals, packlord, packlord_attack, share);
         }
         if self.boss_state.wards.actors.iter().any(|row| row.guid == hit.target_guid) {
-            return self.hit_ward(hit, rng, vitals, packlord, share);
+            return self.hit_ward(hit, rng, vitals, packlord, packlord_attack, share);
         }
         let darkmantle = self.darkmantle_bonus(hit.target_guid);
         let deathmist_kind = self.deathmist_ability_kind(hit.target_guid, hit.spell_id);
         let leech = self.current_leech();
         let secondary_source = (hit.effect.tag == 5).then(|| self.healing_source(hit.spell_id));
-        let meter_source = self.damage_source(&hit);
-        let meter_attribution = self.damage_attribution(&hit, meter_source);
-        let meter_attack = hit.context.meter_attack.or(self.generic.meter_attack);
+        let (meter_source, meter_attribution, meter_attack) = self.hit_meter(&hit, packlord_attack);
         let effect_stats = self.effect_stats();
         let Some(row) = self
             .actors
@@ -2470,11 +2524,12 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             return None;
         };
         row.health = victim.health;
-        let breakdown = meter_attack.map(|attack| attack.components(
-            self.attribution.source_kind, f64::from(result.effective),
-        )).unwrap_or_default();
-        self.generic.damage_meters.record_with_share(
-            meter_source, hit.spell_id, result.effective, &breakdown, share,
+        let breakdown = meter_attack
+            .map(|attack| attack.components(2, f64::from(result.effective)))
+            .unwrap_or_default();
+        let shares = Self::damage_shares(share, result.packlord_fraction, self.generic.white_devilsaur);
+        self.generic.damage_meters.record_with_shares(
+            meter_source, hit.spell_id, result.effective, &breakdown, shares,
         );
         self.events.push(RunEvent::Damage {
             source: self.player_guid,
@@ -3214,7 +3269,7 @@ mod rng_integration {
         game.actors[0].maximum_health = 1000.0;
         game.actors[0].actor.attack_delay = 100.0;
         game.actors[0].periodic.push(periodic::ActorPeriodic {
-            owner_kind: 0, owner_guid: game.player_guid, spell_id: 1449,
+            owner_kind: 0, owner_guid: game.player_guid, effect_owner: None, spell_id: 1449,
             power_per_tick: 200.0, interval: 2.0, next_tick_at: 0.0,
             ticks_remaining: 1, initial_ticks: 1, leech_fraction: 0.0, school: 6,
         });
@@ -3374,6 +3429,7 @@ mod rng_integration {
         game.actors[1].periodic.push(periodic::ActorPeriodic {
             owner_kind: 0,
             owner_guid: 1,
+            effect_owner: None,
             spell_id: 589,
             power_per_tick: 100.0,
             interval: 2.0,
@@ -4936,6 +4992,7 @@ mod rng_integration {
         let dot = periodic::ActorPeriodic {
             owner_kind: 0,
             owner_guid: 1,
+            effect_owner: None,
             spell_id: 589,
             power_per_tick: 7.0,
             interval: 2.0,
@@ -5211,6 +5268,7 @@ mod rng_integration {
         game.actors[0].periodic.push(periodic::ActorPeriodic {
             owner_kind: 1,
             owner_guid: 77,
+            effect_owner: None,
             spell_id: 589,
             power_per_tick: 7.0,
             interval: 2.0,

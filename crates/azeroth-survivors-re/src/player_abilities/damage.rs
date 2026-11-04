@@ -245,6 +245,8 @@ pub struct HitDamage {
     pub amount: f32,
     /// Hit capped to positive previous HP, used by current total/spell meters.
     pub effective: f32,
+    /// Wolf's contribution to the pre-defense multiplier, divided by the full multiplier.
+    pub packlord_fraction: f32,
     /// HP field is sent as ceil(max(remaining,0)), saturating to native u32.
     pub packet_health: u32,
     pub lethal: bool,
@@ -286,7 +288,13 @@ fn apply_hit_inner(victim: &mut Victim, power: f32, context: &VictimContext<'_>,
     raid_multiplier: f32, cap: Option<f32>, mark: f32) -> Option<HitDamage> {
     if context.run_state != 1 || victim.dead { return None; }
     let factor = if victim.primary_boss || victim.guardian { raid_multiplier } else { 1.0 };
-    let requested = (victim_multiplier_with_mark(victim, context, mark) * power) * factor;
+    let multiplier = victim_multiplier_with_mark(victim, context, mark);
+    let packlord_fraction = if context.packlord_amplification > 0.0 && multiplier > 0.0 {
+        context.packlord_amplification / multiplier
+    } else {
+        0.0
+    };
+    let requested = (multiplier * power) * factor;
     let requested = if let Some(cap) = cap {
         let amount = if cap.is_nan() || requested < cap { requested } else { cap };
         if amount == 0.0 { return None; }
@@ -298,6 +306,7 @@ fn apply_hit_inner(victim: &mut Victim, power: f32, context: &VictimContext<'_>,
     Some(HitDamage {
         amount,
         effective: super::native_min(amount, before),
+        packlord_fraction,
         packet_health: native_max(victim.health, 0.0).ceil() as u32,
         lethal: victim.health <= 0.0,
     })

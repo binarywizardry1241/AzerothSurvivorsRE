@@ -219,7 +219,8 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
     /// Shared145971490 applies actor damage and common kill side effects; an
     /// absent EnemyDefinition suppresses the later ordinary XP/gold/drop lane.
     pub(super) fn hit_ward(&mut self, hit: PendingHit, _rng: &mut NativeRng,
-        vitals: Option<&mut Vitals>, packlord: f32, share: Option<DamageShare>) -> Option<HitInput> {
+        vitals: Option<&mut Vitals>, packlord: f32, packlord_attack: Option<(u32, CapturedAttack)>,
+        share: Option<DamageShare>) -> Option<HitInput> {
         let deathmist_kind = self.deathmist_ability_kind(hit.target_guid, hit.spell_id);
         let leech = self.current_leech();
         let orb = self
@@ -249,9 +250,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             }
         }
         let secondary_source = (hit.effect.tag == 5).then(|| self.healing_source(hit.spell_id));
-        let meter_source = self.damage_source(&hit);
-        let meter_attribution = self.damage_attribution(&hit, meter_source);
-        let meter_attack = hit.context.meter_attack.or(self.generic.meter_attack);
+        let (meter_source, meter_attribution, meter_attack) = self.hit_meter(&hit, packlord_attack);
         let effect_stats = self.effect_stats();
         let row = self
             .boss_state
@@ -310,13 +309,12 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         )?;
         row.health = victim.health;
         let breakdown = meter_attack
-            .map(|attack| {
-                attack.components(self.attribution.source_kind, f64::from(result.effective))
-            })
+            .map(|attack| attack.components(2, f64::from(result.effective)))
             .unwrap_or_default();
+        let shares = Self::damage_shares(share, result.packlord_fraction, self.generic.white_devilsaur);
         self.generic
             .damage_meters
-            .record_with_share(meter_source, hit.spell_id, result.effective, &breakdown, share);
+            .record_with_shares(meter_source, hit.spell_id, result.effective, &breakdown, shares);
         self.events.push(RunEvent::Damage {
             source: self.player_guid,
             causal_source: hit.source_guid,

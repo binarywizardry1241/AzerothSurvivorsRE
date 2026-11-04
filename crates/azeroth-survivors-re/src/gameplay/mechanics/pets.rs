@@ -7,7 +7,6 @@ use azeroth_survivors_re::run_effects::{pet_power, pet_tick, pets};
 pub(super) struct State {
     pub grants: Vec<u32>,
     pub started: bool,
-    pub white_devilsaur: bool,
     pub rows: Vec<Pet>,
 }
 
@@ -17,7 +16,7 @@ impl State {
     }
 }
 
-fn is_command_pet(entry: u32) -> bool {
+pub(super) fn is_command_pet(entry: u32) -> bool {
     matches!(entry, 9510 | 9511 | 9532)
 }
 
@@ -70,7 +69,7 @@ impl Mechanics {
         self.pet_state.started = true;
         for (index, entry) in self.pet_state.grants.iter().copied().enumerate() {
             let definition = pets::definition(entry).expect("recovered follower definition");
-            let appearance = if self.pet_state.white_devilsaur {
+            let appearance = if self.effect_state.generic.white_devilsaur {
                 pets::white_devilsaur_appearance(definition)
             } else {
                 definition
@@ -293,6 +292,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     context: HitContext {
                         captured_source_kind: Some(2),
                         pet_entry: Some(definition.entry),
+                        meter_attack: (definition.entry == 9532).then(|| CapturedAttack::single("Bite")),
                         suppress_damage_log: definition.spell_id == 0,
                         ..Default::default()
                     },
@@ -423,10 +423,8 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             self.hit_with_execution(PendingHit {
                 context: HitContext {
                     captured_source_kind: Some(2),
-                    pet_entry: (definition.entry == 9532).then_some(definition.entry),
-                    meter_attack: Some(azeroth_survivors_re::run_meter::CapturedAttack {
-                        primary: label, secondary: None, bonus_bits: 0, suppressed: false,
-                    }),
+                    pet_entry: Some(definition.entry),
+                    meter_attack: Some(CapturedAttack::single(label)),
                     suppress_damage_log: true,
                     ..Default::default()
                 },
@@ -510,6 +508,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             62 => {
                 let interval = effect.float(12) / 5.0;
                 let power_per_tick = (command.damage * scale) / 5.0;
+                let effect_owner = Some(self.core.player_guid);
                 for target in hits {
                     let guid = target.actor.guid;
                     if let Some(rows) = self.core.periodic_rows_mut(guid) {
@@ -518,6 +517,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                         rows.push(periodic::ActorPeriodic {
                             owner_kind: 1,
                             owner_guid: effect_index,
+                            effect_owner,
                             spell_id,
                             power_per_tick,
                             interval,

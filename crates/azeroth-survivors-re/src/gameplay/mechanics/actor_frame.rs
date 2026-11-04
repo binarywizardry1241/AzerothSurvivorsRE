@@ -337,7 +337,15 @@ impl Mechanics {
         }
         if self.has_party() {
             let mut owned: std::collections::BTreeMap<u8, Vec<_>> = std::collections::BTreeMap::new();
-            for hit in periodic_hits { owned.entry(self.party_slot_for_source(hit.owner_guid)).or_default().push(hit); }
+            for hit in periodic_hits {
+                let slot = match hit.effect_owner {
+                    Some(guid) => self.party_slot(guid),
+                    None => Some(self.party_slot_for_source(hit.owner_guid)),
+                };
+                if let Some(slot) = slot {
+                    owned.entry(slot).or_default().push(hit);
+                }
+            }
             for (slot, hits) in owned {
                 let input = self.party_input_for(slot).unwrap_or(coop::PartyInput {
                     position: player, facing, velocity: [0.0; 2] });

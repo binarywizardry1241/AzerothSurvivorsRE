@@ -1051,14 +1051,13 @@ impl<W: RunWorld> native::ai::DispatchPort for BossCombat<'_, W> {
 
 impl<W: RunWorld> CombatAdapter<'_, W> {
     pub(super) fn hit_boss(&mut self, hit: PendingHit, rng: &mut NativeRng,
-        vitals: Option<&mut Vitals>, packlord: f32, share: Option<DamageShare>) -> Option<HitInput> {
+        vitals: Option<&mut Vitals>, packlord: f32, packlord_attack: Option<(u32, CapturedAttack)>,
+        share: Option<DamageShare>) -> Option<HitInput> {
         let leech = self.current_leech();
         let darkmantle = self.darkmantle_bonus(hit.target_guid);
         let deathmist_kind = self.deathmist_ability_kind(hit.target_guid, hit.spell_id);
         let secondary_source = (hit.effect.tag == 5).then(|| self.healing_source(hit.spell_id));
-        let meter_source = self.damage_source(&hit);
-        let meter_attribution = self.damage_attribution(&hit, meter_source);
-        let meter_attack = hit.context.meter_attack.or(self.generic.meter_attack);
+        let (meter_source, meter_attribution, meter_attack) = self.hit_meter(&hit, packlord_attack);
         let effect_stats = self.effect_stats();
         let Some(index) = self
             .bosses
@@ -1117,14 +1116,15 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             return None;
         };
         row.health = victim.health;
-        let breakdown = meter_attack.map(|attack| attack.components(
-            self.attribution.source_kind, f64::from(result.effective),
-        )).unwrap_or_default();
-        self.generic.damage_meters.record_with_share(
-            meter_source, hit.spell_id, result.effective, &breakdown, share,
+        let breakdown = meter_attack
+            .map(|attack| attack.components(2, f64::from(result.effective)))
+            .unwrap_or_default();
+        let shares = Self::damage_shares(share, result.packlord_fraction, self.generic.white_devilsaur);
+        self.generic.damage_meters.record_with_shares(
+            meter_source, hit.spell_id, result.effective, &breakdown, shares,
         );
-        self.generic.damage_meters.record_boss_with_share(
-            &mut self.boss_state.death, self.now, meter_source, result.effective, &breakdown, share,
+        self.generic.damage_meters.record_boss_with_shares(
+            &mut self.boss_state.death, self.now, meter_source, result.effective, &breakdown, shares,
         );
         self.events.push(RunEvent::Damage {
             source: self.player_guid,

@@ -31,6 +31,8 @@ pub(super) struct State {
     /// Current named-pet descriptor, restored with deferred hit attribution.
     pub meter_pet_entry: Option<u32>,
     pub meter_attack: Option<azeroth_survivors_re::run_meter::CapturedAttack>,
+    /// Run-local appearance switch used at spawn and by native Hunter meter rows.
+    pub white_devilsaur: bool,
     pub timestamps: Vec<Vec<f32>>,
     pub counters: Vec<u32>,
     pub temporary: azeroth_survivors_re::run_effects::actions::TemporaryStats,

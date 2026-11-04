@@ -96,6 +96,9 @@ impl GroundPeriodic {
 pub struct ActorPeriodic {
     pub owner_kind: u64,
     pub owner_guid: u64,
+    /// Effect-owned rows keep a hero-local effect index in the native owner words.
+    /// The shared party queue carries that hero's identity separately.
+    pub effect_owner: Option<u64>,
     pub spell_id: u32,
     pub power_per_tick: f32,
     pub interval: f32,
@@ -121,7 +124,7 @@ pub fn install_dot(rows: &mut Vec<ActorPeriodic>, owner_kind: u64, owner_guid: u
             .min_by_key(|(index, r)| (r.ticks_remaining, *index)).map(|(i, _)| i);
         if let Some(index) = candidate { rows.remove(index); } else { break; }
     }
-    rows.push(ActorPeriodic { owner_kind, owner_guid, spell_id,
+    rows.push(ActorPeriodic { owner_kind, owner_guid, effect_owner: None, spell_id,
         power_per_tick: plan.total_power / plan.ticks as f32,
         interval: plan.duration / plan.ticks as f32, next_tick_at: now,
         ticks_remaining: plan.ticks, initial_ticks: plan.ticks, leech_fraction, school });
@@ -131,6 +134,7 @@ pub fn install_dot(rows: &mut Vec<ActorPeriodic>, owner_kind: u64, owner_guid: u
 pub struct PeriodicTick {
     pub owner_kind: u64,
     pub owner_guid: u64,
+    pub effect_owner: Option<u64>,
     pub target_guid: u64,
     pub spell_id: u32,
     pub raw_power: f32,
@@ -149,6 +153,7 @@ pub fn take_actor_ticks(rows: &mut [ActorPeriodic], target_guid: u64, now: f32) 
         row.ticks_remaining -= 1;
         row.next_tick_at += row.interval;
         result.push(PeriodicTick { owner_kind: row.owner_kind, owner_guid: row.owner_guid,
+            effect_owner: row.effect_owner,
             target_guid, spell_id: row.spell_id, raw_power: row.power_per_tick,
             leech_fraction: row.leech_fraction, school: row.school, first_player_tick });
     }

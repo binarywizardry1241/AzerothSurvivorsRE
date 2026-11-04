@@ -51,6 +51,10 @@ pub struct CapturedAttack {
 }
 
 impl CapturedAttack {
+    pub fn single(primary: &'static str) -> Self {
+        Self { primary, secondary: None, bonus_bits: 0, suppressed: false }
+    }
+
     /// The 0.140.0 companion hit key uses the primary label, even when
     /// the accounting amount is split with a secondary attack.
     pub fn source_key(self) -> Option<String> {
@@ -136,16 +140,31 @@ pub struct DamageShare {
     pub fraction: f32,
 }
 
+#[derive(Clone, Copy, Default)]
+pub struct DamageShares {
+    pub effect: Option<DamageShare>,
+    pub howl: Option<DamageShare>,
+}
+
 fn record_damage(meter: &mut HealingMeter, source: MeterSource, effective: f32,
-    breakdown: &[MeterBreakdown], share: Option<DamageShare>) {
+    breakdown: &[MeterBreakdown], shares: DamageShares) {
     let effective = f64::from(effective);
-    if let Some(share) = share {
+    // Native 145f1b866 separates Howl before applying the ordinary effect share.
+    let howl_total = shares.howl.map_or(0.0, |share| effective * f64::from(share.fraction));
+    let base_total = effective - howl_total;
+    if let Some(share) = shares.effect {
         // 0.140.0 145f43e1e..145f43ea4 widens the fraction before splitting.
         let fraction = f64::from(share.fraction);
-        meter.record_total(source, effective * (1.0 - fraction), breakdown);
-        meter.record_total(share.source, effective * fraction, &[]);
+        meter.record_total(source, base_total * (1.0 - fraction), breakdown);
+        meter.record_total(share.source, base_total * fraction, &[]);
     } else {
-        meter.record_total(source, effective, breakdown);
+        meter.record_total(source, base_total, breakdown);
+    }
+    if let Some(share) = shares.howl.filter(|_| howl_total > 0.0) {
+        meter.record_total(share.source, howl_total, &[MeterBreakdown {
+            name: "Howl",
+            total: howl_total,
+        }]);
     }
 }
 
@@ -165,9 +184,17 @@ impl DamageMeters {
 
     pub fn record_with_share(&mut self, source: MeterSource, spell_id: u32, effective: f32,
         breakdown: &[MeterBreakdown], share: Option<DamageShare>) {
+        self.record_with_shares(source, spell_id, effective, breakdown, DamageShares {
+            effect: share,
+            howl: None,
+        });
+    }
+
+    pub fn record_with_shares(&mut self, source: MeterSource, spell_id: u32, effective: f32,
+        breakdown: &[MeterBreakdown], shares: DamageShares) {
         self.total += f64::from(effective);
         *self.spell_totals.entry(spell_id).or_default() += f64::from(effective);
-        record_damage(&mut self.damage, source, effective, breakdown, share);
+        record_damage(&mut self.damage, source, effective, breakdown, shares);
     }
 
     /// Only the shared hit owner's primary-boss arm starts a segment. A hit
@@ -185,13 +212,21 @@ impl DamageMeters {
 
     pub fn record_boss_with_share(&mut self, death: &mut BossDeathState, now: f32,
         source: MeterSource, effective: f32, breakdown: &[MeterBreakdown], share: Option<DamageShare>) {
+        self.record_boss_with_shares(death, now, source, effective, breakdown, DamageShares {
+            effect: share,
+            howl: None,
+        });
+    }
+
+    pub fn record_boss_with_shares(&mut self, death: &mut BossDeathState, now: f32,
+        source: MeterSource, effective: f32, breakdown: &[MeterBreakdown], shares: DamageShares) {
         death::begin_boss_meter(
             &mut death.clear_marker,
             &mut self.started_at,
             &mut self.boss.entries,
             now,
         );
-        record_damage(&mut self.boss, source, effective, breakdown, share);
+        record_damage(&mut self.boss, source, effective, breakdown, shares);
     }
 
     pub fn boss_timing(&self, death: &BossDeathState, now: f32) -> Option<BossMeterTiming> {
@@ -224,6 +259,32 @@ fn shield_slam_health_share_splits_the_capped_amount_in_both_meters() {
         assert_eq!(rows[0].total, 7.25 * (1.0 - f64::from(fraction)));
         assert_eq!(rows[1].source, set);
         assert_eq!(rows[1].total, 7.25 * f64::from(fraction));
+    }
+}
+
+#[cfg(test)]
+#[test]
+fn packlord_howl_splits_the_effective_hit_before_other_meter_credit() {
+    let shot = MeterSource { name: "Auto Shot", icon: "", talent: false };
+    let wolf = MeterSource { name: "Wolf", icon: "Ability_Hunter_BeastTaming", talent: false };
+    let effect = MeterSource { name: "Effect", icon: "", talent: true };
+    let shares = DamageShares {
+        howl: Some(DamageShare { source: wolf, fraction: 0.125 }),
+        effect: Some(DamageShare { source: effect, fraction: 0.25 }),
+    };
+    let mut meters = DamageMeters::default();
+    let mut death = BossDeathState::default();
+    meters.record_with_shares(shot, 75, 8.0, &[], shares);
+    meters.record_boss_with_shares(&mut death, 5.0, shot, 8.0, &[], shares);
+
+    assert_eq!(meters.total, 8.0);
+    assert_eq!(meters.spell_totals[&75], 8.0);
+    for rows in [&meters.damage.entries, &meters.boss.entries] {
+        assert_eq!(rows.iter().map(|row| row.total).sum::<f64>(), 8.0);
+        assert_eq!((rows[0].source, rows[0].total), (shot, 5.25));
+        assert_eq!((rows[1].source, rows[1].total), (effect, 1.75));
+        assert_eq!((rows[2].source, rows[2].total), (wolf, 1.0));
+        assert_eq!((rows[2].breakdown[0].name, rows[2].breakdown[0].total), ("Howl", 1.0));
     }
 }
 

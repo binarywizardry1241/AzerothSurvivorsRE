@@ -507,7 +507,8 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
                 if let Some(attribution) = attribution {
                     let matches = |packet: &SessionEvent| match packet {
                         SessionEvent::SpellDamageLog(hit) => emit_log && hit.attacker == source && hit.target == target,
-                        SessionEvent::AttackerState(hit) => spell_id == 0 && hit.attacker == causal_source && hit.victim == target,
+                        SessionEvent::AttackerState(hit) => matches!(spell_id, 0 | 883)
+                            && hit.attacker == causal_source && hit.victim == target,
                         SessionEvent::PeriodicAuraLog(hit) => !emit_log && hit.spell_id == spell_id
                             && hit.caster == source && hit.target == target,
                         _ => false,
@@ -704,42 +705,45 @@ mod tests {
     }
     #[test]
     fn companion_attribution_wraps_the_matching_melee_packet() {
-        let mut packets = LocalPresentationEvents::default();
-        let source = azeroth_survivors_re::run_effects::healing::MeterSource {
-            name: "Doomguard",
-            icon: "Spell_Shadow_SummonDoomGuard",
-            talent: false,
-        };
-        project(
-            vec![
-                RunEvent::Melee { source: 17, target: 19, amount: 8, critical: false },
-                RunEvent::Damage {
-                    source: 1, causal_source: 17, target: 19, spell_id: 0, school: 0,
-                    raw_power: 8.0, amount: 8.0, critical: false, source_kind: 2,
-                    meter_attribution: Some((source, "demon:cleave".into())),
-                    periodic: false, emit_log: false,
-                },
-            ],
-            1,
-            0,
-            &mut packets,
-            &mut HashSet::new(),
-            &mut Default::default(),
-            &mut Default::default(),
-            &mut Default::default(),
-            1.0,
-            &Localization::english_for_tests(),
-            &crate::catalog::MenuCatalog::embedded(),
-            None,
-            None,
-        );
-        let [SessionEvent::AttributedCombatHit { hit, attribution }] = packets.0.as_slice() else {
-            panic!("expected one attributed melee packet");
-        };
-        assert!(matches!(hit.as_ref(), SessionEvent::AttackerState(hit)
-            if hit.attacker == 17 && hit.victim == 19 && hit.damage == 8));
-        assert_eq!(attribution.source_name, "Doomguard");
-        assert_eq!(attribution.source_key, "demon:cleave");
+        for (spell_id, name, icon, key) in [
+            (0, "Doomguard", "Spell_Shadow_SummonDoomGuard", "demon:cleave"),
+            (883, "Wolf", "Ability_Hunter_BeastTaming", "demon:wolf_bite"),
+        ] {
+            let mut packets = LocalPresentationEvents::default();
+            let source = azeroth_survivors_re::run_effects::healing::MeterSource {
+                name, icon, talent: false,
+            };
+            project(
+                vec![
+                    RunEvent::Melee { source: 17, target: 19, amount: 8, critical: false },
+                    RunEvent::Damage {
+                        source: 1, causal_source: 17, target: 19, spell_id, school: 0,
+                        raw_power: 8.0, amount: 8.0, critical: false, source_kind: 2,
+                        meter_attribution: Some((source, key.into())),
+                        periodic: false, emit_log: false,
+                    },
+                ],
+                1,
+                0,
+                &mut packets,
+                &mut HashSet::new(),
+                &mut Default::default(),
+                &mut Default::default(),
+                &mut Default::default(),
+                1.0,
+                &Localization::english_for_tests(),
+                &crate::catalog::MenuCatalog::embedded(),
+                None,
+                None,
+            );
+            let [SessionEvent::AttributedCombatHit { hit, attribution }] = packets.0.as_slice() else {
+                panic!("expected one attributed melee packet");
+            };
+            assert!(matches!(hit.as_ref(), SessionEvent::AttackerState(hit)
+                if hit.attacker == 17 && hit.victim == 19 && hit.damage == 8));
+            assert_eq!(attribution.source_name, name);
+            assert_eq!(attribution.source_key, key);
+        }
     }
     #[test]
     fn current_pet_movement_packet_preserves_native_duration_boundaries() {
