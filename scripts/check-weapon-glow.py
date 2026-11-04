@@ -458,11 +458,138 @@ def current_lifestealing():
     print(f"0.140.0 Lifestealing passed {cases} native cases over {replay.instructions} instructions.")
 
 
+def current_peer_glow():
+    """Replay Hero achievement wire rows and the remote selected-glow gate."""
+    target = latest_target()
+    assert target["sha256"] == "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
+    image = target_bytes(target)
+    pe = load_script("peer_glow_pe", ROOT / "scripts/inventory-executable.py").PE(image)
+    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    from native_terminal import NativeReplay
+
+    replay = NativeReplay(image, pe)
+    vm, registers = replay.machine, replay.registers
+    hero, records, locale, rows, keys, storage = (
+        replay.app + offset for offset in (0, 0x800, 0x1000, 0x1500, 0x7800, 0xa000)
+    )
+    required = {803: "radiantarmory", 1898: "heroic:prepared", 1899: "coop:insane", 1900: "heroic:naxx5"}
+    asset = json.loads((ROOT / "crates/azeroth-survivors-re/assets/coop-achievement-ordinals-0.140.0.json").read_text())
+    constructor = int(asset["constructor"], 16)
+    assert asset["target_sha256"] == target["sha256"]
+    assert sha(replay.raw(constructor, 0x145e56a4a - constructor)) == asset["constructor_sha256"]
+    catalog = asset["keys"]
+    assert len(catalog) == len(set(catalog)) == 131
+    assert sha(("\n".join(catalog) + "\n").encode()) == "af4ada94cfa8f4f06ede4376bcc558ebbe4c43724309dada024a6231060dd1de"
+    assert [catalog.index(key) for key in required.values()] == [69, 70, 117, 65]
+
+    def reg(name, value=None):
+        register = getattr(registers, "UC_X86_REG_" + name)
+        if value is None:
+            return vm.reg_read(register)
+        vm.reg_write(register, value)
+
+    def seam(address):
+        if address == 0x145e81690:  # current language selector
+            reg("RAX", locale)
+        elif address == 0x1463abb3d:  # memcmp
+            count = reg("R8")
+            left = bytes(vm.mem_read(reg("RCX"), count))
+            right = bytes(vm.mem_read(reg("RDX"), count))
+            reg("RAX", ((left > right) - (left < right)) & 0xffffffff)
+        elif address == 0x1400021c0:  # allocated receive rows
+            reg("RAX", storage)
+        elif address != 0x140002200:  # allocator preflight
+            return False
+        replay.return_seam()
+        return True
+
+    replay.seam = seam
+    cases = 0
+    # Include similar keys to exercise byte and length rejection independently.
+    selected_keys = list(required.values()) + ["heroic:prepare", "heroic:preparedx", "coop:insanE"]
+    groups = [(), (131,), (65535,), (65535, 70), (117, 69, 65)]
+    groups += [(catalog.index(key),) for key in required.values()]
+    groups += [(index,) for index in range(7)]
+    for enchant, group, language in itertools.product(
+        (0, 1, 802, 803, 804, *range(1893, 1902), 0xffffffff), groups, (0, 13, 50)
+    ):
+        replay.reset("peer_glow", [(0x145e3907b, 0x145e390be), (0x145e4bc00, 0x145e4bd86)], [0x145e390be])
+        replay.put(replay.bp + 0x318, "<Q", hero)
+        replay.put(hero + 0x80, "<QQ", records, len(group))
+        replay.put(hero + 0x224, "<I", enchant)
+        replay.put(locale, "<B7xQ", 1, language)
+        replay.put(0x148ac8e50 + 32 * min(language, 13), "<QQQI", 0, rows, len(catalog), 0)
+        fixture_catalog = catalog.copy()
+        fixture_catalog[:7] = selected_keys
+        for index, key in enumerate(fixture_catalog):
+            name = key.encode()
+            offset = keys + index * 32
+            vm.mem_write(offset, name)
+            replay.put(rows + index * 0x98 + 8, "<QQ", offset, len(name))
+        for index, id in enumerate(group):
+            replay.put(records + 8 * index, "<H2xI", id, 0xdeadbeef)
+        replay.run(0x145e3907b)
+        admitted = enchant in (0, 1894) or any(
+            id < len(fixture_catalog) and fixture_catalog[id] == required.get(enchant) for id in group
+        )
+        assert reg("RCX") == (enchant if admitted else 0)
+        cases += 1
+
+    writer = [(0x14605771f, 0x146057778), (0x14620a4a0, 0x14620a560)]
+    reader_count = (0x14620d290, 0x14620d30f)
+    reader_rows = [(0x146044810, 0x14604492c), (0x14620d060, 0x14620d0a3), (0x14620d0b0, 0x14620d0f1)]
+    wire_cases = 0
+    for achievements in ((), ((70, 0),), ((70, 0x12345678), (117, 0xffffffff)), ((65535, 1),)):
+        expected = struct.pack("<I", len(achievements)) + b"".join(
+            struct.pack("<HI", *row) for row in achievements
+        )
+        replay.reset("hero_achievement_writer", writer, [0x14605799f])
+        replay.put(hero + 0x80, "<QQ", records, len(achievements))
+        for index, row in enumerate(achievements):
+            replay.put(records + 8 * index, "<H2xI", *row)
+        replay.put(replay.bp + 0x68, "<QQQ", 128, storage, 0)
+        reg("RDI", hero)
+        replay.run(0x14605771f)
+        length = replay.get(replay.bp + 0x78, "<Q")[0]
+        assert bytes(vm.mem_read(storage, length)) == expected
+        wire_cases += 1
+
+        for wire in (expected, expected[:-1]):
+            replay.reset("hero_achievement_count", [reader_count], [replay.done])
+            vm.mem_write(records, wire)
+            replay.put(hero, "<QQQB", records, len(wire), 0, 1)
+            reg("RCX", hero)
+            reg("RDX", 6)
+            replay.run(reader_count[0])
+            if wire != expected:
+                assert reg("RAX") == 0 and replay.get(hero + 0x18, "<B")[0] == 0
+            else:
+                assert reg("RAX") == len(achievements)
+            wire_cases += 1
+
+        replay.reset("hero_achievement_reader", reader_rows, [replay.done])
+        vm.mem_write(records, expected)
+        replay.put(hero, "<QQQB", records, len(expected), 4, 1)
+        replay.put(locale, "<QQQ", hero, 0, len(achievements))
+        reg("RCX", rows)
+        reg("RDX", locale)
+        replay.run(0x146044810)
+        _, pointer, count = replay.get(rows, "<QQQ")
+        assert tuple(replay.get(pointer + index * 8, "<H2xI") for index in range(count)) == achievements
+        wire_cases += 1
+
+    print(f"0.140.0 peer glow passed {cases} native gate and {wire_cases} wire cases over {replay.instructions} instructions.")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--current-unholy', action='store_true')
     parser.add_argument('--current-lifestealing', action='store_true')
+    parser.add_argument('--current-peer-glow', action='store_true')
     arguments = parser.parse_args()
+    if arguments.current_peer_glow:
+        current_peer_glow()
+        return
     if arguments.current_lifestealing:
         current_lifestealing()
         return

@@ -2235,6 +2235,7 @@ mod reconnection_tests {
             achievement_points: 0,
             byte_1e3: 0,
             bytes_30: b"en".to_vec(),
+            achievements: Vec::new(),
         };
         inbox(
             &mut host,

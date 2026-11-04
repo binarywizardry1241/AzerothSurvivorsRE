@@ -214,6 +214,8 @@ pub struct NativeHero {
     pub achievement_points: u32,
     pub byte_1e3: u8,
     pub bytes_30: Vec<u8>,
+    /// Native catalog ordinal and earned timestamp. A zero timestamp is undated.
+    pub achievements: Vec<(u16, u32)>,
 }
 
 impl NativeHero {
@@ -385,6 +387,13 @@ pub fn encode_lifecycle(packet: &LifecyclePacket) -> Result<Vec<u8>, PacketError
             out.extend_from_slice(&hero.achievement_points.to_le_bytes());
             out.push(hero.byte_1e3);
             bytes(&mut out, &hero.bytes_30)?;
+            let count = u32::try_from(hero.achievements.len())
+                .map_err(|_| PacketError::LengthOverflow)?;
+            out.extend_from_slice(&count.to_le_bytes());
+            for &(id, earned_at) in &hero.achievements {
+                out.extend_from_slice(&id.to_le_bytes());
+                out.extend_from_slice(&earned_at.to_le_bytes());
+            }
         }
         LifecyclePacket::Roster(roster) => {
             let entries = &roster.entries;
@@ -474,7 +483,7 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
             for _ in 0..count { pity.push((reader.u32()?, reader.u8()?)); }
             let heroic_unlocks = reader.bytes()?;
             let weapon_glow = reader.u32()?;
-            LifecyclePacket::Hero(Box::new(NativeHero {
+            let mut hero = NativeHero {
                 guid, name, class, race, sex, features, words_188, optional_words_b8,
                 equipment_stars, pity, heroic_unlocks, weapon_glow,
                 bytes_18: reader.bytes()?, words_170: [reader.u32()?, reader.u32()?],
@@ -486,7 +495,17 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
                 bytes_1d8: [reader.u8()?, reader.u8()?, reader.u8()?],
                 profile: reader.profile()?, achievement_points: reader.u32()?,
                 byte_1e3: reader.u8()?, bytes_30: reader.bytes()?,
-            }))
+                achievements: Vec::new(),
+            };
+            let count = reader.u32()? as usize;
+            if count > reader.bytes.len().saturating_sub(reader.cursor) / 6 {
+                return Err(PacketError::Truncated);
+            }
+            hero.achievements.reserve(count);
+            for _ in 0..count {
+                hero.achievements.push((reader.u16()?, reader.u32()?));
+            }
+            LifecyclePacket::Hero(Box::new(hero))
         }
         6 => LifecyclePacket::Synchronize,
         7 => LifecyclePacket::EngineCommand { opcode: reader.u16()?, payload: reader.bytes()? },
@@ -759,6 +778,7 @@ mod tests {
             cooperative_luck_bits: 0,
             bytes_1d8: [0; 3], profile: None, achievement_points: 0,
             byte_1e3: 1, bytes_30: Vec::new(),
+            achievements: Vec::new(),
         }
     }
 
@@ -797,8 +817,10 @@ mod tests {
                 hero.bytes_18 = b"x,y".to_vec();
             }
             let expected = proof["wire_fixtures"][usize::from(rich)]["wire_hex"].as_str().unwrap();
-            let expected = expected.as_bytes().chunks_exact(2).map(|pair|
+            let mut expected = expected.as_bytes().chunks_exact(2).map(|pair|
                 u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap()).collect::<Vec<_>>();
+            // Preserve the original 0.121.0 prefix and append the current native suffix.
+            expected.extend_from_slice(&0u32.to_le_bytes());
             let packet = LifecyclePacket::Hero(Box::new(hero));
             assert_eq!(encode_lifecycle(&packet).unwrap(), expected);
             assert_eq!(decode_lifecycle(&expected).unwrap(), (packet, expected.len()));
@@ -827,12 +849,29 @@ mod tests {
             hero.bytes_1d8 = [1, 0, 1];
             let packet = LifecyclePacket::Hero(Box::new(hero));
             let bytes = encode_lifecycle(&packet).unwrap();
-            let suffix = &bytes[bytes.len() - 19..];
+            let suffix = &bytes[bytes.len() - 23..];
             assert_eq!(&suffix[..2], &[2, 3]);
             assert_eq!(&suffix[2..6], &bits.to_le_bytes());
             assert_eq!(&suffix[6..9], &[1, 0, 1]);
             assert_eq!(decode_lifecycle(&bytes).unwrap(), (packet, bytes.len()));
         }
+    }
+
+    #[test]
+    fn hero_achievement_rows_follow_language_and_reject_truncation() {
+        let mut hero = hero_fixture();
+        hero.bytes_30 = b"en".to_vec();
+        hero.achievements = vec![(70, 0x1234_5678), (117, 0)];
+        let packet = LifecyclePacket::Hero(Box::new(hero));
+        let encoded = encode_lifecycle(&packet).unwrap();
+        assert!(encoded.ends_with(
+            b"\x02\x00\x00\x00en\x02\x00\x00\x00\x46\x00\x78\x56\x34\x12\x75\x00\x00\x00\x00\x00"
+        ));
+        assert_eq!(decode_lifecycle(&encoded).unwrap(), (packet, encoded.len()));
+        assert_eq!(
+            decode_lifecycle(&encoded[..encoded.len() - 1]),
+            Err(PacketError::Truncated)
+        );
     }
 
     #[test]

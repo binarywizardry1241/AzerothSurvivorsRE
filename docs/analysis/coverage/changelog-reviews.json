@@ -32619,7 +32619,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/enemies/catalog.rs": "de7907b23e9daaa2dde21ca623c976639b1c01c62f501617e7ca1e032a258d38",
-        "docs/analysis/scholomance-0.140.0.md": "1774084903600763de94ca12849f5f94008e90d762ac917c440d5d07b6860911"
+        "docs/analysis/scholomance-0.140.0.md": "d4fd05d55c9dbb30931044e60c38223436d4bd3f317cf003a39204e8b12ead6f"
       },
       "systems": [
         "custom-game-content"
@@ -32756,7 +32756,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/bosses/raid_sequences.rs": "38c4124b698ac5b17a67b61ae60abfd3e435531f2eba3b8b7c65bb23a61bc699",
-        "docs/analysis/scholomance-0.140.0.md": "1774084903600763de94ca12849f5f94008e90d762ac917c440d5d07b6860911"
+        "docs/analysis/scholomance-0.140.0.md": "d4fd05d55c9dbb30931044e60c38223436d4bd3f317cf003a39204e8b12ead6f"
       },
       "systems": [
         "custom-game-game-scripts-krastinov"
@@ -32781,7 +32781,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/bosses/raid_sequences.rs": "38c4124b698ac5b17a67b61ae60abfd3e435531f2eba3b8b7c65bb23a61bc699",
-        "docs/analysis/scholomance-0.140.0.md": "1774084903600763de94ca12849f5f94008e90d762ac917c440d5d07b6860911"
+        "docs/analysis/scholomance-0.140.0.md": "d4fd05d55c9dbb30931044e60c38223436d4bd3f317cf003a39204e8b12ead6f"
       },
       "systems": [
         "custom-game-game-scripts-mod"
@@ -32875,7 +32875,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/gear_stars.rs": "8ac497761316b1493da563495a33a300dd7cfa932abee60e859719eaef7d06eb",
-        "docs/analysis/scholomance-0.140.0.md": "1774084903600763de94ca12849f5f94008e90d762ac917c440d5d07b6860911",
+        "docs/analysis/scholomance-0.140.0.md": "d4fd05d55c9dbb30931044e60c38223436d4bd3f317cf003a39204e8b12ead6f",
         "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "fa1d5e497c4f3d66d6b9343fe84e1c49872c3b7b5a987af31a291d20daa3ca24",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "fe660cd2782e7c985538090c4cb791d67dba6ead6c809709f7189c6863a0b886",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "8c2f861093be74263cd275b8515d8e00e9bfaee9e067a96e21dc62f8d81c5b92",
@@ -32933,7 +32933,7 @@
         "crates/azeroth-survivors-re/src/gameplay/terminal.rs": "84a0352e3b5d93200a17274be0377ae15fc0999154aaf4c2d0ede08d523f3af2",
         "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs": "0eb798347bebad737259b0439ef35a2314e65da4b173b6bb43e5d6c2bc266611",
         "crates/azeroth-survivors-re/src/gameplay/run_hud/loot.rs": "a76c8eae7d5e0e2dd46a0f15a1b910b8096d92f69ffbb18406327a5ac6974700",
-        "docs/analysis/scholomance-0.140.0.md": "1774084903600763de94ca12849f5f94008e90d762ac917c440d5d07b6860911"
+        "docs/analysis/scholomance-0.140.0.md": "d4fd05d55c9dbb30931044e60c38223436d4bd3f317cf003a39204e8b12ead6f"
       },
       "systems": [
         "custom-game-gear"
@@ -32948,8 +32948,8 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "All four Scholomance achievements, including the shared Straight A’s result, and the local Lifestealing reward are connected. Peer enchant admission still needs the native Hero achievement carrier.",
+      "status": "source_connected",
+      "rationale": "Scholomance collection, personal Stormstrike, shared Straight A’s, nine-class Prepared clears, and the earned Lifestealing reward are source connected. The local and peer paths apply the exact earned-key selection gate.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/account_progression.rs",
         "crates/azeroth-survivors-re/src/progression.rs",
@@ -32964,13 +32964,17 @@
         "crates/azeroth-survivors-re/src/save/weapon_glow.rs",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs",
         "crates/azeroth-survivors-re/src/bosses/scripted_attack_geometry.rs",
-        "crates/azeroth-survivors-re/src/coop/replication.rs"
+        "crates/azeroth-survivors-re/src/coop/replication.rs",
+        "crates/azeroth-survivors-re/assets/coop-achievement-ordinals-0.140.0.json",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs",
+        "crates/azeroth-survivors-re/src/coop_profile.rs"
       ],
       "evidence_refs": [
         "docs/analysis/scholomance-0.140.0.md#prepared-use-and-lifestealing",
         "docs/analysis/scholomance-0.140.0.md#graduation-and-straight-as-combat-records",
         "scripts/check-weapon-glow.py",
-        "docs/analysis/evidence/0.140.0/scholomance-straight-as.json"
+        "docs/analysis/evidence/0.140.0/scholomance-straight-as.json",
+        "docs/analysis/scholomance-0.140.0.md#peer-weapon-glows"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/account_progression.rs": "0d1390850cf422ee4b87aeec0204d813b2c15d0d89032929fcacd1c61381c914",
@@ -32984,12 +32988,15 @@
         "crates/azeroth-survivors-re/src/armory_cosmetics.rs": "fd3b718e33719448f7591fb9533464eeb25391aa4ecc751acca87d70d5727be9",
         "crates/azeroth-survivors-re/src/armory.rs": "73be0e391044a3ae8073baa219ba45fea0447d25af72fb91da8d0fc3954384df",
         "crates/azeroth-survivors-re/src/save/weapon_glow.rs": "395d5df8294b18a783c95ecc862ae94d718756b736bc42fc736f56abbff6ad5b",
-        "docs/analysis/scholomance-0.140.0.md": "1774084903600763de94ca12849f5f94008e90d762ac917c440d5d07b6860911",
-        "scripts/check-weapon-glow.py": "bd53219bc1f0e725a7338df27277cf613c9271ce5818def7dceda6c8ab78e5bf",
+        "docs/analysis/scholomance-0.140.0.md": "d4fd05d55c9dbb30931044e60c38223436d4bd3f317cf003a39204e8b12ead6f",
+        "scripts/check-weapon-glow.py": "8bfe25792abdf5701b29ee465d06e374595e28dbfe41e255e04a2ee85470497f",
         "crates/azeroth-survivors-re/src/bosses/scripted_attack_geometry.rs": "93cb87678659c685fbcc4cc17397fa7fd7fc1fe732f38370077b2c983c5cfa90",
         "crates/azeroth-survivors-re/src/coop/replication.rs": "be86654a6fddc02a22752ebfa4e2f82ab1bd30c6d1af99f1affaf641f2477d8f",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs": "4443ca7097ed4b64f5fbe93eec930b751a48e6d534358a795f9b26383c054eff",
-        "docs/analysis/evidence/0.140.0/scholomance-straight-as.json": "adf7fa2f8221c3357a54b787ed8b5b91f438e46e6a2aa9b069762c79a29077b2"
+        "docs/analysis/evidence/0.140.0/scholomance-straight-as.json": "adf7fa2f8221c3357a54b787ed8b5b91f438e46e6a2aa9b069762c79a29077b2",
+        "crates/azeroth-survivors-re/assets/coop-achievement-ordinals-0.140.0.json": "192d73205733078d41c2f2fe77751d26d2c8467375e0f120af12ca44c4770cd3",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs": "c9a32142ef6458fa5a58896ae67bae9ffabf5f4c41be5da2c238f2a0ff383c5c",
+        "crates/azeroth-survivors-re/src/coop_profile.rs": "596329d767778a5693070716a08ab4791d75c163cca410781f113e1c9cf12f19"
       },
       "systems": [
         "custom-game-achievements"
@@ -33135,7 +33142,7 @@
         "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs": "449e25a572c7a3dfaff23008b88e5823d53bce94f1b861ab5d7ce35b16634f83",
         "crates/azeroth-survivors-re/src/run_meter.rs": "75ef18e0818611547c31592a6a6db7f8ada406f8acac8e45541c9253209d6508",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "3a7da2547ce0a6fb1fc50933c02bd800b9410772b1baa663a60deaea43998e4c",
-        "docs/analysis/scholomance-0.140.0.md": "1774084903600763de94ca12849f5f94008e90d762ac917c440d5d07b6860911",
+        "docs/analysis/scholomance-0.140.0.md": "d4fd05d55c9dbb30931044e60c38223436d4bd3f317cf003a39204e8b12ead6f",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs": "f0d205fbe846a99adaf6ecdf5ca25e5b76d459213e3d29e444b5f55f8b7052ac"
       },
       "systems": [
@@ -33952,7 +33959,7 @@
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
       "status": "source_connected",
-      "rationale": "The Insane uses the starting party size and first party fall, with the exact effective Heroic V and 40-minute boundaries. Host, State15 and live/cached guest award paths share the recovered inputs.",
+      "rationale": "The Insane uses the starting party size and first party fall, with the exact effective Heroic V and 40-minute boundaries. Host, State15 and live/cached guest award paths share the recovered inputs. The peer Hero profile now carries the achievement ordinal that admits the Unholy Weapon glow.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/account_progression.rs",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
@@ -33960,11 +33967,16 @@
         "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
         "crates/azeroth-survivors-re/src/coop/replication.rs",
         "crates/azeroth-survivors-re/src/coop/client_state.rs",
-        "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs"
+        "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+        "crates/azeroth-survivors-re/assets/coop-achievement-ordinals-0.140.0.json",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs",
+        "crates/azeroth-survivors-re/src/coop_profile.rs"
       ],
       "evidence_refs": [
         "docs/analysis/scholomance-0.140.0.md#the-insane-party-gate",
-        "scripts/check-party-achievement-wire.py"
+        "scripts/check-party-achievement-wire.py",
+        "docs/analysis/scholomance-0.140.0.md#peer-weapon-glows",
+        "scripts/check-weapon-glow.py"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/account_progression.rs": "0d1390850cf422ee4b87aeec0204d813b2c15d0d89032929fcacd1c61381c914",
@@ -33974,8 +33986,12 @@
         "crates/azeroth-survivors-re/src/coop/replication.rs": "be86654a6fddc02a22752ebfa4e2f82ab1bd30c6d1af99f1affaf641f2477d8f",
         "crates/azeroth-survivors-re/src/coop/client_state.rs": "29f5d4bc4b74bfcdd463eb648d10787bb56c5a6f173f30aaaa232952b77774ff",
         "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs": "b67fb6ca61dc5d49f46dc81e0f82bf62476d6e2fbeeb6098fae94e9b9176a435",
-        "docs/analysis/scholomance-0.140.0.md": "1774084903600763de94ca12849f5f94008e90d762ac917c440d5d07b6860911",
-        "scripts/check-party-achievement-wire.py": "26c1fcaeeb674b8328a885b2db375fa58e2bfb8ee8f0b28b7244436f1d259baa"
+        "docs/analysis/scholomance-0.140.0.md": "d4fd05d55c9dbb30931044e60c38223436d4bd3f317cf003a39204e8b12ead6f",
+        "scripts/check-party-achievement-wire.py": "26c1fcaeeb674b8328a885b2db375fa58e2bfb8ee8f0b28b7244436f1d259baa",
+        "crates/azeroth-survivors-re/assets/coop-achievement-ordinals-0.140.0.json": "192d73205733078d41c2f2fe77751d26d2c8467375e0f120af12ca44c4770cd3",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs": "c9a32142ef6458fa5a58896ae67bae9ffabf5f4c41be5da2c238f2a0ff383c5c",
+        "crates/azeroth-survivors-re/src/coop_profile.rs": "596329d767778a5693070716a08ab4791d75c163cca410781f113e1c9cf12f19",
+        "scripts/check-weapon-glow.py": "8bfe25792abdf5701b29ee465d06e374595e28dbfe41e255e04a2ee85470497f"
       },
       "systems": [
         "custom-game-achievements"
@@ -34004,7 +34020,7 @@
         "crates/azeroth-survivors-re/src/account_progression.rs": "0d1390850cf422ee4b87aeec0204d813b2c15d0d89032929fcacd1c61381c914",
         "crates/azeroth-survivors-re/src/progression.rs": "7718af3358720bbe78eec47f03a84c40b0e163b194ebc8e4a76340be5f084556",
         "crates/azeroth-survivors-re/assets/scholomance-achievements-0.140.0.json": "3b3709da47ee42cfae7af6ea6d61c0f2954361250a3ee625f7e50e4018508ad9",
-        "docs/analysis/scholomance-0.140.0.md": "1774084903600763de94ca12849f5f94008e90d762ac917c440d5d07b6860911"
+        "docs/analysis/scholomance-0.140.0.md": "d4fd05d55c9dbb30931044e60c38223436d4bd3f317cf003a39204e8b12ead6f"
       },
       "systems": [
         "custom-game-achievements"
@@ -34116,7 +34132,7 @@
         "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "6f1ff73f558d912224fbfa0d809e8b1f47eb3de0f87c0286f3576a24e5d52074",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "3a7da2547ce0a6fb1fc50933c02bd800b9410772b1baa663a60deaea43998e4c",
         "crates/azeroth-survivors-re/src/armory.rs": "73be0e391044a3ae8073baa219ba45fea0447d25af72fb91da8d0fc3954384df",
-        "docs/analysis/scholomance-0.140.0.md": "1774084903600763de94ca12849f5f94008e90d762ac917c440d5d07b6860911"
+        "docs/analysis/scholomance-0.140.0.md": "d4fd05d55c9dbb30931044e60c38223436d4bd3f317cf003a39204e8b12ead6f"
       },
       "systems": [
         "custom-game-sets"

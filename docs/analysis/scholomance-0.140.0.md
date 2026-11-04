@@ -442,8 +442,8 @@ account settlement, network execution and parity remain unverified.
 
 | 0.140.0 claim ID | Finding and next static step |
 | --- | --- |
-| `changelog:0.140.0:1bd2ec64e4e8aedc` | #315. The 83-item collection, Stormstrike Graduation and the nine-class Prepared save/use gate are connected. Lifestealing is gated and selectable in local Armory and preview. Straight A’s uses Gandling’s attack records and recipient result delivery. Co-op enchant admission uses the peer achievement carrier, which remains under #299. [Combat records](#graduation-and-straight-as-combat-records), [Prepared and glow](#prepared-use-and-lifestealing). |
-| `changelog:0.140.0:6e6db84119aec942` | #315. The Whole Armory is at `0x1473f9b3d` and the Heroic Across Azeroth descriptor at `0x1473fa06f`. `Still to beat: {zones}` is at `0x147770455`. Trace the current catalog denominator, previously owned item admission and missing-zone order/locale through the account and presentation owners. The source already counts `account.gear` and evaluates the retained 12 Heroic zone ordinals. [Progress evaluator](../../crates/azeroth-survivors-re/src/account_progression.rs), [achievement panels](../../crates/azeroth-survivors-re/src/progression.rs). |
+| `changelog:0.140.0:1bd2ec64e4e8aedc` | #315. The 83-item collection, Stormstrike Graduation and the nine-class Prepared save/use gate are connected. Lifestealing uses the earned-key gate in local Armory and in the peer Hero profile. Straight A’s uses Gandling’s attack records and recipient result delivery. [Combat records](#graduation-and-straight-as-combat-records), [Prepared and glow](#prepared-use-and-lifestealing). |
+| `changelog:0.140.0:6e6db84119aec942` | #315. The Whole Armory is at `0x1473f9b3d` and the Heroic Across Azeroth descriptor at `0x1473fa06f`. `Still to beat: {zones}` is at `0x147770455`. The source counts all 581 catalog pieces, including prior ownership, and evaluates all 13 Heroic zones. The card lists missing zones in localized catalog order. [Progress evaluator](../../crates/azeroth-survivors-re/src/account_progression.rs), [achievement panels](../../crates/azeroth-survivors-re/src/progression.rs). |
 | `changelog:0.140.0:094d1782a8db36a3` | #285. The Insane uses the starting party size and first party fall, with the exact effective Heroic V and 40-minute boundaries. Host, State15 and live/cached guest award paths share the recovered inputs. [Party gate](#the-insane-party-gate), [verification #285](../verification-needed.md#gap-285). |
 
 ### Graduation and Straight A's combat records
@@ -567,9 +567,7 @@ and the getter at `0x145e08850` applies the achievement gate or selects
 Icy Chill. The local Armory at `0x1403778fc..0x14037797a` hides the
 locked option and appends the unlocked button after Unholy Weapon.
 Preview at `0x1402447d8..0x140244859` uses the enchant for an equipped
-weapon at any star rank. The remote co-op sanitizer uses peer
-achievement IDs, whose profile carrier remains open in
-[#299](../CURRENT-STATE.md#gap-299).
+weapon at any star rank. The [peer profile](#peer-weapon-glows) validates the selected enchant against the same earned key.
 
 The retained dispatcher and pet tick slices bind to the installed hash.
 Warlock replay covered 216 cases over 88,662 original instructions.
@@ -577,3 +575,32 @@ Warlock replay covered 216 cases over 88,662 original instructions.
 38 native cases over 1,439 instructions. Rust syntax was parsed.
 Compilation, authored Rust tests, in-game notices, network/Armory
 behavior and original/rebuilt parity remain open.
+
+### Peer weapon glows
+
+The Hero builder at `0x14604f9e0` calls the Save collector at `0x146033760`.
+The collector resolves earned keys in the native 131-entry catalog order.
+A missing date encodes as zero and a wider date saturates to `u32::MAX`.
+The [ordinal table](../../crates/azeroth-survivors-re/assets/coop-achievement-ordinals-0.140.0.json)
+is bound to the installed catalog constructor at `0x145e4c9d0`.
+
+The Hero tag 4 writer appends a little-endian u32 count after the language
+bytes at `0x14605771f..0x146057778`. Each record has a u16 ordinal and u32
+date. The reader bounds count by remaining bytes divided by six. The
+sanitizer passes the peer records and requested enchant to `0x145e4bc00`
+before normalizing the list. It discards unknown ordinals, sorts by ordinal
+and keeps one record per ordinal. Short lists preserve the first equal
+ordinal's date and longer lists use an unstable sort without comparing dates.
+
+The gate requires ordinal 70 (`heroic:prepared`) for Lifestealing 1898 and
+ordinal 117 (`coop:insane`) for Unholy Weapon 1899. Fiery Weapon 803
+requires `radiantarmory`, Crusader 1900 requires `heroic:naxx5`, and Icy
+Chill 1894 is admitted without an earned key. Unadmitted choices become
+zero. The existing appearance path receives the sanitized choice.
+
+`python3 -B scripts/check-weapon-glow.py --current-peer-glow` passed 720
+native gate cases and 16 Hero row codec cases over 38,720 original
+instructions. The historical Hero fixtures retain their original prefix.
+The separate [Join/version contract](../CURRENT-STATE.md#gap-163) and
+[lobby inspection](../CURRENT-STATE.md#gap-299) remain open. Rust
+compilation and live multiplayer presentation remain unverified.

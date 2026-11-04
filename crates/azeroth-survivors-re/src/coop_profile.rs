@@ -1,5 +1,5 @@
-//! 0.121.0 account/party Hero bridge; current builder145af4ae0 and
-//! sanitizer145b4c110. See coop-heroic-wire-0.121.0.md.
+//! Account/party Hero bridge. Achievement ordinals and the peer glow gate
+//! follow the 0.140.0 builder at 0x14604f9e0 and sanitizer at 0x145e38ad0.
 use crate::{
     armory::{self, ArmoryCatalog},
     gameplay::mechanics::Mechanics,
@@ -7,12 +7,28 @@ use crate::{
     save::{self, Pick, Save},
 };
 use azeroth_survivors_re::{
+    armory_cosmetics::weapon_glow_unlocked,
     coop::server_party::{
         validate_hero_identity, HeroIdentityError, NativeHero, NativeRosterProfile,
     },
     run_effects::loot_companions,
     run_progression::AccountGrants,
 };
+use std::sync::OnceLock;
+
+fn achievement_keys() -> &'static [String] {
+    #[derive(serde::Deserialize)]
+    struct Catalog {
+        keys: Vec<String>,
+    }
+    static CATALOG: OnceLock<Catalog> = OnceLock::new();
+    &CATALOG
+        .get_or_init(|| {
+            serde_json::from_str(include_str!("../assets/coop-achievement-ordinals-0.140.0.json"))
+                .expect("native co-op achievement ordinals")
+        })
+        .keys
+}
 
 ///1458e1530 accepts these exact two-byte language codes. Invalid input has no
 /// locale override; it does not silently select the host's locale.
@@ -55,6 +71,17 @@ pub(crate) fn build(
     let gear = armory::GearSave::read_for(save, pick.hero.class, pick.hero.race);
     let plain = save.plaintext();
     let records = save::gear::Records::read(plain.lines());
+    let earned = save.earned_achievements();
+    let dates = save.achievement_dates();
+    let achievements = achievement_keys()
+        .iter()
+        .enumerate()
+        .filter(|(_, key)| earned.contains(*key))
+        .map(|(id, key)| {
+            let earned_at = dates.get(key).copied().unwrap_or_default();
+            (id as u16, earned_at.min(u64::from(u32::MAX)) as u32)
+        })
+        .collect();
     NativeHero {
         guid: world_guid,
         name: pick.name.as_bytes().to_vec(),
@@ -82,7 +109,7 @@ pub(crate) fn build(
         rank_168,
         bytes_17c: [companions.leash, companions.paws],
         cooperative_luck_bits: azeroth_survivors_re::run_progression::cooperative_luck(
-            save.earned_achievements().contains("coop:team"),
+            earned.contains("coop:team"),
         ).to_bits(),
         bytes_1d8: flags,
         //1458916c0 admits the cached service profile only for this world and
@@ -93,6 +120,7 @@ pub(crate) fn build(
         byte_1e3: save.unlock_value(pick.hero.class).unwrap_or(1)
             .clamp(1, azeroth_survivors_re::zones::COUNT as u64) as u8,
         bytes_30: language(locale.as_bytes()),
+        achievements,
     }
 }
 
@@ -135,7 +163,24 @@ pub(crate) fn sanitize(mut hero: NativeHero) -> Result<NativeHero, HeroIdentityE
     }).take(64).map(|(id, count)| (id, count.min(40))).collect();
     hero.heroic_unlocks.resize(azeroth_survivors_re::zones::COUNT, 0);
     for rank in &mut hero.heroic_unlocks { *rank = (*rank).min(5); }
-    hero.weapon_glow = match hero.weapon_glow { 0 | 803 | 1894 | 1900 => hero.weapon_glow, _ => 0 };
+    let keys = achievement_keys();
+    if !weapon_glow_unlocked(hero.weapon_glow, |key| {
+        hero.achievements.iter().any(|&(id, _)| {
+            keys.get(usize::from(id))
+                .is_some_and(|candidate| candidate.as_str() == key)
+        })
+    }) {
+        hero.weapon_glow = 0;
+    }
+    hero.achievements
+        .retain(|&(id, _)| usize::from(id) < keys.len());
+    // The native short sort preserves equal-index input order before deduplication.
+    if hero.achievements.len() < 21 {
+        hero.achievements.sort_by_key(|&(id, _)| id);
+    } else {
+        hero.achievements.sort_unstable_by_key(|&(id, _)| id);
+    }
+    hero.achievements.dedup_by_key(|row| row.0);
     let raw = save::talents::decode_allocation(&String::from_utf8_lossy(&hero.bytes_18));
     let talents = save::talents::normalize(save::talents::catalog().class(hero.class), &raw, 51);
     hero.bytes_18 =
@@ -225,4 +270,39 @@ pub(crate) fn outfit(hero: &NativeHero, catalog: &ArmoryCatalog) -> Vec<(u8, u32
     .filter(|(_, id)| catalog.appearance(*id, hero.race).is_some())
     .map(|(slot, id)| (slot as u8 + 1, id))
     .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn received_glow_requires_the_corresponding_earned_ordinal() {
+        let mut save = Save::parse("").unwrap();
+        save.grant_achievements(
+            &["heroic:prepared".into()],
+            Some(u64::from(u32::MAX) + 1),
+        );
+        save.grant_achievements(&["radiantarmory".into()], None);
+        assert!(save.set_weapon_glow(1, 1898));
+        let pick = Pick {
+            hero: save::Hero {
+                class: 1,
+                race: 1,
+                sex: 0,
+                features: [0; 5],
+            },
+            name: "Peer".into(),
+            zone: "elwynn".into(),
+            heroic_rank: 0,
+            mods: Default::default(),
+        };
+        let mut hero = build(&save, &pick, 0x800001, "en", [0; 3], None);
+        assert_eq!(hero.achievements, [(69, 0), (70, u32::MAX)]);
+        assert_eq!(sanitize(hero.clone()).unwrap().weapon_glow, 1898);
+        hero.achievements = vec![(117, 100), (65535, 50), (69, 40), (117, 200)];
+        let sanitized = sanitize(hero).unwrap();
+        assert_eq!(sanitized.weapon_glow, 0);
+        assert_eq!(sanitized.achievements, [(69, 40), (117, 100)]);
+    }
 }
