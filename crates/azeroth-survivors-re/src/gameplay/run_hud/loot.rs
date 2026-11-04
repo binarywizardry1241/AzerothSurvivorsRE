@@ -42,7 +42,7 @@ fn colors(rarity: usize) -> (Color, Color, Color) {
             [0.039, 0.310, 0.612],
             [0.047, 0.110, 0.200],
         ),
-        3 | 5 => (
+        3 | 5 | 7 => (
             [0.761, 0.486, 1.],
             [0.420, 0.122, 0.659],
             [0.133, 0.063, 0.227],
@@ -192,7 +192,10 @@ pub(super) fn sync(
                                 11.,
                                 Color::srgb(0.725, 0.663, 0.510),
                             );
-                            label(body, &art, piece.name(game.stats.native_race), 17., name);
+                            let title = piece.tier05_name_key()
+                                .and_then(|key| locale.lookup(&key))
+                                .unwrap_or_else(|| piece.name(game.stats.native_race));
+                            label(body, &art, title, 17., name);
                             label(
                                 body,
                                 &art,

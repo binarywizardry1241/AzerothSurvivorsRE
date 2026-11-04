@@ -269,24 +269,24 @@ pub fn roll_boss_rewards(
     pity: &mut std::collections::BTreeMap<u32, u8>,
     rng: &mut NativeRng,
 ) -> BossGearReward {
-    // The live run uses current zone order; the recovered legacy loot pools
-    // still use their own order. Keep the new zone out of those pools.
-    let Some(zone) = crate::guardians::catalog::ZONES.get(zone)
-        .and_then(|current| BOSS_ZONES.iter().position(|row| row.key == current.key))
-    else {
+    if roll.extra_pickup_mode {
         return BossGearReward::default();
-    };
-    let Some(definition) = BOSS_ZONES.get(zone).and_then(|zone| zone.bosses.get(boss)) else {
-        return BossGearReward::default();
-    };
-    if roll.extra_pickup_mode { return BossGearReward::default(); }
-    let mut marks = (zone / 2 + 1) as f32;
-    if let Some(count) = endless_bosses {
-        marks *= count.max(1) as f32;
-    } else if definition.final_flag != 0 {
-        marks *= 3.;
     }
-    marks *= crate::heroic::marks_multiplier(heroic_rank);
+    let Some(current) = crate::guardians::catalog::ZONES.get(zone) else {
+        return BossGearReward::default();
+    };
+    if current.key == crate::zones::scholomance::KEY {
+        return roll_scholomance_rewards(class, zone, boss, heroic_rank, endless_bosses, rng);
+    }
+    // The live run uses current zone order; the legacy loot pools retain their
+    // own ordinals. Scholomance never enters those per-item rolls.
+    let Some(zone) = BOSS_ZONES.iter().position(|row| row.key == current.key) else {
+        return BossGearReward::default();
+    };
+    let Some(definition) = BOSS_ZONES[zone].bosses.get(boss) else {
+        return BossGearReward::default();
+    };
+    let marks = boss_marks(zone, definition.final_flag != 0, heroic_rank, endless_bosses);
     let mut reward = BossGearReward { marks, ..BossGearReward::default() };
     let multiplier = crate::heroic::reward_multiplier(heroic_rank);
     for candidate in boss_candidates(class, zone, boss) {
@@ -299,6 +299,46 @@ pub fn roll_boss_rewards(
             reward.missed_ids.push(candidate.item_id);
             let misses = pity.entry(candidate.item_id).or_default();
             *misses = misses.saturating_add(1);
+        }
+    }
+    reward
+}
+
+fn boss_marks(zone: usize, final_boss: bool, heroic_rank: u8, endless_bosses: Option<u32>) -> f32 {
+    let base = ((zone / 2).min(5) + 1) as f32;
+    let multiplier = match endless_bosses {
+        Some(count) => count.max(1) as f32,
+        None if final_boss => 3.0,
+        None => 1.0,
+    };
+    (base * multiplier) * crate::heroic::marks_multiplier(heroic_rank)
+}
+
+/// Native 0.140.0 145f3fea0 uses the same draw for admission and group
+/// selection. Each accepted group is granted in full, without item pity.
+fn roll_scholomance_rewards(
+    class: u8,
+    zone: usize,
+    boss: usize,
+    heroic_rank: u8,
+    endless_bosses: Option<u32>,
+    rng: &mut NativeRng,
+) -> BossGearReward {
+    use crate::tier05;
+
+    let final_boss = boss == tier05::ARMOR_DROP_SLOTS.len();
+    if boss > tier05::ARMOR_DROP_SLOTS.len() {
+        return BossGearReward::default();
+    }
+    let marks = boss_marks(zone, final_boss, heroic_rank, endless_bosses);
+    let draw = unit24(rng);
+    let mut reward = BossGearReward { marks, ..BossGearReward::default() };
+    if draw < 0.25 && tier05::class(class).is_some() {
+        if final_boss {
+            reward.items.extend(tier05::weapon_ids(class));
+        } else {
+            let slot = tier05::ARMOR_DROP_SLOTS[boss][(draw * 8.0) as usize];
+            reward.items.push(tier05::item_id(class, slot));
         }
     }
     reward
@@ -324,5 +364,32 @@ mod current_gear_tests {
         assert_eq!(reward.marks, 7.5);
         let reward = roll_boss_rewards(1, 0, 4, roll, 5, Some(3), &mut pity, &mut rng);
         assert_eq!(reward.marks, 7.5);
+    }
+
+    #[test]
+    fn scholomance_uses_the_same_draw_for_chance_and_the_whole_reward_group() {
+        let zone = crate::zones::scholomance::INDEX;
+        let roll = EquipmentRoll {
+            extra_pickup_mode: false,
+            additive_chance: f32::NEG_INFINITY,
+            run_options: [500, 500, 300, 150],
+        };
+        let mut pity = BTreeMap::from([(104_070, 255)]);
+        for (boss, high_bits, expected) in [
+            (0, 0x1f_ffff_u64, vec![104_070]),
+            (0, 0x20_0000, vec![104_170]),
+            (4, 0x3f_ffff, vec![104_870, 104_970]),
+            (4, 0x40_0000, vec![]),
+        ] {
+            let input = [0, 1, 2, (high_bits << 40).rotate_right(23)];
+            let mut rng = NativeRng::from_words(input);
+            let mut next = NativeRng::from_words(input);
+            next.next_u64();
+            let reward = roll_boss_rewards(4, zone, boss, roll, 5, None, &mut pity, &mut rng);
+            assert_eq!(reward.items, expected);
+            assert!(reward.missed_ids.is_empty());
+            assert_eq!(pity[&104_070], 255);
+            assert_eq!(rng.next_u64(), next.next_u64());
+        }
     }
 }

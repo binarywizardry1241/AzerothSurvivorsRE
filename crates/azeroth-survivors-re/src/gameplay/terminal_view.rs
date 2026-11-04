@@ -553,7 +553,7 @@ fn loot_color(rarity: usize) -> Color {
     match rarity {
         1 => Color::srgb(0.118, 1., 0.),
         2 => Color::srgb(0.231, 0.612, 1.),
-        3 | 5 => Color::srgb(0.761, 0.486, 1.),
+        3 | 5 | 7 => Color::srgb(0.761, 0.486, 1.),
         4 => Color::srgb(1., 0.604, 0.165),
         _ => Color::srgb(0.91, 0.91, 0.91),
     }

@@ -315,7 +315,7 @@ fn item_sets(catalog: &ArmoryCatalog, labels: &MenuCatalog)
     use azeroth_survivors_re::sets;
     let mut output = std::collections::HashMap::new();
     for class in &catalog.classes {
-        for tier in 0..sets::TIERS {
+        for tier in (0..sets::TIERS).chain(std::iter::once(usize::from(sets::TIER_HALF))) {
             for horde in [false, true] {
                 if horde && tier != 5 { continue; }
                 let members = (0..sets::ARMOR_SLOTS).map(|slot| {
@@ -326,11 +326,21 @@ fn item_sets(catalog: &ArmoryCatalog, labels: &MenuCatalog)
                 }).collect::<Option<Vec<_>>>();
                 let Some(members) = members else { continue; };
                 let four = crate::armory::set_four_bonus(labels, tier as u8);
-                let mut bonuses = vec![(4, labels.label("{bonus} (pieces at {stars}+ stars)")
-                    .replace("{bonus}", &four).replace("{stars}", "1"))];
+                let mut bonuses = Vec::new();
+                if !four.is_empty() {
+                    bonuses.push((4, labels.label("{bonus} (pieces at {stars}+ stars)")
+                        .replace("{bonus}", &four).replace("{stars}", "1")));
+                }
                 if let Some(eight) = crate::armory::set_eight_bonus(labels, class.id, tier as u8, false) {
-                    bonuses.push((8, labels.label("{bonus} (all eight at {stars}+ stars; half again as strong at {max})")
-                        .replace("{bonus}", &eight).replace("{stars}", "3").replace("{max}", "5")));
+                    let text = if tier == usize::from(sets::TIER_HALF) {
+                        let empowered = crate::armory::set_eight_bonus(labels, class.id, tier as u8, true)
+                            .unwrap_or_default();
+                        labels.label("{bonus} (all eight at {stars}+ stars) At {max}: {empowered}")
+                            .replace("{empowered}", &empowered)
+                    } else {
+                        labels.label("{bonus} (all eight at {stars}+ stars; half again as strong at {max})")
+                    };
+                    bonuses.push((8, text.replace("{bonus}", &eight).replace("{stars}", "3").replace("{max}", "5")));
                 }
                 let id = sets::SetIdentity { class_id: class.id,
                     tier: tier as u8, horde_pvp: horde }.item_set_id();
@@ -372,7 +382,7 @@ fn definition(catalog: &ArmoryCatalog, labels: &MenuCatalog, id: u32, stars: u8)
             crate::save::gear::decode(id).map(|piece| azeroth_survivors_re::sets::Piece {
                 class_id: piece.class,
                 slot: usize::from(piece.slot),
-                tier: usize::from(piece.rarity_digit.min(5)),
+                tier: usize::from(piece.set_tier()),
             })
         });
         item.name = crate::armory::piece_name(labels, piece, 1);
@@ -383,7 +393,7 @@ fn definition(catalog: &ArmoryCatalog, labels: &MenuCatalog, id: u32, stars: u8)
         item.sheath = piece.sheath;
         item.quality = match piece.rarity {
             4 if piece.item_class != 2 => 4,
-            5 => 4,
+            5 | 7 => 4,
             rarity => rarity as u32 + 1,
         };
         let effects = piece.effects_at_stars(stars);
@@ -421,7 +431,7 @@ fn definition(catalog: &ArmoryCatalog, labels: &MenuCatalog, id: u32, stars: u8)
 
 fn armor(class: u32, subclass: u32, rarity: usize) -> u32 {
     if class != 4 { return 0 }
-    let scale = [1.0f32, 1.7, 2.5, 3.5, 4.6, 4.0][rarity.min(5)];
+    let scale = [1.0f32, 1.7, 2.5, 3.5, 4.6, 4.0, 4.0, 4.3][rarity.min(7)];
     if subclass == 6 { (300.0 * scale) as u32 }
     else { (([0.0f32, 6.0, 12.0, 22.0, 40.0][subclass.min(4) as usize] * scale) * 4.0) as u32 }
 }

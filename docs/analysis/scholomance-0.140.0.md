@@ -84,18 +84,74 @@ the raid action and warning helpers, and their live mechanics adapter.
 
 ## Equipment and set consumers
 
-The `Helm of Heroism` and `Darkmantle Cap` literals are at `0x1473f1fe0` and
-`0x1473f2a10`. Relocated pointer fields at `0x1473f3b40` and `0x1473f41b8`
-refer to them. `sets.rs` owners `0x145e34820`, `0x145e34bf0` and `0x145e34f70`
-provide current code leads. Existing source has six tier slots. The active
-boss award path calls `roll_boss_rewards`, which draws for each eligible item
-with per-piece pity and a Heroic multiplier. Recover the current tier and
-recipient-specific roll before changing this path. [Award source](../../crates/azeroth-survivors-re/src/mob_loot.rs), [set source](../../crates/azeroth-survivors-re/src/sets.rs), [gear #92](../CURRENT-STATE.md#gap-92), [set mechanics #242](../CURRENT-STATE.md#gap-242), [pity history #228](../verification-needed.md#gap-228).
+### Catalog, rewards and star progression
+
+The class pointer table at `0x1473f68b8` selects nine 0x228-byte records
+starting at `0x1473f3b40`. Each record has eight 0x40-byte armor rows,
+set title at +0x200, a weapon slice at +0x210/+0x218 and class/material
+at +0x224/+0x225. Weapon rows use a 0x50-byte stride. Both item layouts
+carry name, base stat slice, five-star stat slice, client item ID and
+display ID in the same prefix. Native constructor `0x145e3d420` selects
+the catalog row by compact slot and class, uses the armor paperdoll
+table at `0x1473f027c` or the weapon's own slot, and publishes rarity 7.
+The client item ID supplies the `t05.{id}` localized name. Save ownership
+uses `100070 + 1000 * class + 100 * compact_slot` as emitted by
+`0x1460385f0`; the gear getter at `0x145e2cf59` dispatches rarity 7 to the
+constructor. The nine source sets share a single [pointer-free catalog](../../crates/azeroth-survivors-re/assets/scholomance-gear-0.140.0.json).
+
+The primary death reward owner `0x145f3fea0` first adds the existing
+boss mark award. Scholomance uses the zone-pair base 6 from
+`0x14739a228`, the existing final/endless multiplier and the recipient's
+Heroic mark multiplier. At `0x145f40063` tier 7 bypasses the per-piece
+gear chance and pity path. The recipient supplies one native top-24-bit
+draw to `0x145e3d7c0`. That draw must be less than 0.25, and the selected
+group is `min(floor((draw * 4) * group_count), group_count - 1)`.
+The candidate owner `0x145e3cdf0` uses the four rows at `0x1473f1f80`
+for Kirtonos [0,1], Ras [2,3], Krastinov [4,5] and Barov [6,7].
+Each armor group contains one item. Gandling yields one group containing
+slot 8 and, for Rogue or Shaman, slot 9 in that order. Successful groups
+append the normal item receipts with the same boss serial and marks.
+The prior local and admitted-party delivery paths consume those receipts.
+Duplicate conversion uses base 7 at `0x14739a240` in the existing
+recipient at `0x145ea1c50`. [Award source](../../crates/azeroth-survivors-re/src/mob_loot.rs), [save receipt](../../crates/azeroth-survivors-re/src/save/gear_rewards.rs), [pity history #228](../verification-needed.md#gap-228).
+
+The tier-specific stat projection in `0x145e2e1b0` zips the two ordered
+stat slices. `0x14605d0e0` subtracts the matching base value from each
+five-star value before `0x145e44ad0` scales the difference. Health uses
+the integer rounding path. Rank total and incremental callers
+`0x145e2b9c0` and `0x145e2b5e0` use the tier 7 step and final increments
+at `0x1473ec028` and `0x1473ec048`. The other tiers' missing-stat
+bridge exits early for tier 7 at `0x145e2a857`. Star purchases use
+the matching cleared zone, the existing other-class full armor discount
+and base 5.5 at `0x14739a260`. The current purchase owner
+`0x145e08298` multiplies rank by base before applying the discount.
+[Star projection](../../crates/azeroth-survivors-re/src/gear_stars.rs), [star purchase](../../crates/azeroth-survivors-re/src/save/gear_progression.rs).
+
+The Armory collection enumerates tier order `[0,1,2,3,5,7,4]`
+from `0x1465cfbb8`. Its rarity color lookup at `0x1403d61c3` and
+loot notices at `0x140390949` select the tier 7 purple entry from
+the component arrays beginning at `0x1465d3898`. The per-group Armory
+drop preview uses `0.25 / group_count` at `0x145e29f14`. FrameXML item
+publication uses quality 4 at `0x145ea5d80` and an armor scale of 4.3
+from `0x1473ebe48`. The existing runtime asset and item query consumers
+share the current catalog. [Armory](../../crates/azeroth-survivors-re/src/armory.rs), [item query](../../crates/azeroth-survivors-re/src/gameplay/client/inventory.rs).
+
+`0x145e2a300` counts worn armor of each tier with nonzero rank. The
+eight-piece check at `0x145e34f70` selects the first tier in
+`[0,1,2,3,5,7,4]` with at least eight pieces and all at rank 3 or
+above, and marks the result empowered at rank 5. The source includes
+tier 7 in both checks. The independently recovered class effect
+constructors and combat consumers retain separate verification below.
+
+`python3 -B scripts/recover-gear-effects.py --scholomance` verifies all
+72 armor and 11 weapon records against the installed hash, including
+both stat slices and the metadata fields. Compilation, runtime
+delivery, rendered output and original/rebuilt parity remain open.
 
 | 0.140.0 claim ID | Finding and next static step |
 | --- | --- |
-| `changelog:0.140.0:3e24ce3552cb9657` | #314 rewards. Use the five boss entry records and the existing death-to-award path to find the one-roll gate, two-slot selection, paired class weapon grant, pity interaction and local/remote inventory and save order. Separate the reported drop roll from the fixed weapon collection requirement. |
-| `changelog:0.140.0:3af814319808b3f0` | #314 catalog and sets. Follow the name pointer fields to all nine classes' equipment identities, eight armor slots, stars/stats and 4-piece, 8-piece and five-star effects. Trace Beastmaster companion creation through the current set resolver and companion consumers. |
+| `changelog:0.140.0:3e24ce3552cb9657` | #314 rewards. The one-roll gate, exact armor groups, paired weapon receipts and pity bypass are connected through the retained recipient delivery path. |
+| `changelog:0.140.0:3af814319808b3f0` | #314 catalog and sets. The 83 items, star arithmetic, wear thresholds and item publication are connected. The class effect constructor at `0x145e30990` branches by class through `0x1473f70e0` with distinct four-, eight- and five-star modes. Its remaining unconnected payloads and their gameplay consumers need separate proof. |
 | `changelog:0.140.0:4a2e1ed28b7af869` | #314 Heroism. Follow the 8-piece and five-star descriptors into Shield Slam resolution. Establish multiplier and maximum-health ordering and the fate of the prior extra-hit branch. |
 | `changelog:0.140.0:cf7efae2d63eba41` | #314 Darkmantle. `Marked for Death` appears at `0x1473eb3ef`. Recover the mark's aura key, lifetime and projection through Gouge and Kidney Shot, retaining separate state and display checks. |
 

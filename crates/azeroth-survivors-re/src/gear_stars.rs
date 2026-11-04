@@ -10,10 +10,16 @@ const FINAL_TARGET: [f32; 6] = [0.90, 0.92, 0.94, 0.96, 1.0, 0.98];
 
 /// Additional multiplier, before merging the original piece bonuses.
 pub fn bonus(rarity: usize, stars: u8) -> f32 {
-    let tier = rarity.min(5);
-    let ordinary = f32::from(stars.min(4)) * STEP[tier];
+    let (step, last) = if rarity == usize::from(crate::sets::TIER_HALF) {
+        // 0.140.0 tier-seven entries at 1473ec028 and 1473ec048.
+        (0.18292682, 0.26829267)
+    } else {
+        let tier = rarity.min(5);
+        (STEP[tier], FINAL[tier])
+    };
+    let ordinary = f32::from(stars.min(4)) * step;
     if stars > 4 {
-        ordinary + FINAL[tier]
+        ordinary + last
     } else {
         ordinary
     }
@@ -71,11 +77,22 @@ pub fn effects(
     stars: u8,
     final_star: &[(u8, f32)],
 ) -> Vec<(u8, f32)> {
+    effects_with_basis(base, base, rarity, stars, final_star)
+}
+
+/// Tier 0.5 projects rank bonuses from its separate base-to-five-star delta.
+pub fn effects_with_basis(
+    base: &[(u8, f32)],
+    bonus_basis: &[(u8, f32)],
+    rarity: usize,
+    stars: u8,
+    final_star: &[(u8, f32)],
+) -> Vec<(u8, f32)> {
     let mut merged = Vec::<(u8, f32)>::new();
     for (tag, value) in base
         .iter()
         .copied()
-        .chain(extra_effects(base, rarity, stars, false, final_star))
+        .chain(extra_effects(bonus_basis, rarity, stars, false, final_star))
     {
         if let Some((_, total)) = merged.iter_mut().find(|(kind, _)| *kind == tag) {
             *total += value;
@@ -95,7 +112,7 @@ pub fn final_star_effects(
     rarity: usize,
     slot: usize,
 ) -> Vec<(u8, f32)> {
-    if rarity == 4 || slot >= 8 {
+    if rarity == 4 || rarity == usize::from(crate::sets::TIER_HALF) || slot >= 8 {
         return Vec::new();
     }
     // Native folds the Tier 3 ordinary and final factors to these exact bits.

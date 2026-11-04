@@ -23,6 +23,7 @@ pub mod raid_markers;
 pub mod account_progression;
 pub mod heroic;
 pub mod sets;
+pub mod tier05;
 
 pub mod armory_cosmetics;
 pub mod coop;

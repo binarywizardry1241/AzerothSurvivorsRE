@@ -41318,7 +41318,8 @@
         "docs/analysis/evidence/0.139.1/source-frontier.json",
         "docs/analysis/native-census-0.139.1.md",
         "docs/analysis/evidence/0.139.1/switch-context-source-review.json",
-        "docs/analysis/switch-context-source-review-0.139.1.md"
+        "docs/analysis/switch-context-source-review-0.139.1.md",
+        "docs/analysis/scholomance-0.140.0.md"
       ],
       "gap_ids": [
         4,
@@ -42289,6 +42290,33 @@
         "runtime_validation": "not_run",
         "parity": "unverified",
         "original_instruction_steps": 2155
+      },
+      "gap_314_catalog_0_140_0": {
+        "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        "gap_id": 314,
+        "scope": "The 83 item records, stat endpoints, star purchases, item publication and tier activation are connected. The remaining class effect descriptors and consumers stay open.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/assets/scholomance-gear-0.140.0.json",
+          "crates/azeroth-survivors-re/src/tier05.rs",
+          "crates/azeroth-survivors-re/src/lib.rs",
+          "crates/azeroth-survivors-re/src/mob_loot.rs",
+          "crates/azeroth-survivors-re/src/gear_stars.rs",
+          "crates/azeroth-survivors-re/src/armory.rs",
+          "crates/azeroth-survivors-re/src/save/gear.rs",
+          "crates/azeroth-survivors-re/src/save/gear_progression.rs",
+          "crates/azeroth-survivors-re/src/save/gear_rewards.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+          "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+          "crates/azeroth-survivors-re/src/gameplay/terminal_view.rs",
+          "crates/azeroth-survivors-re/src/gameplay/run_hud/loot.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/scholomance-0.140.0.md"
+        ],
+        "source_status": "connected",
+        "static_validation": "bounded",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
       }
     },
     {
@@ -77866,7 +77894,7 @@
     "crates/benilla-formats/src/install.rs": "a3656080d4282194a6ec9b85a6e77bcba2ab9ef88925e10e5cd9fde2558cdce7",
     "scripts/check-data-directory-0.115.0.py": "145bb96c8093866b1979a95de47cc0ab2ba6496b2a54713e8c181a5152763ef0",
     "crates/azeroth-survivors-re/src/localization/amulet_names.rs": "9e0342886db6d1ab72ad55287b205653dd75d67f9a9883264823da8d38f73968",
-    "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs": "9cf1b89bef40673beed9061424710253570e3535a5223d5a1a1caa70ffde2e61",
+    "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs": "5992c71f53651bdb23f0ade4c3aab4e4ac7285dc5ac34b7a73c6758733dfe92f",
     "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs": "541cd771dc3dae4825490a0c2fc6790995c75dd17c9288faeaac6da92327925e",
     "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "ecd828caac2a595074c514b15c9314244d5f106ea39ee9c36af0f31f6c6eaf8b",
     "scripts/check-amulet-names-0.115.0.py": "edd39b69727906eacaea1399aadc52445acdea058eb6df2c40956acc8ac0607f",
@@ -77944,7 +77972,7 @@
     "scripts/check-q41-dispatch-contracts-0.115.0.py": "b816eb3fda2611ef0c7705d3d2720080c6ffa99beb6726d42b4a489be176946f",
     "scripts/check-q41-embedded-containers-0.115.0.py": "fda8d7241826fef3f2f7567905d9a8ab2f5cd6ab5d07e34b4cbad68d3596c722",
     "crates/azeroth-survivors-re/assets/locales/en.json": "f420c64160e5aef8ff861d9e3ffa99a5c561bee97ef399b2655b843c4ddafcbe",
-    "crates/azeroth-survivors-re/src/armory.rs": "72765f8735518f9ed1ddaa2d73f1bf47d0db86f009338800e2ee3bf8ce97e68a",
+    "crates/azeroth-survivors-re/src/armory.rs": "8556370c34a95680d353bef24ad7f890e18dd73d9f828f35d8ed234e459333a0",
     "scripts/check-armory-looks-0.117.0.py": "d2c7591d6ddca41418d8bfdbc5063a55f90dfb633d3ea46f62e2dcc18cf0183a",
     "crates/azeroth-survivors-re/src/save.rs": "b1c9e74cf57881980eee8f5201676895b0d1eae49445a0bd3b3fec3250ec06d4",
     "crates/azeroth-survivors-re/src/save/coop_history.rs": "5e21f9a03825c08a06561d5b96fe8076d8206e3d2405d99f6f0ecfd17383a3fd",
@@ -77991,7 +78019,7 @@
     "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs": "f7e3eae119cf986faf766bfc21555581c5de37d3654e7804a8784159de4b96ac",
     "crates/azeroth-survivors-re/src/gameplay/client/events.rs": "26f5effed31510a0b270f46625c4fdfb3501b3fc5eee211aa91bc70d5c87ee0e",
     "crates/azeroth-survivors-re/src/gameplay/notifications.rs": "1776ef3bd665a91b78e41cb4ec3b4c5a69852ffb7f90fbdc7cb73be8977eee2f",
-    "crates/azeroth-survivors-re/src/gameplay/terminal.rs": "1744bc61c04ead90ea80a6ad74804cfb47395fabcc52f73e92dcdf0b196e185b",
+    "crates/azeroth-survivors-re/src/gameplay/terminal.rs": "84a0352e3b5d93200a17274be0377ae15fc0999154aaf4c2d0ede08d523f3af2",
     "scripts/check-guest-settlement-0.119.0.py": "2fe4d07c562404364c9f8422be939a3ae0afe9d2bd4d2d47ebb3008b96c5e12f",
     "scripts/check-revive-choice-0.119.0.py": "6a76230b3366d97391fdf90b93b14c572955bbf43b141f51ea3c2fbfaa13898b",
     "crates/azeroth-survivors-re/src/run_effects/player_auras.rs": "b30321ba30f2d3911120146982017a0380563c73e05cb7e8ada985dfaddb8652",

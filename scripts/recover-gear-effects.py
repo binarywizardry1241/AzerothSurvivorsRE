@@ -6,6 +6,7 @@ Keeps name/appearance/drop provenance distinct from the revalidated numeric effe
 """
 from script_sources import load_script
 from pathlib import Path
+import argparse
 import hashlib
 import json
 import math
@@ -14,6 +15,77 @@ import struct
 ROOT = Path(__file__).resolve().parent.parent
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.100.1.exe'
 SHA = '17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
+SCHOLOMANCE_SHA = '27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9'
+
+
+def scholomance(write):
+    from coverage_common import latest_target, target_bytes
+
+    target = latest_target(verify=True)
+    assert (target['version'], target['sha256']) == ('0.140.0', SCHOLOMANCE_SHA)
+    data = target_bytes(target)
+    pe = load_script('inventory', ROOT / 'scripts/inventory-executable.py').PE(data)
+
+    def read(va, size):
+        offset = pe.rva_offset(va - pe.image_base)
+        result = data[offset:offset + size]
+        assert len(result) == size
+        return result
+
+    def unpack(va, fmt):
+        return struct.unpack(fmt, read(va, struct.calcsize(fmt)))
+
+    def string(va):
+        pointer, size = unpack(va, '<QQ')
+        assert 0 < size < 128
+        return read(pointer, size).decode()
+
+    def effects(va):
+        pointer, count = unpack(va, '<QQ')
+        assert 1 <= count <= 8
+        return [unpack(pointer + index * 8, '<If') for index in range(count)]
+
+    classes = []
+    for cid in (1, 2, 3, 4, 5, 7, 8, 9, 11):
+        address, = unpack(0x1473f68b8 + (cid - 1) * 8, '<Q')
+        stored_class, material = unpack(address + 0x224, '<BB')
+        assert stored_class == cid
+        weapon, count = unpack(address + 0x210, '<QQ')
+        assert count == (2 if cid in (4, 7) else 1)
+        items = []
+        for slot in range(8 + count):
+            row = address + slot * 0x40 if slot < 8 else weapon + (slot - 8) * 0x50
+            native_id, display = unpack(row + 0x30, '<II')
+            if slot < 8:
+                inventory, = unpack(row + 0x38, '<I')
+                slot_id, = unpack(0x1473f027c + slot, '<B')
+                kind, subclass, sheath = 4, material, 0
+            else:
+                kind, subclass, inventory, sheath, slot_id = unpack(row + 0x38, '<IIIIB')
+            base, five_star = effects(row + 0x10), effects(row + 0x20)
+            assert [tag for tag, _ in base] == [tag for tag, _ in five_star]
+            items.append(dict(native_id=native_id, name=string(row), display_id=display,
+                item_class=kind, item_subclass=subclass, inventory_type=inventory, sheath=sheath,
+                slot_id=slot_id, effects=base, five_star_effects=[value for _, value in five_star]))
+        classes.append(dict(id=cid, name=string(address + 0x200), items=items))
+
+    assert sum(len(row['items']) for row in classes) == 83
+    assert len({piece['native_id'] for row in classes for piece in row['items']}) == 83
+    asset = ROOT / 'crates/azeroth-survivors-re/assets/scholomance-gear-0.140.0.json'
+    # One record per item keeps the complete pointer-free catalog reviewable.
+    rows = ['{', f'  "target_sha256": "{SCHOLOMANCE_SHA}",', '  "classes": [']
+    for index, row in enumerate(classes):
+        rows.append(f'    {{"id": {row["id"]}, "name": {json.dumps(row["name"])}, "items": [')
+        rows.extend('      ' + json.dumps(piece) + (',' if slot + 1 < len(row['items']) else '')
+                    for slot, piece in enumerate(row['items']))
+        rows.append('    ]}' + (',' if index + 1 < len(classes) else ''))
+    rows.extend(['  ]', '}'])
+    value = '\n'.join(rows) + '\n'
+    if write:
+        asset.write_text(value)
+    else:
+        assert asset.read_text() == value
+    print('Verified 72 Tier 0.5 armor pieces and 11 weapons, including both native stat rows')
 
 
 def main():
@@ -83,4 +155,14 @@ def main():
     output.write_text(json.dumps(report, indent=2) + '\n')
     print(f'Revalidated {len(rows)} ordinary pieces; {len(changed)} numeric effect changes')
 
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--scholomance', action='store_true', help='verify the 0.140.0 Tier 0.5 catalog')
+    parser.add_argument('--write', action='store_true', help='regenerate the selected Scholomance asset')
+    args = parser.parse_args()
+    if args.scholomance:
+        scholomance(args.write)
+    elif args.write:
+        parser.error('--write is only used with --scholomance')
+    else:
+        main()

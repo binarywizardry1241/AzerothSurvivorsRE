@@ -109,7 +109,7 @@ impl Save {
             let is_new = records.owned.insert(id);
             replace(self, &records);
             let marks_tenths = if is_new { 0 } else {
-                let base = [1., 2., 3., 5., 8., 6.][usize::from(piece.rarity_digit.min(5))];
+                let base = [1., 2., 3., 5., 8., 6., 6., 7.][usize::from(piece.rarity_digit)];
                 self.grant_class_marks(piece.class, azeroth_survivors_re::heroic::marks_multiplier(heroic_rank) * base)
             };
             receipts.push(EquipmentReceipt { id, is_new, marks_tenths });

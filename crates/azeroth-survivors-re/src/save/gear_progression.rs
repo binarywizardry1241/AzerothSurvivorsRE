@@ -4,10 +4,14 @@
 
 use super::{Save, gear::{self, Records}};
 
-const STAR_COSTS: [f32; 6] = [1., 2., 3., 4., 6., 5.];
+use azeroth_survivors_re::{sets::TIER_HALF, zones::scholomance};
 
-fn zone_tier(index: usize) -> Option<u8> {
-    let key = super::progress::zones().get(index)?.key.as_str();
+const STAR_COSTS: [f32; 8] = [1., 2., 3., 4., 6., 5., 5., 5.5];
+
+fn zone_tier(key: &str) -> Option<u8> {
+    if key == scholomance::KEY {
+        return Some(TIER_HALF);
+    }
     azeroth_survivors_re::mob_loot::BOSS_ZONES.iter()
         .find(|zone| zone.key == key)
         .map(|zone| zone.tier)
@@ -35,9 +39,10 @@ fn count(records: &Records, id: u32) -> u8 {
 }
 
 fn discount_classes(records: &Records, class: u8, tier: u8, rank: u8) -> u8 {
+    let tier = if tier == TIER_HALF { tier } else { tier.min(5) };
     super::CLASS_IDS.iter().copied().filter(|other| *other != class)
         .filter(|other| (0..8u32).all(|slot| {
-            let id = 100_000 + u32::from(*other) * 1000 + slot * 100 + u32::from(tier.min(5)) * 10;
+            let id = 100_000 + u32::from(*other) * 1000 + slot * 100 + u32::from(tier) * 10;
             records.owned.contains(&id) && count(records, id) >= rank
         })).count() as u8
 }
@@ -64,16 +69,15 @@ impl Save {
 
     /// Current set-zone membership, shared by admission and Armory help text.
     pub fn star_zone_indices(tier: u8) -> impl Iterator<Item = usize> {
-        // These indices address the retained Armory drop catalog.
-        azeroth_survivors_re::mob_loot::BOSS_ZONES.iter().enumerate()
-            .filter_map(move |(index, row)| (row.tier == tier).then_some(index))
+        azeroth_survivors_re::guardians::catalog::ZONES.iter().enumerate()
+            .filter_map(move |(index, row)| (zone_tier(row.key) == Some(tier)).then_some(index))
     }
 
     pub fn star_cap(&self, class: u8, tier: u8) -> u8 {
-        if tier >= 6 { return 0; }
         super::heroic::clears(&self.lines).into_iter()
             .filter(|((owner, zone), _)| *owner == class
-                && zone_tier(*zone) == Some(tier))
+                && super::progress::zones().get(*zone)
+                    .is_some_and(|row| zone_tier(&row.key) == Some(tier)))
             .map(|(_, rank)| rank).max().unwrap_or(0).min(5)
     }
 
@@ -90,11 +94,16 @@ impl Save {
         if !records.owned.contains(&id) { return Err(StarUpgradeError::Unavailable); }
         let rank = count(&records, id) + 1;
         if rank > 5 { return Err(StarUpgradeError::Maximum); }
-        let tier = piece.rarity_digit.min(5);
+        let tier = piece.set_tier();
         if rank > self.star_cap(piece.class, tier) { return Err(StarUpgradeError::HeroicLocked); }
         let base = if rank == 5 && tier <= 3 { 6. } else { STAR_COSTS[usize::from(tier)] };
         let discount = (discount_classes(&records, piece.class, tier, rank) as f32 * 0.05).min(0.4);
-        let cost = ((((1. - discount) * f32::from(rank)) * base) * 10. - 0.001).ceil() / 10.;
+        let price = if tier == TIER_HALF {
+            (1. - discount) * (f32::from(rank) * base)
+        } else {
+            ((1. - discount) * f32::from(rank)) * base
+        };
+        let cost = (price * 10. - 0.001).ceil() / 10.;
         Ok(StarOffer { rank, cost })
     }
 

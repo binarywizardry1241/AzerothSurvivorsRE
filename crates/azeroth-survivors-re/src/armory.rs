@@ -25,6 +25,7 @@ use bevy::{
     render::render_resource::{Extent3d, TextureDimension, TextureFormat},
 };
 use serde::Deserialize;
+use azeroth_survivors_re::{sets::TIER_HALF, tier05, zones::scholomance};
 use std::{
     collections::{BTreeMap, BTreeSet},
     sync::OnceLock,
@@ -108,12 +109,8 @@ fn name_rules() -> &'static GearNameRules {
 
 pub(crate) fn set_name_base(class: u8, tier: usize) -> Option<&'static str> {
     let rule = name_rules().classes.iter().find(|rule| rule.id == class)?;
-    if tier == usize::from(azeroth_survivors_re::sets::TIER_HALF) {
-        match class {
-            3 => Some("Beastmaster"),
-            11 => Some("Feralheart"),
-            _ => None,
-        }
+    if tier == usize::from(TIER_HALF) {
+        tier05::class(class).map(|set| set.name.as_str())
     } else if tier == 5 {
         Some(if class == 7 { "Warlord's" } else { "Field Marshal's" })
     } else {
@@ -155,6 +152,9 @@ pub(crate) fn set_eight_bonus(labels: &MenuCatalog, class: u8, tier: u8, empower
 pub(crate) fn piece_name(catalog: &MenuCatalog, piece: &GearPiece, race: u8) -> String {
     let rules = name_rules();
     let fallback = piece.name(race);
+    if let Some(key) = piece.tier05_name_key() {
+        return translated(catalog, &key, fallback).into();
+    }
     let class = ((piece.id.saturating_sub(100000)) / 1000) as u8;
     let Some(rule) = rules.classes.iter().find(|rule| rule.id == class) else {
         return fallback.into();
@@ -281,14 +281,16 @@ fn slot_art(class: u8, slot: usize) -> &'static str {
         _ => SLOT_ART[slot],
     }
 }
-// Selected 0.105.0 collection constructor1401df3e0 reads this exact order.
-const COLLECTION_ORDER: [usize; 6] = [0, 1, 2, 3, 5, 4];
-const QUALITY: [Color; 6] = [
+// 0.140.0 Armory collection order at 1465cfbb8.
+const COLLECTION_ORDER: [usize; 7] = [0, 1, 2, 3, 5, TIER_HALF as usize, 4];
+const QUALITY: [Color; 8] = [
     Color::srgb(0.85, 0.85, 0.85),
     Color::srgb(0.1, 1., 0.1),
     Color::srgb(0.1, 0.48, 1.),
     Color::srgb(0.65, 0.3, 0.9),
     Color::srgb(1., 0.55, 0.1),
+    Color::srgb(0.761, 0.486, 1.),
+    Color::srgb(0.761, 0.486, 1.),
     Color::srgb(0.761, 0.486, 1.),
 ];
 
@@ -342,6 +344,8 @@ pub struct GearPiece {
     pub effects: Vec<Effect>,
     #[serde(skip)]
     final_star_effects: Vec<(u8, f32)>,
+    #[serde(skip)]
+    tier05: Option<&'static tier05::Item>,
     pub flavor: String,
     #[serde(default)]
     horde: Option<FactionPiece>,
@@ -352,9 +356,36 @@ struct FactionPiece {
     display_id: u32,
 }
 impl GearPiece {
+    pub(crate) fn tier05_name_key(&self) -> Option<String> {
+        self.tier05.map(|item| format!("t05.{}", item.native_id))
+    }
+
     pub(crate) fn effects_at_stars(&self, stars: u8) -> Vec<(u8, f32)> {
-        let base: Vec<_> = self.effects.iter().map(|effect| (effect.tag as u8, effect.value)).collect();
-        azeroth_survivors_re::gear_stars::effects(&base, self.rarity, stars, &self.final_star_effects)
+        let base = self.effect_rows();
+        let Some(item) = self.tier05 else {
+            return azeroth_survivors_re::gear_stars::effects(
+                &base, self.rarity, stars, &self.final_star_effects,
+            );
+        };
+        azeroth_survivors_re::gear_stars::effects_with_basis(
+            &base, &Self::tier05_bonus_basis(item), self.rarity, stars, &[],
+        )
+    }
+
+    fn extra_effects(&self, stars: u8) -> Vec<(u8, f32)> {
+        let basis = self.tier05.map_or_else(|| self.effect_rows(), Self::tier05_bonus_basis);
+        azeroth_survivors_re::gear_stars::extra_effects(
+            &basis, self.rarity, stars, true, &self.final_star_effects,
+        )
+    }
+
+    fn effect_rows(&self) -> Vec<(u8, f32)> {
+        self.effects.iter().map(|effect| (effect.tag as u8, effect.value)).collect()
+    }
+
+    fn tier05_bonus_basis(item: &tier05::Item) -> Vec<(u8, f32)> {
+        item.effects.iter().zip(&item.five_star_effects)
+            .map(|(&(tag, base), &full)| (tag, full - base)).collect()
     }
 
     fn faction(&self, race: u8) -> Option<&FactionPiece> {
@@ -381,6 +412,17 @@ pub struct DropZone {
     pub tier: usize,
     pub drop_percent: u32,
     pub bosses: Vec<DropBoss>,
+}
+impl DropZone {
+    fn piece_drop_percent(&self, boss: usize) -> f32 {
+        // 0.140.0 145e29f14 publishes the chance of one group.
+        let groups = if self.tier == usize::from(TIER_HALF) && !self.bosses[boss].final_boss {
+            2.0
+        } else {
+            1.0
+        };
+        self.drop_percent as f32 / groups
+    }
 }
 #[derive(Clone, Deserialize)]
 pub struct DropBoss {
@@ -432,6 +474,44 @@ impl ArmoryCatalog {
                 .extend(recovered.items);
         }
         catalog.zones = pvp.zones;
+        catalog.zones.insert(scholomance::INDEX, DropZone {
+            key: scholomance::KEY.to_owned(),
+            name: scholomance::NAME.to_owned(),
+            tier: usize::from(TIER_HALF),
+            drop_percent: 25,
+            bosses: scholomance::BOSSES.iter().enumerate().map(|(index, boss)| DropBoss {
+                name: boss.name.to_owned(),
+                minute: boss.time_minutes,
+                slots: tier05::ARMOR_DROP_SLOTS.get(index).map_or_else(|| vec![8, 9],
+                    |slots| slots.iter().copied().map(usize::from).collect()),
+                final_boss: boss.flag_54 != 0,
+            }).collect(),
+        });
+        for class in &mut catalog.classes {
+            let class_id = class.id;
+            let material = &class.material;
+            let Some(set) = tier05::class(class_id) else { continue; };
+            class.items.extend(set.items.iter().enumerate().map(|(slot, item)| GearPiece {
+                id: tier05::item_id(class_id, slot as u8),
+                slot,
+                rarity: usize::from(TIER_HALF),
+                name: item.name.clone(),
+                material: if slot < 8 { material.clone() } else { String::new() },
+                display_id: item.display_id,
+                item_class: item.item_class,
+                item_subclass: item.item_subclass,
+                inventory_type: item.inventory_type,
+                sheath: item.sheath,
+                slot_id: item.slot_id,
+                effects: item.effects.iter().map(|&(tag, value)| Effect {
+                    tag: u32::from(tag), value,
+                }).collect(),
+                final_star_effects: Vec::new(),
+                tier05: Some(item),
+                flavor: String::new(),
+                horde: None,
+            }));
+        }
         #[derive(Deserialize)]
         struct CatalogDelta {
             pieces: Vec<PieceDelta>,
@@ -2170,6 +2250,7 @@ fn set_bonus_rows(
         if active_only && !active { continue; }
         let Some(body) = (if required == 4 { Some(set_four_bonus(labels, tier as u8)) }
             else { set_eight_bonus(labels, state.class_id(), tier as u8, empowered) }) else { continue; };
+        if body.is_empty() { continue; }
         let color = if required == 8 && empowered { PAPER } else if active { GREEN } else { MUTED };
         let mut row = ui.spawn((Button, Node {
             flex_direction: FlexDirection::Column,
@@ -2404,7 +2485,7 @@ fn collection(
                             border_radius: BorderRadius::all(Val::Px(3.)), ..default() })
                             .insert(BorderColor::all(EDGE.with_alpha(0.5)))
                             .with_children(|ui| flow_text(ui, art,
-                                format!("{}%", catalog.zones[z].drop_percent), 11., PAPER, false));
+                                format!("{}%", native_decimal(catalog.zones[z].piece_drop_percent(b))), 11., PAPER, false));
                     });
                 }
             });
@@ -2793,7 +2874,7 @@ fn details(
                         format!(
                             "{}  {}%",
                             boss_label(menu_catalog, zone, b),
-                            zone.drop_percent
+                            native_decimal(zone.piece_drop_percent(b))
                         ),
                         15.,
                         Color::srgb(0.9, 0.55, 0.4),
@@ -3070,7 +3151,7 @@ fn star_upgrade_control(
         }
         Err(StarUpgradeError::HeroicLocked) => {
             let rank = stars + 1;
-            let zones = crate::save::Save::star_zone_indices(piece.rarity.min(5) as u8)
+            let zones = crate::save::Save::star_zone_indices(piece.rarity as u8)
                 .filter_map(|index| catalog.zones.get(index))
                 .map(|zone| zone_label(labels, zone)).collect::<Vec<_>>().join(" · ");
             flow_text(ui, art, crate::localization::format(labels, "armory.star_locked", &[
@@ -3082,16 +3163,13 @@ fn star_upgrade_control(
         }
         Ok(offer) => {
             flow_text(ui, art, labels.label("armory.next_star"), 11., MUTED, false);
-            let base: Vec<_> = piece.effects.iter().map(|effect| (effect.tag as u8, effect.value)).collect();
             ui.spawn(Node {
                 flex_wrap: FlexWrap::Wrap,
                 column_gap: Val::Px(5.),
                 row_gap: Val::Px(5.),
                 ..default()
             }).with_children(|row| {
-                for (tag, value) in azeroth_survivors_re::gear_stars::extra_effects(
-                    &base, piece.rarity, offer.rank, true, &piece.final_star_effects,
-                ) {
+                for (tag, value) in piece.extra_effects(offer.rank) {
                     // Current1401112b0 wraps each compact bonus in a chip.
                     row.spawn((Node {
                         padding: UiRect::axes(Val::Px(7.), Val::Px(3.)),
@@ -3675,7 +3753,7 @@ mod tests {
     #[test]
     fn pvp_rows_keep_collection_ids_and_resolve_both_faction_appearances() {
         let catalog = ArmoryCatalog::embedded();
-        assert_eq!(COLLECTION_ORDER, [0, 1, 2, 3, 5, 4]);
+        assert_eq!(COLLECTION_ORDER, [0, 1, 2, 3, 5, 7, 4]);
         assert_eq!(
             catalog.classes.iter().map(|c| c.items.len()).sum::<usize>(),
             498
@@ -3830,9 +3908,10 @@ mod tests {
     }
 
     #[test]
-    fn pvp_drop_controls_match_live_candidate_ids_in_all_twelve_zones() {
+    fn drop_controls_match_live_candidate_ids() {
         let catalog = ArmoryCatalog::embedded();
-        assert_eq!(catalog.zones.len(), 12);
+        assert_eq!(catalog.zones.len(), 13);
+        assert_eq!(catalog.zones[scholomance::INDEX].tier, usize::from(TIER_HALF));
         for hero in &catalog.classes {
             for (zone, definition) in catalog.zones.iter().enumerate() {
                 for boss in 0..5 {
@@ -3841,11 +3920,20 @@ mod tests {
                         .into_iter()
                         .map(|p| p.id)
                         .collect::<Vec<_>>();
-                    let rolled =
-                        azeroth_survivors_re::mob_loot::boss_candidates(hero.id, zone, boss)
+                    let rolled = if zone == scholomance::INDEX {
+                        if let Some(slots) = tier05::ARMOR_DROP_SLOTS.get(boss) {
+                            slots.iter().map(|&slot| tier05::item_id(hero.id, slot)).collect()
+                        } else {
+                            tier05::weapon_ids(hero.id).collect()
+                        }
+                    } else {
+                        let legacy = azeroth_survivors_re::mob_loot::BOSS_ZONES.iter()
+                            .position(|row| row.key == definition.key).unwrap();
+                        azeroth_survivors_re::mob_loot::boss_candidates(hero.id, legacy, boss)
                             .into_iter()
                             .map(|p| p.item_id)
-                            .collect::<Vec<_>>();
+                            .collect::<Vec<_>>()
+                    };
                     assert_eq!(
                         displayed, rolled,
                         "class {} {} boss {boss}",
@@ -3859,7 +3947,7 @@ mod tests {
             assert_eq!(catalog.zones[zone].drop_percent, 25);
         }
         assert_eq!(
-            catalog.zones[10].tier, 4,
+            catalog.zones[11].tier, 4,
             "Legendary ID digit must stay four"
         );
     }

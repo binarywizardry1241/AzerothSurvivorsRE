@@ -228,7 +228,11 @@ pub(super) fn capture(
                 owned.insert(*id);
             }
             Some(TerminalLoot {
-                name: piece.name(game.stats.native_race).to_owned(),
+                name: if piece.tier05_name_key().is_some() {
+                    crate::armory::piece_name(&catalog, piece, game.stats.native_race)
+                } else {
+                    piece.name(game.stats.native_race).to_owned()
+                },
                 icon: art
                     .icons
                     .get(&format!("gear.{}", piece.display_id(game.stats.native_race)))
