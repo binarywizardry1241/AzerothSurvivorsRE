@@ -260,8 +260,10 @@ impl Mechanics {
                         row.initial_ticks.saturating_sub(1) as f32 * row.interval,
                         (row.ticks_remaining - 1) as f32 * row.interval + row.next_tick_at,
                     )
-                } else if spell == super::callbacks::FROST_SHOCK_AURA && actor.slow.until > self.clock
-                    && let Some(duration) = self.effect_state.generic.frost_shock_durations.get(&guid)
+                } else if let Some(duration) =
+                    (spell == super::callbacks::FROST_SHOCK_AURA && actor.slow.until > self.clock)
+                        .then(|| self.effect_state.generic.frost_shock_durations.get(&guid))
+                        .flatten()
                 {
                     (*duration, actor.slow.until)
                 } else if spell == enhancement::ELEMENTAL_SUNDER

@@ -129,7 +129,10 @@ pub(crate) fn register(world: &mut World) {
             cvars.vm_seed_named(name)
         }).collect::<Vec<_>>()
     };
-    if !session_rows.is_empty() && let Some(script) = world.get_non_send_resource::<UiScript>() {
+    if session_rows.is_empty() {
+        return;
+    }
+    if let Some(script) = world.get_non_send_resource::<UiScript>() {
         script.seed_cvars(session_rows);
     }
 }

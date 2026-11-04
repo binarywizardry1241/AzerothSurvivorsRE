@@ -419,8 +419,8 @@ pub(super) fn rebuild(
                                     (Tab::Achievements, "armory.tab.achievements"),
                                 ] {
                                     let title = labels.label(key);
-                                    let text = if page == Tab::Talents
-                                        && let Some((class, ranks)) = class.zip(ranks.as_ref())
+                                    let text = if let (Tab::Talents, Some((class, ranks))) =
+                                        (page, class.zip(ranks.as_ref()))
                                     {
                                         let spent = crate::save::talents::spent(class, ranks);
                                         format!("{title} ({spent})")
@@ -922,9 +922,7 @@ fn set_bonuses(
     let four = armory::set_four_bonus(labels, class, tier as u8);
     let eight = armory::set_eight_bonus(labels, class, tier as u8, empowered);
     for (need, have, text) in [(4, one, Some(four)), (8, three, eight)] {
-        if (!active_only || have >= need)
-            && let Some(text) = text.filter(|text| !text.is_empty())
-        {
+        if let Some(text) = text.filter(|text| !text.is_empty() && (!active_only || have >= need)) {
             out.push(format!("({}/{need}) {text}", have.min(need)));
         }
     }

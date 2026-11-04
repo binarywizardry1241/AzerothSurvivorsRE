@@ -147,9 +147,10 @@ pub(super) fn append(rows: &mut Vec<ResourceRow>, game: &Mechanics, locale: &Loc
     }
     // 145f3dfbe..145f3e5f0 appends Stormguard only to the Lightning
     // Shield aura text. The ordinary spell description is independent.
-    if let Some(rank) = enhancement_rank(1).filter(|&rank| rank > 0)
-        && let Some(shield) = rows.iter_mut().find(|row| row.id == 324)
-    {
+    if let Some(rank) = enhancement_rank(1).filter(|&rank| rank > 0) {
+        let Some(shield) = rows.iter_mut().find(|row| row.id == 324) else {
+            return;
+        };
         if !shield.text_30.is_empty() {
             shield.text_30.push('\n');
         }

@@ -1141,10 +1141,11 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             if row.tag() == 66 {
                 // 145fbcbe3..145fbf511 uses the captured hit position and
                 // pre-victim power. The radius query has no excluded GUIDs.
-                if (event.kind == 0 || event.first_periodic) && event.source_kind != 2
-                    && definition.is_some_and(|spell| spell.key == "stormstrike")
-                    && let Some(center) = victim_position
-                {
+                if let Some(center) = victim_position.filter(|_| {
+                    (event.kind == 0 || event.first_periodic)
+                        && event.source_kind != 2
+                        && definition.is_some_and(|spell| spell.key == "stormstrike")
+                }) {
                     let actors = actor_targets(
                         self.core.actors, self.core.bosses, &self.core.boss_state.wards,
                         self.core.object_counter.sequence(),
@@ -1158,10 +1159,13 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             }
             if row.tag() == 67 {
                 // 145fbcbca..145fbf430 takes the first live Splitting Ice row.
-                if event.kind == 0 && event.source_kind == 2 && event.spell_id == 116
-                    && let Some(center) = victim_position
-                    && let Some(splash) = self.core.equipped.rows.iter().find(|row| row.is_splitting_ice())
-                {
+                if let Some(center) = victim_position.filter(|_| {
+                    event.kind == 0 && event.source_kind == 2 && event.spell_id == 116
+                }) {
+                    let Some(splash) = self.core.equipped.rows.iter().find(|row| row.is_splitting_ice())
+                    else {
+                        continue;
+                    };
                     self.splash_hit(
                         index, event, victim_guid, center, splash.float(8),
                         splash.float(4) * amount, execution, rng, counter,

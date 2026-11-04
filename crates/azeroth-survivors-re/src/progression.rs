@@ -1492,7 +1492,7 @@ fn achievement_card(
                         MUTED,
                     );
                 });
-                if entry.key == "heroic:all3" && let Some(save) = save {
+                if let ("heroic:all3", Some(save)) = (entry.key.as_str(), save) {
                     let zones = achievement_inputs(save).missing_heroic_zones(3)
                         .map(|zone| labels.label(&format!("zone.{}.name", zone.key)).to_owned())
                         .collect::<Vec<_>>();
