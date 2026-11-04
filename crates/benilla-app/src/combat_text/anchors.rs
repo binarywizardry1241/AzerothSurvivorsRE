@@ -167,7 +167,7 @@ impl Stream {
     fn target_life(&mut self, guid: u64, entity: Entity, current: TargetState) -> u64 {
         if let Some(life) = self.targets.get_mut(&guid) {
             if life.entity == entity
-                && !(life.state == TargetState::Dead && current == TargetState::Alive)
+                && (life.state == TargetState::Alive || current != TargetState::Alive)
             {
                 life.state = current;
                 return life.id;
@@ -183,6 +183,27 @@ impl Stream {
             },
         );
         self.target_sequence
+    }
+}
+
+#[cfg(test)]
+mod target_life_tests {
+    use super::*;
+
+    #[test]
+    fn an_unavailable_or_dead_target_gets_a_new_life_when_seen_alive() {
+        let mut stream = Stream::default();
+        let entity = Entity::from_raw_u32(1).unwrap();
+        let first = stream.target_life(7, entity, TargetState::Alive);
+        assert_eq!(stream.target_life(7, entity, TargetState::Unavailable), first);
+        let reacquired = stream.target_life(7, entity, TargetState::Alive);
+        assert_ne!(reacquired, first);
+        assert_eq!(stream.target_life(7, entity, TargetState::Alive), reacquired);
+        assert_eq!(stream.target_life(7, entity, TargetState::Dead), reacquired);
+        let revived = stream.target_life(7, entity, TargetState::Alive);
+        assert_ne!(revived, reacquired);
+        let replaced = Entity::from_raw_u32(2).unwrap();
+        assert_ne!(stream.target_life(7, replaced, TargetState::Alive), revived);
     }
 }
 
@@ -595,6 +616,8 @@ pub(crate) fn capture_hit(
     packet: &SessionEvent,
     attribution: Option<CombatTextAttribution>,
 ) {
+    use crate::ui_chat::combat::feedback_spell;
+
     let Some(feed) = feed(world) else { return };
     let mut state = feed.0.lock().expect("combat text state");
     let Some(subscribed) = state.subscribed else {
@@ -651,7 +674,9 @@ pub(crate) fn capture_hit(
     };
 
     match packet {
-        SessionEvent::SpellDamageLog(hit) if hit.hit_info & 0x8 == 0 => {
+        SessionEvent::SpellDamageLog(hit)
+            if hit.hit_info & 0x8 == 0 && feedback_spell(spells, hit.spell_id).is_some() =>
+        {
             if let Some(outcome) = spell_outcome(hit.damage, hit.absorb, hit.resist, hit.blocked) {
                 record(Hit {
                     source: hit.attacker,
@@ -665,7 +690,7 @@ pub(crate) fn capture_hit(
                 });
             }
         }
-        SessionEvent::PeriodicAuraLog(log) => {
+        SessionEvent::PeriodicAuraLog(log) if feedback_spell(spells, log.spell_id).is_some() => {
             for tick in &log.ticks {
                 if let PeriodicTick::Damage {
                     amount,
@@ -702,16 +727,16 @@ pub(crate) fn capture_hit(
             });
         }
         SessionEvent::SpellLogMiss(log) if !log.extended => {
-            let school = spells
-                .and_then(|s| s.catalog.get(log.spell_id))
-                .map(|spell| spell.school);
+            let Some(spell) = feedback_spell(spells, log.spell_id) else {
+                return;
+            };
             for &(target, result) in &log.misses {
                 if let Some((word, _)) = super::miss_word(result) {
                     record(Hit {
                         source: log.caster,
                         target,
                         spell: Some(log.spell_id),
-                        school,
+                        school: Some(spell.school),
                         critical: false,
                         periodic: false,
                         reflected: result == 11,
@@ -728,8 +753,7 @@ pub(crate) fn capture_hit(
             misses,
             ..
         } => {
-            let Some(spell) = spells
-                .and_then(|s| s.catalog.get(*spell_id))
+            let Some(spell) = feedback_spell(spells, *spell_id)
                 .filter(|spell| spell.speed == 0.0)
             else {
                 return;
@@ -769,6 +793,69 @@ pub(crate) fn capture_hit(
             }
         }
         _ => (),
+    }
+}
+
+#[cfg(test)]
+mod hit_admission_tests {
+    use super::*;
+
+    #[test]
+    fn direct_damage_requires_a_known_spell_with_feedback_enabled() {
+        use benilla_protocol::messages::SpellDamageLog;
+
+        let mut world = World::new();
+        world.insert_resource(crate::local_client::LocalClientExtension {
+            combat_text_anchors: true,
+            ..Default::default()
+        });
+        let anchors = CombatTextAnchors::default();
+        anchors.0.lock().unwrap().subscribed = Some(0.0);
+        world.insert_resource(anchors);
+        world.init_resource::<HostClock>();
+        world.insert_resource(SelfGuid(Some(1)));
+        world.insert_resource(Spells {
+            catalog: benilla_formats::SpellCatalog::from_displays(
+                [
+                    (1, benilla_formats::SpellDisplay::default()),
+                    (
+                        2,
+                        benilla_formats::SpellDisplay {
+                            attributes: 0x100,
+                            ..Default::default()
+                        },
+                    ),
+                ]
+                .into_iter()
+                .collect(),
+            ),
+            forms: Default::default(),
+            ranges: Default::default(),
+            cast_times: Default::default(),
+            durations: Default::default(),
+            radii: Default::default(),
+        });
+        for spell_id in [2, 3, 1] {
+            capture_hit(
+                &world,
+                &SessionEvent::SpellDamageLog(SpellDamageLog {
+                    attacker: 1,
+                    target: 4,
+                    spell_id,
+                    damage: 8,
+                    school: 2,
+                    absorb: 0,
+                    resist: 0,
+                    periodic: false,
+                    blocked: 0,
+                    hit_info: 0,
+                }),
+                None,
+            );
+        }
+        let stream = world.resource::<CombatTextAnchors>().0.lock().unwrap();
+        assert_eq!(stream.events.len(), 1);
+        assert_eq!(stream.events[0].spell, Some(1));
     }
 }
 

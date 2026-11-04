@@ -67,6 +67,10 @@ names and attack breakdowns still come from their existing accounting paths.
 | Detailed descriptor selector `0x145fd1b40..0x145fd21c9` | `0x5fd0f40` | `92dc0564d39c10bf84a19d16a3d4fb807166a9cf9e355977ae791701bf39efbe` |
 | Detailed companion descriptor `0x145f24c90..0x145f24e04` | `0x5f24090` | `a3828af7e07c3cfb42db83b8541f570b74deb57fa11a53195b0d4130c3cc664d` |
 | Separate name resolver, traced range `0x145f90c30..0x145f91184` | `0x5f90030` | `de8629983cb382b63d841def0382d681c8d9c5aa873bc361c68653f914f830ab` |
+| AS ready-message consumer `0x14004fe20..0x1400515aa` | `0x4f220` | `dd8796657bc7de0cfbe5870903a70eedd8a37c4dae273035312b761d5ed3046e` |
+| AS readiness revision reader `0x14004fcd0..0x14004fe16` | `0x4f0d0` | `1a4d7e816b028d71e26ef137582dbc2446c5b0a9888518c347351253789a02e1` |
+| Target life selector `0x14097eb90..0x14097ef87` | `0x97df90` | `57e1c21905277dc8b18fe4079a55ea700f0cd7efd817df8ce2208d6bc85c14cc` |
+| Spell catalog loader `0x1462349d0..0x14623a4e2` | `0x6233dd0` | `900ed677c66f706ce283188f120c7ef26429c15ca3f3d6fcda95af865dca5708` |
 
 The descriptor selector has Ghidra 12.1.4 raw-slice result
 `ev_ebfd1ebb59fd305fb61558e9ab1ce97267d877f2d69653a76341a809df4bd5f1`.
@@ -90,11 +94,43 @@ The current reset system `0x1409dd790` and extra reset helper
 `0x14099bf90` both call `0x14097e3e0`. Ghidra raw-slice results
 `ev_402d73c52a9455f04758f750a698ff6bc161f20adbebf7df1684cc46e94418db`
 and `ev_4a8730f4b8f52fcc6afbe147efda0e265dbb9a0340a981fa836c690f0742a73a`
-cover those functions. The extra helper looks up and locks the combat
-resource before resetting. Its indirect trigger and the out-of-range
-identity transition remain open. The common hit result
+cover those functions. The extra trigger is the AS screens `ready`
+message. The five-byte comparison at `0x140050bd4..0x140050be6` branches
+to the screens revision increment at `0x140050d2c`. Its consumer
+`0x14004fcd0` compares that 32-bit field at resource `+0xe8` against
+its previous value, then calls the combat reset through the tail thunk
+at `0x1408b0bd0`. It also calls the separate world catalog reset.
+The current server emits the `type: ready` value on the new Game path
+at `0x145ebc041`, `0x145ebeece` and `0x145ec54e8`. The rebuilt
+solo and guest entry paths already advance `RunSession.identity`
+when the corresponding new run is admitted. The client seats that
+identity before packet capture, so a new run on the same map and VM
+already resets the combat stream.
+
+The common hit and melee producers call the same target life selector
+at `0x14098967a` and `0x1409dc26c`. Its GUID-to-life index resolves a
+retained row. The comparison at `0x14097ed29..0x14097ed59` advances life
+on changed ECS entity identity, or when the current state is alive and
+the retained state is nonzero. The frame update writes 1 for dead and
+2 for unavailable at `0x1409dacd0..0x1409dace6`. The rebuilt life
+selector now starts a fresh identity on either alive transition.
+Ghidra raw-slice results include the hit owner
 `ev_499e69908732fb96ce6717d08aa702df0e41818287eac5627ad3c5e52080bb89`
-locates the target-row producers for that trace. Detailed source origins
-and their meter snapshot join remain under #75. Totem, free talent and
-item attribution beyond the fixed descriptors still require their own
-producer and key mapping.
+and life selector
+`ev_f7362fa9119a61e19d8784a85d69778378614288959d5a911986c2e9575efb81`.
+
+Direct spell, periodic, miss and instant SpellGo producers resolve an
+existing spell row before testing bit 0 of its byte `+0x10d`. The
+catalog loader copies the value from typed DBC column 6 into dword
+`+0x10c` at `0x146235c4f` and `0x146237797`. This makes the gate
+`Attributes & 0x100`, the existing engine feedback suppression flag.
+The ranged label checks the sign bit of the word at `+0x120`. Its
+loader path at `0x146235e5e` and `0x1462377e1` maps that to
+column 9, `AttributesEx3 & 0x8000`, already used by the source.
+The addon hit producer now uses the shared feedback-spell lookup for
+the four native spell paths, covering both unknown and suppressed spell
+rows. [Spell feed admission](../../crates/benilla-app/src/combat_text/anchors.rs).
+
+Talent and companion packet keys are connected for the recovered paths.
+Totem and item metadata, special sourced variants and their detailed
+meter snapshot joins remain open. [Current ledger evidence](party-healing-meter-0.139.2.md#current-ledger-boundaries-in-01400).
