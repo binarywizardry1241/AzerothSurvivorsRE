@@ -83,6 +83,45 @@ The table classification establishes these action identities and the
 bounded consumer edges. The full payload, frame scheduling and delivery
 contracts retain their own evidence.
 
+## Host terminal transport failure
+
+The active host branch at `0x145ea4b50..0x145ea4c26` reads the selected
+secondary's presence and terminal failure flag. Failure calls role shutdown at
+`0x145ea4c36`, takes the service, calls terminal close at `0x145ea4c7a` if the
+service exists, and publishes `the co-op relay cannot be reached`. The primary
+loss branch at `0x145ea54d1` keeps the host when a selected relay survives.
+Otherwise it calls the same role and terminal close owners at `0x145ea54e0`
+and `0x145ea5524` before publishing `the co-op service cannot be reached`.
+
+The role owner at `0x145ec8730` sets Off and iterates the host peer rows.
+It flushes each peer at `0x145ec8840`, submits a separate game Disconnect
+at `0x145ec888a`, and invokes the peer close slot at `0x145ec8818` before
+advancing. Terminal service close at `0x145e8dc70` submits Leave and signals
+stop for the primary and then the optional secondary. The rebuilt
+directory now takes the service host driver and uses these existing role
+and terminal close paths while the worker handles are available. The
+guest's selected-relay failure keeps its separate handling.
+
+| Selected PE range | File offset | SHA-256 |
+| --- | --- | --- |
+| Host secondary failure input `0x145ea4b50..0x145ea4c26` | `0x5ea3f50` | `bcae483b2969fc580636a856f43bccaa1739a38a893e580d25094b89b0776a45` |
+| Host secondary failure branch `0x145ea4c26..0x145ea4cbc` | `0x5ea4026` | `ab60dbcb28c39d58a64adf1b99cf0c1652c2e494c57a999aed66faed65ff0715` |
+| Primary failure gate `0x145ea54d1..0x145ea5561` | `0x5ea48d1` | `1c95ede042c88eb89b365245052bff3d057282819369b94fbcc6fb25d7a059d7` |
+| Role shutdown `0x145ec8730..0x145ec89d0` | `0x5ec7b30` | `21679304c84e9a127e8c9b8bfa4115067da44075de7c1b1ae751d78488775eaa` |
+| Terminal Leave ordering `0x145e8dc70..0x145e8dd83` | `0x5e8d070` | `fd6ebef2289694de7ab3b06f98f3f77700e96fdf297c619a0c7212e5fd60e0c0` |
+
+The Ghidra role slice is retained as
+`ev_3e178d2ec15ae9799073b00f4a5bb23b06c71d28c573902d4a343efd4b9970f6`
+in the shared result object
+`97edc2d501c856a6e9a307487e04495d8be06372eb4dd8a23fd30c52d27fdddf`.
+`scripts/check-coop-directory-transport.py --host-terminal-failure`
+checked these five ranges and replayed eight terminal/preserve cases with
+present and absent service state. It observes role shutdown, optional
+service retirement, and reason publication at bounded call seams. The
+queue-only Rust regression remains uncompiled and unrun. Socket delivery
+and the separate [desktop exit handoff](coop-desktop-exit-0.141.0.md) remain
+unverified.
+
 ## Selected relay heartbeat
 
 The pump timestamps secondary Binary arrivals at `0x145e83ce1` while

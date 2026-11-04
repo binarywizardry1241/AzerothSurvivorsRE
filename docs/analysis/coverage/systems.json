@@ -63911,6 +63911,20 @@
     },
     {
       "id": "custom-game-coop-relay",
+      "gap_63_host_terminal_transport_failure_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 63,
+        "scope": "Terminal host relay loss or primary loss without a surviving relay shuts down the role and optional service before publishing the reason.",
+        "source_status": "connected",
+        "evidence_ref": "docs/analysis/coop-relay-selection-0.141.0.md#host-terminal-transport-failure",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/coop_directory.rs",
+          "crates/azeroth-survivors-re/src/coop/session.rs"
+        ],
+        "native_cases": 8,
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "gap_63_selected_transport_lifecycle_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 63,

@@ -381,7 +381,13 @@ fn poll(
                 // A secondary's closed socket first enters its native retry
                 // state machine; only permanent failure tears down the party.
                 if !from_secondary {
-                    transport_closed(&mut service, &mut runtime, &mut view, false);
+                    transport_closed(
+                        &mut service,
+                        &mut runtime,
+                        &mut view,
+                        false,
+                        time.elapsed_secs_f64(),
+                    );
                 }
             }
             WorkerEvent::Binary(bytes) => {
@@ -629,7 +635,12 @@ fn poll(
             }
         }
     }
-    poll_secondary(&mut service, &mut runtime, &mut view);
+    poll_secondary(
+        &mut service,
+        &mut runtime,
+        &mut view,
+        time.elapsed_secs_f64(),
+    );
     if let Some(driver) = &mut runtime.driver {
         driver.service_relay_initial_failure(
             service.secondary_config.is_some()
@@ -654,7 +665,13 @@ fn poll(
         .is_some_and(|driver| driver.is_hosting())
         && service.secondary_failed()
     {
-        transport_closed(&mut service, &mut runtime, &mut view, true);
+        transport_closed(
+            &mut service,
+            &mut runtime,
+            &mut view,
+            true,
+            time.elapsed_secs_f64(),
+        );
     }
     let selected_connected = service.relay_connected();
     service
@@ -852,7 +869,12 @@ fn poll(
     if view.vouch_code != vouch_code { view.vouch_code = vouch_code; }
 }
 
-fn poll_secondary(service: &mut Service, runtime: &mut CoopRuntime, view: &mut CoopUi) {
+fn poll_secondary(
+    service: &mut Service,
+    runtime: &mut CoopRuntime,
+    view: &mut CoopUi,
+    now: f64,
+) {
     use azeroth_survivors_re::coop::relay_lifetime::Action;
     let Some(worker) = &service.secondary else {
         return;
@@ -865,8 +887,12 @@ fn poll_secondary(service: &mut Service, runtime: &mut CoopRuntime, view: &mut C
         Action::None => {}
         Action::Heartbeat => worker.submit(ClientMessage::Heartbeat),
         Action::Failed => {
-            worker.stop();
-            transport_closed(service, runtime, view, true);
+            transport_closed(service, runtime, view, true, now);
+            // A service host has already queued terminal Leave and retired
+            // both workers. Other roles can retain the failed selection.
+            if let Some(worker) = &service.secondary {
+                worker.stop();
+            }
         }
         action @ (Action::Reopen | Action::Fallback) => {
             worker.stop();
@@ -901,6 +927,7 @@ fn transport_closed(
     runtime: &mut CoopRuntime,
     view: &mut CoopUi,
     secondary: bool,
+    now: f64,
 ) {
     let host = runtime
         .driver
@@ -936,12 +963,24 @@ fn transport_closed(
             driver.service_peer_closed(0);
         }
     } else {
-        service.worker = None;
-        service.secondary = None;
-        service.secondary_lifetime = None;
-        service.secondary_config = None;
-        if let Some(driver) = &mut runtime.driver {
-            driver.service_lost();
+        if host && let Some(mut driver) = runtime.driver.take_if(|driver| driver.is_service()) {
+            // Native host failure retires the role while the service handles
+            // are still available to submit peer closes and terminal Leave.
+            service
+                .relay_protocol
+                .lock()
+                .unwrap()
+                .set_connected(service.relay_connected());
+            driver.leave(now, |command| send_relay(service, command));
+            service.close();
+        } else {
+            service.worker = None;
+            service.secondary = None;
+            service.secondary_lifetime = None;
+            service.secondary_config = None;
+            if let Some(driver) = &mut runtime.driver {
+                driver.service_lost();
+            }
         }
         runtime.roster_profile = None;
         service.profile_identity = None;
@@ -1467,7 +1506,7 @@ mod tests {
         assert_eq!(state.poll(2, now), Action::Reopen);
         service.secondary_lifetime = Some(state);
         let mut runtime = party(true);
-        transport_closed(&mut service, &mut runtime, &mut CoopUi::default(), false);
+        transport_closed(&mut service, &mut runtime, &mut CoopUi::default(), false, 0.0);
         assert!(runtime.driver.as_ref().unwrap().connected());
         assert!(!service.secondary_failed());
         assert!(!service.relay_connected());
@@ -1489,7 +1528,7 @@ mod tests {
                 view.status = if host { "hosting" } else { "joined" }.into();
                 view.code = Some("party-code".into());
                 let phase = view.status.clone();
-                transport_closed(&mut service, &mut runtime, &mut view, false);
+                transport_closed(&mut service, &mut runtime, &mut view, false, 0.0);
                 assert!(service.worker.is_some());
                 assert!(service.secondary.is_some());
                 assert_eq!(service.hosting, host);
@@ -1531,22 +1570,68 @@ mod tests {
                 let mut runtime = party(host);
                 let mut view = CoopUi::default();
                 if primary_first {
-                    transport_closed(&mut service, &mut runtime, &mut view, false);
+                    transport_closed(&mut service, &mut runtime, &mut view, false, 0.0);
                 }
                 secondary_state.store(2, Ordering::Release);
-                transport_closed(&mut service, &mut runtime, &mut view, !primary_first);
-                assert!(!runtime.driver.as_ref().unwrap().connected());
+                transport_closed(&mut service, &mut runtime, &mut view, !primary_first, 0.0);
                 assert_eq!(runtime.transport_lost, host);
                 if host {
+                    assert!(runtime.driver.is_none());
                     assert!(service.secondary.is_none());
                     assert!(service.worker.is_none());
                     assert_eq!(
                         view.unavailable_reason.as_deref(),
                         Some("the co-op relay cannot be reached")
                     );
+                } else {
+                    assert!(!runtime.driver.as_ref().unwrap().connected());
                 }
             }
         }
+    }
+
+    #[test]
+    fn failed_selected_relay_queues_host_peer_closes_before_terminal_leave() {
+        let (primary, primary_commands) = worker(1);
+        let (secondary, secondary_commands) = worker(2);
+        let primary_stop = primary.stop.clone();
+        let secondary_stop = secondary.stop.clone();
+        let mut service = Service {
+            worker: Some(primary),
+            secondary: Some(secondary),
+            hosting: true,
+            ..Service::default()
+        };
+        let mut driver = Session::service_host_with_relay(
+            HostConfig {
+                password: Vec::new(),
+                capacity: 5,
+            },
+            service.relay_protocol.clone(),
+        );
+        driver.share_relay_peers(service.relay_peers.clone());
+        assert!(driver.service_peer_open(77).is_some());
+        let mut runtime = CoopRuntime::default();
+        runtime.driver = Some(driver);
+        let mut view = CoopUi::default();
+
+        transport_closed(&mut service, &mut runtime, &mut view, true, 1.0);
+
+        let kick = ClientMessage::Kick(77).encode().unwrap();
+        for commands in [primary_commands, secondary_commands] {
+            assert_eq!(
+                commands.try_iter().collect::<Vec<_>>(),
+                [kick.clone(), vec![8]]
+            );
+        }
+        assert!(primary_stop.load(Ordering::Acquire));
+        assert!(secondary_stop.load(Ordering::Acquire));
+        assert!(runtime.driver.is_none());
+        assert!(runtime.transport_lost);
+        assert_eq!(
+            view.unavailable_reason.as_deref(),
+            Some("the co-op relay cannot be reached")
+        );
     }
 
     #[test]
@@ -1561,12 +1646,11 @@ mod tests {
                 CoopRuntime::default()
             };
             let mut view = CoopUi::default();
-            transport_closed(&mut service, &mut runtime, &mut view, false);
+            transport_closed(&mut service, &mut runtime, &mut view, false, 0.0);
             assert!(service.worker.is_none());
             assert_eq!(view.status, "unavailable");
-            if let Some(driver) = &runtime.driver {
-                assert!(!driver.connected());
-            }
+            assert!(runtime.driver.is_none());
+            assert_eq!(runtime.transport_lost, active);
         }
     }
 
@@ -1580,7 +1664,7 @@ mod tests {
             service.secondary = Some(secondary);
             let mut runtime = party(host);
             let mut view = CoopUi::default();
-            transport_closed(&mut service, &mut runtime, &mut view, false);
+            transport_closed(&mut service, &mut runtime, &mut view, false, 0.0);
             let driver = runtime.driver.as_mut().unwrap();
             driver.take_service_commands();
             driver.close();
@@ -1607,7 +1691,7 @@ mod tests {
         driver.tick(0.1);
         assert!(driver.denial.is_some());
         let mut view = CoopUi::default();
-        transport_closed(&mut service, &mut runtime, &mut view, false);
+        transport_closed(&mut service, &mut runtime, &mut view, false, 0.0);
         assert!(service.worker.is_none());
         assert!(service.secondary.is_none());
         assert_eq!(view.status, "unavailable");

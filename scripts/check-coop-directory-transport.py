@@ -8,6 +8,7 @@ interoperability, scheduling, TLS behavior or original/rebuilt parity.
 """
 import argparse
 import hashlib
+from itertools import product
 import json
 import re
 import struct
@@ -351,24 +352,112 @@ def check_current_close(target, data, pe):
         source_paths=3, compilation=False, network_or_game_executed=False)))
 
 
+def check_host_terminal_failure(target, data, pe):
+    from native_terminal import NativeReplay
+
+    assert target["version"] == "0.141.0"
+    assert target["sha256"] == "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+    replay = NativeReplay(data, pe)
+    ranges = [
+        (0x145ea4b50, 0x145ea4c26, "bcae483b2969fc580636a856f43bccaa1739a38a893e580d25094b89b0776a45"),
+        (0x145ea4c26, 0x145ea4cbc, "ab60dbcb28c39d58a64adf1b99cf0c1652c2e494c57a999aed66faed65ff0715"),
+        (0x145ea54d1, 0x145ea5561, "1c95ede042c88eb89b365245052bff3d057282819369b94fbcc6fb25d7a059d7"),
+        (0x145ec8730, 0x145ec89d0, "21679304c84e9a127e8c9b8bfa4115067da44075de7c1b1ae751d78488775eaa"),
+        (0x145e8dc70, 0x145e8dd83, "fd6ebef2289694de7ab3b06f98f3f77700e96fdf297c619a0c7212e5fd60e0c0"),
+    ]
+    for start, end, sha256 in ranges:
+        assert digest(replay.raw(start, end - start)) == sha256
+    selected, primary = [span[:2] for span in ranges[1:3]]
+    registers = replay.registers
+    calls = {
+        0x145ec8730: "role",
+        0x1463a5541: "copy",
+        0x145e8dc70: "terminal",
+        0x145e9a410: "drop",
+        0x145ec8af0: "reason",
+    }
+    absent = (1 << 64) - 1
+    optional = replay.mem + 0x800
+    cases = 0
+    for secondary, failure, present in product((False, True), repeat=3):
+        start, end = selected if secondary else primary
+        replay.reset("host transport failure", [(start, end)], [end, 0x145ea5561])
+        replay.put(replay.bp + 0x1290, "<Q", replay.app)
+        replay.put(replay.bp + 0x1208, "<Q", optional)
+        replay.put(replay.bp + 0x10e8, "<Q", optional + 8)
+        tag = 9 if present else absent
+        replay.put(optional, "<Q", tag)
+        register = registers.UC_X86_REG_R14 if secondary else registers.UC_X86_REG_RBX
+        replay.machine.reg_write(register, int(failure if secondary else not failure))
+        observed = []
+        reason = b"the co-op relay cannot be reached" if secondary else b"the co-op service cannot be reached"
+
+        def seam(address):
+            call = calls.get(address)
+            if call is None:
+                return False
+            observed.append(call)
+            if call == "role":
+                assert replay.get(optional, "<Q") == (tag,)
+                assert replay.machine.reg_read(registers.UC_X86_REG_RCX) == replay.app
+            else:
+                assert replay.get(optional, "<Q") == (absent,)
+            if call == "reason":
+                pointer = replay.machine.reg_read(registers.UC_X86_REG_R9)
+                stack = replay.machine.reg_read(registers.UC_X86_REG_RSP)
+                length, = replay.get(stack + 0x28, "<Q")
+                assert bytes(replay.machine.mem_read(pointer, length)) == reason
+            replay.return_seam()
+            return True
+
+        replay.seam = seam
+        expected_stop = end if secondary and not failure else 0x145ea5561
+        assert replay.run(start) == expected_stop
+        expected = []
+        if failure:
+            expected = ["role", *(("copy", "terminal", "drop") if present else ()), "reason"]
+        assert observed == expected, (secondary, failure, present, observed)
+        cases += 1
+
+    directory = path("crates/azeroth-survivors-re/src/coop_directory.rs").read_text()
+    session = path("crates/azeroth-survivors-re/src/coop/session.rs").read_text()
+    closed = block_after(directory, "fn transport_closed(")
+    assert closed.index("!service.secondary_failed()") < closed.index("return;") < closed.index("driver.leave(")
+    assert closed.index("runtime.driver.take_if(") < closed.index("set_connected(service.relay_connected())") \
+        < closed.index("driver.leave(") < closed.index("service.close()") < closed.index("runtime.transport_lost = true")
+    failed = block_after(block_after(directory, "fn poll_secondary("), "Action::Failed =>")
+    assert failed.index("transport_closed(") < failed.index("worker.stop()")
+    close = block_after(directory, "fn close(&mut self)")
+    assert close.index("primary.submit(ClientMessage::Leave)") < close.index("self.close_secondary()")
+    assert "secondary.submit(ClientMessage::Leave)" in block_after(directory, "fn close_secondary(")
+    role = block_after(session, "pub fn leave(&mut self")
+    assert role.index("peer.flush(now)") < role.index("peer.connection.send(&disconnect)") \
+        < role.index("peer.connection.close()") < role.index("for_each(&mut submit)")
+    print(json.dumps(dict(status="passed", target=target["version"], native_ranges=len(ranges),
+        native_cases=cases, compilation=False, network_or_game_executed=False, parity_verified=False)))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--source-only", action="store_true", help="Check retained socket source wiring without revalidating historical native evidence")
     mode.add_argument("--current-rtt", action="store_true", help="Check the canonical 0.127.0 raw service RTT proof and source")
     mode.add_argument("--current-close", action="store_true", help="Check the 0.139.2 explicit cooperative close proof and source")
+    mode.add_argument("--host-terminal-failure", action="store_true", help="Check 0.141.0 host failure departure order and source")
     args = parser.parse_args()
     if args.source_only:
         check_source()
         print("PASS: retained socket source guards; native evidence not revalidated; no compilation or execution")
         return
-    target = installed_identity() if args.current_close else latest_target(verify=True)
+    target = installed_identity() if args.current_close or args.host_terminal_failure else latest_target(verify=True)
     data = target_bytes(target)
     pe = load_script("coop_directory_transport_pe", ROOT / "scripts/inventory-executable.py").PE(data)
     if args.current_rtt:
         return check_current_rtt(target, data, pe)
     if args.current_close:
         return check_current_close(target, data, pe)
+    if args.host_terminal_failure:
+        return check_host_terminal_failure(target, data, pe)
     owners, tables, literals, certificates, local_results = check_manifest(target, data, pe)
     check_source()
     print(f"PASS: {owners} current native transport ranges/extracts, {tables} tables, "
