@@ -97,10 +97,18 @@ pipeline outputs use the same content store. The retained PE inventories use
 transparent compression where supported, and their original paths still read
 the exact committed JSON bytes. Mutable pipeline views can use APFS copy-on-write.
 
-Keep full instruction exports for the selected passes, the active audit's
-declared and expanded inputs, and independently verified historical consumers.
-Superseded passes may retain only their completion receipts and provenance.
-Local `census/retired-instructions.json` records retired export hashes so
+Keep full instruction exports for the current selected census and any distinct
+declared or expanded pass the active audit reads. Keep a historical export
+only when a retained comparison opens that exact instruction stream. The
+historical byte-range audit reads function bodies from the current census, and
+the target-refresh comparison reads the predecessor's PE summary and API
+extract. The recorded 0.120.5 → 0.121.0 switch replay reads the 0.121.0
+instruction stream and the 0.120.5 function bodies.
+
+Keep the plans, completion receipts and other comparison inputs when retiring
+an instruction stream. A retired pass remains historical evidence. Exact
+completed replay of that pass requires its original export. Local
+`census/retired-instructions.json` records retired canonical export hashes so
 storage maintenance can distinguish intentional retirement from a missing file.
 
 ## Across EXE updates
