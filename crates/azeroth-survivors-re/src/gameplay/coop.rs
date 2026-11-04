@@ -388,14 +388,14 @@ fn receive(
     armory: Res<crate::armory::ArmoryCatalog>,
     mut commands: Commands,
     mut world: ResMut<ZoneWorld>,
-    (input, bridge, hud_settings, catalog, stock, mut notifications, board, units): (
+    (input, bridge, hud_settings, catalog, stock, mut notifications, mut board, units): (
         Res<benilla_app::local_client::LocalClientInput>,
         Res<client::BridgeCatalog>,
         Res<run_hud::HudSettings>,
         Res<MenuCatalog>,
         Option<Res<benilla_app::local_client::LocalStockFrontend>>,
         ResMut<notifications::Notifications>,
-        Res<client::raid_targets::RaidTargets>,
+        ResMut<client::raid_targets::RaidTargets>,
         Query<(&LocalUnitVisual, &Transform, Option<&benilla_app::local_client::LocalUnitPath>)>,
     ),
 ) {
@@ -600,6 +600,25 @@ fn receive(
                     _ => continue,
                 };
                 if let Some(client) = client {
+                    if opcode == benilla_protocol::messages::opcode::MSG_RAID_TARGET_UPDATE {
+                        // Session already admitted the synchronized transport row.
+                        // Apply in receive order before the next peer event.
+                        let (icon, target) = client::raid_targets::request_body(&payload);
+                        if icon == 0xff {
+                            if let Ok(Some(packet)) = engine_packets::encode(&board.list(), None) {
+                                runtime.send(Some(client), packet.into_message());
+                            }
+                        } else {
+                            let changes = board.set(icon, target);
+                            if run.mechanics.is_some() {
+                                client::raid_targets::relay_changes(&mut runtime, &changes);
+                            }
+                            if local.active {
+                                presentation.0.extend(changes);
+                            }
+                        }
+                        continue;
+                    }
                     state
                         .commands
                         .push((client, EnginePacket { opcode, payload }));

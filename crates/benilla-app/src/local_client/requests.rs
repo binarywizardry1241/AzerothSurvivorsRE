@@ -110,6 +110,7 @@ fn resolved(command: ClientCommand) -> Option<LocalClientRequest> {
     match command {
         ClientCommand::QueryTime => Some(LocalClientRequest::QueryTime),
         ClientCommand::SetRaidTarget { icon, guid } => Some(LocalClientRequest::SetRaidTarget { icon, guid }),
+        ClientCommand::RequestRaidTargets => Some(LocalClientRequest::SetRaidTarget { icon: 0xff, guid: 0 }),
         ClientCommand::NameQuery { guid } => Some(LocalClientRequest::NameQuery { guid }),
         ClientCommand::CastSpell { spell_id, .. }
         | ClientCommand::CastSpellCorpse { spell_id, .. }
@@ -285,6 +286,8 @@ mod tests {
 
     #[test]
     fn raid_target_commands_keep_wire_icon_and_full_guid() {
+        assert_eq!(resolved(ClientCommand::RequestRaidTargets),
+            Some(LocalClientRequest::SetRaidTarget { icon: 0xff, guid: 0 }));
         for icon in [0, 7, 8, 254, 255] {
             for guid in [0, 1, u64::MAX] {
                 assert_eq!(resolved(ClientCommand::SetRaidTarget { icon, guid }),

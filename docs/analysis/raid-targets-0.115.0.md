@@ -8,6 +8,9 @@ native owners, lifecycle excerpts, popup script and current Ghidra observations.
 portion of #71; cooperative permissions, propagation and services remain excluded
 under #63. Ground-attack telegraphs are separately #43.
 
+The [0.139.2 cooperative report](coop-raid-targets-0.139.2.md) owns the later
+guest admission, sender-specific list and world-delta routes.
+
 ## Recovered contract
 
 The ordinary `SetRaidTarget(unit, index)` binding queues a party intent. The

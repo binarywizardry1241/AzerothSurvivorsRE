@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "gap_ids": [
+    63,
+    71
+  ],
+  "target": {
+    "version": "0.139.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+    "size_bytes": 150793728
+  },
+  "native_ranges": [
+    {
+      "role": "request",
+      "start": "0x145e4c400",
+      "end_exclusive": "0x145e4f71c",
+      "file_offset": "0x5e4b800",
+      "sha256": "bd4a72325bd0b87760d9e488433c3f30adaf3342be4b23a60e0e206849040a16",
+      "replay": true
+    },
+    {
+      "role": "board",
+      "start": "0x145e21b70",
+      "end_exclusive": "0x145e21cd7",
+      "file_offset": "0x5e20f70",
+      "sha256": "fa272af43a045d51b7ea7632920423e5edc51014041392e95a298657c3a8ac8d",
+      "replay": true
+    },
+    {
+      "role": "delta",
+      "start": "0x145d9aff0",
+      "end_exclusive": "0x145d9b0d3",
+      "file_offset": "0x5d9a3f0",
+      "sha256": "8cc27b65706c7c343f97ad2b2f73898633ec0b76b07ebd4ce2eb0860a71afb25",
+      "replay": true
+    },
+    {
+      "role": "list",
+      "start": "0x145d9c7e0",
+      "end_exclusive": "0x145d9c989",
+      "file_offset": "0x5d9bbe0",
+      "sha256": "b30bfb1c970a9fc8c5895850c774ffe9a9c33ee1b73779b748471903ef21c59e",
+      "replay": true
+    },
+    {
+      "role": "local request ingress",
+      "start": "0x145e62fc9",
+      "end_exclusive": "0x145e62fe8",
+      "file_offset": "0x5e623c9",
+      "sha256": "9334d8385a57f2c82fdf3bce0c0663446ccf3472299c1351812b36c44e385c0c"
+    },
+    {
+      "role": "host role, joined and message selector",
+      "start": "0x145e77c0e",
+      "end_exclusive": "0x145e77ca5",
+      "file_offset": "0x5e7700e",
+      "sha256": "74498762bd09012994157007f00779a11260660ecb315402634055168de0d24f"
+    },
+    {
+      "role": "host engine variant and synchronized gate",
+      "start": "0x145e782b7",
+      "end_exclusive": "0x145e78310",
+      "file_offset": "0x5e776b7",
+      "sha256": "a7c110284ca0a391b48b0b1410e9939fa0dcac2f2268785ea8ed4dc32f5112a2"
+    },
+    {
+      "role": "ordered host engine adapter call",
+      "start": "0x145e784f1",
+      "end_exclusive": "0x145e78522",
+      "file_offset": "0x5e778f1",
+      "sha256": "359a896dd55bfc406aee159d0213f113f1f1e39e718ab873c2c4e7b82631da19"
+    },
+    {
+      "role": "remote role projection",
+      "start": "0x145eb4982",
+      "end_exclusive": "0x145eb49c9",
+      "file_offset": "0x5eb3d82",
+      "sha256": "2c9b63e516d8ac3fdfe54f460286a98afa064b891af69419582d3d8717b5c133"
+    },
+    {
+      "role": "world actor publisher",
+      "start": "0x145e778e0",
+      "end_exclusive": "0x145e77b06",
+      "file_offset": "0x5e76ce0",
+      "sha256": "85f958d8ac7a927da86d8fe8b1a5e00a5e5571e60f42296abac02018146c66c0"
+    },
+    {
+      "role": "sender-specific packet publisher",
+      "start": "0x145e77490",
+      "end_exclusive": "0x145e77583",
+      "file_offset": "0x5e76890",
+      "sha256": "06370974f937c267d6667a4d6ead3d48b49f1f2948b408e54c9e703e6e99dd1b"
+    }
+  ],
+  "shared_request_raw_slice_ghidra": {
+    "journal_identity_sha256": "52fc172c2cf6948c6f6278b08e8b1e5e69081770950354f82efe3ecbfaeaabd6",
+    "slice_sha256": "bd4a72325bd0b87760d9e488433c3f30adaf3342be4b23a60e0e206849040a16",
+    "completed_queries": [
+      {
+        "operation": "procedure_info",
+        "address": "0x145e4c400",
+        "result_sha256": "160e72bce22b16f1efc711e3445e9f2adffb6f7c0b3a42e727a040092c18a5d3",
+        "evidence_id": "ev_c773ead524cf8754e4d0fc2bc8841e4add21e21e5fdf6e91b1a97cf874b00c7a"
+      },
+      {
+        "operation": "procedure_pseudo_code",
+        "address": "0x145e4c400",
+        "result_sha256": "26fbd7560674446709e509fdf74f740d17e1ff3e19d64532288e0e74d13f2c94",
+        "evidence_id": "ev_5f4c11690fa50e828f83da4c1bda39fa0ad1860ec21da0882c5618ec72634cde"
+      }
+    ]
+  },
+  "engine_command_table_cell": {
+    "table": "0x1476c81ec",
+    "address": "0x1476c81f8",
+    "file_offset": "0x76c73f8",
+    "native_variant": 6,
+    "signed_relative_bytes": "cb007bfe",
+    "branch": "0x145e782b7"
+  }
+}

@@ -68,7 +68,6 @@ fn apply(
     mut native: ResMut<world::native_floor::NativeFloor>,
     terrain: Option<Res<TerrainStreamer>>,
     tiles: Option<Res<Assets<AdtTile>>>,
-    mut board: ResMut<client::raid_targets::RaidTargets>,
     locale: Res<crate::localization::Localization>,
     mut presentation: ResMut<LocalPresentationEvents>,
     armory: Res<crate::armory::ArmoryCatalog>,
@@ -260,20 +259,6 @@ fn apply(
                             game.with_party_hero(slot, |game| {
                                 game.click_cache(object, Position::from(point), &mut ground)
                             });
-                        }
-                    }
-                }
-            }
-            opcode::MSG_RAID_TARGET_UPDATE => {
-                if let Some(icon) = packet.payload.first().copied() {
-                    if icon == 0xff {
-                        replies.push(board.list());
-                    } else if let Some(target) = u64_at(&packet.payload, 1) {
-                        for event in board.set(icon, target) {
-                            if let Ok(Some(encoded)) = engine_packets::encode(&event, None) {
-                                runtime.route_engine(slot, encoded);
-                            }
-                            presentation.0.push(event);
                         }
                     }
                 }

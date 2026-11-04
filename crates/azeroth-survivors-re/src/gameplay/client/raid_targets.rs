@@ -1,9 +1,10 @@
-//! Solo raid-target board and responses recovered from AS 0.115.0.
-//! See docs/analysis/raid-targets-0.115.0.md for exact native ranges and limits.
+//! Shared raid-target board and native packet responses.
 
+use azeroth_survivors_re::coop::engine_packets;
 use benilla_app::local_client::{events::{LocalPresentationEvents, SessionEvent},
     LocalClientSession, LocalClientSet};
 use bevy::prelude::*;
+use crate::coop_runtime::CoopRuntime;
 
 #[derive(Resource, Default)]
 pub(crate) struct RaidTargets {
@@ -30,6 +31,25 @@ fn decode(body: &[u8]) -> SessionEvent {
     let packet = benilla_protocol::messages::parse_server(0x321, body)
         .expect("native raid-target packet");
     benilla_protocol::decode(packet).into_iter().next().expect("raid-target event")
+}
+
+pub(crate) fn request_body(body: &[u8]) -> (u8, u64) {
+    let Some((&icon, bytes)) = body.split_first() else {
+        return (0, 0);
+    };
+    let mut guid = [0; 8];
+    let len = bytes.len().min(guid.len());
+    guid[..len].copy_from_slice(&bytes[..len]);
+    (icon, u64::from_le_bytes(guid))
+}
+
+pub(crate) fn relay_changes(runtime: &mut CoopRuntime, changes: &[SessionEvent]) {
+    for event in changes {
+        if let Ok(Some(packet)) = engine_packets::encode(event, None) {
+            // Queue the delta before the next request can queue its list reply.
+            runtime.route_world(0, packet);
+        }
+    }
 }
 
 impl RaidTargets {
@@ -85,6 +105,18 @@ fn reset(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn native_request_reads_zero_padded_guid_and_ignores_trailing_bytes() {
+        let body = [7, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        assert_eq!(request_body(&[]), (0, 0));
+        assert_eq!(request_body(&[0xff]), (0xff, 0));
+        let expected = [0, 1, 0x0201, 0x030201, 0x04030201, 0x0504030201,
+            0x060504030201, 0x07060504030201, 0x0807060504030201, 0x0807060504030201];
+        for (index, guid) in expected.into_iter().enumerate() {
+            assert_eq!(request_body(&body[..=index]), (7, guid));
+        }
+    }
 
     #[test]
     fn native_duplicate_cleanup_precedes_the_selected_slot() {

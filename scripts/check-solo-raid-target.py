@@ -10,9 +10,9 @@ import json
 import struct
 import subprocess
 
-from coverage_common import ROOT, latest_target, project_path, target_bytes
+from coverage_common import ROOT, installed_identity, latest_target, project_path, target_bytes
 from script_sources import load_script
-from raid_target_native import EXCERPTS, RANGES, TARGET_SHA256, RaidTargetProbe
+from raid_target_native import CoopRaidTargetProbe, EXCERPTS, RANGES, TARGET_SHA256, RaidTargetProbe
 
 
 def expected_board(values, icon, guid):
@@ -59,7 +59,8 @@ def source_inspection():
         'raid verb remains inside original ordered queue loop':
             'for request in std::mem::take(&mut requests.0)' in resolved
             and 'LocalClientRequest::SetRaidTarget { icon, guid } =>' in resolved
-            and 'presentation.0.extend(board.set(icon, guid))' in resolved
+            and 'let changes = board.set(icon, guid)' in resolved
+            and 'presentation.0.extend(changes)' in resolved
             and '.retain(' not in resolved,
         'raid reply requires active client independently of optional Game':
             resolved.index('if !active') < resolved.index('LocalClientRequest::SetRaidTarget')
@@ -108,11 +109,112 @@ def source_inspection():
     return {'kind': 'source inspection, not Rust execution', 'checks': inspection}
 
 
+def check_coop():
+    manifest_path = ROOT / 'docs/analysis/evidence/0.139.2/coop-raid-targets.json'
+    manifest = json.loads(manifest_path.read_text())
+    target = installed_identity()
+    assert target == manifest['target'], 'Selected cooperative raid-target EXE changed'
+    data = target_bytes(target)
+    pe = load_script('raid_target_pe', ROOT / 'scripts/inventory-executable.py').PE(data)
+    ranges = {}
+    for item in manifest['native_ranges']:
+        start, end = int(item['start'], 16), int(item['end_exclusive'], 16)
+        offset = pe.rva_offset(start - pe.image_base)
+        assert offset == int(item['file_offset'], 16)
+        assert hashlib.sha256(data[offset:offset + end - start]).hexdigest() == item['sha256']
+        if item.get('replay'):
+            ranges[item['role']] = start, end
+    cell = manifest['engine_command_table_cell']
+    table = int(cell['table'], 16)
+    address = int(cell['address'], 16)
+    offset = pe.rva_offset(address - pe.image_base)
+    assert address == table + 4 * (cell['native_variant'] - 3)
+    assert offset == int(cell['file_offset'], 16)
+    raw = data[offset:offset + 4]
+    assert raw.hex() == cell['signed_relative_bytes']
+    assert table + struct.unpack('<i', raw)[0] == int(cell['branch'], 16)
+    probe = CoopRaidTargetProbe(data, pe, ranges)
+    cases = 0
+    boards = [[0] * 8, list(range(1, 9)), [7, 0, 7, 0, 3, 7, 3, 2]]
+    sample = bytes.fromhex('070102030405060708aabb')
+    bodies = [b''] + [
+        bytes([icon]) + sample[1:length]
+        for icon in (0, 3, 7, 8, 254, 255)
+        for length in range(1, len(sample) + 1)
+    ]
+    bodies.extend(bytes([icon]) + struct.pack('<Q', 7) for icon in range(256))
+    contexts = [
+        (False, 0, True, False), (False, 0, True, True),
+        (True, 0, True, True), (True, 0, True, False),
+        (True, 1, True, True), (True, 2, True, True), (True, 0, False, True),
+    ]
+    for board in boards:
+        for body in bodies:
+            for remote, index, hosting, game in contexts:
+                result = probe.request(
+                    board, body, remote=remote, index=index, hosting=hosting,
+                    game=game, peers=(True, False))
+                icon = body[0] if body else 0
+                if icon == 0xff:
+                    expected = board, [('peer' if remote else 'local', index, listed(board))]
+                elif remote and (not hosting or index != 0):
+                    expected = board, []
+                else:
+                    change = expected_board(board, icon, int.from_bytes(body[1:9], 'little'))
+                    values = change['board']
+                    expected = values, [('actor', slot, delta(i, values[i]))
+                                        for i in change['changed'] for slot in range(3 if game else 1)]
+                assert result == expected, (body.hex(), remote, index, hosting, game, result, expected)
+                cases += 1
+    gameplay = ROOT / 'crates/azeroth-survivors-re/src/gameplay'
+    driver = (gameplay / 'mod.rs').read_text()
+    receive = (gameplay / 'coop.rs').read_text()
+    commands = (gameplay / 'coop_commands.rs').read_text()
+    board = (gameplay / 'client/raid_targets.rs').read_text()
+    requests = (ROOT / 'crates/benilla-app/src/local_client/requests.rs').read_text()
+    runtime = (ROOT / 'crates/azeroth-survivors-re/src/coop_runtime.rs').read_text()
+    session = (gameplay.parent / 'coop/session.rs').read_text()
+    local = driver.split('fn resolved_requests(', 1)[1].split('fn flush_exit(', 1)[0]
+    guest = receive.split('if opcode == benilla_protocol::messages::opcode::MSG_RAID_TARGET_UPDATE', 1)[1]
+    guest = guest.split('.push((client, EnginePacket', 1)[0]
+    checks = {
+        'local list command survives local projection':
+            'ClientCommand::RequestRaidTargets => Some(LocalClientRequest::SetRaidTarget { icon: 0xff, guid: 0 })' in requests,
+        'local changes retain local presentation and join world fanout':
+            'if icon != 0xff && session.mechanics.is_some()' in local
+            and 'relay_changes(runtime, &changes)' in local
+            and 'presentation.0.extend(changes)' in local,
+        'only synchronized guest engine requests reach host receive':
+            'NativeMessage::Lifecycle(LifecyclePacket::EngineCommand { .. }) if synchronized =>' in session,
+        'guest opcode has one receive-time owner before generic world commands':
+            'MSG_RAID_TARGET_UPDATE' not in commands and 'request_body(&payload)' in guest
+            and 'continue;' in guest,
+        'guest full list is private and changes reach the local port and world fanout':
+            'runtime.send(Some(client), packet.into_message())' in guest
+            and 'if run.mechanics.is_some()' in guest
+            and 'relay_changes(&mut runtime, &changes)' in guest
+            and 'if local.active' in guest and 'presentation.0.extend(changes)' in guest,
+        'delta queue uses actual synchronized world recipients in occurrence order':
+            'runtime.route_world(0, packet)' in board
+            and 'row.id == *client && row.synchronized && row.closing_since.is_none()' in runtime,
+        'native prefix reads zero-fill and bounds the GUID copy':
+            'let mut guid = [0; 8]' in board and 'bytes.len().min(guid.len())' in board
+            and 'u64::from_le_bytes(guid)' in board,
+    }
+    assert all(checks.values()), [label for label, ok in checks.items() if not ok]
+    print(f'#63: {cases} native raid-target request cases, {len(manifest["native_ranges"])} '
+          f'hash-bound ranges, {len(checks)} live source guards')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--coop', action='store_true', help='Check the installed cooperative request contract')
     parser.add_argument('--prepare-rea', action='store_true')
     parser.add_argument('--output', default='runtime/raid-target-0.115.0/checks')
     args = parser.parse_args()
+    if args.coop:
+        check_coop()
+        return
     output = project_path(args.output)
     if not output.is_relative_to(ROOT / 'runtime'):
         raise ValueError('Regenerable output must remain under project runtime/')

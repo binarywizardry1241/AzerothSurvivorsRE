@@ -143,3 +143,51 @@ class RaidTargetProbe(EquipmentProbe):
         offset = 0xc00 if role == 'replacement-reset' else 0x1c50
         return {'board': [self.q(host + 0x1750 + i * 8) for i in range(8)],
                 'packet': self.packet(frame + offset)}
+
+
+class CoopRaidTargetProbe(RaidTargetProbe):
+    """Replay the current shared request, board and two packet serializers."""
+
+    def __init__(self, data, pe, ranges):
+        EquipmentProbe.__init__(self, data, pe, list(ranges.values()))
+        self.entry = ranges['request'][0]
+
+    def hook(self, uc, pc, size, unused):
+        if pc == 0x1464f3410:
+            self.grow(self.reg('RCX'), 1)
+        elif pc == 0x14634b750:
+            assert self.reg('RDX') == self.q(self.reg('RCX') + 16)
+            assert self.reg('R9') == 1
+            self.grow(self.reg('RCX'), self.reg('R8'))
+        elif pc == 0x145e778e0:
+            self.packets.append(('actor', self.reg('RDX'), self.packet(self.reg('R8'))))
+        elif pc == 0x145e77490:
+            source = ('local', 'peer')[self.reg('RDX')]
+            self.packets.append((source, self.reg('R8'), self.packet(self.reg('R9'))))
+        else:
+            return EquipmentProbe.hook(self, uc, pc, size, unused)
+        self.returned()
+
+    def request(self, values, payload, *, remote, index, hosting, game, peers):
+        self.reset()
+        host = self.alloc(0x2200)
+        self.native.mem_write(host + 0x10, struct.pack('<I', 0 if game else 2))
+        self.put(host + 0xba8, 2)
+        self.put(host + 0xf78, 3 if hosting else 2)
+        clients = self.alloc(0x870 * len(peers))
+        self.put(host + 0xfb0, clients, len(peers))
+        for i, occupied in enumerate(peers):
+            self.put(clients + 0x870 * i, int(occupied))
+        self.put(host + 0x1de8, *values)
+        body = self.alloc(len(payload))
+        if payload:
+            self.native.mem_write(body, payload)
+        sp = self.STACK + 0x1f0008
+        self.put(sp, self.DONE)
+        self.put(sp + 40, body, len(payload))
+        for name, value in [('RSP', sp), ('RCX', host), ('RDX', int(remote)),
+                            ('R8', index), ('R9', 0x321), ('MXCSR', 0x1f80)]:
+            self.reg(name, value)
+        self.native.emu_start(self.entry, self.DONE, count=10000)
+        assert self.reg('RIP') == self.DONE
+        return [self.q(host + 0x1de8 + i * 8) for i in range(8)], self.packets

@@ -1675,6 +1675,7 @@ fn resolved_requests(
     locale: Res<crate::localization::Localization>,
     local: Option<Res<benilla_app::local_client::LocalClientSession>>,
     mut raid_targets: Option<ResMut<client::raid_targets::RaidTargets>>,
+    mut runtime: Option<ResMut<crate::coop_runtime::CoopRuntime>>,
 ) {
     use benilla_app::local_client::{events::SessionEvent, LocalClientRequest};
     // The local channel outlives the optional AS Game. Metadata and refusals
@@ -1706,7 +1707,13 @@ fn resolved_requests(
             }
             LocalClientRequest::SetRaidTarget { icon, guid } => {
                 if let Some(board) = raid_targets.as_deref_mut() {
-                    presentation.0.extend(board.set(icon, guid));
+                    let changes = board.set(icon, guid);
+                    if icon != 0xff && session.mechanics.is_some() {
+                        if let Some(runtime) = runtime.as_deref_mut() {
+                            client::raid_targets::relay_changes(runtime, &changes);
+                        }
+                    }
+                    presentation.0.extend(changes);
                 }
             }
             LocalClientRequest::InventoryChange { opcode, first, second } => {

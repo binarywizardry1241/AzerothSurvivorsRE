@@ -60383,6 +60383,19 @@
     },
     {
       "id": "custom-game-server-party",
+      "coop_raid_targets_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_ids": [63, 71],
+        "source_status": "connected",
+        "scope": "Local and synchronized guest opcode 0x321 ingress, shared eight-slot mutation, sender-specific list and ordered world-actor delta publication.",
+        "evidence_refs": [
+          "docs/analysis/coop-raid-targets-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/coop-raid-targets.json"
+        ],
+        "static_checker": "scripts/check-solo-raid-target.py --coop",
+        "runtime_validation": "not_run",
+        "parity_verified": false
+      },
       "title": "Co-op server party lifecycle",
       "original_path": "crates/wenilla-rogue/src/server/party.rs",
       "native_path_evidence": [
