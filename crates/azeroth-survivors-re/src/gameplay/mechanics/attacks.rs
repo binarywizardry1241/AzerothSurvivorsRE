@@ -482,6 +482,7 @@ mod tests {
             game.abilities.push(RuntimeInstance::learned(definition));
             game.tick(0.01, player, [0.0; 2], 0.0, &mut world);
             assert_eq!(game.execution.totems.len(), 1);
+            let totem_guid = game.execution.totems[0].guid;
             game.tick(0.51, player, [0.0; 2], 0.0, &mut world);
             game.tick(0.75, player, [0.0; 2], 0.0, &mut world);
             let line = game
@@ -492,6 +493,14 @@ mod tests {
             assert!(line.total > 0.0, "{key}");
             assert_eq!(line.source.icon, definition.icon);
             assert!(game.spell_damage(definition.pulse_spell_id) > 0.0, "{key}");
+            let pulse_key = format!("ability:{key}:r1:pulse");
+            assert!(game.events.iter().any(|event| matches!(
+                event,
+                RunEvent::Damage {
+                    causal_source, spell_id, meter_attribution: Some((source, source_key)), ..
+                } if *causal_source == totem_guid && *spell_id == definition.pulse_spell_id
+                    && source.name == definition.name && source_key == &pulse_key
+            )));
             assert!(
                 !game
                     .damage_meter()

@@ -185,3 +185,34 @@ and talent descriptor
 The raw slices omit external code and data. Row identity fields,
 actor and recipient joins, loadout transitions, and complete replay
 remain open under [#75](../CURRENT-STATE.md#gap-75).
+
+### Totem pulse keys and actor identity
+
+The current Magma and Searing Totem ability rows at `0x1473bb1f8` and
+`0x1473bb270` preserve primary/pulse IDs 8190/8187 and 3599/3606.
+Their 120-byte SHA-256 values are
+`a4ab6c456dbe9cc0b0ef161bc1de9c0ce7f14229763fe173cc0f141b7c4e5c61`
+and `0664b74c391bbe11261881269ebf28a00c567ef76f895cec125e109de051b028`.
+The ability selector `0x145fd19e0` checks each learned instance's
+primary and pulse IDs. It passes the instance rank and pulse match to
+`0x145de9320`. That formatter adds `:r<rank>` and `:pulse` on the
+corresponding inputs. Both live rebuilt pulses already follow this
+packet key path. The source regression now checks the captured totem
+GUID, pulse ID, label and complete learned key.
+
+The detailed actor descriptor constructor `0x145fd1210` is a separate
+join. It compares the actor GUID at Game `+0x270` with the current hero
+GUID at `+0x5b0`. For another GUID it searches the companion vector and
+then the 0x80-byte totem rows at `+0x7e8/+0x7f0`. When a totem's GUID at
+row `+0x60` matches, it formats `T<low GUID word>` at `0x145fd131c`,
+sets kind `totem` at `0x145fd135b` and joins the current hero descriptor.
+The calls at `0x145f940e6` and `0x145f9d675` feed that actor descriptor
+into the detailed accounting paths. The source still needs to carry
+this actor identity into the detailed rows and replay. This contract is
+distinct from the combat packet's `ability:…:pulse` key.
+
+The actor constructor's file range is `0x5fd0610..0x5fd0a1b`,
+SHA-256 `65ce46148833d614defe37afb38414382261c935731d458e9c3e6fb161174e4f`.
+Ghidra raw-slice result
+`ev_02c14209f9d034603461126bc4d4a652324d18825de7ba31134080d404eb7590`
+covers the constructor. The original PE resolves its tables and strings.
