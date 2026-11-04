@@ -415,6 +415,16 @@ impl MenuState {
             self.mark_dirty();
         }
     }
+    pub(crate) fn reject_coop_entry(&mut self) {
+        self.entering = false;
+        self.enter_started_at = None;
+        if !self.in_run {
+            self.name_focused = false;
+            self.dialog = Some(Dialog::Coop);
+        }
+        self.mark_dirty();
+    }
+
     pub fn complete_enter(&mut self) {
         self.entering = false;
         self.enter_started_at = None;

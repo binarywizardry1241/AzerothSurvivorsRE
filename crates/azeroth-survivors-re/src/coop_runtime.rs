@@ -290,6 +290,7 @@ fn poll(
     mut runtime: ResMut<CoopRuntime>,
     time: Res<Time>,
     run: Res<crate::gameplay::RunSession>,
+    mut menu: ResMut<crate::menu_state::MenuState>,
     locale: Res<crate::localization::Localization>,
     mut view: ResMut<crate::coop_ui::CoopUi>,
     mut wire: ResMut<benilla_app::local_client::LocalWireRequests>,
@@ -351,11 +352,10 @@ fn poll(
             }
         }
         if let Some(reason) = &driver.denial {
-            if view.status != "refused" { view.status = "refused".into(); }
             if !view.role.is_empty() { view.role.clear(); }
             let reason = String::from_utf8_lossy(reason);
-            if view.unavailable_reason.as_deref() != Some(reason.as_ref()) {
-                view.unavailable_reason = Some(reason.into_owned());
+            if view.status != "refused" || view.unavailable_reason.as_deref() != Some(reason.as_ref()) {
+                view.receive_failure(&mut menu, "refused", reason.into_owned());
             }
         }
         // Only an actual received roster populates presentation. Its rows are
@@ -365,7 +365,7 @@ fn poll(
                 .accepted()
                 .map(|row| row.capacity)
                 .or_else(|| driver.is_hosting().then_some(driver.server.capacity())),
-            driver.roster_snapshot(),
+            driver.roster_snapshot().filter(|_| view.party_active()),
         ) {
             let lobby = crate::coop_ui::LobbyView {
                 name: String::new(),

@@ -20,7 +20,7 @@ identify the producer, consumer, or semantics of a table's cases.
 | Context and finding | Current source boundary and next static action |
 | --- | --- |
 | Menu [#128](../CURRENT-STATE.md#gap-128) and marker [#96](../CURRENT-STATE.md#gap-96) | Trace the menu input tag through `menu.rs::Action`, `input` and `menu_state.rs::Page`. Follow the separate marker tag into `raid_markers.rs::Markers::receive`, `Kind`, `Shape`, `paint` and `mask`. The exact geometry candidates retain the earlier menu and marker questions. [Menu](../../crates/azeroth-survivors-re/src/menu.rs), [markers](../../crates/azeroth-survivors-re/src/raid_markers.rs). |
-| Lobby [#150](../CURRENT-STATE.md#gap-150) | Three current-only tables share the final exported body entry `0x140106060`, the declared extent `0x140106060..0x140108579` and the `screens/coop.rs:440` context. The guards admit RCX 0–6, RDI 0–8 and an RDI-alias 0–8. Follow the actual value producers and cases into existing `coop_ui.rs::input` and `rebuild`, `coop_forms.rs::Forms` and request handoffs to `coop_directory.rs`. Separate generic UI/form values from admission, Ready Check and inspection only after the typed branch evidence is available. [Lobby](../../crates/azeroth-survivors-re/src/coop_ui.rs), [forms](../../crates/azeroth-survivors-re/src/coop_forms.rs), [directory](../../crates/azeroth-survivors-re/src/coop_directory.rs). |
+| Lobby [#150](../CURRENT-STATE.md#gap-150) | [Lobby event dispatch](#lobby-event-dispatch) resolves the three guarded tables to event type, roster reset and chat reset. Closed and ended status now enqueue a directory refresh. The locked-reason handoff now cancels pending entry and restores the co-op window in the menu. |
 | Inspection [#299](../CURRENT-STATE.md#gap-299) and Armory [#123](../CURRENT-STATE.md#gap-123) | Keep the three read-only inspection candidates distinct from the three Armory candidates. Reuse the [current wire and UI connection](coop-inspection-0.141.0.md) for the roster and sidebar scope. Identify the exact inspection item-kind detail branches, preview lighting and achievement selection where their producers can be bound. For Armory, follow the selectors into the existing build, input, equipment summary and item detail paths and the save gear model. [Inspection](../../crates/azeroth-survivors-re/src/coop_inspect.rs), [Armory](../../crates/azeroth-survivors-re/src/armory.rs), [save gear](../../crates/azeroth-survivors-re/src/save/gear.rs). |
 | Codex [#73](../CURRENT-STATE.md#gap-73) and [#17](../CURRENT-STATE.md#gap-17) | Map the three descriptor selectors through `CodexCatalog`, `CodexText`, detail assembly and `MenuCatalog`. Site `0x140374fd5` is the current unique geometry candidate for `retained-table-1403076a2`. The [growth-text recovery](codex-growth-dispatch-0.120.2.md) retains its separately proved scope. [Codex](../../crates/azeroth-survivors-re/src/codex.rs), [catalog](../../crates/azeroth-survivors-re/src/catalog.rs). |
 | Font augmentation [#135](../CURRENT-STATE.md#gap-135) | The [current exact font proof](font-table-publication-0.141.0.md) independently identifies `0x145dd9057` as the nested second-byte dispatch for the `h` branch. Its 40-byte table at `0x1476f3d18` matches the proved SHA-256 `1e34d391a995f7082ae67a16640be5dc1744de10c921ff55caae093eff0906ba`. Keep the repaired scaler, post table and original-provider fallback paths. Trace remaining font selection and layout dependencies only where required by AS. [Font patch](../../crates/azeroth-survivors-re/src/font_patch.rs), [provider](../../crates/azeroth-survivors-re/src/menu_fonts.rs). |
@@ -95,6 +95,68 @@ one geometry candidate, with source correspondence and runtime proof separate.
 | `0x145fb6b98` | `0x147af395c` | `0x145fb6b80` | 7 / 7 | `0x145fe5458` | #24/#138 |
 | `0x145fb6c1c` | `0x147af3978` | `0x145fb6c04` | 7 / 7 | `0x145fe54dc` | #24/#138 |
 | `0x14606561d` | `0x147afb0b8` | `0x146065606` | 49 / 29 | `0x14606be4d` | #85/#142 |
+
+## Lobby event dispatch
+
+All three tables are inside the `screens/coop.rs:440` app event owner
+`0x140106060..0x140108579`. Its 9,497 bytes at file offset `0x105460`
+have SHA-256
+`dd81fe5256346a0eeb86a2b74185831ca06dfc9e44e3e435e5648bfa257ef9a1`.
+The shared Ghidra result digest is
+`171590c7cee8720a890ee6e04c377f76d239f6a7c27e5d17388b8f158c0296e3`.
+The raw-slice result supplies the body trace. Exact PE reads supply the
+external table cells and comparison literals.
+
+| Site | Selector and validated destinations | Table SHA-256 |
+| --- | --- | --- |
+| `0x14010628e` | Event JSON `type` string length minus four at `0x14010626e`. Cases compare `coop` at `0x140106290`, `party` at `0x140106338`, `lobbies` at `0x1401061e2`, `coopchat` at `0x1401063cc` and `readycheck` at `0x140106444`. Lengths 6 and 9 fall through. | `2bfef437748ea76f6b1c5b5b4106a470f7869e6659cf791a0083ca596f7d64c7` |
+| `0x140107bb3` | Incoming `coop` event's `state` length minus three at `0x140107b97`. Exact `off`, `closed`, `ended`, `refused` and `unavailable` select the roster and Ready Check reset at `0x140107c73`. Other statuses continue to chat and status handling. | `a375346b0f0a6e5ac16f34e2af6d6d91ec5b5a7fe8bf10be11414d2dfad91b39` |
+| `0x140107cef` | The same state-length index at `0x140107cd0`. The five reset states, `joining` and a transition to `hosting` from another state reach chat reset at `0x140107e1a`. A repeated `hosting` event preserves chat. | `e703eb659eea2c4447abf8c93d9f500b7b1107dccc70e6a408101869122e66b8` |
+
+The exact `closed` and `ended` comparisons at `0x140107eb4..0x140107ee9`
+submit local request 22 through `0x140040100` at `0x140107eeb..0x140107f08`.
+The game poller selects request 22 through `0x145ea7797` and enters
+`0x145ea7799`. It calls service ensure at `0x145ea77b9` and submits the
+refresh record at `0x145ea77fa` when the service is present and ready.
+The rebuilt [status consumer](../../crates/azeroth-survivors-re/src/coop_ui.rs)
+now queues the existing `FormRequest::Refresh` on those two transitions.
+Its existing `coop_directory.rs` request drain performs service admission
+and refresh. Refusal, off and unavailable states skip this route. All five
+terminal states clear the displayed member and Ready Check state. Roster
+projection requires an active party, so the retained host transport cannot
+repopulate a closed party's display. Joining and a changed hosting state
+reset chat without clearing the roster.
+
+### Locked entry handoff
+
+The `coop` branch checks the stored reason for the exact prefix `locked:`
+at `0x140107f10..0x140107f30`. A match sets the co-op open latch at
+`0x140107f36` and clears the menu entry tag at `0x140107f54`. The pointer
+is the same resource the Ready result writes at `0x140106a44..0x140106a55`
+with tag 1 and a pending timestamp of −1.0. The lobby root owner at
+`0x1401035c3..0x1401035f1` retains the latch only while the native
+main-menu byte at +13 is set and the entry tag is idle. The
+[menu entry resource proof](menu-input-0.97.2.md#enter-action-and-keyboard)
+independently identifies those fields and the pending-entry record on its
+historical target.
+
+The rebuilt service rejection and party closure paths in
+[the directory pump](../../crates/azeroth-survivors-re/src/coop_directory.rs)
+and the admitted guest denial in
+[the co-op runtime](../../crates/azeroth-survivors-re/src/coop_runtime.rs)
+send the reason through the same UI consumer. The lock prefix clears
+pending entry and opens the co-op window while the reconstructed menu is
+active. Ordinary reasons continue through the existing status
+presentation. The shared menu resource maps the native active-menu gate
+to the reconstructed run boundary. The existing lock string parser and
+rank formatting retain their
+[separate proof](coop-heroic-status-0.121.0.md).
+
+The typed source paths for the first table are the directory pump for
+lobbies and service state, and the co-op runtime and UI for roster, chat
+and Ready Check. This trace covers the selected app switch sites. The distinct lobby, inspection and Ready Check
+layers are covered by the [modal trace](native-interface-correspondence-0.141.0.md#ready-check-modal-construction).
+Compilation, frame timing, interaction and network parity remain open.
 
 ## Unmatched predecessor contexts and stable questions
 

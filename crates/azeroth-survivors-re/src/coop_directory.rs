@@ -489,15 +489,13 @@ fn poll(
                         view.unavailable_reason = None;
                     }
                     DirectoryResponse::Text { tag: 23, text } => {
-                        view.status = "denied".into();
-                        view.unavailable_reason = Some(text);
+                        view.receive_failure(&mut menu, "denied", text);
                     }
                     DirectoryResponse::Text { tag: 27, text } => {
                         drain_service_relay(&mut service);
                         service.guest_flags.lock().unwrap().active = false;
                         view.code = None;
-                        view.status = "closed".into();
-                        view.unavailable_reason = Some(text);
+                        view.receive_failure(&mut menu, "closed", text);
                         runtime.roster_profile = None;
                         service.profile_identity = None;
                         service.secondary = None;

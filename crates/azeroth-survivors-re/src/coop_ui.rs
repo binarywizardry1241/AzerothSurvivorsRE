@@ -264,13 +264,31 @@ impl CoopUi {
         });
     }
 
+    pub(crate) fn receive_failure(&mut self, state: &mut MenuState, status: &str, reason: String) {
+        if reason.starts_with("locked:") {
+            state.reject_coop_entry();
+        }
+        self.status = status.into();
+        self.unavailable_reason = Some(reason);
+    }
+
     pub(crate) fn sync_chat_status(&mut self) {
         if self.chat_status == self.status { return; }
-        if matches!(self.status.as_str(), "off" | "closed" | "ended" | "refused"
-            | "unavailable" | "joining" | "hosting") {
+        let reset_roster = matches!(
+            self.status.as_str(),
+            "off" | "closed" | "ended" | "refused" | "unavailable"
+        );
+        if reset_roster {
+            self.lobby = None;
+            self.ready_check = None;
+        }
+        if reset_roster || matches!(self.status.as_str(), "joining" | "hosting") {
             self.chat.reset();
             self.forms.chat.clear();
-            self.ready_check = None;
+        }
+        // The native status consumer submits request 22 after terminal party closure.
+        if matches!(self.status.as_str(), "closed" | "ended") {
+            self.requests.push_back(FormRequest::Refresh);
         }
         self.chat_status.clone_from(&self.status);
     }
@@ -1403,6 +1421,65 @@ mod tests {
                 password: String::new(),
             }]
         );
+    }
+
+    #[test]
+    fn terminal_party_states_clear_the_roster_and_only_closure_refreshes() {
+        for (status, refresh) in [
+            ("closed", true),
+            ("ended", true),
+            ("off", false),
+            ("refused", false),
+            ("unavailable", false),
+        ] {
+            let mut view = CoopUi {
+                status: "joined".into(),
+                lobby: Some(LobbyView {
+                    name: String::new(),
+                    capacity: 5,
+                    heroes: Vec::new(),
+                    zone: "elwynn".into(),
+                    heroic_rank: 0,
+                }),
+                ready_check: Some((Snapshot {
+                    status: Status::Running,
+                    left: 30,
+                    answers: Vec::new(),
+                }, 0.)),
+                ..default()
+            };
+            view.sync_chat_status();
+            view.status = status.into();
+            view.sync_chat_status();
+            view.sync_chat_status();
+            assert!(view.lobby.is_none());
+            assert!(view.ready_check.is_none());
+            assert_eq!(
+                view.take_requests(),
+                if refresh { vec![FormRequest::Refresh] } else { Vec::new() },
+                "{status}",
+            );
+        }
+    }
+
+    #[test]
+    fn locked_party_failure_returns_entry_to_the_coop_window() {
+        let mut menu = MenuState::from_save_path(None);
+        let mut view = CoopUi::default();
+
+        menu.admit_enter(0.);
+        view.receive_failure(&mut menu, "refused", "locked:sm:5".into());
+        assert!(!menu.entering);
+        assert!(matches!(menu.dialog, Some(Dialog::Coop)));
+        assert_eq!(view.unavailable_reason.as_deref(), Some("locked:sm:5"));
+
+        menu.dialog = None;
+        view.receive_failure(&mut menu, "denied", "different reason".into());
+        assert!(menu.dialog.is_none());
+
+        menu.in_run = true;
+        view.receive_failure(&mut menu, "closed", "locked:sm".into());
+        assert!(menu.dialog.is_none());
     }
 
     #[test]
