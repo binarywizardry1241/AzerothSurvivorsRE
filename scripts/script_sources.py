@@ -69,6 +69,9 @@ def historical_source(name, expected, root=ROOT):
     retained = index.get('retained_execution_sources', {}).get(name)
     if retained:
         candidates.append((name, retained['source_commit']))
+    for commit, paths in index.get('storage_predecessors', {}).items():
+        if name in paths:
+            candidates.append((name, commit))
     if not candidates or not isinstance(expected, str) or not re.fullmatch('[0-9a-f]{64}', expected):
         raise ValueError('No historical source commitment for this script')
     for former, commit in candidates:

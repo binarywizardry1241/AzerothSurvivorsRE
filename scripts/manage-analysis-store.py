@@ -63,11 +63,19 @@ def share_census_exports(plan_path, root=ROOT):
                 raise ValueError(f"Census export differs from its saved commitment: {path}")
             files.append((path, record))
 
+        for path in (plan_path, progress_path, output / "session-result.json"):
+            if path.is_file() and not path.is_symlink():
+                files.append((path, {"sha256": file_digest(path), "bytes": path.stat().st_size}))
+
         store = SharedAnalysis(root)
         shared = reclaimed = 0
         with store.lock():
             for path, record in files:
                 original = path.stat()
+                existing = store.object_path(record["sha256"])
+                pending = path.with_name("." + path.name + ".shared.pending")
+                if existing.is_file() and not existing.is_symlink() and path.samefile(existing) and not pending.exists():
+                    continue
                 receipt = store.put_file(path, "frozen-native-census-export", {
                     "path": path.relative_to(root).as_posix(),
                     "plan_sha256": plan_sha, "target_sha256": plan["target_sha256"],
@@ -75,7 +83,6 @@ def share_census_exports(plan_path, root=ROOT):
                 if receipt["sha256"] != record["sha256"] or receipt["bytes"] != record["bytes"]:
                     raise ValueError(f"Census export changed during publication: {path}")
                 destination = store.verify_receipt(receipt)
-                pending = path.with_name("." + path.name + ".shared.pending")
                 if pending.is_symlink() or (pending.exists() and not pending.samefile(destination)):
                     raise ValueError(f"Unexpected census link staging file: {pending}")
                 try:
@@ -134,6 +141,44 @@ def candidates(root, minimum=65536):
                            name == "evidence-bundle.json")
             if name.endswith(IMMUTABLE_SUFFIXES) or result_json:
                 yield path
+
+
+def consolidate_proof_files(root=ROOT):
+    """Share frozen census inputs and compress exact retained PE/stage artifacts."""
+    from execheck_pipeline import SHARED_STAGE_OUTPUTS
+
+    store = SharedAnalysis(root)
+    inputs = store.store / "census"
+    coverage = root / "runtime/coverage"
+    paths = [*inputs.glob("*/*/*-input.json"), *inputs.glob("*/*/*-input-summary.json"),
+             *inputs.glob("*/*/starts.tsv")]
+    for name in SHARED_STAGE_OUTPUTS:
+        paths.extend(coverage.glob(f"**/{name}"))
+    result = {"shared": 0, "reclaimed_allocated_bytes": 0}
+    for path in sorted(set(paths)):
+        if path.is_symlink() or path.parent.resolve() != path.parent or not path.is_file():
+            continue
+        row = store.migrate_file(path, scope_provenance(root, path))
+        result["shared"] += 1
+        result["reclaimed_allocated_bytes"] += row["reclaimed_allocated_bytes"]
+    return result
+
+
+def consolidate_identical_legacy_files(root=ROOT):
+    """Consolidate exact matches in the existing immutable migration scope."""
+    store = SharedAnalysis(root)
+    groups = defaultdict(list)
+    for path in candidates(root, minimum=1):
+        groups[file_digest(path)].append(path)
+    result = {"shared": 0, "reclaimed_allocated_bytes": 0}
+    for digest, paths in groups.items():
+        if len(paths) == 1 and not store.object_path(digest).is_file():
+            continue
+        for path in paths:
+            row = store.migrate_file(path, scope_provenance(root, path))
+            result["shared"] += 1
+            result["reclaimed_allocated_bytes"] += row["reclaimed_allocated_bytes"]
+    return result
 
 
 def scope_provenance(root, path):
@@ -205,6 +250,8 @@ def main():
     mode.add_argument("--audit-aliases", action="store_true", help="List repairable aliases without changing links")
     mode.add_argument("--share-census-exports", metavar="PLAN", help="Share completed exports under the saved census lock")
     mode.add_argument("--migrate-census-exports", action="store_true", help="Share completed exports in the canonical census store")
+    mode.add_argument("--consolidate-proof-files", action="store_true", help="Share frozen census inputs and immutable PE/stage evidence")
+    mode.add_argument("--consolidate-identical-legacy", action="store_true", help="Share only byte-identical legacy immutable payloads")
     parser.add_argument("--find-sha256", help="Find a shared payload and every retained provenance/alias")
     parser.add_argument("--find-target", help="Find observations/query identities mentioning this exact target SHA")
     parser.add_argument("--find-text", help="Find function/range labels, addresses or legacy paths in provenance")
@@ -215,7 +262,8 @@ def main():
         parser.error("--minimum-bytes must be positive")
     if any([args.find_sha256, args.find_target, args.find_text]):
         if any((args.migrate, args.verify, args.recover, args.repair_aliases, args.audit_aliases,
-                args.share_census_exports, args.migrate_census_exports)):
+                args.share_census_exports, args.migrate_census_exports, args.consolidate_proof_files,
+                args.consolidate_identical_legacy)):
             parser.error("Search cannot be combined with a mutation or verification mode")
         if not (ROOT / "runtime/analysis/knowledge.sqlite").is_file():
             parser.error("No shared catalog exists yet")
@@ -236,6 +284,10 @@ def main():
         result = share_census_exports(args.share_census_exports)
     elif args.migrate_census_exports:
         result = migrate_census_exports()
+    elif args.consolidate_proof_files:
+        result = consolidate_proof_files()
+    elif args.consolidate_identical_legacy:
+        result = consolidate_identical_legacy_files()
     else:
         result = audit(ROOT, args.minimum_bytes)
     print(json.dumps(result, indent=2))

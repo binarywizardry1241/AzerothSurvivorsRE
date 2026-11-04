@@ -90,6 +90,13 @@ other object-store consumers. The collector writes new exports to staging
 files before renaming them into place. Unfinished exports and the writable
 Program remain separate from this immutable publication.
 
+Completed replays open Ghidra read-only and verify the published progress
+against its saved checkpoint and the exact exports. New work and partial
+checkpoints use the writable collector. Frozen census inputs and selected
+pipeline outputs use the same content store. The retained PE inventories use
+transparent compression where supported, and their original paths still read
+the exact committed JSON bytes. Mutable pipeline views can use APFS copy-on-write.
+
 ## Across EXE updates
 
 The catalog, content store and discovery interface span all versions. Equal
@@ -140,6 +147,8 @@ publishing aliases or removing expanded copies. Run commands from this checkout:
 python3 -B scripts/manage-analysis-store.py
 python3 -B scripts/manage-analysis-store.py --migrate
 python3 -B scripts/manage-analysis-store.py --migrate-census-exports
+python3 -B scripts/manage-analysis-store.py --consolidate-proof-files
+python3 -B scripts/manage-analysis-store.py --consolidate-identical-legacy
 python3 -B scripts/index-analysis-history.py --apply
 python3 -B scripts/manage-analysis-store.py --verify
 python3 -B scripts/shared_native_inventory.py
@@ -149,6 +158,7 @@ python3 -B scripts/manage-program-archives.py --historical
 python3 -B scripts/manage-program-archives.py --retire-historical
 python3 -B scripts/manage-program-archives.py --idle-slices
 python3 -B scripts/manage-program-archives.py --archive-idle-slices
+python3 -B scripts/manage-program-archives.py --sweep-ready-raw
 python3 -B scripts/manage-program-archives.py --ensure runtime/path/to/project
 node scripts/manage-ghidra-workspace.mjs --summary
 node scripts/manage-ghidra-workspace.mjs --apply --summary
@@ -225,6 +235,9 @@ automatic cache generation can retire after a verified replacement; manually
 retained archives remain pinned until explicitly retired under their owning
 retention policy. This avoids retaining a new full
 snapshot after every query while preserving referenced evidence and checkpoints.
+An unrelated headless process does not block archival. The native audit sweeps
+deferred ready slices and removes idle headless scratch under the Program lease.
+Unfinished slice checkpoints and failure diagnostics remain available.
 
 Both Java launchers set Ghidra's supported `pdb.cache.dir` property to the shared
 datatype cache. The installed Ghidra implementation guards its cache map with

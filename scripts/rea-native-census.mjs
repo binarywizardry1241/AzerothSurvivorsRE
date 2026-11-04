@@ -1,7 +1,7 @@
 // Persistent whole-image census through REA's inspected Ghidra JVM launcher.
 // The collector is a headless job, not a bridge-startup handshake.
 import {createReadStream,createWriteStream} from 'node:fs';
-import {readFile,writeFile,realpath,mkdir,rename,stat,readdir} from 'node:fs/promises';
+import {readFile,writeFile,realpath,mkdir,rename,stat,readdir,rm} from 'node:fs/promises';
 import {createHash,randomUUID} from 'node:crypto';
 import {resolve,dirname,basename,relative,join} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -24,8 +24,16 @@ const RETAINED_PREDECESSORS={
  'scripts/census-native-image.py':['8eef819cdb2ac9d3b52db40574d25fca77c07a68cc1f11506105950ad22138e4','d82a3403c34190240869e4add97faa71b3212bc9657a0a2999b9828cbbb1b077','52e6f0de2d6706651c0ff5eef6e0e79993e77655e3d162b207db935388326d82','5f3ed21972cd41a1a7842a56d9c660a2ef74d511553d98c39c6798f7c8ab7834'],
  'scripts/rea-native-census.mjs':['14f5884b7354d2713118bd250a7ea19e23b487690ddd2a705979ca15d0dec780','8df8dc3bfa71e20831a8ae0a0163aae92e7680bfbf0ed0c0b1d1c3a4ed98ca70','69da5e89ef57528e5f9a036d32b403a4e78f793b2bf4def28657c64eb8381f61','4df2787ab8a73cc106bf295f0eed9c9d772e61d0474d87c242dffe37d3f96f68'],
  'scripts/ghidra/ReaNativeCensus.java':['3d06fe81ef6d16802020e2b1013c11a6d50fde3090ba277fb2ac161de81b0eb3','9620e0505314b2ce1797f7419c89c9919beac2adfa772289bcfc15006a9be9df']};
+const GIT_STORAGE_PREDECESSORS={
+ 'scripts/census-native-image.py':'96e45cfd9ade2d479e3fe27ad0a483620f8e2ae0c75425e608994ed2ce1b2c37',
+ 'scripts/rea-native-census.mjs':'9733aa2c5cfd7ec9934a1ad060eba0b8fcaf591bb404333ce6842c4100da5cdb'};
 async function committedTool(name,expected){
  const current=await realConfined(resolve(root,name));if(await sha256(current)===expected)return current;
+ if(GIT_STORAGE_PREDECESSORS[name]===expected){
+  const {stdout}=await executeFile('git',['cat-file','blob','09e26e74:'+name],{cwd:root,encoding:'buffer'});
+  if(createHash('sha256').update(stdout).digest('hex')!==expected)throw Error('Committed storage predecessor differs: '+name);
+  return null; // Verified Git source for provenance only. The collector is never substituted.
+ }
  if(STORAGE_PREDECESSORS[name]!==expected&&!RETAINED_PREDECESSORS[name]?.includes(expected))throw Error('Census tool digest differs: '+name);
  const archived=await realConfined(resolve(root,'runtime/analysis/tools',expected,basename(name)));await verifyHash(archived,expected,'Retained predecessor '+name);return archived;
 }
@@ -108,7 +116,8 @@ async function main() {
  if(install.status!=='available')throw Error(JSON.stringify(install));
  const retainedTools={},adaptations=[];for(const [name,expected]of Object.entries(plan.tooling??{})){
   const path=await committedTool(name,expected);retainedTools[name]=path;
-  if(path!==resolve(root,name))adaptations.push({source:name,requested_sha256:expected,retained_path:relative(root,path),current_sha256:await sha256(resolve(root,name))});
+  if(path!==resolve(root,name))adaptations.push({source:name,requested_sha256:expected,
+   ...(path?{retained_path:relative(root,path)}:{retained_commit:'09e26e74'}),current_sha256:await sha256(resolve(root,name))});
  }
  const programStore=await directory(resolve(root,'runtime/analysis/programs'));
  if(persistence.shared_workspace){
@@ -142,18 +151,19 @@ async function main() {
   ...(plan.incremental_reuse===undefined?{}:{incremental_reuse:plan.incremental_reuse,checkpoint_interval_ms:plan.checkpoint_interval_ms,checkpoint_max_batches:plan.checkpoint_max_batches})};
  profileDigest=createHash('sha256').update(JSON.stringify(parameters)).digest('hex');
  const storageExecution={shared_workspace_id:shared?.key??null,driver_adaptations:adaptations,collector_source_path:relative(root,script)};
- await atomicJson(resolve(output,'storage-execution.json'),storageExecution);
  async function verifyInputs() {
   cancelled.signal.throwIfAborted();await verifyHash(planPath,planHash,'Census plan');
   await verifyHash(targetPath,plan.target_sha256,'Selected target');await verifyHash(starts,plan.starts_sha256,'Census starts');
   await verifyHash(script,plan.script_sha256,'Collector source');
-  for(const [name,digest] of Object.entries(plan.tooling??{}))await verifyHash(retainedTools[name],digest,'Census tooling '+name);
+  for(const [name,digest] of Object.entries(plan.tooling??{}))if(retainedTools[name])await verifyHash(retainedTools[name],digest,'Census tooling '+name);
   for(const name of ['address_leads','diagnostic_leads','jump_tables','import_thunks','unwind_handlers']) {
    const input=plan[name];if(input?.path)await verifyHash(await realConfined(resolve(root,input.path)),input.sha256,'Census proof '+name);
   }
  }
  lock=await acquireLock(resolve(output,'census.lock'));
  lock.once('exit',()=>{if(!releasingLock&&!cancelled.signal.aborted)cancelled.abort(Error('Census lock lease was lost'));});
+ if((await json(resolve(output,'progress.json')))?.stage!=='completed')
+  await atomicJson(resolve(output,'storage-execution.json'),storageExecution);
  const profilePath=resolve(output,'persistent-profile.json'),previousProfile=await json(profilePath);
  if(previousProfile&&previousProfile.plan_sha256!==planHash)throw Error('Persistent plan differs from saved profile');
  await verifyInputs();
@@ -207,22 +217,25 @@ async function main() {
   }catch(e){await writeFile(resolve(attemptDirectory,'thread-dump.txt'),String(e.stack??e)+'\n'+(e.stdout??'')+'\n'+(e.stderr??''));}
  }
  async function run(mode) {
-  await verifyInputs();const number=attempts.length+1;
+  await verifyInputs();const number=attempts.length+1,verifyOnly=mode==='verify';
   const attemptDirectory=await directory(resolve(attemptsRoot,String(number).padStart(4,'0')+'-'+mode+'-'+randomUUID().slice(0,8)),output),support=[];
+  const attemptTemp=await directory(resolve(attemptDirectory,'tmp'),attemptDirectory);
   const common=[projectRoot,projectName,...(mode==='import'?['-import',targetPath,...loaderOptions]:['-process',programName]),
    '-noanalysis','-log',resolve(attemptDirectory,'ghidra.log'),'-scriptlog',resolve(attemptDirectory,'script.log')];
   if(mode==='process')common.push('-scriptPath',dirname(script),'-postScript',script);
+  if(verifyOnly)common.push('-readOnly','-scriptPath',resolve(root,'scripts/ghidra'),'-postScript','ReaVerifyNativeCensus.java');
   const controller=new AbortController(),abort=()=>controller.abort(cancelled.signal.reason);
   cancelled.signal.addEventListener('abort',abort,{once:true});
   const timer=setTimeout(()=>controller.abort(Error('Ghidra launch helper stalled')),60000);let command;
   try{command=await ghidraJavaLaunch({platform:process.platform,analyzeHeadlessPath:install.analyzeHeadlessPath,javaHome:install.javaHome,
-   javaVmName:install.javaVmName,homeRoot:paths.home,tempRoot:paths.tmp,arguments:common,environment,signal:controller.signal,
+   javaVmName:install.javaVmName,homeRoot:paths.home,tempRoot:attemptTemp,arguments:common,
+   environment:{...environment,TMPDIR:attemptTemp},signal:controller.signal,
    onStderr:(phase,stderr)=>{support.push({phase,stderr});}});}
   finally{clearTimeout(timer);cancelled.signal.removeEventListener('abort',abort);}
   const initial=await progress();
   const attempt={number,mode,directory:relative(root,attemptDirectory),started_at:new Date().toISOString(),initial_generation:initial?.generation??0,
    initial_position:workPosition(initial),launch_support:support};
-  attempts.push(attempt);await atomicJson(resolve(output,'attempts.json'),{target_sha256:plan.target_sha256,attempts});
+  if(!verifyOnly){attempts.push(attempt);await atomicJson(resolve(output,'attempts.json'),{target_sha256:plan.target_sha256,attempts});}
   const launched=await spawnOwnedProviderProcess({command:command.command,arguments:command.arguments,runId:randomUUID(),platform:process.platform,
    cwd:root,env:command.environment,hostEnvironment:{},expectedCommand:command.command,signal:cancelled.signal});
   const owned={...launched,ownsProcessLifetime:true,cleanup:launched.cleanup??(()=>cleanupOwnedProcessGroup(launched.ownership))};
@@ -230,10 +243,11 @@ async function main() {
   await atomicJson(nativeSlot.processReceipt,{ownership:launched.ownership,ownership_path:ownershipPath});
   await atomicJson(ownershipPath,{active:true,target_sha256:plan.target_sha256,profile_digest:profileDigest,workspace_id:shared?.key??null,ownership:launched.ownership,attempt:number,started_at:attempt.started_at});
   const stdout=createWriteStream(resolve(attemptDirectory,'stdout.log'),{flags:'wx'}),stderr=createWriteStream(resolve(attemptDirectory,'stderr.log'),{flags:'wx'});
-  let collectorText='',collectorObserved=false,collectorPaused=false;
+ let collectorText='',collectorObserved=false,collectorPaused=false,readonlyVerified=false;
   launched.process.stdout?.on('data',chunk=>{
    collectorText=(collectorText+chunk.toString()).slice(-4096);
    if(/REA census resumed generation|REA native census:/.test(collectorText))collectorObserved=true;
+   if(collectorText.includes('REA census read-only checkpoint verified'))readonlyVerified=true;
    if(collectorText.includes('REA census paused after a durable batch'))collectorPaused=true;
   });
   let writeError;stdout.on('error',e=>{writeError=e;});stderr.on('error',e=>{writeError=e;});
@@ -261,15 +275,31 @@ async function main() {
    stdout.end();stderr.end();await Promise.all([stdoutDone,stderrDone]);
    const final=await progress();
    attempt.finished_at=new Date().toISOString();attempt.reason=reason;attempt.stop=stop;attempt.diagnostics=active.snapshot();attempt.final_generation=final?.generation??0;
-   attempt.final_position=workPosition(final);attempt.collector_observed=collectorObserved;attempt.pause_observed=collectorPaused;
-   await atomicJson(resolve(attemptDirectory,'result.json'),attempt);await atomicJson(resolve(output,'attempts.json'),{target_sha256:plan.target_sha256,attempts});
+   attempt.final_position=workPosition(final);attempt.collector_observed=collectorObserved;attempt.pause_observed=collectorPaused;attempt.readonly_verified=readonlyVerified;
+   if(!verifyOnly){await atomicJson(resolve(attemptDirectory,'result.json'),attempt);await atomicJson(resolve(output,'attempts.json'),{target_sha256:plan.target_sha256,attempts});}
    if(stop.status==='incomplete')throw Error('Owned JVM cleanup incomplete; database retained: '+stop.reason);
+   await rm(attemptTemp,{recursive:true});
    await atomicJson(ownershipPath,{active:false,target_sha256:plan.target_sha256,profile_digest:profileDigest,ownership:launched.ownership,attempt:number,finished_at:attempt.finished_at,stop});active=undefined;
+  }
+  if(verifyOnly){
+   if(readonlyVerified&&attempt.reason==='exited'&&attempt.diagnostics.exitCode===0)
+    await rm(attemptDirectory,{recursive:true});
+   else console.error('Read-only verification diagnostics: '+relative(root,attemptDirectory));
   }
   if(writeError)throw writeError;cancelled.signal.throwIfAborted();return attempt;
  }
  const bootstrapPath=resolve(output,'bootstrap.json'),bootstrap=await json(bootstrapPath);
  if(bootstrap&&bootstrap.target_sha256!==plan.target_sha256)throw Error('Saved bootstrap target differs');
+ if((await progress())?.stage==='completed') {
+  resultWritten=true; // Preserve the original receipt if verification fails.
+  const verification=await run('verify');
+  if(!verification.readonly_verified||verification.reason!=='exited'||verification.diagnostics.exitCode!==0||
+     !await verifyCompleted(await progress()))throw Error('Read-only verification of the completed census failed');
+  if(priorResult?.result?.ok!==true||priorResult.profileDigest!==profileDigest||
+     priorResult.result.value?.generation!==(await progress()).generation)
+   await writeResult({ok:true,value:{stage:'completed',generation:(await progress()).generation,outputs_verified:true}});
+  console.log('Full-image census completed; saved checkpoint and exports verified read-only');return;
+ }
  let noAdvance=0;
  while(true) {
   cancelled.signal.throwIfAborted();

@@ -15,6 +15,8 @@ import json
 from pathlib import Path
 import struct
 from coverage_common import ROOT,latest_target,target_bytes,load_json,json_text,file_sha256,project_path
+from instruction_facts import artifact_path, derived_bytes
+from shared_analysis import SharedAnalysis
 GENERATOR_SHA256=file_sha256(ROOT/'scripts/recover-native-jump-tables.py')
 ALIAS_HELPER_SHA256=file_sha256(ROOT/'scripts/native_scalar_aliases.py')
 
@@ -393,7 +395,7 @@ def main():
             'inventory':{'path':database.relative_to(ROOT).as_posix(),'sha256':linear_summary['inventory']['sha256']},
             'decoder_contract':contract,'decoder':decoder_binding,'helpers':linear_helpers}
         linear_review['input']=linear_input
-    output=project_path(args.inventory_output) if args.inventory_output else directory/'guarded-jump-tables.json'
+    output=artifact_path(args.inventory_output) if args.inventory_output else directory/'guarded-jump-tables.json'
     boundary_output=output.with_name(output.stem+'-linear-boundaries.json')
     boundary_payload={'target':report['target'],'generator':{'path':'scripts/recover-native-jump-tables.py','sha256':GENERATOR_SHA256,'capstone_version':capstone.__version__},
         'source_census':{'path':args.census_summary,'sha256':file_sha256(project_path(args.census_summary))},
@@ -427,6 +429,10 @@ def main():
             if file_sha256(ROOT/reference['path'])!=reference['sha256']:raise ValueError('Declared-linear input changed during recovery')
         if dict(classifier.native_decoder_identity(),skipdata=False)!=linear_input['decoder']:raise ValueError('Declared-linear decoder changed during recovery')
         target_bytes(target)
-    if args.write:boundary_output.write_text(boundary_text);output.write_text(serialized);project_path(args.summary_output).write_text(json_text(compact))
+    if args.write:
+        derived_bytes(boundary_output,boundary_text.encode(),publish=True)
+        if output.is_relative_to(ROOT/'runtime'):SharedAnalysis(ROOT).publish_output(output,serialized.encode())
+        else:derived_bytes(output,serialized.encode(),publish=True)
+        derived_bytes(args.summary_output,json_text(compact).encode(),publish=True)
     print(json_text({key:compact[key] for key in ('counts','case_entries','unique_target_addresses')}))
 if __name__=='__main__':main()

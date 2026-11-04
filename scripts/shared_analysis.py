@@ -443,10 +443,10 @@ class SharedAnalysis:
         return alias
 
     @_serialized
-    def link_alias(self, alias, receipt, provenance=None):
+    def link_alias(self, alias, receipt, provenance=None, *, replace_output=False):
         alias = self.alias_path(alias)
         destination = self.verify_receipt(receipt)
-        if alias.exists() or alias.is_symlink():
+        if not replace_output and (alias.exists() or alias.is_symlink()):
             if not alias.is_file() or alias.stat().st_size != receipt["bytes"] or file_digest(alias) != receipt["sha256"]:
                 raise ValueError(f"Existing analysis alias has different bytes: {alias}")
         alias.parent.mkdir(parents=True, exist_ok=True)
@@ -464,6 +464,20 @@ class SharedAnalysis:
                                (alias.relative_to(self.root).as_posix(), receipt["sha256"],
                                 canonical(provenance or {}), time.time()))
         return receipt
+
+    def publish_output(self, path, data, kind="execheck-stage-output"):
+        """Publish an explicitly writable runtime proof without a second data file."""
+        alias = self.alias_path(path)
+        digest = hashlib.sha256(data).hexdigest()
+        destination = self.object_path(digest)
+        with self.lock():
+            if alias.is_symlink() and alias.resolve() == destination and destination.is_file():
+                receipt = self._receipt(digest, len(data), kind)
+                self.verify_receipt(receipt)
+                return receipt
+            provenance = {"output": alias.relative_to(self.root).as_posix()}
+            receipt = self.put_bytes(data, kind, provenance)
+            return self.link_alias(alias, receipt, provenance, replace_output=True)
 
     @_serialized
     def migrate_file(self, source, provenance=None):
