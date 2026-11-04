@@ -36,8 +36,14 @@ continues to include that zone. The retroactive account grant at
 including the inserted zone when it lies before an already open zone;
 it does not synthesize Heroic records. The current server gate at
 `0x145ebc7db..0x145ebc893` also bounds the class open count to 1–13
-and uses the same 240-byte fallback row. The co-op profile uses the same thirteen
-ordinals for its open count and per-zone Heroic ranks. Retained reward,
+and uses the same 240-byte fallback row. The remote Hero sanitizer at
+`0x145e38ad0` clamps every supplied rank to five, truncates or zero-pads
+to thirteen at `0x145e392ac`, and clamps normal openings to 1–13 at
+`0x145e395f5`. The party receiver calls it at `0x145ed544a`. The admitted
+Hero gate at `0x145ed55d5..0x145ed5615` checks the canonical zone index
+against the normal count and the host effective rank against the guest
+rank byte (zero on an absent byte). These consumers match the connected
+source profile, bootstrap and admission gates. Retained reward,
 star-cap and achievement descriptors resolve current indices by key so the
 insertion cannot address a neighboring historical table row. Tier 0.5 loot
 and new achievements remain under #314 and #315.
@@ -45,6 +51,5 @@ and new achievements remain under #314 and #315.
 Static checks compared all thirteen keys, the entry fields, ten enemy rows,
 five boss headers and thirteen vertices against the verified image, and
 checked the native save query receipt. Rust regressions describe keyed
-unlock/clear preservation and old fixture correspondence. The current
-native remote profile vector normalization still needs exact correspondence. Compilation, MPQ rendering and actual
+unlock/clear preservation and old fixture correspondence. Compilation, MPQ rendering and actual
 solo/co-op entry and save outcomes remain unverified.
