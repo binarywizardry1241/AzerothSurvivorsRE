@@ -50,11 +50,12 @@ pub fn magnitude(instance: &RuntimeInstance<'_>, kind: UpgradeKind, rarity_index
             native_max((instance.cooldown_multiplier + -0.2) / 0.8, 0.0) * COOLDOWN[rarity_index]
         }
         UpgradeKind::Targets => {
-            let cap: u32 = if instance.definition.kind != 11 {
+            // 0.141.0 gives Soulfire the ordinary twelve-target upgrade budget.
+            let cap: u32 = if instance.definition.kind != 11 || instance.definition.key == "soul_fire" {
                 12
             } else if matches!(
                 instance.definition.key,
-                "seal_fate" | "soul_fire" | "lightwell" | "faerie_fire"
+                "seal_fate" | "lightwell" | "faerie_fire"
             ) {
                 2
             } else {

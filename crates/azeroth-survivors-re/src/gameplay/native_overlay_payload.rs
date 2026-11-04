@@ -7,7 +7,7 @@ use super::{
 };
 use crate::{assets::MenuArt, localization::Localization};
 use azeroth_survivors_re::player_abilities::{
-    AbilityDefinition, RuntimeInstance,
+    AbilityDefinition, RuntimeInstance, damage,
     upgrades::{self, UpgradeKind},
 };
 use azeroth_survivors_re::loot_rewards::{AmuletItem, amulets};
@@ -447,10 +447,19 @@ pub fn description(
         return Some(locale.label(KILL_COMMAND_DESCRIPTION).into());
     }
     let row = selected_description(instance, context, bonuses)?;
-    let duration = (instance.definition.key == "divine_shield").then(|| {
-        azeroth_survivors_re::player_abilities::damage::scaled_duration(instance)
-    });
-    Some(render_description(row, instance, context, bonuses, locale, duration))
+    let live_number = match instance.definition.key {
+        "divine_shield" => Some((3, number(damage::scaled_duration(instance)))),
+        "soul_fire" => {
+            let count = azeroth_survivors_re::player_abilities::behavior::execution::target_count(
+                instance,
+                bonuses.global_targets,
+            );
+            // The plural template puts its integer target count in number6.
+            (count > 1).then(|| (6, count.to_string()))
+        }
+        _ => None,
+    };
+    Some(render_description(row, instance, context, bonuses, locale, live_number))
 }
 
 fn render_description(
@@ -459,30 +468,30 @@ fn render_description(
     context: &Context,
     bonuses: &DescriptionBonuses,
     locale: &Localization,
-    current_duration: Option<f32>,
+    live_number: Option<(usize, String)>,
 ) -> String {
     let mut text = row.expression.render(locale);
     for (index, item) in row.numbers.iter().enumerate() {
         // Native area display uses logarithmic softening only beyond70 yd.
         // Model this branch explicitly rather than retaining only an extraction
         // sample's taken/not-taken math path.
-        // The retained description catalog keeps its 0.115.0 provenance.
-        // Divine Shield displays the same duration as the current cast and
-        // cooldown owners. Historical writer fixtures retain their own math.
-        let value = if index == 3 {
-            current_duration.unwrap_or_else(|| numeric_value(item, instance, context, bonuses))
-        } else {
-            numeric_value(item, instance, context, bonuses)
-        };
-        let value = match &item.precision {
-            Some(serde_json::Value::String(value_type)) if value_type == "integer" => {
-                (value as u32).to_string()
+        // Live values share their producers with gameplay. Historical writer
+        // fixtures retain the extracted expressions.
+        let value = match &live_number {
+            Some((slot, value)) if *slot == index => value.clone(),
+            _ => {
+                let value = numeric_value(item, instance, context, bonuses);
+                match &item.precision {
+                    Some(serde_json::Value::String(value_type)) if value_type == "integer" => {
+                        (value as u32).to_string()
+                    }
+                    Some(serde_json::Value::Number(precision)) => format!(
+                        "{value:.precision$}",
+                        precision = precision.as_u64().expect("native decimal precision") as usize
+                    ),
+                    _ => number(value),
+                }
             }
-            Some(serde_json::Value::Number(precision)) => format!(
-                "{value:.precision$}",
-                precision = precision.as_u64().expect("native decimal precision") as usize
-            ),
-            _ => number(value),
         };
         text = text.replace(&format!("{{number{index}}}"), &value);
     }
@@ -762,11 +771,13 @@ mod native_tests {
                     };
                     expected = expected.replace(&format!("{{number{index}}}"), &formatted);
                 }
-                assert_eq!(
-                    description(&instance, &context, &context.bonuses, &locale).unwrap(),
-                    expected,
-                    "{scenario}:{key}"
-                );
+                let actual = if key == "soul_fire" {
+                    // This fixture predates the live 0.141.0 target count.
+                    render_description(selected, &instance, &context, &context.bonuses, &locale, None)
+                } else {
+                    description(&instance, &context, &context.bonuses, &locale).unwrap()
+                };
+                assert_eq!(actual, expected, "{scenario}:{key}");
             }
         }
     }
@@ -797,21 +808,57 @@ mod native_tests {
             let context = context(&fixture["inputs"][scenario]);
             let rarity = case["rarity"].as_u64().unwrap() as usize;
             for (index, kind) in kinds.iter().enumerate() {
+                if key == "soul_fire" && *kind == UpgradeKind::Targets {
+                    continue; // 0.141.0 widened the historical budget.
+                }
                 assert_eq!(
                     upgrades::magnitude(&instance, *kind, rarity).to_bits(),
                     (case["magnitudes"][index].as_f64().unwrap() as f32).to_bits(),
                     "{scenario}:{key}:{rarity}:{kind:?}"
                 );
             }
-            let actual = upgrade_lines(&instance, &kinds, rarity, &context, &locale);
-            let expected = case["lines"]
+            let mut actual = upgrade_lines(&instance, &kinds, rarity, &context, &locale);
+            let mut expected = case["lines"]
                 .as_array()
                 .unwrap()
                 .iter()
                 .map(|line| line.as_str().unwrap())
                 .collect::<Vec<_>>();
+            if key == "soul_fire" {
+                actual.remove(2);
+                expected.remove(2);
+            }
             assert_eq!(actual, expected, "{scenario}:{key}:{rarity}");
         }
+    }
+
+    #[test]
+    fn soulfire_upgrades_and_tooltip_include_targets_past_three() {
+        let mut instance = RuntimeInstance::learned(AbilityDefinition::by_key("soul_fire").unwrap());
+        let locale = Localization::english_for_tests();
+        let context = Context {
+            maximum_health: 120.,
+            damage_multiplier: 1.,
+            cooldown_multiplier: 1.,
+            bonuses: DescriptionBonuses::default(),
+        };
+        assert!(description(&instance, &context, &context.bonuses, &locale)
+            .unwrap()
+            .contains("the toughest enemy"));
+
+        for (rarity, count) in [(4, 2), (4, 2), (4, 2), (4, 2), (4, 2), (1, 1), (4, 1), (4, 0)] {
+            assert_eq!(
+                upgrades::apply(&mut instance, UpgradeKind::Targets, rarity),
+                count as f32
+            );
+        }
+        assert_eq!(instance.target_bonus, 12);
+        assert!(!upgrades::eligible_types(&instance, 1., 4).contains(&UpgradeKind::Targets));
+        instance.talent_target_bonus = 1;
+        let bonuses = DescriptionBonuses { global_targets: 1, ..context.bonuses };
+        assert!(description(&instance, &context, &bonuses, &locale)
+            .unwrap()
+            .contains("each of the 15 toughest enemies"));
     }
 
     #[test]

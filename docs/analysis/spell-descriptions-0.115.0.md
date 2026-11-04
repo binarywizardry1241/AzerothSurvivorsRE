@@ -23,6 +23,8 @@ current PE import table; they are distinct operations.
 consume that function. Empowerment is now one of the 113 recovered rows instead
 of a separate historical description special case. The old catalog remains an
 explicit historical test input; it is not used by live description selection.
+The [0.141.0 Soulfire target-count review](soulfire-0.141.0.md) owns the
+later live numeric override for that passive.
 
 Compared with the 0.100.1 catalog, the base text-expression trees differ for
 Soul Fire and the newly added Empowerment. Ten entries have different numeric

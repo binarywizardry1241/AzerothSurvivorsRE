@@ -34439,6 +34439,45 @@
       "gap_ids": [
         305
       ]
+    },
+    {
+      "claim_id": "changelog:0.141.0:6ea2cb1d0b80a4b9",
+      "gap_ids": [
+        319
+      ],
+      "systems": [
+        "custom-game-game-abilities",
+        "custom-game-game-upgrades",
+        "custom-app-screens-cards"
+      ],
+      "rationale": "The shared offer budget, launch loop and localized tooltip now use the recovered 0.141.0 target-count behavior. Compilation and runtime comparison remain open.",
+      "native_contract": "The Soulfire upgrade lane saturates a budget of 12 added targets. Launch and passive tooltip add base, upgrade, talent and global contributions with wrapping arithmetic, floor one, and use the full result.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/player_abilities/upgrades.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/passive_tick.rs",
+        "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/soulfire-0.141.0.md"
+      ],
+      "static_checks": [
+        {
+          "command": "git diff --check",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/soulfire-0.141.0.md"
+        }
+      ],
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/player_abilities/upgrades.rs": "542ba3cf7a8bdac045da941efe26ae58c9bb0b50e6ff58c00f6ef0dbcc25741f",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/passive_tick.rs": "688db269b0f44a44c77895cc26b7ecf19c3906cd1d051c76ffa5d50fcc401d94",
+        "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs": "2c02a16595d243a9d113e94724268def98bbd3e587fdfa5b489956f94ac052fb",
+        "docs/analysis/soulfire-0.141.0.md": "077bd61dff548f7d2a0ea9de057c3282a5dc8536112548b9d9f4e018d86a3cf1"
+      }
     }
   ]
 }

@@ -369,7 +369,7 @@ pub fn publish_soul_fire<'a>(rng: &mut NativeRng, port: &mut impl TickPort<'a>) 
     let targets = port.special_targets();
     let mut selected = Vec::new();
     let mut excluded = Vec::new();
-    for _ in 0..special_target_count(&instance, context.global_target_bonus) {
+    for _ in 0..execution::target_count(&instance, context.global_target_bonus) {
         let Some(guid) = special_target(&targets, context.now, context.player,
             instance.definition.range, &excluded) else { break; };
         let Some(view) = targets.iter().find(|view| view.target.actor.guid == guid) else { break; };
