@@ -1,5 +1,6 @@
 //! AS0.113.2 Creature-query branch and opcode0x61 response, with the six
-//! recovered 0.117.0 companion additions and 0.121.0 Explosive Orb identity.
+//! recovered 0.117.0 companion additions, 0.121.0 Explosive Orb identity and
+//! 0.141.0 Scholomance Risen Guard identity.
 //! See the creature-queries and white-devilsaur reports for native provenance.
 //! Reuse the existing CreatureName cache/Lua events; no alternate unit metadata owner.
 use std::sync::OnceLock;
@@ -150,7 +151,7 @@ const SPECIALS: &[(u32, &str, &str, &str, u32, u32)] = &[
     (9611, "Wind Totem", "object.9611.name", "", 10, 4590),
     (9612, "Explosive Orb", "object.9612.name", "", 10, 16111),
     (9613, "", "", "", 8, 16033),
-    (9614, "", "", "", 8, 15290),
+    (9614, "Risen Guard", "object.9614.name", "", 10, 7848),
     (9615, "", "", "", 8, 14352),
     (9616, "", "", "", 8, 15556),
     (9617, "", "", "", 8, 1061),
@@ -168,6 +169,29 @@ const SPECIALS: &[(u32, &str, &str, &str, u32, u32)] = &[
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn risen_guard_localizes_the_name_on_the_existing_query_route() {
+        for (translation, expected) in [
+            (None, "Risen Guard"),
+            (Some("Garde ressuscité"), "Garde ressuscité"),
+            (Some(""), ""),
+        ] {
+            let event = query_with(9614, |key, fallback| {
+                assert_eq!(key, "object.9614.name");
+                assert_eq!(fallback, "Risen Guard");
+                translation.unwrap_or(fallback).to_owned()
+            });
+            let response = super::super::query_packets::decode(event).unwrap();
+            assert!(matches!(
+                response,
+                SessionEvent::CreatureName {
+                    entry: 9614, name: Some(name), subname: None,
+                    creature_type: Some(10), rank: 0, display_id: 7848, ..
+                } if name == expected
+            ));
+        }
+    }
 
     #[test]
     fn explosive_orb_matches_current_localized_identity_and_empty_override() {
@@ -295,8 +319,8 @@ mod tests {
         .collect();
         for row in fixture["hits"].as_array().unwrap() {
             let entry = row["entry"].as_u64().unwrap() as u32;
-            // The 0.121.0 Orb descriptor supersedes this historical empty row.
-            if entry == 9612 {
+            // The 0.121.0 Orb and 0.141.0 Risen Guard supersede these empty rows.
+            if matches!(entry, 9612 | 9614) {
                 continue;
             }
             let name_key = row["name_key"].as_str().unwrap();

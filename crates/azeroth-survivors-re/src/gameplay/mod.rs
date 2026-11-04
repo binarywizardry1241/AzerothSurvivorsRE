@@ -1160,7 +1160,7 @@ fn persist_run_at(
         && menu.backend_save.record_prepared_class(game.class.class_id)
     {
         use azeroth_survivors_re::loot_rewards::prose::Text;
-        game.events.push(RunEvent::SystemMessage(Text::Template {
+        let notice = Text::Template {
             key: "Yes, I am prepared! {have}/{all}: your {class} clear counts.".into(),
             values: vec![
                 ("have".into(), Text::Literal(menu.backend_save.prepared_classes().len().to_string())),
@@ -1169,7 +1169,12 @@ fn persist_run_at(
                     key: format!("class.{}.name", game.class.key), values: Vec::new(),
                 }),
             ],
-        }));
+        };
+        game.events.push(RunEvent::SystemMessage(Text::Concat(vec![
+            Text::Literal("|cff40ff40".into()),
+            notice,
+            Text::Literal("|r".into()),
+        ])));
         granted.extend(crate::progression::grant_account(&mut menu.backend_save, Some(now)));
         menu.commit_account();
     }
