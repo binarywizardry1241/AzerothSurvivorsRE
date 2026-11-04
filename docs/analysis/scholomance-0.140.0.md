@@ -173,6 +173,40 @@ slot, which the native Gouge and Kidney Shot cleanup paths at
 marks independently of control and periodic effects.
 [Set data](../../crates/azeroth-survivors-re/src/sets.rs), [mark consumer](../../crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs).
 
+### The Five Thunders
+
+The four-piece rows apply the keyed Stormstrike power and cooldown
+selectors in `0x145df1e90`. The eight-piece and empowered rows take
+`0x145fbcbe3` through condition 0 for `stormstrike`. At `0x145fbf43b`
+the owner queries the normal ordered XY radius around the captured
+impact with no exclusions. Each living target, including a living
+trigger target, receives the stored fraction of the raw Stormstrike
+hit as source-kind 3 Nature damage (spell 21992). The fractions and
+radii are 25% within 6 yd and 50% within 8 yd. The generic source metadata
+at `0x145f250e0` labels the separate meter row `Thunderburst` and uses
+`Spell_Nature_ThunderClap`. The recipient shares the same proc callback
+and radius lookup with its other local or admitted party hits.
+
+### Current class payloads and open consumers
+
+The three modes of `0x145e30990` were read for each class using the jump
+table at `0x1473f70e0`. The table below gives the constructor's ordered
+raw discriminants and scalars. An empty mode can still have native
+behavior through a separate owner. The localized descriptions identify
+the next owner to trace in those cases.
+
+| Set | Four-piece mode 0 | Eight-piece mode 1 and empowered mode 2 | Source status and next native owner |
+| --- | --- | --- | --- |
+| Heroism | 59, `shield_slam` and `fortified`, 0.10 | 73 selectors 0 and 5, plus 71, as above | Eight-piece and empowered connected. Raw 59 enters the generic vector at `0x145df1bf8` and takes the callback loop's skip edge at `0x145fbca60`. The ordinary raw 30 absorb owner at `0x145fbe33d..0x145fbe3d5` uses its payload cap. Resolve the separate condition and cap override for the Fortified and Shield Mastery rows at `0x1473ca3a8` and `0x1473ca300`. |
+| Soulforge | Empty | 60, `hammer_of_justice`, 0.40/0.65, radius 10, spell 15237 | Trace the raw 60 branch `0x145fbdf06`, the separate target max-health hit and the four-piece shield-break coefficient. |
+| Beastmaster | Empty | 42, Waterfall Matriarch, then 64, 0.50/1.00 | Eight-piece and empowered pet grant and condition are connected. The four-piece owner remains separate. |
+| Darkmantle | 73 selector 8, `[backstab,eviscerate]`, 0.40 | 65, 0.35 and cap 1, or 0.40 and cap 2 followed by selector 8 at 0.45 | Connected through the execute, mark, damage and aura consumers above. |
+| Vestments of the Virtuous | Empty | Empty in both modes | Trace the separate Shadowform, Shadow Word: Pain and Shadowy Apparitions consumers. The constructor gives no generic effect rows for this class. |
+| The Five Thunders | 73 `stormstrike` selectors 0 and 1, 0.15 and 0.35 | 66, 0.25 within 6 yd / 0.50 within 8 yd | Connected through the keyed spell modifiers, localized set text and Thunderburst callback and meter above. |
+| Sorcerer | Empty | 67, 1.00/1.50, with empowered 68 `frostbolt` at 0.50 | Resolve the raw 67 branch `0x145fbcbca` and the separate raw 68 consumer. Trace the four-piece effect through Splitting Ice. |
+| Deathmist | Empty | 69, 0.35 and 0 / 0.55 and 0.40 | Trace the raw 69 branch `0x145fbea7b` and the separate four-piece owner. |
+| Feralheart | 73 selector 7, `[regrowth,rejuvenation]`, 0.20 | 70, 0.60, count 5 and radius 6 / 1.00, count 7 and radius 8 with flag 1 | Eight-piece and empowered Seed of Life are connected. Trace selector 7's healing consumer and the independent Tranquility range override. |
+
 `python3 -B scripts/recover-gear-effects.py --scholomance` verifies all
 72 armor and 11 weapon records against the installed hash, including
 both stat slices and the metadata fields. Compilation, runtime

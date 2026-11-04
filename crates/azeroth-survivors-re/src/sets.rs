@@ -229,6 +229,7 @@ pub fn descriptor(class_id: u8, tier: u8, empowered: bool) -> Option<&'static De
         (3, 2) => Some(giantstalker(empowered)),
         (3, TIER_HALF) => Some(beastmaster(empowered)),
         (4, TIER_HALF) => Some(darkmantle(empowered)),
+        (7, TIER_HALF) => Some(five_thunders(empowered)),
         (11, TIER_HALF) => Some(tier_half_druid(empowered)),
         _ => catalog().entries.iter().find(|entry| {
             entry.class_id == class_id && entry.tier == tier && entry.empowered == empowered
@@ -254,22 +255,74 @@ fn darkmantle_execute(threshold: f32) -> NativeEffect {
     }
 }
 
-/// 0.140.0 145e30c6e. The non-empowered four-piece modifier survives
-/// independently of the active eight-piece selection.
+/// 0.140.0 145e30990 mode 0 is independent of the active eight-piece selection.
 pub fn tier_half_four_piece(class: u8) -> Option<&'static Descriptor> {
-    if class != 4 {
-        return None;
-    }
     static DARKMANTLE: OnceLock<Descriptor> = OnceLock::new();
-    Some(DARKMANTLE.get_or_init(|| Descriptor {
-        class_id: 4,
-        tier: TIER_HALF,
-        empowered: false,
-        spell_key: "backstab".to_owned(),
-        description: "Backstab and Eviscerate deal double damage below 40% enemy health instead of 30%.".to_owned(),
-        display_values: [0.0; 2],
-        effects: vec![darkmantle_execute(0.40)],
-    }))
+    static FIVE_THUNDERS: OnceLock<Descriptor> = OnceLock::new();
+    match class {
+        4 => Some(DARKMANTLE.get_or_init(|| Descriptor {
+            class_id: 4,
+            tier: TIER_HALF,
+            empowered: false,
+            spell_key: "backstab".to_owned(),
+            description: "Backstab and Eviscerate deal double damage below 40% enemy health instead of 30%.".to_owned(),
+            display_values: [0.0; 2],
+            effects: vec![darkmantle_execute(0.40)],
+        })),
+        7 => Some(FIVE_THUNDERS.get_or_init(|| Descriptor {
+            class_id: 7,
+            tier: TIER_HALF,
+            empowered: false,
+            spell_key: "stormstrike".to_owned(),
+            description: "Stormstrike deals 15% more damage and has 35% reduced cooldown.".to_owned(),
+            display_values: [0.0; 2],
+            effects: vec![spell_modifier("stormstrike", 0, 0.15), spell_modifier("stormstrike", 1, 0.35)],
+        })),
+        _ => None,
+    }
+}
+
+fn spell_modifier(key: &str, selector: u8, amount: f32) -> NativeEffect {
+    let mut bytes = [0; 64];
+    bytes[0] = 73;
+    bytes[8] = 1;
+    bytes[32..36].copy_from_slice(&amount.to_le_bytes());
+    bytes[36] = selector;
+    NativeEffect {
+        raw_hex: bytes.iter().map(|byte| format!("{byte:02x}")).collect(),
+        strings: vec![crate::loot_rewards::amulets::EffectString { offset: 16, value: key.to_owned() }],
+        lists: Vec::new(),
+    }
+}
+
+fn five_thunders(empowered: bool) -> &'static Descriptor {
+    static DESCRIPTORS: OnceLock<[Descriptor; 2]> = OnceLock::new();
+    &DESCRIPTORS.get_or_init(|| {
+        [
+            (false, 0.25_f32, 6.0_f32,
+                "Every Stormstrike causes Thunderburst, dealing Nature damage equal to 25% of its damage to enemies within 6 yd."),
+            (true, 0.50_f32, 8.0_f32,
+                "Thunderburst deals 50% of Stormstrike damage and reaches 8 yd."),
+        ].map(|(empowered, fraction, radius, description)| {
+            let mut bytes = [0; 64];
+            bytes[0] = 66;
+            bytes[4..8].copy_from_slice(&fraction.to_le_bytes());
+            bytes[8..12].copy_from_slice(&radius.to_le_bytes());
+            Descriptor {
+                class_id: 7,
+                tier: TIER_HALF,
+                empowered,
+                spell_key: "stormstrike".to_owned(),
+                description: description.to_owned(),
+                display_values: [0.0; 2],
+                effects: vec![NativeEffect {
+                    raw_hex: bytes.iter().map(|byte| format!("{byte:02x}")).collect(),
+                    strings: Vec::new(),
+                    lists: Vec::new(),
+                }],
+            }
+        })
+    })[usize::from(empowered)]
 }
 
 fn darkmantle(empowered: bool) -> &'static Descriptor {
@@ -319,18 +372,6 @@ fn heroism(empowered: bool) -> &'static Descriptor {
             (true, 0.30_f32, 0.06_f32,
                 "Shield Slam deals 30% more damage and additional Physical damage equal to 6% of your maximum health."),
         ].map(|(empowered, power, health, description)| {
-            let modifier = |selector, amount: f32| {
-                let mut bytes = [0; 64];
-                bytes[0] = 73;
-                bytes[8] = 1;
-                bytes[32..36].copy_from_slice(&amount.to_le_bytes());
-                bytes[36] = selector;
-                NativeEffect {
-                    raw_hex: bytes.iter().map(|byte| format!("{byte:02x}")).collect(),
-                    strings: vec![EffectString { offset: 16, value: "shield_slam".to_owned() }],
-                    lists: Vec::new(),
-                }
-            };
             let mut meter = [0; 64];
             meter[0] = 71;
             meter[24..28].copy_from_slice(&health.to_le_bytes());
@@ -341,7 +382,7 @@ fn heroism(empowered: bool) -> &'static Descriptor {
                 spell_key: "shield_slam".to_owned(),
                 description: description.to_owned(),
                 display_values: [0.0; 2],
-                effects: vec![modifier(0, power), modifier(5, health), NativeEffect {
+                effects: vec![spell_modifier("shield_slam", 0, power), spell_modifier("shield_slam", 5, health), NativeEffect {
                     raw_hex: meter.iter().map(|byte| format!("{byte:02x}")).collect(),
                     strings: vec![EffectString { offset: 8, value: "shield_slam".to_owned() }],
                     lists: Vec::new(),

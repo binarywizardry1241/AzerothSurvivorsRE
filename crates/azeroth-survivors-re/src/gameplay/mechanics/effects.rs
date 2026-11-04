@@ -390,9 +390,15 @@ impl Mechanics {
                 let row = EffectRow::armor_set(payload);
                 if row.is_generic() {
                     self.effect_state.talent_provenance.push(self.effect_state.set_meter_name);
+                    let (name, icon) = if row.tag() == 66 {
+                        // 0.140.0 145f250e0 uses a distinct source descriptor.
+                        ("Thunderburst", "Spell_Nature_ThunderClap")
+                    } else {
+                        (self.effect_state.set_meter_name, icon)
+                    };
                     self.effect_state.talent_meter_sources.push(
                         azeroth_survivors_re::run_effects::healing::MeterSource {
-                            name: self.effect_state.set_meter_name,
+                            name,
                             icon,
                             talent: true,
                         },

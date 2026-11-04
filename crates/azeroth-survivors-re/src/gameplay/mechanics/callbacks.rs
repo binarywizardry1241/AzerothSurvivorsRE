@@ -1059,6 +1059,24 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                 }
                 continue;
             }
+            if row.tag() == 66 {
+                // 145fbcbe3..145fbf511 uses the captured hit position and
+                // pre-victim power. The radius query has no excluded GUIDs.
+                if (event.kind == 0 || event.first_periodic) && event.source_kind != 2
+                    && definition.is_some_and(|spell| spell.key == "stormstrike")
+                    && let Some(center) = victim_position
+                {
+                    let actors = actor_targets(
+                        self.core.actors, self.core.bosses, &self.core.boss_state.wards,
+                        self.core.object_counter.sequence(),
+                    );
+                    let power = row.float(4) * amount;
+                    for target in targeting::radius_targets(&actors, self.context.now, center, row.float(8), &[]) {
+                        self.effect_hit(index, target.actor.guid, 21992, 3, power, execution, rng, counter);
+                    }
+                }
+                continue;
+            }
             // Semantic marker keeps current army effects in their original order.
             // Creation, landing hits and their random draws finish before
             // the next generic or demon effect observes the shared state.
