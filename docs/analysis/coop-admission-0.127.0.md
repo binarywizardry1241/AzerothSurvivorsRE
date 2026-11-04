@@ -5,6 +5,9 @@ defect: Join and directory producers still advertised 0.123.0/protocol 7.
 The installed 146,721,280-byte EXE is SHA-256
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`.
 
+The [0.139.2 report](coop-admission-0.139.2.md) owns the later Join fields
+and the live source constants.
+
 The [current proof](evidence/0.127.0/coop-admission/manifest.json) reuses the
 journaled #41 server-party owner `0x145bd6280` and its four diagnostic anchors.
 The independently decoded 58-byte gate `0x145bd651f..0x145bd6559` requires

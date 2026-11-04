@@ -60500,6 +60500,19 @@
     },
     {
       "id": "custom-game-server-party",
+      "coop_version_admission_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_ids": [63, 163],
+        "source_status": "connected",
+        "scope": "Native Join version 0.139.2 and protocol 9 producer and exact admission gate, with separate directory protocol 3 and shared game version.",
+        "evidence_refs": [
+          "docs/analysis/coop-admission-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/coop-admission.json"
+        ],
+        "static_checker": "scripts/check-coop-admission.py",
+        "runtime_validation": "not_run",
+        "parity_verified": false
+      },
       "coop_raid_targets_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_ids": [63, 71],

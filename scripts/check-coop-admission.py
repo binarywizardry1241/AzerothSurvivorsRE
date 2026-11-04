@@ -11,39 +11,25 @@ import hashlib
 import json
 import sys
 
-from coverage_common import ROOT, latest_target, project_path, target_bytes
+from coverage_common import ROOT, installed_identity, project_path, target_bytes
 from coop_handshake_check import replay, verify_source
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
 
-def verify(manifest, require_source=False):
-    proof = json.loads(manifest.read_text())
-    selected = latest_target(verify=True)
-    assert all(selected[k] == proof['target'][k] for k in ('version', 'path', 'sha256', 'size_bytes'))
-    image = target_bytes(selected)
-    pe = load_script('admission_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+def verify_dispatch_owner(proof, image, pe):
+    if 'shared_dispatcher' in proof:
+        shared = proof['shared_dispatcher']
+        report = json.loads(project_path(shared['manifest']).read_text())
+        assert report['target'] == proof['target']
+        owner = next(row for row in report['native_ranges'] if row['role'] == shared['role'])
+        assert owner['ghidra']['evidence_id'] == shared['evidence_id']
+        start, end = int(owner['start'], 16), int(owner['end_exclusive'], 16)
+        return {**owner, 'virtual_address': owner['start'], 'byte_count': end - start}
     query = proof['query']
     native = json.loads(project_path(query['result']['path']).read_text())['structuredContent']
     verify_native_query_subject(ROOT, native, query, proof['target'], image=image, pe=pe)
     assert hashlib.sha256(native['normalized_result'].encode()).hexdigest() == query['normalized_text_sha256']
-    sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
-    from capstone import Cs, CS_ARCH_X86, CS_MODE_64
-    for name in ('native_owner', 'admission_range'):
-        row = proof[name]
-        start, end = int(row['virtual_address'], 16), int(row['end_exclusive'], 16)
-        offset = pe.rva_offset(start - pe.image_base)
-        raw = image[offset:offset + end - start]
-        assert offset == int(row['file_offset'], 16) and end - start == row['byte_count']
-        assert hashlib.sha256(raw).hexdigest() == row['sha256']
-        if name == 'admission_range':
-            assert len(raw) == 58 and raw == bytes.fromhex(row['bytes_hex'])
-            instructions = list(Cs(CS_ARCH_X86, CS_MODE_64).disasm(raw, start))
-            assert sum(i.size for i in instructions) == len(raw)
-            assert row['instructions'] == [{'address': hex(i.address), 'bytes_hex': i.bytes.hex()} for i in instructions]
-            assembly = project_path(row['assembly']['path'])
-            assert hashlib.sha256(assembly.read_bytes()).hexdigest() == row['assembly']['sha256']
-            assert assembly.read_text() == ''.join(f'{i.address:#x}: {i.mnemonic} {i.op_str}\n' for i in instructions)
     location = proof['module_location_evidence']
     path = project_path(location['path'])
     assert hashlib.sha256(path.read_bytes()).hexdigest() == location['sha256']
@@ -52,6 +38,42 @@ def verify(manifest, require_source=False):
     anchors = next(row for row in diagnostics['diagnostics'] if row['system_id'] == 'custom-game-server-party')
     assert proof['native_module_anchors'] and all(row in anchors['verified_references'] for row in proof['native_module_anchors'])
     assert all(row['runtime_function_start'] == proof['native_owner']['virtual_address'] for row in proof['native_module_anchors'])
+    return proof['native_owner']
+
+
+def verify(manifest, require_source=False):
+    proof = json.loads(manifest.read_text())
+    selected = installed_identity()
+    assert selected == proof['target']
+    image = target_bytes(selected)
+    pe = load_script('admission_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+    owner = verify_dispatch_owner(proof, image, pe)
+    gate = proof['admission_range']
+    assert int(owner['virtual_address'], 16) <= int(gate['virtual_address'], 16)
+    assert int(gate['end_exclusive'], 16) <= int(owner['end_exclusive'], 16)
+    sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+    from capstone import Cs, CS_ARCH_X86, CS_MODE_64
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    for row in (owner, gate, *proof.get('producer_ranges', ())):
+        start, end = int(row['virtual_address'], 16), int(row['end_exclusive'], 16)
+        offset = pe.rva_offset(start - pe.image_base)
+        raw = image[offset:offset + end - start]
+        assert offset == int(row['file_offset'], 16) and end - start == row['byte_count']
+        assert hashlib.sha256(raw).hexdigest() == row['sha256']
+        if row is gate:
+            assert len(raw) == 58 and raw == bytes.fromhex(row['bytes_hex'])
+            instructions = list(decoder.disasm(raw, start))
+            assert sum(i.size for i in instructions) == len(raw)
+            assert row['instructions'] == [{'address': hex(i.address), 'bytes_hex': i.bytes.hex()} for i in instructions]
+            if 'assembly' in row:
+                assembly = project_path(row['assembly']['path'])
+                assert hashlib.sha256(assembly.read_bytes()).hexdigest() == row['assembly']['sha256']
+                assert assembly.read_text() == ''.join(f'{i.address:#x}: {i.mnemonic} {i.op_str}\n' for i in instructions)
+        if 'required_instructions' in row:
+            instructions = {hex(i.address): f'{i.mnemonic} {i.op_str}'
+                            for i in decoder.disasm(raw, start)}
+            assert all(instructions.get(address) == value
+                       for address, value in row['required_instructions'].items())
     assert proof['required_version'] == selected['version']
     assert type(proof['required_protocol']) is int and 0 <= proof['required_protocol'] <= 0xffffffff
     assert proof['success_continuation'] == proof['admission_range']['end_exclusive']
