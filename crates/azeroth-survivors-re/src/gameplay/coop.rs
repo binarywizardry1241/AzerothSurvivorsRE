@@ -303,7 +303,7 @@ impl CoopGame {
 
     /// Current State15 dispatch evaluates feats before its terminal checks.
     /// Accepted pre-world snapshots use the same recipient save and pending events.
-    fn receive_live_feats(&mut self, run: &mut RunSession, menu: &mut MenuState, now: u64) {
+    pub(super) fn receive_live_feats(&mut self, run: &mut RunSession, menu: &mut MenuState, now: u64) {
         let Some(entry) = self.entry.filter(|_| self.zone.is_some()) else { return; };
         let Some(state) = self.state.as_ref() else { return; };
         let snapshot = guest_settlement::Snapshot::from_cached(state, entry, &self.checkpoints)

@@ -1054,7 +1054,20 @@ fn tick(
 
 /// Current1458ad720 consumes account queues/snapshots while the Game exists,
 /// including phase2. Pausing the simulation for a choice must not pause delivery.
-fn account_delivery(mut session: ResMut<RunSession>, mut menu: ResMut<MenuState>) {
+fn account_delivery(
+    mut session: ResMut<RunSession>,
+    mut menu: ResMut<MenuState>,
+    runtime: Option<Res<crate::coop_runtime::CoopRuntime>>,
+    replica: Option<ResMut<coop::CoopGame>>,
+) {
+    if runtime.is_some_and(|runtime| runtime.is_guest()) {
+        if let Some(mut replica) = replica {
+            let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH)
+                .map_or(0, |duration| duration.as_secs());
+            replica.receive_live_feats(&mut session, &mut menu, now);
+        }
+        return;
+    }
     let phase_active = session.started;
     let selected_roster_guid = session.selected_roster_guid;
     let starting_gear = session.starting_gear;
@@ -1109,8 +1122,8 @@ fn persist_run_at(
     force_summary: bool,
 ) {
     if game.is_party_replica() {
-        // Current0.119.0 poll excludes guests from local live grants. Their
-        // accepted State terminal edge and close owners deliver the account.
+        // Live guest feats use the accepted cache. This path settles the
+        // recipient at its terminal edge or before closing that cache.
         if !force_summary { return; }
         if let Some(snapshot) = guest_settlement::Snapshot::from_mechanics(game, starting_gear) {
             let mut events = snapshot.summary(menu, selected_roster_guid, now);
@@ -1214,6 +1227,11 @@ fn persist_run_at(
     }
     let snapshot = game.feat_snapshot(starting_gear).with_heroic_cap(
         menu.backend_save.max_heroic_rank(game.class.class_id, game.zone.key));
+    let cooperative = if !force_summary && count_eligible {
+        game.cooperative_feat_context()
+    } else {
+        None
+    };
     if !force_summary && count_eligible {
         let feats = crate::progression::grant_run_feats(
             &mut menu.backend_save,
@@ -1229,25 +1247,16 @@ fn persist_run_at(
             granted.extend(feats);
             menu.commit_account();
         }
-        if let Some(context) = game.cooperative_feat_context() {
-            // Current0.119.0 145b15833 admits cooperative won history only
-            // with at least two current members. Shared lethal history reaches every recipient,
-            // regardless of which hero owns the ordinary killing-blow record.
-            let history_changed = snapshot.won
-                && context.members.len() >= 2
-                && menu.backend_save.mark_cooperative_victory(game.zone.key);
+        if let Some(context) = &cooperative {
+            // Shared lethal history feeds live feats independently of settlement.
             let feats = azeroth_survivors_re::guardians::catalog::ZONES.iter()
                 .position(|zone| zone.key == game.zone.key)
                 .map(|zone| crate::progression::grant_party_feats(
-                    &mut menu.backend_save, zone, snapshot, &context, now,
+                    &mut menu.backend_save, zone, snapshot, context, now,
                 ))
                 .unwrap_or_default();
-            let changed = history_changed || !feats.is_empty();
-            granted.extend(feats);
-            if history_changed {
-                granted.extend(crate::progression::grant_account(&mut menu.backend_save, Some(now)));
-            }
-            if changed {
+            if !feats.is_empty() {
+                granted.extend(feats);
                 menu.commit_account();
             }
         }
@@ -1313,6 +1322,11 @@ fn persist_run_at(
             if count_eligible && terminal_edge {
                 let delta = delivery.as_ref().map_or([0; 5], |d| d.delta_counts);
                 menu.backend_save.apply_run_counts(delta);
+                // 0.141.0 account settlement records the won zone with at
+                // least two current members, independently of the live feats.
+                if snapshot.won && cooperative.as_ref().is_some_and(|context| context.members.len() >= 2) {
+                    menu.backend_save.mark_cooperative_victory(game.zone.key);
+                }
                 granted.extend(crate::progression::grant_run_feats(
                     &mut menu.backend_save,
                     snapshot,
@@ -3197,8 +3211,7 @@ mod tests {
     #[test]
     fn cooperative_victory_uses_recipient_admission_and_persists_history() {
         use azeroth_survivors_re::coop::replication::{NativeCoopFeats, NativeFeatMember};
-        for (guid, active, admitted) in [(Some(1), true, true),
-            (Some(crate::startup::TESTER_GUID), true, false), (Some(1), false, false), (None, true, false)] {
+        for (guid, admitted) in [(Some(1), true), (Some(crate::startup::TESTER_GUID), false), (None, false)] {
             let mut game = fixture_game();
             let mut state = game.native_state();
             state.byte_8f = 1;
@@ -3209,8 +3222,9 @@ mod tests {
             first_fall_bits: (-1.0_f32).to_bits(), events: vec![] });
             game.apply_replica_native(&state);
             let mut menu = MenuState::from_save_path(None);
-            // Native guest eligibility bypasses the local showcase restriction.
-            persist_run_at(&mut game, &mut menu, guid, [0; 19], true, active, 300, false);
+            // Guest settlement has its own snapshot admission, independent of
+            // the local showcase and active-run flags.
+            persist_run_at(&mut game, &mut menu, guid, [0; 19], true, false, 300, true);
             assert_eq!(menu.backend_save.cooperative_beaten_zones().contains(&0), admitted);
             assert_eq!(menu.backend_save.earned_achievements().contains("coop:together"), admitted);
             if admitted {
@@ -3243,7 +3257,7 @@ mod tests {
             let mut menu = MenuState::from_save_path(None);
             menu.backend_save.mark_cooperative_victory("wsg");
             menu.backend_save.grant_achievements(&["coop:together".to_owned()], Some(100));
-            persist_run_at(&mut game, &mut menu, Some(1), [0; 19], false, true, 300, false);
+            persist_run_at(&mut game, &mut menu, Some(1), [0; 19], false, true, 300, true);
             let restored = crate::save::Save::parse(&menu.backend_save.plaintext()).unwrap();
             assert_eq!(restored.cooperative_beaten_zones(), [2].into());
             assert_eq!(restored.achievement_dates().get("coop:together"), Some(&100));

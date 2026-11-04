@@ -29211,6 +29211,55 @@
     {
       "claim_id": "changelog:0.132.0:dbf600fbd7c42fc7",
       "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "gap_ids": [
+        195
+      ],
+      "systems": [
+        "custom-game-achievements",
+        "custom-game-game-party",
+        "custom-game-save"
+      ],
+      "rationale": "The private guest cache preserves the two-member context. Live feat evaluation runs on accepted State15 and the regular poll. Host and guest write cooperative history through account settlement. The saved cooperative keys feed rewards independently of earlier ordinary clears.",
+      "native_contract": "Current snapshot admission, count-two cooperative history insertion, terminal and guest close dispatch, and private earned-key evaluation, Save and notification.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+        "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+        "crates/azeroth-survivors-re/src/account_progression.rs",
+        "crates/azeroth-survivors-re/src/save/coop_history.rs",
+        "crates/azeroth-survivors-re/src/progression.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/party-achievement-settlement-0.141.0.md",
+        "docs/analysis/evidence/0.141.0/party-achievement-settlement.json"
+      ],
+      "static_checks": [
+        {
+          "command": "python3 -B scripts/check-party-achievements.py --guest-achievements-0.141.0",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/party-achievement-settlement-0.141.0.md"
+        }
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs": "4387a85352090c1dfa863050f3fe94aa26ad72d4b2136d9be0e008de9d349d9a",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "962eef13953eb8ee45f194d687bfe00328dabae19ca479e01fa6c5b08b42062a",
+        "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs": "d51d4bffe5bfe5f4ecf5623924da74159f1ec5ce5601beef9f67d095183b86a9",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "23612fd7a97e723d512eca6ff34b81ec749be15404864544a6ba61f2d0c8f199",
+        "crates/azeroth-survivors-re/src/account_progression.rs": "0d1390850cf422ee4b87aeec0204d813b2c15d0d89032929fcacd1c61381c914",
+        "crates/azeroth-survivors-re/src/save/coop_history.rs": "5e21f9a03825c08a06561d5b96fe8076d8206e3d2405d99f6f0ecfd17383a3fd",
+        "crates/azeroth-survivors-re/src/progression.rs": "7718af3358720bbe78eec47f03a84c40b0e163b194ebc8e4a76340be5f084556",
+        "docs/analysis/party-achievement-settlement-0.141.0.md": "dce2281b072039524c9b13f465a63eb95536b4ae5693603208d545de7a56955a",
+        "docs/analysis/evidence/0.141.0/party-achievement-settlement.json": "1624279af0d70609ae1b5059503d06b706a91e284adba07c48595554e38b1afa"
+      }
+    },
+    {
+      "claim_id": "changelog:0.132.0:dbf600fbd7c42fc7",
+      "target": {
         "version": "0.139.1",
         "sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d"
       },

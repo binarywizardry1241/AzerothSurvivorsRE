@@ -2,9 +2,10 @@
 """Replay current party-award delivery evidence without building or running a game."""
 import argparse
 import hashlib
+from itertools import product
 import json
 
-from coverage_common import ROOT, artifact_path
+from coverage_common import ROOT, artifact_path, target_bytes
 from script_sources import load_script
 
 
@@ -12,10 +13,100 @@ def digest(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
+def check_current_guest():
+    from native_terminal import NativeReplay
+
+    manifest = json.loads((ROOT / "docs/analysis/evidence/0.141.0/party-achievement-settlement.json").read_text())
+    raw = target_bytes(manifest["target"])
+    pe = load_script("party_delivery_pe", ROOT / "scripts/inventory-executable.py").PE(raw)
+    for row in manifest["native_spans"]:
+        start, end = (int(row[key], 16) for key in ("start", "end_exclusive"))
+        offset = pe.rva_offset(start - pe.image_base)
+        assert offset == int(row["file_offset"], 16), row["role"]
+        assert digest(raw[offset:offset + end - start]) == row["sha256"], row["role"]
+
+    n = NativeReplay(raw, pe)
+    r, u = n.registers, n.machine
+    cases = 0
+    for guid, mode, flags in product((0, 42, 0xffffff), (0, 1, 2), range(4)):
+        for start, end, rejected, base in (
+            (0x145ec310f, 0x145ec3133, 0x145ec34b4, r.UC_X86_REG_RSI),
+            (0x145ec43d8, 0x145ec4406, 0x145ec4406, r.UC_X86_REG_R14),
+        ):
+            phases = range(8) if start == 0x145ec43d8 else (None,)
+            for phase in phases:
+                admitted = 0x145ec444c if phase is not None else end
+                n.reset("recipient", [(start, end)], {rejected, admitted})
+                n.put(n.app + 0x1fb8, "<Q", guid)
+                n.put(n.app + 0x10, "<Q", mode)
+                n.put(n.app + 0x10ed, "<B", flags)
+                u.reg_write(base, n.app)
+                if phase is not None:
+                    n.put(n.bp + 0x1a6, "<B", phase)
+                eligible = guid != 0xffffff and (mode == 2 or flags & 1 == 0)
+                eligible &= phase is None or 1 <= phase <= 5
+                assert n.run(start) == (admitted if eligible else rejected)
+                cases += 1
+
+    for won, present, members, prior, zone in product(
+        (0, 1), (False, True), range(6), ((), (2,), (4,), (1, 5)), (2, 4)
+    ):
+        n.reset("cooperative history", [(0x145ec324e, 0x145ec331d)], {0x145ec331d})
+        history = n.mem + 0x5000
+        n.put(n.app + 0x16e0, "<QQQ", 13, history, len(prior))
+        for index, value in enumerate(prior):
+            n.put(history + index * 8, "<Q", value)
+        n.put(n.bp + 0x29b, "<B", won)
+        n.put(n.bp + 0x230, "<q", 0 if present else -1)
+        n.put(n.bp + 0x240, "<Q", members)
+        u.reg_write(r.UC_X86_REG_RSI, n.app)
+        u.reg_write(r.UC_X86_REG_RDI, zone)
+
+        def seam(address):
+            if address == 0x1463a553b:
+                destination = u.reg_read(r.UC_X86_REG_RCX)
+                source = u.reg_read(r.UC_X86_REG_RDX)
+                count = u.reg_read(r.UC_X86_REG_R8)
+                u.mem_write(destination, bytes(u.mem_read(source, count)))
+            elif address != 0x145ec1ac0:
+                return False
+            n.return_seam()
+            return True
+
+        n.seam = seam
+        n.run(0x145ec324e)
+        expected = sorted(set(prior) | ({zone} if won and present and members >= 2 else set()))
+        assert n.get(n.app + 0x16f0, "<Q")[0] == len(expected)
+        assert [n.get(history + i * 8, "<Q")[0] for i in range(len(expected))] == expected
+        cases += 1
+
+    source = ROOT / "crates/azeroth-survivors-re/src"
+    local = (source / "gameplay/mod.rs").read_text()
+    poll, settlement = local.split("fn account_delivery(", 1)[1].split("fn persist_run_at(", 1)
+    assert "replica.receive_live_feats(&mut session, &mut menu, now)" in poll
+    live, terminal = settlement.split("let terminal_edge =", 1)
+    assert "grant_party_feats(" in live and "mark_cooperative_victory" not in live
+    terminal = terminal.split("fn hud(", 1)[0]
+    assert terminal.index("if count_eligible && terminal_edge") < terminal.index("mark_cooperative_victory")
+    assert terminal.index("mark_cooperative_victory") < terminal.index("grant_account")
+    guest = (source / "gameplay/guest_settlement.rs").read_text()
+    live, account = guest.split("fn live_feats(", 1)[1].split("fn account(", 1)
+    assert "grant_party_feats(" in live and "mark_cooperative_victory" not in live
+    assert "self.feats.won && context.members.len() >= 2" in account
+    assert account.index("mark_cooperative_victory") < account.index("grant_account")
+    assert 'strip_prefix("coopbeat|")' in (source / "save/coop_history.rs").read_text()
+    print(f"Passed {cases} original-instruction cases / {n.instructions} steps for recipient and cooperative history admission.")
+    print("Host, guest and Save source boundaries checked.")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--require-retained-queries", action="store_true")
+    parser.add_argument("--guest-achievements-0.141.0", dest="current_guest", action="store_true")
     args = parser.parse_args()
+    if args.current_guest:
+        check_current_guest()
+        return
     manifest = json.loads((ROOT / "docs/analysis/evidence/0.117.0/party-achievements/manifest.json").read_text())
     raw = artifact_path("installed-game/AzerothSurvivors.exe").read_bytes()
     assert manifest["schema"] == "as-party-achievement-delivery-v1"
@@ -84,7 +175,7 @@ def main():
     anchors = {
         "crates/azeroth-survivors-re/src/gameplay/mod.rs": [
             "account_eligible && (!showcase || game.is_party_replica())",
-            "if let Some(context) = game.cooperative_feat_context()",
+            "game.cooperative_feat_context()",
             "mark_cooperative_victory(game.zone.key)", "crate::progression::grant_party_feats(",
             "granted.extend(feats)", "menu.commit_account()",
             "shared_killing_blow_reaches_non_killer_save_once_with_first_date",

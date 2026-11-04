@@ -392,6 +392,7 @@ mod tests {
     #[test]
     fn shared_final_clear_persists_while_party_and_choices_still_run_without_summary_awards() {
         let mut game = pair();
+        game.refresh_party_feat_members();
         game.boss_state.completion.phase = 1;
         game.clock = 1200.;
         game.kills = 2500;
@@ -403,6 +404,8 @@ mod tests {
         let mut menu = crate::menu_state::MenuState::from_save_path(None);
         crate::gameplay::persist_run_at(&mut game, &mut menu, Some(42), [0; 19], false, true, 100, false);
         assert!(menu.backend_save.beaten_zones().contains(&(1, 0)));
+        assert!(menu.backend_save.cooperative_beaten_zones().is_empty());
+        assert!(!menu.backend_save.earned_achievements().contains("coop:together"));
         assert!(menu.backend_save.statistics().is_empty());
         assert_eq!(menu.backend_save.talent_xp(1), 0);
         let before = menu.backend_save.plaintext();
@@ -423,6 +426,14 @@ mod tests {
         guest.apply_replica_native(&state);
         assert!(guest.is_paused_for_choice() && guest.victory_reached());
         assert_eq!(guest.party_terminal_phase(), None);
+
+        game.completed = true;
+        game.with_party_hero(1, |hero| hero.completed = true);
+        game.capture_party(false);
+        assert!(!game.party_shared_running());
+        crate::gameplay::persist_run_at(&mut game, &mut menu, Some(42), [0; 19], false, true, 400, false);
+        assert!(menu.backend_save.cooperative_beaten_zones().contains(&0));
+        assert_eq!(menu.backend_save.achievement_dates().get("coop:together"), Some(&400));
     }
 
     #[test]

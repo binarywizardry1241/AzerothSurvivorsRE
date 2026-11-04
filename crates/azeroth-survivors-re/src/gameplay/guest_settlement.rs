@@ -422,7 +422,7 @@ mod tests {
     fn replica(state: &NativeState) -> Mechanics {
         use super::super::mechanics::{RunPlayerStats, RunRules};
         let mut game = Mechanics::new(
-            "elwynn", "warrior",
+            &state.text, "warrior",
             RunRules { heroic_rank: 0, difficulty: 1.0, density_percent: 100, hp_percent: 100,
                 damage_percent: 100, speed_percent: 100, endless: false },
             RunPlayerStats {
@@ -447,7 +447,7 @@ mod tests {
     }
 
     #[test]
-    fn ordinary_guest_tick_cannot_grant_before_the_native_terminal_or_close_boundary() {
+    fn guest_settlement_stays_separate_from_the_live_feat_poll() {
         let mut game = replica(&state(1, false));
         let mut menu = menu();
         let before = menu.backend_save.plaintext();
@@ -642,6 +642,40 @@ mod tests {
         assert_eq!(menu.backend_save.achievement_dates().get("feat:kills2500"), Some(&7));
         assert_eq!(menu.backend_save.achievement_dates().get("coop:together"), Some(&100));
         assert_eq!(menu.backend_save.statistics().get("wins"), Some(&1));
+    }
+
+    #[test]
+    fn two_player_guest_earns_united_front_from_new_settled_clears() {
+        let mut menu = menu();
+        for zone in ["wsg", "ab"] {
+            menu.backend_save.record_beaten_zone(1, zone).unwrap();
+        }
+        let entry = entry(42);
+        let mut value = state(2, true);
+        value.text = "wsg".into();
+        let snapshot = Snapshot::from_cached(&value, entry, &Checkpoints::default());
+        snapshot.live_feats(&mut menu, entry.roster_guid, 90);
+        assert!(menu.backend_save.cooperative_beaten_zones().is_empty());
+        assert_eq!(crate::progression::account_run_grants(&menu.backend_save, 1).cooperative_luck, 0.0);
+
+        value.flag_8c = true;
+        value.byte_8f = 5;
+        let snapshot = Snapshot::from_cached(&value, entry, &Checkpoints::default());
+        snapshot.account(&mut menu, entry.roster_guid, 100);
+        assert_eq!(menu.backend_save.cooperative_beaten_zones(), [2].into());
+        assert!(!menu.backend_save.earned_achievements().contains("coop:team"));
+
+        value.text = "ab".into();
+        let mut game = replica(&value);
+        let earned = close_live(&mut game, &mut menu, 200);
+        assert!(earned.iter().any(|event| matches!(event,
+            RunEvent::Achievement(key) if key == "coop:team")));
+        assert!(!close_live(&mut game, &mut menu, 300).iter().any(|event| matches!(event,
+            RunEvent::Achievement(key) if key == "coop:team")));
+        let restored = crate::save::Save::parse(&menu.backend_save.plaintext()).unwrap();
+        assert_eq!(restored.cooperative_beaten_zones(), [2, 4].into());
+        assert_eq!(restored.achievement_dates().get("coop:team"), Some(&200));
+        assert_eq!(crate::progression::account_run_grants(&restored, 1).cooperative_luck, 0.1);
     }
 
     #[test]

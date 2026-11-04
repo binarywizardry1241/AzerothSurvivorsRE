@@ -378,7 +378,7 @@ def insane_source_connections(proof):
                       'mark_cooperative_victory', 'record_character_', '.summary(',
                       'acknowledge_', 'restore_guest_checkpoints'):
         assert forbidden not in live, ('live feats must not deliver account/summary state', forbidden)
-    section('gameplay/coop.rs', '    fn receive_live_feats(', '    pub(crate) fn settle(', [
+    section('gameplay/coop.rs', 'fn receive_live_feats(', '    pub(crate) fn settle(', [
         'self.entry.filter(|_| self.zone.is_some())', 'self.state.as_ref()',
         'guest_settlement::Snapshot::from_cached(state, entry, &self.checkpoints)',
         '.with_duplicate_marks(&self.duplicate_marks)',
