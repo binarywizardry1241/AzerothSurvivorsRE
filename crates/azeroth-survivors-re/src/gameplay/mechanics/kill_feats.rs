@@ -10,6 +10,16 @@ impl Mechanics {
         &self.effect_state.generic.boss_killing_blows
     }
 
+    pub fn personal_boss_killing_blows(
+        &self,
+    ) -> &[azeroth_survivors_re::account_progression::BossKillingBlow] {
+        &self.effect_state.generic.personal_boss_killing_blows
+    }
+
+    pub fn graduation_enhancement(&self) -> bool {
+        self.effect_state.graduation_enhancement
+    }
+
     pub fn damaged_by_bosses(&self) -> &[u32] {
         &self.effect_state.generic.damaged_by_bosses
     }
@@ -26,10 +36,39 @@ impl Mechanics {
     }
 }
 
+// 0.140.0 0x146058213: sum allocated ranks in rows 0–6 of each Shaman tree.
+pub(super) fn graduation_enhancement(class: u8, allocation: &[(String, u8)]) -> bool {
+    use crate::save::talents::{Allocation, catalog, previous_rows};
+
+    if class != 7 {
+        return false;
+    }
+    let allocation = allocation.iter().cloned().collect::<Allocation>();
+    let trees = &catalog().class(class).trees;
+    let enhancement = previous_rows(&trees[1], &allocation, 7);
+    enhancement > previous_rows(&trees[0], &allocation, 7)
+        && enhancement > previous_rows(&trees[2], &allocation, 7)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
     use super::super::rng_integration::{class_run, TerrainFixture};
+
+    #[test]
+    fn graduation_requires_enhancement_to_be_the_highest_point_tree() {
+        let mut shaman = class_run("shaman", 0);
+        assert!(!shaman.graduation_enhancement());
+        shaman.configure_effects(&[("enh_thundering_strikes".into(), 3)], &[]);
+        assert!(shaman.graduation_enhancement());
+        for other in ["convection", "tidal_focus"] {
+            shaman.configure_effects(
+                &[("enh_thundering_strikes".into(), 3), (other.into(), 3)],
+                &[],
+            );
+            assert!(!shaman.graduation_enhancement());
+        }
+    }
 
     #[test]
     fn player_and_captured_water_elemental_frostbolts_record_only_the_lethal_boss_hit() {
@@ -59,6 +98,7 @@ mod tests {
             }
             assert_eq!(game.killing_blows(), &[(1493, 116)]);
             let hit = game.boss_killing_blows()[0];
+            assert_eq!(game.personal_boss_killing_blows(), &[hit]);
             assert_eq!((hit.boss_id, hit.spell_id, hit.school, hit.source_kind, hit.melee),
                 (1493, 116, 4, kind, false));
         }

@@ -252,6 +252,135 @@ account settlement, network execution and parity remain unverified.
 
 | 0.140.0 claim ID | Finding and next static step |
 | --- | --- |
-| `changelog:0.140.0:1bd2ec64e4e8aedc` | #315. The packed catalog separates four descriptions. `collection:t05` at `0x1473f9f79` requires all eight armor pieces and the full fixed Gandling weapon reward for each class. `feat:graduation` at `0x1473fab9a` describes an Enhancement Shaman's Stormstrike killing blow on Gandling. `feat:straightas` at `0x1473fac38` describes a Gandling defeat with no player damaged by Headmaster's Office or The Last Examination. `Yes, I am prepared!` at `0x1473fa266` describes solo Heroic V clears with all nine classes using their Tier 0.5 bonuses and matching specialization talents. Its class-clear progress text is in the English region near the Lifestealing glow label at `0x147770399`. Follow the catalog constructor from the `achievements.rs` location owners `0x145e4c2f0` and `0x145e4c9d0` and resolve the individual evaluator cases. Trace the exact star, set and talent predicates, ability-attributed lethal hit, party-wide mechanic hit history, fixed weapon ownership, persisted class bits and the Armory glow gate. Existing damage history records boss identity before HP loss, so the narrower source/spell and post-mitigation boundaries for Straight A's need proof. [Achievements](../../crates/azeroth-survivors-re/src/account_progression.rs), [hit history](../../crates/azeroth-survivors-re/src/gameplay/mechanics/kill_feats.rs), [glow source](../../crates/azeroth-survivors-re/src/armory_cosmetics.rs), [prior achievements #19](../verification-needed.md#gap-19), [achievement module #82](../CURRENT-STATE.md#gap-82). |
+| `changelog:0.140.0:1bd2ec64e4e8aedc` | #315. The 83-item collection, Stormstrike Graduation and the nine-class Prepared save/use gate are connected. Lifestealing is gated and selectable in local Armory and preview. Straight A’s needs the Gandling attack producers and recipient result delivery. [Combat records](#graduation-and-straight-as-combat-records), [Prepared and glow](#prepared-use-and-lifestealing). |
 | `changelog:0.140.0:6e6db84119aec942` | #315. The Whole Armory is at `0x1473f9b3d` and the Heroic Across Azeroth descriptor at `0x1473fa06f`. `Still to beat: {zones}` is at `0x147770455`. Trace the current catalog denominator, previously owned item admission and missing-zone order/locale through the account and presentation owners. The source already counts `account.gear` and evaluates the retained 12 Heroic zone ordinals. [Progress evaluator](../../crates/azeroth-survivors-re/src/account_progression.rs), [achievement panels](../../crates/azeroth-survivors-re/src/progression.rs). |
 | `changelog:0.140.0:094d1782a8db36a3` | #285. The Insane uses the starting party size and first party fall, with the exact effective Heroic V and 40-minute boundaries. Host, State15 and live/cached guest award paths share the recovered inputs. [Party gate](#the-insane-party-gate), [verification #285](../verification-needed.md#gap-285). |
+
+### Graduation and Straight A's combat records
+
+The kind 16 evaluator at `0x145e5c8b7` consumes the recipient's Enhancement
+flag from compact snapshot `+0xe0` and 12-byte lethal records from
+`+0x50/+0x58`. Selector zero reaches `0x145e5c934`. It checks boss 1853,
+spell 17364 and source kind other than 2. The direct boss-death owner writes
+the same attributed record into both lists at `0x145f43a37..0x145f43adf`.
+The party merge at `0x145f32075..0x145f32148` adds peers' records to the main
+history and pair history. The second list retains only the recipient's own
+killing blows. Local snapshot `0x146058169` reads the second list from Game
+`+0x978/+0x980`, while the guest path reads it from `+0x1498/+0x14a0` at
+`0x145ec7d18` and adjacent instructions. Both paths compact it for the same
+evaluator.
+
+Local snapshot `0x146058213..0x14605826f` requires class 7 and sums the
+allocated ranks in rows 0 through 6 with helper `0x145def1a0`. Enhancement
+(tree 1) must have positive points and exceed both Elemental (0) and
+Restoration (2) individually. The local flag at full snapshot `+0xfd`
+compacts to `+0xe0` through `0x145ecb1f4/0x145ecb2bf`. The source captures
+this flag in each hero's configured effects using the saved talent catalog
+and preserves the separate personal and party-merged histories. The authored
+regression exercises empty, strictly leading and tied trees through real
+effect configuration. [Feat source](../../crates/azeroth-survivors-re/src/gameplay/mechanics/kill_feats.rs).
+
+The kind 17 evaluator at `0x145e5cc33` requires a boss 1853 result row with
+bit 0 set. Gandling's script header `0x147af4c68` has death callback
+`0x145ee88b0` at `+0x58`. The lethal path calls it at `0x145f458b5` before
+same-source attack cleanup. It requires boss HP at most zero and every
+still-retained attack row for that boss GUID of kind 1, 4 or 5 to have an
+empty hit list at row `+0x40`. Office kind 1 is constructed at
+`0x145ee6b71`, with the name from `0x147af39d8`. Examination kinds 4 and 5
+come from `0x145ee7e85` and `0x145ee7f35` through `0x145ee7930`, which
+publishes the variant at `0x145ee7cd8` with the name at `0x147af3a16`.
+The hit sampler at `0x145fcf85d..0x145fcf8c7` appends victim/part entries
+before the common damage call at `0x145fcfb96`. This records admitted
+scripted hits before armor and absorption. Ordinary expiry selects rows by
+`+0xcc` at `0x146037070` and removes them at `0x145f77f09`. The callback
+reads the live attack vector at death.
+
+The callback appends `{boss_id, flag}` to Game `+0x988`, and in party mode
+queues `{active_hero_index, boss_id, flag}` at `+0xe90`. The party merge
+`0x145f3214d..0x145f321cd` transfers that result to the other admitted
+heroes. Their settlement snapshots consume the resulting boss flag list.
+The source still needs the Office and Examination attack rows, hit capture,
+and retirement from [#313](../CURRENT-STATE.md#gap-313) before it can produce
+a Straight A's result. The generic incoming-boss damage history cannot
+substitute for those retained scripted records.
+
+Three Ghidra slices bound the death callback, tree tally and scripted hit
+sampler to the installed hash. Original instructions supplied the external
+call order and native row offsets. Isolated replay of the unchanged death
+callback passed 192 cases across boss HP, attack kind, source GUID, hit
+presence and local/party result rows. Rust syntax checks covered the four
+changed source files. Authored Rust tests, gameplay and parity remain open.
+
+### Prepared save record
+
+The save loader calls the class collector at `0x145e0e94f`. The flattened
+iterator `0x14603d440` and `prep|` scanner `0x14605c190` parse each
+trimmed line and continue across all matching rows. The comma-separated
+payload uses class parser `0x145e1fbb0`. It permits a leading plus and
+leading zeros, rejects interior whitespace and malformed or overflowing
+tokens, and accepts class IDs 1, 2, 3, 4, 5, 7, 8, 9 and 11. The native
+loader sorts and deduplicates the resulting byte vector. It stores the
+capacity, pointer and count at Save `+0x1f8/+0x200/+0x208`. The qualified
+run mutation at `0x145ec915d..0x145ec920b` inserts a class once, in order.
+Writer `0x145e15ddd..0x145e15f64` emits one nonempty decimal `prep|` row
+between `glow|` and `hbeat|`, followed by `beat|`.
+
+The [save schema](../../crates/azeroth-survivors-re/src/save/schema.rs) and
+[Heroic save owner](../../crates/azeroth-survivors-re/src/save/heroic.rs)
+use the same validated class set for load, mutation and serialization.
+Isolated replay passed 268 native class parser cases and four mixed-line
+iterator cases. Generic trim and byte-search routines were replay seams.
+Both Rust files syntax-parse. The authored save round trip remains uncompiled.
+
+### Prepared use and Lifestealing
+
+The solo Heroic V Scholomance constructor at `0x145faa595` admits the
+loadout when `0x145e4c050` recognizes eight pieces for the class and
+active tier 7, then finds a nonzero rank for every class requirement
+in the table at `0x147733b48`.
+
+| Class | Required talents | Use admitted by the run |
+| --- | --- | --- |
+| Warrior | `titan`, `fortified` | Shield Slam hit |
+| Paladin | `hammer_righteous`, `ardent_defender` | Hammer of Justice hit |
+| Hunter | `bestial_wrath` | Matriarch bite or Kill Command strike, entry 9532 |
+| Rogue | `shadow_dance` | Backstab or Eviscerate on a living boss, elite or Guardian |
+| Priest | `shadowform`, `shadowy_apparitions` | Shadow Word: Pain kill |
+| Shaman | `enh_stormbound_echoes` | Stormstrike hit |
+| Mage | `water_elemental`, `splitting_ice` | Pet-origin Frostbolt hit, spell 116 |
+| Warlock | `rain_of_chaos`, `conflagrate` | Conflagrate on an Immolated living boss, elite or Guardian |
+| Druid | `tranquility`, `swiftmend` | Tranquility pulse with a victim and the Seed of Life row |
+
+The dispatcher at `0x145fc0893..0x145fc0bae` rechecks the loadout
+before moving Game +0x10ce from pending to confirmed. Named hit
+selectors use `0x145fbc460` and reject pet attribution. The Hunter
+marks Matriarch-origin damage at `0x145fc3661..0x145fc372e` and
+`0x145fc60fc..0x145fc6145`. For Rogue and Warlock the actor must have
++0xd0 equal to zero, plus boss metadata, the elite byte or Guardian
+metadata. A lethal hit changes that state before the generic callback.
+Warlock uses the first configured raw16 row with spell 348 at
+`0x145fc09d4..0x145fc0ad1`, checks Shadow Bolt or Searing Pain, and
+requires stored Immolate on the victim. This gate precedes splash
+target selection. Druid confirmation runs at
+`0x145fb902c..0x145fb908d` before the Seed's target selection. The
+solo tick at `0x145facd36` invalidates a changed loadout. The win
+transaction at `0x145ec9107..0x145ec920b` requires solo Scholomance,
+effective Heroic V and a confirmed current loadout before inserting
+the class once and publishing the class-clear count.
+
+The achievement reads the nine-class save count and unlocks enchant
+1898. The Save parser at `0x145e0e6c5` accepts an already stored choice,
+and the getter at `0x145e08850` applies the achievement gate or selects
+Icy Chill. The local Armory at `0x1403778fc..0x14037797a` hides the
+locked option and appends the unlocked button after Unholy Weapon.
+Preview at `0x1402447d8..0x140244859` uses the enchant for an equipped
+weapon at any star rank. The remote co-op sanitizer uses peer
+achievement IDs, whose profile carrier remains open in
+[#299](../CURRENT-STATE.md#gap-299).
+
+The retained dispatcher and pet tick slices bind to the installed hash.
+Warlock replay covered 216 cases over 88,662 original instructions.
+`python3 -B scripts/check-weapon-glow.py --current-lifestealing` covers
+38 native cases over 1,439 instructions. Rust syntax was parsed.
+Compilation, authored Rust tests, in-game notices, network/Armory
+behavior and original/rebuilt parity remain open.

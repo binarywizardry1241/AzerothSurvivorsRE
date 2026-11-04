@@ -52,7 +52,32 @@ pub(super) fn records(values: &BTreeMap<(u8, usize), u8>) -> Vec<String> {
         .collect()
 }
 
+/// 0.140.0 writer 0x145e15ddd formats the sorted class bytes as decimal CSV.
+pub(super) fn prepared_record(classes: &BTreeSet<u8>) -> Option<String> {
+    (!classes.is_empty()).then(|| {
+        let classes = classes.iter().map(u8::to_string).collect::<Vec<_>>();
+        format!("prep|{}", classes.join(","))
+    })
+}
+
 impl super::Save {
+    pub fn prepared_classes(&self) -> BTreeSet<u8> {
+        super::schema::prepared_classes(&self.lines)
+    }
+
+    /// Called after the run qualifies. Native 0x145ec915d inserts once per class.
+    pub fn record_prepared_class(&mut self, class: u8) -> bool {
+        let mut classes = self.prepared_classes();
+        if !super::CLASS_IDS.contains(&class) || !classes.insert(class) {
+            return false;
+        }
+        self.replace_runtime_records(
+            |line| line.trim().starts_with("prep|"),
+            prepared_record(&classes),
+        );
+        true
+    }
+
     /// Current account predicates inspect the retained clear records across
     /// all classes, independently of the selected class's admission ceiling.
     pub fn heroic_clears(&self) -> BTreeMap<(u8, usize), u8> {
@@ -144,6 +169,21 @@ mod tests {
         assert_eq!(save.max_heroic_rank(1, "elwynn"), 5);
         assert!(!save.record_heroic_victory(1, "elwynn", 2).unwrap());
         assert!(!save.record_heroic_victory(1, "elwynn", 0).unwrap());
+    }
+
+    #[test]
+    fn prepared_progress_merges_valid_classes_and_round_trips_in_native_order() {
+        let mut save = super::super::Save::parse(
+            "beat|1|elwynn\nprep|11,3,0,6,+7,255\nglow|1|0\n hbeat|1|elwynn:5\n prep|03,1, 4,8|9,2 \n",
+        ).unwrap();
+        assert_eq!(save.prepared_classes(), BTreeSet::from([1, 2, 3, 7, 11]));
+        assert!(!save.record_prepared_class(3));
+        assert!(!save.record_prepared_class(10));
+        assert!(save.record_prepared_class(5));
+        let plain = save.plaintext();
+        assert_eq!(plain, "glow|1|0\nprep|1,2,3,5,7,11\nhbeat|1|elwynn:5\nbeat|1|elwynn\n");
+        assert_eq!(super::super::Save::parse(&plain).unwrap().plaintext(), plain);
+        assert_eq!(super::super::Save::parse("prep|\nprep|6,10\n").unwrap().plaintext(), "");
     }
 
     #[test]

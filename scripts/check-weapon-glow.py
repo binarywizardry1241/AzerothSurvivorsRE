@@ -9,6 +9,7 @@ import hashlib
 import itertools
 import json
 import struct
+import sys
 
 from coverage_common import ROOT, latest_target, project_path, target_bytes
 from discovery_native_subject import verify_native_query_subject
@@ -338,7 +339,7 @@ def current_unholy():
             cases += 1
     sources = {
         'armory_cosmetics.rs': ['1899 => achieved("coop:insane")'],
-        'save/weapon_glow.rs': ['0 | 803 | 1894 | 1899 | 1900'],
+        'save/weapon_glow.rs': ['0 | 803 | 1894', '1899 | 1900'],
         'armory.rs': ['(1899, "Unholy Weapon")', 'armory.glow_unholy_locked'],
     }
     for name, fragments in sources.items():
@@ -351,10 +352,120 @@ def current_unholy():
                 game_or_service_execution=False, parity_verified=False)
 
 
+def current_lifestealing():
+    """Replay Save admission and Armory presentation for enchant 1898."""
+    target = latest_target()
+    assert target["sha256"] == "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
+    image = target_bytes(target)
+    pe = load_script("lifestealing_pe", ROOT / "scripts/inventory-executable.py").PE(image)
+    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    from native_terminal import NativeReplay
+    replay = NativeReplay(image, pe)
+    vm, r = replay.machine, replay.registers
+    save, rows, keys = replay.app, replay.app + 0x300, replay.app + 0x800
+    gate = (0x145e18ba0, 0x145e18cf9)
+
+    def reg(name, value=None):
+        register = getattr(r, "UC_X86_REG_" + name)
+        if value is None:
+            return vm.reg_read(register)
+        vm.reg_write(register, value)
+
+    def earned(key):
+        replay.put(save + 0xb0, "<QQ", rows, int(key is not None))
+        if key is not None:
+            vm.mem_write(keys, key)
+            replay.put(rows, "<QQQ", len(key), keys, len(key))
+
+    buttons = []
+
+    def seam(address):
+        if address == 0x1463abb3d:  # memcmp
+            count = reg("R8")
+            left = bytes(vm.mem_read(reg("RCX"), count))
+            right = bytes(vm.mem_read(reg("RDX"), count))
+            reg("RAX", ((left > right) - (left < right)) & 0xffffffff)
+        elif address == 0x145e7cbd0:  # translated string seam, English fallback
+            reg("RAX", reg("RCX"))
+        elif address == 0x140236b90:  # record the action and selected state
+            label = bytes(vm.mem_read(reg("R8"), reg("R9")))
+            buttons.append((label, *replay.get(replay.bp + 0x200, "<II"),
+                            replay.get(reg("RSP") + 0x30, "<B")[0]))
+        else:
+            return False
+        replay.return_seam()
+        return True
+
+    replay.seam = seam
+    cases = 0
+    for key, choice in itertools.product((None, b"heroic:prepared", b"heroic:prepare",
+                                            b"heroic:preparedx", b"coop:insane"), (0, 1898)):
+        replay.reset("armory_lifestealing", [gate, (0x1403778fc, 0x14037797a)], [0x14037797a])
+        earned(key)
+        reg("R12", save)
+        reg("R14", choice)
+        buttons.clear()
+        replay.run(0x1403778fc)
+        expected = [(b"Lifestealing", 15, 1898, choice == 1898)] if key == b"heroic:prepared" else []
+        assert buttons == expected
+        cases += 1
+
+    for key in (None, b"heroic:prepared"):
+        for choice in (0, 1898):
+            replay.reset("glow_getter", [gate, (0x145e08850, 0x145e088a3)], [replay.done])
+            earned(key)
+            replay.put(save + 0x1e8, "<QQ", rows + 0x80, 1)
+            replay.put(rows + 0x80, "<B3xI", 7, choice)
+            reg("RCX", save)
+            reg("RDX", 7)
+            replay.run(0x145e08850)
+            assert reg("RAX") == (choice if choice == 0 or key else 1894)
+            cases += 1
+
+    replay.seam = None
+    for enchant in (0, 803, *range(1893, 1902), 0xffffffff):
+        replay.reset("save_glow_recognition", [(0x145e0e6c5, 0x145e0e6fe),
+                    (0x145e0e766, 0x145e0e778)], [0x145e0e450, 0x145e0e6fe])
+        reg("RSI", enchant << 32)
+        reg("R14", 7)
+        reg("RDI", 0xbbe)
+        admitted = replay.run(0x145e0e6c5) == 0x145e0e6fe
+        assert admitted == (enchant in (0, 803, 1894, 1898, 1899, 1900))
+        cases += 1
+
+    for enchant, stars, has_item in itertools.product((1894, 1898), (0, 4, 5), (False, True)):
+        replay.reset("armory_glow_preview", [(0x1402447d8, 0x140244859)], [0x140244859])
+        reg("RBP", enchant)
+        for offset in (0x1bb, 0x1bc, 0x1bd):
+            replay.put(replay.sp + offset, "<B", stars)
+        for offset in (0x38, 0x3c, 0xb8):
+            replay.put(replay.sp + offset, "<I", int(has_item))
+        replay.run(0x1402447d8)
+        expected = enchant if has_item and (enchant == 1898 or stars == 5) else 0
+        assert [reg(name) for name in ("R12", "R13", "RDI")] == [expected] * 3
+        cases += 1
+
+    sources = ROOT / "crates/azeroth-survivors-re/src"
+    cosmetic = (sources / "armory_cosmetics.rs").read_text()
+    save = (sources / "save/weapon_glow.rs").read_text()
+    armory = (sources / "armory.rs").read_text()
+    menu = (sources / "menu.rs").read_text()
+    assert '1898 => achieved("heroic:prepared")' in cosmetic
+    assert "0 | 803 | 1894 | 1898 | 1899 | 1900" in save
+    assert armory.index('(1899, "Unholy Weapon")') < armory.index('(1898, "Lifestealing")')
+    assert "else if enchant == 1899" in armory
+    assert "save.weapon_glow(state.class_id())" in menu and "cosmetics::weapon_glow(selected_glow" in menu
+    print(f"0.140.0 Lifestealing passed {cases} native cases over {replay.instructions} instructions.")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--current-unholy', action='store_true')
+    parser.add_argument('--current-lifestealing', action='store_true')
     arguments = parser.parse_args()
+    if arguments.current_lifestealing:
+        current_lifestealing()
+        return
     if arguments.current_unholy:
         print(json.dumps(current_unholy(), indent=2))
         return

@@ -144,6 +144,14 @@ pub(super) fn purchased_races(lines: &[String]) -> Vec<u8> {
         .collect()
 }
 
+/// 0.140.0 prep iterator 0x14605c190 and class admission 0x145e1fbb0.
+pub(super) fn prepared_classes(lines: &[String]) -> BTreeSet<u8> {
+    csv(lines, "prep|")
+        .filter_map(|token| token.parse::<u8>().ok())
+        .filter(|class| super::CLASS_IDS.contains(class))
+        .collect()
+}
+
 fn csv_record(output: &mut Vec<String>, prefix: &str, values: impl IntoIterator<Item = String>) {
     let values = values.into_iter().collect::<Vec<_>>();
     if !values.is_empty() {
@@ -260,6 +268,8 @@ pub(super) fn normalize(lines: &[String], loading: bool) -> Vec<String> {
                 .map(|key| format!("{key}={}", stats.get(*key).copied().unwrap_or(0))),
         );
     }
+    output.extend(super::weapon_glow::records(lines));
+    output.extend(super::heroic::prepared_record(&prepared_classes(lines)));
     output.extend(super::heroic::records(&super::heroic::clears(lines)));
     let mut beaten = BTreeMap::<u8, BTreeSet<usize>>::new();
     for line in lines {
@@ -286,7 +296,6 @@ pub(super) fn normalize(lines: &[String], loading: bool) -> Vec<String> {
                 .join(",")
         ));
     }
-    output.extend(super::weapon_glow::records(lines));
     if let Some(row) = super::coop_history::record(&super::coop_history::zones(lines)) {
         output.push(row);
     }

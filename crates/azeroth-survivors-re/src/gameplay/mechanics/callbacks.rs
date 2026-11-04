@@ -18,6 +18,8 @@ pub(super) struct State {
     /// Current extended lethal-hit records and the deduplicated incoming-boss
     /// history are run-local; neither is reconstructed from damage meters.
     pub boss_killing_blows: Vec<azeroth_survivors_re::account_progression::BossKillingBlow>,
+    pub prepared: super::prepared::Use,
+    pub personal_boss_killing_blows: Vec<azeroth_survivors_re::account_progression::BossKillingBlow>,
     pub damaged_by_bosses: Vec<u32>,
     pub deadlines: Vec<f32>,
     pub cooldowns_dirty: bool,
@@ -530,6 +532,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             if let Some((effect_index, row)) = self.core.equipped.rows.iter().enumerate()
                 .find(|(_, row)| row.tag() == 70)
             {
+                self.core.generic.prepared.confirm();
                 let candidates = self.attack_candidates();
                 if let Some(target) = azeroth_survivors_re::run_effects::weapon::ordered_targets(
                     &candidates,
@@ -1034,6 +1037,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
         mut demon_state: Option<&mut super::demons::State>,
     ) {
         let definition = self.definition_for_event(event.spell_id);
+        self.core.note_prepared_event(event, definition, victim_guid);
         //1454cba87..cbb1c owns a copy before evaluating any row.
         let rows = self.core.equipped.rows.clone();
         let victim = (event.kind == 2)

@@ -121,6 +121,7 @@ mod incoming;
 #[path = "mechanics/passives.rs"]
 mod passives;
 #[path = "mechanics/progression.rs"]
+mod prepared;
 mod progression;
 #[path = "mechanics/terminal_movement.rs"]
 mod terminal_movement;
@@ -1000,6 +1001,7 @@ impl Mechanics {
         mut facing: f32,
         world: &mut impl RunWorld,
     ) -> Option<Position> {
+        self.validate_prepared_loadout();
         self.tick_stage(delta, player, velocity, facing, world, false)
     }
 

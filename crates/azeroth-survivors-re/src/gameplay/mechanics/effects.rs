@@ -35,6 +35,7 @@ pub(super) struct EffectsState {
     pub set_generic_count: usize,
     /// Selected talent descriptors retain definition order for spell tooltips.
     pub spell_display_talents: Vec<String>,
+    pub graduation_enhancement: bool,
     pub talent_provenance: Vec<&'static str>,
     pub provenance: Vec<&'static str>,
     /// Native Game+850 stores the actor's localized metadata, before alias IDs.
@@ -72,6 +73,7 @@ impl EffectsState {
             set_generic_start: 0,
             set_generic_count: 0,
             spell_display_talents: Vec::new(),
+            graduation_enhancement: false,
             talent_provenance: Vec::new(),
             provenance: Vec::new(),
             display_locale: None,
@@ -307,6 +309,8 @@ impl Mechanics {
     /// order, then each talent's native payload order.
     pub fn configure_effects(&mut self, allocation: &[(String, u8)], gear: &[(u8, f32)]) {
         let class = self.class.class_id;
+        self.effect_state.graduation_enhancement =
+            super::kill_feats::graduation_enhancement(class, allocation);
         self.configure_demons(if class == 9 {
             run_effects::demon_talents::Config::from_allocation(allocation)
         } else {

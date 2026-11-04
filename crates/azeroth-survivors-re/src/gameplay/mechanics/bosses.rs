@@ -1153,6 +1153,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         };
         self.generic.killing_blows.push((killing_blow.boss_id, killing_blow.spell_id));
         self.generic.boss_killing_blows.push(killing_blow);
+        self.generic.personal_boss_killing_blows.push(killing_blow);
         // Current145bd5f30 snapshots shared membership at the lethal hit,
         // before death callbacks can change the world or the hero context.
         if self.boss_state.shared_equipment.is_some() {

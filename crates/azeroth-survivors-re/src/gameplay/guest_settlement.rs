@@ -134,6 +134,7 @@ pub(super) struct Snapshot {
     feats: RunSnapshot,
     killing_blows: Vec<(u32, u32)>,
     boss_killing_blows: Vec<BossKillingBlow>,
+    personal_boss_killing_blows: Vec<BossKillingBlow>,
     damaged_by_bosses: Vec<u32>,
     cooperative: Option<NativeCoopFeats>,
     class_key: &'static str,
@@ -159,6 +160,7 @@ impl Snapshot {
             feats: game.feat_snapshot(starting_gear),
             killing_blows: game.killing_blows().to_vec(),
             boss_killing_blows: game.boss_killing_blows().to_vec(),
+            personal_boss_killing_blows: game.personal_boss_killing_blows().to_vec(),
             damaged_by_bosses: game.damaged_by_bosses().to_vec(),
             cooperative: game.cooperative_feat_context(),
             class_key: game.class.key,
@@ -232,15 +234,11 @@ impl Snapshot {
                 max_boss_marks: projection.max_boss_marks,
                 max_equipment_stars: projection.max_equipment_stars,
                 active_set: projection.active_set,
+                enhancement: state.enhancement,
             },
             killing_blows: state.pairs.iter().map(|row| (row[0], row[1])).collect(),
-            boss_killing_blows: state.rows.iter().map(|row| BossKillingBlow {
-                boss_id: row.word_00,
-                spell_id: row.word_04,
-                school: row.byte_08,
-                source_kind: row.kind_09,
-                melee: row.flag_0a,
-            }).collect(),
+            boss_killing_blows: state.rows.iter().map(BossKillingBlow::from).collect(),
+            personal_boss_killing_blows: state.secondary_rows.iter().map(BossKillingBlow::from).collect(),
             damaged_by_bosses: state.words.clone(),
             cooperative: state.coop.clone(),
             class_key: class_key(projection.class),
@@ -328,7 +326,7 @@ impl Snapshot {
             self.result.class, self.result.zone_key));
         let mut granted = crate::progression::grant_run_feats(
             &mut menu.backend_save, feats, &self.killing_blows,
-            &self.boss_killing_blows, &self.damaged_by_bosses, now,
+            &self.boss_killing_blows, &self.damaged_by_bosses, &self.personal_boss_killing_blows, now,
         );
         if let Some(context) = &self.cooperative {
             if let Some(zone) = azeroth_survivors_re::guardians::catalog::ZONES.iter()
@@ -362,6 +360,7 @@ impl Snapshot {
             &self.killing_blows,
             &self.boss_killing_blows,
             &self.damaged_by_bosses,
+            &self.personal_boss_killing_blows,
             now,
         );
         if let Some(context) = &self.cooperative {

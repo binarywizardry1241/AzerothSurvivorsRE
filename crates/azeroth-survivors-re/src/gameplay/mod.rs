@@ -458,6 +458,7 @@ fn enter(
                     .collect::<Vec<_>>(),
                 &session.starting_gear_effects,
             );
+            game.begin_prepared_scholomance();
             session.talent_allocation = allocation;
             session.talent_view_open = false;
             session.talent_view_selected = None;
@@ -1140,6 +1141,24 @@ fn persist_run_at(
         game.events.extend(events);
     }
     let mut granted = Vec::new();
+    if count_eligible && game.prepared_scholomance_clear()
+        && menu.backend_save.max_heroic_rank(game.class.class_id, game.zone.key) == 5
+        && menu.backend_save.record_prepared_class(game.class.class_id)
+    {
+        use azeroth_survivors_re::loot_rewards::prose::Text;
+        game.events.push(RunEvent::SystemMessage(Text::Template {
+            key: "Yes, I am prepared! {have}/{all}: your {class} clear counts.".into(),
+            values: vec![
+                ("have".into(), Text::Literal(menu.backend_save.prepared_classes().len().to_string())),
+                ("all".into(), Text::Literal("9".into())),
+                ("class".into(), Text::Template {
+                    key: format!("class.{}.name", game.class.key), values: Vec::new(),
+                }),
+            ],
+        }));
+        granted.extend(crate::progression::grant_account(&mut menu.backend_save, Some(now)));
+        menu.commit_account();
+    }
     let equipment = if force_summary {
         Vec::new()
     } else {
@@ -1201,6 +1220,7 @@ fn persist_run_at(
             game.killing_blows(),
             game.boss_killing_blows(),
             game.damaged_by_bosses(),
+            game.personal_boss_killing_blows(),
             now,
         );
         if !feats.is_empty() {
@@ -1297,6 +1317,7 @@ fn persist_run_at(
                     game.killing_blows(),
                     game.boss_killing_blows(),
                     game.damaged_by_bosses(),
+                    game.personal_boss_killing_blows(),
                     now,
                 ));
                 granted.extend(crate::progression::grant_account(&mut menu.backend_save, Some(now)));

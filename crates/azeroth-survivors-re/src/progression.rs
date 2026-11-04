@@ -150,10 +150,12 @@ impl Catalog {
             "../assets/scholomance-achievements-0.140.0.json"
         ))
         .expect("Scholomance achievement descriptors");
-        let collection_index = catalog.achievements.iter()
-            .position(|entry| entry.key == "armoryoflegends")
-            .expect("Armory of Legends achievement") + 1;
-        catalog.achievements.splice(collection_index..collection_index, scholomance.achievements);
+        for entry in scholomance.achievements {
+            let previous = azeroth_survivors_re::account_progression::scholomance_achievement_predecessor(&entry.key);
+            let index = catalog.achievements.iter().position(|row| row.key == previous)
+                .expect("native Scholomance achievement insertion point") + 1;
+            catalog.achievements.insert(index, entry);
+        }
         // Native unlock rows retain their descriptor identity until the name
         // lookup (0.119.0 145c3e7f0); their English names are not locale keys.
         for achievement in &mut catalog.achievements {
@@ -579,6 +581,7 @@ fn achievement_inputs(save: &Save) -> azeroth_survivors_re::account_progression:
                 };
                 Some(((class, index), rank))
             }).collect(),
+        prepared_classes: save.prepared_classes(),
         seen: save.seen().len(),
         statistics: [
             "kills",
@@ -614,13 +617,15 @@ pub(crate) fn grant_run_feats(
     killing_blows: &[(u32, u32)],
     boss_killing_blows: &[azeroth_survivors_re::account_progression::BossKillingBlow],
     damaged_by_bosses: &[u32],
+    personal_boss_killing_blows: &[azeroth_survivors_re::account_progression::BossKillingBlow],
     earned_at: u64,
 ) -> Vec<String> {
     let keys = azeroth_survivors_re::account_progression::definitions()
         .iter()
         .filter(|definition| {
-            azeroth_survivors_re::account_progression::meets_feat_with_events(
+            azeroth_survivors_re::account_progression::meets_feat_with_personal_history(
                 definition, snapshot, killing_blows, boss_killing_blows, damaged_by_bosses,
+                personal_boss_killing_blows,
             )
         })
         .map(|definition| definition.key.clone())
@@ -2238,7 +2243,7 @@ mod tests {
     #[test]
     fn recovered_catalog_totals() {
         let catalog = Catalog::embedded();
-        assert_eq!(catalog.achievements.len(), 98);
+        assert_eq!(catalog.achievements.len(), 100);
         assert_eq!(
             catalog
                 .achievements
@@ -2605,6 +2610,6 @@ mod unlock_name_tests {
                 literals += 1;
             }
         }
-        assert_eq!(literals, 35);
+        assert_eq!(literals, 36);
     }
 }

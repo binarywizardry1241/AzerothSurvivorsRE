@@ -290,7 +290,8 @@ impl Mechanics {
                 run_marks: self.run_marks(),
                 max_boss_marks: self.max_boss_marks(),
                 max_equipment_stars: state.max_equipment_stars,
-                active_set: state.active_set };
+                active_set: state.active_set,
+                enhancement: self.graduation_enhancement() };
         }
         let mut snapshot = RunSnapshot::from_heroic_run(self.clock, self.kills,
             self.guardian_kills(), self.caches_bought(), self.victory_reached(),
@@ -302,6 +303,7 @@ impl Mechanics {
         snapshot.max_boss_marks = self.max_boss_marks();
         snapshot.max_equipment_stars = self.equipment_stars().into_iter().max().unwrap_or(0);
         snapshot.active_set = self.effect_state.set_descriptor.map_or(0, |set| set.tier + 1);
+        snapshot.enhancement = self.graduation_enhancement();
         snapshot
     }
 

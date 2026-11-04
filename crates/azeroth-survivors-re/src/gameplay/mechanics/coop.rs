@@ -1153,20 +1153,10 @@ impl Mechanics {
                 .iter()
                 .map(|&(id, spell)| [id, spell])
                 .collect(),
-            rows: self
-                .boss_killing_blows()
-                .iter()
-                .map(|row| StateRow {
-                    word_00: row.boss_id,
-                    word_04: row.spell_id,
-                    byte_08: row.school,
-                    kind_09: row.source_kind,
-                    flag_0a: row.melee,
-                })
-                .collect(),
+            rows: self.boss_killing_blows().iter().map(StateRow::from).collect(),
             words: self.damaged_by_bosses().to_vec(),
-            secondary_rows: Vec::new(),
-            enhancement: false,
+            secondary_rows: self.personal_boss_killing_blows().iter().map(StateRow::from).collect(),
+            enhancement: self.graduation_enhancement(),
             boss_flags: Vec::new(),
             coop: self.cooperative_feat_context(),
         }
@@ -1198,19 +1188,12 @@ impl Mechanics {
         self.apply_replica_state(&RunProjection::read(state));
         self.effect_state.generic.killing_blows =
             state.pairs.iter().map(|row| (row[0], row[1])).collect();
-        self.effect_state.generic.boss_killing_blows = state
-            .rows
-            .iter()
-            .map(
-                |row| azeroth_survivors_re::account_progression::BossKillingBlow {
-                    boss_id: row.word_00,
-                    spell_id: row.word_04,
-                    school: row.byte_08,
-                    source_kind: row.kind_09,
-                    melee: row.flag_0a,
-                },
-            )
-            .collect();
+        use azeroth_survivors_re::account_progression::BossKillingBlow;
+        self.effect_state.generic.boss_killing_blows =
+            state.rows.iter().map(BossKillingBlow::from).collect();
+        self.effect_state.generic.personal_boss_killing_blows =
+            state.secondary_rows.iter().map(BossKillingBlow::from).collect();
+        self.effect_state.graduation_enhancement = state.enhancement;
         self.effect_state
             .generic
             .damaged_by_bosses

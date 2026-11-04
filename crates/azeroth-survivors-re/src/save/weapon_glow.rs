@@ -1,4 +1,4 @@
-//! Class weapon-glow rows, including the 0.127.0 Unholy selection.
+//! Class weapon-glow rows, including the 0.140.0 Lifestealing selection.
 //! Raw recognized choices survive load; achievement admission belongs to the
 //! getter/setter, so a locked stored selection is retained and resolves to Icy Chill.
 use super::{Save, CLASS_IDS};
@@ -14,7 +14,7 @@ pub(super) fn rows(lines: &[String]) -> Vec<(u8, u32)> {
         let (Ok(class), Ok(enchant)) = (class.parse::<u8>(), enchant.parse::<u32>()) else {
             continue;
         };
-        if !CLASS_IDS.contains(&class) || !matches!(enchant, 0 | 803 | 1894 | 1899 | 1900) {
+        if !CLASS_IDS.contains(&class) || !matches!(enchant, 0 | 803 | 1894 | 1898 | 1899 | 1900) {
             continue;
         }
         // The native parser removes a preceding class row, then appends this
@@ -68,23 +68,26 @@ mod tests {
     use super::*;
 
     #[test]
-    fn insane_award_unlocks_a_retained_unholy_choice_without_changing_its_first_date() {
-        let mut save = Save::parse("glow|1|1899\nglow|2|0\n").unwrap();
-        assert_eq!(save.weapon_glow(1), 1894);
-        let locked = save.plaintext();
-        assert!(locked.contains("glow|1|1899"));
-        assert!(!save.set_weapon_glow(1, 1899));
-        assert_eq!(save.plaintext(), locked);
-        let keys = vec!["coop:insane".to_owned()];
-        assert_eq!(save.grant_achievements(&keys, Some(1000)), keys);
-        assert_eq!(save.weapon_glow(1), 1899);
-        assert!(save.set_weapon_glow(1, 1899));
-        assert_eq!(save.weapon_glow(2), 0);
-        assert!(save.grant_achievements(&keys, Some(2000)).is_empty());
-        let restored = Save::parse(&save.plaintext()).unwrap();
-        assert_eq!(restored.weapon_glow(1), 1899);
-        assert_eq!(restored.achievement_dates().get("coop:insane"), Some(&1000));
-        assert_eq!(armory_cosmetics::weapon_glow(1899, 15, 123, 0), 1899);
-        assert_eq!(armory_cosmetics::weapon_glow(1899, 15, 0, 5), 0);
+    fn achievement_unlocks_a_retained_glow_without_changing_its_first_date() {
+        for (enchant, achievement) in [(1899, "coop:insane"), (1898, "heroic:prepared")] {
+            let line = format!("glow|1|{enchant}");
+            let mut save = Save::parse(&format!("{line}\nglow|2|0\n")).unwrap();
+            assert_eq!(save.weapon_glow(1), 1894);
+            let locked = save.plaintext();
+            assert!(locked.contains(line.as_str()));
+            assert!(!save.set_weapon_glow(1, enchant));
+            assert_eq!(save.plaintext(), locked);
+            let keys = vec![achievement.to_owned()];
+            assert_eq!(save.grant_achievements(&keys, Some(1000)), keys);
+            assert_eq!(save.weapon_glow(1), enchant);
+            assert!(save.set_weapon_glow(1, enchant));
+            assert_eq!(save.weapon_glow(2), 0);
+            assert!(save.grant_achievements(&keys, Some(2000)).is_empty());
+            let restored = Save::parse(&save.plaintext()).unwrap();
+            assert_eq!(restored.weapon_glow(1), enchant);
+            assert_eq!(restored.achievement_dates().get(achievement), Some(&1000));
+            assert_eq!(armory_cosmetics::weapon_glow(enchant, 15, 123, 0), enchant);
+            assert_eq!(armory_cosmetics::weapon_glow(enchant, 15, 0, 5), 0);
+        }
     }
 }

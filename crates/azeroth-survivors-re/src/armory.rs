@@ -3096,7 +3096,7 @@ fn look(
     if let Some(piece) = selected {
         star_upgrade_control(ui, art, menu_catalog, state, catalog, gear, piece);
     }
-    //1400c4790 appends class-wide glow controls after the selected-slot looks.
+    // 0.140.0 native Armory appends class-wide glow controls after slot looks.
     // Ordinary locked choices are omitted; Unholy retains its locked label/hint.
     let selected_glow = state.save.weapon_glow(state.class_id());
     let earned = state.save.earned_achievements();
@@ -3111,7 +3111,8 @@ fn look(
         ui.spawn(Node { flex_wrap: FlexWrap::Wrap, column_gap: Val::Px(6.),
             row_gap: Val::Px(6.), ..default() }).with_children(|ui| {
             for (enchant, key) in [(0, "armory.glow_none"), (1894, "Icy Chill"),
-                (1900, "Crusader"), (803, "Fiery Weapon"), (1899, "Unholy Weapon")] {
+                (1900, "Crusader"), (803, "Fiery Weapon"), (1899, "Unholy Weapon"),
+                (1898, "Lifestealing")] {
                 if azeroth_survivors_re::armory_cosmetics::weapon_glow_unlocked(
                     enchant, |key| earned.contains(key),
                 ) {

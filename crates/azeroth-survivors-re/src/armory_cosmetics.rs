@@ -38,15 +38,15 @@ pub fn get(id: u32) -> Option<&'static Cosmetic> {
     all().iter().find(|entry| entry.id == id)
 }
 
-/// Native Save::glow_unlocked (145b1f0c0), 0.127.0. These are enchant IDs,
-/// not ItemVisuals IDs. Weapon eligibility and an absent saved selection's
-/// five-star default belong to the separate equipment resolver.
+/// Native 0.140.0 Save::glow_unlocked at 0x145e18ba0. These enchant IDs
+/// feed the separate weapon-eligibility and visual resolver.
 pub fn weapon_glow_unlocked(id: u32, achieved: impl Fn(&str) -> bool) -> bool {
     match id {
         0 | 1894 => true,
         1900 => achieved("heroic:naxx5"),
         803 => achieved("radiantarmory"),
         1899 => achieved("coop:insane"),
+        1898 => achieved("heroic:prepared"),
         _ => false,
     }
 }

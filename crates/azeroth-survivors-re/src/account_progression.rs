@@ -38,6 +38,7 @@ pub enum CurrentFeat {
     BossMarks { target: u32 },
     Unpolished { rank: u8 },
     SetVictory { zone: usize, tier: u8 },
+    Graduation,
 }
 fn catalog() -> &'static Catalog {
     static CATALOG: OnceLock<Catalog> = OnceLock::new();
@@ -86,15 +87,26 @@ fn catalog() -> &'static Catalog {
             "../assets/scholomance-achievements-0.140.0.json"
         ))
         .expect("Scholomance achievement descriptors");
-        let collection_index = catalog.achievements.iter()
-            .position(|entry| entry.key == "armoryoflegends")
-            .expect("Armory of Legends achievement") + 1;
-        catalog.achievements.splice(collection_index..collection_index, scholomance.achievements);
+        for entry in scholomance.achievements {
+            let previous = scholomance_achievement_predecessor(&entry.key);
+            let index = catalog.achievements.iter().position(|row| row.key == previous)
+                .expect("native Scholomance achievement insertion point") + 1;
+            catalog.achievements.insert(index, entry);
+        }
         catalog
     })
 }
 pub fn definitions() -> &'static [Definition] {
     &catalog().achievements
+}
+
+pub fn scholomance_achievement_predecessor(key: &str) -> &str {
+    match key {
+        "collection:t05" => "armoryoflegends",
+        "feat:graduation" => "feat:azuregos",
+        "heroic:prepared" => "radiantarmory",
+        _ => unreachable!("Scholomance achievement: {key}"),
+    }
 }
 
 /// Purchased tabards exclude descriptors carrying an earned achievement key.
@@ -271,6 +283,7 @@ pub struct Account {
     pub gear: BTreeSet<u32>,
     pub stars: BTreeMap<u32, u8>,
     pub heroic_clears: BTreeMap<(u8, usize), u8>,
+    pub prepared_classes: BTreeSet<u8>,
     pub seen: usize,
     #[serde(deserialize_with = "account_statistics")]
     pub statistics: [u64; 8],
@@ -396,6 +409,7 @@ pub fn progress(definition: &Definition, account: &Account) -> Option<(u64, u64)
             .filter(|class| account.armor_pieces(**class, 4, 3) == 8).count() as u64, 9)),
         36 => return Some((CLASSES.iter().filter(|class| ARMOR_TIERS.iter()
             .any(|tier| account.armor_pieces(**class, *tier, 5) == 8)).count() as u64, 9)),
+        41 => return Some((account.prepared_classes.len() as u64, CLASSES.len() as u64)),
         40 => {
             let items = CLASSES.into_iter().flat_map(|class| {
                 (0..8).map(move |slot| crate::tier05::item_id(class, slot))
@@ -473,6 +487,8 @@ pub struct RunSnapshot {
     pub max_equipment_stars: u8,
     #[serde(default)]
     pub active_set: u8,
+    #[serde(default)]
+    pub enhancement: bool,
 }
 impl RunSnapshot {
     /// Current145b0f490 uses the captured class/zone account cap at grant time.
@@ -546,6 +562,24 @@ pub struct BossKillingBlow {
     pub melee: bool,
 }
 
+impl From<&crate::coop::replication::StateRow> for BossKillingBlow {
+    fn from(row: &crate::coop::replication::StateRow) -> Self {
+        Self {
+            boss_id: row.word_00, spell_id: row.word_04, school: row.byte_08,
+            source_kind: row.kind_09, melee: row.flag_0a,
+        }
+    }
+}
+
+impl From<&BossKillingBlow> for crate::coop::replication::StateRow {
+    fn from(row: &BossKillingBlow) -> Self {
+        Self {
+            word_00: row.boss_id, word_04: row.spell_id, byte_08: row.school,
+            kind_09: row.source_kind, flag_0a: row.melee,
+        }
+    }
+}
+
 /// Current1459b5e40: all boss predicates use the lethal hit's captured
 /// attribution. Damage from a boss is remembered before retaliation, even
 /// when absorption leaves zero HP damage. Neither predicate needs a victory.
@@ -556,6 +590,19 @@ pub fn meets_feat_with_events(
     boss_killing_blows: &[BossKillingBlow],
     damaged_by_bosses: &[u32],
 ) -> bool {
+    meets_feat_with_personal_history(
+        definition, run, killing_blows, boss_killing_blows, damaged_by_bosses, &[],
+    )
+}
+
+pub fn meets_feat_with_personal_history(
+    definition: &Definition,
+    run: RunSnapshot,
+    killing_blows: &[(u32, u32)],
+    boss_killing_blows: &[BossKillingBlow],
+    damaged_by_bosses: &[u32],
+    personal_boss_killing_blows: &[BossKillingBlow],
+) -> bool {
     if let Some(condition) = &definition.current_feat {
         return match *condition {
             CurrentFeat::EndlessBosses { target } => run.endless_bosses >= target,
@@ -565,6 +612,10 @@ pub fn meets_feat_with_events(
                 && run.max_equipment_stars == 0,
             CurrentFeat::SetVictory { zone, tier } => run.won && run.zone == Some(zone)
                 && run.active_set == tier + 1,
+            CurrentFeat::Graduation => run.enhancement
+                && personal_boss_killing_blows.iter().any(|hit| {
+                    hit.boss_id == 1853 && hit.spell_id == 17364 && hit.source_kind != 2
+                }),
         };
     }
     if definition.cooperative.is_some() || definition.kind != 9 {
@@ -638,6 +689,35 @@ mod tests {
         account.gear.remove(&crate::tier05::item_id(7, 9));
         account.gear.insert(107_060);
         assert_eq!(progress(definition, &account), Some((82, 83)));
+    }
+
+    #[test]
+    fn graduation_counts_the_recipients_own_nonpet_stormstrike() {
+        let definition = definitions().iter().find(|row| row.key == "feat:graduation").unwrap();
+        let hit = BossKillingBlow { boss_id: 1853, spell_id: 17364, school: 0,
+            source_kind: 0, melee: true };
+        let run = RunSnapshot { enhancement: true, ..RunSnapshot::default() };
+        let earned = |run, shared: &[BossKillingBlow], personal: &[BossKillingBlow]| {
+            meets_feat_with_personal_history(definition, run, &[], shared, &[], personal)
+        };
+        assert!(earned(run, &[], &[hit]));
+        assert!(!earned(run, &[hit], &[]));
+        assert!(!earned(RunSnapshot::default(), &[], &[hit]));
+        assert!(!earned(run, &[], &[BossKillingBlow { source_kind: 2, ..hit }]));
+        assert!(!earned(run, &[], &[BossKillingBlow { spell_id: 1, ..hit }]));
+    }
+
+    #[test]
+    fn prepared_progress_uses_only_the_saved_class_record() {
+        let definition = definitions().iter().find(|row| row.key == "heroic:prepared").unwrap();
+        let mut account = Account::default();
+        let zone = crate::mob_loot::BOSS_ZONES.len();
+        account.heroic_clears.extend(CLASSES.map(|class| ((class, zone), 5)));
+        assert_eq!(progress(definition, &account), Some((0, 9)));
+        account.prepared_classes.extend(CLASSES[..8].iter().copied());
+        assert_eq!(progress(definition, &account), Some((8, 9)));
+        account.prepared_classes.insert(CLASSES[8]);
+        assert_eq!(progress(definition, &account), Some((9, 9)));
     }
 
     #[test]
