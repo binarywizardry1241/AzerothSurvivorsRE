@@ -65694,7 +65694,7 @@
         "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs"
       ],
       "source_correspondence_status": "pending_native_source_assignment",
-      "source_review_scope": "Candidate interfaces inspected before native expansion. The exact current Location and source leads are in the linked report.",
+      "source_review_scope": "The Rogue reach claim is connected through the class and ability records and shared candidate radius. The exact attacks.rs Location bounds/grid and hazard queue roles are recorded separately from the reach proof.",
       "current_contract_finding": 318,
       "current_applicability": {
         "assessment": "docs/analysis/module-contracts-0.140.0.md",
@@ -65704,7 +65704,8 @@
       "evidence_refs": [
         "docs/analysis/coverage/diagnostic-ownership.json",
         "docs/analysis/evidence/0.140.0/discovery-delta.json",
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/class-balance-0.140.0.md",
+        "docs/analysis/rogue-reach-0.140.0.md"
       ],
       "gap_ids": [
         41,
@@ -65731,9 +65732,26 @@
         "summary": "No controlled original/rebuilt comparison."
       },
       "remaining_source_work": [
-        "Trace Location owners to Rogue cast and swing target admission and effective reach composition.",
-        "Establish source assignment and register only the independently recovered bounded contract."
-      ]
+        "Resolve remaining packed-grid producer, encounter script consumers and full diagnostic source correspondence through #313 and #41."
+      ],
+      "gap_318_source_review_0_140_0": {
+        "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        "gap_id": 318,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/rogue-reach-0.140.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "The current Rogue weapon profile and individual melee ability records select eight yards. Auto attacks and ordinary melee casts forward their own descriptor radius to the inclusive XY center-distance predicate.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/run_effects/weapon.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs"
+        ]
+      }
     },
     {
       "id": "custom-game-game-kill-command",
@@ -77632,7 +77650,7 @@
     "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs": "9e917f1b1daaf0e7b1138978d8e2ac231783ab1bb773c40332a33082fb36ccf8",
     "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "9fcd39ed91cab681f5947e72ca8818c4b8c936dc2c411add7b8259e9c365cf44",
     "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs": "5fcef7fc36b64762f5922fdc5d1df805279442a76f2c59323999d507b6928a54",
-    "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "d6dd2d48ada63c55c66e76d8762def40731cca3d5f2d937ca700715f52f7fd69",
+    "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "6d06d5554be6a35367ead18c4bfd3d5f49cd84d0896705b65c4557abfd6e0fc3",
     "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "2889a1c49f533209f16b3bddc4bbbd7ff9aa43bef354708cc8079de8a46b2b8f",
     "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs": "daff564b87f459ae1c11179637bb9494ea1390b7bc03f2dd137f7466f14d91ca",
     "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing_tests.rs": "0e59fd484b90b98899418590d7f823934675502698ea155bc6a8047a060f8112",

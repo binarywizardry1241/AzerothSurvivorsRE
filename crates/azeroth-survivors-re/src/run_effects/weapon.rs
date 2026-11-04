@@ -18,19 +18,19 @@ pub struct Profile {
     pub range: f32,
 }
 
-/// Native class-table indirection146e7b190 and default146bab7a8. Profile
-/// presence, rather than learned spells or worn item appearance, enables swings.
+/// 0.140.0 class-table indirection at 0x147afa938, with its Warrior default.
+/// Profile presence enables swings independently of learned spells and gear.
 pub fn profile(class: u8) -> Option<Profile> {
-    let (damage, interval) = match class {
-        2 => (27.0, f32::from_bits(0x3fe6_6666)),
-        4 => (14.0, f32::from_bits(0x3f99_999a)),
+    let (damage, interval, range) = match class {
+        2 => (27.0, f32::from_bits(0x3fe6_6666), 6.0),
+        4 => (14.0, f32::from_bits(0x3f99_999a), 8.0),
         3 | 5 | 7 | 8 | 9 | 11 => return None,
-        _ => (27.5, f32::from_bits(0x3fcc_cccd)),
+        _ => (27.5, f32::from_bits(0x3fcc_cccd), 6.0),
     };
     Some(Profile {
         damage,
         interval,
-        range: 6.0,
+        range,
     })
 }
 
@@ -270,14 +270,20 @@ mod tests {
             assert_bits(State::default().remaining, &case["after_copy_bits"]);
         }
         for case in fixtures["swings"].as_array().unwrap() {
-            let profile = profile(case["class"].as_u64().unwrap() as u8);
+            let class = case["class"].as_u64().unwrap() as u8;
+            let profile = profile(class);
             let mut state = State::new(float(&case["remaining_bits"]));
             let mut rng = NativeRng {
                 words: std::array::from_fn(|i| case["rng_before"][i].as_u64().unwrap()),
             };
             if state.elapse(profile, float(&case["delta_bits"])) {
                 let profile = profile.unwrap();
-                assert_bits(profile.range, &case["radius_bits"]);
+                if class == 4 {
+                    // 0.140.0 changes the Rogue profile only.
+                    assert_eq!(profile.range, 8.0);
+                } else {
+                    assert_bits(profile.range, &case["radius_bits"]);
+                }
                 if case["target"].as_bool().unwrap() {
                     let stats = case["stats"]
                         .as_array()

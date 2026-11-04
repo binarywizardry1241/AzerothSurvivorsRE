@@ -107,22 +107,62 @@ Location rows to recover the new cap, admission and replacement branches.
 The new `crates/wenilla-rogue/src/game/attacks.rs` diagnostic has 29 verified
 references across six candidate extents. `0x145ee2eb2` in `0x145ee2a90`
 references line 158, `0x145ee4db8` in `0x145ee4340` references line 137,
-and `0x145f78972` in `0x145f743e0` references line 1392. [#318](../CURRENT-STATE.md#gap-318)
-owns these candidate AS-specific ranges and the Rogue reach change. The
+and `0x145f78972` in `0x145f743e0` references line 1392. [#318](../verification-needed.md#gap-318)
+owns the connected Rogue reach change. The packed grid and hazard work remains
+with [#313](../CURRENT-STATE.md#gap-313) and [#41](../CURRENT-STATE.md#gap-41). The
 existing attack tick and ordinary spell dispatcher remain the source starting
 points for classification.
 
 | Claim | Current observation and source frontier |
 | --- | --- |
-| `78aee98f2e312f8a` Rogue reach | Sinister Strike record `0x1473ba4d8` carries spell 1752 and range 8. The checkout `run_effects/weapon.rs::profile` still assigns range 6 to all enabled melee classes, and the live tick uses that field. Follow current ability and automatic swing target selectors, including target geometry and any separate minimum-reach rule. |
-| `a8f504d63cf96bd3` Rune-hound | The `game/companions.rs` Locations within `0x145fd2700` and `0x145fd2940` and Rune-hound literal `0x1465d2c9e` seed [#14](../verification-needed.md#gap-14). Checkout `run_effects/loot_companions.rs::select` rejects every intentional fetch within hero radius before admitting rune kinds for instinct 3. Trace the new inside-radius admission and single pickup ownership across the hero and companion sweeps. |
+| `78aee98f2e312f8a` Rogue reach | The [current cast and automatic attack proof](rogue-reach-0.140.0.md) connects the eight-yard Rogue records through their inclusive XY selectors and picker descriptions. |
+| `a8f504d63cf96bd3` Rune-hound | [#14](../verification-needed.md#gap-14) connects the current [rune selection and ownership contract](#rune-hound-selection-and-ownership). |
 | `ac3ebee1359ef8ca` Amulet confirmation and chat | [#18](../verification-needed.md#gap-18)'s old modal proof identifies native Enter, numpad Enter and shared Escape. `gameplay/mod.rs::confirmation_controls` and `native_overlays/confirmation.rs::decision` still consume the shared just-pressed view. Use the [#310 InputGate filter](input-gate-native-0.139.2.md) to map the current native choice/modal edge into the FrameXML chat input path and recover where it is consumed. The earlier menu picker repair covers a different UI edge. |
 | `952bce7492eb0be8` Meter labels and addon attribution | `game/meterlog.rs` at `0x1473c3b20`, `game/meterfeed.rs` at `0x1473c3e30` and Windfury title `0x1473d9684` seed the join. Follow Windfury and each set damage producer to the stable identity, log aggregation and addon rows through [#75](../CURRENT-STATE.md#gap-75) and [#307](../CURRENT-STATE.md#gap-307); compare against source-kind and proc-source adapters in `gameplay/mechanics/callbacks.rs`. |
 | `97b441022c8ea419` Run start intent | The [current movement start contract](movement-start-0.140.0.md) connects local directional report bits, prior report state, unchanged admitted XYZ and the host's initial sync restriction to the ready transition. The stock controller, [packet clock](coop-correction-0.123.0.md) and [guest context](coop-start-0.123.0.md) retain their respective owners. |
 | `e6cc6393427136d3` Stationary slope height | [#1](../CURRENT-STATE.md#gap-1)'s earlier indoor surface proof covers the current source query boundary. `game/enemy.rs` has current candidate extents at `0x145ee1150` and `0x145ee1720` with Location lines 346 and 377–380. Begin at the accepted stop and stationary facing event in `gameplay/mechanics/actor_frame.rs` and `gameplay/mechanics.rs`; map the actual current native transition and inspect which terrain sample supplies its Z coordinate. |
 | `094d1782a8db36a3` The Insane | The exact key occurs at `0x1473e8121` and `0x1473f7ab3`. The retained [#285 source](../verification-needed.md#gap-285) evaluates one recipient's life marker plus current party size. Recover the party-wide death history and its reset, departure, rejoin and recipient delivery. Compare with the existing no-death party-clear branch in `account_progression.rs::eligible_cooperative_keys`. |
 
+### Rune-hound selection and ownership
+
+The 0.140.0 selector at `0x145fd3790` is called from both idle and continuing
+fetch paths at `0x145fd2c38` and `0x145fd3455`. Its two admission blocks
+(`0x145fd3932..0x145fd399d`, `0x145fd3b9d..0x145fd3bea`) reject in-flight and
+reserved rows before applying the planar distance bounds. XP and gold require
+distance greater than the hero's pickup stat. Rune kinds 3–5 require instinct 3
+and distance strictly greater than the fixed 3.0 at `0x14655815c`. All admitted
+kinds retain the inclusive outer bound `leash * 10 + 25 + pickup_radius` and
+the instinct/companion-distance ordering.
+
+Ordinary collection at `0x145f56540` uses the same constant inclusively at
+`0x145f56a76..0x145f56aae`. It precedes the companion tick in all three
+verified call pairs (`0x145e70efd/0x145e70f05`, `0x145f2f8bd/0x145f2f8c5`,
+`0x145fad679/0x145fad681`). The ordinary owner at `0x145f56c76` and the
+companion sweep and arrival at `0x145fd284a` and `0x145fd33cd` all remove
+from the same live list through `0x145f57850`. Each owner grants a rune through
+`0x145f60e20` after removal. The companion carries its reward until return.
+A hero who walks within three yards of a reserved rune can collect it first.
+
+The [selector](../../crates/azeroth-survivors-re/src/run_effects/loot_companions.rs)
+and the [ordinary collector](../../crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs)
+now share the fixed threshold. The [companion port](../../crates/azeroth-survivors-re/src/gameplay/mechanics/loot_companions.rs)
+reuses the ordinary owner's removal path, then carries the reward to the
+existing shared rune delivery path. A source regression covers both a five-yard
+fetch and the hero collecting at three yards during that fetch, with one
+removal and one rune grant in either case.
+
+Ghidra queries used unmodified slices with their original virtual addresses and
+verified journal digests. The selector's PE unwind extent is
+`0x145fd3790..0x145fd3d9d`, file offset `0x5fd2b90`, SHA-256
+`16bd584c7cbb9c610fd7be0594ee3a18e61c71319b4304e3ba4ef5fb57277d46`.
+Original x64 instructions confirm the Windows ABI, shared callers and constants.
+Isolated replay passed 1,125 selector cases across all four instincts, seven
+kind codes, both sides of the radius and reach edges, reservation and flight
+exclusions, priority, distance and equal-distance ties. Synthetic pickup/actor
+rows, the reservation vector producer and its deallocator are replay seams.
+The four changed Rust files syntax-parsed with the pinned formatter.
+
 These observations supply data, verified diagnostic references and source
-comparisons. The open consumers above require selected static recovery.
+comparisons. The remaining open consumers above require selected static recovery.
 Compilation, authored Rust tests, application and service execution, and
 controlled original/rebuilt comparison remain unrun.

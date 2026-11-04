@@ -41,8 +41,9 @@ mapping. Typed selectors, actual callers and consumers still require review.
 [Six bounded Ghidra operations](evidence/0.140.0/bounded-native-frontier.json)
 cover three declared raw slices. The `attacks.rs` bounds-failure site in
 `0x145ee2a90` belongs to a packed-bit grid test. Its producer and callers
-remain open under [#318](../CURRENT-STATE.md#gap-318), alongside a separate
-cast/swing reach trace. Ras's `0x145ee3900` uses a tag-3 record selection and
+are encounter and coverage leads under [#313](../CURRENT-STATE.md#gap-313) and
+[#41](../CURRENT-STATE.md#gap-41). [#318](../verification-needed.md#gap-318) owns
+the separately connected cast/swing reach. Ras's `0x145ee3900` uses a tag-3 record selection and
 calls `0x145f6d350`. Krastinov's `0x145eebea0` tests tag 4, finds an
 `0xe0`-byte record and appends a `0x20`-byte record. Trace those inputs
 and consumers under [#313](../CURRENT-STATE.md#gap-313) before assigning
