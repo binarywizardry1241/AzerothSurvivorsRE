@@ -1,6 +1,6 @@
 //! Primary boss placement revalidated against0.112.0 creator14593b0f0.
 //! See docs/analysis/raid-boss-lifecycle-0.112.0.md.
-//! Fixed points exist only for Scarlet Monastery and Naxxramas.
+//! Scholomance uses its 0.140.0 fixed point table with the same filter and fallback.
 use super::catalog::{spawn_points, ZoneDefinition};
 use super::{NativeRng, Position};
 use crate::enemies::spawning::{resolved_height, sample_position_with_distances, PlacementMath, Terrain};
@@ -60,7 +60,7 @@ pub fn sample_position(zone: &ZoneDefinition, player: Position, player_velocity:
     let admitted = admitted_points(points, player, math);
     let index = if !admitted.is_empty() {
         Some(admitted[uniform_point(admitted.len(), rng)])
-    } else if matches!(zone.key, "sm" | "naxx") {
+    } else if !points.is_empty() {
         Some(farthest_point(points, player, math))
     } else { None };
     match index {

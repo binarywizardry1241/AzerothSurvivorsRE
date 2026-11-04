@@ -1,9 +1,11 @@
 //! Authored native-oracle coverage; intentionally not compiled/run in source-only mode.
 use azeroth_survivors_re::{
-    bosses::{catalog::ZONES, death::{self, BossAccountEvent, BossDeathInput, BossDeathState, CompletionState, CompletionPort, DeathPort, ExperiencePickup}, NativeRng, Position},
+    bosses::{death::{self, BossAccountEvent, BossDeathInput, BossDeathState, CompletionState, CompletionPort, DeathPort, ExperiencePickup}, NativeRng, Position},
     mob_loot::{EquipmentRoll,MobLootWorld,PickupDrop},
 };
 use serde_json::Value;
+#[path = "fixtures/legacy_boss_zones.rs"]
+mod legacy_boss_zones;
 fn n(r:&Value,k:&str)->u64 {r[k].as_u64().unwrap()}
 fn f(r:&Value,k:&str)->f32 {f32::from_bits(n(r,k) as u32)}
 fn fixture()->Value {serde_json::from_str(include_str!("fixtures/boss-death-native.json")).unwrap()}
@@ -41,8 +43,9 @@ impl CompletionPort for World {
 fn primary_boss_rewards_phase_and_meter_match_native_arm() {
     let fixture=fixture();assert_eq!(fixture["target_sha256"],"a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589");
     assert_eq!(fixture["death_cases"].as_array().unwrap().len(),300);
+    let zones = legacy_boss_zones::by_historical_ordinal();
     for row in fixture["death_cases"].as_array().unwrap() {
-        let definition=&ZONES[n(row,"zone_index") as usize].bosses[n(row,"boss_index") as usize];
+        let definition=&zones[n(row,"zone_index") as usize].bosses[n(row,"boss_index") as usize];
         let mut state=BossDeathState {boss_kills:n(row,"kills_before") as u32,clear_marker:n(row,"marker_before") as u32,clear_marked_at:f(row,"marker_time_before_bits")};
         let mut completion=CompletionState {phase:n(row,"phase_before") as u32,phase_started_at:f(row,"phase_start_before_bits"),run_state:1,endless_enabled:false,victories:0};
         let mut deadlines:Vec<f32>=row["magnet_deadlines_before_bits"].as_array().unwrap().iter().map(|v|f32::from_bits(v.as_u64().unwrap() as u32)).collect();

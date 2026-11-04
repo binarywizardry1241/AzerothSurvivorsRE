@@ -19,6 +19,7 @@ pub struct RunBoss {
     pub maximum_health: f32,
     pub ai: native::ai::BossAiState,
     pub minion_phases: native::minion_phases::PhaseState,
+    kirtonos_forms: native::raid_transforms::KirtonosForms,
     pub control: ControlWindow,
     pub periodic: Vec<ActorPeriodic>,
     pub additional_damage_taken: f32,
@@ -325,6 +326,9 @@ impl Mechanics {
             incoming: &mut incoming,
             damage_event_boundary: None, knockback: None, root: None, bomb_bursts: Vec::new(), post_actions: Vec::new(),
         };
+        if port.active_slot == 0 {
+            port.advance_kirtonos_forms();
+        }
         self.boss_state.effects.resolve_due_with_rng(self.clock, elapsed, &mut port,
             &mut self.rng, &mut self.counter);
         let boundary = port.damage_event_boundary;
@@ -494,6 +498,10 @@ struct BossSpawner<'a, W> {
 }
 
 impl<W: RunWorld> native::spawning::SpawnPort for BossSpawner<'_, W> {
+    fn has_living_primary_boss(&self) -> bool {
+        self.rows.iter().any(|row| !row.actor.dead)
+    }
+
     fn spawn_boss(&mut self, index: usize, definition: &'static native::BossDefinition, rng: &mut NativeRng) {
         self.spawn_boss_with_health_factor(index, definition, rng, 1.0);
     }
@@ -542,6 +550,7 @@ impl<W: RunWorld> native::spawning::SpawnPort for BossSpawner<'_, W> {
             maximum_health: stats.max_health,
             ai: native::ai::BossAiState::new(definition),
             minion_phases: native::minion_phases::PhaseState::default(),
+            kirtonos_forms: native::raid_transforms::KirtonosForms::default(),
             control: ControlWindow::for_enemy(true),
             periodic: Vec::new(),
             additional_damage_taken: 0.0,
@@ -611,6 +620,27 @@ enum RaidPostAction {
     Spawn { kind: u32, index: u32, position: Position },
     Expose { source: u64, until: f32 },
     Heal { source: u64, fraction: f32, spell: u32 },
+}
+
+impl<W: RunWorld> BossCombat<'_, W> {
+    fn advance_kirtonos_forms(&mut self) {
+        use native::abilities::CombatPort;
+
+        let transitions: Vec<_> = self.bosses.iter_mut()
+            .filter(|row| row.definition.id == 10506 && !row.actor.dead)
+            .filter_map(|row| {
+                let form = row.kirtonos_forms.advance(row.health, row.maximum_health, self.now)?;
+                Some((row.guid, form.fields(row.definition.model_id, row.definition.scale)))
+            })
+            .collect();
+        for (source, fields) in transitions {
+            self.events.push(RunEvent::ActorFields { target: source, fields: fields.fields.clone() });
+            self.forms.insert(source, fields);
+            self.raid_block(source, 2.0);
+            self.raid_hold(source, 2.0);
+            self.events.push(RunEvent::RaidTransformCast { source, spell_id: 0x4053, seconds: 2.0 });
+        }
+    }
 }
 
 impl<W: RunWorld> native::abilities::CombatPort for BossCombat<'_, W> {

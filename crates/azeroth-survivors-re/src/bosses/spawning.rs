@@ -25,6 +25,8 @@ pub struct Scheduler {
 }
 
 pub trait SpawnPort {
+    fn has_living_primary_boss(&self) -> bool;
+
     /// Bind to the actual boss constructor. Creation uses the same run RNG.
     fn spawn_boss(&mut self, index: usize, definition: &'static BossDefinition, rng: &mut NativeRng);
     fn spawn_boss_with_health_factor(&mut self, index: usize, definition: &'static BossDefinition,
@@ -60,6 +62,10 @@ impl Scheduler {
         if suppressed { return None; }
         if self.next_primary < PRIMARY_COUNT {
             let index = self.next_primary;
+            // 0.140.0 scans the primary actor population for Scholomance only.
+            if zone.key == "scholomance" && port.has_living_primary_boss() {
+                return None;
+            }
             if !(clock_seconds / 60.0 >= zone.bosses[index].time_minutes) { return None; }
             self.next_primary += 1;
             port.spawn_boss(index, &zone.bosses[index], rng);

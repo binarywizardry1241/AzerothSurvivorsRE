@@ -20,6 +20,13 @@ pub fn spawn_points(zone_key: &str) -> &'static [[f32; 2]] {
             ];
             POINTS
         },
+        "scholomance" => &[
+            [120.0, 145.0],
+            [147.0, 146.0],
+            [160.0, 170.0],
+            [128.0, 188.0],
+            [101.0, 160.0],
+        ],
         "naxx" => {
             const POINTS: &[[f32; 2]] = &[
                 [f32::from_bits(0x456b499a), f32::from_bits(0xc59e9333)],

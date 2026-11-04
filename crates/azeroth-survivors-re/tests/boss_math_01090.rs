@@ -1,9 +1,8 @@
 //! Current0.109.0 native instructions with explicit powf seams; not game parity.
-use azeroth_survivors_re::bosses::{
-    catalog::ZONES,
-    scaling::{BossScalingInput, initial_stats_with_powf},
-};
+use azeroth_survivors_re::bosses::scaling::{BossScalingInput, initial_stats_with_powf};
 use serde_json::Value;
+#[path = "fixtures/legacy_boss_zones.rs"]
+mod legacy_boss_zones;
 
 fn float(value: &Value) -> f32 {
     value.as_f64().unwrap() as f32
@@ -24,8 +23,9 @@ fn current_boss_caller_arithmetic_matches_native_vectors() {
     );
     let cases = fixture["cases"].as_array().unwrap();
     assert_eq!(cases.len(), 480);
+    let zones = legacy_boss_zones::by_historical_ordinal();
     for case in cases {
-        let zone = &ZONES[case[0].as_u64().unwrap() as usize];
+        let zone = zones[case[0].as_u64().unwrap() as usize];
         let definition = &zone.bosses[case[1].as_u64().unwrap() as usize];
         let profile = &fixture["profiles"][case[2].as_u64().unwrap() as usize];
         let input = BossScalingInput {

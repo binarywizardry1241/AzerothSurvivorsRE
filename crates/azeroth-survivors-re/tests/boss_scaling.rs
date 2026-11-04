@@ -1,7 +1,7 @@
 //! Historical0.97.2 constructor vectors retain their original input scale.
 //! Current0.109.0 data/math are checked separately; these replay old scalar outputs.
 use azeroth_survivors_re::bosses::{
-    catalog::ZONES,
+    catalog::ZoneDefinition,
     scaling::{creature_guid, initial_ability_timers, initial_stats_with_powf, BossScalingInput},
 };
 use serde_json::Value;
@@ -25,7 +25,8 @@ fn historical_native_boss_constructor_stats_and_cooldowns() {
     let cases = fixture["creation_cases"].as_array().unwrap();
     assert_eq!(cases.len(), 480);
     for row in cases {
-        let zone = &ZONES[n(row, "zone_index") as usize];
+        let key = catalog["zones"][n(row, "zone_index") as usize]["key"].as_str().unwrap();
+        let zone = ZoneDefinition::by_key(key).unwrap();
         // The current catalog deliberately has newer Naxx sizes. Replaying old
         // constructor vectors requires their declared old scale input.
         let mut historical_definition = zone.bosses[n(row, "boss_index") as usize];

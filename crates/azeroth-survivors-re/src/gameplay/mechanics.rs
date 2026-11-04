@@ -246,6 +246,7 @@ pub enum RunEvent {
     RaidMarker(serde_json::Value),
     /// 145950b00: the same caster's native SpellStart/animation, no target.
     RaidCast { source: u64, spell_id: u32, seconds: f32 },
+    RaidTransformCast { source: u64, spell_id: u32, seconds: f32 },
     /// Current14597b9eb: ordinary/guardian cast start targets the live player.
     ActorCast { source: u64, spell_id: u32, seconds: f32 },
     RaidFacing { source: u64, position: Position, serial: u32, angle: f32 },

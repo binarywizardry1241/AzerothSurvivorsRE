@@ -1,5 +1,5 @@
 //! Selected 0.105.0 record proof for the single canonical boss catalog.
-use azeroth_survivors_re::bosses::catalog::{spawn_points, ZONES};
+use azeroth_survivors_re::bosses::catalog::{spawn_points, ZoneDefinition, ZONES};
 use serde_json::Value;
 
 fn fixture() -> Value {
@@ -31,11 +31,10 @@ fn selected_boss_records_match_native_bytes() {
         "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
     );
     assert_eq!(zones.len(), 12);
-    assert_eq!(ZONES.len(), 12);
     let mut count = 0;
     let mut abilities = 0;
-    for (zone, native) in ZONES.iter().zip(zones) {
-        assert_eq!(zone.key, native["key"].as_str().unwrap());
+    for native in zones {
+        let zone = ZoneDefinition::by_key(native["key"].as_str().unwrap()).unwrap();
         assert_eq!(zone.bosses.len(), 5);
         for (boss, row) in zone.bosses.iter().zip(native["bosses"].as_array().unwrap()) {
             count += 1;

@@ -3,6 +3,64 @@
 //! sheath fields; raid-hazards and raid-boss-lifecycle proofs own its contracts.
 use super::raid_native_catalog::ACTIONS;
 
+const KIRTONOS_HUMANOID: [u32; 7] = [0, 0, 0, 21341, 0x10a, 0, 0];
+const KIRTONOS_WINGED: [u32; 7] = [7534, 1.6_f32.to_bits(), 0, 0, 0, 0, 0];
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum KirtonosForm {
+    Humanoid,
+    Winged,
+}
+
+impl KirtonosForm {
+    pub fn fields(self, base_display: u32, base_scale: f32) -> TransformFields {
+        let descriptor = match self {
+            Self::Humanoid => &KIRTONOS_HUMANOID,
+            Self::Winged => &KIRTONOS_WINGED,
+        };
+        form_fields(descriptor, base_display, base_scale)
+    }
+}
+
+#[derive(Clone, Copy, Debug, Default)]
+pub struct KirtonosForms {
+    winged_phase_started: bool,
+    final_phase_started_at: Option<f32>,
+    next_step: u32,
+}
+
+impl KirtonosForms {
+    /// 0.140.0 phase callback 0x145eeb730 checks the final phase bit first.
+    /// Its fixed loop at 0x147af3b4c advances one deadline per update.
+    pub fn advance(&mut self, health: f32, maximum_health: f32, now: f32) -> Option<KirtonosForm> {
+        if let Some(started_at) = self.final_phase_started_at {
+            const OFFSETS: [f32; 6] = [5.0, 12.0, 20.0, 25.0, 32.0, 40.0];
+            let index = (self.next_step % 6) as usize;
+            let deadline = (self.next_step / 6) as f32 * 42.0 + OFFSETS[index];
+            if deadline <= now - started_at {
+                self.next_step = self.next_step.wrapping_add(1);
+                return match index {
+                    2 => Some(KirtonosForm::Winged),
+                    5 => Some(KirtonosForm::Humanoid),
+                    _ => None,
+                };
+            }
+            return None;
+        }
+        let denominator = if maximum_health <= 1.0 { 1.0 } else { maximum_health };
+        let fraction = health / denominator;
+        if fraction <= 0.3 {
+            self.final_phase_started_at = Some(now);
+            Some(KirtonosForm::Humanoid)
+        } else if !self.winged_phase_started && fraction <= 0.65 {
+            self.winged_phase_started = true;
+            Some(KirtonosForm::Winged)
+        } else {
+            None
+        }
+    }
+}
+
 #[derive(Clone, Debug)]
 pub struct TransformFields {
     pub display: u32,
@@ -15,12 +73,14 @@ pub fn raid_transform_fields(index: usize, base_display: u32, base_scale: f32) -
     form_fields(&action.words[5..12], base_display, base_scale)
 }
 
-/// Current0.112.0 constructor14593b8f5 applies these forms before arrival
+/// Native constructors apply these forms before arrival
 /// announcements. They do not cast, hold movement or replace recurring moves.
 pub fn initial_boss_fields(boss_id: u32, base_display: u32, base_scale: f32) -> Option<TransformFields> {
     let descriptor = match boss_id {
         693 => [0, 0, 0, 1390, 0, 0, 0],
         1091 => [0, 1.0_f32.to_bits(), 9806, 0, 0, 0, 0],
+        // 0.140.0 constructor 0x145f58508 selects this appearance record.
+        10506 => KIRTONOS_HUMANOID,
         _ => return None,
     };
     Some(form_fields(&descriptor, base_display, base_scale))
@@ -72,5 +132,26 @@ fn form_fields(w: &[u32], base_display: u32, base_scale: f32) -> TransformFields
         display,
         scale,
         fields,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn kirtonos_final_phase_wins_when_one_hit_crosses_both_thresholds() {
+        let mut state = KirtonosForms::default();
+        assert_eq!(state.advance(30.0, 100.0, 10.0), Some(KirtonosForm::Humanoid));
+        assert_eq!(state.advance(70.0, 100.0, 15.0), None);
+        assert_eq!(state.advance(70.0, 100.0, 22.0), None);
+        assert_eq!(state.advance(70.0, 100.0, 30.0), Some(KirtonosForm::Winged));
+        assert_eq!(state.advance(70.0, 100.0, 35.0), None);
+        assert_eq!(state.advance(70.0, 100.0, 42.0), None);
+        assert_eq!(state.advance(70.0, 100.0, 50.0), Some(KirtonosForm::Humanoid));
+
+        let mut state = KirtonosForms::default();
+        assert_eq!(state.advance(65.0, 100.0, 1.0), Some(KirtonosForm::Winged));
+        assert_eq!(state.advance(65.0, 100.0, 2.0), None);
     }
 }
