@@ -6,6 +6,8 @@ use std::sync::atomic::{AtomicU32, Ordering};
 use benilla_app::local_client::events::SessionEvent;
 
 use super::addon_feed::AddonMessage;
+use super::super::mechanics::PartyBanner;
+use crate::localization::Localization;
 
 // Native 14808a5c8 starts at one. It belongs to the process, not a run or VM.
 static NEXT_ID: AtomicU32 = AtomicU32::new(1);
@@ -51,6 +53,34 @@ pub(in crate::gameplay) fn packet(
         ),
     )
     .packet_from(player_guid)
+}
+
+pub(super) fn party_packet(
+    player_guid: u64,
+    banner: PartyBanner,
+    locale: &Localization,
+) -> SessionEvent {
+    match banner {
+        PartyBanner::Downed => packet(
+            player_guid,
+            "downed",
+            false,
+            "",
+            locale.label("You are down! A friend standing next to you brings you back."),
+        ),
+        PartyBanner::FriendDown(name) => {
+            let text = locale.label("{name} is down! Stand next to them to bring them back.")
+                .replace("{name}", &name);
+            packet(player_guid, "frienddown", false, &name, &text)
+        }
+        PartyBanner::Revived => packet(
+            player_guid,
+            "revived",
+            false,
+            "",
+            locale.label("You are back on your feet!"),
+        ),
+    }
 }
 
 #[cfg(test)]

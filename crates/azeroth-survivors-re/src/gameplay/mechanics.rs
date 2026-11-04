@@ -54,7 +54,7 @@ pub use player_mover::PlayerMoverEvent;
 mod showcase;
 #[path = "mechanics/coop.rs"]
 pub mod coop;
-pub use coop::PartyInput;
+pub use coop::{PartyBanner, PartyInput};
 #[path = "mechanics/party_achievements.rs"]
 mod party_achievements;
 #[path = "mechanics/shared_healing.rs"]
@@ -378,6 +378,7 @@ pub enum RunEvent {
         name: azeroth_survivors_re::loot_rewards::prose::Text,
         text: azeroth_survivors_re::loot_rewards::prose::Text,
     },
+    PartyBanner(PartyBanner),
     BossBanner { id: u32, name: &'static str, final_boss: bool },
     ZoneUnlocked { key: String, name: String },
     ///1458a9ae0: ordinary gossip POI; absent name clears at the player's XY.

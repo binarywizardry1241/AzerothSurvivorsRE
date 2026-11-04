@@ -330,13 +330,14 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
     let Some(game)=session.mechanics.as_mut() else { return };
     // Taking the buffer exactly once also handles a run paused immediately
     // after a cast or choice. It does not replay its last tick every frame.
+    if menu.in_run { game.publish_party_fall_banners(); }
     let events=std::mem::take(&mut game.events);
     if !menu.in_run { return; }
     let player_guid=game.player_guid;
     let remote=game.take_party_events();
     let mut local=LocalPresentationEvents::default();
     project(events,player_guid,0,&mut local,&mut unsupported,&mut notifications,&mut loot,&mut markers,
-        time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),Some(&mut terminal));
+        time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),Some(&mut terminal),None);
     for event in local.0 {
         if let Some(coop)=coop.as_deref_mut() {
             route_run_event(coop, party.as_deref(), &locale, 0, &event);
@@ -347,9 +348,11 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
         // World identity is independent of transport membership. Resolve the
         // stable source GUID before selecting a private recipient.
         let Some(slot)=game.party_slot(guid) else { continue };
+        let client = coop.as_deref().and_then(|runtime| runtime.actor_clients.get(&slot)).copied();
+        let language = client.and_then(|client| party.as_deref()?.member_language(client));
         let mut projected=LocalPresentationEvents::default();
         project(events,guid,slot,&mut projected,&mut unsupported,&mut Default::default(),&mut Default::default(),
-            &mut Default::default(),time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),None);
+            &mut Default::default(),time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),None,language);
         for event in projected.0 {
             if let Some(coop)=coop.as_deref_mut() {
                 if route_run_event(coop, party.as_deref(), &locale, slot, &event) {
@@ -365,7 +368,8 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
     loot:&mut super::super::run_hud::LootNotices,markers:&mut super::super::raid_markers::MarkerInbox,
     now:f32,locale:&Localization,catalog:&crate::catalog::MenuCatalog,
     mut coop:Option<&mut crate::coop_runtime::CoopRuntime>,
-    mut terminal:Option<&mut super::super::terminal::TerminalState>) {
+    mut terminal:Option<&mut super::super::terminal::TerminalState>,
+    recipient_language:Option<&[u8]>) {
     for event in events {
         let missing=match event {
             RunEvent::TalentXp {gain,before,total,class_key,parts}=>{
@@ -630,6 +634,14 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
                 packets.0.push(super::addon_banners::packet(player_guid,kind,false,&name.render(&label),&text));
                 notifications.toast(text,now);None
             },
+            RunEvent::PartyBanner(banner) => {
+                let recipient_locale = recipient_language
+                    .map(|code| locale.for_code(std::str::from_utf8(code).unwrap_or("")));
+                packets.0.push(super::addon_banners::party_packet(
+                    player_guid, banner, recipient_locale.as_ref().unwrap_or(locale),
+                ));
+                None
+            },
             RunEvent::PlaySound(sound_id)=>{packets.0.push(SessionEvent::PlaySound {sound_id});None},
             RunEvent::Notification(text)=>{
                 packets.0.push(SessionEvent::Notification {text:text.render(&|key|locale.label(key).to_owned())});None
@@ -778,6 +790,7 @@ mod tests {
                 1.0,
                 &Localization::english_for_tests(),
                 &crate::catalog::MenuCatalog::embedded(),
+                None,
                 None,
                 None,
             );

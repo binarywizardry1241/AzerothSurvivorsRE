@@ -102,6 +102,7 @@ impl Mechanics {
             self.fall_epoch = self.clock;
             self.record_party_fall();
             if !self.has_party() { self.freeze_world_movements(height); }
+            self.queue_party_fall_banner();
         }
     }
     /// Native item ownership is consumed during live ticks, independently of final

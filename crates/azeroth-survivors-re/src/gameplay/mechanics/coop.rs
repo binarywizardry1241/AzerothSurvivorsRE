@@ -210,6 +210,52 @@ mod tests {
     }
 
     #[test]
+    fn party_fall_banners_seat_the_affected_hero_and_notify_other_recipients_once() {
+        let mut game = pair();
+        game.with_party_hero(1, |hero| {
+            let point = hero.zone.center.into();
+            hero.damage_player(150.0, false, 0, point, 0.0, &mut TerrainFixture);
+        }).unwrap();
+        game.publish_party_fall_banners();
+        game.publish_party_fall_banners();
+        let banners = |events: Vec<RunEvent>| {
+            events.into_iter().filter_map(|event| match event {
+                RunEvent::PartyBanner(banner) => Some(banner),
+                _ => None,
+            }).collect::<Vec<_>>()
+        };
+        assert!(matches!(
+            banners(std::mem::take(&mut game.events)).as_slice(),
+            [PartyBanner::FriendDown(name)] if name == "Remote"
+        ));
+        let remote_banners = |game: &mut Mechanics| {
+            game.take_party_events().into_iter()
+                .flat_map(|(_, guid, events)| banners(events).into_iter().map(move |banner| (guid, banner)))
+                .collect::<Vec<_>>()
+        };
+        assert!(matches!(
+            remote_banners(&mut game).as_slice(), [(200, PartyBanner::Downed)]
+        ));
+
+        game.with_party_hero(1, |hero| hero.apply_party_revive(
+            azeroth_survivors_re::coop::game_party::Revived {
+                slot: 1, health: 60.0, immunity_spell: 1020, immunity_expires: 14.5,
+            },
+        )).unwrap();
+        assert!(matches!(
+            remote_banners(&mut game).as_slice(), [(200, PartyBanner::Revived)]
+        ));
+        assert!(game.leave_party_hero(1));
+        game.publish_party_fall_banners();
+        assert!(matches!(
+            banners(std::mem::take(&mut game.events)).as_slice(),
+            [PartyBanner::FriendDown(name)] if name == "Remote"
+        ));
+        assert!(!remote_banners(&mut game).iter()
+            .any(|(_, banner)| matches!(banner, PartyBanner::Downed)));
+    }
+
+    #[test]
     fn missing_card_request_keeps_each_heros_offer_and_progress() {
         let mut game = pair();
         for slot in [0, 1] {
@@ -958,6 +1004,13 @@ pub struct PartyInput {
     pub velocity: [f32; 2],
 }
 
+#[derive(Clone, Debug)]
+pub enum PartyBanner {
+    Downed,
+    FriendDown(String),
+    Revived,
+}
+
 #[derive(Debug)]
 struct RemoteHero {
     slot: u8,
@@ -988,6 +1041,7 @@ pub(super) struct CoopSimulation {
     pub(super) targets: HashMap<u64, u8>,
     local_revive: f32,
     events: Vec<(u8, u64, Vec<RunEvent>)>,
+    fall_notices: Vec<(u8, u64)>,
     replica: Option<RunProjection>,
     guest_notice_ready: bool,
     replica_feats: Option<azeroth_survivors_re::coop::replication::NativeCoopFeats>,
@@ -1080,6 +1134,45 @@ impl Mechanics {
         let feats = &mut self.boss_state.party_feats;
         if feats.initial_member_count != 0 {
             feats.first_fall.get_or_insert(self.clock);
+        }
+    }
+
+    pub(super) fn queue_party_fall_banner(&mut self) {
+        if !self.has_party() {
+            return;
+        }
+        if !self.abandoned {
+            self.events.push(RunEvent::PartyBanner(PartyBanner::Downed));
+        }
+        self.coop.fall_notices.push((self.coop.active_slot, self.player_guid));
+    }
+
+    /// Fan out each newly fallen hero once after borrowed heroes return to
+    /// the roster. The affected hero receives only its own Downed event.
+    pub(in crate::gameplay) fn publish_party_fall_banners(&mut self) {
+        for (source_slot, source_guid) in std::mem::take(&mut self.coop.fall_notices) {
+            let name = if source_slot == 0 {
+                &self.coop.local_name
+            } else {
+                let Some(source) = self.coop.remotes.iter()
+                    .find(|hero| hero.state.player_guid == source_guid)
+                else {
+                    continue;
+                };
+                self.events.push(RunEvent::PartyBanner(PartyBanner::FriendDown(
+                    source.name.clone(),
+                )));
+                &source.name
+            };
+            self.coop.events.extend(
+                self.coop.remotes.iter()
+                    .filter(|hero| hero.slot != source_slot)
+                    .map(|hero| (
+                        hero.slot,
+                        hero.state.player_guid,
+                        vec![RunEvent::PartyBanner(PartyBanner::FriendDown(name.clone()))],
+                    )),
+            );
         }
     }
 
@@ -2473,5 +2566,6 @@ impl Mechanics {
         self.events
             .push(RunEvent::PlayerValues(self.player_vital_fields().to_vec()));
         self.publish_player_auras();
+        self.events.push(RunEvent::PartyBanner(PartyBanner::Revived));
     }
 }

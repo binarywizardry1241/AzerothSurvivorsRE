@@ -314,6 +314,7 @@ impl Mechanics {
         }
         self.publish_player_damage(applied.amount);
         self.events.push(RunEvent::PlayerDied);
+        self.queue_party_fall_banner();
     }
     fn publish_player_damage(&mut self, amount: f32) {
         self.events.push(RunEvent::PlayerDamage {
