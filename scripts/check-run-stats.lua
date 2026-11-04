@@ -3,7 +3,7 @@ local execute = loadstring or load;
 table.getn = table.getn or function(t) return #t; end;
 getglobal = function(name) return _G[name]; end;
 setglobal = function(name, value) _G[name] = value; end;
-GREEN_FONT_COLOR_CODE, FONT_COLOR_CODE_CLOSE = "<green>", "</green>";
+GREEN_FONT_COLOR_CODE, GRAY_FONT_COLOR_CODE, FONT_COLOR_CODE_CLOSE = "<green>", "<gray>", "</color>";
 NORMAL_FONT_COLOR = { r = 1, g = 0.8, b = 0.2 };
 local created, stock, events = 0, 0, 0;
 local function frame(name)
@@ -45,7 +45,7 @@ PaperDollFrame_OnEvent = function() stock = stock + 1; end;
 GameTooltip = frame("GameTooltip");
 function GameTooltip:SetOwner(owner, anchor) self.owner = owner; assert(anchor == "ANCHOR_RIGHT"); end;
 function GameTooltip:AddLine(text) self.line = text; end;
-local f = assert(io.open("docs/analysis/evidence/0.105.0/run-stats/character-pane.lua", "rb"));
+local f = assert(io.open("docs/analysis/evidence/0.139.1/paperdoll-run-stats.lua", "rb"));
 local source = f:read("*a"); f:close(); assert(execute(source, "native-character-pane"))();
 PaperDollFrame_SetStats("player"); assert(stock == 1);
 this = PaperDollFrame; PaperDollFrame_OnLoad(); assert(stock == 2 and events == 1);
@@ -61,6 +61,11 @@ assert(CharacterStatFrame3StatText.text == "+25%" and not CharacterResistanceFra
 assert(created == 18 and AZSMoreStats.height == 180 and AZSMoreStatsTitle.text == "Run Stats");
 for i = 1,17 do assert(AZS_MORE_ROWS[i].shown == (i <= 10)); end;
 assert(CharacterStatFrame1.azsText:find("Worn gear: +20 health", 1, true));
+assert(not CharacterArmorFrame.azsText:find("Stormguard", 1, true));
+AZS_STATS.bwk, AZS_STATS.bwa = 0.15, 1; AZS_Update();
+assert(CharacterArmorFrame.azsText:find("<green>Stormguard: +15% Damage Reduction (Active)</color>", 1, true));
+AZS_STATS.bwa = 0; AZS_Update();
+assert(CharacterArmorFrame.azsText:find("<gray>Stormguard: +15% Damage Reduction (Inactive)</color>", 1, true));
 -- Each conditional row admits any nonzero value, including a negative bonus.
 for _, key in ipairs({"big", "exe", "cc", "dotd", "shd", "auto", "pet"}) do
     AZS_STATS[key] = -0.1; AZS_Update(); AZS_STATS[key] = 0;
@@ -78,4 +83,4 @@ PaperDollFrame_OnEvent("CHAT_MSG_ADDON"); assert(AZS_STATS.hp == 123 and Charact
 PaperDollFrame:Show(); PaperDollFrame_SetStats("player"); assert(CharacterStatFrame1StatText.text == "123");
 arg1 = "OTHER"; PaperDollFrame_OnEvent("CHAT_MSG_ADDON"); assert(stock == 3);
 PaperDollFrame_OnEvent("UNIT_STATS", "player"); assert(stock == 4);
-print("Passed exact native Run Stats Lua: 12 stock rows, 17 extra rows, conditional signs/layout/reuse, gear tooltips, player/pet routing and hidden-pane updates; stub host only");
+print("Passed exact native Run Stats Lua: 12 stock rows, 17 extra rows, gear and Stormguard tooltips, player/pet routing and hidden-pane updates; stub host only");

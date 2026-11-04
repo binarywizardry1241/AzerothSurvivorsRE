@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
@@ -14,10 +15,65 @@ START = 0x146BAFFD0
 RETAINED = ROOT / "docs/analysis/evidence/0.105.0/run-stats"
 
 
+def check_current():
+    from coverage_common import latest_target, target_bytes
+
+    target = latest_target(verify=True)
+    assert target["version"] == "0.141.0"
+    assert target["sha256"] == "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+    data = target_bytes(target)
+    pe = load_script("pe", ROOT / "scripts/inventory-executable.py").PE(data)
+
+    def read(address, size):
+        offset = pe.rva_offset(address - pe.image_base)
+        return data[offset:offset + size]
+
+    script_path = ROOT / "docs/analysis/evidence/0.139.1/paperdoll-run-stats.lua"
+    script = read(0x1476F0A63, 9167)
+    assert script_path.read_bytes() == script
+    assert read(0x1476F3ACB, 37) == rb"Interface\FrameXML\PaperDollFrame.lua"
+    assert read(0x145DDBB58, 6) == bytes.fromhex("41 b8 cf 23 00 00")
+    label_table = read(0x1476F3608, 76 * 16)
+    assert hashlib.sha256(label_table).hexdigest() == "1c9b4bf0cbbebe062add1a2899bf1ce5fa3dca49f7f518ee94d53985e2aac384"
+    native_labels = [read(pointer, length).decode()
+                     for pointer, length in struct.iter_unpack("<QQ", label_table)]
+
+    src = ROOT / "crates/azeroth-survivors-re/src/gameplay"
+    run_stats = (src / "client/run_stats.rs").read_text()
+    bootstrap = (src / "client/addon_bootstrap.rs").read_text()
+    client = (src / "client.rs").read_text()
+    extras = run_stats.split("const EXTRA_LABELS:", 1)[1].split("];", 1)[0]
+    source_labels = json.loads((RETAINED / "manifest.json").read_text())["labels"]
+    source_labels += re.findall(r'"([^"\n]+)"', extras)
+    assert len(set(native_labels)) == len(native_labels) == len(source_labels) == 76
+    assert set(native_labels) == set(source_labels)
+    assert script_path.name in run_stats and r"Interface\FrameXML\PaperDollFrame.lua" in run_stats
+    assert "extension.framexml_appends.push((PATH.into(), payload))" in run_stats
+    assert "run_stats::configure(&mut extension, locale)" in client
+    assert "run_stats::configure(&mut extension, &locale)" in client
+    assert "script_postlude" not in client and "script_postlude" not in bootstrap
+
+    locales = set()
+    for code_ptr, code_len, _, _, json_ptr, json_len, _ in struct.iter_unpack(
+            "<7Q", read(0x147AE1870, 14 * 0x38)):
+        code = read(code_ptr, code_len).decode()
+        native = json.loads(read(json_ptr, json_len))
+        rebuilt = json.loads((ROOT / f"crates/azeroth-survivors-re/assets/locales/{code}.json").read_text())
+        assert all(rebuilt[label] == native[label] for label in native_labels), code
+        locales.add(code)
+    assert len(locales) == 14
+    print("Verified 0.141.0 PaperDoll Lua, 76 labels, 14 locales and named core append; static only")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--check", action="store_true")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--check", action="store_true")
+    mode.add_argument("--check-current", action="store_true")
     args = parser.parse_args()
+    if args.check_current:
+        check_current()
+        return
     data = TARGET.read_bytes()
     assert hashlib.sha256(data).hexdigest() == SHA, "Selected target changed"
     pe_module = load_script("pe", ROOT / "scripts/inventory-executable.py")

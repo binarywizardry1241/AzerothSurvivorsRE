@@ -72,7 +72,7 @@ addon API span and their occurrences count once.
 | `0x73a90c3` / 271 | [StaticPopup death wrapper](evidence/0.115.0/death-popup.lua), installed by the core append path. |
 | `0x7ae141a` / 28,656 | [Main addon API](evidence/0.140.0/embedded-api.lua). The [rebuilt extension](../../crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs) composes recovered sections into the WorldStateFrame append. |
 | `0x76dfef4` / 50,637 | [Meter API](evidence/0.139.1/meter-api.lua), including the five textual IDs at ordinals 2–6. The `AZS_ML_QUERY` and `AZS_ML_LOADOUT` Lua tables use value 1 as request defaults. The [typed producer and publication](detailed-meter-0.141.0.md#rebuilt-authority-and-replay) are connected under [#75](../verification-needed.md#gap-75). |
-| `0x76ef063` / 9,167 | [PaperDoll Lua](evidence/0.139.1/paperdoll-run-stats.lua). [The rebuilt character pane](../../crates/azeroth-survivors-re/src/gameplay/client/run_stats.rs) incorporates its Stormguard helper in the retained run-stats postlude. Byte identity of the native span does not establish whole-pane source equivalence. |
+| `0x76ef063` / 9,167 | [PaperDoll Lua](evidence/0.139.1/paperdoll-run-stats.lua). [The rebuilt character pane](../../crates/azeroth-survivors-re/src/gameplay/client/run_stats.rs) installs the complete localized payload with the [stock FrameXML chunk](#paperdoll-core-file-and-localized-gear-prefix). |
 | `0x7ae478c` / 1,810 and `0x7ae4e9e` / 830 | [Combat text API](evidence/0.139.2/combat-text/event-projection-api.lua) and [frame handlers](evidence/0.139.2/combat-text/frame-handlers.lua), appended by the rebuilt extension. |
 
 Outside those spans, the other two textual IDs are the `bagId = 0`
@@ -126,10 +126,46 @@ result under [#181](../verification-needed.md#gap-181).
 | 3 | The bytes occur within the saved-account-name migration diagnostic at `0x146726f70`. `adopt_legacy_account` has the corresponding message and CVar path. |
 | 5 | The resolver `0x145eef4b0` checks the 14-byte `WOW_ROGUE_SAVE` first and returns a present override. Otherwise it calls the base-directory helper at `0x145eef506` and appends the 14-byte `characters.txt` from `0x147aee27d`. [save.rs](../../crates/azeroth-survivors-re/src/save.rs) uses the same priority. |
 
-The bounded classification identifies no new gameplay or persistence source
-defect. The full inventory remains intact. Unresolved type layouts,
+The binding and persistence classification identifies no new source defect.
+The full inventory remains intact. Unresolved type layouts,
 registration lifetimes, resource joins and dynamic consumers remain under
 their individual findings and #41.
+
+### PaperDoll core file and localized gear prefix
+
+Resource selector `Q41-I01:resource_path:224` reaches the selected
+PaperDoll patch at `0x145ddba80..0x145ddbc17`. The startup call at
+`0x145e80eee` and the tail jump at `0x145e7fece` reach the same patch.
+It reads `Interface\FrameXML\PaperDollFrame.lua` at `0x145ddbaad`,
+then localizes the exact 9,167-byte payload at `0x1476f0a63` via the
+call at `0x145ddbb61`. The packed `c0 c0 00` format program at
+`0x1476f3ac8` combines the stock bytes with the localized extension.
+`0x145ddbbee` publishes the combined bytes through the core-file
+override interface at `0x146244270`, under the same 37-byte path.
+If the stock read fails, the patch logs the failure and skips publication.
+
+The selected `patch.MPQ` supplies `FrameXML.toc` row 54,
+`PaperDollFrame.xml`. Its line 3 includes `PaperDollFrame.lua` and its
+line 1047 calls `PaperDollFrame_OnLoad`. The rebuilt postlude previously
+ran after third-party addon loading and after stock OnLoad. The
+[character pane](../../crates/azeroth-survivors-re/src/gameplay/client/run_stats.rs)
+now configures the named core append on initial setup and locale changes.
+The normal nested-script load installs the wrappers before the frame's
+OnLoad and before addons, including on ReloadUI.
+
+The localizer takes 76 16-byte label descriptors at `0x1476f3608`. The
+set contains the 73 retained labels and both Stormguard variants, plus
+`Worn gear: `. The rebuilt tooltip now uses its translated prefix, such
+as `Équipement porté : ` in French. All 76 labels match the embedded
+catalogs across 14 languages. This extends [#20](../verification-needed.md#gap-20).
+
+The Ghidra 12.1.4 operation used the exact 407-byte unwind slice at file
+`0x5ddae80`, SHA-256 `954c893701be86ac79ecf940a3df8b45b51c0ccd14762930b318efe73859c11b`.
+The verified result SHA-256 is
+`e86afa64bcc616a8913d5461d942827e180a1c0defe7e0bb1c3a7c2252d52a7d`.
+The static PE/source check is `python3 -B scripts/recover-run-stats.py --check-current`.
+`lua scripts/check-run-stats.lua` executes the retained Lua against a
+stub host. Actual VM, addon load, rendering and parity checks remain open.
 
 ### Native query receipts
 

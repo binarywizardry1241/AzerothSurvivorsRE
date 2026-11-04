@@ -126,6 +126,7 @@ impl Plugin for ClientBridgePlugin {
         app.init_resource::<crate::localization::Localization>();
         let mut extension = addon_bootstrap::extension();
         let locale = app.world().resource::<crate::localization::Localization>();
+        run_stats::configure(&mut extension, locale);
         glue_strings::configure(&mut extension, locale);
         addon_bootstrap::meter_language(&mut extension, locale.code());
         extension.talent_toggle_counter = Some("AZS_TALENT_TOGGLES".into());
@@ -228,7 +229,7 @@ fn sync_to_client(
     extension.combat_text_run = session.mechanics.as_ref().filter(|_| menu.in_run)
         .map(|_| session.identity);
     if state.stats_locale != Some(locale.code()) {
-        extension.script_postlude = run_stats::source(Some(&locale));
+        run_stats::configure(&mut extension, &locale);
         glue_strings::configure(&mut extension, &locale);
         addon_bootstrap::meter_language(&mut extension, locale.code());
         state.stats_locale = Some(locale.code());

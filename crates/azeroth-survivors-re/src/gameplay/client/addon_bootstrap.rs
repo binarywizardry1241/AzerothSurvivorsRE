@@ -115,7 +115,6 @@ pub(super) fn extension() -> LocalClientExtension {
         world_anchor_frame_callback: Some("AZS_WorldAnchorFrame"),
         combat_text_anchors: true,
         player_position_samples: true,
-        script_postlude: super::run_stats::source(None),
         // The character-pane owns this parser. Keep it available before the
         // WorldStateFrame API registers its CHAT_MSG_ADDON handler.
         script_prelude: STATS_PARSER.into(),
