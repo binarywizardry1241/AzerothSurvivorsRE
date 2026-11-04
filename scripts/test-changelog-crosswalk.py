@@ -247,6 +247,19 @@ class HistoricalCrosswalk(unittest.TestCase):
         self.assertEqual(ledger['summary']['applied_ownership_reviews'], 0)
         self.assertEqual(ledger['generated_from']['reviews']['historical_unapplied_reviews'][0]['application'], 'historical_unapplied')
 
+    def test_changed_source_keeps_claim_pending_and_original_review_intact(self):
+        fixture = self.ownership_fixture()
+        fixture['review']['status'] = 'source_connected'
+        self.write('crates/live.rs', '// edited after the review\n')
+        ledger = self.ownership_ledger(fixture)
+        entry = ledger['entries'][0]
+        self.assertEqual(entry['status'], 'pending_claim_recovery')
+        self.assertEqual(entry['source_refs'], [])
+        self.assertEqual(entry['stale_source_review'], {
+            'previous_status': 'source_connected', 'changed_refs': ['crates/live.rs']})
+        self.assertEqual(ledger['generated_from']['reviews']['stale_source_reviews'], 1)
+        self.assertEqual(json.loads(fixture['reviews'].read_text())['reviews'][0], fixture['review'])
+
     def test_retired_historical_script_requires_exact_git_source_and_stays_unapplied(self):
         fixture = self.ownership_fixture(historical=True)
         name, raw = 'scripts/retired.py', b'# exact historical source\n'

@@ -314,6 +314,8 @@ def apply_reviews(entries, path, target, system_ids):
     recovery also needs native_contract and target-bound evidence. Static checks
     add [{command, result: "passed", evidence_ref}]. Runtime/parity statuses are
     intentionally unavailable. Old-target reviews remain unapplied in the store.
+    A current review with changed source retains its original hashes and remains
+    pending in the generated ledger until its source can be reassessed.
     A pending_claim_recovery row assigns ownership only: target-bound evidence,
     nonempty systems/gaps and a rationale are required, while native contracts
     and static-check certification are forbidden. It never connects source.
@@ -324,6 +326,7 @@ def apply_reviews(entries, path, target, system_ids):
         raise ValueError("review store requires schema_version 1 and a reviews array")
     by_id = {entry["id"]: entry for entry in entries}
     seen, historical, applied, ownership_applied = set(), [], [], []
+    stale_source_reviews = 0
     ownership_seen = False
     allowed = {"source_connected", "native_recovered", "static_checked", "pending_claim_recovery"}
     for review in store["reviews"]:
@@ -397,7 +400,8 @@ def apply_reviews(entries, path, target, system_ids):
                 changed_refs.append(name)
             if ref in evidence and target_hash.encode() in data.lower():
                 bound_evidence = True
-        if current and changed_refs:
+        evidence_names = {ref.partition("#")[0] for ref in evidence}
+        if current and evidence_names.intersection(changed_refs):
             raise ValueError(f"review reference bytes changed; reassess {claim_id}: {changed_refs}")
         if status in {"native_recovered", "static_checked"}:
             contract = review.get("native_contract")
@@ -422,6 +426,15 @@ def apply_reviews(entries, path, target, system_ids):
                                "application": "historical_unapplied", "changed_refs": changed_refs})
             continue
         entry = by_id[claim_id]
+        if changed_refs:
+            # Keep the original review and hashes as provenance. Changed source
+            # cannot carry forward its connection or static-check status.
+            entry.update(systems=systems, gap_ids=gaps or entry["gap_ids"],
+                         mapping_basis="stale_source_review",
+                         stale_source_review={"previous_status": status, "changed_refs": sorted(set(changed_refs))},
+                         limitations="Retained review needs source reassessment. Its current connection and checks are pending.")
+            stale_source_reviews += 1
+            continue
         if ownership_only:
             entry.update(status="pending_claim_recovery", source_refs=[], evidence_refs=evidence, systems=systems,
                          gap_ids=gaps, mapping_basis="individual_target_ownership_lead",
@@ -448,6 +461,8 @@ def apply_reviews(entries, path, target, system_ids):
                 "historical_unapplied_reviews": historical}
     if ownership_seen:
         identity["applied_ownership_reviews"] = len(ownership_applied)
+    if stale_source_reviews:
+        identity["stale_source_reviews"] = stale_source_reviews
     return identity
 
 
