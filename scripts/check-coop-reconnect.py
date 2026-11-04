@@ -214,6 +214,14 @@ def source_checks():
     dispatch = directory.split('DirectoryResponse::Number { tag: 25, value } => {', 1)[1].split('\n                    }', 1)[0]
     assert 'service_peer_departed(' in dispatch and '&service.relay_protocol' in dispatch
     assert dispatch.index('drain_service_relay(') < dispatch.index('service_peer_departed(')
+    receive_dispatch = directory.split('DirectoryResponse::Bytes { value, bytes } => {', 1)[1].split(
+        'DirectoryResponse::Structured29 {', 1)[0]
+    assert (receive_dispatch.index('service_guest_receive(')
+            < receive_dispatch.index('service_host_receive(')
+            < receive_dispatch.index('drain_service_relay('))
+    assert receive_dispatch.rstrip().endswith('drain_service_relay(&mut service);\n                    }')
+    assert (directory.index('DirectoryResponse::Bytes { value, bytes } => {')
+            < directory.index('poll_secondary(&mut service'))
     send = session.split('fn send(&mut self, payload: &[u8])', 1)[1].split('fn receive(', 1)[0]
     assert 'let can_send = if *guest' in send and 'peer.alive' in send
     assert send.index('if !can_send') < send.index('protocol.lock().unwrap().queue')

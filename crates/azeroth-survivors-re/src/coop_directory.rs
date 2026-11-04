@@ -546,6 +546,9 @@ fn poll(
                                 &bytes,
                             );
                         }
+                        // Native receive submits replies before the next service
+                        // event can replace or close the selected transport.
+                        drain_service_relay(&mut service);
                     }
                     DirectoryResponse::Structured29 {
                         strings,

@@ -62623,6 +62623,22 @@
     },
     {
       "id": "custom-game-coop-relay",
+      "gap_213_source_review": {
+        "native_evidence_target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
+        "installed_target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "current_applicability": "pending",
+        "source_status": "source_static_repaired",
+        "evidence_refs": [
+          "docs/analysis/relay-load-0.127.0.md",
+          "docs/analysis/evidence/0.127.0/relay-load/manifest.json"
+        ],
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/coop_directory.rs"
+        ],
+        "scope": "Guest and host relay receive replies submit before the next service event can replace the selected worker. The source change uses retained 0.127.0 native evidence. Applicability to installed 0.139.2 and actual reconnect delivery remain unverified.",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "title": "Co-op relay connection transport",
       "original_path": "crates/wenilla-rogue/src/coop/relay.rs",
       "native_path_evidence": [

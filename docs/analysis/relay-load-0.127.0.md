@@ -94,6 +94,26 @@ interaction. Their independently owned recovery/provenance limits remain.
 The externally applied service-capacity claim under **#257** remains separate
 from the client artifact and this source repair.
 
+### Reconnect reply ordering (#213)
+
+The retained pump calls the receiver for guest and host traffic at
+`145cb7ed7` and `145cb9161`. Within that receive call, the control/missing-range
+reply and the requested-payload loop submit to the shared writer `145cb76a0`
+at `145cbdc3e` and `145cbdcfe`. The historical
+[0.123.0 control-reply proof](coop-reconnect-0.123.0.md#permanent-departure-and-source-repair)
+also binds direct submission before the next event.
+
+The directory response handler now drains its staged inner receive replies
+after either guest or host receipt, before handling another service event or
+polling selected-secondary retry. Deferring those replies to the frame's final
+drain could submit an old worker's reply to its replacement and interleave it
+with the new connection's authentication and control exchange. Retry admission,
+pending replay and the fresh-party reset keep their existing source owners.
+This source repair uses the retained 0.127.0 contract. Applicability to the
+installed 0.139.2 SHA-256
+`0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`
+and actual socket delivery remain unverified.
+
 ## Static checks and limits
 
 Run the existing checker with the current proof explicitly:
