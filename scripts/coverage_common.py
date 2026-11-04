@@ -204,6 +204,24 @@ def platform_descriptor_versions(data, *, display=False, updater=False, details=
                 value = slice_at(end + 1)
                 if value is not None and value[0] == cursor and cursor + len(value[1]) == end:
                     record(value[1], message_at, end + 17, end + 1, "mapped_manual_update_version_slice")
+                    continue
+                # A separate updater literal can be referenced by an aligned
+                # slice following the zero-padded message.
+                descriptor = (cursor + 7) & ~7
+                if descriptor == cursor or data[cursor:descriptor] != bytes(descriptor - cursor):
+                    continue
+                descriptor_va = address(descriptor)
+                if descriptor_va is None or address(descriptor + 15) != descriptor_va + 15:
+                    continue
+                value = slice_at(descriptor)
+                if value is None:
+                    continue
+                start, version = value
+                auto_update_key = b"WOW_ROGUE_UPDATE_AUTO"
+                key_at = start + len(version)
+                if data[key_at:key_at + len(auto_update_key)] == auto_update_key:
+                    record(version, message_at, descriptor + 16, descriptor,
+                           "mapped_manual_update_remote_version_slice")
             return versions
         if display:
             # The version display is independently stored from the updater.

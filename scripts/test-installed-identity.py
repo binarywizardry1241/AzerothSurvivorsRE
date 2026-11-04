@@ -67,6 +67,29 @@ class VersionMarkers(unittest.TestCase):
         self.assertEqual(display,[dict(version='0.139.0',file_offset=1024,byte_count=33,
                                       descriptor_offset=1031,kind='mapped_version_display_slice')])
         self.assertEqual(updater[0]['descriptor_offset'],start+8)
+    def test_aligned_manual_update_slice_to_separate_updater_literal(self):
+        image, start = self.manual_update_image(version=b'0.140.0')
+        marker = image[1536:start]
+        image[1536:1540] = bytes(4)
+        image[1540:start + 4] = marker
+        start += 4
+        descriptor = (start + 7) & ~7
+        literal_at = 2048
+        literal = b'0.140.0WOW_ROGUE_UPDATE_AUTO'
+        image[literal_at:literal_at + len(literal)] = literal
+        image[start:descriptor + 16] = bytes(descriptor - start) + struct.pack(
+            '<QQ', 0x140001000 + literal_at - 512, 7
+        )
+        self.assertEqual(installed_version(image), '0.140.0')
+        self.assertEqual(platform_descriptor_versions(image, updater=True, details=True), [
+            dict(version='0.140.0', file_offset=1540, byte_count=descriptor + 16 - 1540,
+                 descriptor_offset=descriptor, kind='mapped_manual_update_remote_version_slice')
+        ])
+        for offset in (start, descriptor, descriptor + 8, literal_at + 6, literal_at + 7):
+            with self.subTest(offset=offset), self.assertRaises(ValueError):
+                changed = image.copy()
+                changed[offset] ^= 1
+                installed_version(changed)
     def test_manual_update_and_display_slices_are_fail_closed(self):
         image,_=self.manual_update_image(display_version=b'0.138.0')
         with self.assertRaises(ValueError):installed_version(image)
