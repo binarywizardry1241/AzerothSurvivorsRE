@@ -7,7 +7,8 @@ import fcntl
 import os
 from pathlib import Path
 
-from shared_program_archives import DESCRIPTOR, ROOT, archive_program, ensure_program_available, list_archives, retire_historical_program
+from shared_program_archives import (DESCRIPTOR, ROOT, archive_program, clean_archived_program_scratch,
+                                     ensure_program_available, list_archives, retire_historical_program)
 
 
 def queued_requests(value):
@@ -126,6 +127,40 @@ def archive_many(projects, root=ROOT, progress=None):
             sum(r.get("reclaimed_allocated_bytes_estimate", 0) for r in completed)}
 
 
+def sweep_ready_raw():
+    """Retry deferred ready raw Programs and remove retired/archived runner scratch."""
+    base = ROOT / "runtime/analysis/programs"
+    result = {"newly_archived": 0, "reclaimed_allocated_bytes": 0, "deferred": []}
+    for project in idle_slice_programs(ROOT):
+        workspace = project.parent / "workspace.json"
+        ready = project.parent / "ready.json"
+        if not workspace.is_file() or not json.loads(workspace.read_text()).get("identity", {}).get("raw_binary"):
+            continue
+        try:
+            if not ready.is_file() or not json.loads(ready.read_text()).get("ready"):
+                result["reclaimed_allocated_bytes"] += clean_archived_program_scratch(project, temporary_only=True)
+                continue
+            row = archive_program(project, automatic_cache=True)
+            result["newly_archived"] += not row.get("already_archived", False)
+            result["reclaimed_allocated_bytes"] += row["reclaimed_allocated_bytes_estimate"]
+        except (OSError, ValueError) as error:
+            result["deferred"].append({"project": project.relative_to(ROOT).as_posix(), "reason": str(error)})
+    for descriptor in sorted(base.rglob(DESCRIPTOR)):
+        project = descriptor.parent
+        runtime = project.parent / "runtime"
+        if project.name != "project" or project.resolve() != project or not runtime.is_dir():
+            continue
+        if (not (runtime / "tmp").exists()
+                and not any(runtime.glob("config/*-ghidra/ghidra_*_PUBLIC/osgi"))
+                and not any(project.parent.glob("attempts/*/bridge-stdout.log"))):
+            continue
+        try:
+            result["reclaimed_allocated_bytes"] += clean_archived_program_scratch(project)
+        except (OSError, ValueError) as error:
+            result["deferred"].append({"project": project.relative_to(ROOT).as_posix(), "reason": str(error)})
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
@@ -137,6 +172,7 @@ def main():
     mode.add_argument("--historical", action="store_true", help="List eligible historical Program locations")
     mode.add_argument("--idle-slices", action="store_true", help="List isolated raw/retained Programs eligible for cold storage")
     mode.add_argument("--archive-idle-slices", action="store_true", help="Archive inactive isolated raw/retained Programs")
+    mode.add_argument("--sweep-ready-raw", action="store_true", help="Retry ready raw archives and remove idle headless scratch")
     parser.add_argument("--automatic-cache", action="store_true", help="Single Program cache: retire unreferenced older automatic generations")
     parser.add_argument("--defer-if-queued", help="Keep a raw Program hot while live matching requests are queued")
     args = parser.parse_args()
@@ -150,6 +186,8 @@ def main():
                   else archive_program(args.archive, automatic_cache=args.automatic_cache))
     elif args.retire_historical:
         result = retire_historical()
+    elif args.sweep_ready_raw:
+        result = sweep_ready_raw()
     elif args.archive_historical or args.archive_idle_slices:
         result = archive_many(idle_slice_programs(ROOT) if args.archive_idle_slices else historical_programs(ROOT),
                               progress=lambda record: print(json.dumps(record), flush=True))

@@ -179,6 +179,25 @@ class ProgramArchiveTests(unittest.TestCase):
         self.assertFalse((moved / "Saved.rep").exists())
         self.assertEqual(programs.list_archives(self.root), [])
 
+    def test_automatic_archive_removes_runner_scratch_but_keeps_query_receipts(self):
+        runtime = self.project.parent / "runtime"
+        temporary = runtime / "tmp" / "ghidra.cache"
+        temporary.parent.mkdir(parents=True)
+        temporary.write_bytes(b"temporary provider bytes")
+        attempts = self.project.parent / "attempts"
+        completed = attempts / "completed"
+        failed = attempts / "failed"
+        completed.mkdir(parents=True)
+        failed.mkdir()
+        (completed / "bridge-stdout.log").write_text("REPORT: Save succeeded for processed file:")
+        (completed / "prepare.json").write_text("{}")
+        (failed / "bridge-stdout.log").write_text("ERROR analysis did not finish")
+        self.automatic()
+        self.assertFalse(temporary.exists())
+        self.assertFalse((completed / "bridge-stdout.log").exists())
+        self.assertTrue((completed / "prepare.json").is_file())
+        self.assertTrue((failed / "bridge-stdout.log").is_file())
+
     def test_external_alias_keeps_previous_automatic_archive(self):
         previous = self.automatic()
         descriptor = json.loads((self.project / programs.DESCRIPTOR).read_text())
