@@ -17,7 +17,7 @@ stable questions, original selectors and resolved historical classifications.
 | `systems[id=custom-game-game-scripts-mod]`, `systems[id=custom-game-game-scripts-ras]`, `systems[id=custom-game-game-scripts-krastinov]` | Under [#313](../CURRENT-STATE.md#gap-313), trace scheduler admission, typed script state and warning and hit consumers from the recovered encounter descriptors. |
 | `systems[id=custom-game-game-kill-command]`, `systems[id=custom-game-game-attacks]` | [#316](../verification-needed.md#gap-316) and [#318](../verification-needed.md#gap-318) record the connected Kill Command and Rogue reach paths. The packed grid helper's wider callers remain under [#41](../CURRENT-STATE.md#gap-41). |
 | Preferred VA `0x14655bb28`, Lua VA `0x147aec889` | Resolve world-anchor callable slots and authoritative downed-party position/reset edges under [#317](../CURRENT-STATE.md#gap-317) and [#63](../CURRENT-STATE.md#gap-63). |
-| Host Join gate `0x145ed0ef1`, guest serializer `0x146055a20` | Use [#163](../CURRENT-STATE.md#gap-163) for the confirmed source difference and #63 for other protocol 12 packet arms and service lifetime correspondence. |
+| Host Join gate `0x145ed0ef1`, guest serializer `0x146055a20` | Use [#163](../verification-needed.md#gap-163) for the confirmed source difference and #63 for other protocol 12 packet arms and service lifetime correspondence. |
 
 Whole-image structural observation, bounded behavior, source correspondence
 and parity remain separate. Preserve all six semantic discovery fronts where

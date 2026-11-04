@@ -168,6 +168,12 @@ def verify_source(proof, allow_pending):
     directory = directory_path.read_text()
     assert ('version: azeroth_survivors_re::coop::server_party::GAME_VERSION.into(),'
             in directory.split('worker.submit(ClientMessage::Handshake {', 1)[1].split('});', 1)[0])
+    if 'directory_protocol' in proof:
+        service = (SOURCE.parent / 'service.rs').read_text()
+        handshake = service.split('Self::Handshake { version, staff_key } => {', 1)[1].split('}', 1)[0]
+        assert re.sub(r'\s+', ' ', handshake).strip() == (
+            f"out.push(1); out.extend_from_slice(&{proof['directory_protocol']}u32.to_le_bytes()); "
+            "string(&mut out, version)?; string(&mut out, staff_key)?; out.push(1);")
     connected = version == proof['required_version']
     if not connected:
         assert allow_pending, ('source GAME_VERSION pending', version, proof['required_version'])

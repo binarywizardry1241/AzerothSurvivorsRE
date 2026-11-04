@@ -7,7 +7,7 @@ Its cooperative Join requires protocol **12** and the exact seven bytes
 directory protocol **3**. The reconstructed Join and directory routes still
 use the version from the [0.139.2 repair](coop-admission-0.139.2.md), which
 also supplies Join protocol **9**. [Findings #63](../CURRENT-STATE.md#gap-63)
-and [#163](../CURRENT-STATE.md#gap-163) own the resulting source difference.
+and [#163](../verification-needed.md#gap-163) own the resulting source difference.
 
 ## Host gate and outgoing messages
 

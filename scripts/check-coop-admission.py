@@ -26,6 +26,12 @@ def verify_dispatch_owner(proof, image, pe):
         assert owner['ghidra']['evidence_id'] == shared['evidence_id']
         start, end = int(owner['start'], 16), int(owner['end_exclusive'], 16)
         return {**owner, 'virtual_address': owner['start'], 'byte_count': end - start}
+    if proof.get('owner_binding') == 'pe-runtime-function':
+        owner = proof['native_owner']
+        start = int(owner['virtual_address'], 16) - pe.image_base
+        end = int(owner['end_exclusive'], 16) - pe.image_base
+        assert any((first, last) == (start, end) for first, last, _ in pe.functions())
+        return owner
     query = proof['query']
     native = json.loads(project_path(query['result']['path']).read_text())['structuredContent']
     verify_native_query_subject(ROOT, native, query, proof['target'], image=image, pe=pe)

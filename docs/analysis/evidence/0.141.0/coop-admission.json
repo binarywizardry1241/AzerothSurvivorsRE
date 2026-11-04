@@ -1,0 +1,227 @@
+{
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "owner_binding": "pe-runtime-function",
+  "required_version": "0.141.0",
+  "required_protocol": 13,
+  "directory_protocol": 3,
+  "success_continuation": "0x145ecb0fb",
+  "version_rejection": "0x145ecb354",
+  "native_owner": {
+    "role": "host Join dispatcher",
+    "virtual_address": "0x145ecaf20",
+    "end_exclusive": "0x145ecbbc9",
+    "file_offset": "0x5eca320",
+    "byte_count": 3241,
+    "sha256": "5697e43c7bf5f30f8114b27d96b0e50f243605821cef1c7784b512168011b2d6"
+  },
+  "admission_range": {
+    "role": "exact Join admission",
+    "virtual_address": "0x145ecb0c1",
+    "end_exclusive": "0x145ecb0fb",
+    "file_offset": "0x5eca4c1",
+    "byte_count": 58,
+    "sha256": "8b7fa465c35189cfb79ed26184cb801ff27aa46d36d6811169e22fa19a8cfd89",
+    "bytes_hex": "837a380d4c8d350309c201bb1f0000000f857d02000048837a18070f8572020000b8302e3134413302b934312e3041334a0309c10f8559020000",
+    "instructions": [
+      {
+        "address": "0x145ecb0c1",
+        "bytes_hex": "837a380d"
+      },
+      {
+        "address": "0x145ecb0c5",
+        "bytes_hex": "4c8d350309c201"
+      },
+      {
+        "address": "0x145ecb0cc",
+        "bytes_hex": "bb1f000000"
+      },
+      {
+        "address": "0x145ecb0d1",
+        "bytes_hex": "0f857d020000"
+      },
+      {
+        "address": "0x145ecb0d7",
+        "bytes_hex": "48837a1807"
+      },
+      {
+        "address": "0x145ecb0dc",
+        "bytes_hex": "0f8572020000"
+      },
+      {
+        "address": "0x145ecb0e2",
+        "bytes_hex": "b8302e3134"
+      },
+      {
+        "address": "0x145ecb0e7",
+        "bytes_hex": "413302"
+      },
+      {
+        "address": "0x145ecb0ea",
+        "bytes_hex": "b934312e30"
+      },
+      {
+        "address": "0x145ecb0ef",
+        "bytes_hex": "41334a03"
+      },
+      {
+        "address": "0x145ecb0f3",
+        "bytes_hex": "09c1"
+      },
+      {
+        "address": "0x145ecb0f5",
+        "bytes_hex": "0f8559020000"
+      }
+    ]
+  },
+  "producer_ranges": [
+    {
+      "role": "guest Join constructor and send",
+      "virtual_address": "0x145ec729c",
+      "end_exclusive": "0x145ec73e6",
+      "file_offset": "0x5ec669c",
+      "byte_count": 330,
+      "sha256": "059e29bb606e64bcc49d1bb29d1597fdc45afb74966e3864a43080093b3d821c",
+      "required_instructions": {
+        "0x145ec729c": "mov ecx, 7",
+        "0x145ec72be": "mov dword ptr [rax + 3], 0x302e3134",
+        "0x145ec72c5": "mov dword ptr [rax], 0x34312e30",
+        "0x145ec7369": "mov dword ptr [rbp - 0x20], 0xd",
+        "0x145ec737c": "mov qword ptr [rbp - 0x40], 7",
+        "0x145ec73a9": "call 0x14604fa80",
+        "0x145ec73e2": "call qword ptr [rax + 0x18]"
+      }
+    },
+    {
+      "role": "Join serializer dispatch",
+      "virtual_address": "0x14604fa80",
+      "end_exclusive": "0x14604faf1",
+      "file_offset": "0x604ee80",
+      "byte_count": 113,
+      "sha256": "65815b908d0ed9f1bd730a46abbe97228ca55e8851737564316b24c281cfec30",
+      "required_instructions": {
+        "0x14604fad5": "cmovs rax, rcx",
+        "0x14604fae1": "lea rcx, [rip + 0x1aa8d94]",
+        "0x14604faef": "jmp rax"
+      }
+    },
+    {
+      "role": "Join serializer case zero",
+      "virtual_address": "0x14604faf1",
+      "end_exclusive": "0x14604fb30",
+      "file_offset": "0x604eef1",
+      "byte_count": 63,
+      "sha256": "33dbfdb803c25a25a4ff39d1f85f5b4e2c2ba9def57f7dc31e5264e70f38d969",
+      "required_instructions": {
+        "0x14604faf5": "mov dl, 1",
+        "0x14604faf7": "call 0x146203d20",
+        "0x14604fafd": "mov edx, dword ptr [rdi + 0x38]",
+        "0x14604fb03": "call 0x146203ec0",
+        "0x14604fb14": "call 0x146203dc0",
+        "0x14604fb25": "call 0x146203dc0"
+      }
+    },
+    {
+      "role": "game serializer case table",
+      "virtual_address": "0x147af887c",
+      "end_exclusive": "0x147af88e8",
+      "file_offset": "0x7af6e7c",
+      "byte_count": 108,
+      "sha256": "383f6811a0ea4f0be55cef8f37b34631ada513800d12b4fff84fa1a492ee1f7e"
+    },
+    {
+      "role": "game byte writer",
+      "virtual_address": "0x146203d20",
+      "end_exclusive": "0x146203d56",
+      "file_offset": "0x6203120",
+      "byte_count": 54,
+      "sha256": "c00a8094e5b03c0c8662b2f59fa974e98597aed5c133a8eb3fcd5b81b9eff5f8",
+      "required_instructions": {
+        "0x146203d41": "mov byte ptr [rax + rdi], bl",
+        "0x146203d44": "inc rdi"
+      }
+    },
+    {
+      "role": "game u32 writer",
+      "virtual_address": "0x146203ec0",
+      "end_exclusive": "0x146203ef0",
+      "file_offset": "0x62032c0",
+      "byte_count": 48,
+      "sha256": "1e59a1b9b1398b7ade99c776ba4eb69f9c34cb9f25ea44c9446e6af1c6f681f6",
+      "required_instructions": {
+        "0x146203edd": "mov dword ptr [rcx + r9], edx",
+        "0x146203ee1": "add r9, 4"
+      }
+    },
+    {
+      "role": "game byte-string writer",
+      "virtual_address": "0x146203dc0",
+      "end_exclusive": "0x146203e1d",
+      "file_offset": "0x62031c0",
+      "byte_count": 93,
+      "sha256": "eef4e9117a168e7e6d0a929a69c764757d916125e27072c3e106c3727de7f500",
+      "required_instructions": {
+        "0x146203de6": "mov dword ptr [rcx + rbx], edi",
+        "0x146203e01": "mov r8, rdi",
+        "0x146203e04": "call 0x1463a5541"
+      }
+    },
+    {
+      "role": "directory constructor and send",
+      "virtual_address": "0x145e8d369",
+      "end_exclusive": "0x145e8d474",
+      "file_offset": "0x5e8c769",
+      "byte_count": 267,
+      "sha256": "bcdaa0d64ecae1a3ab182ddf9bb276a05ab9be55686205f923e536ad3cc5cfd3",
+      "required_instructions": {
+        "0x145e8d369": "mov ecx, 7",
+        "0x145e8d384": "mov dword ptr [rax + 3], 0x302e3134",
+        "0x145e8d38b": "mov dword ptr [rax], 0x34312e30",
+        "0x145e8d3e8": "mov dword ptr [rbp + 0x228], 3",
+        "0x145e8d404": "mov qword ptr [rbp + 0x208], 7",
+        "0x145e8d424": "mov byte ptr [rbp + 0x22c], 1",
+        "0x145e8d44e": "call 0x146204750",
+        "0x145e8d471": "call rax"
+      }
+    },
+    {
+      "role": "directory serializer dispatch",
+      "virtual_address": "0x146204750",
+      "end_exclusive": "0x1462047b3",
+      "file_offset": "0x6203b50",
+      "byte_count": 99,
+      "sha256": "b8fa3415247384a64e908f8d778c39bfe7e20fb738a1c8e99ed885923029b135",
+      "required_instructions": {
+        "0x146204797": "cmovs rax, rcx",
+        "0x1462047a3": "lea rcx, [rip + 0x1968be6]",
+        "0x1462047b1": "jmp rax"
+      }
+    },
+    {
+      "role": "directory serializer case zero",
+      "virtual_address": "0x1462047b3",
+      "end_exclusive": "0x146204841",
+      "file_offset": "0x6203bb3",
+      "byte_count": 142,
+      "sha256": "69c9e353115095da4f28160a1f4830a876d4b50d8f5f3bdffd824aeca3a8d584",
+      "required_instructions": {
+        "0x1462047c1": "mov byte ptr [rax], 1",
+        "0x1462047cc": "mov r14d, dword ptr [rdi + 0x38]",
+        "0x1462047ea": "mov dword ptr [rax + rbx], r14d",
+        "0x146204816": "mov dword ptr [rcx + rbx], r14d"
+      }
+    },
+    {
+      "role": "directory serializer case zero cell",
+      "virtual_address": "0x147b6d390",
+      "end_exclusive": "0x147b6d394",
+      "file_offset": "0x7b6b990",
+      "byte_count": 4,
+      "sha256": "23579f7269925382db72b6ef1cf9fb6822b7cc3634595c3aa92c1c868b17eb1e"
+    }
+  ]
+}

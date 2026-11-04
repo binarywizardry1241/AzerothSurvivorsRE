@@ -601,6 +601,6 @@ zero. The existing appearance path receives the sanitized choice.
 `python3 -B scripts/check-weapon-glow.py --current-peer-glow` passed 720
 native gate cases and 16 Hero row codec cases over 38,720 original
 instructions. The historical Hero fixtures retain their original prefix.
-The separate [Join/version contract](../CURRENT-STATE.md#gap-163) and
+The separate [Join/version contract](../verification-needed.md#gap-163) and
 [lobby inspection](../CURRENT-STATE.md#gap-299) remain open. Rust
 compilation and live multiplayer presentation remain unverified.
