@@ -34928,7 +34928,7 @@
       "systems": [
         "custom-game-game-procs"
       ],
-      "rationale": "The shared direct and periodic healing helper now credits Tranquility with the full spell heal, including overheal at full health and absorb. The shield and effective-healing meter retain their separate native rules.",
+      "rationale": "The shared direct and periodic healing helper now credits Tranquility with the full spell heal, including overheal at full health and absorb. The shield and effective-healing meter retain their separate native rules. The frame batch now carries typed healer identity through the same healing calculation. The current 576 instruction cases and source-wiring check passed again.",
       "native_contract": "The 0.141.0 direct and HoT owners add effective healing plus raw excess to the tag 33 pool while raw tag 32 independently caps absorb. Seed impacts suppress pool addition and direct spell ID zero bypasses both talent effects.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/run_effects/healing.rs",
@@ -34950,8 +34950,8 @@
       },
       "status": "static_checked",
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/run_effects/healing.rs": "8765f8d624235e853cbc5814c48441c5427c2b8e90fe34e70fd87c585b0d3082",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "4507236bbbbf944b8812a1eff12b0059145dfa62f5d4318f4ae6291a1421423d",
+        "crates/azeroth-survivors-re/src/run_effects/healing.rs": "f2eb0610cb77cfd1b7edb72068d989a67b1d425785a1063d74b658d3b9300067",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "89baa500336bdf3d7e229e69082bac7465536b1736c8c3913f59b3e83bf1ff81",
         "docs/analysis/tranquility-overheal-0.141.0.md": "455d92ce8c2c0c064daefa5e73ac8f3a0f3bed538f05724d9c8283ee9c40c09d"
       }
     },
@@ -34965,7 +34965,7 @@
         "custom-game-game-talents",
         "custom-game-game-abilities"
       ],
-      "rationale": "Counterattack now reaches the normal Immolation Trap ground cast through the sourced melee proc path. The talent description and associated spell tooltip read the replacement effect.",
+      "rationale": "Counterattack now reaches the normal Immolation Trap ground cast through the sourced melee proc path. The talent description and associated spell tooltip read the replacement effect. The detailed-meter additions and ranked display-key representation preserve the sourced melee gate, trap dispatch and associated spell lookup.",
       "native_contract": "A sourced melee hit in active mode admits condition 8. The raw tag 12 proc uses 15% per rank and a one-second deadline, then casts Immolation Trap with the learned instance or its native unlearned fallback and no normal cooldown consumption.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
@@ -34990,9 +34990,9 @@
       },
       "status": "static_checked",
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs": "e2f5fb384094e82ccc10a632d477c042a5255396a6816c643a7373fc2441de5d",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/spell_display.rs": "2341761f99b130b3d328305bd96b204c334b8a3aff7f5902ab60171e0c3c8bbe",
-        "crates/azeroth-survivors-re/src/run_effects.rs": "73a056e56fd67626a54d768768404bc78a7afdff6ac00648d8236b8e98930eb4",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs": "af4ae235a62b0c0c5311dd3cfbc383e1267bcecbc0aac55f8617b94860165987",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/spell_display.rs": "827dc59671a41733cefb769ef2d155ebdcbfc3e7b4eb59a3b60e23d5dc123299",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "8e9477741117d5d87bcf89463824b817c361f5d58f771abcb61d9160e4748921",
         "crates/azeroth-survivors-re/src/save/talents.rs": "2baf3c8f9d55fcda43cd9d2bd6a1ae45593e341a321cd17ff8a8b88b673654e0",
         "crates/azeroth-survivors-re/assets/talent-replacements-0.141.0.json": "c642a8ab7944f40aaa947db8c1d5344347e786b3c991aa941072a855bbfa92fb",
         "docs/analysis/counterattack-0.141.0.md": "c923a3f94d6893265893fa9a441683bc57790628d577e654fafcf8206f210424"
@@ -35008,7 +35008,7 @@
         "custom-game-game-abilities",
         "custom-game-game-talents"
       ],
-      "rationale": "The live Shock and Stormbound paths now select one secondary result per pass and use the recovered rank fraction. The localized talent menu shares the rank value with the cast.",
+      "rationale": "The live Shock and Stormbound paths now select one secondary result per pass and use the recovered rank fraction. The localized talent menu shares the rank value with the cast. The periodic installer now carries the meter actor while preserving the existing owner, effect, timing, stack and power inputs. The talent replacement retains its effect and rank behavior.",
       "native_contract": "The native scheduler passes rank times ten divided by 100 to the one-result radius query consumer. The same multiplier feeds direct Shock damage and Flame Shock periodic installation and is reused by the Stormbound repeat.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs",
@@ -35032,8 +35032,8 @@
       },
       "status": "static_checked",
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs": "f963ec73e21e452dd30023423c6b0852b04bd558d46cf7cbb6e17c8fe2ebf6b3",
-        "crates/azeroth-survivors-re/src/run_effects.rs": "73a056e56fd67626a54d768768404bc78a7afdff6ac00648d8236b8e98930eb4",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs": "06210fd8870620bbc032d05512b09f4098cce21eca3e910e15ca36c36dca2248",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "8e9477741117d5d87bcf89463824b817c361f5d58f771abcb61d9160e4748921",
         "crates/azeroth-survivors-re/src/save/talents.rs": "2baf3c8f9d55fcda43cd9d2bd6a1ae45593e341a321cd17ff8a8b88b673654e0",
         "crates/azeroth-survivors-re/assets/talent-replacements-0.141.0.json": "c642a8ab7944f40aaa947db8c1d5344347e786b3c991aa941072a855bbfa92fb",
         "docs/analysis/resonant-shocks-0.141.0.md": "84a1f51199c116ae8ebed0c791827e68b276bbb96efbe25ecf57600c1aa8ea3c"
@@ -35116,7 +35116,7 @@
       "systems": [
         "custom-app-screens-meter"
       ],
-      "rationale": "The four meter views share a bounded list viewport and its scrollbar. The display Reset refreshes baselines while the named offset clamps to the refreshed content extent.",
+      "rationale": "The four meter views share a bounded list viewport and its scrollbar. The display Reset refreshes baselines while the named offset clamps to the refreshed content extent. The scrollbar now follows input capture. The same wheel, drag and synchronization chain still runs before Options input. Viewport identity and Reset keep their bounded scope.",
       "native_contract": "The 0.141.0 meter window publishes the vertical Scroll node and retained meter-rows key, then passes its entity to the shared eight-pixel rail. Reset sets the view baseline flag and empties its rate samples.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/meter.rs",
@@ -35138,9 +35138,9 @@
       },
       "status": "static_checked",
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/meter.rs": "d7071d0915fa143f3924e3ec2158f18ddb1adcbcee733355d1983ba10b647785",
-        "crates/azeroth-survivors-re/src/scrollbar.rs": "1320788dfe8a9fe065dfa21db5f8d3f621146876c94da6c5b70a2f04ec923e14",
-        "docs/analysis/meter-scroll-0.141.0.md": "b13e81ff2af8d276c1459759676bfa86394fc653d3eef4a0eb76496b8879fdcc"
+        "crates/azeroth-survivors-re/src/gameplay/meter.rs": "ad98d98dd9476de7e3334e235853200d6638aa789aabd0f88c5e13515b677e11",
+        "crates/azeroth-survivors-re/src/scrollbar.rs": "e2a7e43c510b67d73d30785144617e6f0e3dbcc7ee3268b6a672b1ff342eb01b",
+        "docs/analysis/meter-scroll-0.141.0.md": "577de653412ccf657dfaba0c3201831d58e6e73e35ba01b3b1567101667a8926"
       }
     },
     {
@@ -35156,7 +35156,7 @@
         "custom-game-game-mod",
         "custom-game-game-meterlog"
       ],
-      "rationale": "The live ordinary and typed meter paths credit commanded attacks, Bleed, Shockwave and the capped Howl allocation to their companion actor and detailed attack key. Actual game and addon delivery remain unverified.",
+      "rationale": "The live ordinary and typed meter paths credit commanded attacks, Bleed, Shockwave and the capped Howl allocation to their companion actor and detailed attack key. Actual game and addon delivery remain unverified. Rechecked the changed adapters and captured proc routes. Companion hits and Howl still pass the computed share to the ordinary and detailed meters, with the same recipient and spell-target encoding.",
       "native_contract": "Command mode supplies the companion descriptor and attack label. Effect tags 62 and 63 route Bleed and Shockwave. The hit owner subtracts the capped Howl share from the base credit and records it under Wolf. The native detailed keys are recovered.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
@@ -35207,15 +35207,15 @@
       },
       "status": "static_checked",
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "79e9b8a7226196dfb0ff3772cf9a6ab3e3e33e44a89cb6fd1276cc1a3552cd84",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "89baa500336bdf3d7e229e69082bac7465536b1736c8c3913f59b3e83bf1ff81",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs": "c7f562bcfdbd5feedd632179127121090d05a614c4c28602d1c8391b949c2a91",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "779b88ebe06536c88aff501f6d8ec4b0122652c77cba721064de6aa25561cced",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "af3c543ddd790d37bda2b656fdfb2e2e642ecf70e2be474159f04608248b8420",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "49e0c2dae7b7c273696f9e14d4877b50c68b528e3d695458326f8a1c06f4ba03",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "64cf80c3bfb0a4b9ad54ff2b6951b3b3ffb0ae2d91342c222da53e0f1ac2ac2d",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "6a41c33cbbd62c48a101b88f79201fb857f9a596fdc2d77057c60e70e9c5e669",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "59470925a6110f555e9ae75ddb04ad785e6ee22b8765dd67221d261a53a981df",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "18a6b5b357ad476ff14c0d030202bc0c8eeee8cce3545550f6275e674027909b",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs": "faa437a5797815b7c2e2eae375d857ae7d4e63ffcd06bafaf9b72329b5d116f7",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs": "0495c808a714854c66d506b9b994be6192dda83485dbd269258ea33cf51bba52",
-        "crates/azeroth-survivors-re/src/gameplay/client/events.rs": "e5c34e26ba625d6b18f5e1a0ad6f9fa6c2553a37857ef8c99d760e0990b7f4c1",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs": "7a08584492aa55d0074381fa06c4df9d47364f5b95fd7dff49b5fc076a265236",
         "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "7f177ea3109b0888fe880cb21dc23c191d3848f7420a8e43e8cf78e9816cbac3",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs": "24acf6e03ed3ca5f0254110d9ae949caecefc555d63a7f54d78519e898da769b",
         "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "7d64f4161b2151ad204c28c14e4f4ae29f4479c02ac667c78c72a75802721359",
@@ -35252,7 +35252,7 @@
         "custom-game-server-party",
         "custom-game-proto"
       ],
-      "rationale": "Solo, host and guest reward state carries the selected collection through successive rolls. The two native and rebuilt Armory displays show the base 25% catalog value even when the missing sibling's actual chance is 50%, so the release note's displayed-chance assertion differs from the recovered native behavior.",
+      "rationale": "Solo, host and guest reward state carries the selected collection through successive rolls. The two native and rebuilt Armory displays show the base 25% catalog value even when the missing sibling's actual chance is 50%, so the release note's displayed-chance assertion differs from the recovered native behavior. The added detailed-meter abandonment marker is confined to run exit. The armor reward and collection paths preserve their reviewed behavior.",
       "native_contract": "One top-24-bit draw below 0.50 admits one armor item. The native filter prefers the unowned slot, and a new award immediately enters the recipient collection. Tag 4 carries a counted u32 list after pity. Native Armory rows carry the base 0.25 per item.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/mob_loot.rs",
@@ -35282,7 +35282,7 @@
         "crates/azeroth-survivors-re/src/tier05.rs": "1bfdb8b4d7dcef1f6ab8714c5ebb977462db250f48d23ee564f9ad37a199bcea",
         "crates/azeroth-survivors-re/src/armory.rs": "019741bd31a694ae14dfcf28ece476b33e24ae01a167aea52266e83cab007e5c",
         "crates/azeroth-survivors-re/src/coop_profile.rs": "60d9f444bfc269f38628e1b668935d32902952aa8ab01c4c371fde673ef1fb59",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs": "403ea5e737f8a4566b7c3188f26c3274342af3d26ba78b54591db6d70008414b",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs": "48b1afe92f1ed91ce9019ae09cc7abd1a5dcb023ad7b65003f3a3a02eb2d6f12",
         "docs/analysis/scholomance-loot-0.141.0.md": "ee7ff0acb53db1aa76aa18544aa952c94557be9982c4d465d0074e0ecf491dac",
         "crates/azeroth-survivors-re/src/coop/server_party.rs": "b16bb90db65db655e649637b6b42b80e278e324a669afa2b8c52fc8fbad71808"
       }
@@ -35619,7 +35619,7 @@
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
       },
       "status": "source_connected",
-      "rationale": "The live boss hit path applies the recovered defensive multiplier and the marker stream renders the two rising towers. An admitted touch removes both towers and the aura.",
+      "rationale": "The live boss hit path applies the recovered defensive multiplier and the marker stream renders the two rising towers. An admitted touch removes both towers and the aura. The repaired arena helper supplies the 13 ordered Scholomance points. They match the current native zone polygon at 0x14739dbe0. The boss hit retains the recovered damage multiplier and the tower transition.",
       "native_contract": "Frost Armor lasts eight seconds at damage multiplier 0.25. Touching either radius-1.5 tower cancels it and grants multiplier 1.2 for four seconds.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/mechanics/ras.rs",
@@ -35627,21 +35627,27 @@
         "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs",
         "crates/azeroth-survivors-re/src/bosses/scripted_attack_geometry.rs",
         "crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs",
-        "crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs"
+        "crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/scripted_arena.rs",
+        "crates/azeroth-survivors-re/src/floor_recovery.rs",
+        "crates/azeroth-survivors-re/src/zones/scholomance.rs"
       ],
       "evidence_refs": [
         "docs/analysis/scholomance-ras-0.141.0.md",
         "docs/analysis/evidence/0.141.0/scholomance-ras.json"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/ras.rs": "dc156f44a7425507e396b72bda4283686e48183b116190c53f91f387683975e5",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "5911480f8ac26ce7682d2e6f7b0d9a3c40fb02087addc4bfc725b54f73bedf2f",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs": "a6f750a2170e78c7612224078fa034867dadd55ef8e79326ff10294debf3c11c",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/ras.rs": "27f3638be11790cfea2c80863fd42db3b95a0652eaa38569cad9870f9e9aaa7a",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "779b88ebe06536c88aff501f6d8ec4b0122652c77cba721064de6aa25561cced",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs": "a6d2e1970a9b941cc9b4dc7eb2029e75c6a1d838c79eb364ce18f66d5b55c09a",
         "crates/azeroth-survivors-re/src/bosses/scripted_attack_geometry.rs": "7082ca46d588c87ea4ebef476ca86ef2078330a2d9f842fda5c2e6f5f938a2eb",
         "crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs": "05b197c70af807a01ffa3f02c70c8ce99b3c0c8d65b44cb7b269a5e48900af1c",
         "crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs": "ca11fe70414f612174fbd9bfcb5db4fdb24eaa91b901bf18a1cef13f61f84534",
         "docs/analysis/scholomance-ras-0.141.0.md": "4a1fb08a922f430a4d53c1137dec69c53cd03baad99d9abc0db49d89a3d05203",
-        "docs/analysis/evidence/0.141.0/scholomance-ras.json": "3767e55261ff081c5baa63266e93b21e0bc501fb122e3fcf4a9f8ae2e8e0be00"
+        "docs/analysis/evidence/0.141.0/scholomance-ras.json": "3767e55261ff081c5baa63266e93b21e0bc501fb122e3fcf4a9f8ae2e8e0be00",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/scripted_arena.rs": "a7032d96fab5e7007c968806e1aeaca9439608da9a30732d1d96f0ec3870d7d2",
+        "crates/azeroth-survivors-re/src/floor_recovery.rs": "4302d24b7cc5231d75aa78cb0ef4dd7fd02750a90ecff633327379f01b2b2503",
+        "crates/azeroth-survivors-re/src/zones/scholomance.rs": "03c48c7415d5ed8dcfb9cf31736a4038d4507a0943882ea52cef3c95768b7d6e"
       },
       "systems": [
         "custom-game-game-scripts-ras"

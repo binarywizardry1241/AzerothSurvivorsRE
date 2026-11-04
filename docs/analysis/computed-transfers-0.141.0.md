@@ -57,6 +57,18 @@ through register-relative memory. This join is a way to prioritize sites.
 Separate extent, caller and typed-input evidence can also establish AS
 connections, as the co-op app dispatcher below demonstrates.
 
+### Three unapplied AS-context candidates
+
+The same-body join selects the following three `candidate_tables` entries
+from `guarded-2/guarded-proposals.json`. The 256-value proposals cross
+actual instruction boundaries. The exact producers narrow their next actions.
+
+| Transfer | Original prefix and bounded interpretation |
+| --- | --- |
+| `0x145ef89a5` | Prefix `0x145ef8993..0x145ef89a7` reads the command byte at `[r8]`. The first eleven signed cells at `0x147af2de8..0x147af2e14` all enter the local party command extent `0x145ef8950..0x145ef8e32`. Their SHA-256 is `a0e63d7be81906edae734b07acbe193d898bc3cb5ef0090021da341693541bf9`. Cell 11 of the broad candidate leaves that extent and lands inside an instruction. The known selection, Skip and refresh cases retain their [existing source owners](coop-command-ingress-0.141.0.md#guest-gossip-option-ingress) and [party control handler](../../crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs). Follow actual command constructors for any remaining alias. |
+| `0x145f1bcf4` | Prefix `0x145f1bccd..0x145f1bcf6` loads Game bytes `+0x2a5` and `+0x2a6`. Zero `+0x2a5` takes a separate path. The other path uses `+0x2a6` as the index into `0x147af2ec8` and carries `+0x2a5` into the destinations. This lies in the [hit source and combat-packet owner](combat-meter-attribution-0.141.0.md#source-selection). Follow the scoped writes to both fields before treating any finite prefix as the full domain. |
+| `0x145f25cd5` | Prefix `0x145f25caa..0x145f25cd7` supplies a live actor and two frame records to `0x145e5ff00` and uses its returned AL. The selected producer has concrete 0, 1, 2 and 3 return paths. The first four signed cells at `0x147af2f04..0x147af2f14` all enter the same [party actor owner](coop-incoming-0.141.0.md#shared-inputs-and-recipient-state). Their SHA-256 is `06a6fc45ae1c64a441d32b5da67be675ad45a384200eedce585f9215b13f2ecf`. Follow the position/state fields and these four branch consumers to establish their specific source behaviors. |
+
 ### Three additional CreatureQuery tables
 
 The [host ingress trace](coop-command-ingress-0.141.0.md#nested-creaturequery-selectors)
@@ -130,7 +142,7 @@ peer admission path. Other action constructors retain their own proofs.
 The Chat destination `0x145ea7df2` calls the normalizer at `0x145e385a0`.
 It filters control characters and Unicode White_Space, joins nonempty
 spans with a single ASCII space and caps the result at 160 UTF-8 scalars.
-The 246-byte normalizer at file offset `0x5e379a0) has SHA-256
+The 246-byte normalizer at file offset `0x5e379a0` has SHA-256
 `866ffe7446296ffbe322c22fdae47680d68bbcff8d0d9756e00044b0eed9b7d0`.
 Its journaled Ghidra result digest is
 `2899301f9b2c80805a2a82ee88b0ad308cb2f6fb1785008c2e1811078dfce1d9`.
@@ -170,12 +182,59 @@ fixed list and its three payload-length-dependent branches.
 
 The applied table at `0x14604a075` has a current AS producer and
 consumer in the [guest Gossip option path](coop-command-ingress-0.141.0.md#guest-gossip-option-ingress).
-The meter style switch at `0x140439d90` compares two matching dword tags.
-The observed caller at `0x1404244e2` supplies tag zero. The other tag
-domains and the separate Codex text switch at `0x1400f2a92` still need
-their typed constructors. The tail edges at `0x146347d96` and
-`0x14638ac23` load through receiver table slots 0 and `+0x18`,
-respectively. Their actual receivers and writers remain open.
+
+### Codex jewelry stat labels
+
+The exact call to `0x1400f2a80` is at `0x1403728e2` in the
+[Codex Details owner](codex-growth-dispatch-0.120.2.md#admitted-growth-ceilings-in-01410).
+The earlier producer at `0x1403723d0` loads the descriptor through
+`0x148ac2ba8`, checks the selected index against the slice length and forms
+the `0x48`-byte row in R12 at `0x1403723eb`. The call passes that pointer in
+RCX. The selector reads row byte `+0x44`, jumps through the 20 signed cells
+at `0x14656d8e4`, and tail-calls the locale lookup at `0x145e78800` with the
+label pointer and length. The caller pairs the returned label with the
+earlier slot label through the format program at `0x1465c5580`.
+
+The [stat label proof](evidence/0.141.0/codex-stat-labels.json) reuses the
+exact Codex owner query and verifies all 20 cells and all 23 initial rows.
+The English labels match the effective Codex assets, including the Mystaria
+delta. The [live Details consumer](../../crates/azeroth-survivors-re/src/codex.rs)
+uses `entry_text.tag_label` in the 12px subtitle. This bounds the installed
+row domain and subtitle branch under [#73](../CURRENT-STATE.md#gap-73).
+The leaf has no local range check. Alternate producers, dynamic locale-map
+state and other Details branches retain their separate evidence limits.
+
+```sh
+PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/check-codex-growth-dispatch.py \
+  --proof docs/analysis/evidence/0.141.0/codex-stat-labels.json
+```
+
+### Shared color comparison and receiver dispatch
+
+The meter switch at `0x140439d90` belongs to the tagged color equality
+leaf `0x140439d70..0x140439dc9` (file `0x439170`, SHA-256
+`e4acf0cc9015582f47ddb8f2d4905d20a6494b6b0a73accb75b1e5767929eb7b`).
+It rejects unequal dword tags before indexing. All ten signed dword cells
+at `0x1465ce060` (file `0x65cc660`, SHA-256
+`623cd6b67ddf378905d88cf336c3ad60ff6cf9b4a0ca948f3f7dead278851ba2`)
+reach the same comparison of four f32 fields. A NaN or unequal field returns
+false. This is consistent with the pinned Bevy `Color` enum's ten variants and
+derived `PartialEq`. The declared reference selector has three calls at
+`0x14041e77a`, `0x1404244e2` and `0x140427963`. The meter call at `0x1404244e2`
+constructs tag zero with `(0.78, 0.78, 0.78, 1.0)` and updates the existing
+value on inequality. The [rebuilt meter paint](../../crates/azeroth-survivors-re/src/gameplay/meter.rs)
+uses the same inactive sRGB color. The checked boundary identifies comparison
+and writeback. The [meter tint repair](meter-scroll-0.141.0.md#minimap-tint-change-detection)
+connects the change-tick guard in the live paint path. The other callers'
+wider paint and change detection retain separate evidence limits.
+
+The tail edge at `0x146347d96` dereferences the input pointer, reads its
+first word as a dispatch table and jumps through slot zero. The edge at
+`0x14638ac23` dereferences the input pointer and tail-jumps through the
+receiver's `+0x18` slot. The declared reference projection records 621 and
+879 direct call/jump operands to their entries respectively, with another
+nine complement jumps to the first entry. These are shared dispatch leaves.
+The AS caller join alone does not identify a concrete receiver or writer.
 
 Further work under #41 is to establish typed domains and owners for the
 remaining AS-context register and receiver-slot transfers. The broader

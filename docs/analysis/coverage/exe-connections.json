@@ -23,7 +23,7 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "3d2daf0cd77427e62144d1f54f725351428e5064dfc57777b87da2fe737a80cb"
+      "sha256": "1ff95bc829a2d37ce3dd213711384f054343415231e836893119d446580b9219"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
@@ -31,15 +31,15 @@
     },
     {
       "path": "docs/analysis/coverage/historical-range-revalidation.json",
-      "sha256": "faf4a153e909ca88eec3e34bcee64b2f5cc3cb921176282e9d178c66166b9e7a"
+      "sha256": "78a5bcf71b8386aac6412a3709536d2124d3494378ec3e822a08ea6ef6abe865"
     },
     {
       "path": "docs/analysis/evidence/0.141.0/native-custom-coverage.json",
-      "sha256": "e1877f3ae1436b19a8077faa20c937e699222c540e10fd827f78d63b12aa898d"
+      "sha256": "7ee8570536fbb7066eeb3a1eba8f618a7be97200b9b08b5185cd08a60ee022df"
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "0fa79562ebe74d9d518e279654eaf2e682fafd7ac808334851a8a57265baf0a4"
+      "sha256": "dfd9626174ca15211ecc2eec94c0463ee4e01d6c132a2a3451b2d30d216d695b"
     },
     {
       "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
@@ -53,7 +53,7 @@
   "supporting_inputs": [
     {
       "path": "docs/analysis/coverage/native-ownership-classification.json",
-      "sha256": "cf600c32cb7f36c19222ba074d4ae83182d863954c6d8c59dcf80f1127fc32bc",
+      "sha256": "f877089152246875b2a26bf978c848c96d11661c08e11b239886454efad90062",
       "target": {
         "path": "installed-game/AzerothSurvivors.exe",
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
@@ -65,24 +65,24 @@
   ],
   "counts": {
     "custom_system_rows": 83,
-    "with_registered_current_evidence": 32,
-    "without_registered_current_evidence": 51,
-    "with_registered_current_bounded_contract": 32,
-    "without_registered_current_bounded_contract": 51,
+    "with_registered_current_evidence": 33,
+    "without_registered_current_evidence": 50,
+    "with_registered_current_bounded_contract": 33,
+    "without_registered_current_bounded_contract": 50,
     "without_source_correspondence": 0,
     "ownerless_native_location_references": 67,
     "paths_with_ownerless_native_location_references": 15,
-    "retained_evidence_json_documents": 1859,
+    "retained_evidence_json_documents": 1863,
     "evidence_document_identity_roles": {
-      "current": 33,
+      "current": 37,
       "historical": 1734,
       "requires_owning_manifest_or_review": 92
     },
-    "directly_embedded_assets": 193,
+    "directly_embedded_assets": 192,
     "embedded_asset_provenance": {
       "current": 1,
       "historical": 132,
-      "not_declared_in_asset": 60
+      "not_declared_in_asset": 59
     },
     "historical_range_commitments": 23474,
     "historical_range_results": {
@@ -91,7 +91,7 @@
       "canonical-preimage-bytes-unavailable": 10723,
       "documents-admitted-by-exact-owning-manifest-hash": 4,
       "documents-with-ambiguous-owning-target-bindings": 1,
-      "documents-with-explicit-target-identity": 1767,
+      "documents-with-explicit-target-identity": 1771,
       "documents-without-explicit-target-or-exact-manifest-binding": 73,
       "exact-bytes-not-found": 6011,
       "historical-documents-with-range-commitments": 1015,
@@ -121,7 +121,7 @@
       "preimage:verbatim-notification-constant-bytes": 17,
       "same-address-byte-match": 5,
       "same-offset-byte-match": 11,
-      "selected-target-documents-excluded-from-historical-audit": 33,
+      "selected-target-documents-excluded-from-historical-audit": 37,
       "unique-exact-byte-range": 1471,
       "unique-match:executable-without-complete-body-owner": 54,
       "unique-match:non-executable-data-or-headers": 1321,
@@ -3709,7 +3709,8 @@
         "crates/azeroth-survivors-re/src/run_progression.rs",
         "crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs",
         "scripts/check-run-level-cap.py",
-        "scripts/check-run-level-cap.lua"
+        "scripts/check-run-level-cap.lua",
+        "scripts/check-coop-overlay.py"
       ],
       "source_anchors": [
         {
@@ -3751,13 +3752,17 @@
         "0x145fbdbfb"
       ],
       "remaining_source_work": [
-        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Use Q41-G01 at 0x145fbbf50 and 0x145fc1500 to trace remaining selected-card variants, post-completion cleanup and republish. The title and gold credit scopes are already connected.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-upgrades]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": false,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/evidence/0.141.0/choice-gold-credit.json": "Level and cache fallback origins, 160-byte tagged choice row, raw gold argument and shared credit before selected-offer completion."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/0.141.0/choice-gold-credit.json"
+      ]
     },
     {
       "id": "custom-game-gear",
@@ -6644,13 +6649,11 @@
         "0x14010c5d0"
       ],
       "ownerless_location_sites": [],
-      "remaining_source_work": [
-        "Join the changed renderer and capture/aggregation to their source consumers."
-      ],
+      "remaining_source_work": [],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": true,
       "current_bounded_contract_scopes": {
-        "docs/analysis/native-interface-correspondence-0.141.0.md": "Nested recap/killer fields, generation and open-state reads. Full renderer control flow differs and remains pending."
+        "docs/analysis/native-interface-correspondence-0.141.0.md": "Nested recap/killer fields, generation and open-state reads. All 1,279 renderer boundaries and address-normalized bytes match the 0.140.0 extent; selected list and avoidable-percentage gates reach live source."
       },
       "current_bounded_contract_refs": [
         "docs/analysis/native-interface-correspondence-0.141.0.md"
@@ -7049,6 +7052,6 @@
   "parity_verified": false,
   "inventory": {
     "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/exe-connections.json",
-    "sha256": "ade9428a32b128320fc27118edbd84b2e964ab55c7eeeee95bbb75c26e75ac5f"
+    "sha256": "256e896b0f56b77057be0242648fd199cf40cef9be7ff692c8a75b435b1d9fef"
   }
 }

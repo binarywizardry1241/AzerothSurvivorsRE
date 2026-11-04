@@ -14,12 +14,34 @@ import gzip
 import hashlib
 import json
 from pathlib import Path
+import re
 import struct
 import sys
 
 
 PREFIXES = ("crates/wenilla-rogue/", "crates/wenilla-rogue-app/")
 HISTORICAL_VERSION = "0.121.0"
+DISPATCH_VERSION = "0.141.0"
+DISPATCH_SHA256 = "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+
+# Transfer, RIP-relative base load, cell count, comparison, conditional branch.
+# The race accumulator is bounded by its complete descriptor producer.
+REVIEWED_DISPATCHES = (
+    (0x140372ECE, 0x140372EAF, 7, 0x140372EA5, 0x140372EA9),
+    (0x140385DF7, 0x140385DDA, 7, 0x140385DD4, 0x140385DD8),
+    (0x1403894FA, 0x1403894E4, 7, 0x1403894DE, 0x1403894E2),
+    (0x145EA0B2A, 0x145EA0B0E, 23, 0x145EA0B05, 0x145EA0B08),
+    (0x145EA0C38, 0x145EA0C2A, 94, 0x145EA0AF5, 0x145EA0AF8),
+    (0x145EA1E59, 0x145EA1E4B, 89, 0x145EA1E2D, 0x145EA1E3E),
+    (0x145EA40D5, 0x145EA3F96, 10, 0x145EA40AF, 0x145EA40B3),
+    (0x145EB6CCF, 0x145EB6CBA, 6, 0x145EB6CAF, 0x145EB6CB1),
+    (0x145F6C05B, 0x145F6C015, 12, None, None),
+    (0x145FBF3C5, 0x145FBF3AF, 20, 0x145FBF39D, 0x145FBF3A7),
+)
+PREVIOUSLY_JOINED = frozenset({
+    0x145DD8F0D, 0x145DD9080, 0x145E26778,
+    0x145E269D2, 0x145E27318, 0x145F8D9C3,
+})
 
 
 def digest(raw):
@@ -28,6 +50,209 @@ def digest(raw):
 
 def address(value):
     return int(value, 16)
+
+
+def check_jewelry_catalog(root, pe, image):
+    path = Path("crates/azeroth-survivors-re/src/loot_rewards/catalog_01120.rs")
+    source = (root / path).read_bytes()
+    pattern = rb'key: "([^"]+)".*?base: f32::from_bits\(0x([0-9a-f]+)\),\s+tag: (\d+),\s+slot: (\d+)'
+    source_rows = [(key, int(bits, 16), int(tag), int(slot))
+                   for key, bits, tag, slot in re.findall(pattern, source, flags=re.DOTALL)]
+    table = 0x1476F94E8
+    start = pe.rva_offset(table - pe.image_base)
+    raw = image[start:start + 0x678]
+    native_rows = []
+    for offset in range(0, len(raw), 0x48):
+        key, length = struct.unpack_from("<QQ", raw, offset)
+        key_start = pe.rva_offset(key - pe.image_base)
+        bits, tag, slot = struct.unpack_from("<IBB", raw, offset + 0x40)
+        stable_tag = 19 if tag == 6 else tag - 1 if tag > 6 else tag
+        native_rows.append((image[key_start:key_start + length], bits, stable_tag, slot))
+    assert len(native_rows) == len(source_rows) == 23 and source_rows == native_rows
+    return dict(table=hex(table), file_offset=hex(start), table_sha256=digest(raw),
+                matched_rows=len(native_rows), source=path.as_posix(), source_sha256=digest(source))
+
+
+def check_racial_descriptors(root, pe, image, decoded, cell_count):
+    def read(va, size):
+        first = pe.rva_offset(va - pe.image_base)
+        return image[first:first + size]
+
+    path = Path("crates/azeroth-survivors-re/assets/run-entry-0.100.1.json")
+    source = (root / path).read_bytes()
+    races = json.loads(source)["races"]
+    assert [row["native_id"] for row in races] == list(range(1, 9))
+    assert decoded[0x145F6BC79].op_str == "al, 0xfe"
+    assert decoded[0x145F6BC7B].op_str == "al, 6" and decoded[0x145F6BC7D].mnemonic == "jbe"
+    assert decoded[0x145F6BC96].op_str == "al, 0xfe"
+    assert decoded[0x145F6BC98].op_str == "al, 6" and decoded[0x145F6BC9A].mnemonic == "ja"
+    assert decoded[0x145F6BFDF].op_str == "rax, qword ptr [rcx + 0x28]"
+    assert decoded[0x145F6BFF0].op_str == "rcx, qword ptr [rcx + 0x20]"
+    assert decoded[0x145F6BFF4].op_str == "rdx, [rcx + rax*8]"
+    table, fallback = 0x147AF2CB0, 0x1473A1960
+    native_rows = []
+    lanes = ("health_multiplier", "damage_bonus", "cooldown_divisor", "move_bonus",
+             "crit_bonus", "armor_bonus", "regeneration_bonus", "pickup_multiplier",
+             "experience_multiplier", "gold_multiplier", "luck_bonus", "heal_on_kill")
+    multiplicative = {0, 2, 7, 8, 9}
+    table_bytes = read(table, 7 * 8)
+    descriptors = [fallback, *struct.unpack("<7Q", table_bytes)]
+    for descriptor, race in zip(descriptors, races, strict=True):
+        rows, count = struct.unpack("<QQ", read(descriptor + 0x20, 16))
+        pairs = list(struct.iter_unpack("<If", read(rows, count * 8)))
+        assert len(pairs) == count and len({tag for tag, _ in pairs}) == count
+        assert all(0 <= tag < cell_count for tag, _ in pairs)
+        stats = dict(pairs)
+        for tag, name in enumerate(lanes):
+            value = stats.get(tag, 0.0) + (1.0 if tag in multiplicative else 0.0)
+            assert struct.pack("<f", value) == struct.pack("<f", race[name]), (race["key"], name)
+        native_rows.append(dict(native_id=race["native_id"], address=hex(descriptor),
+                                row_tags=sorted(stats), rows_sha256=digest(read(rows, count * 8))))
+    assert {tag for row in native_rows for tag in row["row_tags"]} == set(range(cell_count))
+    return dict(table=hex(table), table_sha256=digest(table_bytes),
+                source=path.as_posix(), source_sha256=digest(source), descriptors=native_rows)
+
+
+def check_tls_cipher_adapter(pe, image, decoder):
+    def read(va, count):
+        offset = pe.rva_offset(va - pe.image_base)
+        return image[offset:offset + count]
+
+    def table(va, cells):
+        raw = read(va, cells * 4)
+        values = [va + delta for delta, in struct.iter_unpack("<i", raw)]
+        return values, dict(address=hex(va), cells=cells, sha256=digest(raw))
+
+    forward, forward_proof = table(0x147B28A84, 256)
+    reverse, reverse_proof = table(0x147B29170, 377)
+    assert len(set(reverse)) == len(reverse) == 377
+    first, end = 0x14612B66B, 0x14612BB81
+    known_leaves = set(range(first, end, 7))
+    visited = set()
+    for code, destination in enumerate(forward):
+        if destination not in known_leaves:
+            continue
+        body = read(destination, 7)
+        assert body[:2] == b"\x66\xb8" and body[4:] == b"\x89\xca\xc3"
+        discriminant, = struct.unpack("<H", body[2:4])
+        inverse = read(reverse[discriminant], 5)
+        assert inverse == b"\x66\xb8" + struct.pack("<H", code) + b"\xc3"
+        visited.add(destination)
+    assert visited == known_leaves and len(visited) == 186
+    second, stop = 0x14612BBB5, 0x14612C310
+    instructions = list(decoder.disasm(read(second, stop - second), second))
+    assert sum(insn.size for insn in instructions) == stop - second
+    assert set(reverse) <= {insn.address for insn in instructions}
+    assert read(reverse[0], 1) == b"\xc3" and read(reverse[376], 3) == b"\x89\xd0\xc3"
+    assert all(read(va, 5).startswith(b"\x66\xb8") and read(va + 4, 1) == b"\xc3"
+               for va in reverse[1:376])
+    assert read(stop - 5, 5) == b"\xcc" * 5
+    label = b"TLS_NULL_WITH_NULL_NULL"
+    assert read(0x147B26B70, len(label)) == label
+    return dict(forward_table=forward_proof, reverse_table=reverse_proof,
+                inverse_pairs=len(visited), reverse_immediate_leaves=375,
+                reverse_other_cases=2, reverse_trailing_traps=5)
+
+
+def review_dispatch_frontier(root):
+    import capstone
+    from capstone.x86 import X86_OP_IMM, X86_OP_MEM, X86_OP_REG, X86_REG_RIP
+    from coverage_common import latest_target, target_bytes
+    from script_sources import load_script
+
+    target = latest_target(verify=True)
+    assert (target["version"], target["sha256"]) == (DISPATCH_VERSION, DISPATCH_SHA256)
+    path = Path("docs/analysis/evidence") / DISPATCH_VERSION / "as-residual-ranges.json"
+    proof_bytes = (root / path).read_bytes()
+    proof = json.loads(proof_bytes)
+    assert proof["target"] == {key: target[key] for key in proof["target"]}
+    image = target_bytes(target)
+    pe = load_script("residual_dispatch_pe", root / "scripts/inventory-executable.py").PE(image)
+    decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_64)
+    decoder.detail = True
+    pending = set(map(address, proof["reference_join"]["ranges_without_incoming_flow_evidence"]))
+    assert PREVIOUSLY_JOINED <= pending
+    extents = {}
+    rows, joined, typed_joined = [], set(), set()
+    for site, load_site, count, compare_site, branch_site in REVIEWED_DISPATCHES:
+        extent = next(row for row in proof["extents"]
+                      if address(row["declared_start"]) <= site < address(row["declared_end_exclusive"]))
+        start, end = (address(extent[name]) for name in ("declared_start", "declared_end_exclusive"))
+        if start not in extents:
+            offset = pe.rva_offset(start - pe.image_base)
+            raw = image[offset:offset + end - start]
+            assert digest(raw) == extent["extent_sha256"]
+            decoded = {insn.address: insn for insn in decoder.disasm(raw, start)}
+            assert sum(insn.size for insn in decoded.values()) == end - start
+            extents[start] = decoded
+        decoded = extents[start]
+        jump, load = decoded[site], decoded[load_site]
+        assert jump.mnemonic == "jmp" and jump.operands[0].type == X86_OP_REG
+        assert load.mnemonic == "lea" and load.operands[1].mem.base == X86_REG_RIP
+        table = load.address + load.size + load.operands[1].mem.disp
+        cell_load = next(insn for pc, insn in reversed(decoded.items())
+                         if load_site < pc < site and insn.mnemonic == "movsxd"
+                         and insn.operands[1].type == X86_OP_MEM)
+        cell_operand = cell_load.operands[1].mem
+        assert cell_operand.base == load.operands[0].reg and cell_operand.scale == 4
+        assert cell_operand.disp == 0 and cell_load.operands[0].reg == jump.operands[0].reg
+        addition = decoded[cell_load.address + cell_load.size]
+        assert addition.mnemonic == "add"
+        assert tuple(operand.reg for operand in addition.operands) == (
+            jump.operands[0].reg, load.operands[0].reg)
+        guard = None
+        if compare_site is not None:
+            compare, branch = decoded[compare_site], decoded[branch_site]
+            assert compare.mnemonic == "cmp" and compare.operands[1].type == X86_OP_IMM
+            assert compare.operands[1].imm == count - 1 and branch.mnemonic in {"ja", "jbe"}
+            assert branch.operands[0].type == X86_OP_IMM
+            guard = dict(compare=hex(compare_site), branch=hex(branch_site),
+                         condition=branch.mnemonic, branch_target=hex(branch.operands[0].imm))
+        offset = pe.rva_offset(table - pe.image_base)
+        table_bytes = image[offset:offset + count * 4]
+        targets = [table + delta for delta, in struct.iter_unpack("<i", table_bytes)]
+        assert len(targets) == count and all(value in decoded for value in targets)
+        if site == 0x145EB6CCF:
+            rejection_codes = [decoded[value].operands[1].imm for value in targets]
+            assert all(decoded[value].mnemonic == "mov" and decoded[value].op_str.startswith("r15b,")
+                       for value in targets)
+            assert rejection_codes == [0x45, 0x46, 0x47, 0x48, 0x4F, 0x50]
+        if site == 0x145F6C05B:
+            race_descriptors = check_racial_descriptors(root, pe, image, decoded, count)
+        hits = {}
+        for ordinal, begin, finish, *_ in extent["ranges"]:
+            first, last = address(begin), address(finish)
+            if first not in pending:
+                continue
+            cells = [index for index, target in enumerate(targets) if first <= target < last]
+            if cells:
+                hits[str(ordinal)] = cells
+                if guard is not None:
+                    joined.add(first)
+                elif site == 0x145F6C05B:
+                    typed_joined.add(first)
+        assert hits, hex(site)
+        rows.append(dict(site=hex(site), base_load=hex(load_site), guard=guard,
+                         table=hex(table), file_offset=hex(offset), sha256=digest(table_bytes),
+                         cells=count, distinct_destinations=len(set(targets)),
+                         residual_cells_by_ordinal=hits))
+    assert not joined & PREVIOUSLY_JOINED and not typed_joined & (joined | PREVIOUSLY_JOINED)
+    return dict(target=proof["target"], lead_ids=["Q41-B01", "Q41-U01"],
+                input=dict(path=path.as_posix(), sha256=digest(proof_bytes)),
+                generator=dict(path="scripts/classify-as-residual-ranges.py",
+                               sha256=digest(Path(__file__).read_bytes())),
+                capstone_version=capstone.__version__,
+                guarded_dispatch_joined=sorted(map(hex, joined)),
+                typed_descriptor_joined=sorted(map(hex, typed_joined)),
+                still_without_reviewed_entry=sorted(map(hex, pending - joined - typed_joined - PREVIOUSLY_JOINED)),
+                dispatches=rows, jewelry_catalog=check_jewelry_catalog(root, pe, image),
+                hero_name_rejection_codes=list(map(hex, rejection_codes)),
+                race_descriptors=race_descriptors,
+                tls_cipher_adapter=check_tls_cipher_adapter(pe, image, decoder),
+                limits=["A selected table join establishes static entry geometry. "
+                        "It does not prove full typed inputs, observed runtime reachability or source parity.",
+                        "The race selector is proved by the exact fixed descriptor inputs, separately from "
+                        "other stat, gear and conditional contribution paths."])
 
 
 def join_reference_exports(receipt, artifacts, extents):
@@ -67,7 +292,10 @@ def join_reference_exports(receipt, artifacts, extents):
     lacking = [hex(first) for first, _, row in ranges
                if first not in with_static_entry and not row["direct_incoming_from_same_declared_extent"]
                and not row["guarded_table_target_observations"]]
-    return dict(exports=counts, ranges_without_incoming_flow_evidence=lacking)
+    lacking_starts = set(lacking)
+    return dict(exports=counts, ranges_without_incoming_flow_evidence=lacking,
+                immediate_predecessors={row["start"]: row["previous_instruction"]
+                                        for _, _, row in ranges if row["start"] in lacking_starts})
 
 
 def derive(root):
@@ -294,12 +522,26 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--inputs-root", type=Path, default=checkout)
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--dispatch-frontier", action="store_true",
+                        help="Check the 0.141.0 reviewed dispatch and residual-range joins")
     args = parser.parse_args()
+    if args.dispatch_frontier:
+        result = review_dispatch_frontier(args.inputs_root.resolve())
+        destination = checkout / "docs/analysis/evidence" / DISPATCH_VERSION / "as-residual-dispatch.json"
+        if args.write:
+            destination.write_text(json.dumps(result, indent=2) + "\n")
+        else:
+            assert json.loads(destination.read_text()) == result, "Retained dispatch frontier differs"
+        print(json.dumps({"dispatches": len(result["dispatches"]),
+                          "guarded_joins": len(result["guarded_dispatch_joined"]),
+                          "typed_descriptor_joins": len(result["typed_descriptor_joined"]),
+                          "open_entries": len(result["still_without_reviewed_entry"])}))
+        return
     proof = derive(args.inputs_root.resolve())
     target = proof["target"]
     historical = target["version"] == HISTORICAL_VERSION
     destination = checkout / "docs/analysis/evidence" / target["version"] / "as-residual-ranges.json"
-    if historical:
+    if historical or not args.write:
         from script_sources import recorded_input_matches
         prior_generator = json.loads(destination.read_text())["generator"]
         assert recorded_input_matches(prior_generator["path"], prior_generator["sha256"], checkout)

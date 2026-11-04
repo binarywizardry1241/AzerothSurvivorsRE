@@ -1,0 +1,475 @@
+{
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "lead_ids": [
+    "Q41-B01",
+    "Q41-U01"
+  ],
+  "input": {
+    "path": "docs/analysis/evidence/0.141.0/as-residual-ranges.json",
+    "sha256": "8176aafce62e941323cb93ca177473d13d7e6262c24a84afb8323b2d46b0c8da"
+  },
+  "generator": {
+    "path": "scripts/classify-as-residual-ranges.py",
+    "sha256": "957300b9dbc98d80f3dfbda435bb6e73b4f514b277a630c0afbeb5c3ae608088"
+  },
+  "capstone_version": "5.0.7",
+  "guarded_dispatch_joined": [
+    "0x140372ed0",
+    "0x140385df9",
+    "0x1403894fc",
+    "0x145ea0b2c",
+    "0x145ea0c3a",
+    "0x145ea0dc9",
+    "0x145ea0eec",
+    "0x145ea1e5b",
+    "0x145ea1f5c",
+    "0x145ea40d7",
+    "0x145eb6cd1",
+    "0x145eb7e1a",
+    "0x145fbf3c7",
+    "0x145fbf449",
+    "0x145fbf475"
+  ],
+  "typed_descriptor_joined": [
+    "0x145f6c05d"
+  ],
+  "still_without_reviewed_entry": [
+    "0x140093fb3",
+    "0x14009d833",
+    "0x14009d88d",
+    "0x1401488e7",
+    "0x14020051a",
+    "0x1402064d7",
+    "0x1402b8117",
+    "0x1402ed729",
+    "0x140396fde",
+    "0x145dd7994",
+    "0x145ef89a7",
+    "0x145eff49a",
+    "0x145f1bcf6",
+    "0x145f1bd88",
+    "0x145f1df84",
+    "0x145f1e2c9",
+    "0x145f22bcd",
+    "0x145f25cd7",
+    "0x145f2dd7f",
+    "0x145f321ba",
+    "0x145f39f0f",
+    "0x145f3b4c4",
+    "0x145f3bb8b",
+    "0x145f3bdd8",
+    "0x145f476c3",
+    "0x145f48c5b",
+    "0x145f4d90f",
+    "0x145f5a250",
+    "0x145f6cdf1",
+    "0x145f8e9c9",
+    "0x145fa16a3",
+    "0x145fa1a23",
+    "0x145fb3133",
+    "0x145fbc00c",
+    "0x14605e6f1",
+    "0x146065467"
+  ],
+  "dispatches": [
+    {
+      "site": "0x140372ece",
+      "base_load": "0x140372eaf",
+      "guard": {
+        "compare": "0x140372ea5",
+        "branch": "0x140372ea9",
+        "condition": "ja",
+        "branch_target": "0x140373118"
+      },
+      "table": "0x1465cb8c8",
+      "file_offset": "0x65c9ec8",
+      "sha256": "0001fd12aa24bf67a7067c3d0d8b8d0fba1922e724798d33df85ddf430f2e4f3",
+      "cells": 7,
+      "distinct_destinations": 5,
+      "residual_cells_by_ordinal": {
+        "1953": [
+          2,
+          4,
+          6
+        ]
+      }
+    },
+    {
+      "site": "0x140385df7",
+      "base_load": "0x140385dda",
+      "guard": {
+        "compare": "0x140385dd4",
+        "branch": "0x140385dd8",
+        "condition": "ja",
+        "branch_target": "0x140385e44"
+      },
+      "table": "0x1465cb9f8",
+      "file_offset": "0x65c9ff8",
+      "sha256": "2f50cf91676dc0d531a9414d3b9f72ddc4fdba5afa52b53ce5685820b3676a7a",
+      "cells": 7,
+      "distinct_destinations": 5,
+      "residual_cells_by_ordinal": {
+        "1975": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6
+        ]
+      }
+    },
+    {
+      "site": "0x1403894fa",
+      "base_load": "0x1403894e4",
+      "guard": {
+        "compare": "0x1403894de",
+        "branch": "0x1403894e2",
+        "condition": "ja",
+        "branch_target": "0x140389550"
+      },
+      "table": "0x1465cba14",
+      "file_offset": "0x65ca014",
+      "sha256": "4aee19ce13a80043050159109b8f8fe3db310f101d671bcbed5589b94ab91983",
+      "cells": 7,
+      "distinct_destinations": 5,
+      "residual_cells_by_ordinal": {
+        "1976": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6
+        ]
+      }
+    },
+    {
+      "site": "0x145ea0b2a",
+      "base_load": "0x145ea0b0e",
+      "guard": {
+        "compare": "0x145ea0b05",
+        "branch": "0x145ea0b08",
+        "condition": "ja",
+        "branch_target": "0x145ea0f5d"
+      },
+      "table": "0x147aec99c",
+      "file_offset": "0x7aeaf9c",
+      "sha256": "06a0a1d52f044228f529567fc2711f60a364a23220859e9d375698b04444d564",
+      "cells": 23,
+      "distinct_destinations": 17,
+      "residual_cells_by_ordinal": {
+        "52293": [
+          0
+        ]
+      }
+    },
+    {
+      "site": "0x145ea0c38",
+      "base_load": "0x145ea0c2a",
+      "guard": {
+        "compare": "0x145ea0af5",
+        "branch": "0x145ea0af8",
+        "condition": "jbe",
+        "branch_target": "0x145ea0c23"
+      },
+      "table": "0x147aec824",
+      "file_offset": "0x7aeae24",
+      "sha256": "f6b6a01787e7f7a33058af82def73138b19aa6709b04d46002921c04fe32e4b9",
+      "cells": 94,
+      "distinct_destinations": 17,
+      "residual_cells_by_ordinal": {
+        "52294": [
+          0
+        ],
+        "52295": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          7,
+          10,
+          11,
+          90,
+          91,
+          92,
+          93
+        ],
+        "52296": [
+          6,
+          8,
+          9
+        ]
+      }
+    },
+    {
+      "site": "0x145ea1e59",
+      "base_load": "0x145ea1e4b",
+      "guard": {
+        "compare": "0x145ea1e2d",
+        "branch": "0x145ea1e3e",
+        "condition": "ja",
+        "branch_target": "0x145ea10a1"
+      },
+      "table": "0x147aed888",
+      "file_offset": "0x7aebe88",
+      "sha256": "6d825c71337363c4cdbb341091eb59622720a89536d5205872aa618e9b74dca6",
+      "cells": 89,
+      "distinct_destinations": 16,
+      "residual_cells_by_ordinal": {
+        "52298": [
+          0
+        ],
+        "52299": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          84,
+          85,
+          86,
+          87,
+          88
+        ]
+      }
+    },
+    {
+      "site": "0x145ea40d5",
+      "base_load": "0x145ea3f96",
+      "guard": {
+        "compare": "0x145ea40af",
+        "branch": "0x145ea40b3",
+        "condition": "ja",
+        "branch_target": "0x145ea3fa6"
+      },
+      "table": "0x147aed9ec",
+      "file_offset": "0x7aebfec",
+      "sha256": "1320b0464ccb7445225ba2e218b27f8d9193c3dd5b24b381d6d545d83d353f8c",
+      "cells": 10,
+      "distinct_destinations": 7,
+      "residual_cells_by_ordinal": {
+        "52306": [
+          0,
+          1,
+          2,
+          3,
+          7,
+          9
+        ]
+      }
+    },
+    {
+      "site": "0x145eb6ccf",
+      "base_load": "0x145eb6cba",
+      "guard": {
+        "compare": "0x145eb6caf",
+        "branch": "0x145eb6cb1",
+        "condition": "ja",
+        "branch_target": "0x145eb7e42"
+      },
+      "table": "0x147aeda7c",
+      "file_offset": "0x7aec07c",
+      "sha256": "136d70f853b6ba9ef07f447ae83b4bcc141eaef7f5f7b4cd0d5170e9e7c4bf3d",
+      "cells": 6,
+      "distinct_destinations": 6,
+      "residual_cells_by_ordinal": {
+        "52349": [
+          0
+        ],
+        "52352": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "site": "0x145f6c05b",
+      "base_load": "0x145f6c015",
+      "guard": null,
+      "table": "0x147af33a0",
+      "file_offset": "0x7af19a0",
+      "sha256": "757bff2752388da1f82945973446cff14c239a3c50f7899837429c5d5c5b5976",
+      "cells": 12,
+      "distinct_destinations": 12,
+      "residual_cells_by_ordinal": {
+        "52976": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ]
+      }
+    },
+    {
+      "site": "0x145fbf3c5",
+      "base_load": "0x145fbf3af",
+      "guard": {
+        "compare": "0x145fbf39d",
+        "branch": "0x145fbf3a7",
+        "condition": "ja",
+        "branch_target": "0x145fbf453"
+      },
+      "table": "0x147af3a08",
+      "file_offset": "0x7af2008",
+      "sha256": "5613f7fa937bb4efb6bd7f1202d4f09a810024bb4d892c0753961e2f4bc4f5d8",
+      "cells": 20,
+      "distinct_destinations": 5,
+      "residual_cells_by_ordinal": {
+        "53303": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          8
+        ],
+        "53304": [
+          7,
+          15,
+          18,
+          19
+        ],
+        "53305": [
+          9
+        ]
+      }
+    }
+  ],
+  "jewelry_catalog": {
+    "table": "0x1476f94e8",
+    "file_offset": "0x76f7ae8",
+    "table_sha256": "a4dceec557f840cb596ff2f474628ba0ffb1976678a5458e07d9fcee88fc36ae",
+    "matched_rows": 23,
+    "source": "crates/azeroth-survivors-re/src/loot_rewards/catalog_01120.rs",
+    "source_sha256": "d18c16eb16c36e15c1c70eeefcc8247f997a56ae6de1eafbeb77a823d92e43c6"
+  },
+  "hero_name_rejection_codes": [
+    "0x45",
+    "0x46",
+    "0x47",
+    "0x48",
+    "0x4f",
+    "0x50"
+  ],
+  "race_descriptors": {
+    "table": "0x147af2cb0",
+    "table_sha256": "374c5319d55df2a4d973cb1c20611fe1b35a1964a38eaf318d23d1a07e32a6f8",
+    "source": "crates/azeroth-survivors-re/assets/run-entry-0.100.1.json",
+    "source_sha256": "424cd4a4b48500bf0f2fa8fa68147a4767398ca58b5666a55fcca331984fcee4",
+    "descriptors": [
+      {
+        "native_id": 1,
+        "address": "0x1473a1960",
+        "row_tags": [
+          8,
+          9
+        ],
+        "rows_sha256": "1ac9e546c2b1129a4a9fad41481ead0a14f887f0995b67587f93c4b3e99b8cc4"
+      },
+      {
+        "native_id": 2,
+        "address": "0x1473a19b8",
+        "row_tags": [
+          0
+        ],
+        "rows_sha256": "5a1dfa10657e0a21707cf91228b779a860426ba61f928eebffa3038bda0dbd68"
+      },
+      {
+        "native_id": 3,
+        "address": "0x1473a1a10",
+        "row_tags": [
+          1,
+          7
+        ],
+        "rows_sha256": "468d6b6aa078c7fea2530cf0a3b7838f024ade042c6a9ca377c321a1ffbdb6d7"
+      },
+      {
+        "native_id": 4,
+        "address": "0x1473a1a68",
+        "row_tags": [
+          3,
+          5
+        ],
+        "rows_sha256": "2e8d49e0461f2012d634745cd5ab97768952cf42a20a2bf29c06ad856be53b11"
+      },
+      {
+        "native_id": 5,
+        "address": "0x1473a1ac0",
+        "row_tags": [
+          5,
+          11
+        ],
+        "rows_sha256": "5c237e5411092553c1811b29c6afa8383fd4ef2d3615fa5247c18ef7bff1b01f"
+      },
+      {
+        "native_id": 6,
+        "address": "0x1473a1b18",
+        "row_tags": [
+          0
+        ],
+        "rows_sha256": "36298ae79037b14baa26550c38b605e7cf8c5a28f3d54f109b18707749fd08dc"
+      },
+      {
+        "native_id": 7,
+        "address": "0x1473a1b70",
+        "row_tags": [
+          2,
+          10
+        ],
+        "rows_sha256": "efd0ce115a9eeea07f772b6a21206166e640c005fb20a702b951c30eb18c18d2"
+      },
+      {
+        "native_id": 8,
+        "address": "0x1473a1bc8",
+        "row_tags": [
+          4,
+          6
+        ],
+        "rows_sha256": "602a1475dfd463712068d169acb7e66829cfcf357256afcdecd9c470a5f854cd"
+      }
+    ]
+  },
+  "tls_cipher_adapter": {
+    "forward_table": {
+      "address": "0x147b28a84",
+      "cells": 256,
+      "sha256": "29480440e4ca3f81bc0c53d3340aef0f0b9a73b8a13e3c639c7098bb3285d92e"
+    },
+    "reverse_table": {
+      "address": "0x147b29170",
+      "cells": 377,
+      "sha256": "afb8eb49d803e793b2f61987b97cc9cd681ee4085a35b54942e393e1e781faab"
+    },
+    "inverse_pairs": 186,
+    "reverse_immediate_leaves": 375,
+    "reverse_other_cases": 2,
+    "reverse_trailing_traps": 5
+  },
+  "limits": [
+    "A selected table join establishes static entry geometry. It does not prove full typed inputs, observed runtime reachability or source parity.",
+    "The race selector is proved by the exact fixed descriptor inputs, separately from other stat, gear and conditional contribution paths."
+  ]
+}

@@ -46,11 +46,20 @@ and tail-transfers to `0x14637f150`. The 219 adapters that set the length
 locally read Vulkan format or structure labels, including `D32_SFLOAT` and
 `PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES`. Seven preserve the incoming length.
 Their selector and actual callers remain separate from the leaf role.
-Two more mixed spans, `0x14612b66b..0x14612bb81` and
-`0x14612bbb5..0x14612c310`, contain 186 `mov ax,imm16; mov edx,ecx; ret`
-and 376 `mov ax,imm16; ret` encodings respectively. The five trailing `INT3`
-bytes in the latter retain their own encoding. The constant identities and
-entry producers for these leaves remain unproved. The
+The mixed spans `0x14612b66b..0x14612bb81` and
+`0x14612bbb5..0x14612c310` implement opposing TLS cipher identifier
+conversions. The branch at `0x14612b108` indexes 256 signed offsets at
+`0x147b28a84` after the unsigned `<= 0xff` guard. All 186 first-span leaves
+return distinct internal selectors in AX and preserve the wire value in EDX.
+The inverse at `0x14612bbb3` uses the 377 signed cells at `0x147b29170`.
+All 186 forward selections round-trip exactly. The reverse vector has 375
+immediate-return leaves, a bare return at index zero and an EDX-return
+fallback at index 376. Five trailing `INT3` bytes retain their own encoding.
+The adjoining formatter at `0x14612c310` indexes the same small selector
+domain to text including `TLS_NULL_WITH_NULL_NULL`. This establishes a
+shared cipher conversion boundary without changing the original range
+accounting. The broader caller and handshake state remain separate.
+The
 [CRYPTOGAMS identifier](native-census-0.141.0.md#embedded-identifier-outside-declared-extents)
 retains its earlier data and alignment classification.
 
@@ -111,15 +120,59 @@ before applying hit damage. The same six tags feed the live
 and hit consumers. No source discrepancy was established on these routes.
 
 The raw static join found 58 ranges without an incoming edge. The TCP,
-Soulfire, font and amplification traces account for six of them. The other
-52 exact ranges stay open. Thirty-nine immediately follow indirect
-transfers. Thirty-seven have a nearby RIP-relative base and an indexed
-signed load added into the jump register. The transfers at `0x145ea40d5`
-and `0x145f6c05b` use an earlier base. Prove selector bounds and base dominance
-before accepting their case destinations. The other thirteen immediately
-follow direct transfers elsewhere. Join the proved table destinations to
-these successors before proposing new entries. The original 58-row selector
-remains reproducible on the same pass.
+Soulfire, font and amplification traces account for six. The
+[dispatch join](evidence/0.141.0/as-residual-dispatch.json) connects 16 more,
+including jumps into range interiors. It checks nine guarded vectors and one
+fixed descriptor vector against complete original instruction boundaries.
+The original 58-row selector stays reproducible, and 36 rows still lack a
+reviewed entry.
+
+| Jump | Proven input at the transfer | Joined range ordinals |
+| --- | --- | --- |
+| `0x140372ece` | Codex subtracts one from the descriptor value and admits the seven cells at `0x1465cb8c8`. Cells 2, 4 and 6 reach the same floating-constant block. | 1953 |
+| `0x140385df7`, `0x1403894fa` | Two Armory paths subtract one and admit seven cells each at `0x1465cb9f8` and `0x1465cba14`. Both reuse the Codex vector constants and have corresponding three-cell branches. The upstream descriptor identity and final UI consumer remain open. | 1975, 1976 |
+| `0x145ea0b2a`, `0x145ea0c38`, `0x145ea1e59` | The [three CreatureQuery selectors](computed-transfers-0.141.0.md#three-additional-creaturequery-tables) already prove these 206 cells and their recipient path. | 52293–52296, 52298–52299 |
+| `0x145ea40d5` | Co-op poller walks 120-byte event rows returned by `0x145e8da50`. The signed first word either maps by XOR with the sign bit or selects the out-of-table sentinel 10. An unsigned comparison admits 0–9. The loop loads RBX from `0x147aed9ec` at `0x145ea3f96` before entering at `0x145ea3fc0`. The branch targets include denial, closure and hosting text publication. Full event constructors and transport state correspondence remain under [#63](../CURRENT-STATE.md#gap-63). | 52306 |
+| `0x145eb6ccf` | Character Create checks the validator result against five. All six cells set one-byte replies `45`, `46`, `47`, `48`, `4f` and `50`, then `0x145eb8116` passes the byte with reply kind `0x3a` to `0x145ea3190`. The [retained rejection contract](hero-names-0.127.0.md#current-producer-and-validation), [name normalizer](../../crates/azeroth-survivors-re/src/hero_name.rs) and [roster Create consumer](../../crates/azeroth-survivors-re/src/save.rs) use the same six outputs. | 52349, 52352 |
+| `0x145f6c05b` | The race descriptor consumer loads the base from `0x147af33a0` at `0x145f6c015`. Its eight-byte rows derive from the seven fixed descriptors selected by race IDs 2–8 and the Human fallback. The fourteen stored rows cover tags 0–11. All eight source race records match the projected scalar values. | 52976 |
+| `0x145fbf3c5` | Cache generation matches the worn row's key, reads the candidate definition tag at `+0x44`, handles raw tag 16 separately, and admits the remaining in-range tags to a 20-cell table. | 53303–53305 |
+
+The cache owner at `0x145fbef40` iterates all 23 rows of 72 bytes at
+`0x1476f94e8`. Its key, base f32 bits, stable tag and slot match the live
+[jewelry catalog](../../crates/azeroth-survivors-re/src/loot_rewards/catalog_01120.rs).
+It skips excluded keys, counts occupied slots, and admits eligible new
+items at weight 0.5. Raw tag 17 requires a qualifying base or learned Horn
+spell, and raw tag 19 requires a learned periodic spell. Worn rows use weight
+2.0 if the strict upper cutoff passes. The cutoffs are infinity for raw
+tags 0–6 and 8, `(3 * base) * 0.9` for 7, 15 and 18, exact f32
+`0x3f0a3d71` for 9, `(10 * base) * 0.9` for 19, and
+`(5 * base) * 0.9` for the remaining finite cases. Raw tag 16 checks
+remaining lives below two. These paths correspond to the existing
+[`cache_candidates`](../../crates/azeroth-survivors-re/src/loot_rewards.rs)
+called by the [live treasure owner](../../crates/azeroth-survivors-re/src/gameplay/mechanics/treasure.rs).
+
+The race table reads one static descriptor selected from every possible
+byte value at `Game+0x465`. The two class-selection paths normalize the
+race byte by subtracting two and choose the fallback for an out-of-range
+result. Its descriptor stores the row pointer and count at `+0x20/+0x28`.
+The accumulator reads a dword tag and f32 value and advances by eight bytes.
+Tag 7 multiplies pickup by one plus the value. Other cases add to the
+corresponding scalar. The source [entry](../../crates/azeroth-survivors-re/src/gameplay/mod.rs)
+and [refresh](../../crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs)
+use the same recovered race values, with separately supplied level-growth
+and exact Gnome recovery inputs. The join covers this initial descriptor
+vector, with wider stat and gear contributions retaining their own scope.
+
+| Journaled Ghidra slice | Original slice SHA-256 | Shared result SHA-256 |
+| --- | --- | --- |
+| `0x145ea3420..0x145ead071` | `6d3fe23bd5b101096f0343322ea410be01dca9f7e9054551af1742a4192583f5` | `292c367bedfccadda7f0b9fc09fa92d53d289fdf291a712e4ad5898ba5a6da4a` |
+| `0x145f6bbe0..0x145f6d09b` | `f695f5df8bd17f933d6b4d828bef5b49fde7529d8c585aa5e88d9a9ae24bceeb` | `393fa6e5babfaa39f1b594cb5c4ffd1bc76e0a808615ceb112f46cebc91afe84` |
+| `0x145fbef40..0x145fc03d9` | `38b0d67f8e43081b907de24902273df6277f11e18acb59af0a5511d3f3d3a2c1` | `513576a1dc0b0577c1ca8b47908d4f864960bf9b560da194d4dad8ea270fbf23` |
+
+The exact 36-row remainder preserves dispatches with unproved index
+producers and direct-preceded ranges without an admitted case or caller.
+Follow their operand, descriptor or local branch writers, and keep the
+entry classification separate from complete source behavior.
 
 ## Q41-U03 executable complement
 
@@ -190,6 +243,7 @@ selected transfers without establishing a missing gameplay behavior.
 export PYTHONPATH=runtime/tests/query-python-deps
 python3 -B scripts/check-q41-range-encodings.py --census-summary docs/analysis/coverage/full-image-selected-0.141.0.json
 python3 -B scripts/classify-as-residual-ranges.py
+python3 -B scripts/classify-as-residual-ranges.py --dispatch-frontier
 python3 -B scripts/classify-q41-residual-frontier.py --complement-projection docs/analysis/coverage/full-image-selected-0.141.0.json
 python3 -B scripts/check-u04-trap-fill.py --complement-stops
 ```

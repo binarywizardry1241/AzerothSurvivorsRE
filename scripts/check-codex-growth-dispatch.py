@@ -16,6 +16,77 @@ from script_sources import load_script
 PROOF = ROOT / "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json"
 
 
+def check_stat_labels(proof):
+    """Verify the current jewelry subtitle selector and all admitted rows."""
+    from discovery_native_subject import verify_native_query_subject
+
+    target = latest_target(verify=True)
+    assert all(target[key] == proof["target"][key]
+               for key in ("version", "sha256", "size_bytes"))
+    image = target_bytes(target)
+    pe = load_script("codex_dispatch_pe", ROOT / "scripts/inventory-executable.py").PE(image)
+
+    def native(address, size):
+        offset = pe.rva_offset(address - pe.image_base)
+        return image[offset:offset + size]
+
+    for span in proof["native_ranges"]:
+        start, end = (int(span[key], 16) for key in ("start", "end_exclusive"))
+        assert hashlib.sha256(native(start, end - start)).hexdigest() == span["sha256"]
+
+    query = json.loads((ROOT / proof["caller_query_proof"]).read_text())["query"]
+    result = json.loads((ROOT / query["result"]["path"]).read_text())["structuredContent"]
+    verify_native_query_subject(ROOT, result, query, target, image=image, pe=pe)
+
+    selector = int(proof["selector"], 16)
+    caller = int(proof["caller"], 16)
+    table = int(proof["table"], 16)
+    lookup = int(proof["lookup"], 16)
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    decoder.detail = True
+    dispatch = list(decoder.disasm(native(selector, 20), selector))
+    assert [item.mnemonic for item in dispatch] == ["movzx", "lea", "movsxd", "add", "jmp"]
+    assert dispatch[0].op_str == "eax, byte ptr [rcx + 0x44]"
+    assert dispatch[1].address + dispatch[1].size + dispatch[1].operands[1].mem.disp == table
+    assert dispatch[2].op_str == "rax, dword ptr [rcx + rax*4]"
+    assert dispatch[3].op_str == "rax, rcx" and dispatch[4].op_str == "rax"
+    call, = decoder.disasm(native(caller, 5), caller)
+    assert call.mnemonic == "call" and call.operands[0].imm == selector
+
+    labels = []
+    cells = native(table, 4 * len(proof["labels"]))
+    assert hashlib.sha256(cells).hexdigest() == proof["table_sha256"]
+    for (displacement,) in struct.iter_unpack("<i", cells):
+        entry = table + displacement
+        assert selector + 20 <= entry < int(proof["native_ranges"][0]["end_exclusive"], 16)
+        load, length, transfer = decoder.disasm(native(entry, 17), entry)
+        assert (load.mnemonic, length.mnemonic, transfer.mnemonic) == ("lea", "mov", "jmp")
+        assert load.op_str.startswith("rcx, [rip ") and length.op_str.startswith("edx, ")
+        assert transfer.operands[0].imm == lookup
+        address = load.address + load.size + load.operands[1].mem.disp
+        labels.append(native(address, length.operands[1].imm).decode())
+    assert labels == proof["labels"]
+
+    global_address = int(proof["jewelry_global"], 16)
+    descriptor, = struct.unpack("<Q", native(global_address, 8))
+    rows, count = struct.unpack("<QQ", native(descriptor, 16))
+    assert count == proof["jewelry_count"]
+    assets = ROOT / "crates/azeroth-survivors-re/assets"
+    localized = json.loads((assets / "codex-locales-0.105.0.json").read_text())["en"]
+    for name in ("codex-locale-delta-0.109.0.json", "jewelry-codex-0.112.0.json"):
+        localized.update(json.loads((assets / name).read_text())["locales"].get("en", {}))
+    for index in range(count):
+        row = native(rows + index * 72, 72)
+        key, length = struct.unpack_from("<QQ", row)
+        label = localized[native(key, length).decode()]["tag_label"]
+        assert labels[row[0x44]] == label
+    codex = (ROOT / "crates/azeroth-survivors-re/src/codex.rs").read_text()
+    assert "entry_text.tag_label.as_str()" in codex
+    assert "label(text, art, subtitle, 12., MUTED);" in codex
+    return dict(target=target["version"], stat_label_cells=len(labels),
+                admitted_jewelry_rows=count, reused_ghidra_queries=1, game_executed=False)
+
+
 def check_growth_ceiling(proof):
     """Replay admitted Codex branches up to the jewelry-description call."""
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
@@ -106,6 +177,8 @@ def check_growth_ceiling(proof):
 def check_classification(proof_path):
     """Check a later bounded selector classification without reopening old proof."""
     proof = json.loads(proof_path.read_text())
+    if proof.get("scope") == "jewelry_stat_labels":
+        return check_stat_labels(proof)
     if proof.get("scope") == "admitted_growth_ceiling":
         return check_growth_ceiling(proof)
     target = latest_target(verify=True)

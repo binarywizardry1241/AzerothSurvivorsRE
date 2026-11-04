@@ -46,13 +46,37 @@ The current generation read at `0x14010c6c0` is at `+0xe4`. The tests at
 The `killer` references at `0x14010c6fb` and `0x14010cace` reach `0x146569e29`.
 The four corresponding lookups call the same current helper at `0x1438a3970`.
 
-The renderer at `0x1400f49e0` still resolves `secs`, `absorbed`, `hits` and
-`avoidable`, as well as the Death Recap, Final Blows and Damage by Source
-labels. Its masked SHA-256 is
-`013b3920ff24db7c39f81c1fde0a033a20006a4f6828367d303607d0ba0d61c6`,
-which differs from the 0.140.0 renderer. The exact references support the
-named-field observation. The renderer's changed masked bytes require their
-own correspondence work before extending the claim to the full extent.
+The renderer at `0x1400f49e0..0x1400f6722` has raw SHA-256
+`4f3f8be04f7d89721aa4b7baf9cb76ee4e5f21108483c99213b0cbec29ba0a84`.
+The earlier 0.141.0 comparison used Capstone's reported displacement width,
+which is two for some SSE instructions with a mandatory `66` prefix even
+though their RIP-relative encoding has a four-byte displacement. That left
+address bytes in the comparison.
+
+The retained 0.140.0 linear decode has 302 encoded reference records for
+`0x14016c4b0..0x14016e1f2`. Overlaying their instruction bytes at the same
+relative offsets in the current extent restores the exact predecessor
+SHA-256 `76715cb61a4f47348669179eefb11d3d6e182433f9f3ca07948748fbcc4b15dd`.
+The independent replay then checks all 1,279 instruction boundaries and
+masks four bytes at each of the 166 RIP-relative displacements and 56
+external call immediates. Both masked extents have SHA-256
+`ba3aa8d4872b38d393f105bedbaa8f2d4fc03cdb28a76196b2afefb596532c01`.
+The 645 differing raw bytes are entirely in those address fields. The
+same relative branch targets, instruction encodings outside the mask, and
+extent length are preserved.
+
+The journaled Ghidra result for the 7,490-byte current PE slice agrees on
+the instruction count. Its verified result SHA-256 is
+`b48ac47846a875a2b2c7f58393cec51498e60b169cd1a580dfe52778e516cabd`.
+The current renderer reads `total`, `secs`,
+`absorbed`, `hits`, `by` and `avoidable` through the lookup at `0x1438a3970`.
+The `by` list requires the array tag and a nonzero count before emitting
+Damage by Source. The avoidable calculation checks both values against 1,
+then divides, scales by 100, rounds and clamps to `[1, 100]`. These gates
+have live counterparts in `recap::content`. The Death Recap, Final Blows
+and Close labels also resolve in the current image. This comparison
+does not establish the implementation of every referenced helper or the
+effect of a changed call target or data value outside the extent.
 
 The rebuilt [terminal view](../../crates/azeroth-survivors-re/src/gameplay/terminal_view.rs)
 schedules [`recap::render`](../../crates/azeroth-survivors-re/src/gameplay/terminal_view/recap.rs).
@@ -60,8 +84,8 @@ The modal takes its recap from `TerminalState`, keys its lifetime to the
 terminal identity, and renders the typed `DeathRecap` fields. This registers
 the bounded payload-consumer scope for `custom-app-screens-recap`.
 The [0.139.2 capture and delivery work](death-recap-0.139.2.md) and
-[#300](../verification-needed.md#gap-300) retain the wider producer,
-aggregation and execution questions.
+[#300](../verification-needed.md#gap-300) retain the producer and
+aggregation provenance and the remaining execution checks.
 
 ## Ready Check first-answer mutation
 

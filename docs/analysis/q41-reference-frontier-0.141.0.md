@@ -68,6 +68,21 @@ vtable `0x146978a30`. The observed leaves are ten caller-buffer writers,
 a scalar `0x101` result and one owned RET-only leaf. The 36 saved direct
 caller references to these adapters have no joined diagnostic paths, so
 the concrete registering subsystem and dynamic execution remain open.
+
+The shared sink at `0x145bff8a0..0x145bff948` (file `0x5bfeca0`,
+SHA-256 `ae40e430bfe092a3bb02b5bb0c76d5eb10387f4a321c3cb3ae94436fa96aca3d`)
+uses an indexed 48-byte storage descriptor on one branch. It copies the
+returned value into the selected row and writes the same incoming dword to
+two parallel row arrays. The other branch forms a 96-byte descriptor and
+tail-transfers to `0x145c00af0`. That path bounds a sparse index against
+`+0x58`, resolves it through the `+0x50` array and optionally drops the
+previous row before copying the new value. Its prefix through
+`0x145c00b87` (file `0x5bffef0`) has SHA-256
+`a2a0c799ff2a9485c608a4746b9fd3d5411765798686eb0e21139fa81fe08e74`.
+These stores classify the callback result's immediate consumer as shared
+component storage. The concrete component types and registration owners
+remain open.
+
 The other LEA, `0x1463a5014 → 0x1463a5024`, passes a filter
 checking C++ exception code `0xe06d7363` and its parameter magic to
 `kernel32.dll!SetUnhandledExceptionFilter` through `0x14654f8d8`. It is
@@ -112,11 +127,11 @@ semantics to the enclosing runs.
 
 | Declared extent start | Instructions without a terminal proof | Existing path or next boundary |
 | --- | ---: | --- |
-| `0x140205c20` | 7 | [Options header removal](q41-diagnostic-consumers-0.141.0.md#returning-removals); keep writeback separate from failure. |
-| `0x145dd6ba0` | 41 | [Font provider](font-table-publication-0.141.0.md); trace the remaining nested table input and fallback branches from the exact rejoins. |
+| `0x140205c20` | 7 | [Options header removal](q41-diagnostic-consumers-0.141.0.md#returning-removals). The three instructions at `0x140206f30` prepare the Location and call the returning stable-removal helper. The four at `0x140206d66` forward the returned state to the shared continuation at `0x140206190`. |
+| `0x145dd6ba0` | 41 | [Existing font filter proof](font-table-publication-0.141.0.md#dispatch-and-rebuild). The eight instructions at `0x145dd9057` dispatch and test `hdmx`. The 33 at `0x145dd9158` finish exact tag matching and publish the replacement or rejoin the original payload path at `0x145dd91e9`. Both runs fall within the verified original tag and payload replay. |
 | `0x145f4a110` | 307 | [Attack-script dispatcher](scholomance-barov-0.141.0.md); connect the remaining guarded branches to their script and actor state. |
 | `0x145f51870` | 850 | [Ability payload](status-weakening-0.139.2.md#ground-periodic-and-self-aura-payloads-in-01410) and [totem replacement](unknown-recovery-0.141.0.md#q41-d01-immediate-consumers); follow unresolved descriptor inputs and dispatch. |
-| `0x145f8e670` | 120 | [Talent/kill reset](kill-selector-0.139.2.md); keep the existing Reaper and Darkmantle branches separate from unproved state flow. |
+| `0x145f8e670` | 120 | The 4, 40 and 47 instructions at `0x145f8ebbd`, `0x145f8efa3` and `0x145f919cc` reach the existing [kill-reset selector, admission and deadline clamp](kill-selector-0.139.2.md#kill-reset-and-prepared-selectors-in-01410). The 29 instructions at `0x145f92491` reach the existing [Darkmantle displacement and replacement](q41-diagnostic-consumers-0.141.0.md#returning-removals). |
 | `0x145fbbf50` | 266 | Spell and treasure card payload; the gold title, amount and icon have [rebuilt consumers](../../crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs). Remaining variant producers and exits retain exact runs. |
 | `0x145fc1500` | 899 | Choice acceptance and selected row application, described below. |
 
@@ -130,14 +145,53 @@ Two command paths call it at `0x145e73e58` and `0x145ef89c3` with the
 index from command byte `+1`, after admitting a zero offer generation or
 an exact match against `[Game+0x1054]`. The existing
 [`pick::admits`](../../crates/azeroth-survivors-re/src/coop/pick.rs)
-and [live choice consumer](../../crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs)
+and [live choice consumer](../../crates/azeroth-survivors-re/src/gameplay/mechanics.rs)
 already connect this gate, the row bounds check and choice application.
 The packed formatter calls at `0x145fc2372` and `0x145fc2644` sit inside
 the chooser; their diagnostic adjacency does not assign this extent to the
 detailed meter. The [diagnostic consumer trace](q41-diagnostic-consumers-0.141.0.md)
 separately resolves these operands as equipment display names and follows
 the card title to its live producer. Remaining card variants, skip and
-republish behavior are outside this admission proof.
+republish behavior are outside this admission proof. The suffix at
+`0x145fc32f9..0x145fc330c` loads the selected source byte and calls completion
+at `0x145fb8d80`. The verified completion prefix saturating-decrements the
+level, cache or guardian count at `+0x103c`, `+0x1040` or `+0x1044`, then
+clears and drops the 160-byte offer rows. The [rebuilt completion](../../crates/azeroth-survivors-re/src/gameplay/mechanics/completion.rs)
+has the same separate source counters and shared offer closure. Later cleanup
+and arbitrary payload aliases retain their exact run selectors.
+
+### Gold credit for selected offers
+
+The [choice credit proof](evidence/0.141.0/choice-gold-credit.json) joins the
+two origin branches and their common row and recipient. The empty level offer
+branch at `0x145fb7f4c` passes 25 to the builder at `0x145fbbf50`. Cache
+origin 1 calls `0x145fbef40` at `0x145fb71cb`. Its fallback at `0x145fc0282`
+passes `max(price >> 1, 60)` to the same builder. Both use payload tag
+`0x8000000000000004`. The builder writes the tag at row `+0x78` and the raw
+u32 at `+0x80` before publication.
+
+After the phase, index and active-source guards, the selected effect dispatch
+at `0x145fc1747` maps tag 4 to `0x145fc1aaf`. The call at `0x145fc1ab8`
+passes the Game and raw amount to `0x145f87c00`, the same [party credit helper
+already traced for Skip](coop-command-ingress-0.141.0.md#guest-gossip-option-ingress).
+It shares the raw reward when a party is active and updates the local collector
+before completing the offer. The rebuilt level and treasure selections now
+use their shared `credit_pickup_gold` helper. Previously both paths scaled and
+added gold locally and bypassed the party queue and player-value publication.
+The normal reward ordering and completion paths are covered under
+[#91](../verification-needed.md#gap-91) and [#63](../verification-needed.md#gap-63).
+
+Six bounded original-instruction cases check the level and cache origins,
+raw amount boundaries, row stores and selected helper arguments. The replay
+resumes after copying the unrelated display strings and stops before the
+credit helper. It checks both live call sites and verifies two completed
+Ghidra query receipts for the selected-card and completion owners. Actual
+party delivery, gameplay and original/rebuilt comparison remain open.
+
+```sh
+PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs \
+  python3 -B scripts/check-coop-overlay.py --choice-gold
+```
 
 Of 848,784 saved reference records with sources outside bodies, 823,580
 are data references from `.pdata`, `.rdata`, or PE headers and 25,204
@@ -154,8 +208,8 @@ the 74 [diagnostic operand roles](unknown-recovery-0.141.0.md#q41-d01-immediate-
 the five A01 LEAs, or the A02 import and exception interfaces simply because
 the raw pass still reports ownerless observations. Remaining local and
 dynamic dispatch, typed state, and caller-to-source questions stay under
-#41 or their existing mechanic findings. The selected review did not
-establish a new gameplay source defect.
+#41 or their existing mechanic findings. The gold credit discrepancy was
+repaired in the two selected paths above.
 
 ```sh
 python3 -B scripts/classify-q41-as-references.py --encoded-frontier

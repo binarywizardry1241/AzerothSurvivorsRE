@@ -40408,7 +40408,8 @@
         "crates/azeroth-survivors-re/src/run_progression.rs",
         "crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs",
         "scripts/check-run-level-cap.py",
-        "scripts/check-run-level-cap.lua"
+        "scripts/check-run-level-cap.lua",
+        "scripts/check-coop-overlay.py"
       ],
       "evidence_refs": [
         "docs/analysis/upgrade-flow-0.100.1.md",
@@ -40482,7 +40483,8 @@
         "docs/analysis/evidence/0.139.0/source-frontier.json",
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
-        "docs/analysis/native-census-0.139.1.md"
+        "docs/analysis/native-census-0.139.1.md",
+        "docs/analysis/evidence/0.141.0/choice-gold-credit.json"
       ],
       "gap_ids": [
         2,
@@ -40521,7 +40523,7 @@
         "summary": "Current original/rebuilt behavior and presentation remain unverified."
       },
       "remaining_source_work": [
-        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Use Q41-G01 at 0x145fbbf50 and 0x145fc1500 to trace remaining selected-card variants, post-completion cleanup and republish. The title and gold credit scopes are already connected.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-upgrades]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "native_evidence_validity": "current_exact_diagnostic_path",
@@ -41416,7 +41418,7 @@
       },
       "current_applicability": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
+        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
         "assessment": "docs/analysis/module-contracts-0.141.0.md"
       },
       "current_contract_finding": 91,
@@ -66149,7 +66151,7 @@
       },
       "static_validation": {
         "status": "bounded",
-        "summary": "Current code/data correspondence and 402 exact internal branch checks revalidate only the original local scope; clock construction is a branch-free 30-byte span. No fresh selected-owner native query, source assignment, broad dependency closure, compilation, execution or parity is claimed."
+        "summary": "The 0.141.0 renderer preserves all 1,279 instruction boundaries and address-normalized bytes of the hash-verified predecessor. The current Ghidra slice, field lookups and named view gates match the bounded recap consumer. External helper behavior and original/rebuilt parity remain unverified."
       },
       "runtime_validation": {
         "status": "not_run",
@@ -66159,9 +66161,7 @@
         "status": "unverified",
         "summary": "No controlled original/rebuilt comparison."
       },
-      "remaining_source_work": [
-        "Join the changed renderer and capture/aggregation to their source consumers."
-      ],
+      "remaining_source_work": [],
       "native_evidence_validity": "current_exact_diagnostic_path",
       "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
       "source_correspondence_status": "bounded_source_correspondence",
@@ -67267,6 +67267,21 @@
   ],
   "reviewed_pending_source_hashes": {},
   "evidence_target_bindings": {
+    "docs/analysis/evidence/0.141.0/choice-gold-credit.json": {
+      "path": "docs/analysis/evidence/0.141.0/choice-gold-credit.json",
+      "target_version": "0.141.0",
+      "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "validity": "current_bounded_choice_gold_contract",
+      "system_ids": [
+        "custom-game-game-upgrades"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-game-game-upgrades"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-game-game-upgrades": "Level and cache fallback origins, 160-byte tagged choice row, raw gold argument and shared credit before selected-offer completion."
+      }
+    },
     "docs/analysis/evidence/0.141.0/status-talent-selectors.json": {
       "path": "docs/analysis/evidence/0.141.0/status-talent-selectors.json",
       "target_version": "0.141.0",
@@ -77491,7 +77506,7 @@
       ],
       "bounded_contract_owner_scopes": {
         "custom-app-screens-localclock": "Exact AZS_NativeLocalTime registration and callback reads of Windows local hour/minute, English format and noon boundary.",
-        "custom-app-screens-recap": "Nested recap/killer fields, generation and open-state reads. Full renderer control flow differs and remains pending.",
+        "custom-app-screens-recap": "Nested recap/killer fields, generation and open-state reads. All 1,279 renderer boundaries and address-normalized bytes match the 0.140.0 extent; selected list and avoidable-percentage gates reach live source.",
         "custom-game-server-party-readycheck": "First valid unanswered peer response mutation, phase/identity/row gates and exact response byte write.",
         "custom-app-screens-readycheck": "Current Ready Check backdrop, fullscreen dimensions and 460×400 canvas with 1.4 scale cap. Compare native layer 5800 with rebuilt 6100 in the shared lobby and inspection schedule."
       }

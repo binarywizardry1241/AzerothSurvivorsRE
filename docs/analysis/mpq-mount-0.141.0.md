@@ -121,6 +121,49 @@ closes the named-resource gap through the existing source route.
 Compilation, in-game model loading, rendered particles and original/rebuilt
 comparison remain open.
 
+## Exact URI and locale accounting
+
+The selected [member inventory](evidence/0.141.0/mpq-member-coverage.json)
+has locale and platform zero in all 30,172 active hash slots. Its only
+repeated normalized name is `(LISTFILE)`, once per archive. Thus the
+installed gameplay payloads have no competing locale or archive variant.
+Precedence for mixed or differently localized archives remains open.
+
+Select the twelve resource-path ordinals `0..5`, `38`, `60`, `66`, `67`,
+`200`, and `201` in `resource-leads.jsonl`. In each row, the four bytes
+immediately preceding the literal are `mpq:`. Removing that scheme and
+its two separators, then folding slash and case, yields a unique exact
+member. The raw lexical counts are preserved because the selected string
+spans begin at `//`. Three short `//textures/…` names have no lexical
+basename candidate because the Windows path parser treats the two
+components as a UNC root.
+
+| Ordinal | Exact `patch.MPQ` payload | Existing source consumer |
+| --- | --- | --- |
+| `38` | `Textures/ShadowBlob.blp`, 2,709 bytes | [Blob shadow](../../crates/benilla-app/src/blob_shadow.rs) |
+| `66` | `Textures/UnitSelectTexture.blp`, 175,934 bytes | [Target ring](../../crates/benilla-app/src/target/ring.rs) |
+| `201` | `Textures/WaterPoop02.blp`, 88,580 bytes | [Liquid drift](../../crates/benilla-world/src/liquid/drift.rs) |
+
+Each of these three members was read in place and has a `BLP2` header.
+They establish shared rendering inputs. Ordinal `61`, `-Pet.blp`, is a
+formatting suffix adjoining `Interface\CharacterFrame\TemporaryPortrait`.
+The [existing portrait builder](../../crates/benilla-app/src/portrait/mod.rs)
+constructs the unique 6,660-byte `TemporaryPortrait-Pet.blp` member, also
+read in place. Ordinal `213` is the `_s.blp` specular suffix. Ordinals
+`309..311` retain `_U.blp` separately in the guild-emblem background,
+border and emblem path formats.
+
+The other 36 raw unmatched rows have these reproducible groups:
+
+| Resource-path ordinals | Lexical context and next action |
+| --- | --- |
+| `68`, `70`, `76`, `81`, `90`, `129`, `148`, `162`, `170`, `173`, `175`, `177..181`, `219` | Builtin glue and FrameXML files or the VM's `compat.lua` chunk. Match through the builtin script provider when tracing a specific callback. |
+| `36`, `37`, `41`, `62`, `202`, `301..304`, `307`, `315..318`, `320`, `321`, `323`, `324` | DBC filename fragments or packed strings. Read the exact pointer and length at the retained incoming sites before assigning individual paths or consumers. |
+| `305` | [Archive descriptor table](#native-directory-admission). |
+
+A missing raw match across these 44 candidates is a lexical result. Dynamic
+path construction and actual loading are separate.
+
 ## Checks and remaining scope
 
 `python3 -B scripts/inventory-current-mpq-members.py` reproduces the
@@ -131,8 +174,7 @@ The new Rust mount-order regression covers patch-only, partial-base and empty
 directories and remains uncompiled.
 
 The raw lexical inventory remains 85 exact names, 196 basename candidates
-and 44 unmatched strings across 325 selector rows. The packed archive table
-and the sampled keys above have bounded dispositions. The other resource
-consumers, dynamic aliases, locale precedence, and loading, rendering and
-original/rebuilt comparison remain open under [#41](../CURRENT-STATE.md#gap-41).
+and 44 unmatched strings across 325 selector rows. The other resource
+consumers and dynamic aliases remain open under [#41](../CURRENT-STATE.md#gap-41).
+Actual loading, rendering and original/rebuilt comparison remain open.
 No archive or asset was exported.
