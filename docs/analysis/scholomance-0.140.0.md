@@ -185,8 +185,43 @@ PE byte/operand review and the gear catalog check cover the descriptor,
 collection and display inputs. Both changed Rust files syntax-parse.
 The authored Rust checks, actual save/UI behavior and parity remain open.
 
+### The Insane party gate
+
+The 0.140.0 evaluator at `0x145e5c3f0` reads the party's first-fall
+option and clock (+0xa8/+0xac), initial member count (+0xb4) and raw
+party rank (+0xb5). At `0x145e5d571..0x145e5d5f8` it requires Naxxramas,
+effective rank V, three initial members and at least 2,400 seconds
+elapsed. A recorded first fall before 2,400 seconds disqualifies the
+party. A first fall exactly at 2,400 seconds is allowed. The effective
+rank is the lower of the party rank and the admitted run rank.
+
+The host phase-4 transition at `0x145f9fa50` retains the first time in
+Game +0xf50/+0xf54 during a started shared run. Lethal damage
+(`0x145f9bed5`) and voluntary departure (`0x145e73e97`) reach that
+transition. Revives and later falls preserve the first timestamp. The
+first shared tick at `0x145f2e5d6..0x145f2e602` captures starting roster
+size after excluding departures. The party projection
+(`0x145f36d90`) carries this state separately from the older death count
+used by the Victory feats. Each new run starts with an empty latch.
+
+Local award snapshots and the accepted guest cache converge in
+`0x145ecae90`. The State15 writer at `0x146055d51` and its party tail at
+`0x146057778` send the party rank, starting member count and optional
+float time, using -1 when absent. The reader at `0x146053aac` admits
+ordered nonnegative times. Validation at `0x145e36b32..0x145e36c04`
+caps the party rank to the admitted run rank and size to five. It
+clamps a finite timestamp to the admitted clock and maps present
+positive infinity to zero. The same current packet carries the
+recipient's secondary boss history, Enhancement flag and boss flags.
+
+`python3 -B scripts/check-party-achievement-wire.py --state15-0.140.0`
+replays 3 writer, 8 reader, 32 validator and 288 evaluator cases over 6,018 original
+instructions. Source checks cover the field ordering and validator
+routes. Rust syntax was parsed. The authored Rust regressions, live
+account settlement, network execution and parity remain unverified.
+
 | 0.140.0 claim ID | Finding and next static step |
 | --- | --- |
 | `changelog:0.140.0:1bd2ec64e4e8aedc` | #315. The packed catalog separates four descriptions. `collection:t05` at `0x1473f9f79` requires all eight armor pieces and the full fixed Gandling weapon reward for each class. `feat:graduation` at `0x1473fab9a` describes an Enhancement Shaman's Stormstrike killing blow on Gandling. `feat:straightas` at `0x1473fac38` describes a Gandling defeat with no player damaged by Headmaster's Office or The Last Examination. `Yes, I am prepared!` at `0x1473fa266` describes solo Heroic V clears with all nine classes using their Tier 0.5 bonuses and matching specialization talents. Its class-clear progress text is in the English region near the Lifestealing glow label at `0x147770399`. Follow the catalog constructor from the `achievements.rs` location owners `0x145e4c2f0` and `0x145e4c9d0` and resolve the individual evaluator cases. Trace the exact star, set and talent predicates, ability-attributed lethal hit, party-wide mechanic hit history, fixed weapon ownership, persisted class bits and the Armory glow gate. Existing damage history records boss identity before HP loss, so the narrower source/spell and post-mitigation boundaries for Straight A's need proof. [Achievements](../../crates/azeroth-survivors-re/src/account_progression.rs), [hit history](../../crates/azeroth-survivors-re/src/gameplay/mechanics/kill_feats.rs), [glow source](../../crates/azeroth-survivors-re/src/armory_cosmetics.rs), [prior achievements #19](../verification-needed.md#gap-19), [achievement module #82](../CURRENT-STATE.md#gap-82). |
 | `changelog:0.140.0:6e6db84119aec942` | #315. The Whole Armory is at `0x1473f9b3d` and the Heroic Across Azeroth descriptor at `0x1473fa06f`. `Still to beat: {zones}` is at `0x147770455`. Trace the current catalog denominator, previously owned item admission and missing-zone order/locale through the account and presentation owners. The source already counts `account.gear` and evaluates the retained 12 Heroic zone ordinals. [Progress evaluator](../../crates/azeroth-survivors-re/src/account_progression.rs), [achievement panels](../../crates/azeroth-survivors-re/src/progression.rs). |
-| `changelog:0.140.0:094d1782a8db36a3` | #285. The packed `coop:insane` keys at `0x1473e8121` and `0x1473f7ab3` seed the updated evaluator and glow connection. Current source's survival condition checks the recipient's life marker, clock, rank and party size. The separate Victory branch consumes `NativeCoopFeats.word_30`, which the host exports from the irreversible-death counter. Trace whether the new native survival gate uses that counter or an earlier downed-state latch, and how revive, departure, Again and guest delivery preserve it. [Existing achievement proof](party-achievements-0.127.0.md#the-insane-and-unholy-weapon-285), [party state source](../../crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs), [prior verification #285](../verification-needed.md#gap-285). |
+| `changelog:0.140.0:094d1782a8db36a3` | #285. The Insane uses the starting party size and first party fall, with the exact effective Heroic V and 40-minute boundaries. Host, State15 and live/cached guest award paths share the recovered inputs. [Party gate](#the-insane-party-gate), [verification #285](../verification-needed.md#gap-285). |

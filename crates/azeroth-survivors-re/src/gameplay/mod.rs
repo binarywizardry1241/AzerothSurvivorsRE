@@ -3090,7 +3090,8 @@ mod tests {
         state.float_68_bits = 600_f32.to_bits();
         let members = [1, 2, 3, 4, 5].map(|class| NativeFeatMember { class, word: 0, byte: 0, active_set: 0 }).to_vec();
         state.coop = Some(NativeCoopFeats {
-            members: members.clone(), word_30: 0, flag_34: false,
+            members: members.clone(), word_30: 0, heroic_rank: 0, initial_member_count: 2,
+            first_fall_bits: (-1.0_f32).to_bits(),
             events: vec![NativeFeatEvent { word_18: 694, word_1c: 0,
                 byte_20: 0, kind_21: 0, flag_22: true, members }],
         });
@@ -3180,7 +3181,8 @@ mod tests {
             state.float_68_bits = 600_f32.to_bits();
             state.flag_8d = true;
             state.coop = Some(NativeCoopFeats { members: vec![NativeFeatMember {
-                class: 1, word: 0, byte: 0, active_set: 0 }; 2], word_30: 0, flag_34: false, events: vec![] });
+                class: 1, word: 0, byte: 0, active_set: 0 }; 2], word_30: 0, heroic_rank: 0, initial_member_count: 2,
+            first_fall_bits: (-1.0_f32).to_bits(), events: vec![] });
             game.apply_replica_native(&state);
             let mut menu = MenuState::from_save_path(None);
             // Native guest eligibility bypasses the local showcase restriction.
@@ -3206,7 +3208,8 @@ mod tests {
             state.flag_8d = true;
             let member = NativeFeatMember { class: 1, word: 0, byte: 0, active_set: 0 };
             state.coop = Some(NativeCoopFeats {
-                members: vec![member.clone(); count], word_30: 0, flag_34: true,
+                members: vec![member.clone(); count], word_30: 0, heroic_rank: 3, initial_member_count: 2,
+                first_fall_bits: (-1.0_f32).to_bits(),
                 events: vec![NativeFeatEvent {
                     word_18: 1194, word_1c: 0, byte_20: 0, kind_21: 0,
                     flag_22: false, members: vec![member; 2],

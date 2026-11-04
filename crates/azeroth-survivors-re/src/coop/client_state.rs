@@ -1,5 +1,5 @@
 //! Current native co-op state projection and client validation.
-//! Producers14581d7b0/1458f25e0; validator14584a9b0; client145896520.
+//! Current 0.140.0 State15 validator at 0x145e36520.
 
 use super::replication::{NativeState, ResourceRow, TimerRow};
 
@@ -45,8 +45,6 @@ impl RunPhase {
 #[derive(Clone, Debug, PartialEq)]
 pub struct RunProjection {
     pub clock: f32,
-    /// Current native living-since clock; -1 denotes a downed hero.
-    pub alive_since: f32,
     pub phase: RunPhase,
     /// Native producer uses the effective local/shared phase's terminal bits.
     pub terminal: bool,
@@ -71,7 +69,6 @@ impl RunProjection {
     pub fn read(state: &NativeState) -> Self {
         Self {
             clock: f32::from_bits(state.float_68_bits),
-            alive_since: f32::from_bits(state.alive_since_bits),
             phase: RunPhase::from_native(state.byte_8f),
             terminal: state.flag_8c,
             level: state.word_6c,
@@ -92,7 +89,6 @@ impl RunProjection {
     }
     pub fn write(&self, state: &mut NativeState) {
         state.float_68_bits = self.clock.to_bits();
-        state.alive_since_bits = self.alive_since.to_bits();
         state.byte_8f = self.phase.native();
         state.flag_8c = self.terminal;
         state.word_6c = self.level;
@@ -140,9 +136,8 @@ pub struct StateValidation<'a> {
     pub boss_ids: &'a [u32],
 }
 
-/// Native14584a9b0 drops wrong class/zone or nonfinite run clocks, clamps the
-/// scalar record, filters all three boss-history lists and preserves row order
-/// and duplicates. This does not manufacture the wider history row meanings.
+/// Native 0x145e36520 rejects wrong class/zone or nonfinite run clocks, clamps
+/// the scalar record and filters boss histories in their existing order.
 pub fn validate_state(mut state: NativeState, context: StateValidation<'_>) -> Option<NativeState> {
     let clock = f32::from_bits(state.float_68_bits);
     let ceiling = context.seconds_since_zone_start + 30.0;
@@ -175,15 +170,7 @@ pub fn validate_state(mut state: NativeState, context: StateValidation<'_>) -> O
     state.heroic_rank = state.heroic_rank.min(5);
     state.boss_counter = state.boss_counter.min(boss_limit);
     state.max_equipment_stars = state.max_equipment_stars.min(5);
-    state.active_set = state.active_set.min(6);
-    // Current145b52d12..52dae normalizes the marker independently of phase.
-    let alive_since = f32::from_bits(state.alive_since_bits);
-    state.alive_since_bits = if alive_since.is_finite() && alive_since >= 0.0 {
-        let admitted_clock = clock as f32;
-        if alive_since < admitted_clock { alive_since } else { admitted_clock }
-    } else {
-        -1.0
-    }.to_bits();
+    state.active_set = state.active_set.min(8);
     let run_marks = f32::from_bits(state.float_84_bits);
     state.float_84_bits = if run_marks.is_finite() {
         run_marks.clamp(0.0, 4000.0)
@@ -206,13 +193,34 @@ pub fn validate_state(mut state: NativeState, context: StateValidation<'_>) -> O
     state.rows.truncate(history_limit as usize);
     state.words.retain(|id| context.boss_ids.contains(id));
     state.words.truncate(context.boss_ids.len());
-    // Current0.117.0 validator145ae0c00 retains member bytes and optional
-    // context flags, filtering/capping its lethal-event history by the same
-    // current-zone boss IDs and history budget as the ordinary histories.
+    state
+        .secondary_rows
+        .retain(|row| context.boss_ids.contains(&row.word_00));
+    state.secondary_rows.truncate(history_limit as usize);
+    state.enhancement &= context.class == 7;
+    state
+        .boss_flags
+        .retain(|row| context.boss_ids.contains(&row.boss_id));
+    state.boss_flags.truncate(history_limit as usize);
     if let Some(coop) = &mut state.coop {
         coop.events.retain(|event| context.boss_ids.contains(&event.word_18));
         coop.events.truncate(history_limit as usize);
         coop.word_30 = coop.word_30.min(clock as u32);
+        coop.heroic_rank = coop.heroic_rank.min(state.heroic_rank);
+        coop.initial_member_count = coop.initial_member_count.min(5);
+        let first_fall = f32::from_bits(coop.first_fall_bits);
+        coop.first_fall_bits = if first_fall >= 0.0 {
+            let admitted_clock = clock as f32;
+            if !first_fall.is_finite() {
+                0.0
+            } else if first_fall < admitted_clock {
+                first_fall
+            } else {
+                admitted_clock
+            }
+        } else {
+            -1.0
+        }.to_bits();
     }
     Some(state)
 }
@@ -295,7 +303,6 @@ mod tests {
             flag_8d: true,
             words_70: [100, 200, 3, 4, 5],
             heroic_rank: 0, boss_counter: 0, max_equipment_stars: 0, active_set: 0,
-            alive_since_bits: 0.0_f32.to_bits(),
             float_84_bits: 2.0_f32.to_bits(),
             float_88_bits: 1.5_f32.to_bits(),
             flag_8e: true,
@@ -310,6 +317,9 @@ mod tests {
                 flag_0a: true,
             }],
             words: vec![1, 99, 1],
+            secondary_rows: Vec::new(),
+            enhancement: false,
+            boss_flags: Vec::new(),
             coop: None,
         }
     }
@@ -329,30 +339,36 @@ mod tests {
             (100, 200, 3, 4, 5)
         );
         projection.level = 8;
-        projection.alive_since = -1.0;
         projection.phase = RunPhase::Victory;
         projection.write(&mut source);
         assert_eq!((source.word_6c, source.byte_8f), (8, 5));
-        assert_eq!(source.alive_since_bits, (-1.0_f32).to_bits());
         assert!(source.flag_8e && source.rows[0].flag_0a);
         assert_eq!(source.pairs, [[1, 5], [99, 7]]);
     }
     #[test]
-    fn current_life_marker_validation_preserves_native_negative_and_signed_zero_rules() {
+    fn current_first_fall_validation_matches_native_option_and_signed_zero_rules() {
+        use crate::coop::replication::NativeCoopFeats;
         for (clock, marker, expected) in [
             (0.0_f32, -0.0_f32, 0.0_f32), (30.0, -0.0, -0.0),
             (30.0, 12.0, 12.0), (30.0, 40.0, 30.0),
             (30.0, -1.0, -1.0), (30.0, f32::NAN, -1.0),
-            (30.0, f32::INFINITY, -1.0), (30.0, f32::NEG_INFINITY, -1.0),
+            (30.0, f32::INFINITY, 0.0), (30.0, f32::NEG_INFINITY, -1.0),
         ] {
             let mut source = state();
             source.float_68_bits = clock.to_bits();
-            source.alive_since_bits = marker.to_bits();
+            source.coop = Some(NativeCoopFeats {
+                members: Vec::new(),
+                word_30: 0,
+                heroic_rank: 0,
+                initial_member_count: 3,
+                first_fall_bits: marker.to_bits(),
+                events: Vec::new(),
+            });
             let checked = validate_state(source, StateValidation {
                 canonical_zone_matches: true, class: 8, seconds_since_zone_start: 0.0,
                 zone_duration_seconds: 1200.0, boss_ids: &[],
             }).unwrap();
-            assert_eq!(checked.alive_since_bits, expected.to_bits());
+            assert_eq!(checked.coop.unwrap().first_fall_bits, expected.to_bits());
         }
     }
 
@@ -406,8 +422,10 @@ mod tests {
             members: vec![member.clone()],
         };
         let mut source = state();
+        source.heroic_rank = 3;
         source.coop = Some(NativeCoopFeats {
-            members: vec![member.clone()], word_30: u32::MAX, flag_34: true,
+            members: vec![member.clone()], word_30: u32::MAX, heroic_rank: 5,
+            initial_member_count: 9, first_fall_bits: (-1.0_f32).to_bits(),
             events: std::iter::once(event(99)).chain((0..10).map(|_| event(1))).collect(),
         });
         let checked = validate_state(source, StateValidation {
@@ -416,7 +434,7 @@ mod tests {
         }).unwrap();
         let coop = checked.coop.unwrap();
         assert_eq!(coop.members, [member.clone()]);
-        assert_eq!((coop.word_30, coop.flag_34), (30, true));
+        assert_eq!((coop.word_30, coop.heroic_rank, coop.initial_member_count), (30, 3, 5));
         assert_eq!(coop.events.len(), 6);
         assert!(coop.events.iter().all(|event| event.word_18 == 1 && event.members == [member.clone()]));
     }

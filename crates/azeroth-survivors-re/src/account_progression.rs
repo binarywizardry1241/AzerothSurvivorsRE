@@ -235,10 +235,10 @@ pub fn eligible_cooperative_keys(
                     && required_zone.is_none_or(|required| required == zone)
                     && party.matches(&context.members)
                     && (!no_deaths || context.word_30 == 0)
-                    && (!max_modifiers || context.flag_34)
+                    && (!max_modifiers || context.heroic_rank >= 3)
             }
             Some(CooperativeCondition::Boss { boss_id, spells, max_modifiers, heroic_rank, party }) => {
-                (!max_modifiers || context.flag_34)
+                (!max_modifiers || context.heroic_rank >= 3)
                     && heroic_rank.is_none_or(|rank| run.heroic_rank == rank)
                     && context.events.iter().any(|event| {
                         event.word_18 == *boss_id
@@ -249,12 +249,12 @@ pub fn eligible_cooperative_keys(
             }
             Some(CooperativeCondition::Survival { zone: required_zone, heroic_rank,
                 seconds, minimum_members }) => {
+                let first_fall = f32::from_bits(context.first_fall_bits);
                 zone == *required_zone
-                    && run.heroic_rank == *heroic_rank
+                    && context.heroic_rank.min(run.heroic_rank) == *heroic_rank
                     && run.elapsed >= *seconds as f32
-                    && run.alive_since >= 0.0
-                    && run.alive_since <= *seconds as f32
-                    && context.members.len() >= *minimum_members
+                    && (first_fall < 0.0 || first_fall >= *seconds as f32)
+                    && usize::from(context.initial_member_count) >= *minimum_members
             }
             _ => false,
         })
@@ -451,9 +451,6 @@ fn talent_points(mut xp: u32) -> u32 {
 #[derive(Clone, Copy, Debug, Default, PartialEq, Deserialize)]
 pub struct RunSnapshot {
     pub elapsed: f32,
-    /// Current State15 life marker: initial zero, revive clock, or negative while down.
-    #[serde(default)]
-    pub alive_since: f32,
     pub normalized_kills: u32,
     pub guardians: u32,
     pub caches: u32,
@@ -732,7 +729,8 @@ mod tests {
             let context = NativeCoopFeats {
                 members: case.context.members.into_iter().map(Member::native).collect(),
                 word_30: case.context.deaths,
-                flag_34: case.context.max_modifiers,
+                heroic_rank: if case.context.max_modifiers { 3 } else { 0 },
+                initial_member_count: 0, first_fall_bits: (-1.0_f32).to_bits(),
                 events: case.context.events.into_iter().map(|event| NativeFeatEvent {
                     word_18: event.boss, word_1c: event.spell,
                     byte_20: event.school, kind_21: event.source_kind, flag_22: event.melee,
@@ -760,7 +758,8 @@ mod tests {
     fn photosynthesis_requires_exact_effective_heroic_three_and_the_lethal_party() {
         use crate::coop::replication::{NativeCoopFeats, NativeFeatEvent, NativeFeatMember};
         let mut context = NativeCoopFeats {
-            members: Vec::new(), word_30: 0, flag_34: false,
+            members: Vec::new(), word_30: 0, heroic_rank: 0,
+            initial_member_count: 0, first_fall_bits: (-1.0_f32).to_bits(),
             events: vec![NativeFeatEvent {
                 word_18: 1494, word_1c: 740, byte_20: 0, kind_21: 0, flag_22: false,
                 members: vec![NativeFeatMember {
@@ -794,33 +793,37 @@ mod tests {
     }
 
     #[test]
-    fn insane_uses_current_recipient_life_marker_and_exact_heroic_five() {
-        use crate::coop::replication::{NativeCoopFeats, NativeFeatMember};
+    fn insane_uses_starting_members_and_first_party_fall_at_heroic_five() {
+        use crate::coop::replication::NativeCoopFeats;
         let mut context = NativeCoopFeats {
-            members: vec![NativeFeatMember { class: 1, word: 0, byte: 0, active_set: 0 }; 3],
-            word_30: 10, flag_34: false, events: Vec::new(),
+            members: Vec::new(), word_30: 10, heroic_rank: 5, initial_member_count: 3,
+            first_fall_bits: (-1.0_f32).to_bits(), events: Vec::new(),
         };
-        let baseline = RunSnapshot { elapsed: 2400.0, alive_since: 0.0,
-            heroic_rank: 5, zone: Some(11), ..RunSnapshot::default() };
+        let baseline = RunSnapshot { elapsed: 2400.0, heroic_rank: 5, zone: Some(11),
+            ..RunSnapshot::default() };
         let earned = |zone, run, context: &NativeCoopFeats| eligible_cooperative_keys(zone, run, context)
             .iter().any(|key| key == "coop:insane");
         assert!(earned(11, baseline, &context));
         assert!(!earned(10, baseline, &context));
-        for rank in [0, 1, 2, 3, 4, 6] {
+        for rank in [0, 1, 2, 3, 4] {
             assert!(!earned(11, RunSnapshot { heroic_rank: rank, ..baseline }, &context));
         }
-        for (elapsed, alive_since, expected) in [
-            (2399.99, 0.0, false), (2400.0, -1.0, false),
-            (2400.0, -0.0, true), (2400.0, 2400.0, true),
-            (2401.0, 2400.0, true), (3000.0, 2400.01, false),
-            (3000.0, 0.0, true), (f32::NAN, 0.0, false),
-            (3000.0, f32::NAN, false), (3000.0, f32::INFINITY, false),
+        for (elapsed, first_fall, expected) in [
+            (2399.99, -1.0_f32, false), (2400.0, -1.0, true),
+            (2400.0, -0.0, false), (2400.0, 2399.99, false),
+            (2400.0, 2400.0, true), (3000.0, 2400.01, true),
+            (3000.0, 0.0, false), (f32::NAN, -1.0, false),
         ] {
-            assert_eq!(earned(11, RunSnapshot { elapsed, alive_since, ..baseline }, &context), expected);
+            context.first_fall_bits = first_fall.to_bits();
+            assert_eq!(earned(11, RunSnapshot { elapsed, ..baseline }, &context), expected);
         }
+        context.first_fall_bits = (-1.0_f32).to_bits();
         assert!(!earned(11, baseline.with_heroic_cap(4), &context));
         assert!(earned(11, baseline.with_heroic_cap(5), &context));
-        context.members.pop();
+        context.heroic_rank = 4;
+        assert!(!earned(11, baseline, &context));
+        context.heroic_rank = 5;
+        context.initial_member_count = 2;
         assert!(!earned(11, baseline, &context));
         let keys: Vec<_> = definitions().iter().map(|row| row.key.as_str()).collect();
         let position = keys.iter().position(|key| *key == "coop:photosynthesis").unwrap();
@@ -836,7 +839,7 @@ mod tests {
                 let context = NativeCoopFeats {
                     members: members(current_count),
                     word_30: 0,
-                    flag_34: true,
+                    heroic_rank: 3, initial_member_count: 0, first_fall_bits: (-1.0_f32).to_bits(),
                     events: vec![NativeFeatEvent {
                         word_18: 1194,
                         word_1c: 0,

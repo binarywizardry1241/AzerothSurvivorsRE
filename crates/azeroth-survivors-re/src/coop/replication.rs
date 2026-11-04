@@ -1,5 +1,4 @@
-//! Native AS framing above TCP: nineteen tags recovered from 0.115.0,
-//! with the current0.117.0 State15 party-feat extension.
+//! Native AS framing above TCP, including the current 0.140.0 State15 record.
 //! Ordinary WoW opcode payloads retain their existing engine codec boundary.
 
 use super::server_party::{self, LifecyclePacket, PacketError};
@@ -98,16 +97,23 @@ pub struct NativeFeatEvent {
     pub flag_22: bool,
     pub members: Vec<NativeFeatMember>,
 }
-/// Optional current0.117.0 State15 party context. Native absence is -1.
+/// Optional State15 party context. The first-fall marker uses -1 for absence.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct NativeCoopFeats {
     pub members: Vec<NativeFeatMember>,
     pub word_30: u32,
-    pub flag_34: bool,
+    pub heroic_rank: u8,
+    pub initial_member_count: u8,
+    pub first_fall_bits: u32,
     pub events: Vec<NativeFeatEvent>,
 }
-/// Tag15 state: legacy scalar names retain their0.115.0 record offsets;
-/// the optional party-feat context is the current0.117.0 extension.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct BossFlagRow {
+    pub boss_id: u32,
+    /// Native boolean encoded as one byte.
+    pub flags: u8,
+}
+/// Tag15 state. Legacy scalar names retain their 0.115.0 record offsets.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct NativeState {
     pub float_68_bits: u32,
@@ -124,16 +130,18 @@ pub struct NativeState {
     /// Raw maximum single-boss marks, excluding duplicate currency.
     pub float_88_bits: u32,
     pub max_equipment_stars: u8,
-    /// Zero means no active set; otherwise tier index plus one.
+    /// Zero means no active set. Other values encode the tier index plus one.
     pub active_set: u8,
-    /// Current State+c0: latest revival clock, or -1 while phase4 is exported.
-    pub alive_since_bits: u32,
     pub flag_8e: bool,
     pub byte_90: u8,
     pub text: String,
     pub pairs: Vec<[u32; 2]>,
     pub rows: Vec<StateRow>,
     pub words: Vec<u32>,
+    /// Recipient-owned killing blows, separate from the shared boss history.
+    pub secondary_rows: Vec<StateRow>,
+    pub enhancement: bool,
+    pub boss_flags: Vec<BossFlagRow>,
     pub coop: Option<NativeCoopFeats>,
 }
 /// Current tag13 preserves the producing hero's boss serial and base payout.
@@ -207,6 +215,16 @@ fn push_words(out: &mut Vec<u8>, words: &[u32]) -> Result<(), WireError> {
     push_count(out, words.len())?;
     for word in words {
         out.extend_from_slice(&word.to_le_bytes());
+    }
+    Ok(())
+}
+
+fn push_state_rows(out: &mut Vec<u8>, rows: &[StateRow]) -> Result<(), WireError> {
+    push_count(out, rows.len())?;
+    for row in rows {
+        out.extend_from_slice(&row.word_00.to_le_bytes());
+        out.extend_from_slice(&row.word_04.to_le_bytes());
+        out.extend_from_slice(&[row.byte_08, row.kind_09, u8::from(row.flag_0a)]);
     }
     Ok(())
 }
@@ -302,7 +320,6 @@ pub fn encode_message(message: &NativeMessage) -> Result<Vec<u8>, WireError> {
             out.extend_from_slice(&state.float_84_bits.to_le_bytes());
             out.extend_from_slice(&state.float_88_bits.to_le_bytes());
             out.extend_from_slice(&[state.max_equipment_stars, state.active_set]);
-            out.extend_from_slice(&state.alive_since_bits.to_le_bytes());
             out.extend_from_slice(&[u8::from(state.flag_8e), state.byte_90]);
             push_bytes(&mut out, state.text.as_bytes())?;
             push_count(&mut out, state.pairs.len())?;
@@ -311,18 +328,21 @@ pub fn encode_message(message: &NativeMessage) -> Result<Vec<u8>, WireError> {
                     out.extend_from_slice(&word.to_le_bytes());
                 }
             }
-            push_count(&mut out, state.rows.len())?;
-            for row in &state.rows {
-                out.extend_from_slice(&row.word_00.to_le_bytes());
-                out.extend_from_slice(&row.word_04.to_le_bytes());
-                out.extend_from_slice(&[row.byte_08, row.kind_09, u8::from(row.flag_0a)]);
-            }
+            push_state_rows(&mut out, &state.rows)?;
             push_words(&mut out, &state.words)?;
+            push_state_rows(&mut out, &state.secondary_rows)?;
+            out.push(u8::from(state.enhancement));
+            push_count(&mut out, state.boss_flags.len())?;
+            for row in &state.boss_flags {
+                out.extend_from_slice(&row.boss_id.to_le_bytes());
+                out.push(row.flags);
+            }
             out.push(u8::from(state.coop.is_some()));
             if let Some(coop) = &state.coop {
                 push_feat_members(&mut out, &coop.members)?;
                 out.extend_from_slice(&coop.word_30.to_le_bytes());
-                out.push(u8::from(coop.flag_34));
+                out.extend_from_slice(&[coop.heroic_rank, coop.initial_member_count]);
+                out.extend_from_slice(&coop.first_fall_bits.to_le_bytes());
                 push_count(&mut out, coop.events.len())?;
                 for event in &coop.events {
                     out.extend_from_slice(&event.word_18.to_le_bytes());
@@ -405,6 +425,22 @@ impl<'a> Reader<'a> {
     fn words(&mut self) -> Result<Vec<u32>, WireError> {
         let count = self.count(4)?;
         (0..count).map(|_| self.word()).collect()
+    }
+    fn state_rows(&mut self) -> Result<Vec<StateRow>, WireError> {
+        let count = self.count(11)?;
+        (0..count).map(|_| {
+            let word_00 = self.word()?;
+            let word_04 = self.word()?;
+            let byte_08 = self.byte()?;
+            let kind_09 = self.byte()?;
+            Ok(StateRow {
+                word_00,
+                word_04,
+                byte_08,
+                kind_09: if kind_09 < 4 { kind_09 } else { 0 },
+                flag_0a: self.flag()?,
+            })
+        }).collect()
     }
 }
 
@@ -570,7 +606,6 @@ pub fn decode_message(bytes: &[u8]) -> Result<(NativeMessage, usize), WireError>
             let float_88_bits = reader.word()?;
             let max_equipment_stars = reader.byte()?;
             let active_set = reader.byte()?;
-            let alive_since_bits = reader.word()?;
             let flag_8e = reader.flag()?;
             let byte_90 = reader.byte()?;
             let text = reader.text()?;
@@ -579,26 +614,30 @@ pub fn decode_message(bytes: &[u8]) -> Result<(NativeMessage, usize), WireError>
             for _ in 0..count {
                 pairs.push([reader.word()?, reader.word()?]);
             }
-            let count = reader.count(11)?;
-            let mut rows = Vec::with_capacity(count);
+            let rows = reader.state_rows()?;
+            let words = reader.words()?;
+            let secondary_rows = reader.state_rows()?;
+            let enhancement = reader.flag()?;
+            // The native count gate budgets six bytes for each five-byte row.
+            let count = reader.count(6)?;
+            let mut boss_flags = Vec::with_capacity(count);
             for _ in 0..count {
-                let word_00 = reader.word()?;
-                let word_04 = reader.word()?;
-                let byte_08 = reader.byte()?;
-                let kind_09 = reader.byte()?;
-                rows.push(StateRow {
-                    word_00,
-                    word_04,
-                    byte_08,
-                    kind_09: if kind_09 < 4 { kind_09 } else { 0 },
-                    flag_0a: reader.flag()?,
+                boss_flags.push(BossFlagRow {
+                    boss_id: reader.word()?,
+                    flags: u8::from(reader.flag()?),
                 });
             }
-            let words = reader.words()?;
             let coop = if reader.flag()? {
                 let members = reader.feat_members()?;
                 let word_30 = reader.word()?;
-                let flag_34 = reader.flag()?;
+                let heroic_rank = reader.byte()?;
+                let initial_member_count = reader.byte()?;
+                let first_fall_bits = reader.word()?;
+                let first_fall_bits = if f32::from_bits(first_fall_bits) >= 0.0 {
+                    first_fall_bits
+                } else {
+                    (-1.0_f32).to_bits()
+                };
                 let count = reader.count(12)?;
                 let mut events = Vec::with_capacity(count);
                 for _ in 0..count {
@@ -614,7 +653,9 @@ pub fn decode_message(bytes: &[u8]) -> Result<(NativeMessage, usize), WireError>
                         members: reader.feat_members()?,
                     });
                 }
-                Some(NativeCoopFeats { members, word_30, flag_34, events })
+                Some(NativeCoopFeats {
+                    members, word_30, heroic_rank, initial_member_count, first_fall_bits, events,
+                })
             } else {
                 None
             };
@@ -625,7 +666,7 @@ pub fn decode_message(bytes: &[u8]) -> Result<(NativeMessage, usize), WireError>
                 word_6c,
                 flag_8d,
                 words_70,
-                heroic_rank, boss_counter, max_equipment_stars, active_set, alive_since_bits,
+                heroic_rank, boss_counter, max_equipment_stars, active_set,
                 float_84_bits,
                 float_88_bits,
                 flag_8e,
@@ -634,6 +675,9 @@ pub fn decode_message(bytes: &[u8]) -> Result<(NativeMessage, usize), WireError>
                 pairs,
                 rows,
                 words,
+                secondary_rows,
+                enhancement,
+                boss_flags,
                 coop,
             })
         }
@@ -708,6 +752,8 @@ pub fn decode_frame(bytes: &[u8]) -> Result<Vec<NativeMessage>, WireError> {
 mod tests {
     use super::*;
 
+    const EMPTY_STATE_PREFIX: usize = 74;
+
     #[test]
     fn native_state_scalar_layout_and_invalid_row_kind_are_exact() {
         let mut bytes = vec![15];
@@ -723,7 +769,6 @@ mod tests {
         bytes.extend_from_slice(&1.5_f32.to_le_bytes());
         bytes.extend_from_slice(&2.0_f32.to_le_bytes());
         bytes.extend_from_slice(&[4, 6]);
-        bytes.extend_from_slice(&12.5_f32.to_le_bytes());
         bytes.extend_from_slice(&[0, 8]);
         bytes.extend_from_slice(&1_u32.to_le_bytes());
         bytes.push(b'z');
@@ -736,13 +781,19 @@ mod tests {
         bytes.extend_from_slice(&[15, 255, 2]);
         bytes.extend_from_slice(&1_u32.to_le_bytes());
         bytes.extend_from_slice(&16_u32.to_le_bytes());
+        bytes.extend_from_slice(&1_u32.to_le_bytes());
+        bytes.extend_from_slice(&17_u32.to_le_bytes());
+        bytes.extend_from_slice(&18_u32.to_le_bytes());
+        bytes.extend_from_slice(&[19, 2, 1, 1]); // Personal row and Enhancement.
+        bytes.extend_from_slice(&1_u32.to_le_bytes());
+        bytes.extend_from_slice(&20_u32.to_le_bytes());
+        bytes.push(2); // Boss flag uses the native nonzero boolean reader.
         bytes.push(0); // Current optional party-feat context is absent.
         let (NativeMessage::State(state), used) = decode_message(&bytes).unwrap() else {
             panic!("state");
         };
         assert_eq!(used, bytes.len());
         assert_eq!(state.words_70, [4, 5, 6, 7, 8]);
-        assert_eq!(state.alive_since_bits, 12.5_f32.to_bits());
         assert_eq!((state.heroic_rank, state.boss_counter, state.max_equipment_stars, state.active_set), (5,17,4,6));
         assert_eq!(state.pairs, [[11, 12]]);
         assert_eq!(
@@ -756,6 +807,11 @@ mod tests {
             }]
         );
         assert_eq!(state.words, [16]);
+        assert_eq!(state.secondary_rows, [StateRow {
+            word_00: 17, word_04: 18, byte_08: 19, kind_09: 2, flag_0a: true,
+        }]);
+        assert!(state.enhancement);
+        assert_eq!(state.boss_flags, [BossFlagRow { boss_id: 20, flags: 1 }]);
         assert_eq!(state.text, "z");
         assert_eq!(
             decode_message(&[8, 7, 255]).unwrap(),
@@ -772,8 +828,8 @@ mod tests {
 
     #[test]
     fn current_party_context_has_exact_wire_order_and_native_byte_rules() {
-        // Empty legacy State15 prefix: fixed scalars, empty zone and histories.
-        let mut bytes = vec![0; 69];
+        // Fixed scalars, empty zone and histories.
+        let mut bytes = vec![0; EMPTY_STATE_PREFIX];
         bytes[0] = 15;
         bytes.push(2); // Nonzero optional-context flag.
         bytes.extend_from_slice(&1_u32.to_le_bytes());
@@ -782,7 +838,8 @@ mod tests {
         bytes.push(254); // Member byte is not a native bool.
         bytes.push(6); // Active-set tier plus one.
         bytes.extend_from_slice(&500_u32.to_le_bytes());
-        bytes.push(2);
+        bytes.extend_from_slice(&[5, 4]); // Party rank and starting roster.
+        bytes.extend_from_slice(&1200.5_f32.to_le_bytes());
         bytes.extend_from_slice(&1_u32.to_le_bytes());
         bytes.extend_from_slice(&42_u32.to_le_bytes());
         bytes.extend_from_slice(&777_u32.to_le_bytes());
@@ -798,21 +855,24 @@ mod tests {
         assert_eq!(used, bytes.len());
         let coop = state.coop.as_ref().unwrap();
         assert_eq!(coop.members, [NativeFeatMember { class: 11, word: 0x1122_3344, byte: 254, active_set: 6 }]);
-        assert_eq!((coop.word_30, coop.flag_34), (500, true));
+        assert_eq!((coop.word_30, coop.heroic_rank, coop.initial_member_count), (500, 5, 4));
+        assert_eq!(coop.first_fall_bits, 1200.5_f32.to_bits());
         assert_eq!(coop.events, [NativeFeatEvent {
             word_18: 42, word_1c: 777, byte_20: 6, kind_21: 0, flag_22: true,
             members: vec![NativeFeatMember { class: 2, word: 888, byte: 253, active_set: 5 }],
         }]);
         let encoded = encode_message(&NativeMessage::State(state)).unwrap();
         // Native bool bytes normalize; source-kind>=4 normalizes only on read.
-        for index in [69, 85, 100] { bytes[index] = 1; }
-        bytes[99] = 0;
+        bytes[EMPTY_STATE_PREFIX] = 1;
+        let event_kind = EMPTY_STATE_PREFIX + 1 + 4 + 7 + 4 + 2 + 4 + 4 + 9;
+        bytes[event_kind] = 0;
+        bytes[event_kind + 1] = 1;
         assert_eq!(encoded, bytes);
     }
 
     #[test]
     fn party_member_counts_cap_before_consumption_and_absence_requires_flag() {
-        let mut bytes = vec![0; 69];
+        let mut bytes = vec![0; EMPTY_STATE_PREFIX];
         bytes[0] = 15;
         assert!(decode_message(&bytes).is_err());
         bytes.push(0);
@@ -820,7 +880,7 @@ mod tests {
             panic!("state");
         };
         assert!(state.coop.is_none());
-        bytes[69] = 1;
+        bytes[EMPTY_STATE_PREFIX] = 1;
         bytes.extend_from_slice(&6_u32.to_le_bytes());
         for class in 1..=5 {
             bytes.push(class);
@@ -830,7 +890,8 @@ mod tests {
         }
         // Only the first five rows are consumed despite advertised count6.
         bytes.extend_from_slice(&123_u32.to_le_bytes());
-        bytes.push(0);
+        bytes.extend_from_slice(&[0, 3]);
+        bytes.extend_from_slice(&(-1.0_f32).to_le_bytes());
         bytes.extend_from_slice(&0_u32.to_le_bytes());
         let (NativeMessage::State(state), used) = decode_message(&bytes).unwrap() else {
             panic!("state");

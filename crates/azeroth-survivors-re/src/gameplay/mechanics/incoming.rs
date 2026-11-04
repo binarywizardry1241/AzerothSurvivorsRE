@@ -303,6 +303,7 @@ impl Mechanics {
         self.execution.vitals.health = 0.0;
         self.dead = true;
         self.fall_epoch = self.clock;
+        self.record_party_fall();
         // Current145b95bf0 counts irreversible deaths across every swapped
         // hero. Abandon/disconnect sets finished first and does not count.
         if self.has_party() && !self.abandoned {

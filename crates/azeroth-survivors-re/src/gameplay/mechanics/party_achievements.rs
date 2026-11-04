@@ -7,6 +7,8 @@ pub(super) struct State {
     pub members: Vec<NativeFeatMember>,
     pub events: Vec<NativeFeatEvent>,
     pub deaths: u32,
+    pub initial_member_count: u8,
+    pub first_fall: Option<f32>,
 }
 
 /// Native145b7d10a/145c22000: a tied highest rank has no selected spell.

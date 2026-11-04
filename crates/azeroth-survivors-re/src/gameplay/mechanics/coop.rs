@@ -787,35 +787,22 @@ mod tests {
     }
 
     #[test]
-    fn life_marker_tracks_each_hero_and_survives_replica_projection() {
+    fn first_party_fall_survives_remote_swap_and_later_fall() {
         let mut game = pair();
+        game.refresh_party_feat_members();
         game.clock = 2399.0;
-        assert_eq!(game.feat_snapshot([0; 19]).alive_since, 0.0);
-        game.dead = true;
-        assert_eq!(f32::from_bits(game.native_state().alive_since_bits), -1.0);
-        assert_eq!(game.feat_snapshot([0; 19]).alive_since, -1.0);
-        game.completed = true;
-        assert_eq!(f32::from_bits(game.native_state().alive_since_bits), 0.0);
-        game.completed = false;
-        game.apply_party_revive(azeroth_survivors_re::coop::game_party::Revived {
-            slot: 0, health: 50.0, immunity_spell: 1020, immunity_expires: 2401.0,
-        });
-        game.clock = 2401.0;
         let remote_state = game.with_party_hero(1, |hero| {
-            assert_eq!(hero.alive_since, 0.0);
-            hero.dead = true;
-            hero.apply_party_revive(azeroth_survivors_re::coop::game_party::Revived {
-                slot: 1, health: 50.0, immunity_spell: 1020, immunity_expires: 2403.0,
-            });
+            hero.record_party_fall();
             hero.native_state()
         }).unwrap();
-        assert_eq!(game.alive_since, 2399.0);
-        assert_eq!(game.feat_snapshot([0; 19]).alive_since, 2399.0);
+        game.clock = 2401.0;
+        game.record_party_fall();
+        let context = game.cooperative_feat_context().unwrap();
+        assert_eq!(context.initial_member_count, 2);
+        assert_eq!(f32::from_bits(context.first_fall_bits), 2399.0);
         let mut guest = class_run("warrior", 1);
         guest.apply_replica_native(&remote_state);
-        assert_eq!(guest.alive_since, 2401.0);
-        assert_eq!(guest.feat_snapshot([0; 19]).alive_since, 2401.0);
-        game.with_party_hero(1, |hero| assert_eq!(hero.alive_since, 2401.0)).unwrap();
+        assert_eq!(guest.cooperative_feat_context(), Some(context));
     }
 
     #[test]
@@ -1067,11 +1054,24 @@ impl Mechanics {
                     hero.state.effect_state.set_descriptor.map_or(0, |set| set.tier + 1)));
             }
         }
+        if self.boss_state.party_feats.initial_member_count == 0 {
+            self.boss_state.party_feats.initial_member_count =
+                u8::try_from(members.len()).unwrap_or(u8::MAX);
+        }
         self.boss_state.party_feats.members = members;
     }
 
+    /// The authoritative first phase-4 transition survives a revive or later
+    /// fall. Party membership is captured on the first shared run tick.
+    pub(super) fn record_party_fall(&mut self) {
+        let feats = &mut self.boss_state.party_feats;
+        if feats.initial_member_count != 0 {
+            feats.first_fall.get_or_insert(self.clock);
+        }
+    }
+
     /// Current0.121.0 145bc28c0: cooperative presence needs a retained remote row;
-    /// flag34 captures the run's rank>=III, independently of member predicates.
+    /// Raw Heroic rank and the party-wide survival history travel separately.
     /// Prior shared lethal snapshots survive a member's death or departure.
     pub fn cooperative_feat_context(&self) -> Option<azeroth_survivors_re::coop::replication::NativeCoopFeats> {
         if self.replica_state().is_some() {
@@ -1085,7 +1085,9 @@ impl Mechanics {
         Some(azeroth_survivors_re::coop::replication::NativeCoopFeats {
             members: self.boss_state.party_feats.members.clone(),
             word_30: self.boss_state.party_feats.deaths,
-            flag_34: self.heroic_rank() >= 3,
+            heroic_rank: self.heroic_rank(),
+            initial_member_count: self.boss_state.party_feats.initial_member_count,
+            first_fall_bits: self.boss_state.party_feats.first_fall.unwrap_or(-1.0).to_bits(),
             events: self.boss_state.party_feats.events.clone(),
         })
     }
@@ -1103,9 +1105,6 @@ impl Mechanics {
 
     /// Current145d168c8 exports -1 only for effective phase4. Victory retains
     /// the last revival clock, including a shared clear reached while downed.
-    pub(super) fn exported_alive_since(&self) -> f32 {
-        if self.dead && !self.completed { -1.0 } else { self.alive_since }
-    }
 
     pub fn native_state(&self) -> azeroth_survivors_re::coop::replication::NativeState {
         use azeroth_survivors_re::coop::{
@@ -1144,7 +1143,6 @@ impl Mechanics {
             boss_counter: self.endless_boss_kills(),
             max_equipment_stars: self.equipment_stars().into_iter().max().unwrap_or(0),
             active_set: self.effect_state.set_descriptor.map_or(0, |set| set.tier + 1),
-            alive_since_bits: self.exported_alive_since().to_bits(),
             float_84_bits: self.base_run_marks().to_bits(),
             float_88_bits: self.base_max_boss_marks().to_bits(),
             flag_8e: self.equipment_ids.iter().all(|id| *id == 0),
@@ -1167,6 +1165,9 @@ impl Mechanics {
                 })
                 .collect(),
             words: self.damaged_by_bosses().to_vec(),
+            secondary_rows: Vec::new(),
+            enhancement: false,
+            boss_flags: Vec::new(),
             coop: self.cooperative_feat_context(),
         }
     }
@@ -1175,7 +1176,6 @@ impl Mechanics {
     pub fn apply_replica_state(&mut self, state: &RunProjection) {
         let entering_party = !self.has_party();
         self.clock = state.clock;
-        self.alive_since = state.alive_since;
         self.rules.heroic_rank = state.heroic_rank;
         self.level = state.level;
         self.kills = state.kills;

@@ -94,6 +94,7 @@ impl Mechanics {
             self.abandoned = true;
             self.dead = true;
             self.fall_epoch = self.clock;
+            self.record_party_fall();
             if !self.has_party() { self.freeze_world_movements(height); }
         }
     }
@@ -278,7 +279,7 @@ impl Mechanics {
     pub fn feat_snapshot(&self, starting_gear: [u32; 19]) -> azeroth_survivors_re::account_progression::RunSnapshot {
         use azeroth_survivors_re::account_progression::RunSnapshot;
         if let Some(state) = self.replica_state() {
-            return RunSnapshot { elapsed: self.clock, alive_since: state.alive_since,
+            return RunSnapshot { elapsed: self.clock,
                 normalized_kills: self.kills,
                 guardians: state.guardian_kills, caches: state.caches_bought,
                 won: state.won, bare: state.bare,
@@ -294,7 +295,6 @@ impl Mechanics {
         let mut snapshot = RunSnapshot::from_heroic_run(self.clock, self.kills,
             self.guardian_kills(), self.caches_bought(), self.victory_reached(),
             starting_gear, self.heroic_rank());
-        snapshot.alive_since = self.exported_alive_since();
         snapshot.zone = azeroth_survivors_re::guardians::catalog::ZONES.iter()
             .position(|zone| zone.key == self.zone.key);
         snapshot.endless_bosses = self.endless_boss_kills();

@@ -219,7 +219,6 @@ impl Snapshot {
             delta_counts,
             feats: RunSnapshot {
                 elapsed: projection.clock,
-                alive_since: projection.alive_since,
                 normalized_kills: projection.kills,
                 guardians: projection.guardian_kills,
                 caches: projection.caches_bought,
@@ -398,13 +397,14 @@ mod tests {
             float_68_bits: 600_f32.to_bits(), byte_8f: phase, flag_8c: false,
             word_6c: 20, flag_8d: won, words_70: [2500, 9, 0, 1, 2],
             heroic_rank: 0, boss_counter: 0, max_equipment_stars: 0, active_set: 0,
-            alive_since_bits: 0.0_f32.to_bits(),
             float_84_bits: 1_f32.to_bits(), float_88_bits: 1_f32.to_bits(),
             flag_8e: false, byte_90: 1, text: "elwynn".into(),
             pairs: Vec::new(), rows: Vec::new(), words: Vec::new(),
+            secondary_rows: Vec::new(), enhancement: false, boss_flags: Vec::new(),
             coop: Some(NativeCoopFeats {
                 members: [1, 5].into_iter().map(|class| NativeFeatMember { class, word: 0, byte: 0, active_set: 0 }).collect(),
-                word_30: 0, flag_34: false, events: Vec::new(),
+                word_30: 0, heroic_rank: 0, initial_member_count: 2,
+                first_fall_bits: (-1.0_f32).to_bits(), events: Vec::new(),
             }),
         }
     }
@@ -486,7 +486,9 @@ mod tests {
         value.text = "naxx".into();
         value.heroic_rank = 5;
         value.float_68_bits = 2400.0_f32.to_bits();
-        value.alive_since_bits = 0.0_f32.to_bits();
+        let context = value.coop.as_mut().unwrap();
+        context.heroic_rank = 5;
+        context.initial_member_count = 3;
         value.coop.as_mut().unwrap().members.push(NativeFeatMember {
             class: 8, word: 0, byte: 0, active_set: 0,
         });
@@ -505,7 +507,7 @@ mod tests {
         assert!(standing.live_feats(&mut menu, Some(42), 150).is_empty());
         value.byte_8f = 4;
         value.float_68_bits = 2401.0_f32.to_bits();
-        value.alive_since_bits = (-1.0_f32).to_bits();
+        value.coop.as_mut().unwrap().first_fall_bits = 2401.0_f32.to_bits();
         let down = Snapshot::from_cached(&value, entry(42), &checkpoints);
         assert!(down.live_feats(&mut menu, Some(42), 200).is_empty());
         down.account(&mut menu, Some(42), 300);
@@ -514,15 +516,15 @@ mod tests {
     }
 
     #[test]
-    fn cached_life_marker_matches_live_replica_snapshot_without_reconstruction() {
+    fn cached_party_first_fall_matches_live_replica_snapshot() {
         for marker in [-1.0_f32, 0.0, 2399.0, 2400.0, 2401.0] {
             let mut value = state(1, false);
             value.float_68_bits = 2500.0_f32.to_bits();
-            value.alive_since_bits = marker.to_bits();
+            value.coop.as_mut().unwrap().first_fall_bits = marker.to_bits();
             let cached = Snapshot::from_cached(&value, entry(42), &Checkpoints::default());
-            let live = replica(&value).feat_snapshot([0; 19]);
-            assert_eq!(cached.feats.alive_since.to_bits(), marker.to_bits());
-            assert_eq!(live.alive_since.to_bits(), cached.feats.alive_since.to_bits());
+            let live = replica(&value).cooperative_feat_context();
+            assert_eq!(cached.cooperative.as_ref().unwrap().first_fall_bits, marker.to_bits());
+            assert_eq!(live, cached.cooperative);
         }
     }
 
