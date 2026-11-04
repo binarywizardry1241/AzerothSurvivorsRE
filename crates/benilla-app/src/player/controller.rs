@@ -484,11 +484,11 @@ pub(super) fn control(
         pointer.2.move_speed,
         zoom_max,
     );
+    rig.device_look = device.is_some_and(|input| input.look != Vec2::ZERO || input.movement.is_some());
     if let Some(device) = device {
         cam.yaw += device.look.x;
         cam.pitch = (cam.pitch + device.look.y)
             .clamp(-camera::CAM_PITCH_LIMIT, camera::CAM_PITCH_LIMIT);
-        rig.freelook |= device.look != Vec2::ZERO || device.movement.is_some();
     }
     if let Some(device) = device {
         if device.zoom != 0.0 {

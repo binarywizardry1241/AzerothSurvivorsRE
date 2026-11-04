@@ -343,6 +343,7 @@ fn sync_body(
             .0
             .merge_diff(player_fields(character), |field, old, new| {
                 edges.write(FieldChanged {
+                    at: crate::lanes::stamp(),
                     entity,
                     guid: character.guid,
                     kind: ObjectType::Player,
@@ -443,7 +444,8 @@ fn hold_input(
         }
         rig.world_mouse = default();
         rig.look = None;
-        rig.freelook = false;
+        rig.toggled = false;
+        rig.device_look = false;
         let stash = rig.cursor_stash.take().or(returned);
         let released = std::mem::take(&mut rig.cursor_released);
         if let Ok((mut window, mut cursor)) = windows.single_mut() {

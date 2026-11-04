@@ -30,6 +30,7 @@ pub use stock_frontend::{LocalStockCharacter, LocalStockCreate, LocalStockEquipm
 pub use requests::{LocalClientRequest, LocalClientRequests, LocalItemQueries, LocalWireRequests};
 pub use requests::LocalAddonRequests;
 pub(crate) mod extension;
+pub use crate::entities::set_enchant_glow_priority;
 pub use crate::ui_aura::descriptor_aura_state;
 pub use actors::{
     LocalActorSet, LocalActorsPlugin, LocalTargetSelection, LocalUnitBounds, LocalUnitEngineVisual,

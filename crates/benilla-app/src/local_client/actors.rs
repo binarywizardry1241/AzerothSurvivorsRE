@@ -308,6 +308,7 @@ fn register_units(
                     .merge_diff(fields, |field, old, new| {
                         changed = true;
                         fields_changed.write(FieldChanged {
+                            at: crate::lanes::stamp(),
                             entity,
                             guid: local.guid,
                             kind: object_type,

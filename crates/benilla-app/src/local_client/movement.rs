@@ -109,6 +109,7 @@ pub(crate) fn follow_paths(
                     grounded: true,
                     run_mode: true,
                     deck: None,
+                    final_facing: MonsterMoveFacing::None,
                 });
             }
             if let Some(mut following) = following {

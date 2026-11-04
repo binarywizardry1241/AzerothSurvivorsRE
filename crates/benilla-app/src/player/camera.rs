@@ -669,6 +669,8 @@ pub(crate) struct CameraControl {
     /// The look session's button, `Some` while the camera is in freelook: the reference's
     /// `[cam+0x90] & 1` (set `0x50fe41`, cleared `0x50fddd`), for a left orbit as for the rest.
     pub(super) look: Option<LookButton>,
+    /// Semantic device input also holds off terrain pitch without grabbing the mouse.
+    pub(super) device_look: bool,
     /// The mouse buttons the world owns this frame, latched by [`latch_world_mouse`].
     pub(crate) world_mouse: WorldMouse,
     /// `ToggleMouseMove` entered mouselook with no mouse bit (`0x50f910` → `0x50f930`): the
@@ -1556,7 +1558,7 @@ impl CameraControl {
     /// entry pushes (`0x50fe72`, `0x50fe79`) and every leave pops (`0x50fde6`, `0x50fded`), a
     /// left orbit's as a right drag's.
     pub(super) fn hand_off_ground_pitch(&mut self, cam: &mut FlyCam) {
-        let handed = self.terrain_tilt.hand_off(self.look.is_some());
+        let handed = self.terrain_tilt.hand_off(self.look.is_some() || self.device_look);
         if handed != 0.0 {
             cam.pitch = (cam.pitch + handed).clamp(-CAM_PITCH_LIMIT, CAM_PITCH_LIMIT);
         }

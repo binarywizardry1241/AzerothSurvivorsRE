@@ -2042,6 +2042,7 @@ pub(crate) fn drive_glue_mgr(
     };
     let realmlist = realmlist.as_ref();
     let mut last_character = None;
+    let mut local_realm_name = None;
     vm.run(|script| {
         let shared = shared.clone();
         let now_ms = time.elapsed().as_millis() as u32;
@@ -2123,7 +2124,7 @@ pub(crate) fn drive_glue_mgr(
                 LocalStockReply::Authenticated(realm) => {
                     if let Some(frontend) = asks.stock.as_deref_mut() { frontend.authenticated = true; }
                     if let Some(roster) = asks.roster.as_deref_mut() { roster.realm = Some(realm.clone()); }
-                    if let Some(cvars) = asks.cvars.as_deref_mut() { cvars.set("realmName", &realm.name); }
+                    local_realm_name = Some(realm.name.clone());
                     if let Some(s) = script.as_deref_mut() {
                         s.fire_glue_signal(GlueSignal::Cvar { name: "realmName", value: realm.name.clone() });
                     }
@@ -2331,12 +2332,17 @@ pub(crate) fn drive_glue_mgr(
     if let (Some(typed), Some(r)) = (refused, realmlist.as_deref_mut()) {
         r.keep_refused(typed);
     }
-    if let (Some(index), Some(mut cvars)) = (last_character, cvars) {
-        cvars.set(
-            crate::glue_session::roster::CVAR_LAST_CHARACTER,
-            &index.to_string(),
-        );
-        cvars.save();
+    if let Some(mut cvars) = cvars {
+        if let Some(name) = local_realm_name {
+            cvars.set(crate::glue_session::realm::CVAR_REALM_NAME, &name);
+        }
+        if let Some(index) = last_character {
+            cvars.set(
+                crate::glue_session::roster::CVAR_LAST_CHARACTER,
+                &index.to_string(),
+            );
+            cvars.save();
+        }
     }
 }
 
@@ -2461,6 +2467,9 @@ fn send_asks(mgr: &mut GlueMgr, asks: &mut GlueAsks) {
                 }
                 // The selected target never flags these records for rename.
                 ParkRequest::Char(CharRequest::Rename { .. }) => continue,
+                // The offline roster has no remote guild or PIN challenge.
+                ParkRequest::Char(CharRequest::GuildQuery(_))
+                | ParkRequest::Realm(RealmRequest::Pin { .. }) => continue,
             };
             frontend.requests.push(request);
         }

@@ -1448,6 +1448,7 @@ pub(crate) fn write_command(w: &mut WorldWriter, cmd: ClientCommand) -> Result<(
         }
         ClientCommand::ForceSpeedAck {
             kind,
+            timestamp,
             guid,
             counter,
             speed,
@@ -1458,7 +1459,7 @@ pub(crate) fn write_command(w: &mut WorldWriter, cmd: ClientCommand) -> Result<(
             fall_time,
             jump,
             transport,
-        } => w.force_speed_change_ack(
+        } => w.force_speed_change_ack_at(
             kind,
             guid,
             counter,
@@ -1470,6 +1471,7 @@ pub(crate) fn write_command(w: &mut WorldWriter, cmd: ClientCommand) -> Result<(
             fall_time,
             jump,
             transport,
+            timestamp.unwrap_or_else(benilla_protocol::world::client_uptime_ms),
         ),
         ClientCommand::SetActiveMover { guid } => w.set_active_mover(guid),
         ClientCommand::NotActiveMover {
@@ -1961,15 +1963,22 @@ pub(crate) fn write_command(w: &mut WorldWriter, cmd: ClientCommand) -> Result<(
         } => w.move_mode_ack(guid, counter, mode, apply, flags, (pos, orientation)),
         ClientCommand::KnockBackAck {
             guid,
+            timestamp,
             counter,
             launch,
             flags,
             pos,
             orientation,
             transport,
-        } => {
-            w.knock_back_ack(guid, counter, launch, flags, (pos, orientation), transport)
-        }
+        } => w.knock_back_ack_at(
+            guid,
+            counter,
+            launch,
+            flags,
+            (pos, orientation),
+            transport,
+            timestamp.unwrap_or_else(benilla_protocol::world::client_uptime_ms),
+        ),
         ClientCommand::RepopRequest => w.repop_request(),
         ClientCommand::CorpseQuery => w.corpse_query(),
         ClientCommand::ReclaimCorpse { corpse } => w.reclaim_corpse(corpse),

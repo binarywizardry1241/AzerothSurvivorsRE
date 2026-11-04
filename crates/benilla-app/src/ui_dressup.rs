@@ -465,6 +465,7 @@ fn player_look(
         hair_color: s.player_hair_color().unwrap_or(0),
         facial_hair: s.player_facial_hair().unwrap_or(0),
         equipment,
+        weapon_enchants: [0; 3],
         // `feed_dressup` stamps the crest in.
         emblem: None,
     })

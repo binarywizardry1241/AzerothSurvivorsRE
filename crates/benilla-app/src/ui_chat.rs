@@ -281,7 +281,9 @@ pub(crate) fn end_chat_session(script: Option<&mut benilla_ui::script::UiScript>
     log.reset();
     if let Some(script) = script {
         for frame in ["ChatFrame1", "ChatFrame2"] {
-            crate::ui_script::run_or_warn(script, &format!("{frame}:Clear()"));
+            if let Err(error) = script.run(&format!("{frame}:Clear()")) {
+                warn!("could not clear {frame} at session end: {error}");
+            }
         }
     }
 }

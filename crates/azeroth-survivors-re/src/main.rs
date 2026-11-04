@@ -171,7 +171,7 @@ fn main() {
             }),
             ..default()
         })));
-    benilla_app::entities::set_enchant_glow_priority(true);
+    benilla_app::local_client::set_enchant_glow_priority(true);
     benilla_assets::register_asset_loaders(&mut app);
     app.add_plugins(benilla_world::world_plugins::WorldPlugins)
         .add_plugins(benilla_world::bgwin::BgWinPlugin)
@@ -197,8 +197,8 @@ fn main() {
             armory::ArmoryPlugin,
             talents::TalentsPlugin,
             progression::ProgressionPlugin,
-            codex::CodexPlugin,
         ))
+        .add_plugins(codex::CodexPlugin)
         .add_plugins(scrollbar::NativeScrollbarPlugin)
         .add_plugins(coop_ui::CoopUiPlugin)
         .add_plugins(coop_directory_row::DirectoryRowPlugin)

@@ -552,7 +552,7 @@ pub(in crate::net) fn sample_splines(
         let Some(f) = resolve_facing(MonsterMoveFacing::Target(guid), at, |_| target) else {
             continue;
         };
-        let Ok((_, _, mut t, _, _, rider, net, store, mover, motion)) = q.get_mut(entity) else {
+        let Ok((_, _, mut t, _, _, rider, _, net, store, mover, motion)) = q.get_mut(entity) else {
             continue;
         };
         if on_deck {
