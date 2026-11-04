@@ -95,8 +95,9 @@ fn checksum(data: &[u8]) -> u32 {
         sum.wrapping_add(u32::from_be_bytes(word))
     })
 }
-fn read_tables(data: &[u8]) -> Result<Tables, String> {
-    if !matches!(u32_at(data, 0)?, 0x00010000 | 0x74727565) {
+fn read_tables(data: &[u8]) -> Result<(u32, Tables), String> {
+    let scaler = u32_at(data, 0)?;
+    if !matches!(scaler, 0x00010000 | 0x74727565) {
         return Err("Native augmentation requires a TrueType outline font".into());
     }
     let mut tables = Tables::new();
@@ -116,7 +117,7 @@ fn read_tables(data: &[u8]) -> Result<Tables, String> {
                 .to_vec(),
         );
     }
-    Ok(tables)
+    Ok((scaler, tables))
 }
 fn cmap(data: &[u8]) -> Result<BTreeMap<u32, u16>, String> {
     let mut map = BTreeMap::new();
@@ -323,7 +324,7 @@ fn composite_advance(base: u16, mark: [i16; 4], mode: u8, units: f32) -> u16 {
 }
 
 pub fn augment(data: Vec<u8>) -> Result<Vec<u8>, String> {
-    let mut tables = read_tables(&data)?;
+    let (scaler, mut tables) = read_tables(&data)?;
     let mut mapping = cmap(table(&tables, b"cmap")?)?;
     let count = usize::from(u16_at(table(&tables, b"maxp")?, 4)?);
     let units = f32::from(u16_at(table(&tables, b"head")?, 18)?);
@@ -449,19 +450,19 @@ pub fn augment(data: Vec<u8>) -> Result<Vec<u8>, String> {
         put16(maxp, 30, depth);
     }
     put16(tables.get_mut(b"hhea").unwrap(), 34, glyphs.len() as u16);
-    if let Some(post) = tables.get_mut(b"post") {
-        if post.len() >= 32 {
-            post.truncate(32);
-            put32(post, 0, 0x00030000);
-        }
+    let post = tables.get_mut(b"post").ok_or("Missing TrueType post")?;
+    if post.len() < 32 {
+        return Err("Truncated TrueType post".into());
     }
+    post.truncate(32);
+    put32(post, 0, 0x00030000);
     tables.insert(*b"glyf", glyf);
     tables.insert(*b"loca", loca);
     tables.insert(*b"hmtx", hmtx);
     tables.insert(*b"cmap", write_cmap(&mapping));
     let count = tables.len();
     let mut output = vec![0u8; 12 + count * 16];
-    put32(&mut output, 0, 0x00010000);
+    put32(&mut output, 0, scaler);
     put16(&mut output, 4, count as u16);
     let power = 1usize << count.ilog2();
     put16(&mut output, 6, (power * 16) as u16);

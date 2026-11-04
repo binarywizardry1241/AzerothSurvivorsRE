@@ -27113,6 +27113,17 @@
     },
     {
       "id": "custom-game-fonts",
+      "font_table_publication_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_ids": [135],
+        "evidence_refs": ["docs/analysis/font-table-publication-0.141.0.md"],
+        "source_refs": ["crates/azeroth-survivors-re/src/font_patch.rs", "crates/azeroth-survivors-re/src/menu_fonts.rs"],
+        "recovery": "First-byte and suffix dispatch, unchanged return, admitted scaler, post admission, payload serialization and native provider fallback.",
+        "implementation": "Retain the original scaler and enforce the post header on changed fonts through the existing original-font fallback.",
+        "static_validation": "Journaled Ghidra slice, 12,545 bounded native cases and Rust syntax parsing.",
+        "runtime_validation": "unverified",
+        "parity": "unverified"
+      },
       "title": "Font loading and glyph augmentation",
       "original_path": "crates/wenilla-rogue/src/fonts.rs",
       "native_path_evidence": [
