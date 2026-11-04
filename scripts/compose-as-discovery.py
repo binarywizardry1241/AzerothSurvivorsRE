@@ -14,7 +14,7 @@ import json
 from pathlib import Path
 import re
 from coverage_common import file_sha256
-from script_sources import current_path
+from script_sources import current_path, historical_matches
 
 
 def encoded(value):
@@ -34,11 +34,16 @@ def file_commitment(value):
     return value
 
 
-def commitment_list(inputs, values):
+def commitment_list(inputs, values, *, frozen_tools=False):
     if not isinstance(values, list) or not values:
         raise ValueError("Expected nonempty file commitment list")
     for value in values:
         row = file_commitment(value)
+        if frozen_tools and row["path"].startswith("scripts/"):
+            current = inputs.commit(row["path"])
+            if current != row and historical_matches(row["path"], row["sha256"], inputs.root):
+                inputs.commit("docs/analysis/script-provenance.json")
+                continue
         inputs.commit(row["path"], row["sha256"])
 
 
@@ -308,7 +313,7 @@ def pending_native_lead(inputs, target, record, retain_stale_source=False):
     start, end = (int(span[key], 16) for key in ("virtual_address", "end_exclusive"))
     if start < 0 or end <= start or span["byte_count"] != end - start:
         raise ValueError("Invalid pending native range length")
-    commitment_list(inputs, record.get("inputs"))
+    commitment_list(inputs, record.get("inputs"), frozen_tools=True)
     declared = proof.get("inputs")
     if (not isinstance(declared, list) or not declared
             or any(not isinstance(row, dict) or not {"path", "sha256"} <= row.keys() for row in declared)

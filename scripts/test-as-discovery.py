@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("as_discovery", ROOT / "scripts/compose-as-discovery.py")
@@ -380,6 +381,25 @@ class ProfileTests(unittest.TestCase):
         self.write("native-result.c", "changed producer output\n")
         with self.assertRaisesRegex(ValueError, "Stale input"):
             self.compose()
+
+    def test_pending_native_admits_only_exact_frozen_tool_provenance(self):
+        (self.root / "scripts").mkdir()
+        (self.root / "docs/analysis").mkdir(parents=True)
+        provenance = self.write_json("docs/analysis/script-provenance.json", {})
+        name = "scripts/producer.py"
+        frozen = self.write(name, "original producer\n")
+        live = self.write(name, "current producer\n")
+        self.add_pending_native(dict(inputs=[frozen]), dict(inputs=[frozen]))
+        with patch.object(discovery, "historical_matches", return_value=True) as match:
+            profile, _, queue, _ = self.compose()
+            match.assert_called_once_with(name, frozen["sha256"], self.root)
+        self.assertIn(live, profile["inputs"])
+        self.assertIn(provenance, profile["inputs"])
+        entry = next(row for row in queue["entries"] if row["id"] == "pending-native:unresolved-native")
+        self.assertEqual(entry["state"], "pending")
+        with patch.object(discovery, "historical_matches", return_value=False):
+            with self.assertRaisesRegex(ValueError, "Stale input commitment"):
+                self.compose()
 
     def test_pending_native_cannot_claim_completed_semantics_or_ownership(self):
         for changes in (dict(state="reviewed_bounded"), dict(ownership="as_specific"), dict(complete=True)):
