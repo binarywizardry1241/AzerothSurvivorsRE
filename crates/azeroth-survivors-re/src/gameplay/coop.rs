@@ -1887,6 +1887,7 @@ fn settings(
     hud: Res<run_hud::HudSettings>,
 ) {
     let key = (run.identity, hud.shown("flag"));
+    let started = run.started;
     if state.tracking_sent == Some(key) {
         return;
     }
@@ -1904,7 +1905,7 @@ fn settings(
             state.tracking_sent = Some(key);
         }
     } else if let Some(game) = run.mechanics.as_mut().filter(|game| game.has_party()) {
-        game.party_control(0, 9, u8::from(key.1), 0, |_| None);
+        game.party_control(0, started, 9, u8::from(key.1), 0, |_| None);
         state.tracking_sent = Some(key);
     }
 }

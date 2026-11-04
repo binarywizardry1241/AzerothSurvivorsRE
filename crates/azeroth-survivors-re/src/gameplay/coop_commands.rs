@@ -121,7 +121,7 @@ pub(super) fn drain(
         .filter(|_| world.ready);
     while let Some((_, queued)) = state.commands.front() {
         let name_query = matches!(queued, Input::Engine(packet) if packet.opcode == opcode::CMSG_NAME_QUERY);
-        if !name_query
+        if matches!(queued, Input::Engine(_)) && !name_query
             && (world_inputs.is_none() || floor.is_none())
         {
             // A command waiting on the world keeps its place in receive order.
@@ -156,7 +156,7 @@ pub(super) fn drain(
                 let stale = game.with_party_hero(slot, |hero|
                     !azeroth_survivors_re::coop::pick::admits(kind, offer, hero.choice_offer())
                 ).unwrap_or(false);
-                let applied = game.party_control(slot, kind, argument, offer, |xy| {
+                let applied = game.party_control(slot, started, kind, argument, offer, |xy| {
                     floor.as_deref().and_then(|floor| floor.height(xy))
                 });
                 // Stale picks and missing-card requests republish the current offer.

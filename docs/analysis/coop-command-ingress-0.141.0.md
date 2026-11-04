@@ -270,3 +270,52 @@ steps. It supplies the actor search result at a seam and stops before
 serialization. Source order checks and Rust syntax parsing passed.
 Compilation, the authored Rust regression, socket behavior and
 original/rebuilt comparison remain open.
+
+## Seated Control8 phases and storage
+
+The [host Control8 gate](coop-replication-0.141.0.md#engine7-and-control8)
+requires the indexed assigned actor and a populated Game. The host selects
+that actor through the swap at `0x145ef8b78`, then calls the locale wrapper
+at `0x145ef8baa`. Its eleven-cell table at `0x147ae1e04` includes these cases.
+
+| Subtype | Seated native action |
+| --- | --- |
+| 5 | `0x145e73f2e` admits personal phases 1–3. It clears the offer rows and kind, sets abandonment, and calls `0x145f72680` to finalize that actor. |
+| 6 | `0x145e73ebc` requires queued levels, personal phase 1 and no active offer. It sets the spending byte at `+0x10d9` before checking showcase and calls `0x145fb7120` with `EDX=0, R8B=1` when admitted. |
+| 8 | `0x145e73e74` stores the decoded option in `+0x10d8`. Disabling storage reaches the same generator only with queued levels, phase 1 and showcase clear. |
+
+The factory passes the 18-byte `WOW_ROGUE_SHOWCASE` key at
+`0x147aead2d` to its environment reader. At `0x145ec09d4` it checks
+the single value byte against ASCII `1`, then `0x145ec0be3` stores the
+result at `[rbp+0x1095]`. With the constructed Game at `[rbp-0x48]`,
+that is `+0x10dd`, the shared showcase byte. The hero swap keeps it shared.
+
+The [command drain](../../crates/azeroth-survivors-re/src/gameplay/coop_commands.rs)
+passes the live run start flag to the [seated control handler](../../crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs).
+A world-ready guest can no longer abandon or spend levels in the Ready
+phase. The storage option still updates while Ready. Spending sets the
+recipient's latch before the existing generator checks showcase, and
+disabling storage uses the same generator once play admits it. A seated
+control at the front of the queue needs the assigned Game actor. It can run
+while terrain is unavailable, and an earlier queued world command keeps
+its place. The ordinary
+explicit guest departure and service close remain the separate [#206 path](coop-desktop-exit-0.141.0.md#synchronized-guest-departures).
+
+| Selected PE range | File offset | SHA-256 |
+| --- | ---: | --- |
+| Control seat `0x145ef8b71..0x145ef8baf` | `0x5ef7f71` | `37f85f2ffe7d52f4a181d9172b22e51fe63bc24f10a8e71368df21913b099036` |
+| Control switch `0x145e73e28..0x145e74013` | `0x5e73228` | `0f8db6c7d347cfb42769694570a2ee2e0acccf33576f6f7160321dda0b51bfc8` |
+| Control table `0x147ae1e04..0x147ae1e30` | `0x7ae0404` | `96b367057d55f62bee52c420c98c9bde78ac74d6169c7776149ae9a5ce62da5c` |
+| Showcase selector `0x145ec0995..0x145ec0a01` | `0x5ebfd95` | `b3407dfa7d6b4a0a0c87f3bc6820ac267dca485311cd05796e8063ae99d353e9` |
+| Showcase store `0x145ec0be1..0x145ec0bef` | `0x5ebffe1` | `e4cbfca119017465cc309b557e51ef6a431a4e44c02798554cde90f1d6c2f685` |
+
+```sh
+PYTHONPATH=runtime/armory-recovery/python-libs \
+  python3 -B scripts/check-coop-party-frames.py --host-controls
+```
+
+The checker passed 336 seated Control8 cases over 4,076 original
+instruction steps. It stops before the terminal or level-choice helper.
+Source order checks and Rust syntax parsing passed. Compilation, the
+authored Rust regression, socket behavior and original/rebuilt
+comparison remain open.

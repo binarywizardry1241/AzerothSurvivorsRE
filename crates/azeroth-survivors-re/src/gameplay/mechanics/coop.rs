@@ -268,13 +268,34 @@ mod tests {
         for slot in [0, 1] {
             let before = game.with_party_hero(slot, |hero|
                 (hero.choice_offer(), hero.pending_levels, hero.choices.len())).unwrap();
-            assert!(game.party_control(slot, 10, 255, u32::MAX, |_| {
+            assert!(game.party_control(slot, false, 10, 255, u32::MAX, |_| {
                 panic!("choice response request does not query terrain")
             }));
             let after = game.with_party_hero(slot, |hero|
                 (hero.choice_offer(), hero.pending_levels, hero.choices.len())).unwrap();
             assert_eq!(after, before);
         }
+    }
+
+    #[test]
+    fn party_controls_keep_ready_heroes_and_queued_levels_until_start() {
+        let mut game = pair();
+        game.with_party_hero(1, |hero| hero.pending_levels = 3);
+        assert!(!game.party_control(1, false, 5, 0, 0, |_| None));
+        assert!(!game.party_control(1, false, 6, 0, 0, |_| None));
+        assert!(game.party_control(1, false, 8, 0, 0, |_| None));
+        game.with_party_hero(1, |hero| {
+            assert!(!hero.dead && hero.choices.is_empty());
+            assert!(!hero.store_levels() && !hero.spending_levels());
+            assert_eq!(hero.pending_levels, 3);
+        });
+        assert!(game.party_control(1, true, 6, 0, 0, |_| None));
+        assert!(game.party_control(1, true, 5, 0, 0, |_| None));
+        assert!(!game.party_control(1, true, 5, 0, 0, |_| None));
+        game.with_party_hero(1, |hero| {
+            assert!(hero.dead && hero.abandoned && hero.choices.is_empty());
+        });
+        assert!(!game.dead);
     }
 
     #[test]
@@ -1563,11 +1584,11 @@ impl Mechanics {
         self.coop.replica.as_ref()
     }
 
-    ///1458ee600's native tag8 switch. The fourth variant has no action;
-    /// continuation is an ordinary engine command and is not subtype4.
+    /// The native seated tag8 switch at 0x145e73e3a. Subtype4 has no action.
     pub fn party_control(
         &mut self,
         slot: u8,
+        started: bool,
         kind: u8,
         argument: u8,
         offer: u32,
@@ -1585,19 +1606,14 @@ impl Mechanics {
             // Control10 requests the authoritative choice response without
             // changing the offer or applying another selection.
             4 | 10 => true,
-            5 => {
+            5 if started && !game.dead && !game.completed => {
                 game.abandon(&mut height);
                 true
             }
-            6 => {
-                if game.dead
-                    || game.completed
-                    || !game.choices.is_empty()
-                    || game.pending_levels == 0
-                {
-                    return false;
-                }
-                game.open_stored_levels();
+            6 if started && game.active_run_state() && game.pending_levels != 0 => {
+                // The spend latch is set even when showcase suppresses the offer.
+                game.choice_state.spend_levels = true;
+                game.generate_level_choices();
                 !game.choices.is_empty()
             }
             7 => {
@@ -1609,7 +1625,10 @@ impl Mechanics {
                 true
             }
             8 => {
-                game.set_store_levels(argument & 1 != 0);
+                game.choice_state.store_levels = argument != 0;
+                if !game.store_levels() && started && game.active_run_state() {
+                    game.generate_level_choices();
+                }
                 true
             }
             9 => {

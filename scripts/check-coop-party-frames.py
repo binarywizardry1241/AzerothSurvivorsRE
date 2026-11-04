@@ -544,7 +544,7 @@ def ordered_source():
     drain = command.split('pub(super) fn drain(', 1)[1]
     assert drain.index('terrain.native.terrain()') < drain.index('state.commands.front()') < drain.index('state.commands.pop_front()')
     assert '.filter(|_| world.ready)' in drain
-    assert 'if !name_query' in drain
+    assert 'matches!(queued, Input::Engine(_)) && !name_query' in drain
     assert '(world_inputs.is_none() || floor.is_none())' in drain
     assert 'apply.after(bootstrap).before(RunSet::Tick)' in command
     assert 'Input::Engine(packet) => packet' in drain and 'Input::Control { kind, argument, offer }' in drain
@@ -616,14 +616,59 @@ def host_name_query():
     print(f'PASS: {names} NameQuery cases over {replay.instructions:,} original steps, plus ordered source guards')
 
 
+def host_controls():
+    replay = host_action_replay()
+    cpu, reg = replay.machine, replay.registers
+    game, body = replay.app, replay.app + 0x4000
+    start, end = 0x145e73e28, 0x145e74013
+    control_done, abandon, generate = 0x145e73ffc, 0x145f72680, 0x145fb7120
+    controls = 0
+    for kind, phase, pending, active_offer, showcase, argument in itertools.product(
+        (5, 6, 8), (0, 1, 2, 3, 4, 5, 255), (0, 3), (1, 255), (0, 1), (0, 1)
+    ):
+        replay.reset('seated Control8', [(start, end)], [control_done, abandon, generate])
+        cpu.reg_write(reg.UC_X86_REG_RSI, game)
+        cpu.reg_write(reg.UC_X86_REG_R8, body)
+        replay.put(body, '<BB', kind, argument)
+        replay.put(game + 0x103c, '<I', pending)
+        replay.put(game + 0x10dd, '<B', showcase)
+        replay.put(game + 0x10e7, '<B', active_offer)
+        replay.put(game + 0x10e9, '<B', phase)
+        replay.put(game + 0x10d8, '<B', 1 - argument)
+        spends = kind == 6 and pending > 0 and phase == 1 and active_offer == 255
+        disables_storage = kind == 8 and argument == 0 and pending > 0 and phase == 1
+        abandons = kind == 5 and phase in (1, 2, 3)
+        stop = abandon if abandons else generate if (spends or disables_storage) and not showcase else control_done
+        assert replay.run(start) == stop
+        assert replay.get(game + 0x10d3, '<B') == (int(abandons),)
+        assert replay.get(game + 0x10d9, '<B') == (int(spends),)
+        assert replay.get(game + 0x10d8, '<B') == (argument if kind == 8 else 1 - argument,)
+        if stop == generate:
+            assert cpu.reg_read(reg.UC_X86_REG_EDX) == 0
+            assert cpu.reg_read(reg.UC_X86_REG_R8B) == 1
+        controls += 1
+
+    gameplay, drain = ordered_source()
+    assert 'game.party_control(slot, started, kind, argument, offer' in drain
+    control = (gameplay / 'mechanics/coop.rs').read_text().split('pub fn party_control(', 1)[1].split('pub fn update_party_world_flags(', 1)[0]
+    assert '5 if started && !game.dead && !game.completed =>' in control
+    assert '6 if started && game.active_run_state() && game.pending_levels != 0 =>' in control
+    assert control.index('game.choice_state.spend_levels = true') < control.index('game.generate_level_choices()')
+    assert 'if !game.store_levels() && started && game.active_run_state()' in control
+    print(f'PASS: {controls} seated Control8 cases over {replay.instructions:,} original steps, plus ordered source guards')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--ordered-input", action="store_true")
     parser.add_argument("--host-name-query", action="store_true")
+    parser.add_argument("--host-controls", action="store_true")
     args = parser.parse_args()
     if args.host_name_query:
         return host_name_query()
+    if args.host_controls:
+        return host_controls()
     if args.ordered_input:
         return ordered_world_input()
     target = latest_target(verify=True)
