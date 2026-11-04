@@ -95,23 +95,12 @@ pub(crate) fn build(
     }
 }
 
-/// Current145aa97a0 admits valid class IDs with any race1..8, independently of
+/// The recovered Hero sanitizer admits valid class IDs with any race1..8, independently of
 /// the host's purchases, then normalizes identity/appearance and relative gear
 /// and the complete talent allocation against a fixed51-point budget. The
-/// connection owner separately rejects duplicated world identities145891b70.
-pub(crate) fn sanitize(
-    mut hero: NativeHero,
-    host_guid: Option<u64>,
-    active_guid: Option<u64>,
-    others: impl IntoIterator<Item = u64>,
-) -> Result<NativeHero, HeroIdentityError> {
-    validate_hero_identity(
-        &hero,
-        &[1, 2, 3, 4, 5, 6, 7, 8],
-        host_guid,
-        active_guid,
-        others,
-    )?;
+/// connection owner checks duplicate world identities at profile admission.
+pub(crate) fn sanitize(mut hero: NativeHero) -> Result<NativeHero, HeroIdentityError> {
+    validate_hero_identity(&hero, &[1, 2, 3, 4, 5, 6, 7, 8], None, None, [])?;
     // Native String decoding has already replaced malformed UTF-8 before this
     // owner; retain the same replacement semantics at this binary boundary.
     let pick = Pick {

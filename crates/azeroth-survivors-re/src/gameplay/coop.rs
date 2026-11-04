@@ -35,6 +35,16 @@ struct HeroUpdate {
     pending: Option<Box<NativeHero>>,
 }
 
+#[derive(Clone, Copy)]
+struct HeroAdmission {
+    host_guid: u64,
+    now: f64,
+    run_under_way: bool,
+    zone_key: &'static str,
+    zone_index: usize,
+    heroic_rank: u8,
+}
+
 #[derive(Resource, Default)]
 pub(crate) struct CoopGame {
     local: Option<NativeHero>,
@@ -80,44 +90,50 @@ pub(crate) struct CoopGame {
 }
 
 impl CoopGame {
-    fn receive_hero(&mut self, client: ClientId, host_guid: u64, hero: Box<NativeHero>, now: f64, run_under_way: bool) {
+    fn receive_hero(&mut self, client: ClientId, hero: Box<NativeHero>, admission: HeroAdmission) -> Option<Vec<u8>> {
         let update = self.hero_updates.entry(client).or_default();
         if self.profiles.contains_key(&client)
-            && update.last_applied.is_some_and(|last| now - last < HERO_UPDATE_INTERVAL)
+            && update.last_applied.is_some_and(|last| admission.now - last < HERO_UPDATE_INTERVAL)
         {
             update.pending = Some(hero);
-            return;
+            return None;
         }
-        self.apply_hero(client, host_guid, *hero, now, run_under_way);
+        self.apply_hero(client, *hero, admission)
     }
 
-    fn apply_hero(&mut self, client: ClientId, host_guid: u64, hero: NativeHero, now: f64, run_under_way: bool) {
-        self.hero_updates.entry(client).or_default().last_applied = Some(now);
-        let others = self.profiles.iter()
-            .filter_map(|(id, hero)| (*id != client).then_some(hero.guid))
-            .collect::<Vec<_>>();
-        match crate::coop_profile::sanitize(hero, Some(host_guid), Some(host_guid), others) {
-            Ok(hero) => {
-                // Identity storage remains separate from world admission.
-                if self.profiles.contains_key(&client)
-                    && (run_under_way || self.admitted.contains_key(&client))
-                {
-                    return;
-                }
-                self.profiles.insert(client, hero);
+    fn apply_hero(&mut self, client: ClientId, hero: NativeHero, admission: HeroAdmission) -> Option<Vec<u8>> {
+        self.hero_updates.entry(client).or_default().last_applied = Some(admission.now);
+        let hero = match crate::coop_profile::sanitize(hero) {
+            Ok(hero) => hero,
+            Err(error) => {
+                warn!("Co-op hero identity rejected: {error:?}");
+                return None;
             }
-            Err(error) => warn!("Co-op hero identity rejected: {error:?}"),
+        };
+        if !self.profiles.contains_key(&client)
+            && !hero.permits_zone(admission.zone_index, admission.heroic_rank)
+        {
+            return Some(NativeHero::locked_reason(admission.zone_key, admission.heroic_rank));
         }
+        if hero.guid == admission.host_guid
+            || self.profiles.iter().any(|(id, profile)| *id != client && profile.guid == hero.guid)
+        {
+            warn!("Co-op hero identity rejected: Duplicate");
+            return None;
+        }
+        if admission.run_under_way || self.admitted.contains_key(&client) {
+            return None;
+        }
+        self.profiles.insert(client, hero);
+        None
     }
 
-    fn drain_hero_update(&mut self, client: ClientId, host_guid: u64, now: f64, run_under_way: bool) {
+    fn drain_hero_update(&mut self, client: ClientId, admission: HeroAdmission) -> Option<Vec<u8>> {
         let pending = self.hero_updates.get_mut(&client).and_then(|update| {
-            update.last_applied.filter(|last| now - last >= HERO_UPDATE_INTERVAL)?;
+            update.last_applied.filter(|last| admission.now - last >= HERO_UPDATE_INTERVAL)?;
             update.pending.take()
         });
-        if let Some(hero) = pending {
-            self.apply_hero(client, host_guid, *hero, now, run_under_way);
-        }
+        pending.and_then(|hero| self.apply_hero(client, *hero, admission))
     }
 
     fn retire_hero_profile(&mut self, client: ClientId) {
@@ -557,6 +573,19 @@ fn receive(
     events.extend(std::mem::take(&mut runtime.incoming).into_iter()
         .map(azeroth_survivors_re::coop::session::PartyEvent::Incoming));
     let profile_now = time.elapsed_secs_f64();
+    let selected_zone = azeroth_survivors_re::zones::resolve(&pick.zone);
+    let zone_index = azeroth_survivors_re::guardians::catalog::ZONES
+        .iter().position(|row| row.key == selected_zone.key).unwrap_or(0);
+    let selected_rank = pick.heroic_rank.min(
+        menu.backend_save.max_heroic_rank(pick.hero.class, selected_zone.key)).min(5);
+    let hero_admission = HeroAdmission {
+        host_guid: guid,
+        now: profile_now,
+        run_under_way: runtime.driver.as_ref().is_some_and(|driver| driver.server.run_under_way()),
+        zone_key: selected_zone.key,
+        zone_index,
+        heroic_rank: selected_rank,
+    };
     loop {
         let event = events.pop_front().or_else(|| runtime.driver.as_mut()
             .filter(|driver| driver.is_hosting()).and_then(|driver| driver.next_host_event()));
@@ -623,9 +652,10 @@ fn receive(
                 }
             }
             NativeMessage::Lifecycle(LifecyclePacket::Hero(hero)) if !guest => {
-                let Some(client) = client else { continue };
-                let run_under_way = runtime.driver.as_ref().is_some_and(|driver| driver.server.run_under_way());
-                state.receive_hero(client, guid, hero, profile_now, run_under_way);
+                let Some((client, driver)) = client.zip(runtime.driver.as_mut()) else { continue };
+                if let Some(reason) = state.receive_hero(client, hero, hero_admission) {
+                    driver.reject_hero(client, reason, profile_now);
+                }
             }
             NativeMessage::Lifecycle(LifecyclePacket::Synchronize) if !guest => {
                 if let Some(client) = client {
@@ -872,19 +902,17 @@ fn receive(
             );
         }
     }
-    if let Some(driver) = runtime.driver.as_ref().filter(|driver| driver.is_hosting()) {
+    if let Some(driver) = runtime.driver.as_mut().filter(|driver| driver.is_hosting()) {
         // The native frame takes due profiles after peer input, before roster
         // publication, in the live connection order.
-        for row in driver.server.clients().iter().filter(|row| row.closing_since.is_none()) {
-            state.drain_hero_update(row.id, guid, profile_now, driver.server.run_under_way());
+        let denied = driver.server.clients().iter().filter(|row| row.closing_since.is_none())
+            .filter_map(|row| state.drain_hero_update(row.id, hero_admission).map(|reason| (row.id, reason)))
+            .collect::<Vec<_>>();
+        for (client, reason) in denied {
+            driver.reject_hero(client, reason, profile_now);
         }
     }
     if !guest {
-        let selected_zone = azeroth_survivors_re::zones::resolve(&pick.zone);
-        let zone_index = azeroth_survivors_re::guardians::catalog::ZONES
-            .iter().position(|row| row.key == selected_zone.key).unwrap_or(0);
-        let selected_rank = pick.heroic_rank.min(
-            menu.backend_save.max_heroic_rank(pick.hero.class, selected_zone.key)).min(5);
         let mut rows = state
             .local
             .iter()
@@ -1824,6 +1852,17 @@ fn settings(
 mod guest_engine_tests {
     use super::*;
 
+    fn elwynn_admission(now: f64) -> HeroAdmission {
+        HeroAdmission {
+            host_guid: 77,
+            now,
+            run_under_way: false,
+            zone_key: "elwynn",
+            zone_index: 0,
+            heroic_rank: 0,
+        }
+    }
+
     #[test]
     fn guest_hero_updates_replace_the_pending_record_and_drain_at_the_boundary() {
         let menu = MenuState::from_save_path(None);
@@ -1833,12 +1872,12 @@ mod guest_engine_tests {
         );
         let hero = |name: &[u8]| Box::new(NativeHero { name: name.to_vec(), ..profile.clone() });
         let mut state = CoopGame::default();
-        state.receive_hero(client, 77, hero(b"First"), 0., false);
-        state.receive_hero(client, 77, hero(b"Second"), 0.02, false);
-        state.receive_hero(client, 77, hero(b"Third"), 0.05, false);
-        state.drain_hero_update(client, 77, 0.099, false);
+        assert!(state.receive_hero(client, hero(b"First"), elwynn_admission(0.)).is_none());
+        assert!(state.receive_hero(client, hero(b"Second"), elwynn_admission(0.02)).is_none());
+        assert!(state.receive_hero(client, hero(b"Third"), elwynn_admission(0.05)).is_none());
+        assert!(state.drain_hero_update(client, elwynn_admission(0.099)).is_none());
         assert_eq!(state.profiles[&client].name.as_slice(), b"First");
-        state.drain_hero_update(client, 77, 0.1, false);
+        assert!(state.drain_hero_update(client, elwynn_admission(0.1)).is_none());
         assert_eq!(state.profiles[&client].name.as_slice(), b"Third");
         assert!(state.hero_updates[&client].pending.is_none());
     }
@@ -1852,23 +1891,50 @@ mod guest_engine_tests {
         );
         let hero = |name: &[u8]| Box::new(NativeHero { name: name.to_vec(), ..profile.clone() });
         let mut state = CoopGame::default();
-        state.receive_hero(client, 77, hero(b"First"), 0., false);
-        state.receive_hero(client, 77, hero(b"Pending"), 0.05, false);
-        state.receive_hero(client, 77, hero(b"Immediate"), 0.1, false);
-        state.drain_hero_update(client, 77, 0.1, false);
+        assert!(state.receive_hero(client, hero(b"First"), elwynn_admission(0.)).is_none());
+        assert!(state.receive_hero(client, hero(b"Pending"), elwynn_admission(0.05)).is_none());
+        assert!(state.receive_hero(client, hero(b"Immediate"), elwynn_admission(0.1)).is_none());
+        assert!(state.drain_hero_update(client, elwynn_admission(0.1)).is_none());
         assert_eq!(state.profiles[&client].name.as_slice(), b"Immediate");
-        state.drain_hero_update(client, 77, 0.2, false);
+        assert!(state.drain_hero_update(client, elwynn_admission(0.2)).is_none());
         assert_eq!(state.profiles[&client].name.as_slice(), b"Pending");
-        state.receive_hero(client, 77, hero(b"Discarded"), 0.25, false);
-        state.receive_hero(client, 77, hero(b"Under way"), 0.35, true);
+        assert!(state.receive_hero(client, hero(b"Discarded"), elwynn_admission(0.25)).is_none());
+        assert!(state.receive_hero(client, hero(b"Under way"), HeroAdmission {
+            run_under_way: true, ..elwynn_admission(0.35)
+        }).is_none());
         assert_eq!(state.profiles[&client].name.as_slice(), b"Pending");
         state.admitted.insert(client, 34);
-        state.receive_hero(client, 77, hero(b"Assigned"), 0.5, false);
+        assert!(state.receive_hero(client, hero(b"Assigned"), elwynn_admission(0.5)).is_none());
         assert_eq!(state.profiles[&client].name.as_slice(), b"Pending");
         state.retire_hero_profile(client);
-        state.drain_hero_update(client, 77, 1., false);
+        assert!(state.drain_hero_update(client, elwynn_admission(1.)).is_none());
         assert!(!state.profiles.contains_key(&client));
         assert!(!state.hero_updates.contains_key(&client));
+    }
+
+    #[test]
+    fn first_guest_profile_checks_zone_and_rank_before_the_common_storage_guards() {
+        let menu = MenuState::from_save_path(None);
+        let client = ClientId(7);
+        let mut profile = crate::coop_profile::build(
+            &menu.backend_save, menu.backend_pick(), 0x800021, "en", [0; 3], None,
+        );
+        profile.byte_1e3 = 1;
+        profile.heroic_unlocks = vec![0];
+        let mut state = CoopGame::default();
+        let locked = HeroAdmission { heroic_rank: 1, ..elwynn_admission(0.) };
+        let duplicate = HeroAdmission { host_guid: profile.guid, ..locked };
+        assert_eq!(
+            state.receive_hero(client, Box::new(profile.clone()), duplicate).as_deref(),
+            Some(b"locked:elwynn:1".as_slice()),
+        );
+        let ongoing = HeroAdmission { run_under_way: true, ..elwynn_admission(0.2) };
+        assert!(state.receive_hero(client, Box::new(profile.clone()), ongoing).is_none());
+        assert!(!state.profiles.contains_key(&client));
+        assert!(state.receive_hero(client, Box::new(profile.clone()), elwynn_admission(0.4)).is_none());
+        profile.name = b"Refresh".to_vec();
+        assert!(state.receive_hero(client, Box::new(profile), HeroAdmission { now: 0.6, ..locked }).is_none());
+        assert_eq!(state.profiles[&client].name.as_slice(), b"Refresh");
     }
 
     #[test]

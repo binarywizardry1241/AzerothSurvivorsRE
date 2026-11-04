@@ -434,6 +434,13 @@ impl Peer {
             self.outgoing.clear();
         }
     }
+
+    fn send_denied(&mut self, reason: Vec<u8>, now: f64) {
+        self.flush(now);
+        let denied = encode_lifecycle(&LifecyclePacket::Denied(reason))
+            .expect("bounded native denial reason");
+        self.connection.send(&denied);
+    }
 }
 
 /// A decoded native message and its actual transport origin.
@@ -1120,6 +1127,20 @@ impl Session {
         }
     }
 
+    /// Flush the joined peer and send its locked reason before starting the
+    /// ordinary rejection drain on that connection.
+    pub fn reject_hero(&mut self, client: ClientId, reason: Vec<u8>, now: f64) {
+        if !self.server.clients().iter().any(|row| {
+            row.id == client && row.joined && row.closing_since.is_none()
+        }) {
+            return;
+        }
+        let Some(peer) = self.peers.iter_mut().find(|peer| peer.id == client) else { return };
+        peer.send_denied(reason, now);
+        self.server.begin_closing(client, now);
+        self.collect_membership();
+    }
+
     /// Native local request26 forces this peer's pending output before wire3,
     /// closes its actual transport, then runs ordinary party retirement.
     pub fn kick_client(&mut self, client: ClientId, now: f64) -> bool {
@@ -1128,10 +1149,7 @@ impl Session {
             return false;
         };
         let peer = &mut self.peers[index];
-        peer.flush(now);
-        let denied = encode_lifecycle(&LifecyclePacket::Denied(b"the host sent you away".to_vec()))
-            .expect("fixed native kick reason");
-        peer.connection.send(&denied);
+        peer.send_denied(b"the host sent you away".to_vec(), now);
         peer.connection.close();
         self.relay_commands.extend(peer.connection.take_relay_commands());
         self.peers.remove(index);
@@ -1585,6 +1603,32 @@ mod relay_protocol_tests {
         let mut host = Session::service_host(HostConfig { password: Vec::new(), capacity: 5 });
         assert!(!host.kick_client(ClientId(1), 0.));
         assert!(host.take_service_commands().is_empty());
+    }
+
+    #[test]
+    fn locked_hero_denial_flushes_the_peer_and_keeps_the_transport_for_rejection_drain() {
+        let mut host = Session::service_host(HostConfig { password: Vec::new(), capacity: 2 });
+        let client = host.service_peer_open(73).unwrap();
+        let request = JoinRequest::current(Vec::new());
+        let accepted = host.server.admit(client, &request, 2.).unwrap().unwrap();
+        host.collect_membership();
+        host.take_party_events();
+        host.take_service_commands();
+        assert!(host.send_message(Some(client), NativeMessage::Lifecycle(LifecyclePacket::Accepted(accepted))));
+
+        host.reject_hero(client, b"locked:elwynn:1".to_vec(), 2.001);
+
+        let commands = host.take_service_commands();
+        let [RelayCommand::Send { id: 73, payload: pending },
+            RelayCommand::Send { id: 73, payload: denied }] = commands.as_slice() else { panic!() };
+        assert!(matches!(decode_frame(&pending[9..]).unwrap().as_slice(),
+            [NativeMessage::Time(_), NativeMessage::Lifecycle(LifecyclePacket::Accepted(_))]));
+        assert!(matches!(decode_frame(&denied[9..]).unwrap().as_slice(),
+            [NativeMessage::Lifecycle(LifecyclePacket::Denied(reason))] if reason.as_slice() == b"locked:elwynn:1"));
+        assert_eq!(host.peers[0].id, client);
+        assert_eq!(host.server.clients()[0].closing_since, Some(2.001));
+        assert!(matches!(host.take_party_events().as_slice(),
+            [PartyEvent::Membership(MembershipEvent::Left { client: id, .. })] if *id == client));
     }
 
     #[test]

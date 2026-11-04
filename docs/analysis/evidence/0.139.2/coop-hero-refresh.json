@@ -114,6 +114,69 @@
       "end_exclusive": "0x145e786c0",
       "file_offset": "0x5e77a9b",
       "sha256": "5157292c276088ba7f88ed032a310c300aab3c1824e5699dc05b1b3c1c0719db"
+    },
+    {
+      "role": "Hero selected zone resolution",
+      "start": "0x145e7c2b7",
+      "end_exclusive": "0x145e7c2f2",
+      "file_offset": "0x5e7b6b7",
+      "sha256": "56fd51927104fbe55babbfa9aaa1e57032b18309b53be43729d27c416f46fdbf"
+    },
+    {
+      "role": "first Hero canonical zone and host rank inputs",
+      "start": "0x145e7c34c",
+      "end_exclusive": "0x145e7c394",
+      "file_offset": "0x5e7b74c",
+      "sha256": "d11689e4968ef9c3c56e27b5b9074dfda251f09c3b291553311b5c58794c9ba4"
+    },
+    {
+      "role": "first Hero rank cap and eligibility",
+      "start": "0x145e7c394",
+      "end_exclusive": "0x145e7c3cb",
+      "file_offset": "0x5e7b794",
+      "sha256": "9508b17f9db688b034d18211fe3fc8f2145dec208ca77125308ff73f9c49ed8a"
+    },
+    {
+      "role": "first Hero denial dispatch",
+      "start": "0x145e7c3cb",
+      "end_exclusive": "0x145e7c3eb",
+      "file_offset": "0x5e7b7cb",
+      "sha256": "39652c6fbe78a1a83fe029710896e1c94c2b1e616981afc858ee8bdcf7a45683"
+    },
+    {
+      "role": "locked reason selected zone and host rank inputs",
+      "start": "0x145e76bf0",
+      "end_exclusive": "0x145e76c43",
+      "file_offset": "0x5e75ff0",
+      "sha256": "06ac474921b1cd614e36c29a64d89d0371aa710e21f5370f9c2bb4439e0b1340"
+    },
+    {
+      "role": "locked reason rank and format selection",
+      "start": "0x145e76c43",
+      "end_exclusive": "0x145e76ca5",
+      "file_offset": "0x5e76043",
+      "sha256": "f8c09ee6c8d51e5f8e38b5f9764acf435858a718851247c7e5d86d3818f27dfc"
+    },
+    {
+      "role": "normal locked reason template",
+      "start": "0x1476c5fd8",
+      "end_exclusive": "0x1476c5fe2",
+      "file_offset": "0x76c51d8",
+      "sha256": "24c029550789b2079fc964beaca6e6147dd43942517f800c8da29d86c0202df3"
+    },
+    {
+      "role": "Heroic locked reason template",
+      "start": "0x1476c5fe2",
+      "end_exclusive": "0x1476c5fef",
+      "file_offset": "0x76c51e2",
+      "sha256": "2779d1cb5e320cbcc55a7741d0074fb29f070529ed097bb2855d5e21847efee9"
+    },
+    {
+      "role": "locked denial flush send and rejection drain",
+      "start": "0x145e77600",
+      "end_exclusive": "0x145e7778c",
+      "file_offset": "0x5e76a00",
+      "sha256": "28f6cb8d2a9956585372482d41069f24597b1d00621a20e593f2a942995cf599"
     }
   ],
   "tables": [
@@ -277,7 +340,10 @@
     "take": "0x145fc4d51",
     "skip": "0x145fc4d10",
     "replace": "0x145e7c319",
-    "reject_replacement": "0x145e7c3eb"
+    "reject_replacement": "0x145e7c3eb",
+    "check_storage": "0x145e7c2fd",
+    "locked": "0x145e7c3cb",
+    "format_locked": "0x145e76ca5"
   },
   "raw_collector_ghidra": {
     "slice_sha256": "9bbddc91e697ad558ed35a2dfa8067428b4297aaca7a09b71eb77a7c50ea1184",

@@ -372,8 +372,10 @@ def hero_refresh_contract():
     require(constant == 0.1, 'Changed Hero interval')
     receive, take, replace = (ranges[role] for role in (
         'Hero update gate', 'pending Hero take', 'existing Hero replacement gate'))
-    exits = {int(address, 16) for address in proof['replay_exits'].values()}
+    first = ranges['first Hero rank cap and eligibility']
+    reason = ranges['locked reason rank and format selection']
     native = {label: int(address, 16) for label, address in proof['replay_exits'].items()}
+    exits = set(native.values()) - {native['check_storage']}
 
     class Probe(EquipmentProbe):
         def hook(self, uc, pc, size, unused):
@@ -383,7 +385,7 @@ def hero_refresh_contract():
                 require(any(start <= pc and pc + size <= end for start, end in self.ranges),
                         f'Unexpected Hero instruction {pc:#x}')
 
-    probe = Probe(pe.data, pe, [receive, take, replace])
+    probe = Probe(pe.data, pe, [receive, take, replace, first, reason])
     row, clock = probe.alloc(0x870), probe.alloc(8)
     absent = 0xffffffffffffffff
     cases = 0
@@ -425,26 +427,81 @@ def hero_refresh_contract():
         require(probe.reg('RIP') == expected, 'Unexpected native existing Hero replacement admission')
         cases += 1
 
+    exits.add(native['check_storage'])
+    frame = probe.alloc(0x700)
+    unlocks = probe.alloc(12)
+    probe.reg('RBP', frame)
+    for zone, unlocked_count, requested, cap, ranks in itertools.product(
+        (0, 1, 2, 11, 12), (0, 1, 2, 12), (0, 1, 5, 255), (0, 1, 5),
+        (b'', b'\x00', b'\x02\x01', bytes(range(12))),
+    ):
+        probe.native.mem_write(frame + 0x68a, bytes([unlocked_count]))
+        probe.put(frame + 0x698, zone)
+        probe.put(frame + 0x478, unlocks, len(ranks))
+        if ranks:
+            probe.native.mem_write(unlocks, ranks)
+        probe.reg('RCX', requested)
+        probe.reg('RAX', cap)
+        probe.native.emu_start(first[0], probe.DONE, count=18)
+        unlocked_rank = ranks[zone] if zone < len(ranks) else 0
+        expected = native['check_storage'] if zone < unlocked_count and min(requested, cap) <= unlocked_rank else native['locked']
+        require(probe.reg('RIP') == expected, 'Unexpected native first Hero zone/rank admission')
+        cases += 1
+
+    templates = {
+        b'\x07locked:\xc0\x00': 'normal locked reason template',
+        b'\x07locked:\xc0\x01:\xc0\x00': 'Heroic locked reason template',
+    }
+    for expected, role in templates.items():
+        start, end = ranges[role]
+        offset = pe.rva_offset(start - pe.image_base)
+        require(pe.data[offset:offset + end - start] == expected, 'Changed locked reason format')
+    for requested, cap in itertools.product((0, 1, 5, 255), (0, 1, 5)):
+        probe.reg('RCX', requested)
+        probe.reg('RAX', cap)
+        probe.reg('RSP', probe.STACK + 0x1000)
+        probe.native.emu_start(reason[0], probe.DONE, count=20)
+        rank = min(requested, cap)
+        role = 'Heroic locked reason template' if rank else 'normal locked reason template'
+        require(probe.reg('RIP') == native['format_locked'] and probe.reg('RDX') == ranges[role][0],
+                'Unexpected native locked reason format')
+        if rank:
+            require(probe.native.mem_read(probe.STACK + 0x1027, 1) == bytes([rank]),
+                    'Unexpected native locked reason rank')
+        cases += 1
+
     source = (ROOT / 'crates/azeroth-survivors-re/src/gameplay/coop.rs').read_text()
+    session = (ROOT / 'crates/azeroth-survivors-re/src/coop/session.rs').read_text()
     immediate = source.split('fn receive_hero(', 1)[1].split('fn apply_hero(', 1)[0]
     apply = source.split('fn apply_hero(', 1)[1].split('fn drain_hero_update(', 1)[0]
     drain = source.split('fn drain_hero_update(', 1)[1].split('fn retire_hero_profile(', 1)[0]
     host = source.split('let profile_now = time.elapsed_secs_f64();', 1)[1]
+    reject = session.split('pub fn reject_hero(', 1)[1].split('pub fn kick_client(', 1)[0]
+    denial = session.split('fn send_denied(', 1)[1].split('pub struct IncomingMessage', 1)[0]
     source_checks = [
         'const HERO_UPDATE_INTERVAL: f64 = 0.1' in source,
         'self.profiles.contains_key(&client)' in immediate
         and 'now - last < HERO_UPDATE_INTERVAL' in immediate and 'update.pending = Some(hero)' in immediate,
         'pending.take()' not in immediate,
-        apply.index('last_applied = Some(now)') < apply.index('crate::coop_profile::sanitize('),
-        apply.index('run_under_way || self.admitted.contains_key(&client)')
+        apply.index('last_applied = Some(admission.now)') < apply.index('crate::coop_profile::sanitize('),
+        apply.index('!self.profiles.contains_key(&client)')
+        < apply.index('hero.permits_zone(admission.zone_index, admission.heroic_rank)')
+        < apply.index('NativeHero::locked_reason(admission.zone_key, admission.heroic_rank)')
+        < apply.index('hero.guid == admission.host_guid')
+        < apply.index('run_under_way || self.admitted.contains_key(&client)')
         < apply.index('self.profiles.insert(client, hero)'),
         'now - last >= HERO_UPDATE_INTERVAL' in drain
         and drain.index('update.pending.take()') < drain.index('self.apply_hero('),
         'driver.server.run_under_way()' in host
         and 'driver.server.clients().iter().filter(|row| row.closing_since.is_none())' in host
-        and host.index('driver.next_host_event()') < host.index('state.drain_hero_update(')
-        < host.index('let selected_zone ='),
+        and host.index('let selected_zone =') < host.index('driver.next_host_event()')
+        < host.index('state.drain_hero_update(') < host.index('driver.publish_roster('),
         'state.retire_hero_profile(client)' in host and 'self.hero_updates.remove(&client)' in source,
+        'driver.reject_hero(client, reason, profile_now)' in host,
+        denial.index('self.flush(now)') < denial.index('LifecyclePacket::Denied(reason)')
+        < denial.index('self.connection.send(&denied)'),
+        reject.index('peer.send_denied(reason, now)') < reject.index('self.server.begin_closing(client, now)')
+        < reject.index('self.collect_membership()') and 'connection.close()' not in reject,
     ]
     require(all(source_checks), 'Live Hero refresh source path changed')
     print(json.dumps(dict(hero_gate_cases=cases, native_ranges=len(ranges),
