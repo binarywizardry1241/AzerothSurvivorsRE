@@ -2201,12 +2201,13 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         }
         self.healing_source(hit.spell_id)
     }
-    /// The recovered ability/weapon and companion attribution arms.
+    /// The recovered ability, weapon, companion and talent attribution arms.
     fn damage_attribution(
         &self, hit: &PendingHit, source: azeroth_survivors_re::run_effects::healing::MeterSource,
     ) -> Option<(azeroth_survivors_re::run_effects::healing::MeterSource, String)> {
         let spell = hit.spell_id;
-        let companion = self.attribution.source_kind == 2;
+        let kind = self.attribution.source_kind;
+        let companion = kind == 2;
         if companion {
             if let Some(key) = hit.context.meter_attack.or(self.generic.meter_attack)
                 .and_then(azeroth_survivors_re::run_meter::CapturedAttack::source_key)
@@ -2229,7 +2230,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             return Some(talent_attribution(talent));
         }
         // The fixed descriptors are separate from provenance-bearing talents.
-        let fixed_key = match (self.attribution.source_kind, spell, source.name) {
+        let fixed_key = match (kind, spell, source.name) {
             (3, 467, "Thorns") => Some("thorns"),
             (0 | 1 | 3, 15237, "Soulstone") => Some("soulstone"),
             (3, _, "Talents") => Some("talents"),
@@ -2239,13 +2240,13 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             return Some((source, key.to_owned()));
         }
         if spell == 0 {
-            return (companion || (self.attribution.source_kind == 0 && source.name == "Melee"))
+            return (companion || (kind == 0 && source.name == "Melee"))
                 .then(|| (source, "melee".into()));
         }
         if kind > 2 || (source.talent && talent.is_none()) {
             return None;
         }
-        let definition = azeroth_survivors_re::run_meter::source_definition(
+        let Some(definition) = azeroth_survivors_re::run_meter::source_definition(
             spell, self.meter_abilities.iter().map(|row| row.0), self.meter_racial,
         ) else {
             return talent.map(talent_attribution);
