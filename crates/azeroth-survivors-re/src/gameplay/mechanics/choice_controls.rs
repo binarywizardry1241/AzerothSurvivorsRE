@@ -138,9 +138,8 @@ impl Mechanics {
         if !self.choice_offer_active() || !self.choice_state.controls.skip_enabled {
             return false;
         }
-        let amount = ((self.cache_price() >> 2).max(10) as f32 * self.stats.gold_multiplier).round() as u32;
-        self.gold = self.gold.wrapping_add(amount);
-        self.gold_earned = self.gold_earned.wrapping_add(amount);
+        // Both native Skip inputs award gold through the shared party queue.
+        self.credit_pickup_gold((self.cache_price() >> 2).max(10));
         // Each source consumes its own counter before shared completion sweeps
         // XP, schedules the next offer or publishes the short resume aura.
         if self.cache_choices_active() {

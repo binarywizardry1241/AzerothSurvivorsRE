@@ -185,3 +185,50 @@ and consumes the authoritative guest terminal state in the
 [results overlay](../../crates/azeroth-survivors-re/src/gameplay/terminal.rs).
 Those paths require no alternate Gossip emitter for this desktop contract.
 Actual co-op delivery and rendered behavior remain unverified.
+
+## Guest Gossip option ingress
+
+The host's opcode `0x17c` selects `0x145e9ea99`. It skips the
+eight-byte GUID at `0x145e9ebea` and assembles up to four bytes into an
+unsigned option at `0x145e9fcbb`. Missing option bytes contribute zero
+and later bytes are ignored. For a remote origin, `0x145e9fcce..0x145e9fd00`
+requires host role, an in-range admitted peer, and a present Game before
+calling the per-hero adapter at `0x145e9fd26`. The adapter at
+`0x145ef3450` seats the selected hero. Its locale wrapper calls the
+option handler `0x145fbb5c0` at `0x145e6c02c`. The input route does not
+read the alternate-publisher capability.
+
+| Option | Native destination |
+| --- | --- |
+| 9 | Reroll at `0x145fc5140`, requiring phase 2 and active choice kind. A free reroll is consumed before the paid path. |
+| 10 | Skip at `0x145fbb60f`, requiring phase 2, the skip grant and active choice kind. The raw award is `max(cache_price >> 2, 10)`. |
+| 20 and 22 | Frontend Again and Menu tags 6 and 9. The remote-origin adapter at `0x14604a050` returns `0xff` and the host discards them. |
+| 21 | Frontend Endless tag 8 becomes remote Control 4. The seated control handler has no gameplay action for that subtype. |
+| Other values | The complete u32 indexes the current offer at `0x145fc1500`. Phase 2, active choice kind and an index below the row count are required. |
+
+The fourteen signed dword cells at `0x147af39bc` have SHA-256
+`40102a7d9b3a898b9ee24c55dfb65d93cf9a0a44ed608b9462e3f478c20df9bc`.
+The 876-byte adapter at file offset `0x5ef2850` has SHA-256
+`c8bcf7f0fe177e697f9b3e0d5b1608613f5c0f05cd3c6d32d0b8a408e1aa524c`.
+Its journaled Ghidra result digest is
+`e8130952f56abf27c6b4ebb5ba8d54cd8195bc34fdde3de91492ecf06a0fbdd4`.
+The remote-origin packing adapter jumps at complement site
+`0x14604a075` before the caller checks for the `0xff` result.
+
+Skip reaches gold credit at `0x145f87c00` before completing the offer.
+The synchronized guest's ordinary Control 3 reaches the same helper at
+`0x145e73fd5`, after its offer-token guard, and the local Control 3
+calls it at `0x145ef8df4`. The helper queues raw gold for the other
+party recipients when sharing is active. It credits the seated collector
+with scaled gold and publishes the player balance. The rebuilt Skip now
+uses the shared pickup credit helper before completing the same offer.
+[Choice controls](../../crates/azeroth-survivors-re/src/gameplay/mechanics/choice_controls.rs).
+
+The [host command drain](../../crates/azeroth-survivors-re/src/gameplay/coop_commands.rs)
+now passes admitted Gossip options into the existing seated choice,
+reroll and skip handlers and republishes the authoritative offer state
+when one applies. The native reader and router passed 10,240 prefix and
+840 dispatch cases in a bounded instruction replay. The probe stopped at
+the called choice/gold helpers or the returned frontend tag. The code and
+static checks leave compilation, socket delivery, gameplay and parity
+under [#63 verification](../verification-needed.md#gap-63).

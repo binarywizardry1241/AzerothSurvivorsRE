@@ -288,6 +288,24 @@ pub(super) fn drain(
                     arg: None,
                 });
             }
+            opcode::CMSG_GOSSIP_SELECT_OPTION => {
+                // The GUID is ignored. The option is an independent, zero-filled u32.
+                let option = template_entry(packet.payload.get(8..).unwrap_or_default());
+                let applied = game
+                    .with_party_hero(slot, |hero| match option {
+                        9 => hero.reroll_choices(),
+                        10 => hero.skip_choices(),
+                        // Forwarded Again/Menu are discarded; Endless is a guest no-op.
+                        20..=22 => false,
+                        index if !hero.dead && !hero.completed => hero.choose(index as usize),
+                        _ => false,
+                    })
+                    .unwrap_or(false);
+                if applied {
+                    let revision = state.choice_generations.entry(client).or_default();
+                    *revision = revision.wrapping_add(1).max(1);
+                }
+            }
             opcode::CMSG_GAMEOBJ_USE => {
                 if let Some(object) = u64_at(&packet.payload, 0) {
                     if started {
