@@ -1,4 +1,36 @@
-# Current picker footer identity
+# Picker footer identity
+
+## Target refresh and source connection
+
+The picker used the 0.100.1 identity asset independently of the RE Cargo
+package, so later package and target updates left the bottom-right label at
+`v0.100.1 (903c892d)`. The historical identity and catalog below retain
+their original provenance.
+
+For the registered 0.141.0 EXE, the native formatter at
+`0x140146ccb..0x140146d2f` supplies the nine-byte revision at
+`0x146593218`, the version slice descriptor at `0x146593228`, and the
+compact format at `0x146593238`. The version slice resolves to
+`0x146593221`. Together they specify **`v0.141.0 (98eb6fdfc)`**. The
+[source asset](../../crates/azeroth-survivors-re/assets/menu-identity/0.141.0.json)
+binds the two recovered byte ranges to the installed EXE SHA-256.
+
+The [footer](../../crates/azeroth-survivors-re/src/menu.rs) now formats Cargo's
+package version and the original revision. Cargo's version also selects the
+embedded asset, so a package bump requires the corresponding file at compile
+time. The [target refresh workflow](../../.agents/skills/execheck/SKILL.md#discover-and-register)
+generates it from the selected EXE. Coverage accounting reruns extraction
+read-only and checks the Cargo version and asset, including the EXE digest
+for same-version updates. Ahead-of-install changelog entries remain release
+notes until the target changes. Building and launching use the checked-in
+asset.
+
+The [identity regression checks](../../scripts/test-installed-identity.py)
+exercise different version and revision lengths and reject a mismatched
+revision pointer/length. [Finding #321](../verification-needed.md#gap-321)
+tracks compilation and rendered footer verification.
+
+## Historical 0.100.1 recovery
 
 Recovered2026-10-19 from the selected0.100.1 EXE, SHA-256
 `17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b`.
@@ -15,14 +47,12 @@ including the original target's build revision rather than the reconstruction's
 Git revision.
 
 The dedicated [display identity asset](../../crates/azeroth-survivors-re/assets/menu-identity-0.100.1.json)
-is applied by`MenuCatalog::embedded`. The historical`menu.json` version and
-remaining definition provenance stay intact. This closes the visible identity
-mismatch without promoting all historical menu data to current-target proof.
-Builds consume only the tracked source asset, never the original EXE.
+was applied by `MenuCatalog::embedded`. The historical `menu.json` version and
+remaining definition provenance were preserved.
 
-[Recovery script](../../scripts/recover-menu-identity.py) verifies the
-whole EXE and retained raw picker slice/formatter data, and preserves the actual
-Ghidra result. The application build passed after this change; the subsequent
+The historical recovery verified the whole EXE and retained raw picker
+slice and formatter data alongside the Ghidra result. The application build
+passed after that change. The subsequent
 menu capture and final regression status are recorded in
 [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md). No original/rebuilt interactive comparison
 is established by these string and source checks.

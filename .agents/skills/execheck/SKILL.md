@@ -251,6 +251,10 @@ previous coverage as current until the installed inputs are verified.
    An unchanged registered target needs verification, not a replacement
    identity-manifest pointer; it still receives the complete scan and
    reconciliation below.
+   Keep the RE Cargo package version aligned with the verified EXE version.
+   The automated scan runs `scripts/recover-menu-identity.py --write` to
+   generate the matching picker footer asset. Run the same command on manual
+   refreshes and resolve any changed formatter before delivering the target.
 3. Use supplied release notes when available. Use the `$changelog` intake rules
    for any newly supplied text and keep its historical JSON archive unchanged.
    Missing newer notes remain explicit; do not invent claims or read unrelated

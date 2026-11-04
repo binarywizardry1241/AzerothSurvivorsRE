@@ -13053,6 +13053,25 @@
     },
     {
       "id": "custom-app-screens-picker",
+      "gap_321_source_review_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 321,
+        "source_status": "connected",
+        "scope": "Bottom-right version and revision, including the target refresh and Cargo asset selection.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/menu.rs",
+          "crates/azeroth-survivors-re/src/catalog.rs",
+          "scripts/recover-menu-identity.py",
+          "scripts/execheck_profile.py"
+        ],
+        "evidence_refs": [
+          "docs/analysis/menu-identity-0.100.1.md",
+          "crates/azeroth-survivors-re/assets/menu-identity/0.141.0.json"
+        ],
+        "static_validation": "verified_formatter_arguments_and_version_asset_with_regression_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "gap_132_source_review_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_id": 132,
@@ -13201,7 +13220,8 @@
         293,
         294,
         295,
-        305
+        305,
+        321
       ],
       "recovery": {
         "status": "partial",

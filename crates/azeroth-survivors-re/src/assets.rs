@@ -216,7 +216,7 @@ pub fn check_data(catalog: &MenuCatalog) -> Result<(), String> {
     }
     println!(
         "Menu data OK: v{}, {} classes, {} races, {} zones; font and all menu images read from {}.",
-        catalog.version,
+        env!("CARGO_PKG_VERSION"),
         catalog.classes.len(),
         catalog.races.len(),
         catalog.zones.len(),

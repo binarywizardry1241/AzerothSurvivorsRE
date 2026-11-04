@@ -311,6 +311,12 @@ def main():
         }
         target = latest_target(verify=True)
         result["target"] = target
+        footer_check = subprocess.run(
+            ["python3", "-B", str(ROOT / "scripts/recover-menu-identity.py"), "--check"],
+            cwd=ROOT, text=True, capture_output=True,
+        )
+        findings.require(footer_check.returncode == 0, "picker_footer_identity",
+                         (footer_check.stderr or footer_check.stdout).strip())
         systems = load_json(ROOT / COVERAGE / "systems.json")
         summary = load_json(ROOT / COVERAGE / "native-summary.json")
         changelog = load_json(ROOT / COVERAGE / "changelog.json")

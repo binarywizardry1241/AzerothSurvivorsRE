@@ -11,7 +11,7 @@ use serde::Deserialize;
 
 #[derive(Resource, Clone, Debug, Deserialize)]
 pub struct MenuCatalog {
-    pub version: String,
+    #[serde(skip)]
     pub build_revision: String,
     pub title: String,
     pub labels: BTreeMap<String, String>,
@@ -23,7 +23,6 @@ pub struct MenuCatalog {
 
 #[derive(Deserialize)]
 struct MenuIdentity {
-    version: String,
     build_revision: String,
 }
 
@@ -32,11 +31,13 @@ impl MenuCatalog {
     pub fn embedded() -> Self {
         let mut catalog: Self = serde_json::from_str(include_str!("../assets/menu.json"))
             .expect("the bundled menu catalog must contain valid definitions");
-        // Current footer identity is separate from the older definition catalog.
-        let identity: MenuIdentity =
-            serde_json::from_str(include_str!("../assets/menu-identity-0.100.1.json"))
-                .expect("hash-bound current picker footer identity");
-        catalog.version = identity.version;
+        // A target bump must supply the EXE-derived revision for that release.
+        let identity: MenuIdentity = serde_json::from_str(include_str!(concat!(
+            "../assets/menu-identity/",
+            env!("CARGO_PKG_VERSION"),
+            ".json"
+        )))
+        .expect("verified picker footer identity for this package version");
         catalog.build_revision = identity.build_revision;
         catalog.labels = serde_json::from_str(include_str!("../assets/locales/en.json"))
             .expect("the SHA-bound selected-target English catalog");

@@ -652,7 +652,7 @@ fn rebuild(
             for (label, right) in [
                 ("Made by Aethus (zuzia miau miau)".to_owned(), false),
                 (
-                    format!("v{} ({})", catalog.version, catalog.build_revision),
+                    format!("v{} ({})", env!("CARGO_PKG_VERSION"), catalog.build_revision),
                     true,
                 ),
             ] {

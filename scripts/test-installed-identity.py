@@ -4,7 +4,8 @@ import re
 import struct
 import time
 import unittest
-from coverage_common import embedded_marker_versions, installed_version, platform_descriptor_versions
+from coverage_common import ROOT, embedded_marker_versions, installed_version, load_json, platform_descriptor_versions
+from script_sources import load_script
 
 class VersionMarkers(unittest.TestCase):
     def test_exact_existing_regex_semantics(self):
@@ -116,6 +117,35 @@ class VersionMarkers(unittest.TestCase):
         with self.assertRaises(ValueError):installed_version(image)
         image=self.display_image();image[0x80:0x84]=b'NOPE'
         with self.assertRaises(ValueError):installed_version(image)
+    def test_picker_revision_uses_native_pointer_and_exact_length(self):
+        recovery = load_script("menu_identity", "recover-menu-identity.py")
+        pe = load_script("inventory_pe", "inventory-executable.py").PE
+        proof = load_json(ROOT / "docs/analysis/evidence/0.100.1/menu-identity/native.json")
+        args = bytearray.fromhex(next(span["bytes_hex"] for span in proof["spans"]
+                                       if span["role"] == "footer-format-arguments"))
+        operands = recovery.FOOTER_ARGS.fullmatch(args)
+        code_at, version_at = 2048, 1024
+        for version, revision in (("0.142.0", b"1234abcd"), ("0.143.10", b"12ab34cde")):
+            with self.subTest(version=version):
+                image = self.display_image(version.encode("ascii"))
+                struct.pack_into("<I", image, 0x1ac, 0x60000020)
+                display, = platform_descriptor_versions(image, display=True, details=True)
+                descriptor_at = display["descriptor_offset"]
+                revision_at = version_at - len(revision)
+                # The preceding hex byte belongs to another packed literal.
+                image[revision_at - 1:version_at] = b"f" + revision
+                for operand, offset in (("revision", revision_at), ("version", descriptor_at),
+                                        ("format", descriptor_at + 16)):
+                    struct.pack_into("<i", args, operands.start(operand),
+                                     offset - code_at - operands.end(operand))
+                struct.pack_into("<I", args, operands.start("length"), len(revision))
+                image[code_at:code_at + len(args)] = args
+                target = {"version": version, "sha256": "fixture"}
+                self.assertEqual(recovery.recover(target, pe(image))["build_revision"],
+                                 revision.decode("ascii"))
+                image[code_at + operands.start("length")] += 1
+                with self.assertRaisesRegex(ValueError, "footer arguments"):
+                    recovery.recover(target, pe(image))
     def test_platform_identity_is_fail_closed(self):
         for image in (self.platform_image(platform_version=b'0.114.2'),
                       self.platform_image(copies=2),self.platform_image(copies=0)):

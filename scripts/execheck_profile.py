@@ -21,6 +21,9 @@ def profile():
     stage("diagnostics-check", "discover-native-ownership.py", ["--check"], needs=["diagnostics"], inputs=[coverage+"diagnostic-ownership.json", coverage+"systems.json"], cache=False)
     for entry in stages:
         entry["fresh_each_audit"] = True
+    stage("menu-identity", "recover-menu-identity.py", ["--write"], needs=["pe"],
+          inputs=[coverage+"native-summary.json", "scripts/inventory-executable.py"],
+          outputs=["crates/azeroth-survivors-re/assets/menu-identity/{version}.json"])
     stage("linear", "inventory-native-instructions.py", ["--write"], needs=["pe"], inputs=[coverage+"native-summary.json"], outputs=[coverage+"instruction-summary.json"], memory=2048)
     stage("complement", "inventory-unwind-complement.py", ["--write"], needs=["linear"], inputs=[coverage+"native-summary.json", coverage+"instruction-summary.json"], outputs=[coverage+"unwind-complement-summary.json", runtime+"unwind-complement.sqlite"], memory=2048)
     stage("mpq", "inventory-current-mpq-members.py", ["--write"], needs=["pe"], inputs=[coverage+"native-summary.json"], outputs=["docs/analysis/evidence/{version}/mpq-member-coverage.json"], memory=2048)
@@ -66,5 +69,5 @@ def profile():
     stage("connections", "audit-exe-connections.py", ["--census-summary", selected, "--write"], needs=["selection", "changelog"], inputs=[selected, coverage+"systems.json", coverage+"historical-range-revalidation.json", coverage+"changelog.json", "docs/analysis/evidence/**/*.json", "crates/**/*.rs"], outputs=[coverage+"exe-connections.json"], phase="reconcile")
     stages[-1].update(cache=False, transitive_inputs=False)
     stage("unknown", "summarize-refresh-unknowns.py", ["--census-summary", selected, "--write"], needs=["connections"], inputs=[selected, coverage+"exe-connections.json", coverage+"file-range-summary.json"], outputs=["docs/analysis/evidence/{version}/unknown-recovery.json"], phase="reconcile")
-    stage("accounting", "check-reconstruction-coverage.py", needs=["unknown", "changelog"], inputs=["docs/analysis/coverage/*.json", "docs/CURRENT-STATE.md", "docs/verification-needed.md"], phase="reconcile", cache=False)
+    stage("accounting", "check-reconstruction-coverage.py", needs=["unknown", "changelog", "menu-identity"], inputs=["docs/analysis/coverage/*.json", "docs/CURRENT-STATE.md", "docs/verification-needed.md"], phase="reconcile", cache=False)
     return {"format": "execheck-dag-v1", "stages": stages}
