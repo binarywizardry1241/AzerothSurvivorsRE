@@ -1536,9 +1536,9 @@ fn finish_client_delivery(
     logged_out: bool,
     restarting: bool,
     retiring: Option<mechanics::Retirement>,
+    guest_departure: Option<(azeroth_survivors_re::coop::session::Session, f64)>,
 ) {
     commands.queue(move |world: &mut World| {
-    guest_departure: Option<(azeroth_survivors_re::coop::session::Session, f64)>,
         use benilla_app::local_client::{
             LocalClientSession,
             events::{LocalPresentationEvents, flush_events},
@@ -1664,10 +1664,10 @@ fn native_requests(
                 }
                 active_client = false;
                 let guest = coop.as_deref().is_some_and(|runtime| runtime.is_guest());
-                let mut guest_messages = None;
-                if guest {
                 let synchronized_guest = guest
                     && replica.as_deref().is_some_and(coop::CoopGame::guest_synchronized);
+                let mut guest_messages = None;
+                if guest {
                     if let Some(replica) = replica.as_deref_mut() {
                         let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH)
                             .map_or(0, |duration| duration.as_secs());
@@ -1714,9 +1714,9 @@ fn native_requests(
                     true,
                     false,
                     None,
+                    departing_driver.map(|driver| (driver, time.elapsed_secs_f64())),
                 );
                 if request == SessionRequest::Quit {
-                    departing_driver.map(|driver| (driver, time.elapsed_secs_f64())),
                     // The client exits on logout-complete. This deferred command
                     // follows the response, LoggedOut dispatch and session logout.
                     commands.queue(|world: &mut World| {
