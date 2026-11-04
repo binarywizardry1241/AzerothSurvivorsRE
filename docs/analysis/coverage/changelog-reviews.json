@@ -34616,6 +34616,33 @@
       }
     },
     {
+      "claim_id": "changelog:0.120.2:1f20314fce60e3f6",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "The native Win32 close and pause Quit paths publish typed AppExit, and the app runner reads it. The detached co-op worker retains shared state through app return. The native path from AppExit to terminal service departure remains unresolved. The reconstructed AppExit path already runs ordered role and service cleanup.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop_directory.rs",
+        "crates/azeroth-survivors-re/src/coop/session.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/coop-desktop-exit-0.141.0.md"
+      ],
+      "systems": [
+        "custom-game-coop-relay"
+      ],
+      "gap_ids": [
+        206
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/coop_directory.rs": "3175385a76c34faf29533ff449146da35e7a0e0877f19a215713a58e858d3dc3",
+        "crates/azeroth-survivors-re/src/coop/session.rs": "7ba5b0dcc6d47438613153fc96a107745f9d2b5462b1a49c601ccd656e399763",
+        "docs/analysis/coop-desktop-exit-0.141.0.md": "3e76792146fbbc3ca9ff370ce84ca02e71cfeca71e279f9c3919d6ce8a4ecd1e"
+      }
+    },
+    {
       "claim_id": "changelog:0.141.0:6ea2cb1d0b80a4b9",
       "gap_ids": [
         319
