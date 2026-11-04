@@ -168,7 +168,7 @@ def check_manifest(target, data, pe):
 
 def block_after(source, token):
     """Select a balanced source block for narrow textual guards, not execution."""
-    start = source.index("{", source.index(token))
+    start = source.index("{", source.index(token) + len(token))
     depth = 1
     for end in range(start + 1, len(source)):
         depth += (source[end] == "{") - (source[end] == "}")
@@ -221,6 +221,29 @@ def check_source():
     assert 'thread::Builder::new().name("rogue-coop".into())' in worker
     assert worker.index("socket.poll()") < worker.index("socket.should_sleep()")
     assert "ifsleep{thread::sleep(Duration::from_millis(1));}" in worker
+    stop = "ifthread_stop.load(Ordering::Acquire)"
+    assert worker.index(stop) < worker.index("socket.poll()")
+    assert "self.stop.store(true,Ordering::SeqCst);" in block_after(worker, "fnstop(&self)")
+    assert "socket.close_with_pending(commands.try_iter());" in block_after(worker, stop)
+    closing = block_after(compact, "pubfnclose_with_pending")
+    assert "self.outgoing.drain(..).chain(pending)" in closing
+    assert "let_=self.socket.send(Message::Binary(bytes.into()));" in closing
+    assert "self.close();" in block_after(compact, "implDropforDirectorySocket")
+    close = block_after(compact, "pubfnclose(&mutself)")
+    assert close.index("self.socket.close(None)") < close.index("self.socket.flush()")
+    secondary_close = block_after(worker, "fnclose_secondary(&mutself)")
+    assert secondary_close.index("self.secondary.take()") \
+        < secondary_close.index("secondary.submit(ClientMessage::Leave)") \
+        < secondary_close.index("self.secondary_lifetime=None")
+    closed = block_after(worker, "DirectoryResponse::Text{tag:27,text}=>")
+    assert closed.index("drain_service_relay(") < closed.index("service.close_secondary()") \
+        < closed.index("service_party_ended(")
+    joined = block_after(worker, "DirectoryResponse::Text{tag:22,text}=>")
+    assert joined.index("set_connected(service.relay_connected())") \
+        < joined.index("Session::service_join_with_flags(")
+    peer_close = block_after(worker, "RelayCommand::Close{id}=>")
+    assert peer_close.index("set_connected(service.relay_connected())") \
+        < peer_close.index("protocol.close_peer(")
 
 
 def check_current_rtt(target, data, pe):
@@ -308,8 +331,7 @@ def check_current_close(target, data, pe):
     assert "relay.after(CoopSet::Flush)" in directory
     close = block_after(directory, "fn close(&mut self)")
     assert close.index("self.worker.take()") < close.index("primary.submit(ClientMessage::Leave)") \
-        < close.index("self.secondary.take()") < close.index("secondary.submit(ClientMessage::Leave)") \
-        < close.index("self.secondary_lifetime = None")
+        < close.index("self.close_secondary()")
     for departure in (
         block_after(block_after(directory, "FormRequest::Leave"), "if !end_run"),
         block_after(directory, "if exits.read().next().is_some()"),

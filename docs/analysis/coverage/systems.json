@@ -63816,6 +63816,20 @@
     },
     {
       "id": "custom-game-coop-relay",
+      "gap_63_selected_transport_lifecycle_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 63,
+        "scope": "Wire 27 submits Leave and retires the selected relay before resetting the inner map. Pending send uses the current worker selection, failure, retry and connection state.",
+        "source_status": "connected",
+        "evidence_ref": "docs/analysis/coop-relay-selection-0.141.0.md#party-closure-on-wire-27",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/coop_directory.rs",
+          "crates/azeroth-survivors-re/src/coop/websocket.rs"
+        ],
+        "native_cases": 128,
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "gap_63_secondary_heartbeat_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 63,
@@ -63848,10 +63862,11 @@
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 206,
         "report_ref": "docs/analysis/coop-desktop-exit-0.141.0.md",
-        "source_state": "synchronized_guest_departures_connected_desktop_relay_handoff_pending",
-        "scope": "WM_CLOSE and Quit reach typed AppExit and the four Last callbacks for persistence and addon teardown. The rebuilt synchronized guest Pause, terminal and engine departures share the ordered Disconnect and terminal service close. Desktop process-exit signal and remote relay classification remain unresolved.",
+        "source_state": "synchronized_guest_departures_and_worker_drain_connected_desktop_relay_handoff_pending",
+        "scope": "WM_CLOSE and Quit reach typed AppExit and the four Last callbacks for persistence and addon teardown. The rebuilt synchronized guest Pause, terminal and engine departures share the ordered Disconnect and terminal service close. The worker drains pending binary output before WebSocket Close and flush. Desktop process-exit signal and remote relay classification remain unresolved.",
         "source_refs": [
           "crates/azeroth-survivors-re/src/coop_directory.rs",
+          "crates/azeroth-survivors-re/src/coop/websocket.rs",
           "crates/azeroth-survivors-re/src/gameplay/coop.rs",
           "crates/azeroth-survivors-re/src/gameplay/mod.rs",
           "crates/azeroth-survivors-re/src/gameplay/run_hud/pause.rs",

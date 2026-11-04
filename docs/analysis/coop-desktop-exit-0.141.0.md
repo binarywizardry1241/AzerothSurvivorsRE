@@ -168,3 +168,35 @@ execution and live service delivery remain unverified.
 | `0x141287200` | `8a4af7160237f0ba9b0748c777a51547e66b0c3938db1c644bea565b5b06ca37` | `1708e4cd2792d41c8ab9a271723ee191f372a2ccf8e46053cd3a8c987fa0f2f8` |
 | `0x1407c3bf0` | `33206031aa2cacf931a459fd090c132109fbd957b29af68606d3298242504bb0` | `412e99c94999d5665d821fa8f5fc229172397f01387d3f4b6594ebeddec2487d` |
 | `0x1402eace0` | `8647fe075ef8d7a534eda31cad2377b108eb58336ccf40c67d6d8475ebbc9a19` | `846fd6a5e0509ea72281eb444719e77e4f878ea6b33036e545fd7d68803b64b7` |
+
+## Terminal WebSocket queue drain
+
+The transport vtable at `0x147722838` binds close slot +0x30 to
+`0x145dfb590`, which exchanges the shared stop byte. Worker
+`0x145df8ab0` tests that byte before the ordinary outbound loop. Its stop
+branch at `0x145df9f2b` drains queued binaries and calls the socket writer
+at `0x145df9fde`. It discards individual send errors, then calls the
+WebSocket Close and flush helpers. The ordinary send path owns transport
+probe stamping separately.
+
+The rebuilt worker sets a separate stop flag and submits both its buffered
+frames and remaining channel frames in order before WebSocket Close and
+flush. The previous queued Stop could reach the socket while the outbound
+frames were still in its adapter queue. The [wire-27 close
+path](coop-relay-selection-0.141.0.md#party-closure-on-wire-27) uses this drain
+for the selected secondary's Leave.
+
+Twenty-four instruction anchors and the transport vtable were checked against
+the installed PE and retained Ghidra instruction census. The existing
+directory transport source check and pinned Rust syntax parse passed. The
+queue-order regression remains uncompiled and unrun. This establishes the
+explicit stop path. The relay's observed desktop process-exit signal and
+deployed service classification still require their own evidence.
+
+| Selected PE range | File offset | SHA-256 |
+| --- | --- | --- |
+| Close guard `0x145df9650..0x145df96cd` | `0x5df8a50` | `8cbc9375b7ba4ec497587059c435e2366e6a5964c6dd1ba6854530f00bed477f` |
+| Outbound drain `0x145df9f2b..0x145dfa0b1` | `0x5df932b` | `638d6e713e0acd25dfdf875cd42ba01e758ec3bde9b7dbeba53a8ea4f279fe3e` |
+| Transport vtable install `0x145e3c830..0x145e3c8a8` | `0x5e3bc30` | `2b487ef472c1ce986de8f19d87a58249a70caf68201a413337efac449e7950c5` |
+| Atomic stop `0x145dfb590..0x145dfb59a` | `0x5dfa990` | `fb111ed08156c4ee0e94f82f3fe5e3d2cdb2f600019948c54a729f2eca43a181` |
+| Transport vtable `0x147722838..0x147722878` | `0x7720e38` | `b13c5340df8992e236dd101d364ec8a0dee537db22d06f5851274cb12adf5298` |

@@ -171,6 +171,14 @@ impl DirectorySocket {
         let _ = self.socket.close(None);
         let _ = self.socket.flush();
     }
+
+    /// The native stop branch drains raw binary frames before the close handshake.
+    pub fn close_with_pending(mut self, pending: impl Iterator<Item = Vec<u8>>) {
+        for bytes in self.outgoing.drain(..).chain(pending) {
+            let _ = self.socket.send(Message::Binary(bytes.into()));
+        }
+        // Drop sends the Close frame and flushes once the queue is empty.
+    }
 }
 impl Drop for DirectorySocket {
     fn drop(&mut self) {

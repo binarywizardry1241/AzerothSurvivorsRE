@@ -9,7 +9,7 @@ use bevy::prelude::*;
 use std::{
     sync::{
         Arc, Mutex,
-        atomic::{AtomicU8, Ordering},
+        atomic::{AtomicBool, AtomicU8, Ordering},
         mpsc,
     },
     thread,
@@ -23,19 +23,16 @@ use crate::{
 
 // The native rogue-coop worker owns blocking connection establishment. ECS
 // submits bytes through its queue and consumes only received binary messages.
-enum WorkerCommand {
-    Send(Vec<u8>),
-    Stop,
-}
 enum WorkerEvent {
     Connected,
     Binary(Vec<u8>),
     Closed,
 }
 struct Worker {
-    send: mpsc::Sender<WorkerCommand>,
+    send: mpsc::Sender<Vec<u8>>,
     receive: Mutex<mpsc::Receiver<WorkerEvent>>,
     state: Arc<AtomicU8>,
+    stop: Arc<AtomicBool>,
     rtt: RttSamples,
 }
 impl Worker {
@@ -44,6 +41,8 @@ impl Worker {
         let (events, receive) = mpsc::channel();
         let state = Arc::new(AtomicU8::new(0));
         let thread_state = state.clone();
+        let stop = Arc::new(AtomicBool::new(false));
+        let thread_stop = stop.clone();
         let rtt = RttSamples::default();
         let thread_rtt = rtt.clone();
         thread::Builder::new()
@@ -57,28 +56,22 @@ impl Worker {
                 thread_state.store(1, Ordering::Release);
                 let _ = events.send(WorkerEvent::Connected);
                 loop {
-                    loop {
-                        match commands.try_recv() {
-                            Ok(WorkerCommand::Send(bytes)) => socket.send_binary(bytes),
-                            Ok(WorkerCommand::Stop) | Err(mpsc::TryRecvError::Disconnected) => {
-                                // Native close flag precedes outbound drain.
-                                // A queued Leave is not guaranteed to reach the socket.
-                                socket.close();
-                                thread_state.store(2, Ordering::Release);
-                                return;
-                            }
-                            Err(mpsc::TryRecvError::Empty) => break,
-                        }
+                    if thread_stop.load(Ordering::Acquire) {
+                        socket.close_with_pending(commands.try_iter());
+                        thread_state.store(2, Ordering::Release);
+                        return;
+                    }
+                    for bytes in commands.try_iter() {
+                        socket.send_binary(bytes);
                     }
                     let Ok(incoming) = socket.poll() else { break };
                     let sleep = socket.should_sleep();
                     for event in incoming {
                         match event {
                             SocketEvent::Binary(bytes) => {
-                                if events.send(WorkerEvent::Binary(bytes)).is_err() {
-                                    thread_state.store(2, Ordering::Release);
-                                    return;
-                                }
+                                // The owner can retire its receiver while a read is in flight.
+                                // The stop branch still owns the final outbound drain.
+                                let _ = events.send(WorkerEvent::Binary(bytes));
                             }
                             SocketEvent::Closed => {
                                 thread_state.store(2, Ordering::Release);
@@ -100,6 +93,7 @@ impl Worker {
             send,
             receive: Mutex::new(receive),
             state,
+            stop,
             rtt,
         })
     }
@@ -110,11 +104,11 @@ impl Worker {
         self.state.load(Ordering::Acquire) == 2
     }
     fn stop(&self) {
-        let _ = self.send.send(WorkerCommand::Stop);
+        self.stop.store(true, Ordering::SeqCst);
     }
     fn submit(&self, message: ClientMessage) {
         if let Ok(bytes) = message.encode() {
-            let _ = self.send.send(WorkerCommand::Send(bytes));
+            let _ = self.send.send(bytes);
         }
     }
     fn start_ping(&self, peer: u32) {
@@ -258,6 +252,10 @@ impl Service {
         if let Some(primary) = self.worker.take() {
             primary.submit(ClientMessage::Leave);
         }
+        self.close_secondary();
+    }
+
+    fn close_secondary(&mut self) {
         if let Some(secondary) = self.secondary.take() {
             secondary.submit(ClientMessage::Leave);
         }
@@ -353,12 +351,6 @@ fn poll(
         // Native idle teardown publishes no phase/reason change and retains
         // the last directory/filter presentation snapshot.
     }
-    let selected_connected = service.relay_connected();
-    service
-        .relay_protocol
-        .lock()
-        .unwrap()
-        .set_connected(selected_connected);
     let mut received = service
         .worker
         .as_ref()
@@ -483,13 +475,20 @@ fn poll(
                         if !initialize_identity(&mut runtime) {
                             continue;
                         }
+                        // The Join constructor queues its first frame immediately.
+                        // An earlier event in this batch can change the selected worker.
+                        service
+                            .relay_protocol
+                            .lock()
+                            .unwrap()
+                            .set_connected(service.relay_connected());
                         let mut driver = Session::service_join_with_flags(
                             service.pending_password.as_bytes().to_vec(),
                             service.relay_protocol.clone(),
                             service.guest_flags.clone(),
                         );
-                        // Native guest construction submits the protocol4
-                        // handshake before the subsequent wire10 profile request.
+                        // Submit the admitted Join before the subsequent wire-10
+                        // profile request.
                         for command in driver.take_service_commands() {
                             send_relay(&mut service, command);
                         }
@@ -505,16 +504,14 @@ fn poll(
                     DirectoryResponse::Text { tag: 27, text } => {
                         drain_service_relay(&mut service);
                         service.guest_flags.lock().unwrap().active = false;
+                        service.close_secondary();
+                        azeroth_survivors_re::coop::session::service_party_ended(
+                            &service.relay_protocol,
+                        );
                         view.code = None;
                         view.receive_failure(&mut menu, "closed", text);
                         runtime.roster_profile = None;
                         service.profile_identity = None;
-                        service.secondary = None;
-                        service.secondary_lifetime = None;
-                        service.secondary_config = None;
-                        azeroth_survivors_re::coop::session::service_party_ended(
-                            &service.relay_protocol,
-                        );
                         if let Some(driver) = &mut runtime.driver {
                             driver.service_party_closed();
                         }
@@ -593,17 +590,12 @@ fn poll(
                         bytes,
                     } => {
                         let [url, first, second] = strings;
-                        if let Some(old) = service.secondary.take() {
-                            old.submit(ClientMessage::Leave);
-                            drop(old);
-                        }
+                        service.close_secondary();
                         azeroth_survivors_re::coop::session::service_party_reset(
                             &service.relay_protocol,
                             &service.guest_flags,
                             false,
                         );
-                        service.secondary_lifetime = None;
-                        service.secondary_config = None;
                         if let Ok(worker) = Worker::open(url.clone()) {
                             let auth = azeroth_survivors_re::coop::service::SecondaryAuth {
                                 text_1: first,
@@ -1007,12 +999,11 @@ fn send_relay(service: &mut Service, command: azeroth_survivors_re::coop::sessio
         RelayCommand::Close { id } => {
             service.send(ClientMessage::Kick(id));
             let secondary = service.secondary.is_some();
-            let outgoing =
-                service
-                    .relay_protocol
-                    .lock()
-                    .unwrap()
-                    .close_peer(id, secondary, Instant::now());
+            let outgoing = {
+                let mut protocol = service.relay_protocol.lock().unwrap();
+                protocol.set_connected(service.relay_connected());
+                protocol.close_peer(id, secondary, Instant::now())
+            };
             for (peer, payload) in outgoing {
                 send_relay(service, RelayCommand::Send { id: peer, payload });
             }
@@ -1207,7 +1198,7 @@ mod tests {
     use azeroth_survivors_re::coop::server_party::HostConfig;
 
     // Queue-only workers: these regressions never establish a socket/thread.
-    fn worker(state: u8) -> (Worker, mpsc::Receiver<WorkerCommand>) {
+    fn worker(state: u8) -> (Worker, mpsc::Receiver<Vec<u8>>) {
         let (send, commands) = mpsc::channel();
         let (_, receive) = mpsc::channel();
         (
@@ -1215,6 +1206,7 @@ mod tests {
                 send,
                 receive: Mutex::new(receive),
                 state: Arc::new(AtomicU8::new(state)),
+                stop: Arc::new(AtomicBool::new(false)),
                 rtt: RttSamples::default(),
             },
             commands,
@@ -1225,6 +1217,10 @@ mod tests {
     fn terminal_service_close_submits_leave_before_retiring_each_transport() {
         let (primary, primary_commands) = worker(1);
         let (secondary, secondary_commands) = worker(1);
+        let primary_stop = primary.stop.clone();
+        let secondary_stop = secondary.stop.clone();
+        primary.submit(ClientMessage::Heartbeat);
+        secondary.submit(ClientMessage::Heartbeat);
         let mut service = Service {
             worker: Some(primary),
             secondary: Some(secondary),
@@ -1232,13 +1228,15 @@ mod tests {
         };
         service.close();
         service.close();
-        for commands in [primary_commands, secondary_commands] {
-            let WorkerCommand::Send(bytes) = commands.try_recv().unwrap() else {
-                panic!("Leave must precede Stop");
-            };
-            assert_eq!(bytes, [8]);
-            assert!(matches!(commands.try_recv(), Ok(WorkerCommand::Stop)));
-            assert!(commands.try_recv().is_err());
+        for (commands, stop) in [
+            (primary_commands, primary_stop),
+            (secondary_commands, secondary_stop),
+        ] {
+            assert!(stop.load(Ordering::Acquire));
+            assert_eq!(
+                commands.try_iter().collect::<Vec<_>>(),
+                [ClientMessage::Heartbeat.encode().unwrap(), vec![8]],
+            );
         }
     }
 
@@ -1246,7 +1244,7 @@ mod tests {
     fn worker_transport_ping_bypasses_reliable_sequence_envelopes() {
         let (worker, commands) = worker(1);
         worker.start_ping(u32::MAX);
-        let WorkerCommand::Send(bytes) = commands.try_recv().unwrap() else { panic!("ping"); };
+        let bytes = commands.try_recv().unwrap();
         let mut expected = vec![6];
         expected.extend_from_slice(&u32::MAX.to_le_bytes());
         expected.extend_from_slice(&9_u32.to_le_bytes());
@@ -1358,9 +1356,7 @@ mod tests {
         }
         .encode()
         .unwrap();
-        let WorkerCommand::Send(actual) = secondary_commands.try_recv().unwrap() else {
-            panic!()
-        };
+        let actual = secondary_commands.try_recv().unwrap();
         assert_eq!(actual, expected);
         assert!(secondary_commands.try_recv().is_err());
         assert!(primary_commands.try_recv().is_err());
@@ -1385,9 +1381,7 @@ mod tests {
             &control,
         );
         drain_service_relay(&mut service);
-        let WorkerCommand::Send(bytes) = commands.try_recv().unwrap() else {
-            panic!()
-        };
+        let bytes = commands.try_recv().unwrap();
         assert_eq!(bytes[0], 6);
         assert_eq!(&bytes[1..5], &[0; 4]);
         assert_eq!(&bytes[5..9], &10u32.to_le_bytes());
@@ -1399,12 +1393,8 @@ mod tests {
             &mut service,
             azeroth_survivors_re::coop::session::RelayCommand::GuestLeave,
         );
-        let WorkerCommand::Send(primary) = commands.try_recv().unwrap() else {
-            panic!()
-        };
-        let WorkerCommand::Send(secondary) = secondary_commands.try_recv().unwrap() else {
-            panic!()
-        };
+        let primary = commands.try_recv().unwrap();
+        let secondary = secondary_commands.try_recv().unwrap();
         assert_eq!(primary, vec![8]);
         assert_eq!(secondary, vec![8]);
     }
@@ -1414,6 +1404,7 @@ mod tests {
         for tag in [21, 22, 27] {
             let (primary, primary_commands) = worker(1);
             let (secondary, secondary_commands) = worker(1);
+            let secondary_stop = secondary.stop.clone();
             let mut service = Service::default();
             service.worker = Some(primary);
             service.secondary = Some(secondary);
@@ -1430,18 +1421,19 @@ mod tests {
             drain_service_relay(&mut service);
             if tag == 27 {
                 service.guest_flags.lock().unwrap().active = false;
-                service.secondary = None;
+                service.close_secondary();
                 azeroth_survivors_re::coop::session::service_party_ended(&service.relay_protocol);
             } else {
                 azeroth_survivors_re::coop::session::service_party_reset(
                     &service.relay_protocol, &service.guest_flags, tag == 22,
                 );
             }
-            let WorkerCommand::Send(bytes) = secondary_commands.try_recv().unwrap() else { panic!() };
+            let bytes = secondary_commands.try_recv().unwrap();
             assert_eq!(&bytes[..9], &[6, 0, 0, 0, 0, 10, 0, 0, 0]);
             assert_eq!(&bytes[9..], &[2, 1, 0, 0, 0, 0, 0, 0, 0, 1]);
+            assert_eq!(secondary_stop.load(Ordering::Acquire), tag == 27);
             if tag == 27 {
-                assert!(matches!(secondary_commands.try_recv(), Ok(WorkerCommand::Stop)));
+                assert_eq!(secondary_commands.try_recv().unwrap(), [8]);
             }
             assert!(secondary_commands.try_recv().is_err());
             assert!(primary_commands.try_recv().is_err());
@@ -1520,10 +1512,7 @@ mod tests {
                     for command in driver.take_service_commands() {
                         send_relay(&mut service, command);
                     }
-                    assert!(matches!(
-                        secondary_commands.try_recv(),
-                        Ok(WorkerCommand::Send(_))
-                    ));
+                    assert!(secondary_commands.try_recv().is_ok());
                 }
             }
         }

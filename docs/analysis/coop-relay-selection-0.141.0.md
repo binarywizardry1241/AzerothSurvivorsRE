@@ -110,3 +110,49 @@ heartbeat serialization. The Rust regression remains uncompiled and unrun.
 | Secondary health dispatch `0x145e85e17..0x145e85edd` | `0x5e85217` | 198 | `c8e4911eed5558767ac5636db0ccdb3542f1a4b1fd61d93968e653e72b864c26` |
 | Secondary silence gate `0x145e86082..0x145e86131` | `0x5e85482` | 175 | `2f6ebb2276311c41ce4842675149c963ba6b752a8350c6cd7ea41b40aa3f0171` |
 | Secondary heartbeat gate and send `0x145e86290..0x145e86324` | `0x5e85690` | 148 | `0b29893dafbbf9e7c44bbda36d344838c25060c2d4f574cee04aca6b0e332b8b` |
+
+## Party closure on wire 27
+
+The wire-27 decoder arm `0x1462051a9` emits typed variant 7. That branch
+at `0x145e84481` clears active guest admission, takes the optional
+secondary and writes the same Leave record at `0x147ae2998` used by
+wire 30. The writer at slot +0x18 runs before the close at slot +0x30.
+The branch then clears the inner peer map. The primary and unread guest
+payloads retain their separate lifetimes.
+
+The rebuilt Closed handler submits Leave on the selected worker before
+dropping it and clearing relay sequencing. The [terminal worker
+drain](coop-desktop-exit-0.141.0.md#terminal-websocket-queue-drain) carries the
+queued Leave through the socket's close path.
+
+| Selected PE range | File offset | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| Wire-27 decoder `0x1462051a9..0x1462051d8` | `0x62045a9` | 47 | `69d19ee6f8d7837cbc06b790f7abbdd42ca7c3e25d9b83779300af9a740b14ac` |
+| Variant 7 closure `0x145e84481..0x145e84548` | `0x5e83881` | 199 | `ca5d478870896c69227af0192b21b98aa7ec0cb8381506286e1db86747b9eca9` |
+| Leave discriminant `0x147ae2998..0x147ae29a0` | `0x7ae0f98` | 8 | `cd1fe2a7b9cf8a4a0c6b7e34617cf4adc39d279dc230af36f4ee8e6d3cedffba` |
+
+## Send admission after transport replacement
+
+The native pending sender at `0x145e8ada0` chooses the secondary by presence.
+It exits when the secondary is failed or retrying. Otherwise it samples the
+selected worker and requires state 1 before advancing the send cursor. It uses
+the primary only when no secondary exists. Queue submission calls this gate at
+`0x145e8b696`. Host peer close also calls it at `0x145e920d8`, between the
+primary Kick and selected-secondary Kick.
+
+The rebuilt directory takes that readiness sample before the Join constructor
+queues its first frame and before draining a closing peer. In particular, a
+wire-30 replacement earlier in the collected event batch cannot leave the
+Join on a readiness snapshot taken from the retired worker. The retained
+pending queue and ordinary relay poll release the frame once the selected
+transport is ready.
+
+The original-instruction gate passed 128 combinations of selected worker,
+failure, retry and transport state. The replay substitutes the transport's
+state method and stops at sender admission.
+
+| Selected PE range | File offset | SHA-256 |
+| --- | --- | --- |
+| Pending sender gate `0x145e8ada0..0x145e8ae1b` | `0x5e8a1a0` | `290d1a29c80b919f32e351c44d80de3acf954ab5b97c7742fd7a33579ce00896` |
+| Queue submit call `0x145e8b68f..0x145e8b6a1` | `0x5e8aa8f` | `697afeaffe1d9a755417a3c8ef4359287ff3361649cd57195b918c2a36d7dcd7` |
+| Host peer close drain `0x145e920cd..0x145e92117` | `0x5e914cd` | `ae80ba1454a9ca339ed452a2fc8b0c2d57ccbccaeb81bdc9ee50f1b7ef874c94` |
