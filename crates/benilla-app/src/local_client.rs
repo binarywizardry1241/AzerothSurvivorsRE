@@ -584,8 +584,8 @@ fn unit_events(
 }
 
 fn feed_ui(
-    mut session: ResMut<LocalClientSession>,
     mut vm: crate::script_calls::VmWith<(
+        ResMut<'static, LocalClientSession>,
         Option<ResMut<'static, LocalClientExtension>>,
         Option<ResMut<'static, crate::cvars::Cvars>>,
     )>,
@@ -596,7 +596,7 @@ fn feed_ui(
 ) {
     let names = names.get();
     use benilla_ui::script::origin::{within, Origin};
-    within(Origin::Allowed("local_client::feed_ui"), || vm.turn(|script, (extension, cvars)| {
+    within(Origin::Allowed("local_client::feed_ui"), || vm.turn(|script, (mut session, extension, cvars)| {
         let Some(script) = script else { return };
         if let Some(mut extension) = extension {
             if let Some(mut cvars) = cvars {
@@ -751,11 +751,10 @@ fn capture_input(
     pointer: Res<crate::ui_script::PointerOverUi>,
     keyboard: Res<crate::ui_script::UiKeyboardCapture>,
     clock: Res<crate::ui_script::UiClock>,
-    mut vm: crate::script_calls::HostedVm,
+    mut vm: crate::script_calls::VmWith<Option<Res<'static, crate::cvars::Cvars>>>,
     mut input: ResMut<LocalClientInput>,
     mut reload: ResMut<crate::ui_script::ReloadUiPending>,
     extension: Res<LocalClientExtension>,
-    cvars: Option<Res<crate::cvars::Cvars>>,
     loading: Option<Res<crate::loading_screen::LoadingScreen>>,
     mut talent_counter: Local<TalentToggleCounter>,
     calls: Option<Res<LocalUiCalls>>,
@@ -782,6 +781,7 @@ fn capture_input(
     input.script_session = None;
     input.option_globals.clear();
     input.bindings = None;
+    let cvars = vm.own();
     input.cvars = cvars.as_deref().map_or_else(Vec::new, |cvars| {
         extension
             .cvar_defaults
