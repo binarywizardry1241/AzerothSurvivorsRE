@@ -136,7 +136,7 @@ pub(super) fn drain(
         .filter(|_| world.ready);
     while let Some((_, queued)) = state.commands.front() {
         let reply_without_world = matches!(queued, Input::Engine(packet)
-            if matches!(packet.opcode, opcode::CMSG_NAME_QUERY | opcode::CMSG_PING));
+            if matches!(packet.opcode, opcode::CMSG_NAME_QUERY | opcode::CMSG_PING | opcode::CMSG_LOGOUT_REQUEST));
         let teleport_ack = matches!(queued, Input::Engine(packet)
             if packet.opcode == opcode::MSG_MOVE_TELEPORT_ACK);
         let chat = matches!(queued, Input::Engine(packet) if packet.opcode == opcode::CMSG_MESSAGECHAT);
@@ -153,6 +153,10 @@ pub(super) fn drain(
                     opcode: opcode::SMSG_PONG,
                     payload: template_entry(&packet.payload).to_le_bytes().to_vec(),
                 }),
+                opcode::CMSG_LOGOUT_REQUEST => {
+                    let response = SessionEvent::LogoutResponse { reason: 0, instant: true };
+                    engine_packets::encode(&response, None).ok().flatten()
+                }
                 opcode::CMSG_NAME_QUERY => {
                     let requested = name_query_guid(&packet.payload);
                     let hero = run.mechanics.as_ref()

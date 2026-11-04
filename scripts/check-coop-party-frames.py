@@ -737,6 +737,49 @@ def host_ping():
     print(f'PASS: {requests} Ping requests and {len(encodes)} Pong queues over {replay.instructions:,} original steps')
 
 
+def host_logout():
+    replay = host_action_replay()
+    cpu, reg = replay.machine, replay.registers
+    core, output = replay.app, replay.app + 0x3000
+    send, stop, local_end = 0x145eca7e0, 0x145ea10bf, 0x145ebb4d0
+    spans = [(0x145e9e763, 0x145e9e7f3), (0x145e9ebc7, 0x145e9ebdd)]
+    calls = []
+
+    def shim(address):
+        if address == 0x1400021c0:
+            assert cpu.reg_read(reg.UC_X86_REG_RCX) == 32
+            assert cpu.reg_read(reg.UC_X86_REG_RDX) == 1
+            cpu.reg_write(reg.UC_X86_REG_RAX, output)
+        elif address == send:
+            assert replay.get(cpu.reg_read(reg.UC_X86_REG_R9), '<QQQH') == (32, output, 5, 0x4c)
+            assert replay.get(output, '<IB') == (0, 1)
+            calls.append((cpu.reg_read(reg.UC_X86_REG_RDX), cpu.reg_read(reg.UC_X86_REG_R8)))
+        elif address != 0x140002200:
+            return False
+        replay.return_seam()
+        return True
+
+    replay.seam = shim
+    for origin, index, length in itertools.product((0, 1), (0, 4), (0, 1, 32, 0xffffffff)):
+        replay.reset('host Engine7 LogoutRequest', spans, [stop, local_end])
+        replay.put(core + 0x1100, '<I', 3)
+        for register, value in ((reg.UC_X86_REG_RSI, core), (reg.UC_X86_REG_RBX, origin),
+                                (reg.UC_X86_REG_R12, index), (reg.UC_X86_REG_R13, length)):
+            cpu.reg_write(register, value)
+        assert replay.run(spans[0][0]) == (stop if origin else local_end)
+        assert calls[-1] == (origin, index)
+
+    _, drain = ordered_source()
+    assert 'opcode::CMSG_LOGOUT_REQUEST' in drain.split('state.commands.pop_front()', 1)[0]
+    reply = drain.split('opcode::CMSG_LOGOUT_REQUEST =>', 1)[1].split('opcode::CMSG_NAME_QUERY =>', 1)[0]
+    assert 'SessionEvent::LogoutResponse { reason: 0, instant: true }' in reply
+    assert 'engine_packets::encode(&response, None)' in reply
+    assert 'runtime.send(Some(client), reply.into_message())' in drain
+    guest_gate = (ROOT / 'crates/azeroth-survivors-re/src/coop/server_party.rs').read_text()
+    assert '0x4c' not in guest_gate.split('const GUEST_ENGINE_OPCODES:', 1)[1].split('];', 1)[0]
+    print(f'PASS: {len(calls)} LogoutRequest recipient and departure cases over {replay.instructions} original steps')
+
+
 def host_chat(local=False):
     replay = host_action_replay()
     cpu, reg = replay.machine, replay.registers
@@ -870,6 +913,7 @@ def main():
     parser.add_argument("--host-name-query", action="store_true")
     parser.add_argument("--host-controls", action="store_true")
     parser.add_argument("--host-ping", action="store_true")
+    parser.add_argument("--host-logout", action="store_true")
     parser.add_argument("--host-chat", action="store_true")
     parser.add_argument("--local-chat", action="store_true")
     args = parser.parse_args()
@@ -879,6 +923,8 @@ def main():
         return host_controls()
     if args.host_ping:
         return host_ping()
+    if args.host_logout:
+        return host_logout()
     if args.host_chat:
         return host_chat()
     if args.local_chat:

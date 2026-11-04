@@ -450,3 +450,32 @@ The checker passed 720 local cases and 231,969 original instructions over
 present and absent Games, both cooperative mode states, text and type
 variants, and three unchanged peer histories. The four touched Rust files
 syntax-parsed. Live chat and parity remain open.
+
+## Engine7 LogoutRequest response
+
+The low table sends `0x4b` to `0x145e9e763`. The original reply writes a
+zero u32 reason and byte one for instant logout, then submits opcode `0x4c`
+through the indexed sender `0x145eca7e0`. In host mode, the origin bit at
+`0x145e9ebc7` skips the local world-end call for a remote request. The
+existing local [guest departure route](coop-desktop-exit-0.141.0.md#synchronized-guest-departures)
+owns its separate Disconnect and Leave sequence.
+
+The rebuilt host replies to the raw synchronized Engine7 request at the
+front of the same receive queue. It reuses the instant LogoutResponse
+encoder. The native guest Engine7 allowlist excludes `0x4c`, and the
+ordinary local guest Logout response continues to use its local port.
+
+| Selected PE range | File offset | SHA-256 |
+| --- | ---: | --- |
+| Reply `0x145e9e763..0x145e9e7f3` | `0x5e9db63` | `82778be668275fedab6e24731920e17febbe35cb3581c6fc1178137f8d3db6db` |
+| Origin gate `0x145e9ebc7..0x145e9ebdd` | `0x5e9dfc7` | `d4ad901041bea551d54e48e29e82cf18284c8b7153520e13c663dfc3d59cddcb` |
+
+```sh
+PYTHONPATH=runtime/armory-recovery/python-libs \
+  python3 -B scripts/check-coop-party-frames.py --host-logout
+```
+
+Sixteen local and remote origin cases passed over 416 original instructions.
+The check substitutes allocation and the previously traced indexed sender.
+The changed Rust source syntax-parsed. Compilation and live delivery remain
+unverified.

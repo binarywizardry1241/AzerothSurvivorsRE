@@ -61393,7 +61393,7 @@
       "gap_63_host_ingress_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 63,
-        "scope": "NameQuery zero-filled prefix, actor and host fallback, requester-only replies, and seated Control8 abandonment and storage phase gates in receive order. Direct Engine Ping echoes the bounded sequence to the indexed peer.",
+        "scope": "NameQuery zero-filled prefix, actor and host fallback, requester-only replies, and seated Control8 abandonment and storage phase gates in receive order. Direct Engine Ping and LogoutRequest reply to the indexed peer. The remote LogoutRequest preserves the local run.",
         "source_status": "connected",
         "evidence_ref": "docs/analysis/coop-command-ingress-0.141.0.md",
         "source_refs": [
@@ -61401,7 +61401,7 @@
           "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
           "scripts/check-coop-party-frames.py"
         ],
-        "native_cases": 600,
+        "native_cases": 616,
         "runtime_validation": "not_run",
         "parity": "unverified"
       },
