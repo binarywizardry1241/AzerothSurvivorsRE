@@ -7,15 +7,14 @@
 use bevy::prelude::*;
 use bevy::window::{CursorGrabMode, CursorOptions, PrimaryWindow};
 
-use benilla_assets::coords::{bevy_to_wow, wow_to_bevy};
-use benilla_protocol::{messages::ObjectType, EntityKind, MoveSpeeds, ObjectFields};
+use benilla_assets::coords::bevy_to_wow;
+use benilla_protocol::{messages::ObjectType, EntityKind, MoveSpeeds, ObjectFields, SessionEvent};
 use benilla_world::schedule::WorldStage;
 use benilla_world::view::WorldCamera;
-use benilla_world::vis_chain::VisChainOnly;
 use benilla_world::world_map::CurrentMap;
 
-use crate::local_client::{LocalClientSession, LocalPlayerUi};
-use crate::net::{FieldChanged, Guid, GuidIndex, NetEntity, ObjectStore, SelfGuid, UnitSpeeds};
+use crate::local_client::{events::complete_object_packets, LocalClientSession, LocalPlayerUi};
+use crate::net::{FieldChanged, GuidIndex, MoverClaim, NetEntity, ObjectStore, SelfGuid};
 
 pub use super::state::MovementReport as LocalMovementReport;
 use super::{CameraControl, FlyCam, Player, PlayerControlSet};
@@ -164,7 +163,12 @@ impl Plugin for LocalPlayerPlugin {
             .init_resource::<LocalPlayerEquipment>()
             .init_resource::<LocalPlayerEquipmentMetadata>()
             .init_resource::<LocalBody>()
-            .configure_sets(Update, LocalPlayerSet::Prepare.before(WorldStage::Net))
+            .configure_sets(
+                Update,
+                LocalPlayerSet::Prepare
+                    .after(crate::ui_script::UiInput)
+                    .before(WorldStage::Net),
+            )
             .configure_sets(
                 Update,
                 LocalPlayerSet::Hold
@@ -253,6 +257,7 @@ fn sync_body(
     mut rig: ResMut<CameraControl>,
     mut self_guid: ResMut<SelfGuid>,
     mut index: ResMut<GuidIndex>,
+    mut mover: ResMut<MoverClaim>,
     mut current_map: ResMut<CurrentMap>,
     mut names: ResMut<crate::names::NameCache>,
     mut bodies: Query<(
@@ -269,7 +274,7 @@ fn sync_body(
         .zip(spawn.request);
     let Some((character, request)) = wanted else {
         if local.identity.is_some() {
-            remove_body(&mut commands, &mut local, &mut index, &mut self_guid);
+            remove_body(&mut commands, &mut local, &mut index, &mut self_guid, &mut mover);
             *player = Player::default();
         }
         return;
@@ -284,7 +289,7 @@ fn sync_body(
         // resetting its rig; the host must never leave the OS cursor captured by a dead body.
         local.cursor_return = rig.cursor_stash;
         local.release_cursor = true;
-        remove_body(&mut commands, &mut local, &mut index, &mut self_guid);
+        remove_body(&mut commands, &mut local, &mut index, &mut self_guid, &mut mover);
         *player = Player::default();
         player.login_pitch = request.camera_pitch;
         player.report_capture = Some(Vec::new());
@@ -296,37 +301,43 @@ fn sync_body(
         rig.self_fade_alpha = 1.0;
         *current_map = CurrentMap(request.map_id);
         self_guid.0 = Some(character.guid);
-        // Do not add SelfPlayer/Embodied here: the existing tag/create/embodiment chain owns
-        // those markers and its world-enter cascade, just as for a streamed player create.
-        let entity = commands
-            .spawn((
-                Guid(character.guid),
-                NetEntity {
-                    kind: EntityKind::Player,
-                    display_id: Some(character.display_id),
-                    scale: character.scale,
-                },
-                Transform::from_translation(wow_to_bevy(request.position_wow))
-                    .with_rotation(Quat::from_rotation_y(request.facing)),
-                Visibility::default(),
-                ObjectStore(player_fields(character).into_created(ObjectType::Player)),
-                UnitSpeeds(local_speeds(request.run_speed)),
-                LocalEquipmentVisuals {
-                    rows: equipment.rows.clone(),
-                    metadata: equipment_metadata.rows.clone(),
-                },
-            ))
-            .vis_chain_only()
-            .id();
-        index.0.insert(character.guid, entity);
+        let create = SessionEvent::ObjectCreate {
+            guid: character.guid,
+            kind: EntityKind::Player,
+            display_id: Some(character.display_id),
+            position: request.position_wow,
+            orientation: request.facing,
+            scale: character.scale,
+            speeds: Some(local_speeds(request.run_speed)),
+            mover: None,
+            transport_progress: None,
+            transport: None,
+            spline: None,
+            fields: player_fields(character).into_created(ObjectType::Player),
+        };
         names.insert_player(
             character.guid,
             character.name.clone(),
             Some((character.race, character.class, character.sex)),
         );
-        local.identity = Some(identity);
-        local.entity = Some(entity);
-        local.snapshot = Some(character.clone());
+        let character = character.clone();
+        let visuals = LocalEquipmentVisuals {
+            rows: equipment.rows.clone(),
+            metadata: equipment_metadata.rows.clone(),
+        };
+        // The create packet registers the self player, claims its mover and runs the arrival
+        // hooks. Apply it before the local presentation packets that reference this body.
+        commands.queue(move |world: &mut World| {
+            crate::net::handlers::dispatch(world, complete_object_packets(vec![create]));
+            let Some(entity) = world.resource::<GuidIndex>().0.get(&character.guid).copied() else {
+                return;
+            };
+            world.entity_mut(entity).insert(visuals);
+            let mut local = world.resource_mut::<LocalBody>();
+            local.identity = Some(identity);
+            local.entity = Some(entity);
+            local.snapshot = Some(character);
+        });
         return;
     }
 
@@ -368,6 +379,7 @@ fn remove_body(
     local: &mut LocalBody,
     index: &mut GuidIndex,
     self_guid: &mut SelfGuid,
+    mover: &mut MoverClaim,
 ) {
     let entity = local.entity.take();
     if let Some((_, guid)) = local.identity.take() {
@@ -377,6 +389,7 @@ fn remove_body(
         // This also covers a removal queued but not applied yet.
         if let Some(entity) = entity.filter(|entity| index.0.get(&guid) == Some(entity)) {
             index.0.remove(&guid);
+            mover.forget(guid);
             // An externally destroyed body can leave a stale index entry. Check
             // the complete entity generation before queuing, including reserved
             // bodies whose spawn is still in this command buffer.
@@ -811,7 +824,7 @@ mod tests {
         })
         .insert_resource(Player {
             active: true,
-            pos: wow_to_bevy([1.0, 2.0, 3.0]),
+            pos: benilla_assets::coords::wow_to_bevy([1.0, 2.0, 3.0]),
             ..default()
         })
         .insert_resource(LocalBody {

@@ -82,7 +82,7 @@ pub fn flush_events(world: &mut World) {
 /// The embedding supplies one logical object block per native update packet. Upstream's
 /// handler now separates writes from notifications; close each packet before the next run
 /// event can inspect its state. First-pass GUIDs also need their explicit notify position.
-fn complete_object_packets(events: Vec<SessionEvent>) -> Vec<SessionEvent> {
+pub(crate) fn complete_object_packets(events: Vec<SessionEvent>) -> Vec<SessionEvent> {
     use benilla_protocol::{guid, NotifyBlock};
 
     let mut framed = Vec::with_capacity(events.len());
