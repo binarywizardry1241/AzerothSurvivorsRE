@@ -18,7 +18,7 @@ use crate::{
 use super::{CoopUi, HeroRow};
 
 #[derive(Clone, Copy, Default, PartialEq, Eq)]
-enum Tab {
+pub(super) enum Tab {
     #[default]
     Character,
     Talents,
@@ -26,16 +26,16 @@ enum Tab {
 }
 
 #[derive(Component, Clone, Copy)]
-enum Click {
+pub(super) enum Click {
     Close,
     Tab(Tab),
 }
 
 #[derive(Component)]
-struct Root;
+pub(super) struct Root;
 
 #[derive(Component)]
-struct EquipmentHover {
+pub(super) struct EquipmentHover {
     title: String,
     subtitle: String,
     stars: Option<String>,
@@ -45,10 +45,10 @@ struct EquipmentHover {
 }
 
 #[derive(Component)]
-struct EquipmentSummary;
+pub(super) struct EquipmentSummary;
 
 #[derive(Component)]
-struct EquipmentDetail;
+pub(super) struct EquipmentDetail;
 
 #[derive(Resource, Default)]
 pub(super) struct View {
@@ -57,7 +57,7 @@ pub(super) struct View {
 }
 
 #[derive(Clone)]
-struct Subject {
+pub(super) struct Subject {
     identity: u64,
     name: String,
     class: u8,

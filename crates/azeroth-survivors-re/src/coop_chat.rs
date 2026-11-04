@@ -72,15 +72,15 @@ pub(super) struct List {
     follow_pending: bool,
 }
 #[derive(Component)]
-struct Row(u64);
+pub(super) struct Row(u64);
 #[derive(Component)]
-struct Empty;
+pub(super) struct Empty;
 #[derive(Component)]
-struct Draft;
+pub(super) struct Draft;
 #[derive(Component)]
-struct Placeholder;
+pub(super) struct Placeholder;
 #[derive(Component)]
-struct Counter;
+pub(super) struct Counter;
 
 pub(super) fn class_color(class: u8) -> Color {
     let raw = azeroth_survivors_re::coop::game_party::class_color(class).trim_start_matches('#');

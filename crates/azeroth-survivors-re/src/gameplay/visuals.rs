@@ -42,7 +42,7 @@ impl Plugin for RunVisualsPlugin {
 }
 
 #[derive(Resource, Default)]
-struct VisualCache {
+pub(super) struct VisualCache {
     catalog: Option<CreatureCatalog>,
     gameobjects: Option<GameObjectCatalog>,
     displays: HashMap<(bool, u32), Display>,
@@ -86,7 +86,7 @@ struct Part {
 }
 
 #[derive(Component)]
-struct ActorVisual {
+pub(super) struct ActorVisual {
     last_animation: Option<u16>,
     unit: Option<UnitSnapshot>,
 }

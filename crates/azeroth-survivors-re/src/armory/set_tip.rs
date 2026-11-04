@@ -5,7 +5,7 @@ use bevy::{prelude::*, window::PrimaryWindow};
 use crate::options::OptionsState;
 
 #[derive(Component)]
-struct Root;
+pub(super) struct Root;
 
 fn content(labels: &MenuCatalog, catalog: &ArmoryCatalog, state: &MenuState,
     gear: &GearSave, tip: SetTip) -> (String, Vec<String>)
