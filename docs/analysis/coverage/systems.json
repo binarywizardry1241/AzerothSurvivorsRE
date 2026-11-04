@@ -81031,6 +81031,47 @@
       "direct_callers": 24,
       "metadata_references": 12,
       "expanded_ownerless_custom_sites": 60
+  "shared_diagnostic_roles_0_141_0": {
+    "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "gap_ids": [
+      41
+    ],
+    "lead_id": "Q41-E01",
+    "evidence": {
+      "path": "docs/analysis/evidence/0.141.0/engine-diagnostic-roles.json",
+      "sha256": "6dce6da7f6abae6ede84eaac406244444d27e7662e28494f2ee86247b02594d1"
+    },
+    "counts": {
+      "sites": 1253,
+      "paths": 79,
+      "declared_extents": 863,
+      "first_interfaces": 29,
+      "roles": {
+        "shared-checked-instant-add": 1,
+        "shared-cursor-event-queue": 5,
+        "shared-ecs-access-location-retained-in-caller": 1,
+        "shared-ecs-access-with-index-guard": 1,
+        "shared-ecs-resource-access": 12,
+        "shared-eight-byte-slice-move": 3,
+        "shared-framexml-event-dispatch": 92,
+        "terminal-async-resumed-after-completion": 76,
+        "terminal-async-resumed-after-panicking": 76,
+        "terminal-formatted-failure": 777,
+        "terminal-index-bounds-failure": 80,
+        "terminal-literal-failure": 21,
+        "terminal-message-and-debug-failure": 1,
+        "terminal-message-failure": 42,
+        "terminal-option-unwrap-failure": 10,
+        "terminal-refcell-already-borrowed": 33,
+        "terminal-refcell-already-mutably-borrowed": 6,
+        "terminal-slice-range-failure": 14,
+        "terminal-string-slice-failure": 2
+      }
+    },
+    "classification": "Complete ownerless shared-path first-interface classification. The selected interfaces establish no new AS source defect.",
+    "native_source_semantics_established": false,
+    "parity_verified": false
+  },
     },
     "limits": "Successful AS state/collection semantics, concrete callback ABI, arbitrary aliases/computed callers, execution and parity remain unverified; no gameplay defect is established."
   },

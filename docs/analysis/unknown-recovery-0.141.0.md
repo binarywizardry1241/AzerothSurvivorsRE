@@ -12,7 +12,7 @@ earlier selectors and their evidence.
 | --- | --- |
 | `Q41-B01`, `Q41-U01`–`Q41-U04` | Join remaining unobserved ranges and stops to incoming references and adjacent data. The [CRYPTOGAMS span](native-census-0.141.0.md#embedded-identifier-outside-declared-extents) has a bounded data and alignment classification. Keep the other candidate padding and unknown code separate. |
 | `Q41-F01`, `Q41-F02` | Trace the source of each unresolved computed target, index guard and pointer-slot write in the saved Ghidra Program. Keep initial encodings, guarded static destinations and runtime aliases separate. |
-| `Q41-A01`, `Q41-A02`, `Q41-E01` | Examine actual caller, diagnostic and body associations. Separate failure blocks, generic engine boundaries and potential AS state or dispatch owners before naming the region. |
+| `Q41-A01`, `Q41-A02` | Examine actual caller and body associations. Separate failure blocks, generic engine boundaries and potential AS state or dispatch owners before naming the region. |
 | `Q41-I01` | The [embedded source frontier](source-frontier-0.141.0.md#q41-i01-embedded-lua-bindings-and-persistence) classifies all 949 binding-identifier, seven textual-ID and six save/configuration rows by role or container. Follow unresolved native loader, type and producer/consumer connections from the retained [2,901-row inventory](evidence/0.141.0/data-classification/manifest.json) and the owning findings. |
 | `Q41-R01` | Follow installed archive members and resource identifiers through their current code consumers. Use the exact [MPQ inventory](evidence/0.141.0/mpq-member-coverage.json) for member and overlay selectors. |
 | [#75](../CURRENT-STATE.md#gap-75) | Follow typed reducer `0x145e10f60` and frame builder `0x145fc7330` into producer and recipient publication. Connect the typed source recorder and replay. The ordinary guest snapshots and Lua consumer are connected. |
@@ -61,6 +61,41 @@ Broader caller, record-field and dynamic alias proof remains separate.
 ```sh
 PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/classify-as-ownerless-sites.py
 ```
+## Q41-E01 shared diagnostic interfaces
+
+The [0.141.0 proof](evidence/0.141.0/engine-diagnostic-roles.json) classifies the
+entire ownerless shared-path selector. All 1,253 sites are 24-byte Rust
+`Location` records across 79 paths and 863 PE unwind extents. The checker
+replays each RIP-relative load and straight path to its first call. It binds
+29 first-call entries and verifies the register or stack slot carrying the
+location. Raw Ghidra body ownership remains unchanged.
+
+| Immediate interface | Sites | Boundary |
+| --- | ---: | --- |
+| Terminal Rust failure | 1,138 | Formatted and explicit panics, bounds and string/slice failures, borrow failures, unwrap, and the two async resume failures. |
+| Shared FrameXML dispatch | 92 | The thunk at `0x1427f6660` jumps to `0x1429eabf0`. The Lua context, name pointer, name length, and arguments use the first four argument registers. The selected location reaches the fifth slot, which has no direct reference in the destination body. |
+| Cursor event queue | 5 | `0x1429097b0` appends a 152-byte row on the queued path. The selected fifth slot has no direct reference in this body. |
+| ECS and lane access | 14 | Thirteen locations are carried as call arguments. At `0x1411ee853`, the location stays in `rbx` when the call at `0x1411ee876` sets only `rcx` and `rdx` for the shared access helper. |
+| Lua slice move and checked instant addition | 4 | Three eight-byte slice moves carry the location in the sixth slot for the destination-bound failure. One instant-add site passes its location in the fifth slot for overflow. |
+
+The `READY_CHECK` event site at `0x141443371` belongs to the shared
+party feed. It passes an 11-byte event name and an empty argument vector to
+the FrameXML dispatcher, corresponding to `GroupSignal::ReadyCheck` in
+[`fire_signal`](../../crates/benilla-app/src/ui_party/feed.rs).
+The custom lobby start and answer flow remains owned by
+[#306](../verification-needed.md#gap-306). The nearby-looking async I/O
+extent at `0x140f549e0` contributes terminal poll-state locations.
+The custom recap renderer tracked under [#300](../CURRENT-STATE.md#gap-300)
+has a separate entry at `0x1400f49e0`.
+
+The selected shared-interface classification is complete. It establishes
+no additional AS source defect. Whole-function semantics, dynamic aliases,
+successful AS state, and original/rebuilt parity remain separate.
+
+```sh
+PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/check-engine-diagnostic-roles.py
+```
+
 
 The [module register](module-contracts-0.141.0.md) links each pending module
 contract to its permanent finding and current diagnostic selector. Wider

@@ -7,6 +7,7 @@ provider, source execution, compiler or game. --stage writes ignored runtime pro
 import argparse
 import bisect
 from collections import Counter
+from functools import lru_cache
 import csv
 import gzip
 import hashlib
@@ -18,7 +19,7 @@ import sys
 ROOT=Path(__file__).resolve().parents[1]
 if ROOT.name=='runtime':ROOT=ROOT.parent
 sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
-from coverage_common import latest_target,target_bytes
+from coverage_common import file_sha256,latest_target,target_bytes
 from script_sources import load_script
 from compact_evidence import proof_text,SOURCE_SHA256 as RENDERER_SHA256
 SHA='0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
@@ -312,8 +313,188 @@ def helper_guards(raw,decoder,ends):
     return guards
 
 
+def derive_residual_roles(target, interfaces):
+    """Replay the current residual selector against verified PE bytes."""
+    import capstone
+    from capstone.x86_const import X86_OP_IMM, X86_OP_MEM, X86_REG_RIP
+
+    pe = load_script('shared_diagnostic_pe', ROOT/'scripts/inventory-executable.py').PE(target_bytes(target))
+    trace = load_script('diagnostic_pointer_trace', ROOT/'scripts/check-owned-custom-diagnostics.py')
+    canonical = load_script('diagnostic_registers', ROOT/'scripts/classify-native-ownership.py').canonical_register
+    identity = {k: target[k] for k in ('version', 'path', 'sha256', 'size_bytes')}
+    residual_path = ROOT/'docs/analysis/evidence'/target['version']/'native-residuals.json'
+    residual = json.loads(residual_path.read_text())
+    assert residual['target'] == identity
+    inventory = residual['artifacts']['diagnostic-sites.jsonl.gz']
+    assert file_sha256(ROOT/inventory['path']) == inventory['sha256']
+    context = 'shared-engine-or-other-path'
+    with gzip.open(ROOT/inventory['path'], 'rt') as stream:
+        population = [json.loads(line) for line in stream]
+    assert len(population) == inventory['rows']
+    selected = sorted(
+        (r for r in population if r['context'] == context and r['actual_body_owner'] is None),
+        key=lambda r: int(r['instruction_address'], 16),
+    )
+    assert len(selected) == residual['counts']['diagnostic_contexts'][context + ':ownerless']
+    ends = {pe.image_base + a: pe.image_base + b for a, b, _ in pe.functions()}
+    decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_64)
+    decoder.detail = True
+
+    def raw(address, size):
+        offset = pe.rva_offset(address - pe.image_base)
+        data = pe.data[offset:offset + size]
+        assert len(data) == size
+        return data
+
+    @lru_cache(maxsize=16)
+    def decode(start, end):
+        rows = list(decoder.disasm(raw(start, end - start), start))
+        assert sum(i.size for i in rows) == end - start, hex(start)
+        return {i.address: i for i in rows}
+
+    def rip_target(instruction):
+        rip, = [op.mem.disp for op in instruction.operands
+                if op.type == X86_OP_MEM and op.mem.base == X86_REG_RIP]
+        return instruction.address + instruction.size + rip
+
+    def local_flow(rows, address):
+        flow = []
+        seen = set()
+        while address not in seen and len(flow) < 256:
+            seen.add(address)
+            instruction = rows[address]
+            flow.append(instruction)
+            if instruction.group(capstone.CS_GRP_CALL):
+                assert instruction.operands[0].type == X86_OP_IMM
+                return flow
+            assert not instruction.group(capstone.CS_GRP_RET) and instruction.mnemonic not in ('ud2', 'int3')
+            if instruction.group(capstone.CS_GRP_JUMP):
+                assert instruction.mnemonic == 'jmp' and instruction.operands[0].type == X86_OP_IMM
+                address = instruction.operands[0].imm
+            else:
+                address += instruction.size
+        raise AssertionError(f'No straight route to the first call at {flow[0].address:#x}')
+
+    # Helper role descriptions and their reviewed native anchors are carried by
+    # the target proof. Replaying checks those anchors and derives every site.
+    helpers = {}
+    for entry, interface in interfaces.items():
+        start = int(entry, 16)
+        if 'tail_jump' in interface:
+            thunk = next(decoder.disasm(raw(start, 15), start))
+            assert thunk.mnemonic == 'jmp' and thunk.operands[0].type == X86_OP_IMM
+            start = thunk.operands[0].imm
+            assert hex(start) == interface['tail_jump']
+        end = ends[start]
+        rows = decode(start, end)
+        instructions = {(i.mnemonic, i.op_str) for i in rows.values()}
+        assert all(tuple(guard) in instructions for guard in interface['guards']), entry
+        if interface['role'].startswith('terminal-'):
+            assert not any(i.group(capstone.CS_GRP_RET) for i in rows.values()), entry
+            assert list(rows.values())[-1].mnemonic == 'ud2', entry
+        for site, literal in interface.get('rip_literals', []):
+            address = rip_target(rows[int(site, 16)])
+            assert raw(address, len(literal)) == literal.encode(), entry
+        if 'fifth_argument_offsets' in interface:
+            # Validate the frame before checking for any direct reference to the
+            # incoming fifth argument. The callee's outgoing slots are distinct.
+            values = list(rows.values())
+            push_count = next(n for n, i in enumerate(values) if i.mnemonic != 'push')
+            frame, base = values[push_count:push_count+2]
+            assert frame.mnemonic == 'sub' and frame.op_str.startswith('rsp, ')
+            assert base.mnemonic == 'lea' and base.op_str.startswith('rbp, [rsp ')
+            stack_arg = 0x28 + push_count * 8 + frame.operands[1].imm
+            offsets = {'rsp': stack_arg, 'rbp': stack_arg - base.operands[1].mem.disp}
+            assert interface['fifth_argument_offsets'] == offsets
+            for i in values:
+                for op in i.operands:
+                    if op.type == X86_OP_MEM and (reg := i.reg_name(op.mem.base)) in offsets:
+                        assert op.mem.disp + op.size <= offsets[reg], (entry, hex(i.address))
+        helpers[entry] = {'body_start': hex(start), 'end_exclusive': hex(end),
+                          'body_sha256': sha(raw(start, end-start))}
+        if start != int(entry, 16):
+            helpers[entry]['thunk_sha256'] = sha(bytes(thunk.bytes))
+
+    extents = {}
+    paths = sorted({r['path'] for r in selected})
+    path_indices = {path: index for index, path in enumerate(paths)}
+    sites = []
+    roles = Counter()
+    for row in selected:
+        start, end, site, pointer = (int(row[k], 16) for k in
+            ('runtime_function_start', 'runtime_function_end', 'instruction_address', 'target_address'))
+        extent = row['runtime_function_start']
+        if extent not in extents:
+            digest = sha(raw(start, end-start))
+            assert ends[start] == end and digest == row['owner_sha256']
+            extents[extent] = [hex(end), digest]
+        assert extents[extent] == [hex(end), row['owner_sha256']]
+        rows = decode(start, end)
+        instruction = rows[site]
+        assert instruction.mnemonic == 'lea' and instruction.bytes.hex() == row['instruction_bytes']
+        assert rip_target(instruction) == pointer and row['kind'] == 'rust_location'
+        name, length, line, column = struct.unpack('<QQII', raw(pointer, 24))
+        assert hex(name) == row['path_address'] and raw(name, length).decode().replace('\\', '/') == row['path']
+        assert (line, column) == (row['source_line'], row['source_column'])
+        flow = local_flow(rows, site)
+        call = flow[-1]
+        target_entry = hex(call.operands[0].imm)
+        interface = interfaces[target_entry]
+        projection = trace.pointer_projection(flow, canonical, capstone)
+        carriers = projection['exact_argument_carriers']
+        assert carriers == interface['carriers'], (hex(site), carriers)
+        if 'retained_only' in interface:
+            assert projection['retained_registers'] == interface['retained_only']
+        roles[interface['role']] += 1
+        sites.append([hex(site), path_indices[row['path']], line, column, hex(pointer), extent,
+                      hex(call.address), target_entry,
+                      sha(b''.join(struct.pack('<Q', i.address) + bytes(i.bytes) for i in flow))])
+
+    assert len({r[0] for r in sites}) == len(sites)
+    assert {r[7] for r in sites} == set(interfaces)
+    return dict(schema_version=1, target=identity, gap_ids=[41], lead='Q41-E01',
+                generator=artifact(ROOT/GENERATOR),
+                dependencies=[artifact(ROOT/'scripts'/name) for name in
+                              ('inventory-executable.py', 'check-owned-custom-diagnostics.py',
+                               'classify-native-ownership.py', 'compact_evidence.py')],
+                inputs=[artifact(residual_path), inventory],
+                selector=f"context == '{context}' and actual_body_owner == null",
+                counts=dict(sites=len(sites), paths=len(paths), declared_extents=len(extents),
+                            first_interfaces=len(interfaces), roles=dict(sorted(roles.items()))),
+                interfaces=interfaces, helper_bodies=helpers, paths=paths,
+                declared_extent_columns=['end_exclusive', 'sha256'], declared_extents=extents,
+                site_columns=['instruction', 'path_index', 'source_line', 'source_column', 'location',
+                              'declared_extent', 'first_call', 'first_interface', 'flow_address_and_bytes_sha256'],
+                sites=sites, limits=[
+                    'Classifies the selected diagnostic operand and immediate interface only.',
+                    'A PE unwind extent does not establish Ghidra function ownership.',
+                    'Shared event, resource, and failure boundaries do not establish successful AS semantics.',
+                    'No game, compiler, server, or parity verification was run.',
+                ])
+
+
 def main():
-    ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--stage',action='store_true');args=ap.parse_args()
+    ap=argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--stage',action='store_true')
+    ap.add_argument('--interfaces', action='store_true', help='With --stage, read the reviewed helper profile from stdin')
+    args=ap.parse_args()
+    if args.interfaces and not args.stage:
+        ap.error('--interfaces requires --stage')
+    target = latest_target(verify=True)
+    if target['sha256'] != SHA:
+        proof = ROOT/'docs/analysis/evidence'/target['version']/'engine-diagnostic-roles.json'
+        retained = None if args.interfaces else json.loads(proof.read_text())
+        value = derive_residual_roles(target, json.load(sys.stdin) if args.interfaces else retained['interfaces'])
+        if args.stage:
+            stage = ROOT/'runtime/tmp'/f'engine-diagnostic-roles-{target["version"]}.json'
+            stage.parent.mkdir(parents=True, exist_ok=True)
+            stage.write_text(proof_text(value)+'\n')
+            print(stage.relative_to(ROOT))
+        else:
+            assert value == retained, 'Retained E01 proof differs from current selected boundaries'
+        print(json.dumps(value['counts'], indent=2))
+        return
+
     value=derive();text=proof_text(value)+'\n'
     assert sha((ROOT/GENERATOR).read_bytes())==GENERATOR_SHA256
     assert sha((ROOT/RENDERER).read_bytes())==RENDERER_SHA256
