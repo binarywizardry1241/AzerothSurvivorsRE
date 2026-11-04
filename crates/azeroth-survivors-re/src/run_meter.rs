@@ -51,6 +51,14 @@ pub struct CapturedAttack {
 }
 
 impl CapturedAttack {
+    /// The 0.140.0 companion hit key uses the primary label, even when
+    /// the accounting amount is split with a secondary attack.
+    pub fn source_key(self) -> Option<String> {
+        (!self.suppressed).then(|| {
+            format!("demon:{}", self.primary.to_ascii_lowercase().replace(' ', "_"))
+        })
+    }
+
     pub fn components(self, kind: u8, amount: f64) -> Vec<MeterBreakdown> {
         captured_attack_breakdown(
             kind,

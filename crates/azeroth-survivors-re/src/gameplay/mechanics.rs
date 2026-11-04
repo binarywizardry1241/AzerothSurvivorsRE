@@ -2198,22 +2198,40 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         }
         self.healing_source(hit.spell_id)
     }
-    /// The recovered ordinary ability/weapon descriptor arms of 0.139.2.
+    /// The recovered ability/weapon and companion attribution arms.
     fn damage_attribution(
         &self, hit: &PendingHit, source: azeroth_survivors_re::run_effects::healing::MeterSource,
     ) -> Option<(azeroth_survivors_re::run_effects::healing::MeterSource, String)> {
         let spell = hit.spell_id;
+        let companion = self.attribution.source_kind == 2;
+        if companion {
+            if let Some(key) = hit.context.meter_attack.or(self.generic.meter_attack)
+                .and_then(azeroth_survivors_re::run_meter::CapturedAttack::source_key)
+            {
+                return Some((source, key));
+            }
+        }
+        // The fixed descriptors are separate from provenance-bearing talents.
+        let fixed_key = match (self.attribution.source_kind, spell, source.name) {
+            (3, 467, "Thorns") => Some("thorns"),
+            (0 | 1 | 3, 15237, "Soulstone") => Some("soulstone"),
+            (3, _, "Talents") => Some("talents"),
+            _ => None,
+        };
+        if let Some(key) = fixed_key {
+            return Some((source, key.to_owned()));
+        }
         if spell == 0 {
-            return (self.attribution.source_kind == 0 && source.name == "Melee")
+            return (companion || (self.attribution.source_kind == 0 && source.name == "Melee"))
                 .then(|| (source, "melee".into()));
         }
-        if source.talent || self.attribution.source_kind > 1 {
+        if source.talent || self.attribution.source_kind > 2 {
             return None;
         }
         let definition = azeroth_survivors_re::run_meter::source_definition(
             spell, self.meter_abilities.iter().map(|row| row.0), self.meter_racial,
         )?;
-        if (source.name, source.icon) != (definition.name, definition.icon) {
+        if !companion && (source.name, source.icon) != (definition.name, definition.icon) {
             return None;
         }
         let mut key = format!("ability:{}", definition.key);
@@ -3184,6 +3202,12 @@ mod rng_integration {
         assert_eq!(row.breakdown.iter().find(|row| row.name == "Doom Bringer").unwrap().total, 3.5);
         assert_eq!(game.spell_damage(686), 7.0);
         assert_eq!(game.effective_damage(), 7.0);
+        assert!(game.events.iter().any(|event| matches!(
+            event,
+            RunEvent::Damage {
+                target: hit_target, meter_attribution: Some((source, key)), ..
+            } if *hit_target == target && source.name == "Doomguard" && key == "demon:shadow_bolt"
+        )));
     }
 
     #[test]
