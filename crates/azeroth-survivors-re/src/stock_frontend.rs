@@ -5,7 +5,7 @@ use benilla_app::local_client::{
     LocalStockFrontend, LocalStockRealm, LocalStockReply, LocalStockRequest,
 };
 use bevy::prelude::*;
-use serde::Deserialize;
+use azeroth_survivors_re::guardians::catalog::{ZONES, ZoneDefinition};
 
 use crate::{armory::ArmoryCatalog, catalog::MenuCatalog, menu_state::MenuState};
 
@@ -58,19 +58,8 @@ impl Connection {
     }
 }
 
-#[derive(Deserialize)]
-struct RealmZone {
-    key: String,
-    name: String,
-    difficulty_f32: f32,
-}
-
-fn zones() -> &'static [RealmZone] {
-    static ZONES: std::sync::OnceLock<Vec<RealmZone>> = std::sync::OnceLock::new();
-    ZONES.get_or_init(|| {
-        serde_json::from_str(include_str!("../assets/addon-zones-0.105.0.json"))
-            .expect("selected-target stock realm definitions")
-    })
+fn zones() -> &'static [ZoneDefinition] {
+    ZONES
 }
 
 /// Native1459b1260 plus auth serializer1459623b0. The square operation
@@ -80,9 +69,9 @@ fn realms(characters: usize) -> Vec<LocalStockRealm> {
         .iter()
         .enumerate()
         .map(|(index, zone)| LocalStockRealm {
-            name: zone.name.clone(),
+            name: zone.name.to_owned(),
             address: format!("azeroth.local:{}", 8085 + index),
-            population: zone.difficulty_f32 * zone.difficulty_f32,
+            population: zone.scalar_e0 * zone.scalar_e0,
             characters: characters.min(255) as u8,
             realm_type: 1,
             flags: 0,
@@ -165,7 +154,7 @@ fn serve(
             LocalStockRequest::Connect(realm) => {
                 if !connection.credentials { continue; }
                 // The native listener derives its zone from the requested
-                // 8085..8096 port. A stale/invalid port uses Elwynn, as native.
+                // port starting at 8085. A stale/invalid port uses Elwynn, as native.
                 connection.zone = realm
                     .address
                     .rsplit_once(':')
@@ -267,9 +256,10 @@ mod tests {
     #[test]
     fn realms_keep_native_zone_order_ports_ids_and_population() {
         let rows = realms(300);
-        assert_eq!(rows.len(), 12);
+        assert_eq!(rows.len(), 13);
         assert_eq!(rows[0].name, "Elwynn Forest");
-        assert_eq!(rows[11].name, "Naxxramas");
+        assert_eq!(rows[10].name, "Scholomance");
+        assert_eq!(rows[12].name, "Naxxramas");
         for (index, (row, zone)) in rows.iter().zip(zones()).enumerate() {
             assert_eq!(row.address, format!("azeroth.local:{}", 8085 + index));
             assert_eq!(
@@ -278,7 +268,7 @@ mod tests {
             );
             assert_eq!(
                 row.population.to_bits(),
-                (zone.difficulty_f32 * zone.difficulty_f32).to_bits()
+                (zone.scalar_e0 * zone.scalar_e0).to_bits()
             );
             assert_eq!(row.characters, 255);
         }

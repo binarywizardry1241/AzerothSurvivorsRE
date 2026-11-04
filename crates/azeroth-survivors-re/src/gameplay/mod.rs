@@ -67,6 +67,23 @@ struct EntryCatalog {
     races: Vec<RaceModifiers>,
 }
 
+impl EntryCatalog {
+    fn embedded() -> Self {
+        use azeroth_survivors_re::zones::scholomance as school;
+        let mut catalog: Self = serde_json::from_str(include_str!(
+            "../../assets/run-entry-0.100.1.json"
+        )).expect("retained run entry data");
+        catalog.zones.insert(school::INDEX, RunZone {
+            key: school::KEY.into(),
+            map_id: school::MAP,
+            spawn: school::SPAWN,
+            facing: school::FACING,
+            radius: school::RADIUS,
+        });
+        catalog
+    }
+}
+
 /// Ordinary1459b45c0 projects the saved rows in their existing order, using
 /// the connection's one selected zone and the shared appearance owner.
 pub(crate) fn stock_roster(
@@ -77,14 +94,7 @@ pub(crate) fn stock_roster(
 ) -> Vec<benilla_app::local_client::LocalStockCharacter> {
     use benilla_app::local_client::{LocalStockCharacter, LocalStockPosition};
     let zone_key = azeroth_survivors_re::zones::resolve(zone_key).key;
-    #[derive(Deserialize)]
-    struct Binding { key: String, area_id: u32 }
-    let bindings: Vec<Binding> = serde_json::from_str(include_str!("../../assets/addon-zones-0.105.0.json"))
-        .expect("selected-target roster zone IDs");
-    let entry: EntryCatalog = serde_json::from_str(include_str!("../../assets/run-entry-0.100.1.json"))
-        .expect("revalidated stock entry coordinates");
-    let Some(zone) = entry.zones.iter().find(|zone| zone.key == zone_key) else { return Vec::new() };
-    let Some(binding) = bindings.iter().find(|zone| zone.key == zone_key) else { return Vec::new() };
+    let zone = azeroth_survivors_re::coop::bootstrap::zone_environment(zone_key);
     startup.into_iter().cloned().chain(save.characters()).map(|row| {
         let mut equipment = [Default::default(); 19];
         let (outfit, _, _) = client::outfit(save, row.race, row.class, armory);
@@ -100,8 +110,8 @@ pub(crate) fn stock_roster(
             gender: row.sex, skin: row.features[0], face: row.features[1],
             hair_style: row.features[2], hair_color: row.features[3], facial_hair: row.features[4],
             level: row.best_level.clamp(1, 60) as u8, new_character: false,
-            zone: binding.area_id, map: zone.map_id,
-            position: LocalStockPosition { x: zone.spawn[0], y: zone.spawn[1], z: zone.spawn[2] },
+            zone: zone.zone_id, map: zone.map_id,
+            position: LocalStockPosition { x: zone.position[0], y: zone.position[1], z: zone.position[2] },
             flags: 0, equipment, pet_display_id: 0, pet_level: 0, pet_family: 0,
         }
     }).collect()
@@ -205,12 +215,7 @@ pub struct GameplayPlugin;
 
 impl Plugin for GameplayPlugin {
     fn build(&self, app: &mut App) {
-        app.insert_resource(
-            serde_json::from_str::<EntryCatalog>(include_str!(
-                "../../assets/run-entry-0.100.1.json"
-            ))
-            .expect("hash-bound 0.100.1 run entry data"),
-        )
+        app.insert_resource(EntryCatalog::embedded())
         .init_resource::<StartZone>()
         .init_resource::<RunSession>()
         .init_resource::<crate::run_seed::RunSeeds>()

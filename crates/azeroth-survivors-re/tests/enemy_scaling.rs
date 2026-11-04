@@ -27,7 +27,9 @@ fn ordinary_initialization_matches_unchanged_native_constructor_instructions() {
     let cases = fixture["scaling_cases"].as_array().unwrap();
     assert_eq!(cases.len(), 1184);
     for row in cases {
-        let zone = &ZONES[number(row, "zone_index") as usize];
+        let zone = ZONES.iter()
+            .filter(|zone| zone.key != azeroth_survivors_re::zones::scholomance::KEY)
+            .nth(number(row, "zone_index") as usize).unwrap();
         let mut definition = zone.enemies[number(row, "enemy_index") as usize];
         // This constructor oracle supplies historical0.97.2 inputs. Current
         // catalog dimensions have their own0.127.0 record/reach regression.

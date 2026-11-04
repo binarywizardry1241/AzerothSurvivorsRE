@@ -280,8 +280,7 @@ impl MenuState {
         self.save
             .unlock_value(self.class_id())
             .unwrap_or(1)
-            // 0.97.2: 145427250 scans the class row and clamps to all twelve zones.
-            .clamp(1, 12) as usize
+            .clamp(1, azeroth_survivors_re::zones::COUNT as u64) as usize
     }
     pub fn max_heroic_rank(&self) -> u8 {
         let zone = &azeroth_survivors_re::guardians::catalog::ZONES[self.zone];
@@ -981,11 +980,13 @@ mod class_selection_tests {
         .unwrap();
         let cases = fixtures["selection_cases"].as_array().unwrap();
         assert_eq!(cases.len(), 216);
+        // Translate fixture indices and counts from the twelve-zone order.
+        let index = |old: usize| old + usize::from(old >= azeroth_survivors_re::zones::scholomance::INDEX);
         for case in cases {
             let class = case["class_id"].as_u64().unwrap() as u8;
             let save = if let Some(unlocked) = case["stored_unlock"].as_u64() {
                 // Fixture counts are typed native Save fields, not legacy text ordinals.
-                let key = &catalog.zones[(unlocked.clamp(1, 12) - 1) as usize].key;
+                let key = &catalog.zones[index((unlocked.clamp(1, 12) - 1) as usize)].key;
                 Save::parse(&format!("open|{class}|{key}\n")).unwrap()
             } else {
                 Save::default()
@@ -999,7 +1000,7 @@ mod class_selection_tests {
                 },
                 save,
             );
-            state.zone = case["input_zone_index"].as_u64().unwrap() as usize;
+            state.zone = index(case["input_zone_index"].as_u64().unwrap() as usize);
             state.clamp_zone();
             assert_eq!(
                 catalog.zones[state.zone].key,
@@ -1012,7 +1013,7 @@ mod class_selection_tests {
             let save = case["stored_unlock"]
                 .as_u64()
                 .map_or_else(Save::default, |n| {
-                    let key = &catalog.zones[(n.clamp(1, 12) - 1) as usize].key;
+                    let key = &catalog.zones[index((n.clamp(1, 12) - 1) as usize)].key;
                     Save::parse(&format!("open|{class}|{key}\n")).unwrap()
                 });
             let state = state_for(
@@ -1026,7 +1027,7 @@ mod class_selection_tests {
             );
             assert_eq!(
                 state.open_zones(),
-                case["native_open_zones"].as_u64().unwrap() as usize,
+                index(case["native_open_zones"].as_u64().unwrap() as usize - 1) + 1,
                 "{case}"
             );
         }
@@ -1043,10 +1044,10 @@ mod class_selection_tests {
             },
             Save::parse("beat|1|aq\nbeat|8|wsg\n").unwrap(),
         );
-        assert_eq!(state.open_zones(), 12);
-        state.zone = 11;
+        assert_eq!(state.open_zones(), 13);
+        state.zone = 12;
         state.clamp_zone();
-        assert_eq!(state.zone, 11);
+        assert_eq!(state.zone, 12);
         state.class = CLASS_IDS.iter().position(|id| *id == 8).unwrap();
         assert_eq!(state.open_zones(), 4);
         state.clamp_zone();

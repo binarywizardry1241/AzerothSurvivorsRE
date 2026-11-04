@@ -92,6 +92,7 @@ pub fn late_run_health_bonus(zone_key: &str) -> f32 {
         "sm" => f32::from_bits(0x3df5_c28f),
         "av" => f32::from_bits(0x3e38_51ec),
         "brm" => f32::from_bits(0x3e80_0000),
+        crate::zones::scholomance::KEY => crate::zones::scholomance::HEALTH_BONUS,
         "aq" => f32::from_bits(0x3ea3_d70a),
         "naxx" => f32::from_bits(0x3ecc_cccd),
         _ => 0.0,

@@ -211,7 +211,8 @@ pub fn lobbies_message(
             } else {
                 String::new()
             };
-            let zone_opened = (zone_index.unwrap_or(0) as u64) < open_zones.clamp(1, 12);
+            let zone_opened =
+                (zone_index.unwrap_or(0) as u64) < open_zones.clamp(1, crate::zones::COUNT as u64);
             let rank_opened = row.heroic_rank.unwrap_or(0) <= heroic_cap(&row.zone_key);
             let lacks = if !zone_opened { "zone" } else if !rank_opened { "heroic" } else { "" };
             json!({

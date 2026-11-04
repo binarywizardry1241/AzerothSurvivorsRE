@@ -16,6 +16,18 @@ pub struct ZoneEnvironment {
 }
 
 pub fn zone_environment(key: &str) -> ZoneEnvironment {
+    use crate::zones::scholomance as school;
+    if key == school::KEY {
+        return ZoneEnvironment {
+            map_id: school::MAP,
+            zone_id: school::AREA,
+            position: school::SPAWN,
+            facing: school::FACING,
+            hour: school::HOUR,
+            weather_kind: school::WEATHER,
+            weather_intensity: school::WEATHER_INTENSITY,
+        };
+    }
     let (map_id, zone_id, hour, weather_kind, weather_bits, position, facing) =
         match crate::zones::resolve(key).key {
             "elwynn" => (

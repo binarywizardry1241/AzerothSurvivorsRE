@@ -546,16 +546,24 @@ fn achievement_inputs(save: &Save) -> azeroth_survivors_re::account_progression:
     let stats = save.statistics();
     let plain = save.plaintext();
     let gear = crate::save::gear::Records::read(plain.lines());
+    // Retained achievement descriptors carry pre-Scholomance ordinals.
+    let retained_zone = |index: usize| {
+        let key = azeroth_survivors_re::guardians::catalog::ZONES.get(index)?.key;
+        azeroth_survivors_re::mob_loot::BOSS_ZONES.iter().position(|row| row.key == key)
+    };
     azeroth_survivors_re::account_progression::Account {
-        beaten: save.beaten_zones(),
-        cooperative_beaten: save.cooperative_beaten_zones(),
+        beaten: save.beaten_zones().into_iter()
+            .filter_map(|(class, index)| Some((class, retained_zone(index)?))).collect(),
+        cooperative_beaten: save.cooperative_beaten_zones().into_iter()
+            .filter_map(retained_zone).collect(),
         talent_xp: CLASS_IDS
             .into_iter()
             .map(|class| (class, save.talent_xp(class) as u32))
             .collect(),
         gear: gear.owned,
         stars: gear.stars.into_iter().collect(),
-        heroic_clears: save.heroic_clears(),
+        heroic_clears: save.heroic_clears().into_iter()
+            .filter_map(|((class, index), rank)| Some(((class, retained_zone(index)?), rank))).collect(),
         seen: save.seen().len(),
         statistics: [
             "kills",

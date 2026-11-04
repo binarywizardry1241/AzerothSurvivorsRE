@@ -8,6 +8,8 @@
 //! These semantic source records do not declare the native memory ABI.
 //! Raw field names retain offsets whose full meanings remain unrecovered.
 
+use crate::zones::scholomance;
+
 #[derive(Clone, Copy, Debug)]
 pub struct EnemyDefinition {
     pub id: u32,
@@ -2565,6 +2567,14 @@ pub static ZONES: &[ZoneDefinition] = &[
         radius: f32::from_bits(0x42f00000),
         scalar_e0: f32::from_bits(0x40847ae1),
         enemies: BRM_ENEMIES,
+    },
+    ZoneDefinition {
+        key: scholomance::KEY,
+        name: scholomance::NAME,
+        center: scholomance::SPAWN,
+        radius: scholomance::RADIUS,
+        scalar_e0: scholomance::DIFFICULTY,
+        enemies: scholomance::ENEMIES,
     },
     ZoneDefinition {
         key: "aq",

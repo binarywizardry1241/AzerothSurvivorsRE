@@ -410,7 +410,7 @@ fn poll(
                             menu.backend_save
                                 .unlock_value(menu.backend_pick().hero.class)
                                 .unwrap_or(1)
-                                .clamp(1, 12) as u64,
+                                .clamp(1, azeroth_survivors_re::zones::COUNT as u64),
                             |id| display_class(&locale, id),
                             |key| display_zone(&locale, key),
                             |key| menu.backend_save.max_heroic_rank(menu.backend_pick().hero.class, key),

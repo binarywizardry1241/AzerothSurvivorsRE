@@ -60,7 +60,7 @@ fn legacy_unlocks_migrate_through_their_keys() {
     for (old, current, key) in [
         (0, 1, "elwynn"), (1, 1, "elwynn"), (2, 2, "duskwood"),
         (3, 3, "wsg"), (4, 5, "ab"), (5, 6, "feralas"), (6, 7, "arena"),
-        (7, 9, "av"), (8, 10, "brm"), (9, 11, "aq"), (255, 11, "aq"),
+        (7, 9, "av"), (8, 10, "brm"), (9, 12, "aq"), (255, 12, "aq"),
     ] {
         let save = save::Save::parse(&format!("unlock|1|{old}\n")).unwrap();
         assert_eq!(save.unlock_value(1), Some(current));
@@ -72,7 +72,7 @@ fn legacy_unlocks_migrate_through_their_keys() {
 fn current_keys_merge_with_migrated_progress_by_maximum() {
     let save = save::Save::parse("open|1|sm\nunlock|1|4\nopen|1|wsg\nopen|8|naxx\n").unwrap();
     assert_eq!(save.unlock_value(1), Some(8));
-    assert_eq!(save.unlock_value(8), Some(12));
+    assert_eq!(save.unlock_value(8), Some(13));
     assert_eq!(save.plaintext(), "open|1|sm\nopen|8|naxx\n");
 }
 

@@ -3,8 +3,16 @@
 //! lookup; callers do not rewrite the original saved key.
 use crate::guardians::catalog::{ZONES, ZoneDefinition};
 
+pub mod scholomance;
+
+pub const COUNT: usize = ZONES.len();
+
+pub fn index(key: &str) -> Option<usize> {
+    ZONES.iter().position(|zone| zone.key == key)
+}
+
 pub fn resolve(key: &str) -> &'static ZoneDefinition {
-    ZoneDefinition::by_key(key).unwrap_or(&ZONES[0])
+    &ZONES[index(key).unwrap_or(0)]
 }
 
 #[cfg(test)]
@@ -18,7 +26,8 @@ mod tests {
         ))
         .unwrap();
         for case in proof["source_key_cases"].as_array().unwrap() {
-            let expected = case["index"].as_u64().unwrap() as usize;
+            let previous = case["index"].as_u64().unwrap() as usize;
+            let expected = previous + usize::from(previous >= scholomance::INDEX);
             assert_eq!(
                 resolve(case["text"].as_str().unwrap()).key,
                 ZONES[expected].key

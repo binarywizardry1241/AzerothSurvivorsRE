@@ -48,8 +48,26 @@ struct SpellMetadata {
 }
 
 static ZONES: LazyLock<Vec<ZoneRecord>> = LazyLock::new(|| {
-    serde_json::from_str(include_str!("../../../assets/addon-zones-0.105.0.json"))
-        .expect("current addon zone metadata")
+    use azeroth_survivors_re::zones::scholomance as school;
+    let mut zones: Vec<ZoneRecord> =
+        serde_json::from_str(include_str!("../../../assets/addon-zones-0.105.0.json"))
+            .expect("retained addon zone metadata");
+    zones.insert(school::INDEX, ZoneRecord {
+        key: school::KEY.into(),
+        name: school::NAME.into(),
+        subtitle: school::SUBTITLE.into(),
+        map_id: school::MAP,
+        area_id: school::AREA,
+        center: [school::SPAWN[0], school::SPAWN[1]],
+        difficulty_f32: school::DIFFICULTY,
+        bosses: school::BOSSES.iter().map(|row| ZoneBoss {
+            id: row.id,
+            name: row.name.into(),
+            at_minutes_f32: row.time_minutes,
+            raw_final: row.flag_54 != 0,
+        }).collect(),
+    });
+    zones
 });
 static SPELLS: LazyLock<Vec<SpellMetadata>> = LazyLock::new(|| {
     serde_json::from_str(include_str!(

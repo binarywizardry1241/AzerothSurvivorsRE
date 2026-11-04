@@ -4,8 +4,14 @@
 
 use super::{Save, gear::{self, Records}};
 
-const ZONE_TIERS: [u8; 12] = [0, 0, 1, 1, 2, 2, 3, 3, 5, 5, 4, 4];
 const STAR_COSTS: [f32; 6] = [1., 2., 3., 4., 6., 5.];
+
+fn zone_tier(index: usize) -> Option<u8> {
+    let key = super::progress::zones().get(index)?.key.as_str();
+    azeroth_survivors_re::mob_loot::BOSS_ZONES.iter()
+        .find(|zone| zone.key == key)
+        .map(|zone| zone.tier)
+}
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum StarUpgradeError {
@@ -58,15 +64,16 @@ impl Save {
 
     /// Current set-zone membership, shared by admission and Armory help text.
     pub fn star_zone_indices(tier: u8) -> impl Iterator<Item = usize> {
-        ZONE_TIERS.iter().enumerate()
-            .filter_map(move |(index, zone_tier)| (*zone_tier == tier).then_some(index))
+        // These indices address the retained Armory drop catalog.
+        azeroth_survivors_re::mob_loot::BOSS_ZONES.iter().enumerate()
+            .filter_map(move |(index, row)| (row.tier == tier).then_some(index))
     }
 
     pub fn star_cap(&self, class: u8, tier: u8) -> u8 {
         if tier >= 6 { return 0; }
         super::heroic::clears(&self.lines).into_iter()
             .filter(|((owner, zone), _)| *owner == class
-                && ZONE_TIERS.get(*zone).copied() == Some(tier))
+                && zone_tier(*zone) == Some(tier))
             .map(|(_, rank)| rank).max().unwrap_or(0).min(5)
     }
 

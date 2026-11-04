@@ -19,7 +19,7 @@ pub(crate) struct NativeStartup {
 
 impl NativeStartup {
     pub(crate) fn positional(arguments: &[String], catalog: &MenuCatalog) -> Self {
-        let realm = arguments.first().map(|zone| zone_index(zone));
+        let realm = arguments.first().map(|zone| azeroth_survivors_re::zones::index(zone).unwrap_or(0));
         let character = arguments.get(1).map(|class| {
             // Current1458cf500 matches class keys with ASCII case folding; an unknown
             // key selects Warrior. The native race matcher removes spaces
@@ -74,23 +74,5 @@ impl NativeStartup {
         if let Some(character) = &self.character {
             std::env::set_var("WOW_CHAR", &character.name);
         }
-    }
-}
-
-/// Current14588d0d0 uses exact lowercase abbreviations and otherwise selects Elwynn.
-fn zone_index(value: &str) -> usize {
-    match value {
-        "duskwood" => 1,
-        "wsg" => 2,
-        "ungoro" => 3,
-        "ab" => 4,
-        "feralas" => 5,
-        "arena" => 6,
-        "sm" => 7,
-        "av" => 8,
-        "brm" => 9,
-        "aq" => 10,
-        "naxx" => 11,
-        _ => 0,
     }
 }

@@ -269,6 +269,13 @@ pub fn roll_boss_rewards(
     pity: &mut std::collections::BTreeMap<u32, u8>,
     rng: &mut NativeRng,
 ) -> BossGearReward {
+    // The live run uses current zone order; the recovered legacy loot pools
+    // still use their own order. Keep the new zone out of those pools.
+    let Some(zone) = crate::guardians::catalog::ZONES.get(zone)
+        .and_then(|current| BOSS_ZONES.iter().position(|row| row.key == current.key))
+    else {
+        return BossGearReward::default();
+    };
     let Some(definition) = BOSS_ZONES.get(zone).and_then(|zone| zone.bosses.get(boss)) else {
         return BossGearReward::default();
     };

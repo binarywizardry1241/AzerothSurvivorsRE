@@ -18,8 +18,12 @@ pub(super) fn message(class: u8, zone_key: &str, rank: u8, open: u8,
     let class_name = localized(&format!("class.{class_key}.name"), &class.name, label);
     let zone = azeroth_survivors_re::zones::resolve(zone_key);
     let zone_name = localized(&format!("zone.{}.name", zone.key), zone.name, label);
-    let tier = azeroth_survivors_re::mob_loot::BOSS_ZONES.iter()
-        .find(|row| row.key == zone.key).expect("native zone has a gear tier").tier;
+    let tier = if zone.key == azeroth_survivors_re::zones::scholomance::KEY {
+        7 // Current locale and Tier 0.5 descriptors use rarity.7.
+    } else {
+        azeroth_survivors_re::mob_loot::BOSS_ZONES.iter()
+            .find(|row| row.key == zone.key).expect("retained zone has a gear tier").tier
+    };
     let set_key = format!("rarity.{tier}");
     let set = localized(&set_key, catalog.label(&set_key), label);
     //145afff40 localizes the rarity key; the victory owner looks up its result

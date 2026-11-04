@@ -10,19 +10,6 @@ pub fn current_week() -> u32 {
 ///145a9c190 maps exact authored zone keys, including the unknown-key zero.
 /// Run initialization and difficulty presentation use the same rotation seed.
 pub fn zone_selector(zone: &str, week: u32) -> u64 {
-    let zone = match zone {
-        "duskwood" => 1,
-        "wsg" => 2,
-        "ungoro" => 3,
-        "ab" => 4,
-        "feralas" => 5,
-        "arena" => 6,
-        "sm" => 7,
-        "av" => 8,
-        "brm" => 9,
-        "aq" => 10,
-        "naxx" => 11,
-        _ => 0,
-    };
+    let zone = crate::zones::index(zone).unwrap_or(0) as u64;
     super::selector_from_inputs(zone, week)
 }

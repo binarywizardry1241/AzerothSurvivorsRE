@@ -63,6 +63,9 @@ pub struct ZoneDefinition {
 
 impl ZoneDefinition {
     pub fn by_key(key: &str) -> Option<&'static Self> {
+        if key == crate::zones::scholomance::KEY {
+            return Some(&SCHOLOMANCE_CACHE_ZONE);
+        }
         ZONES.iter().find(|zone| zone.key == key)
     }
 
@@ -71,6 +74,33 @@ impl ZoneDefinition {
         self.enemies.iter().find(|enemy| enemy.id == id)
     }
 }
+
+static SCHOLOMANCE_CACHE_ZONE: ZoneDefinition = {
+    use crate::zones::scholomance as school;
+    const ENEMIES: [EnemyDefinition; school::ENEMIES.len()] = {
+        let mut rows = [EnemyDefinition {
+            id: 0, base_experience: 0, death_accumulator: 0.0, chest_flag: 0,
+        }; school::ENEMIES.len()];
+        let mut index = 0;
+        while index < rows.len() {
+            let row = school::ENEMIES[index];
+            rows[index] = EnemyDefinition {
+                id: row.id,
+                base_experience: row.raw_40,
+                death_accumulator: row.raw_44,
+                chest_flag: row.flag_4c,
+            };
+            index += 1;
+        }
+        rows
+    };
+    ZoneDefinition {
+        key: school::KEY,
+        center: Position::new(school::SPAWN[0], school::SPAWN[1], school::SPAWN[2]),
+        radius: school::RADIUS,
+        enemies: &ENEMIES,
+    }
+};
 
 /// The owning run's clock. Share this with all gameplay systems, rather than
 /// advancing a second clock inside the chest timer. Native Game +0x8e4/+0x95f.

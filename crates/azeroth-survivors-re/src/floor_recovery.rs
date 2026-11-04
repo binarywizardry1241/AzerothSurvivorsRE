@@ -18,7 +18,7 @@ pub struct Zone {
     pub center: [f32; 2],
     pub radius: f32,
     pub indoor: bool,
-    /// Only the current WSG/SM branches use the native polygon.
+    /// Nonempty for zones with an authored boundary.
     pub polygon: Vec<[f32; 2]>,
 }
 
@@ -27,8 +27,18 @@ impl Zone {
         static ZONES: OnceLock<Vec<Zone>> = OnceLock::new();
         ZONES
             .get_or_init(|| {
-                serde_json::from_str(include_str!("../assets/native-floor-zones-0.110.0.json"))
-                    .expect("selected-target floor zones")
+                use crate::zones::scholomance as school;
+                let mut zones: Vec<Zone> = serde_json::from_str(include_str!(
+                    "../assets/native-floor-zones-0.110.0.json"
+                )).expect("retained floor zones");
+                zones.insert(school::INDEX, Zone {
+                    key: school::KEY.into(),
+                    center: [school::SPAWN[0], school::SPAWN[1]],
+                    radius: school::RADIUS,
+                    indoor: true,
+                    polygon: school::POLYGON.to_vec(),
+                });
+                zones
             })
             .iter()
             .find(|zone| zone.key == key)

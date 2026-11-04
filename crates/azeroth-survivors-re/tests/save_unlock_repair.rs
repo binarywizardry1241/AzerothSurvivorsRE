@@ -43,7 +43,7 @@ fn beaten_zone_repair_matches_selected_native_vectors_and_survives_reparse() {
 fn repair_preserves_beaten_unknown_and_malformed_rows_without_granting_from_them() {
     let text = "beat|1|unknown,,aq,aq\nbeat|256|naxx\nbeat|8|AQ\nunknown|keep\n";
     let loaded = save::Save::parse(text).unwrap();
-    assert_eq!(loaded.unlock_value(1), Some(12));
+    assert_eq!(loaded.unlock_value(1), Some(13));
     assert_eq!(loaded.unlock_value(8), None);
     assert_eq!(loaded.plaintext(), format!("{text}open|1|naxx\n"));
 }
@@ -53,8 +53,8 @@ fn sealed_import_restores_each_class_and_keeps_a_higher_explicit_unlock() {
     let text = "open|1|naxx\nbeat|1|elwynn\nbeat|8|aq\nunknown|keep\n";
     let sealed = save::seal_with_nonce(text, [15; 16]);
     let imported = save::Save::import(&sealed).unwrap();
-    assert_eq!(imported.unlock_value(1), Some(12));
-    assert_eq!(imported.unlock_value(8), Some(12));
+    assert_eq!(imported.unlock_value(1), Some(13));
+    assert_eq!(imported.unlock_value(8), Some(13));
     assert!(imported.plaintext().contains("unknown|keep"));
     let exported = save::seal_with_nonce(&imported.plaintext(), [16; 16]);
     let reopened = save::Save::import(&exported).unwrap();

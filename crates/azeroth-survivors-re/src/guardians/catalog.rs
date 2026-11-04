@@ -11,23 +11,9 @@
 //! Raw offset names intentionally retain unresolved semantics. These are
 //! semantic source records, not declarations of the native in-memory ABI.
 
-#[derive(Clone, Copy, Debug)]
-pub struct EnemyDefinition {
-    pub id: u32,
-    pub name: &'static str,
-    pub model_id: u32,
-    pub scale: f32,
-    pub raw_cast: [u32; 4],
-    pub raw_2c: u32,
-    pub base_hp: f32,
-    pub base_damage: f32,
-    pub raw_38: f32,
-    pub raw_3c: f32,
-    pub raw_40: u32,
-    pub raw_44: f32,
-    pub raw_48: f32,
-    pub flag_4c: u8,
-}
+use crate::zones::scholomance;
+
+pub use crate::enemies::catalog::EnemyDefinition;
 
 /// Original boss ability record: seven exact 32-bit words, stride 28.
 #[derive(Clone, Copy, Debug)]
@@ -4872,6 +4858,20 @@ pub static ZONES: &[ZoneDefinition] = &[
             xy: [f32::from_bits(0xc5f3c000), f32::from_bits(0xc4eb0000)],
         }],
         guardian_enemy_indices: &[],
+    },
+    ZoneDefinition {
+        key: scholomance::KEY,
+        name: scholomance::NAME,
+        center: scholomance::SPAWN,
+        radius: scholomance::RADIUS,
+        scalar_e0: scholomance::DIFFICULTY,
+        enemies: scholomance::ENEMIES,
+        bosses: scholomance::BOSSES,
+        hp_knots: scholomance::HEALTH_KNOTS,
+        guardian_radius: None,
+        placement_angle: scholomance::FACING,
+        guardian_points: scholomance::GUARDIAN_POINTS,
+        guardian_enemy_indices: scholomance::GUARDIAN_ENEMIES,
     },
     ZoneDefinition {
         key: "aq",

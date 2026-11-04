@@ -33,10 +33,11 @@ fn every_definition_preserves_selected_native_bytes() {
         source["target_sha256"],
         "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
     );
-    assert_eq!(ZONES.len(), 12);
-    assert_eq!(ZONES.iter().map(|zone| zone.enemies.len()).sum::<usize>(), 148);
+    assert_eq!(ZONES.len(), 13);
+    assert_eq!(ZONES.iter().map(|zone| zone.enemies.len()).sum::<usize>(), 158);
     let mut ids = BTreeSet::new();
-    for (zone, native_zone) in ZONES.iter().zip(source["zones"].as_array().unwrap()) {
+    for native_zone in source["zones"].as_array().unwrap() {
+        let zone = ZoneDefinition::by_key(native_zone["key"]["text"].as_str().unwrap()).unwrap();
         assert_eq!(zone.key, native_zone["key"]["text"].as_str().unwrap());
         assert_eq!(zone.name, native_zone["name"]["text"].as_str().unwrap());
         let record = bytes(&native_zone["record"]);

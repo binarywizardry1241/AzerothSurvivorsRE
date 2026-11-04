@@ -58,7 +58,7 @@ fn record(line: &str) -> Option<(u8, u64)> {
 
 pub(super) fn values(lines: &[String]) -> Vec<(u8, u64)> {
     // Current14589e380 collects/sorts/deduplicates beat pairs, then merges
-    // min(zone_index + 2, 12) into each class's maximum.
+    // min(zone_index + 2, zone count) into each class's maximum.
     // Keep the explicit open/legacy records first, as in the native loader.
     let mut beaten = BTreeSet::new();
     for line in lines {
@@ -98,11 +98,32 @@ mod tests {
     #[test]
     fn old_ordinals_resolve_keys_before_current_ordinals() {
         let lines = ["unlock|1|4", "unlock|2|9", "open|1|sm", "open|1|wsg"].map(str::to_owned);
-        assert_eq!(values(&lines), [(1, 8), (2, 11)]);
+        assert_eq!(values(&lines), [(1, 8), (2, 12)]);
         assert_eq!(
             super::super::schema::normalize(&lines, false),
             ["open|1|sm", "open|2|aq"]
         );
+    }
+
+    #[test]
+    fn inserting_scholomance_preserves_keyed_unlocks_and_heroic_clears() {
+        use super::super::Save;
+        let save = Save::parse(concat!(
+            "open|1|brm\n",
+            "beat|2|brm\n",
+            "open|3|aq\n",
+            "beat|4|aq,naxx\n",
+            "hbeat|4|aq:3,naxx:5\n",
+        )).unwrap();
+        assert_eq!([1, 2, 3, 4].map(|class| save.unlock_value(class)), [
+            Some(10), Some(11), Some(12), Some(13),
+        ]);
+        assert_eq!(save.heroic_cleared_rank(4, "aq"), 3);
+        assert_eq!(save.heroic_cleared_rank(4, "naxx"), 5);
+        assert_eq!(save.heroic_cleared_rank(4, "scholomance"), 0);
+        assert_eq!(save.max_heroic_rank(4, "aq"), 4);
+        assert_eq!(save.max_heroic_rank(4, "naxx"), 5);
+        assert!(save.plaintext().contains("hbeat|4|aq:3,naxx:5"));
     }
 }
 
@@ -382,7 +403,7 @@ mod result_tests {
     }
 
     #[test]
-    fn result_updates_all_twelve_zone_progress_and_preserves_specs_and_pick() {
+    fn result_updates_final_zone_progress_and_preserves_specs_and_pick() {
         let mut save = Save::parse("talent|1|80|imp_heroic:1\nspec|1|2|||imp_heroic:1\nopen|1|naxx\nunknown|keep\nstat|kills=18446744073709551614,custom=9\n").unwrap();
         save.apply_run_result(1, "naxx", [8, 20, 2, 5, 1], true, 95, 50, 1200)
             .unwrap();
@@ -390,7 +411,7 @@ mod result_tests {
         assert_eq!(save.statistics()["runs"], 1);
         assert_eq!(save.statistics()["wins"], 1);
         assert!(!save.statistics().contains_key("custom"));
-        assert_eq!(save.unlock_value(1), Some(12));
+        assert_eq!(save.unlock_value(1), Some(13));
         assert_eq!(save.talent_xp(1), 175);
         assert_eq!(save.talent_spec(1), 2);
         assert!(save.plaintext().contains("beat|1|naxx"));

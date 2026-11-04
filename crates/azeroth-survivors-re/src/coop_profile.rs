@@ -90,7 +90,8 @@ pub(crate) fn build(
         profile: profile.filter(|profile| profile.value_60 == world_guid
             && profile.bytes_18.as_slice() == pick.clone().normalized().name.as_bytes()),
         achievement_points: progression::earned_points(save),
-        byte_1e3: save.unlock_value(pick.hero.class).unwrap_or(1).clamp(1, 12) as u8,
+        byte_1e3: save.unlock_value(pick.hero.class).unwrap_or(1)
+            .clamp(1, azeroth_survivors_re::zones::COUNT as u64) as u8,
         bytes_30: language(locale.as_bytes()),
     }
 }
@@ -132,8 +133,7 @@ pub(crate) fn sanitize(mut hero: NativeHero) -> Result<NativeHero, HeroIdentityE
     hero.pity = hero.pity.into_iter().filter(|(id, _)| {
         save::gear::decode(*id).is_some_and(|piece| piece.class == hero.class)
     }).take(64).map(|(id, count)| (id, count.min(40))).collect();
-    hero.heroic_unlocks.truncate(12);
-    hero.heroic_unlocks.resize(12, 0);
+    hero.heroic_unlocks.resize(azeroth_survivors_re::zones::COUNT, 0);
     for rank in &mut hero.heroic_unlocks { *rank = (*rank).min(5); }
     hero.weapon_glow = match hero.weapon_glow { 0 | 803 | 1894 | 1900 => hero.weapon_glow, _ => 0 };
     let raw = save::talents::decode_allocation(&String::from_utf8_lossy(&hero.bytes_18));
@@ -155,7 +155,7 @@ pub(crate) fn sanitize(mut hero: NativeHero) -> Result<NativeHero, HeroIdentityE
     hero.achievement_points = hero
         .achievement_points
         .min(progression::maximum_achievement_points());
-    hero.byte_1e3 = hero.byte_1e3.clamp(1, 12);
+    hero.byte_1e3 = hero.byte_1e3.clamp(1, azeroth_survivors_re::zones::COUNT as u8);
     hero.bytes_30 = language(&hero.bytes_30);
     Ok(hero)
 }
