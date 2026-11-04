@@ -606,12 +606,123 @@
           "profile_digest": "07f6ff3a53684dc34cb4574d2276a15754646d8aae76c84287ac508a8ea1e505"
         }
       ]
+    },
+    {
+      "label": "script-markers-client",
+      "raw_pe_range": {
+        "virtual_address": "0x1400b29a0",
+        "file_offset": "0xb1da0",
+        "byte_count": 16798,
+        "sha256": "57e4558c0b250efc6570fd13f4239e280a44576860bcbf295a15fac0965ae865"
+      },
+      "operations": [
+        {
+          "procedure": "0x1400b29a0",
+          "evidence_id": "ev_2349eaf3873a414ce9ed6c0336d15dc8f5d9102eec5dca26faeb29d98395b032",
+          "result_sha256": "3f38d5c9ef249331c3ce93faaeb1fb9500911f34417f784c4a62f0bc13ba3e6f",
+          "profile_digest": "bd657991f427ac04c141ca3e62d2cfa04d17eb9887ae3cebefb80c1f8b8c9a0b"
+        }
+      ]
+    },
+    {
+      "label": "script-markers-grid",
+      "raw_pe_range": {
+        "virtual_address": "0x145ee4340",
+        "file_offset": "0x5ee3740",
+        "byte_count": 2729,
+        "sha256": "7eca1c4bb90426afd85f443bd9d3eea271ff09aa21b7cf24b90fe89941b03eea"
+      },
+      "operations": [
+        {
+          "procedure": "0x145ee4340",
+          "evidence_id": "ev_fbfef79c53ec2c5c86a68d2f63f709b23c77c31e5dbcffd4c28b25a77de3b70f",
+          "result_sha256": "1f81eaadfe2f92c2b0fffab49f3b3ed09911f59b784dbc2391982538b36240fd",
+          "profile_digest": "f1d014529b2d33e1854f4c751d69b9a7e0ac50dec03fb638e6710d43219b5931"
+        }
+      ]
+    },
+    {
+      "label": "script-markers-serialize",
+      "raw_pe_range": {
+        "virtual_address": "0x145fc7ce0",
+        "file_offset": "0x5fc70e0",
+        "byte_count": 8033,
+        "sha256": "9a70d2308b0b7aeebbb2fa13d06a274122053f09a18df806eaf0f8f42ee49a95"
+      },
+      "operations": [
+        {
+          "procedure": "0x145fc7ce0",
+          "evidence_id": "ev_08faac49eb1df13f4a98b3b926a8cc47817eeb47d6e734eca070146d9741b530",
+          "result_sha256": "7d83d7c1738c51284f268e320533a8064fcfb42d1f96695e9ebd6730796e8e8c",
+          "profile_digest": "2d4ae55e392a1f31e573fe9ce0de622cd091a76d3c09f6d701f8da37827e50d0"
+        }
+      ]
+    },
+    {
+      "label": "script-markers-draw",
+      "raw_pe_range": {
+        "virtual_address": "0x1400b8130",
+        "file_offset": "0xb7530",
+        "byte_count": 22902,
+        "sha256": "ec7e24a09f07b401dbd394d59a1cd0465497a86a392ba13e22f0e9ac0daaf9d2"
+      },
+      "operations": [
+        {
+          "procedure": "0x1400b8130",
+          "evidence_id": "ev_5081417f90123bfe715b32572d19b319bb7bc9fa2159735a605af11e4eb16f64",
+          "result_sha256": "7381dcb3c955a71db6c77797b2449bfe4aebb6c1e289dadd6581dd308914ed80",
+          "profile_digest": "1fa2ef5f83ab07dd9e4b02ec7caf996a5e64e0bea9ee601346b14291e215b28e"
+        }
+      ]
+    },
+    {
+      "label": "script-markers-geometry",
+      "raw_pe_range": {
+        "virtual_address": "0x1400acdd0",
+        "file_offset": "0xac1d0",
+        "byte_count": 2022,
+        "sha256": "5c761f24159850fb96fdc55b36d7dc41fc0a21745010b9eb25f6beda46a49ec8"
+      },
+      "operations": [
+        {
+          "procedure": "0x1400acdd0",
+          "evidence_id": "ev_cbe6e4ccf46828d010f67438b0d6565e6908d1c1f5f9b12b8614f64c73ec9458",
+          "result_sha256": "6b9e1e7d9585e318db402b496e1ce711c5c79573d8536c6f60d1ebc285ee9db8",
+          "profile_digest": "30d213fc2db5778046e6bf2f1dd75b3cd68ff77629456be4d2e4810b6af2038d"
+        }
+      ]
     }
   ],
   "native_instruction_cases": {
     "scheduler_with_creation_stub": 840,
     "phase_callback_with_form_application_stub": 16,
-    "scripted_damage_precompensation": 96
+    "scripted_damage_precompensation": 96,
+    "checkerboard_room_grids_with_external_seams": 2
   },
-  "limitations": "Static bounded recovery. Raw imports omit external bodies and jump tables. Coverage does not establish attack geometry, warning rendering, source compilation, gameplay or parity."
+  "limitations": "Static bounded recovery. Raw imports omit external bodies and jump tables. Coverage does not establish attack geometry, warning rendering, source compilation, gameplay or parity.",
+  "scholomance_checkerboard": {
+    "constructor": "0x145ee6300",
+    "grid_helper": "0x145ee4340",
+    "origin": [
+      96.0,
+      138.0
+    ],
+    "cell_width": 6.0,
+    "rows": 9,
+    "columns": 12,
+    "valid": [
+      "0xffffffffff3ff3ff",
+      "0x00000fffffffffff"
+    ],
+    "danger_by_parity": [
+      [
+        "0xa555aaa5552aa155",
+        "0x00000555aaa555aa"
+      ],
+      [
+        "0x5aaa555aaa1552aa",
+        "0x00000aaa555aaa55"
+      ]
+    ]
+  }
 }

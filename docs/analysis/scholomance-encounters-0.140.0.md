@@ -1,6 +1,6 @@
 # Scholomance encounter dispatch in 0.140.0
 
-The [evidence manifest](evidence/0.140.0/scholomance-encounters.json) binds these observations to the installed `0.140.0` EXE, SHA-256 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`. It records the original PE ranges and the result digests for 29 bounded Ghidra queries. Raw imports omit external code and jump tables. The original instructions govern the call arguments and branches. [Finding #313](../CURRENT-STATE.md#gap-313).
+The [evidence manifest](evidence/0.140.0/scholomance-encounters.json) binds these observations to the installed `0.140.0` EXE, SHA-256 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`. It records the original PE ranges and the result digests for the bounded Ghidra queries. Raw imports omit external code and jump tables. The original instructions govern the call arguments and branches. [Finding #313](../CURRENT-STATE.md#gap-313).
 
 ## Scheduled bosses and their placement
 
@@ -20,9 +20,17 @@ Kirtonos initially equips item 21341 through the appearance descriptor at `0x147
 
 The hit consumer at `0x145fcf93a` reads the attack row's damage, source GUID and spell. It obtains the recipient's armor, including the native active Lightning Shield modifier, and caps the value at `0.95` for this calculation. Above `0.4`, the softened value is `0.4 + (capped - 0.4) * 0.5`. The producer multiplies the rank-scaled hit by `(1 - softened) / (1 - capped)` at `0x145fcfb57` and passes that amount and the scripted attack descriptor to `0x145f9a2b0`. The common damage owner still applies party scaling, ordinary armor, crowd reduction and absorbs. The compensation is connected to the source incoming adapter for mechanic events from the five primary boss definitions. Native instruction emulation passed 96 armor, rank and endless cases, including the adjacent threshold values and unordered armor. [Incoming adapter](../../crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs).
 
+## Scripted warning transport and the checkerboard
+
+The attack constructor `0x145fcc5e0` adds the attack to the active vector and queues the JSON from `0x145fc7ce0`. An `atk` message carries `id`, `t0`, `lock`, `impact`, `end`, `locked` and `parts`. The parts support circle, rectangle, cone, capsule, donut, sweep, rotor, grid, polygon and field variants with individual times, appearance, tracking and safe-area fields. The app routes these messages at `0x14004fe20`. The client decoder at `0x1400b29a0` maintains separate scripted rows. The `atku`, `atkl`, `atka` and `atkx` branches enter at `0x1400b3489`, `0x1400b5a57`, `0x1400b2ae2` and `0x1400b3310`. The current rebuilt client only consumes the earlier `hz`, `hzt` and `hzend` channel.
+
+The client draw owner `0x1400b8130` calls the contour helper `0x1400b0d90` at `0x1400bba46` and polygon geometry owner `0x1400acdd0` at `0x1400bbacc` and `0x1400bd72b`. The geometry owner computes the point bounds, then passes the centered contour and vertical projection extent into `0x14002f390` and `0x1400aba70`. These are the next boundaries for matching the decoder's part variants to the existing terrain decal stream. The bounded raw pseudocode leaves jump-table arms and external material, geometry and paint bodies separate. Their branch and value correspondence remains open.
+
+Frozen Checkmate at `0x145ee6300` uses one shared RNG draw and sends its high bit to the grid builder at `0x145ee4340`. The builder uses the zone polygon and a six-unit pitch. For Scholomance it starts at `(96, 138)` and produces 9 rows by 12 columns. It admits a tile if any of the nine inset samples falls in the polygon and sets danger on the selected `(row + column) & 1` parity. Both outputs passed bounded emulation of the original builder with the zone lookup, allocation and rounding calls stubbed. The manifest records both danger masks and the shared valid mask. The source still needs attack timing, grid hit admission and the native draw behavior before this move can be enabled.
+
 ## Remaining source work
 
-The descriptor and callback joins below locate the current mechanics. The attack producers, recipient state and renderer still need a connected source implementation. The existing hazard renderer accepts `hz`, `hzt` and `hzend`. The transport also recognizes the scripted `atk`, `atku`, `atkl`, `atka` and `atkx` messages, which require their own local and co-op consumers. Substituting the legacy hazard shapes would lose the script geometry and its warning stages.
+The descriptor and callback joins below locate the current mechanics. The attack producers, recipient state and renderer still need a connected source implementation.
 
 | Boss | Native source frontier |
 | --- | --- |
