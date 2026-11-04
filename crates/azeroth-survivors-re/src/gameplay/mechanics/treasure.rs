@@ -76,6 +76,7 @@ impl Mechanics {
     pub(super) fn discard_choice_offers(&mut self) {
         self.choices.clear();
         self.treasure_state.offers.clear();
+        self.choice_state.world_paused = false;
     }
     pub fn jewelry(&self) -> &[native::JewelryItem] {
         &self.treasure_state.jewelry
@@ -240,6 +241,7 @@ impl Mechanics {
         self.treasure_state.offers = offers;
         self.treasure_state.guardian = guardian;
         self.choice_state.offer = self.choice_state.offer.wrapping_add(1);
+        self.pause_choice_movements();
     }
 }
 

@@ -89,6 +89,7 @@ impl Mechanics {
             return;
         }
         self.choice_state.spend_levels = false;
+        self.resume_choice_movements();
         // Native replaces spell1020, including any earlier resume aura.
         self.execution.auras.retain(|aura| aura.spell_id != 1020);
         self.execution.auras.push(Aura {

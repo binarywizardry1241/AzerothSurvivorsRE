@@ -5,7 +5,11 @@
 
 use std::collections::HashSet;
 
-use azeroth_survivors_re::{bosses::abilities::{CastTarget, SpellCast}, enemies::Position};
+use azeroth_survivors_re::{
+    bosses::abilities::{CastTarget, SpellCast},
+    enemies::Position,
+    floor_recovery::map::NativeTerrain,
+};
 use benilla_app::local_client::events::{
     EntityKind, JumpInfo, LocalPresentationEvents, MonsterMoveFacing, ObjectFields, ObjectType, SessionEvent,
     AttackerState,ChatMessage,CombatTextAttribution,PeriodicAuraLog, PeriodicTick, SpellDamageLog, SpellHealLog,
@@ -251,6 +255,24 @@ fn stopped(target:u64,point:Position,serial:u32)->SessionEvent {
         path:Vec::new(),facing:MonsterMoveFacing::None,stop:true,duration_ms:0,flying:false,run_mode:false}
 }
 
+fn choice_movement(source: u64, from: Position, continuation: Option<(Position, f32)>,
+    serial: u32, terrain: Option<&NativeTerrain>) -> SessionEvent {
+    let resolve_height = |mut point: Position| {
+        if let Some(z) = terrain.and_then(|floor| floor.actor_movement_height([point.x, point.y])) {
+            point.z = z;
+        }
+        point
+    };
+    let start = resolve_height(from);
+    match continuation {
+        Some((to, remaining)) => {
+            let duration_ms = ((remaining * 1000.0) as u32).max(1);
+            linear_move(source, start, resolve_height(to), duration_ms, serial)
+        }
+        None => stopped(source, start, serial),
+    }
+}
+
 /// The 0.140.0 serializer sends type 3, a raw target GUID, flags 0x100,
 /// one millisecond and one destination equal to the supplied start.
 fn stationary_facing(source:u64,point:Position,serial:u32,target:u64)->SessionEvent {
@@ -348,7 +370,8 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
            mut markers:ResMut<super::super::raid_markers::MarkerInbox>,
            time:Res<Time>,locale:Res<Localization>,catalog:Res<crate::catalog::MenuCatalog>,
            mut coop:Option<ResMut<crate::coop_runtime::CoopRuntime>>,
-           party:Option<Res<super::super::coop::CoopGame>>) {
+           party:Option<Res<super::super::coop::CoopGame>>,
+           floor:Option<Res<super::super::world::NativeFloor>>) {
     let Some(game)=session.mechanics.as_mut() else { return };
     // Taking the buffer exactly once also handles a run paused immediately
     // after a cast or choice. It does not replay its last tick every frame.
@@ -359,7 +382,8 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
     let remote=game.take_party_events();
     let mut local=LocalPresentationEvents::default();
     project(events,player_guid,0,&mut local,&mut unsupported,&mut notifications,&mut loot,&mut markers,
-        time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),Some(&mut terminal),None);
+        time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),Some(&mut terminal),None,
+        floor.as_deref().and_then(|floor| floor.terrain_ref()));
     for event in local.0 {
         if let Some(coop)=coop.as_deref_mut() {
             route_run_event(coop, party.as_deref(), &locale, 0, &event);
@@ -374,7 +398,7 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
         let language = client.and_then(|client| party.as_deref()?.member_language(client));
         let mut projected=LocalPresentationEvents::default();
         project(events,guid,slot,&mut projected,&mut unsupported,&mut Default::default(),&mut Default::default(),
-            &mut Default::default(),time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),None,language);
+            &mut Default::default(),time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),None,language,None);
         for event in projected.0 {
             if let Some(coop)=coop.as_deref_mut() {
                 if route_run_event(coop, party.as_deref(), &locale, slot, &event) {
@@ -391,7 +415,7 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
     now:f32,locale:&Localization,catalog:&crate::catalog::MenuCatalog,
     mut coop:Option<&mut crate::coop_runtime::CoopRuntime>,
     mut terminal:Option<&mut super::super::terminal::TerminalState>,
-    recipient_language:Option<&[u8]>) {
+    recipient_language:Option<&[u8]>, terrain:Option<&NativeTerrain>) {
     for event in events {
         let missing=match event {
             RunEvent::TalentXp {gain,before,total,class_key,parts}=>{
@@ -405,6 +429,9 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
             RunEvent::ActorMovement{source,movement,serial}=>{
                 packets.0.push(linear_move(source,movement.from,movement.to,
                     ((movement.duration*1000.) as u32).max(1),serial));None
+            },
+            RunEvent::ChoiceMovement {source,from,continuation,serial}=>{
+                packets.0.push(choice_movement(source,from,continuation,serial,terrain));None
             },
             RunEvent::ActorFields {target,fields}=>{
                 packets.0.push(SessionEvent::ObjectValues {guid:target,fields:ObjectFields::from_pairs(&fields)});None
@@ -813,6 +840,7 @@ mod tests {
                 1.0,
                 &Localization::english_for_tests(),
                 &crate::catalog::MenuCatalog::embedded(),
+                None,
                 None,
                 None,
                 None,

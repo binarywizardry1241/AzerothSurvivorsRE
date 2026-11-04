@@ -430,6 +430,14 @@ pub enum RunEvent {
         position: Position,
         serial: u32,
     },
+    /// Choice phase packet from the frozen simulation clock. Terrain is
+    /// sampled when projecting the captured endpoints into client packets.
+    ChoiceMovement {
+        source: u64,
+        from: Position,
+        continuation: Option<(Position, f32)>,
+        serial: u32,
+    },
     ActorMovement { source: u64, movement: ai::Movement, serial: u32 },
     /// 0.105.0 actor dispatch14593d7e0: a nonpositive-duration move
     /// faces Game+460, rather than sending the distinct moveType1 stop.

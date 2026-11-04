@@ -35,6 +35,8 @@ pub(super) struct ChoiceState {
     /// Completion retains native choice phase2 while clearing displayed rows
     /// and crediting nearby XP, before its source-priority scheduler runs.
     pub completing: bool,
+    /// A replacement offer stays in phase 2 without stopping splines again.
+    pub world_paused: bool,
     pub last_position: Option<super::Position>,
 }
 
@@ -160,6 +162,7 @@ impl Mechanics {
             });
         }
         self.choice_state.offer = self.choice_state.offer.wrapping_add(1);
+        self.pause_choice_movements();
     }
 }
 

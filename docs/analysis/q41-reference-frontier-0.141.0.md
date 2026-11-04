@@ -209,6 +209,47 @@ the zone lookup and CRT rounding seams. The resume replay stops at the
 packet serializer and checks its arguments against the serializer's
 instruction anchors. Compilation, packet delivery and gameplay remain open.
 
+### Solo movement at choice boundaries
+
+The first offer changes phase to 2 and calls the solo stop publisher.
+Chained offers, rerolls and banishes retain phase 2 without repeating the
+stop. The final completion restores phase 1 and republishes movement
+before the resume spell. Both publishers use the same snapshot collector.
+It visits live hostile rows, combat followers and loot companions in
+native vector order, filtering out completed splines. It samples at the
+current run clock without changing the simulation's motion or deadlines.
+The stop uses MonsterMove type 1. The resume uses type 0, run flag
+`0x100`, one destination and at least one millisecond of remaining travel.
+
+| 0.141.0 preferred VA range | SHA-256 |
+| --- | --- |
+| Open dispatch `0x145fb8270..0x145fb8291` | `cbc40b0ffb20767f26df1c853db855e9820348ba27f9dd41c71105bd676eac5b` |
+| Resume dispatch `0x145fb90c4..0x145fb90dc` | `dc7dc4b95d49c72c81df8a27b9183ad459f188e7de87df732a14d43a8d382cd8` |
+| Stop publisher `0x145f61210..0x145f613d1` | `99343e1939b19954a3526bd579b32b9bcc919724a7e7b34b944d40c88b9adbaa` |
+| Resume publisher `0x145f6a900..0x145f6ab91` | `ce3485ff0116af5a82f3b2e9801ebff5b7d901f6ed55c1b71707f56a24709f1f` |
+| Snapshot collector `0x145f87480..0x145f876c9` | `4b06d1de8024bceea8ce8414ec78de4ac244dddc9b648a3c5af42f881e18b784` |
+| Hostile selector `0x14602d610..0x14602d97b` | `196dff1c36a49d9dfe9fd166a9cf11bd3f33d3e878e9b102e6226ddcc29fe335` |
+| Follower selector `0x14602da60..0x14602ddae` | `7ea390120219f0214f9d057e437c93d811d370890a9ab6af971fe1c88702767a` |
+| Loot companion selector `0x14602d1e0..0x14602d530` | `ac2026ebc97983e82a8d79548c4b97b15d8771dc99dca43e7511dffe8b0e1955` |
+
+The verified Ghidra result for the collector is
+`ev_b102880d268d256f190bf997821a09a1b044f9f4239c8a7c4d1317431bd3b059`.
+Its three selector results are
+`ev_897a3119f5e6fbd18c5ffa6f67d5f653c20327a3de5cf4c968440ee52903356e`,
+`ev_7ab71434c77d18188983e8eaadcfe5120c8c5d790055c25daf41d59960d814c4` and
+`ev_7d3ffbdf004c476260f1b7731b19186d2dd9cbadd9a6e2ad954553f9b1c813eb`.
+Four journaled receipts, 10 PE spans and 30 instruction anchors were checked.
+The packet anchors include opcode `0xdd` and move type at `0x145fe4306` /
+`0x145fe439d` for stop, and `0x145fde936` / `0x145fde9d4` for resume.
+
+The [rebuilt collector](../../crates/azeroth-survivors-re/src/gameplay/mechanics/terminal_movement.rs)
+reuses the terminal movement owner's actor ordering. It captures the endpoints
+at the transition and leaves terrain sampling to the
+[existing packet projection](../../crates/azeroth-survivors-re/src/gameplay/client/events.rs).
+The projector uses the resident primary/indoor height path and preserves the
+captured height on a miss. This shifts height sampling to the client event
+drain. Verify endpoint heights and rendered stop/resume timing in the client.
+
 ### Gold credit for selected offers
 
 The [choice credit proof](evidence/0.141.0/choice-gold-credit.json) joins the
