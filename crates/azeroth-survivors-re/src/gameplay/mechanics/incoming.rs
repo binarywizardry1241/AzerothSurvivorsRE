@@ -139,6 +139,18 @@ impl Mechanics {
         if !self.active_run_state() || self.is_showcase() {
             return;
         }
+        // The 0.140.0 scripted boss hit compensates before entering the common
+        // damage owner. Its ordinary armor, crowd reduction and absorbs follow.
+        let raw = if matches!(kind, DamageKind::Mechanic(_)) && self.bosses.iter().any(|row| {
+            row.guid == source_guid && matches!(row.definition.id, 10506 | 10508 | 11261 | 10504 | 1853)
+        }) {
+            let armor = self.stats.armor_fraction.min(0.95);
+            let softened = if armor < 0.4 { armor } else { (armor - 0.4) * 0.5 + 0.4 };
+            let compensation = (1.0 - softened) / (1.0 - armor);
+            raw * compensation
+        } else {
+            raw
+        };
         // 0.121.0 145bcdd7b..145bcdde8 scales the original incoming amount
         // before immunity/armor/absorption and retains it for reactive effects.
         let raw = raw * self.party_scaling().map_or(1.0, |scaling| scaling.incoming_damage);
