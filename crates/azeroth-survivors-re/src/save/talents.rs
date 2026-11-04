@@ -108,6 +108,21 @@ impl Catalog {
         *enhancement = serde_json::from_str(include_str!(
             "../../assets/enhancement-talents-0.140.0.json"
         )).expect("recovered Enhancement tree and saved allocation keys");
+        let resonant = enhancement
+            .talents
+            .iter_mut()
+            .find(|talent| talent.key == "enh_resonant_shocks")
+            .expect("native Resonant Shocks talent");
+        let current = run_effects::catalog()
+            .classes
+            .iter()
+            .find(|class| class.id == 7)
+            .and_then(|class| class.talents.iter().find(|talent| talent.key == resonant.key))
+            .expect("native Resonant Shocks effect");
+        resonant.description.clone_from(&current.description);
+        resonant.numeric_values = (1..=resonant.max_rank)
+            .map(|rank| Some(run_effects::resonant_shocks_damage_percent(rank).to_string()))
+            .collect();
         catalog
     }
     pub fn class(&self, id: u8) -> &TalentClass {

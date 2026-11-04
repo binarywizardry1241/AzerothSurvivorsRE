@@ -34551,10 +34551,51 @@
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs": "7f5edafe2cd2c7e865ceb7b92cafc8714b78ee996eede5f3d667de7e417feae3",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/spell_display.rs": "2341761f99b130b3d328305bd96b204c334b8a3aff7f5902ab60171e0c3c8bbe",
-        "crates/azeroth-survivors-re/src/run_effects.rs": "b5f2f91f742219430102d8f12e9a158e3126630ded86fa5ded160a4bcf7469ea",
-        "crates/azeroth-survivors-re/src/save/talents.rs": "70b972f60d844450194902992bdc432c832a3b0020fe92429d65637d4c75b339",
-        "crates/azeroth-survivors-re/assets/talent-replacements-0.141.0.json": "06c640c1dc4c7f7bdde56ca760ab95d3ad370ebb622efcfb5b265c910044ce6f",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "fcb794810e48f672e4b160d39494ff29f8ac3f56122a32187b37c6faa6aba6db",
+        "crates/azeroth-survivors-re/src/save/talents.rs": "dcadbb7578bd3be059e3a9f234a330c313dd13ab5c990e241ff07c07d0996b82",
+        "crates/azeroth-survivors-re/assets/talent-replacements-0.141.0.json": "c642a8ab7944f40aaa947db8c1d5344347e786b3c991aa941072a855bbfa92fb",
         "docs/analysis/counterattack-0.141.0.md": "c923a3f94d6893265893fa9a441683bc57790628d577e654fafcf8206f210424"
+      }
+    },
+    {
+      "claim_id": "changelog:0.141.0:ba5b9288f47bcd34",
+      "gap_ids": [
+        305
+      ],
+      "systems": [
+        "custom-game-game-enhancement",
+        "custom-game-game-abilities",
+        "custom-game-game-talents"
+      ],
+      "rationale": "The live Shock and Stormbound paths now select one secondary result per pass and use the recovered rank fraction. The localized talent menu shares the rank value with the cast.",
+      "native_contract": "The native scheduler passes rank times ten divided by 100 to the one-result radius query consumer. The same multiplier feeds direct Shock damage and Flame Shock periodic installation and is reused by the Stormbound repeat.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs",
+        "crates/azeroth-survivors-re/src/run_effects.rs",
+        "crates/azeroth-survivors-re/src/save/talents.rs",
+        "crates/azeroth-survivors-re/assets/talent-replacements-0.141.0.json"
+      ],
+      "evidence_refs": [
+        "docs/analysis/resonant-shocks-0.141.0.md"
+      ],
+      "static_checks": [
+        {
+          "command": "git diff --check",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/resonant-shocks-0.141.0.md"
+        }
+      ],
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs": "f963ec73e21e452dd30023423c6b0852b04bd558d46cf7cbb6e17c8fe2ebf6b3",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "fcb794810e48f672e4b160d39494ff29f8ac3f56122a32187b37c6faa6aba6db",
+        "crates/azeroth-survivors-re/src/save/talents.rs": "dcadbb7578bd3be059e3a9f234a330c313dd13ab5c990e241ff07c07d0996b82",
+        "crates/azeroth-survivors-re/assets/talent-replacements-0.141.0.json": "c642a8ab7944f40aaa947db8c1d5344347e786b3c991aa941072a855bbfa92fb",
+        "docs/analysis/resonant-shocks-0.141.0.md": "84a1f51199c116ae8ebed0c791827e68b276bbb96efbe25ecf57600c1aa8ea3c"
       }
     }
   ]

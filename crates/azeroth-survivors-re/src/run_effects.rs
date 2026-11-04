@@ -35,6 +35,11 @@ use serde::Deserialize;
 
 pub const TARGET_SHA256: &str = "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b";
 
+/// The 0.141.0 Shock scheduler at 0x145f62dee scales power by this percentage.
+pub const fn resonant_shocks_damage_percent(rank: u8) -> u16 {
+    rank as u16 * 10
+}
+
 /// Current actor-hit1454d8108..8258 consumes cast tokens before generic effects.
 /// Failed/no-target casts still insert these tokens at the cast-owner entry.
 pub fn hit_event(
@@ -134,7 +139,7 @@ pub fn catalog() -> &'static Catalog {
         let mut replacements_01410: CurrentTalentReplacements = serde_json::from_str(include_str!(
             "../assets/talent-replacements-0.141.0.json"
         ))
-        .expect("0.141.0 Counterattack replacement");
+        .expect("0.141.0 talent replacements");
         assert_eq!(
             replacements_01410.target_sha256,
             "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",

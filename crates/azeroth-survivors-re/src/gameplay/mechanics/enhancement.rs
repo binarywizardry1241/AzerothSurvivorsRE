@@ -541,10 +541,10 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
         };
         let now = context.now;
         let center = first.actor.movement.position_at(now);
-        // 0x145f25350 selects the nearest non-base targets in an 8-yard
-        // circle. Snapshot the composed power once per secondary pass.
+        // 0.141.0 0x145efdd50 uses only the first result of the 8-yard
+        // query around the first base target, excluding all base targets.
         let victims = behavior::targeting::radius_targets(&actors, now, center, 8.0, selected);
-        if victims.is_empty() || rank == 0 {
+        if victims.is_empty() {
             return;
         }
         let context = self.core.current_context(context, execution);
@@ -558,8 +558,9 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
         } else {
             0.0
         };
-        let power = ((base + health) * context.power.damage_multiplier) * 0.35;
-        for target in victims.into_iter().take(usize::from(rank)) {
+        let fraction = f32::from(run_effects::resonant_shocks_damage_percent(rank)) / 100.0;
+        let power = ((base + health) * context.power.damage_multiplier) * fraction;
+        for target in victims.into_iter().take(1) {
             let guid = target.actor.guid;
             self.core.cast_spell(SpellCast {
                 source_guid: context.player_guid,
