@@ -57,7 +57,7 @@ def source_check():
     assert 'node.width = Val::Px(31. * factor' not in source
     assert '* meter.scale' in source.split('fn fit(', 1)[1]
     assert 'cursor.cursor_over && (button.is_some()' in source
-    assert 'Action::Toggle => {' in source and 'icon.color = if active {' in source
+    assert 'Action::Toggle => {' in source and 'Color::srgb(0.78, 0.78, 0.78)' in source
     bridge = (ROOT / 'crates/benilla-app/src/local_client.rs').read_text()
     assert 'script.named_frame_normalized_rect("Minimap")' in bridge
 
@@ -181,14 +181,77 @@ def replay(pe):
                         'Scale comparisons model the existing centered Bevy transform; actual layout/picking/GPU execution is unverified.'])
 
 
+def check_current_tint(target, pe):
+    """Replay the meter icon's bounded tint comparison and writeback."""
+    from unicorn import Uc, UC_ARCH_X86, UC_MODE_64
+    from unicorn import x86_const as reg
+
+    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/meter-minimap-tint.json').read_text())
+    assert all(target[key] == proof['target'][key] for key in ('version', 'sha256', 'size_bytes'))
+    machine = Uc(UC_ARCH_X86, UC_MODE_64)
+    pages = set()
+    for span in proof['spans']:
+        start = int(span['start'], 16)
+        end = int(span['end_exclusive'], 16)
+        offset = pe.rva_offset(start - pe.image_base)
+        raw = pe.data[offset:offset + end - start]
+        assert hashlib.sha256(raw).hexdigest() == span['sha256']
+        pages.update(range(start & ~4095, (end + 4095) & ~4095, 4096))
+    for page in sorted(pages):
+        machine.mem_map(page, 4096)
+        offset = pe.rva_offset(page - pe.image_base)
+        machine.mem_write(page, pe.data[offset:offset + 4096])
+
+    scratch = 0x200000000
+    machine.mem_map(scratch, 4096)
+    row, tick, opened, stack = (scratch + offset for offset in (0x100, 0x200, 0x300, 0x800))
+    machine.mem_write(stack + 0x30, struct.pack('<Q', opened))
+    white = struct.pack('<I4f', 1, 1, 1, 1, 1)
+    dim = struct.pack('<I4f', 0, .78, .78, .78, 1)
+    cases = [
+        (2, 0, dim, dim),
+        (2, 0, white, dim),
+        (2, 1, white, white),
+        (2, 1, dim, white),
+        (1, 0, dim, white),
+        (2, 0, struct.pack('<I4f', 1, .78, .78, .78, 1), dim),
+        (2, 0, struct.pack('<I4f', 0, .78, .78, .78, float('nan')), dim),
+    ]
+    entry = int(proof['entry'], 16)
+    stop = int(proof['stop'], 16)
+    for interaction, meter_open, old, expected in cases:
+        machine.mem_write(row + 0x38, old)
+        machine.mem_write(tick, struct.pack('<I', 1))
+        machine.mem_write(opened + 0x30, bytes([meter_open]))
+        for register, value in ((reg.UC_X86_REG_RSP, stack), (reg.UC_X86_REG_RSI, row),
+                                (reg.UC_X86_REG_RDI, tick), (reg.UC_X86_REG_RBP, 2),
+                                (reg.UC_X86_REG_RBX, interaction)):
+            machine.reg_write(register, value)
+        machine.emu_start(entry, stop, count=100)
+        assert machine.reg_read(reg.UC_X86_REG_RIP) == stop
+        assert machine.mem_read(row + 0x38, 20) == expected
+        assert machine.mem_read(tick, 4) == struct.pack('<I', 1 if old == expected else 2)
+
+    source = (ROOT / 'crates/azeroth-survivors-re/src/gameplay/meter.rs').read_text()
+    paint = source.split('fn paint(', 1)[1].split('fn mode_name(', 1)[0]
+    assert 'Color::WHITE' in paint and 'Color::srgb(0.78, 0.78, 0.78)' in paint
+    assert 'icon.map_unchanged(|image| &mut image.color)' in paint and '.set_if_neq(tint)' in paint
+    print(f'PASS: {len(cases)} current native minimap tint and change-tick cases; source route matches')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--collect', action='store_true')
-    parser.add_argument('--prepare-rea', action='store_true')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--collect', action='store_true')
+    mode.add_argument('--prepare-rea', action='store_true')
+    mode.add_argument('--current-tint', action='store_true')
     args = parser.parse_args()
     target = latest_target(verify=True)
-    assert target['sha256'] == SHA, 'Installed target changed; recover current owners first'
+    if not args.current_tint:
+        assert target['sha256'] == SHA, 'Installed target changed; recover current owners first'
     pe = load_script('meter_minimap_pe', ROOT / 'scripts/inventory-executable.py').PE(target_bytes(target))
+    if args.current_tint:
+        return check_current_tint(target, pe)
 
     def raw(start, end):
         offset = pe.rva_offset(start - pe.image_base)

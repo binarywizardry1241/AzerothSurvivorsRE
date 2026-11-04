@@ -429,12 +429,14 @@ fn paint(
         || buttons
             .iter()
             .any(|interaction| *interaction != Interaction::None);
-    for mut icon in &mut icons {
-        icon.color = if active {
+    for icon in &mut icons {
+        let tint = if active {
             Color::WHITE
         } else {
             Color::srgb(0.78, 0.78, 0.78)
         };
+        icon.map_unchanged(|image| &mut image.color)
+            .set_if_neq(tint);
     }
     for (action, interaction, mut background) in &mut actions {
         if matches!(

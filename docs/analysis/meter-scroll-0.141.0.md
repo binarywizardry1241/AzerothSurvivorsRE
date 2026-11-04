@@ -56,3 +56,26 @@ records, viewport identity, rail width and Reset writes using synthetic
 entity IDs and explicit spawn and copy seams. Rustfmt parsed both changed
 Rust files. Compilation, rendered input and original/rebuilt comparisons
 remain open, including reset-and-repopulation and small-window resize behavior.
+
+## Minimap tint change detection
+
+The [meter paint trace](computed-transfers-0.141.0.md#shared-color-comparison-and-receiver-dispatch)
+connects `0x14042442d..0x1404244fc` to the minimap icon's linear white and
+dim sRGB tint paths. The native comparison at `0x1404244e2` skips the
+change-tick store and the tint write when the existing value is equal.
+The rebuilt paint previously marked `ImageNode` changed on every update
+through its mutable assignment. It now compares the tint through the existing
+Bevy change-detection interface before writing the field. The icon values and
+the activation conditions remain as recorded in the live paint source.
+
+The [tint proof](evidence/0.141.0/meter-minimap-tint.json) binds the two
+color values, native writer and comparison table. Seven bounded instruction
+replays cover equal and changed tint, both open states, interaction, a different
+color tag and a NaN channel. The check supplies synthetic component and tick
+slots. Rendered behavior, initialized scheduling and original/rebuilt comparison
+remain open under [#8](../verification-needed.md#gap-8).
+
+```sh
+PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs \
+  python3 -B scripts/check-meter-minimap.py --current-tint
+```
