@@ -109,10 +109,10 @@ polling selected-secondary retry. Deferring those replies to the frame's final
 drain could submit an old worker's reply to its replacement and interleave it
 with the new connection's authentication and control exchange. Retry admission,
 pending replay and the fresh-party reset keep their existing source owners.
-This source repair uses the retained 0.127.0 contract. Applicability to the
-installed 0.139.2 SHA-256
-`0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`
-and actual socket delivery remain unverified.
+This source repair used the retained 0.127.0 contract. The bounded
+[0.139.2 assessment](coop-reconnect-replies-0.139.2.md) independently
+corroborates the receive and writer ordering. Actual socket delivery
+remains unverified.
 
 ## Static checks and limits
 

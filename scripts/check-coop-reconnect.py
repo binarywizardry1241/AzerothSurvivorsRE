@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Verify bounded reconnect/departure contracts without compiling or networking."""
+import argparse
 import hashlib
 import itertools
 import json
@@ -7,7 +8,7 @@ import platform
 import struct
 import subprocess
 
-from coverage_common import ROOT, latest_target, target_bytes
+from coverage_common import ROOT, installed_identity, latest_target, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
@@ -254,7 +255,73 @@ def source_checks():
         assert parsed.returncode == 0, parsed.stderr
 
 
+def current_reply_order():
+    from capstone import Cs, CS_ARCH_X86, CS_MODE_64
+    from equipment_native import EquipmentProbe
+
+    proof = json.loads((ROOT / 'docs/analysis/evidence/0.139.2/coop-reconnect-replies.json').read_text())
+    target = installed_identity()
+    assert target == proof['target']
+    image = target_bytes(target)
+    pe = load_script('current_reconnect_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    instructions, ranges = {}, {}
+    for row in proof['native_ranges']:
+        start, end = int(row['start'], 16), int(row['end_exclusive'], 16)
+        offset = pe.rva_offset(start - pe.image_base)
+        raw = image[offset:offset + end - start]
+        assert offset == int(row['file_offset'], 16) and digest(raw) == row['sha256'], row['role']
+        decoded = list(decoder.disasm(raw, start))
+        assert sum(i.size for i in decoded) == len(raw), row['role']
+        instructions.update((i.address, (i.mnemonic, i.op_str)) for i in decoded)
+        ranges[row['role']] = (start, end)
+    for address, mnemonic, operands in proof['anchors']:
+        assert instructions[int(address, 16)] == (mnemonic, operands), address
+
+    serializations = {0x145f8a949, 0x145f8a972}
+    submits = {0x145f8a956, 0x145f8a97f}
+
+    class WriterProbe(EquipmentProbe):
+        def hook(self, uc, pc, size, unused):
+            assert any(start <= pc and pc + size <= end for start, end in self.ranges)
+            if pc in serializations:
+                self.serialized = pc
+                self.reg('RIP', pc + size)
+            elif pc in submits:
+                uc.emu_stop()
+
+    writer = ranges['reply writer']
+    probe = WriterProbe(image, pe, [writer])
+    service, frame = probe.alloc(0x190), probe.alloc(0x100) + 0x60
+    probe.put(service + 0x130, 0x1122, 0x3344)
+    probe.put(service + 0x180, 0x5566, 0x7788)
+    cases = 0
+    for peer, selection in itertools.product((0, 1, 0xffffffff), (0, 4, 0xffffffffffffffff)):
+        probe.serialized = None
+        probe.put(service + 0x60, selection)
+        probe.reg('RBP', frame)
+        probe.reg('RSI', service)
+        probe.reg('RDI', peer)
+        probe.native.emu_start(0x145f8a91b, probe.DONE, count=18)
+        expected = ((0x145f8a972, 0x145f8a97f, 0x5566, 0x7788) if selection == 0xffffffffffffffff
+                    else (0x145f8a949, 0x145f8a956, 0x1122, 0x3344))
+        assert (probe.serialized, probe.reg('RIP'), probe.reg('RCX'), probe.reg('RSI')) == expected
+        assert probe.q(frame - 0x60) == 0x8000000000000005
+        assert probe.q(frame - 0x40) & 0xffffffff == peer
+        assert probe.reg('RDX') == frame + 0x40
+        cases += 1
+
+    source_checks()
+    print(json.dumps(dict(status='pass', target=target, native_ranges=len(ranges),
+        instruction_anchors=len(proof['anchors']), writer_route_cases=cases,
+        rust_syntax_paths=2, compiled_or_networked=False), indent=2))
+
+
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--current-replies', action='store_true', help='Check 0.139.2 reconnect reply ordering')
+    if parser.parse_args().current_replies:
+        return current_reply_order()
     proof = json.loads((BASE / 'manifest.json').read_text())
     ranges = verify(proof)
     counts = replay(ranges)

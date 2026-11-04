@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "gap_ids": [
+    213
+  ],
+  "target": {
+    "version": "0.139.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+    "size_bytes": 150793728
+  },
+  "native_ranges": [
+    {
+      "role": "guest ingress",
+      "start": "0x145f8b0a2",
+      "end_exclusive": "0x145f8b113",
+      "file_offset": "0x5f8a4a2",
+      "sha256": "7854d469398d4f4ed3a392e733ddf5d2f55482e401f1a59a506a2bf132eaec7f"
+    },
+    {
+      "role": "host ingress",
+      "start": "0x145f8c505",
+      "end_exclusive": "0x145f8c548",
+      "file_offset": "0x5f8b905",
+      "sha256": "524e00eaa795ba1e9ae332231f10021433dc4806a842bbcf378e8bdbb5ddc20f"
+    },
+    {
+      "role": "service event cleanup and next iteration",
+      "start": "0x145f8c381",
+      "end_exclusive": "0x145f8c3c5",
+      "file_offset": "0x5f8b781",
+      "sha256": "1655c3130a1fa2e526cd14d2544dea479f264a8bbd09e10a70a210452055d5c9"
+    },
+    {
+      "role": "inner receive header and peer identity",
+      "start": "0x145f90836",
+      "end_exclusive": "0x145f9086e",
+      "file_offset": "0x5f8fc36",
+      "sha256": "4807c7f9786414e03bb10151b739811abddb5c9b90b5ef5e1ade928487217667"
+    },
+    {
+      "role": "immediate control or missing-range reply",
+      "start": "0x145f91079",
+      "end_exclusive": "0x145f910f1",
+      "file_offset": "0x5f90479",
+      "sha256": "0bd2f99cfbe4d485c3481cb7e3b1d04b88e6ea0bcacba29569d8c1d940d6f5aa"
+    },
+    {
+      "role": "requested payload reply loop",
+      "start": "0x145f91114",
+      "end_exclusive": "0x145f911b3",
+      "file_offset": "0x5f90514",
+      "sha256": "2f1e763b4e43c5a164db88ae13da63acf88108cb222b6a47f8cc436e89ec72d9"
+    },
+    {
+      "role": "reply writer",
+      "start": "0x145f8a8f0",
+      "end_exclusive": "0x145f8a998",
+      "file_offset": "0x5f89cf0",
+      "sha256": "0186759b8404a3b65bdf8425bf38a58c3b2860c49ff24d0df475c48192f9f1d9"
+    }
+  ],
+  "anchors": [
+    [
+      "0x145f8b0b0",
+      "cmp",
+      "byte ptr [r13 + 0x228], 0"
+    ],
+    [
+      "0x145f8b0dd",
+      "xor",
+      "edx, edx"
+    ],
+    [
+      "0x145f8b0e6",
+      "call",
+      "0x145f90810"
+    ],
+    [
+      "0x145f8b10e",
+      "jmp",
+      "0x145f8c381"
+    ],
+    [
+      "0x145f8c50c",
+      "mov",
+      "edx, esi"
+    ],
+    [
+      "0x145f8c518",
+      "call",
+      "0x145f90810"
+    ],
+    [
+      "0x145f8c543",
+      "jmp",
+      "0x145f8c381"
+    ],
+    [
+      "0x145f8c3bf",
+      "je",
+      "0x145f8ace0"
+    ],
+    [
+      "0x145f90836",
+      "mov",
+      "dword ptr [rbp + 0xe4], edx"
+    ],
+    [
+      "0x145f9083f",
+      "cmp",
+      "r9, 9"
+    ],
+    [
+      "0x145f9084d",
+      "cmp",
+      "rax, 4"
+    ],
+    [
+      "0x145f910c7",
+      "mov",
+      "edx, dword ptr [rbp + 0xe4]"
+    ],
+    [
+      "0x145f910cd",
+      "call",
+      "0x145f8a8f0"
+    ],
+    [
+      "0x145f91185",
+      "mov",
+      "edx, dword ptr [rbp + 0xe4]"
+    ],
+    [
+      "0x145f9118e",
+      "call",
+      "0x145f8a8f0"
+    ],
+    [
+      "0x145f911b1",
+      "jmp",
+      "0x145f91140"
+    ],
+    [
+      "0x145f8a91b",
+      "mov",
+      "dword ptr [rbp - 0x40], edi"
+    ],
+    [
+      "0x145f8a91e",
+      "movabs",
+      "rax, 0x8000000000000005"
+    ],
+    [
+      "0x145f8a931",
+      "je",
+      "0x145f8a95c"
+    ],
+    [
+      "0x145f8a949",
+      "call",
+      "0x1461aa410"
+    ],
+    [
+      "0x145f8a956",
+      "call",
+      "qword ptr [rsi + 0x18]"
+    ],
+    [
+      "0x145f8a972",
+      "call",
+      "0x1461aa410"
+    ],
+    [
+      "0x145f8a97f",
+      "call",
+      "qword ptr [rsi + 0x18]"
+    ]
+  ]
+}
