@@ -636,6 +636,50 @@ pub(super) fn scripted_body(
         groups: Vec::new(),
     };
     match &row.shape {
+        Shape::Grid(grid) => {
+            let half = grid.pitch * 0.5;
+            let mut tiles = Vec::new();
+            let mut edges = Vec::new();
+            for y in 0..i32::from(grid.rows) {
+                for x in 0..i32::from(grid.columns) {
+                    if !grid.contains_danger(y, x) {
+                        continue;
+                    }
+                    let [cx, cy] = grid.tile_center(y, x);
+                    let position = [cx, cy, row.position[2]];
+                    let project = |vertices: &mut Vec<_>, bounds: [f32; 4]| {
+                        let tile = frame(position, grid.angle, bounds, 8.0);
+                        ground.project(vertices, &tile, |_| 1.0, |x, z| tile.rect_uv(x, z));
+                    };
+                    project(&mut tiles, [-half, half, -half, half]);
+                    let border = 0.9 * scale;
+                    for (dy, dx, bounds) in [
+                        (-1, 0, [-half, half, -half - border, -half + border]),
+                        (1, 0, [-half, half, half - border, half + border]),
+                        (0, -1, [-half - border, -half + border, -half, half]),
+                        (0, 1, [half - border, half + border, -half, half]),
+                    ] {
+                        if !grid.contains_danger(y + dy, x + dx) {
+                            project(&mut edges, bounds);
+                        }
+                    }
+                }
+            }
+            vec![
+                Group {
+                    vertices: tiles,
+                    style: 6,
+                    mask: 3,
+                    overlay: false,
+                },
+                Group {
+                    vertices: edges,
+                    style: 1,
+                    mask: 4,
+                    overlay: true,
+                },
+            ]
+        }
         Shape::Field {
             polygon,
             square,
@@ -644,6 +688,9 @@ pub(super) fn scripted_body(
             vec![field(ground, polygon, *square, *z_range)]
         }
         Shape::Circle { radius } => {
+            if let Some(tower) = row.tower_marker() {
+                return outline(ground, &tower);
+            }
             builder.disc(row.position, *radius, *radius, 0, 0, None);
             builder.arc(
                 row.position,
@@ -659,6 +706,30 @@ pub(super) fn scripted_body(
         Shape::Rect { length, width } => {
             let marker = row.rectangle_marker(*length, *width);
             builder.rectangle(&marker, *length, *width, length * 0.25 + 4., 0, 2);
+            builder.line_outline(&marker, *length, *width, scale);
+            builder.groups
+        }
+        Shape::Cone { radius, arc } => outline(
+            ground,
+            &row.marker(ShapeLegacy::Cone {
+                radius: *radius,
+                arc: *arc,
+            }),
+        ),
+        Shape::Donut { inner, outer } => outline(
+            ground,
+            &row.marker(ShapeLegacy::Donut {
+                inner: *inner,
+                outer: *outer,
+            }),
+        ),
+        Shape::Capsule { length, width } => {
+            capsule(&mut builder, row, *length, *width, 0, scale);
+            builder.groups
+        }
+        Shape::Sweep { length, width, .. } => {
+            let marker = row.rectangle_marker(*length, *width);
+            builder.rectangle(&marker, *length, *width, length * 0.25 + 4.0, 0, 2);
             builder.line_outline(&marker, *length, *width, scale);
             builder.groups
         }
@@ -680,7 +751,7 @@ pub(super) fn scripted_fill(
         return builder.groups;
     }
     match &row.shape {
-        Shape::Field { .. } => {}
+        Shape::Field { .. } | Shape::Grid(_) => {}
         Shape::Circle { radius } => {
             let filled = progress * radius;
             builder.disc(row.position, filled, *radius, 2, 1, None);
@@ -714,6 +785,106 @@ pub(super) fn scripted_fill(
                 );
             }
         }
+        Shape::Cone { radius, arc } => {
+            return fill(
+                ground,
+                &row.marker(ShapeLegacy::Cone {
+                    radius: *radius,
+                    arc: *arc,
+                }),
+                progress,
+            )
+        }
+        Shape::Donut { inner, outer } => {
+            return fill(
+                ground,
+                &row.marker(ShapeLegacy::Donut {
+                    inner: *inner,
+                    outer: *outer,
+                }),
+                progress,
+            )
+        }
+        Shape::Capsule { length, width } => {
+            capsule(&mut builder, row, length * progress, *width, 2, 1.0);
+        }
+        Shape::Sweep {
+            length,
+            width,
+            span,
+        } => {
+            let offset = row.active_progress(clock);
+            let mut marker = row.rectangle_marker(*length, *width);
+            marker.position[0] += span[0] * offset;
+            marker.position[1] += span[1] * offset;
+            builder.rectangle(&marker, *length, *width, length * 0.25 + 4.0, 2, 3);
+        }
     }
     builder.groups
+}
+
+use azeroth_survivors_re::raid_markers::Shape as ShapeLegacy;
+
+fn capsule(
+    builder: &mut Builder<'_, '_, '_>,
+    row: &super::scripted::Part,
+    length: f32,
+    width: f32,
+    style: u8,
+    scale: f32,
+) {
+    let marker = row.rectangle_marker(length, width);
+    let radius = width * 0.5;
+    let (sin, cos) = row.angle.sin_cos();
+    let end = [
+        row.position[0] + cos * length,
+        row.position[1] + sin * length,
+        row.position[2],
+    ];
+    builder.rectangle(
+        &marker,
+        length,
+        width,
+        length * 0.25 + 4.0,
+        style,
+        if style == 0 { 2 } else { 3 },
+    );
+    for (point, angle) in [(row.position, row.angle + PI), (end, row.angle)] {
+        builder.disc(
+            point,
+            radius,
+            radius,
+            style,
+            if style == 0 { 0 } else { 1 },
+            Some((angle, PI)),
+        );
+        if style == 0 {
+            builder.arc(
+                point,
+                radius,
+                angle - FRAC_PI_2,
+                angle + FRAC_PI_2,
+                (radius * 0.3).min(0.9) * scale,
+                1,
+                4,
+            );
+        }
+    }
+    if style == 0 {
+        let border = (radius * 0.3).min(0.9) * scale;
+        for side in [-radius, radius] {
+            builder.project(
+                frame(
+                    row.position,
+                    row.angle,
+                    [0.0, length, side - border, side + border],
+                    length * 0.25 + 4.0,
+                ),
+                row.position,
+                &[],
+                1,
+                4,
+            );
+        }
+    }
 }

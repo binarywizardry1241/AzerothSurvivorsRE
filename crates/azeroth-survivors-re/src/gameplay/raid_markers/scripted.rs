@@ -1,6 +1,7 @@
-//! 0.140.0 scripted marker rows for Gandling's circle, rectangle and field.
+//! Scripted encounter marker rows and their independent warning clock.
 //! The current client decoder at 1400b29a0 shares the hzt clock, but keeps
 //! each scripted part separate from the older marker IDs.
+use azeroth_survivors_re::bosses::scripted_attack_geometry::Grid;
 use azeroth_survivors_re::raid_markers::{self as native, smooth};
 use serde_json::Value;
 use std::collections::HashSet;
@@ -14,6 +15,24 @@ pub(super) enum Shape {
         length: f32,
         width: f32,
     },
+    Cone {
+        radius: f32,
+        arc: f32,
+    },
+    Donut {
+        inner: f32,
+        outer: f32,
+    },
+    Capsule {
+        length: f32,
+        width: f32,
+    },
+    Sweep {
+        length: f32,
+        width: f32,
+        span: [f32; 2],
+    },
+    Grid(Grid),
     Field {
         polygon: Vec<[f32; 2]>,
         square: [f32; 4],
@@ -34,6 +53,7 @@ pub(super) struct Part {
     end: f32,
     fade: f32,
     safe: bool,
+    tower: bool,
     tracked: bool,
     locked_at: Option<f32>,
     fade_end: Option<f32>,
@@ -54,6 +74,19 @@ fn numbers<const N: usize>(value: &Value) -> Option<[f32; N]> {
     array.iter().all(|n| n.is_finite()).then_some(array)
 }
 
+fn grid_mask(value: &Value) -> Option<[u64; 2]> {
+    let words = value.as_array()?;
+    if words.len() > 2 {
+        return None;
+    }
+    let mut mask = [0; 2];
+    for (slot, value) in mask.iter_mut().zip(words) {
+        let word = value.as_str()?;
+        *slot = u64::from_str_radix(word.strip_prefix("0x").unwrap_or(word), 16).ok()?;
+    }
+    Some(mask)
+}
+
 impl Part {
     fn read(attack: u64, locked: bool, value: &Value, revision: u64) -> Option<Self> {
         let shape = match value["s"].as_str()? {
@@ -64,6 +97,49 @@ impl Part {
                 length: number(&value["len"]),
                 width: number(&value["w"]),
             },
+            "cone" => Shape::Cone {
+                radius: number(&value["r"]),
+                arc: number(&value["arc"]),
+            },
+            "donut" => Shape::Donut {
+                inner: number(&value["inner"]),
+                outer: number(&value["r"]),
+            },
+            "capsule" => Shape::Capsule {
+                length: number(&value["len"]),
+                width: number(&value["w"]),
+            },
+            "sweep" => Shape::Sweep {
+                length: number(&value["len"]),
+                width: number(&value["w"]),
+                span: [number(&value["dx"]), number(&value["dy"])],
+            },
+            "grid" => {
+                let rows = u8::try_from(value["rows"].as_u64()?).ok()?;
+                let columns = u8::try_from(value["cols"].as_u64()?).ok()?;
+                let pitch = number(&value["cell"]);
+                let origin = [number(&value["bx"]), number(&value["by"])];
+                let angle = number(&value["a"]);
+                if rows == 0
+                    || columns == 0
+                    || u16::from(rows) * u16::from(columns) > 128
+                    || pitch <= 0.0
+                    || !pitch.is_finite()
+                    || !angle.is_finite()
+                    || !origin.iter().all(|coordinate| coordinate.is_finite())
+                {
+                    return None;
+                }
+                Shape::Grid(Grid {
+                    origin,
+                    angle,
+                    pitch,
+                    rows,
+                    columns,
+                    danger: grid_mask(&value["danger"])?,
+                    valid: grid_mask(&value["valid"])?,
+                })
+            }
             "field" => {
                 let polygon = value["v"]
                     .as_array()?
@@ -94,6 +170,21 @@ impl Part {
             {
                 return None;
             }
+            Shape::Capsule { length, width } | Shape::Sweep { length, width, .. }
+                if !length.is_finite() || !width.is_finite() || length < 0. || width <= 0. =>
+            {
+                return None
+            }
+            Shape::Cone { radius, arc }
+                if !radius.is_finite() || !arc.is_finite() || radius <= 0. || arc <= 0. =>
+            {
+                return None
+            }
+            Shape::Donut { inner, outer }
+                if !inner.is_finite() || !outer.is_finite() || inner < 0. || inner >= outer =>
+            {
+                return None
+            }
             _ => {}
         }
         let index = value["i"].as_u64().unwrap_or_default() as u8;
@@ -102,6 +193,7 @@ impl Part {
             Some("blue") => [0.3, 0.6, 1.],
             Some("red") => [1., 0.16, 0.1],
             Some("pale") => [0.82, 0.88, 0.92],
+            Some("tower") => [0.35, 0.78, 1.],
             _ => [1., 0.5, 0.12],
         };
         Some(Self {
@@ -120,6 +212,7 @@ impl Part {
             end: number(&value["t2"]),
             fade: number(&value["fade"]),
             safe: value["safe"].as_bool() == Some(true),
+            tower: value["c"].as_str() == Some("tower"),
             tracked: !locked && value["trk"].as_bool() == Some(true),
             locked_at: None,
             fade_end: None,
@@ -155,10 +248,18 @@ impl Part {
     }
 
     pub fn rectangle_marker(&self, length: f32, width: f32) -> native::Marker {
+        self.marker(native::Shape::Line { length, width })
+    }
+
+    pub fn marker(&self, shape: native::Shape) -> native::Marker {
         native::Marker {
             id: self.key.0,
-            shape: native::Shape::Line { length, width },
-            kind: native::Kind::Danger,
+            shape,
+            kind: if self.tower {
+                native::Kind::Tower
+            } else {
+                native::Kind::Danger
+            },
             position: self.position,
             facing: self.angle,
             start: self.fill_start,
@@ -167,6 +268,18 @@ impl Part {
             fade_end: self.fade_end,
             revision: self.revision,
         }
+    }
+
+    pub fn tower_marker(&self) -> Option<native::Marker> {
+        let Shape::Circle { radius } = self.shape else {
+            return None;
+        };
+        self.tower
+            .then(|| self.marker(native::Shape::Circle { radius }))
+    }
+
+    pub fn active_progress(&self, clock: f32) -> f32 {
+        ((clock - self.impact) / (self.end - self.impact).max(0.05)).clamp(0., 1.)
     }
 
     /// Field paint remaps UV around the authored safe center as the danger
@@ -226,13 +339,16 @@ impl Part {
             1 => (0.2, 1., 0.3 + burst * 0.5 + lock),
             2 => (0.25, 0.24, 0.),
             3 => (0.4, 0.9, 0.35),
+            4 => (0.2, 0.7, 0.3),
+            5 => (0.25, 0.35, 0.),
+            6 => (0.25, 0.6 * self.progress, 0.),
             7 => (0., 0.74, 0.),
             _ => (0., 0., 0.),
         };
         let rgb = self
             .color
             .map(|v| ((v + (1. - v) * white) * brighten).min(1.));
-        let gain = fade * pulse;
+        let gain = if style == 6 { fade } else { fade * pulse };
         (rgb, alpha * gain, glow * gain)
     }
 
@@ -288,7 +404,9 @@ impl Markers {
                     {
                         row.position = [number(&update[1]), number(&update[2]), number(&update[3])];
                         row.angle = number(&update[4]);
-                        if let Shape::Rect { length, .. } = &mut row.shape {
+                        if let Shape::Rect { length, .. } | Shape::Capsule { length, .. } =
+                            &mut row.shape
+                        {
                             *length = number(&update[5]);
                         }
                         row.locked_at = None;

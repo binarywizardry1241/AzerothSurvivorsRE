@@ -275,6 +275,7 @@ pub enum RunEvent {
     /// 145950b00: the same caster's native SpellStart/animation, no target.
     RaidCast { source: u64, spell_id: u32, seconds: f32 },
     RaidTransformCast { source: u64, spell_id: u32, seconds: f32 },
+    RaidSpellGo(SpellCast),
     /// Current14597b9eb: ordinary/guardian cast start targets the live player.
     ActorCast { source: u64, spell_id: u32, seconds: f32 },
     RaidFacing { source: u64, position: Position, serial: u32, angle: f32 },
@@ -1375,7 +1376,7 @@ impl Mechanics {
         // Individual damage/movement callbacks retain their own mode gates.
         if !player_only {
             self.resolve_boss_effects(delta, player, facing, world);
-            self.expire_scripted_attacks();
+            self.expire_scripted_attacks(world);
         }
         if let Some((point, angle)) = self.boss_state.player_override.take() {
             player = point; facing = angle;

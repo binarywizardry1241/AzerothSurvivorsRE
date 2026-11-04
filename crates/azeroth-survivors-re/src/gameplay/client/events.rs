@@ -412,6 +412,11 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
                 }
                 None
             },
+            RunEvent::RaidSpellGo(cast)=>{
+                let mut packet=spell_go(cast);
+                if let SessionEvent::SpellGo {cast_flags,..}=&mut packet { *cast_flags=8; }
+                packets.0.push(packet);None
+            },
             RunEvent::RaidMarker(value)=>{
                 if let Some(coop)=coop.as_mut() { coop.send_value_from(source_slot,&value); }
                 markers.0.push(value);None

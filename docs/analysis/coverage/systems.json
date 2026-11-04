@@ -66772,6 +66772,28 @@
         "finding": 313,
         "scope": "Gandling script deadlines, four attacks, field/rectangle/circle hit and warning state, source cancellation and death result.",
         "evidence": "docs/analysis/evidence/0.140.0/scholomance-straight-as.json"
+      },
+      "gap_313_source_review_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 313,
+        "source_status": "connected",
+        "scope": "Kirtonos now runs the four phase-owned attacks and their fixed final cycle, with recipient targeting, clipped displacement, and Blood Offering healing. Barov now publishes the three rings, locked Immolate burn, sequential X and plus, and two moving wall segments through the shared attack lifecycle.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/kirtonos.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/barov.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs",
+          "crates/azeroth-survivors-re/src/bosses/scripted_attack_geometry.rs",
+          "crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs",
+          "crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/scholomance-kirtonos-0.141.0.md",
+          "docs/analysis/scholomance-barov-0.141.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
       }
     },
     {
@@ -66835,7 +66857,27 @@
       "remaining_source_work": [
         "Recover dash, dual cleave, Bladestorm, farthest-target hook and cast/warning lifetime from the verified Location parents.",
         "Establish source assignment and register only the independently recovered bounded contract."
-      ]
+      ],
+      "gap_313_source_review_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 313,
+        "source_status": "connected",
+        "scope": "Krastinov now runs Surgical Rush, Twin Cleaver, Bladestorm and Hook through the shared warning, damage and movement owners.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/krastinov.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs",
+          "crates/azeroth-survivors-re/src/bosses/scripted_attack_geometry.rs",
+          "crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs",
+          "crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/scholomance-krastinov-0.141.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      }
     },
     {
       "id": "custom-game-game-scripts-ras",
@@ -66898,7 +66940,27 @@
       "remaining_source_work": [
         "Recover Frozen Checkmate phase timing, tile geometry, armor gate, rune positions and touch/vulnerability state.",
         "Establish source assignment and register only the independently recovered bounded contract."
-      ]
+      ],
+      "gap_313_source_review_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 313,
+        "source_status": "connected",
+        "scope": "Ras schedules all three recurring attacks and the 60% Frost Armor callback. Checkmate uses the two retained masks; the current shield, rune touch and vulnerability paths are connected.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/ras.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs",
+          "crates/azeroth-survivors-re/src/bosses/scripted_attack_geometry.rs",
+          "crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs",
+          "crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/scholomance-ras-0.141.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      }
     }
   ],
   "reviewed_pending_source_hashes": {},

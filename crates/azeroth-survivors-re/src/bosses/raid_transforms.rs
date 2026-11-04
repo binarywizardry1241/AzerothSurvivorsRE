@@ -12,6 +12,12 @@ pub enum KirtonosForm {
     Winged,
 }
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum KirtonosBeat {
+    Form(KirtonosForm),
+    Attack(u8),
+}
+
 impl KirtonosForm {
     pub fn fields(self, base_display: u32, base_scale: f32) -> TransformFields {
         let descriptor = match self {
@@ -32,31 +38,55 @@ pub struct KirtonosForms {
 impl KirtonosForms {
     /// 0.140.0 phase callback 0x145eeb730 checks the final phase bit first.
     /// Its fixed loop at 0x147af3b4c advances one deadline per update.
-    pub fn advance(&mut self, health: f32, maximum_health: f32, now: f32) -> Option<KirtonosForm> {
+    pub fn advance_beat(
+        &mut self,
+        health: f32,
+        maximum_health: f32,
+        now: f32,
+    ) -> Option<KirtonosBeat> {
         if let Some(started_at) = self.final_phase_started_at {
             const OFFSETS: [f32; 6] = [5.0, 12.0, 20.0, 25.0, 32.0, 40.0];
+            const BEATS: [KirtonosBeat; 6] = [
+                KirtonosBeat::Attack(1),
+                KirtonosBeat::Attack(2),
+                KirtonosBeat::Form(KirtonosForm::Winged),
+                KirtonosBeat::Attack(3),
+                KirtonosBeat::Attack(4),
+                KirtonosBeat::Form(KirtonosForm::Humanoid),
+            ];
             let index = (self.next_step % 6) as usize;
             let deadline = (self.next_step / 6) as f32 * 42.0 + OFFSETS[index];
             if deadline <= now - started_at {
                 self.next_step = self.next_step.wrapping_add(1);
-                return match index {
-                    2 => Some(KirtonosForm::Winged),
-                    5 => Some(KirtonosForm::Humanoid),
-                    _ => None,
-                };
+                return Some(BEATS[index]);
             }
             return None;
         }
-        let denominator = if maximum_health <= 1.0 { 1.0 } else { maximum_health };
+        let denominator = if maximum_health <= 1.0 {
+            1.0
+        } else {
+            maximum_health
+        };
         let fraction = health / denominator;
         if fraction <= 0.3 {
             self.final_phase_started_at = Some(now);
-            Some(KirtonosForm::Humanoid)
+            Some(KirtonosBeat::Form(KirtonosForm::Humanoid))
         } else if !self.winged_phase_started && fraction <= 0.65 {
             self.winged_phase_started = true;
-            Some(KirtonosForm::Winged)
+            Some(KirtonosBeat::Form(KirtonosForm::Winged))
         } else {
             None
+        }
+    }
+
+    pub fn fixed_cycle(self) -> bool {
+        self.final_phase_started_at.is_some()
+    }
+
+    pub fn advance(&mut self, health: f32, maximum_health: f32, now: f32) -> Option<KirtonosForm> {
+        match self.advance_beat(health, maximum_health, now)? {
+            KirtonosBeat::Form(form) => Some(form),
+            KirtonosBeat::Attack(_) => None,
         }
     }
 }
@@ -75,7 +105,11 @@ pub fn raid_transform_fields(index: usize, base_display: u32, base_scale: f32) -
 
 /// Native constructors apply these forms before arrival
 /// announcements. They do not cast, hold movement or replace recurring moves.
-pub fn initial_boss_fields(boss_id: u32, base_display: u32, base_scale: f32) -> Option<TransformFields> {
+pub fn initial_boss_fields(
+    boss_id: u32,
+    base_display: u32,
+    base_scale: f32,
+) -> Option<TransformFields> {
     let descriptor = match boss_id {
         693 => [0, 0, 0, 1390, 0, 0, 0],
         1091 => [0, 1.0_f32.to_bits(), 9806, 0, 0, 0, 0],
@@ -142,13 +176,36 @@ mod tests {
     #[test]
     fn kirtonos_final_phase_wins_when_one_hit_crosses_both_thresholds() {
         let mut state = KirtonosForms::default();
-        assert_eq!(state.advance(30.0, 100.0, 10.0), Some(KirtonosForm::Humanoid));
-        assert_eq!(state.advance(70.0, 100.0, 15.0), None);
-        assert_eq!(state.advance(70.0, 100.0, 22.0), None);
+        assert_eq!(
+            state.advance(30.0, 100.0, 10.0),
+            Some(KirtonosForm::Humanoid)
+        );
+        assert_eq!(state.advance_beat(70.0, 100.0, 14.99), None);
+        assert_eq!(
+            state.advance_beat(70.0, 100.0, 22.0),
+            Some(KirtonosBeat::Attack(1))
+        );
+        assert_eq!(
+            state.advance_beat(70.0, 100.0, 22.0),
+            Some(KirtonosBeat::Attack(2))
+        );
         assert_eq!(state.advance(70.0, 100.0, 30.0), Some(KirtonosForm::Winged));
-        assert_eq!(state.advance(70.0, 100.0, 35.0), None);
-        assert_eq!(state.advance(70.0, 100.0, 42.0), None);
-        assert_eq!(state.advance(70.0, 100.0, 50.0), Some(KirtonosForm::Humanoid));
+        assert_eq!(
+            state.advance_beat(70.0, 100.0, 35.0),
+            Some(KirtonosBeat::Attack(3))
+        );
+        assert_eq!(
+            state.advance_beat(70.0, 100.0, 42.0),
+            Some(KirtonosBeat::Attack(4))
+        );
+        assert_eq!(
+            state.advance(70.0, 100.0, 50.0),
+            Some(KirtonosForm::Humanoid)
+        );
+        assert_eq!(
+            state.advance_beat(70.0, 100.0, 57.0),
+            Some(KirtonosBeat::Attack(1))
+        );
 
         let mut state = KirtonosForms::default();
         assert_eq!(state.advance(65.0, 100.0, 1.0), Some(KirtonosForm::Winged));

@@ -61,7 +61,7 @@ impl Mechanics {
             &self.demon_state, &self.passive_state, &self.loot_companion_state)];
         private.extend(self.remote_retirement_objects());
         before_items.extend(private.iter().flat_map(|row| row.ground.iter().copied()));
-        before_items.extend(self.boss_state.retirement_ground_objects());
+        before_items.extend(self.boss_state.retirement_ground_objects(&self.bosses));
         before_items.extend(private.iter().flat_map(|row| row.totems.iter().copied()));
         let mut followers: Vec<_> = private.iter().flat_map(|row| row.followers.iter().copied()).collect();
         followers.sort_by_key(|(order, _)| age(*order));

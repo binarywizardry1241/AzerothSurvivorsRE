@@ -9,7 +9,7 @@ use benilla_assets::coords::wow_to_bevy;
 use benilla_world::{
     decal::WorldDecal,
     particles::buffer::{
-        EffectBlend, EffectDrawSpec, EffectFog, EffectLighting, EffectQuads, begin_effect_frame,
+        begin_effect_frame, EffectBlend, EffectDrawSpec, EffectFog, EffectLighting, EffectQuads,
     },
     view::WorldCamera,
 };
@@ -163,28 +163,7 @@ fn present(
                 None,
             );
         }
-        let columns = geometry::columns(row, progress, now);
-        let start = stream.begin();
-        stream.verts.extend(columns);
-        stream.commit_tris(
-            start,
-            EffectDrawSpec {
-                cam,
-                texture: renderer.masks[7].id(),
-                blend: EffectBlend::Add,
-                fog: EffectFog::Off,
-                lighting: EffectLighting::None,
-                anchor: wow_to_bevy(row.position),
-                bias: 8192.,
-                raster_bias: 0,
-                raster_slope: 0.,
-                cam_relative: false,
-                no_depth_test: false,
-                main_entity: cam,
-                light: None,
-                clip: None,
-            },
-        );
+        draw_columns(&mut stream, cam, renderer.masks[7].id(), row, progress, now);
     }
     for row in &renderer.scripted.parts {
         let scale = row.outline_scale(scripted_clock);
@@ -225,7 +204,52 @@ fn present(
                 field_uv,
             );
         }
+        if let Some(tower) = row.tower_marker() {
+            draw_columns(
+                &mut stream,
+                cam,
+                renderer.masks[7].id(),
+                &tower,
+                row.progress(),
+                now,
+            );
+        }
     }
+}
+
+fn draw_columns(
+    stream: &mut EffectQuads,
+    cam: Entity,
+    texture: AssetId<Image>,
+    row: &native::Marker,
+    progress: f32,
+    now: f32,
+) {
+    let columns = geometry::columns(row, progress, now);
+    if columns.is_empty() {
+        return;
+    }
+    let start = stream.begin();
+    stream.verts.extend(columns);
+    stream.commit_tris(
+        start,
+        EffectDrawSpec {
+            cam,
+            texture,
+            blend: EffectBlend::Add,
+            fog: EffectFog::Off,
+            lighting: EffectLighting::None,
+            anchor: wow_to_bevy(row.position),
+            bias: 8192.,
+            raster_bias: 0,
+            raster_slope: 0.,
+            cam_relative: false,
+            no_depth_test: false,
+            main_entity: cam,
+            light: None,
+            clip: None,
+        },
+    );
 }
 
 fn draw_group(

@@ -5,6 +5,16 @@ use super::*;
 use super::incoming::DamageKind;
 #[path = "gandling.rs"]
 mod gandling;
+#[path = "barov.rs"]
+mod barov;
+#[path = "kirtonos.rs"]
+mod kirtonos;
+#[path = "krastinov.rs"]
+mod krastinov;
+#[path = "ras.rs"]
+mod ras;
+#[path = "scripted_arena.rs"]
+mod scripted_arena;
 use azeroth_survivors_re::{
     bosses as native,
     mob_loot::{EquipmentRoll, MobLootWorld},
@@ -23,6 +33,10 @@ pub struct RunBoss {
     pub minion_phases: native::minion_phases::PhaseState,
     kirtonos_forms: native::raid_transforms::KirtonosForms,
     gandling: Option<gandling::Script>,
+    barov: Option<barov::Script>,
+    kirtonos: Option<kirtonos::Script>,
+    krastinov: Option<krastinov::Script>,
+    ras: Option<ras::Script>,
     pub control: ControlWindow,
     pub periodic: Vec<ActorPeriodic>,
     pub additional_damage_taken: f32,
@@ -98,10 +112,11 @@ pub(super) struct BossState {
 }
 
 impl BossState {
-    pub(super) fn retirement_ground_objects(&self) -> Vec<u64> {
+    pub(super) fn retirement_ground_objects(&self, bosses: &[RunBoss]) -> Vec<u64> {
         self.effects.impacts.iter().filter_map(|row| row.remove_object)
             .chain(self.effects.raid_areas.object_guids())
             .chain(self.gandling.object_guids())
+            .chain(bosses.iter().filter_map(|row| row.barov.as_ref()).flat_map(barov::Script::burn_guids))
             .filter(|guid| *guid != 0).collect()
     }
 
@@ -225,6 +240,7 @@ impl Mechanics {
         };
         let mut port = BossSpawner {
             party_health_multiplier: self.party_health_factors()[1],
+            scripted_hero_count: self.active_scripted_targets().count().max(1),
             zone,
             rules: self.rules,
             phase: self.boss_state.phase(),
@@ -282,6 +298,7 @@ impl Mechanics {
         };
         let mut port = BossSpawner {
             party_health_multiplier: self.party_health_factors()[1],
+            scripted_hero_count: self.active_scripted_targets().count().max(1),
             zone,
             rules: self.rules,
             phase: self.boss_state.phase(),
@@ -322,9 +339,10 @@ impl Mechanics {
         self.boss_state.defenses.retain(|guid, _| actors.iter().any(|row| row.guid == *guid)
             || bosses.iter().any(|row| row.guid == *guid)
             || wards.actors.iter().any(|row| row.guid == *guid));
-        let gandling_active = self.zone.key == azeroth_survivors_re::zones::scholomance::KEY
-            || bosses.iter().any(|row| row.gandling.is_some());
-        let gandling_heroes = if !gandling_active || self.coop.active_slot != 0 {
+        let scripted_active = self.zone.key == azeroth_survivors_re::zones::scholomance::KEY
+            || bosses.iter().any(|row| row.gandling.is_some() || row.kirtonos.is_some()
+                || row.ras.is_some() || row.krastinov.is_some() || row.barov.is_some());
+        let scripted_heroes = if !scripted_active || self.coop.active_slot != 0 {
             Vec::new()
         } else if self.has_party() {
             self.active_scripted_targets()
@@ -366,16 +384,19 @@ impl Mechanics {
             incoming: &mut incoming,
             damage_event_boundary: None, knockback: None, root: None, bomb_bursts: Vec::new(), post_actions: Vec::new(),
         };
-        if port.active_slot == 0 {
-            port.advance_kirtonos_forms();
-        }
         self.boss_state.effects.resolve_due_with_rng(self.clock, elapsed, &mut port,
             &mut self.rng, &mut self.counter);
-        if gandling_active {
+        let mut scripted_moves = Vec::new();
+        if scripted_active {
             if port.active_slot == 0 {
-                port.advance_gandling(&mut self.boss_state.gandling, &gandling_heroes);
+                let state = &mut self.boss_state.gandling;
+                port.advance_kirtonos(state, &scripted_heroes);
+                port.advance_ras(state, &scripted_heroes, &mut self.rng);
+                port.advance_krastinov(state, &scripted_heroes);
+                port.advance_barov(state, &scripted_heroes);
+                port.advance_gandling(state, &scripted_heroes);
             }
-            port.sample_gandling(&mut self.boss_state.gandling, elapsed);
+            port.sample_gandling(&mut self.boss_state.gandling, elapsed, &mut scripted_moves);
         }
         let boundary = port.damage_event_boundary;
         let knockback = port.knockback;
@@ -388,8 +409,27 @@ impl Mechanics {
         // the separate delayed-visual queue. Preserve that order through the
         // adapter's deferred damage calls.
         let trailing = boundary.map(|index| self.events.split_off(index)).unwrap_or_default();
-        for (amount, source_guid, spell_id) in incoming {
-            self.damage_player_from(amount, DamageKind::Mechanic(spell_id), source_guid, player, facing, world);
+        let mut scripted_player = player;
+        let mut scripted_moves = scripted_moves.into_iter().peekable();
+        for (index, (amount, source_guid, spell_id)) in incoming.into_iter().enumerate() {
+            self.damage_player_from(amount, DamageKind::Mechanic(spell_id), source_guid, scripted_player, facing, world);
+            if scripted_moves.peek().is_some_and(|(hit, _)| *hit == index) {
+                let (_, motion) = scripted_moves.next().unwrap();
+                match motion {
+                    gandling::Motion::Push { origin, fallback, distance } => {
+                        self.apply_kirtonos_push(origin, fallback, distance, scripted_player, facing, world);
+                    }
+                    gandling::Motion::Hook { origin } => {
+                        self.apply_krastinov_hook(origin, scripted_player, world);
+                    }
+                    gandling::Motion::Rush { origin, angle } => {
+                        self.apply_krastinov_rush_push(origin, angle, scripted_player, facing, world);
+                    }
+                }
+                if let Some((position, _)) = self.boss_state.player_override {
+                    scripted_player = position;
+                }
+            }
         }
         if let Some((source, spell, duration)) = root {
             self.apply_raid_root(source, spell, duration);
@@ -405,7 +445,14 @@ impl Mechanics {
         self.events.extend(trailing);
     }
 
-    pub(super) fn expire_scripted_attacks(&mut self) {
+    pub(super) fn expire_scripted_attacks(&mut self, world: &mut impl RunWorld) {
+        let blood_hits = self.boss_state.gandling.take_blood_hits();
+        for (_, _, source, count) in blood_hits {
+            self.apply_kirtonos_blood(source, count as usize);
+        }
+        for (source, point) in self.boss_state.gandling.take_immolate_impacts() {
+            self.apply_barov_immolate(source, point, world);
+        }
         self.boss_state.gandling.expire(self.clock, &mut self.events);
     }
 
@@ -532,6 +579,7 @@ impl Mechanics {
 
 struct BossSpawner<'a, W> {
     party_health_multiplier: f32,
+    scripted_hero_count: usize,
     zone: &'static native::catalog::ZoneDefinition,
     rules: RunRules,
     phase: u32,
@@ -602,6 +650,11 @@ impl<W: RunWorld> native::spawning::SpawnPort for BossSpawner<'_, W> {
             minion_phases: native::minion_phases::PhaseState::default(),
             kirtonos_forms: native::raid_transforms::KirtonosForms::default(),
             gandling: (definition.id == gandling::ENTRY).then(|| gandling::Script::new(self.now)),
+            barov: (definition.id == barov::ENTRY).then(|| barov::Script::new(self.now)),
+            kirtonos: (definition.id == kirtonos::ENTRY)
+                .then(|| kirtonos::Script::new(self.now, self.scripted_hero_count)),
+            krastinov: (definition.id == krastinov::ENTRY).then(|| krastinov::Script::new(self.now)),
+            ras: (definition.id == ras::ENTRY).then(|| ras::Script::new(self.now)),
             control: ControlWindow::for_enemy(true),
             periodic: Vec::new(),
             additional_damage_taken: 0.0,
@@ -671,27 +724,6 @@ enum RaidPostAction {
     Spawn { kind: u32, index: u32, position: Position },
     Expose { source: u64, until: f32 },
     Heal { source: u64, fraction: f32, spell: u32 },
-}
-
-impl<W: RunWorld> BossCombat<'_, W> {
-    fn advance_kirtonos_forms(&mut self) {
-        use native::abilities::CombatPort;
-
-        let transitions: Vec<_> = self.bosses.iter_mut()
-            .filter(|row| row.definition.id == 10506 && !row.actor.dead)
-            .filter_map(|row| {
-                let form = row.kirtonos_forms.advance(row.health, row.maximum_health, self.now)?;
-                Some((row.guid, form.fields(row.definition.model_id, row.definition.scale)))
-            })
-            .collect();
-        for (source, fields) in transitions {
-            self.events.push(RunEvent::ActorFields { target: source, fields: fields.fields.clone() });
-            self.forms.insert(source, fields);
-            self.raid_block(source, 2.0);
-            self.raid_hold(source, 2.0);
-            self.events.push(RunEvent::RaidTransformCast { source, spell_id: 0x4053, seconds: 2.0 });
-        }
-    }
 }
 
 impl<W: RunWorld> native::abilities::CombatPort for BossCombat<'_, W> {
@@ -1094,7 +1126,8 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         let mut victim = row.hit_victim(self.generic.demoralizing_amplification.get(&row.guid)
             .map_or(0.0, |window| window.value_at(self.now)));
         let raid_multiplier = self.boss_state.defenses.get(&row.guid).copied().unwrap_or_default()
-            .multiplier_with_ward(self.now, self.boss_state.wards.protects(row.guid));
+            .multiplier_with_ward(self.now, self.boss_state.wards.protects(row.guid))
+            * row.ras.as_ref().map_or(1.0, |script| script.damage_multiplier(self.now));
         let spell_amplification = enhancement::spell_amplification(
             self.equipped, hit.spell_id, self.now, &row.control,
             &victim, self.attribution.source_kind, self.player_absorb, deathmist_kind,
@@ -1219,6 +1252,11 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             self.generic.boss_flags.push(result);
             if self.boss_state.shared_equipment.is_some() {
                 self.boss_state.shared_boss_flags.push((self.party_healing.source_slot, result));
+            }
+        } else {
+            self.boss_state.gandling.retire_source(guid, self.now, self.events);
+            if let Some(script) = &mut row.barov {
+                script.remove_burns(self.events);
             }
         }
         let endless_bosses = if !self.showcase && self.boss_state.completion.phase != 0 {
