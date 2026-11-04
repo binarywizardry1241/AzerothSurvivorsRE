@@ -111,6 +111,12 @@ completed replay of that pass requires its original export. Local
 `census/retired-instructions.json` records retired canonical export hashes so
 storage maintenance can distinguish intentional retirement from a missing file.
 
+Keep reference streams for the active census passes and exact proof inputs
+that name those streams, including historical data and residual checks. A
+superseded pass whose reference stream appears only in its own completion
+receipt can retain the receipt and drop the stream after checking for aliases
+and stage-cache consumers.
+
 ## Across EXE updates
 
 The catalog, content store and discovery interface span all versions. Equal
