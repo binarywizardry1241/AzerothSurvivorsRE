@@ -357,26 +357,33 @@ fn spell_store(
     }
 }
 
-/// A spell's view built against the player, or with `alt_caster` against its pet, at the call
-/// through the lent host ([`SpellViewQuery`]), else off the store, where a miss records the ask.
+fn embedding_spell_view(lua: &Lua, spell_id: u32, alt_caster: bool) -> Option<SpellTooltipView> {
+    if alt_caster {
+        return None;
+    }
+    let model = lua.app_data_ref::<Model>().expect("model app_data");
+    model.embedding_spell_tooltips.get(&spell_id).cloned()
+}
+
+/// Use the embedding's player spell view when present. Otherwise build the view at the call
+/// through the lent host ([`SpellViewQuery`]), then fall back to the player or pet store.
 pub(super) fn spell_view_of(
     lua: &Lua,
     spell_id: u32,
     alt_caster: bool,
 ) -> Option<SpellTooltipView> {
-    if let Some(v) = built_at_the_call(lua, spell_id, alt_caster) {
-        return Some(v);
+    if let Some(view) = embedding_spell_view(lua, spell_id, alt_caster) {
+        let mut model = lua.app_data_mut::<Model>().expect("model app_data");
+        // Keep warming the ordinary store for later override removal.
+        if !model.spell_tooltips.contains_key(&spell_id) && spell_id != 0 {
+            model.spell_tooltip_asks.insert(spell_id);
+        }
+        return Some(view);
+    }
+    if let Some(view) = built_at_the_call(lua, spell_id, alt_caster) {
+        return Some(view);
     }
     let mut model = lua.app_data_mut::<Model>().expect("model app_data");
-    if !alt_caster {
-        if let Some(view) = model.embedding_spell_tooltips.get(&spell_id).cloned() {
-            // Keep warming the ordinary store for later override removal.
-            if !model.spell_tooltips.contains_key(&spell_id) && spell_id != 0 {
-                model.spell_tooltip_asks.insert(spell_id);
-            }
-            return Some(view);
-        }
-    }
     let (views, asks) = spell_store(&mut model, alt_caster);
     let v = views.get(&spell_id).cloned();
     if v.is_none() && spell_id != 0 {
@@ -385,19 +392,21 @@ pub(super) fn spell_view_of(
     v
 }
 
-/// [`spell_view_of`] recording no ask: the view built at the call, else the store's.
+/// [`spell_view_of`] without recording an ask.
 pub(super) fn spell_view_peek(
     lua: &Lua,
     spell_id: u32,
     alt_caster: bool,
 ) -> Option<SpellTooltipView> {
-    built_at_the_call(lua, spell_id, alt_caster).or_else(|| {
-        let mut model = lua.app_data_mut::<Model>().expect("model app_data");
-        spell_store(&mut model, alt_caster)
-            .0
-            .get(&spell_id)
-            .cloned()
-    })
+    embedding_spell_view(lua, spell_id, alt_caster)
+        .or_else(|| built_at_the_call(lua, spell_id, alt_caster))
+        .or_else(|| {
+            let mut model = lua.app_data_mut::<Model>().expect("model app_data");
+            spell_store(&mut model, alt_caster)
+                .0
+                .get(&spell_id)
+                .cloned()
+        })
 }
 
 /// The view the lent host builds at the call ([`SpellViewQuery`]); spell 0 asks nothing.

@@ -104,15 +104,13 @@ fn tracking_key(spell_id: u32) -> AuraKey {
 }
 
 /// An aura's view built at the call through the lent host ([`AuraViewQuery`]), else off the store,
-/// where a miss records the ask.
+/// where a miss records the ask. Embedding text preserves metadata from either source.
 fn aura_view_of(lua: &Lua, key: AuraKey) -> Option<AuraTooltipView> {
-    if key.spell_id != 0 {
-        if let Some(v) = super::live::ask(lua, &AuraViewQuery(key)) {
-            return Some(v);
-        }
-    }
+    let live = (key.spell_id != 0)
+        .then(|| super::live::ask(lua, &AuraViewQuery(key)))
+        .flatten();
     let mut model = lua.app_data_mut::<Model>().expect("model app_data");
-    let ordinary = model.aura_tooltips.get(&key).cloned();
+    let ordinary = live.or_else(|| model.aura_tooltips.get(&key).cloned());
     if ordinary.is_none() && key.spell_id != 0 {
         model.aura_tooltip_asks.insert(key);
     }

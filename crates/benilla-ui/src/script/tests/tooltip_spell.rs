@@ -2456,6 +2456,52 @@ fn embedding_aura_text_retains_dispel_and_separate_spell_body() {
     )
     .unwrap();
 
+    // The game lends both ordinary tooltip builders during Lua calls.
+    struct LiveTooltips;
+
+    impl CallHost for LiveTooltips {
+        fn apply(&mut self, _: &mut UiScript, _: ScriptCall) -> Option<CallTail> {
+            None
+        }
+
+        fn read_live(&mut self, ask: &mut live::LiveAsk<'_>) -> bool {
+            ask.answer(|query: &SpellViewQuery| {
+                (query.spell_id == 168).then(|| SpellTooltipView {
+                    name: "Live spell".into(),
+                    description: "Live spell body".into(),
+                    ..Default::default()
+                })
+            }) || ask.answer(|query: &AuraViewQuery| {
+                (query.0.spell_id == 168).then(|| AuraTooltipView {
+                    dispel_type: Some("Poison".into()),
+                    ..aura_view("Live aura", "Live status")
+                })
+            })
+        }
+    }
+
+    let mut host = LiveTooltips;
+    s.hosted(&mut host, |s| {
+        s.run(
+            r#"
+                OverrideTip:SetSpell(1, "spell")
+                assert(OverrideTipTextLeft2:GetText() == "Primary spell body")
+                OverrideTip:SetPlayerBuff(0)
+                assert(OverrideTipTextLeft1:GetText() == "Ice Armor")
+                assert(OverrideTipTextRight1:GetText() == "Poison")
+                assert(OverrideTipTextLeft2:GetText() == "Current status body")
+            "#,
+        )
+        .unwrap();
+        let next_rank = crate::script::tooltip_spell::spell_view_peek(s.lua(), 168, false).unwrap();
+        assert_eq!(
+            next_rank.description,
+            TooltipText::from("Primary spell body")
+        );
+        let pet = crate::script::tooltip_spell::spell_view_of(s.lua(), 168, true).unwrap();
+        assert_eq!(pet.name, "Live spell");
+    });
+
     // An ordinary feed refresh must neither hide the override nor lose its new
     // dispel metadata. Removing the override must reveal these newest views.
     s.set_spell_tooltip(
@@ -2520,6 +2566,18 @@ fn embedding_aura_text_retains_dispel_and_separate_spell_body() {
     "#,
     )
     .unwrap();
+    s.hosted(&mut host, |s| {
+        s.run(
+            r#"
+                OverrideTip:SetSpell(1, "spell")
+                assert(OverrideTipTextLeft2:GetText() == "Live spell body")
+                OverrideTip:SetPlayerBuff(0)
+                assert(OverrideTipTextRight1:GetText() == "Poison")
+                assert(OverrideTipTextLeft2:GetText() == "Live status")
+            "#,
+        )
+        .unwrap();
+    });
     assert!(s.take_errors().is_empty());
 }
 

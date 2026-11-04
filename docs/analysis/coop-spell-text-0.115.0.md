@@ -130,9 +130,41 @@ No recovered route assigns those raw rows to the FrameXML cache. This closes
 the enumerated typed consumers, while other erased/untyped paths and native
 whole-image completeness remain outside the claim.
 
+## Live FrameXML lookup after the benilla 0.3.0 integration
+
+The benilla integration at `56c648e8` added call-time spell and aura views.
+The normal [Lua call host](../../crates/benilla-app/src/script_calls/live.rs)
+lends [TooltipLive](../../crates/benilla-app/src/ui_tooltip/live.rs), whose
+ordinary spell and aura answers previously returned before the embedding
+lookup. For an ID with a successful ordinary builder answer, FrameXML could
+therefore display ordinary prose instead of the AS resource text even though
+the producer had published it. The older cache-only regression did not reach
+this call path.
+
+The [player spell lookup](../../crates/benilla-ui/src/script/tooltip_spell.rs)
+now uses the embedding view before consulting the ordinary host and store.
+The no-ask lookup used for the FrameXML next-rank preview checks that same
+embedding view, restoring the selection made before the integration.
+The [aura lookup](../../crates/benilla-ui/src/script/tooltip_aura.rs) applies
+the embedding name and secondary-or-primary body over the live ordinary aura
+view when available, retaining its dispel metadata. The ordinary store remains
+the fallback when the host declines. Pet spell lookups keep their separate
+host and cache paths. The
+[regression](../../crates/benilla-ui/src/script/tests/tooltip_spell.rs) adds
+live host answers and checks the player spell body, next-rank lookup, aura
+body, live dispel header, pet lookup and restoration of live views after
+override removal.
+
+Source checks and Rustfmt parsing cover the changed lookup paths. The authored
+Rust regression has not been compiled or run. This is a source repair against
+the retained presentation contracts above. The installed 0.141.0 identity is
+`6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
+The native cache-write lineage and applicability of the historical bounded
+native contracts to those bytes remain unproved.
+
 ## Static validation and limits
 
-The following non-compiling checks pass against the installed target:
+The following non-compiling checks passed against the 0.115.0 reference:
 
 |Check|Evidence covered|
 |---|---|
