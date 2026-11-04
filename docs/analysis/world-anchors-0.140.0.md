@@ -84,12 +84,17 @@ The query reads an optional kind and state filter, then hashes the query
 parts with 32-bit FNV-1a and a zero separator. A page cursor has the `k`
 prefix followed by stream, catalog revision, query hash and offset. The
 response distinguishes a stream mismatch, an obsolete catalog and a changed
-query. Projection reads `w`-prefixed anchor handles and resolves each request
-in input order. It adds XYZ offsets before the camera call at `0x1409a1f2a`.
+query. Projection reads `w`-prefixed handles with the stream text and a
+terminal sequence, then resolves each request in input order. It adds XYZ
+offsets before the camera call at `0x1409a1f2a`.
 The independent hero-distance branch at `0x1409a210e` uses the unshifted
 attachment, requires a valid hero sample and computes the f32 norm. The
 combat projector's separate `0x1409980ec..0x140998155` branch computes distance
 to unshifted feet. Impact and follow choose their positions before that branch.
+The retire owner at `0x14097fed0` caps explicit reason records at 8,192 and
+evicts the oldest reason at `0x140980221`. A missing anchor below the issued
+sequence bound projects as `expired`, using `age` when the reason was
+evicted. A fallen row is still current at its exact expiration timestamp.
 
 The [catalog source](../../crates/benilla-app/src/combat_text/world_anchors.rs)
 reads live UNIT descriptors and actual pose/overhead anchors, reconciles the
@@ -103,11 +108,10 @@ exact Lua frame callback after sampling and ahead of widget extraction.
 
 The remaining native questions are the relative order of the erased
 combat/world frame callbacks, same-map run invalidation ahead of an incoming
-zone line, tied entity admission at the living cap, and the exact retirement
-reason lifetime after an anchor leaves the catalog. The rebuilt catalog uses
-the published run-space transition and the existing world's entity query.
-It retains retirement reasons for the stream. The exact native handling of
-those edges remains under the same finding.
+zone line, and tied entity admission at the living cap. The rebuilt catalog
+uses the published run-space transition and the existing world's entity query.
+The exact native stream token producer and callback order remain under the
+same finding.
 
 ## Exact evidence
 
@@ -140,6 +144,8 @@ inputs. The Lua ranges establish the wrapper behavior above.
 | World projection | `0x1409a0070..0x1409a2a9e` | `0x99f470` | 10,798 | `5de5a7d218a98b5eee415a90fb70febed0cb799cb51f54a43c4f6e92cd89c9b1` |
 | Unit life frame scan | `0x1409cab50..0x1409cc3f3` | `0x9c9f50` | 6,307 | `290e4cebeadfd1db170ebd24b79e36ae2df9612faf5d521ac05ef4e6f3caa55c` |
 | Downed row expiry reconciliation | `0x140918600..0x1409189b5` | `0x917a00` | 949 | `b3950d96c0276a6f3da8a1242ee3c424931e7636588532f898353b03d65f92d2` |
+| Retirement reason FIFO | `0x14097fed0..0x1409802c1` | `0x97f2d0` | 1,009 | `b68fab83664ea45430aedbdf880fbd62e27f6c703b9253b6fec3abbdca265e4d` |
+| Issued handle fallback and expiry equality | `0x1409a1d5c..0x1409a1e11` | `0x9a115c` | 181 | `fe19dd79c0f071d6bc40eff1a46c3cd01e7a8e70508889a0f334e421295ba0fb` |
 | Combat sample and unshifted feet distance | `0x1409980ec..0x140998155` | `0x9974ec` | 105 | `2529042af531dd241aa74d7e7df30a0a1628d569cef5c76e0984d62681942f7d` |
 | World offset projector and distance | `0x1409a1eec..0x1409a21b7` | `0x9a12ec` | 715 | `b4b191881d8fbc63d0388a0a32cc9bd099d8b8b6fe5bb6a559d284f2293793b4` |
 | Kind string pointer/length rows | `0x14664f6a0..0x14664f720` | `0x664e6a0` | 128 | `1385ced2cb59ff2f75d2ea92947cc1775cea801de63ab692f8028e4f85ce6388` |

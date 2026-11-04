@@ -22,6 +22,7 @@ use crate::{
 use super::anchors::{project_point, spot, View};
 
 const CAPACITY: usize = 4096;
+const RETIRED_CAPACITY: usize = 8192;
 const LIMIT: usize = 256;
 const FALLEN_SECONDS: f64 = 60.0;
 const ENEMY_FACTION: u32 = 14;
@@ -67,7 +68,6 @@ struct Catalog {
     vm: u64,
     map: Option<u32>,
     run: Option<String>,
-    world: u64,
     stream: u64,
     revision: u64,
     sequence: u64,
@@ -83,6 +83,7 @@ struct Catalog {
     active: HashMap<Key, u64>,
     fallen: VecDeque<u64>,
     retired: HashMap<u64, &'static str>,
+    retirement_order: VecDeque<u64>,
     unit_metadata: HashMap<u32, (&'static str, Option<String>)>,
 }
 
@@ -95,7 +96,6 @@ impl Catalog {
             vm,
             map,
             run,
-            world: self.world.wrapping_add(u64::from(self.map != map)),
             stream: self.stream.wrapping_add(1),
             sample: self.sample,
             tracking: self.tracking && self.vm == vm,
@@ -107,7 +107,7 @@ impl Catalog {
     }
 
     fn handle(&self, id: u64) -> String {
-        format!("w{}.{id}", self.stream)
+        format!("w{}.{id}", self.stream_id())
     }
     fn stream_id(&self) -> String {
         format!("s{}.0", self.stream)
@@ -138,6 +138,11 @@ impl Catalog {
                 self.active.remove(&row.key);
             }
             self.retired.insert(id, reason);
+            self.retirement_order.push_back(id);
+            if self.retirement_order.len() > RETIRED_CAPACITY {
+                let oldest = self.retirement_order.pop_front().expect("retired anchor");
+                self.retired.remove(&oldest);
+            }
             self.revision = self.revision.wrapping_add(1);
         }
     }
@@ -145,7 +150,7 @@ impl Catalog {
     fn prune(&mut self, now: f64) {
         while let Some(&id) = self.fallen.front() {
             let expires = self.entries[&id].expires.expect("fallen expiry");
-            let reason = if now >= expires {
+            let reason = if now > expires {
                 "age"
             } else if self.fallen.len() > CAPACITY {
                 "resourceLimit"
@@ -361,7 +366,7 @@ impl Catalog {
     fn common(&self, lua: &Lua, map: u32, now: f64) -> mlua::Result<Table> {
         let table = lua.create_table()?;
         table.set("apiVersion", 1)?;
-        table.set("worldId", format!("w{}.{map}", self.world))?;
+        table.set("worldId", self.space(map))?;
         table.set("streamId", self.stream_id())?;
         table.set("clockSeconds", now)?;
         Ok(table)
@@ -461,13 +466,14 @@ fn allows(names: &[&str], value: &str, mask: u32) -> bool {
         .is_some_and(|index| mask & (1 << index) != 0)
 }
 
-fn unsigned_parts<const N: usize>(value: &str, prefix: char) -> Option<[u64; N]> {
-    let mut parts = value.strip_prefix(prefix)?.split('.');
+fn handle_parts<const N: usize>(value: &str, prefix: char) -> Option<(&str, [u64; N])> {
+    let mut parts = value.strip_prefix(prefix)?.rsplitn(N + 1, '.');
     let mut out = [0; N];
-    for number in &mut out {
+    for number in out.iter_mut().rev() {
         *number = parts.next()?.parse().ok()?;
     }
-    parts.next().is_none().then_some(out)
+    let stream = parts.next().filter(|stream| !stream.is_empty())?;
+    Some((stream, out))
 }
 
 impl Catalog {
@@ -523,17 +529,18 @@ impl Catalog {
             return error(lua, "NOT_READY", "the catalog starts with the first frame");
         }
         self.prune(now);
+        let stream_id = self.stream_id();
         let offset = match cursor {
             Value::Nil => 0,
             Value::String(value) => {
-                let Some([stream, revision, fingerprint, offset]) = value
-                    .to_str()
-                    .ok()
-                    .and_then(|value| unsigned_parts(&value, 'k'))
+                let decoded = value.to_str().ok();
+                let Some((stream, [revision, fingerprint, offset])) = decoded
+                    .as_deref()
+                    .and_then(|value| handle_parts(value, 'k'))
                 else {
                     return error(lua, "INVALID_ARGUMENT", "not a cursor of this API");
                 };
-                if stream != self.stream {
+                if stream != stream_id {
                     return error(lua, "STREAM_CHANGED", "this stream has ended");
                 }
                 if fingerprint != u64::from(selector) {
@@ -570,7 +577,7 @@ impl Catalog {
         }
         let more = matching.next().is_some();
         let out = self.common(lua, map, now)?;
-        out.set("catalogId", format!("{}.{}", self.stream, self.revision))?;
+        out.set("catalogId", format!("{stream_id}.{}", self.revision))?;
         out.set("mapId", map)?;
         out.set("spaceId", self.space(map))?;
         out.set("runId", self.run.as_deref())?;
@@ -580,8 +587,7 @@ impl Catalog {
             "nextCursor",
             more.then(|| {
                 format!(
-                    "k{}.{}.{selector}.{offset}",
-                    self.stream,
+                    "k{stream_id}.{}.{selector}.{offset}",
                     self.revision,
                     offset = offset + count
                 )
@@ -605,6 +611,7 @@ impl Catalog {
             return error(lua, "NOT_IN_WORLD", "not in the world");
         };
         self.prune(now);
+        let stream_id = self.stream_id();
         let rows = lua.create_table()?;
         for index in 1..=requests.raw_len() {
             let Value::Table(request) = requests.raw_get(index)? else {
@@ -645,14 +652,12 @@ impl Catalog {
                 );
             }
             let out = lua.create_table()?;
-            let parsed = handle
-                .to_str()
-                .ok()
-                .and_then(|raw| unsigned_parts(&raw, 'w'));
-            out.set("anchorId", handle)?;
+            let decoded = handle.to_str().ok();
+            let parsed = decoded.as_deref().and_then(|raw| handle_parts(raw, 'w'));
+            out.set("anchorId", handle.clone())?;
             out.set("attachment", attachment)?;
-            if let Some([stream, id]) = parsed {
-                if stream != self.stream {
+            if let Some((stream, [id])) = parsed {
+                if stream != stream_id {
                     out.set("state", "worldChanged")?;
                 } else if let Some(row) = self.entries.get(&id) {
                     out.set("entityState", row.state)?;
@@ -675,9 +680,9 @@ impl Catalog {
                     } else {
                         out.set("state", "unavailable")?;
                     }
-                } else if let Some(reason) = self.retired.get(&id) {
+                } else if id != 0 && id <= self.sequence {
                     out.set("state", "expired")?;
-                    out.set("reason", *reason)?;
+                    out.set("reason", self.retired.get(&id).copied().unwrap_or("age"))?;
                 } else {
                     out.set("state", "unknownAnchor")?;
                 }
