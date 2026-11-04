@@ -35,6 +35,30 @@ Of those, 5,263,936 bytes are inside declared extents and 3,357,663 outside.
 The [unknown queue](unknown-recovery-0.141.0.md) retains exact residual
 selectors, candidate padding, dynamic edges and unresolved source questions.
 
+### Embedded identifier outside declared extents
+
+For `Q41-B01` and `Q41-U03`, the selected census's
+`independent_instructions.executable_sections.range_inventory` with SHA-256
+`6fe796e1d2ccc7b8915cf949fc425c9dcee71fcb51261ffed6b30d006714f30e`
+has 397 `outside-declared` and `mixed-unclassified` rows covering 51,897
+bytes. The row at `0x1461da686..0x1461da6d0` is the only one with a
+truncated linear decode. Its 74 bytes at file offset `0x61d9a86` have
+SHA-256 `fe495aa8c1532fc8baeb85e36eb3879d2ec0ad7e288b068dec2b9ea551912a2e`.
+The span consists of a 71-byte ASCII CRYPTOGAMS Montgomery multiplication
+identifier, a NUL terminator, and two NOP bytes before the next aligned entry.
+
+The previous declared extent returns at `0x1461da685`. The successor at
+`0x1461da6d0` is the handler encoded at `0x148a45b94` and `0x148a45ba4`.
+The saved Ghidra references, declared and complement linear references,
+relocations, PE entry and export records, and applied guarded tables identify
+no incoming destination within the span. This supports a bounded data and
+alignment classification at a generic crypto-library boundary. The exact
+crypto package and dynamic entry behavior remain outside the proof. The other
+396 rows still need role classification, and the larger complement region
+remains mixed because it also contains admitted handler instructions.
+
+### Guarded tables and AS discovery
+
 The [applied and proposed proof](evidence/0.141.0/native-switch-proposal-review.json)
 binds all 3,936 guarded tables to the selected pass. The
 [guarded dispatch review](switch-context-source-review-0.141.0.md) records
