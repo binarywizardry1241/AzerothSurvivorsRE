@@ -34513,6 +34513,49 @@
         "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "fa1d5e497c4f3d66d6b9343fe84e1c49872c3b7b5a987af31a291d20daa3ca24",
         "docs/analysis/tranquility-overheal-0.141.0.md": "455d92ce8c2c0c064daefa5e73ac8f3a0f3bed538f05724d9c8283ee9c40c09d"
       }
+    },
+    {
+      "claim_id": "changelog:0.141.0:5788d609499311cd",
+      "gap_ids": [
+        316
+      ],
+      "systems": [
+        "custom-game-game-procs",
+        "custom-game-game-talents",
+        "custom-game-game-abilities"
+      ],
+      "rationale": "Counterattack now reaches the normal Immolation Trap ground cast through the sourced melee proc path. The talent description and associated spell tooltip read the replacement effect.",
+      "native_contract": "A sourced melee hit in active mode admits condition 8. The raw tag 12 proc uses 15% per rank and a one-second deadline, then casts Immolation Trap with the learned instance or its native unlearned fallback and no normal cooldown consumption.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/spell_display.rs",
+        "crates/azeroth-survivors-re/src/run_effects.rs",
+        "crates/azeroth-survivors-re/src/save/talents.rs",
+        "crates/azeroth-survivors-re/assets/talent-replacements-0.141.0.json"
+      ],
+      "evidence_refs": [
+        "docs/analysis/counterattack-0.141.0.md"
+      ],
+      "static_checks": [
+        {
+          "command": "git diff --check",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/counterattack-0.141.0.md"
+        }
+      ],
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs": "7f5edafe2cd2c7e865ceb7b92cafc8714b78ee996eede5f3d667de7e417feae3",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/spell_display.rs": "2341761f99b130b3d328305bd96b204c334b8a3aff7f5902ab60171e0c3c8bbe",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "b5f2f91f742219430102d8f12e9a158e3126630ded86fa5ded160a4bcf7469ea",
+        "crates/azeroth-survivors-re/src/save/talents.rs": "70b972f60d844450194902992bdc432c832a3b0020fe92429d65637d4c75b339",
+        "crates/azeroth-survivors-re/assets/talent-replacements-0.141.0.json": "06c640c1dc4c7f7bdde56ca760ab95d3ad370ebb622efcfb5b265c910044ce6f",
+        "docs/analysis/counterattack-0.141.0.md": "c923a3f94d6893265893fa9a441683bc57790628d577e654fafcf8206f210424"
+      }
     }
   ]
 }

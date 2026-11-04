@@ -95,7 +95,7 @@ impl Catalog {
         let hunter = catalog.classes.iter_mut().find(|class| class.id == 3)
             .expect("native Hunter class");
         for talent in hunter.trees.iter_mut().flat_map(|tree| tree.talents.iter_mut())
-            .filter(|talent| matches!(talent.key.as_str(), "rapid_fire" | "wyvern_sting"))
+            .filter(|talent| matches!(talent.key.as_str(), "rapid_fire" | "wyvern_sting" | "counterattack"))
         {
             let current = effects.talents.iter().find(|effect| effect.key == talent.key)
                 .expect("native Hunter talent");

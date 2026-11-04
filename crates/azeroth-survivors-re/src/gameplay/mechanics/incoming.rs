@@ -227,9 +227,12 @@ impl Mechanics {
             },
         );
         self.rng = rng;
-        //1454a1034..10bd publishes general damage, then strict low-health gates.
-        self.publish_player_event(4, applied.amount, source_guid, player, facing, world);
-        self.publish_player_event(5, applied.amount, source_guid, player, facing, world);
+        // 0.141.0 publishes these reactive events only for a sourced melee hit
+        // while the run is still active after retaliation.
+        if physical && source_guid != 0 && self.active_run_state() {
+            self.publish_player_event(4, applied.amount, source_guid, player, facing, world);
+            self.publish_player_event(5, applied.amount, source_guid, player, facing, world);
+        }
         if self.execution.vitals.health > 0.0 {
             self.publish_player_damage(applied.amount);
             return;

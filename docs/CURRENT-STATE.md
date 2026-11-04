@@ -2,7 +2,7 @@
 
 [Gameplay/runtime verification backlog](verification-needed.md) owns post-source checks and completed finding history.
 
-Reviewed **2026-11-04**. The installed and registered reference is **0.140.0**,
+Reviewed **2026-11-04**. The last registered audit is **0.140.0**,
 151,521,280 bytes, SHA-256
 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`.
 The [identity and resources](analysis/target-refresh-0.140.0.json) are bound to
@@ -10,6 +10,12 @@ the complete installed chain. The 0.139.1
 [native census](analysis/native-census-0.139.1.md) and
 [graph/queue](analysis/as-discovery-0.139.1.md) preserve their original scope.
 The intervening 0.139.2 EXE had scoped recovery and source repairs.
+
+The installed **0.141.0** EXE has SHA-256
+`6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
+Scoped source repairs and their system owners are recorded in the
+[individual claim reviews](analysis/coverage/changelog-reviews.json).
+The 0.140.0 whole-image accounting retains its original inputs.
 
 Targeted repairs for [Death Recap](analysis/death-recap-0.139.2.md)
 and the [local clock](analysis/local-clock-0.139.2.md) have their own 0.139.2
@@ -70,7 +76,6 @@ permanent owners in the [release review](analysis/release-review-0.140.0.md).
 | --- | --- | --- | --- | --- |
 | Scholomance armor drops and Armory odds | [0.141.0](CHANGELOG.md#01410)<br>`changelog:0.141.0:f9668c51059bacce`<br>Unchanged weapon-drop context: `changelog:0.141.0:2b181b04dadea0dc`<br>Release summary: `changelog:0.141.0:1d25a9296037f7e2` | Trace how the first four bosses produce at most one drop per kill with a 50% overall chance, and how the slot is chosen with neither, one or both pieces owned. Find which ownership state the Armory uses for its displayed odds. Use Gandling's unchanged 25% full class weapon group as a control in the same reward trace. | [#314](verification-needed.md#gap-314) | Loot, gear & upgrades · Scholomance, Armory |
 | Kill Command and Packlord pet meter attribution | [0.141.0](CHANGELOG.md#01410)<br>`changelog:0.141.0:6caaee7fb93fce4a`<br>Release summary: `changelog:0.141.0:1d25a9296037f7e2` | Trace commanded strikes, Raptor bleeds, Matriarch shockwaves and the Wolf howl's bonus damage into per-pet rows. Recover how the separate spell rows are retired and how the meter preserves the same total; check which identifiers the addon snapshot receives. | [#316](verification-needed.md#gap-316), [#8](verification-needed.md#gap-8), [#75](#gap-75) | UI, HUD & menus · Hunter, pets, meter attribution |
-| Counterattack's free Immolation Trap | [0.141.0](CHANGELOG.md#01410)<br>`changelog:0.141.0:5788d609499311cd` | Trace the two ranks' 15% and 30% proc rolls through free Immolation Trap creation and identify which trap upgrades apply to that cast. | [#316](verification-needed.md#gap-316) | Classes & talents · Hunter, traps |
 | Resonant Shocks rank scaling | [0.141.0](CHANGELOG.md#01410)<br>`changelog:0.141.0:ba5b9288f47bcd34` | Trace the one-extra-target limit and 10%/20%/30% damage through Earth, Frost and Flame Shock. Compare the existing base-target exclusions, periodic damage and Stormbound repeat consumers. | [#305](verification-needed.md#gap-305) | Classes & talents · Enhancement Shaman, targeting |
 | Improved Mind Blast rank tooltip | [0.141.0](CHANGELOG.md#01410)<br>`changelog:0.141.0:30f289e99809b166` | Find the rank-dependent tooltip value in each talent presentation and compare it with the unchanged spell modifiers. | [#34](verification-needed.md#gap-34) | UI, HUD & menus · Priest, tooltips |
 | Ras Frostwhisper shield and rising rune towers | [0.141.0](CHANGELOG.md#01410)<br>`changelog:0.141.0:26f30cd823bea0f6` | Recover where the 75% reduction applies, how the two Sapphiron-style towers rise over the shield lifetime, and how touching either tower removes the shield and applies vulnerability. | [#313](#gap-313) | Bosses & guardians · Scholomance |

@@ -550,8 +550,7 @@ pub static ABILITIES: &[AbilityDefinition] = &[
         effect: StatusEffect { tag: 0, value: f32::from_bits(0x00000000), duration: f32::from_bits(0x00000000) },
         school: 2, kind: 2,
     },
-    // Installed 0.140.0 descriptor at 0x1473ba208. Explosive Trap retains its
-    // independent descriptor for Counterattack.
+    // Installed 0.140.0 descriptor at 0x1473ba208.
     AbilityDefinition {
         key: "kill_command",
         name: "Kill Command",

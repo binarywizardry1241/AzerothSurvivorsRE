@@ -131,6 +131,14 @@ pub fn catalog() -> &'static Catalog {
             replacements.target_sha256,
             "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
         );
+        let mut replacements_01410: CurrentTalentReplacements = serde_json::from_str(include_str!(
+            "../assets/talent-replacements-0.141.0.json"
+        ))
+        .expect("0.141.0 Counterattack replacement");
+        assert_eq!(
+            replacements_01410.target_sha256,
+            "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        );
         Catalog {
             target_sha256: value.target_sha256,
             classes: value
@@ -163,7 +171,9 @@ pub fn catalog() -> &'static Catalog {
                         } else {
                             replacements.classes.remove(&class.id).unwrap_or_default()
                         };
-                        for replacement in class_replacements {
+                        for replacement in class_replacements.into_iter().chain(
+                            replacements_01410.classes.remove(&class.id).into_iter().flatten(),
+                        ) {
                             let talent = talents
                                 .iter_mut()
                                 .find(|talent| talent.key == replacement.key)

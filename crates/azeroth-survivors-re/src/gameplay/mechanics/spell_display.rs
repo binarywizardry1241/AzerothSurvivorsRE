@@ -50,7 +50,7 @@ fn catalog() -> &'static DisplayCatalog {
             catalog.target_sha256,
             "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
         );
-        // Wyvern Sting's live timer supplies the current spell tooltip row.
+        // Live talent effects supply the spell tooltip associations.
         let effects = azeroth_survivors_re::run_effects::catalog().classes.iter()
             .find(|class| class.id == 3).expect("native Hunter effects");
         let wyvern = effects.talents.iter().find(|talent| talent.key == "wyvern_sting")
@@ -60,13 +60,21 @@ fn catalog() -> &'static DisplayCatalog {
                 &EffectRow::talent(payload, 1), 0.0,
             )
         }).expect("native Wyvern Sting timed cast");
+        let counterattack = effects.talents.iter().find(|talent| talent.key == "counterattack")
+            .expect("native Counterattack");
+        let trap = counterattack.effects.iter().find_map(|payload| {
+            let row = EffectRow::talent(payload, 1);
+            (row.tag() == 0).then(|| row.key(16)).flatten()
+        }).expect("native Counterattack free cast");
         let hunter = catalog.classes.iter_mut().find(|class| class.id == 3)
             .expect("Hunter tooltip projection");
-        let wyvern = hunter.talents.iter_mut().find(|talent| talent.key == "wyvern_sting")
-            .expect("Wyvern Sting tooltip projection");
-        let old_trap = wyvern.spells.iter_mut().find(|spell| spell.as_str() == "explosive_trap")
-            .expect("retained Wyvern Sting trap row");
-        *old_trap = timer.key.to_owned();
+        for (talent, key) in [("wyvern_sting", timer.key), ("counterattack", trap)] {
+            let display = hunter.talents.iter_mut().find(|row| row.key == talent)
+                .expect("Hunter trap talent tooltip projection");
+            let old_trap = display.spells.iter_mut().find(|spell| spell.as_str() == "explosive_trap")
+                .expect("retained trap tooltip row");
+            *old_trap = key.to_owned();
+        }
         catalog
     })
 }
