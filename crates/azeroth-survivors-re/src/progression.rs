@@ -735,10 +735,18 @@ fn load_art(catalog: Res<Catalog>, mut art: ResMut<Art>, mut images: ResMut<Asse
     }
 }
 
+#[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
+enum CompanionTab {
+    #[default]
+    Perks,
+    Looks,
+}
+
 #[derive(Resource, Default)]
 pub struct ProgressionState {
     category: Option<usize>,
     rewards_tab: u8,
+    companion_tab: CompanionTab,
     companion_slot: usize,
     plan: Option<Progress>,
     reset_armed: bool,
@@ -773,6 +781,7 @@ struct Viewport;
 enum Action {
     Category(Option<usize>),
     RewardsTab(u8),
+    CompanionTab(CompanionTab),
     Rank(String, i8),
     Confirm,
     Undo,
@@ -782,7 +791,7 @@ enum Action {
     WearTabard(Option<u32>),
     ShowCosmetic(usize, Option<u32>),
     PetSlot(usize),
-    Pet(String),
+    Pet(usize, String),
     ConfirmLeave,
     DiscardLeave,
     KeepEditing,
@@ -885,6 +894,7 @@ fn input(
                 view.scroll = 0.;
                 view.reset_armed = false;
             }
+            Action::CompanionTab(tab) => view.companion_tab = *tab,
             Action::Rank(key, delta) => {
                 let mut candidate = view.plan.clone().unwrap_or_else(|| owned.clone());
                 let old = candidate.rank(key);
@@ -983,7 +993,7 @@ fn input(
                 }
             }
             Action::PetSlot(slot) => view.companion_slot = *slot,
-            Action::Pet(key) => {
+            Action::Pet(slot, key) => {
                 if catalog.companions.iter().any(|entry| {
                     entry.key == *key
                         && entry
@@ -992,9 +1002,8 @@ fn input(
                             .is_none_or(|gate| owned.earned.contains(gate))
                 }) {
                     let mut candidate = owned.clone();
-                    // Current140116c96 clones two slots and replaces only the
-                    // selected one; selecting slot0 must retain slot1.
-                    candidate.set_pet(view.companion_slot, key);
+                    // The look card carries the slot admitted by the renderer.
+                    candidate.set_pet(*slot, key);
                     match candidate.write_rewards(&mut menu.save) {
                         Ok(()) => {
                             menu.queue_pets();
@@ -2097,12 +2106,13 @@ fn rebuild(
     armory: Res<ArmoryCatalog>,
 ) {
     let signature = format!(
-        "{:?}:{}:{}:{:?}:{}:{:?}:{}:{}:{}:{:?}",
+        "{:?}:{}:{}:{:?}:{}:{:?}:{:?}:{}:{}:{}:{:?}",
         menu.page,
         menu.class_id(),
         menu.save.plaintext(),
         view.category,
         view.rewards_tab,
+        view.companion_tab,
         view.plan,
         view.reset_armed,
         view.companion_slot,

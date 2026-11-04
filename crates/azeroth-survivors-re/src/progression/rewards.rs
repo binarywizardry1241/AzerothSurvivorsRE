@@ -13,7 +13,7 @@ fn spacer(ui: &mut ChildSpawnerCommands, height: f32) {
 enum ControlStyle {
     Command,
     Navigation,
-    CompanionSlot,
+    Companion,
 }
 
 fn control(
@@ -28,7 +28,7 @@ fn control(
     let (size, padding, lift) = match style {
         ControlStyle::Command => (15., [14., 6.], 0.4),
         ControlStyle::Navigation => (16., [12., 8.], 0.),
-        ControlStyle::CompanionSlot => (14., [10., 5.], 0.),
+        ControlStyle::Companion => (14., [10., 5.], 0.),
     };
     let command = matches!(style, ControlStyle::Command);
     let resting = if selected || (command && enabled) {
@@ -279,7 +279,7 @@ fn appearance_card(
     card.with_children(build).id()
 }
 
-fn companions(
+fn companion_looks(
     ui: &mut ChildSpawnerCommands,
     art: &MenuArt,
     images: &Art,
@@ -289,8 +289,6 @@ fn companions(
     plan: &Progress,
     view: &ProgressionState,
 ) {
-    spacer(ui, 4.);
-    crate::codex::section_heading(ui, art, labels.label("Looks"));
     let slots = usize::from(plan.rank("companion") > 0) + usize::from(plan.rank("second") > 0);
     let slots = slots.max(1);
     let selected_slot = view.companion_slot.min(slots - 1);
@@ -324,7 +322,7 @@ fn companions(
                 Action::PetSlot(slot),
                 selected_slot == slot,
                 true,
-                ControlStyle::CompanionSlot,
+                ControlStyle::Companion,
             );
         }
         text(
@@ -335,7 +333,7 @@ fn companions(
             MUTED,
         );
     });
-    crate::scrollbar::kept_list(ui, "rewards-companion-looks", 0., |ui| {
+    crate::scrollbar::kept_list(ui, "rewards-companion-looks", 8., |ui| {
     ui.spawn(Node {
         display: Display::Grid,
         grid_template_columns: RepeatedGridTrack::flex(4, 1.),
@@ -355,7 +353,7 @@ fn companions(
                 worn,
                 available,
                 available && !worn,
-                Action::Pet(pet.key.clone()),
+                Action::Pet(selected_slot, pet.key.clone()),
                 |row| {
                     reward_icon(row, images, &pet.icon, !available);
                     row.spawn(Node {
@@ -745,28 +743,60 @@ pub(super) fn draw(
             };
             menu::native_panel(body, pane(Val::Px(300.), 0.), |left| sidebar(left, art, labels, catalog, owned, plan, view));
             menu::native_panel(body, pane(Val::Auto, 1.), |right| {
-                crate::codex::section_heading(right, art, labels.label(["Perks", "Companions", "Tabards", "Races", "Appearances"][usize::from(view.rewards_tab)]));
-                if view.rewards_tab == 4 {
-                    appearances(right, art, images, labels, catalog, owned, menu);
-                    return;
-                }
-                if view.rewards_tab == 3 {
-                    races(right, art, labels, catalog, owned, plan, menu);
-                    return;
-                }
-                if view.rewards_tab == 2 {
-                    tabards(right, art, images, labels, catalog, owned, plan, menu);
-                    return;
-                }
+                let perks = |ui: &mut ChildSpawnerCommands| {
+                    ui.spawn(Node {
+                        display: Display::Grid,
+                        grid_template_columns: RepeatedGridTrack::flex(2, 1.),
+                        row_gap: Val::Px(8.),
+                        column_gap: Val::Px(10.),
+                        ..default()
+                    }).with_children(|grid| {
+                        for perk in catalog.perks.iter().filter(|perk| perk.category == view.rewards_tab) {
+                            perk_card(grid, art, images, labels, catalog, perk, owned, plan);
+                        }
+                    });
+                };
                 if view.rewards_tab == 1 {
-                    text(right, art, labels.label("Companions follow every hero of every class and fetch coins and experience wisps for you. Instincts go one to a companion, the first bought to the first."), 12., MUTED);
-                }
-                right.spawn(Node { display: Display::Grid, grid_template_columns: RepeatedGridTrack::flex(2, 1.), row_gap: Val::Px(8.), column_gap: Val::Px(10.), ..default() }).with_children(|grid| {
-                    for perk in catalog.perks.iter().filter(|perk| perk.category == view.rewards_tab) {
-                        perk_card(grid, art, images, labels, catalog, perk, owned, plan);
+                    right.spawn(Node {
+                        width: Val::Percent(100.),
+                        column_gap: Val::Px(12.),
+                        align_items: AlignItems::Center,
+                        ..default()
+                    }).with_children(|row| {
+                        control(
+                            row, art, labels.label("Companion Perks"),
+                            Action::CompanionTab(CompanionTab::Perks),
+                            view.companion_tab == CompanionTab::Perks, true, ControlStyle::Companion,
+                        );
+                        row.spawn(Node { flex_grow: 1., ..default() }).with_children(|heading| {
+                            crate::codex::section_heading(heading, art, labels.label("Companions"));
+                        });
+                        control(
+                            row, art, labels.label("Companions"),
+                            Action::CompanionTab(CompanionTab::Looks),
+                            view.companion_tab == CompanionTab::Looks, true, ControlStyle::Companion,
+                        );
+                    });
+                    match view.companion_tab {
+                        CompanionTab::Perks => {
+                            crate::scrollbar::kept_list(right, "rewards-companion-perks", 8., |list| {
+                                text(list, art, labels.label("Companions follow every hero of every class and fetch coins and experience wisps for you. Instincts go one to a companion, the first bought to the first."), 12., MUTED);
+                                perks(list);
+                            });
+                        }
+                        CompanionTab::Looks => {
+                            companion_looks(right, art, images, labels, catalog, owned, plan, view);
+                        }
                     }
-                });
-                if view.rewards_tab == 1 { companions(right, art, images, labels, catalog, owned, plan, view); }
+                    return;
+                }
+                crate::codex::section_heading(right, art, labels.label(["Perks", "Companions", "Tabards", "Races", "Appearances"][usize::from(view.rewards_tab)]));
+                match view.rewards_tab {
+                    4 => appearances(right, art, images, labels, catalog, owned, menu),
+                    3 => races(right, art, labels, catalog, owned, plan, menu),
+                    2 => tabards(right, art, images, labels, catalog, owned, plan, menu),
+                    _ => perks(right),
+                }
             });
         });
     });
