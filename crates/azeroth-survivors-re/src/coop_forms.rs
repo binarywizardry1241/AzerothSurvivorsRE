@@ -18,6 +18,7 @@ pub(crate) enum FormRequest {
         password: String,
     },
     Leave,
+    LeaveRun,
     Refresh,
     Chat(String),
     Kick(u64),

@@ -761,7 +761,11 @@ fn poll(
                     service.send(ClientMessage::Join { code, password });
                 }
             }
-            FormRequest::Leave => {
+            request @ (FormRequest::Leave | FormRequest::LeaveRun) => {
+                let end_run = request == FormRequest::LeaveRun;
+                if end_run && !runtime.is_guest() {
+                    continue;
+                }
                 // Current0.119.0 command23 invokes the complete guest close
                 // transaction before replacing the driver/service state.
                 if runtime.is_guest() {
@@ -797,7 +801,14 @@ fn poll(
                     );
                 }
                 if let Some(mut driver) = runtime.driver.take() {
-                    driver.leave(time.elapsed_secs_f64(), |command| send_relay(&mut service, command));
+                    if end_run {
+                        driver.leave_guest_run(time.elapsed_secs_f64());
+                        for command in driver.take_service_commands() {
+                            send_relay(&mut service, command);
+                        }
+                    } else {
+                        driver.leave(time.elapsed_secs_f64(), |command| send_relay(&mut service, command));
+                    }
                 }
                 service.close();
                 service.hosting = false;
@@ -809,7 +820,10 @@ fn poll(
                 view.role.clear();
                 view.code = None;
                 view.lobby = None;
-                view.status = "off".into();
+                view.status = if end_run { "ended" } else { "off" }.into();
+                if end_run {
+                    view.unavailable_reason = Some("you left the run".into());
+                }
             }
         }
     }

@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "gap_id": 206,
+  "target": {
+    "version": "0.139.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+    "size_bytes": 150793728
+  },
+  "native_ranges": [
+    {
+      "role": "engine local departure request",
+      "start": "0x145e4c54f",
+      "end_exclusive": "0x145e4c563",
+      "file_offset": "0x5e4b94f",
+      "sha256": "f7ce9b7a1dac7561638f1d3793b2e8ac79b3b247f88808ef10a308627456d21d"
+    },
+    {
+      "role": "guest request guard and handler",
+      "start": "0x145e76740",
+      "end_exclusive": "0x145e76a9a",
+      "file_offset": "0x5e75b40",
+      "sha256": "458bd2dd55dc51a107e48798e1a754d43d6b4b9b1ef35ad62c5884edcf4f45e9",
+      "ghidra": {
+        "evidence_id": "ev_cd8bb80153fd41a14b6ef7d1669362f9b56b2f7e9965de644818ca5c9018d8df",
+        "result_sha256": "71c6de369cc7475014c1e7e3d0858749cc8def575e32f0f0bdfd1f8b379cfc96",
+        "journal_identity_sha256": "89e88d0c8c09dedc06c1c5705329d6eb842699b94d1689fb8be382366e87dfbd"
+      }
+    },
+    {
+      "role": "guest Disconnect writer case",
+      "start": "0x145dc9290",
+      "end_exclusive": "0x145dc92a1",
+      "file_offset": "0x5dc8690",
+      "sha256": "a2afcc0aaaf2425a533fbb14074db6c2350605072e548a15c2a2b36c282af979"
+    },
+    {
+      "role": "joined host Disconnect dispatch",
+      "start": "0x145e78345",
+      "end_exclusive": "0x145e78382",
+      "file_offset": "0x5e77745",
+      "sha256": "de610be926410c44966aba6e4dcc579e6b0f6fc23344e1ae79ceebce8cb5a017"
+    },
+    {
+      "role": "host ordered connection removal",
+      "start": "0x145e79140",
+      "end_exclusive": "0x145e79290",
+      "file_offset": "0x5e78540",
+      "sha256": "633d36c6ded22de812271b752279dd7e0e7b79a1337a1f9453cb629f580df4f2"
+    },
+    {
+      "role": "world departure, terminal gate and health rescale",
+      "start": "0x145edbf60",
+      "end_exclusive": "0x145edccb9",
+      "file_offset": "0x5edb360",
+      "sha256": "c95cde94ec438f98e21b9dbb708ea5698f841d02d3aac20392542fd10e12d7b3",
+      "ghidra": {
+        "evidence_id": "ev_5ebd02ac3ae56f4936d6e399c17c813d7fa74d9ffbbfd8c3c5c2fc4bd799cd36",
+        "result_sha256": "f66458ee7ffa9efa598f75fb611f7527412d518ab5b504f92d16064f9331cdfe",
+        "journal_identity_sha256": "628f04fd2d8b0f9cc37fecb1616b6f3fe4592adaa8cf55121e7d7d6cc9fdf5ae"
+      }
+    },
+    {
+      "role": "local enum 9",
+      "start": "0x1476c5080",
+      "end_exclusive": "0x1476c5084",
+      "file_offset": "0x76c4280",
+      "sha256": "9f076b7eb7fdc0311cd3208cdbbebbf8014dd3a05e35191c96947b358a362b40"
+    },
+    {
+      "role": "payload-free Disconnect variant 16",
+      "start": "0x1476c5b00",
+      "end_exclusive": "0x1476c5b08",
+      "file_offset": "0x76c4d00",
+      "sha256": "9c98c15743cb23e42864b223fa158aae43bb22e2ea21960457e0f77933abfd7c"
+    },
+    {
+      "role": "local leave notification",
+      "start": "0x1476c5fc8",
+      "end_exclusive": "0x1476c5fd8",
+      "file_offset": "0x76c51c8",
+      "sha256": "004ff34c17aeecb9447afb52d3636f197dda01effa37de5ed9d6256134caa5e6"
+    },
+    {
+      "role": "local guest request 9 jump cell",
+      "start": "0x1476c8130",
+      "end_exclusive": "0x1476c8134",
+      "file_offset": "0x76c7330",
+      "sha256": "13a35cb69b1d33939d0b5ddb24c86497f170e07f73a7b2620050ca330a027194"
+    },
+    {
+      "role": "Disconnect variant 16 writer jump cell",
+      "start": "0x14735489c",
+      "end_exclusive": "0x1473548a0",
+      "file_offset": "0x7353a9c",
+      "sha256": "f14d6e304d6337f465d52ce334d7dd327e8e8f4ba805a5810e4b434f24fc090e"
+    },
+    {
+      "role": "host Disconnect variant 16 jump cell",
+      "start": "0x1476c8220",
+      "end_exclusive": "0x1476c8224",
+      "file_offset": "0x76c7420",
+      "sha256": "35f6d91f0f0016f991d80f5bea8735dc6d299d04a7e06d0ce34994da6c2432d2"
+    },
+    {
+      "role": "health zone coefficients",
+      "start": "0x1476c9f08",
+      "end_exclusive": "0x1476c9f10",
+      "file_offset": "0x76c9108",
+      "sha256": "23a8c2d2b7be4c480adf45b98b1a08d6bdc87c2ff4d7e51715b941d6af6e5e42"
+    },
+    {
+      "role": "ordinary and special health terms",
+      "start": "0x147a41370",
+      "end_exclusive": "0x147a41378",
+      "file_offset": "0x7a40570",
+      "sha256": "cc400ec69343cb34ae3393e4d002891b88e492cbfe1ef5b9bd2ee29182d90661"
+    },
+    {
+      "role": "cooperative health multiplier",
+      "start": "0x1465b6fe0",
+      "end_exclusive": "0x1465b6fe8",
+      "file_offset": "0x65b61e0",
+      "sha256": "6727a598c5aa66f4049f7e333c97db719127e53baa03dc6fd25cc474bf4c0a88"
+    }
+  ]
+}

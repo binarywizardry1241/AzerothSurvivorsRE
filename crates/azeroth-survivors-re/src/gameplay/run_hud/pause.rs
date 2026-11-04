@@ -60,7 +60,8 @@ pub(super) fn input(
     floor: Res<super::super::world::NativeFloor>,
     clicks: Query<(&Interaction, &Action), Changed<Interaction>>,
     mut exit: MessageWriter<AppExit>,
-    mut coop:Option<ResMut<crate::coop_runtime::CoopRuntime>>,
+    coop: Option<Res<crate::coop_runtime::CoopRuntime>>,
+    mut coop_ui: ResMut<crate::coop_ui::CoopUi>,
     choice: Res<super::super::ChoicePresentation>,
 ) {
     if !menu.in_run || session.mechanics.is_none() {
@@ -126,14 +127,12 @@ pub(super) fn input(
                     state.open = false;
                     native.session_requests.push(SessionRequest::Logout);
                 } else if confirmed(&mut state.confirmation, now) {
-                    // Enter the existing terminal/account lifetime; its screen
-                    // and retry/menu behavior are owned by gap #9.
-                    if let Some(runtime)=coop.as_deref_mut().filter(|runtime|runtime.is_guest()) {
-                        runtime.send(None,azeroth_survivors_re::coop::replication::NativeMessage::Control{kind:5,argument:0,offer:0});
+                    if coop.as_deref().is_some_and(|runtime| runtime.is_guest()) {
+                        coop_ui.request_leave_run();
                     } else {
                         session.mechanics.as_mut().unwrap().abandon(|xy| floor.terrain_ref().and_then(|terrain| terrain.height(xy)));
+                        session.ended_by_player = true;
                     }
-                    session.ended_by_player = true;
                     state.open = false;
                 }
             }

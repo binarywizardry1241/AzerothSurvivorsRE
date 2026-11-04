@@ -588,6 +588,26 @@ mod tests {
     }
 
     #[test]
+    fn permanent_departure_ends_only_the_last_active_host_run() {
+        let mut game = pair();
+        game.admit_party_hero(
+            2, 202, "Second guest".into(), class_run("priest", 1), game.zone.center.into(), 0.0,
+        ).unwrap();
+        game.boundary_started = true;
+        game.with_party_hero(2, |hero| hero.dead = true).unwrap();
+
+        assert!(game.leave_party_hero(1));
+        assert!(game.party_shared_running(), "a downed guest still occupies a party slot");
+        assert!(game.leave_party_hero(1));
+        assert!(!game.dead, "a repeated departure cannot retire another slot");
+        assert!(game.leave_party_hero(2));
+        assert!(game.dead && !game.completed);
+        assert_eq!(game.party_terminal_phase(), Some(4));
+        assert_eq!(game.party_guid(2), Some(202));
+        assert_eq!(game.native_state().byte_8f, 4);
+    }
+
+    #[test]
     fn party_scaling_survives_the_single_remote_swap_and_departure() {
         use azeroth_survivors_re::coop::scaling::PartyScaling;
 
@@ -919,6 +939,7 @@ struct RemoteHero {
     input: PartyInput,
     state: HeroState,
     revive: f32,
+    departed: bool,
 }
 
 #[derive(Debug, Default)]
@@ -1683,6 +1704,7 @@ impl Mechanics {
             },
             state: HeroState::from_template(template),
             revive: 0.0,
+            departed: false,
         });
         self.coop.local_guid = self.player_guid;
         self.coop.enabled = true;
@@ -1714,12 +1736,14 @@ impl Mechanics {
     pub fn has_party(&self) -> bool {
         self.coop.enabled
     }
-    ///145896390 calls1459011a0 on disconnect. It abandons a hero through the
-    /// ordinary context owner and reinserts that row; native actor indices and
-    /// queued reward ownership are retained for the rest of this world.
+    /// 0.139.2 permanent peer removal retains the world row and its reward
+    /// ownership. The singleton check counts departures independently of phase.
     pub fn leave_party_hero(&mut self, slot: u8) -> bool {
-        if slot == 0 || self.party_guid(slot).is_none() {
+        let Some(row) = self.coop.remotes.iter_mut().find(|hero| hero.slot == slot) else {
             return false;
+        };
+        if std::mem::replace(&mut row.departed, true) {
+            return true;
         }
         self.refresh_party_live_heroes();
         let previous = self.party_health_factors();
@@ -1733,6 +1757,12 @@ impl Mechanics {
             .is_none()
         {
             return false;
+        }
+        if self.coop.remotes.iter().all(|hero| hero.departed)
+            && !self.abandoned
+            && (self.boundary_started || self.is_paused_for_choice())
+        {
+            self.abandon(|_| None);
         }
         self.refresh_party_live_heroes();
         self.rescale_party_actor_health(previous);

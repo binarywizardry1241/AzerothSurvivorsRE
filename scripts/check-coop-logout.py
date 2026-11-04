@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Hash-bound native logout/terminal dispatch check; no compilation or target execution."""
 import hashlib
+import itertools
 import json
 import struct
+import sys
 
-from coverage_common import ROOT, latest_target, target_bytes
+from coverage_common import ROOT, installed_identity, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
@@ -77,5 +79,61 @@ def main():
           'source routing anchors; no compilation or runtime/parity claim')
 
 
+def guest_end_run():
+    proof = json.loads((ROOT / 'docs/analysis/evidence/0.139.2/coop-guest-end-run.json').read_text())
+    target = installed_identity()
+    assert target == proof['target']
+    data = target_bytes(target)
+    pe = load_script('coop_logout_pe', ROOT / 'scripts/inventory-executable.py').PE(data)
+
+    def read(address, size):
+        offset = pe.rva_offset(address - pe.image_base)
+        return data[offset:offset + size]
+
+    for row in proof['native_ranges']:
+        start, end = int(row['start'], 16), int(row['end_exclusive'], 16)
+        assert pe.rva_offset(start - pe.image_base) == int(row['file_offset'], 16)
+        assert hashlib.sha256(read(start, end - start)).hexdigest() == row['sha256']
+
+    for table, index, destination in ((0x1476c8114, 7, 0x145e767ae),
+                                      (0x14735485c, 16, 0x145dc9290),
+                                      (0x1476c81ec, 13, 0x145e78345)):
+        assert table + struct.unpack('<i', read(table + index * 4, 4))[0] == destination
+    assert read(0x1476c5080, 4) == b'\x09\0\0\0'
+    assert read(0x1476c5b00, 8) == struct.pack('<Q', (1 << 63) + 16)
+    assert read(0x145dc9294, 2) == b'\xb2\x10'
+    assert read(0x1476c5fc8, 16) == b'you left the run'
+
+    harness = load_script('coop_logout_native', ROOT / 'scripts/check-coop-ui.py')
+    probe = harness.Native(data, pe, [(0x145edc3d9, 0x145edc3fb), (0x145edc493, 0x145edc4ab)],
+                           [0x145edc3fb, 0x145edc792, 0x145edc466, 0x145edc4ab])
+    game = probe.HEAP
+    probe.reg('R15', game)
+    for remote_count, departed in itertools.product(range(5), range(7)):
+        probe.put(game + 0xb98, remote_count)
+        probe.put(game + 0xe70, departed)
+        probe.stop = 0x145edc3fb if remote_count + 1 - departed <= 1 else 0x145edc792
+        probe.run(0x145edc3d9)
+    for phase, abandoned in itertools.product(range(6), range(2)):
+        probe.cpu.mem_write(game + 0xf63, bytes([phase]))
+        probe.cpu.mem_write(game + 0xf4f, bytes([abandoned]))
+        probe.stop = 0x145edc4ab if 1 <= phase <= 3 and not abandoned else 0x145edc466
+        probe.run(0x145edc493)
+
+    source = ROOT / 'crates/azeroth-survivors-re/src'
+    pause = (source / 'gameplay/run_hud/pause.rs').read_text()
+    assert 'coop_ui.request_leave_run();' in pause and 'kind:5' not in pause
+    directory = (source / 'coop_directory.rs').read_text()
+    assert 'driver.leave_guest_run(' in directory and '"you left the run"' in directory
+    mechanics = (source / 'gameplay/mechanics/coop.rs').read_text()
+    departure = mechanics.split('pub fn leave_party_hero(', 1)[1].split('fn refresh_party_live_heroes', 1)[0]
+    assert '.all(|hero| hero.departed)' in departure
+    assert departure.index('self.abandon(|_| None)') < departure.index('self.rescale_party_actor_health(previous)')
+    print('PASS: 47 native singleton/phase cases, hash-bound End Run dispatch and live source routes')
+
+
 if __name__ == '__main__':
-    main()
+    if sys.argv[1:] == ['--end-run']:
+        guest_end_run()
+    else:
+        main()

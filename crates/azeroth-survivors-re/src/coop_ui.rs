@@ -270,6 +270,10 @@ impl CoopUi {
         self.requests.drain(..).collect()
     }
 
+    pub(crate) fn request_leave_run(&mut self) {
+        self.requests.push_back(FormRequest::LeaveRun);
+    }
+
     fn select_tab(&mut self, tab: Tab) {
         self.tab = tab;
         self.forms.focus = match tab {
