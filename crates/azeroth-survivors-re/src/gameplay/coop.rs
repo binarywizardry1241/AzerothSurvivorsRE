@@ -38,6 +38,7 @@ struct HeroUpdate {
 #[derive(Clone, Copy)]
 struct HeroAdmission {
     host_guid: u64,
+    active_guid: Option<u64>,
     now: f64,
     run_under_way: bool,
     zone_key: &'static str,
@@ -115,7 +116,7 @@ impl CoopGame {
         {
             return Some(NativeHero::locked_reason(admission.zone_key, admission.heroic_rank));
         }
-        if hero.guid == admission.host_guid
+        if hero.guid == admission.host_guid || admission.active_guid == Some(hero.guid)
             || self.profiles.iter().any(|(id, profile)| *id != client && profile.guid == hero.guid)
         {
             warn!("Co-op hero identity rejected: Duplicate");
@@ -595,6 +596,7 @@ fn receive(
         menu.backend_save.max_heroic_rank(pick.hero.class, selected_zone.key)).min(5);
     let hero_admission = HeroAdmission {
         host_guid: guid,
+        active_guid: run.mechanics.as_ref().map(|game| game.player_guid),
         now: profile_now,
         run_under_way: runtime.driver.as_ref().is_some_and(|driver| driver.server.run_under_way()),
         zone_key: selected_zone.key,
@@ -1917,6 +1919,7 @@ mod guest_engine_tests {
     fn elwynn_admission(now: f64) -> HeroAdmission {
         HeroAdmission {
             host_guid: 77,
+            active_guid: None,
             now,
             run_under_way: false,
             zone_key: "elwynn",
@@ -1992,6 +1995,11 @@ mod guest_engine_tests {
         );
         let ongoing = HeroAdmission { run_under_way: true, ..elwynn_admission(0.2) };
         assert!(state.receive_hero(client, Box::new(profile.clone()), ongoing).is_none());
+        assert!(!state.profiles.contains_key(&client));
+        let active_collision = HeroAdmission {
+            active_guid: Some(profile.guid), ..elwynn_admission(0.3)
+        };
+        assert!(state.receive_hero(client, Box::new(profile.clone()), active_collision).is_none());
         assert!(!state.profiles.contains_key(&client));
         assert!(state.receive_hero(client, Box::new(profile.clone()), elwynn_admission(0.4)).is_none());
         profile.name = b"Refresh".to_vec();

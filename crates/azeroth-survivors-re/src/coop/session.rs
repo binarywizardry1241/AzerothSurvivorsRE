@@ -1102,6 +1102,8 @@ impl Session {
                         NativeMessage::Lifecycle(LifecyclePacket::LobbyChat(chat)) => {
                             self.lobby_chat.push(chat.clone());
                         }
+                        // Protocol 13 guest dispatch at 0x145ece255 releases Hero.
+                        NativeMessage::Lifecycle(LifecyclePacket::Hero(_)) => continue,
                         NativeMessage::Lifecycle(LifecyclePacket::ReadyCheck(_))
                             if self.accepted.is_none() =>
                         {
@@ -2221,7 +2223,7 @@ mod reconnection_tests {
     }
 
     #[test]
-    fn a_profile_does_not_admit_sync_before_the_world_owner_assigns_an_actor() {
+    fn hero_packets_are_host_only_and_sync_requires_actor_assignment() {
         let (mut host, clients) = assigned_host(&[7]);
         assert!(host.server.world_hero_removed(clients[0]));
         // Reuse an ordinary profile fixture; Session does not invent its world.
@@ -2256,14 +2258,8 @@ mod reconnection_tests {
             bytes_30: b"en".to_vec(),
             achievements: Vec::new(),
         };
-        inbox(
-            &mut host,
-            7,
-            &[
-                LifecyclePacket::Hero(Box::new(hero)),
-                LifecyclePacket::Synchronize,
-            ],
-        );
+        let hero = LifecyclePacket::Hero(Box::new(hero));
+        inbox(&mut host, 7, &[hero.clone(), LifecyclePacket::Synchronize]);
         host.begin_host_tick(1.);
         assert!(matches!(
             host.next_host_event(),
@@ -2288,6 +2284,16 @@ mod reconnection_tests {
         ));
         assert!(host.synchronize(clients[0], Vec::new()));
         assert!(host.next_host_event().is_none());
+
+        let mut guest = Session::service_join(Vec::new());
+        let batch = encode_batch(&[NativeMessage::Lifecycle(hero), NativeMessage::Time(7)])
+            .unwrap()
+            .unwrap();
+        guest.guest_flags.lock().unwrap().received.push_back(batch);
+        guest.tick(1.);
+        let messages = guest.take_messages();
+        assert_eq!(messages.len(), 1);
+        assert_eq!(messages[0].message, NativeMessage::Time(7));
     }
 
     #[test]

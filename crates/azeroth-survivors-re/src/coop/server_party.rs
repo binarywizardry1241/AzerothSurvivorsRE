@@ -223,7 +223,7 @@ pub struct NativeHero {
     pub key_160: Vec<u8>,
     pub rank_168: u8,
     pub bytes_17c: [u8; 2],
-    /// 0.117.0 adds the earned cooperative luck f32 after companion ranks.
+    /// Earned cooperative luck follows companion ranks. Protocol 13 bounds it on receipt.
     pub cooperative_luck_bits: u32,
     pub bytes_1d8: [u8; 3],
     pub profile: Option<NativeRosterProfile>,
@@ -471,6 +471,7 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
             Ok(value)
         }
         fn u8(&mut self) -> Result<u8, PacketError> { Ok(self.take(1)?[0]) }
+        fn bool_byte(&mut self) -> Result<u8, PacketError> { Ok(u8::from(self.u8()? != 0)) }
         fn u16(&mut self) -> Result<u16, PacketError> {
             Ok(u16::from_le_bytes(self.take(2)?.try_into().expect("two bytes")))
         }
@@ -568,15 +569,20 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
                 guid, name, class, race, sex, features, words_188, optional_words_b8,
                 equipment_stars, pity, owned_tier05, heroic_unlocks, weapon_glow,
                 bytes_18: reader.bytes()?, words_170: [reader.u32()?, reader.u32()?],
-                bytes_17e: [reader.u8()?, reader.u8()?], float_178_bits: reader.u32()?,
+                bytes_17e: [reader.bool_byte()?, reader.bool_byte()?], float_178_bits: reader.u32()?,
                 key_150: reader.bytes()?, rank_158: reader.u8()?,
                 key_160: reader.bytes()?, rank_168: reader.u8()?,
                 bytes_17c: [reader.u8()?, reader.u8()?],
-                cooperative_luck_bits: reader.u32()?,
-                bytes_1d8: [reader.u8()?, reader.u8()?, reader.u8()?],
+                cooperative_luck_bits: {
+                    // Protocol 13 Hero reader at 0x14604de66 maps nonfinite luck to zero.
+                    let luck = f32::from_bits(reader.u32()?);
+                    if luck.is_finite() { luck.clamp(0.0, 0.1).to_bits() } else { 0 }
+                },
+                bytes_1d8: [reader.bool_byte()?, reader.bool_byte()?, reader.bool_byte()?],
                 profile: reader.profile()?, achievement_points: reader.u32()?,
                 byte_1e3: reader.u8()?, bytes_30: reader.bytes()?,
-                achievements: reader.achievements()?,
+                // The achievement appendix starts only when bytes follow the language field.
+                achievements: if reader.cursor == input.len() { Vec::new() } else { reader.achievements()? },
             };
             LifecyclePacket::Hero(Box::new(hero))
         }
@@ -928,19 +934,35 @@ mod tests {
     }
 
     #[test]
-    fn hero_wire_retains_cooperative_luck_between_companion_ranks_and_options() {
-        for bits in [0, 0x3dcc_cccd, 0x7fc0_1234] {
+    fn hero_wire_bounds_received_cooperative_luck_and_normalizes_flags() {
+        for (bits, expected) in [
+            (0, 0),
+            (0x8000_0000, 0x8000_0000),
+            (0.05f32.to_bits(), 0.05f32.to_bits()),
+            (0.1f32.to_bits(), 0.1f32.to_bits()),
+            (1.0f32.to_bits(), 0.1f32.to_bits()),
+            ((-0.05f32).to_bits(), 0),
+            (f32::INFINITY.to_bits(), 0),
+            (f32::NEG_INFINITY.to_bits(), 0),
+            (0x7fc0_1234, 0),
+        ] {
             let mut hero = hero_fixture();
+            hero.bytes_17e = [2, 0];
             hero.bytes_17c = [2, 3];
             hero.cooperative_luck_bits = bits;
-            hero.bytes_1d8 = [1, 0, 1];
-            let packet = LifecyclePacket::Hero(Box::new(hero));
-            let bytes = encode_lifecycle(&packet).unwrap();
+            hero.bytes_1d8 = [2, 0, 255];
+            let bytes = encode_lifecycle(&LifecyclePacket::Hero(Box::new(hero.clone()))).unwrap();
             let suffix = &bytes[bytes.len() - 23..];
             assert_eq!(&suffix[..2], &[2, 3]);
             assert_eq!(&suffix[2..6], &bits.to_le_bytes());
-            assert_eq!(&suffix[6..9], &[1, 0, 1]);
-            assert_eq!(decode_lifecycle(&bytes).unwrap(), (packet, bytes.len()));
+            assert_eq!(&suffix[6..9], &[2, 0, 255]);
+            hero.bytes_17e = [1, 0];
+            hero.cooperative_luck_bits = expected;
+            hero.bytes_1d8 = [1, 0, 1];
+            assert_eq!(
+                decode_lifecycle(&bytes).unwrap(),
+                (LifecyclePacket::Hero(Box::new(hero)), bytes.len())
+            );
         }
     }
 
@@ -957,6 +979,14 @@ mod tests {
         assert_eq!(decode_lifecycle(&encoded).unwrap(), (packet, encoded.len()));
         assert_eq!(
             decode_lifecycle(&encoded[..encoded.len() - 1]),
+            Err(PacketError::Truncated)
+        );
+        let prefix = &encoded[..encoded.len() - 16];
+        let LifecyclePacket::Hero(mut hero) = packet else { unreachable!() };
+        hero.achievements.clear();
+        assert_eq!(decode_lifecycle(prefix).unwrap(), (LifecyclePacket::Hero(hero), prefix.len()));
+        assert_eq!(
+            decode_lifecycle(&encoded[..prefix.len() + 1]),
             Err(PacketError::Truncated)
         );
     }
