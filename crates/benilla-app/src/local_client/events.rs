@@ -44,6 +44,7 @@ impl Plugin for LocalPresentationPlugin {
 
 fn dispatch(world: &mut World) {
     crate::combat_text::anchors::seat_stream(world);
+    crate::combat_text::world_anchors::seat_stream(world);
     let packets = world.get_resource_mut::<LocalWireEvents>().map_or_else(Vec::new, |mut events| std::mem::take(&mut events.0));
     let local = std::mem::take(&mut world.resource_mut::<LocalPresentationEvents>().0);
     if !world.resource::<LocalClientSession>().active {

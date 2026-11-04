@@ -67,6 +67,7 @@ struct Anchor {
 struct Catalog {
     vm: u64,
     map: Option<u32>,
+    run_identity: Option<u64>,
     run: Option<String>,
     stream: u64,
     revision: u64,
@@ -82,26 +83,46 @@ struct Catalog {
     entries: BTreeMap<u64, Anchor>,
     active: HashMap<Key, u64>,
     fallen: VecDeque<u64>,
+    observed_dead: HashSet<Key>,
     retired: HashMap<u64, &'static str>,
     retirement_order: VecDeque<u64>,
     unit_metadata: HashMap<u32, (&'static str, Option<String>)>,
 }
 
 impl Catalog {
-    fn context(&mut self, vm: u64, map: Option<u32>, run: Option<String>) {
-        if self.vm == vm && self.map == map && self.run == run {
+    fn seat(&mut self, vm: u64, map: Option<u32>, run_identity: Option<u64>) {
+        if (self.vm, self.map, self.run_identity) == (vm, map, run_identity) {
             return;
         }
+        let same_vm = self.vm == vm;
+        let same_map = self.map == map;
+        if !same_vm {
+            self.run = None;
+            self.tracking = false;
+        }
+        if !same_vm || !same_map {
+            self.frame_ready = false;
+            self.camera = None;
+            self.hero = None;
+        }
+        self.vm = vm;
+        self.map = map;
+        self.run_identity = run_identity;
+        self.reset_stream();
+    }
+
+    fn reset_stream(&mut self) {
         *self = Self {
-            vm,
-            map,
-            run,
+            vm: self.vm,
+            map: self.map,
+            run_identity: self.run_identity,
+            run: self.run.take(),
             stream: self.stream.wrapping_add(1),
             sample: self.sample,
-            tracking: self.tracking && self.vm == vm,
-            frame_ready: self.frame_ready && self.vm == vm && self.map == map,
-            camera: self.camera.take().filter(|_| self.map == map),
-            hero: self.hero.filter(|_| self.map == map),
+            tracking: self.tracking,
+            frame_ready: self.frame_ready,
+            camera: self.camera.take(),
+            hero: self.hero,
             ..Self::default()
         };
     }
@@ -110,7 +131,7 @@ impl Catalog {
         format!("w{}.{id}", self.stream_id())
     }
     fn stream_id(&self) -> String {
-        format!("s{}.0", self.stream)
+        format!("{}.{}", self.vm, self.stream)
     }
     fn space(&self, map: u32) -> String {
         format!("m{map}:{}", self.run.as_deref().unwrap_or("none"))
@@ -168,7 +189,10 @@ impl Catalog {
             return Ok(None);
         }
         let run = values.raw_get::<Option<String>>("run")?;
-        self.context(self.vm, map, run);
+        if self.run.is_some() && self.run != run {
+            self.reset_stream();
+        }
+        self.run = run;
         self.unit_metadata.clear();
         if let Some(units) = values.raw_get::<Option<Table>>("units")? {
             for unit in units.sequence_values::<Table>() {
@@ -286,6 +310,7 @@ impl Catalog {
         };
         let names = world.get_resource::<NameCache>();
         self.overflowed = false;
+        self.prune(now);
         let mut living = self
             .active
             .keys()
@@ -305,7 +330,13 @@ impl Catalog {
             };
             let key = Key::Unit(guid, entity);
             let active = self.active.get(&key).copied();
-            if health == 0 {
+            let dead = health as i32 <= 0;
+            present.insert(key.clone());
+            if dead {
+                // A still-present corpse does not get another handle when its row expires.
+                if !self.observed_dead.insert(key.clone()) {
+                    continue;
+                }
                 if let Some(id) = active {
                     self.active.remove(&key);
                     let row = self.entries.get_mut(&id).expect("living unit anchor");
@@ -318,15 +349,18 @@ impl Catalog {
                     self.fallen.push_back(id);
                     self.revision = self.revision.wrapping_add(1);
                     living -= 1;
+                    continue;
                 }
-                continue;
+            } else {
+                self.observed_dead.remove(&key);
+                // Preserve the query walk. A death frees its slot at its position
+                // in the walk, while unseen living rows retire after the scan.
+                if active.is_none() && living >= CAPACITY {
+                    self.overflowed = true;
+                    continue;
+                }
+                living += usize::from(active.is_none());
             }
-            if active.is_none() && living >= CAPACITY {
-                self.overflowed = true;
-                continue;
-            }
-            living += usize::from(active.is_none());
-            present.insert(key.clone());
             let (kind, name) = self
                 .unit_metadata
                 .get(&(guid as u32))
@@ -338,16 +372,20 @@ impl Catalog {
                     .map(str::to_owned)
             });
             let point = spot(world, entity);
-            self.insert(Anchor {
-                key,
+            let id = self.insert(Anchor {
+                key: key.clone(),
                 kind,
                 name,
-                state: "alive",
+                state: if dead { "dead" } else { "alive" },
                 occupant: None,
-                expires: None,
+                expires: dead.then_some(now + FALLEN_SECONDS),
                 position: point.map(|point| point.feet),
                 overhead: point.map(|point| point.overhead),
             });
+            if dead {
+                self.active.remove(&key);
+                self.fallen.push_back(id);
+            }
         }
         let removed: Vec<_> = self
             .active
@@ -359,6 +397,7 @@ impl Catalog {
         for id in removed {
             self.retire(id, "removed");
         }
+        self.observed_dead.retain(|key| present.contains(key));
         self.prune(now);
         self.enemies_ready = true;
     }
@@ -366,7 +405,7 @@ impl Catalog {
     fn common(&self, lua: &Lua, map: u32, now: f64) -> mlua::Result<Table> {
         let table = lua.create_table()?;
         table.set("apiVersion", 1)?;
-        table.set("worldId", self.space(map))?;
+        table.set("worldId", format!("m{map}:{}", self.stream))?;
         table.set("streamId", self.stream_id())?;
         table.set("clockSeconds", now)?;
         Ok(table)
@@ -692,10 +731,7 @@ impl Catalog {
             rows.raw_set(index, out)?;
         }
         let out = self.common(lua, map, now)?;
-        out.set(
-            "cameraSampleId",
-            format!("p{}.{}", self.stream, self.sample),
-        )?;
+        out.set("cameraSampleId", format!("{stream_id}.{}", self.sample))?;
         out.set("frameCurrent", self.frame_current)?;
         out.set("entries", rows)?;
         Ok((Some(out), None))
@@ -713,7 +749,10 @@ impl WorldAnchors {
                     .is_some_and(|state| *state.get() == ClientState::InWorld)
             })
             .map(|map| map.0);
-        catalog.context(script.session(), map, None);
+        let run_identity = world
+            .get_resource::<LocalClientExtension>()
+            .and_then(|extension| extension.combat_text_run);
+        catalog.seat(script.session(), map, run_identity);
         drop(catalog);
         let lua = script.lua();
         let state = Arc::clone(&self.0);
@@ -770,34 +809,40 @@ impl WorldAnchors {
     }
 }
 
-pub(super) fn sample_frame(world: &mut World, camera: Option<View>, now: f64) {
-    if world
-        .get_resource::<LocalClientExtension>()
-        .is_none_or(|extension| extension.world_anchor_frame_callback.is_none())
-    {
-        return;
-    }
-    let Some(catalog) = world
-        .get_resource::<WorldAnchors>()
-        .map(|catalog| Arc::clone(&catalog.0))
-    else {
-        return;
-    };
+fn seated_catalog(world: &World) -> Option<&WorldAnchors> {
+    let extension = world.get_resource::<LocalClientExtension>()?;
+    extension.world_anchor_frame_callback?;
+    let catalog = world.get_resource::<WorldAnchors>()?;
     let map = world
         .get_resource::<CurrentMap>()
         .filter(|_| crate::ui_script::ingame_ui_up_in(world))
         .map(|map| map.0);
+    let vm = world
+        .get_non_send_resource::<UiScript>()
+        .map_or(0, UiScript::session);
+    catalog
+        .0
+        .lock()
+        .expect("world anchor catalog")
+        .seat(vm, map, extension.combat_text_run);
+    Some(catalog)
+}
+
+pub(crate) fn seat_stream(world: &World) {
+    let _ = seated_catalog(world);
+}
+
+pub(super) fn sample_frame(world: &mut World, camera: Option<View>, now: f64) {
+    let Some(catalog) = seated_catalog(world).map(|catalog| Arc::clone(&catalog.0)) else {
+        return;
+    };
     let script = world.get_non_send_resource::<UiScript>();
-    let vm = script.map_or(0, UiScript::session);
     let mut catalog = catalog.lock().expect("world anchor catalog");
-    if map != catalog.map || vm != catalog.vm {
-        catalog.context(vm, map, None);
-    }
     catalog.sample = catalog.sample.wrapping_add(1);
     catalog.frame_ready = true;
     catalog.camera = camera;
     catalog.hero = script.and_then(crate::ui_script::player_position::world_position);
-    if map.is_some() && catalog.tracking {
+    if catalog.map.is_some() && catalog.tracking {
         catalog.collect_units(world, now);
     }
 }
@@ -822,13 +867,16 @@ mod tests {
                 .unwrap()
         };
         let mut catalog = Catalog::default();
-        catalog.context(1, Some(533), Some("r".into()));
+        catalog.seat(1, Some(533), Some(1));
         catalog.frame_ready = true;
         catalog.sync(values.clone()).unwrap();
         let (page, _) = catalog
             .query(&lua, query(), Value::Nil, Value::Integer(1), 0.0)
             .unwrap();
-        let cursor = page.unwrap().get::<Value>("nextCursor").unwrap();
+        let page = page.unwrap();
+        assert_eq!(page.get::<String>("worldId").unwrap(), "m533:1");
+        assert_eq!(page.get::<String>("spaceId").unwrap(), "m533:r");
+        let cursor = page.get::<Value>("nextCursor").unwrap();
         let handle = first.get::<String>("anchorId").unwrap();
 
         first.set("x", 20).unwrap();
@@ -864,8 +912,10 @@ mod tests {
             .get::<Table>(1)
             .unwrap();
         let mut catalog = Catalog::default();
-        catalog.context(1, Some(533), Some("r".into()));
+        catalog.seat(1, Some(533), Some(1));
+        let before_zone = catalog.stream_id();
         catalog.sync(values.clone()).unwrap();
+        assert_eq!(catalog.stream_id(), before_zone);
         let old: Value = row.get("anchorId").unwrap();
         let requests = lua.create_table().unwrap();
         let request = lua.create_table().unwrap();
@@ -889,7 +939,9 @@ mod tests {
         let expired = projected(&mut catalog);
         assert_eq!(expired.get::<String>("state").unwrap(), "expired");
         assert_eq!(expired.get::<String>("reason").unwrap(), "departed");
-        catalog.context(1, Some(533), Some("new".into()));
+        catalog.seat(1, Some(533), Some(2));
+        assert_eq!(catalog.run.as_deref(), Some("r"));
+        assert_eq!(catalog.stream_id(), "1.2");
         assert_eq!(
             projected(&mut catalog).get::<String>("state").unwrap(),
             "worldChanged"
