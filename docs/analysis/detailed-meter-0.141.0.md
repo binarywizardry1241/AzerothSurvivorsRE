@@ -156,6 +156,65 @@ covers the reducer. The frame builder returned procedure metadata
 whole-function decompilation failed. The original PE instructions
 establish the bounded sequence and partition behavior independently.
 
-The rebuilt authority still needs typed combat and healing input, actor
-and owner joins, encounter fences, loadout transition and recipient replay
-producers before it can send this feed.
+The actor constructor `0x145fa3080..0x145fa35bb` checks the actor
+GUID against the seated hero first, then the live companion and totem
+vectors and retained non-hero rows. It formats hero `H<low GUID word>`,
+totem `T<low GUID word>`, and companion `P<low GUID word>` or
+`D<hero low GUID word>:<descriptor key>` identities. The counter writer
+`0x145e1df70` reads the interned source/actor at `+0x76/+0x78`,
+origin indices at `+0x08/+0x10`, row ID at `+0x6c`, ordinal at
+`+0x48`, school at `+0x74/+0x75`, and metric/proc at
+`+0x7a/+0x7b`. Bits 0, 2 and 4 of `+0x7c` mark periodic,
+reflection and absorb, respectively.
+
+The heal owner at `0x145f66e30` obtains the credit ordinal and
+qualifying encounter ID through `0x145e0f010`. It records the current
+recipient's row at `0x145f69415` and queues copied 0x310-byte records
+for other owners. The drain at `0x145f09de8..0x145f09f89` seats the
+matching hero by GUID and retains the original credit ordinal,
+encounter ID and clock. The shared event stream's aggregate labels and
+packet keys cannot reconstruct those independent owner contributions.
+
+| Original range | File offset | SHA-256 |
+| --- | --- | --- |
+| Actor constructor `0x145fa3080..0x145fa35bb` | `0x5fa2480` | `cea04ac5543b93eb09ecda0cfe8350999fb2646d64c4ac2a64210752b9b37d82` |
+| Counter serializer `0x145e1df70..0x145e1e922` | `0x5e1d370` | `383c9e7c86980bd2d20bbafbf446b88aa3a7f4ae34ad95e07732e8f2ecdb3cb6` |
+| Heal recorder `0x145f66e30..0x145f6957e` | `0x5f66230` | `b0fd94d9c96b7e088dea23af38b2dc321fe687224f7acbeb9ad9dfdfe460dcdc` |
+
+Ghidra actor receipt
+`ev_97ea07d429cbcf043de5ea273d60a2286eef870769b979289aa8c861ede6c85d`
+matches the original actor-constructor slice.
+
+## Loadout records and refresh
+
+The frame builder passes a selected 0x108-byte hero view to
+`0x145e1b7f0` at `0x145fc808e`. That writer emits the unsupported
+slot-zero equipment row, then visits the 19 ordinary equipment slots.
+Zero item IDs emit an empty supported row. Occupied slots call
+`0x145e089a0` for `item:<id>` and construct the separate instance
+identity `inv:<slot>:<id>`. The same writer emits `LT` talent and
+`LJ` ring, trinket and amulet rows. Its `LB` helper
+`0x145e020a0` writes selected/learned ability state and slot/rank
+alongside the descriptor key. The equipment item key belongs to this
+loadout producer independently of combat attribution.
+
+The builder joins an owner's encoded loadout rows with a semicolon at
+`0x145fc990e`, then hashes their bytes using 64-bit FNV-1a
+(`0xcbf29ce484222325`, `0x100000001b3`). It compares the hash with
+the retained entry for that owner at `0x145fc9b00`. A new or changed
+hash updates that entry and emits `LX` at `0x145fc9bfe` before the
+loadout rows. The `LX` revision uses the lowercase hex formatter.
+
+The writer's original range `0x145e1b7f0..0x145e1cf38` starts at file
+`0x5e1abf0`, SHA-256
+`96f2de27f9435ef9771193bdef13084dd6564678d99ea0b59effa1cdf949b294`.
+Ghidra result
+`ev_dfe3420823e5ab541b5782b83e790cc53643c6debe1bc8a12873a6f9df1081f6`
+was recovered from the exported evidence after the response exceeded the
+tool's inline budget; its raw result equals the saved Program operation.
+Original PE operands bind the record formats and external calls.
+
+The rebuilt authority still needs the actual per-owner typed contributions,
+retained actor transitions, encounter and history inputs, and loadout
+descriptor joins before publishing this feed. A frame derived solely from
+the rebuilt legacy meter would misrepresent those queries.

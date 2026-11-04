@@ -29489,6 +29489,22 @@
     },
     {
       "id": "custom-game-game-addon",
+      "gap_317_stream_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 317,
+        "source_status": "partial",
+        "evidence_refs": [
+          "docs/analysis/world-anchors-0.141.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Native stream, world and sample token shapes, early reset, and cap admission are connected; exact sibling callback order remains open.",
+        "source_refs": [
+          "crates/benilla-app/src/combat_text/world_anchors.rs",
+          "crates/benilla-app/src/local_client/events.rs"
+        ]
+      },
       "gap_137_source_review_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_id": 137,
@@ -66090,6 +66106,21 @@
     },
     {
       "id": "custom-game-game-meterfeed",
+      "gap_75_receiver_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 75,
+        "source_status": "partial",
+        "evidence_refs": [
+          "docs/analysis/detailed-meter-0.141.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "The embedded FrameXML receiver accepts authoritative multipart frames. Rebuilt recorder, party/actor joins and detailed publication remain open.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"
+        ]
+      },
       "gap_75_source_review_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7b7e03b8a163b95489496e908",
         "gap_id": 75,
@@ -66213,6 +66244,23 @@
     },
     {
       "id": "custom-game-game-meterlog",
+      "gap_307_attribution_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 307,
+        "source_status": "partial",
+        "evidence_refs": [
+          "docs/analysis/combat-meter-attribution-0.141.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Current combat packet source selector and ordinary row identities are connected; detailed recorder inputs and actor/counter joins remain open under #75.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+          "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs"
+        ]
+      },
       "gap_75_source_review_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7b7e03b8a163b95489496e908",
         "gap_id": 75,

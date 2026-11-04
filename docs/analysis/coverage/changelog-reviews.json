@@ -35115,6 +35115,92 @@
         "crates/azeroth-survivors-re/src/armory.rs": "f691359112b96d54d4a3ef3127e571f48c29802ed18b17a7a55b8e5a665cbe2a",
         "docs/analysis/scholomance-loot-0.141.0.md": "ee7ff0acb53db1aa76aa18544aa952c94557be9982c4d465d0074e0ecf491dac"
       }
+    },
+    {
+      "claim_id": "changelog:0.132.0:f8b93e4b9b225f74",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Live player position and the authoritative multipart Lua receiver are source-connected. Rebuilt detailed damage/healing accounting, actor and party joins, and full producer replay after ReloadUI remain open.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/detailed-meter-0.141.0.md"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": "b629b66b1142b4f17207935ff8b9e6ea00f8a7077c7d628bbeec3f5807b7d11d",
+        "docs/analysis/detailed-meter-0.141.0.md": "bcaa4a916b828ae8c86a116bc45c5a263322864197084e3179f728ba6312eadc"
+      },
+      "systems": [
+        "custom-game-game-meterfeed"
+      ],
+      "gap_ids": [
+        75
+      ],
+      "native_contract": "Native recipient-self whisper delivery uses the embedded Lua receiver. Request, typed actor/counter records and loadout revision are mapped; the rebuilt authority still lacks the complete recorder and replay."
+    },
+    {
+      "claim_id": "changelog:0.140.0:952bce7492eb0be8",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Windfury's primary talent key, Tier 0.5 source keys and ordinary addon labels are connected. Detailed Windfury child ability and set allocations still need the AZSM producer.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+        "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/combat-meter-attribution-0.141.0.md"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "3c1299c65ccaf809b9e4d813c136085ed60e7654c2184f2f30ed6f756f881d5d",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "4c0856f7bb085416e5426f210371e3c7fceb16b05adfac329ade5e7a831b8227",
+        "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "22f2503991e56c49677cf21007fec380488fff1c2a84e80cd45bc1e15cfa7ad7",
+        "docs/analysis/combat-meter-attribution-0.141.0.md": "9da9d9604703fd5e86dba494cdb1d410a3a230f840b2ee10d42c407b4feb5fee"
+      },
+      "systems": [
+        "custom-game-game-meterfeed",
+        "custom-game-game-meterlog"
+      ],
+      "gap_ids": [
+        75,
+        307
+      ],
+      "native_contract": "The current effect selector shares the primary descriptor with the packet suffix; the ordinary display label comes from the legacy meter owner."
+    },
+    {
+      "claim_id": "changelog:0.139.2:a6b9bed3be9c9ffa",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Stream, world and camera-sample token shapes, same-map invalidation, and first-seen corpse admission are connected. Exact sibling callback execution order remains open.",
+      "source_refs": [
+        "crates/benilla-app/src/combat_text/world_anchors.rs",
+        "crates/benilla-app/src/local_client/events.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/world-anchors-0.141.0.md"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/benilla-app/src/combat_text/world_anchors.rs": "d9ecb3aac4a13936faea6d82846e084d7f84812f0f618088c2c78480c3e8a767",
+        "crates/benilla-app/src/local_client/events.rs": "c381248a6ba4b0aad9fcb4d9d6d3556b157d08a34657bcd811226b5fca78a0ac",
+        "docs/analysis/world-anchors-0.141.0.md": "3db3ee24e7724c33636e3a29fd2e92d532dd31fa2ef38fe188b65567abdf8f31"
+      },
+      "systems": [
+        "custom-game-game-addon"
+      ],
+      "gap_ids": [
+        317
+      ],
+      "native_contract": "Current VM serial and epoch form the stream token; the authoritative run-generation observer invalidates anchors ahead of Lua zone data."
     }
   ]
 }
