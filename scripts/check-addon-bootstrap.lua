@@ -24,15 +24,23 @@ end;
 local now = 100;
 local settings = { storeLevels = "1", hudClock = "0", hudScale = "1.5" };
 local created, registered = 0, 0;
+local replay_requests = {};
 function GetTime() return now; end
 function GetCVar(name) return settings[name]; end
 function SetCVar(name, value) settings[name] = value; end
+function SendAddonMessage(prefix, payload, channel)
+    table.insert(replay_requests, { prefix, payload, channel });
+end
 function CreateFrame(kind, name)
-    created = created + 1;
-    assert(kind == "Frame" and name == "AZSApiFrame");
+    assert(kind == "Frame" and (name == "AZSApiFrame" or name == "AZSMeterFrame"));
+    if name == "AZSApiFrame" then created = created + 1; end
     return {
         RegisterEvent = function(self, event)
-            assert(event == "CHAT_MSG_ADDON"); registered = registered + 1;
+            if name == "AZSApiFrame" then
+                assert(event == "CHAT_MSG_ADDON"); registered = registered + 1;
+            else
+                assert(event == "PLAYER_ENTERING_WORLD");
+            end
         end,
         SetScript = function(self, name, handler)
             assert(name == "OnEvent"); self.handler = handler;
@@ -59,6 +67,18 @@ assert(substitutions == 1 or (substitutions == 0 and string.find(api, "AZS_HUD_C
 assert(execute(read(parser_path), "native-stats-parser"))();
 assert(execute(source, "native-addon-api"))();
 assert(created == 1 and registered == 1);
+if AZSMeterFrame then
+    assert(table.getn(replay_requests) == 1);
+    local request = replay_requests[1];
+    assert(request[1] == "AZSMREQ" and request[2] == "full" and request[3] == "PARTY");
+    AZSMeterFrame.handler();
+    assert(table.getn(replay_requests) == 1);
+    now = now + 1;
+    AZSMeterFrame.handler();
+    assert(table.getn(replay_requests) == 2);
+    now = now - 1;
+    print("Passed addon replay request: bootstrap, world entry and one-second throttle; stub host only");
+end
 assert(AZS_GetPhase() == nil and AZS_GetRunSummary() == nil);
 assert(AZS_GetStoredLevels() == 0 and AZS_IsStoringLevels());
 assert(not AZS_IsHudShown("clock") and AZS_IsHudShown("bosses"));

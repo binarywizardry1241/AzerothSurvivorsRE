@@ -8,6 +8,13 @@ use benilla_app::local_client::events::{ChatMessage, SessionEvent};
 
 pub(super) use super::super::addon_meters::field;
 
+pub(in crate::gameplay) fn requests_lines(text: &str) -> bool {
+    matches!(
+        text.strip_prefix("AZSMREQ\t").map(str::trim),
+        Some("full" | "lines")
+    )
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub(in crate::gameplay) struct AddonMessage {
     pub prefix: &'static str,
@@ -54,9 +61,7 @@ impl Publisher {
         self.poll_due(now);
     }
 
-    /// Only successful new-Game creation invalidates the native server cache.
-    /// ReloadUI rebuilds the client VM without notifying this server owner;
-    /// unchanged streams retain their cached payloads across that rebuild.
+    /// A new Game clears the previous identity's payloads.
     pub fn due(&mut self, identity: u64, now: f64) -> bool {
         let key = Some(identity);
         if self.identity != key {
@@ -64,6 +69,11 @@ impl Publisher {
             self.cached.clear();
         }
         self.poll_due(now)
+    }
+
+    /// Replay ordinary lines at the next scheduled poll for this recipient.
+    pub fn replay_lines(&mut self) {
+        self.cached.clear();
     }
 
     fn poll_due(&mut self, now: f64) -> bool {
@@ -150,6 +160,25 @@ mod tests {
         assert!(publisher.cached.is_empty());
         assert!(publisher.due(2, 1.75));
         assert_eq!(publisher.changed(snapshot()).len(), 1);
+    }
+
+    #[test]
+    fn lines_request_replays_a_recipient_without_resetting_the_poll_clock() {
+        for accepted in ["AZSMREQ\tfull", "AZSMREQ\t lines "] {
+            assert!(requests_lines(accepted));
+        }
+        for rejected in ["AZSMREQ\tparty", "AZSMREQ\tfuller", "OTHER\tfull"] {
+            assert!(!requests_lines(rejected));
+        }
+        let mut publisher = Publisher::default();
+        let snapshot = || vec![AddonMessage::new("AZSZONE", "run=1-1".into())];
+        assert!(publisher.due(1, 1.0));
+        assert_eq!(publisher.changed(snapshot()).len(), 1);
+        publisher.replay_lines();
+        assert!(!publisher.due(1, 1.125));
+        assert!(publisher.due(1, 1.25));
+        assert_eq!(publisher.changed(snapshot()).len(), 1);
+        assert!(publisher.changed(snapshot()).is_empty());
     }
 
     #[test]

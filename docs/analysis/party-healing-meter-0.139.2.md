@@ -52,8 +52,23 @@ The language wrapper `0x145eadaa0` calls the frame builder at
 `0x145f7c6d0`. The frame builder compares the retained run string and
 uses the full and party flags at `0x145f7cedf` and `0x145f7cef6`.
 Ghidra returned procedure metadata for that body. Its raw-slice
-decompilation failed with a non-retryable provider error. The direct PE
-instruction trace establishes these branches independently.
+decompilation failed with `decompile_failed` and “Unable to find unique
+hash for varnode.” The direct PE instruction trace establishes these
+branches independently. The effective-heal recorder also calls
+`0x145df1eb0`. That owner deduplicates the 0x108-byte source descriptors
+by key and coalesces 0x28-byte history contributions by row index within
+the current bucket. Its expiry branch uses the `-120.0f32` literal at
+`0x147354b00` before comparing the next bucket's time.
+
+The rebuilt core Lua issues the retained `full` request on installation
+and world entry. The local bridge consumes the ordinary-lines portion
+from the outgoing addon command. The co-op host accepts the same request
+on the admitted guest's addon-language party chat packet and clears only
+that recipient's publisher cache. The next scheduled poll republishes
+current zone, cache and guardian lines through their existing publishers.
+The reloaded guest's locally projected legacy meter lines also replay.
+The `lines` token takes the same cache path. `party` is reserved for the
+detailed feed, and unknown requests leave the caches intact.
 
 Remaining implementation depends on binding the producer's row counters,
 source/actor and loadout descriptors, party joins, and encounter/history
@@ -73,12 +88,17 @@ can supply the contract.
 | Replay request `0x145dec170..0x145dec1f1` | `0x5deb570` `00b45f2ae29300e22407388bc440c38c9b5c921de06950b1cb61f363c1b30966` |
 | Addon poller `0x145e50b10..0x145e5a4b0` | `0x5e4ff10` `38345c16eced040293b80e63505d18ef7f5c2e3f68f26015469edfef9886a593` |
 | Detailed frame producer `0x145f7c6d0..0x145f80d11` | `0x5f7bad0` `a21d8c993ccef081e66cb6ef7417405870de457a5864d1d8af27e938846c528c` |
+| Detailed row/history recorder `0x145df1eb0..0x145df2eda` | `0x5df12b0` `6fae81f12d8001a950f60e83dadbbcd7893a7706e1af655136ecdd5c2732dffd` |
 
 Ghidra 12.1.4 raw-slice results include received heal
 `ev_8c88dbb90e4bb714660f7edaae027146f5704366dc22a693620727bbf98f5249`,
 replay request `ev_c5e605b7623170f99c519b9743e46ecea006ac8607c725ef7886ec7466bd2d98`
-and frame producer metadata
-`ev_02738026a1e500f6ce5ca28c6d00518a1052fff738209b289659eec06de9c8bb`.
+frame producer metadata
+`ev_02738026a1e500f6ce5ca28c6d00518a1052fff738209b289659eec06de9c8bb`
+and detailed row/history recorder
+`ev_1743b2078eed20e73badc45129ea9b995d1375dc1d57437d56776441f5996903`.
 Original PE disassembly controls ABI and external data resolution.
-Both changed Rust files parse with Rustfmt and the exact meter Lua parses with
-Luac. Compilation, co-op/game execution and parity are unverified.
+The Rust changes parse with Rustfmt. The composed bootstrap passed the
+standalone Lua check for the startup request, repeat suppression and
+world-entry retry. Compilation, co-op/game execution and parity are
+unverified.

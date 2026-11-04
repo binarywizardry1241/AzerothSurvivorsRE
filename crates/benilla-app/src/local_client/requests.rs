@@ -24,6 +24,10 @@ pub enum LocalClientRequest {
 #[derive(Resource, Default)]
 pub struct LocalClientRequests(pub Vec<LocalClientRequest>);
 
+/// Opt-in projection of outgoing addon chat for an embedding's local owner.
+#[derive(Resource, Default)]
+pub struct LocalAddonRequests(pub Vec<benilla_ui::script::AddonSend>);
+
 /// A remote authoritative embedding receives the production CMSG bodies before
 /// local request projection can discard movement, targets or acknowledgement tails.
 #[derive(Resource, Default)]
@@ -148,12 +152,16 @@ fn collect(
     session: Res<LocalClientSession>,
     channel: Res<Requests>,
     mut requests: ResMut<LocalClientRequests>,
+    mut addon: Option<ResMut<LocalAddonRequests>>,
     mut items: ResMut<LocalItemQueries>,
     mut wire: ResMut<LocalWireRequests>,
 ) {
     if !session.active {
         requests.0.clear();
         items.0.clear();
+        if let Some(addon) = addon.as_deref_mut() {
+            addon.0.clear();
+        }
     }
     if !wire.enabled && !wire.observe_movement { wire.packets.clear(); }
     let (sender, receiver) = std::sync::mpsc::channel();
@@ -164,6 +172,14 @@ fn collect(
         });
     for command in channel.0.try_iter() {
         if session.active {
+            if let (Some(addon), ClientCommand::AddonMessage { distribution, text }) =
+                (addon.as_deref_mut(), &command)
+            {
+                addon.0.push(benilla_ui::script::AddonSend {
+                    distribution: *distribution,
+                    text: text.clone(),
+                });
+            }
             if wire.enabled {
                 // Native guest CMSG_QUERY_TIME stays on the local server port.
                 if matches!(&command,ClientCommand::QueryTime) {requests.0.push(LocalClientRequest::QueryTime);continue;}

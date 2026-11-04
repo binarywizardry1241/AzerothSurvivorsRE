@@ -184,6 +184,11 @@ fn apply(
         let member_locale = locale.for_code(&language);
         let mut replies = Vec::new();
         match packet.opcode {
+            opcode::CMSG_MESSAGECHAT => {
+                if requests_addon_lines(&packet.payload) {
+                    state.addon_publishers.entry(client).or_default().replay_lines();
+                }
+            }
             opcode::CMSG_NAME_QUERY => {
                 if let Some(requested) = u64_at(&packet.payload, 0) {
                     let hero = state
@@ -306,9 +311,30 @@ fn apply(
     }
 }
 
+fn requests_addon_lines(body: &[u8]) -> bool {
+    use benilla_protocol::messages::{CHAT_TYPE_PARTY, LANGUAGE_ADDON};
+    u32_at(body, 0) == Some(CHAT_TYPE_PARTY)
+        && u32_at(body, 4) == Some(LANGUAGE_ADDON)
+        && body
+            .get(8..)
+            .and_then(|text| text.strip_suffix(&[0]))
+            .and_then(|text| std::str::from_utf8(text).ok())
+            .is_some_and(client::addon_feed::requests_lines)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn addon_replay_requires_the_addon_party_wire_body() {
+        use benilla_protocol::messages::{CHAT_TYPE_PARTY, LANGUAGE_ADDON, messagechat};
+        let full = messagechat(CHAT_TYPE_PARTY, LANGUAGE_ADDON, "AZSMREQ\tfull");
+        assert!(requests_addon_lines(&full));
+        assert!(!requests_addon_lines(&full[..full.len() - 1]));
+        assert!(!requests_addon_lines(&messagechat(CHAT_TYPE_PARTY, 0, "AZSMREQ\tfull")));
+        assert!(!requests_addon_lines(&messagechat(CHAT_TYPE_PARTY, LANGUAGE_ADDON, "AZSMREQ\tparty")));
+    }
     #[test]
     fn template_queries_zero_fill_only_the_missing_entry_bytes() {
         let body = [0x29, 0x23, 0x04, 0x80, 0xff, 0xff];

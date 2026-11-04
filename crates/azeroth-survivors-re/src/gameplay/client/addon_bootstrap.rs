@@ -43,6 +43,17 @@ fn append_position_api(source: &mut String) {
     }
 }
 
+fn append_meter_replay_request(source: &mut String) {
+    source.push_str("AZS_ML = { req = {} };\n");
+    source.push_str(section(METER_API, "function AZS_MRequest", "function AZS_MEpoch"));
+    source.push_str(r#"
+AZSMeterFrame = CreateFrame("Frame", "AZSMeterFrame");
+AZSMeterFrame:RegisterEvent("PLAYER_ENTERING_WORLD");
+AZSMeterFrame:SetScript("OnEvent", function() AZS_MRequest("full"); end);
+AZS_MRequest("full");
+"#);
+}
+
 pub(super) fn extension() -> LocalClientExtension {
     let cvar_defaults = [
         ("storeLevels".into(), "0".into()),
@@ -71,6 +82,7 @@ pub(super) fn extension() -> LocalClientExtension {
     source.push('\n');
     source.push_str(section(LATER_API, "function AZS_GetLocalTime()", "-- Outgoing combat text"));
     append_position_api(&mut source);
+    append_meter_replay_request(&mut source);
     source.push_str(COMBAT_TEXT_API);
     source.push_str(COMBAT_TEXT_FRAME_HANDLERS);
     LocalClientExtension {

@@ -28,7 +28,7 @@ use std::collections::BTreeMap;
 
 use azeroth_survivors_re::player_abilities::damage;
 use benilla_app::local_client::{
-    descriptor_aura_state, LocalActionUi, LocalAppearance, LocalClientExtension, LocalClientInput,
+    descriptor_aura_state, LocalActionUi, LocalAddonRequests, LocalAppearance, LocalClientExtension, LocalClientInput,
     LocalClientSession, LocalClientSet, LocalCooldown, LocalEquipmentDisplay,
     LocalEquipmentMetadata, LocalMenuMusic, LocalPlayerEquipment, LocalPlayerEquipmentMetadata,
     LocalPlayerRequest, LocalPlayerSpawn, LocalPlayerUi, SpellBookState, UnitAuraSlot,
@@ -108,6 +108,7 @@ impl Plugin for ClientBridgePlugin {
         app.insert_resource(extension)
         .init_resource::<BridgeCatalog>()
         .init_resource::<BridgeState>()
+        .init_resource::<LocalAddonRequests>()
         .add_systems(Startup, load_catalog.after(AssetSet::Open))
         // The previous completed run tick is coherent here. Keeping this outside Update
         // avoids ordering a post-stream mechanics tick ahead of the pre-input UI feed.
@@ -181,14 +182,22 @@ fn sync_to_client(
     mut music: MessageWriter<LocalMenuMusic>,
     mut extension: ResMut<LocalClientExtension>,
     mut loading: ResMut<benilla_app::local_client::LocalLoadingScreen>,
-    (selection, mut packets, locale, stock, coop): (
+    (selection, mut packets, locale, stock, coop, mut addon_requests): (
         Option<Res<benilla_app::local_client::LocalTargetSelection>>,
         ResMut<benilla_app::local_client::events::LocalPresentationEvents>,
         Res<crate::localization::Localization>,
         Option<Res<benilla_app::local_client::LocalStockFrontend>>,
         Option<Res<crate::coop_runtime::CoopRuntime>>,
+        ResMut<LocalAddonRequests>,
     ),
 ) {
+    let mut requests = std::mem::take(&mut addon_requests.0).into_iter();
+    if requests.any(|request| {
+        request.distribution == benilla_ui::script::AddonDistribution::Party
+            && addon_feed::requests_lines(&request.text)
+    }) {
+        state.addon.replay_lines();
+    }
     extension.combat_text_run = session.mechanics.as_ref().filter(|_| menu.in_run)
         .map(|_| session.identity);
     if coop.as_ref().is_some_and(|coop|coop.is_guest()) {

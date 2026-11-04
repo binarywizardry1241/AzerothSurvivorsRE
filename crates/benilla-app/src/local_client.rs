@@ -27,6 +27,7 @@ mod stock_frontend;
 pub use stock_frontend::{LocalStockCharacter, LocalStockCreate, LocalStockEquipment, LocalStockFrontend,
     LocalStockPosition, LocalStockRealm, LocalStockReply, LocalStockRequest};
 pub use requests::{LocalClientRequest, LocalClientRequests, LocalItemQueries, LocalWireRequests};
+pub use requests::LocalAddonRequests;
 pub(crate) mod extension;
 pub use crate::ui_aura::descriptor_aura_state;
 pub use actors::{
