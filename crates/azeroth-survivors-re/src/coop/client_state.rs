@@ -3,6 +3,8 @@
 
 use super::replication::{NativeState, ResourceRow, TimerRow};
 
+const MAX_GUEST_SPELL_ROWS: usize = 512;
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum RunPhase {
     Ready,
@@ -240,10 +242,10 @@ pub fn sanitize_text(text: &mut String) {
     }
 }
 
-/// Tag11 is the native custom spell-display record produced by145901de0,
-/// including localized text overrides; it is not an ordinary engine opcode.
+/// Tag 11 carries localized spell-display records. The 0.141.0 guest
+/// keeps the first 512 records and sanitizes each retained text field.
 pub fn sanitize_resources(rows: &mut Vec<ResourceRow>) {
-    rows.truncate(128);
+    rows.truncate(MAX_GUEST_SPELL_ROWS);
     for row in rows {
         sanitize_text(&mut row.name);
         sanitize_text(&mut row.text_18);
@@ -254,22 +256,14 @@ pub fn sanitize_resources(rows: &mut Vec<ResourceRow>) {
     }
 }
 
-/// Tag12 carries spell visual-radius multipliers: producer145936cf0
-/// divides the modified radius by the engine spell radius. Client
-///145896ce0 considers at most128 rows, rejects the entire retained list on a
-/// nonfinite factor and clamps each factor to0.1..10.
-pub fn sanitize_timers(mut rows: Vec<TimerRow>) -> Option<Vec<TimerRow>> {
-    rows.truncate(128);
-    if rows
-        .iter()
-        .any(|row| !f32::from_bits(row.value_bits).is_finite())
-    {
-        return None;
-    }
-    for row in &mut rows {
+/// Tag 12 carries spell visual-radius multipliers. The 0.141.0 guest
+/// retains finite factors within the first 512 records and clamps them.
+pub fn sanitize_timers(rows: &mut Vec<TimerRow>) {
+    rows.truncate(MAX_GUEST_SPELL_ROWS);
+    rows.retain(|row| f32::from_bits(row.value_bits).is_finite());
+    for row in rows {
         row.value_bits = f32::from_bits(row.value_bits).clamp(0.1, 10.0).to_bits();
     }
-    Some(rows)
 }
 
 #[cfg(test)]
@@ -450,12 +444,23 @@ mod tests {
         let mut utf8 = format!("{}é", "x".repeat(4095));
         sanitize_text(&mut utf8);
         assert_eq!(utf8.len(), 4095);
+        let mut resources: Vec<_> = (0..513).map(|id| ResourceRow {
+            id, name: "|Hname".into(), optional: [None, Some("|Ticon".into()), None, None],
+            text_18: String::new(), text_30: String::new(),
+        }).collect();
+        sanitize_resources(&mut resources);
+        assert_eq!(resources.len(), 512);
+        let last = resources.last().unwrap();
+        assert_eq!(last.id, 511);
+        assert_eq!(last.name, "||Hname");
+        assert_eq!(last.optional[1].as_deref(), Some("||Ticon"));
         let row = |value: f32| TimerRow {
             id: 1,
             value_bits: value.to_bits(),
             flag: true,
         };
-        let checked = sanitize_timers(vec![row(-1.0), row(25.0)]).unwrap();
+        let mut checked = vec![row(-1.0), row(f32::NAN), row(25.0)];
+        sanitize_timers(&mut checked);
         assert_eq!(
             checked
                 .iter()
@@ -463,10 +468,13 @@ mod tests {
                 .collect::<Vec<_>>(),
             [0.1, 10.0]
         );
-        assert!(sanitize_timers(vec![row(f32::NAN)]).is_none());
-        let mut rows = vec![row(1.0); 128];
-        rows.push(row(f32::INFINITY));
-        assert_eq!(sanitize_timers(rows).unwrap().len(), 128);
+        let mut rows = vec![row(1.0); 513];
+        rows[511] = row(f32::INFINITY);
+        sanitize_timers(&mut rows);
+        assert_eq!(rows.len(), 511);
+        let mut invalid = vec![row(f32::NAN), row(f32::NEG_INFINITY)];
+        sanitize_timers(&mut invalid);
+        assert!(invalid.is_empty());
     }
 }
 

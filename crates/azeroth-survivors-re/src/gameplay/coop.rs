@@ -846,11 +846,9 @@ fn receive(
                 azeroth_survivors_re::coop::client_state::sanitize_resources(&mut rows);
                 state.resources = rows;
             }
-            NativeMessage::Timers(rows) if guest => {
-                if let Some(rows) = azeroth_survivors_re::coop::client_state::sanitize_timers(rows)
-                {
-                    state.timers = rows;
-                }
+            NativeMessage::Timers(mut rows) if guest => {
+                azeroth_survivors_re::coop::client_state::sanitize_timers(&mut rows);
+                state.timers = rows;
             }
             NativeMessage::EquipmentGrants(grants) if guest && state.zone.is_some() => {
                 let allowed = state.zone_equipment_ids(pick.hero.class, &armory);
