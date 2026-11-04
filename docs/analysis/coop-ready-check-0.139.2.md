@@ -1,6 +1,6 @@
 # Cooperative Ready Check in 0.139.2
 
-Finding [#306](../CURRENT-STATE.md#gap-306). The installed target was
+Finding [#306](../verification-needed.md#gap-306). The installed target was
 `installed-game/AzerothSurvivors.exe` 0.139.2, 150,793,728 bytes, SHA-256
 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
 The [evidence manifest](evidence/0.139.2/coop-ready-check.json) identifies the
@@ -56,8 +56,35 @@ and answer labels from the locale catalog. The current renderer supplies a
 30px title, 15px description, 16px member name and 15px answer text. The
 countdown bar consumes `min(left × 100 / 30, 100)` and the timer uses the
 localized `{n} sec` label. The selected strings were restored from 14 exact
-embedded catalogs. The reconstructed modal uses the existing panel and button
-components and sits above the existing co-op dialog.
+embedded catalogs.
+
+## Modal layout and controls
+
+`0x1400e9bd0` spawns the blocking backdrop with alpha 0.55 and native layer
+5800. `0x14032b1e0` attaches a 460×400 `ReadyCanvas` with a 1.4 scale cap.
+The outer canvas persists when `0x1400ea36e` refreshes its descendants.
+`0x1400ead30` updates the seconds label and fill width separately. The
+reconstruction uses its existing window fitter and layer 6100 so the backdrop
+and controls sit above the reconstructed co-op dialog at layer 6000.
+
+`0x1400dca00` fills the canvas with a vertical common panel, with 30px
+horizontal and 20px vertical padding and a 10px row gap. The common frame
+constructor `0x14015f210` applies its 1px border, 10px radius, gradient and
+shadow. The renderer `0x14032b500` places a full-width 1px separator above the
+ordered member rows. Each row uses 8px horizontal and 3px vertical padding,
+10px between children and a 24×24 class icon when available. A flexible spacer
+precedes the running countdown and actions. The countdown is a horizontal row
+with an 8px rail, a 1px border, a 4px rail radius, a 3px fill radius and a 14px
+label spaced 10px from the rail.
+
+The native answer row has a 16px gap. `0x1400dc440` serves Ready, Not Ready
+and Cancel with one style, including a 110px minimum width, 16px horizontal
+and 7px vertical padding, a 1px border, 4px radius and a 17px gold label.
+The constructor calls `0x14015e730` for the shared gradient and supplies the
+resting and active border colors with zero lift. The renderer exposes Cancel
+to the host and the two answer buttons to a guest awaiting a reply. The
+collector `0x1400eb370` reads changed pressed interactions and forwards the
+Answer byte as local request 29. It has no keyboard branch.
 
 ## Connected source and limits
 
@@ -69,17 +96,14 @@ before admitting the host into the existing run-entry path. `coop_ui.rs` and
 `coop_ready_ui.rs` render the countdown and reply states, route the controls
 and append localized terminal results to the existing chat history.
 
-The remaining source correspondence is exact Ready Check presentation, in
-particular panel dimensions, padding and icon geometry, plus the full modal
-interaction and canvas lifecycle. Countdown changes update the retained text
-and bar independently. Existing project styling supplies the panel and controls.
-This report covers the custom
-picker/lobby path. The explicit developer zone launch and stock frontend use
-their existing entry paths. The historical co-op handshake version and broader
-protocol compatibility retain their separate evidence.
+This report covers the custom picker/lobby path. The explicit developer zone
+launch and stock frontend use their existing entry paths. The historical co-op
+handshake version and broader protocol compatibility retain their separate
+evidence.
 
 Static verification covered exact installed-byte ranges, dispatch cells,
-native literals, locale payloads and non-compiling Rust syntax parsing. The
+native literals, six additional Ghidra result bindings for modal owners, locale
+payloads and non-compiling Rust syntax parsing. The
 authored Rust regressions cover wire bytes, malformed status normalization,
 first-answer ownership, roster and host cancellation, and the deadline
 boundary. Compilation, regression execution, game/client/server execution and
