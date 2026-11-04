@@ -403,6 +403,12 @@ new selection only for work outside that authorization or an explicit user limit
   only where a necessary query or unresolved behavior needs it, following
   [cross-version repair](#repair-existing-gaps-across-versions). Preserve
   historical provenance and do not use old addresses unverified.
+- For the native portion of a **Needs REA** or **Mixed** task, use the
+  [shared REA investigation recipes](../shared/rea-investigation-recipes.md)
+  to turn each missing fact into a bounded static question with a proof and
+  stop condition. Reuse an applicable result across dependent claims and gaps,
+  keeping each assessment separate. Apply the recipes to selected #41
+  classification questions as well, including when AS ownership is unknown.
 - Submit native work through the [shared query queue](../shared/autonomy.md#durable-native-queries).
   Its worker limit and compatible-Program leases cover all chats and delegates;
   leave queued work waiting and continue independent source work. Search retained

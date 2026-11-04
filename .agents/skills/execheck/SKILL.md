@@ -394,6 +394,13 @@ do not stop at filename membership, unchanged strings or successful accounting.
 Use existing analysis tools and the journaled REA runner; record unavailable
 analysis explicitly rather than implying an automation or query already exists.
 
+Use the [shared REA investigation recipes](../shared/rea-investigation-recipes.md)
+for the semantic investigation of individual claims, changed dependencies and
+residual code/data leads. Turn each unresolved edge or contract into a bounded
+proof question and record its result in the existing graph, queue and owning
+review. A resolved question closes only its own proof obligation. Continue
+the required whole-image scans, all six stages and finding reconciliation.
+
 1. **Maintain an AS candidate graph beyond filenames.** Combine native functions
    and interior/inline regions, data/tables, scripts, UI registrations, packet
    handlers, save/configuration fields, resources and their references. Retain
