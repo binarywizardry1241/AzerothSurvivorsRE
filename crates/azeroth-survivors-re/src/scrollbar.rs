@@ -58,13 +58,28 @@ pub fn kept_list(
     gap: f32,
     build: impl FnOnce(&mut ChildSpawnerCommands),
 ) {
-    ui.spawn(Node {
-        flex_grow: 1.,
-        min_height: Val::Px(0.),
-        column_gap: Val::Px(8.),
-        ..default()
-    })
-    .with_children(|row| {
+    kept_list_in(
+        ui,
+        key,
+        gap,
+        Node {
+            flex_grow: 1.,
+            min_height: Val::Px(0.),
+            column_gap: Val::Px(8.),
+            ..default()
+        },
+        build,
+    );
+}
+
+pub fn kept_list_in(
+    ui: &mut ChildSpawnerCommands,
+    key: &'static str,
+    gap: f32,
+    row: Node,
+    build: impl FnOnce(&mut ChildSpawnerCommands),
+) {
+    ui.spawn(row).with_children(|row| {
         let target = row
             .spawn((
                 Node {

@@ -147,24 +147,30 @@ Ready Check root remains blocking while its own canvas refreshes.
 
 ## Picker Co-op button and pre-party lobby presentation
 
-[Finding #150](../CURRENT-STATE.md#gap-150) tracks the inner presentation of the
-Co-op window and its picker entry. Comparing the original screenshots with the
-live RE source identifies differences inside the fitted canvas described above.
+[Finding #150](../verification-needed.md#gap-150) connects the picker entry and
+the three pre-party tabs to their 0.141.0 presentation. The source below uses
+the constructors and field mappings from the installed PE. The original
+screenshots corroborate the grouping and appearance of the controls.
 
-| Surface | 0.141.0 evidence | Reconstructed source |
-| --- | --- | --- |
-| Picker footer | The footer owner at `0x1401386f0` calls the Co-op builder at `0x140138ad1`. That builder resolves the title at `0x1403a2ac8` and the subtitle at `0x1403a2c5c` in separate text paths. The badge updater resolves the idle subtitle at `0x140103c82`. The original screenshot places both lines to the right of Enter. | [The footer](../../crates/azeroth-survivors-re/src/picker.rs) inserts Co-op first. [The picker button](../../crates/azeroth-survivors-re/src/coop_ui.rs) owns a single Text entity, initially Co-op. The badge updater replaces that entity's value with Play with friends or the current party caption. |
-| Lobby shell | `0x14035dcd0` builds the title and calls the tab builder at `0x14035e62a`. Its pre-party branches call Host, Lobbies and Join by code at `0x14035e88d`, `0x14035e8b3` and `0x14035e8c2`. The screenshot shows a centered title and tabs, a divider and a bottom-centered Close. | `coop_ui::rebuild` uses the regular text font for the title, start-aligned title/tab rows and a trailing Close row. The pre-party tabs lack the shared divider. The short Host and Join forms have no expanding region that pins Close to the bottom. |
-| Public list | The Lobbies builder calls `0x14035aa60` at `0x1400ec01b` for the description and Refresh header, and the retained list builder `0x14035ac90` at `0x1400ecb15`. The screenshot shows a leading host-class icon and country badge beside the name, with zone, difficulty pill and occupancy indicators in the right column. | The description and Refresh are separate children of the main column. [The directory row](../../crates/azeroth-survivors-re/src/coop_directory_row.rs) still uses the [historical inline subtitle layout](coop-directory-0.115.0.md#native-row-presentation), with zone and difficulty in text and country beside the member icons. [Directory projection](../../crates/azeroth-survivors-re/src/coop_directory.rs) already supplies class labels, country, zone, difficulty, members and capacity to that renderer. |
-| Host and Join by code | The Host form at `0x1400ee8d0` calls `0x140361930` at `0x1400eee75`. That helper calls the same control builder twice at `0x140361d8e` and `0x140361dc9`, passing complementary selection flags for Public and Private. Host and Code share the field builder `0x1400e9220`. The screenshots show aligned label/value columns and centered submit buttons. | Host uses one visibility toggle with a dynamic label, matching the [historical control](coop-ui-0.115.0.md#current-native-contracts). Only text fields use the shared label/value row. The host preview uses inline difficulty text and both forms place Submit directly in the main column. |
+| Surface | 0.141.0 constructor evidence and source connection |
+| --- | --- |
+| Picker footer | The row in `0x1403a7350` centers items with an 18px gap. Difficulty is submitted at `0x1403a75fd`. The Enter path finishes at `0x1403a8613`, before the Co-op wrapper call at `0x1403a861f`. [The picker footer](../../crates/azeroth-survivors-re/src/picker.rs) now uses this order. The wrapper at `0x1401386f0` supplies 20×8px padding, a 1px border, 6px radius, shared red gradient, 2px hover lift and black shadow. The child builder stores ordinary-font 17px gold and 12px muted text at `0x1403a2bde` and `0x1403a2d6e`. `0x140103b90` updates the subtitle from party, code and unread state independently of the title. |
+| Modal frame | The frame at `0x14035dd7d..0x14035df58` uses 36×24px padding and 12px row spacing. `0x1401e8240` supplies the 1px border and 10px radius. The title at `0x14035e1a6..0x14035e376` centers a 34px heading-font label in light gold. The 12px-gap centered tab row calls `0x140358a80`, which uses 17px text, 18×6px padding and a 2px selected outline. `0x1401e7c60` draws the 1px transparent-to-edge-to-transparent divider. The shared footer uses a grow-1 spacer, centered status, and a centered 16px Close row with a 16px button gap. |
+| Directory viewport | Lobbies at `0x1400ebda0` calls the centered, space-between header at `0x14035aa60` for the 14px description and Refresh control. The filter strip wraps with 8px horizontal and 6px vertical spacing. An absent snapshot, an empty response and zero filtered matches each use their own caption outside the viewport. When rows match, `0x1400ec8a6..0x1400ecb1a` gives the list wrapper grow 100, min-height 0 and a 6px scrollbar gap. `0x14035ac90` supplies the retained `coop-lobbies` viewport and 8px row gap. The source keeps original indices when filtering and reuses the existing retained scrollbar. |
+| Public row | `0x1400e5e94..0x1400e5f80` builds the row with 12×9px padding, 6px radius and 14px gap. The content owner `0x1403546e0` gets its 40px leading icon from the first received class, with Warrior as the empty-list fallback. It separates the title, optional password and country badges, description and host/class subtitle from the right-aligned zone and difficulty. The 12px difficulty pill takes the received label for a nonnegative rank, with its low byte selecting the palette. `0x140355b9e..0x140356813` lays out the 18px class icons, raw count and 8px seat markers. The marker count clamps capacity to 1–5 and each marker compares its index with the raw joined count. The [row source](../../crates/azeroth-survivors-re/src/coop_directory_row.rs) consumes the existing directory fields directly. |
+| Host and Code | Both forms call `0x1400e9220` for a 200px caption column and 14px field gap. The field at `0x140359280` has 10×6px padding, 3px radius, black at .45 alpha and a 1px idle or 2px focused border. The Host visibility and capacity rows use an 8px gap. The visibility helper at `0x140361930` constructs both options with complementary selection flags, sending action words `0x010f` for Public and `0x000f` for Private. RE assigns the chosen value so repeated clicks keep the same choice. `0x1403609da` shares the difficulty pill with the directory at 13px for the run card. Host and Join by code use centered 18px submit controls at `0x1400ef435` and `0x1400efc9d`. |
 
-The instruction sites use preferred virtual addresses from the target at the
-top of this report. Selected string references were matched to the retained
-0.141.0 Ghidra instruction boundaries and confirmed against the installed PE
-bytes. The screenshots establish the visible grouping, while exact inner
-geometry, the current directory row's data-to-widget mapping and complete form
-styling and interaction remain source/recovery work. The earlier event,
-directory, form and Ready Check contracts retain their separate scopes.
+The [live lobby UI](../../crates/azeroth-survivors-re/src/coop_ui.rs) routes
+these controls through the existing modal, focused fields and Host/Join
+requests. The previously recovered filtered-row index, password handoff,
+difficulty return and service state retain their own contracts. The active
+party body uses the same grow-100 weighting beside the shared grow-1 spacer
+at `0x1400e9a81..0x1400e9a89`.
+
+Static verification used the installed SHA-256, selected retained Ghidra
+instruction boundaries, LLVM disassembly of the constructor ranges, and Rust
+syntax parsing and source tracing. Compilation and original/rebuilt rendering,
+input, scrollbar behavior and network operation remain unverified.
 
 ## Ready Check visibility and answer routing
 

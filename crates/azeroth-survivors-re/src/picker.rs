@@ -1333,7 +1333,6 @@ fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, s
     })
     .with_children(|footer| {
         footer.spawn(row(18.)).with_children(|actions| {
-            crate::coop_ui::picker_button(actions, art);
             let run_options = clickable(
                 actions,
                 Action::RunOptions,
@@ -1466,6 +1465,7 @@ fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, s
                     Val::Px(30.),
                 ),
             ));
+            crate::coop_ui::picker_button(actions, art);
         });
         text(
             footer,

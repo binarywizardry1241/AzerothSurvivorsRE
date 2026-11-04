@@ -1,6 +1,6 @@
 //! Public directory rows and host-title hover text.
-//! Current difficulty/lock reasons: docs/analysis/coop-lobby-ui-0.123.0.md;
-//! retained base row/tooltip construction: docs/analysis/coop-directory-0.115.0.md.
+//! The 0.141.0 directory card and its data sources are traced in
+//! docs/analysis/native-interface-correspondence-0.141.0.md.
 use crate::{
     assets::MenuArt, coop_ui::LobbyRow, hover::NativeHover, localization::Localization, menu,
 };
@@ -57,9 +57,9 @@ pub(crate) fn frame(row: &LobbyRow) -> (Node, BorderColor, NativeHover, UiTransf
             flex_shrink: 0.,
             column_gap: Val::Px(14.),
             align_items: AlignItems::Center,
-            padding: UiRect::axes(Val::Px(12.), Val::Px(6.)),
+            padding: UiRect::axes(Val::Px(12.), Val::Px(9.)),
             border: UiRect::all(Val::Px(if titled { 2. } else { 1. })),
-            border_radius: BorderRadius::all(Val::Px(4.)),
+            border_radius: BorderRadius::all(Val::Px(6.)),
             ..default()
         },
         BorderColor::all(resting),
@@ -129,6 +129,89 @@ pub(crate) fn titled_text(ui: &mut ChildSpawnerCommands, art: &MenuArt, subtitle
     name
 }
 
+/// The directory and Host card use the same difficulty badge.
+pub(crate) fn difficulty_pill(
+    ui: &mut ChildSpawnerCommands,
+    art: &MenuArt,
+    value: String,
+    heroic: bool,
+    size: f32,
+) {
+    let (edge, caption, fill) = if heroic {
+        (
+            Color::srgb(1., 0.353, 0.235),
+            Color::srgb(1., 0.78, 0.66),
+            Color::srgba(0.32, 0.03, 0.02, 0.85),
+        )
+    } else {
+        (menu::EDGE, menu::GOLD, Color::srgba(0., 0., 0., 0.35))
+    };
+    ui.spawn((
+        Node {
+            padding: UiRect::axes(Val::Px(8.), Val::Px(2.)),
+            border: UiRect::all(Val::Px(1.)),
+            border_radius: BorderRadius::all(Val::Px(10.)),
+            ..default()
+        },
+        BorderColor::all(edge),
+        BackgroundColor(fill),
+    ))
+    .with_children(|pill| text(pill, art, value, size, caption));
+}
+
+fn badge(
+    ui: &mut ChildSpawnerCommands,
+    art: &MenuArt,
+    value: impl Into<String>,
+    rgb: (f32, f32, f32),
+    alpha: f32,
+) {
+    let (r, g, b) = rgb;
+    ui.spawn((
+        Node {
+            padding: UiRect::axes(Val::Px(6.), Val::Px(1.)),
+            border: UiRect::all(Val::Px(1.)),
+            border_radius: BorderRadius::all(Val::Px(3.)),
+            flex_shrink: 0.,
+            ..default()
+        },
+        BorderColor::all(Color::srgba(r, g, b, 0.6)),
+    ))
+    .with_children(|badge| text(badge, art, value, 11., Color::srgba(r, g, b, alpha)));
+}
+
+fn class_icon(
+    ui: &mut ChildSpawnerCommands,
+    art: &MenuArt,
+    class: &str,
+    leading: bool,
+    alpha: f32,
+) {
+    if let Some(image) = art.icons.get(class) {
+        let size = if leading { 40. } else { 18. };
+        let mut node = Node {
+            width: Val::Px(size),
+            height: Val::Px(size),
+            flex_shrink: 0.,
+            ..default()
+        };
+        if leading {
+            node.border = UiRect::all(Val::Px(1.));
+            node.border_radius = BorderRadius::all(Val::Px(4.));
+        }
+        let mut icon = ui.spawn((
+            ImageNode {
+                color: Color::srgba(1., 1., 1., alpha),
+                ..ImageNode::new(image.clone())
+            },
+            node,
+        ));
+        if leading {
+            icon.insert(BorderColor::all(Color::srgb(0.169, 0.129, 0.071)));
+        }
+    }
+}
+
 /// Spawn content inside the caller's directory-row button; `frame` supplies its
 /// target constructor's border, layout and hover settings independently.
 pub(crate) fn spawn(
@@ -138,18 +221,30 @@ pub(crate) fn spawn(
     row: &LobbyRow,
 ) {
     let alpha = if row.unlocked { 1. } else { 0.45 };
+    let host_class = row.classes.first().map_or("warrior", String::as_str);
+    class_icon(ui, art, host_class, true, alpha);
+
     ui.spawn(Node {
         flex_grow: 1.,
         flex_direction: FlexDirection::Column,
+        row_gap: Val::Px(2.),
         ..default()
     })
     .with_children(|ui| {
-        let name = if row.has_password {
-            format!("{} · {}", row.name, label(locale, "Password"))
-        } else {
-            row.name.clone()
-        };
-        text(ui, art, name, 17., Color::srgba(0.949, 0.902, 0.788, alpha));
+        ui.spawn(Node {
+            column_gap: Val::Px(8.),
+            align_items: AlignItems::Center,
+            ..default()
+        })
+        .with_children(|title| {
+            text(title, art, &row.name, 17., Color::srgba(0.949, 0.902, 0.788, alpha));
+            if row.has_password {
+                badge(title, art, label(locale, "Password"), (0.69, 0.541, 0.227), alpha);
+            }
+            if !row.country.is_empty() {
+                badge(title, art, &row.country, (0.725, 0.663, 0.510), alpha);
+            }
+        });
         if !row.description.is_empty() {
             text(
                 ui,
@@ -159,26 +254,12 @@ pub(crate) fn spawn(
                 Color::srgba(0.69, 0.541, 0.227, alpha),
             );
         }
-        let subtitle = label(locale, "{hero} the {class} · {zone}")
-            .replace("{hero}", &row.host)
-            .replace("{class}", &row.hero_class)
-            .replace("{zone}", &row.zone);
-        ui.spawn(Node { align_items: AlignItems::Center, ..default() })
-            .with_children(|ui| {
-                if row.host_title.is_empty() {
-                    text(ui, art, subtitle, 12., Color::srgba(0.725, 0.663, 0.510, alpha));
-                } else {
-                    titled_text(ui, art, subtitle, &row.host_title, 12.);
-                }
-                if !row.difficulty.is_empty() {
-                    let color = if row.heroic_rank > 0 {
-                        Color::srgba(1., 0.353, 0.235, alpha)
-                    } else {
-                        Color::srgba(0.725, 0.663, 0.510, alpha)
-                    };
-                    text(ui, art, format!(" · {}", row.difficulty), 12., color);
-                }
-            });
+        let subtitle = format!("{} · {}", row.host, row.hero_class);
+        if row.host_title.is_empty() {
+            text(ui, art, subtitle, 12., Color::srgba(0.725, 0.663, 0.510, alpha));
+        } else {
+            titled_text(ui, art, subtitle, &row.host_title, 12.);
+        }
         if !row.unlocked {
             let explanation = if row.lacks == "heroic" {
                 label(locale, "You haven't opened {difficulty} of {zone} with this class yet.")
@@ -197,35 +278,69 @@ pub(crate) fn spawn(
         }
     });
     ui.spawn(Node {
-        column_gap: Val::Px(3.),
-        align_items: AlignItems::Center,
+        flex_direction: FlexDirection::Column,
+        align_items: AlignItems::FlexEnd,
+        row_gap: Val::Px(4.),
+        flex_shrink: 0.,
         ..default()
     })
-    .with_children(|ui| {
-        for class in &row.classes {
-            if let Some(image) = art.icons.get(class) {
-                ui.spawn((
-                    ImageNode::new(image.clone()),
+    .with_children(|zone| {
+        text(zone, art, &row.zone, 14., Color::srgba(0.973, 0.824, 0.416, alpha));
+        if row.heroic_rank >= 0 {
+            difficulty_pill(zone, art, row.difficulty.clone(), row.heroic_rank as u8 != 0, 12.);
+        }
+    });
+    ui.spawn(Node {
+        min_width: Val::Px(84.),
+        flex_direction: FlexDirection::Column,
+        align_items: AlignItems::Center,
+        row_gap: Val::Px(5.),
+        flex_shrink: 0.,
+        ..default()
+    })
+    .with_children(|players| {
+        players.spawn(Node {
+            column_gap: Val::Px(3.),
+            align_items: AlignItems::Center,
+            ..default()
+        })
+        .with_children(|members| {
+            for class in &row.classes {
+                class_icon(members, art, class, false, 1.);
+            }
+            text(
+                members,
+                art,
+                format!("{}/{}", row.joined, row.capacity),
+                18.,
+                Color::srgba(0.973, 0.824, 0.416, alpha),
+            );
+        });
+        players.spawn(Node {
+            column_gap: Val::Px(4.),
+            align_items: AlignItems::Center,
+            ..default()
+        })
+        .with_children(|dots| {
+            for slot in 0..row.capacity.clamp(1, 5) {
+                let (edge, fill) = if slot < row.joined {
+                    let gold = Color::srgba(0.973, 0.824, 0.416, alpha);
+                    (gold, gold)
+                } else {
+                    (Color::srgba(0.69, 0.541, 0.227, alpha), Color::NONE)
+                };
+                dots.spawn((
                     Node {
-                        width: Val::Px(22.),
-                        height: Val::Px(22.),
+                        width: Val::Px(8.),
+                        height: Val::Px(8.),
+                        border: UiRect::all(Val::Px(1.)),
+                        border_radius: BorderRadius::all(Val::Px(4.)),
                         ..default()
                     },
+                    BorderColor::all(edge),
+                    BackgroundColor(fill),
                 ));
             }
-        }
-        if !row.country.is_empty() {
-            text(ui, art, &row.country, 13., Color::srgb(0.725, 0.663, 0.510));
-        }
-        ui.spawn((
-            Text::new(format!("{}/{}", row.joined, row.capacity)),
-            TextFont {
-                font: art.heading_font.clone(),
-                font_size: 20.,
-                ..default()
-            },
-            TextColor(Color::srgba(0.973, 0.824, 0.416, alpha)),
-            menu::native_text_shadow(),
-        ));
+        });
     });
 }

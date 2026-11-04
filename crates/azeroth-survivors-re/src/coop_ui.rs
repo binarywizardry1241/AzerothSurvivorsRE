@@ -48,7 +48,7 @@ enum Click {
     Zone,
     Difficulty,
     ChangeDifficulty,
-    Visibility,
+    Visibility { private: bool },
     Field(Field),
     Submit,
     Send,
@@ -65,7 +65,10 @@ struct Disabled(bool);
 #[derive(Component)]
 struct Root;
 #[derive(Component)]
-struct PickerLabel;
+enum PickerLabel {
+    Title,
+    Subtitle,
+}
 
 /// Read-only presentation inputs. None means no snapshot, not an invented service state.
 #[derive(Clone)]
@@ -517,8 +520,9 @@ fn selection_card(ui: &mut ChildSpawnerCommands, art: &MenuArt, locale: &Localiz
                 ui.spawn(Node { column_gap: Val::Px(10.), align_items: AlignItems::Center, ..default() })
                     .with_children(|ui| {
                         text(ui, art, crate::coop_directory::display_zone(locale, zone), 16., GOLD);
-                        text(ui, art, difficulty_name(locale, i64::from(rank)), 13.,
-                            if rank == 0 { MUTED } else { Color::srgb(1., 0.353, 0.235) });
+                        crate::coop_directory_row::difficulty_pill(
+                            ui, art, difficulty_name(locale, i64::from(rank)), rank != 0, 13.,
+                        );
                     });
             });
         if can_change {
@@ -554,7 +558,8 @@ fn control(
     selector: bool,
     disabled: bool,
 ) {
-    control_sized(ui, art, value, click, selected, selector, disabled, 15.);
+    let size = if matches!(click, Click::Tab(_)) { 17. } else { 15. };
+    control_sized(ui, art, value, click, selected, selector, disabled, size);
 }
 fn control_sized(
     ui: &mut ChildSpawnerCommands,
@@ -566,19 +571,29 @@ fn control_sized(
     disabled: bool,
     size: f32,
 ) {
+    let tab = matches!(click, Click::Tab(_));
     let light = Color::srgb(1., 0.914, 0.659);
     let edge = if selected { light } else { menu::BUTTON_EDGE };
+    let caption = if selected {
+        light
+    } else if selector {
+        MUTED
+    } else {
+        GOLD
+    };
+    let padding = match (selector, tab) {
+        (true, _) => UiRect::axes(Val::Px(10.), Val::Px(5.)),
+        (_, true) => UiRect::axes(Val::Px(18.), Val::Px(6.)),
+        _ => UiRect::axes(Val::Px(14.), Val::Px(6.)),
+    };
     let mut button = ui.spawn((
         Button,
         click,
         Disabled(disabled),
         Node {
             min_width: Val::Px(if selector { 36. } else { 40. }),
-            padding: UiRect::axes(
-                Val::Px(if selector { 10. } else { 14. }),
-                Val::Px(if selector { 5. } else { 6. }),
-            ),
-            border: UiRect::all(Val::Px(if selector && selected { 2. } else { 1. })),
+            padding,
+            border: UiRect::all(Val::Px(if selected { 2. } else { 1. })),
             border_radius: BorderRadius::all(Val::Px(4.)),
             justify_content: JustifyContent::Center,
             ..default()
@@ -588,9 +603,18 @@ fn control_sized(
         BorderColor::all(edge),
     ));
     if !disabled {
-        button.insert(crate::hover::NativeHover::new(edge, light, 2.));
+        button.insert(crate::hover::NativeHover::new(edge, light, 1.));
     }
-    button.with_children(|ui| text(ui, art, value, size, if selected { light } else { MUTED }));
+    if !selector && !tab {
+        button.insert(BoxShadow::new(
+            Color::srgba(0., 0., 0., 0.85),
+            Val::Px(0.),
+            Val::Px(2.),
+            Val::Px(0.),
+            Val::Px(6.),
+        ));
+    }
+    button.with_children(|ui| text(ui, art, value, size, caption));
 }
 
 /// Current20e930 localizes only its recognized reasons; arbitrary service text
@@ -636,7 +660,37 @@ fn status_message(view: &CoopUi, locale: &Localization) -> Option<String> {
     Some(label(locale, template).replace("{why}", &reason))
 }
 
-/// Native20cb50/2ee800: a 200px label column and retained text-entry button.
+/// The 0.141.0 host and code forms share a 200px caption column.
+fn form_row(
+    ui: &mut ChildSpawnerCommands,
+    art: &MenuArt,
+    caption: String,
+    gap: f32,
+    build: impl FnOnce(&mut ChildSpawnerCommands),
+) {
+    ui.spawn(Node {
+        align_items: AlignItems::Center,
+        column_gap: Val::Px(gap),
+        ..default()
+    }).with_children(|ui| {
+        ui.spawn(Node {
+            width: Val::Px(200.),
+            flex_shrink: 0.,
+            ..default()
+        }).with_children(|ui| text(ui, art, caption, 16., PAPER));
+        build(ui);
+    });
+}
+
+fn form_submit(ui: &mut ChildSpawnerCommands, art: &MenuArt, caption: String) {
+    ui.spawn(Node {
+        justify_content: JustifyContent::Center,
+        ..default()
+    }).with_children(|ui| {
+        control_sized(ui, art, caption, Click::Submit, false, false, false, 18.);
+    });
+}
+
 fn form_field(
     ui: &mut ChildSpawnerCommands,
     art: &MenuArt,
@@ -646,32 +700,21 @@ fn form_field(
     placeholder: String,
 ) {
     let selected = view.forms.focus == field;
-    let light = Color::srgb(1., 0.914, 0.659);
     let edge = if selected { GOLD } else { EDGE };
-    ui.spawn(Node {
-        align_items: AlignItems::Center,
-        ..default()
-    })
-    .with_children(|ui| {
-        ui.spawn(Node {
-            width: Val::Px(200.),
-            flex_shrink: 0.,
-            ..default()
-        })
-        .with_children(|ui| text(ui, art, caption, 16., PAPER));
+    form_row(ui, art, caption, 14., |ui| {
         ui.spawn((
             Button,
             Click::Field(field),
             Node {
                 flex_grow: 1.,
+                min_width: Val::Px(0.),
                 padding: UiRect::axes(Val::Px(10.), Val::Px(6.)),
                 border: UiRect::all(Val::Px(if selected { 2. } else { 1. })),
                 border_radius: BorderRadius::all(Val::Px(3.)),
                 ..default()
             },
-            BackgroundColor(DARK),
+            BackgroundColor(Color::srgba(0., 0., 0., 0.45)),
             BorderColor::all(edge),
-            crate::hover::NativeHover::new(edge, light, 2.),
         ))
         .with_children(|ui| {
             let color = if view.forms.text(field).is_empty() {
@@ -683,43 +726,63 @@ fn form_field(
         });
     });
 }
-/// Uses the current generic button dimensions, not the larger Run Options control.
+/// Native 0.141.0 footer control and its two text children.
 pub(crate) fn picker_button(ui: &mut ChildSpawnerCommands, art: &MenuArt) {
     ui.spawn((
         Button,
         Click::Open,
         Node {
-            min_width: Val::Px(40.),
-            padding: UiRect::axes(Val::Px(14.), Val::Px(6.)),
+            padding: UiRect::axes(Val::Px(20.), Val::Px(8.)),
             border: UiRect::all(Val::Px(1.)),
-            border_radius: BorderRadius::all(Val::Px(4.)),
-            justify_content: JustifyContent::Center,
+            border_radius: BorderRadius::all(Val::Px(6.)),
+            flex_direction: FlexDirection::Column,
+            align_items: AlignItems::Center,
             ..default()
         },
         menu::native_button_gradient(),
         BorderColor::all(menu::BUTTON_EDGE),
         crate::hover::NativeHover::new(menu::BUTTON_EDGE, Color::srgb(1., 0.914, 0.659), 2.),
+        BoxShadow::new(
+            Color::linear_rgba(0., 0., 0., 0.85),
+            Val::Px(0.),
+            Val::Px(2.),
+            Val::Px(0.),
+            Val::Px(6.),
+        ),
     ))
     .with_children(|ui| {
-        ui.spawn((
-            PickerLabel,
-            Text::new("Co-op"),
-            TextFont {
-                font: art.font.clone(),
-                font_size: 15.,
-                ..default()
-            },
-            TextColor(GOLD),
-            menu::native_text_shadow(),
-        ));
+        for (kind, value, size, color) in [
+            (PickerLabel::Title, "Co-op", 17., GOLD),
+            (PickerLabel::Subtitle, "Play with friends", 12., MUTED),
+        ] {
+            ui.spawn((
+                kind,
+                Text::new(value),
+                TextFont {
+                    font: art.font.clone(),
+                    font_size: size,
+                    ..default()
+                },
+                TextColor(color),
+                menu::native_text_shadow(),
+            ));
+        }
     });
 }
-fn localize_picker(locale: Res<Localization>, view: Res<CoopUi>,
-    mut texts: Query<&mut Text, With<PickerLabel>>) {
-    let value = view.badge_caption(&locale);
-    for mut text in &mut texts {
-        if text.0 != value {
-            text.0.clone_from(&value);
+fn localize_picker(
+    locale: Res<Localization>,
+    view: Res<CoopUi>,
+    mut texts: Query<(&PickerLabel, &mut Text)>,
+) {
+    let title = label(&locale, "Co-op");
+    let subtitle = view.badge_caption(&locale);
+    for (kind, mut text) in &mut texts {
+        let value = match kind {
+            PickerLabel::Title => &title,
+            PickerLabel::Subtitle => &subtitle,
+        };
+        if text.0 != *value {
+            text.0.clone_from(value);
         }
     }
 }
@@ -795,8 +858,8 @@ fn input(
                 state.dialog = Some(Dialog::CoopDifficulty);
                 state.dirty = true;
             }
-            Click::Visibility if matches!(state.dialog, Some(Dialog::Coop)) => {
-                view.private = !view.private;
+            Click::Visibility { private } if matches!(state.dialog, Some(Dialog::Coop)) => {
+                view.private = *private;
             }
             Click::Field(field) if matches!(state.dialog, Some(Dialog::Coop)) => {
                 view.forms.focus = *field;
@@ -915,6 +978,8 @@ fn rebuild(
                 width: Val::Px(width),
                 height: Val::Px(680.),
                 padding: UiRect::axes(Val::Px(36.), Val::Px(24.)),
+                border: UiRect::all(Val::Px(1.)),
+                border_radius: BorderRadius::all(Val::Px(10.)),
                 flex_direction: FlexDirection::Column,
                 row_gap: Val::Px(12.),
                 align_items: AlignItems::Stretch,
@@ -924,12 +989,17 @@ fn rebuild(
         ))
         .with_children(|ui| {
             ui.spawn(Node {
-                justify_content: JustifyContent::SpaceBetween,
+                justify_content: JustifyContent::Center,
                 align_items: AlignItems::Center,
                 ..default()
             })
             .with_children(|ui| {
-                text(ui, &art, label(&locale, "Co-op"), 34., GOLD);
+                ui.spawn((
+                    Text::new(label(&locale, "Co-op")),
+                    TextFont { font: art.heading_font.clone(), font_size: 34., ..default() },
+                    TextColor(Color::srgb(1., 0.914, 0.659)),
+                    menu::native_text_shadow(),
+                ));
             });
             if view.party_active() {
                 if let Some(code) = &view.code {
@@ -946,7 +1016,7 @@ fn rebuild(
                     selection_card(ui, &art, &locale, "The party's run", None,
                         &lobby.zone, lobby.heroic_rank, view.role == "host");
                 }
-                let body = ui.spawn(Node { flex_grow: 1., min_height: Val::Px(0.),
+                let body = ui.spawn(Node { flex_grow: 100., min_height: Val::Px(0.),
                     column_gap: Val::Px(20.), ..default() }).id();
                 chat_parent = Some(body);
                 ui.commands().entity(body).with_children(|ui| {
@@ -1061,7 +1131,8 @@ fn rebuild(
                 }
             } else {
                 ui.spawn(Node {
-                    column_gap: Val::Px(6.),
+                    column_gap: Val::Px(12.),
+                    justify_content: JustifyContent::Center,
                     ..default()
                 })
                 .with_children(|ui| {
@@ -1081,6 +1152,11 @@ fn rebuild(
                         );
                     }
                 });
+                crate::codex::native_rule(
+                    ui,
+                    Node { width: Val::Percent(100.), flex_shrink: 0., ..default() },
+                    [0.427, 0.333, 0.145, 1.],
+                );
                 match view.tab {
                     Tab::Host => {
                         host_preview(ui, &art, &locale, &state);
@@ -1089,29 +1165,23 @@ fn rebuild(
                             label(&locale, "{hero}'s run").replace("{hero}", &state.name));
                         form_field(ui, &art, &view, Field::Description,
                             label(&locale, "Description (optional)"), label(&locale, "what the run is about"));
-                        text(ui, &art, label(&locale, "Who can find it"), 16., PAPER);
-                        control(
-                            ui,
-                            &art,
-                            label(
-                                &locale,
-                                if view.private {
-                                    "Private: by code only"
-                                } else {
-                                    "Public: in the list"
-                                },
-                            ),
-                            Click::Visibility,
-                            false,
-                            false,
-                            false,
-                        );
-                        text(ui, &art, label(&locale, "Max players"), 16., PAPER);
-                        ui.spawn(Node {
-                            column_gap: Val::Px(6.),
-                            ..default()
-                        })
-                        .with_children(|ui| {
+                        form_row(ui, &art, label(&locale, "Who can find it"), 8., |ui| {
+                            for (private, caption) in [
+                                (false, "Public: in the list"),
+                                (true, "Private: by code only"),
+                            ] {
+                                control(
+                                    ui,
+                                    &art,
+                                    label(&locale, caption),
+                                    Click::Visibility { private },
+                                    view.private == private,
+                                    true,
+                                    false,
+                                );
+                            }
+                        });
+                        form_row(ui, &art, label(&locale, "Max players"), 8., |ui| {
                             for size in 1..=5 {
                                 control(
                                     ui,
@@ -1129,26 +1199,25 @@ fn rebuild(
                         text(ui, &art, label(&locale,
                             "Everyone who joins needs this zone and difficulty open with their class. Change your hero or zone on the picker."),
                             13., MUTED);
-                        control_sized(ui, &art, label(&locale, "Host the lobby"), Click::Submit, false, false, false, 18.);
+                        form_submit(ui, &art, label(&locale, "Host the lobby"));
                     }
                     Tab::Lobbies => {
-                        text(
-                            ui,
-                            &art,
-                            label(
-                                &locale,
-                                "Public lobbies of this version. Click one to join.",
-                            ),
-                            16.,
-                            MUTED,
-                        );
-                        control(ui, &art, label(&locale, "Refresh"), Click::Refresh, false, false, false);
+                        ui.spawn(Node {
+                            justify_content: JustifyContent::SpaceBetween,
+                            align_items: AlignItems::Center,
+                            ..default()
+                        }).with_children(|ui| {
+                            text(ui, &art, label(&locale, "Public lobbies of this version. Click one to join."), 14., MUTED);
+                            control_sized(ui, &art, label(&locale, "Refresh"), Click::Refresh, false, false, false, 14.);
+                        });
+                        let shown = view.lobbies.iter().flatten().filter(|row| view.shows(row)).count();
                         if let Some(lobbies) = &view.lobbies {
                             if !lobbies.is_empty() {
                                 ui.spawn(Node {
                                     column_gap: Val::Px(8.),
                                     row_gap: Val::Px(6.),
                                     align_items: AlignItems::Center,
+                                    flex_wrap: FlexWrap::Wrap,
                                     ..default()
                                 })
                                 .with_children(|ui| {
@@ -1192,8 +1261,6 @@ fn rebuild(
                                     );
                                     control(ui, &art, difficulty, Click::Difficulty,
                                         view.difficulty_filter.is_some(), true, false);
-                                    let shown =
-                                        lobbies.iter().filter(|row| view.shows(row)).count();
                                     if shown < lobbies.len() {
                                         text(
                                             ui,
@@ -1208,39 +1275,36 @@ fn rebuild(
                                 });
                             }
                         }
-                        crate::scrollbar::kept_list(ui, "coop-lobbies", 12., |ui| {
-                            if let Some(lobbies) = &view.lobbies {
-                                if lobbies.is_empty() {
-                                    text(
-                                        ui,
-                                        &art,
-                                        label(&locale, "No public lobbies right now. Host one!"),
-                                        16.,
-                                        MUTED,
-                                    );
-                                } else if !lobbies.iter().any(|row| view.shows(row)) {
-                                    text(
-                                        ui,
-                                        &art,
-                                        label(&locale, "No lobby matches the filters."),
-                                        16.,
-                                        MUTED,
-                                    );
-                                }
-                                // Complete supplied list; no first-eight cutoff or synthetic lobby entries.
-                                for (index, lobby) in lobbies.iter().enumerate().filter(|(_, row)| view.shows(row)) {
-                                    ui.spawn((
-                                        Button,
-                                        Click::Lobby(index),
-                                        crate::coop_directory_row::frame(lobby),
-                                        menu::native_button_gradient(),
-                                    ))
-                                    .with_children(|ui| {
-                                        crate::coop_directory_row::spawn(ui, &art, &locale, lobby);
-                                    });
-                                }
+                        match &view.lobbies {
+                            None => text(ui, &art, label(&locale, "Looking for lobbies..."), 16., MUTED),
+                            Some(lobbies) if lobbies.is_empty() => text(
+                                ui, &art, label(&locale, "No public lobbies right now. Host one!"), 16., MUTED,
+                            ),
+                            Some(_) if shown == 0 => text(
+                                ui, &art, label(&locale, "No lobby matches the filters."), 16., MUTED,
+                            ),
+                            Some(lobbies) => {
+                                let row = Node {
+                                    flex_grow: 100.,
+                                    min_height: Val::Px(0.),
+                                    column_gap: Val::Px(6.),
+                                    ..default()
+                                };
+                                crate::scrollbar::kept_list_in(ui, "coop-lobbies", 8., row, |ui| {
+                                    for (index, lobby) in lobbies.iter().enumerate().filter(|(_, row)| view.shows(row)) {
+                                        ui.spawn((
+                                            Button,
+                                            Click::Lobby(index),
+                                            crate::coop_directory_row::frame(lobby),
+                                            menu::native_button_gradient(),
+                                        ))
+                                        .with_children(|ui| {
+                                            crate::coop_directory_row::spawn(ui, &art, &locale, lobby);
+                                        });
+                                    }
+                                });
                             }
-                        });
+                        }
                     }
                     Tab::Code => {
                         form_field(ui, &art, &view, Field::Code,
@@ -1249,19 +1313,27 @@ fn rebuild(
                             label(&locale, "Password"), label(&locale, "if it has one"));
                         text(ui, &art, label(&locale,
                             "You play the hero on your picker, in the host's zone."), 13., MUTED);
-                        control_sized(ui, &art, label(&locale, "Join"), Click::Submit, false, false, false, 18.);
+                        form_submit(ui, &art, label(&locale, "Join"));
                     }
                 }
             }
+            ui.spawn(Node { flex_grow: 1., ..default() });
             if let Some(message) = status_message(&view, &locale) {
                 let color = if matches!(view.status.as_str(), "joining" | "connecting") {
                     MUTED
                 } else {
                     Color::srgb(1., 0.353, 0.235)
                 };
-                text(ui, &art, message, 14., color);
+                ui.spawn(Node {
+                    justify_content: JustifyContent::Center,
+                    ..default()
+                }).with_children(|ui| text(ui, &art, message, 14., color));
             }
-            ui.spawn(Node { column_gap: Val::Px(16.), ..default() }).with_children(|ui| {
+            ui.spawn(Node {
+                column_gap: Val::Px(16.),
+                justify_content: JustifyContent::Center,
+                ..default()
+            }).with_children(|ui| {
                 if view.party_active() {
                     control_sized(ui, &art, label(&locale, "Leave the party"), Click::Leave, false, false, false, 16.);
                 }
@@ -1739,8 +1811,9 @@ mod tests {
         let mut world = world(CoopUi { tab: Tab::Host, ..default() });
         let zone = crate::coop_directory::display_zone(world.resource::<Localization>(), "elwynn");
         let mut texts = world.query::<(&Text, &ChildOf)>();
-        let parent = texts.iter(&world).find(|(text, _)| text.0 == "Normal")
+        let pill = texts.iter(&world).find(|(text, _)| text.0 == "Normal")
             .map(|(_, owner)| owner.parent()).unwrap();
+        let parent = world.get::<ChildOf>(pill).unwrap().parent();
         assert!(texts.iter(&world).any(|(text, owner)| text.0 == zone && owner.parent() == parent));
         let row = world.get::<Node>(parent).unwrap();
         assert_eq!(row.flex_direction, FlexDirection::Row);
