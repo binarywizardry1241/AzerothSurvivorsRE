@@ -208,14 +208,23 @@ fn sync(
     mut sets: ResMut<LocalItemSets>,
     coop:Option<Res<crate::coop_runtime::CoopRuntime>>,
 ) {
-    // Metadata is a local client callback even when the item templates arrive
-    // from the cooperative host instead of this process's item-query producer.
+    // Set metadata and ranked activation are local client callbacks even
+    // when the item templates arrive from the cooperative host.
     if menu.in_run && client.active && publisher.set_language != Some(locale.code()) {
         sets.records = item_sets(&armory, &labels);
         sets.normalize = Some(|id| azeroth_survivors_re::sets::decode_set_id(id)
             .map(azeroth_survivors_re::sets::SetIdentity::item_set_id));
+        sets.bonus_activation = Some(set_bonus_active);
         sets.intern_bonus_descriptions = true;
         publisher.set_language = Some(locale.code());
+    }
+    let ranked_items = session.entry_hero.as_ref().filter(|_| menu.in_run && client.active)
+        .map_or([(0, 0); 19], |hero| std::array::from_fn(|slot| {
+            (crate::save::gear::faction_item(session.starting_gear[slot], hero.race),
+                session.starting_stars[slot])
+        }));
+    if sets.ranked_items != ranked_items {
+        sets.ranked_items = ranked_items;
     }
     if coop.as_ref().is_some_and(|runtime|runtime.is_guest()) {
         answer_guest_local_queries(client.active, &armory, &labels, &mut queries,
@@ -271,9 +280,35 @@ fn answer_guest_local_queries(
     }
 }
 
-/// Current145ac1180 registers one ordinary count-based tooltip record for each
-/// synthetic set ID. Star requirements are text in these records; the existing
-/// FrameXML tooltip counts worn member IDs and owns its normal bonus colors.
+/// Native 0x145e34820 compares the selected tier with the four-piece tier
+/// list or the single active eight-piece tier. The set ID's class byte does
+/// not gate activation. Unsupported thresholds retain the engine fallback.
+fn set_bonus_active(set_id: u32, threshold: u32, gear: &[u32; 19],
+    stars: &[u8; 19]) -> Option<bool>
+{
+    use azeroth_survivors_re::sets;
+    if set_id < 0xa000 { return None; }
+    let tier = match (set_id & 15) as u8 {
+        15 => 5,
+        tier @ (0..=5 | 7) => tier,
+        _ => return None,
+    };
+    let lookup = |id| {
+        let piece = crate::save::gear::decode(id)?;
+        Some(sets::Piece {
+            class_id: piece.class,
+            slot: usize::from(piece.slot),
+            tier: usize::from(piece.rarity_digit),
+        })
+    };
+    match threshold {
+        4 => Some(sets::four_piece_tiers(gear, stars, lookup).contains(&tier)),
+        8 => Some(sets::active(gear, stars, lookup).is_some_and(|active| active.tier == tier)),
+        _ => None,
+    }
+}
+
+/// Publish named members and bonus descriptions for the existing tooltip.
 fn item_sets(catalog: &ArmoryCatalog, labels: &MenuCatalog)
     -> std::collections::HashMap<u32, benilla_ui::script::ItemSetView>
 {

@@ -221,7 +221,7 @@ pub(super) fn render_view_flagged(
     let mut live = false;
     // The pet's book as it stands, which a pet teach's known test reads (`0x52d5ad` → `0x60c740`).
     let pet_book = crate::script::live::ask(lua, &crate::script::PetBookNow);
-    let (req, known_spell, taught_known, set_view, equipped, rank_title) = {
+    let (req, known_spell, taught_known, set_view, equipped, worn, rank_title) = {
         let mut model = lua.app_data_mut::<Model>().expect("model app_data");
         let pet_slots = &pet_book.as_ref().unwrap_or(&model.pet_book).slots;
         // The known-spell list as the call runs (`0x60c740`).
@@ -273,21 +273,19 @@ pub(super) fn render_view_flagged(
             })
             .flatten();
         // The worn item ids as the call runs (`0x6228a0`), off the doll's keys, for a set alone.
-        let equipped: std::collections::HashSet<u32> = if set_view.is_some() {
-            crate::script::worn::worn_keys(lua, &model)
-                .iter()
-                .flatten()
-                .map(|&(_, id)| id)
-                .collect()
-        } else {
-            std::collections::HashSet::new()
-        };
+        let keys = set_view.as_ref().map(|_| crate::script::worn::worn_keys(lua, &model));
+        let equipped: std::collections::HashSet<u32> = keys
+            .iter().flatten().flatten().map(|&(_, id)| id).collect();
+        let worn = std::array::from_fn(|slot| {
+            keys.as_ref().and_then(|keys| keys[slot + 1]).map_or(0, |(_, id)| id)
+        });
         (
             crate::script::requirements::player_req(lua, &model),
             known,
             taught,
             set_view,
             equipped,
+            worn,
             rank_title,
         )
     };
@@ -859,7 +857,12 @@ pub(super) fn render_view_flagged(
         let mut bonuses: Vec<&(u32, String)> = set.bonuses.iter().collect();
         bonuses.sort_by_key(|&&(threshold, _)| threshold);
         for &(threshold, ref text) in bonuses {
-            if skill_met && owned as u32 >= threshold {
+            let active = crate::script::live::ask(lua, &crate::script::ItemSetBonusQuery {
+                set_id: v.item_set,
+                threshold,
+                worn,
+            }).unwrap_or(owned as u32 >= threshold);
+            if skill_met && active {
                 keyed("ITEM_SET_BONUS", &[Arg::S(text)], GREEN, true)?;
             } else {
                 let args = [Arg::D(threshold.into()), Arg::S(text)];

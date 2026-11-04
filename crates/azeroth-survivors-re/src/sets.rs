@@ -159,17 +159,16 @@ pub fn four_piece_tiers(
     stars: &[u8; PAPERDOLL_SLOTS],
     mut lookup: impl FnMut(u32) -> Option<Piece>,
 ) -> Vec<u8> {
-    let mut counts = [0usize; TIERS];
+    let mut counts = [0usize; TIER_HALF as usize + 1];
     for (&id, &rank) in gear.iter().zip(stars) {
         let Some(piece) = lookup(canonical_item(id)) else { continue; };
-        if piece.class_id == 0 || piece.slot >= ARMOR_SLOTS || rank == 0
-            || piece.tier == usize::from(TIER_HALF)
-        {
+        if piece.class_id == 0 || piece.slot >= ARMOR_SLOTS || rank == 0 {
             continue;
         }
-        *counts.get_mut(piece.tier).expect("native set tier domain0..5") += 1;
+        *counts.get_mut(piece.tier).expect("native set tier domain") += 1;
     }
-    (0..TIERS).filter(|&tier| counts[tier] >= 4).map(|tier| tier as u8).collect()
+    ACTIVE_TIER_ORDER.into_iter().filter(|&tier| counts[tier] >= 4)
+        .map(|tier| tier as u8).collect()
 }
 
 /// Owned native payload data. Pointer/length words have been removed; strings

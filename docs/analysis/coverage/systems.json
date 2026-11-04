@@ -64250,7 +64250,8 @@
         "docs/analysis/evidence/0.139.0/source-frontier.json",
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
-        "docs/analysis/native-census-0.139.1.md"
+        "docs/analysis/native-census-0.139.1.md",
+        "docs/analysis/ranked-set-tooltip-0.140.0.md"
       ],
       "gap_ids": [
         41,
@@ -64434,6 +64435,27 @@
           "crates/azeroth-survivors-re/src/run_effects/pets.rs",
           "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs"
         ]
+      },
+      "gap_242_tooltip_0_140_0": {
+        "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        "gap_id": 242,
+        "scope": "The 0.140.0 tooltip uses ranked four- and eight-piece activation with ordinary count fallback.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/sets.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+          "crates/benilla-app/src/local_client/item_sets.rs",
+          "crates/benilla-app/src/ui_items/sets.rs",
+          "crates/benilla-ui/src/script/item_stats.rs",
+          "crates/benilla-ui/src/script/mod.rs",
+          "crates/benilla-ui/src/script/tooltip_item/render.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/ranked-set-tooltip-0.140.0.md"
+        ],
+        "source_status": "connected",
+        "static_validation": "bounded",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
       }
     },
     {
@@ -77844,7 +77866,7 @@
     "crates/benilla-formats/src/install.rs": "a3656080d4282194a6ec9b85a6e77bcba2ab9ef88925e10e5cd9fde2558cdce7",
     "scripts/check-data-directory-0.115.0.py": "145bb96c8093866b1979a95de47cc0ab2ba6496b2a54713e8c181a5152763ef0",
     "crates/azeroth-survivors-re/src/localization/amulet_names.rs": "9e0342886db6d1ab72ad55287b205653dd75d67f9a9883264823da8d38f73968",
-    "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs": "74a6801f3344357dde5ec6cf943be359ef6867e1e00db3f7c64a4337c2d20720",
+    "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs": "9cf1b89bef40673beed9061424710253570e3535a5223d5a1a1caa70ffde2e61",
     "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs": "541cd771dc3dae4825490a0c2fc6790995c75dd17c9288faeaac6da92327925e",
     "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "ecd828caac2a595074c514b15c9314244d5f106ea39ee9c36af0f31f6c6eaf8b",
     "scripts/check-amulet-names-0.115.0.py": "edd39b69727906eacaea1399aadc52445acdea058eb6df2c40956acc8ac0607f",
@@ -78016,7 +78038,7 @@
     "crates/azeroth-survivors-re/src/heroic.rs": "05bd834f650440b8a6dbecdc53db1da22fed4acc81240d1ad28eb12e491b3bd3",
     "crates/azeroth-survivors-re/src/heroic/affix_calendar.rs": "95893fddc528a677c638ef1ee9e73d584aaf150afd4af6e7548bcdc2b0d97f1e",
     "scripts/check-heroic-source-0.121.0.py": "feadaa6f9a13738ee9f589e8f51afd8d8f997e166bacccae87c0415657ddfed3",
-    "crates/azeroth-survivors-re/src/sets.rs": "f2f351d36c6986108e3477a53c7e70e4c1698aa9021c3ff9effeef31f49c5705",
+    "crates/azeroth-survivors-re/src/sets.rs": "bdddfba23245b914310482fb4cc62a12511dabf0eebd796b5e5d7093a240c15b",
     "crates/azeroth-survivors-re/assets/sets-0.121.0.json": "5cc14f18554b2639e17f441f25bcc890c480e47bfe6029226d0804a4bd43d9f8",
     "scripts/check-sets-core-0.121.0.py": "47497bcc05d58803a6056b0124df1ff7da64aba0517ae092bb520668ff1bc81e",
     "crates/azeroth-survivors-re/src/gameplay/mechanics/affixes.rs": "30500318760c4784768569203f1eb9dc360b0c3cd755f010a2a163b772959866",

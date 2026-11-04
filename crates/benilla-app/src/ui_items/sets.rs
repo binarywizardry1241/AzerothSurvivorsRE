@@ -6,7 +6,7 @@ use bevy::ecs::system::SystemParam;
 use bevy::prelude::*;
 
 use benilla_ui::script::live::LiveAsk;
-use benilla_ui::script::ItemSetQuery;
+use benilla_ui::script::{ItemSetBonusQuery, ItemSetQuery};
 
 /// What the set block reads as it runs: our store as of the drain's place, which the bonuses'
 /// `$`-tokens read. With the set table or the item-name cache absent it declines; with no active
@@ -26,22 +26,23 @@ pub(crate) struct ItemSetLive<'w, 's> {
 
 impl crate::script_calls::live::LiveFamily for ItemSetLive<'_, '_> {
     fn answer(&mut self, ask: &mut LiveAsk<'_>) -> bool {
-        ask.answer(|q: &ItemSetQuery| {
-            if self.local_sets.as_deref().is_some_and(|sets| sets.lookup(q.0).is_some()) {
-                return None; // The embedding's ordered VM demand queue owns these IDs.
-            }
-            let (sets, item_names) = (self.sets.as_deref()?, self.item_names.as_deref()?);
-            let me = self.objects.player().and_then(|e| self.stores.get(e).ok());
-            Some(super::feed::item_set_live(
-                q.0,
-                sets,
-                item_names,
-                self.spells.as_deref(),
-                self.spell_mods.as_deref(),
-                self.skill_lines.as_deref(),
-                self.items.as_deref(),
-                me,
-            ))
-        })
+        ask.answer(|q: &ItemSetBonusQuery| self.local_sets.as_deref()?.bonus_active(q))
+            || ask.answer(|q: &ItemSetQuery| {
+                if self.local_sets.as_deref().is_some_and(|sets| sets.lookup(q.0).is_some()) {
+                    return None; // The embedding's ordered VM demand queue owns these IDs.
+                }
+                let (sets, item_names) = (self.sets.as_deref()?, self.item_names.as_deref()?);
+                let me = self.objects.player().and_then(|e| self.stores.get(e).ok());
+                Some(super::feed::item_set_live(
+                    q.0,
+                    sets,
+                    item_names,
+                    self.spells.as_deref(),
+                    self.spell_mods.as_deref(),
+                    self.skill_lines.as_deref(),
+                    self.items.as_deref(),
+                    me,
+                ))
+            })
     }
 }

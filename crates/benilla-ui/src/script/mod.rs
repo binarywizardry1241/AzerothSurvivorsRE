@@ -386,7 +386,7 @@ pub(crate) use font_block::{face_loads, font_size_loads, own_font_lua, SAME_FONT
 pub use inspect::{InspectCall, UnitReach, UnitReachQuery, VisibleSlotQuery};
 pub use instance::InstanceCall;
 pub use item_stats::{
-    item_usable, reputation_line, ItemRecipe, ItemSetQuery, ItemSetView, ItemSpellLine,
+    item_usable, reputation_line, ItemRecipe, ItemSetBonusQuery, ItemSetQuery, ItemSetView, ItemSpellLine,
     ItemTemplateView, ItemViewQuery, LiveItemSet, LiveItemView, PlayerReqState, TaughtSpell,
 };
 pub use item_text::{ItemTextCall, ItemTextCreator, ItemTextQuery, ItemTextState, ItemTextView};

@@ -351,6 +351,18 @@ pub struct ItemSetView {
 /// `None` for a set with no row.
 pub struct ItemSetQuery(pub u32);
 
+/// Optional embedding-game activation for a single set bonus. Ordinary DBC
+/// sets keep their equipped-count rule when the host declines this question.
+pub struct ItemSetBonusQuery {
+    pub set_id: u32,
+    pub threshold: u32,
+    pub worn: [u32; 19],
+}
+
+impl super::live::LiveQuery for ItemSetBonusQuery {
+    type Answer = bool;
+}
+
 /// A set's block as the host builds it: its view, whose bonuses are left empty, and the bonuses'
 /// texts, each template read from the VM's strings where the block shows (`0x5075f0`).
 #[derive(Clone, Debug, Default, PartialEq)]

@@ -6,6 +6,8 @@ use std::collections::HashMap;
 use benilla_ui::script::ItemSetView;
 use bevy::prelude::*;
 
+type BonusActivation = fn(u32, u32, &[u32; 19], &[u8; 19]) -> Option<bool>;
+
 /// Local counterpart of the normal `ItemSet.dbc` lookup. IDs and complete
 /// member/bonus records belong to the embedding; absent IDs use the DBC path.
 #[derive(Resource, Default)]
@@ -13,6 +15,9 @@ pub struct LocalItemSets {
     pub records: HashMap<u32, ItemSetView>,
     /// Optional identity aliases from the embedding's original query callback.
     pub normalize: Option<fn(u32) -> Option<u32>>,
+    /// Optional ranked-bonus callback and the embedding's current rank rows.
+    pub bonus_activation: Option<BonusActivation>,
+    pub ranked_items: [(u32, u8); 19],
     /// Opt in when the embedding's set callback interns bonus text in the same
     /// persistent registry as item-template spell descriptions.
     pub intern_bonus_descriptions: bool,
@@ -24,6 +29,15 @@ impl LocalItemSets {
             let canonical = (self.normalize?)(id)?;
             self.records.get(&canonical)
         })
+    }
+
+    pub(crate) fn bonus_active(&self, query: &benilla_ui::script::ItemSetBonusQuery) -> Option<bool> {
+        let activation = self.bonus_activation?;
+        let ranks = query.worn.map(|item| {
+            self.ranked_items.iter().find_map(|&(id, rank)| (id == item).then_some(rank))
+                .unwrap_or_default()
+        });
+        activation(query.set_id, query.threshold, &query.worn, &ranks)
     }
 
     pub(crate) fn intern_asked_bonuses(
