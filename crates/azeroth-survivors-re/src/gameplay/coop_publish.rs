@@ -85,9 +85,6 @@ pub(in crate::gameplay) fn publish(
     }
     runtime.party = game.localized_party_snapshot(&locale);
     runtime.shared_running = started && game.party_shared_running();
-    if !world.ready {
-        return;
-    }
     let local_profile = state.local.clone();
     let mut members = state
         .world_profiles
@@ -120,7 +117,7 @@ pub(in crate::gameplay) fn publish(
             recipient_state_due(&mut state, client, game.native_state_terminal(), now)
         });
         let display = bridge.creation.as_ref()
-            .filter(|_| synced)
+            .filter(|_| world.ready && synced)
             .and_then(|creation| creation.body_display(hero.race, hero.sex));
         let Some(display) = display else {
             // State15 uses the admitted hero and shared run phase. Engine

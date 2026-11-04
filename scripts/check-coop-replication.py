@@ -263,6 +263,9 @@ def check_protocol_13():
     assert 'if periodic { state.state_sent_at.insert(client, now); } periodic || terminal' in cadence_source
     assert publish.count('state.state_sent_at.insert(client, now);') == 1
     assert 'recipient_state_due(&mut state, client, game.native_state_terminal(), now)' in publish
+    publisher = publish.split('fn publish(', 1)[1].split('fn retire_inventory(', 1)[0]
+    assert 'if !world.ready' not in publisher
+    assert '.filter(|_| world.ready && synced)' in publisher
     assert 'let Some(display) = display else {' in publish
     no_display = publish.split('let Some(display) = display else {', 1)[1].split('let addon_due', 1)[0]
     assert 'client.filter(|_| state_due)' in no_display

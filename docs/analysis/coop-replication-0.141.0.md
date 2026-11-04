@@ -41,9 +41,10 @@ The poll checks the host role, indexed peer and live Game at
 `0x145ea9163..0x145ea924c`. It constructs the snapshot only after cadence
 admission and reaches the peer's outgoing queue at `0x145ea9354`. The
 rebuilt host now makes that decision before building the recipient snapshot.
-It uses the same seated snapshot and State15 codec before Sync6 and when
-character-creation display data is unavailable. The presentation branch
-retains its own Sync6 and display gates.
+It uses the same seated snapshot and State15 codec before Sync6, when
+character-creation display data is unavailable and during a streaming focus
+change that clears `ZoneWorld::ready` for an already admitted hero. The
+presentation branch retains its own world-ready, Sync6 and display gates.
 
 The builder and writer join the following histories in source order.
 
