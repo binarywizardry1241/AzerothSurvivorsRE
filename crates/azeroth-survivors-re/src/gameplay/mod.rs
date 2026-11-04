@@ -254,7 +254,8 @@ impl Plugin for GameplayPlugin {
         )
         .add_systems(
             Update,
-            capture_card_skip.in_set(benilla_app::local_client::LocalClientSet::OverlayCapture),
+            (capture_card_skip, native_overlays::confirmation::capture_enter)
+                .in_set(benilla_app::local_client::LocalClientSet::OverlayCapture),
         )
         .add_systems(
             Update,

@@ -33725,6 +33725,41 @@
       ]
     },
     {
+      "claim_id": "changelog:0.140.0:ac3ebee1359ef8ca",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "rationale": "Both physical Enter aliases are captured for the amulet modal through the ordered input filter. FrameXML and bindings cannot act on the captured records, while the modal still consumes the original typed key state.",
+      "native_contract": "The pending and non-typing capture producer denies both physical Enter aliases. Each owned alias stays denied through its release frame and is tracked independently from the other alias. The ordered filter tests physical membership on both edges.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/native_overlays/confirmation.rs",
+        "crates/benilla-app/src/ui_script/records.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/amulet-enter-0.141.0.md"
+      ],
+      "static_checks": [
+        {
+          "command": "Journaled Ghidra recovery, 96 isolated original-instruction cases and Rust syntax parsing",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/amulet-enter-0.141.0.md"
+        }
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/gameplay/native_overlays/confirmation.rs": "87f8bda7b0bb313e30d64cebbdb0da3eb6965b9e7c5f51c0bbcaa51764d3fe29",
+        "crates/benilla-app/src/ui_script/records.rs": "b5a13a8d9b7f74daa612ba331873932e0bc76d2916e08795e2e5579618cbbf6f",
+        "docs/analysis/amulet-enter-0.141.0.md": "b01100ce6f44f157a8a5aaeb797680c49bdf64513647ba43a1d954ca6bb80c28"
+      },
+      "systems": [
+        "custom-app-screens-cards"
+      ],
+      "gap_ids": [
+        18
+      ]
+    },
+    {
       "claim_id": "changelog:0.140.0:73fd9cecd0fb1234",
       "target": {
         "version": "0.140.0",

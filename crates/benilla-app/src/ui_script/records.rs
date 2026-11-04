@@ -109,6 +109,8 @@ pub(crate) fn collect_input_records(
 ) {
     let binding_capture = extension.as_ref().is_some_and(|e| e.binding_capture);
     let ignored_keys = extension.as_ref().map_or(&[][..], |e| e.ignored_logical_keys.as_slice());
+    let ignored_physical_keys =
+        extension.as_ref().map_or(&[][..], |e| e.ignored_physical_keys.as_slice());
     let not_typing = capture.as_ref().is_none_or(|c| !c.typing);
     let menu_escape = not_typing
         && extension.as_ref().is_some_and(|e| e.custom_game_menu)
@@ -186,8 +188,9 @@ pub(crate) fn collect_input_records(
                     }
                     continue;
                 }
-                if picker_enter_capture
-                    && matches!(ev.key_code, KeyCode::Enter | KeyCode::NumpadEnter)
+                if ignored_physical_keys.contains(&ev.key_code)
+                    || (picker_enter_capture
+                        && matches!(ev.key_code, KeyCode::Enter | KeyCode::NumpadEnter))
                 {
                     continue;
                 }
@@ -476,6 +479,26 @@ mod tests {
             vec![key(KeyCode::Enter, ButtonState::Pressed)],
         );
         assert_eq!(shape(&got), ["Enter@Some(10.0)"]);
+    }
+
+    #[test]
+    fn physical_deny_list_withholds_both_edges_of_only_the_captured_alias() {
+        let mut w = world();
+        w.0.insert_resource(crate::local_client::LocalClientExtension {
+            ignored_physical_keys: vec![KeyCode::NumpadEnter],
+            ..default()
+        });
+        let got = collect(
+            &mut w,
+            vec![
+                key(KeyCode::NumpadEnter, ButtonState::Pressed),
+                key(KeyCode::Enter, ButtonState::Pressed),
+                key(KeyCode::KeyW, ButtonState::Pressed),
+                key(KeyCode::NumpadEnter, ButtonState::Released),
+                key(KeyCode::Enter, ButtonState::Released),
+            ],
+        );
+        assert_eq!(shape(&got), ["Enter@Some(10.0)", "KeyW@Some(10.0)", "Enter@Some(10.0)"]);
     }
 
     /// Each record reads the modifiers its own place in the frame left: a Shift that goes down

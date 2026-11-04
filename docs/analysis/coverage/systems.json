@@ -3342,6 +3342,24 @@
     },
     {
       "id": "custom-app-screens-cards",
+      "amulet_enter_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_ids": [
+          18
+        ],
+        "report_ref": "docs/analysis/amulet-enter-0.141.0.md",
+        "scope": "Independent Enter and Numpad Enter ownership for the amulet confirmation through ordered dispatch, with prior typing and per-alias held/release state. The enclosing audit remains on its registered target.",
+        "source_status": "connected",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+          "crates/azeroth-survivors-re/src/gameplay/native_overlays/confirmation.rs",
+          "crates/benilla-app/src/local_client.rs",
+          "crates/benilla-app/src/ui_script/records.rs"
+        ],
+        "static_validation": "64 original producer cases, 32 ordered-filter cases and Rust syntax parsing passed.",
+        "runtime_validation": "not_run",
+        "parity_verified": false
+      },
       "gap_304_source_review_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_id": 304,

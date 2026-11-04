@@ -195,6 +195,7 @@ fn reset_overlay_pointer(
     extension.pointer_drag_capture = false;
     extension.on_top_pointer = false;
     extension.binding_capture = false;
+    extension.ignored_physical_keys.clear();
     context.chords.clear();
     context.pressed = false;
 }

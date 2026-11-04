@@ -5,21 +5,46 @@ use super::{
     BORDER, Card, Enabled, GOLD, MUTED, OverlayAction, PALE, PresentedCard, ReplacementItem, TEXT,
 };
 use crate::{assets::MenuArt, canvas::NativeCanvas, localization::Localization};
-use benilla_app::local_client::LocalClientInput;
+use benilla_app::{
+    UiKeyboardCapture,
+    local_client::{LocalClientExtension, LocalClientInput},
+};
 use bevy::{prelude::*, ui::FocusPolicy};
 
 #[derive(Component)]
-pub(super) struct Root;
+pub(in crate::gameplay) struct Root;
 
 /// The parser constructs its optional replacement record for an amulet's
 /// string-valued `replaces`, even when that string is empty.
-pub(super) fn payload_requires_confirmation(row: &serde_json::Value) -> bool {
+pub(in crate::gameplay) fn payload_requires_confirmation(row: &serde_json::Value) -> bool {
     row["kind"].as_str() == Some("amulet") && row["replaces"].as_str().is_some()
+}
+
+/// Publish the 0.141.0 confirmation gate before FrameXML consumes the ordered
+/// records. The modal still reads the original typed key state.
+pub(in crate::gameplay) fn capture_enter(
+    presentation: Res<super::super::ChoicePresentation>,
+    keyboard: Res<UiKeyboardCapture>,
+    keys: Res<ButtonInput<KeyCode>>,
+    mut held: Local<[bool; 2]>,
+    mut extension: ResMut<LocalClientExtension>,
+) {
+    let owns_enter = presentation.confirming.is_some() && !keyboard.is_typing();
+    for (key, held) in [KeyCode::Enter, KeyCode::NumpadEnter]
+        .into_iter()
+        .zip(held.iter_mut())
+    {
+        let captured = owns_enter || *held;
+        if captured {
+            extension.ignored_physical_keys.push(key);
+        }
+        *held = captured && keys.pressed(key);
+    }
 }
 
 /// Native keyboard handling precedes the pointer result. Enter and numpad Enter
 /// accept, the shared Escape request cancels, and typing captures only keys.
-pub(super) fn decision(
+pub(in crate::gameplay) fn decision(
     keys: &ButtonInput<KeyCode>,
     input: &LocalClientInput,
     pointer: Option<OverlayAction>,
@@ -41,7 +66,7 @@ pub(super) fn decision(
 
 /// Keep the ordinary card hierarchy and its opening clock. Only this separate
 /// 6060 modal root changes on pending slot/cancel/accept/revision transitions.
-pub(super) fn sync(
+pub(in crate::gameplay) fn sync(
     mut commands: Commands,
     presentation: Res<super::super::ChoicePresentation>,
     art: Res<MenuArt>,

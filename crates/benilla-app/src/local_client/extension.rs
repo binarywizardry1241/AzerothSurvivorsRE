@@ -36,6 +36,9 @@ pub struct LocalClientExtension {
     /// Logical keys owned by the embedding before the ordered UI and binding
     /// dispatch. Both press and release are withheld.
     pub ignored_logical_keys: Vec<bevy::input::keyboard::Key>,
+    /// Physical keys withheld from the ordered UI and binding dispatch this frame.
+    /// The embedding's typed key state remains available to its own controls.
+    pub ignored_physical_keys: Vec<KeyCode>,
     /// Own unfocused Escape before the Lua key/binding walk for the embedding's
     /// custom menu. A stock GameMenuFrame opening also hands off before paint.
     pub custom_game_menu: bool,
