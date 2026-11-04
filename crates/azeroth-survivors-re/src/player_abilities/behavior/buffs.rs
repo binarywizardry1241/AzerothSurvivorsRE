@@ -2,8 +2,10 @@
 //! These are concrete aura/vital mutations; callers must perform returned
 //! combat, stat-recompute and network actions in the real run.
 
-use super::{state::{scaled_hit_effect, Vitals}, RuntimeInstance};
-use crate::player_abilities::{catalog::StatusEffect, damage::scaled_duration};
+use super::{min_preserving_original_nan, state::{scaled_hit_effect, Vitals}, RuntimeInstance};
+use crate::player_abilities::{catalog::StatusEffect, damage::scaled_duration, native_max, native_min};
+
+const ICE_BARRIER: u32 = 11426;
 
 /// Semantic current32-byte player aura. Self contributions use source0;
 /// received cooperative contributions retain the casting hero's GUID.
@@ -63,11 +65,21 @@ pub fn tick_auras(auras: &mut Vec<Aura>, now: f32, delta: f32,
         }
         if now >= aura.expires_at { result.expired.push(aura.spell_id); }
     }
-    if shield.spell_id != 0 && result.expired.contains(&shield.spell_id) {
-        vitals.absorb = (vitals.absorb - shield.amount).max(0.0);
-        *shield = ShieldReservation::default();
+    let ice_expired = result.expired.contains(&ICE_BARRIER);
+    if ice_expired {
+        vitals.absorb = native_max(vitals.absorb - shield.ice_barrier_absorb, 0.0);
+        shield.ice_barrier_absorb = 0.0;
         result.absorb_changed = true;
     }
+    if shield.spell_id != 0 && result.expired.contains(&shield.spell_id) {
+        if !(ice_expired && shield.spell_id == ICE_BARRIER) {
+            vitals.absorb = (vitals.absorb - shield.amount).max(0.0);
+        }
+        shield.clear_spell();
+        result.absorb_changed = true;
+    }
+    shield.ice_barrier_absorb =
+        min_preserving_original_nan(shield.ice_barrier_absorb, vitals.absorb);
     auras.retain(|a| !(now >= a.expires_at));
     result
 }
@@ -76,6 +88,52 @@ pub fn tick_auras(auras: &mut Vec<Aura>, now: f32, delta: f32,
 pub struct ShieldReservation {
     pub spell_id: u32,
     pub amount: f32,
+    /// Game+0x570. Total Ice Barrier absorb from self and party casts.
+    pub(super) ice_barrier_absorb: f32,
+}
+
+impl ShieldReservation {
+    pub(super) fn clear_spell(&mut self) {
+        self.spell_id = 0;
+        self.amount = 0.0;
+    }
+
+    fn counted_ice_barrier(&self, absorb: f32) -> f32 {
+        native_max(min_preserving_original_nan(self.ice_barrier_absorb, absorb), 0.0)
+    }
+
+    pub fn cap_ice_barrier_after_stat_refresh(
+        &mut self, vitals: &mut Vitals, soul_link_absorb: &mut f32,
+    ) {
+        let counted = self.counted_ice_barrier(vitals.absorb);
+        let excess = native_max(counted - vitals.maximum_health, 0.0);
+        self.ice_barrier_absorb = counted - excess;
+        if excess > 0.0 {
+            vitals.absorb = native_max(vitals.absorb - excess, 0.0);
+            if self.spell_id == ICE_BARRIER {
+                self.amount = min_preserving_original_nan(self.amount, self.ice_barrier_absorb);
+            }
+            *soul_link_absorb = min_preserving_original_nan(*soul_link_absorb, vitals.absorb);
+        }
+    }
+
+    pub fn receive_party_shield(&mut self, vitals: &mut Vitals, spell_id: u32, coefficient: f32) {
+        let mut amount = vitals.maximum_health * coefficient;
+        if spell_id == ICE_BARRIER {
+            let counted = self.counted_ice_barrier(vitals.absorb);
+            amount = ice_barrier_capacity(vitals.maximum_health, counted, amount);
+            self.ice_barrier_absorb = counted + amount;
+        }
+        vitals.absorb += amount;
+        if self.spell_id == 0 {
+            self.spell_id = spell_id;
+            self.amount = amount;
+        }
+    }
+}
+
+fn ice_barrier_capacity(maximum_health: f32, counted: f32, amount: f32) -> f32 {
+    native_min(native_max(maximum_health - counted, 0.0), native_max(0.0, amount))
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -187,15 +245,27 @@ pub fn apply_self_buff_with_party(
             if auras.iter().any(|a| a.spell_id == definition.spell_id) {
                 return Err(BuffFailure::AlreadyActive);
             }
-            // Current145927f46/145928192..1c7 prepares the effect/health
-            // lane first, then applies the shared buff strength exactly once.
+            // 0.139.2 prepares the effect/health lane before applying buff strength.
             let effect_power = instance.effect_multiplier * definition.effect.value;
             let health_power = vitals.maximum_health * effect_power;
-            let amount = (shield_bonus + 1.0) * ((power_root * 1.4) * health_power);
-            vitals.absorb = (vitals.absorb - shield.amount).max(0.0) + amount;
-            *shield = ShieldReservation { spell_id: definition.spell_id, amount };
+            let mut amount = (shield_bonus + 1.0) * ((power_root * 1.4) * health_power);
+            if definition.spell_id == ICE_BARRIER {
+                let other_reservation = if shield.spell_id == ICE_BARRIER {
+                    0.0
+                } else {
+                    shield.amount
+                };
+                let other_absorb = native_max(vitals.absorb - shield.ice_barrier_absorb, 0.0);
+                amount = ice_barrier_capacity(vitals.maximum_health, 0.0, amount);
+                vitals.absorb = native_max(other_absorb - other_reservation, 0.0) + amount;
+                shield.ice_barrier_absorb = amount;
+            } else {
+                vitals.absorb = (vitals.absorb - shield.amount).max(0.0) + amount;
+            }
+            shield.spell_id = definition.spell_id;
+            shield.amount = amount;
             actions.absorb_changed = true;
-            if definition.key == "stoneform" {
+            if definition.spell_id == ICE_BARRIER || definition.key == "stoneform" {
                 // Kind 15 carries the caster's coefficient and scaled duration.
                 let coefficient = ((power_root * 1.4) * effect_power) * (shield_bonus + 1.0);
                 actions.shared_aura = Some(SharedAura {

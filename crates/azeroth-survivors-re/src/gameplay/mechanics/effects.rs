@@ -159,13 +159,17 @@ impl EffectsState {
             packed_player_field: base.packed_player_field,
         }
     }
-    pub(super) fn apply_health(vitals: &mut Vitals, numeric: &Numeric) {
+    pub(super) fn apply_health(
+        execution: &mut ExecutionState<'_>, soul_link_absorb: &mut f32, numeric: &Numeric,
+    ) {
+        let vitals = &mut execution.vitals;
         let old_max = vitals.maximum_health;
         vitals.maximum_health = numeric.health;
         if numeric.health > old_max {
             vitals.health += numeric.health - old_max;
         }
         vitals.health = vitals.health.min(numeric.health);
+        execution.shield.cap_ice_barrier_after_stat_refresh(vitals, soul_link_absorb);
     }
 }
 impl Mechanics {
@@ -540,7 +544,9 @@ impl Mechanics {
             numeric.luck += luck;
         }
         numeric.finish();
-        EffectsState::apply_health(&mut self.execution.vitals, &numeric);
+        EffectsState::apply_health(
+            &mut self.execution, &mut self.effect_state.incoming.soul_link_absorb, &numeric,
+        );
         let base = self.effect_state.base;
         self.stats = EffectsState::player_stats(base, numeric, self.level);
         self.choice_state.luck_bonus = numeric.luck;

@@ -266,7 +266,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         );
         stats
     }
-    pub(super) fn refresh_numeric(&mut self, vitals: &mut Vitals) {
+    pub(super) fn refresh_numeric(&mut self, execution: &mut ExecutionState<'_>) {
         let stats = self.effect_stats();
         let mut numeric = self.pre_stats;
         numeric.apply_stats(&stats);
@@ -274,7 +274,8 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             numeric.luck += luck;
         }
         numeric.finish();
-        effects::EffectsState::apply_health(vitals, &numeric);
+        effects::EffectsState::apply_health(execution, self.soul_link_absorb, &numeric);
+        self.player_absorb = execution.vitals.absorb;
         self.stats = effects::EffectsState::player_stats(self.base_stats, numeric, self.run_level);
         self.stats.maximum_health = numeric.health;
         self.leech = self.base_leech.total(
@@ -1461,7 +1462,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             }
         }
         if stats_dirty {
-            self.core.refresh_numeric(&mut execution.vitals);
+            self.core.refresh_numeric(execution);
             self.cast_context = self.core.current_context(self.cast_context, execution);
             self.context.power = self.cast_context.power;
             self.context.global_area = self.cast_context.global_area;

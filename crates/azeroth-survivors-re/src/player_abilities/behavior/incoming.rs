@@ -84,6 +84,7 @@ pub fn apply_damage_with_crowd(
         let old_absorb = vitals.absorb;
         let absorbed = min_preserving_original_nan(amount, old_absorb);
         vitals.absorb -= absorbed;
+        reservation.ice_barrier_absorb = native_max(reservation.ice_barrier_absorb - absorbed, 0.0);
         let reserved_spell = reservation.spell_id;
         let unreserved_absorption = if reserved_spell == 0 {
             absorbed
@@ -94,7 +95,7 @@ pub fn apply_damage_with_crowd(
         if absorbed < reservation.amount || reserved_spell == 0 {
             reservation.amount -= absorbed;
         } else {
-            *reservation = ShieldReservation::default();
+            reservation.clear_spell();
         }
         amount -= absorbed;
         result.absorbed = absorbed;
@@ -353,6 +354,7 @@ mod tests {
         let mut reservation = ShieldReservation {
             spell_id: 17,
             amount: 10.0,
+            ..Default::default()
         };
         let mut auras = vec![Aura {
             source_guid: 0,
@@ -399,6 +401,7 @@ mod tests {
             let mut reservation = ShieldReservation {
                 spell_id: case["reserved_spell"].as_u64().unwrap() as u32,
                 amount: f("reserved_bits"),
+                ..Default::default()
             };
             let mut state = IncomingState {
                 soul_link_absorb: f("link_bits"),

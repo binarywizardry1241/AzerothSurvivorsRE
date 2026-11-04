@@ -80,11 +80,9 @@ impl Mechanics {
             let Payload::Healing(healing) = event.payload else {
                 let Payload::Aura(aura) = event.payload else { unreachable!() };
                 let source_guid = if aura.effect.tag == 7 {
-                    let amount = self.execution.vitals.maximum_health * aura.effect.value;
-                    self.execution.vitals.absorb += amount;
-                    if self.execution.shield.spell_id == 0 {
-                        self.execution.shield = buffs::ShieldReservation { spell_id: aura.spell_id, amount };
-                    }
+                    self.execution.shield.receive_party_shield(
+                        &mut self.execution.vitals, aura.spell_id, aura.effect.value,
+                    );
                     // Kind 15 uses one source-zero shield aura per spell.
                     0
                 } else {

@@ -89,6 +89,69 @@ fn stoneform_cast_shields_a_party_recipient_using_their_maximum_health() {
 }
 
 #[test]
+fn ice_barriers_share_capacity_through_damage_stat_refresh_and_expiry() {
+    let mut game = party(3);
+    set_casts(&mut game, &[]);
+    game.with_party_hero(1, |hero| {
+        hero.execution.vitals.absorb = 20.0;
+    }).unwrap();
+    for slot in [0, 2] {
+        game.with_party_hero(slot, |hero| {
+            let definition = AbilityDefinition::by_key("ice_barrier").unwrap();
+            hero.abilities[0] = RuntimeInstance::learned(definition);
+            hero.abilities[0].remaining = 0.0;
+        }).unwrap();
+    }
+    tick(&mut game);
+
+    assert_eq!(game.execution.vitals.absorb, 100.0);
+    game.with_party_hero(1, |hero| {
+        let execution = &mut hero.execution;
+        assert_eq!(execution.vitals.absorb, 120.0);
+        assert_eq!(execution.auras.iter().filter(|aura| aura.spell_id == 11426).count(), 1);
+        assert_eq!(execution.shield.spell_id, 11426);
+        let depletion = behavior::incoming::apply_damage(
+            &mut execution.vitals, &mut execution.shield, &mut execution.auras,
+            &mut hero.effect_state.incoming, hero.clock, 65.0, 0.0,
+        ).unwrap();
+        assert_eq!(depletion.removed_auras, [11426]);
+        assert_eq!(execution.vitals.absorb, 55.0);
+
+        let mut barrier = RuntimeInstance::learned(AbilityDefinition::by_key("ice_barrier").unwrap());
+        barrier.effect_multiplier = 4.0;
+        buffs::apply_self_buff(
+            &barrier, hero.clock, true, 0.0, &mut execution.vitals, &mut execution.shield,
+            &mut execution.auras,
+        ).unwrap();
+        assert_eq!(execution.shield.amount, 100.0);
+        assert_eq!(execution.vitals.absorb, 120.0);
+
+        let damage = behavior::incoming::apply_damage(
+            &mut execution.vitals, &mut execution.shield, &mut execution.auras,
+            &mut hero.effect_state.incoming, hero.clock, 10.0, 0.0,
+        ).unwrap();
+        assert_eq!(damage.absorbed, 10.0);
+        assert_eq!(execution.vitals.absorb, 110.0);
+
+        let mut numeric = hero.effect_state.numeric;
+        numeric.health = 40.0;
+        effects::EffectsState::apply_health(
+            execution, &mut hero.effect_state.incoming.soul_link_absorb, &numeric,
+        );
+        assert_eq!(execution.vitals.absorb, 60.0);
+        assert_eq!(execution.shield.amount, 40.0);
+        let expires = execution.auras.iter().find(|aura| aura.spell_id == 11426)
+            .unwrap().expires_at;
+        let expired = buffs::tick_auras(
+            &mut execution.auras, expires, 0.01, &mut execution.vitals, &mut execution.shield,
+        );
+        assert!(expired.expired.contains(&11426));
+        assert_eq!(execution.vitals.absorb, 20.0);
+        assert_eq!(execution.shield, buffs::ShieldReservation::default());
+    }).unwrap();
+}
+
+#[test]
 fn battle_shout_keeps_two_casters_and_uses_the_weaker_aura_after_expiry() {
     let mut game = party(2);
     let center = game.zone.center.into();

@@ -1199,7 +1199,7 @@ impl Mechanics {
             if scheduler.port.generic.temporary.expire(now) {
                 scheduler
                     .port
-                    .refresh_numeric(&mut scheduler.execution.vitals);
+                    .refresh_numeric(scheduler.execution);
             }
             scheduler.tick_timed(&mut self.effect_state.timed, &mut self.abilities, delta);
             scheduler.port.generic.flush_cooldowns(
@@ -3191,7 +3191,8 @@ mod rng_integration {
         let mut game = class_run("warlock", 0);
         let mut terrain = TerrainFixture;
         game.execution.vitals.absorb = 25.0;
-        game.execution.shield = buffs::ShieldReservation { spell_id: 17, amount: 10.0 };
+        game.execution.shield.spell_id = 17;
+        game.execution.shield.amount = 10.0;
         game.effect_state.incoming.soul_link_absorb = 15.0;
         let before = game.execution.vitals.health;
         let player = game.zone.center.into();
