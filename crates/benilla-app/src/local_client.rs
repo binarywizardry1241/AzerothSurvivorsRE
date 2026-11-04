@@ -751,9 +751,11 @@ fn capture_input(
     pointer: Res<crate::ui_script::PointerOverUi>,
     keyboard: Res<crate::ui_script::UiKeyboardCapture>,
     clock: Res<crate::ui_script::UiClock>,
-    mut vm: crate::script_calls::VmWith<Option<Res<'static, crate::cvars::Cvars>>>,
+    mut vm: crate::script_calls::VmWith<(
+        Option<Res<'static, crate::cvars::Cvars>>,
+        ResMut<'static, crate::ui_script::ReloadUiPending>,
+    )>,
     mut input: ResMut<LocalClientInput>,
-    mut reload: ResMut<crate::ui_script::ReloadUiPending>,
     extension: Res<LocalClientExtension>,
     loading: Option<Res<crate::loading_screen::LoadingScreen>>,
     mut talent_counter: Local<TalentToggleCounter>,
@@ -781,7 +783,7 @@ fn capture_input(
     input.script_session = None;
     input.option_globals.clear();
     input.bindings = None;
-    let cvars = vm.own();
+    let (cvars, _) = vm.own();
     input.cvars = cvars.as_deref().map_or_else(Vec::new, |cvars| {
         extension
             .cvar_defaults
@@ -804,6 +806,7 @@ fn capture_input(
             cvars.row(name).map(|row| (name.clone(), row.default.clone()))
         }).collect()
     });
+    let mut needs_reload = false;
     vm.run(|script| {
         if let Some(script) = script {
             // The input pass can run SetCVar after the registry snapshot above.
@@ -861,12 +864,15 @@ fn capture_input(
             }
             for request in requests {
                 if request == SessionRequest::ReloadUi {
-                    reload.0 = true;
+                    needs_reload = true;
                 }
                 input.session_requests.push(request);
             }
         }
     });
+    if needs_reload {
+        vm.own().1.0 = true;
+    }
 }
 
 /// Current custom watcher compares the stored strings rather than parsing a delta.
