@@ -237,6 +237,10 @@ modifiers through `Equipped::spell_modifiers`. The same spell instance inputs
 reach the live damage and cooldown calculations and the run tooltip.
 The pre-run picker now displays 184 damage. The talent menu uses the current
 per-rank description with the original allocation key and maximum rank.
+The exact description key and value were checked against each of the
+fourteen native locale payloads. The Priest and two current Hunter talent
+rows are loaded from the 0.140.0 replacements asset so the historical
+talent catalog remains available with its original audit hash.
 
 A read-only PE and source comparison verified the two rows, neutral ability
 values, rank scaling at ranks 0–5 and both menu data sources. Compilation,

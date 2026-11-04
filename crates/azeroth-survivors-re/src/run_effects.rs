@@ -111,12 +111,25 @@ struct SourceTree {
 struct WarriorReplacements {
     talents: Vec<Talent>,
 }
+#[derive(Deserialize)]
+struct CurrentTalentReplacements {
+    target_sha256: String,
+    classes: std::collections::BTreeMap<u8, Vec<Talent>>,
+}
 pub fn catalog() -> &'static Catalog {
     static VALUE: OnceLock<Catalog> = OnceLock::new();
     VALUE.get_or_init(|| {
         let value: SourceCatalog = serde_json::from_str(include_str!("../assets/talents.json"))
             .expect("current native talent effects");
         assert_eq!(value.target_sha256, TARGET_SHA256);
+        let mut replacements: CurrentTalentReplacements = serde_json::from_str(include_str!(
+            "../assets/talent-replacements-0.140.0.json"
+        ))
+        .expect("current Priest and Hunter talent replacements");
+        assert_eq!(
+            replacements.target_sha256,
+            "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        );
         Catalog {
             target_sha256: value.target_sha256,
             classes: value
@@ -133,16 +146,21 @@ pub fn catalog() -> &'static Catalog {
                             .into_iter()
                             .flat_map(|tree| tree.talents)
                             .collect();
-                        if class.id == 1 {
-                            let replacements: WarriorReplacements = serde_json::from_str(
-                                include_str!("../assets/warrior-talents-0.112.0.json"),
-                            ).expect("recovered 0.112.0 Warrior replacements");
-                            for replacement in replacements.talents {
-                                let talent = talents.iter_mut()
-                                    .find(|talent| talent.key == replacement.key)
-                                    .expect("retained Warrior save key");
-                                *talent = replacement;
-                            }
+                        let class_replacements = if class.id == 1 {
+                            let warrior: WarriorReplacements = serde_json::from_str(include_str!(
+                                "../assets/warrior-talents-0.112.0.json"
+                            ))
+                            .expect("recovered 0.112.0 Warrior replacements");
+                            warrior.talents
+                        } else {
+                            replacements.classes.remove(&class.id).unwrap_or_default()
+                        };
+                        for replacement in class_replacements {
+                            let talent = talents
+                                .iter_mut()
+                                .find(|talent| talent.key == replacement.key)
+                                .expect("retained class talent save key");
+                            *talent = replacement;
                         }
                         if class.id == 9 {
                             demon_talents::overlay(&mut talents);

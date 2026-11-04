@@ -1,0 +1,126 @@
+{
+  "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+  "classes": {
+    "3": [
+      {
+        "key": "rapid_fire",
+        "name": "Rapid Fire",
+        "icon": "Ability_Hunter_RunningShot",
+        "description": "Milestone. Every {v}th shot you fire triggers a free Aimed Shot, at most twice a second.",
+        "row": 4,
+        "column": 1,
+        "max_rank": 1,
+        "prerequisite": "piercing_shots",
+        "effects": [
+          {
+            "tag": 1,
+            "payload": "0100000006000000020000000000000053149e46010000000a000000000000000700000000000000020000000000000070149e46010000000400000000000000",
+            "strings": [
+              {
+                "offset": 16,
+                "value": "aimed_shot"
+              }
+            ],
+            "lists": [
+              {
+                "offset": 48,
+                "values": [
+                  "auto_shot",
+                  "arcane_shot",
+                  "multi_shot",
+                  "concussive_shot"
+                ]
+              }
+            ]
+          }
+        ],
+        "numeric_values": [
+          "6"
+        ],
+        "milestone": true
+      },
+      {
+        "key": "wyvern_sting",
+        "name": "Wyvern Sting",
+        "icon": "INV_Spear_02",
+        "description": "Capstone. You start every run with Frost Trap, and an Immolation Trap sets itself at your feet every 5 sec.",
+        "row": 6,
+        "column": 1,
+        "max_rank": 1,
+        "prerequisite": "explosive_ammo",
+        "effects": [
+          {
+            "tag": 27,
+            "payload": "1b00000000000000de1e9e46010000000a0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "strings": [
+              {
+                "offset": 8,
+                "value": "frost_trap"
+              }
+            ],
+            "lists": []
+          },
+          {
+            "tag": 26,
+            "payload": "1a0000000000a040d10d3d47010000000f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+            "strings": [
+              {
+                "offset": 8,
+                "value": "immolation_trap"
+              }
+            ],
+            "lists": []
+          }
+        ],
+        "numeric_values": [
+          null
+        ],
+        "milestone": true
+      }
+    ],
+    "5": [
+      {
+        "key": "imp_mind_blast",
+        "name": "Improved Mind Blast",
+        "icon": "Spell_Shadow_UnholyFrenzy",
+        "description": "Mind Blast's cooldown is 6% shorter and its damage is 6% higher per rank.",
+        "row": 2,
+        "column": 2,
+        "max_rank": 5,
+        "prerequisite": null,
+        "effects": [
+          {
+            "tag": 31,
+            "payload": "1f000000000000000100000000000000f06b9e46010000000a000000000000008fc2753d01000000000000000000000000000000000000000000000000000000",
+            "strings": [
+              {
+                "offset": 16,
+                "value": "mind_blast"
+              }
+            ],
+            "lists": []
+          },
+          {
+            "tag": 31,
+            "payload": "1f000000000000000100000000000000d8703d47010000000a000000000000008fc2753d00000000000000000000000000000000000000000000000000000000",
+            "strings": [
+              {
+                "offset": 16,
+                "value": "mind_blast"
+              }
+            ],
+            "lists": []
+          }
+        ],
+        "numeric_values": [
+          "6",
+          "12",
+          "18",
+          "24",
+          "30"
+        ],
+        "milestone": false
+      }
+    ]
+  }
+}
