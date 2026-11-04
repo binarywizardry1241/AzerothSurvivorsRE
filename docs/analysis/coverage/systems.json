@@ -65351,6 +65351,15 @@
     },
     {
       "id": "custom-app-screens-ontop",
+      "gap_11_adapter_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 11,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/above-card-frames-0.141.0.md"
+        ],
+        "scope": "Update registry read, pre-focus input consumption for an actual registered ancestor hit, and late named-subtree paint. Native camera lifetime and actual input/rendering remain in verification."
+      },
       "title": "Addon frame priority over AS cards and screens",
       "original_path": "crates/wenilla-rogue-app/src/screens/ontop.rs",
       "native_path_evidence": [
@@ -65470,10 +65479,7 @@
         "status": "unverified",
         "summary": "Behavior and visual/input parity remain unverified."
       },
-      "remaining_source_work": [
-        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
-        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-ontop]; pending applicability alone is excluded from ordinary fixgap choices."
-      ],
+      "remaining_source_work": [],
       "source_review_scope": "Selected #11 AS screen-frame interface source complete; real input, renderer/platform/VM lifecycle and original/rebuilt parity remain in verification-needed.md#gap-11.",
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue-app/src/screens/ontop.rs]",
       "current_native_owner_leads": [

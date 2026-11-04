@@ -80,6 +80,8 @@ lead to their verification records.
 retains its completed source scope and runtime checks there.
 <a id="gap-317"></a>[#317 Addon world anchors](verification-needed.md#gap-317)
 retains the recovered callback phase and remaining runtime comparison.
+<a id="gap-11"></a>[#11 Addon bridge and overlay](verification-needed.md#gap-11)
+retains the connected interface and verification work.
 <a id="gap-313"></a>[#313 Scholomance encounter scripts](verification-needed.md#gap-313)
 tracks compilation, gameplay and visual comparison for the connected source.
 
@@ -113,7 +115,7 @@ and comparison checks.
 | `custom-app-screens-language` | [#127](#gap-127) |
 | `custom-app-screens-markers` | [#96](#gap-96) |
 | `custom-app-screens-mod` | [#128](#gap-128) |
-| `custom-app-screens-ontop` | [#11](#gap-11) |
+| `custom-app-screens-ontop` | [#11](verification-needed.md#gap-11) |
 | `custom-app-screens-options` | [#129](#gap-129) |
 | `custom-app-screens-pad` | [#76](#gap-76) |
 | `custom-app-screens-picker` | [#77](#gap-77) |
@@ -200,7 +202,6 @@ Selected-target selectors resolve through the [connection ledger](analysis/cover
 | Number | Status | Finding and remaining source work | Category and tags |
 | --- | --- | --- | --- |
 | #1 | 0.140.0 slope repair connected; original report unresolved | <a id="gap-1"></a>**Mob terrain/collision and stationary facing.** The [0.140.0 slope repair](analysis/actor-movement-surface-0.140.0.md) connects the sampled stop height and travel endpoints. The original approach/attack penetration and facing report still needs the zone, actor, failing geometry, pose and timing before its remaining source discrepancy can be isolated. [Verification and historical evidence](verification-needed.md#gap-1) owns the reproduction details and parity checks. | World & navigation |
-| #11 | Current-target applicability/contract registration pending; proof-only | <a id="gap-11"></a>**Addon bridge: current on-top interface applicability.** Keep completed source and actual historical contract proofs in [verification](verification-needed.md#gap-11). Current 0.139.1 ledger `systems[id=custom-app-screens-ontop]` supplies exact diagnostic/body leads; map relevant inputs, dispatch, layouts/values, dependencies and consumers, then register only the proved bounded scope. Missing registration is not absent implementation. [Module dimensions](analysis/module-contracts-0.139.1.md).  Current host-controls composition `Q41-I01:module_type_namespace:241` includes `over_screens`; recover only its required adapter/schedule/input interface at existing `LocalClientExtension` and `ui_pass` seams. | Addons & Lua |
 | #17 | Current binding-capture correspondence pending; prior repair retained | <a id="gap-17"></a>**Other secondary-menu pages: Options key-binding capture.** Preserve completed menu, persistence and [binding source/static repair](analysis/in-run-bindings-0.112.0.md) in [verification](verification-needed.md#gap-17). The 0.139.1 note renews the capture activation/accept/cancel, repeat and held-key/release correspondence question: existing `binding_capture` publication and keyboard/mouse/wheel suppression are present. Recover their actual current registration, timing and downstream action consumers before diagnosing a regression or replacing supplied source. The new InputGate raw filter does not yet identify this producer or consumer. [Current source review](analysis/release-review-0.139.1.md#work-17); general modal isolation remains #310. | Controls & camera |
 | #22 | Current Back/Select correspondence pending; prior source retained | <a id="gap-22"></a>**Gamepad input/focus and Character action.** Retain the [acquisition/consumer repair](analysis/pad-0.112.0.md) and its recorded checks in [verification](verification-needed.md#gap-22). Existing `GamepadButton::Select` publishes synthetic C in focused gameplay; internal `pad.back` is East/cancel. Recover the physical/native enum meant by the 0.139.1 Back note, its backend mapping, edge/capture/focus gates and Character-pane consumer. Packed selector `Q41-I01:module_type_namespace:239` and its changed suffix are navigation only. No absent Select-to-C path or source regression is established. [Current source review](analysis/release-review-0.139.1.md#work-22). | Controls & camera |
 | #41 | Whole-image structural census verified; semantic/source closure open | <a id="gap-41"></a>**Whole-image AS discovery and native/source closure.** The [0.141.0 census](analysis/native-census-0.141.0.md) verifies 24,328,399 instructions and 4,218,711 static references. The exact residual is 8,621,599 executable bytes. Follow the [current recovery queue](analysis/unknown-recovery-0.141.0.md) for ownerless code and Locations, unresolved dynamic targets and aliases, and typed producer and consumer joins. All 14 historical questions retain their identities and evidence. [Validation and comparison](verification-needed.md#gap-41). | Unclassified recovery |
