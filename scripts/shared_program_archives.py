@@ -570,12 +570,67 @@ def _remove_verified_originals(project, manifest):
     return allocated
 
 
+def _clean_program_scratch(project, *, temporary_only=False):
+    """Remove disposable headless scratch for a Program whose lease is held."""
+    runtime = project.parent / "runtime"
+    if not runtime.is_dir() or runtime.is_symlink():
+        return 0
+    directories = [runtime / "tmp"]
+    if not temporary_only:
+        directories.extend(runtime.glob("config/*-ghidra/ghidra_*_PUBLIC/osgi"))
+    templates = {
+        "_code_browser.tcd": "7f3b72bbcccef22e476da60f88101885b1ec625fae79a58cbb78a9a81dacbd0d",
+        "_emulator.tcd": "bdc4262723f9b714ef8e2038f39c09b1aa567fb57acb9edf3d597b4bd892385a",
+        "_version _tracking.tcd": "42a672303407e4d56e3042c396cc9d37a72965c653aa6aec62160cadcd98e1c0",
+        "_debugger.tcd": "efa89df0d486fe15de6c1abdbfb3a1fbcde70596c7f6c96fd9fd547cd1477ed4",
+    }
+    files = [] if temporary_only else [p for p in runtime.glob("config/*-ghidra/ghidra_*_PUBLIC/tools/*.tcd")
+             if p.name in templates and not p.is_symlink() and p.is_file() and file_digest(p) == templates[p.name]]
+    if not temporary_only:
+        for output in project.parent.glob("attempts/*/bridge-stdout.log"):
+            if output.is_symlink() or output.resolve() != output:
+                continue
+            stdout = output.read_bytes()
+            if b"REPORT: Save succeeded for processed file:" not in stdout or b"ERROR" in stdout:
+                continue
+            logs = [p for p in output.parent.glob("*.log") if not p.is_symlink() and p.is_file()]
+            if not any(b"ERROR" in p.read_bytes() for p in logs):
+                files.extend(logs)
+    removed = 0
+    for path in directories + files:
+        if path.is_symlink() or path.resolve() != path or not path.exists():
+            continue
+        if path.is_dir():
+            removed += sum(p.lstat().st_blocks * 512 for p in path.rglob("*")
+                           if p.is_file() and not p.is_symlink() and p.stat().st_nlink == 1)
+            shutil.rmtree(path)
+        elif path.is_file():
+            if path.stat().st_nlink == 1:
+                removed += path.stat().st_blocks * 512
+            path.unlink()
+    return removed
+
+
+def clean_archived_program_scratch(project_root, root=None, *, temporary_only=False):
+    root = Path(root or ROOT).resolve()
+    project = _project_path(root, project_root)
+    with _program_lease(root, project, scoped_processes=True):
+        if temporary_only:
+            return _clean_program_scratch(project, temporary_only=True)
+        descriptor = project / DESCRIPTOR
+        if descriptor.is_symlink() or not descriptor.is_file():
+            return 0
+        if json.loads(descriptor.read_text()).get("state") not in {"cold", "retired"}:
+            return 0
+        return _clean_program_scratch(project)
+
+
 def archive_program(project_root, root=None, check_processes=True, automatic_cache=False):
     root = Path(root or ROOT).resolve()
     project = _project_path(root, project_root)
     store = SharedAnalysis(root)
     _catalog(store)
-    with _program_lease(root, project, check_processes):
+    with _program_lease(root, project, check_processes, scoped_processes=automatic_cache):
         _finish_retirements(store, project)
         descriptor_path = project / DESCRIPTOR
         if descriptor_path.is_file():
@@ -597,7 +652,7 @@ def archive_program(project_root, root=None, check_processes=True, automatic_cac
                 _save(descriptor_path, previous)
                 return {"project": str(project), "state": "cold", "already_archived": True,
                         "archive_bytes": previous["receipt"]["bytes"],
-                        "reclaimed_allocated_bytes_estimate": reclaimed,
+                        "reclaimed_allocated_bytes_estimate": reclaimed + (_clean_program_scratch(project) if automatic_cache else 0),
                         "cache_retirement": _retire_previous_caches(store, project, previous["archive_id"])}
         manifest = _inventory(project)
         manifest["original_project_path"] = project.relative_to(root).as_posix()
@@ -649,7 +704,8 @@ def archive_program(project_root, root=None, check_processes=True, automatic_cac
         retirement = _retire_previous_caches(store, project, manifest_sha)
         return {"project": str(project), "state": "cold", "original_bytes": original_bytes,
                 "original_allocated_bytes": original_allocated, "archive_bytes": receipt["bytes"],
-                "reclaimed_allocated_bytes_estimate": original_allocated - store.verify_receipt(receipt).stat().st_blocks * 512,
+                "reclaimed_allocated_bytes_estimate": original_allocated - store.verify_receipt(receipt).stat().st_blocks * 512
+                    + (_clean_program_scratch(project) if automatic_cache else 0),
                 "files": len(manifest["files"]), "archive_id": manifest_sha,
                 "retention": retention, "cache_retirement": retirement}
 
