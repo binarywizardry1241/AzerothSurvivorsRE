@@ -82,3 +82,31 @@ and the [session sender](../../crates/azeroth-survivors-re/src/coop/session.rs).
 The table classification establishes these action identities and the
 bounded consumer edges. The full payload, frame scheduling and delivery
 contracts retain their own evidence.
+
+## Selected relay heartbeat
+
+The pump timestamps secondary Binary arrivals at `0x145e83ce1` while
+collecting both worker queues, before decoding or processing the event batch.
+Malformed Binary data refreshes the silence clock. A queued event from a
+retired worker cannot refresh the replacement's receive clock.
+
+The connected transport remains healthy through 15 seconds of silence.
+The secondary heartbeat branch at `0x145e86082` checks transport state 1,
+at least five seconds of receive silence, and at least five seconds since
+the preceding heartbeat. It refreshes the heartbeat clock at `0x145e862cf`
+and submits the Heartbeat at `0x145e86321`. The separate 30-second primary
+heartbeat retains its own clock and state check.
+
+The rebuilt directory poller samples receive time while collecting the
+secondary batch. The secondary lifetime checks both five-second thresholds.
+The original-instruction replay passed 256 connected-state and timer
+combinations, including values immediately below, at and above each
+threshold. The replay supplies monotonic elapsed time and stops before
+heartbeat serialization. The Rust regression remains uncompiled and unrun.
+
+| Selected PE range | File offset | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| Secondary Binary collection `0x145e83c43..0x145e83d1e` | `0x5e83043` | 219 | `332db01ee901825649cf76e27010a1d52ed85465b115e9a06701169ee4188e6f` |
+| Secondary health dispatch `0x145e85e17..0x145e85edd` | `0x5e85217` | 198 | `c8e4911eed5558767ac5636db0ccdb3542f1a4b1fd61d93968e653e72b864c26` |
+| Secondary silence gate `0x145e86082..0x145e86131` | `0x5e85482` | 175 | `2f6ebb2276311c41ce4842675149c963ba6b752a8350c6cd7ea41b40aa3f0171` |
+| Secondary heartbeat gate and send `0x145e86290..0x145e86324` | `0x5e85690` | 148 | `0b29893dafbbf9e7c44bbda36d344838c25060c2d4f574cee04aca6b0e332b8b` |

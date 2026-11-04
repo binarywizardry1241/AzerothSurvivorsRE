@@ -63786,6 +63786,20 @@
     },
     {
       "id": "custom-game-coop-relay",
+      "gap_63_secondary_heartbeat_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 63,
+        "scope": "Selected relay Binary collection refreshes receive time before decoding. Connected secondary heartbeat requires five seconds of silence and five seconds since the prior heartbeat.",
+        "source_status": "connected",
+        "evidence_ref": "docs/analysis/coop-relay-selection-0.141.0.md#selected-relay-heartbeat",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/coop/relay_lifetime.rs",
+          "crates/azeroth-survivors-re/src/coop_directory.rs"
+        ],
+        "native_cases": 256,
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "gap_63_secondary_selection_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 63,

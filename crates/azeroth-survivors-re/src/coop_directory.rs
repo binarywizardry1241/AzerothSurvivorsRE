@@ -368,7 +368,15 @@ fn poll(
         .map(|event| (false, event))
         .collect::<Vec<_>>();
     if let Some(secondary) = &service.secondary {
-        received.extend(secondary.take().into_iter().map(|event| (true, event)));
+        let events = secondary.take();
+        // Record the receive clock for the worker that supplied this batch.
+        // An earlier primary event can replace it during dispatch.
+        if events.iter().any(|event| matches!(event, WorkerEvent::Binary(_))) {
+            if let Some(state) = &mut service.secondary_lifetime {
+                state.received(Instant::now());
+            }
+        }
+        received.extend(events.into_iter().map(|event| (true, event)));
     }
     for (from_secondary, event) in received {
         match event {
@@ -385,11 +393,6 @@ fn poll(
                 }
             }
             WorkerEvent::Binary(bytes) => {
-                if from_secondary {
-                    if let Some(state) = &mut service.secondary_lifetime {
-                        state.received(Instant::now());
-                    }
-                }
                 let Some(response) = directory_wire::decode_response(&bytes) else {
                     continue;
                 };

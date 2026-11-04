@@ -1,4 +1,4 @@
-//! Selected-secondary policy from the current service pump145c56f30.
+//! Selected-secondary policy and clocks owned by the directory service.
 use std::time::Instant;
 
 #[derive(Debug, PartialEq, Eq)]
@@ -93,13 +93,14 @@ impl SecondaryLifetime {
         if self.failed {
             return Action::Failed;
         }
+        let silence = elapsed(now, self.received);
         let healthy = match state {
             0 => elapsed(now, self.started) <= 8.0,
-            1 => elapsed(now, self.received) <= 15.0,
+            1 => silence <= 15.0,
             _ => false,
         };
         if healthy {
-            if state == 1 && elapsed(now, self.heartbeat) >= 5.0 {
+            if state == 1 && silence >= 5.0 && elapsed(now, self.heartbeat) >= 5.0 {
                 self.heartbeat = now;
                 return Action::Heartbeat;
             }
@@ -213,6 +214,21 @@ mod tests {
             state.poll(1, now + Duration::from_millis(15001)),
             Action::Failed
         );
+    }
+
+    #[test]
+    fn secondary_heartbeat_waits_for_both_silence_and_heartbeat_intervals() {
+        let now = Instant::now();
+        let mut state = SecondaryLifetime::new(now);
+        state.received(now + Duration::from_secs(4));
+        assert_eq!(state.poll(1, now + Duration::from_secs(5)), Action::None);
+        assert_eq!(
+            state.poll(1, now + Duration::from_millis(8999)),
+            Action::None
+        );
+        assert_eq!(state.poll(1, now + Duration::from_secs(9)), Action::Heartbeat);
+        assert_eq!(state.poll(1, now + Duration::from_secs(13)), Action::None);
+        assert_eq!(state.poll(1, now + Duration::from_secs(14)), Action::Heartbeat);
     }
 
     #[test]
