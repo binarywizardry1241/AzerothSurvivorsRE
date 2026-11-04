@@ -112,8 +112,87 @@ def check_contract(evidence):
              output_sha256=digest.hexdigest(),connected_source_paths=len(sources),compiled=False,
              target_executed=False,parity=False)
 
+def check_defensive_admission():
+ """Replay current immunity exclusion and the Divine Shield expiry gap."""
+ import itertools
+ from coverage_common import latest_target, target_bytes
+ from native_recovery import bits, f32
+ from native_terminal import NativeReplay
+ from script_sources import load_script
+ target = latest_target(verify=True)
+ assert (target['version'], target['sha256']) == ('0.140.0',
+  '27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9')
+ data = target_bytes(target)
+ pe = load_script('shield_current_pe', R / 'scripts/inventory-executable.py').PE(data)
+ vm = NativeReplay(data, pe)
+ def reg(name, value):
+  vm.machine.reg_write(getattr(vm.registers, 'UC_X86_REG_' + name), value)
+ def scalar(name, value):
+  vm.scalar(getattr(vm.registers, 'UC_X86_REG_' + name), value)
+ active_cases = 0
+ active_range = (0x145f7ea1f, 0x145f7ea7f)
+ health_rejected, aura_rejected, next_gate = 0x145f7df41, 0x145f7ff42, 0x145f8056d
+ for health, now, rows in itertools.product(
+     (0., 35., 35.01, float('nan')), (0., 3., 5.),
+     ([], [(12, 3.)], [(11, 5.)], [(12, float('nan'))], [(11, 9.), (12, 5.)])):
+  vm.reset('active protection', [active_range], [health_rejected, aura_rejected, next_gate])
+  auras = vm.mem + 0x5000
+  vm.put(vm.app + 0x4d0, '<QQ', auras, len(rows))
+  vm.put(vm.app + 0x5e0, '<f', health)
+  for index, (tag, deadline) in enumerate(rows):
+   vm.put(auras + index * 32 + 8, '<I', tag)
+   vm.put(auras + index * 32 + 24, '<f', deadline)
+  reg('RDI', vm.app)
+  scalar('XMM7', 100.)
+  scalar('XMM10', now)
+  expected = health_rejected if health > 35. else aura_rejected if any(
+      tag == 12 and deadline > now for tag, deadline in rows) else next_gate
+  assert vm.run(active_range[0]) == expected, (health, now, rows)
+  active_cases += 1
+ gap_cases = 0
+ gap_range = (0x145dd4290, 0x145dd4333)
+ admission = (0x145f80596, 0x145f805c3)
+ for upgrade, item, expires, now in itertools.product(
+     (0., .5, 2., float('nan')), (1., 2., 2.5), (float('-inf'), 6., 12.),
+     (0., 10., 15.99, 16., 18.)):
+  vm.reset('expiry gap', [gap_range, admission], [health_rejected, admission[1]])
+  key, definition, instance = (vm.mem + offset for offset in (0x3000, 0x4000, 0x5000))
+  vm.put(key, '<13s', b'divine_shield')
+  vm.put(definition, '<QQ', key, 13)
+  vm.put(definition + 0x58, '<f', 4.)
+  vm.put(instance, '<Q', definition)
+  vm.put(instance + 0x18, '<f', item)
+  vm.put(instance + 0x48, '<f', upgrade)
+  vm.put(vm.app + 0x5ec, '<f', expires)
+  ordinary = f32(f32(f32(4. * f32(1.4)) * upgrade) * item)
+  duration = f32(6. * item) if item > 1. else ordinary if ordinary < 6. else 6.
+  rejected = f32(max(f32(10. - duration), 4.)) > f32(f32(now) - expires)
+  reg('RDI', vm.app)
+  reg('R12', instance)
+  scalar('XMM6', max(duration, f32(.1)))
+  scalar('XMM10', now)
+  assert vm.run(admission[0]) == (health_rejected if rejected else admission[1]), (upgrade, item, expires, now)
+  assert vm.get(vm.app + 0x5ec, '<I')[0] == bits(expires if rejected else now + max(duration, f32(.1)))
+  gap_cases += 1
+ source = R / 'crates/azeroth-survivors-re/src/player_abilities'
+ assert 'aura.effect.tag == 11 && aura.expires_at > now' in (source / 'behavior/buffs.rs').read_text()
+ assert 'context.now - state.divine_shield_expires_at' in (source / 'behavior/dispatch.rs').read_text()
+ assert 'native_max(10.0 - scaled_duration(instance), 4.0)' in (source / 'damage.rs').read_text()
+ return dict(target_sha256=target['sha256'], active_immunity_cases=active_cases,
+             expiry_gap_cases=gap_cases, original_instruction_steps=vm.instructions,
+             compiled=False, target_executed=False, parity=False)
+
+
 def main():
- parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--collect',action='store_true',help='retain completed Ghidra/native text and exact PE tables');parser.add_argument('--check-contract',type=Path,help='Selected shield lifetime evidence manifest');parser.add_argument('--write',action='store_true');args=parser.parse_args()
+ parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('--collect',action='store_true',help='retain completed Ghidra/native text and exact PE tables')
+ parser.add_argument('--check-contract',type=Path,help='Selected shield lifetime evidence manifest')
+ parser.add_argument('--write',action='store_true')
+ parser.add_argument('--check-defensive-admission',action='store_true')
+ args=parser.parse_args()
+ if args.check_defensive_admission:
+  print(json.dumps(check_defensive_admission(),indent=2))
+  return
  if args.check_contract:
   evidence=(R/args.check_contract).resolve();assert evidence.is_relative_to(R)
   proof=check_contract(evidence.parent);text=json.dumps(proof,indent=2)+'\n'

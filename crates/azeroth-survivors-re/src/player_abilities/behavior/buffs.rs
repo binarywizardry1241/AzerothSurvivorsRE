@@ -19,6 +19,10 @@ pub struct Aura {
     pub healing_power: f32,
 }
 
+pub(super) fn has_active_immunity(auras: &[Aura], now: f32) -> bool {
+    auras.iter().any(|aura| aura.effect.tag == 11 && aura.expires_at > now)
+}
+
 /// Rejuvenation and selected0.127.0 Battle Shout retain independent caster
 /// rows. Refreshing one source must preserve another source's remaining life.
 pub fn refresh_aura(auras: &mut Vec<Aura>, aura: Aura) {
@@ -298,6 +302,11 @@ pub fn apply_self_buff_with_party(
             if vitals.health > vitals.maximum_health * 0.35 {
                 return Err(BuffFailure::HealthAboveThreshold);
             }
+            // 0.140.0 145f7ea38..145f7ea7e tests the effect and deadline
+            // of every aura before any of the immunity casts can apply.
+            if has_active_immunity(auras, now) {
+                return Err(BuffFailure::AlreadyActive);
+            }
         }
         _ => {
             if !nearby_actor { return Err(BuffFailure::NoNearbyActor); }
@@ -314,4 +323,44 @@ pub fn apply_self_buff_with_party(
         actions.shared_aura = Some(SharedAura { spell_id: definition.spell_id, effect, duration });
     }
     Ok(actions)
+}
+
+#[cfg(test)]
+mod immunity_tests {
+    use super::*;
+    use crate::player_abilities::AbilityDefinition;
+
+    #[test]
+    fn protections_exclude_each_other_until_the_active_aura_expires() {
+        let keys = ["divine_shield", "will_of_the_forsaken", "shadowmeld"];
+        for active in keys {
+            for attempted in keys {
+                let first = RuntimeInstance::learned(AbilityDefinition::by_key(active).unwrap());
+                let second =
+                    RuntimeInstance::learned(AbilityDefinition::by_key(attempted).unwrap());
+                let mut vitals = Vitals {
+                    health: 30.0,
+                    maximum_health: 100.0,
+                    absorb: 0.0,
+                    absorb_applied_at: 0.0,
+                    absorb_same_tick_count: 0,
+                };
+                let mut shield = ShieldReservation::default();
+                let mut auras = Vec::new();
+                apply_self_buff(&first, 0.0, true, 0.0, &mut vitals, &mut shield, &mut auras)
+                    .unwrap();
+                let expiry = auras[0].expires_at;
+                assert!(matches!(
+                    apply_self_buff(
+                        &second, expiry - 0.1, true, 0.0, &mut vitals, &mut shield, &mut auras,
+                    ),
+                    Err(BuffFailure::AlreadyActive)
+                ));
+                assert_eq!(auras.len(), 1);
+                assert_eq!(auras[0].expires_at, expiry);
+                apply_self_buff(&second, expiry, true, 0.0, &mut vitals, &mut shield, &mut auras)
+                    .unwrap();
+            }
+        }
+    }
 }

@@ -28152,7 +28152,8 @@
         "docs/analysis/evidence/0.139.1/source-frontier.json",
         "docs/analysis/native-census-0.139.1.md",
         "docs/analysis/evidence/0.139.1/switch-context-source-review.json",
-        "docs/analysis/switch-context-source-review-0.139.1.md"
+        "docs/analysis/switch-context-source-review-0.139.1.md",
+        "docs/analysis/class-balance-0.140.0.md"
       ],
       "gap_ids": [
         1,
@@ -29268,6 +29269,26 @@
           "crates/azeroth-survivors-re/src/sets.rs",
           "crates/azeroth-survivors-re/src/save/gear.rs",
           "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs"
+        ]
+      },
+      "gap_288_source_review_0_140_0": {
+        "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        "gap_id": 288,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/class-balance-0.140.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "The shared immunity aura gate excludes active Divine Shield, Will of the Forsaken and Shadowmeld. The keyed Talisman duration lane extends Divine Shield, and the recast floor measures at least four seconds from the previous expiry.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+          "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs"
         ]
       }
     },
@@ -30390,7 +30411,8 @@
         "docs/analysis/evidence/0.139.0/source-frontier.json",
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
-        "docs/analysis/native-census-0.139.1.md"
+        "docs/analysis/native-census-0.139.1.md",
+        "docs/analysis/class-balance-0.140.0.md"
       ],
       "gap_ids": [
         19,
@@ -31196,6 +31218,26 @@
         "native_cases": 144,
         "runtime_validation": "not_run",
         "parity": "unverified"
+      },
+      "gap_288_source_review_0_140_0": {
+        "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        "gap_id": 288,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/class-balance-0.140.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "The shared immunity aura gate excludes active Divine Shield, Will of the Forsaken and Shadowmeld. The keyed Talisman duration lane extends Divine Shield, and the recast floor measures at least four seconds from the previous expiry.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+          "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs"
+        ]
       }
     },
     {
@@ -43451,7 +43493,8 @@
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
         "docs/analysis/native-census-0.139.1.md",
-        "docs/analysis/consecration-0.140.0.md"
+        "docs/analysis/consecration-0.140.0.md",
+        "docs/analysis/class-balance-0.140.0.md"
       ],
       "gap_ids": [
         1,
@@ -44353,6 +44396,26 @@
           "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
           "crates/azeroth-survivors-re/src/codex.rs",
           "crates/azeroth-survivors-re/assets/ability-tooltips.json"
+        ]
+      },
+      "gap_288_source_review_0_140_0": {
+        "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        "gap_id": 288,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/class-balance-0.140.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "The shared immunity aura gate excludes active Divine Shield, Will of the Forsaken and Shadowmeld. The keyed Talisman duration lane extends Divine Shield, and the recast floor measures at least four seconds from the previous expiry.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+          "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs"
         ]
       }
     },

@@ -53,9 +53,9 @@ pub struct ExecutionState<'a> {
     pub ground: Vec<GroundPeriodic>,
     pub totems: Vec<Totem<'a>>,
     pub auras: Vec<Aura>,
-    /// 0.127.0 Game+540. Shared by learned, free and echo shield casts;
-    /// constructor145c24bfd initializes this timestamp to negative infinity.
-    pub divine_shield_last_cast_at: f32,
+    /// 0.140.0 Game+0x5ec. The last admitted Divine Shield's natural
+    /// expiry remains the baseline even after its aura leaves the list.
+    pub divine_shield_expires_at: f32,
     pub vitals: Vitals,
     pub shield: ShieldReservation,
 }
@@ -489,7 +489,10 @@ pub fn cast<'a>(
         }
         9 => {
             let divine_shield = definition.key == "divine_shield";
-            if divine_shield && state.divine_shield_last_cast_at + 10.0 > context.now {
+            if divine_shield
+                && super::super::damage::divine_shield_gap(instance)
+                    > context.now - state.divine_shield_expires_at
+            {
                 return false;
             }
             let nearby =
@@ -508,7 +511,8 @@ pub fn cast<'a>(
                 return false;
             };
             if divine_shield {
-                state.divine_shield_last_cast_at = context.now;
+                state.divine_shield_expires_at = context.now
+                    + super::super::damage::scaled_duration(instance).max(0.1);
             }
             if let Some(healing) = actions.shared_healing {
                 port.share_healing(healing);

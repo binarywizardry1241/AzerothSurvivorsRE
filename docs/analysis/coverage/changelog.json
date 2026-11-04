@@ -129,13 +129,13 @@
     },
     "systems": {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "739c6471afe24a2a79848dcaee5550e3c07c480edf97d0e56edb38a01683ed54",
+      "sha256": "00478908e55718fc4aba2ca7b2219ce047b9dd40045715a016bc8982db3e94ad",
       "status": "current_source_owner_context"
     },
     "reviews": {
       "path": "docs/analysis/coverage/changelog-reviews.json",
-      "sha256": "f9444fa6edcbf61b84e12a9b23d5a6b2cfc197525ae4bb9c5038ebf48174fa81",
-      "applied_reviews": 18,
+      "sha256": "79e6157f7464b7766f7284642303108cc0c2123e543b281428bd10d5766085a2",
+      "applied_reviews": 20,
       "historical_unapplied_reviews": [
         {
           "claim_id": "changelog:0.24.0:e5293718609400f3",
@@ -7512,7 +7512,9 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/state.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
             "docs/analysis/coop-admission-0.127.0.md"
           ]
         },
@@ -7695,9 +7697,12 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
+            "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs",
             "scripts/recover-player-ability-behavior.py"
           ]
         },
@@ -7714,6 +7719,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing_tests.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
@@ -7723,6 +7729,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/state.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "scripts/check-player-aura-grouping.py"
           ]
         },
@@ -8125,7 +8132,9 @@
           },
           "status": "static_checked",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.126.0:a662568415c46c72",
@@ -8199,6 +8208,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
+            "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs",
             "crates/azeroth-survivors-re/src/gameplay/native_overlays.rs",
             "crates/azeroth-survivors-re/src/gameplay/run_hud/pause.rs"
           ]
@@ -8595,6 +8605,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "docs/analysis/release-review-0.139.0.md"
@@ -8860,6 +8871,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
@@ -8920,6 +8932,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "docs/analysis/release-review-0.139.0.md"
           ]
@@ -9065,6 +9078,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
@@ -9084,6 +9098,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9101,6 +9116,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9118,6 +9134,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9135,6 +9152,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9152,6 +9170,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9169,6 +9188,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "docs/analysis/release-review-0.139.0.md"
           ]
@@ -9183,6 +9203,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "docs/analysis/release-review-0.139.0.md"
@@ -9212,6 +9233,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9229,6 +9251,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9246,6 +9269,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9263,6 +9287,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9280,6 +9305,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9297,6 +9323,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9314,6 +9341,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9376,6 +9404,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9393,6 +9422,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9410,6 +9440,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9427,6 +9458,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9444,6 +9476,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9461,6 +9494,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9478,6 +9512,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9495,6 +9530,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9512,6 +9548,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9529,6 +9566,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9546,6 +9584,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9563,6 +9602,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9580,6 +9620,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9597,6 +9638,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9614,6 +9656,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9631,6 +9674,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9648,6 +9692,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -9985,6 +10030,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "docs/analysis/release-review-0.139.0.md"
@@ -10250,6 +10296,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
@@ -10310,6 +10357,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "docs/analysis/release-review-0.139.0.md"
           ]
@@ -10455,6 +10503,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
@@ -10474,6 +10523,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10491,6 +10541,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10508,6 +10559,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10525,6 +10577,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10542,6 +10595,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10559,6 +10613,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "docs/analysis/release-review-0.139.0.md"
           ]
@@ -10573,6 +10628,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "docs/analysis/release-review-0.139.0.md"
@@ -10602,6 +10658,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10619,6 +10676,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10636,6 +10694,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10653,6 +10712,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10670,6 +10730,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10687,6 +10748,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10704,6 +10766,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10766,6 +10829,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10783,6 +10847,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10800,6 +10865,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10817,6 +10883,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10834,6 +10901,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10851,6 +10919,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10868,6 +10937,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10885,6 +10955,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10902,6 +10973,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10919,6 +10991,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10936,6 +11009,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10953,6 +11027,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10970,6 +11045,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -10987,6 +11063,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -11004,6 +11081,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -11021,6 +11099,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -11038,6 +11117,7 @@
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "crates/azeroth-survivors-re/src/save/talents.rs",
@@ -11362,7 +11442,7 @@
           "changed_refs": []
         }
       ],
-      "applied_ownership_reviews": 34
+      "applied_ownership_reviews": 33
     },
     "historical_archive": {
       "path": "changelog_2026-10-15_1.json",
@@ -11383,9 +11463,9 @@
     "release_count": 211,
     "entry_count": 1084,
     "covered_nonblank_release_lines": 1276,
-    "pending_claim_recovery": 1066,
-    "applied_claim_reviews": 18,
-    "applied_ownership_reviews": 34,
+    "pending_claim_recovery": 1064,
+    "applied_claim_reviews": 20,
+    "applied_ownership_reviews": 33,
     "release_contexts_with_system_owners": 129,
     "scope_counts": {
       "addons": 42,
@@ -12591,7 +12671,7 @@
     {"id":"changelog:0.132.0:ca4600bf2a06fd56","release":"0.132.0","text":"Arcane Power: once your Echo chance reaches 100% or more, echoes keep cascading. Before, reaching 100% dropped your casts from nearly 5 per spell to 2.","text_sha256":"ca4600bf2a06fd56562c5fe272efd9bcb571a8ef89b98c1d45a929fccd9d6a8f","normalized_claim_sha256":"ca4600bf2a06fd56562c5fe272efd9bcb571a8ef89b98c1d45a929fccd9d6a8f","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":1975,"line_end":1975,"sha256":"0248a44024412af0f17d919430c4eb59bb11afba5e3f247904405e47253b7bb2"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"historical_release_context","context_ref":"0.132.0","systems":[],"gap_ids":[41],"source_refs":[],"evidence_refs":[],"mapping_basis":"release_context_only","supersession_review":{"status":"release_context_reports_superseded_rules","current_target_applicability":"unverified","context":"#75, #195, #239, #242, #288, #309; recover only latest applicable aspects, preserving superseded context and independent validation limits"},"limitations":"Release owner links are leads; claim recovery, source mapping and parity remain unverified."},
     {"id":"changelog:0.132.0:dbf600fbd7c42fc7","release":"0.132.0","text":"Co-op: in a party of two, the player who joined now earns co-op achievements (United Front, the cloaks and the rest) just like the host. Earlier wins in a party cannot be counted back, so win them again together.","text_sha256":"dbf600fbd7c42fc78d52148fc805b26821c68ddb19369d0082a1b5bab40ca936","normalized_claim_sha256":"dbf600fbd7c42fc78d52148fc805b26821c68ddb19369d0082a1b5bab40ca936","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":1976,"line_end":1976,"sha256":"46dba4b50c35cf785c33375e844daeb3831c55f453a0119c0c9bc771118b742e"},"scope":["unknown"],"status":"pending_claim_recovery","contextual_status":"historical_release_context","context_ref":"0.132.0","systems":[],"gap_ids":[41],"source_refs":[],"evidence_refs":[],"mapping_basis":"release_context_only","supersession_review":{"status":"release_context_reports_superseded_rules","current_target_applicability":"unverified","context":"#75, #195, #239, #242, #288, #309; recover only latest applicable aspects, preserving superseded context and independent validation limits"},"limitations":"Release owner links are leads; claim recovery, source mapping and parity remain unverified."},
     {"id":"changelog:0.132.0:6bf158aac9cce02f","release":"0.132.0","text":"Co-op: in a party of two, the player who joined no longer takes more damage than the host.","text_sha256":"6bf158aac9cce02f4f777d74d0bd043aa73c2e8afaa5bbe246b07b0a1f0b39a2","normalized_claim_sha256":"6bf158aac9cce02f4f777d74d0bd043aa73c2e8afaa5bbe246b07b0a1f0b39a2","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":1977,"line_end":1977,"sha256":"d4aabd93945e72a26ba6eb0d27a9105b2f06f181545f29e104185224f09103df"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"historical_release_context","context_ref":"0.132.0","systems":[],"gap_ids":[41],"source_refs":[],"evidence_refs":[],"mapping_basis":"release_context_only","supersession_review":{"status":"release_context_reports_superseded_rules","current_target_applicability":"unverified","context":"#75, #195, #239, #242, #288, #309; recover only latest applicable aspects, preserving superseded context and independent validation limits"},"limitations":"Release owner links are leads; claim recovery, source mapping and parity remain unverified."},
-    {"id":"changelog:0.132.0:967d87b063e4997b","release":"0.132.0","text":"Divine Shield, Will of the Forsaken and Shadowmeld no longer go off at the same moment. While one keeps you safe, the other waits, ready for the next time you are in danger.","text_sha256":"967d87b063e4997b9f09aa5650100a6a2ed61a149e5e6306dfe363afba0f26c6","normalized_claim_sha256":"967d87b063e4997b9f09aa5650100a6a2ed61a149e5e6306dfe363afba0f26c6","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":1978,"line_end":1978,"sha256":"eb98e26dca014914613e90acfc32e99f0a414bc7a0271e7614fe7b4b810c3cab"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"historical_release_context","context_ref":"0.132.0","systems":[],"gap_ids":[41],"source_refs":[],"evidence_refs":[],"mapping_basis":"release_context_only","supersession_review":{"status":"release_context_reports_superseded_rules","current_target_applicability":"unverified","context":"#75, #195, #239, #242, #288, #309; recover only latest applicable aspects, preserving superseded context and independent validation limits"},"limitations":"Release owner links are leads; claim recovery, source mapping and parity remain unverified."},
+    {"id":"changelog:0.132.0:967d87b063e4997b","release":"0.132.0","text":"Divine Shield, Will of the Forsaken and Shadowmeld no longer go off at the same moment. While one keeps you safe, the other waits, ready for the next time you are in danger.","text_sha256":"967d87b063e4997b9f09aa5650100a6a2ed61a149e5e6306dfe363afba0f26c6","normalized_claim_sha256":"967d87b063e4997b9f09aa5650100a6a2ed61a149e5e6306dfe363afba0f26c6","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":1978,"line_end":1978,"sha256":"eb98e26dca014914613e90acfc32e99f0a414bc7a0271e7614fe7b4b810c3cab"},"scope":["gameplay"],"status":"source_connected","contextual_status":"historical_release_context","context_ref":"0.132.0","systems":["custom-game-game-abilities","custom-game-game-auras"],"gap_ids":[288],"source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs","crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs","crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs","crates/azeroth-survivors-re/src/player_abilities/damage.rs","crates/azeroth-survivors-re/src/gameplay/mechanics.rs","crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs"],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_review","supersession_review":{"status":"release_context_reports_superseded_rules","current_target_applicability":"unverified","context":"#75, #195, #239, #242, #288, #309; recover only latest applicable aspects, preserving superseded context and independent validation limits"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"The shared immunity aura gate excludes active Divine Shield, Will of the Forsaken and Shadowmeld. The keyed Talisman duration lane extends Divine Shield, and the recast floor measures at least four seconds from the previous expiry.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.132.0:beb2b9955a5ea51c","release":"0.132.0","text":"Gear tooltips now light up only the set bonuses that are really active. A bonus whose pieces do not have enough stars yet, such as an 8-piece bonus at 2 stars, shows in grey.","text_sha256":"beb2b9955a5ea51ccf9662db626a378b904631275deb4f7c2fd9e9fc24cd65fd","normalized_claim_sha256":"beb2b9955a5ea51ccf9662db626a378b904631275deb4f7c2fd9e9fc24cd65fd","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":1979,"line_end":1979,"sha256":"170b2e3cadd3c6ad467d0ed14e3b67c76ff138c28cbe6f7cd3413be095138dd3"},"scope":["ui_ux"],"status":"pending_claim_recovery","contextual_status":"historical_release_context","context_ref":"0.132.0","systems":[],"gap_ids":[41],"source_refs":[],"evidence_refs":[],"mapping_basis":"release_context_only","supersession_review":{"status":"release_context_reports_superseded_rules","current_target_applicability":"unverified","context":"#75, #195, #239, #242, #288, #309; recover only latest applicable aspects, preserving superseded context and independent validation limits"},"limitations":"Release owner links are leads; claim recovery, source mapping and parity remain unverified."},
     {"id":"changelog:0.132.0:70e2c6796c6775b2","release":"0.132.0","text":"Your healing meter now counts the heals your party friends land on you.","text_sha256":"70e2c6796c6775b252ee2218b132009c74050f2d9f918f5716687ef3ebbb6547","normalized_claim_sha256":"70e2c6796c6775b252ee2218b132009c74050f2d9f918f5716687ef3ebbb6547","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":1980,"line_end":1980,"sha256":"13de00c221850fb90b115b19e250d1ec3999640f01697e07fec28e9a3b0bc7ce"},"scope":["ui_ux","gameplay"],"status":"pending_claim_recovery","contextual_status":"historical_release_context","context_ref":"0.132.0","systems":[],"gap_ids":[41],"source_refs":[],"evidence_refs":[],"mapping_basis":"release_context_only","supersession_review":{"status":"release_context_reports_superseded_rules","current_target_applicability":"unverified","context":"#75, #195, #239, #242, #288, #309; recover only latest applicable aspects, preserving superseded context and independent validation limits"},"limitations":"Release owner links are leads; claim recovery, source mapping and parity remain unverified."},
     {"id":"changelog:0.132.0:f8b93e4b9b225f74","release":"0.132.0","text":"For addon makers: your hero's live position now works in dungeons and raids too, so minimap markers for caches and guardians move smoothly instead of jumping. Addons can also read full damage and healing breakdowns for you and your party, by source, pet and player, and these survive a /reload.","text_sha256":"f8b93e4b9b225f7424a71c616e9a3fb7f97b2149e06014fe3f1f8ff454c70da7","normalized_claim_sha256":"f8b93e4b9b225f7424a71c616e9a3fb7f97b2149e06014fe3f1f8ff454c70da7","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":1981,"line_end":1981,"sha256":"2c511472851ea7c0fc4c86455d7248f85eb550cc4f64e53d0b4207a88293d907"},"scope":["addons","gameplay"],"status":"pending_claim_recovery","contextual_status":"historical_release_context","context_ref":"0.132.0","systems":[],"gap_ids":[41],"source_refs":[],"evidence_refs":[],"mapping_basis":"release_context_only","supersession_review":{"status":"release_context_reports_superseded_rules","current_target_applicability":"unverified","context":"#75, #195, #239, #242, #288, #309; recover only latest applicable aspects, preserving superseded context and independent validation limits"},"limitations":"Release owner links are leads; claim recovery, source mapping and parity remain unverified."},
@@ -12695,7 +12775,7 @@
     {"id":"changelog:0.140.0:c4b20ed37f977743","release":"0.140.0","text":"Windfury Weapon, rank 3: a 25% chance of two extra strikes or a 12.5% chance of three.","text_sha256":"c4b20ed37f9777433a277d8621c083fe08c3d73aaa68dc8ad2bb38b1d1e11dbb","normalized_claim_sha256":"c4b20ed37f9777433a277d8621c083fe08c3d73aaa68dc8ad2bb38b1d1e11dbb","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2129,"line_end":2129,"sha256":"9114ff600fe2c909834712352f2e127bcd15b55c52f80315d2cf7ea1338b000e"},"scope":["unknown"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-enhancement"],"gap_ids":[305],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Recover the two Windfury strike outcomes, shared or separate RNG and recursive proc suppression.","ownership_source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:ee384828482e8aa6","release":"0.140.0","text":"Flametongue Weapon, rank 3: the free Fire Nova now deals 50% more damage, up from 30%.","text_sha256":"ee384828482e8aa614966097a4072f2eb93ea97cf6bdced5da410fe59fc90b19","normalized_claim_sha256":"ee384828482e8aa614966097a4072f2eb93ea97cf6bdced5da410fe59fc90b19","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2130,"line_end":2130,"sha256":"516da7ce7c93ec253eac6cfa374883950d6a55645b91998b80668741642cbd96"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-enhancement"],"gap_ids":[305],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Recover rank-three free Fire Nova modifier and application order.","ownership_source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:13db93523900cc83","release":"0.140.0","text":"The Eye of the Tempest now also gives +35% damage to bosses, elites and Guardians.","text_sha256":"13db93523900cc83ecbd902a90be8432172bc9e44e22d482e1f947177e6786ac","normalized_claim_sha256":"13db93523900cc83ecbd902a90be8432172bc9e44e22d482e1f947177e6786ac","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2131,"line_end":2131,"sha256":"da30d04172fb7e47caae201d51d20536b327f2e5f72456043ea190abb079257a"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-enhancement"],"gap_ids":[305],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Recover the Guardian-inclusive target filter and its Eye of the Tempest consumer.","ownership_source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
-    {"id":"changelog:0.140.0:74230b7c5f2a2355","release":"0.140.0","text":"The Eternal Talisman, Paladin: Divine Shield lasts twice as long, 12 seconds at the base necklace, with at least 4 seconds between shields.","text_sha256":"74230b7c5f2a2355a7572f95505eacd2372e7040eddbc4ddaa19c292ddb3bb72","normalized_claim_sha256":"74230b7c5f2a2355a7572f95505eacd2372e7040eddbc4ddaa19c292ddb3bb72","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2132,"line_end":2132,"sha256":"fc3eeec54a1ddf965f68a16667332fe8c7cb1bd3fa7a107da1821f2ea8387c96"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-jewelry"],"gap_ids":[288],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Compare the retained lifetime and cast gate with the current rank, twelve-second base and minimum interval.","ownership_source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
+    {"id":"changelog:0.140.0:74230b7c5f2a2355","release":"0.140.0","text":"The Eternal Talisman, Paladin: Divine Shield lasts twice as long, 12 seconds at the base necklace, with at least 4 seconds between shields.","text_sha256":"74230b7c5f2a2355a7572f95505eacd2372e7040eddbc4ddaa19c292ddb3bb72","normalized_claim_sha256":"74230b7c5f2a2355a7572f95505eacd2372e7040eddbc4ddaa19c292ddb3bb72","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2132,"line_end":2132,"sha256":"fc3eeec54a1ddf965f68a16667332fe8c7cb1bd3fa7a107da1821f2ea8387c96"},"scope":["gameplay"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-jewelry"],"gap_ids":[288],"source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs","crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs","crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs","crates/azeroth-survivors-re/src/player_abilities/damage.rs","crates/azeroth-survivors-re/src/gameplay/mechanics.rs","crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs"],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"The shared immunity aura gate excludes active Divine Shield, Will of the Forsaken and Shadowmeld. The keyed Talisman duration lane extends Divine Shield, and the recast floor measures at least four seconds from the previous expiry.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:19c82c058ebc3fb0","release":"0.140.0","text":"The Eternal Talisman, Mage: in place of its absorb bonuses, Ice Barrier's absorb cap doubles to 200% of your max health. A barrier starts smaller, and damage and talents fill the room.","text_sha256":"19c82c058ebc3fb03573083a1e4b6f42c8a89c4c8dd197842584f7e55203762a","normalized_claim_sha256":"19c82c058ebc3fb03573083a1e4b6f42c8a89c4c8dd197842584f7e55203762a","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2133,"line_end":2133,"sha256":"6bdf0e0661954c5d04756a698a8fe3a664888048d8094a470306b8df532d744b"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-auras"],"gap_ids":[288],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Recover initial Ice Barrier capacity, earned absorb and the revised Eternal Talisman cap.","ownership_source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:350e45ff46b443ac","release":"0.140.0","text":"The White Devilsaur look now shows two white devilsaurs, one for your wolf and one for your raptor, each biting as that pet does.","text_sha256":"350e45ff46b443ac744c1c0cbba820eef5d02a2a9f28523ce4a255b744b99ef1","normalized_claim_sha256":"350e45ff46b443ac744c1c0cbba820eef5d02a2a9f28523ce4a255b744b99ef1","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2134,"line_end":2134,"sha256":"dcfd65053911d9d167750c9af689d412f53e44fcf49980628f81105b7381abdc"},"scope":["unknown"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-appearance"],"gap_ids":[119,83],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Trace the two White Devilsaur overrides independently of pet identity and bite presentation.","ownership_source_refs":["crates/azeroth-survivors-re/src/run_effects/pets.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:094d1782a8db36a3","release":"0.140.0","text":"The Insane now needs no deaths at all: everyone in a party of three or more must survive 40 minutes of Heroic V Naxxramas without one falling.","text_sha256":"094d1782a8db36a30e9321818107448aa226db4fb59f2415c3b734cc93ffa5bd","normalized_claim_sha256":"094d1782a8db36a30e9321818107448aa226db4fb59f2415c3b734cc93ffa5bd","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2135,"line_end":2135,"sha256":"f2c1aea9b5f3c16900cc127befdd96c0c53a93f5711855354d6fcacc9e540a2e"},"scope":["unknown"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-achievements"],"gap_ids":[285],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Recover authoritative party-wide no-death admission and compare it with the retained recipient and Victory predicates.","ownership_source_refs":["crates/azeroth-survivors-re/src/account_progression.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},

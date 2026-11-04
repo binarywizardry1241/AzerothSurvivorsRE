@@ -458,8 +458,8 @@ fn render_description(
         // Model this branch explicitly rather than retaining only an extraction
         // sample's taken/not-taken math path.
         // The retained description catalog keeps its 0.115.0 provenance.
-        // 0.127.0 145b57d9a..57de5 caps Divine Shield's duration slot before
-        // number formatting; historical writer fixtures still use their own math.
+        // Divine Shield displays the same duration as the current cast and
+        // cooldown owners. Historical writer fixtures retain their own math.
         let value = if index == 3 {
             current_duration.unwrap_or_else(|| numeric_value(item, instance, context, bonuses))
         } else {

@@ -33,11 +33,8 @@ pub fn base_interval(instance: &RuntimeInstance<'_>, global_multiplier: f32) -> 
     let interval = instance.definition.base_cooldown * 1.4;
     let interval = interval * instance.cooldown_multiplier;
     let interval = interval * instance.talent_cooldown_multiplier;
-    // 0.127.0 145c10475..104f1: the unshielded portion of Divine
-    // Shield's cycle has its own floor, shared by ordinary and free casts.
-    // Hellfire retains the independently selected half-second floor.
     let floor = match instance.definition.key {
-        "divine_shield" => 10.0 - scaled_duration(instance),
+        "divine_shield" => divine_shield_gap(instance),
         "hellfire" => 0.5,
         _ => 0.25,
     };
@@ -48,12 +45,21 @@ pub fn scaled_duration(instance: &RuntimeInstance<'_>) -> f32 {
     let duration = instance.definition.duration * 1.4;
     let duration = duration * instance.duration_multiplier;
     let duration = duration * instance.talent_duration_multiplier;
-    // 0.127.0 145c6151c..61575, also used by the native tooltip writer.
-    if instance.definition.key == "divine_shield" {
-        super::native_min(duration, 6.0)
-    } else {
-        duration
+    // 0.140.0 145f7c0af..145f7c0fa. The keyed set/amulet lane
+    // can replace the ordinary capped product with six seconds times itself.
+    if instance.definition.key != "divine_shield" {
+        return duration;
     }
+    if instance.talent_duration_multiplier > 1.0 {
+        6.0 * instance.talent_duration_multiplier
+    } else {
+        super::native_min(duration, 6.0)
+    }
+}
+
+/// 0.140.0 145dd4290: the minimum time from expiry to the next cast.
+pub(super) fn divine_shield_gap(instance: &RuntimeInstance<'_>) -> f32 {
+    native_max(10.0 - scaled_duration(instance), 4.0)
 }
 
 /// Native successful cast interval. Effect11 adds the scaled invulnerability duration
@@ -84,6 +90,18 @@ mod lifetime_tests {
                 assert!(interval - actual_duration >= 4.0);
             }
         }
+    }
+
+    #[test]
+    fn divine_shield_amulet_lane_replaces_ordinary_duration_and_preserves_the_gap() {
+        let mut instance = RuntimeInstance::learned(
+            super::super::AbilityDefinition::by_key("divine_shield").unwrap());
+        instance.duration_multiplier = 0.5;
+        instance.talent_duration_multiplier = 2.0;
+        instance.cooldown_multiplier = 0.0;
+        assert_eq!(scaled_duration(&instance), 12.0);
+        assert_eq!(base_interval(&instance, 0.0), 4.0);
+        assert_eq!(cooldown(&instance, 0.0), 16.0);
     }
 
     #[test]

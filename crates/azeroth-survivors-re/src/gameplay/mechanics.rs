@@ -762,7 +762,7 @@ impl Mechanics {
                 ground: Vec::new(),
                 totems: Vec::new(),
                 auras: Vec::new(),
-                divine_shield_last_cast_at: f32::NEG_INFINITY,
+                divine_shield_expires_at: f32::NEG_INFINITY,
                 vitals: Vitals {
                     health: stats.maximum_health * stats.health_multiplier,
                     maximum_health: stats.maximum_health * stats.health_multiplier,
@@ -4666,8 +4666,9 @@ mod rng_integration {
         game.execution.vitals.health = 20.0;
         let player = game.zone.center.into();
         game.tick(0.01, player, [0.0; 2], 0.0, &mut TerrainFixture);
-        let first = game.execution.divine_shield_last_cast_at;
-        assert_eq!(first, game.clock);
+        let first = game.clock;
+        let expires = game.execution.divine_shield_expires_at;
+        assert_eq!(expires, first + 6.0);
         assert_eq!(game.execution.auras.iter().filter(|aura| aura.spell_id == 642).count(), 1);
         assert_eq!(game.execution.auras.iter().find(|aura| aura.spell_id == 642).unwrap().expires_at,
             first + 6.0);
@@ -4678,7 +4679,7 @@ mod rng_integration {
             game.clock = first + elapsed;
             game.abilities[0].remaining = 0.0;
             game.tick(0.01, player, [0.0; 2], 0.0, &mut TerrainFixture);
-            assert_eq!(game.execution.divine_shield_last_cast_at, first);
+            assert_eq!(game.execution.divine_shield_expires_at, expires);
             if elapsed >= 6.0 {
                 assert!(!game.execution.auras.iter().any(|aura| aura.spell_id == 642));
             }
@@ -4686,7 +4687,7 @@ mod rng_integration {
         game.clock = first + 10.0;
         game.abilities[0].remaining = 0.0;
         game.tick(0.01, player, [0.0; 2], 0.0, &mut TerrainFixture);
-        assert_eq!(game.execution.divine_shield_last_cast_at, game.clock);
+        assert_eq!(game.execution.divine_shield_expires_at, game.clock + 6.0);
         assert!(game.execution.auras.iter().any(|aura| aura.spell_id == 642));
     }
 
@@ -4701,31 +4702,33 @@ mod rng_integration {
         game.execution.vitals.health = f32::NAN;
         let player = game.zone.center.into();
         game.tick(0.01, player, [0.0; 2], 0.0, &mut TerrainFixture);
-        let first = game.execution.divine_shield_last_cast_at;
-        assert_eq!(first, game.clock);
+        let expires = game.execution.divine_shield_expires_at;
+        assert!(expires > game.clock);
         assert!(game.execution.auras.iter().any(|aura| aura.spell_id == 642));
         game.abilities[0].remaining = 0.0;
         game.tick(0.01, player, [0.0; 2], 0.0, &mut TerrainFixture);
-        assert_eq!(game.execution.divine_shield_last_cast_at, first);
+        assert_eq!(game.execution.divine_shield_expires_at, expires);
     }
 
     #[test]
-    fn divine_intervention_free_shield_respects_the_existing_run_timestamp() {
+    fn divine_intervention_free_shield_respects_the_previous_shield_expiry() {
         let mut game = class_run("paladin", 0);
         game.configure_effects(&[("divine_intervention".into(), 1)], &[]);
         game.racial = None;
-        game.execution.divine_shield_last_cast_at = 0.0;
+        game.execution.divine_shield_expires_at = 6.0;
         game.clock = 1.0;
         let player = game.zone.center.into();
         game.damage_player(1000.0, true, 0, player, 0.0, &mut TerrainFixture);
         assert!(!game.dead);
         assert!(!game.execution.auras.iter().any(|aura| aura.spell_id == 642));
-        assert_eq!(game.execution.divine_shield_last_cast_at, 0.0);
-        game.clock = 10.0;
+        assert_eq!(game.execution.divine_shield_expires_at, 6.0);
+        let shield = RuntimeInstance::learned(AbilityDefinition::by_key("divine_shield").unwrap());
+        game.clock = 6.0 + player_abilities::damage::base_interval(&shield, 0.0);
         game.effect_state.incoming.lethal_talent_ready_at = 0.0;
         game.damage_player(1000.0, true, 0, player, 0.0, &mut TerrainFixture);
         assert!(!game.dead);
-        assert_eq!(game.execution.divine_shield_last_cast_at, 10.0);
+        assert_eq!(game.execution.divine_shield_expires_at,
+            game.clock + player_abilities::damage::scaled_duration(&shield));
         assert!(game.execution.auras.iter().any(|aura| aura.spell_id == 642));
     }
 

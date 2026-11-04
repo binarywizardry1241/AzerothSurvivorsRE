@@ -136,7 +136,7 @@ Location rows to recover the new cap, admission and replacement branches.
 | `6362d8f7e7f22739` Seed of Life critical rolls | The name at `0x1473eba21` and nearby set descriptions seed the effect producer. The live pulse now queues the Feralheart Seed and independently rolls each Nature damage emission, including both empowered hits on a boss, elite or Guardian. [Recovered branches](#tranquility-and-seed-of-life). |
 | `96435f933d14094a` Critical-hit proc reach | Blood Frenzy's current effect is at `0x1473e3c68`; Eye of Hakkar is named at `0x1473c6209`. Both Druid producers enter the periodic critical effect lane, including Blood Frenzy and The Eye of Hakkar. They retain ordinary damage logs and generic hit/kill suppression. [Recovered branches](#tranquility-and-seed-of-life). |
 | `1d1ef8f6798a0519` Power Word: Shield cap | Recover target maximum-health arithmetic and the Talisman's rank-scaled cap lane through `gameplay/mechanics/shared_healing.rs` and `player_abilities/behavior/buffs.rs`. Distinguish the unmodified capacity, necklace bonus and hard maximum. |
-| `74230b7c5f2a2355` Divine Shield lifetime and gap | `player_abilities/damage.rs` caps duration at six seconds and `behavior/dispatch.rs` shares a 10-second cast admission timestamp. The old cooldown floor already expresses a gap after expiry for those bounds. Follow the new Talisman multiplier, actual expiry and minimum-gap owner through the cast, scheduler and overlay tooltip. |
+| `74230b7c5f2a2355` Divine Shield lifetime and gap | The current duration and recast helpers use the keyed Talisman lane and previous expiry, with a four-second minimum wait. [Native branches and connected source](#divine-shield-and-immunity-admission). |
 | `19c82c058ebc3fb0` Talisman and Ice Barrier | The retained party recipient adds to a separate counted balance with a 100%-maximum-health cap. Recover base initial absorb, earned additions from damage/talents and the item-specific 200% maximum, plus stat refresh and expiry. |
 | `5cab7afd57fd7f22` Shields and precedence | The 0.139.2 model uses an ordinary reservation plus a separate shared Ice Barrier balance and permits bounded additive party contributions. Recover replacement when one source absorbs on behalf of another, the stronger-only same-spell rule across two casters, and refresh/expiry when the weaker shield loses. |
 
@@ -203,6 +203,37 @@ and hit order, changes to stats or RNG between hits, absorb-cap clipping,
 absent effects and the Seed credit flag. The source is parsed and inspected.
 Compilation, authored Rust regressions, actual log/meter presentation,
 gameplay and original/rebuilt parity remain open.
+
+### Divine Shield and immunity admission
+
+The self-buff dispatch at `0x145f7ea1f..0x145f7ea7f` retains the ordered
+35%-health rejection for raw status 12. It then scans live aura rows and
+rejects when any raw status 12 row expires strictly after the run clock.
+That covers Divine Shield, Will of the Forsaken, Shadowmeld and other
+active immunity auras through the shared dispatch. Exact expiry and unordered
+deadlines do not block the attempt. A failed attempt does not replace the aura
+or advance Divine Shield's timestamp.
+
+The keyed Divine Shield duration at `0x145f7c0af..0x145f7c0fa` is the ordinary
+product capped at six seconds when the keyed duration lane is at most one.
+When the keyed lane is greater than one, the cast instead uses six seconds
+times that lane. The Eternal Talisman's existing duration lane of two gives
+12 seconds at its base rank. The minimum recast wait from
+`0x145dd4290..0x145dd4333` is `max(10 - duration, 4)`. Admission at
+`0x145f80596..0x145f805bb` compares that wait to the run clock minus the
+previous shield expiry and stores the new expiry after admission. The
+ordinary scheduler independently uses the same keyed duration and wait at
+`0x145f8e439..0x145f8e47a` and `0x145f8e4be..0x145f8e625`.
+The existing aura, cooldown, cooperative spell text and overlay consumers
+share those helpers. The shared Ghidra runner recovered the self-buff dispatcher
+as `ev_2c5ebbc39276d1f96d09c345e3d5c804d4edd9338f49e817b75b8d044de1808a` and
+the recast helper as `ev_78dda0c8c287baf62c5353172c96c5792bb0cb32fd8792bacfc2a1b7dd4710b4`.
+The current contract supersedes the prior
+[0.127.0 duration and cast timestamp](divine-shield-0.127.0.md).
+The defensive admission check in `scripts/recover-player-ability-behavior.py`
+passed 60 immunity cases and 180 recast cases over 6,708 original
+instructions. It covered equality, unordered inputs, and admission writes.
+Compilation, gameplay and original/rebuilt parity remain open.
 
 ## Attack range, pickups, attribution and input
 

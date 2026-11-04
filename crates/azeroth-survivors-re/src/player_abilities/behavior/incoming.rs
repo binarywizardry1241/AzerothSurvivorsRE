@@ -63,10 +63,7 @@ pub fn apply_damage_with_crowd(
     armor_fraction: f32,
     crowd_reduction: f32,
 ) -> Option<DamageApplied> {
-    if auras
-        .iter()
-        .any(|aura| aura.effect.tag == 11 && aura.expires_at > now)
-    {
+    if super::buffs::has_active_immunity(auras, now) {
         return None;
     }
     let mut amount = (1.0 - armor_fraction) * raw_damage;
