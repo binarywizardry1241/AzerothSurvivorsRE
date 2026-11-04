@@ -18,7 +18,6 @@ earlier selectors and their evidence.
 | [#75](../CURRENT-STATE.md#gap-75) | Follow typed reducer `0x145e10f60` and frame builder `0x145fc7330` into producer and recipient publication. Connect the typed source recorder and replay. The ordinary guest snapshots and Lua consumer are connected. |
 | [#206](../CURRENT-STATE.md#gap-206) | The [typed key and explicit departure commands](coop-desktop-exit-0.141.0.md#appexit-type-and-local-departure-boundaries) are mapped. Resolve the deferred Last callbacks and any aliased departure producer before the detached worker is released. |
 | [#300](../CURRENT-STATE.md#gap-300) | Compare the changed native renderer at `0x1400f49e0..0x1400f6722` with the rebuilt recap view. The nested payload reader is bounded separately. |
-| [#141](../CURRENT-STATE.md#gap-141) | The [kill reset selector and Reaper producer](kill-selector-0.139.2.md#kill-reset-and-prepared-selectors-in-01410) cover the three current keyed amulets. Check independent raw-22 producers for wildcard or pet admissions and any dependency on the active-record lookup. |
 
 The [#317 callback trace](world-anchors-0.141.0.md#frame-callback-registration)
 establishes the common native phase and separate registrations. Actual order

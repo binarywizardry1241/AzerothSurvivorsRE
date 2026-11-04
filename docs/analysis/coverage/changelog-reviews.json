@@ -35609,6 +35609,74 @@
       "gap_ids": [
         313
       ]
+    },
+    {
+      "claim_id": "changelog:0.61.2:f1e2c8d86f6b61c9",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "source_connected",
+      "rationale": "The authored Mortal Wounds and Reaper rows resolve the killing spell through the class pool. The current callback updates its learned timer during dispatch, and the existing cast scheduler preserves the resulting short timer.",
+      "native_contract": "The keyed kill handler updates its own deadline and clamps the matching learned primary-spell timer to 0.05 seconds. The cast scheduler combines that live timer with the computed interval after dispatch.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_effects/conditions.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior.rs",
+        "crates/azeroth-survivors-re/assets/talents.json",
+        "crates/azeroth-survivors-re/assets/native-amulets-0.100.1.json"
+      ],
+      "evidence_refs": [
+        "docs/analysis/kill-selector-0.139.2.md",
+        "docs/analysis/evidence/0.141.0/status-talent-selectors.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/run_effects/conditions.rs": "03e43f88b178540908af3e2498a604cee5fcdf8c6cd0d4ca81764c9c38901bc0",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior.rs": "52f29f1c8400a92df01748c666e79bc6da63cefdd9099f82a0b670564eb18969",
+        "crates/azeroth-survivors-re/assets/talents.json": "010903233c2376de79d1c892d8ef03eb17548f0b8cece32dffdbad7a5ad2df32",
+        "crates/azeroth-survivors-re/assets/native-amulets-0.100.1.json": "c8f5a6c1d147f6097ac5017592cbe75999c93b5935a99d9ce6f7869736ad043d",
+        "docs/analysis/kill-selector-0.139.2.md": "5a86fd6c31e5f77059e66ed19cd834d04483fce9ab1101b9a02bfb93017eb719",
+        "docs/analysis/evidence/0.141.0/status-talent-selectors.json": "4eced23e6bd678bec33de0148a3babf9faaf39c5051f0f4638fe5a8d9c319b78"
+      },
+      "systems": [
+        "custom-game-game-talents"
+      ],
+      "gap_ids": [
+        141
+      ]
+    },
+    {
+      "claim_id": "changelog:0.61.2:dd06f89c2aefe123",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "source_connected",
+      "rationale": "The authored Mortal Wounds and Reaper rows resolve the killing spell through the class pool. The current callback updates its learned timer during dispatch, and the existing cast scheduler preserves the resulting short timer.",
+      "native_contract": "The keyed kill handler updates its own deadline and clamps the matching learned primary-spell timer to 0.05 seconds. The cast scheduler combines that live timer with the computed interval after dispatch.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_effects/conditions.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior.rs",
+        "crates/azeroth-survivors-re/assets/talents.json",
+        "crates/azeroth-survivors-re/assets/native-amulets-0.100.1.json"
+      ],
+      "evidence_refs": [
+        "docs/analysis/kill-selector-0.139.2.md",
+        "docs/analysis/evidence/0.141.0/status-talent-selectors.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/run_effects/conditions.rs": "03e43f88b178540908af3e2498a604cee5fcdf8c6cd0d4ca81764c9c38901bc0",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior.rs": "52f29f1c8400a92df01748c666e79bc6da63cefdd9099f82a0b670564eb18969",
+        "crates/azeroth-survivors-re/assets/talents.json": "010903233c2376de79d1c892d8ef03eb17548f0b8cece32dffdbad7a5ad2df32",
+        "crates/azeroth-survivors-re/assets/native-amulets-0.100.1.json": "c8f5a6c1d147f6097ac5017592cbe75999c93b5935a99d9ce6f7869736ad043d",
+        "docs/analysis/kill-selector-0.139.2.md": "5a86fd6c31e5f77059e66ed19cd834d04483fce9ab1101b9a02bfb93017eb719",
+        "docs/analysis/evidence/0.141.0/status-talent-selectors.json": "4eced23e6bd678bec33de0148a3babf9faaf39c5051f0f4638fe5a8d9c319b78"
+      },
+      "systems": [
+        "custom-game-game-talents"
+      ],
+      "gap_ids": [
+        141
+      ]
     }
   ]
 }

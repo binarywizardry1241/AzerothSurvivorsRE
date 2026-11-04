@@ -39148,6 +39148,27 @@
         "evidence_ref": "docs/analysis/improved-mind-blast-0.141.0.md",
         "scope": "Localized rank tooltip connected to the retained spell modifiers. Rendering and parity unverified."
       },
+      "gap_141_source_review_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 141,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/kill-selector-0.139.2.md#authored-rows-and-live-admission",
+          "docs/analysis/evidence/0.141.0/status-talent-selectors.json"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Seven authored raw-22 rows use key or key-list admission. All five spell keys resolve before the timed-cast fallback. The existing per-row deadline, learned primary-ID clamp and same-cast scheduler preserve those resets. The wildcard and pet branches have no admitted producer in the reviewed equipped scope.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+          "crates/azeroth-survivors-re/src/run_effects/conditions.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior.rs",
+          "crates/azeroth-survivors-re/src/sets.rs",
+          "crates/azeroth-survivors-re/assets/talents.json",
+          "crates/azeroth-survivors-re/assets/native-amulets-0.100.1.json"
+        ]
+      },
       "gap_141_source_review_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_id": 141,
