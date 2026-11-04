@@ -307,11 +307,11 @@ def main():
     assert '.after(RunSet::Tick' not in guest_schedule[1]
     count += 3
     client = (ROOT / 'crates/benilla-app/src/local_client/spell_descriptions.rs').read_text()
-    assert '.after(crate::ui_tooltip::SpellTooltipFeed)' in client
+    assert '.after(crate::ui_unit::UnitFeed)' in client
     assert '.after(super::LocalClientSet::Feed)' in client
     assert 'script.replace_spell_tooltip_overrides(rows.0.iter().map(|row|' in client
     # The app preserves vector order and supplies separate spell/aura bodies.
-    # The complete replacement API owns duplicate selection and removal.
+    # The current FrameXML projection keeps the final row per spell ID.
     spell_view = client.split('SpellTooltipView {', 1)[1].split('..Default::default()', 1)[0]
     assert 'description: plain(row.description.clone())' in spell_view
     assert 'secondary' not in spell_view
@@ -324,25 +324,26 @@ def main():
     replacement = ui_spell.split('pub fn replace_spell_tooltip_overrides(', 1)[1].split('pub fn set_spell_tooltip(', 1)[0]
     replacement_compact = re.sub(r'\s+', '', replacement)
     for token in ['model.embedding_spell_tooltips.clear()', 'model.embedding_aura_text.clear()',
-                  'Entry::Vacant(entry)', 'model.embedding_spell_tooltips.entry(id)',
-                  'model.embedding_aura_text.insert(id, (name, aura_description))',
-                  'for handle in waiting', 'answer_wait(&self.lua, handle,']:
+                  'model.embedding_spell_tooltips.insert(id, spell)',
+                  'model.embedding_aura_text.insert(id, (spell.name.clone(), aura_description))']:
         assert re.sub(r'\s+', '', token) in replacement_compact, token
         count += 1
     assert 'model.spell_tooltips.clear()' not in replacement and 'model.aura_tooltips.clear()' not in replacement
     assert '.drain(' not in replacement
-    assert 'WaitFor::Spell { spell_id, opts } => !opts.alt_caster && ids.contains(spell_id)' in ui_spell
+    spell_lookup = ui_spell.split('fn resolve_spell_view(', 1)[1].split('fn built_at_the_call(', 1)[0]
+    assert spell_lookup.index('let Some(ordinary)') < spell_lookup.index('.embedding_spell_tooltips')
+    assert 'return None;' in spell_lookup
     ui_aura = (ROOT / 'crates/benilla-ui/src/script/tooltip_aura.rs').read_text()
     aura_lookup = ui_aura.split('fn aura_view_of(', 1)[1].split('/// The aura builder', 1)[0]
     for token in ['model.aura_tooltips.get(&key).cloned()', 'model.embedding_aura_text.get(&key.spell_id)',
-                  'ordinary.unwrap_or_default()', 'view.name = name.clone()', 'view.description = description.clone()']:
+                  'let Some(mut view)', 'return None;', 'view.name = name.clone()',
+                  'view.description = description.clone()', 'view.dispel_type = None']:
         assert token in aura_lookup, token
         count += 1
-    assert 'dispel_type =' not in aura_lookup
     assert 'model.aura_tooltip_asks.insert(key)' in aura_lookup
     tests = (ROOT / 'crates/benilla-ui/src/script/tests/tooltip_spell.rs').read_text()
-    assert 'replacement_embedding_views_answer_waiting_spell_and_aura_hovers' in tests
-    assert 'embedding_aura_text_retains_dispel_and_separate_spell_body' in tests
+    assert 'embedding_views_wait_for_the_ordinary_spell_and_aura' in tests
+    assert 'embedding_tooltips_use_the_latest_row_and_separate_bodies' in tests
     count += 10
     print(f'PASS: {count + 6} current tooltip append byte/source/vector integrity guards; locale and host/guest wiring checked; Rust regressions remain uncompiled')
 

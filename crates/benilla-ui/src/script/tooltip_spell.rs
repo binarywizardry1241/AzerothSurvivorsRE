@@ -119,44 +119,19 @@ impl super::live::LiveQuery for SpellViewQuery {
 impl super::UiScript {
     /// Replace the embedding's complete spell/aura text projection. Ordinary
     /// DBC views remain available immediately when an override disappears.
-    /// The first row for a spell ID wins; pet views retain their own store.
+    /// The last row for a spell ID wins in both FrameXML views.
     pub fn replace_spell_tooltip_overrides(
         &mut self,
         rows: impl IntoIterator<Item = (u32, SpellTooltipView, super::TooltipText)>,
     ) {
-        let (ids, waiting) = {
-            let mut model = self.model_mut();
-            model.embedding_spell_tooltips.clear();
-            model.embedding_aura_text.clear();
-            for (id, spell, aura_description) in rows {
-                if let std::collections::hash_map::Entry::Vacant(entry) =
-                    model.embedding_spell_tooltips.entry(id)
-                {
-                    let name = spell.name.clone();
-                    entry.insert(spell);
-                    model
-                        .embedding_aura_text
-                        .insert(id, (name, aura_description));
-                }
-            }
-            let ids = model
-                .embedding_spell_tooltips
-                .keys()
-                .copied()
-                .collect::<std::collections::HashSet<_>>();
-            let waiting = model
-                .spell_tooltip_waits
-                .iter()
-                .filter(|(_, wait)| override_answers(&wait.subject, &ids))
-                .map(|(handle, _)| *handle)
-                .collect::<Vec<_>>();
-            (ids, waiting)
-        };
-        for handle in waiting {
-            if let Err(error) = answer_wait(&self.lua, handle, &|wait| override_answers(wait, &ids))
-            {
-                self.push_error(error);
-            }
+        let mut model = self.model_mut();
+        model.embedding_spell_tooltips.clear();
+        model.embedding_aura_text.clear();
+        for (id, spell, aura_description) in rows {
+            model
+                .embedding_aura_text
+                .insert(id, (spell.name.clone(), aura_description));
+            model.embedding_spell_tooltips.insert(id, spell);
         }
     }
 
@@ -233,13 +208,6 @@ impl WaitFor {
             WaitFor::Spell { spell_id, opts } => *spell_id == id && opts.alt_caster == alt_caster,
             WaitFor::Aura { .. } => false,
         }
-    }
-}
-
-fn override_answers(wait: &WaitFor, ids: &std::collections::HashSet<u32>) -> bool {
-    match wait {
-        WaitFor::Spell { spell_id, opts } => !opts.alt_caster && ids.contains(spell_id),
-        WaitFor::Aura { key, .. } => ids.contains(&key.spell_id),
     }
 }
 
@@ -357,39 +325,14 @@ fn spell_store(
     }
 }
 
-fn embedding_spell_view(lua: &Lua, spell_id: u32, alt_caster: bool) -> Option<SpellTooltipView> {
-    if alt_caster {
-        return None;
-    }
-    let model = lua.app_data_ref::<Model>().expect("model app_data");
-    model.embedding_spell_tooltips.get(&spell_id).cloned()
-}
-
-/// Use the embedding's player spell view when present. Otherwise build the view at the call
-/// through the lent host ([`SpellViewQuery`]), then fall back to the player or pet store.
+/// Build the ordinary view at the call or read it from the player or pet store.
+/// An embedding row can replace an available ordinary view.
 pub(super) fn spell_view_of(
     lua: &Lua,
     spell_id: u32,
     alt_caster: bool,
 ) -> Option<SpellTooltipView> {
-    if let Some(view) = embedding_spell_view(lua, spell_id, alt_caster) {
-        let mut model = lua.app_data_mut::<Model>().expect("model app_data");
-        // Keep warming the ordinary store for later override removal.
-        if !model.spell_tooltips.contains_key(&spell_id) && spell_id != 0 {
-            model.spell_tooltip_asks.insert(spell_id);
-        }
-        return Some(view);
-    }
-    if let Some(view) = built_at_the_call(lua, spell_id, alt_caster) {
-        return Some(view);
-    }
-    let mut model = lua.app_data_mut::<Model>().expect("model app_data");
-    let (views, asks) = spell_store(&mut model, alt_caster);
-    let v = views.get(&spell_id).cloned();
-    if v.is_none() && spell_id != 0 {
-        asks.insert(spell_id);
-    }
-    v
+    resolve_spell_view(lua, spell_id, alt_caster, true)
 }
 
 /// [`spell_view_of`] without recording an ask.
@@ -398,15 +341,31 @@ pub(super) fn spell_view_peek(
     spell_id: u32,
     alt_caster: bool,
 ) -> Option<SpellTooltipView> {
-    embedding_spell_view(lua, spell_id, alt_caster)
-        .or_else(|| built_at_the_call(lua, spell_id, alt_caster))
-        .or_else(|| {
-            let mut model = lua.app_data_mut::<Model>().expect("model app_data");
-            spell_store(&mut model, alt_caster)
-                .0
-                .get(&spell_id)
-                .cloned()
-        })
+    resolve_spell_view(lua, spell_id, alt_caster, false)
+}
+
+fn resolve_spell_view(
+    lua: &Lua,
+    spell_id: u32,
+    alt_caster: bool,
+    record_ask: bool,
+) -> Option<SpellTooltipView> {
+    let live = built_at_the_call(lua, spell_id, alt_caster);
+    let mut model = lua.app_data_mut::<Model>().expect("model app_data");
+    let (views, asks) = spell_store(&mut model, alt_caster);
+    let Some(ordinary) = live.or_else(|| views.get(&spell_id).cloned()) else {
+        if record_ask && spell_id != 0 {
+            asks.insert(spell_id);
+        }
+        return None;
+    };
+    Some(
+        model
+            .embedding_spell_tooltips
+            .get(&spell_id)
+            .cloned()
+            .unwrap_or(ordinary),
+    )
 }
 
 /// The view the lent host builds at the call ([`SpellViewQuery`]); spell 0 asks nothing.

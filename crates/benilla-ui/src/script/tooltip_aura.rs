@@ -104,24 +104,24 @@ fn tracking_key(spell_id: u32) -> AuraKey {
 }
 
 /// An aura's view built at the call through the lent host ([`AuraViewQuery`]), else off the store,
-/// where a miss records the ask. Embedding text preserves metadata from either source.
+/// where a miss records the ask. An embedding row replaces an available view.
 fn aura_view_of(lua: &Lua, key: AuraKey) -> Option<AuraTooltipView> {
     let live = (key.spell_id != 0)
         .then(|| super::live::ask(lua, &AuraViewQuery(key)))
         .flatten();
     let mut model = lua.app_data_mut::<Model>().expect("model app_data");
-    let ordinary = live.or_else(|| model.aura_tooltips.get(&key).cloned());
-    if ordinary.is_none() && key.spell_id != 0 {
-        model.aura_tooltip_asks.insert(key);
-    }
+    let Some(mut view) = live.or_else(|| model.aura_tooltips.get(&key).cloned()) else {
+        if key.spell_id != 0 {
+            model.aura_tooltip_asks.insert(key);
+        }
+        return None;
+    };
     if let Some((name, description)) = model.embedding_aura_text.get(&key.spell_id) {
-        let mut view = ordinary.unwrap_or_default();
         view.name = name.clone();
         view.description = description.clone();
-        Some(view)
-    } else {
-        ordinary
+        view.dispel_type = None;
     }
+    Some(view)
 }
 
 /// The aura builder's lines (`0x52f91e`, `0x52f96a`), then `SetPlayerBuff`'s time line.

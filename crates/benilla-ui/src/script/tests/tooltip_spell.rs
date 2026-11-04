@@ -2388,10 +2388,10 @@ fn the_stance_and_pet_bars_show_the_rank() {
     assert!(s.take_errors().is_empty());
 }
 
-/// Embedding text changes the status body without losing the DBC dispel class
-/// or mixing the separate spell body into the aura view.
+/// The final resource row supplies separate spell and status bodies. The AS
+/// aura view omits the ordinary dispel class on both player and party hovers.
 #[test]
-fn embedding_aura_text_retains_dispel_and_separate_spell_body() {
+fn embedding_tooltips_use_the_latest_row_and_separate_bodies() {
     let mut s = script();
     s.set_screen_size(800.0, 600.0);
     s.set_spell_tooltip(
@@ -2417,11 +2417,17 @@ fn embedding_aura_text_retains_dispel_and_separate_spell_body() {
             ..aura_view("Old name", "Old status")
         },
     );
-    s.set_player_auras(vec![AuraState {
+    let aura = AuraState {
         spell_id: 168,
         helpful: true,
         ..Default::default()
-    }]);
+    };
+    s.set_player_auras(vec![aura.clone()]);
+    s.set_unit_guids(&UnitGuids {
+        party: [7, 0, 0, 0],
+        ..Default::default()
+    });
+    s.set_unit_auras(7, Some(vec![aura].into()));
     let projection = |primary: &str, status: &str| {
         (
             168,
@@ -2434,8 +2440,8 @@ fn embedding_aura_text_retains_dispel_and_separate_spell_body() {
         )
     };
     s.replace_spell_tooltip_overrides([
+        projection("Earlier duplicate spell", "Earlier duplicate status"),
         projection("Primary spell body", "Current status body"),
-        projection("Wrong duplicate spell", "Wrong duplicate status"),
     ]);
     s.run(
         r#"
@@ -2450,7 +2456,11 @@ fn embedding_aura_text_retains_dispel_and_separate_spell_body() {
         tt:SetPlayerBuff(0)
         assert(tt:NumLines() == 2)
         assert(OverrideTipTextLeft1:GetText() == "Ice Armor")
-        assert(OverrideTipTextRight1:GetText() == "Magic")
+        assert(not OverrideTipTextRight1:IsShown())
+        assert(OverrideTipTextLeft2:GetText() == "Current status body")
+        tt:SetUnitBuff("party1", 1)
+        assert(OverrideTipTextLeft1:GetText() == "Ice Armor")
+        assert(not OverrideTipTextRight1:IsShown())
         assert(OverrideTipTextLeft2:GetText() == "Current status body")
     "#,
     )
@@ -2488,7 +2498,11 @@ fn embedding_aura_text_retains_dispel_and_separate_spell_body() {
                 assert(OverrideTipTextLeft2:GetText() == "Primary spell body")
                 OverrideTip:SetPlayerBuff(0)
                 assert(OverrideTipTextLeft1:GetText() == "Ice Armor")
-                assert(OverrideTipTextRight1:GetText() == "Poison")
+                assert(not OverrideTipTextRight1:IsShown())
+                assert(OverrideTipTextLeft2:GetText() == "Current status body")
+                OverrideTip:SetUnitBuff("party1", 1)
+                assert(OverrideTipTextLeft1:GetText() == "Ice Armor")
+                assert(not OverrideTipTextRight1:IsShown())
                 assert(OverrideTipTextLeft2:GetText() == "Current status body")
             "#,
         )
@@ -2499,11 +2513,10 @@ fn embedding_aura_text_retains_dispel_and_separate_spell_body() {
             TooltipText::from("Primary spell body")
         );
         let pet = crate::script::tooltip_spell::spell_view_of(s.lua(), 168, true).unwrap();
-        assert_eq!(pet.name, "Live spell");
+        assert_eq!(pet.name, "Ice Armor");
     });
 
-    // An ordinary feed refresh must neither hide the override nor lose its new
-    // dispel metadata. Removing the override must reveal these newest views.
+    // Removing the override reveals the refreshed ordinary views.
     s.set_spell_tooltip(
         168,
         SpellTooltipView {
@@ -2524,7 +2537,7 @@ fn embedding_aura_text_retains_dispel_and_separate_spell_body() {
         OverrideTip:SetSpell(1, "spell")
         assert(OverrideTipTextLeft2:GetText() == "Primary spell body")
         OverrideTip:SetPlayerBuff(0)
-        assert(OverrideTipTextRight1:GetText() == "Curse")
+        assert(not OverrideTipTextRight1:IsShown())
         assert(OverrideTipTextLeft2:GetText() == "Current status body")
     "#,
     )
@@ -2535,7 +2548,7 @@ fn embedding_aura_text_retains_dispel_and_separate_spell_body() {
         OverrideTip:SetSpell(1, "spell")
         assert(OverrideTipTextLeft2:GetText() == "Replacement spell")
         OverrideTip:SetPlayerBuff(0)
-        assert(OverrideTipTextRight1:GetText() == "Curse")
+        assert(not OverrideTipTextRight1:IsShown())
         assert(OverrideTipTextLeft2:GetText() == "Replacement status")
     "#,
     )
@@ -2577,12 +2590,14 @@ fn embedding_aura_text_retains_dispel_and_separate_spell_body() {
             "#,
         )
         .unwrap();
+        let pet = crate::script::tooltip_spell::spell_view_of(s.lua(), 168, true).unwrap();
+        assert_eq!(pet.name, "Live spell");
     });
     assert!(s.take_errors().is_empty());
 }
 
 #[test]
-fn replacement_embedding_views_answer_waiting_spell_and_aura_hovers() {
+fn embedding_views_wait_for_the_ordinary_spell_and_aura() {
     let mut s = script();
     s.set_screen_size(800.0, 600.0);
     s.set_spellbook(SpellBookState {
@@ -2626,6 +2641,17 @@ fn replacement_embedding_views_answer_waiting_spell_and_aura_hovers() {
     )]);
     s.run(
         r#"
+        assert(WaitingSpellTipTextLeft1:GetText() == "Book fallback")
+        assert(WaitingAuraTipTextLeft1:GetText() == "Aura fallback")
+    "#,
+    )
+    .unwrap();
+    assert_eq!(s.take_spell_tooltip_asks(), vec![168]);
+    assert_eq!(s.take_aura_tooltip_asks(), vec![aura_key(168)]);
+    s.set_spell_tooltip(168, SpellTooltipView::default());
+    s.set_aura_tooltip(aura_key(168), aura_view("Ordinary", "Ordinary status"));
+    s.run(
+        r#"
         assert(WaitingSpellTip:NumLines() == 2)
         assert(WaitingSpellTipTextLeft1:GetText() == "Delivered name")
         assert(WaitingSpellTipTextLeft2:GetText() == "Delivered primary")
@@ -2635,9 +2661,5 @@ fn replacement_embedding_views_answer_waiting_spell_and_aura_hovers() {
     "#,
     )
     .unwrap();
-    // Rendering an override still requests missing ordinary metadata, so its
-    // dispel class and later no-override fallback can be populated normally.
-    assert_eq!(s.take_spell_tooltip_asks(), vec![168]);
-    assert_eq!(s.take_aura_tooltip_asks(), vec![aura_key(168)]);
     assert!(s.take_errors().is_empty());
 }

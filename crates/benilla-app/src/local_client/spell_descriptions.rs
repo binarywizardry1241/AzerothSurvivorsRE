@@ -39,11 +39,11 @@ fn publish(mut vm: crate::script_calls::VmWith<()>, rows: Res<LocalSpellDescript
         let Some(script) = script else {
             return;
         };
-        // The replacement API preserves current1402fb150's first-ID match.
-        // Empty input removes every embedding override on this same VM.
+        // Preserve input order for the FrameXML table's last row per spell ID.
+        // Empty input clears the table on the same VM.
         script.replace_spell_tooltip_overrides(rows.0.iter().map(|row| {
-            //1451c6d20/1451c7065: aura mode falls back to primary when
-            // the secondary body is empty.
+            // 0.141.0 aura answer at 0x14070af54 falls back to the primary
+            // body when the secondary body is empty.
             let body = if row.secondary.is_empty() {
                 &row.description
             } else {
