@@ -28,9 +28,12 @@ Stormstrike targets one enemy and Rockbiter targets two. The stored
 cooldown values produce the 8.5 and 2.2 second baseline intervals under
 the ordinary multiplier.
 The ordinary Shaman offer pool now uses the current Stormstrike descriptor
-and the existing priority-targeted melee cast. Fourteen locale labels were
-matched against the installed catalogs. The picker tooltip and Rockbiter
-startup grant remain open.
+and the existing priority-targeted melee cast. The picker uses the same
+spell and icon and the native nearest-enemy body template at `0x14734e7a5`.
+Isolated execution of the default stats, power and cooldown instructions
+returns 481.600006 and 8.5, displayed as 482 Nature damage and 8.5 seconds.
+All fourteen localized names and referenced template keys were checked.
+Rockbiter’s picker entry and startup grant remain open.
 
 Thirteen contiguous talent descriptors at `0x147367c38` retain native
 keys, position, ranks, prerequisites and effect references. Stormguard
@@ -47,10 +50,10 @@ Flurry's talent row binds raw effect 42, subtype 10. When the proc driver
 `1 + rank * 6 / 100` to running Rockbiter and Stormstrike cooldowns.
 The existing [0.139.1 local correspondence](native-interface-correspondence-0.139.1.md)
 retains its own target. Source still needs the current Enhancement
-effect collection, live Flurry state and rate publication. Recover the
-remaining origin and recursive proc edges, migration and active tree,
-necklace effects and growth, armor/stat attribution and the picker and
-buff consumers before certifying the rework.
+effect collection, live Flurry state and rate publication. Integrate the recovered
+origin and recursive proc edges, and complete the migration and active
+tree, necklace growth and remaining consumers, armor/stat attribution,
+and buff and Rockbiter picker publication before certifying the rework.
 
 The exact descriptors and pool, aura application and expiry instructions,
 and four bounded Ghidra results were checked. Two broader function queries

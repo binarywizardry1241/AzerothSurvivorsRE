@@ -1,0 +1,23 @@
+{
+  "subtitle": {
+    "concat": [
+      {"template": "Nature", "values": {}},
+      {"literal": " · "},
+      {"template": "common.cooldown_sec", "values": {"s": {"literal": "8.5"}}}
+    ]
+  },
+  "body": {
+    "template": "Strikes the nearest enemy within {range} yd for {hit}.{focus}",
+    "values": {
+      "range": {"literal": "10"},
+      "hit": {
+        "template": "{dmg} {school} damage",
+        "values": {
+          "dmg": {"literal": "482"},
+          "school": {"template": "Nature", "values": {}}
+        }
+      },
+      "focus": {"template": " Bosses and elites are targeted first.", "values": {}}
+    }
+  }
+}

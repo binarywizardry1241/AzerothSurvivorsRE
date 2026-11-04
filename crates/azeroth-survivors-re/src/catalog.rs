@@ -40,6 +40,27 @@ impl MenuCatalog {
         catalog.build_revision = identity.build_revision;
         catalog.labels = serde_json::from_str(include_str!("../assets/locales/en.json"))
             .expect("the SHA-bound selected-target English catalog");
+        let stormstrike =
+            azeroth_survivors_re::player_abilities::AbilityDefinition::by_key("stormstrike")
+                .expect("recovered Shaman Stormstrike");
+        let shaman = catalog
+            .classes
+            .iter_mut()
+            .find(|class| class.key == "shaman")
+            .expect("embedded Shaman class");
+        let replaced = shaman
+            .spell_keys
+            .iter()
+            .position(|key| key == "call_of_flame")
+            .expect("retained Call of Flame slot");
+        shaman.spell_keys[replaced] = stormstrike.key.into();
+        shaman.spell_names[replaced] = stormstrike.name.into();
+        catalog.abilities.push(AbilityDef {
+            key: stormstrike.key.into(),
+            name: stormstrike.name.into(),
+            icon: stormstrike.icon.into(),
+            description: String::new(),
+        });
         catalog
     }
 

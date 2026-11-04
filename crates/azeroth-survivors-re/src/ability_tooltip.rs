@@ -62,6 +62,11 @@ fn entries() -> &'static BTreeMap<String, SpellText> {
         ))
         .expect("current AZS demon picker tooltip correction");
         entries.extend(delta.entries);
+        entries.insert(
+            "stormstrike".into(),
+            serde_json::from_str(include_str!("../assets/stormstrike-tooltip-0.139.2.json"))
+                .expect("current Stormstrike picker tooltip"),
+        );
         entries
     })
 }
