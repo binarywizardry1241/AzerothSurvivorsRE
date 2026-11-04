@@ -97,6 +97,12 @@ pipeline outputs use the same content store. The retained PE inventories use
 transparent compression where supported, and their original paths still read
 the exact committed JSON bytes. Mutable pipeline views can use APFS copy-on-write.
 
+Keep full instruction exports for the selected passes, the active audit's
+declared and expanded inputs, and independently verified historical consumers.
+Superseded passes may retain only their completion receipts and provenance.
+Local `census/retired-instructions.json` records retired export hashes so
+storage maintenance can distinguish intentional retirement from a missing file.
+
 ## Across EXE updates
 
 The catalog, content store and discovery interface span all versions. Equal

@@ -101,8 +101,22 @@ def share_census_exports(plan_path, root=ROOT):
 
 def migrate_census_exports(root=ROOT):
     result = {"passes": 0, "shared": 0, "reclaimed_allocated_bytes": 0, "skipped": []}
-    for plan_path in sorted((root / "runtime/analysis/census").glob("*/*/plan.json")):
-        if not (plan_path.parent / "progress.json").is_file():
+    census = root / "runtime/analysis/census"
+    retirement_path = census / "retired-instructions.json"
+    retired = json.loads(retirement_path.read_text()) if retirement_path.is_file() else {}
+    for plan_path in sorted(census.glob("*/*/plan.json")):
+        progress_path = plan_path.parent / "progress.json"
+        if not progress_path.is_file():
+            continue
+        key = plan_path.parent.relative_to(census).as_posix()
+        export = plan_path.parent / "instructions.tsv.gz"
+        if key in retired and not export.exists() and not export.is_symlink():
+            progress = json.loads(progress_path.read_text())
+            record = progress.get("files", {}).get("instructions.tsv.gz", {})
+            if progress.get("stage") != "completed" or record.get("sha256") != retired[key]:
+                raise ValueError(f"Instruction retirement differs from the completed pass: {key}")
+            result["skipped"].append({"plan": plan_path.relative_to(root).as_posix(),
+                                      "reason": "superseded instruction export retired"})
             continue
         row = share_census_exports(plan_path, root)
         result["passes"] += 1

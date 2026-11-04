@@ -260,6 +260,31 @@ class DurableCensusResume(unittest.TestCase):
         self.assertEqual(first.with_name("progress.json").read_bytes(), saved_progress)
         self.assertEqual(store_manager.share_census_exports(second, self.root)["shared"], 0)
 
+    def test_census_migration_only_skips_verified_retired_exports(self):
+        census_root = self.root / "runtime/analysis/census"
+        output = census_root / "target/pass"
+        output.mkdir(parents=True)
+        plan = output / "plan.json"
+        plan.write_text(json.dumps({**self.plan, "output": str(output)}))
+        export = output / "instructions.tsv.gz"
+        sha = "a" * 64
+        progress = output / "progress.json"
+        progress.write_text(json.dumps(dict(stage="completed", plan_sha256=digest(plan),
+                                            target_sha256=self.plan["target_sha256"],
+                                            script_sha256=self.plan["script_sha256"],
+                                            files={export.name: {"sha256": sha}})))
+        retired = census_root / "retired-instructions.json"
+        retired.write_text(json.dumps({"target/pass": sha}))
+
+        self.assertEqual(store_manager.migrate_census_exports(self.root)["passes"], 0)
+        export.symlink_to("missing")
+        with self.assertRaises(FileNotFoundError):
+            store_manager.migrate_census_exports(self.root)
+        export.unlink()
+        retired.write_text(json.dumps({"target/pass": "b" * 64}))
+        with self.assertRaisesRegex(ValueError, "retirement differs"):
+            store_manager.migrate_census_exports(self.root)
+
 
 if __name__ == "__main__":
     unittest.main()
