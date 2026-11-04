@@ -125,7 +125,8 @@ fn update(out: &mut Vec<u8>, kind: u8, id: u64) {
     out.push(kind);
     guid(out, id);
 }
-pub(crate) fn spell_target_mask(target: Option<u64>, go_target: Option<u64>, dest: Option<[f32; 3]>) -> u16 {
+/// The target-presence flags shared by the packet encoder and the local client.
+pub fn spell_target_mask(target: Option<u64>, go_target: Option<u64>, dest: Option<[f32; 3]>) -> u16 {
     u16::from(target.is_some()) * 2
         | u16::from(go_target.is_some()) * 0x800
         | u16::from(dest.is_some()) * 0x40
@@ -369,7 +370,7 @@ pub fn encode(
                 }
             }
             if let Some(progress) = transport_progress {
-                u32v(&mut b, *progress);
+                u32v(&mut b, progress.progress_ms);
             }
             fields(&mut b, rows)?;
             op::SMSG_UPDATE_OBJECT

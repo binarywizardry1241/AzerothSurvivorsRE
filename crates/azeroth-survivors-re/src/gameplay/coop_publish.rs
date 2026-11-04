@@ -323,7 +323,7 @@ pub(in crate::gameplay) fn retire_inventory(world: &mut World) {
     }
 }
 
-pub(super) fn publish_units(
+pub(in crate::gameplay) fn publish_units(
     mut runtime: ResMut<CoopRuntime>,
     mut state: ResMut<CoopGame>,
     run: Res<RunSession>,
