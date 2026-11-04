@@ -1,0 +1,127 @@
+{
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "lead_id": "Q41-G01",
+  "gap_ids": [
+    41,
+    63,
+    91
+  ],
+  "ranges": {
+    "source_dispatch": {
+      "start": "0x145fb717e",
+      "end_exclusive": "0x145fb71d5",
+      "sha256": "559fdbe8280ab1d2be44a7d8550a8a0b56c5eab738951978ebf91e48d3f0f436"
+    },
+    "level_fallback": {
+      "start": "0x145fb7f42",
+      "end_exclusive": "0x145fb7f7d",
+      "sha256": "3cc0c6cb66f96f66163deec0a470a06421e608827a35057fef6bcc675264d1ba"
+    },
+    "cache_fallback": {
+      "start": "0x145fc0282",
+      "end_exclusive": "0x145fc02bf",
+      "sha256": "037f8714cf1861f4d4ae3c0fe4e3ba8691917817682746efcfd99d0174950186"
+    },
+    "gold_row": {
+      "start": "0x145fbd438",
+      "end_exclusive": "0x145fbd453",
+      "sha256": "7d1f8c306206871ff4840210b66cd41bdd5de3f2e6d9bc1766cd8937b59e7c3d"
+    },
+    "row_admission": {
+      "start": "0x145fc154c",
+      "end_exclusive": "0x145fc161a",
+      "sha256": "adb1adb10688111885cb7022dca90d759cddc57b67f57d2d6d15eef231c8c184"
+    },
+    "selected_payload": {
+      "start": "0x145fc1682",
+      "end_exclusive": "0x145fc1749",
+      "sha256": "055f547eb33cd8c549dd26779ca612d01b8b3c06da314d87e793fcb9b4ed1bf1"
+    },
+    "gold_call": {
+      "start": "0x145fc1aaf",
+      "end_exclusive": "0x145fc1ac3",
+      "sha256": "9db929dc65d6d9439be169bad64b86800b1c8111ead65527e581fd6159f2f34c"
+    },
+    "completion_call": {
+      "start": "0x145fc32f0",
+      "end_exclusive": "0x145fc330c",
+      "sha256": "cc9af75d2cb65cf891a5e6c9906c10b2c586dfabcef44850d211ed26efb0e05f"
+    },
+    "completion_prefix": {
+      "start": "0x145fb8da5",
+      "end_exclusive": "0x145fb8e34",
+      "sha256": "35482db565a721e00b7401c0de2bba204cada74460628ac5bb1198da2e2e0689"
+    },
+    "row_dispatch_cells": {
+      "start": "0x147af3a58",
+      "end_exclusive": "0x147af3a6c",
+      "sha256": "d012a8b0cd6e990db016e4675b10e3807163a94adfedd1f137c549e764cf1ecd"
+    },
+    "effect_dispatch_cells": {
+      "start": "0x147af3a6c",
+      "end_exclusive": "0x147af3a8c",
+      "sha256": "0b962d47513273d465db09de65f048cbcfbe18d1e61d720ffb90724fea3ea841"
+    }
+  },
+  "queries": {
+    "apply": {
+      "procedure": "0x145fc1500",
+      "slice_virtual_address": "0x145fc1500",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/q41-g01-01410/apply.bin",
+        "sha256": "9c01ef5b4bb3573959dcfe873dba59ab74ab25b44026f07ad9cca06287e80c42"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/q41-g01-01410/apply.json",
+        "sha256": "7bdf1029e0187106f499d6b4ea2f375a271248e3a255ec77d8fafa25cb0110e2"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/q41-g01-01410/apply/journal.json",
+        "sha256": "65c7de9f2f442ab9e75e36122ecd473e8cdfc5b0b8060371f6a462ac91f11bfa"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/q41-g01-01410/apply/results/41689c827626e2867125d0981acb823909c0a11d16a61b55d82ec2a8b0e4bd83-59e548afd91189f9.json",
+        "sha256": "b3da8717f222261d78580096a2c65d48bc7d556093d7cc04dc52627ff50a5aa0"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "6da1eae698101d3f59c4787632a5702b28abf01ba65a49938b623ec68520c74c",
+      "evidence_id": "ev_a70936facd652d0b7018104f640b102fe10a8eb25077b099aba123eb091041d6"
+    },
+    "completion": {
+      "procedure": "0x145fb8d80",
+      "slice_virtual_address": "0x145fb8d80",
+      "raw_input": {
+        "path": "runtime/analysis/tasks/q41-g01-01410/completion.bin",
+        "sha256": "9c6e01f14ab3ecf1a1b8f3d3cc2d3d7d4121e647f989a0059fa8ed08edc50e9f"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/q41-g01-01410/completion.json",
+        "sha256": "812f0500ba7739204d1b27bb5b39395ad68046bbdfe65f56fa32a47c68258292"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/q41-g01-01410/completion/journal.json",
+        "sha256": "4a064e8fe9184ba2b054f0f30c356d0e89b7780a0152f2ce7da5c14a7db89bf9"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/q41-g01-01410/completion/results/eaa6510f46a37a5716dff67783e81ad85a45cd9124ed4ecfe4b496ae43e7591c-e5f751655b50174d.json",
+        "sha256": "1745c405bb2d21bf9b44c7621259d2e2d49c341e43bc477d36cb7debf155ddf1"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "9c702cf9378c8f11f16ff8a571eb541256cc8f9c9d1f092f5081305f437ec2d8",
+      "evidence_id": "ev_d6782a3df58ce39929cc8e9973e194b02ecdc73c76ffdfa30fb5bb1c0087d67e"
+    }
+  }
+}

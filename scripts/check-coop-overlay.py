@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Current byte/source integrity only; no Rust or native code is executed."""
+"""Check overlay source and bounded native payloads without launching the game."""
 import argparse
 import hashlib
 import importlib.util
@@ -153,11 +153,101 @@ def check_diagnostic_consumers():
           f'{len(proof["rip_data_anchors"])} data anchors and {len(suffixes)} rank rows passed')
 
 
+def check_choice_gold():
+    from discovery_native_subject import verify_native_query_subject
+    from native_terminal import NativeReplay
+    from script_sources import load_script
+
+    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/choice-gold-credit.json').read_text())
+    target = latest_target(verify=True)
+    assert all(target[key] == proof['target'][key] for key in ('version', 'sha256', 'size_bytes'))
+    image = target_bytes(target)
+    pe = load_script('overlay_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+    cpu = NativeReplay(image, pe)
+    ranges = {}
+    for role, span in proof['ranges'].items():
+        start, end = (int(span[key], 16) for key in ('start', 'end_exclusive'))
+        assert hashlib.sha256(cpu.raw(start, end - start)).hexdigest() == span['sha256'], role
+        ranges[role] = start, end
+    for query in proof['queries'].values():
+        evidence = json.loads((ROOT / query['result']['path']).read_text())['structuredContent']
+        verify_native_query_subject(ROOT, evidence, query, target, image=image, pe=pe)
+
+    registers = cpu.registers
+    read = lambda register: cpu.machine.reg_read(getattr(registers, 'UC_X86_REG_' + register))
+    write = lambda register, value: cpu.machine.reg_write(getattr(registers, 'UC_X86_REG_' + register), value)
+    tag = 0x8000000000000004
+    offers = ((0, 0, 25), (1, 0, 60), (1, 119, 60), (1, 120, 60), (1, 201, 100),
+              (1, 0xffffffff, 0x7fffffff))
+    entry, _ = ranges['source_dispatch']
+    for origin, destination in ((0, 0x145fb719e), (1, 0x145fb71cb)):
+        cpu.reset('offer_source', [ranges['source_dispatch']], [destination])
+        write('RDX', origin)
+        write('R15', cpu.app)
+        assert cpu.run(entry) == destination
+        if origin == 1:
+            assert read('RDX') == cpu.app and read('XMM2') == 0
+
+    for origin, price, amount in offers:
+        role = 'cache_fallback' if origin else 'level_fallback'
+        entry, end = ranges[role]
+        cpu.reset(role, [ranges[role]], [end - 5])
+        write('RAX', price)
+        write('R13' if origin else 'R15', cpu.app)
+        assert cpu.run(entry) == end - 5
+        assert read('RDX') == cpu.app and read('R9') == (2 if origin else 0)
+        assert cpu.get(read('R8'), '<QI') == (tag, amount)
+
+        # Start from the original card writer after the title and allocation.
+        row = cpu.mem + 0x4000
+        entry, end = ranges['gold_row']
+        cpu.reset('gold_row', [ranges['gold_row']], [end])
+        cpu.put(cpu.bp + 0xd0, '<I', amount)
+        write('R13', row)
+        assert cpu.run(entry) == end
+        assert cpu.get(row + 0x78, '<QI') == (tag, amount)
+
+        entry, end = ranges['row_admission']
+        cpu.reset('choice_admission', [ranges['row_admission']], [end])
+        cpu.put(cpu.app + 0x10e7, '<B', origin)
+        cpu.put(cpu.app + 0x10e9, '<B', 2)
+        cpu.put(cpu.app + 0x860, '<QQ', row, 1)
+        cpu.put(row + 0x78, '<QI', tag, amount)
+        write('RCX', cpu.app)
+        assert cpu.run(entry) == end
+        assert cpu.get(cpu.bp + 0x220, '<QI') == (tag, amount)
+
+        # Resume after the unrelated card-string copies, using the same payload.
+        gold_call = ranges['gold_call'][0] + 9
+        cpu.context['ranges'] = [ranges['selected_payload'], ranges['gold_call']]
+        cpu.context['stops'] = {gold_call}
+        assert cpu.run(ranges['selected_payload'][0]) == gold_call
+        assert read('RCX') == cpu.app and read('RDX') == amount
+        assert cpu.raw(gold_call, 5)[0] == 0xe8
+        assert gold_call + 5 + struct.unpack('<i', cpu.raw(gold_call + 1, 4))[0] == 0x145f87c00
+
+    gameplay = ROOT / 'crates/azeroth-survivors-re/src/gameplay'
+    level = (gameplay / 'mechanics.rs').read_text().split('pub fn choose(', 1)[1].split('pub fn tick(', 1)[0]
+    cache = (gameplay / 'mechanics/treasure.rs').read_text().split('fn choose_cache_reward(', 1)[1]
+    cache = cache.split('fn complete_treasure_choice(', 1)[0]
+    shared = (gameplay / 'mechanics/coop.rs').read_text().split('fn credit_pickup_gold(', 1)[1]
+    assert level.index('credit_pickup_gold(choice.gold)') < level.index('self.complete_choice()')
+    assert cache.index('credit_pickup_gold(amount)') < cache.index('self.complete_treasure_choice()')
+    assert 'self.coop.shared_gold.push((self.coop.active_slot, raw))' in shared.split('fn credit_scaled_gold', 1)[0]
+    print(f'PASS: {len(offers)} current native gold payload and dispatch cases, both live choice credit routes')
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--diagnostic-consumers', action='store_true',
-                        help='Verify the installed 0.141.0 diagnostic callers and payload boundaries')
-    if parser.parse_args().diagnostic_consumers:
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--diagnostic-consumers', action='store_true',
+                      help='Verify the installed 0.141.0 diagnostic callers and payload boundaries')
+    mode.add_argument('--choice-gold', action='store_true',
+                      help='Replay the installed 0.141.0 gold-card producer and credit route')
+    args = parser.parse_args()
+    if args.diagnostic_consumers:
         check_diagnostic_consumers()
+    elif args.choice_gold:
+        check_choice_gold()
     else:
         check()

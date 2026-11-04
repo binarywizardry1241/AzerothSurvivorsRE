@@ -131,9 +131,7 @@ impl Mechanics {
                 });
             }
             TreasureChoice::Gold { amount, .. } => {
-                let amount = (amount as f32 * self.stats.gold_multiplier).round() as u32;
-                self.gold = self.gold.wrapping_add(amount);
-                self.gold_earned = self.gold_earned.wrapping_add(amount);
+                self.credit_pickup_gold(amount);
             }
         }
         self.refresh_effects();

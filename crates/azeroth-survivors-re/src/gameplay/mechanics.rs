@@ -997,11 +997,7 @@ impl Mechanics {
             return false;
         };
         if choice.gold != 0 {
-            // Native1454e47b5 shares the selected gold reward transaction: multiply, roundf,
-            // and wrap both the carried purse and this run's earned-gold counter.
-            let amount = (choice.gold as f32 * self.stats.gold_multiplier).round() as u32;
-            self.gold = self.gold.wrapping_add(amount);
-            self.gold_earned = self.gold_earned.wrapping_add(amount);
+            self.credit_pickup_gold(choice.gold);
         } else if !choice.upgrades.is_empty() {
             let Some(instance) = self
                 .abilities
