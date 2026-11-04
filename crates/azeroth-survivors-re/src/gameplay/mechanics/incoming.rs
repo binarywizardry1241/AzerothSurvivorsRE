@@ -151,8 +151,8 @@ impl Mechanics {
         } else {
             raw
         };
-        // 0.121.0 145bcdd7b..145bcdde8 scales the original incoming amount
-        // before immunity/armor/absorption and retains it for reactive effects.
+        // 0.141.0 145f6d3cb..43f scales incoming damage in cooperative mode
+        // before immunity, armor and absorption and retains it for reactive effects.
         let raw = raw * self.party_scaling().map_or(1.0, |scaling| scaling.incoming_damage);
         let health_before = self.execution.vitals.health;
         // Current145bcde50..145bce155: five live shared actors within inclusive
@@ -409,6 +409,7 @@ impl Mechanics {
                 .map(|instance| (instance.definition, instance.rank))
                 .collect(),
             meter_racial: self.racial.as_ref().map(|instance| instance.definition),
+            meter_spells: self.recap_spells.as_deref(),
             aura_provenance: &self.effect_state.display_provenance,
             rescue_ready_at: self.effect_state.incoming.lethal_talent_ready_at,
             soul_link_absorb: &mut self.effect_state.incoming.soul_link_absorb,

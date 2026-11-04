@@ -1,6 +1,6 @@
-//! 0.127.0 party-count arithmetic. Live heroes select the extra-player term;
-//! the retained other-hero collection separately selects the party reduction.
-//! See docs/analysis/coop-scaling-0.127.0.md.
+//! Cooperative scaling after mode admission. Live heroes select the
+//! extra-player term. Retained other heroes select the health reduction,
+//! while 0.141.0 incoming damage always applies the cooperative reduction.
 
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct PartyScaling {
@@ -13,11 +13,14 @@ impl PartyScaling {
     pub fn new(live_heroes: usize, zone_index: usize, has_other_heroes: bool) -> Self {
         let zone = if zone_index < 3 { 0.7 } else { 1.0 };
         let extra = (live_heroes.max(1) - 1) as f32 * zone;
-        let party = if has_other_heroes { 0.8 } else { 1.0 };
+        let health_reduction = if has_other_heroes { 0.8 } else { 1.0 };
         Self {
-            health: [(extra * 0.72 + 1.0) * party, (extra * 1.04 + 1.0) * party],
+            health: [
+                (extra * 0.72 + 1.0) * health_reduction,
+                (extra * 1.04 + 1.0) * health_reduction,
+            ],
             density: extra * 0.312 + 1.0,
-            incoming_damage: (extra * 0.064 + 1.0) * party,
+            incoming_damage: (extra * 0.064 + 1.0) * 0.8,
         }
     }
 
@@ -30,10 +33,10 @@ mod tests {
     use super::*;
 
     #[test]
-    fn party_presence_is_independent_of_the_live_hero_count() {
-        let solo = PartyScaling::new(1, 3, false);
-        assert_eq!(solo.health, [1.0; 2]);
-        assert_eq!(solo.incoming_damage, 1.0);
+    fn only_health_reduction_depends_on_retained_hero_rows() {
+        let empty_rows = PartyScaling::new(1, 3, false);
+        assert_eq!(empty_rows.health, [1.0; 2]);
+        assert_eq!(empty_rows.incoming_damage, 0.8);
         let downed_party = PartyScaling::new(1, 3, true);
         assert_eq!(downed_party.health, [0.8; 2]);
         assert_eq!(downed_party.incoming_damage, 0.8);

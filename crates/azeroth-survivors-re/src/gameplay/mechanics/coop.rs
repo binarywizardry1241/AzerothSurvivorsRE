@@ -485,37 +485,39 @@ mod tests {
     }
 
     #[test]
-    fn shared_actor_melee_targets_remote_health_and_real_guid() {
-        let mut game = pair();
-        let mut terrain = TerrainFixture;
-        let near: Position = game.zone.center.into();
-        let far = Position {
-            x: near.x + 50.,
-            ..near
-        };
-        game.party_input(
-            0,
-            PartyInput {
-                position: far,
-                facing: 0.,
-                velocity: [0.; 2],
-            },
-        );
-        fixture_enemies(&mut game, &[1.], &mut terrain);
-        game.actors[0].actor.damage = 10.;
-        game.actors[0].actor.attack_delay = 0.;
-        game.clock = 1.;
-        game.capture_party(false);
-        game.refresh_party_targets();
-        game.tick_actor_frame(0.1, far, 0., &mut terrain);
-        assert_eq!(game.health(), 100.);
-        assert_eq!(game.with_party_hero(1, |remote| remote.health()), Some(90.));
-        assert!(game.take_party_events().iter().any(|(slot, guid, rows)| {
-            (*slot, *guid) == (1, 200)
-                && rows
-                    .iter()
-                    .any(|row| matches!(row, RunEvent::Melee { target: 200, .. }))
-        }));
+    fn shared_actor_melee_scales_both_recipients_and_targets_their_real_guids() {
+        for recipient in [0, 1] {
+            let mut game = pair();
+            let mut terrain = TerrainFixture;
+            let near: Position = game.zone.center.into();
+            let far = Position { x: near.x + 50., ..near };
+            game.party_input(1 - recipient, PartyInput {
+                position: far, facing: 0., velocity: [0.; 2],
+            });
+            fixture_enemies(&mut game, &[1.], &mut terrain);
+            game.actors[0].actor.damage = 10.;
+            game.actors[0].actor.attack_delay = 0.;
+            game.clock = 1.;
+            game.refresh_party_live_heroes();
+            game.refresh_party_targets();
+            let host = if recipient == 0 { near } else { far };
+            game.tick_actor_frame(0.1, host, 0., &mut terrain);
+
+            let health = game.with_party_hero(recipient, |hero| hero.health()).unwrap();
+            assert!((health - (100. - 10. * 0.83584)).abs() < 0.0001);
+            assert_eq!(game.with_party_hero(1 - recipient, |hero| hero.health()), Some(100.));
+            let target = game.party_guid(recipient).unwrap();
+            let published = if recipient == 0 {
+                std::mem::take(&mut game.events)
+            } else {
+                game.take_party_events().into_iter()
+                    .find(|(slot, guid, _)| (*slot, *guid) == (recipient, target))
+                    .unwrap().2
+            };
+            assert!(published.iter().any(|row| matches!(row, RunEvent::Melee {
+                target: guid, ..
+            } if *guid == target)));
+        }
     }
 
     #[test]

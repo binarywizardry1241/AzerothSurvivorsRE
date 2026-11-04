@@ -34476,6 +34476,37 @@
       ]
     },
     {
+      "claim_id": "changelog:0.132.0:6bf158aac9cce02f",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "rationale": "Host and swapped remote actor ticks reach the same damage owner with shared cooperative mode and live count. The incoming lane now uses the recovered 0.8 reduction for either recipient. 195 exact arithmetic cases pass. Compilation, two-client combat and original/rebuilt parity remain open.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop/scaling.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/coop-incoming-0.141.0.md",
+        "docs/analysis/evidence/0.141.0/coop-incoming/manifest.json"
+      ],
+      "systems": [
+        "custom-game-game-party"
+      ],
+      "gap_ids": [
+        239
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/coop/scaling.rs": "730bd5a1cbfd81ad9c3e19d63d98a25a0955a740add0d67550baf9b8a8e58e35",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs": "8276afa57dd716d958671117c5d5820886df7e6317307062678f5152ee45e97b",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "2e3bc5e6c60d4699aff909d34521a29d6c8f3af3c9a6818eaa442216a1292e62",
+        "docs/analysis/coop-incoming-0.141.0.md": "9cde86a02c445d74aa8140a3f3030ce873799b8e26639562812d1fa3054f07b4",
+        "docs/analysis/evidence/0.141.0/coop-incoming/manifest.json": "d9b9b5fe34566628eadcfecad399ba4e1984762495389ea35c0f054b3a1531c5"
+      }
+    },
+    {
       "claim_id": "changelog:0.141.0:6ea2cb1d0b80a4b9",
       "gap_ids": [
         319

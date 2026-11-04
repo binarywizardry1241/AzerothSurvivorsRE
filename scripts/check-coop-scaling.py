@@ -6,11 +6,12 @@ import hashlib
 import json
 import struct
 
-from coverage_common import ROOT, latest_target, target_bytes
+from coverage_common import ROOT, installed_identity, latest_target, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
 MANIFEST = ROOT / "docs/analysis/evidence/0.127.0/coop-scaling/manifest.json"
+INCOMING_MANIFEST = ROOT / "docs/analysis/evidence/0.141.0/coop-incoming/manifest.json"
 
 
 def sha(raw):
@@ -25,9 +26,10 @@ def bits(value):
     return struct.unpack("<I", struct.pack("<f", value))[0]
 
 
-def verify(proof):
+def verify(proof, selected=None):
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
-    selected = latest_target(verify=True)
+    if selected is None:
+        selected = latest_target(verify=True)
     assert proof["target"] == {k: selected[k] for k in ("version", "path", "sha256", "size_bytes")}
     image = target_bytes(selected)
     pe = load_script("party_scaling_pe", ROOT / "scripts/inventory-executable.py").PE(image)
@@ -181,10 +183,8 @@ def replay(proof):
                       "Population-cap CRT round input checked; no Windows CRT execution."]}
 
 
-def replay_current(proof):
-    """Execute current original SSE factors with synthetic hero/party state."""
+def map_replay_ranges(proof):
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64
-    import unicorn.x86_const as reg
     machine = Uc(UC_ARCH_X86, UC_MODE_64)
     mapped = set()
     rows = {row["role"]: row for row in proof["native_ranges"] + proof["native_data"]}
@@ -195,6 +195,13 @@ def replay_current(proof):
                 machine.mem_map(page, 4096)
                 mapped.add(page)
         machine.mem_write(address, bytes.fromhex(row["bytes_hex"]))
+    return machine, rows
+
+
+def replay_current(proof):
+    """Execute the 0.127.0 original SSE factors with synthetic hero/party state."""
+    import unicorn.x86_const as reg
+    machine, rows = map_replay_ranges(proof)
     game = 0x22000000
     machine.mem_map(game, 0x2000)
 
@@ -239,6 +246,40 @@ def replay_current(proof):
             "Live-cap round input checked without executing the Windows CRT."]}
 
 
+def replay_incoming(proof):
+    from unicorn import UC_HOOK_CODE
+    import unicorn.x86_const as reg
+    machine, rows = map_replay_ranges(proof)
+    row = rows["cooperative-incoming-damage"]
+    start = int(row["virtual_address"], 16)
+    zone_call = int(proof["zone_lookup_call"], 16)
+    game = 0x22000000
+    machine.mem_map(game, 0x2000)
+
+    def supply_zone(machine, address, size, zone):
+        machine.reg_write(reg.UC_X86_REG_RAX, zone[0])
+        machine.reg_write(reg.UC_X86_REG_RIP, address + size)
+
+    zone = [0]
+    machine.hook_add(UC_HOOK_CODE, supply_zone, zone, zone_call, zone_call)
+    cases = 0
+    for index in range(13):
+        zone[0] = index
+        for count in range(1, 6):
+            extra = f32((count - 1) * f32(0.7 if index < 3 else 1.0))
+            factor = f32(f32(f32(extra * f32(0.064)) + 1.0) * f32(0.8))
+            for mode in (0, 1, 2):
+                machine.reg_write(reg.UC_X86_REG_RBX, game)
+                machine.mem_write(game + 0xfe8, struct.pack("<Q", count))
+                machine.mem_write(game + 0x10e3, bytes([mode]))
+                machine.reg_write(reg.UC_X86_REG_XMM7, bits(1.2345))
+                machine.emu_start(start, start + row["byte_count"], count=100)
+                expected = f32(f32(1.2345) * (factor if mode == 1 else 1.0))
+                assert machine.reg_read(reg.UC_X86_REG_XMM7) & 0xffffffff == bits(expected)
+                cases += 1
+    return cases
+
+
 def source_checks(current=False):
     base = ROOT / "crates/azeroth-survivors-re/src"
     scaling = (base / "coop/scaling.rs").read_text()
@@ -253,9 +294,10 @@ def source_checks(current=False):
         assert "let has_other_heroes = !self.coop.remotes.is_empty() || self.coop.active_slot != 0;" in coop
         assert "fn party_scaling_survives_the_single_remote_swap_and_departure()" in coop
         assert "if has_other_heroes { 0.8 } else { 1.0 }" in scaling
-        assert "(extra * 0.064 + 1.0) * party" in scaling
-        assert "(extra * 0.72 + 1.0) * party" in scaling
-        assert "(extra * 1.04 + 1.0) * party" in scaling
+        assert "(extra * 0.064 + 1.0) * 0.8" in scaling
+        assert "(extra * 0.72 + 1.0) * health_reduction" in scaling
+        assert "(extra * 1.04 + 1.0) * health_reduction" in scaling
+        assert "if !self.has_party() {\n            return None;\n        }" in coop
     assert "scaling.health" in coop and "scaling.reward()" in coop
     incoming = (base / "gameplay/mechanics/incoming.rs").read_text()
     assert incoming.index("scaling.incoming_damage") < incoming.index("native::apply_damage")
@@ -275,7 +317,15 @@ def source_checks(current=False):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--incoming", action="store_true", help="check the 0.141.0 incoming damage lane")
     args = parser.parse_args()
+    if args.incoming:
+        if args.write:
+            parser.error("--incoming reads the retained evidence without writing output")
+        proof = json.loads(INCOMING_MANIFEST.read_text())
+        print(json.dumps({"target": proof["target"], "decoded_instructions": verify(proof, installed_identity()),
+                          "incoming_damage_cases": replay_incoming(proof), **source_checks(current=True)}))
+        return
     proof = json.loads(MANIFEST.read_text())
     current = proof["target"]["version"] == "0.127.0"
     result = {"target": proof["target"], "decoded_instructions": verify(proof),
