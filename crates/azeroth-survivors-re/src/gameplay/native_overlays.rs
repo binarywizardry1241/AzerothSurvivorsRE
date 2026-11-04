@@ -42,6 +42,7 @@ pub struct Card {
     pub kind: CardKind,
     pub name: String,
     pub title: String,
+    pub icon_key: String,
     pub icon: Option<Handle<Image>>,
     pub rarity: usize,
     pub text: String,
@@ -57,6 +58,7 @@ pub struct Card {
 #[derive(Clone, Debug)]
 pub struct ReplacementItem {
     pub name: String,
+    pub icon_key: String,
     pub icon: Option<Handle<Image>>,
     pub rarity: usize,
     pub rank: u32,
@@ -127,11 +129,13 @@ impl Card {
             "gold" => CardKind::Gold,
             _ => CardKind::Other,
         };
+        let icon_key = string("icon");
         Self {
             kind,
             name: string("name"),
             title: string("title"),
-            icon: resolve_icon(&string("icon")),
+            icon: resolve_icon(&icon_key),
+            icon_key,
             rarity: value
                 .get("rarity")
                 .and_then(serde_json::Value::as_u64)
@@ -155,6 +159,42 @@ impl Card {
                 .unwrap_or(false),
             replacement: None,
         }
+    }
+
+    /// 0.141.0 Cards parser at 0x1401b03f0 projects the wire fields by kind.
+    fn body(&self) -> (&str, &[String]) {
+        match self.kind {
+            CardKind::NewSpell => match self.lines.split_first() {
+                Some((plain, lines)) => (plain, lines),
+                None => (&self.text, &[]),
+            },
+            CardKind::Gold => ("", std::slice::from_ref(&self.text)),
+            CardKind::UpgradeSpell | CardKind::Ring | CardKind::Trinket | CardKind::Amulet => {
+                ("", &self.lines)
+            }
+            CardKind::Other => (&self.text, &[]),
+        }
+    }
+}
+
+#[cfg(test)]
+mod card_body_tests {
+    use super::*;
+
+    #[test]
+    fn variant_routes_wire_text_to_one_render_lane() {
+        let parse = |kind| {
+            Card::from_payload(
+                &serde_json::json!({"kind": kind, "text": "summary", "lines": "effect\nbonus"}),
+                |_| None,
+            )
+        };
+        assert_eq!(parse("new").body(), ("effect", &["bonus".to_owned()][..]));
+        assert_eq!(parse("gold").body(), ("", &["summary".to_owned()][..]));
+        assert_eq!(
+            parse("ring").body(),
+            ("", &["effect".to_owned(), "bonus".to_owned()][..])
+        );
     }
 }
 
@@ -847,10 +887,11 @@ fn card_tile(
         .with_children(|ui| {
             // Native content keeps the plain 14px description and the 15px
             // highlighted upgrade lines as independent lanes.
-            if !card.text.is_empty() {
-                text(ui, art, &card.text, 14., CARD_BODY, false, Node::default());
+            let (plain, lines) = card.body();
+            if !plain.is_empty() {
+                text(ui, art, plain, 14., CARD_BODY, false, Node::default());
             }
-            for line in &card.lines {
+            for line in lines {
                 number_text(ui, art, line);
             }
         });
@@ -921,11 +962,14 @@ fn card_annotations(card: &Card, locale: &Localization) -> (String, String, Stri
                 .map(|n| fmt("Takes a spell slot · {n}/{max}", n).replace("{max}", "6"))
                 .unwrap_or_default(),
         ),
-        CardKind::UpgradeSpell => (
-            fmt("RANK {n}", card.rank.unwrap_or(1)),
-            String::new(),
-            locale.label("Improves a spell you know").into(),
-        ),
+        CardKind::UpgradeSpell => {
+            let rank = card.rank.unwrap_or(0);
+            (
+                fmt("RANK {n}", rank),
+                format!("{}  »  {rank}", fmt("Rank {n}", rank.saturating_sub(1))),
+                locale.label("Improves a spell you know").into(),
+            )
+        }
         CardKind::Gold => (
             locale.label("GOLD").into(),
             String::new(),
@@ -962,7 +1006,7 @@ fn card_annotations(card: &Card, locale: &Localization) -> (String, String, Stri
                 } else {
                     locale.label(if ring { "RING" } else { "TRINKET" }).into()
                 },
-                String::new(),
+                locale.label(if ring { "Ring" } else { "Trinket" }).into(),
                 footer,
             )
         }
@@ -986,7 +1030,7 @@ fn card_annotations(card: &Card, locale: &Localization) -> (String, String, Stri
                 } else {
                     locale.label("AMULET").into()
                 },
-                String::new(),
+                locale.label("Amulet").into(),
                 footer,
             )
         }

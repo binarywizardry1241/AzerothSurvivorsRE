@@ -329,8 +329,9 @@ def check_source():
     assert 'width: Val::Px(252.)' in frame and 'min_height: Val::Px(388.)' in frame
     assert not any(line.strip().startswith('height:') for line in frame.splitlines())
     assert re.search(r'21\.,\s*text_color,\s*false,\s*Node', re.sub(r'//[^\n]*', '', tile))
-    assert 'text(ui, art, &card.text, 14., CARD_BODY, false' in tile
-    assert 'if card.lines.is_empty()' not in tile and 'for line in &card.lines' in tile
+    assert 'let (plain, lines) = card.body()' in tile
+    assert 'text(ui, art, plain, 14., CARD_BODY, false' in tile
+    assert 'for line in lines' in tile and 'number_text(ui, art, line)' in tile
     assert 'margin: UiRect::top(Val::Auto)' in tile
     assert 'padding: UiRect::axes(Val::Px(10.), Val::Px(9.))' in tile
     rich = source.split('fn number_text(', 1)[1].split('pub fn numeric_spans(', 1)[0]

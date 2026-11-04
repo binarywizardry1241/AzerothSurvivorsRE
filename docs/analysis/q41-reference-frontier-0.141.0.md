@@ -132,8 +132,8 @@ semantics to the enclosing runs.
 | `0x145f4a110` | 307 | [Attack-script dispatcher](scholomance-barov-0.141.0.md); connect the remaining guarded branches to their script and actor state. |
 | `0x145f51870` | 850 | [Ability payload](status-weakening-0.139.2.md#ground-periodic-and-self-aura-payloads-in-01410) and [totem replacement](unknown-recovery-0.141.0.md#q41-d01-immediate-consumers); follow unresolved descriptor inputs and dispatch. |
 | `0x145f8e670` | 120 | The 4, 40 and 47 instructions at `0x145f8ebbd`, `0x145f8efa3` and `0x145f919cc` reach the existing [kill-reset selector, admission and deadline clamp](kill-selector-0.139.2.md#kill-reset-and-prepared-selectors-in-01410). The 29 instructions at `0x145f92491` reach the existing [Darkmantle displacement and replacement](q41-diagnostic-consumers-0.141.0.md#returning-removals). |
-| `0x145fbbf50` | 266 | Spell and treasure card payload; the gold title, amount and icon have [rebuilt consumers](../../crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs). Remaining variant producers and exits retain exact runs. |
-| `0x145fc1500` | 899 | Choice acceptance and selected row application, described below. |
+| `0x145fbbf50` | 266 | The five admitted [spell and treasure card variants](#choice-card-variants) now reach the shared rebuilt payload and presentation. |
+| `0x145fc1500` | 899 | Choice acceptance and selected row application, followed by [shared completion](#choice-completion-and-republish). |
 
 The largest remaining cluster, 899 instructions in `0x145fc1500`, belongs
 to the successful choice consumer. The guard at
@@ -151,8 +151,8 @@ The packed formatter calls at `0x145fc2372` and `0x145fc2644` sit inside
 the chooser; their diagnostic adjacency does not assign this extent to the
 detailed meter. The [diagnostic consumer trace](q41-diagnostic-consumers-0.141.0.md)
 separately resolves these operands as equipment display names and follows
-the card title to its live producer. Remaining card variants, skip and
-republish behavior are outside this admission proof. The suffix at
+the card title to its live producer. The variant and republish proofs below
+cover their separate boundaries. The suffix at
 `0x145fc32f9..0x145fc330c` loads the selected source byte and calls completion
 at `0x145fb8d80`. The verified completion prefix saturating-decrements the
 level, cache or guardian count at `+0x103c`, `+0x1040` or `+0x1044`, then
@@ -249,6 +249,37 @@ at the transition and leaves terrain sampling to the
 The projector uses the resident primary/indoor height path and preserves the
 captured height on a miss. This shifts height sampling to the client event
 drain. Verify endpoint heights and rendered stop/resume timing in the client.
+
+### Choice card variants
+
+The [card variant proof](evidence/0.141.0/choice-card-variants.json) binds
+the five constructor cells at `0x147af39f4` in `0x145fbbf50`. The
+learned-spell path applies the rarity bonus and carries its text in both
+the plain summary and a separate highlighted line. Ordinary upgrades carry
+their ordered effect lines and the subtitle's previous and next ranks.
+Jewelry compares the current and awarded totals. Soulstone instead shows the
+awarded increment after clamping it to the player's remaining life slots.
+Same-key amulets retain their equipped payload and rarity and compare the
+current and next pick count. The comparison owner pairs equally shaped numeric
+spans and marks changes with `»`.
+
+The writer at `0x145fb9ce0` publishes the original icon keys, rank,
+new-jewelry worn count and replaced-amulet fields. The parser at
+`0x1401b03f0` displays the first learned-spell line as plain text and
+highlights subsequent lines. Gold highlights the amount from `text`.
+Upgrade, jewelry and amulet cards highlight the `lines` field.
+The [shared card producer](../../crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs)
+and [renderer](../../crates/azeroth-survivors-re/src/gameplay/native_overlays.rs)
+now use those fields in solo and guest views. The co-op publisher carries
+the original icon key independently of local image loading.
+
+`scripts/check-coop-overlay.py --choice-variants` verified the current
+query receipt, 5,036 decoded instructions, 68 instruction anchors, eight
+data anchors and 22 native dispatch and preview cases. The card layout
+source guards also passed. The producer query exposes the indirect switch
+boundary. The original PE table and instruction spans supply the branch
+proof. Full description leaf values and locale resource parity retain
+their own evidence boundaries. Arbitrary payload aliases remain under #41.
 
 ### Gold credit for selected offers
 

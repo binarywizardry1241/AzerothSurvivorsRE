@@ -238,6 +238,71 @@ def check_choice_gold():
     print(f'PASS: {len(offers)} current native gold payload and dispatch cases, both live choice credit routes')
 
 
+def check_choice_variants():
+    from capstone import Cs, CS_ARCH_X86, CS_MODE_64
+    from discovery_native_subject import verify_native_query_subject
+    from native_terminal import NativeReplay
+    from script_sources import load_script
+
+    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/choice-card-variants.json').read_text())
+    target = latest_target(verify=True)
+    assert all(target[key] == value for key, value in proof['target'].items())
+    image = target_bytes(target)
+    pe = load_script('choice_variants_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+    cpu = NativeReplay(image, pe)
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    ranges, instructions = {}, {}
+    for role, (start, end, digest) in proof['ranges'].items():
+        start, end = int(start, 16), int(end, 16)
+        data = cpu.raw(start, end - start)
+        assert hashlib.sha256(data).hexdigest() == digest, role
+        ranges[role] = start, end
+        decoded = list(decoder.disasm(data, start))
+        assert sum(insn.size for insn in decoded) == len(data), role
+        instructions.update((hex(insn.address), f'{insn.mnemonic} {insn.op_str}') for insn in decoded)
+    for address, expected in proof['instruction_anchors'].items():
+        assert instructions[address] == expected, address
+    for address, expected in proof['data_anchors'].items():
+        expected = bytes.fromhex(expected)
+        assert cpu.raw(int(address, 16), len(expected)) == expected, address
+
+    query = proof['query']
+    native = json.loads((ROOT / query['result']['path']).read_text())['structuredContent']
+    verify_native_query_subject(ROOT, native, query, target, image=image, pe=pe)
+    base = int(proof['dispatch_table'], 16)
+    targets = [int(address, 16) for address in proof['dispatch_targets']]
+    assert [base + cell for cell in struct.unpack('<5i', cpu.raw(base, 20))] == targets
+    base = int(proof['rank_suffix_table'], 16)
+    for index, suffix in enumerate(proof['rank_suffixes']):
+        pointer, length = struct.unpack('<QQ', cpu.raw(base + index * 16, 16))
+        assert length == len(suffix) and (length == 0 or cpu.raw(pointer, length).decode() == suffix)
+
+    regs = cpu.registers
+    cases = 0
+    for tag, index in ((0, 1), (2, 1), *((2**63 + n, n) for n in (0, 2, 3, 4))):
+        entry, end = ranges['constructor_dispatch']
+        cpu.reset('choice_variant', [(entry, end)], targets)
+        cpu.put(cpu.app, '<Q', tag)
+        cpu.machine.reg_write(regs.UC_X86_REG_R8, cpu.app)
+        assert cpu.run(entry) == targets[index]
+        cases += 1
+
+    for tag, lives, offer in itertools.product((0x10, 0x11), (0, 1, 2, 3), (1.0, 2.0)):
+        entry, end = ranges['soulstone_preview']
+        cpu.reset('soulstone_preview', [(entry, end)], [end])
+        cpu.put(cpu.mem + 0x44, '<B', tag)
+        cpu.put(cpu.app + 0x6b8, '<I', lives)
+        cpu.machine.reg_write(regs.UC_X86_REG_RDI, cpu.mem)
+        cpu.machine.reg_write(regs.UC_X86_REG_R14, cpu.app)
+        cpu.scalar(regs.UC_X86_REG_XMM6, offer)
+        assert cpu.run(entry) == end
+        actual = struct.unpack('<f', struct.pack('<I', cpu.machine.reg_read(regs.UC_X86_REG_XMM6) & 0xffffffff))[0]
+        assert actual == (min(offer, max(2 - lives, 0)) if tag == 0x10 else offer)
+        cases += 1
+    print(f'PASS: {cases} original dispatch/preview cases, {len(instructions)} decoded instructions, '
+          f'{len(proof["instruction_anchors"])} instruction and {len(proof["data_anchors"])} data anchors')
+
+
 def check_choice_completion():
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from native_terminal import NativeReplay
@@ -378,6 +443,8 @@ if __name__ == '__main__':
                       help='Replay the installed 0.141.0 gold-card producer and credit route')
     mode.add_argument('--choice-completion', action='store_true',
                       help='Replay installed 0.141.0 choice completion and republish branches')
+    mode.add_argument('--choice-variants', action='store_true',
+                      help='Check installed 0.141.0 card variants and Soulstone preview')
     args = parser.parse_args()
     if args.diagnostic_consumers:
         check_diagnostic_consumers()
@@ -385,5 +452,7 @@ if __name__ == '__main__':
         check_choice_gold()
     elif args.choice_completion:
         check_choice_completion()
+    elif args.choice_variants:
+        check_choice_variants()
     else:
         check()

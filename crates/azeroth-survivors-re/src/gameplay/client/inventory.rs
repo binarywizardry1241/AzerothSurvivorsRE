@@ -450,8 +450,7 @@ fn empty(slot: u8) -> Item {
 fn ranked(name: &str, picks: u32) -> String {
     match picks {
         0 | 1 => name.to_owned(),
-        2..=10 => format!("{name} {}", ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"][picks as usize]),
-        _ => format!("{name} X+"),
+        _ => format!("{name} {}", azeroth_survivors_re::loot_rewards::item_rank_suffix(picks)),
     }
 }
 

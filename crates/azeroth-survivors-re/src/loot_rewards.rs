@@ -19,6 +19,11 @@ use crate::treasure_chests::NativeRng;
 pub const TARGET_VERSION: &str = "0.100.1";
 pub const TARGET_SHA256: &str = "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b";
 
+pub fn item_rank_suffix(rank: u32) -> &'static str {
+    const SUFFIXES: [&str; 11] = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+    SUFFIXES.get(rank as usize).copied().unwrap_or("X+")
+}
+
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct JewelryDefinition {
     pub key: &'static str,
@@ -96,6 +101,20 @@ impl JewelryDefinition {
         }
         ((raw * remaining) / self.value_cap()).min(remaining)
     }
+
+    pub fn awarded_increment(
+        &self,
+        rarity: usize,
+        existing: Option<JewelryValue>,
+        remaining_lives: u32,
+    ) -> f32 {
+        let amount = self.increment(rarity, existing);
+        if self.tag == 15 {
+            amount.min(2_u32.saturating_sub(remaining_lives) as f32)
+        } else {
+            amount
+        }
+    }
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -148,10 +167,13 @@ pub fn apply_jewelry(
 ) -> Option<JewelryChange> {
     let definition = JewelryDefinition::by_key(key)?;
     let existing = items.iter().position(|item| item.definition.key == key);
-    let mut added = definition.increment(rarity, existing.map(|index| items[index].value));
+    let added = definition.awarded_increment(
+        rarity,
+        existing.map(|index| items[index].value),
+        *remaining_lives,
+    );
     let mut lives_added = 0;
     if definition.tag == 15 {
-        added = added.min(2_u32.saturating_sub(*remaining_lives) as f32);
         lives_added = added as u32;
         *remaining_lives = remaining_lives.wrapping_add(lives_added);
     }

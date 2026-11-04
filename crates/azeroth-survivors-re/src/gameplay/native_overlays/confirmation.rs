@@ -136,6 +136,7 @@ fn spawn(
                                     preview(row, art, locale, worn, false);
                                     label(row, art, "»", 40., GOLD, false);
                                     preview(row, art, locale, &ReplacementItem { name: card.name.clone(),
+                                        icon_key: card.icon_key.clone(),
                                         icon: card.icon.clone(), rarity: card.rarity,
                                         rank: card.rank.unwrap_or(1).min(u64::from(u32::MAX)) as u32,
                                         lines: card.lines.clone() }, true);

@@ -355,14 +355,14 @@ impl Mechanics {
         &self,
         definition: &'static AbilityDefinition,
         rarity: usize,
-    ) -> RuntimeInstance<'static> {
+    ) -> (RuntimeInstance<'static>, upgrades::LearnedBonus) {
         let mut instance = RuntimeInstance::learned(definition);
         self.effect_state
             .equipped
             .spell_modifiers(definition)
             .apply(&mut instance);
-        upgrades::apply_learned_rarity(&mut instance, rarity);
-        instance
+        let bonus = upgrades::apply_learned_rarity(&mut instance, rarity);
+        (instance, bonus)
     }
 
     /// Native formatter stats+40/+64/+72: area, aura potency, periodic bonus.

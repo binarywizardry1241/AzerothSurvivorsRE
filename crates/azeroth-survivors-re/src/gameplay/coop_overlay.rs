@@ -72,7 +72,7 @@ fn spell_resources(
             .abilities
             .iter()
             .find(|row| row.definition.key == definition.key);
-        let preview = game.preview_spell(definition, 0);
+        let (preview, _) = game.preview_spell(definition, 0);
         let (instance, mode) = learned.map_or((&preview, spell_text::Mode::Unlearned), |row| {
             (row, spell_text::Mode::Learned)
         });
@@ -431,25 +431,8 @@ pub(super) fn receive_choices(state: &mut CoopGame, bytes: &[u8]) -> bool {
     state.pick.receive(bytes)
 }
 
-fn raw_icon(card: &native_overlays::Card, art: &MenuArt) -> String {
-    let Some(handle) = &card.icon else {
-        return String::new();
-    };
-    let key = art
-        .icons
-        .iter()
-        .find_map(|(key, image)| (image == handle).then_some(key.as_str()));
-    match key {
-        Some("native_gold_choice") => "INV_Misc_Coin_02".to_owned(),
-        Some(key) => azeroth_survivors_re::player_abilities::AbilityDefinition::by_key(key)
-            .map_or_else(|| key.to_owned(), |row| row.icon.to_owned()),
-        None => String::new(),
-    }
-}
-
 fn card_payload(
     card: &native_overlays::Card,
-    art: &MenuArt,
     locale: &crate::localization::Localization,
 ) -> Value {
     use native_overlays::CardKind;
@@ -463,15 +446,12 @@ fn card_payload(
         CardKind::Other => "",
     };
     let mut value = json!({"title":card.title,"name":card.name,"lines":card.lines.join("\n"),
-        "text":card.text,"icon":raw_icon(card,art),"rarity":card.rarity,
+        "text":card.text,"icon":card.icon_key,"rarity":card.rarity,
         "rarityName":locale.label(&format!("rarity.{}",card.rarity)),"kind":kind});
     if let Some(rank) = card.rank {
         value["rank"] = json!(rank);
     }
-    if matches!(
-        card.kind,
-        CardKind::Ring | CardKind::Trinket | CardKind::Amulet
-    ) {
+    if matches!(card.kind, CardKind::Ring | CardKind::Trinket) && card.rank.is_none() {
         value["worn"] = json!(card.worn);
     }
     if card.banish {
@@ -480,18 +460,7 @@ fn card_payload(
     if let Some(replacement) = &card.replacement {
         value["replaces"] = json!(replacement.name);
         value["replacesText"] = json!(replacement.lines.join("\n"));
-        let icon = art
-            .icons
-            .iter()
-            .find_map(|(key, image)| {
-                replacement
-                    .icon
-                    .as_ref()
-                    .is_some_and(|handle| handle == image)
-                    .then_some(key.clone())
-            })
-            .unwrap_or_default();
-        value["replacesIcon"] = json!(icon);
+        value["replacesIcon"] = json!(replacement.icon_key);
         value["replacesRarity"] = json!(replacement.rarity);
         value["replacesRank"] = json!(replacement.rank);
     }
@@ -524,21 +493,12 @@ fn choice_payload(
         .enumerate()
         .map(|(index, choice)| {
             let mut card = if let Some(reward) = game.cache_reward(index) {
-                let mut card = native_overlay_payload::for_treasure(reward, game, art, locale);
-                if let Some(definition) =
-                    azeroth_survivors_re::player_abilities::AbilityDefinition::by_key(choice.ability_key)
-                {
-                    card.name = locale
-                        .lookup(&format!("ability.{}.name", definition.key))
-                        .unwrap_or(definition.name)
-                        .to_owned();
-                }
-                card
+                native_overlay_payload::for_treasure(reward, game, art, locale)
             } else {
                 native_overlay_payload::for_choice(choice, game, &context, art, locale)
             };
             card.banish = game.can_banish_choice(index);
-            card_payload(&card, art, locale)
+            card_payload(&card, locale)
         })
         .collect::<Vec<_>>();
     let footer = game.choice_footer();
@@ -739,28 +699,28 @@ fn guest_hud(
         .map(|row| {
             let mut card = native_overlays::Card::from_payload(row, |key| resolve_icon(&art, key));
             card.slot_count = match card.kind {
-                native_overlays::CardKind::NewSpell => state
-                    .hud
-                    .as_ref()
-                    .and_then(|hud| hud["abilities"].as_array())
-                    .map(|rows| (rows.len() as u64 + 1).min(6)),
+                native_overlays::CardKind::NewSpell => Some(
+                    state.hud.as_ref()
+                        .and_then(|hud| hud["abilities"].as_array())
+                        .map_or(1, |rows| (rows.len() as u64 + 1).min(6)),
+                ),
                 native_overlays::CardKind::Ring | native_overlays::CardKind::Trinket
                     if card.rank.is_none() =>
                 {
-                    Some((card.worn + 1).min(2))
+                    Some(card.worn.wrapping_add(1).min(2))
                 }
                 _ => None,
             };
             if let Some(name) = row["replaces"].as_str() {
+                let icon_key = row["replacesIcon"].as_str().unwrap_or_default();
                 card.replacement = Some(native_overlays::ReplacementItem {
                     name: name.to_owned(),
-                    icon: row["replacesIcon"]
-                        .as_str()
-                        .and_then(|key| resolve_icon(&art, key)),
+                    icon_key: icon_key.to_owned(),
+                    icon: resolve_icon(&art, icon_key),
                     rarity: row["replacesRarity"].as_u64().unwrap_or(0).min(4) as usize,
                     rank: row["replacesRank"]
                         .as_u64()
-                        .unwrap_or(0)
+                        .unwrap_or(1)
                         .min(u64::from(u32::MAX)) as u32,
                     lines: row["replacesText"]
                         .as_str()

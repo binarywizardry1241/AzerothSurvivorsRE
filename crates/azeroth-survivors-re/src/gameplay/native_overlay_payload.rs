@@ -3,14 +3,14 @@
 //! This reads a choice and snapshots. It consumes no RNG and mutates no run state.
 use super::{
     mechanics::RunChoice,
-    native_overlays::{Card, CardKind},
+    native_overlays::{Card, CardKind, numeric_spans},
 };
 use crate::{assets::MenuArt, localization::Localization};
 use azeroth_survivors_re::player_abilities::{
     AbilityDefinition, RuntimeInstance, damage,
     upgrades::{self, UpgradeKind},
 };
-use azeroth_survivors_re::loot_rewards::{AmuletItem, amulets};
+use azeroth_survivors_re::loot_rewards::{AmuletItem, amulets, item_rank_suffix};
 
 /// The native Cards parser marks the optional worn-item record, including an
 /// empty name, for confirmation. The local producer creates that record only
@@ -25,7 +25,7 @@ pub fn replaced_amulet<'a>(
     game.worn_amulet().filter(|item| item.key != definition.key)
 }
 
-/// Current1454f0f10 cache payload and its native description owners. The prose
+/// 0.141.0 cache payload at 0x145fbbf50 and its native description owners. The prose
 /// companion retains templates until the active locale renders each branch.
 pub fn for_treasure(
     choice: &super::mechanics::TreasureChoice,
@@ -37,16 +37,7 @@ pub fn for_treasure(
     use azeroth_survivors_re::loot_rewards::{amulets, prose};
     let translate = |key: &str| locale.label(key).to_owned();
     match *choice {
-        TreasureChoice::Gold { amount, rarity } => Card {
-            kind: CardKind::Gold,
-            name: locale.label("A Pouch of Gold").to_owned(),
-            text: locale
-                .label("+{g} gold")
-                .replace("{g}", &amount.to_string()),
-            icon: art.icons.get("native_gold_choice").cloned(),
-            rarity,
-            ..Default::default()
-        },
+        TreasureChoice::Gold { amount, rarity } => gold_card(amount, rarity, art, locale),
         TreasureChoice::Jewelry { definition, rarity } => {
             let existing = game
                 .jewelry()
@@ -57,19 +48,37 @@ pub fn for_treasure(
                 .iter()
                 .filter(|item| item.definition.slot == definition.slot)
                 .count() as u64;
-            let amount = definition.increment(rarity, existing.map(|item| item.value));
+            let amount = definition.awarded_increment(
+                rarity,
+                existing.map(|item| item.value),
+                game.remaining_lives(),
+            );
+            let name = locale
+                .lookup(&format!("jewel.{}", definition.key))
+                .unwrap_or(definition.name);
+            let rank = existing.map(|item| item.value.upgrades.wrapping_add(1));
+            let describe = |amount| prose::jewelry_description(definition, amount).render(&translate);
+            let text = match existing {
+                Some(item) if definition.tag != 15 => {
+                    let before = item.value.value;
+                    reward_text_diff(&describe(before), describe(before + amount))
+                }
+                _ => describe(amount),
+            };
             Card {
                 kind: if definition.slot == 0 {
                     CardKind::Ring
                 } else {
                     CardKind::Trinket
                 },
-                name: locale.lookup(&format!("jewel.{}", definition.key))
-                    .unwrap_or(definition.name).to_owned(),
+                name: name.to_owned(),
+                title: treasure_title(name, rank),
+                icon_key: definition.icon.to_owned(),
                 icon: art.icons.get(definition.icon).cloned(),
                 rarity,
-                text: prose::jewelry_description(definition, amount).render(&translate),
-                rank: existing.map(|item| u64::from(item.value.upgrades.wrapping_add(1))),
+                lines: vec![text.clone()],
+                text,
+                rank: rank.map(u64::from),
                 slot_count: existing.is_none().then_some((worn + 1).min(2)),
                 worn,
                 ..Default::default()
@@ -80,16 +89,27 @@ pub fn for_treasure(
             rarity,
             picks,
         } => {
-            let worn = game.worn_amulet();
-            let same = worn.is_some_and(|item| item.key == definition.key);
-            let next_picks = if same {
-                worn.unwrap().picks.wrapping_add(1)
-            } else {
-                picks
+            let same = game.worn_amulet().filter(|item| item.key == definition.key);
+            let rank = same.map(|item| item.picks.wrapping_add(1));
+            let (shown, shown_rarity) = same.map_or((definition, rarity), |item| {
+                (item.payload, item.rarity)
+            });
+            let describe = |picks| {
+                amulets::description_lines(shown, shown_rarity, picks)
+                    .unwrap_or_default()
+                    .into_iter()
+                    .map(|line| line.render(&translate))
+                    .collect::<Vec<_>>()
             };
-            let lines = amulets::description_lines(definition, rarity, next_picks)
-                .map(|lines| lines.iter().map(|line| line.render(&translate)).collect())
-                .unwrap_or_default();
+            let lines = if let Some(item) = same {
+                describe(item.picks)
+                    .into_iter()
+                    .zip(describe(item.picks.wrapping_add(1)))
+                    .map(|(before, after)| reward_text_diff(&before, after))
+                    .collect()
+            } else {
+                describe(picks)
+            };
             let replacement = replaced_amulet(choice, game).map(|item| {
                 let lines = amulets::description_lines(item.payload, item.rarity, item.picks)
                     .unwrap_or_default()
@@ -98,29 +118,68 @@ pub fn for_treasure(
                     .collect();
                 super::native_overlays::ReplacementItem {
                     name: locale.amulet_name(&item.payload.name, item.payload.ability_key.as_deref()),
+                    icon_key: item.payload.icon.clone(),
                     icon: art.icons.get(&item.payload.icon).cloned(),
                     rarity: item.rarity,
                     lines,
                     rank: item.picks,
                 }
             });
+            let name = locale.amulet_name(&shown.name, shown.ability_key.as_deref());
             Card {
                 kind: CardKind::Amulet,
-                name: locale.amulet_name(&definition.name, definition.ability_key.as_deref()),
-                icon: art.icons.get(&definition.icon).cloned(),
+                title: treasure_title(&name, rank),
+                name,
+                icon_key: shown.icon.clone(),
+                icon: art.icons.get(&shown.icon).cloned(),
                 rarity,
+                text: lines.join(", "),
                 lines,
-                rank: same.then(|| u64::from(worn.unwrap().picks.wrapping_add(1))),
-                worn: if same {
-                    worn.map_or(0, |item| u64::from(item.picks))
-                } else {
-                    0
-                },
+                rank: rank.map(u64::from),
                 replaces: replacement.as_ref().map(|item| item.name.clone()),
                 replacement,
                 ..Default::default()
             }
         }
+    }
+}
+
+fn treasure_title(name: &str, rank: Option<u32>) -> String {
+    rank.map_or_else(|| name.to_owned(), |rank| format!("{name} {}", item_rank_suffix(rank)))
+}
+
+fn reward_text_diff(before: &str, after: String) -> String {
+    let before_spans = numeric_spans(before);
+    let after_spans = numeric_spans(&after);
+    if before_spans.len() != after_spans.len()
+        || before_spans.iter().zip(&after_spans).any(|(before, after)| before.1 != after.1)
+    {
+        return after;
+    }
+    let mut result = String::new();
+    for ((before, _), (after, numeric)) in before_spans.into_iter().zip(after_spans) {
+        if numeric && before != after {
+            result.push_str(&before);
+            result.push_str(" » ");
+        }
+        result.push_str(&after);
+    }
+    result
+}
+
+fn gold_card(amount: u32, rarity: usize, art: &MenuArt, locale: &Localization) -> Card {
+    let name = locale.label("A Pouch of Gold").to_owned();
+    let text = translated(locale, "+{g} gold", "g", amount.to_string());
+    Card {
+        kind: CardKind::Gold,
+        title: name.clone(),
+        name,
+        lines: vec![text.clone()],
+        text,
+        icon_key: "INV_Misc_Coin_02".to_owned(),
+        icon: art.icons.get("native_gold_choice").cloned(),
+        rarity,
+        ..Default::default()
     }
 }
 
@@ -155,6 +214,14 @@ fn translated(locale: &Localization, template: &str, key: &str, value: String) -
         .replace(&format!("{{{key}}}"), &value)
 }
 
+fn power_prose(definition: &AbilityDefinition, magnitude: f32) -> (&'static str, f32) {
+    match (definition.kind, definition.effect.tag) {
+        (9, 6) => ("+{p}% healing", ((1. + magnitude).sqrt() - 1.) * 100.),
+        (9, 7) => ("+{p}% absorb", ((1. + magnitude).sqrt() - 1.) * 100.),
+        _ => ("+{p}% damage", magnitude * 100.),
+    }
+}
+
 /// Native writer preserves selected upgrade order and computes all magnitudes
 /// against the current instance, without applying the preceding display rows.
 pub fn upgrade_lines(
@@ -172,13 +239,7 @@ pub fn upgrade_lines(
                 UpgradeKind::Power if instance.definition.key == "demonic_empowerment" => {
                     ("+{p}% demon damage", magnitude * 100.)
                 }
-                UpgradeKind::Power => {
-                    match (instance.definition.kind, instance.definition.effect.tag) {
-                        (9, 6) => ("+{p}% healing", ((1. + magnitude).sqrt() - 1.) * 100.),
-                        (9, 7) => ("+{p}% absorb", ((1. + magnitude).sqrt() - 1.) * 100.),
-                        _ => ("+{p}% damage", magnitude * 100.),
-                    }
-                }
+                UpgradeKind::Power => power_prose(instance.definition, magnitude),
                 UpgradeKind::Cooldown => {
                     if instance.definition.key == "redemption" {
                         let d = instance.definition;
@@ -210,9 +271,7 @@ pub fn upgrade_lines(
         .collect()
 }
 
-/// Identity/rank/upgrade-line conversion used by the owning gameplay adapter.
-/// The new-spell description producer is attached separately below; old menu-only
-///0.92 tooltips are deliberately not used to fill current run values.
+/// Spell and fallback gold payloads from the same 0.141.0 card constructor.
 pub fn for_choice(
     choice: &RunChoice,
     game: &super::mechanics::Mechanics,
@@ -221,17 +280,7 @@ pub fn for_choice(
     locale: &Localization,
 ) -> Card {
     if choice.gold != 0 {
-        return Card {
-            kind: CardKind::Gold,
-            // Native1454df345/1454e008c; the amount belongs in the body.
-            name: locale.label("A Pouch of Gold").to_owned(),
-            text: locale
-                .label("+{g} gold")
-                .replace("{g}", &choice.gold.to_string()),
-            icon: art.icons.get("native_gold_choice").cloned(),
-            rarity: choice.rarity,
-            ..Default::default()
-        };
+        return gold_card(choice.gold, choice.rarity, art, locale);
     }
     let Some(definition) = AbilityDefinition::by_key(choice.ability_key) else {
         return Card::default();
@@ -241,6 +290,7 @@ pub fn for_choice(
         .unwrap_or(definition.name);
     let mut card = Card {
         name: name.to_owned(),
+        icon_key: definition.icon.to_owned(),
         icon: art.icons.get(choice.ability_key).cloned(),
         rarity: choice.rarity,
         ..Default::default()
@@ -248,8 +298,19 @@ pub fn for_choice(
     if choice.upgrades.is_empty() {
         card.kind = CardKind::NewSpell;
         card.title = locale.label("New: {spell}").replace("{spell}", name);
-        let instance = game.preview_spell(definition, choice.rarity);
+        let (instance, bonus) = game.preview_spell(definition, choice.rarity);
         card.text = description(&instance, context, &context.bonuses, locale).unwrap_or_default();
+        card.lines.push(card.text.clone());
+        let bonus_line = match bonus {
+            upgrades::LearnedBonus::None => None,
+            upgrades::LearnedBonus::Power(value) => Some(power_prose(definition, value)),
+            upgrades::LearnedBonus::Cooldown(value) => Some(("-{p}% cooldown", value * 100.)),
+        };
+        if let Some((template, value)) = bonus_line {
+            let bonus = translated(locale, template, "p", format!("{value:.0}"));
+            card.text.push_str(&format!(" ({bonus})"));
+            card.lines.push(bonus);
+        }
         card.slot_count = Some((game.abilities.len() as u64 + 1).min(6));
     } else if let Some(instance) = game
         .abilities
@@ -264,6 +325,7 @@ pub fn for_choice(
             .replace("{rank}", &rank.to_string())
             .replace("{spell}", name);
         card.lines = upgrade_lines(instance, &choice.upgrades, choice.rarity, context, locale);
+        card.text = card.lines.join(", ");
     }
     card
 }
@@ -576,6 +638,18 @@ fn numeric_value(
 mod native_tests {
     use super::*;
     use serde_json::Value;
+
+    #[test]
+    fn reward_comparison_marks_changed_numbers_only_for_matching_spans() {
+        assert_eq!(
+            reward_text_diff("Gain +3% for 8 sec", "Gain +4% for 8 sec".to_owned()),
+            "Gain +3% » +4% for 8 sec"
+        );
+        assert_eq!(
+            reward_text_diff("More targets at rank 3", "Target upgrades complete.".to_owned()),
+            "Target upgrades complete."
+        );
+    }
 
     fn historical_instance(key: &str, inputs: &Value) -> RuntimeInstance<'static> {
         let definition = if key == "searing_pain" {
