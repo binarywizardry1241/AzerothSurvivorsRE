@@ -1064,8 +1064,9 @@ def migrate_inventory(path, root=None, apply=False):
                 with gzip.GzipFile(filename="", mode="wb", fileobj=output, mtime=0, compresslevel=6) as archive:
                     for block in iter(lambda: source.read(1024 * 1024), b""):
                         archive.write(block)
-            packed = Path(pending)
-            receipt = store.put_bytes(packed.read_bytes(), kind="native-sqlite-archive", provenance={"source_path": str(path.relative_to(root)), "source_sha256": original, "snapshot": snapshot})
+                output.flush()
+                os.fsync(output.fileno())
+            receipt = store.put_file(Path(pending), kind="native-sqlite-archive", provenance={"source_path": str(path.relative_to(root)), "source_sha256": original, "snapshot": snapshot})
         finally:
             Path(pending).unlink(missing_ok=True)
         if file_digest(path) != original:

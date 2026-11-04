@@ -139,7 +139,8 @@ Historical native inventories are imported into compressed, content-addressed
 row chunks in `knowledge.sqlite`, with independent snapshot membership and
 metadata. Identical chunks share storage. Their exact original SQLite byte
 streams are also retained once as compressed CAS objects because existing
-evidence manifests commit to those original file hashes.
+evidence manifests commit to those original file hashes. Migration links the
+verified compressed staging file into the CAS and releases the staging path.
 
 Legacy `.sqlite` paths become small explicit receipts. Repository consumers use
 `shared_native_inventory.open_readonly()` rather than opening those receipts as
