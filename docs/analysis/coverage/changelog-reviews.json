@@ -32485,16 +32485,18 @@
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
       "status": "pending_claim_recovery",
-      "rationale": "Summary context. Its three component claims own the producer and consumer work.",
+      "rationale": "The three component claims now have distinct party publication, catalog and hero-distance source owners. The exact world callback and stream edges retain the catalog finding.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+        "crates/benilla-app/src/combat_text/world_anchors.rs"
       ],
       "evidence_refs": [
         "docs/analysis/world-anchors-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": "7bf9a196e953cbc858dd782c02f91b4203ce9603c82d09fda7fcd64f17a3ffeb",
-        "docs/analysis/world-anchors-0.140.0.md": "149f565f2ac31ba092af24827d746ff8afb084012dbefd3a754ab7bebe834d98"
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": "a67462d275a80b4bae58a9b799ab7581120f2458eba808e7b7f50ca3fbed13f9",
+        "crates/benilla-app/src/combat_text/world_anchors.rs": "011d55c154f4bade8089f48f56ada359c2dc962cecaad4b7b86f2bca68461c64",
+        "docs/analysis/world-anchors-0.140.0.md": "d3e708af9b0fdec1285768a8983cb17d2c299700cb348c68f6bb200e1b2b25b8"
       },
       "systems": [
         "custom-game-game-addon"
@@ -32511,23 +32513,37 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Recover the native AZSDOWNED producer, map and run-space routing, and revival/departure reset behind the selected Lua getter.",
+      "status": "static_checked",
+      "rationale": "The current native recipient filter, fall epoch and position reach the exact Lua getter and world catalog sync through ordinary addon delivery. The live co-op VM route remains unverified.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs"
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+        "crates/benilla-app/src/combat_text/world_anchors.rs"
       ],
       "evidence_refs": [
+        "docs/analysis/coop-downed-0.140.0.md",
         "docs/analysis/world-anchors-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "450dd2ff655a743ae4f833c79cb8e65550597e1bdf6a0bff332a726e5db26c26",
-        "docs/analysis/world-anchors-0.140.0.md": "149f565f2ac31ba092af24827d746ff8afb084012dbefd3a754ab7bebe834d98"
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "53394e3799b11819117afa433fadda176e2331ea9cda31f5355c0412a885c8ce",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": "a67462d275a80b4bae58a9b799ab7581120f2458eba808e7b7f50ca3fbed13f9",
+        "crates/benilla-app/src/combat_text/world_anchors.rs": "011d55c154f4bade8089f48f56ada359c2dc962cecaad4b7b86f2bca68461c64",
+        "docs/analysis/coop-downed-0.140.0.md": "ad3894dc75294c05a8070fb0f022a0c22fccd5bb6ac900a25756350cc45fca09",
+        "docs/analysis/world-anchors-0.140.0.md": "d3e708af9b0fdec1285768a8983cb17d2c299700cb348c68f6bb200e1b2b25b8"
       },
       "systems": [
         "custom-game-game-party"
       ],
       "gap_ids": [
         63
+      ],
+      "native_contract": "0.140.0 native collector, recipient serializer, map/run row reset and public getter have bounded producer and consumer evidence.",
+      "static_checks": [
+        {
+          "command": "lua scripts/check-addon-bootstrap.lua docs/analysis/evidence/0.140.0/embedded-api.lua",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/world-anchors-0.140.0.md"
+        }
       ]
     },
     {
@@ -32537,16 +32553,18 @@
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
       "status": "pending_claim_recovery",
-      "rationale": "Follow the six current native registrations through catalog sync, retention, paging and projection.",
+      "rationale": "World-unit life, destination sync, paging, retention, projection and the Lua frame hook are source-connected. Exact native callback ordering, stream tokens and same-map invalidation are still open.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+        "crates/benilla-app/src/combat_text/world_anchors.rs"
       ],
       "evidence_refs": [
         "docs/analysis/world-anchors-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": "7bf9a196e953cbc858dd782c02f91b4203ce9603c82d09fda7fcd64f17a3ffeb",
-        "docs/analysis/world-anchors-0.140.0.md": "149f565f2ac31ba092af24827d746ff8afb084012dbefd3a754ab7bebe834d98"
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": "a67462d275a80b4bae58a9b799ab7581120f2458eba808e7b7f50ca3fbed13f9",
+        "crates/benilla-app/src/combat_text/world_anchors.rs": "011d55c154f4bade8089f48f56ada359c2dc962cecaad4b7b86f2bca68461c64",
+        "docs/analysis/world-anchors-0.140.0.md": "d3e708af9b0fdec1285768a8983cb17d2c299700cb348c68f6bb200e1b2b25b8"
       },
       "systems": [
         "custom-game-game-addon"
@@ -32561,17 +32579,21 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Revalidate native hero-relative distance behind the byte-identical combat wrappers and trace the distinct world projection output.",
+      "status": "source_connected",
+      "rationale": "Current native combat projection samples unshifted feet and world projection samples the selected unshifted attachment. The distinct live source routes read the hero sample and supply the corresponding distance.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"
+        "crates/benilla-app/src/combat_text/anchors.rs",
+        "crates/benilla-app/src/combat_text/world_anchors.rs",
+        "crates/benilla-app/src/ui_script/player_position.rs"
       ],
       "evidence_refs": [
         "docs/analysis/world-anchors-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": "7bf9a196e953cbc858dd782c02f91b4203ce9603c82d09fda7fcd64f17a3ffeb",
-        "docs/analysis/world-anchors-0.140.0.md": "149f565f2ac31ba092af24827d746ff8afb084012dbefd3a754ab7bebe834d98"
+        "crates/benilla-app/src/combat_text/anchors.rs": "b423a164f83bbb71e4c44fddb69e4cee182085cc5d9bdee82cfd2bdeca7cdb11",
+        "crates/benilla-app/src/combat_text/world_anchors.rs": "011d55c154f4bade8089f48f56ada359c2dc962cecaad4b7b86f2bca68461c64",
+        "crates/benilla-app/src/ui_script/player_position.rs": "cc7b85e42b55db0ff2f49d26a01bb42644f873f5271379b819dfef96816db7bd",
+        "docs/analysis/world-anchors-0.140.0.md": "d3e708af9b0fdec1285768a8983cb17d2c299700cb348c68f6bb200e1b2b25b8"
       },
       "systems": [
         "custom-game-game-addon"
@@ -33761,17 +33783,21 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Trace native intentional key admission against the existing accepted-displacement clock and separate guest gate.",
+      "status": "static_checked",
+      "rationale": "Local directional intent, unchanged accepted XYZ and the initial host peer synchronization restriction are connected to the ready transition. The selected instruction fixtures do not exercise actual input or networking.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/gameplay/mod.rs"
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/movement-start-0.140.0.md",
+        "docs/analysis/evidence/0.140.0/movement-start.json"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/gameplay/mod.rs": "6c1a0970ea17f201d336764ed1f3f830ccd94e39eef54b493477a40bece20103",
-        "docs/analysis/class-balance-0.140.0.md": "564d48e92311ba8e08c77632a90394d2a210bcd45580028a1a0df18901c11f42"
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "84dd58125f66c6e15a9c338cdf1de7bf317da982bfb063f2216b66730cec5bdf",
+        "docs/analysis/movement-start-0.140.0.md": "570177c927ad91b933ba0d1670ba34565fd64bb4220a770e12cb4c8e9cacdc23",
+        "docs/analysis/evidence/0.140.0/movement-start.json": "2d10f12fc8a921c933cbb7d41e451c793aa73ed51a36de80ea6264b88ddddcbe"
       },
       "systems": [
         "custom-game-terrain"
@@ -33780,6 +33806,14 @@
         38,
         95,
         282
+      ],
+      "native_contract": "0.140.0 ordinary movement admission, prior report bit, ready and unchanged XYZ guards, and assigned-peer startup restriction.",
+      "static_checks": [
+        {
+          "command": "python3 -B scripts/check-coop-start.py",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/movement-start-0.140.0.md"
+        }
       ]
     },
     {
