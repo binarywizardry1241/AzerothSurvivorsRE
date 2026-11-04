@@ -48,6 +48,7 @@ pub(super) fn extension() -> LocalClientExtension {
     LocalClientExtension {
         creature_sound_data_patch: Some(creature_sound::patch),
         on_top_frames_global: Some("AZS_ON_TOP_FRAMES".into()),
+        ignored_logical_keys: vec![bevy::input::keyboard::Key::Process],
         cvar_defaults,
         binding_commands: crate::native_bindings::commands(),
         binding_defaults: crate::native_bindings::defaults(),

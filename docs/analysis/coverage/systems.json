@@ -64151,6 +64151,18 @@
     },
     {
       "id": "custom-app-screens-ime",
+      "input_bridge_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_ids": [293],
+        "evidence_refs": ["docs/analysis/ime-bridge-0.139.2.md", "docs/analysis/evidence/0.139.2/ime-bridge.json"],
+        "source_refs": ["crates/azeroth-survivors-re/src/ime.rs", "crates/benilla-app/src/ui_script/records.rs"],
+        "recovery": "Downloaded-client Commit forwarding to both keyboard streams and ordered logical Process filtering are bounded. The published browser DOM bridge is separately identified.",
+        "implementation": "The same Commit pair feeds custom fields and FrameXML. Process-marked keys do not reach either action path. Ordinary Enter and Space retain their existing behavior.",
+        "static_validation": "Thirteen exact PE ranges, four journaled Ghidra results, identity and dispatch checks, and Rust syntax parsing.",
+        "remaining_source_work": "Separate downloaded-client visible preedit producer, browser WASM typing/synthetic-input handoff and reconstructed browser entry point.",
+        "runtime_validation": "unverified",
+        "parity": "unverified"
+      },
       "title": "IME composition and text-entry routing",
       "original_path": "crates/wenilla-rogue-app/src/screens/ime.rs",
       "native_path_evidence": [

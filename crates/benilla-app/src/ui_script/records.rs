@@ -108,6 +108,7 @@ pub(crate) fn collect_input_records(
     device: Option<Res<crate::local_client::LocalDeviceInput>>,
 ) {
     let binding_capture = extension.as_ref().is_some_and(|e| e.binding_capture);
+    let ignored_keys = extension.as_ref().map_or(&[][..], |e| e.ignored_logical_keys.as_slice());
     let menu_escape = extension.as_ref().is_some_and(|e| e.custom_game_menu)
         && session.as_ref().is_some_and(|s| s.active)
         && capture.as_ref().is_none_or(|c| !c.typing);
@@ -171,7 +172,9 @@ pub(crate) fn collect_input_records(
                 }
             }
             WindowEvent::KeyboardInput(ev) => {
-                if ev.key_code == KeyCode::Escape && menu_escape {
+                if ignored_keys.contains(&ev.logical_key)
+                    || (ev.key_code == KeyCode::Escape && menu_escape)
+                {
                     continue;
                 }
                 if records.captured_keys.contains(&ev.key_code) {
@@ -363,6 +366,33 @@ mod tests {
                 format!("{kind}@{:?}", r.at.map(|a| a.x))
             })
             .collect()
+    }
+
+    #[test]
+    fn logical_process_edges_are_withheld_without_blocking_enter_or_space() {
+        let mut w = world();
+        w.0.insert_resource(crate::local_client::LocalClientExtension {
+            ignored_logical_keys: vec![Key::Process],
+            ..default()
+        });
+        let logical = |code, state, logical_key| {
+            let WindowEvent::KeyboardInput(mut ev) = key(code, state) else { unreachable!() };
+            ev.logical_key = logical_key;
+            WindowEvent::KeyboardInput(ev)
+        };
+        let got = collect(
+            &mut w,
+            vec![
+                logical(KeyCode::Enter, ButtonState::Pressed, Key::Process),
+                logical(KeyCode::Space, ButtonState::Pressed, Key::Process),
+                moved(30.0),
+                logical(KeyCode::Enter, ButtonState::Released, Key::Process),
+                logical(KeyCode::Space, ButtonState::Released, Key::Process),
+                logical(KeyCode::Enter, ButtonState::Pressed, Key::Enter),
+                logical(KeyCode::Space, ButtonState::Pressed, Key::Space),
+            ],
+        );
+        assert_eq!(shape(&got), ["Move@Some(30.0)", "Enter@Some(30.0)", "Space@Some(30.0)"]);
     }
 
     fn wheel(unit: MouseScrollUnit, y: f32) -> WindowEvent {

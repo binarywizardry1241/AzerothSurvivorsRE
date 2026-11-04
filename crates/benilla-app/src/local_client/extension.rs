@@ -31,6 +31,9 @@ pub struct LocalClientExtension {
     /// A custom key-binding editor owns new input this frame. The host still
     /// delivers releases so a command held before capture receives its Stop.
     pub binding_capture: bool,
+    /// Logical keys owned by the embedding before the ordered UI and binding
+    /// dispatch. Both press and release are withheld.
+    pub ignored_logical_keys: Vec<bevy::input::keyboard::Key>,
     /// Own unfocused Escape before the Lua key/binding walk for the embedding's
     /// custom menu. A stock GameMenuFrame opening also hands off before paint.
     pub custom_game_menu: bool,

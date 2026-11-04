@@ -1,5 +1,8 @@
 # IME commit and focus bridge — 0.127.0
 
+The [downloaded-client follow-up in 0.139.2](ime-bridge-0.139.2.md)
+owns ordered FrameXML commit delivery and candidate-key filtering.
+
 Finding **#293** uses installed EXE SHA-256
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`.
 The [manifest](evidence/0.127.0/ime-bridge/manifest.json) binds the selected

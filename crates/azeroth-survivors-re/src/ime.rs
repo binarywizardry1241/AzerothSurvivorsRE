@@ -1,10 +1,10 @@
-//! Selected 0.127.0 custom-screen and FrameXML input-method window publication.
-//! The original owners are1402dd560,1402dd780,1402dde10 and typing reader140666540.
+//! Custom-screen and FrameXML input-method window publication.
+//! The current commit forwarder publishes to both keyboard message streams.
 use bevy::{
     ecs::message::MessageCursor,
     input::{keyboard::{Key, KeyboardInput, NativeKeyCode}, ButtonState, InputSystems},
     prelude::*,
-    window::{Ime, PrimaryWindow},
+    window::{Ime, PrimaryWindow, WindowEvent},
 };
 
 /// A custom text field renews its focus request every frame. A missing caret
@@ -79,6 +79,7 @@ fn forward_commits(
     mut ime: MessageReader<Ime>,
     windows: Query<Entity, With<PrimaryWindow>>,
     mut keyboard: MessageWriter<KeyboardInput>,
+    mut window_events: MessageWriter<WindowEvent>,
 ) {
     let mut committed = String::new();
     for event in ime.read() {
@@ -88,7 +89,12 @@ fn forward_commits(
     }
     if committed.is_empty() { return; }
     let Some(window) = windows.iter().next() else { return; };
-    keyboard.write_batch(commit_keys(&committed, window));
+    for key in commit_keys(&committed, window) {
+        // The custom fields read KeyboardInput. FrameXML and its binding pass
+        // read the ordered WindowEvent stream instead.
+        window_events.write(WindowEvent::KeyboardInput(key.clone()));
+        keyboard.write(key);
+    }
 }
 
 fn commit_keys(text: &str, window: Entity) -> [KeyboardInput; 2] {
@@ -132,7 +138,7 @@ mod tests {
     #[test]
     fn commits_join_unicode_and_preserve_noncontrol_whitespace() {
         let mut app = App::new();
-        app.add_message::<Ime>().add_message::<KeyboardInput>();
+        app.add_message::<Ime>().add_message::<KeyboardInput>().add_message::<WindowEvent>();
         app.add_systems(Update, forward_commits);
         let window = app.world_mut().spawn(PrimaryWindow).id();
         for value in ["\t小", "米\u{85} \u{a0}é"] {
@@ -144,6 +150,12 @@ mod tests {
         app.update();
         let events: Vec<_> = app.world_mut().resource_mut::<Messages<KeyboardInput>>()
             .drain().collect();
+        let ordered: Vec<_> = app.world_mut().resource_mut::<Messages<WindowEvent>>()
+            .drain().collect();
+        assert_eq!(
+            ordered,
+            events.iter().cloned().map(WindowEvent::KeyboardInput).collect::<Vec<_>>(),
+        );
         assert_eq!(events.len(), 2);
         for (event, state) in events.iter().zip([ButtonState::Pressed, ButtonState::Released]) {
             assert_eq!(event.logical_key, Key::Character("小米 \u{a0}é".into()));
@@ -159,7 +171,7 @@ mod tests {
     #[test]
     fn technical_process_key_is_removed_before_committed_text_is_published() {
         let mut app = App::new();
-        app.add_message::<Ime>().add_message::<KeyboardInput>();
+        app.add_message::<Ime>().add_message::<KeyboardInput>().add_message::<WindowEvent>();
         app.init_resource::<KeyboardBoundary>();
         app.add_systems(Update, (discard_process_keys, forward_commits).chain());
         app.add_systems(PostUpdate, snapshot_keyboard_boundary);
@@ -178,7 +190,7 @@ mod tests {
     #[test]
     fn a_later_process_key_does_not_republish_the_previous_commit() {
         let mut app = App::new();
-        app.add_message::<Ime>().add_message::<KeyboardInput>();
+        app.add_message::<Ime>().add_message::<KeyboardInput>().add_message::<WindowEvent>();
         app.init_resource::<KeyboardBoundary>();
         app.add_systems(Update, (discard_process_keys, forward_commits).chain());
         app.add_systems(PostUpdate, snapshot_keyboard_boundary);
