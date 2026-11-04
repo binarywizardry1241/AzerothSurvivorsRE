@@ -1,62 +1,12 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.139.1",
+    "version": "0.140.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
-    "size_bytes": 150633472
+    "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+    "size_bytes": 151521280
   },
-  "review_input": {
-    "path": "docs/analysis/evidence/0.139.1/as-discovery-reviews.json",
-    "sha256": "92667256df134a4e5eadb38b86face3e552a7d435fa0228526617570873a1b7a"
-  },
-  "data_classification_input": {
-    "path": "docs/analysis/evidence/0.139.1/data-classification/manifest.json",
-    "sha256": "4af777b73525f94bcc8071937d5a4fee416ddbf237234c05e9659172f5c6376b"
-  },
-  "current_native_body_census": {
-    "path": "docs/analysis/coverage/full-image-selected-0.139.1.json",
-    "sha256": "ff4d8ade21d386b138ee678cdda16efeca1d7d99f4f9a50a7c8b7e4d0f56eb18"
-  },
-  "connection_ledger_input": {
-    "path": "docs/analysis/coverage/exe-connections.json",
-    "sha256": "61839c7f229d1edd070e4d46bdb8f444b03f192e8faf63ef5de680e387e6963b"
-  },
-  "unknown_selector_input": {
-    "path": "docs/analysis/evidence/0.139.1/source-connected-unknown-recovery.json",
-    "sha256": "43541c0f176c1963ee6164f3cd2441155e618a353e2a5a3bb2b8d6be09698b04"
-  },
-  "incremental_correspondence": {
-    "path": "docs/analysis/evidence/0.139.1/incremental-correspondence.json",
-    "sha256": "a2221e4abe7500625d19f26b285a46cc1387533ccdb884438bbfca2a82568802"
-  },
-  "retained_historical_recovery": {
-    "last_published_registry": {
-      "path": "runtime/analysis/objects/11/11655002deb353cc70e3fb0011091776cd400e55bb7453bdae42714a08fc5753",
-      "sha256": "11655002deb353cc70e3fb0011091776cd400e55bb7453bdae42714a08fc5753",
-      "target": {
-        "version": "0.127.0",
-        "path": "installed-game/AzerothSurvivors.exe",
-        "sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "size_bytes": 146721280
-      }
-    },
-    "immediate_predecessor_review": {
-      "path": "docs/analysis/evidence/0.139.0/as-discovery-reviews.json",
-      "sha256": "271ca949b5c3d822eecbed388d1d20ae0535fbe1d04776b9e71fe5dbb9b4d925"
-    },
-    "immediate_predecessor_audit_boundary": {
-      "path": "docs/analysis/evidence/0.139.0/audit-boundary.json",
-      "sha256": "9c604cfc9097312d5f1fe4902cbb576648db2d2569f0a54b21fa0b4ed6715325"
-    },
-    "scope": "The last published graph was 0.127.0. Unpublished 0.139.0 recovery retains 12 query reviews, 71 bindings, one failed native lead and fourteen classified original questions with their actual targets. Existing source and semantic recovery are not reset or promoted as current."
-  },
-  "current_module_dimensions": {
-    "custom_system_rows": 77,
-    "with_partial_reconstructed_source": 69,
-    "with_registered_current_bounded_contract": 4,
-    "scope": "Module dimensions only. InputGate is a separate supporting boundary outside the 77 diagnostic modules; no AS code, behavior, implementation completeness or parity."
-  },
+  "profile_id": "530dd6d8d893543af52f2d661cea71d912218371225d055c62a32558ddcd498e",
   "stages": {
     "candidate_graph": "partial",
     "resumable_recovery_queue": "partial",
@@ -65,23 +15,82 @@
     "unassigned_code_and_data": "partial",
     "source_comparison": "partial"
   },
+  "artifacts": {
+    "profile.json": {
+      "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/as-discovery/530dd6d8d893543af52f2d661cea71d912218371225d055c62a32558ddcd498e/profile.json",
+      "sha256": "530dd6d8d893543af52f2d661cea71d912218371225d055c62a32558ddcd498e"
+    },
+    "graph.json": {
+      "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/as-discovery/530dd6d8d893543af52f2d661cea71d912218371225d055c62a32558ddcd498e/graph.json",
+      "sha256": "c69f820eedf4ebe4e04742e5fa5b83178e28a5fce5c5eb7027063fb921bd9daf"
+    },
+    "queue.json": {
+      "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/as-discovery/530dd6d8d893543af52f2d661cea71d912218371225d055c62a32558ddcd498e/queue.json",
+      "sha256": "7f36c81997f11ee45c7da86ce9249492d28d26e78512476d9e60e6fe79484f73"
+    },
+    "journal.json": {
+      "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/as-discovery/530dd6d8d893543af52f2d661cea71d912218371225d055c62a32558ddcd498e/journal.json",
+      "sha256": "2468fed1c088fc9a89f9efd7362336a0749884ee6abbb29015b3ee18222aeb04"
+    }
+  },
+  "review_input": {
+    "path": "docs/analysis/evidence/0.140.0/as-discovery-reviews.json",
+    "sha256": "404ab1f7b0941a2ffc3de7edcf2918d479ab852f4b9e99ca392b88ca33082f8d"
+  },
+  "data_classification_input": {
+    "path": "docs/analysis/evidence/0.140.0/data-classification/manifest.json",
+    "sha256": "71acf7df094bb330f12d91b3e1dea9afa3b9a1c5d01bd76f28bc96e228f589a8"
+  },
+  "unknown_selector_input": {
+    "path": "docs/analysis/evidence/0.140.0/unknown-recovery.json",
+    "sha256": "59f0a0007fd6ef70ec6cb4e87974dd9e81595b2410f5b9442f5e5c15bafbdfa5"
+  },
+  "current_native_body_census": {
+    "path": "docs/analysis/coverage/full-image-selected-0.140.0.json",
+    "sha256": "70113c16856462f272d978f31d18a4c5a534b7ea636c349f63380a339ac10759"
+  },
+  "current_module_dimensions": {
+    "custom_system_rows": 82,
+    "with_partial_reconstructed_source": 69,
+    "with_registered_current_bounded_contract": 5,
+    "scope": "Diagnostic modules only. World anchors are a separate AS-facing benilla boundary."
+  },
+  "current_computed_correspondence": {
+    "path": "docs/analysis/evidence/0.140.0/computed-correspondence-frontier.json",
+    "sha256": "cf517e4b94532cec2b1fbdfb73ea7c404ca50007c791632c846288a4d5a6ddc1"
+  },
+  "complete_current_AS_context_review": {
+    "path": "docs/analysis/evidence/0.140.0/native-switch-proposal-review.json",
+    "sha256": "40b71bd3e244953dc539dc3223c166474a5149e33fca6236f5e683ab26b87897"
+  },
+  "incremental_correspondence": {
+    "path": "docs/analysis/evidence/0.140.0/incremental-correspondence.json",
+    "sha256": "bfa7922e6bf44ec1427eb6d1f2751f2c199c665e69ab28cb346d55490855cc19"
+  },
+  "retained_historical_recovery": {
+    "last_published_registry": {
+      "path": "runtime/analysis/objects/22/2296b1e791670dfca6d0a1240ece17dbf62433d787742815f3a2e7daf6bb9881",
+      "sha256": "2296b1e791670dfca6d0a1240ece17dbf62433d787742815f3a2e7daf6bb9881",
+      "target": {
+        "version": "0.139.1",
+        "path": "installed-game/AzerothSurvivors.exe",
+        "sha256": "1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d",
+        "size_bytes": 150633472
+      }
+    },
+    "predecessor_review": {
+      "path": "docs/analysis/evidence/0.139.1/as-discovery-reviews.json",
+      "sha256": "92667256df134a4e5eadb38b86face3e552a7d435fa0228526617570873a1b7a"
+    },
+    "scope": "Preserve the original 0.139.1 graph, queries and older provenance. Current correspondence keeps all fourteen historical questions."
+  },
   "semantic_frontier_closed": false,
   "global_native_semantics_complete": false,
   "parity_verified": false,
-  "current_computed_correspondence": {
-    "path": "docs/analysis/evidence/0.139.1/computed-correspondence-frontier.json",
-    "sha256": "d3a2af4baf234a6b1edd3b423a031eb4d4e0eae32ae1e7cdcad859b48badd6fa"
-  },
-  "complete_current_AS_context_review": {
-    "path": "docs/analysis/evidence/0.139.1/switch-context-source-review.json",
-    "sha256": "ddd13585fd5d5b94417c746abf78b9272067aa8b68f0b8cdafc15324bb32417d"
-  },
   "limits": [
-    "Structural inventories, attribution, native query outcomes, bounded contracts, source assignment and parity are separate.",
-    "69 current finding bindings, four actual current query reviews and fourteen pending correspondence questions retain their exact proof scopes.",
-    "All six global semantic stages remain partial. No application compilation, game/client/server/network operation or original/rebuilt comparison."
+    "Structural inventories, explicit attribution and bounded behavior are separate from source completeness and parity.",
+    "All six semantic stages retain pending work. Compilation, game and server operation and original/rebuilt comparisons were unrun."
   ],
-  "profile_id": "9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c",
   "generator": {
     "dependencies": [
       {
@@ -90,7 +99,7 @@
       },
       {
         "path": "scripts/coverage_common.py",
-        "sha256": "4adab1999dab972a63e3ab29b7a95d4ab223471398a383967b17f8a39dee5d2a"
+        "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
       },
       {
         "path": "scripts/discovery_native_subject.py",
@@ -104,77 +113,64 @@
     "path": "scripts/compose-as-discovery.py",
     "sha256": "565a15dffb50c5c4e64d8ed67f19fd0dad129e813416a93af2bcad1f03950df6"
   },
-  "artifacts": {
-    "profile.json": {
-      "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c/profile.json",
-      "sha256": "9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c"
-    },
-    "graph.json": {
-      "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c/graph.json",
-      "sha256": "e29827d34117e53224160a35925488aa0494928b0f6aeaddc6eac6d1be237a86"
-    },
-    "queue.json": {
-      "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c/queue.json",
-      "sha256": "957cbd80bc875da44003d85141d3c0c555eab74285aa9634f0ddb4b8cd3b349b"
-    },
-    "journal.json": {
-      "path": "runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c/journal.json",
-      "sha256": "730ec56bd239964a92b76bf244cef9728b55a3beeee67118b8494af52ca3306b"
-    }
+  "connection_ledger_input": {
+    "path": "docs/analysis/coverage/exe-connections.json",
+    "sha256": "f1e9ac1124b290b08f04d5633a6d3506d0c668cfeb6ee4aa2258cc4ca3c68eda"
   },
   "counts": {
-    "nodes": 11538,
-    "edges": 59573,
+    "nodes": 11687,
+    "edges": 66362,
     "node_kinds": {
-      "embedded_candidate": 2799,
-      "registered_contract_artifact": 1,
-      "explicit_finding_binding": 69,
-      "registered_module_context": 77,
-      "flow_body_context": 1039,
-      "static_reference_site": 5578,
+      "embedded_candidate": 2900,
+      "registered_contract_artifact": 2,
+      "explicit_finding_binding": 85,
+      "registered_module_context": 82,
+      "flow_body_context": 1016,
+      "static_reference_site": 5544,
       "explicit_pending_correspondence": 14,
-      "explicit_bounded_review": 4,
-      "source_file": 1553,
-      "observed_string_container": 120,
-      "encoded_pointer_length_descriptor_candidate": 111,
+      "explicit_pending_native_lead": 57,
+      "explicit_bounded_review": 6,
+      "source_file": 1705,
+      "observed_string_container": 119,
+      "encoded_pointer_length_descriptor_candidate": 115,
       "target": 1,
-      "residual_selector": 172
+      "residual_selector": 41
     },
     "node_ownership_states": {
-      "unknown": 11538
+      "unknown": 11687
     },
     "queue_states": {
-      "pending": 3345,
-      "reviewed_bounded": 4
+      "pending": 3395,
+      "reviewed_bounded": 6
     },
-    "input_commitments": 1649,
-    "finding_bindings": 69,
-    "bounded_semantic_reviews": 4,
+    "input_commitments": 1797,
+    "finding_bindings": 85,
+    "bounded_semantic_reviews": 6,
     "review_states": {
-      "reviewed_bounded": 4
+      "reviewed_bounded": 6
     },
     "reviewed_ownership_states": {
-      "unknown": 4
+      "unknown": 6
     },
-    "selected_review_query_records": 4,
-    "distinct_selected_review_queries": 4,
-    "distinct_selected_decompiler_queries": 2,
+    "selected_review_query_records": 6,
+    "distinct_selected_review_queries": 6,
+    "distinct_selected_decompiler_queries": 3,
     "source_connection_review_states": {
-      "pending_source_assignment": 4
+      "pending_source_assignment": 6
     },
     "source_connected_review_scopes": 0,
     "partial_source_interface_review_scopes": 0,
-    "pending_frontier_entries": 3345,
-    "pending_native_leads": 0,
+    "pending_frontier_entries": 3395,
+    "pending_native_leads": 57,
     "pending_correspondence_leads": 14,
     "resolved_original_table_questions": 0
   },
   "reviews": [
     {
-      "id": "input-gate-1408882e0-procedure_info",
-      "selector": "Q41-NEW:input-gate:0x1408882e0:procedure_info",
+      "id": "krastinov-owner-procedure_info",
+      "selector": "Q41-NEW:krastinov-owner:0x145eebea0:procedure_info",
       "finding_ids": [
-        310
+        313
       ],
       "state": "reviewed_bounded",
       "ownership": "unknown",
@@ -182,10 +178,10 @@
       "source_connection_state": "pending_source_assignment"
     },
     {
-      "id": "input-gate-1408882e0-procedure_pseudo_code",
-      "selector": "Q41-NEW:input-gate:0x1408882e0:procedure_pseudo_code",
+      "id": "krastinov-owner-procedure_pseudo_code",
+      "selector": "Q41-NEW:krastinov-owner:0x145eebea0:procedure_pseudo_code",
       "finding_ids": [
-        310
+        313
       ],
       "state": "reviewed_bounded",
       "ownership": "unknown",
@@ -193,10 +189,10 @@
       "source_connection_state": "pending_source_assignment"
     },
     {
-      "id": "input-gate-140f1f330-procedure_info",
-      "selector": "Q41-NEW:input-gate:0x140f1f330:procedure_info",
+      "id": "ras-owner-procedure_info",
+      "selector": "Q41-NEW:ras-owner:0x145ee3900:procedure_info",
       "finding_ids": [
-        310
+        313
       ],
       "state": "reviewed_bounded",
       "ownership": "unknown",
@@ -204,10 +200,32 @@
       "source_connection_state": "pending_source_assignment"
     },
     {
-      "id": "input-gate-140f1f330-procedure_pseudo_code",
-      "selector": "Q41-NEW:input-gate:0x140f1f330:procedure_pseudo_code",
+      "id": "ras-owner-procedure_pseudo_code",
+      "selector": "Q41-NEW:ras-owner:0x145ee3900:procedure_pseudo_code",
       "finding_ids": [
-        310
+        313
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "unknown",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "pending_source_assignment"
+    },
+    {
+      "id": "rogue-attack-owner-procedure_info",
+      "selector": "Q41-NEW:rogue-attack-owner:0x145ee2a90:procedure_info",
+      "finding_ids": [
+        318
+      ],
+      "state": "reviewed_bounded",
+      "ownership": "unknown",
+      "semantic_status": "bounded_review_only",
+      "source_connection_state": "pending_source_assignment"
+    },
+    {
+      "id": "rogue-attack-owner-procedure_pseudo_code",
+      "selector": "Q41-NEW:rogue-attack-owner:0x145ee2a90:procedure_pseudo_code",
+      "finding_ids": [
+        318
       ],
       "state": "reviewed_bounded",
       "ownership": "unknown",
@@ -217,123 +235,177 @@
   ],
   "query_records": [
     {
-      "analysis_profile_digest": "766e48aad8d027e3d1b5dc9c7991f5534376270d6ae465782e138a58de6b5f98",
-      "evidence_id": "ev_24189c89dfc06fa7dc879ddadbaa54cbbb7f673778170b86bb7780b409519fca",
+      "analysis_profile_digest": "20d163c17301a598c31aaec808aa297be6e34b43786465623090d3c3ff4be2fc",
+      "evidence_id": "ev_2fac479747ae8c323a863a0bb499354f0f7e4b2c288c16ab439ecf22013ead0a",
       "journal": {
-        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/journal.json",
-        "sha256": "17608c1446a658e018c4087d6c3810c1a5c326da09f37fcdde1638cea857b971"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/krastinov-owner/journal.json",
+        "sha256": "599b4e7ec1ffceb68abb181b30bf574ec20dd4e1ac614c029cb713dc7514ebb3"
       },
       "plan": {
-        "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/plan-140f1f330.json",
-        "sha256": "155791406e83bcef18eb546aab3b852212d3f82ebec4739cc4557cb612498337"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/krastinov-owner.json",
+        "sha256": "d97cbef18de83c7fb407405e33e8fd2c877d5e89f709070c14d2948b2f8c1212"
       },
-      "procedure": "0x140f1f330",
+      "procedure": "0x145eebea0",
       "provider": {
         "id": "ghidra",
         "name": "Ghidra",
         "version": "12.1.4"
       },
       "raw_input": {
-        "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/picker-140f1f330.bin",
-        "sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/krastinov-owner.bin",
+        "sha256": "2261800a154265cc80f3a7a2b461384b71de638dcd25555e3fee5797d114f931"
       },
       "result": {
-        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/results/8f82f367bcf7493ba3ce534e893ad50f28405189155adac21f8eb32e23523b9a-2c1cb379c2cd33be.json",
-        "sha256": "f9fa0cb377008602e7414751ac383a3662e4e6af2fa2f9e85aa2607a56737830"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/krastinov-owner/results/03f219fb23e55b5f12e3bd4984513a5397895368d37b0f9ec8717c2fbbdd20e6-fe3d3e1dd7467e2a.json",
+        "sha256": "432883646e9ed2bb734b9a14f685983e534fc971ff5418cf0ed84b4d6b802529"
       },
-      "slice_virtual_address": "0x140f1f330"
+      "slice_virtual_address": "0x145eebea0"
     },
     {
-      "analysis_profile_digest": "0631dd8ef03faa372753cacda7502890dbd761a0488ec2db92370cf3614f2ce9",
-      "evidence_id": "ev_7973407e2a409b49c6c5acad266bee95b7c7f9e38fe984a3dc84c06a7394dd21",
+      "analysis_profile_digest": "2c64eb692b8925e321efb94ab03fb231aa43dfa8d2646591dea3581e5760cd79",
+      "evidence_id": "ev_303c355e7949f0ff1aecfcbaa1926a19d5ce61987862f8291a58010bca34abd4",
       "journal": {
-        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/journal.json",
-        "sha256": "c1b765d1126f20f293fcf5ded6f2aa159b11108e371eb8f16e2a2f0dc0ee0d0d"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/ras-owner/journal.json",
+        "sha256": "d0ddac158939a528c17243c03e77ff8cc2fc986b04169b544ed3623483cf5d4c"
       },
       "plan": {
-        "path": "runtime/execheck-0.139.1/input-gate-native/slices/plan-1408882e0.json",
-        "sha256": "12b4625a3005a0c451c803ecded3aa5934321ddc0517df8510f780fd5d293a7e"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/ras-owner.json",
+        "sha256": "f27a2c4dd15f165fbf7a5ace085a253c07216604aaf4eb2e4511413760a82bb8"
       },
-      "procedure": "0x1408882e0",
+      "procedure": "0x145ee3900",
       "provider": {
         "id": "ghidra",
         "name": "Ghidra",
         "version": "12.1.4"
       },
       "raw_input": {
-        "path": "runtime/execheck-0.139.1/input-gate-native/slices/picker-1408882e0.bin",
-        "sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/ras-owner.bin",
+        "sha256": "4d637959a2d8466a4b974a3b2a2429026d76947d5d6ec47f01df4944b03cc06d"
       },
       "result": {
-        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/results/0428b051fe037d3d0fa861b811640e5bcb2274cb987ed0bc53b2ce1b12df07b2-ee764b5a9cb08ad5.json",
-        "sha256": "7c2feb22e92a9cf822c8f20ef21702a434f4cd015929605bd4ff71e7ad032c7b"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/ras-owner/results/267d305195322f6ea9b7b274bbe5991cf1255a5bdb3eb288fd173128390d5ffa-1934c46d6792fb1b.json",
+        "sha256": "d078115eeac0ba55b036a8e19df4e17a4d7acadd769a9872d1935115a61f6ea7"
       },
-      "slice_virtual_address": "0x1408882e0"
+      "slice_virtual_address": "0x145ee3900"
     },
     {
-      "analysis_profile_digest": "0631dd8ef03faa372753cacda7502890dbd761a0488ec2db92370cf3614f2ce9",
-      "evidence_id": "ev_8b38dcd249c951122e557fb8174efbb8c1950cbea2b47a2ba47d31ea9fd8e336",
+      "analysis_profile_digest": "38eb95070591c4885c311aef508a871368f35999f9beac2f8235932aebd8645d",
+      "evidence_id": "ev_448176a2d0416ce33982481ba0ee4973bac2672cf117e607badd67d6871ac7f0",
       "journal": {
-        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/journal.json",
-        "sha256": "c1b765d1126f20f293fcf5ded6f2aa159b11108e371eb8f16e2a2f0dc0ee0d0d"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/rogue-attack-owner/journal.json",
+        "sha256": "a3db2308f95f6aab0e3c6234bfcaf92cc4a4313c466390beec7427b6cd2ad502"
       },
       "plan": {
-        "path": "runtime/execheck-0.139.1/input-gate-native/slices/plan-1408882e0.json",
-        "sha256": "12b4625a3005a0c451c803ecded3aa5934321ddc0517df8510f780fd5d293a7e"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/rogue-attack-owner.json",
+        "sha256": "dff3913e6790db76719db9db7263bbfdc29e9df7abf3e431b99026b279062167"
       },
-      "procedure": "0x1408882e0",
+      "procedure": "0x145ee2a90",
       "provider": {
         "id": "ghidra",
         "name": "Ghidra",
         "version": "12.1.4"
       },
       "raw_input": {
-        "path": "runtime/execheck-0.139.1/input-gate-native/slices/picker-1408882e0.bin",
-        "sha256": "18084b160314446252985ea2a97a392b17b97abaf134511cbd5237c1d4dd5280"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/rogue-attack-owner.bin",
+        "sha256": "c333d5e53d4a77202ccdccffeeda6c5a31cab11d2f62e4cfa91303194df3f10f"
       },
       "result": {
-        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-interface-1408882e0/results/8974a1d48a42653c6a34462221ff13096d0bdeebac6e5bfef810ee2dec7b4f6a-eaf1cdb3f0c206a3.json",
-        "sha256": "e376ac3bc99a72412406ba91574e6ef4684a3bdcf5dcd7aaafca8707b31fe360"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/rogue-attack-owner/results/6d96bd7e0585b91b88c050a2d7cde71db3264e95d245d1bdd5a47d7e2b82f302-30cbad3cf80cae58.json",
+        "sha256": "8d946d04d859b07e15f05b052e6ae7c9a9b0197ce49276016deeccf88667be4c"
       },
-      "slice_virtual_address": "0x1408882e0"
+      "slice_virtual_address": "0x145ee2a90"
     },
     {
-      "analysis_profile_digest": "766e48aad8d027e3d1b5dc9c7991f5534376270d6ae465782e138a58de6b5f98",
-      "evidence_id": "ev_b54e0c9229ccf438eeeb0ae16107aa6a8fe7ddd99dc82f0106f0ab665c8ccb2f",
+      "analysis_profile_digest": "38eb95070591c4885c311aef508a871368f35999f9beac2f8235932aebd8645d",
+      "evidence_id": "ev_8f52395957c28e752307053e3bea0979f254cc4e2e73d7146153ccd897273b58",
       "journal": {
-        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/journal.json",
-        "sha256": "17608c1446a658e018c4087d6c3810c1a5c326da09f37fcdde1638cea857b971"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/rogue-attack-owner/journal.json",
+        "sha256": "a3db2308f95f6aab0e3c6234bfcaf92cc4a4313c466390beec7427b6cd2ad502"
       },
       "plan": {
-        "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/plan-140f1f330.json",
-        "sha256": "155791406e83bcef18eb546aab3b852212d3f82ebec4739cc4557cb612498337"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/rogue-attack-owner.json",
+        "sha256": "dff3913e6790db76719db9db7263bbfdc29e9df7abf3e431b99026b279062167"
       },
-      "procedure": "0x140f1f330",
+      "procedure": "0x145ee2a90",
       "provider": {
         "id": "ghidra",
         "name": "Ghidra",
         "version": "12.1.4"
       },
       "raw_input": {
-        "path": "runtime/execheck-0.139.1/input-gate-native/filter/slices/picker-140f1f330.bin",
-        "sha256": "56a7f36ccbcdcfacace833a8e1abbb518fec8ded1ef3a36d275ec088278429f2"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/rogue-attack-owner.bin",
+        "sha256": "c333d5e53d4a77202ccdccffeeda6c5a31cab11d2f62e4cfa91303194df3f10f"
       },
       "result": {
-        "path": "runtime/analysis/tasks/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/input-gate-filter-140f1f330/results/38ae7dda23e14f1c67514dbe4a5e2b2f22bf42b4b6a67873347298d284d43983-c10a374422a10b37.json",
-        "sha256": "21f2f09c20b14f7d5c305a2e9ebe2e80466ed4bbe317a91512f60c64069b958c"
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/rogue-attack-owner/results/8b64c2c0cdd0ae98dabb69793f45629da0c6b241323a2c31fd8576194ce5c933-44ddef91ce77f2b9.json",
+        "sha256": "09cc3ec5d6a8feba062e766feb609f8369699beb66da2aef3cb94a0e66427f11"
       },
-      "slice_virtual_address": "0x140f1f330"
+      "slice_virtual_address": "0x145ee2a90"
+    },
+    {
+      "analysis_profile_digest": "2c64eb692b8925e321efb94ab03fb231aa43dfa8d2646591dea3581e5760cd79",
+      "evidence_id": "ev_b6f53a561872017ac9e51a52e777609d63f1d84ea899da743355ee8e7d771b0e",
+      "journal": {
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/ras-owner/journal.json",
+        "sha256": "d0ddac158939a528c17243c03e77ff8cc2fc986b04169b544ed3623483cf5d4c"
+      },
+      "plan": {
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/ras-owner.json",
+        "sha256": "f27a2c4dd15f165fbf7a5ace085a253c07216604aaf4eb2e4511413760a82bb8"
+      },
+      "procedure": "0x145ee3900",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_input": {
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/ras-owner.bin",
+        "sha256": "4d637959a2d8466a4b974a3b2a2429026d76947d5d6ec47f01df4944b03cc06d"
+      },
+      "result": {
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/ras-owner/results/4c6d27d2df62c2768658170c309f976706ce96d2660e8439ffb0eb840568fdca-d5bd37a5cdcf227f.json",
+        "sha256": "4e26a3b8f37c04d51724f102ac5ae0be86f0946648ff285f12e4d88789030a86"
+      },
+      "slice_virtual_address": "0x145ee3900"
+    },
+    {
+      "analysis_profile_digest": "20d163c17301a598c31aaec808aa297be6e34b43786465623090d3c3ff4be2fc",
+      "evidence_id": "ev_c64c1b8cecd3e8a6ffe8c94d840462cf2e963e756aa8a4ce251b6e6f8aa74afe",
+      "journal": {
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/krastinov-owner/journal.json",
+        "sha256": "599b4e7ec1ffceb68abb181b30bf574ec20dd4e1ac614c029cb713dc7514ebb3"
+      },
+      "plan": {
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/krastinov-owner.json",
+        "sha256": "d97cbef18de83c7fb407405e33e8fd2c877d5e89f709070c14d2948b2f8c1212"
+      },
+      "procedure": "0x145eebea0",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "raw_input": {
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/krastinov-owner.bin",
+        "sha256": "2261800a154265cc80f3a7a2b461384b71de638dcd25555e3fee5797d114f931"
+      },
+      "result": {
+        "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/bounded-source-frontier/krastinov-owner/results/b59460d099d066fab07e365683c1c1cad636e75a938da75ebbb050297f27cf13-35e1ac64242796a5.json",
+        "sha256": "159fa849b10f292016e16c33c8dda939a6753a7c581ae89393ab2eb69dbfe9c5"
+      },
+      "slice_virtual_address": "0x145eebea0"
     }
   ],
   "resolved_correspondence_questions": [],
   "reproduce": {
     "write": [
-      "python3 -B scripts/compose-as-discovery.py --classification docs/analysis/evidence/0.139.1/data-classification/manifest.json --unknown docs/analysis/evidence/0.139.1/source-connected-unknown-recovery.json --connections docs/analysis/coverage/exe-connections.json --census docs/analysis/coverage/full-image-selected-0.139.1.json --reviews docs/analysis/evidence/0.139.1/as-discovery-reviews.json --write",
-      "python3 -B scripts/summarize-as-discovery.py --profile runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c --write"
+      "python3 -B scripts/compose-as-discovery.py --classification docs/analysis/evidence/0.140.0/data-classification/manifest.json --unknown docs/analysis/evidence/0.140.0/unknown-recovery.json --connections docs/analysis/coverage/exe-connections.json --census docs/analysis/coverage/full-image-selected-0.140.0.json --reviews docs/analysis/evidence/0.140.0/as-discovery-reviews.json --write",
+      "python3 -B scripts/summarize-as-discovery.py --profile runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/as-discovery/530dd6d8d893543af52f2d661cea71d912218371225d055c62a32558ddcd498e --write"
     ],
     "check": [
-      "python3 -B scripts/compose-as-discovery.py --classification docs/analysis/evidence/0.139.1/data-classification/manifest.json --unknown docs/analysis/evidence/0.139.1/source-connected-unknown-recovery.json --connections docs/analysis/coverage/exe-connections.json --census docs/analysis/coverage/full-image-selected-0.139.1.json --reviews docs/analysis/evidence/0.139.1/as-discovery-reviews.json --check",
-      "python3 -B scripts/summarize-as-discovery.py --profile runtime/coverage/1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d/as-discovery/9ab52faf3d6ba493d07c402ca5c880d4ed75843ad34c0393be92daca6c83553c --check"
+      "python3 -B scripts/compose-as-discovery.py --classification docs/analysis/evidence/0.140.0/data-classification/manifest.json --unknown docs/analysis/evidence/0.140.0/unknown-recovery.json --connections docs/analysis/coverage/exe-connections.json --census docs/analysis/coverage/full-image-selected-0.140.0.json --reviews docs/analysis/evidence/0.140.0/as-discovery-reviews.json --check",
+      "python3 -B scripts/summarize-as-discovery.py --profile runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/as-discovery/530dd6d8d893543af52f2d661cea71d912218371225d055c62a32558ddcd498e --check"
     ]
   },
   "summary_generator": {
@@ -351,7 +423,7 @@
       },
       {
         "path": "scripts/coverage_common.py",
-        "sha256": "4adab1999dab972a63e3ab29b7a95d4ab223471398a383967b17f8a39dee5d2a"
+        "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
       }
     ]
   }
