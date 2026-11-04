@@ -2,6 +2,7 @@
 //! Owning instructions and static checks: docs/analysis/run-meters-0.105.0.md.
 //! Minimap button layout is revalidated against 0.113.2 under gap #56.
 //! Current0.121.0 Party DPS inputs/view: docs/analysis/party-meter-ui-0.121.0.md.
+//! 0.141.0 list viewport: docs/analysis/meter-scroll-0.141.0.md.
 
 mod settings;
 mod view;
@@ -9,6 +10,7 @@ mod view;
 use super::{RunSession, RunSet};
 use crate::{
     assets::MenuArt, localization::Localization, menu_state::MenuState, options::OptionsState,
+    scrollbar::{self, InputScope},
 };
 use azeroth_survivors_re::run_meter::MeterMode;
 use benilla_app::local_client::{LocalClientExtension, LocalClientInput, LocalClientSet};
@@ -614,19 +616,35 @@ fn spawn(commands: &mut Commands, art: &MenuArt, meter: &Meter, locale: &Localiz
                             button(header, Action::Reset, locale.label("Reset"), art);
                             button(header, Action::Close, "x", art);
                         });
-                    window.spawn((
-                        Rows,
-                        Node {
-                            flex_direction: FlexDirection::Column,
-                            flex_grow: 1.,
-                            min_height: Val::Px(0.),
-                            padding: UiRect::all(Val::Px(3.)),
-                            row_gap: Val::Px(2.),
-                            overflow: Overflow::clip_y(),
-                            ..default()
-                        },
-                        Pickable::IGNORE,
-                    ));
+                    window
+                        .spawn((
+                            Node {
+                                flex_grow: 1.,
+                                min_height: Val::Px(0.),
+                                ..default()
+                            },
+                            Pickable::IGNORE,
+                        ))
+                        .with_children(|body| {
+                            let rows = body
+                                .spawn((
+                                    Rows,
+                                    Node {
+                                        flex_direction: FlexDirection::Column,
+                                        flex_grow: 1.,
+                                        min_height: Val::Px(0.),
+                                        padding: UiRect::all(Val::Px(3.)),
+                                        row_gap: Val::Px(2.),
+                                        overflow: Overflow::scroll_y(),
+                                        ..default()
+                                    },
+                                    ScrollPosition::default(),
+                                    scrollbar::Kept::new("meter-rows", InputScope::Meter),
+                                    Pickable::IGNORE,
+                                ))
+                                .id();
+                            scrollbar::spawn(body, rows, 1., InputScope::Meter);
+                        });
                     window.spawn((
                         Button,
                         Action::Resize,

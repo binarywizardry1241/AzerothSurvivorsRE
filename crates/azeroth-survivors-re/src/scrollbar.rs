@@ -37,6 +37,7 @@ pub enum InputScope {
     Armory,
     Picker,
     Language,
+    Meter,
 }
 
 /// Native 0.97.2 `scrollbar::Kept`: named offsets survive rebuilding UI entities.

@@ -34666,6 +34666,41 @@
         "crates/azeroth-survivors-re/assets/locales/zh.json": "0cc03c945d6ffdbafbb1753ddaebfabb132fb510bcb31a03fd4b9d5e3f232a18",
         "docs/analysis/improved-mind-blast-0.141.0.md": "5b35c69a559e66d861be9d6e308d29d119414f20cbaba26ecaf32be1ea5b54cb"
       }
+    },
+    {
+      "claim_id": "changelog:0.141.0:623f08c5eb0ffcb7",
+      "gap_ids": [
+        8
+      ],
+      "systems": [
+        "custom-app-screens-meter"
+      ],
+      "rationale": "The four meter views share a bounded list viewport and its scrollbar. The display Reset refreshes baselines while the named offset clamps to the refreshed content extent.",
+      "native_contract": "The 0.141.0 meter window publishes the vertical Scroll node and retained meter-rows key, then passes its entity to the shared eight-pixel rail. Reset sets the view baseline flag and empties its rate samples.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/meter.rs",
+        "crates/azeroth-survivors-re/src/scrollbar.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/meter-scroll-0.141.0.md"
+      ],
+      "static_checks": [
+        {
+          "command": "Journaled REA constructor query and bounded original-instruction replay of viewport and Reset",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/meter-scroll-0.141.0.md"
+        }
+      ],
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/gameplay/meter.rs": "d7071d0915fa143f3924e3ec2158f18ddb1adcbcee733355d1983ba10b647785",
+        "crates/azeroth-survivors-re/src/scrollbar.rs": "1320788dfe8a9fe065dfa21db5f8d3f621146876c94da6c5b70a2f04ec923e14",
+        "docs/analysis/meter-scroll-0.141.0.md": "b13e81ff2af8d276c1459759676bfa86394fc653d3eef4a0eb76496b8879fdcc"
+      }
     }
   ]
 }
