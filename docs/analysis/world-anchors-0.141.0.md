@@ -3,7 +3,7 @@
 Installed `installed-game/AzerothSurvivors.exe` is 151,493,632 bytes, SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 This covers the stream, reset, and admission constituents of
-[#317](../CURRENT-STATE.md#gap-317) and `changelog:0.139.2:a6b9bed3be9c9ffa`.
+[#317](../verification-needed.md#gap-317) and `changelog:0.139.2:a6b9bed3be9c9ffa`.
 The embedded Lua matches the API extract cited in the
 [0.140.0 catalog and projection report](world-anchors-0.140.0.md).
 
@@ -59,14 +59,43 @@ actor identities depend on the engine's live entity storage.
 The combat and world name carriers are added in that order at `0x140046a40`
 and `0x140046b06`. Their plugin builders at `0x1409ba3c0` and `0x1409bb720`
 assemble separate system groups. The world group includes the context reset,
-unit scan, Lua registration, and world callback. Both groups apply the same
-dependencies around `VPlateSet`, `UiInput`, and `UiPaint`. The combat
-callback `0x1409ca830` reaches `0x140baf760`. The world callback
-`0x1409cc3e0` reaches `0x140bafe40`. The selected registrations establish
-the shared frame window and each group's callback, with no explicit
-dependency between the two callbacks. The rebuilt paint pass runs combat
-before world anchors, matching registration order. Exact native execution
-order still depends on the final schedule's order for the two groups.
+unit scan, Lua registration, and world callback. Both groups submit to
+`Update` through `0x1412bf7f0` and the schedule lookup at `0x1412abbd0`.
+Their common dependency helpers add the following edges.
+
+| Set | Debug label address | Combat call | World call | Edge |
+| --- | --- | --- | --- | --- |
+| `VPlateSet` | `0x146752b06` | `0x1409bb02a` | `0x1409bbfdc` | Set before callback |
+| `UiInput` | `0x146752758` | `0x1409bb0a2` | `0x1409bc054` | Set before callback |
+| `UiPaint` | `0x1467525f1` | `0x1409bb11d` | `0x1409bc0cf` | Callback before set |
+
+The helpers at `0x1402ca120` and `0x1402ca220` recursively apply dependency
+kinds 1 and 0 to the group leaves. The matching Bevy ECS 0.18.1
+`DependencyKind` declaration identifies them as `After` and `Before`.
+The exact set names come from the passed set vtables' debug methods.
+
+The callback vtables at `0x1466468b0` and `0x146646a00` route through
+separate erased system adapters. The current decoded instruction inventory
+has one reference to each callback vtable, from its own builder, and two
+direct callers of each callback, from that callback's adapters. Each
+callback's default system-type set has one decoded address reference in
+its own adapter. These references establish distinct registrations with
+shared phase constraints and no explicit sibling edge in the traced
+configuration. The combat wrapper `0x1409ca830` gates on byte `+0x298`
+and reaches `0x140baf760`. The world wrapper `0x1409cc3e0` gates on
+`+0x288` and reaches `0x140bafe40`. The native call adapters set and clear
+their respective frame-current bytes (`+0x299` and `+0x28c`) around Lua dispatch.
+
+The native startup branch at `0x1405ee729` selects the single-threaded
+`Update` executor when `WOW_MT_UPDATE` is absent. The selected schedule
+comes from the same `Update` label as the registrations. The matching
+Bevy ECS 0.18.1 executor walks the flattened schedule's topological order.
+This requires the built dependency graph, whose tie order need not follow
+plugin registration. The rebuilt [paint pass](../../crates/benilla-app/src/ui_script/extract/mod.rs)
+samples before extraction and calls combat and world in sequence with
+separate frame-current scopes. The recovered phase contract does not
+establish a source discrepancy in that order. The exact sequence observed
+when both callbacks run in the native client remains a runtime comparison.
 
 ## Static evidence
 
@@ -88,6 +117,22 @@ order still depends on the final schedule's order for the two groups.
 | `0x1400469d4..0x140046b0b` | `0x45dd4` | 311 | `7cb2b8fb4766212c3e32818312a72b8c09f38ebd7ad5d8837f8ab5063897fbd8` |
 | `0x1409ba3c0..0x1409bb293` | `0x9b97c0` | 3,795 | `2042844c8c57cdfcf4419a02d90114f5b99808edeb9db663ebe05c55595011da` |
 | `0x1409bb720..0x1409bc215` | `0x9bab20` | 2,805 | `7cf13cc75bd54140a876412b0421c9c2bef68244b0e93e0025c5b0fede68f9c8` |
+| `0x1409ca830..0x1409ca988` | `0x9c9c30` | 344 | `941b14e7e0c6c0e2105ad30d96cc856d0ce556fe1b93d257e22834ebd1052669` |
+| `0x1409cc3e0..0x1409cc538` | `0x9cb7e0` | 344 | `644bf8ffd618c90b2cc6f9327d002c9011f9777fd26ac6673eb94e5c0bc4e735` |
+| `0x1405ee729..0x1405ee77a` | `0x5edb29` | 81 | `81adfceecfa8ce4e6a855b76124e93e8a91266cf3622b5ea433d292de01d0fac` |
+| `0x145c33330..0x145c333d8` | `0x5c32730` | 168 | `605fc8d403798a3f1821fa90dd0e490dfbbf87f3409a926a841c1cb5328c51f3` |
+
+Ghidra 12.1.4 builder results
+`ev_1c65127eec83219df36ffd44cf757760bacf46281f27a111b1bb83f8af1924ab`
+and `ev_b4fe784012d95f9e65087dccfebffd7ab158c28aed38df4fec1a3262583cd2c0`
+share the 7,765-byte original-VA slice `0x1409ba3c0..0x1409bc215`,
+SHA-256 `5f1813c186e5a06429d40ff9586e60b80bc6831b146f2d0145062ddef82d7cca`.
+The query journal and result digests match the shared saved records. The
+original PE supplies the erased vtables, exact set names, external calls
+and Windows calling convention omitted by the raw slice. The exact
+0.140.0 Lua extract passed the standalone world-anchor capabilities and
+handler-mutation assertions with host stubs. This test does not run a
+native frame or compare callback order.
 
 Ghidra recovered the life scan from the original-VA slice with Evidence ID
 `ev_f4c330d3072602f578eeaea23dfec97f9af416c79a91e6c926f39071f187d967`.

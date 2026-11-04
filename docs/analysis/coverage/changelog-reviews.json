@@ -35405,11 +35405,12 @@
         "version": "0.141.0",
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Stream, world and camera-sample token shapes, same-map invalidation, and first-seen corpse admission are connected. Exact sibling callback execution order remains open. Current VM serial and epoch form the stream token; the authoritative run-generation observer invalidates anchors ahead of Lua zone data.",
+      "status": "source_connected",
+      "rationale": "Stream, world and camera-sample tokens, same-map invalidation, corpse admission, and the common combat/world callback window are connected. The traced registrations have no explicit sibling dependency. Realized callback order and original/rebuilt behavior require runtime comparison.",
       "source_refs": [
         "crates/benilla-app/src/combat_text/world_anchors.rs",
-        "crates/benilla-app/src/local_client/events.rs"
+        "crates/benilla-app/src/local_client/events.rs",
+        "crates/benilla-app/src/ui_script/extract/mod.rs"
       ],
       "evidence_refs": [
         "docs/analysis/world-anchors-0.141.0.md"
@@ -35417,7 +35418,8 @@
       "reviewed_ref_sha256": {
         "crates/benilla-app/src/combat_text/world_anchors.rs": "d9ecb3aac4a13936faea6d82846e084d7f84812f0f618088c2c78480c3e8a767",
         "crates/benilla-app/src/local_client/events.rs": "c381248a6ba4b0aad9fcb4d9d6d3556b157d08a34657bcd811226b5fca78a0ac",
-        "docs/analysis/world-anchors-0.141.0.md": "3db3ee24e7724c33636e3a29fd2e92d532dd31fa2ef38fe188b65567abdf8f31"
+        "docs/analysis/world-anchors-0.141.0.md": "fb2831410740cdd76578f8dcbbb88e29254382f91f8bb5ca02ec7e601e3f9dda",
+        "crates/benilla-app/src/ui_script/extract/mod.rs": "6e36fc20c302c82a07ddfceec39d84af3fa6e49de3ddf986f71fb88ebd5f03a3"
       },
       "systems": [
         "custom-game-game-addon"

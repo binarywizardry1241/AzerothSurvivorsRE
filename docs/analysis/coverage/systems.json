@@ -29502,17 +29502,18 @@
       "gap_317_stream_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 317,
-        "source_status": "partial",
+        "source_status": "connected",
         "evidence_refs": [
           "docs/analysis/world-anchors-0.141.0.md"
         ],
         "static_validation": "bounded_native_and_source_checks",
         "runtime_validation": "not_run",
         "parity": "unverified",
-        "scope": "Native stream, world and sample token shapes, early reset, and cap admission are connected; exact sibling callback order remains open.",
+        "scope": "Native tokens, early reset, cap admission and the common combat/world callback window are connected. The traced schedule has no explicit sibling dependency; realized callback order requires runtime comparison.",
         "source_refs": [
           "crates/benilla-app/src/combat_text/world_anchors.rs",
-          "crates/benilla-app/src/local_client/events.rs"
+          "crates/benilla-app/src/local_client/events.rs",
+          "crates/benilla-app/src/ui_script/extract/mod.rs"
         ]
       },
       "gap_137_source_review_0_139_2": {
