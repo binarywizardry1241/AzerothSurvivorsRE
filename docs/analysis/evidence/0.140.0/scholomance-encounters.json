@@ -697,9 +697,10 @@
     "scheduler_with_creation_stub": 840,
     "phase_callback_with_form_application_stub": 16,
     "scripted_damage_precompensation": 96,
-    "checkerboard_room_grids_with_external_seams": 2
+    "checkerboard_room_grids_with_external_seams": 2,
+    "checkerboard_recipient_geometry_with_math_seams": 364
   },
-  "limitations": "Static bounded recovery. Raw imports omit external bodies and jump tables. Coverage does not establish attack geometry, warning rendering, source compilation, gameplay or parity.",
+  "limitations": "Static bounded recovery. Raw imports omit external bodies and jump tables. Checkerboard geometry is bounded to the producer and isolated membership predicate. Warning presentation, live attack integration, source compilation, gameplay and parity remain open.",
   "scholomance_checkerboard": {
     "constructor": "0x145ee6300",
     "grid_helper": "0x145ee4340",
@@ -723,6 +724,46 @@
         "0x5aaa555aaa1552aa",
         "0x00000aaa555aaa55"
       ]
-    ]
+    ],
+    "timing_seconds": {
+      "windup": 1.75,
+      "ranked_windup_multiplier": 0.85,
+      "part_start_after_impact": 0.0,
+      "part_end_after_impact": 0.0,
+      "record_end_after_impact": 0.3
+    },
+    "native_ranges": {
+      "constructor_timing_and_handoff": {
+        "virtual_address": "0x145ee64ac",
+        "file_offset": "0x5ee58ac",
+        "byte_count": 440,
+        "sha256": "771572c2497b3302ddcffaf86a40748ce80b8998f676ab7ca9fdaa2d5b96c5a2"
+      },
+      "shared_timing_initialization": {
+        "virtual_address": "0x145fcc64c",
+        "file_offset": "0x5fcba4c",
+        "byte_count": 328,
+        "sha256": "22f86794000ba2c2d5baa5d873d2a98c37d287e6aa04ef101d204c7d322f47c6"
+      },
+      "recipient_hit_sampler": {
+        "virtual_address": "0x145ed9480",
+        "file_offset": "0x5ed8880",
+        "byte_count": 2125,
+        "sha256": "e973d05cde15145362e53637060287e13a0017bb260cf76b1e0a9574280f4fad"
+      },
+      "danger_cell_membership": {
+        "virtual_address": "0x145ee2a90",
+        "file_offset": "0x5ee1e90",
+        "byte_count": 1210,
+        "sha256": "c333d5e53d4a77202ccdccffeeda6c5a31cab11d2f62e4cfa91303194df3f10f",
+        "retained_pseudocode_binding": "bounded-native-frontier.json"
+      },
+      "client_tile_geometry": {
+        "virtual_address": "0x1400ba421",
+        "file_offset": "0xb9821",
+        "byte_count": 815,
+        "sha256": "b0815d4da62386da8648763286807acd6fb76fa59879b9874d2c49d8cd8fd590"
+      }
+    }
   }
 }
