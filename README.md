@@ -1,10 +1,10 @@
 # AzerothSurvivorsRE
 
-Source reconstruction targeting **Azeroth Survivors 0.139.1**, using the Rust/Bevy
-benilla engine. The [installed identity](docs/analysis/target-refresh-0.139.1.json)
-binds the reference EXE and eleven MPQ archives. The
-[release review](docs/analysis/release-review-0.139.1.md) tracks the supplied
-0.128–0.139.1 notes and their source/recovery findings.
+Source reconstruction targeting **Azeroth Survivors 0.140.0**, using the Rust/Bevy
+benilla engine. The [installed identity](docs/analysis/target-refresh-0.140.0.json)
+binds the reference EXE and twelve MPQ archives. The
+[current state](docs/CURRENT-STATE.md) tracks release claims and their source and
+recovery findings.
 
 The source connects the menu, real MPQ worlds, Vanilla controller/camera/FrameXML
 and recovered run mechanics. Reference inputs are read directly from the
