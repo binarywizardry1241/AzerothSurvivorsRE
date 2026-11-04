@@ -232,3 +232,41 @@ when one applies. The native reader and router passed 10,240 prefix and
 the called choice/gold helpers or the returned frontend tag. The code and
 static checks leave compilation, socket delivery, gameplay and parity
 under [#63 verification](../verification-needed.md#gap-63).
+
+## NameQuery prefix and host fallback
+
+Engine7 continues to enter through the synchronized peer gate. The low
+opcode table sends NameQuery `0x50` to `0x145e9e9ce`. Its input steps reach
+`0x145e9ee26` with the requested u64, padding a missing suffix with zeroes
+and ignoring everything after the eighth byte. With Game present and the
+cooperative mode set, `0x145e9b550` searches the local actor and retained
+remote rows by that GUID. The remote reader borrows the row and restores it
+through the same hero swap as the control route. On a lookup miss or without
+an active cooperative Game, `0x145e9ee96` checks for the current local Hero
+at Core `+0x1c70`. The call at `0x145e9eee0` serializes that Hero's name,
+race, sex and class with the **requested** GUID. An absent local Hero
+produces no fallback reply.
+
+The rebuilt host uses its retained world profiles for matches and the
+current host profile for the fallback. Its existing `PlayerName` serializer
+echoes the parsed GUID and replies only to the requester. NameQuery can run
+at the head of the receive queue while terrain is unavailable. A previous
+world command waiting for terrain stays ahead of it. NameQuery's
+fallback can use the current character during a Game transition while the
+ordinary Session synchronization and retirement gates still own admission.
+
+| Selected PE range | File offset | SHA-256 |
+| --- | ---: | --- |
+| Name lookup `0x145e9b550..0x145e9b619` | `0x5e9a950` | `c6f465ed67729d04cb038cdd8a14b7133d650f6b95ec078018d9931cdaec18fa` |
+| Name join and fallback `0x145e9ee08..0x145e9eef6` | `0x5e9e208` | `c5d45c8849dfe0ee3aef978a46c05b13cf673789073880bcc2ae59db0803e1f1` |
+
+```sh
+PYTHONPATH=runtime/armory-recovery/python-libs \
+  python3 -B scripts/check-coop-party-frames.py --host-name-query
+```
+
+The checker passed 208 NameQuery cases over 10,518 original instruction
+steps. It supplies the actor search result at a seam and stops before
+serialization. Source order checks and Rust syntax parsing passed.
+Compilation, the authored Rust regression, socket behavior and
+original/rebuilt comparison remain open.

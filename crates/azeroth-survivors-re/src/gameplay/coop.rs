@@ -1526,7 +1526,7 @@ fn bootstrap(
                 }) {
                     for event in [
                         player_create(&player, zone.position, zone.facing, speed, fields),
-                        player_name(&hero),
+                        player_name(&hero, hero.guid),
                     ] {
                         if let Ok(Some(packet)) = engine_packets::encode(&event, None) {
                             runtime.route_engine(slot, packet);
@@ -1731,7 +1731,7 @@ fn synchronize(
                         speed,
                         fields,
                     ),
-                    player_name(&hero),
+                    player_name(&hero, hero.guid),
                 ] {
                     if let Some(packet) = engine_packets::encode(&event, Some(guid))
                         .map_err(|error| format!("party packet: {error:?}"))?
@@ -1845,9 +1845,9 @@ fn player_create(
         fields: fields.into_created(benilla_protocol::messages::ObjectType::Player),
     }
 }
-fn player_name(hero: &NativeHero) -> SessionEvent {
+fn player_name(hero: &NativeHero, guid: u64) -> SessionEvent {
     SessionEvent::PlayerName {
-        guid: hero.guid,
+        guid,
         name: String::from_utf8_lossy(&hero.name).into_owned(),
         race: u32::from(hero.race),
         gender: u32::from(hero.sex),

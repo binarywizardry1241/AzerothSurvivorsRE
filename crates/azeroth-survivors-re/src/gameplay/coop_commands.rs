@@ -49,11 +49,21 @@ pub(super) fn template_entry(body: &[u8]) -> u32 {
     }
     u32::from_le_bytes(bytes)
 }
+
 fn u64_at(body: &[u8], offset: usize) -> Option<u64> {
     Some(u64::from_le_bytes(
         body.get(offset..offset + 8)?.try_into().ok()?,
     ))
 }
+
+fn name_query_guid(body: &[u8]) -> u64 {
+    let mut bytes = [0; 8];
+    for (to, from) in bytes.iter_mut().zip(body) {
+        *to = *from;
+    }
+    u64::from_le_bytes(bytes)
+}
+
 fn movement(opcode: u16) -> bool {
     matches!(opcode,0xb5..=0xc6|0xc8..=0xcb|0xda|0xdb|0xee)
 }
@@ -100,23 +110,40 @@ pub(super) fn drain(
     armory: &crate::armory::ArmoryCatalog,
     item_texts: &mut benilla_app::local_client::LocalItemDescriptions,
 ) {
-    if runtime.is_guest() || !world.ready {
+    if runtime.is_guest() {
         return;
     }
     let started = run.started;
-    let Some(game) = run.mechanics.as_mut() else {
-        return;
-    };
-    let Some((streamer, tiles)) = terrain.terrain.as_deref().zip(terrain.tiles.as_deref()) else {
-        return;
-    };
-    let Some(floor) = terrain.native.terrain() else {
-        return;
-    };
-    let Some(zone) = azeroth_survivors_re::floor_recovery::Zone::for_key(game.zone.key) else {
-        return;
-    };
-    while let Some((client, input)) = state.commands.pop_front() {
+    let mut floor = terrain.native.terrain();
+    let world_inputs = terrain.terrain.as_deref().zip(terrain.tiles.as_deref())
+        .zip(run.mechanics.as_ref().and_then(|game|
+            azeroth_survivors_re::floor_recovery::Zone::for_key(game.zone.key)))
+        .filter(|_| world.ready);
+    while let Some((_, queued)) = state.commands.front() {
+        let name_query = matches!(queued, Input::Engine(packet) if packet.opcode == opcode::CMSG_NAME_QUERY);
+        if !name_query
+            && (world_inputs.is_none() || floor.is_none())
+        {
+            // A command waiting on the world keeps its place in receive order.
+            break;
+        }
+        let (client, input) = state.commands.pop_front().unwrap();
+        if let Input::Engine(packet) = &input && name_query {
+            let requested = name_query_guid(&packet.payload);
+            let hero = run.mechanics.as_ref()
+                .filter(|game| game.has_party())
+                .and_then(|_| state.world_profiles.get(&requested))
+                .or(state.local.as_ref());
+            if let Some(hero) = hero
+                && let Ok(Some(reply)) = engine_packets::encode(&player_name(hero, requested), None)
+            {
+                runtime.send(Some(client), reply.into_message());
+            }
+            continue;
+        }
+        let Some(game) = run.mechanics.as_mut() else {
+            continue;
+        };
         let Some(guid) = state.admitted.get(&client).copied() else {
             continue;
         };
@@ -130,7 +157,7 @@ pub(super) fn drain(
                     !azeroth_survivors_re::coop::pick::admits(kind, offer, hero.choice_offer())
                 ).unwrap_or(false);
                 let applied = game.party_control(slot, kind, argument, offer, |xy| {
-                    azeroth_survivors_re::floor_recovery::Terrain::height(floor, xy)
+                    floor.as_deref().and_then(|floor| floor.height(xy))
                 });
                 // Stale picks and missing-card requests republish the current offer.
                 if (applied && matches!(kind, 0..=3 | 6 | 10)) || stale {
@@ -139,6 +166,9 @@ pub(super) fn drain(
                 }
                 continue;
             }
+        };
+        let (Some(((streamer, tiles), zone)), Some(floor)) = (world_inputs, floor.as_deref_mut()) else {
+            break;
         };
         if movement(packet.opcode) {
             let Ok(info) = parse_movement_info(&packet.payload) else {
@@ -231,18 +261,6 @@ pub(super) fn drain(
             opcode::CMSG_MESSAGECHAT => {
                 if let Some(request) = meter_request(&packet.payload) {
                     state.addon_publishers.entry(client).or_default().request(request);
-                }
-            }
-            opcode::CMSG_NAME_QUERY => {
-                if let Some(requested) = u64_at(&packet.payload, 0) {
-                    let hero = state
-                        .local
-                        .iter()
-                        .chain(state.world_profiles.values())
-                        .find(|hero| hero.guid == requested);
-                    if let Some(hero) = hero {
-                        replies.push(player_name(hero));
-                    }
                 }
             }
             opcode::CMSG_QUERY_TIME => {
@@ -385,6 +403,15 @@ mod tests {
         }
         assert_eq!(template_entry(&body), 0x80042329);
     }
+
+    #[test]
+    fn name_query_guid_zero_fills_short_inputs_and_ignores_suffix() {
+        let body = [1, 2, 3, 4, 5, 6, 7, 0x80, 0xff];
+        assert_eq!(name_query_guid(&[]), 0);
+        assert_eq!(name_query_guid(&body[..3]), 0x030201);
+        assert_eq!(name_query_guid(&body), 0x8007060504030201);
+    }
+
     #[test]
     fn movement_dispatch_does_not_accept_native_noop_c7() {
         assert!(movement(0xb5));

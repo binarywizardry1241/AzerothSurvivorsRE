@@ -12,6 +12,7 @@ import subprocess
 from coverage_common import ROOT, installed_identity, latest_target, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from equipment_native import EquipmentProbe
+from native_terminal import NativeReplay
 from script_sources import load_script
 
 SHA = "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be"
@@ -529,6 +530,11 @@ def ordered_world_input():
         0x145e782b7, 0x145e78310,
     ]
 
+    ordered_source()
+    print('PASS: retained host Engine/Control dispatch and ordered source drain')
+
+
+def ordered_source():
     gameplay = ROOT / 'crates/azeroth-survivors-re/src/gameplay'
     receive = (gameplay / 'coop.rs').read_text().split('fn receive(', 1)[1].split('fn finish_transport_lost(', 1)[0]
     command = (gameplay / 'coop_commands.rs').read_text()
@@ -536,17 +542,88 @@ def ordered_world_input():
     assert loop.index('commands::Input::Engine') < loop.index('commands::Input::Control') < loop.index('commands::drain(')
     assert 'commands: VecDeque<(ClientId, commands::Input)>' in (gameplay / 'coop.rs').read_text()
     drain = command.split('pub(super) fn drain(', 1)[1]
-    assert drain.index('!world.ready') < drain.index('terrain.native.terrain()') < drain.index('state.commands.pop_front()')
+    assert drain.index('terrain.native.terrain()') < drain.index('state.commands.front()') < drain.index('state.commands.pop_front()')
+    assert '.filter(|_| world.ready)' in drain
+    assert 'if !name_query' in drain
+    assert '(world_inputs.is_none() || floor.is_none())' in drain
     assert 'apply.after(bootstrap).before(RunSet::Tick)' in command
     assert 'Input::Engine(packet) => packet' in drain and 'Input::Control { kind, argument, offer }' in drain
-    print('PASS: current host Engine/Control dispatch, ordered ready-world source drain and bootstrap fallback')
+    return gameplay, drain
+
+
+def host_action_replay():
+    target = installed_identity()
+    assert target['sha256'] == '6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa'
+    image = target_bytes(target)
+    pe = load_script('party_frames_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+    return NativeReplay(image, pe)
+
+
+def host_name_query():
+    replay = host_action_replay()
+    cpu, reg = replay.machine, replay.registers
+    game, body = replay.app, replay.app + 0x4000
+    table, opcode_start = 0x147aec530, 0x145e9e9ce
+    assert table + replay.get(table + (0x50 - 0x4b) * 4, '<i')[0] == opcode_start
+    lookup, native_name = 0x145e9b550, 0x145fe8720
+    found, missing = 0x145ea10b1, 0x145ea10bf
+    names = 0
+
+    def lookup_seam(address):
+        if address != lookup:
+            return False
+        observed.append(cpu.reg_read(reg.UC_X86_REG_R8))
+        output = cpu.reg_read(reg.UC_X86_REG_RCX)
+        replay.put(output, '<qQQQ', 1 if known else -1, 0, 0, 0)
+        replay.return_seam()
+        return True
+
+    replay.seam = lookup_seam
+    for length, game_kind, mode, known, present in itertools.product(
+        range(13), (0, 2), (0, 1), (False, True), (False, True)
+    ):
+        payload = bytes(range(0x81, 0x81 + length))
+        expected = int.from_bytes(payload[:8], 'little')
+        observed = []
+        replay.reset('host NameQuery', [(0x145e9e690, 0x145ea2004)], [native_name, found, missing])
+        cpu.mem_write(body, payload)
+        cpu.reg_write(reg.UC_X86_REG_RSI, game)
+        cpu.reg_write(reg.UC_X86_REG_R13, length)
+        cpu.reg_write(reg.UC_X86_REG_R15, body)
+        replay.put(game + 0x10, '<I', game_kind)
+        replay.put(game + 0x10f3, '<B', mode)
+        replay.put(game + 0x1c70, '<qQQ', 8 if present else -1, body + 0x20, 4)
+        replay.put(game + 0x1e2c, '<BBB', 4, 1, 8)
+        lookup_active = game_kind != 2 and mode != 0
+        stop = found if lookup_active and known else native_name if present else missing
+        assert replay.run(opcode_start) == stop
+        assert observed == ([expected] if lookup_active else [])
+        if stop == native_name:
+            assert cpu.reg_read(reg.UC_X86_REG_RDX) == expected
+            assert cpu.reg_read(reg.UC_X86_REG_R8) == body + 0x20
+            assert cpu.reg_read(reg.UC_X86_REG_R9) == 4
+            stack = cpu.reg_read(reg.UC_X86_REG_RSP)
+            assert replay.get(stack + 0x28, '<B') == (1,)
+            assert replay.get(stack + 0x30, '<B') == (8,)
+            assert replay.get(stack + 0x38, '<B') == (4,)
+        names += 1
+
+    _, drain = ordered_source()
+    assert 'name_query_guid(&packet.payload)' in drain
+    assert 'state.world_profiles.get(&requested)' in drain and '.or(state.local.as_ref())' in drain
+    assert 'engine_packets::encode(&player_name(hero, requested), None)' in drain
+    assert 'runtime.send(Some(client), reply.into_message())' in drain
+    print(f'PASS: {names} NameQuery cases over {replay.instructions:,} original steps, plus ordered source guards')
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--ordered-input", action="store_true")
+    parser.add_argument("--host-name-query", action="store_true")
     args = parser.parse_args()
+    if args.host_name_query:
+        return host_name_query()
     if args.ordered_input:
         return ordered_world_input()
     target = latest_target(verify=True)
