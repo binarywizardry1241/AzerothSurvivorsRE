@@ -522,7 +522,9 @@ fn receive(
     let guest = runtime.driver.as_ref().is_some_and(|driver| !driver.is_hosting());
     let begin_ready_check = std::mem::take(&mut runtime.begin_ready_check);
     let cancel_ready_check = std::mem::take(&mut runtime.cancel_ready_check);
-    if let Some(answer) = runtime.ready_answer.take().filter(|_| guest && state.zone.is_none()) {
+    if let Some(answer) = runtime.ready_answer.take()
+        .filter(|_| guest && state.zone.is_none() && !state.sync_sent)
+    {
         if let Some(driver) = runtime.driver.as_mut() {
             driver.send_ready_answer(answer);
         }

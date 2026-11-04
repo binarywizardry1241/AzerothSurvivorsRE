@@ -149,6 +149,40 @@ mapping](switch-context-source-review-0.141.0.md#lobby-event-dispatch)
 binds that entry to its type selector. Current wire and authoritative
 party admission retain separate producer and consumer scopes.
 
+## Game-side Ready Check routing
+
+The local-command table at `0x147aeda3c` selects commands 22 through 29
+in the service poller. Command 28 enters `0x145ea8017`. It requires host
+role 3, absent Game tag 2, no active check and at least two roster
+identities. The iterator at `0x1460348b0` yields the host and qualifying
+peer profiles in connection order. The new check writes its elapsed clock
+and clears cancellation at `0x145ea81cb..0x145ea81d3`.
+
+Command 29 enters `0x145ea7c73`. The host admits only a false answer
+in the lobby and sets cancellation for an active check. The guest branch
+at `0x145ea82a5` requires accepted state, no ZoneKey and no synchronization
+request. It writes the bool at message +8 and emits native variant 26 via
+`0x14604fa80`. The rebuilt guest now explicitly checks both world gates
+before calling the existing accepted-session sender.
+
+The updater `0x145ec5890` builds the ordered roster again. It checks
+cancellation and exact roster equality before considering decline, all-ready
+and expiration. It uses the f64 30-second deadline at `0x1469dcac8` and the
+rounded-up remaining time at `0x145ec5bad`. Changed snapshots emit native
+variant 25 through each qualifying peer connection at `0x145ec5f6e`
+and reach the local UI through `0x145ef0420`. Terminal states consume
+the active response list. The source connects these gates through
+`CoopGame`, `Session` and `Check`, including first-answer ownership
+and admission to the existing menu run-entry path.
+
+The updater's 2,121-byte slice at file offset `0x5ec4c90` has SHA-256
+`beaca0788e267a2e37ac89ac3c5bbdb89aea9abccf24f6f48e9558165926b5e6`.
+Its journaled shared Ghidra result digest is
+`8aa07a4f2ae51bebe5b4090bd25e9f8ce94431a2e792e8a162f539965d8c2696`.
+Exact PE instructions bind the dispatch, payload and timer. The source
+was syntax-parsed. Actual network and UI behavior remains in
+[#306 verification](../verification-needed.md#gap-306).
+
 ## Exact current ranges
 
 | Scope | VA range | File offset | Bytes | SHA-256 |
