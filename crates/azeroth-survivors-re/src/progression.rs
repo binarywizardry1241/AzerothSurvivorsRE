@@ -851,17 +851,14 @@ fn achievement_input(
     categories: Query<(&Interaction, &AchievementCategory), Changed<Interaction>>,
     mut viewport: Query<(&Viewport, &ComputedNode, &mut ScrollPosition)>,
     mut wheel: MessageReader<MouseWheel>,
-    mut previous_subject: Local<Option<u64>>,
+    mut was_inspecting: Local<bool>,
 ) {
-    let subject = match menu.dialog {
-        Some(Dialog::CoopInspect(identity)) => Some(identity),
-        _ => None,
-    };
-    if *previous_subject != subject {
-        *previous_subject = subject;
+    let inspection = matches!(menu.dialog, Some(Dialog::CoopInspect(_)));
+    if inspection && !*was_inspecting {
+        view.category = None;
         view.inspection_scroll = 0.;
     }
-    let inspection = subject.is_some();
+    *was_inspecting = inspection;
     let active = if inspection {
         !menu.in_run && !menu.entering && !coop.ready_modal_visible(time.elapsed_secs())
     } else {
@@ -884,7 +881,9 @@ fn achievement_input(
         })
         .sum::<f32>();
     let selected = categories.iter().find_map(|(interaction, control)| {
-        (*interaction == Interaction::Pressed && control.inspection == inspection)
+        (*interaction == Interaction::Pressed
+            && control.inspection == inspection
+            && control.category != view.category)
             .then_some(control.category)
     });
     let view = &mut *view;

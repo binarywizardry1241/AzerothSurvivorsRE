@@ -175,14 +175,22 @@ cursor gate. It uses the cached offset for a newly added ScrollPosition,
 otherwise its live Y value, then subtracts wheel movement and clamps to
 the computed content minus viewport extent in logical units.
 It writes the cache and updates the component if its value differs.
-The exact category-input consumer and native scroll-cache reset across
-screen transitions remain open.
+
+The category input system `0x1402e80e0` requires Interaction tag 0 and a
+changed selection at `0x1402e82e9..0x1402e8319`. Both query branches
+write the selected byte at `0x1402e8331` or `0x1402e8542`, then zero
+the scroll cache at `0x1402e834a` or `0x1402e855b`. Pressing the current
+category or the current Summary is a no-op. The inspector shell resets the
+shared category to Summary at `0x1401c706c` when a valid subject has no
+existing inspection root. The valid-subject/existing-root branch returns
+at `0x1401c6e24..0x1401c6e28`, keeping this reset out of live content
+refreshes.
 
 The inspector now supplies only the remote earned keys and timestamps to
 the shared achievement view. Summary and category controls share selection
 with the ordinary achievement page. The category list consumes wheel input
-and the shared scrollbar, with the inspector's offset cleared on selection
-or subject change.
+and the shared scrollbar. Live interaction, relative scheduling and
+restoration across other screen transitions remain open.
 
 ## Exact static evidence
 
@@ -213,6 +221,8 @@ and its generic x86-64 calling convention does not establish the original ABI.
 | Category grid and scrollbar | `0x1403442f0` | `0x3436f0` | 1551 | `687301dcda8ac20e929ad729c513999a78110288d2cbce428ae08897b749a666` |
 | Typed AchList wheel | `0x1402e7cd0` | `0x2e70d0` | 1025 | `0a855876752ca33a8b302e1f8ecb471f3560e2c9c222360527bbda0a5db5235c` |
 | AchList wheel wrapper | `0x1402ffba0` | `0x2fefa0` | 608 | `4ab66236b47848ad7581726cade280110bd3eb2e7c7c9bc17d66d364dbdb0e15` |
+| Achievement category input | `0x1402e80e0` | `0x2e74e0` | 1176 | `314077bb12018295b378abdb7f5614e1933dfe0e5bec26ff853a42ac5b916b84` |
+| Inspection root lifecycle | `0x1401c6bf0` | `0x1c5ff0` | 1908 | `1460373ddc06f32e62bd6160e461ff8349ecbfc8b69bd539d7d6c126a366309b` |
 | Item descriptor producer | `0x145e2d890` | `0x5e2cc90` | 4878 | `b63469aaab9f137a8e4573b7eef1dd52fc5398be4e2c9590e4e3549dd11747ce` |
 
 The completed `analyze_function` results in the shared store have
