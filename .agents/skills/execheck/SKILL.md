@@ -309,6 +309,20 @@ reviews. Remove a claim from intake when its bounded assessment resolves it or
 an owning numbered finding now carries the remaining action. Retain unreviewed
 or inapplicable leads, including notes for releases newer than the installed EXE.
 
+On the first audit of a matching or later applicable EXE, review every queued
+[**Audit follow-up** from `$fixgap`](../fixgap/SKILL.md#complete-the-selected-sourcerecovery-task),
+including claims whose earlier source work was completed. Match by claim ID and
+compare the current native contract and its dependencies with the recorded source
+paths and live implementation. Account for later changes that supersede a claim.
+Record a new assessment against the audited hash and preserve the earlier proof
+under its original hash. If the source still matches, close the follow-up. If it
+needs a change, flag the affected paths or symbols, the demonstrated difference
+and the next source step in CURRENT-STATE under the same permanent finding ID
+when one exists, even if the finding had moved to verification. If the comparison
+is inconclusive, record the exact missing proof as recovery or applicability
+work. Retire the queued follow-up only when the audit resolves it or a linked
+finding carries the remaining action.
+
 ## Sweep the whole image
 
 - Run `python3 -B scripts/inventory-current-target.py --write` and `--check`.

@@ -306,10 +306,13 @@ them, inventing missing behavior or treating static checks as gameplay proof.
    `python3 -B scripts/index-current-changelog.py --claims-only <version> ...`
    to resolve their exact text without an audit. Selecting a release group
    covers its actionable claims. An exact claim ID selects that claim and its
-   required dependencies. Notes ahead of the installed version or for a
-   different artifact stay pending until applicable. Where
-   installed identity is unavailable, identify the affected leads as pending
-   rather than guessing applicability.
+   required dependencies. Offer actionable desktop leads from newer releases
+   even when an older EXE is installed. Label them **Release lead — newer than
+   installed EXE**, with both versions, and allow selection by group or claim ID.
+   If the installed identity is unavailable, mark it unverified and keep source
+   review selectable. Keep other-artifact leads pending until applicable. Once a
+   reviewed lead only needs a newer EXE for its follow-up, show that dependency
+   separately from selectable work.
    For a mixed gap, describe only its actionable source/recovery portion. Use
    explicit `#N` labels in a table or bullets so filtered findings cannot cause
    Markdown to renumber the choices. These are stable identifiers, not
@@ -353,13 +356,28 @@ new selection only for work outside that authorization or an explicit user limit
 ## Complete the selected source/recovery task
 
 - For a selected release lead, trace the live source and compare applicable
-  retained evidence before choosing a route. If the needed behavior is unclear,
-  recover only that contract from the installed EXE. A note supplies a question
-  for investigation. If the contract is already connected, record the bounded
-  result and close the intake item. If a defect is established, reuse its
+  retained evidence before choosing a route. Recover unclear behavior from the
+  installed EXE when it applies to the selected claim. If the contract is
+  already connected, record the bounded result and close the intake item unless
+  the audit follow-up below applies. If a defect is established, reuse its
   permanent finding or assign one under the register rules, then repair it in
-  the same selection. Retain unresolved subcases as selectable leads and keep
-  every constituent claim traceable to its assessment.
+  the same selection. Retain unresolved subcases as leads and keep every
+  constituent claim traceable to its assessment.
+- For a lead ahead of the installed EXE, trace the live source and complete any
+  repair supported by established evidence. Use the older EXE for bounded
+  baseline questions and bind those results to its actual version and hash.
+  The older EXE establishes baseline behavior only. Defer the parts that
+  require the newer EXE and keep the release note as the recovery question.
+- Keep each reviewed claim ahead of the installed EXE, or whose installed
+  identity could not be verified, in **Unreviewed release leads**. Mark it
+  **Audit follow-up** in the next source/recovery question for the
+  [applicable audit](../execheck/SKILL.md#investigate-every-claim-group-connected-work).
+  In that field or its linked owning report, record the
+  installed version and hash if verified, the relevant source paths and symbols
+  inspected or changed, the evidence used, and the exact behavior to compare
+  when the updated EXE is available. Include any existing gap ID. Carry the
+  follow-up even if the supported source work is complete. Keep the release
+  version and the evidence target separate in the claim assessment.
 - State the selected issue, the source/recovery deliverable and the static
   evidence that can establish its completion. Follow necessary cross-cutting
   dependencies and the additional-AS-repair rule above; announce each proved
@@ -441,7 +459,8 @@ new selection only for work outside that authorization or an explicit user limit
   changelog claim. Preserve unresolved code/data/indirect-reference coverage
   under its permanent gap until the native/source work is demonstrated. Check
   the affected claim IDs, finding links, evidence and source before delivery.
-  Reconcile the selected intake row so resolved claims stop appearing in the menu.
+  Reconcile the selected intake row so resolved claims stop appearing as repair
+  choices. Preserve ahead-of-install audit follow-ups as described above.
   For an unaudited hash, record the assessment with its actual version/hash in
   the durable reviews and owning report. When only historical evidence supports
   a source repair, retain that provenance and record current applicability as
