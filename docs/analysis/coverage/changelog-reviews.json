@@ -23036,7 +23036,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/ime.rs": "eb99c84d3072d2bbe3b394cec681b1e6ca29edc8bf84a43829cabf1c16c6fe05",
-        "crates/azeroth-survivors-re/src/main.rs": "bd34e403d6db3b6dead607ac2f61b3a1469118c48db8b2f8fe2d5516d51864ab",
+        "crates/azeroth-survivors-re/src/main.rs": "37bdae3436136361d4519081f86193f6445b3c2d8ba0369e9327bc1ad06d09af",
         "crates/azeroth-survivors-re/Cargo.toml": "2ea2843cc24ab195739ab112f8196833885c34439171971e144217e2d8f691a3",
         "docs/analysis/native-ime-preedit-0.141.0.md": "2ea4e71964f89ad124b050003c188b09b0e97811e58dd44340833d0d6e866661",
         "docs/analysis/browser-ime-0.141.0.md": "b9bfe83ed7de1c44ffa5f0394d7ac1faf87a4c94d9489e3260bfbbe44d524fb5"
@@ -29246,8 +29246,8 @@
         }
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/mod.rs": "a610f1dc29a1b82880f8cc00258c48f6abf101e419ecab0067765d53c1f7c44b",
-        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "5f2cfb87b1e5f8dc37bc11e9e40cb732b645d95dae9efabaf3f51d1b14d5632f",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs": "376a1b13a2a0af53bc5d3a6324b3566791edcd45c0a783ed24cfc17a38b24389",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "88cb08766d41781cc90852d516bff16e708f28f04104d54fb86f626e80f672a9",
         "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs": "d51d4bffe5bfe5f4ecf5623924da74159f1ec5ce5601beef9f67d095183b86a9",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "f9ce7a26a3bd105b82906151eb846af97a57bf2697a3ea59a00146576998c107",
         "crates/azeroth-survivors-re/src/account_progression.rs": "0d1390850cf422ee4b87aeec0204d813b2c15d0d89032929fcacd1c61381c914",
@@ -34634,10 +34634,14 @@
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
       },
       "status": "pending_claim_recovery",
-      "rationale": "Native window close and pause Quit reach typed AppExit, while explicit form and guest departure commands reach the ordered terminal writer. The exact AppExit key references and request callers narrow the remaining join to deferred callbacks or aliased departure producers. The reconstructed AppExit path already runs ordered role and service cleanup.",
+      "rationale": "Window close and pause Quit reach typed AppExit, and the four recovered Last callbacks persist local state or tear down addon UI. Explicit synchronized guest departures now share the ordered terminal service close. The relay signal and server classification on desktop process exit remain unresolved.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/coop_directory.rs",
-        "crates/azeroth-survivors-re/src/coop/session.rs"
+        "crates/azeroth-survivors-re/src/coop/session.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/pause.rs",
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs"
       ],
       "evidence_refs": [
         "docs/analysis/coop-desktop-exit-0.141.0.md"
@@ -34649,9 +34653,13 @@
         206
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/coop_directory.rs": "1193922b7422b5cf129e59238234e53558cb87b0671dd8cd79b0650224f53f12",
-        "crates/azeroth-survivors-re/src/coop/session.rs": "f8e84c771b6ecf8fafaf95b8d7cee1888b50a3b1e1c1f7612141cb8a690f698f",
-        "docs/analysis/coop-desktop-exit-0.141.0.md": "2921dc2f593cfc4eaec49a565fd6be79a4a35af71554b0c2532ab2b780957059"
+        "crates/azeroth-survivors-re/src/coop_directory.rs": "35a6343625dd91139f233fe3a1b93892153411666aa8c3f6b4da44f06d4b6eb7",
+        "crates/azeroth-survivors-re/src/coop/session.rs": "932f37889bba7d95f1232db1988736a0b08a1fd5b44e50503ec7ba2d9742e220",
+        "docs/analysis/coop-desktop-exit-0.141.0.md": "e657d4aabe386ce3767f54e83f188f8bfb2dbada516d1bfcb5c4a3fb5b333dc2",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "88cb08766d41781cc90852d516bff16e708f28f04104d54fb86f626e80f672a9",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs": "376a1b13a2a0af53bc5d3a6324b3566791edcd45c0a783ed24cfc17a38b24389",
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/pause.rs": "54d7dea7b38a7d0068f7c5be517fa31be7d2f842b8c87de3531e7aa5c2325220",
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs": "dc5cda931dc6f7fd5c76f21e150bc1c3679c9b6a74451178c34157e25ff3dfaf"
       }
     },
     {
@@ -34832,7 +34840,7 @@
         299
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "5f2cfb87b1e5f8dc37bc11e9e40cb732b645d95dae9efabaf3f51d1b14d5632f",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "88cb08766d41781cc90852d516bff16e708f28f04104d54fb86f626e80f672a9",
         "crates/azeroth-survivors-re/src/coop_runtime.rs": "2145fbbe8e7673e550b12c339fc2d5093a9371c87a9535ccdcf4b4e1d0794346",
         "crates/azeroth-survivors-re/src/coop_ui.rs": "16c78a76c8354792c5f25c1b7e1c2f8cbc096dc5a5daf6ba74c95e08804aace2",
         "crates/azeroth-survivors-re/src/coop_inspect.rs": "69198970dd842c692cbdd4aef7145fa43cc5b0b52f4d4c969e7c162d52dd7f7e",
@@ -34863,7 +34871,7 @@
         110
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs": "385e4b10464d13e119667040ad32df51ac23d3b4fde803490534add896a07578",
+        "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs": "bc00b53820545b31902e01cefc60474b51c4404329e5fc1287df79e5ea4261b8",
         "crates/benilla-app/src/local_client/spell_descriptions.rs": "df139d02746f87ed58bcf3ffbc9bfcabe13290ac07b5d0889f1ae5304da180c9",
         "crates/benilla-ui/src/script/tooltip_aura.rs": "5bb07b9a637757efd89b074c72bb6a12e1481ae30262227fae092705a741a0af",
         "docs/analysis/coop-guest-spell-rows-0.141.0.md": "a75af14d67f61776922f15bf907045e3153a69f21f18b2824bfac847ecf33011"
@@ -34904,7 +34912,7 @@
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/upgrades.rs": "542ba3cf7a8bdac045da941efe26ae58c9bb0b50e6ff58c00f6ef0dbcc25741f",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/passive_tick.rs": "688db269b0f44a44c77895cc26b7ecf19c3906cd1d051c76ffa5d50fcc401d94",
-        "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs": "2c02a16595d243a9d113e94724268def98bbd3e587fdfa5b489956f94ac052fb",
+        "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs": "20039c651da779c9fc6a7af562d1576930c7f32ddd0795543b429f83eeda532d",
         "docs/analysis/soulfire-0.141.0.md": "077bd61dff548f7d2a0ea9de057c3282a5dc8536112548b9d9f4e018d86a3cf1"
       }
     },

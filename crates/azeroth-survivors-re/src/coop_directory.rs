@@ -2,6 +2,7 @@
 //! Binary protocol and transport proofs: coop-forms-0.115.0.md.
 use azeroth_survivors_re::coop::{
     service::{ClientMessage, LobbyProfile},
+    session::Session,
     websocket::{DirectorySocket, RttSamples, SocketEvent},
 };
 use bevy::prelude::*;
@@ -264,6 +265,14 @@ impl Service {
         self.secondary_config = None;
     }
 
+    fn leave_guest_run(&mut self, mut driver: Session, now: f64) {
+        driver.leave_guest_run(now);
+        for command in driver.take_service_commands() {
+            send_relay(self, command);
+        }
+        self.close();
+    }
+
     fn heartbeat(&self) {
         // Current service pump145aeb92f..145aeb9ef checks each transport
         // independently. A closed lobby must not starve the selected relay.
@@ -324,7 +333,6 @@ fn poll(
     use azeroth_survivors_re::coop::{
         directory_wire::{self, DirectoryResponse},
         server_party::HostConfig,
-        session::Session,
     };
     let off = !runtime.is_guest()
         && !runtime
@@ -767,17 +775,13 @@ fn poll(
             request @ (FormRequest::Leave | FormRequest::LeaveRun) => {
                 let end_run = request == FormRequest::LeaveRun;
                 let was_guest = runtime.is_guest();
-                if end_run && !was_guest {
+                if end_run && (!was_guest || !guest.guest_synchronized()) {
                     continue;
                 }
                 if end_run {
-                    if let Some(mut driver) = runtime.driver.take() {
-                        driver.leave_guest_run(time.elapsed_secs_f64());
-                        for command in driver.take_service_commands() {
-                            send_relay(&mut service, command);
-                        }
+                    if let Some(driver) = runtime.driver.take() {
+                        service.leave_guest_run(driver, time.elapsed_secs_f64());
                     }
-                    service.close();
                 }
                 // Both departures settle the cached run before discarding it.
                 if was_guest {
@@ -824,13 +828,7 @@ fn poll(
                 runtime.shared_running = false;
                 runtime.actor_clients.clear();
                 runtime.roster_profile = None;
-                view.role.clear();
-                view.code = None;
-                view.lobby = None;
-                view.status = if end_run { "ended" } else { "off" }.into();
-                if end_run {
-                    view.unavailable_reason = Some("you left the run".into());
-                }
+                publish_local_departure(&mut view, end_run);
             }
         }
     }
@@ -1042,6 +1040,29 @@ fn drain_service_relay(service: &mut Service) {
     }
 }
 
+fn publish_local_departure(view: &mut CoopUi, end_run: bool) {
+    view.role.clear();
+    view.code = None;
+    view.lobby = None;
+    view.status = if end_run { "ended" } else { "off" }.into();
+    if end_run {
+        view.unavailable_reason = Some("you left the run".into());
+    }
+}
+
+pub(crate) fn finish_guest_departure(world: &mut World, mut driver: Session, now: f64) {
+    if let Some(mut service) = world.get_resource_mut::<Service>() {
+        service.leave_guest_run(driver, now);
+        service.hosting = false;
+        service.profile_identity = None;
+    } else {
+        driver.leave_guest_run(now);
+    }
+    if let Some(mut view) = world.get_resource_mut::<CoopUi>() {
+        publish_local_departure(&mut view, true);
+    }
+}
+
 fn relay(
     mut service: ResMut<Service>,
     mut runtime: ResMut<CoopRuntime>,
@@ -1180,7 +1201,7 @@ pub(crate) fn display_race(locale: &crate::localization::Localization, id: u8) -
 #[cfg(test)]
 mod tests {
     use super::*;
-    use azeroth_survivors_re::coop::{server_party::HostConfig, session::Session};
+    use azeroth_survivors_re::coop::server_party::HostConfig;
 
     // Queue-only workers: these regressions never establish a socket/thread.
     fn worker(state: u8) -> (Worker, mpsc::Receiver<WorkerCommand>) {

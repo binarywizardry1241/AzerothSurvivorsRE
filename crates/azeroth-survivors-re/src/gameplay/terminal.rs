@@ -351,6 +351,9 @@ pub(super) fn input(
     if let Some(runtime)=coop.as_deref_mut().filter(|runtime|runtime.is_guest()) {
         let mut active_client = client.active;
         while let Some(action)=state.actions.pop_front() {
+            let Some(guest) = guest.as_deref_mut().filter(|guest| guest.guest_synchronized()) else {
+                continue;
+            };
             match action {
                 TerminalAction::Endless=>{
                     // Current guest command8 is native Control4, whose host
@@ -360,18 +363,18 @@ pub(super) fn input(
                 TerminalAction::Again|TerminalAction::Menu=>{
                     // Native guest run commands6/9 close the admitted cache;
                     // they do not require the raw engine Logout client gate.
-                    let Some(guest)=guest.as_deref_mut() else { continue };
+                    let Some(driver) = runtime.driver.take() else { continue };
+                    let depart_at = time.elapsed_secs_f64();
+                    commands.queue(move |world: &mut World| {
+                        crate::coop_directory::finish_guest_departure(world, driver, depart_at);
+                    });
                     let now=std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH)
                         .map_or(0,|duration|duration.as_secs());
                     let messages=guest.settle(&mut session,&mut menu,&catalog,locale.as_deref(),
                         &mut notifications,now,time.elapsed_secs(),true);
                     menu.persist_selection(&catalog);
-                    if let Some(driver)=runtime.driver.as_mut() {
-                        driver.send_message(None,azeroth_survivors_re::coop::replication::NativeMessage::Lifecycle(
-                            azeroth_survivors_re::coop::server_party::LifecyclePacket::Disconnect));
-                        driver.flush(time.elapsed_secs_f64());driver.close();
-                    }
-                    runtime.driver=None;runtime.party.clear();runtime.actor_clients.clear();
+                    runtime.party.clear();
+                    runtime.actor_clients.clear();
                     guest.leave();
                     world.request=None;session.mechanics=None;session.started=false;session.paused=false;
                     session.ended_by_player=false;*pause=Pause::default();
@@ -518,6 +521,7 @@ pub(super) fn input(
             action == TerminalAction::Menu,
             action == TerminalAction::Again,
             retiring,
+            None,
         );
         if action == TerminalAction::Menu {
             active_client = false;

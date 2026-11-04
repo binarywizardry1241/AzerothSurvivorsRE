@@ -73,7 +73,7 @@ def main():
     gameplay = (ROOT / 'crates/azeroth-survivors-re/src/gameplay/mod.rs').read_text()
     assert 'TerminalAction::Again|TerminalAction::Menu' in terminal
     assert 'NativeMessage::Control{kind:4,argument:0}' in terminal
-    assert 'LifecyclePacket::Disconnect' in gameplay
+    assert 'finish_guest_departure(world, driver, now)' in gameplay
     print('PASS:12 bounded native ranges,8 durable Ghidra owners,5 dispatch tables;'
           'guest Again/Menu leave,guest Endless kind4,host continuation and End18 reset;'
           'source routing anchors; no compilation or runtime/parity claim')
@@ -139,8 +139,11 @@ def guest_end_run():
     assert 'coop_ui.request_leave_run();' in pause and 'kind:5' not in pause
     directory = (source / 'coop_directory.rs').read_text()
     leave = directory.split('request @ (FormRequest::Leave | FormRequest::LeaveRun)', 1)[1]
-    assert (leave.index('driver.leave_guest_run(') < leave.index('service.close();')
-            < leave.index('guest.settle(') < leave.index('"you left the run"'))
+    assert (leave.index('service.leave_guest_run(') < leave.index('guest.settle(')
+            < leave.index('publish_local_departure('))
+    close = directory.split('fn leave_guest_run(', 1)[1].split('fn heartbeat(', 1)[0]
+    assert (close.index('driver.leave_guest_run(') < close.index('driver.take_service_commands(')
+            < close.index('send_relay(') < close.index('self.close();'))
     mechanics = (source / 'gameplay/mechanics/coop.rs').read_text()
     departure = mechanics.split('pub fn leave_party_hero(', 1)[1].split('fn refresh_party_live_heroes', 1)[0]
     assert '.all(|hero| hero.departed)' in departure

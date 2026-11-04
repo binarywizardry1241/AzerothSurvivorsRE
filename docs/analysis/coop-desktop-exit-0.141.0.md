@@ -94,8 +94,77 @@ The first-consumer slice and its verified result digests are
 and `0541314bd839341069c36b9823d64680d9a946fe2c6db989825ef1150b038118`.
 The original table bytes supply the aliases beyond the raw-slice analysis.
 
-This narrows the remaining join to the actual deferred Last callbacks and
-any aliased producer of those departure commands. The static calls and
-typed key references above leave that join unresolved. The existing
-reconstructed exit system continues to flush pending traffic and then
-close the role and service.
+## Last callbacks and process exit
+
+The four callers of the Last helper each construct a boxed Bevy system
+through `0x145bc5930`. The constructor retains the supplied vtable at
+system `+0x68`. The vtable's `+0x48` slot leads to these callbacks.
+
+| Registration call | Vtable | Callback | Observed consumer |
+| --- | --- | --- | --- |
+| `0x1408ba410` | `0x146638130` | `0x140901f40` | Camera pose save through `0x1408b9af0`, which owns the camera pose write diagnostics |
+| `0x1408e78db` | `0x1466385c8` | `0x1408ff900` | Chat settings save, anchored by the `ui_chat/settings.rs:664` Location at `0x1408ffb4c` |
+| `0x141263546` | `0x146738ee0` | `0x141287200` | Config save through `0x1411e6400` and its `config.toml` path |
+| `0x14137b55a` | `0x146627968` | `0x1407c3bf0` | Addon UI lifecycle teardown through `0x1407d3d80`, which has the `ui_script/lifecycle.rs:1454` Location |
+
+An independent scan of original executable-section rel32 candidates recovered
+the pause sender at `0x14017e2d7` and the form Leave sender at `0x140104a46`
+outside the saved Ghidra reference set. The four Last registrations and five
+relative callers of the terminal service writer agree with the saved census.
+None of the four callbacks joins the observed AppExit route to a native
+departure command. The detached worker remains live when the app owner
+releases its reference. The selected desktop trace does not establish which
+transport signal the original relay receives on process exit, or how the
+service distinguishes that signal from a recoverable connection loss. The
+rebuilt AppExit adapter still orders and submits explicit close traffic. Its
+socket behavior and correspondence at that service boundary remain open.
+
+## Synchronized guest departures
+
+The pause button builder uses the same action byte 2 for `menu.end_run`
+at `0x14017e689` and `menu.character_select` at `0x14017e920`. Both join at
+the store `0x14017e967`. The dispatch table at `0x146598758` sends action 2
+to `0x14017e0ef`, which dismisses pause and stores command 10 before the
+common sender at `0x14017e2d7`. Action 3 branches separately to the AppExit
+writer and loops back at `0x14017e1a2`. The additional UI action table at
+`0x1465982f8` supplies commands 6, 8, 9 and 25. Form Leave also has a direct
+command-25 producer at `0x140104a34`.
+
+Engine Logout opcode `0x4b` enters the local response route in
+`0x145e9e690`. The branch at `0x145e9e780` writes reason zero and instant
+one, then sends `0x4c` at `0x145e9e7c0`. With role `+0x1100 <= 1` and
+the `+0x15a5` sync latch set, it passes constant command 9 from
+`0x147aea888` to the same guest dispatcher. The unsynchronized engine
+fallback reaches the local world-end helper `0x145ebb4d0`. The app-command
+fallback at `0x145ea7819` excludes commands 6, 8, 9 and 10 when the guest
+handler declines them. Admitted commands 6, 9 and 10 all flush pending game
+output, submit a separate Disconnect, take and close the service, then
+publish `you left the run`.
+
+The source now shares the terminal service close between Pause End Run and
+Character Select, terminal Again and Menu, and ordinary synchronized guest
+Logout. The previous terminal and engine branches took the driver down
+without submitting its queued GuestLeave. The connected path drains the
+guest's pending data and separate Disconnect, then submits Leave and closes
+the primary and selected secondary in order. Engine Logout flushes the
+instant response before terminal network close and publishes local LoggedOut
+afterward. The unsynchronized engine fallback retires the local world and
+retains the guest's service role. The pause and terminal app commands wait
+for the existing guest synchronization latch.
+
+Twenty-eight exact PE boundary checks, six source wiring and order guards,
+the retained socket source checks and syntax parsing of five Rust modules
+passed. The five Ghidra results below were verified against the original
+PE, raw slice, query plan and completed journal. The plan and journal
+receipts under `runtime/analysis/tasks/fixgap-206-last-callbacks-0.141.0`
+reference the shared results. The armory result at `0x1402eace0` separates
+that forwarded request sender from desktop departure. Compilation, game
+execution and live service delivery remain unverified.
+
+| Procedure | Raw slice SHA-256 | Saved result SHA-256 |
+| --- | --- | --- |
+| `0x140901f40` | `d901cd08f576a3216e1bdc5377c96487d9a5ed545f972318591058d2e02c38e6` | `59cbe8bd4f94fcaa69b09e2224bb1e6a17c519884a0d947c87dee6f0c484b06c` |
+| `0x1408ff900` | `1a7af6887649be434ed72a41a8249dbb207f56e2f95ee85c4a4c9fd141c454a2` | `9989716a8ca0e73d8f601ab09de26a683f945042b02e28747cb26d7bd9c1201d` |
+| `0x141287200` | `8a4af7160237f0ba9b0748c777a51547e66b0c3938db1c644bea565b5b06ca37` | `1708e4cd2792d41c8ab9a271723ee191f372a2ccf8e46053cd3a8c987fa0f2f8` |
+| `0x1407c3bf0` | `33206031aa2cacf931a459fd090c132109fbd957b29af68606d3298242504bb0` | `412e99c94999d5665d821fa8f5fc229172397f01387d3f4b6594ebeddec2487d` |
+| `0x1402eace0` | `8647fe075ef8d7a534eda31cad2377b108eb58336ccf40c67d6d8475ebbc9a19` | `846fd6a5e0509ea72281eb444719e77e4f878ea6b33036e545fd7d68803b64b7` |

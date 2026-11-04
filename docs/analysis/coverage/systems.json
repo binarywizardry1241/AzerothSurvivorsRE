@@ -63802,8 +63802,15 @@
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 206,
         "report_ref": "docs/analysis/coop-desktop-exit-0.141.0.md",
-        "source_state": "existing_ordered_exit_connected_native_handoff_pending",
-        "scope": "WM_CLOSE and Quit to typed AppExit, app return and detached worker ownership. Exit-to-service command or other teardown consumer remains unresolved.",
+        "source_state": "synchronized_guest_departures_connected_desktop_relay_handoff_pending",
+        "scope": "WM_CLOSE and Quit reach typed AppExit and the four Last callbacks for persistence and addon teardown. The rebuilt synchronized guest Pause, terminal and engine departures share the ordered Disconnect and terminal service close. Desktop process-exit signal and remote relay classification remain unresolved.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/coop_directory.rs",
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+          "crates/azeroth-survivors-re/src/gameplay/run_hud/pause.rs",
+          "crates/azeroth-survivors-re/src/gameplay/terminal.rs"
+        ],
         "runtime_validation": "not_run",
         "parity": "unverified"
       },

@@ -1538,11 +1538,13 @@ fn finish_client_delivery(
     retiring: Option<mechanics::Retirement>,
 ) {
     commands.queue(move |world: &mut World| {
+    guest_departure: Option<(azeroth_survivors_re::coop::session::Session, f64)>,
         use benilla_app::local_client::{
             LocalClientSession,
             events::{LocalPresentationEvents, flush_events},
         };
-        if world.contains_resource::<LocalPresentationEvents>() {
+        let has_presentation = world.contains_resource::<LocalPresentationEvents>();
+        if has_presentation {
             // Wire decoding appends behind the presentation queue. Drain both
             // old queues before adding retirement, otherwise a pending create
             // could recreate a GUID after its ObjectDestroy in this same flush.
@@ -1582,7 +1584,13 @@ fn finish_client_delivery(
                 world.resource_mut::<LocalPresentationEvents>().0.extend(retired);
             }
             flush_events(world);
-            if logged_out {
+        }
+        if let Some((driver, now)) = guest_departure {
+            // The native engine sends the instant response before command 9.
+            crate::coop_directory::finish_guest_departure(world, driver, now);
+        }
+        if logged_out {
+            if has_presentation {
                 // Flush already admitted messages before the real inbound logout
                 // handler tears down the player and its sender cache.
                 world
@@ -1591,8 +1599,6 @@ fn finish_client_delivery(
                     .push(benilla_app::local_client::events::SessionEvent::LoggedOut);
                 flush_events(world);
             }
-        }
-        if logged_out {
             // Current Screens poll140192886 clears the retained ready entry on
             // Logout only. Again can temporarily have no Game and keeps it.
             if let Some(mut presence) = world.get_resource_mut::<crate::discord::RunSnapshot>() {
@@ -1660,6 +1666,8 @@ fn native_requests(
                 let guest = coop.as_deref().is_some_and(|runtime| runtime.is_guest());
                 let mut guest_messages = None;
                 if guest {
+                let synchronized_guest = guest
+                    && replica.as_deref().is_some_and(coop::CoopGame::guest_synchronized);
                     if let Some(replica) = replica.as_deref_mut() {
                         let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH)
                             .map_or(0, |duration| duration.as_secs());
@@ -1669,15 +1677,17 @@ fn native_requests(
                 } else if let Some(game) = session.mechanics.as_mut().filter(|_| started) {
                     persist_run(game, &mut menu, selected_roster_guid, starting_gear, showcase, started, true);
                 }
-                if let Some(runtime)=coop.as_deref_mut().filter(|runtime|runtime.is_guest()) {
-                    if let Some(driver)=runtime.driver.as_mut() {
-                        driver.send_message(None,azeroth_survivors_re::coop::replication::NativeMessage::Lifecycle(
-                            azeroth_survivors_re::coop::server_party::LifecyclePacket::Disconnect));
-                        driver.flush(time.elapsed_secs_f64());driver.close();
-                    }
-                    runtime.driver=None;runtime.party.clear();runtime.actor_clients.clear();
-                    if let Some(replica)=replica.as_deref_mut(){replica.leave();}
-                }
+                let departing_driver = coop.as_deref_mut().filter(|runtime| runtime.is_guest())
+                    .and_then(|runtime| {
+                        // The unsynchronized engine fallback only retires the local world.
+                        let driver = if synchronized_guest { runtime.driver.take() } else { None };
+                        runtime.party.clear();
+                        runtime.actor_clients.clear();
+                        if let Some(replica) = replica.as_deref_mut() {
+                            replica.leave();
+                        }
+                        driver
+                    });
                 menu.persist_selection(&catalog);
                 world.request = None;
                 let mut final_messages = guest_messages.unwrap_or_else(|| session.mechanics.as_mut().map_or_else(Vec::new, |game| {
@@ -1706,6 +1716,7 @@ fn native_requests(
                     None,
                 );
                 if request == SessionRequest::Quit {
+                    departing_driver.map(|driver| (driver, time.elapsed_secs_f64())),
                     // The client exits on logout-complete. This deferred command
                     // follows the response, LoggedOut dispatch and session logout.
                     commands.queue(|world: &mut World| {
@@ -1995,7 +2006,7 @@ mod tests {
         client.begin(LocalPlayerUi { guid: 1, name: "Stock".into(), ..Default::default() });
         world.insert_resource(client);
         world.run_system_once(|mut commands: Commands| {
-            finish_client_delivery(&mut commands, Vec::new(), false, true, None);
+            finish_client_delivery(&mut commands, Vec::new(), false, true, None, None);
         }).unwrap();
         let client = world.resource::<LocalClientSession>();
         assert!(client.active && client.paused);

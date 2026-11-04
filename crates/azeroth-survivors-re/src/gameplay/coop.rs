@@ -174,6 +174,10 @@ impl CoopGame {
         client.is_some_and(|client| driver.kick_client(client, now))
     }
 
+    pub(crate) fn guest_synchronized(&self) -> bool {
+        self.sync_sent
+    }
+
     fn guest_engine_packet(
         &self,
         opcode: u16,

@@ -61,6 +61,7 @@ pub(super) fn input(
     clicks: Query<(&Interaction, &Action), Changed<Interaction>>,
     mut exit: MessageWriter<AppExit>,
     coop: Option<Res<crate::coop_runtime::CoopRuntime>>,
+    guest: Res<super::super::coop::CoopGame>,
     mut coop_ui: ResMut<crate::coop_ui::CoopUi>,
     choice: Res<super::super::ChoicePresentation>,
 ) {
@@ -123,12 +124,15 @@ pub(super) fn input(
                     .mechanics
                     .as_ref()
                     .is_some_and(|game| game.dead || game.completed);
-                if !session.started || terminal {
-                    state.open = false;
-                    native.session_requests.push(SessionRequest::Logout);
-                } else if confirmed(&mut state.confirmation, now) {
+                let return_to_picker = !session.started || terminal;
+                if return_to_picker || confirmed(&mut state.confirmation, now) {
                     if coop.as_deref().is_some_and(|runtime| runtime.is_guest()) {
-                        coop_ui.request_leave_run();
+                        // Character Select and End Run share native command 10.
+                        if guest.guest_synchronized() {
+                            coop_ui.request_leave_run();
+                        }
+                    } else if return_to_picker {
+                        native.session_requests.push(SessionRequest::Logout);
                     } else {
                         session.mechanics.as_mut().unwrap().abandon(|xy| floor.terrain_ref().and_then(|terrain| terrain.height(xy)));
                         session.ended_by_player = true;
