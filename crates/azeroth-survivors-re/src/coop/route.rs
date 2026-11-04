@@ -9,6 +9,20 @@ const INPUT_FIELD: &str = ",\"in\":";
 const METER_FIELD: &str = "\"m\":";
 const SHARED_BANNERS: [&str; 4] = ["boss", "finalboss", "bossdown", "guardian"];
 
+/// The 0.140.0 guest EventBytes gate examines the initial type, not the rest
+/// of the JSON document. Native event-specific consumers parse the body.
+pub fn guest_event_allowed(packet: &str) -> bool {
+    if packet.len() > 65_536 {
+        return false;
+    }
+    let Some(kind) = packet.strip_prefix(TYPE_PREFIX).and_then(|rest| rest.split('"').next()) else {
+        return false;
+    };
+    matches!(kind, "hz" | "hzt" | "atk" | "atku" | "atkl" | "atka" | "atkx"
+        | "start" | "hzend" | "resume" | "banner" | "paused" | "defeat" | "downed"
+        | "choices" | "victory" | "endless" | "revived" | "unpaused")
+}
+
 /// Return the exact event bytes eligible for forwarding to another hero.
 /// Local delivery is independent and must retain the original packet.
 ///

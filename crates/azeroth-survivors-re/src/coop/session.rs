@@ -1053,6 +1053,7 @@ impl Session {
         while let Some(event) = self.next_host_event() { completed.push_back(event); }
         self.party_events = completed;
         let receiving = self.denial.is_none();
+        let mut host_closed = false;
         if let Some(upstream) = self.upstream.as_mut().filter(|_| receiving) {
             'receive: while let Some(bytes) = upstream.receive() {
                 let Ok(messages) = decode_frame(&bytes) else {
@@ -1065,7 +1066,7 @@ impl Session {
                                 LifecyclePacket::Pong(*stamp)));
                         }
                         NativeMessage::Lifecycle(LifecyclePacket::Accepted(accepted)) => {
-                            self.accepted = Some(*accepted)
+                            self.accepted = Some(JoinAccepted { capacity: accepted.capacity.clamp(1, 5), ..*accepted });
                         }
                         NativeMessage::Lifecycle(LifecyclePacket::Denied(reason)) => {
                             self.denial = Some(reason.clone());
@@ -1079,33 +1080,43 @@ impl Session {
                             self.roster = Some(rows.clone())
                         }
                         NativeMessage::Lifecycle(LifecyclePacket::EventBytes(event)) => {
-                            self.events
-                                .push(String::from_utf8_lossy(event).into_owned());
+                            let event = String::from_utf8_lossy(event);
+                            if !super::route::guest_event_allowed(&event) {
+                                continue;
+                            }
+                            self.events.push(event.into_owned());
                         }
                         NativeMessage::Lifecycle(LifecyclePacket::LobbyChat(chat)) => {
                             self.lobby_chat.push(chat.clone());
                         }
-                        NativeMessage::Lifecycle(LifecyclePacket::ReadyCheck(snapshot))
-                            if self.accepted.is_some() && self.lobby_ping =>
+                        NativeMessage::Lifecycle(LifecyclePacket::ReadyCheck(_))
+                            if self.accepted.is_none() =>
                         {
-                            self.ready_updates.push(snapshot.clone());
+                            continue;
                         }
                         _ => {}
                     }
                     let refused = matches!(&message, NativeMessage::Lifecycle(LifecyclePacket::Denied(_)));
+                    host_closed = matches!(&message, NativeMessage::Lifecycle(LifecyclePacket::Disconnect));
                     self.messages.push(IncomingMessage {
                         client: None,
                         message,
                     });
-                    // Current145bd8419 switches to Off before dropping the
-                    // old guest role. No later decoded or outer frame runs.
-                    if refused { break 'receive; }
+                    // Both native guest exits stop the current batch and later frames.
+                    if refused || host_closed { break 'receive; }
                 }
             }
-            if !upstream.is_alive() {
+            if host_closed || !upstream.is_alive() {
                 self.accepted = None;
                 self.roster = None;
             }
+        }
+        if host_closed {
+            if let Some(mut upstream) = self.upstream.take() {
+                upstream.close();
+                self.relay_commands.extend(upstream.take_relay_commands());
+            }
+            self.upstream_outgoing.clear();
         }
         self.flush(now);
     }
@@ -1558,6 +1569,46 @@ mod relay_protocol_tests {
         guest.tick(2.);
         assert!(guest.take_messages().is_empty());
         assert!(guest.accepted().is_none() && guest.roster().is_none());
+        assert!(guest.take_service_commands().is_empty());
+    }
+
+    #[test]
+    fn guest_dispatch_keeps_admitted_events_before_explicit_host_close() {
+        let mut guest = Session::service_join(Vec::new());
+        guest.take_service_commands();
+        let accepted = LifecyclePacket::Accepted(JoinAccepted { slot: 1, capacity: 0 });
+        let ready = NativeMessage::Lifecycle(LifecyclePacket::ReadyCheck(super::super::readycheck::Snapshot {
+            status: super::super::readycheck::Status::Running, left: 30, answers: Vec::new(),
+        }));
+        let admission = encode_batch(&[
+            ready.clone(), NativeMessage::Lifecycle(accepted.clone()), ready.clone(),
+        ]).unwrap().unwrap();
+        guest.guest_flags.lock().unwrap().received.push_back(admission);
+        guest.tick(1.);
+        assert_eq!(guest.accepted().unwrap().capacity, 1);
+        let messages = guest.take_messages();
+        assert_eq!(messages.len(), 2);
+        assert_eq!(messages[0].message, NativeMessage::Lifecycle(accepted.clone()));
+        assert_eq!(messages[1].message, ready);
+
+        let event = |text: &str| NativeMessage::Lifecycle(LifecyclePacket::EventBytes(text.as_bytes().to_vec()));
+        let batch = encode_batch(&[
+            event(r#"{"type":"unknown"}"#),
+            event(r#"{"type":"resume"}"#),
+            NativeMessage::Lifecycle(LifecyclePacket::Disconnect),
+            event(r#"{"type":"start"}"#),
+        ]).unwrap().unwrap();
+        guest.guest_flags.lock().unwrap().received.extend([batch, encode_lifecycle(&accepted).unwrap()]);
+        guest.tick(2.);
+        let messages = guest.take_messages();
+        assert_eq!(messages.len(), 2);
+        assert_eq!(messages[0].message, event(r#"{"type":"resume"}"#));
+        assert_eq!(messages[1].message, NativeMessage::Lifecycle(LifecyclePacket::Disconnect));
+        assert_eq!(guest.take_events(), [r#"{"type":"resume"}"#]);
+        assert_eq!(guest.take_service_commands(), [RelayCommand::GuestLeave]);
+        assert!(!guest.connected());
+        guest.tick(3.);
+        assert!(guest.take_messages().is_empty());
         assert!(guest.take_service_commands().is_empty());
     }
 

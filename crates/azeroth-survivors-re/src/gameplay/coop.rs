@@ -458,7 +458,7 @@ fn receive(
     armory: Res<crate::armory::ArmoryCatalog>,
     mut commands: Commands,
     mut world: ResMut<ZoneWorld>,
-    (input, bridge, hud_settings, catalog, stock, mut notifications, mut board, units, mut terrain): (
+    (input, bridge, hud_settings, catalog, stock, mut notifications, mut board, units, mut terrain, mut coop_view): (
         Res<benilla_app::local_client::LocalClientInput>,
         Res<client::BridgeCatalog>,
         Res<run_hud::HudSettings>,
@@ -468,6 +468,7 @@ fn receive(
         ResMut<client::raid_targets::RaidTargets>,
         Query<(&LocalUnitVisual, &Transform, Option<&benilla_app::local_client::LocalUnitPath>)>,
         commands::CommandTerrain,
+        ResMut<crate::coop_ui::CoopUi>,
     ),
 ) {
     let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH)
@@ -642,6 +643,19 @@ fn receive(
                 if let Some((driver, hero)) = runtime.driver.as_mut().zip(client.and_then(|id| state.profiles.get(&id))) {
                     driver.answer_ready_check(hero.guid, ready);
                 }
+            }
+            NativeMessage::Lifecycle(LifecyclePacket::ReadyCheck(mut snapshot))
+                if guest && state.zone.is_none() && !state.sync_sent =>
+            {
+                use azeroth_survivors_re::coop::readycheck::{Answer, SECONDS};
+                snapshot.left = snapshot.left.min(SECONDS);
+                snapshot.answers.truncate(5);
+                for (_, answer) in &mut snapshot.answers {
+                    if matches!(answer, Answer::Unknown(_)) {
+                        *answer = Answer::NotReady;
+                    }
+                }
+                coop_view.receive_ready_check(snapshot, guid, time.elapsed_secs(), &locale);
             }
             NativeMessage::Lifecycle(LifecyclePacket::Accepted(_)) if guest => {
                 if let Some(hero) = &state.local {
@@ -838,7 +852,7 @@ fn receive(
                     state.timers = rows;
                 }
             }
-            NativeMessage::EquipmentGrants(grants) if guest => {
+            NativeMessage::EquipmentGrants(grants) if guest && state.zone.is_some() => {
                 let allowed = state.zone_equipment_ids(pick.hero.class, &armory);
                 let grants = azeroth_survivors_re::coop::client_state::accept_equipment_grants(
                     grants,
@@ -853,7 +867,7 @@ fn receive(
                     marks_bits, missed_items, &allowed, &mut state.marks_received);
                 state.receive_boss_rewards(&mut run, &mut menu, pick.hero.class, marks, &missed, now);
             }
-            NativeMessage::StringRanks(rows) if guest => {
+            NativeMessage::StringRanks(rows) if guest && state.zone.is_some() => {
                 let rows = azeroth_survivors_re::coop::client_state::accept_seen_grants(
                     rows,
                     azeroth_survivors_re::coop::client_state::recognized_seen_key,

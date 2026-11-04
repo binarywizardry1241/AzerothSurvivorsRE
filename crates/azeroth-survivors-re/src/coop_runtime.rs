@@ -4,6 +4,7 @@
 use azeroth_survivors_re::coop::{
     game_party::{Party, class_key},
     replication::NativeMessage,
+    server_party::LifecyclePacket,
     session::{IncomingMessage, PartyEvent, ReconnectionChange, Session},
     tcp::StartupConfig,
 };
@@ -304,6 +305,7 @@ fn poll(
             && view.status == "joining" {
             view.status = "joined".into();
         }
+        let messages = if driver.is_hosting() { Vec::new() } else { driver.take_messages() };
         if !driver.is_hosting() && !driver.connected() {
             // A refused handshake is a distinct native Off transition, before
             // the ordinary disconnected-host world teardown.
@@ -312,7 +314,11 @@ fn poll(
                 view.status = "ended".into();
                 view.role.clear();
                 view.unavailable_reason = Some(
-                    if driver.relay_unreachable() {
+                    if messages.last().is_some_and(|message| matches!(
+                        message.message, NativeMessage::Lifecycle(LifecyclePacket::Disconnect)
+                    )) {
+                        "the host closed the party"
+                    } else if driver.relay_unreachable() {
                         "the co-op relay cannot be reached"
                     } else {
                         "the host left"
@@ -322,7 +328,7 @@ fn poll(
             }
         }
         if !driver.is_hosting() {
-            runtime.incoming.extend(driver.take_messages());
+            runtime.incoming.extend(messages);
             runtime.party_events.extend(driver.take_party_events());
             runtime.reconnection_changes.extend(driver.take_reconnection_changes());
             if let Some(reconnecting) = driver.take_relay_retry_change() {
