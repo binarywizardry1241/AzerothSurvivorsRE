@@ -322,7 +322,7 @@ impl CoopUi {
         }
     }
 
-    fn party_active(&self) -> bool {
+    pub(crate) fn party_active(&self) -> bool {
         forms::party_active(&self.status, &self.role)
     }
 

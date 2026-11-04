@@ -46,6 +46,7 @@ pub(super) fn snapshot(
             "hero":session.name,
             "bg":zone.map_or("",|row|row.name.as_str()),
             "subtitle":zone.map_or("",|row|row.subtitle.as_str()),
+            "heroic":game.rules.heroic_rank,
         }));
     }
     let boss = game.bosses.iter().find(|boss| !boss.actor.dead).map(|boss| {

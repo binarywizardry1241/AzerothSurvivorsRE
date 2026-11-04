@@ -1,15 +1,16 @@
-//! Current 0.109.0 activity builder/publisher (14006b460/14007b510).
+//! Activity builder and publisher, including the 0.139.2 zone/difficulty label.
 //! Native wire/worker and platform limits live in discord/transport.rs.
 mod transport;
 
 use crate::{
     catalog::MenuCatalog,
+    coop_ui::CoopUi,
     localization::Localization,
     menu_state::MenuState,
     options::{OptionsSet, OptionsState},
 };
 use bevy::prelude::*;
-use serde_json::{json, Value};
+use serde_json::{Value, json};
 use std::{
     sync::mpsc,
     time::{SystemTime, UNIX_EPOCH},
@@ -60,6 +61,7 @@ fn publish(
     catalog: Res<MenuCatalog>,
     locale: Res<Localization>,
     run: Res<RunSnapshot>,
+    coop: Option<Res<CoopUi>>,
     stock: Option<Res<benilla_app::local_client::LocalStockFrontend>>,
     mut publisher: ResMut<Publisher>,
 ) {
@@ -83,6 +85,8 @@ fn publish(
             menu.class,
             menu.race,
             menu.zone,
+            menu.heroic_rank.min(menu.max_heroic_rank()),
+            coop.as_deref().and_then(PartyActivity::from_coop).as_ref(),
             &run,
             &catalog,
             &locale,
@@ -117,6 +121,54 @@ fn number(value: &Value) -> f64 {
 fn text(value: &Value) -> &str {
     value.as_str().unwrap_or("")
 }
+fn zone_with_difficulty(zone: &str, rank: u8, locale: &Localization) -> String {
+    let difficulty = azeroth_survivors_re::heroic::rank_name(
+        rank.min(5),
+        locale.label("Normal"),
+        locale.label("Heroic"),
+    );
+    format!("{zone} ({difficulty})")
+}
+
+struct PartyActivity<'a> {
+    code: &'a str,
+    size: usize,
+    friends: String,
+}
+
+impl<'a> PartyActivity<'a> {
+    fn from_coop(coop: &'a CoopUi) -> Option<Self> {
+        if !coop.party_active() {
+            return None;
+        }
+        let code = coop.code.as_deref().filter(|code| !code.is_empty())?;
+        let heroes = coop
+            .lobby
+            .as_ref()
+            .map_or(&[][..], |lobby| lobby.heroes.as_slice());
+        Some(Self {
+            code,
+            size: heroes.len().max(1),
+            friends: heroes
+                .iter()
+                .filter(|hero| !hero.me)
+                .map(|hero| hero.name.as_str())
+                .collect::<Vec<_>>()
+                .join(", "),
+        })
+    }
+
+    fn metadata(&self) -> Value {
+        let hash = self
+            .code
+            .bytes()
+            .fold(0xcbf2_9ce4_8422_2325u64, |hash, byte| {
+                (hash ^ u64::from(byte)).wrapping_mul(0x100_0000_01b3)
+            });
+        json!({"id": format!("azs-{hash:x}"), "size": [self.size, 5]})
+    }
+}
+
 fn grouped(value: u64) -> String {
     let digits = value.to_string();
     digits
@@ -137,6 +189,8 @@ fn activity(
     class: usize,
     race: u8,
     zone: usize,
+    menu_rank: u8,
+    party: Option<&PartyActivity<'_>>,
     snapshot: &RunSnapshot,
     catalog: &MenuCatalog,
     locale: &Localization,
@@ -156,14 +210,18 @@ fn activity(
             .get(usize::from(race.saturating_sub(1)))
             .unwrap_or(&catalog.races[0]);
         let zone = catalog.zones.get(zone).unwrap_or(&catalog.zones[0]);
-        return Some(json!({
-            "details": locale.label("Choosing a hero"),
+        let mut result = json!({
+            "details": locale.label(if party.is_some() { "In a co-op lobby" } else { "Choosing a hero" }),
             "state": translate(locale, "{hero} the {race} {class}", &[("hero",hero.into()),("race",race.name.clone()),("class",class.name.clone())]),
             "assets": {"large_image":"logo", "large_text":"Azeroth Survivors",
                 "small_image":format!("https://wow.zamimg.com/images/wow/icons/large/classicon_{}.jpg",class.key),
-                "small_text":translate(locale,"Next stop: {zone}",&[("zone",zone.name.clone())])},
+                "small_text":translate(locale,"Next stop: {zone}",&[("zone",zone_with_difficulty(&zone.name, menu_rank, locale))])},
             "buttons":button,
-        }));
+        });
+        if let Some(party) = party {
+            result["party"] = party.metadata();
+        }
+        return Some(result);
     }
     let entry = snapshot.entry.as_ref()?;
     let empty = Value::Null;
@@ -183,7 +241,9 @@ fn activity(
             .unwrap_or(&live["kills"]),
     ) as u64;
     let kills = translate(locale, "{n} kills", &[("n", grouped(kills))]);
-    let bg = text(&entry["bg"]);
+    let rank = entry["heroic"].as_u64().unwrap_or(0) as u8;
+    let bg = zone_with_difficulty(text(&entry["bg"]), rank, locale);
+    let bg = bg.as_str();
     let hero = text(&entry["hero"]);
     let class_name = text(&entry["class"]);
     let race = text(&entry["race"]);
@@ -277,7 +337,20 @@ fn activity(
             }
         }
     }
-    let mut assets = json!({"large_image":"logo","large_text":if subtitle.is_empty() {bg.into()} else {format!("{bg}: {subtitle}")}});
+    let mut large_text = if subtitle.is_empty() {
+        bg.into()
+    } else {
+        format!("{bg}: {subtitle}")
+    };
+    if let Some(party) = party.filter(|party| !party.friends.is_empty()) {
+        let friends = translate(
+            locale,
+            "Co-op with {friends}",
+            &[("friends", party.friends.clone())],
+        );
+        large_text = format!("{friends} · {large_text}");
+    }
+    let mut assets = json!({"large_image":"logo","large_text":large_text});
     if let Some(class) = class {
         assets["small_image"] = format!(
             "https://wow.zamimg.com/images/wow/icons/large/classicon_{}.jpg",
@@ -289,6 +362,9 @@ fn activity(
         assets["small_text"] = small_text.into();
     }
     let mut result = json!({"details":details,"state":state,"assets":assets,"buttons":button});
+    if let Some(party) = party {
+        result["party"] = party.metadata();
+    }
     if inactive {
         *start = None;
     } else {
@@ -306,7 +382,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn activity_matches_current_native_english_vectors() {
+    fn activity_preserves_historical_english_vectors_with_current_zone_labels() {
         let vectors: Value = serde_json::from_str(include_str!(
             "../../../docs/analysis/evidence/0.109.0/discord-presence/native-vectors.json"
         ))
@@ -350,18 +426,42 @@ mod tests {
                 class,
                 input.get("race_id").and_then(Value::as_u64).unwrap_or(1) as u8,
                 zone,
+                0,
+                None,
                 &snapshot,
                 &catalog,
                 &locale,
                 input.get("epoch").and_then(Value::as_i64).unwrap_or(1000),
                 &mut start,
             );
-            assert_eq!(
-                actual.unwrap_or(Value::Null),
-                case["activity"],
-                "{}",
-                case["name"]
-            );
+            let mut expected = case["activity"].clone();
+            if expected.is_object() && input["inrun"] == true {
+                let bg = text(&input["entry"]["bg"]);
+                let labelled = format!("{bg} (Normal)");
+                let asset = text(&expected["assets"]["large_text"]);
+                expected["assets"]["large_text"] =
+                    format!("{labelled}{}", &asset[bg.len()..]).into();
+                let state = text(&expected["state"]);
+                for prefix in [
+                    "Gearing up in ",
+                    "Catching a breath in ",
+                    "Surviving ",
+                    "🏆 Conquered ",
+                    "💀 Fell in ",
+                ] {
+                    if let Some(suffix) = state
+                        .strip_prefix(prefix)
+                        .and_then(|rest| rest.strip_prefix(bg))
+                    {
+                        expected["state"] = format!("{prefix}{labelled}{suffix}").into();
+                        break;
+                    }
+                }
+            } else if expected.is_object() {
+                expected["assets"]["small_text"] =
+                    format!("{} (Normal)", text(&expected["assets"]["small_text"])).into();
+            }
+            assert_eq!(actual.unwrap_or(Value::Null), expected, "{}", case["name"]);
             assert_eq!(
                 serde_json::to_value(start).unwrap(),
                 case["start"],
@@ -369,5 +469,104 @@ mod tests {
                 case["name"]
             );
         }
+    }
+
+    #[test]
+    fn current_zone_label_uses_localized_admitted_rank_across_run_phases() {
+        let catalog = MenuCatalog::embedded();
+        let locale = Localization::english_for_tests();
+        let mut snapshot = RunSnapshot {
+            entry: Some(json!({
+                "bg": "Naxxramas", "subtitle": "Necropolis", "heroic": 3,
+                "hero": "Hero", "class": "Warrior", "race": "Human",
+            })),
+            ..default()
+        };
+        for (phase, outcome, expected) in [
+            (
+                "playing",
+                None,
+                "Surviving Naxxramas (Heroic III) · 0 kills",
+            ),
+            (
+                "paused",
+                None,
+                "Catching a breath in Naxxramas (Heroic III)",
+            ),
+            ("ready", None, "Gearing up in Naxxramas (Heroic III)"),
+            (
+                "playing",
+                Some("victory"),
+                "🏆 Conquered Naxxramas (Heroic III) · 0 kills",
+            ),
+            (
+                "playing",
+                Some("defeat"),
+                "💀 Fell in Naxxramas (Heroic III) · 0 kills",
+            ),
+        ] {
+            snapshot.live = Some(json!({"phase": phase}));
+            snapshot.terminal = outcome.map(|outcome| json!({"type": outcome}));
+            let actual = activity(
+                true, true, "", 0, 1, 0, 5, None, &snapshot, &catalog, &locale, 1000, &mut None,
+            )
+            .unwrap();
+            assert_eq!(actual["state"], expected);
+            assert_eq!(
+                actual["assets"]["large_text"],
+                "Naxxramas (Heroic III): Necropolis"
+            );
+        }
+        let de = locale.for_code("de");
+        assert_eq!(
+            zone_with_difficulty("Naxxramas", 3, &de),
+            format!("Naxxramas ({} III)", de.label("Heroic"))
+        );
+        assert_eq!(
+            zone_with_difficulty("Naxxramas", 6, &locale),
+            "Naxxramas (Heroic V)"
+        );
+    }
+
+    #[test]
+    fn party_presence_uses_lobby_code_roster_and_local_member_marker() {
+        use crate::coop_ui::{HeroRow, LobbyView};
+
+        let mut coop = CoopUi::default();
+        coop.status = "joining".into();
+        coop.code = Some("abc".into());
+        assert!(PartyActivity::from_coop(&coop).is_none());
+        coop.role = "guest".into();
+        let party = PartyActivity::from_coop(&coop).unwrap();
+        assert_eq!(
+            party.metadata(),
+            json!({"id": "azs-e71fa2190541574b", "size": [1, 5]})
+        );
+        assert!(party.friends.is_empty());
+
+        coop.lobby = Some(LobbyView {
+            name: String::new(),
+            capacity: 3,
+            heroes: vec![
+                HeroRow {
+                    name: "One".into(),
+                    ..default()
+                },
+                HeroRow {
+                    name: "Local".into(),
+                    me: true,
+                    ..default()
+                },
+                HeroRow {
+                    name: "Two".into(),
+                    ..default()
+                },
+            ],
+            zone: "elwynn".into(),
+            heroic_rank: 0,
+        });
+        let party = PartyActivity::from_coop(&coop).unwrap();
+        assert_eq!(party.friends, "One, Two");
+        assert_eq!(party.metadata()["size"], json!([3, 5]));
     }
 }
