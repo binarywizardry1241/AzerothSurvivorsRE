@@ -319,3 +319,47 @@ instruction steps. It stops before the terminal or level-choice helper.
 Source order checks and Rust syntax parsing passed. Compilation, the
 authored Rust regression, socket behavior and original/rebuilt
 comparison remain open.
+
+## Engine7 Ping and alternate NPC text requests
+
+The synchronized peer's Engine7 request `0x1dc` reaches `0x145e9eaae`.
+The reader consumes up to four bytes as a little-endian sequence with
+zero fill and leaves later bytes unread. `0x145e9f55e` writes that sequence
+as the entire four-byte `0x1dd` reply. The call through `0x145ea10ba`
+preserves the request's role and peer index. At `0x145eca815`, the wrapper
+selects the ordinary Engine carrier through `0x145e660bf`. The sender
+appends it only to the addressed peer's queue at `0x145eca88e`.
+
+The reconstructed host uses the existing zero-filled prefix reader and
+replies on that Engine carrier at the head of the same receive queue.
+The original desktop guest's ordinary Ping used its local port and its
+[current upstream allowlist](coop-replication-0.141.0.md#engine7-and-control8)
+excludes `0x1dd`. The rebuilt guest's co-op relay heartbeat and Engine7
+receive admission continue to use their existing separate paths.
+
+| Selected PE range | File offset | SHA-256 |
+| --- | ---: | --- |
+| Ping prefix and reply `0x145e9f512..0x145e9f59f` | `0x5e9e912` | `f037247c2aad34d46589b88a630cf0bcbee668676ea676a160bffcb8abd59c54` |
+| Role and recipient queue `0x145eca804..0x145eca89c` | `0x5ec9c04` | `026c4af1d369f41f73f6735a18b216c56cb6ed309483f18ce746c8c1913a4f91` |
+
+The `0x17f` NPCTextQuery branch at `0x145e9ead9` also reads a zero-filled
+u32 prefix. It seats the assigned actor through `0x145ef64a0` and obtains
+the retained greeting record. At `0x145e9f627` and `0x145e9f63f` it requires
+that the record exist and its ID equal the request before serializing
+`0x180` through `0x145fe1a60`. The selected desktop's
+[alternate Gossip capability](#desktop-and-guest-gossip-capability-initialization)
+is zero for both the local and admitted remote hero. That path supplies
+no alternate greeting for its custom choice and terminal overlays. This
+classifies the query's retained-text dependency and leaves other adapters
+with their own producers.
+
+```sh
+PYTHONPATH=runtime/armory-recovery/python-libs \
+  python3 -B scripts/check-coop-party-frames.py --host-ping
+```
+
+The maintained check passed 54 Ping requests and two indexed Pong queue
+cases over 2,338 original instruction steps. The replay uses synthetic
+allocation, codec and cleanup calls while the native prefix and queue
+instructions execute. Rust syntax parsing passed. Compilation, socket
+delivery and original/rebuilt comparison remain open.

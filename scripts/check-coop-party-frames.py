@@ -544,7 +544,7 @@ def ordered_source():
     drain = command.split('pub(super) fn drain(', 1)[1]
     assert drain.index('terrain.native.terrain()') < drain.index('state.commands.front()') < drain.index('state.commands.pop_front()')
     assert '.filter(|_| world.ready)' in drain
-    assert 'matches!(queued, Input::Engine(_)) && !name_query' in drain
+    assert 'matches!(queued, Input::Engine(_)) && !reply_without_world' in drain
     assert '(world_inputs.is_none() || floor.is_none())' in drain
     assert 'apply.after(bootstrap).before(RunSet::Tick)' in command
     assert 'Input::Engine(packet) => packet' in drain and 'Input::Control { kind, argument, offer }' in drain
@@ -658,17 +658,99 @@ def host_controls():
     print(f'PASS: {controls} seated Control8 cases over {replay.instructions:,} original steps, plus ordered source guards')
 
 
+def host_ping():
+    replay = host_action_replay()
+    cpu, reg = replay.machine, replay.registers
+    core, body, output = replay.app, replay.app + 0x4000, replay.app + 0x5000
+    sender = 0x145eca7e0
+
+    def allocate(address):
+        if address == 0x1400021c0:
+            assert cpu.reg_read(reg.UC_X86_REG_RCX) == 0x20
+            assert cpu.reg_read(reg.UC_X86_REG_RDX) == 1
+            cpu.reg_write(reg.UC_X86_REG_RAX, output)
+        elif address != 0x140002200:
+            return False
+        replay.return_seam()
+        return True
+
+    replay.seam = allocate
+    requests = 0
+    for length, sample, index in itertools.product(
+        range(9), (bytes(8), bytes(range(1, 9)), b'\xff' * 8), (0, 4)
+    ):
+        payload = sample[:length]
+        replay.reset('host Engine7 Ping', [(0x145e9e690, 0x145ea2004)], [sender])
+        cpu.mem_write(body, payload)
+        for register, value in ((reg.UC_X86_REG_RAX, 0x1dc), (reg.UC_X86_REG_RSI, core),
+                                (reg.UC_X86_REG_RBX, 1), (reg.UC_X86_REG_R12, index),
+                                (reg.UC_X86_REG_R13, length), (reg.UC_X86_REG_R15, body)):
+            cpu.reg_write(register, value)
+        replay.run(0x145e9e911)
+        assert cpu.reg_read(reg.UC_X86_REG_RCX) == core
+        assert cpu.reg_read(reg.UC_X86_REG_RDX) == 1
+        assert cpu.reg_read(reg.UC_X86_REG_R8) == index
+        assert replay.get(cpu.reg_read(reg.UC_X86_REG_R9), '<QQQH') == (0x20, output, 4, 0x1dd)
+        assert replay.get(output, '<I') == (int.from_bytes(payload[:4], 'little'),)
+        requests += 1
+
+    peers, outgoing = replay.app + 0x6000, replay.app + 0xa000
+    queued = (0x20, output, 9)
+    encodes = []
+
+    def encode(address):
+        if address == 0x14604fa80:
+            rcx = cpu.reg_read(reg.UC_X86_REG_RCX)
+            rdx = cpu.reg_read(reg.UC_X86_REG_RDX)
+            assert replay.get(rdx, '<QQQQH') == (0x8000000000000006, 0x20, body, 4, 0x1dd)
+            replay.put(rcx, '<QQQ', *queued)
+            encodes.append(address)
+        elif address != 0x145e99f20:
+            return False
+        replay.return_seam()
+        return True
+
+    replay.seam = encode
+    for index in (0, 4):
+        replay.reset('host Engine7 Pong queue', [(sender, 0x145eca8d3), (0x145e66010, 0x145e660ed)], [replay.done])
+        replay.put(output, '<QQQH', 0x20, body, 4, 0x1dd)
+        replay.put(core + 0x1100, '<I', 3)
+        replay.put(core + 0x1138, '<QQ', peers, 5)
+        for peer in range(5):
+            replay.put(peers + peer * 0x8a0 + 0x390, '<QQQ', 1, outgoing + peer * 24, 0)
+        for register, value in ((reg.UC_X86_REG_RCX, core), (reg.UC_X86_REG_RDX, 1),
+                                (reg.UC_X86_REG_R8, index), (reg.UC_X86_REG_R9, output)):
+            cpu.reg_write(register, value)
+        replay.run(sender)
+        for peer in range(5):
+            assert replay.get(peers + peer * 0x8a0 + 0x3a0, '<Q') == (int(peer == index),)
+            assert replay.get(outgoing + peer * 24, '<QQQ') == (queued if peer == index else (0, 0, 0))
+    assert len(encodes) == 2
+
+    _, drain = ordered_source()
+    assert 'opcode::CMSG_NAME_QUERY | opcode::CMSG_PING' in drain
+    assert 'opcode::CMSG_PING => Some(EnginePacket {' in drain and 'opcode: opcode::SMSG_PONG' in drain
+    assert 'payload: template_entry(&packet.payload).to_le_bytes().to_vec()' in drain
+    assert 'runtime.send(Some(client), reply.into_message())' in drain
+    guest_gate = (ROOT / 'crates/azeroth-survivors-re/src/coop/server_party.rs').read_text()
+    assert '0x1dd' not in guest_gate.split('const GUEST_ENGINE_OPCODES:', 1)[1].split('];', 1)[0]
+    print(f'PASS: {requests} Ping requests and {len(encodes)} Pong queues over {replay.instructions:,} original steps')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
     parser.add_argument("--ordered-input", action="store_true")
     parser.add_argument("--host-name-query", action="store_true")
     parser.add_argument("--host-controls", action="store_true")
+    parser.add_argument("--host-ping", action="store_true")
     args = parser.parse_args()
     if args.host_name_query:
         return host_name_query()
     if args.host_controls:
         return host_controls()
+    if args.host_ping:
+        return host_ping()
     if args.ordered_input:
         return ordered_world_input()
     target = latest_target(verify=True)

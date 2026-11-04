@@ -120,23 +120,34 @@ pub(super) fn drain(
             azeroth_survivors_re::floor_recovery::Zone::for_key(game.zone.key)))
         .filter(|_| world.ready);
     while let Some((_, queued)) = state.commands.front() {
-        let name_query = matches!(queued, Input::Engine(packet) if packet.opcode == opcode::CMSG_NAME_QUERY);
-        if matches!(queued, Input::Engine(_)) && !name_query
+        let reply_without_world = matches!(queued, Input::Engine(packet)
+            if matches!(packet.opcode, opcode::CMSG_NAME_QUERY | opcode::CMSG_PING));
+        if matches!(queued, Input::Engine(_)) && !reply_without_world
             && (world_inputs.is_none() || floor.is_none())
         {
             // A command waiting on the world keeps its place in receive order.
             break;
         }
         let (client, input) = state.commands.pop_front().unwrap();
-        if let Input::Engine(packet) = &input && name_query {
-            let requested = name_query_guid(&packet.payload);
-            let hero = run.mechanics.as_ref()
-                .filter(|game| game.has_party())
-                .and_then(|_| state.world_profiles.get(&requested))
-                .or(state.local.as_ref());
-            if let Some(hero) = hero
-                && let Ok(Some(reply)) = engine_packets::encode(&player_name(hero, requested), None)
-            {
+        if let Input::Engine(packet) = &input && reply_without_world {
+            let reply = match packet.opcode {
+                opcode::CMSG_PING => Some(EnginePacket {
+                    opcode: opcode::SMSG_PONG,
+                    payload: template_entry(&packet.payload).to_le_bytes().to_vec(),
+                }),
+                opcode::CMSG_NAME_QUERY => {
+                    let requested = name_query_guid(&packet.payload);
+                    let hero = run.mechanics.as_ref()
+                        .filter(|game| game.has_party())
+                        .and_then(|_| state.world_profiles.get(&requested))
+                        .or(state.local.as_ref());
+                    hero.and_then(|hero| {
+                        engine_packets::encode(&player_name(hero, requested), None).ok().flatten()
+                    })
+                }
+                _ => None,
+            };
+            if let Some(reply) = reply {
                 runtime.send(Some(client), reply.into_message());
             }
             continue;
