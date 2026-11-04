@@ -25,12 +25,18 @@ encounter scripts and the Guardian move consumers are separate work under
 [#313](../CURRENT-STATE.md#gap-313) and [#89](../CURRENT-STATE.md#gap-89).
 
 The native save parser's eleven-byte compare at `0x145e0a2e5` selects
-one-based ordinal 11 at `0x145e0a344`. The save selection consumer at
+one-based ordinal 11 at `0x145e0a344`. The native beaten-key merge at `0x145e0c1a4` takes the maximum of the
+previous open count and `min(zone_index + 2, 13)`. The save selection consumer at
 `0x145e068cc` clamps to thirteen and multiplies the zero-based index by
 `0xf0`. Source preserves keyed `open`, `beat` and `hbeat` entries and
 resolves legacy numeric unlocks through their original nine keys. Clearing
 Blackrock Mountain opens Scholomance; a retained Ahn'Qiraj or Naxxramas unlock
-continues to include that zone. The co-op profile uses the same thirteen
+continues to include that zone. The retroactive account grant at
+`0x145e5d944..0x145e5da0e` inserts missing prior Normal clears by ordinal,
+including the inserted zone when it lies before an already open zone;
+it does not synthesize Heroic records. The current server gate at
+`0x145ebc7db..0x145ebc893` also bounds the class open count to 1–13
+and uses the same 240-byte fallback row. The co-op profile uses the same thirteen
 ordinals for its open count and per-zone Heroic ranks. Retained reward,
 star-cap and achievement descriptors resolve current indices by key so the
 insertion cannot address a neighboring historical table row. Tier 0.5 loot
@@ -40,6 +46,5 @@ Static checks compared all thirteen keys, the entry fields, ten enemy rows,
 five boss headers and thirteen vertices against the verified image, and
 checked the native save query receipt. Rust regressions describe keyed
 unlock/clear preservation and old fixture correspondence. The current
-native co-op profile normalization and retroactive inferred clear cases
-need additional correspondence. Compilation, MPQ rendering and actual
+native remote profile vector normalization still needs exact correspondence. Compilation, MPQ rendering and actual
 solo/co-op entry and save outcomes remain unverified.
