@@ -444,7 +444,9 @@ def committed_json_output(path,digest):
     relative=Path(path)
     if relative.is_absolute() or '..' in relative.parts or not relative.as_posix().startswith('crates/azeroth-survivors-re/assets/') or relative.suffix!='.json' or not HASH.fullmatch(digest):return None
     try:
-        commits=subprocess.check_output(['git','log','--format=%H','--',relative.as_posix()],cwd=ROOT,text=True).split()
+        commits=subprocess.check_output(
+            ['git','log','--format=%H','HEAD','--glob=refs/provenance/*','--',relative.as_posix()],
+            cwd=ROOT,text=True).split()
         for commit in commits:
             if not re.fullmatch(r'[0-9a-f]{40}',commit):continue
             try:raw=subprocess.check_output(['git','show',commit+':'+relative.as_posix()],cwd=ROOT,stderr=subprocess.DEVNULL)
