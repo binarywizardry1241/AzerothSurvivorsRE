@@ -1836,6 +1836,24 @@ fn resolved_requests(
                     arg: None,
                 });
             }
+            LocalClientRequest::Chat { chat_type, language, text } => {
+                let Some(game) = session.mechanics.as_ref()
+                    .filter(|game| game.has_party() && !game.is_party_replica())
+                else {
+                    continue;
+                };
+                let Some(event) = coop::party_chat_message(
+                    chat_type, language.unwrap_or(0), text.as_bytes(), game.player_guid,
+                ) else {
+                    continue;
+                };
+                if let Some(runtime) = runtime.as_deref_mut()
+                    && let Ok(Some(packet)) = azeroth_survivors_re::coop::engine_packets::encode(&event, None)
+                {
+                    runtime.route_engine(0, packet);
+                }
+                presentation.0.push(event);
+            }
             LocalClientRequest::GameObjectUse { guid } => {
                 if session.mechanics.is_none() || !world.ready || !session.started || !session.playing() {
                     continue;

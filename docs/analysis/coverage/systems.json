@@ -61429,15 +61429,17 @@
       "gap_63_in_run_chat_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 63,
-        "scope": "Ordinary guest chat bounds and escapes text, uses the shared peer rate window, attributes the actual assigned hero and publishes to the local host and synchronized assigned peers.",
+        "scope": "Ordinary guest chat bounds and escapes text, uses the shared peer rate window, attributes the actual assigned hero and publishes to the local host and synchronized assigned peers. The local host uses the same sanitizer and fanout without using the peer limiter.",
         "source_status": "connected",
         "evidence_ref": "docs/analysis/coop-command-ingress-0.141.0.md#ordinary-guest-chat-in-a-cooperative-run",
         "source_refs": [
           "crates/azeroth-survivors-re/src/coop/session.rs",
           "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+          "crates/benilla-app/src/local_client/requests.rs",
           "scripts/check-coop-party-frames.py"
         ],
-        "native_cases": 180,
+        "native_cases": 900,
         "runtime_validation": "not_run",
         "parity": "unverified"
       },

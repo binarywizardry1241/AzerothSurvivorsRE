@@ -737,13 +737,14 @@ def host_ping():
     print(f'PASS: {requests} Ping requests and {len(encodes)} Pong queues over {replay.instructions:,} original steps')
 
 
-def host_chat():
+def host_chat(local=False):
     replay = host_action_replay()
     cpu, reg = replay.machine, replay.registers
     core, peers, times = replay.app, replay.app + 0x4000, replay.app + 0x6000
     body, utf8, clean, wire = (replay.app + offset for offset in (0x7000, 0x8000, 0x9000, 0xa000))
     sender = 0xfedcba9876543210
     clock = 10.
+    actor = 0 if local else 1
 
     def shim(address):
         rcx, rdx, r8 = (cpu.reg_read(register) for register in
@@ -768,7 +769,7 @@ def host_chat():
         elif address == 0x1463a5541:
             cpu.mem_write(rcx, bytes(cpu.mem_read(rdx, r8)))
         elif address == 0x145ef30b0:
-            assert (rcx, rdx) == (core + 0x10, 1)
+            assert (rcx, rdx) == (core + 0x10, actor)
             cpu.reg_write(reg.UC_X86_REG_RAX, sender)
         elif address == 0x145ecac30:
             _, pointer, length, opcode = replay.get(r8, '<QQQH')
@@ -789,8 +790,9 @@ def host_chat():
         (b'', ''),
     ]
     cases = 0
-    for kind, (message, expected), history in itertools.product(
-        range(10), examples, ((), (6., 7., 8., 9.), (5., 7., 8., 9.))
+    game_states = ((0, 0), (0, 1), (2, 0), (2, 1)) if local else ((0, 1),)
+    for kind, (message, expected), history, (game_kind, mode) in itertools.product(
+        range(10), examples, ((), (6., 7., 8., 9.), (5., 7., 8., 9.)), game_states,
     ):
         payload = struct.pack('<II', kind, 7) + message
         recipients = []
@@ -798,8 +800,9 @@ def host_chat():
                      (0x1400d6de0, 0x1400d7059), (0x146019260, 0x146019332),
                      (0x145fdd7e0, 0x145fddaab)], [0x145ea10bf])
         cpu.mem_write(body, payload)
+        replay.put(core + 0x10, '<I', game_kind)
         replay.put(core + 0xd00, '<Q', 2)
-        replay.put(core + 0x10f3, '<B', 1)
+        replay.put(core + 0x10f3, '<B', mode)
         replay.put(core + 0x1100, '<I', 3)
         replay.put(core + 0x1138, '<QQ', peers, 2)
         replay.put(core + 0x11d8, '<d', clock)
@@ -807,16 +810,18 @@ def host_chat():
         replay.put(peers + 0x8a0 + 0x378, '<QQQ', 8, times, len(history))
         replay.put(times, f'<{len(history)}d', *history)
         for register, value in ((reg.UC_X86_REG_RAX, 0x95), (reg.UC_X86_REG_RSI, core),
-                                (reg.UC_X86_REG_RBX, 1), (reg.UC_X86_REG_R12, 1),
+                                (reg.UC_X86_REG_RBX, actor), (reg.UC_X86_REG_R12, 1),
                                 (reg.UC_X86_REG_R13, len(payload)), (reg.UC_X86_REG_R15, body)):
             cpu.reg_write(register, value)
         cpu.emu_start(0x145e9e8b6, 0, count=20_000)
         assert cpu.reg_read(reg.UC_X86_REG_RIP) == 0x145ea10bf
         kept = history
-        if kind in (0, 1, 5, 8) and expected:
-            kept = tuple(stamp for stamp in history if clock - stamp < 5.)
-            if len(kept) < 4:
-                kept += (clock,)
+        if game_kind != 2 and mode and kind in (0, 1, 5, 8) and expected:
+            if not local:
+                kept = tuple(stamp for stamp in history if clock - stamp < 5.)
+            if local or len(kept) < 4:
+                if not local:
+                    kept += (clock,)
                 text = expected.encode()
                 expected_body = struct.pack('<BIQ', kind, 0, sender)
                 if kind != 8:
@@ -845,7 +850,17 @@ def host_chat():
     route = (root / 'coop_runtime.rs').read_text().split('fn route_clients(', 1)[1].split('pub(crate) fn flush_engine_events(', 1)[0]
     assert 'row.id == *client && row.synchronized && row.closing_since.is_none()' in route
     assert '!private || *slot == source' in route
-    print(f'PASS: {cases} in-run chat sanitizer, limiter and publication cases over {replay.instructions:,} original steps, plus source guards')
+    if local:
+        requests = (ROOT / 'crates/benilla-app/src/local_client/requests.rs').read_text()
+        assert 'ClientCommand::Chat { kind, text, language, .. } => Some(LocalClientRequest::Chat {' in requests
+        local_route = (gameplay / 'mod.rs').read_text().split('LocalClientRequest::Chat {', 1)[1]
+        local_route = local_route.split('LocalClientRequest::GameObjectUse', 1)[0]
+        assert 'game.has_party() && !game.is_party_replica()' in local_route
+        assert 'coop::party_chat_message(' in local_route
+        assert 'runtime.route_engine(0, packet);' in local_route and 'presentation.0.push(event);' in local_route
+        assert 'admit_peer_chat' not in local_route
+    origin = 'local' if local else 'guest'
+    print(f'PASS: {cases} {origin} in-run chat cases over {replay.instructions:,} original steps, plus source guards')
 
 
 def main():
@@ -856,6 +871,7 @@ def main():
     parser.add_argument("--host-controls", action="store_true")
     parser.add_argument("--host-ping", action="store_true")
     parser.add_argument("--host-chat", action="store_true")
+    parser.add_argument("--local-chat", action="store_true")
     args = parser.parse_args()
     if args.host_name_query:
         return host_name_query()
@@ -865,6 +881,8 @@ def main():
         return host_ping()
     if args.host_chat:
         return host_chat()
+    if args.local_chat:
+        return host_chat(local=True)
     if args.ordered_input:
         return ordered_world_input()
     target = latest_target(verify=True)

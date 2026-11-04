@@ -421,13 +421,18 @@ fn meter_request(body: &[u8]) -> Option<client::addon_feed::MeterRequest> {
 }
 
 fn party_chat(body: &[u8], sender_guid: u64) -> Option<SessionEvent> {
-    use benilla_protocol::messages::LANGUAGE_ADDON;
     let chat_type = template_entry(body);
     let language = template_entry(body.get(4..).unwrap_or_default());
+    party_chat_message(chat_type, language, body.get(8..).unwrap_or_default(), sender_guid)
+}
+
+pub(in crate::gameplay) fn party_chat_message(
+    chat_type: u32, language: u32, bytes: &[u8], sender_guid: u64,
+) -> Option<SessionEvent> {
+    use benilla_protocol::messages::LANGUAGE_ADDON;
     if !matches!(chat_type, 0 | 1 | 5 | 8) || language == LANGUAGE_ADDON {
         return None;
     }
-    let bytes = body.get(8..).unwrap_or_default();
     let message = bytes.split(|byte| *byte == 0).next().unwrap_or_default();
     let mut text = String::new();
     for character in String::from_utf8_lossy(message)

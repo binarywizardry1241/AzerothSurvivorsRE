@@ -423,3 +423,30 @@ whitespace check, rate prune, wire fields and recipient loop run their
 original instructions. The changed Rust modules syntax-parse. Compilation,
 the authored trust round-trip regression, live chat delivery and parity
 remain open.
+
+## Host-origin in-run chat
+
+The local-origin branch at `0x145ea07d5` selects actor slot 0. It joins the
+same present-Game and cooperative-mode gates at `0x145ea07d8..0x145ea07e2`.
+At `0x145ea0ca9..0x145ea0cbd` the local origin bypasses the peer timestamp
+vector and joins the ordinary text path at `0x145ea0d48`. The slot-zero
+reader in `0x145ef30b0` supplies the host's world GUID to the same
+serializer and recipient loop.
+
+The [local controller request](../../crates/benilla-app/src/local_client/requests.rs)
+now carries the ordinary typed chat action to the
+[local gameplay owner](../../crates/azeroth-survivors-re/src/gameplay/mod.rs).
+The active local cooperative run supplies the real sender GUID. The guest
+wire and local action use the same sanitizer and Engine message. The host
+publishes it locally and to synchronized assigned peers without consuming
+their rate window.
+
+```sh
+PYTHONPATH=runtime/armory-recovery/python-libs \
+  python3 -B scripts/check-coop-party-frames.py --local-chat
+```
+
+The checker passed 720 local cases and 231,969 original instructions over
+present and absent Games, both cooperative mode states, text and type
+variants, and three unchanged peer histories. The four touched Rust files
+syntax-parsed. Live chat and parity remain open.

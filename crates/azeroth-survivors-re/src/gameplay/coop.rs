@@ -1,6 +1,7 @@
 //! Native party admission, actual world publication and guest packet ownership.
 #[path = "coop_commands.rs"]
 mod commands;
+pub(super) use commands::party_chat_message;
 #[path = "coop_reconnection.rs"]
 mod reconnection;
 #[path = "coop_recap.rs"]

@@ -8,13 +8,14 @@ use crossbeam_channel::Receiver;
 use super::{LocalClientSession, LocalClientSet};
 use crate::net::{ClientCommand, NetCommands};
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq)]
 pub enum LocalClientRequest {
     QueryTime,
     SetRaidTarget { icon: u8, guid: u64 },
     NameQuery { guid: u64 },
     ItemNameQuery { entry: u32 },
     CastSpell { spell_id: u32 },
+    Chat { chat_type: u32, language: Option<u32>, text: String },
     GameObjectUse { guid: u64 },
     GameObjectQuery { entry: u32 },
     CreatureQuery { entry: u32 },
@@ -118,6 +119,9 @@ fn resolved(command: ClientCommand) -> Option<LocalClientRequest> {
         ClientCommand::RequestRaidTargets => Some(LocalClientRequest::SetRaidTarget { icon: 0xff, guid: 0 }),
         ClientCommand::NameQuery { guid } => Some(LocalClientRequest::NameQuery { guid }),
         ClientCommand::ItemNameQuery { entry, .. } => Some(LocalClientRequest::ItemNameQuery { entry }),
+        ClientCommand::Chat { kind, text, language, .. } => Some(LocalClientRequest::Chat {
+            chat_type: kind.chat_type(), language, text,
+        }),
         ClientCommand::CastSpell { spell_id, .. }
         | ClientCommand::CastSpellCorpse { spell_id, .. }
         | ClientCommand::CastSpellAtDest { spell_id, .. }
