@@ -34614,10 +34614,18 @@
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/coop/scaling.rs": "730bd5a1cbfd81ad9c3e19d63d98a25a0955a740add0d67550baf9b8a8e58e35",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs": "8276afa57dd716d958671117c5d5820886df7e6317307062678f5152ee45e97b",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "2e3bc5e6c60d4699aff909d34521a29d6c8f3af3c9a6818eaa442216a1292e62",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "695601e5cdbfdb4e448c76b1be342e92516ccbc6dbc6670c4bfaafa9274ac70b",
         "docs/analysis/coop-incoming-0.141.0.md": "9cde86a02c445d74aa8140a3f3030ce873799b8e26639562812d1fa3054f07b4",
         "docs/analysis/evidence/0.141.0/coop-incoming/manifest.json": "d9b9b5fe34566628eadcfecad399ba4e1984762495389ea35c0f054b3a1531c5"
-      }
+      },
+      "native_contract": "The active host actor tick and the guest actor tick after the hero swap use the same incoming-damage owner. The shared cooperative mode and live count select the damage factor before personal defenses.",
+      "static_checks": [
+        {
+          "command": "PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-coop-scaling.py --incoming",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/coop-incoming-0.141.0.md"
+        }
+      ]
     },
     {
       "claim_id": "changelog:0.120.2:1f20314fce60e3f6",
