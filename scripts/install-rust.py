@@ -5,7 +5,9 @@ No rustup setup, shell profile editing, user-HOME writes, or system installation
 Cargo builds use scripts/cargo, which keeps downloads, targets and caches local.
 """
 
+import argparse
 import concurrent.futures
+import fcntl
 import hashlib
 import json
 import os
@@ -25,6 +27,22 @@ MANIFEST_SHA256 = "a7c8774a5fd8441c997d94c029776cbc5eb111e9d72ab5d256fa698666443
 COMPONENTS = ("rustc", "rust-std", "cargo", "clippy-preview", "rustfmt-preview")
 
 
+def shared_root(root):
+    """Resolve the primary checkout of a Git-registered linked worktree."""
+    if not (root / ".git").is_file():
+        return root
+    common = Path(subprocess.check_output(
+        ["git", "rev-parse", "--path-format=absolute", "--git-common-dir"], cwd=root,
+        text=True).strip()).resolve()
+    worktrees = [Path(os.fsdecode(row[len(b"worktree "):])).resolve()
+                 for row in subprocess.check_output(
+                     ["git", "worktree", "list", "--porcelain", "-z"], cwd=root).split(b"\0")
+                 if row.startswith(b"worktree ")]
+    if not worktrees or root not in worktrees or (worktrees[0] / ".git").resolve() != common:
+        raise ValueError("Cannot verify the primary checkout for shared Rust tools")
+    return worktrees[0]
+
+
 def sha256(path):
     with path.open("rb") as source:
         return hashlib.file_digest(source, "sha256").hexdigest()
@@ -39,16 +57,19 @@ def download(url, destination, expected):
     print(f"Downloading {destination.name}", flush=True)
     partial = destination.with_suffix(destination.suffix + ".partial")
     received, last_update = 0, time.monotonic()
-    with urllib.request.urlopen(url, timeout=60) as response, partial.open("wb") as output:
-        while chunk := response.read(1024 * 1024):
-            output.write(chunk)
-            received += len(chunk)
-            if time.monotonic() - last_update >= 10:
-                print(f"{destination.name}: {received // 1048576} MiB", flush=True)
-                last_update = time.monotonic()
-    if sha256(partial) != expected:
-        raise RuntimeError(f"Checksum mismatch: {partial}")
-    partial.replace(destination)
+    try:
+        with urllib.request.urlopen(url, timeout=60) as response, partial.open("wb") as output:
+            while chunk := response.read(1024 * 1024):
+                output.write(chunk)
+                received += len(chunk)
+                if time.monotonic() - last_update >= 10:
+                    print(f"{destination.name}: {received // 1048576} MiB", flush=True)
+                    last_update = time.monotonic()
+        if sha256(partial) != expected:
+            raise RuntimeError(f"Checksum mismatch: {partial}")
+        partial.replace(destination)
+    finally:
+        partial.unlink(missing_ok=True)
     print(f"Verified {destination.name}: {received // 1048576} MiB", flush=True)
     return destination
 
@@ -82,20 +103,44 @@ def verify_host_tools(prefix, host, environment):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--shared-root", action="store_true", help="Print the verified toolchain and registry owner")
+    args = parser.parse_args()
+    root = shared_root(ROOT)
+    if args.shared_root:
+        print(root)
+        return
     system, machine = platform.system(), platform.machine()
     hosts = {("Darwin", "arm64"): "aarch64-apple-darwin", ("Darwin", "x86_64"): "x86_64-apple-darwin",
              ("Linux", "x86_64"): "x86_64-unknown-linux-gnu", ("Linux", "aarch64"): "aarch64-unknown-linux-gnu"}
     if (system, machine) not in hosts:
         raise SystemExit(f"Unsupported bootstrap host: {system} {machine}")
     host = hosts[system, machine]
-    prefix = ROOT / ".tools/rust" / f"{VERSION}-{host}"
-    cache = ROOT / "runtime/cache/rust"
-    temporary = ROOT / "runtime/tmp/rust-install"
+    cache = root / "runtime/cache/rust"
+    cache.mkdir(parents=True, exist_ok=True)
+    with (cache / "install.lock").open("a+b") as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        install(root, host, cache)
+
+
+def install(root, host, cache):
+    prefix = root / ".tools/rust" / f"{VERSION}-{host}"
+    temporary = root / "runtime/tmp/rust-install"
     environment = dict(os.environ)
-    environment.update(CARGO_HOME=str(ROOT / "runtime/cargo"), RUSTUP_HOME=str(ROOT / ".tools/rust/rustup"),
-                       TMPDIR=str(ROOT / "runtime/tmp"), XDG_CACHE_HOME=str(ROOT / "runtime/cache"),
-                       CARGO_TARGET_DIR=str(ROOT / "runtime/cargo-target"))
-    for path in (cache, temporary, prefix.parent, Path(environment["CARGO_HOME"]), Path(environment["RUSTUP_HOME"])):
+    environment.update(CARGO_HOME=str(root / "runtime/cargo"), RUSTUP_HOME=str(root / ".tools/rust/rustup"),
+                       TMPDIR=str(root / "runtime/tmp"), XDG_CACHE_HOME=str(root / "runtime/cache"),
+                       CARGO_TARGET_DIR=str(root / "runtime/cargo-target"))
+    marker = prefix / "installation.json"
+    tools = ("rustc", "cargo", "cargo-clippy", "rustfmt")
+    if marker.is_file() and all(os.access(prefix / "bin" / tool, os.X_OK) for tool in tools):
+        previous = json.loads(marker.read_text())
+        if (previous.get("manifest_sha256"), previous.get("version"), previous.get("host")) == (MANIFEST_SHA256, VERSION, host):
+            verify_host_tools(prefix, host, environment)
+            print(f"Reusing project Rust {VERSION}: {prefix}", flush=True)
+            print(json.dumps(previous["versions"], indent=2))
+            return
+    marker.unlink(missing_ok=True)
+    for path in (temporary, prefix.parent, Path(environment["CARGO_HOME"]), Path(environment["RUSTUP_HOME"])):
         path.mkdir(parents=True, exist_ok=True)
     manifest_name = f"channel-rust-{VERSION}.toml"
     manifest_path = download(f"https://static.rust-lang.org/dist/{manifest_name}", cache / manifest_name, MANIFEST_SHA256)
@@ -106,20 +151,10 @@ def main():
         if not entry["available"]:
             raise RuntimeError(f"Required Rust component unavailable: {name}/{host}")
         components.append({"name": name, "url": entry["xz_url"], "sha256": entry["xz_hash"]})
-    marker = prefix / "installation.json"
-    if marker.is_file() and all((prefix / "bin" / tool).is_file() for tool in ("rustc", "cargo", "cargo-clippy", "rustfmt")):
-        previous = json.loads(marker.read_text())
-        if previous.get("manifest_sha256") == MANIFEST_SHA256:
-            previous["host_tool_checks"] = verify_host_tools(prefix, host, environment)
-            marker.write_text(json.dumps(previous, indent=2) + "\n")
-            (ROOT / "runtime/rust-installation.json").write_text(json.dumps(previous, indent=2) + "\n")
-            print(f"Reusing project Rust {VERSION}: {prefix}", flush=True)
-            print(json.dumps(previous["versions"], indent=2))
-            return
     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:
         futures = [pool.submit(download, entry["url"], cache / Path(urllib.parse.urlparse(entry["url"]).path).name, entry["sha256"]) for entry in components]
         archives = [future.result() for future in futures]
-    log_path = ROOT / "runtime/rust-install.log"
+    log_path = root / "runtime/rust-install.log"
     with log_path.open("ab") as log:
         for entry, archive in zip(components, archives):
             source = temporary / archive.name.removesuffix(".tar.xz")
@@ -137,7 +172,7 @@ def main():
             shutil.rmtree(source)
     host_tool_checks = verify_host_tools(prefix, host, environment)
     versions = {}
-    for tool in ("rustc", "cargo", "cargo-clippy", "rustfmt"):
+    for tool in tools:
         versions[tool] = subprocess.check_output([str(prefix / "bin" / tool), "--version"], cwd=ROOT, env=environment, text=True).strip()
     if not versions["rustc"].startswith(f"rustc {VERSION} "):
         raise RuntimeError(f"Unexpected compiler: {versions['rustc']}")
@@ -146,7 +181,8 @@ def main():
               "versions": versions, "host_tool_checks": host_tool_checks,
               "environment": {key: environment[key] for key in ("CARGO_HOME", "RUSTUP_HOME", "TMPDIR", "XDG_CACHE_HOME", "CARGO_TARGET_DIR")}}
     marker.write_text(json.dumps(record, indent=2) + "\n")
-    (ROOT / "runtime/rust-installation.json").write_text(json.dumps(record, indent=2) + "\n")
+    for archive in archives:
+        archive.unlink()
     print(json.dumps(record, indent=2))
 
 

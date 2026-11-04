@@ -137,6 +137,9 @@ Source tests do not establish original-game parity.
 ## Documentation
 
 Contributor work may use Git worktrees under the [workspace rules](AGENTS.md#workspace-boundary).
+The Rust bootstrap and `./scripts/cargo` share the primary checkout's pinned
+toolchain and Cargo registry with registered linked worktrees. Each checkout
+keeps its own `runtime/cargo-target/` and compiler scratch.
 Finish each task by removing disposable analysis output, temporary files and
 unused worktrees under the
 [storage and completion cleanup policy](AGENTS.md#storage-and-completion-cleanup),

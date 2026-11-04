@@ -3,6 +3,10 @@ set -eu
 
 rust_project_root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 cd "$rust_project_root"
+rust_shared_root=$rust_project_root
+if [ -f .git ]; then
+  rust_shared_root=$(python3 -B scripts/install-rust.py --shared-root)
+fi
 case "$(uname -s):$(uname -m)" in
   Darwin:arm64) rust_host=aarch64-apple-darwin ;;
   Darwin:x86_64) rust_host=x86_64-apple-darwin ;;
@@ -10,13 +14,13 @@ case "$(uname -s):$(uname -m)" in
   Linux:x86_64) rust_host=x86_64-unknown-linux-gnu ;;
   *) printf '%s\n' 'Unsupported Rust host.' >&2; exit 1 ;;
 esac
-rust_toolchain="$rust_project_root/.tools/rust/1.98.1-$rust_host"
-if [ ! -x "$rust_toolchain/bin/cargo" ]; then
+rust_toolchain="$rust_shared_root/.tools/rust/1.98.1-$rust_host"
+if [ ! -x "$rust_toolchain/bin/cargo" ] || [ ! -f "$rust_toolchain/installation.json" ]; then
   printf '%s\n' 'Install the project toolchain with: python3 scripts/install-rust.py' >&2
   exit 1
 fi
-export CARGO_HOME="$rust_project_root/runtime/cargo"
-export RUSTUP_HOME="$rust_project_root/.tools/rust/rustup"
+export CARGO_HOME="$rust_shared_root/runtime/cargo"
+export RUSTUP_HOME="$rust_shared_root/.tools/rust/rustup"
 export TMPDIR="$rust_project_root/runtime/tmp"
 export XDG_CACHE_HOME="$rust_project_root/runtime/cache"
 export CARGO_TARGET_DIR="$rust_project_root/runtime/cargo-target"
