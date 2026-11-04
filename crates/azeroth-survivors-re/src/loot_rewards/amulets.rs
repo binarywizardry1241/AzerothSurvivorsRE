@@ -140,6 +140,7 @@ pub(super) fn future_target_ranks(
 }
 
 pub const LEGIONLORD_KEY: &str = "legendary:demonic_empowerment";
+pub(crate) const ABSORB_CAP_MODIFIER: u8 = 9;
 
 /// Current 0.112.0 Legionlord uses the ordinary equipped-effect scaling
 /// path, as The Eternal Talisman does. The native cooldown lane is modifier 1,
@@ -227,6 +228,24 @@ pub fn catalog() -> &'static Catalog {
             .expect("current Inferno amulet")
             .effects
             .retain(|row| !matches!(&row.effect, Effect::Spell { modifier: 0, .. }));
+        // 0.140.0 replaces the direct absorb bonuses with modifier 9.
+        // Cooldown reduction and the shield-triggered burst remain.
+        for (key, amount) in [("legendary:pw_shield", 0.5_f32), ("legendary:ice_barrier", 1.0)] {
+            let effects = &mut catalog.generated.iter_mut()
+                .find(|row| row.key == key).expect("current shield Talisman").effects;
+            effects.retain(|row| !matches!(row.effect, Effect::Spell { modifier: 6, .. }));
+            let row = effects.iter_mut()
+                .find(|row| matches!(row.effect, Effect::Spell { modifier: 0, .. }))
+                .expect("historical Talisman absorb lane");
+            let Effect::Spell { modifier, amount_bits, .. } = &mut row.effect else {
+                unreachable!("recovered Talisman spell lane");
+            };
+            *modifier = ABSORB_CAP_MODIFIER;
+            *amount_bits = amount.to_bits();
+            row.raw_hex.replace_range(64..74, &format!(
+                "{:08x}{ABSORB_CAP_MODIFIER:02x}", amount_bits.swap_bytes(),
+            ));
+        }
         catalog
     })
 }
@@ -436,7 +455,7 @@ impl Aggregate {
         !self.passive_tags.is_empty()
     }
 
-    /// Current 145897ab0 uses seven additive modifier lanes, clamps cooldown to.4, and
+    /// The modifier lanes are additive. This clamps cooldown to 0.4 and
     /// rounds the sum of target bonuses. Amounts must already have passed the
     /// native equipped-effect scaling stage for the current empowerment count.
     pub fn spell_modifiers(&self, definition: &AbilityDefinition) -> SpellModifiers {
@@ -455,7 +474,8 @@ impl Aggregate {
                 4 => result.duration += amount,
                 5 => result.health_power += amount,
                 6 => result.effect += amount,
-                _ => unreachable!("the current catalogue admits only native modifiers0..6"),
+                ABSORB_CAP_MODIFIER => result.absorb_cap_bonus += amount,
+                _ => unreachable!("unmapped amulet spell modifier"),
             }
         }
         result.cooldown = (1.0 - cooldown_reduction).max(0.4);
@@ -473,6 +493,7 @@ pub struct SpellModifiers {
     pub duration: f32,
     pub health_power: f32,
     pub effect: f32,
+    pub absorb_cap_bonus: f32,
 }
 
 impl Default for SpellModifiers {
@@ -485,6 +506,7 @@ impl Default for SpellModifiers {
             duration: 1.0,
             health_power: 0.0,
             effect: 1.0,
+            absorb_cap_bonus: 0.0,
         }
     }
 }

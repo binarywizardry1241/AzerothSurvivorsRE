@@ -28153,7 +28153,8 @@
         "docs/analysis/native-census-0.139.1.md",
         "docs/analysis/evidence/0.139.1/switch-context-source-review.json",
         "docs/analysis/switch-context-source-review-0.139.1.md",
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/class-balance-0.140.0.md",
+        "docs/analysis/shield-capacity-0.140.0.md"
       ],
       "gap_ids": [
         1,
@@ -29290,6 +29291,28 @@
           "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
           "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs"
         ]
+      },
+      "gap_288_absorb_source_review_0_140_0": {
+        "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        "gap_id": 288,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/shield-capacity-0.140.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "The current Power Word: Shield cast and party receipt use remaining recipient capacity under min(1 + Talisman bonus, 2) times maximum health. Rank scaling, stat refresh and localized descriptions are connected. The current Ice Barrier starts from the composed 0.45 coefficient, replaces its self balance and adds party contributions to the recipient’s counted capacity. The Talisman scales that ceiling and damage, expiry and stat refresh update the same balance. The shared shield ledger adds only positive excess above the same spell’s existing ordinary reservation and refreshes one spell-wide aura. Damage and expiry consume the ordered reservations and keep the empty primary lane zero.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+          "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+          "crates/azeroth-survivors-re/src/loot_rewards/prose.rs",
+          "crates/azeroth-survivors-re/src/run_effects.rs"
+        ]
       }
     },
     {
@@ -30412,7 +30435,8 @@
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
         "docs/analysis/native-census-0.139.1.md",
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/class-balance-0.140.0.md",
+        "docs/analysis/shield-capacity-0.140.0.md"
       ],
       "gap_ids": [
         19,
@@ -31237,6 +31261,28 @@
           "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
           "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
           "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs"
+        ]
+      },
+      "gap_288_absorb_source_review_0_140_0": {
+        "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        "gap_id": 288,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/shield-capacity-0.140.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "The current Power Word: Shield cast and party receipt use remaining recipient capacity under min(1 + Talisman bonus, 2) times maximum health. Rank scaling, stat refresh and localized descriptions are connected. The current Ice Barrier starts from the composed 0.45 coefficient, replaces its self balance and adds party contributions to the recipient’s counted capacity. The Talisman scales that ceiling and damage, expiry and stat refresh update the same balance. The shared shield ledger adds only positive excess above the same spell’s existing ordinary reservation and refreshes one spell-wide aura. Damage and expiry consume the ordered reservations and keep the empty primary lane zero.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+          "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+          "crates/azeroth-survivors-re/src/loot_rewards/prose.rs",
+          "crates/azeroth-survivors-re/src/run_effects.rs"
         ]
       }
     },
@@ -43494,7 +43540,8 @@
         "docs/analysis/evidence/0.139.1/source-frontier.json",
         "docs/analysis/native-census-0.139.1.md",
         "docs/analysis/consecration-0.140.0.md",
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/class-balance-0.140.0.md",
+        "docs/analysis/shield-capacity-0.140.0.md"
       ],
       "gap_ids": [
         1,
@@ -44416,6 +44463,28 @@
           "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
           "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
           "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs"
+        ]
+      },
+      "gap_288_absorb_source_review_0_140_0": {
+        "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        "gap_id": 288,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/shield-capacity-0.140.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "The current Power Word: Shield cast and party receipt use remaining recipient capacity under min(1 + Talisman bonus, 2) times maximum health. Rank scaling, stat refresh and localized descriptions are connected. The current Ice Barrier starts from the composed 0.45 coefficient, replaces its self balance and adds party contributions to the recipient’s counted capacity. The Talisman scales that ceiling and damage, expiry and stat refresh update the same balance. The shared shield ledger adds only positive excess above the same spell’s existing ordinary reservation and refreshes one spell-wide aura. Damage and expiry consume the ordered reservations and keep the empty primary lane zero.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+          "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+          "crates/azeroth-survivors-re/src/loot_rewards/prose.rs",
+          "crates/azeroth-survivors-re/src/run_effects.rs"
         ]
       }
     },

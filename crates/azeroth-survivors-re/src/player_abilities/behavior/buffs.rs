@@ -3,8 +3,12 @@
 //! combat, stat-recompute and network actions in the real run.
 
 use super::{min_preserving_original_nan, state::{scaled_hit_effect, Vitals}, RuntimeInstance};
-use crate::player_abilities::{catalog::StatusEffect, damage::scaled_duration, native_max, native_min};
+use crate::{
+    player_abilities::{AbilityDefinition, catalog::StatusEffect, damage::scaled_duration, native_max, native_min},
+    run_effects::Effects,
+};
 
+const POWER_WORD_SHIELD: u32 = 17;
 const ICE_BARRIER: u32 = 11426;
 
 /// Semantic current32-byte player aura. Self contributions use source0;
@@ -82,18 +86,28 @@ pub fn tick_auras(auras: &mut Vec<Aura>, now: f32, delta: f32,
         shield.clear_spell();
         result.absorb_changed = true;
     }
+    shield.shared_spell_absorb.retain(|(spell_id, amount)| {
+        if !result.expired.contains(spell_id) { return true; }
+        vitals.absorb = native_max(vitals.absorb - *amount, 0.0);
+        result.absorb_changed = true;
+        false
+    });
     shield.ice_barrier_absorb =
         min_preserving_original_nan(shield.ice_barrier_absorb, vitals.absorb);
     auras.retain(|a| !(now >= a.expires_at));
     result
 }
 
-#[derive(Clone, Copy, Debug, Default, PartialEq)]
+#[derive(Clone, Debug, Default, PartialEq)]
 pub struct ShieldReservation {
     pub spell_id: u32,
     pub amount: f32,
-    /// Game+0x570. Total Ice Barrier absorb from self and party casts.
+    /// Total Ice Barrier absorb from self and party casts.
     pub(super) ice_barrier_absorb: f32,
+    /// Separate party reservations retain their insertion order for damage.
+    pub(super) shared_spell_absorb: Vec<(u32, f32)>,
+    pub(super) power_word_shield_cap_bonus: f32,
+    pub(super) ice_barrier_cap_bonus: f32,
 }
 
 impl ShieldReservation {
@@ -102,15 +116,56 @@ impl ShieldReservation {
         self.amount = 0.0;
     }
 
+    pub(super) fn clear_absorb(&mut self) {
+        self.clear_spell();
+        self.ice_barrier_absorb = 0.0;
+        self.shared_spell_absorb.clear();
+    }
+
+    pub(super) fn consume_shared_absorb(&mut self, mut remaining: f32, removed: &mut Vec<u32>) -> f32 {
+        self.shared_spell_absorb.retain_mut(|(spell_id, amount)| {
+            spend_absorb(&mut remaining, amount);
+            if *amount <= 0.0 {
+                removed.push(*spell_id);
+                false
+            } else {
+                true
+            }
+        });
+        remaining
+    }
+
     fn counted_ice_barrier(&self, absorb: f32) -> f32 {
         native_max(min_preserving_original_nan(self.ice_barrier_absorb, absorb), 0.0)
     }
 
-    pub fn cap_ice_barrier_after_stat_refresh(
-        &mut self, vitals: &mut Vitals, soul_link_absorb: &mut f32,
+    fn power_word_shield_cap(&self, maximum_health: f32) -> f32 {
+        native_min(1.0 + self.power_word_shield_cap_bonus, 2.0) * maximum_health
+    }
+
+    fn ice_barrier_cap(&self, maximum_health: f32) -> f32 {
+        (1.0 + self.ice_barrier_cap_bonus) * maximum_health
+    }
+
+    fn counted_power_word_shield(&self) -> f32 {
+        let shared = self.shared_spell_absorb.iter()
+            .filter(|(spell_id, _)| *spell_id == POWER_WORD_SHIELD)
+            .fold(-0.0, |sum, (_, amount)| sum + amount);
+        let primary = if self.spell_id == POWER_WORD_SHIELD { self.amount } else { 0.0 };
+        primary + shared
+    }
+
+    pub fn refresh_capacities(
+        &mut self, vitals: &mut Vitals, soul_link_absorb: &mut f32, effects: &Effects,
     ) {
+        let bonus = |key| effects.spell_modifiers(
+            AbilityDefinition::by_key(key).expect("recovered shield ability"),
+        ).absorb_cap_bonus;
+        self.ice_barrier_cap_bonus = bonus("ice_barrier");
+        self.power_word_shield_cap_bonus = bonus("pw_shield");
+
         let counted = self.counted_ice_barrier(vitals.absorb);
-        let excess = native_max(counted - vitals.maximum_health, 0.0);
+        let excess = native_max(counted - self.ice_barrier_cap(vitals.maximum_health), 0.0);
         self.ice_barrier_absorb = counted - excess;
         if excess > 0.0 {
             vitals.absorb = native_max(vitals.absorb - excess, 0.0);
@@ -119,25 +174,75 @@ impl ShieldReservation {
             }
             *soul_link_absorb = min_preserving_original_nan(*soul_link_absorb, vitals.absorb);
         }
+
+        let mut excess = native_max(self.counted_power_word_shield()
+            - self.power_word_shield_cap(vitals.maximum_health), 0.0);
+        if excess > 0.0 {
+            vitals.absorb = native_max(vitals.absorb - excess, 0.0);
+            *soul_link_absorb = min_preserving_original_nan(*soul_link_absorb, vitals.absorb);
+            if self.spell_id == POWER_WORD_SHIELD {
+                spend_absorb(&mut excess, &mut self.amount);
+            }
+            for (spell_id, amount) in &mut self.shared_spell_absorb {
+                if *spell_id == POWER_WORD_SHIELD {
+                    spend_absorb(&mut excess, amount);
+                }
+            }
+        }
     }
 
     pub fn receive_party_shield(&mut self, vitals: &mut Vitals, spell_id: u32, coefficient: f32) {
-        let mut amount = vitals.maximum_health * coefficient;
-        if spell_id == ICE_BARRIER {
+        let amount = vitals.maximum_health * coefficient;
+        let added = if spell_id == ICE_BARRIER {
             let counted = self.counted_ice_barrier(vitals.absorb);
-            amount = ice_barrier_capacity(vitals.maximum_health, counted, amount);
-            self.ice_barrier_absorb = counted + amount;
-        }
-        vitals.absorb += amount;
-        if self.spell_id == 0 {
-            self.spell_id = spell_id;
-            self.amount = amount;
-        }
+            let added = ice_barrier_capacity(self.ice_barrier_cap(vitals.maximum_health), counted, amount);
+            self.ice_barrier_absorb = counted + added;
+            if self.spell_id == 0 {
+                self.spell_id = spell_id;
+                self.amount = added;
+            }
+            added
+        } else {
+            let remaining = if spell_id == POWER_WORD_SHIELD {
+                native_max(self.power_word_shield_cap(vitals.maximum_health)
+                    - self.counted_power_word_shield(), 0.0)
+            } else {
+                f32::INFINITY
+            };
+            if self.spell_id == 0 {
+                self.spell_id = spell_id;
+                self.amount = min_preserving_original_nan(amount, remaining);
+                self.amount
+            } else {
+                let existing = if self.spell_id == spell_id {
+                    Some(&mut self.amount)
+                } else {
+                    self.shared_spell_absorb.iter_mut().find(|(key, _)| *key == spell_id)
+                        .map(|(_, held)| held)
+                };
+                if let Some(held) = existing {
+                    let added = native_min(remaining, native_max(0.0, amount - *held));
+                    *held += added;
+                    added
+                } else {
+                    let added = min_preserving_original_nan(amount, remaining);
+                    self.shared_spell_absorb.push((spell_id, added));
+                    added
+                }
+            }
+        };
+        vitals.absorb += added;
     }
 }
 
-fn ice_barrier_capacity(maximum_health: f32, counted: f32, amount: f32) -> f32 {
-    native_min(native_max(maximum_health - counted, 0.0), native_max(0.0, amount))
+fn spend_absorb(remaining: &mut f32, amount: &mut f32) {
+    let spent = min_preserving_original_nan(*remaining, *amount);
+    *amount -= spent;
+    *remaining -= spent;
+}
+
+fn ice_barrier_capacity(capacity: f32, counted: f32, amount: f32) -> f32 {
+    native_min(native_max(capacity - counted, 0.0), native_max(0.0, amount))
 }
 
 #[derive(Clone, Copy, Debug, PartialEq)]
@@ -260,24 +365,29 @@ pub fn apply_self_buff_with_party(
                     shield.amount
                 };
                 let other_absorb = native_max(vitals.absorb - shield.ice_barrier_absorb, 0.0);
-                amount = ice_barrier_capacity(vitals.maximum_health, 0.0, amount);
+                amount = ice_barrier_capacity(shield.ice_barrier_cap(vitals.maximum_health), 0.0, amount);
                 vitals.absorb = native_max(other_absorb - other_reservation, 0.0) + amount;
                 shield.ice_barrier_absorb = amount;
             } else {
-                vitals.absorb = (vitals.absorb - shield.amount).max(0.0) + amount;
+                vitals.absorb = native_max(vitals.absorb - shield.amount, 0.0);
+                if definition.spell_id == POWER_WORD_SHIELD {
+                    shield.clear_spell();
+                    let capacity = native_max(shield.power_word_shield_cap(vitals.maximum_health)
+                        - shield.counted_power_word_shield(), 0.0);
+                    amount = native_min(amount, capacity);
+                }
+                vitals.absorb += amount;
             }
             shield.spell_id = definition.spell_id;
             shield.amount = amount;
             actions.absorb_changed = true;
-            if definition.spell_id == ICE_BARRIER || definition.key == "stoneform" {
-                // Kind 15 carries the caster's coefficient and scaled duration.
-                let coefficient = ((power_root * 1.4) * effect_power) * (shield_bonus + 1.0);
-                actions.shared_aura = Some(SharedAura {
-                    spell_id: definition.spell_id,
-                    effect: StatusEffect { tag, value: coefficient, duration: 0.0 },
-                    duration,
-                });
-            }
+            // Kind 15 carries the caster's uncapped coefficient and duration.
+            let coefficient = ((power_root * 1.4) * effect_power) * (shield_bonus + 1.0);
+            actions.shared_aura = Some(SharedAura {
+                spell_id: definition.spell_id,
+                effect: StatusEffect { tag, value: coefficient, duration: 0.0 },
+                duration,
+            });
         }
         6 => {
             if 0.85 * vitals.maximum_health < vitals.health && !party_needs_healing {

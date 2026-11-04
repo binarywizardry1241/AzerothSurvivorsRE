@@ -40,9 +40,23 @@ fn retained_amulet_descriptions_match_historical_native_prose() {
             .iter()
             .map(|line| line.as_str().unwrap())
             .collect();
-        if definition.key == "legendary:consecration" {
-            // The 0.140.0 Inferno constructor omits the historical damage row.
-            expected.remove(2);
+        let cap = amulet_effect_multiplier(definition.rarity, bits(&case["picks"]));
+        let current_cap;
+        match definition.key.as_str() {
+            "legendary:consecration" => {
+                // The 0.140.0 Inferno constructor omits the historical damage row.
+                expected.remove(2);
+            }
+            "legendary:pw_shield" => {
+                current_cap = format!("Power Word: Shield: +{:.0}% absorb cap", 50.0 * cap);
+                expected[0] = &current_cap;
+            }
+            "legendary:ice_barrier" => {
+                current_cap = format!("Ice Barrier: +{:.0}% absorb cap", 100.0 * cap);
+                expected[0] = &current_cap;
+                expected.remove(2);
+            }
+            _ => {}
         }
         if lines != expected {
             differences.push(format!(

@@ -532,6 +532,7 @@ fn amulet_lines(labels: &MenuCatalog, definition: &amulets::Definition,
             let sentence = match key {
                 "{who}: +{g} healing" => "Increases the healing of {who} by {g}.",
                 "{who}: +{g} absorb" => "Increases the absorb of {who} by {g}.",
+                "{who}: +{v} absorb cap" => "Increases the absorb cap of {who} by {v}.",
                 "{who}: +{v} damage" => "Increases the damage of {who} by {v}.",
                 "{who}: +{v} demon damage" => "Increases the damage of {who} by {v}.",
                 "{who}: -{v} cooldown" => "Reduces the cooldown of {who} by {v}.",
@@ -785,11 +786,26 @@ mod tests {
         for row in fixture["amulets"].as_array().unwrap() {
             let definition = amulets::catalog().by_key(row["key"].as_str().unwrap()).unwrap();
             let mut expected = lines(row);
-            if definition.key == "legendary:consecration" {
-                expected.remove(2); // 0.140.0 omits Inferno's damage line.
+            let rarity = row["rarity"].as_u64().unwrap() as usize;
+            let picks = row["picks"].as_u64().unwrap() as u32;
+            let cap = azeroth_survivors_re::loot_rewards::amulet_effect_multiplier(rarity, picks);
+            match definition.key.as_str() {
+                "legendary:consecration" => {
+                    // The 0.140.0 Inferno constructor omits the historical damage row.
+                    expected.remove(2);
+                }
+                "legendary:pw_shield" => {
+                    expected[0] = format!("Increases the absorb cap of Power Word: Shield by {}.",
+                        crate::armory::native_percent(0.5 * cap));
+                }
+                "legendary:ice_barrier" => {
+                    expected[0] = format!("Increases the absorb cap of Ice Barrier by {}.",
+                        crate::armory::native_percent(cap));
+                    expected.remove(2);
+                }
+                _ => {}
             }
-            assert_eq!(amulet_lines(&labels, definition, row["rarity"].as_u64().unwrap() as usize,
-                row["picks"].as_u64().unwrap() as u32), expected, "{}", definition.key);
+            assert_eq!(amulet_lines(&labels, definition, rarity, picks), expected, "{}", definition.key);
         }
     }
 }

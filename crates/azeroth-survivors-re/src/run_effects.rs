@@ -344,6 +344,7 @@ impl Effects {
                 4 => result.duration += amount,
                 5 => result.health_power += amount,
                 6 => result.effect += amount,
+                amulets::ABSORB_CAP_MODIFIER => result.absorb_cap_bonus += amount,
                 _ => {}
             }
         }

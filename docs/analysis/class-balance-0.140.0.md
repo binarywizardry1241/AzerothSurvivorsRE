@@ -122,7 +122,7 @@ gameplay and controlled original/rebuilt comparison remain unverified.
 ## Healing and defensive capacity
 
 Use [#176's Tranquility recovery](../verification-needed.md#gap-176) and
-[#288's defensive findings](../CURRENT-STATE.md#gap-288), preserving the
+[#288's defensive findings](../verification-needed.md#gap-288), preserving the
 historical [Ice Barrier](ice-barrier-0.139.2.md) and [Divine Shield
 lifetime](divine-shield-0.127.0.md) contracts. The current spell rows for Power
 Word: Shield, Ice Barrier and Divine Shield are at `0x1473babe0`,
@@ -135,10 +135,10 @@ Location rows to recover the new cap, admission and replacement branches.
 | `713f1d1f551a5bca` Tranquility credited healing | Talent `0x1473e5948` points to tag 33 at `0x1473e5060`; Tree of Life at `0x1473e5c08` points to tag 32 and a periodic Rejuvenation effect. The live direct and batch paths now add health restored and the actual Tree of Life absorb increase to the pool. [Recovered branches](#tranquility-and-seed-of-life). |
 | `6362d8f7e7f22739` Seed of Life critical rolls | The name at `0x1473eba21` and nearby set descriptions seed the effect producer. The live pulse now queues the Feralheart Seed and independently rolls each Nature damage emission, including both empowered hits on a boss, elite or Guardian. [Recovered branches](#tranquility-and-seed-of-life). |
 | `96435f933d14094a` Critical-hit proc reach | Blood Frenzy's current effect is at `0x1473e3c68`; Eye of Hakkar is named at `0x1473c6209`. Both Druid producers enter the periodic critical effect lane, including Blood Frenzy and The Eye of Hakkar. They retain ordinary damage logs and generic hit/kill suppression. [Recovered branches](#tranquility-and-seed-of-life). |
-| `1d1ef8f6798a0519` Power Word: Shield cap | Recover target maximum-health arithmetic and the Talisman's rank-scaled cap lane through `gameplay/mechanics/shared_healing.rs` and `player_abilities/behavior/buffs.rs`. Distinguish the unmodified capacity, necklace bonus and hard maximum. |
+| `1d1ef8f6798a0519` Power Word: Shield cap | [Current recipient and self capacity](shield-capacity-0.140.0.md) connect the Talisman rank modifier and the 200% maximum. |
 | `74230b7c5f2a2355` Divine Shield lifetime and gap | The current duration and recast helpers use the keyed Talisman lane and previous expiry, with a four-second minimum wait. [Native branches and connected source](#divine-shield-and-immunity-admission). |
-| `19c82c058ebc3fb0` Talisman and Ice Barrier | The retained party recipient adds to a separate counted balance with a 100%-maximum-health cap. Recover base initial absorb, earned additions from damage/talents and the item-specific 200% maximum, plus stat refresh and expiry. |
-| `5cab7afd57fd7f22` Shields and precedence | The 0.139.2 model uses an ordinary reservation plus a separate shared Ice Barrier balance and permits bounded additive party contributions. Recover replacement when one source absorbs on behalf of another, the stronger-only same-spell rule across two casters, and refresh/expiry when the weaker shield loses. |
+| `19c82c058ebc3fb0` Talisman and Ice Barrier | [Current counted balance](shield-capacity-0.140.0.md) retains the composed cast and capped party additions, with the necklace capacity lane connected through damage, expiry and refresh. |
+| `5cab7afd57fd7f22` Shields and precedence | [Current same-spell reservation rules](shield-capacity-0.140.0.md) connect stronger-only ordinary party absorption, the shared aura refresh and recast accounting. |
 
 ### Tranquility and Seed of Life
 

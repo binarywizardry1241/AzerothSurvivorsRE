@@ -89,10 +89,10 @@ pub fn apply_damage_with_crowd(
             native_max(absorbed - reservation.amount, 0.0)
         };
         let reserved_depleted = reserved_spell != 0 && absorbed >= reservation.amount;
-        if absorbed < reservation.amount || reserved_spell == 0 {
-            reservation.amount -= absorbed;
-        } else {
+        if reserved_spell == 0 || reserved_depleted {
             reservation.clear_spell();
+        } else {
+            reservation.amount -= absorbed;
         }
         amount -= absorbed;
         result.absorbed = absorbed;
@@ -100,6 +100,9 @@ pub fn apply_damage_with_crowd(
         // Link contributes to the already-subtracted total shield, and only
         // its consumed share enters the healing meter. Preserve MINSS/NaN
         // ordering and the ordered-positive admission gate of this owner.
+        let unreserved_absorption = reservation.consume_shared_absorb(
+            unreserved_absorption, &mut result.removed_auras,
+        );
         let soul_link = min_preserving_original_nan(unreserved_absorption, state.soul_link_absorb);
         if soul_link > 0.0 {
             state.soul_link_absorb -= soul_link;
@@ -108,7 +111,7 @@ pub fn apply_damage_with_crowd(
         state.soul_link_absorb = min_preserving_original_nan(state.soul_link_absorb, vitals.absorb);
         let remove_all_shields = vitals.absorb <= 0.0;
         if remove_all_shields {
-            *reservation = ShieldReservation::default();
+            reservation.clear_absorb();
         }
         auras.retain(|aura| {
             let remove = if remove_all_shields {
@@ -116,10 +119,10 @@ pub fn apply_damage_with_crowd(
             } else {
                 reserved_depleted && aura.spell_id == reserved_spell
             };
-            if remove {
+            if remove && !result.removed_auras.contains(&aura.spell_id) {
                 result.removed_auras.push(aura.spell_id);
             }
-            !remove
+            !remove && !result.removed_auras.contains(&aura.spell_id)
         });
         state.absorbed_pending += absorbed;
         let maximum = native_max(state.absorbed_maximum, old_absorb);
@@ -436,10 +439,14 @@ mod tests {
                     reservation.spell_id,
                     case["remaining_reserved_spell"].as_u64().unwrap() as u32
                 );
-                assert_eq!(
-                    reservation.amount.to_bits(),
+                // 0.140.0 clears the empty primary amount; the older fixture
+                // retains the former negative unreserved bookkeeping word.
+                let remaining = if reservation.spell_id == 0 {
+                    0.0_f32.to_bits()
+                } else {
                     case["remaining_reserved_bits"].as_u64().unwrap() as u32
-                );
+                };
+                assert_eq!(reservation.amount.to_bits(), remaining);
             }
             assert_eq!(
                 health.health,

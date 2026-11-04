@@ -137,6 +137,7 @@ fn ice_barriers_share_capacity_through_damage_stat_refresh_and_expiry() {
         numeric.health = 40.0;
         effects::EffectsState::apply_health(
             execution, &mut hero.effect_state.incoming.soul_link_absorb, &numeric,
+            &hero.effect_state.equipped,
         );
         assert_eq!(execution.vitals.absorb, 60.0);
         assert_eq!(execution.shield.amount, 40.0);
@@ -149,6 +150,125 @@ fn ice_barriers_share_capacity_through_damage_stat_refresh_and_expiry() {
         assert_eq!(execution.vitals.absorb, 20.0);
         assert_eq!(execution.shield, buffs::ShieldReservation::default());
     }).unwrap();
+}
+
+#[test]
+fn priest_talisman_caps_cast_and_recipient_absorb_without_growing_unreserved_shields() {
+    use azeroth_survivors_re::loot_rewards::amulets;
+
+    let talisman = amulets::catalog().by_key("legendary:pw_shield").unwrap();
+    let definition = AbilityDefinition::by_key("pw_shield").unwrap();
+    let mut instance = RuntimeInstance::learned(definition);
+    instance.power_multiplier = 100.0;
+    for (picks, cap) in [(None, 100.0), (Some(1), 150.0), (Some(2000), 200.0)] {
+        let mut hero = druid();
+        let execution = &mut hero.execution;
+        let link = &mut hero.effect_state.incoming;
+        execution.vitals.absorb = 80.0;
+        link.soul_link_absorb = 80.0;
+        behavior::incoming::apply_damage(
+            &mut execution.vitals, &mut execution.shield, &mut execution.auras,
+            link, 0.0, 20.0, 0.0,
+        ).unwrap();
+        assert_eq!(execution.shield.amount, 0.0);
+        let equipped = &mut hero.effect_state.equipped;
+        equipped.rebuild(picks.map(|count| (talisman, talisman.rarity, count)));
+        execution.shield.refresh_capacities(
+            &mut execution.vitals, &mut link.soul_link_absorb, equipped,
+        );
+
+        let actions = buffs::apply_self_buff(
+            &instance, 0.0, false, 0.0, &mut execution.vitals,
+            &mut execution.shield, &mut execution.auras,
+        ).unwrap();
+        assert_eq!(execution.shield.amount, cap);
+        assert_eq!(execution.vitals.absorb, 60.0 + cap);
+        assert!(actions.shared_aura.unwrap().effect.value > 2.0);
+
+        let mut recipient = druid();
+        recipient.execution.shield.refresh_capacities(
+            &mut recipient.execution.vitals, &mut recipient.effect_state.incoming.soul_link_absorb,
+            equipped,
+        );
+        recipient.execution.shield.receive_party_shield(&mut recipient.execution.vitals, 17, 4.0);
+        assert_eq!(recipient.execution.vitals.absorb, cap);
+    }
+}
+
+#[test]
+fn mage_talisman_grows_only_ice_barrier_capacity() {
+    use azeroth_survivors_re::loot_rewards::amulets;
+
+    let talisman = amulets::catalog().by_key("legendary:ice_barrier").unwrap();
+    let definition = AbilityDefinition::by_key("ice_barrier").unwrap();
+    let mut hero = druid();
+    let equipped = &mut hero.effect_state.equipped;
+    equipped.rebuild(Some((talisman, talisman.rarity, 1)));
+    let modifiers = equipped.spell_modifiers(definition);
+    assert_eq!((modifiers.power, modifiers.effect, modifiers.absorb_cap_bonus), (1.0, 1.0, 1.0));
+    let execution = &mut hero.execution;
+    execution.shield.refresh_capacities(
+        &mut execution.vitals, &mut hero.effect_state.incoming.soul_link_absorb, equipped,
+    );
+    let mut instance = RuntimeInstance::learned(definition);
+    modifiers.apply(&mut instance);
+    buffs::apply_self_buff(
+        &instance, 0.0, false, 0.0, &mut execution.vitals,
+        &mut execution.shield, &mut execution.auras,
+    ).unwrap();
+    assert!((execution.vitals.absorb - 63.0).abs() < 0.00001);
+    execution.shield.receive_party_shield(&mut execution.vitals, 11426, 2.0);
+    assert_eq!(execution.vitals.absorb, 200.0);
+}
+
+#[test]
+fn same_spell_party_shields_share_only_the_strongest_reservation() {
+    let mut hero = party(3);
+    let position = hero.zone.center.into();
+    let input = PartyInput { position, facing: 0.0, velocity: [0.0; 2] };
+    let execution = &mut hero.execution;
+    execution.shield.receive_party_shield(&mut execution.vitals, 20594, 0.2);
+    let event = |source_slot, coefficient, duration| shared_healing::Event {
+        source_slot,
+        source_guid: guid(source_slot),
+        position,
+        payload: shared_healing::Payload::Aura(buffs::SharedAura {
+            spell_id: 17,
+            effect: player_abilities::StatusEffect { tag: 7, value: coefficient, duration: 0.0 },
+            duration,
+        }),
+    };
+    hero.clock = 1.0;
+    hero.receive_party_healing(&[event(1, 0.8, 4.0), event(2, 0.3, 9.0)], input);
+    assert_eq!(hero.execution.vitals.absorb, 100.0);
+    let aura = hero.execution.auras.iter().find(|row| row.spell_id == 17).unwrap();
+    assert_eq!((aura.source_guid, aura.expires_at), (0, 10.0));
+    let definition = AbilityDefinition::by_key("pw_shield").unwrap();
+    let instance = RuntimeInstance::learned(definition);
+    let execution = &mut hero.execution;
+    assert_eq!(
+        buffs::apply_self_buff(
+            &instance, 2.0, false, 0.0, &mut execution.vitals,
+            &mut execution.shield, &mut execution.auras,
+        ),
+        Err(buffs::BuffFailure::AlreadyActive),
+    );
+    assert_eq!(execution.shield.spell_id, 20594);
+    assert_eq!(execution.vitals.absorb, 100.0);
+    buffs::tick_auras(&mut execution.auras, 5.0, 0.0, &mut execution.vitals, &mut execution.shield);
+    assert_eq!(execution.vitals.absorb, 100.0);
+    buffs::tick_auras(&mut execution.auras, 10.0, 0.0, &mut execution.vitals, &mut execution.shield);
+    assert_eq!(execution.vitals.absorb, 20.0);
+    assert_eq!(execution.shield.amount, 20.0);
+
+    // The self writer also counts a held shared row when the aura is absent.
+    execution.shield.receive_party_shield(&mut execution.vitals, 17, 0.8);
+    buffs::apply_self_buff(
+        &instance, 11.0, false, 0.0, &mut execution.vitals,
+        &mut execution.shield, &mut execution.auras,
+    ).unwrap();
+    assert_eq!((execution.shield.spell_id, execution.shield.amount), (17, 20.0));
+    assert_eq!(execution.vitals.absorb, 100.0);
 }
 
 #[test]

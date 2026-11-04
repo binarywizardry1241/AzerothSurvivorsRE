@@ -223,6 +223,7 @@ fn effect_description(record: &EffectRecord, bytes: &[u8; 64]) -> Option<Text> {
                 3 => ("{who}: +{v} area", "v", percent(amount)),
                 4 => ("{who}: +{v} duration", "v", percent(amount)),
                 5 => ("{who}: +{v} of max health as damage", "v", percent(amount)),
+                amulets::ABSORB_CAP_MODIFIER => ("{who}: +{v} absorb cap", "v", percent(amount)),
                 6 => {
                     let definition = AbilityDefinition::by_key(key(record)?)?;
                     let (pattern, name) = match (definition.kind, definition.effect.tag) {

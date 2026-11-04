@@ -161,6 +161,7 @@ impl EffectsState {
     }
     pub(super) fn apply_health(
         execution: &mut ExecutionState<'_>, soul_link_absorb: &mut f32, numeric: &Numeric,
+        effects: &Effects,
     ) {
         let vitals = &mut execution.vitals;
         let old_max = vitals.maximum_health;
@@ -169,7 +170,7 @@ impl EffectsState {
             vitals.health += numeric.health - old_max;
         }
         vitals.health = vitals.health.min(numeric.health);
-        execution.shield.cap_ice_barrier_after_stat_refresh(vitals, soul_link_absorb);
+        execution.shield.refresh_capacities(vitals, soul_link_absorb, effects);
     }
 }
 impl Mechanics {
@@ -552,6 +553,7 @@ impl Mechanics {
         numeric.finish();
         EffectsState::apply_health(
             &mut self.execution, &mut self.effect_state.incoming.soul_link_absorb, &numeric,
+            &self.effect_state.equipped,
         );
         let base = self.effect_state.base;
         self.stats = EffectsState::player_stats(base, numeric, self.level);

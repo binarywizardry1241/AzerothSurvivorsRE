@@ -287,7 +287,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             numeric.luck += luck;
         }
         numeric.finish();
-        effects::EffectsState::apply_health(execution, self.soul_link_absorb, &numeric);
+        effects::EffectsState::apply_health(execution, self.soul_link_absorb, &numeric, self.equipped);
         self.player_absorb = execution.vitals.absorb;
         self.stats = effects::EffectsState::player_stats(self.base_stats, numeric, self.run_level);
         self.stats.maximum_health = numeric.health;
