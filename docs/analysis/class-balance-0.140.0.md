@@ -94,13 +94,77 @@ Location rows to recover the new cap, admission and replacement branches.
 
 | Claim | Current observation and source frontier |
 | --- | --- |
-| `713f1d1f551a5bca` Tranquility credited healing | Talent `0x1473e5948` points to tag 33 at `0x1473e5060`; Tree of Life at `0x1473e5c08` points to tag 32 and a periodic Rejuvenation effect. The current checkout credits all excess in `run_effects/healing.rs::apply` and its batch path. Trace the difference between the requested heal, actual health restored, capped absorb delta and credited pool. |
-| `6362d8f7e7f22739` Seed of Life critical rolls | The name at `0x1473eba21` and nearby set descriptions seed the effect producer. The existing `gameplay/mechanics/callbacks.rs::pulse_healing_pool` rolls once per Tranquility victim. Recover both Seed of Life damage emissions, RNG consumption and boss/elite selection independently. |
-| `96435f933d14094a` Critical-hit proc reach | Blood Frenzy's current effect is at `0x1473e3c68`; Eye of Hakkar is named at `0x1473c6209`. Trace criticals from both Druid producers through their effect-kind filters into the two proc handlers and the damage meter. Tranquility's prior general hit/kill suppression is retained evidence for 0.119.0. |
+| `713f1d1f551a5bca` Tranquility credited healing | Talent `0x1473e5948` points to tag 33 at `0x1473e5060`; Tree of Life at `0x1473e5c08` points to tag 32 and a periodic Rejuvenation effect. The live direct and batch paths now add health restored and the actual Tree of Life absorb increase to the pool. [Recovered branches](#tranquility-and-seed-of-life). |
+| `6362d8f7e7f22739` Seed of Life critical rolls | The name at `0x1473eba21` and nearby set descriptions seed the effect producer. The live pulse now queues the Feralheart Seed and independently rolls each Nature damage emission, including both empowered hits on a boss, elite or Guardian. [Recovered branches](#tranquility-and-seed-of-life). |
+| `96435f933d14094a` Critical-hit proc reach | Blood Frenzy's current effect is at `0x1473e3c68`; Eye of Hakkar is named at `0x1473c6209`. Both Druid producers enter the periodic critical effect lane, including Blood Frenzy and The Eye of Hakkar. They retain ordinary damage logs and generic hit/kill suppression. [Recovered branches](#tranquility-and-seed-of-life). |
 | `1d1ef8f6798a0519` Power Word: Shield cap | Recover target maximum-health arithmetic and the Talisman's rank-scaled cap lane through `gameplay/mechanics/shared_healing.rs` and `player_abilities/behavior/buffs.rs`. Distinguish the unmodified capacity, necklace bonus and hard maximum. |
 | `74230b7c5f2a2355` Divine Shield lifetime and gap | `player_abilities/damage.rs` caps duration at six seconds and `behavior/dispatch.rs` shares a 10-second cast admission timestamp. The old cooldown floor already expresses a gap after expiry for those bounds. Follow the new Talisman multiplier, actual expiry and minimum-gap owner through the cast, scheduler and overlay tooltip. |
 | `19c82c058ebc3fb0` Talisman and Ice Barrier | The retained party recipient adds to a separate counted balance with a 100%-maximum-health cap. Recover base initial absorb, earned additions from damage/talents and the item-specific 200% maximum, plus stat refresh and expiry. |
 | `5cab7afd57fd7f22` Shields and precedence | The 0.139.2 model uses an ordinary reservation plus a separate shared Ice Barrier balance and permits bounded additive party contributions. Recover replacement when one source absorbs on behalf of another, the stronger-only same-spell rule across two casters, and refresh/expiry when the weaker shield loses. |
+
+### Tranquility and Seed of Life
+
+The direct heal `0x145f9d163..0x145f9d258` and frame HoT batch
+`0x145f8d1b5..0x145f8d2a8` search the first raw32 Tree of Life effect,
+cap total absorb at the effect fraction of maximum health and add only the
+change in absorb to effective health restored. The first raw33 Tranquility
+row enables that credit. The direct owner still requires a nonzero spell ID.
+Game+0x2a3 suppresses pool credit during a Seed of Life impact without
+suppressing healing or absorb conversion.
+
+The Tranquility pulse `0x145fb8e60..0x145fb933a` resets its one-second
+pool deadline before selecting targets and consumes one live spell-critical
+draw per victim. The first equipped raw70 effect selects a priority victim
+within the pulse radius and snapshots a Seed before the first damage event.
+The priority query at `0x145fb90be` calls `0x145f872c0`. Its ordinary
+partition takes the first ordinary target position at
+`0x145f87442..0x145f87454`, then tests the six-yard distance from that
+position at `0x14604f497..0x14604f4ac`. The Seed uses the existing
+weapon target query for this ordering.
+The class-11 branch `0x145e30baa..0x145e30c18` and constants at
+`0x1473ea130` produce the two Feralheart eight-piece modes. At three stars
+the Seed takes 60% of pulse power, selects five additional targets within
+six yards and hits each victim once. At five stars it takes 100%, selects
+seven additional targets within eight yards and hits qualifying bosses or
+elites or Guardians twice. The predicate at `0x145fb97da..0x145fb97ff`
+independently tests primary-boss metadata at actor `+0x30`, the elite
+byte at `+0x220` and Guardian metadata at `+0x78`. Canonical hit
+`0x145f448d7..0x145f448ef` copies that Guardian field and its lair
+index. The death branch at `0x145f45c58..0x145f45cb7` clears the
+lair from the same Game `+0x860/+0x868` vector initialized at
+`0x145fb0060..0x145fb0098`.
+
+The Seed resolves after 1.5 seconds at the original target's current
+position, falling back to its stored position after that target leaves
+the actor list. The live saved-loadout selector recognizes the verified
+Tier 0.5 armor IDs, active tier 7 and its ordinary/empowered distinction.
+The rest of the Tier 0.5 catalog, four-piece effects, acquisition and
+equipment presentation remain with [#314](../CURRENT-STATE.md#gap-314).
+
+Blood Frenzy at `0x1473e3c68` and The Eye of Hakkar at `0x1473c6270`
+carry raw tag 21 and condition 2, selecting spells 1079 and 12654. The source
+represents both as internal tag 9 with the same condition.
+
+The Seed impact `0x145fb9361..0x145fb9a60` emits spell 21070, takes the
+primary victim first and draws again immediately before each additional
+hit. The ordinary spell 740 and the Seed preserve Nature school and their
+own effect-index attribution. Their Game+0x2a4 flag lets critical source-kind
+3 hits enter the raw21, condition-2 periodic branch at
+`0x145f47a52..0x145f47b80`. This admits the existing Blood Frenzy and
+The Eye of Hakkar rows while leaving first-hit tokens, first-critical
+tokens, ordinary hit/kill effects and unflagged source-kind 3 hits on
+their retained paths.
+
+The journaled Ghidra subjects for `0x145fb8960` and `0x145fbc7c0` are
+`ev_95c58da47d4fd6f32b613fd6886b348604482639dc2068afb161b6e744e010d5` and
+`ev_f17322f009610bca5c6acc20b402692abb708af3892bd318e66356e0507faae4`.
+The existing `scripts/check-tranquility.py` checks 520 critical and 384
+healing-credit cases on the selected original instructions, with canonical
+hit calls replaced by explicit test seams. It checks f32 thresholds, draw
+and hit order, changes to stats or RNG between hits, absorb-cap clipping,
+absent effects and the Seed credit flag. The source is parsed and inspected.
+Compilation, authored Rust regressions, actual log/meter presentation,
+gameplay and original/rebuilt parity remain open.
 
 ## Attack range, pickups, attribution and input
 

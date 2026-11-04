@@ -129,13 +129,13 @@
     },
     "systems": {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "c21c7a4894913eedad35d97dc445529c3d21529316daa0a9aa0fde240e1a04b9",
+      "sha256": "dbc9b5fafb9942795aca27cbf2526806379dbd04accd34271909d944b0ead998",
       "status": "current_source_owner_context"
     },
     "reviews": {
       "path": "docs/analysis/coverage/changelog-reviews.json",
-      "sha256": "e574a06a9a761170c6f522c4df9fb137aafec48946163b1f14388ae997a3dcf2",
-      "applied_reviews": 12,
+      "sha256": "fd3650f488ac3a9f04ceb186f101054e200439f54ab1dfbf38d77fd43ae47f2c",
+      "applied_reviews": 15,
       "historical_unapplied_reviews": [
         {
           "claim_id": "changelog:0.24.0:e5293718609400f3",
@@ -5699,6 +5699,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
+            "scripts/check-tranquility-0.119.0.py",
             "docs/analysis/release-contracts-0.119.0.md",
             "docs/analysis/release-review-0.119.0.md",
             "docs/analysis/tranquility-0.119.0.md"
@@ -6370,6 +6371,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
             "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
             "crates/azeroth-survivors-re/src/run_options.rs",
+            "crates/azeroth-survivors-re/src/save/gear.rs",
             "scripts/check-achievement-catalog-0.121.0.py",
             "scripts/check-affixes-0.121.0.py",
             "scripts/check-again-entry-0.121.0.py",
@@ -6672,6 +6674,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
             "crates/azeroth-survivors-re/src/mob_loot.rs",
+            "crates/azeroth-survivors-re/src/save/gear.rs",
             "crates/azeroth-survivors-re/src/save/gear_rewards.rs",
             "scripts/check-coop-heroic-wire-0.121.0.py",
             "scripts/check-gear-rewards-0.121.0.py",
@@ -6693,6 +6696,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
             "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
             "crates/azeroth-survivors-re/src/mob_loot.rs",
+            "crates/azeroth-survivors-re/src/save/gear.rs",
             "crates/azeroth-survivors-re/src/save/gear_rewards.rs",
             "scripts/check-again-entry-0.121.0.py",
             "scripts/check-coop-heroic-wire-0.121.0.py",
@@ -6710,6 +6714,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/armory.rs",
+            "crates/azeroth-survivors-re/src/save/gear.rs",
             "crates/azeroth-survivors-re/src/save/gear_progression.rs",
             "scripts/check-armory-star-purchase-0.121.0.py",
             "scripts/check-set-localization-0.121.0.py",
@@ -6769,6 +6774,7 @@
             "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
+            "crates/azeroth-survivors-re/src/sets.rs",
             "scripts/check-set-localization-0.121.0.py",
             "scripts/check-sets-core-0.121.0.py",
             "docs/analysis/set-gameplay-0.121.0.md"
@@ -6807,6 +6813,7 @@
             "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
+            "crates/azeroth-survivors-re/src/sets.rs",
             "scripts/check-set-localization-0.121.0.py",
             "scripts/check-sets-core-0.121.0.py",
             "docs/analysis/set-gameplay-0.121.0.md"
@@ -6846,6 +6853,7 @@
             "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
+            "crates/azeroth-survivors-re/src/sets.rs",
             "scripts/check-set-localization-0.121.0.py",
             "scripts/check-sets-core-0.121.0.py",
             "docs/analysis/set-gameplay-0.121.0.md"
@@ -6918,6 +6926,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
             "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
             "crates/azeroth-survivors-re/src/menu.rs",
+            "crates/azeroth-survivors-re/src/save/gear.rs",
             "crates/azeroth-survivors-re/src/save/weapon_glow.rs",
             "crates/benilla-app/src/entities.rs",
             "crates/benilla-app/src/entities/attach/preview.rs",
@@ -7488,6 +7497,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/bootstrap.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop/server_party.rs",
@@ -7634,7 +7644,8 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
-            "crates/azeroth-survivors-re/src/coop_runtime.rs"
+            "crates/azeroth-survivors-re/src/coop_runtime.rs",
+            "crates/azeroth-survivors-re/src/armory.rs"
           ]
         },
         {
@@ -7650,6 +7661,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+            "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/addon_lists.rs"
           ]
         },
@@ -7662,8 +7674,11 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+            "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
+            "crates/azeroth-survivors-re/src/gameplay/mechanics/milestones.rs",
             "scripts/recover-enemy-ai.py"
           ]
         },
@@ -7697,6 +7712,7 @@
             "crates/azeroth-survivors-re/src/save/talents.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+            "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs",
@@ -7727,7 +7743,9 @@
           },
           "status": "static_checked",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.124.0:517affaec46da27a",
@@ -7754,6 +7772,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/game_party.rs",
             "crates/azeroth-survivors-re/src/coop/server_party.rs",
             "crates/azeroth-survivors-re/src/coop/session.rs",
@@ -7903,6 +7922,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+            "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs"
           ]
@@ -7915,7 +7935,9 @@
           },
           "status": "static_checked",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.125.0:29a68f63ab966ff0",
@@ -7925,7 +7947,9 @@
           },
           "status": "static_checked",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.125.0:dfa98e9191531302",
@@ -7935,7 +7959,9 @@
           },
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.126.0:d5fd59051c6c2097",
@@ -8338,7 +8364,9 @@
           },
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.127.0:7514bd4e7a95df3a",
@@ -8348,7 +8376,9 @@
           },
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.128.0:e591117344b3217a",
@@ -8359,6 +8389,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -8374,6 +8405,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -8389,6 +8421,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -8404,6 +8437,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -8419,6 +8453,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -8434,6 +8469,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -8820,8 +8856,10 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
+            "crates/azeroth-survivors-re/src/sets.rs",
             "docs/analysis/release-review-0.139.0.md"
           ]
         },
@@ -8835,6 +8873,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "docs/analysis/release-review-0.139.0.md"
           ]
@@ -8890,6 +8929,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/sets.rs",
             "docs/analysis/release-review-0.139.0.md"
           ]
         },
@@ -9739,6 +9779,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -9754,6 +9795,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -9769,6 +9811,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -9784,6 +9827,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -9799,6 +9843,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -9814,6 +9859,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop_ui.rs",
@@ -10200,8 +10246,10 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs",
             "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
+            "crates/azeroth-survivors-re/src/sets.rs",
             "docs/analysis/release-review-0.139.0.md"
           ]
         },
@@ -10215,6 +10263,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs",
             "crates/azeroth-survivors-re/src/run_effects.rs",
             "docs/analysis/release-review-0.139.0.md"
           ]
@@ -10270,6 +10319,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/sets.rs",
             "docs/analysis/release-review-0.139.0.md"
           ]
         },
@@ -11308,7 +11358,7 @@
           "changed_refs": []
         }
       ],
-      "applied_ownership_reviews": 40
+      "applied_ownership_reviews": 37
     },
     "historical_archive": {
       "path": "changelog_2026-10-15_1.json",
@@ -11329,9 +11379,9 @@
     "release_count": 211,
     "entry_count": 1084,
     "covered_nonblank_release_lines": 1276,
-    "pending_claim_recovery": 1072,
-    "applied_claim_reviews": 12,
-    "applied_ownership_reviews": 40,
+    "pending_claim_recovery": 1069,
+    "applied_claim_reviews": 15,
+    "applied_ownership_reviews": 37,
     "release_contexts_with_system_owners": 129,
     "scope_counts": {
       "addons": 42,
@@ -12630,9 +12680,9 @@
     {"id":"changelog:0.140.0:b6e494b0be86ca3b","release":"0.140.0","text":"Rapid Fire: its free Aimed Shots now come at most twice a second.","text_sha256":"b6e494b0be86ca3bc28cd57a8a5928ec20fb6c986d00ae8e3d925edabfcd1ae4","normalized_claim_sha256":"b6e494b0be86ca3bc28cd57a8a5928ec20fb6c986d00ae8e3d925edabfcd1ae4","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2117,"line_end":2117,"sha256":"d2b7eb23c143d9f628abfdf84e0e4c69033ea4640c812eaeea8ae5cc5daaccc9"},"scope":["unknown"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-procs"],"gap_ids":[90],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Trace the Rapid Fire Aimed Shot effect to its rate gate and burst behavior.","ownership_source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:0009124e18be87bf","release":"0.140.0","text":"Mind Blast's base damage rises from 130 to 184, and Improved Mind Blast also adds 6% damage per rank.","text_sha256":"0009124e18be87bffa9167613c139be0776748713dedd553fa91726f6ef51d5e","normalized_claim_sha256":"0009124e18be87bffa9167613c139be0776748713dedd553fa91726f6ef51d5e","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2118,"line_end":2118,"sha256":"84c26e279413b1b02303cb7b8ba4162af19471d9bd2c0c2871a21978b510d81a"},"scope":["gameplay"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-abilities"],"gap_ids":[34],"source_refs":["crates/azeroth-survivors-re/assets/talents.json","crates/azeroth-survivors-re/assets/ability-tooltips.json","crates/azeroth-survivors-re/src/save/talents.rs","crates/azeroth-survivors-re/src/run_effects.rs","crates/azeroth-survivors-re/src/player_abilities/catalog.rs","crates/azeroth-survivors-re/src/player_abilities/damage.rs"],"evidence_refs":["docs/analysis/class-balance-0.140.0.md#mind-blast-power-cooldown-and-descriptions"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"Current Mind Blast power and both keyed six-percent rank modifiers flow through the spell instance into cast damage, cooldown and the runtime tooltip. The picker and talent menu carry current values and wording.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:a5da6b75f752b792","release":"0.140.0","text":"The Eye of the Tempest's first line now reads \"Stormstrike: +35% damage to bosses and elites\".","text_sha256":"a5da6b75f752b792adfb20a8f8a7ad28c32279fc02a4fde3f9adc4c0a5cd29d4","normalized_claim_sha256":"a5da6b75f752b792adfb20a8f8a7ad28c32279fc02a4fde3f9adc4c0a5cd29d4","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2119,"line_end":2119,"sha256":"1b00f1323d6484fecb081a9d4ac4860df4c3bac48528e20201a29c8104c1246b"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-enhancement"],"gap_ids":[305],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Trace the first Eye of the Tempest descriptor line into its specific target filter and Stormstrike consumer.","ownership_source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
-    {"id":"changelog:0.140.0:713f1d1f551a5bca","release":"0.140.0","text":"Tranquility's strike now counts only healing that restored health or became Tree of Life's shield. Healing that was simply lost no longer fuels it.","text_sha256":"713f1d1f551a5bca8c7313f69fa935e99256b68488f7cfac326e0d04fd97b4d2","normalized_claim_sha256":"713f1d1f551a5bca8c7313f69fa935e99256b68488f7cfac326e0d04fd97b4d2","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2120,"line_end":2120,"sha256":"ca1a36fd404f935e796a5501dcf8be472c40d8a88f58b1f738ebfc812685860c"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-abilities"],"gap_ids":[176],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Separate actual restored health and Tree of Life absorb from the excess values consumed by current source.","ownership_source_refs":["crates/azeroth-survivors-re/src/run_effects/healing.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
-    {"id":"changelog:0.140.0:6362d8f7e7f22739","release":"0.140.0","text":"Seed of Life's two hits on a boss or elite now roll their critical strikes separately.","text_sha256":"6362d8f7e7f22739ae8d8152f5d6e5abfe5dab78d2fa2f9d8fb9442efc7e2bf1","normalized_claim_sha256":"6362d8f7e7f22739ae8d8152f5d6e5abfe5dab78d2fa2f9d8fb9442efc7e2bf1","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2121,"line_end":2121,"sha256":"0536adc3c97562b89c5182c4770beba52fd312e7b616dec80f28703b534635a2"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-abilities"],"gap_ids":[176],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Follow both Seed of Life producers into per-hit critical rolls and RNG order.","ownership_source_refs":["crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
-    {"id":"changelog:0.140.0:96435f933d14094a","release":"0.140.0","text":"Critical hits from Tranquility and Seed of Life now trigger Blood Frenzy and The Eye of Hakkar.","text_sha256":"96435f933d14094a0926e3611eee452da2b675475627d8be5dc174f163f9eb15","normalized_claim_sha256":"96435f933d14094a0926e3611eee452da2b675475627d8be5dc174f163f9eb15","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2122,"line_end":2122,"sha256":"f566639e07d73cff4fa0b0d8d6dcf63820706c69e4627040de14c3218c85a905"},"scope":["unknown"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-procs"],"gap_ids":[176],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Follow both critical event families into Blood Frenzy and Eye of Hakkar admission.","ownership_source_refs":["crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
+    {"id":"changelog:0.140.0:713f1d1f551a5bca","release":"0.140.0","text":"Tranquility's strike now counts only healing that restored health or became Tree of Life's shield. Healing that was simply lost no longer fuels it.","text_sha256":"713f1d1f551a5bca8c7313f69fa935e99256b68488f7cfac326e0d04fd97b4d2","normalized_claim_sha256":"713f1d1f551a5bca8c7313f69fa935e99256b68488f7cfac326e0d04fd97b4d2","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2120,"line_end":2120,"sha256":"ca1a36fd404f935e796a5501dcf8be472c40d8a88f58b1f738ebfc812685860c"},"scope":["gameplay"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-abilities"],"gap_ids":[176],"source_refs":["crates/azeroth-survivors-re/src/run_effects/healing.rs","crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs","crates/azeroth-survivors-re/src/gameplay/mechanics.rs","crates/azeroth-survivors-re/src/sets.rs","crates/azeroth-survivors-re/src/save/gear.rs","crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs"],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"Direct and batch healing credit actual restored health and the clamped Tree of Life absorb delta. The Seed impact flag prevents that impact from feeding the pool.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
+    {"id":"changelog:0.140.0:6362d8f7e7f22739","release":"0.140.0","text":"Seed of Life's two hits on a boss or elite now roll their critical strikes separately.","text_sha256":"6362d8f7e7f22739ae8d8152f5d6e5abfe5dab78d2fa2f9d8fb9442efc7e2bf1","normalized_claim_sha256":"6362d8f7e7f22739ae8d8152f5d6e5abfe5dab78d2fa2f9d8fb9442efc7e2bf1","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2121,"line_end":2121,"sha256":"0536adc3c97562b89c5182c4770beba52fd312e7b616dec80f28703b534635a2"},"scope":["gameplay"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-abilities"],"gap_ids":[176],"source_refs":["crates/azeroth-survivors-re/src/run_effects/healing.rs","crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs","crates/azeroth-survivors-re/src/gameplay/mechanics.rs","crates/azeroth-survivors-re/src/sets.rs","crates/azeroth-survivors-re/src/save/gear.rs","crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs"],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"The Feralheart eight-piece queues Seed of Life before Tranquility damage. Each hit draws a separate critical sample from the live RNG, including the second hit on bosses and elites. The empowered target gate includes primary bosses, elites and Guardians.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
+    {"id":"changelog:0.140.0:96435f933d14094a","release":"0.140.0","text":"Critical hits from Tranquility and Seed of Life now trigger Blood Frenzy and The Eye of Hakkar.","text_sha256":"96435f933d14094a0926e3611eee452da2b675475627d8be5dc174f163f9eb15","normalized_claim_sha256":"96435f933d14094a0926e3611eee452da2b675475627d8be5dc174f163f9eb15","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2122,"line_end":2122,"sha256":"f566639e07d73cff4fa0b0d8d6dcf63820706c69e4627040de14c3218c85a905"},"scope":["unknown"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-procs"],"gap_ids":[176],"source_refs":["crates/azeroth-survivors-re/src/run_effects/healing.rs","crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs","crates/azeroth-survivors-re/src/gameplay/mechanics.rs","crates/azeroth-survivors-re/src/sets.rs","crates/azeroth-survivors-re/src/save/gear.rs","crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs"],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"Critical Tranquility and Seed of Life damage reaches Blood Frenzy and The Eye of Hakkar through the periodic critical branch and retains generic hit/kill suppression.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:1d1ef8f6798a0519","release":"0.140.0","text":"Power Word: Shield now holds at most 100% of its target's maximum health, and never more than 200%. The Eternal Talisman's +26% absorb becomes +50% to that cap, growing with its rank.","text_sha256":"1d1ef8f6798a05191cdd447791d5e20c45095e56076af5bbc9e2db2a9fcfc995","normalized_claim_sha256":"1d1ef8f6798a05191cdd447791d5e20c45095e56076af5bbc9e2db2a9fcfc995","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2123,"line_end":2123,"sha256":"b242cf846bee7dcc2c663d029739bd67f093c66989e7c4dc84a7d91f8e819067"},"scope":["gameplay"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-auras"],"gap_ids":[288],"source_refs":[],"evidence_refs":["docs/analysis/class-balance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Recover recipient-health cap, Talisman rank modifier and hard ceiling in the shield writer.","ownership_source_refs":["crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:16857431d6009747","release":"0.140.0","text":"Headmaster's Office: the purple now visibly closes in on the safe square until it strikes.","text_sha256":"16857431d600974720c8a3a45ae166c5d45131f8be6ce11cc1393554d7116e13","normalized_claim_sha256":"16857431d600974720c8a3a45ae166c5d45131f8be6ce11cc1393554d7116e13","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2124,"line_end":2124,"sha256":"5f15f271d56a7c4c9ad9f853a81c036870435a932ab0c647a5c6742f63f155f6"},"scope":["unknown"],"status":"pending_claim_recovery","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-scripts-mod"],"gap_ids":[313],"source_refs":[],"evidence_refs":["docs/analysis/scholomance-0.140.0.md"],"mapping_basis":"individual_target_ownership_lead","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Individual target-bound ownership leads only; no native recovery, source connection, static check or parity is certified.","ownership_rationale":"Trace Headmaster’s Office closing warning geometry and deadline separately from impact and safe selection.","ownership_source_refs":["crates/azeroth-survivors-re/src/bosses/raid_warnings.rs"],"assessment":{"recovery":"unknown","implementation":"unknown","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},
     {"id":"changelog:0.140.0:a8f504d63cf96bd3","release":"0.140.0","text":"Companions with Rune-hound now fetch runes inside your pickup radius too.","text_sha256":"a8f504d63cf96bd3d569809af94c3c58e57656c4cc87eae1e4a320f520524511","normalized_claim_sha256":"a8f504d63cf96bd3d569809af94c3c58e57656c4cc87eae1e4a320f520524511","entry_kind":"bullet","parent_id":null,"source_span":{"path":"docs/CHANGELOG.md","line_start":2125,"line_end":2125,"sha256":"bc5cddc9dd3009141a8f159145a5bbb77da36f197c4ab70ac820007c56e8bd14"},"scope":["gameplay"],"status":"source_connected","contextual_status":"Current source-first review with bounded descriptors and diagnostic references","context_ref":"0.140.0","systems":["custom-game-game-companions"],"gap_ids":[14],"source_refs":["crates/azeroth-survivors-re/src/run_effects/loot_companions.rs","crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs","crates/azeroth-survivors-re/src/gameplay/mechanics/loot_companions.rs","crates/azeroth-survivors-re/src/run_pickups.rs"],"evidence_refs":["docs/analysis/class-balance-0.140.0.md#rune-hound-selection-and-ownership"],"mapping_basis":"individual_target_review","supersession_review":{"status":"unknown","current_target_applicability":"unverified"},"limitations":"Only the individually reviewed contract is assessed; runtime and complete claim parity remain unverified.","review_rationale":"Rune-hound considers a rune beyond the ordinary fixed three-yard boundary even inside the hero pickup stat. Shared pickup removal preserves ordinary collection precedence and one grant.","assessment":{"recovery":"unknown","implementation":"source_connected","static_validation":"not_run","runtime_validation":"unverified","parity":"unverified"}},

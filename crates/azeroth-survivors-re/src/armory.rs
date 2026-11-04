@@ -108,7 +108,13 @@ fn name_rules() -> &'static GearNameRules {
 
 pub(crate) fn set_name_base(class: u8, tier: usize) -> Option<&'static str> {
     let rule = name_rules().classes.iter().find(|rule| rule.id == class)?;
-    if tier == 5 {
+    if tier == usize::from(azeroth_survivors_re::sets::TIER_HALF) {
+        match class {
+            3 => Some("Beastmaster"),
+            11 => Some("Feralheart"),
+            _ => None,
+        }
+    } else if tier == 5 {
         Some(if class == 7 { "Warlord's" } else { "Field Marshal's" })
     } else {
         rule.sets.get(tier).map(|set| set.fallback.as_str())
@@ -119,7 +125,10 @@ pub(crate) fn set_name(catalog: &MenuCatalog, class: u8, tier: usize) -> String 
     let Some(rule) = name_rules().classes.iter().find(|rule| rule.id == class) else {
         return String::new();
     };
-    if tier == 5 {
+    if tier == usize::from(azeroth_survivors_re::sets::TIER_HALF) {
+        let fallback = set_name_base(class, tier).unwrap_or("");
+        translated(catalog, &format!("set.{}.{tier}", rule.key), fallback).into()
+    } else if tier == 5 {
         let fallback = if class == 7 { "Warlord's" } else { "Field Marshal's" };
         translated(catalog, &format!("set.pvp.{fallback}"), fallback).into()
     } else {

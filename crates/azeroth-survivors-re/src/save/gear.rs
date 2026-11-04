@@ -59,6 +59,11 @@ pub fn decode(id: u32) -> Option<GearId> {
     let slot = ((value / 100) % 10) as u8;
     let rarity_digit = ((value / 10) % 10) as u8;
     let definition = catalog().classes.iter().find(|entry| entry.id == class)?;
+    // Native 0.140.0 145e2cf59 dispatches digit seven to the Tier 0.5
+    // catalog. Its supported armor IDs share the compact slot/class encoding.
+    if rarity_digit == azeroth_survivors_re::sets::TIER_HALF && slot < 8 {
+        return Some(GearId { class, slot, rarity_digit });
+    }
     if rarity_digit >= 7 || slot >= 8 + definition.weapon_count {
         return None;
     }
@@ -431,7 +436,8 @@ mod tests {
                 digit as u8
             );
         }
-        for id in [0, 38, 101_001, 101_070, 101_900, 106_000, 112_000] {
+        assert_eq!(decode(101_070).unwrap().rarity_digit, 7);
+        for id in [0, 38, 101_001, 101_080, 101_900, 106_000, 112_000] {
             assert!(decode(id).is_none(), "{id}");
         }
         assert!(decode(104_960).is_some());

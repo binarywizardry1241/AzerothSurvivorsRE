@@ -292,6 +292,7 @@ impl<W: RunWorld> PassivePort for PassiveCombat<'_, '_, '_, W> {
                     overcast: false,
                     proc_source: self.core.generic.source,
                     suppress_damage_log: false,
+                    effect_critical_procs: false,
                 },
                 target_guid: hit.target_guid,
                 source_guid: self.context.player_guid,

@@ -12,6 +12,8 @@ pub const TARGET_SHA256: &str = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81
 pub const PAPERDOLL_SLOTS: usize = 19;
 pub const ARMOR_SLOTS: usize = 8;
 pub const TIERS: usize = 6;
+pub const TIER_HALF: u8 = 7;
+const ACTIVE_TIER_ORDER: [usize; 7] = [0, 1, 2, 3, 5, TIER_HALF as usize, 4];
 
 /// Projection supplied by the existing gear catalog, not by item-name matching.
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -77,8 +79,8 @@ pub fn active(
     stars: &[u8; PAPERDOLL_SLOTS],
     mut lookup: impl FnMut(u32) -> Option<Piece>,
 ) -> Option<ActiveSet> {
-    let mut counts = [0usize; TIERS];
-    let mut minimum = [u8::MAX; TIERS];
+    let mut counts = [0usize; TIER_HALF as usize + 1];
+    let mut minimum = [u8::MAX; TIER_HALF as usize + 1];
     for (&id, &rank) in gear.iter().zip(stars) {
         let Some(piece) = lookup(canonical_item(id)) else {
             continue;
@@ -86,14 +88,13 @@ pub fn active(
         if piece.class_id == 0 || piece.slot >= ARMOR_SLOTS {
             continue;
         }
-        // Native145ac427b explicitly rejects an out-of-domain catalog tier.
-        let count = counts
-            .get_mut(piece.tier)
-            .expect("native set tier domain0..5");
+        // 0.140.0 145e34f70 includes the Tier 0.5 index and keeps the
+        // original first-match ordering for the remaining candidates.
+        let count = counts.get_mut(piece.tier).expect("native set tier domain");
         *count += 1;
         minimum[piece.tier] = minimum[piece.tier].min(rank);
     }
-    (0..TIERS).find_map(|tier| {
+    ACTIVE_TIER_ORDER.into_iter().find_map(|tier| {
         (counts[tier] >= ARMOR_SLOTS && minimum[tier] >= 3).then_some(ActiveSet {
             tier: tier as u8,
             empowered: minimum[tier] >= 5,
@@ -123,7 +124,7 @@ pub fn decode_set_id(id: u32) -> Option<SetIdentity> {
     let class_id = (id >> 4) as u8;
     let nibble = (id & 15) as u8;
     let tier = if nibble == 15 { 5 } else { nibble };
-    (class_id <= 11 && (0x0bbeu16 >> class_id) & 1 != 0 && tier < 6).then_some(SetIdentity {
+    (class_id <= 11 && (0x0bbeu16 >> class_id) & 1 != 0 && (tier < 6 || tier == TIER_HALF)).then_some(SetIdentity {
         class_id,
         tier,
         horde_pvp: nibble == 15,
@@ -161,7 +162,9 @@ pub fn four_piece_tiers(
     let mut counts = [0usize; TIERS];
     for (&id, &rank) in gear.iter().zip(stars) {
         let Some(piece) = lookup(canonical_item(id)) else { continue; };
-        if piece.class_id == 0 || piece.slot >= ARMOR_SLOTS || rank == 0 {
+        if piece.class_id == 0 || piece.slot >= ARMOR_SLOTS || rank == 0
+            || piece.tier == usize::from(TIER_HALF)
+        {
             continue;
         }
         *counts.get_mut(piece.tier).expect("native set tier domain0..5") += 1;
@@ -222,9 +225,40 @@ fn catalog() -> &'static Catalog {
 /// Nine supported classes, six tiers, both actual multiplier domains. Invalid
 /// class/tier values return None, matching the constructor's empty variant.
 pub fn descriptor(class_id: u8, tier: u8, empowered: bool) -> Option<&'static Descriptor> {
+    if class_id == 11 && tier == TIER_HALF {
+        return Some(tier_half_druid(empowered));
+    }
     catalog().entries.iter().find(|entry| {
         entry.class_id == class_id && entry.tier == tier && entry.empowered == empowered
     })
+}
+
+/// Native 0.140.0 145e30baa..145e30c18, with values at 1473ea130.
+/// Both use the live eight-piece activation state from 145e34f70.
+fn tier_half_druid(empowered: bool) -> &'static Descriptor {
+    static DESCRIPTORS: OnceLock<[Descriptor; 2]> = OnceLock::new();
+    &DESCRIPTORS.get_or_init(|| {
+        [
+            (false,
+                "Every qualifying Tranquility healing cast plants Seed of Life on a priority enemy; after 1.5 sec it deals 60% of the Tranquility hit's damage to that target and 5 nearby enemies within 6 yd.",
+                "460000009a99193f050000000000c040000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"),
+            (true,
+                "Seed of Life deals 100% of the Tranquility hit's damage, striking its target and 7 nearby enemies within 8 yd. Seed of Life also strikes bosses and elites twice.",
+                "460000000000803f0700000000000041010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"),
+        ].map(|(empowered, description, raw_hex)| Descriptor {
+            class_id: 11,
+            tier: TIER_HALF,
+            empowered,
+            spell_key: "regrowth".to_owned(),
+            description: description.to_owned(),
+            display_values: [0.0; 2],
+            effects: vec![NativeEffect {
+                raw_hex: raw_hex.to_owned(),
+                strings: Vec::new(),
+                lists: Vec::new(),
+            }],
+        })
+    })[usize::from(empowered)]
 }
 
 pub fn equipped_descriptor(

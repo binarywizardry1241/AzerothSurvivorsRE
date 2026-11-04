@@ -96,6 +96,8 @@ pub struct HitContext {
     pub proc_source: Option<usize>,
     /// Final actor-hit argument suppressing its spell-damage log publication.
     pub suppress_damage_log: bool,
+    /// Native Game+0x2a4 admits only critical periodic procs for this effect hit.
+    pub effect_critical_procs: bool,
 }
 
 /// Semantic fields of native80-byte pending hit (Game+0x4f8 vector).

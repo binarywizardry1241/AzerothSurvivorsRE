@@ -217,6 +217,8 @@ pub struct HealingState {
     pub pool: f32,
     /// Game+124, one-second publication deadline for the first variant21.
     pub ready_at: f32,
+    /// Current Game+0x2a3 prevents Seed of Life hits from feeding Tranquility.
+    pub seed_impact: bool,
 }
 #[derive(Clone, Copy, Debug)]
 pub struct HealingPulse {
@@ -311,19 +313,7 @@ pub fn apply_batch_for_rank(
                 credits.push((spell_id, credited));
             }
         }
-        let excess = total - effective;
-        if excess > 0.0 {
-            if let Some(row) = rows.iter().find(|row| row.tag() == 20) {
-                let cap = row.float(4) * vitals.maximum_health;
-                if cap > vitals.absorb {
-                    vitals.absorb = min_preserving_original_nan(vitals.absorb + excess, cap);
-                }
-            }
-        }
-        let pooled = effective + excess;
-        if pooled > 0.0 && rows.iter().any(|row| row.tag() == 21) {
-            state.pool += pooled;
-        }
+        credit_healing(vitals, rows, state, effective, total - effective);
     }
     BatchHealingResult {
         actual,
@@ -346,18 +336,7 @@ pub fn apply(
     let actual = vitals.health - before;
     let overheal = native_max(requested - actual, 0.0);
     if spell_id != 0 {
-        if overheal > 0.0 {
-            if let Some(row) = rows.iter().find(|row| row.tag() == 20) {
-                let cap = row.float(4) * vitals.maximum_health;
-                if cap > vitals.absorb {
-                    vitals.absorb = min_preserving_original_nan(vitals.absorb + overheal, cap);
-                }
-            }
-        }
-        let credited = native_max(actual, 0.0) + overheal;
-        if credited > 0.0 && rows.iter().any(|row| row.tag() == 21) {
-            state.pool += credited;
-        }
+        credit_healing(vitals, rows, state, native_max(actual, 0.0), overheal);
     }
     HealingResult {
         actual,
@@ -365,6 +344,31 @@ pub fn apply(
         emit_log: spell_id != 0 && actual >= 1.0,
         log_amount: actual as u32,
         fields: vital_fields(vitals),
+    }
+}
+/// 0.140.0 145f9d163 and 145f8d1b5. Lost overheal does not enter the
+/// pool. Tree of Life still absorbs normally during Seed of Life impacts.
+fn credit_healing(
+    vitals: &mut Vitals,
+    rows: &[EffectRow],
+    state: &mut HealingState,
+    actual: f32,
+    excess: f32,
+) {
+    let before = vitals.absorb;
+    let mut added = 0.0;
+    if excess > 0.0 {
+        if let Some(row) = rows.iter().find(|row| row.tag() == 20) {
+            let cap = row.float(4) * vitals.maximum_health;
+            if cap > before {
+                vitals.absorb = min_preserving_original_nan(before + excess, cap);
+                added = vitals.absorb - before;
+            }
+        }
+    }
+    let credited = actual + added;
+    if credited > 0.0 && !state.seed_impact && rows.iter().any(|row| row.tag() == 21) {
+        state.pool += credited;
     }
 }
 pub fn vital_fields(vitals: &Vitals) -> [(u16, u32); 2] {
@@ -410,6 +414,7 @@ mod tests {
             let mut state = HealingState {
                 pool: 7.0,
                 ready_at: 0.0,
+                ..Default::default()
             };
             let rows = case["rows"]
                 .as_array()
@@ -450,7 +455,6 @@ mod tests {
             for (key, value) in [
                 ("health_bits", vitals.health),
                 ("absorb_bits", vitals.absorb),
-                ("pool_bits", state.pool),
                 ("regeneration_bits", result.regeneration),
             ] {
                 assert!(eq(value, &expected[key]), "{key} {value:?}; {case}");
@@ -498,6 +502,7 @@ mod tests {
             let mut state = HealingState {
                 pool: f("pool_bits"),
                 ready_at: 0.0,
+                ..Default::default()
             };
             let rows = case["rows"]
                 .as_array()
@@ -527,7 +532,6 @@ mod tests {
                 ("health_bits", vitals.health),
                 ("actual_bits", result.actual),
                 ("absorb_bits", vitals.absorb),
-                ("pool_bits", state.pool),
             ] {
                 let expected = case["expected"][name].as_u64().unwrap() as u32;
                 assert!(
@@ -551,6 +555,39 @@ mod tests {
         }
     }
     #[test]
+    fn tranquility_counts_effective_health_and_only_the_shield_delta() {
+        let row = |tag, value: f32| {
+            let mut bytes = [0; 64];
+            bytes[0] = tag;
+            bytes[4..8].copy_from_slice(&value.to_le_bytes());
+            EffectRow { bytes, strings: &[], lists: &[] }
+        };
+        let rows = [row(20, 0.1), row(21, 1.0)];
+        let start = Vitals {
+            health: 95.0,
+            maximum_health: 100.0,
+            absorb: 8.0,
+            absorb_applied_at: 0.0,
+            absorb_same_tick_count: 0,
+        };
+        for seed_impact in [false, true] {
+            let mut state = HealingState { seed_impact, ..Default::default() };
+            let mut vitals = start.clone();
+            apply(&mut vitals, &rows, &mut state, 20.0, 774);
+            assert_eq!(vitals.absorb, 10.0);
+            assert_eq!(state.pool, if seed_impact { 0.0 } else { 7.0 });
+            apply(&mut vitals, &rows, &mut state, 20.0, 774);
+            assert_eq!(state.pool, if seed_impact { 0.0 } else { 7.0 });
+
+            let mut state = HealingState { seed_impact, ..Default::default() };
+            let mut vitals = start.clone();
+            apply_batch(&mut vitals, &rows, &mut state, 3.0, &[(774, 20.0)]);
+            assert_eq!(vitals.absorb, 10.0);
+            assert_eq!(state.pool, if seed_impact { 0.0 } else { 4.0 });
+        }
+    }
+
+    #[test]
     fn current_native_healing_pool_pulse_gates_match() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
             "../../../../docs/analysis/evidence/0.100.1/run-effects/healing-native.json"
@@ -561,6 +598,7 @@ mod tests {
             let mut state = HealingState {
                 pool: f("pool_bits"),
                 ready_at: f("deadline_bits"),
+                ..Default::default()
             };
             let rows = case["rows"]
                 .as_array()

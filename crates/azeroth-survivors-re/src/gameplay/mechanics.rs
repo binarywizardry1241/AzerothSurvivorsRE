@@ -1237,6 +1237,7 @@ impl Mechanics {
                 .take()
                 .expect("live run object serial");
             passive.pulse_healing_pool(&mut self.execution, &mut self.rng, object_counter);
+            passive.resolve_seeds_of_life(&mut self.execution, &mut self.rng, object_counter);
             passive.object_counter = Some(object_counter);
             let object_counter = passive
                 .object_counter
@@ -2590,6 +2591,7 @@ impl<W: RunWorld> PassivePort for CombatAdapter<'_, W> {
                     overcast: false,
                     proc_source: self.generic.source,
                     suppress_damage_log: false,
+                    effect_critical_procs: false,
                 },
                 target_guid: hit.target_guid,
                 source_guid: self.player_guid,

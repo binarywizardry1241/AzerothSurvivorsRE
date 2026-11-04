@@ -166,7 +166,7 @@ impl EffectRow {
     pub fn armor_set(payload: &'static crate::sets::NativeEffect) -> Self {
         let mut bytes = payload.bytes();
         match bytes[0] {
-            0..=23 => {}
+            0..=23 | 70 => {}
             24 => {
                 bytes[0] = 253;
                 bytes[63] = 36;

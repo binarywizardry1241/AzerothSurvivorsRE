@@ -183,7 +183,7 @@ impl Mechanics {
                 crate::save::gear::decode(id).map(|piece| azeroth_survivors_re::sets::Piece {
                     class_id: piece.class,
                     slot: usize::from(piece.slot),
-                    tier: usize::from(piece.rarity_digit.min(5)),
+                    tier: usize::from(if piece.rarity_digit == 6 { 5 } else { piece.rarity_digit }),
                 })
             },
         );

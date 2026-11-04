@@ -30,6 +30,7 @@ pub(super) struct State {
     pub counters: Vec<u32>,
     pub temporary: azeroth_survivors_re::run_effects::actions::TemporaryStats,
     pub healing: azeroth_survivors_re::run_effects::healing::HealingState,
+    seeds_of_life: Vec<SeedOfLife>,
     pub healing_meter: azeroth_survivors_re::run_effects::healing::HealingMeter,
     pub damage_meters: azeroth_survivors_re::run_meter::DamageMeters,
     pub player_auras: azeroth_survivors_re::run_effects::player_auras::PlayerAuraState,
@@ -45,6 +46,18 @@ pub(super) struct State {
     pub consume_magic_ready_at: std::collections::BTreeMap<u64, f32>,
     /// Current Game110 vector: all Succubi share a5-second Seduction cooldown.
     pub succubus_seduction_ready_at: std::collections::BTreeMap<u64, f32>,
+}
+
+#[derive(Clone, Copy, Debug)]
+struct SeedOfLife {
+    target: u64,
+    effect_index: usize,
+    resolves_at: f32,
+    position: Position,
+    power: f32,
+    nearby: usize,
+    radius: f32,
+    double_strike: bool,
 }
 
 #[derive(Clone, Copy)]
@@ -422,31 +435,107 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                 hit_targets: selected.clone(),
             }));
         }
-        for guid in selected {
-            // 0.119.0 145bc596b..145bc5a14: every victim consumes the
-            // shared draw, even at zero/guaranteed chance. A preceding hit
-            // can change the live stats and RNG before the next victim.
-            let draw = behavior::unit24(rng);
-            let stats = CastPort::critical(self.core);
-            let critical = draw < stats.chance;
-            let damage = if critical {
-                pulse.power * stats.multiplier
-            } else {
-                pulse.power
-            };
-            self.effect_hit_with_suppression(
-                pulse.effect_index,
-                guid,
-                740,
-                3,
-                damage,
-                critical,
-                false,
-                execution,
-                rng,
-                counter,
-            );
+        // 0.140.0 145fb8ff0..145fb921e snapshots one Seed before the
+        // Tranquility hits. Its center follows the target until detonation.
+        if !selected.is_empty() {
+            if let Some((effect_index, row)) = self.core.equipped.rows.iter().enumerate()
+                .find(|(_, row)| row.tag() == 70)
+            {
+                let candidates = self.attack_candidates();
+                if let Some(target) = azeroth_survivors_re::run_effects::weapon::ordered_targets(
+                    &candidates,
+                    self.context.now,
+                    self.context.player,
+                    pulse.radius,
+                ).first() {
+                    self.core.generic.seeds_of_life.push(SeedOfLife {
+                        target: target.guid,
+                        effect_index,
+                        resolves_at: self.context.now + 1.5,
+                        position: target.position,
+                        power: pulse.power * row.float(4),
+                        nearby: row.word(8) as usize,
+                        radius: row.float(12),
+                        double_strike: row.bytes[16] != 0,
+                    });
+                }
+            }
         }
+        for guid in selected {
+            self.druid_effect_hit(pulse.effect_index, guid, 740, pulse.power, execution, rng, counter);
+        }
+    }
+
+    pub(super) fn resolve_seeds_of_life(
+        &mut self,
+        execution: &mut ExecutionState<'_>,
+        rng: &mut NativeRng,
+        counter: &mut dyn NativeCounter,
+    ) {
+        let now = self.context.now;
+        let mut due = Vec::new();
+        self.core.generic.seeds_of_life.retain(|seed| {
+            if seed.resolves_at <= now {
+                due.push(*seed);
+                false
+            } else {
+                true
+            }
+        });
+        for seed in due {
+            let actors = actor_targets(
+                self.core.actors,
+                self.core.bosses,
+                &self.core.boss_state.wards,
+                self.core.object_counter.sequence(),
+            );
+            let center = actors.iter().find(|target| target.actor.guid == seed.target)
+                .map_or(seed.position, |target| target.actor.movement.position_at(now));
+            let targets = std::iter::once(seed.target)
+                .chain(targeting::radius_targets(&actors, now, center, seed.radius, &[seed.target])
+                    .into_iter()
+                    .take(seed.nearby)
+                    .map(|target| target.actor.guid))
+                .collect::<Vec<_>>();
+            const SEED_OF_LIFE: u32 = 21070;
+            self.core.cast_spell(SpellCast {
+                source_guid: self.context.player_guid,
+                spell_id: SEED_OF_LIFE,
+                target: CastTarget::Ground(center),
+                hit_targets: Vec::new(),
+            });
+            let prior = std::mem::replace(&mut self.core.generic.healing.seed_impact, true);
+            for guid in targets {
+                let double = seed.double_strike && (self.core.guardian_state.contains(guid)
+                    || actors.iter().any(|target|
+                        target.actor.guid == guid && (target.has_metadata || target.flagged)));
+                self.druid_effect_hit(seed.effect_index, guid, SEED_OF_LIFE, seed.power, execution, rng, counter);
+                if double {
+                    self.druid_effect_hit(seed.effect_index, guid, SEED_OF_LIFE, seed.power, execution, rng, counter);
+                }
+            }
+            self.core.generic.healing.seed_impact = prior;
+        }
+    }
+
+    fn druid_effect_hit(
+        &mut self,
+        index: usize,
+        guid: u64,
+        spell_id: u32,
+        power: f32,
+        execution: &mut ExecutionState<'_>,
+        rng: &mut NativeRng,
+        counter: &mut dyn NativeCounter,
+    ) {
+        // Each hit draws and reads live stats after any preceding hit's procs.
+        let draw = behavior::unit24(rng);
+        let stats = CastPort::critical(self.core);
+        let critical = draw < stats.chance;
+        let damage = if critical { power * stats.multiplier } else { power };
+        self.effect_hit_with_suppression(
+            index, guid, spell_id, 3, damage, critical, false, true, execution, rng, counter,
+        );
     }
     pub(super) fn apply_effect_status(
         &mut self,
@@ -599,10 +688,10 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
         counter: &mut dyn NativeCounter,
     ) {
         self.effect_hit_with_suppression(
-            index, guid, spell_id, school, damage, false, false, execution, rng, counter,
+            index, guid, spell_id, school, damage, false, false, false, execution, rng, counter,
         );
     }
-    fn effect_hit_with_suppression(
+    pub(super) fn effect_hit_with_suppression(
         &mut self,
         index: usize,
         guid: u64,
@@ -611,6 +700,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
         damage: f32,
         critical: bool,
         suppress_damage_log: bool,
+        effect_critical_procs: bool,
         execution: &mut ExecutionState<'_>,
         rng: &mut NativeRng,
         counter: &mut dyn NativeCounter,
@@ -624,6 +714,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     overcast: self.core.extra_cast,
                     proc_source: self.core.generic.source,
                     suppress_damage_log,
+                    effect_critical_procs,
                     ..Default::default()
                 },
                 target_guid: guid,
@@ -722,15 +813,20 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             // Class-special callbacks may have recursively dealt damage. Their
             // leech also precedes this hit's health-conditioned generic rows.
             self.core.flush_leech(&mut execution.vitals);
-            if let Some(event) = azeroth_survivors_re::run_effects::hit_event(
-                Event {
-                    spell_id: input.spell_id,
-                    school: hit.school,
-                    source_kind: self.core.attribution.source_kind,
-                    critical: input.critical,
-                    first_periodic: self.first_periodic,
-                    ..Default::default()
-                },
+            let event = Event {
+                spell_id: input.spell_id,
+                school: hit.school,
+                source_kind: self.core.attribution.source_kind,
+                critical: input.critical,
+                first_periodic: self.first_periodic,
+                ..Default::default()
+            };
+            if event.source_kind == 3 && hit.context.effect_critical_procs && event.critical {
+                // 0.140.0 145f47a5b..145f47b80 bypasses ordinary hit/kill
+                // dispatch and first-hit/first-critical token consumption.
+                self.generic_event(event, input.raw_power, input.victim_guid, execution, rng, counter);
+            } else if let Some(event) = azeroth_survivors_re::run_effects::hit_event(
+                event,
                 !self.core.equipped.rows.is_empty(),
                 &mut execution.seen_spells,
                 &mut self.core.generic.first_criticals,
@@ -845,6 +941,11 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             .flatten();
         let mut stats_dirty = false;
         for (index, row) in rows.iter().enumerate() {
+            // Current native tag 21 with condition 2 is the periodic-on-critical
+            // lane used by Blood Frenzy and The Eye of Hakkar.
+            if event.source_kind == 3 && (row.tag() != 9 || row.word(16) != 2) {
+                continue;
+            }
             // Semantic marker keeps current army effects in their original order.
             // Creation, landing hits and their random draws finish before
             // the next generic or demon effect observes the shared state.

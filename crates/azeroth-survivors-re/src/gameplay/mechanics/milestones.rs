@@ -39,6 +39,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                 overcast: self.core.extra_cast,
                 proc_source: Some(index),
                 suppress_damage_log: false,
+                effect_critical_procs: false,
             },
             ..self.core.current_context(self.cast_context, execution)
         };
@@ -101,7 +102,9 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     event.spell_id,
                     event.school,
                     amount,
+                    false,
                     event.spell_id == 0,
+                    false,
                     execution,
                     rng,
                     counter,
