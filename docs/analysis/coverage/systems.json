@@ -24328,7 +24328,8 @@
         250,
         293,
         294,
-        295
+        295,
+        312
       ],
       "recovery": {
         "status": "partial",
@@ -65377,7 +65378,10 @@
           "sha256": "50a98296ea8c6a14f8850b14c9a058c46d80b81cca2ad6d6a24713d136a9f01b"
         }
       ],
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_feed.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"
+      ],
       "candidate_source_refs": [
         "crates/azeroth-survivors-re/src/run_meter.rs",
         "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs",
@@ -65394,7 +65398,8 @@
         "docs/analysis/native-frontier-0.139.0.md",
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
-        "docs/analysis/native-census-0.139.1.md"
+        "docs/analysis/native-census-0.139.1.md",
+        "docs/analysis/party-healing-meter-0.139.2.md"
       ],
       "gap_ids": [
         41,
@@ -65408,8 +65413,8 @@
         "summary": "Current source-first native queries retain exact interface/classification observations, raw limitations and failed routes. Only explicitly scoped contracts in the evidence binding qualify; no whole-module semantics."
       },
       "implementation": {
-        "status": "unknown",
-        "summary": "Existing candidate source interfaces inspected; no native/source assignment is inferred from names or feature similarity."
+        "status": "partial",
+        "summary": "The request prefix and ordinary-line replay reach their live consumer. Detailed frame production is still missing."
       },
       "static_validation": {
         "status": "bounded",
@@ -65424,16 +65429,14 @@
         "summary": "No controlled original/rebuilt comparison."
       },
       "remaining_source_work": [
-        "Trace meterfeed.rs/meterlog.rs constructors, transport/poll/request producers and Lua snapshot/query validation, descriptors/sourceKey/actor joins, recent windows/checkpoints and /reload lifetime. Keep damage-source attribution and rendering-facing anchor delivery separately scoped under #307.",
-        "Establish native/source assignment separately from current-target bounded-contract registration.",
-        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+        "Recover and connect the current typed row/actor fields, party and loadout joins, encounter/history publication and complete VM replay."
       ],
       "native_evidence_validity": "current_exact_diagnostic_leads_only_prior_semantics_retained_pending_applicability",
       "native_evidence_target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
-      "source_correspondence_status": "pending_native_source_assignment",
+      "source_correspondence_status": "retained_partial_source_correspondence",
       "current_contract_finding": 75,
       "discovery_selector": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/diagnostic-ownership.json:diagnostics[path='crates/wenilla-rogue/src/game/meterfeed.rs']",
-      "source_review_scope": "Candidate source interfaces only; exact source hashes/native diagnostic ranges in the current source-frontier record.",
+      "source_review_scope": "The request prefix and ordinary-line replay reach their live consumer. Detailed frame production is still missing.",
       "current_applicability": {
         "assessment": "docs/analysis/module-contracts-0.140.0.md",
         "selector": "systems[id=custom-game-game-meterfeed]",
@@ -65491,7 +65494,12 @@
           "sha256": "11874a22dcdbd2dcefb9d4b8fbeaf4cfb74a2c0c0f432cac86a1fa3dcfcd298b"
         }
       ],
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_meter.rs",
+        "crates/azeroth-survivors-re/src/run_effects/healing.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs"
+      ],
       "candidate_source_refs": [
         "crates/azeroth-survivors-re/src/run_meter.rs",
         "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs",
@@ -65508,7 +65516,8 @@
         "docs/analysis/native-frontier-0.139.0.md",
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
-        "docs/analysis/native-census-0.139.1.md"
+        "docs/analysis/native-census-0.139.1.md",
+        "docs/analysis/party-healing-meter-0.139.2.md"
       ],
       "gap_ids": [
         41,
@@ -65521,8 +65530,8 @@
         "summary": "Current source-first native queries retain exact interface/classification observations, raw limitations and failed routes. Only explicitly scoped contracts in the evidence binding qualify; no whole-module semantics."
       },
       "implementation": {
-        "status": "unknown",
-        "summary": "Existing candidate source interfaces inspected; no native/source assignment is inferred from names or feature similarity."
+        "status": "partial",
+        "summary": "Legacy counters and current companion and ranked talent attribution are connected; the detailed recorder and remaining source identities are open."
       },
       "static_validation": {
         "status": "bounded",
@@ -65537,16 +65546,14 @@
         "summary": "No controlled original/rebuilt comparison."
       },
       "remaining_source_work": [
-        "Trace meterfeed.rs/meterlog.rs constructors, transport/poll/request producers and Lua snapshot/query validation, descriptors/sourceKey/actor joins, recent windows/checkpoints and /reload lifetime. Keep damage-source attribution and rendering-facing anchor delivery separately scoped under #307.",
-        "Establish native/source assignment separately from current-target bounded-contract registration.",
-        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+        "Bind the current detailed counter row, encounter and history fields, then connect their damage/healing producers. Recover the remaining Windfury, Tier 0.5, item and totem joins."
       ],
       "native_evidence_validity": "current_exact_diagnostic_leads_only_prior_semantics_retained_pending_applicability",
       "native_evidence_target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
-      "source_correspondence_status": "pending_native_source_assignment",
+      "source_correspondence_status": "retained_partial_source_correspondence",
       "current_contract_finding": 75,
       "discovery_selector": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/diagnostic-ownership.json:diagnostics[path='crates/wenilla-rogue/src/game/meterlog.rs']",
-      "source_review_scope": "Candidate source interfaces only; exact source hashes/native diagnostic ranges in the current source-frontier record.",
+      "source_review_scope": "Legacy counters and current companion and ranked talent attribution are connected; the detailed recorder and remaining source identities are open.",
       "current_applicability": {
         "assessment": "docs/analysis/module-contracts-0.140.0.md",
         "selector": "systems[id=custom-game-game-meterlog]",
@@ -65834,14 +65841,20 @@
       "native_evidence_target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
       "native_evidence_validity": "current_exact_diagnostic_leads_only_source_assignment_pending",
       "discovery_selector": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/diagnostic-ownership.json:diagnostics[path='crates/wenilla-rogue/src/game/scripts/mod.rs']",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/bosses/spawning.rs",
+        "crates/azeroth-survivors-re/src/bosses/placement.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_transforms.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs"
+      ],
       "candidate_source_refs": [
         "crates/azeroth-survivors-re/src/bosses/spawning.rs",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
         "crates/azeroth-survivors-re/src/bosses/raid_sequences.rs"
       ],
-      "source_correspondence_status": "pending_native_source_assignment",
-      "source_review_scope": "Candidate interfaces inspected before native expansion. The exact current Location and source leads are in the linked report.",
+      "source_correspondence_status": "retained_partial_source_correspondence",
+      "source_review_scope": "The schedule gate, fixed placement, Kirtonos forms and scripted armor adjustment have bounded source correspondence.",
       "current_contract_finding": 313,
       "current_applicability": {
         "assessment": "docs/analysis/module-contracts-0.140.0.md",
@@ -65851,7 +65864,8 @@
       "evidence_refs": [
         "docs/analysis/coverage/diagnostic-ownership.json",
         "docs/analysis/evidence/0.140.0/discovery-delta.json",
-        "docs/analysis/scholomance-0.140.0.md"
+        "docs/analysis/scholomance-0.140.0.md",
+        "docs/analysis/scholomance-encounters-0.140.0.md"
       ],
       "gap_ids": [
         41,
@@ -65862,8 +65876,8 @@
         "summary": "Current diagnostic ownership leads verified. Live bounded behavior remains open."
       },
       "implementation": {
-        "status": "unknown",
-        "summary": "Candidate source interfaces inspected. Current native/source assignment is pending."
+        "status": "partial",
+        "summary": "The schedule gate, fixed placement, Kirtonos forms and scripted armor adjustment have bounded source correspondence."
       },
       "static_validation": {
         "status": "bounded",
@@ -65878,8 +65892,7 @@
         "summary": "No controlled original/rebuilt comparison."
       },
       "remaining_source_work": [
-        "Recover the zone/encounter discriminator and registration, per-fight state, phase transition and scheduler consumers.",
-        "Establish source assignment and register only the independently recovered bounded contract."
+        "Connect the remaining scripted attacks, recipients and warning renderer from the recovered descriptor/timing and transport paths."
       ]
     },
     {

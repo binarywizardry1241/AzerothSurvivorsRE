@@ -10,8 +10,9 @@ UTF-8 JSON pointer and length. The initializer at `0x145e26a80` allocates fourte
 passes the exact descriptor interval to `0x146063570`. The ordinary lookup
 at `0x145e7cc80` selects the global or thread-local language, searches its
 48-byte map first, and on absence searches map zero (English). A matching
-empty string still returns its pointer and length; neither map matching
-returns null for the caller’s literal fallback. The current recipient translation routine at
+empty string still returns its pointer and length. If neither map has the
+key, lookup returns null for the caller’s literal fallback. The current
+recipient translation routine at
 `0x145e7b0c0` recognizes the fourteen two-byte codes and uses a 48-byte map
 stride. It compares explicit recipient language with the current global or
 thread-local source language before looking up a translation. The existing
