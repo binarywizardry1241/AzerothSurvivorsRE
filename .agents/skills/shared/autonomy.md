@@ -253,8 +253,15 @@ native decode records can skip work only when their exact input bytes, address
 coordinates, decoder algorithm and version agree. A content/search match is a
 candidate, not proof of current behavioral applicability.
 
-Idle raw-slice Programs return to verified cold storage after close, with
-referenced historical archives/checkpoints preserved. An immediate follow-up
+Retain full-EXE Program state for the registered installed target. After
+verifying the successor's input identity, retire idle older Programs before
+starting its full-image census. The default native audit phase runs
+`python3 -B scripts/manage-program-archives.py --retire-historical` for this
+handover. Keep older evidence and exports for the correspondence review.
+Bounded recovery of an unregistered successor can use stored evidence or raw
+slices without starting a new full-image Program.
+
+Idle raw-slice Programs return to verified cold storage after close. An immediate follow-up
 may opt out through `REA_ARCHIVE_RAW_PROGRAMS=0`. Matching queued consumers keep
 the Program hot automatically; the final consumer can archive it without
 starting Ghidra. Reuse the shared installed

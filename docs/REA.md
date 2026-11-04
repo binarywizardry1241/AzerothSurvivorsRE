@@ -84,9 +84,9 @@ Query launchers lease a compatible shared Program; compatible seed additions
 extend its saved state. Conflicting code/function boundaries require an explicit
 `REA_PROGRAM_VARIANT`. The full-image runner retains frozen per-plan exports and
 checkpoints while reusing the underlying compatible decoded Program. Changed
-binary bytes still require a separate Ghidra Program; this is a tool limitation,
-not a separate knowledge base. Cold historical Programs restore from verified
-lossless archives before use.
+binary bytes require a new Ghidra Program for the installed target. Older
+findings and exports remain searchable through the same catalog after their
+Programs are retired.
 
 ### Reuse documented and saved analysis
 

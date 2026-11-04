@@ -93,7 +93,7 @@ def _no_ghidra_process(root, project=None):
 
 
 @contextmanager
-def _program_lease(root, project, check_processes=True, scoped_processes=False):
+def _program_lease(root, project, check_processes=True, scoped_processes=False, legacy_path=None):
     if check_processes:
         _no_ghidra_process(root, project if scoped_processes else None)
     descriptors, channel_holder = [], None
@@ -106,9 +106,12 @@ def _program_lease(root, project, check_processes=True, scoped_processes=False):
             candidates.update((p, "posix") for p in project.rglob("*")
                               if p.name.endswith((".lock", ".lock~"))
                               and p.name != ".program-archive.lock" and p.is_file())
-        for parent in [project, *project.parents]:
+        parents = [project, *project.parents]
+        if legacy_path is not None:
+            parents.extend(p.resolve() for p in legacy_path.parents)
+        for parent in parents:
             if not parent.is_relative_to(root / "runtime"):
-                break
+                continue
             for name in ["program.lock", "census.lock"]:
                 if (parent / name).exists():
                     candidates.add((parent / name, "flock"))
@@ -297,7 +300,8 @@ def _owned_observation(row, archive_id, manifest, validation=False):
                                     and provenance.get("program_archive_id") == archive_id))
 
 
-def _external_consumers(connection, store, record, manifest, validation=False, require_owned=True):
+def _external_consumers(connection, store, record, manifest, validation=False, require_owned=True,
+                        own_descriptor=None):
     archive_id, _, sha256, _, receipt_json, _, _ = record
     receipt = json.loads(receipt_json)
     path = store.object_path(sha256)
@@ -348,7 +352,7 @@ def _external_consumers(connection, store, record, manifest, validation=False, r
                         reasons.append("filesystem alias " + leaf.relative_to(store.root).as_posix())
                 except (OSError, RuntimeError):
                     reasons.append("unresolved filesystem alias")
-            elif name == DESCRIPTOR:
+            elif name == DESCRIPTOR and leaf != own_descriptor:
                 try:
                     document = json.loads(leaf.read_text())
                     if document.get("receipt", {}).get("sha256") == sha256:
@@ -367,6 +371,22 @@ def _restore_retirement_metadata(connection, payload):
             connection.execute("INSERT OR IGNORE INTO " + table + " VALUES(" + ",".join("?" for _ in row) + ")", row)
 
 
+def _mark_historical_retired(project, retired):
+    descriptor = project / DESCRIPTOR
+    if json.loads(descriptor.read_text()) != retired:
+        _save(descriptor, retired)
+    for name in ("ready.json", "bootstrap.json"):
+        path = project.parent / name
+        if path.is_file() and not path.is_symlink():
+            try:
+                marker = json.loads(path.read_text())
+            except ValueError:
+                continue
+            if isinstance(marker, dict) and marker.get("target_sha256") == retired["target_sha256"]:
+                path.unlink()
+                _fsync_directory(path.parent)
+
+
 def _finish_retirements(store, project):
     with store.lock(), store.connect() as connection:
         pending = connection.execute("SELECT archive_id,payload FROM program_archive_retirements").fetchall()
@@ -374,28 +394,37 @@ def _finish_retirements(store, project):
             payload = json.loads(serialized)
             if (store.root / payload["record"][1]).resolve() != project:
                 continue
-            replacement = connection.execute("SELECT receipt FROM program_archive_records WHERE archive_id=?",
-                                             (payload["replacement"],)).fetchone()
-            if replacement is None:
-                raise ValueError("Retirement replacement archive is unavailable; preserve old cache")
-            store.verify_receipt(json.loads(replacement[0]))
+            descriptor = project / DESCRIPTOR
+            historical = payload.get("historical")
+            if historical is None:
+                replacement = connection.execute("SELECT receipt FROM program_archive_records WHERE archive_id=?",
+                                                 (payload["replacement"],)).fetchone()
+                if replacement is None:
+                    raise ValueError("Retirement replacement archive is unavailable; preserve old cache")
+                store.verify_receipt(json.loads(replacement[0]))
             record = payload["record"]
             manifest = json.loads(record[3])
             reasons, _ = _external_consumers(connection, store, record, manifest,
-                                              validation=payload["validation"], require_owned=False)
+                                              validation=payload["validation"], require_owned=False,
+                                              own_descriptor=descriptor if historical else None)
             republished = connection.execute("SELECT 1 FROM analysis_objects WHERE sha256=?", (record[2],)).fetchone()
             old = store.object_path(record[2])
             if reasons or republished:
                 store.verify_receipt(json.loads(record[4]))
                 _restore_retirement_metadata(connection, payload)
-            elif old.exists():
-                store.verify_receipt(json.loads(record[4]))
-                old.unlink()
-                _fsync_directory(old.parent)
+                if historical:
+                    _save(descriptor, historical["original"])
+            else:
+                if historical:
+                    _mark_historical_retired(project, historical["retired"])
+                if old.exists():
+                    store.verify_receipt(json.loads(record[4]))
+                    old.unlink()
+                    _fsync_directory(old.parent)
             connection.execute("DELETE FROM program_archive_retirements WHERE archive_id=?", (archive_id,))
 
 
-def _retire_record(store, record, replacement, validation=False):
+def _retire_record(store, record, replacement, validation=False, historical=None):
     archive_id, _, sha256, manifest_json, receipt_json, _, _ = record
     manifest, receipt = json.loads(manifest_json), json.loads(receipt_json)
     with store.lock():
@@ -404,7 +433,15 @@ def _retire_record(store, record, replacement, validation=False):
             policy = connection.execute("SELECT retention FROM program_archive_policy WHERE archive_id=?", (archive_id,)).fetchone()
             if not validation and (policy is None or policy[0] != "automatic-cache"):
                 return {"archive_id": archive_id, "retired": False, "reasons": ["historical/manual pin"]}
-            reasons, owned = _external_consumers(connection, store, record, manifest, validation)
+            descriptor = (store.root / record[1]).resolve() / DESCRIPTOR
+            reasons, owned = _external_consumers(connection, store, record, manifest, validation,
+                                                 own_descriptor=descriptor if historical else None)
+            if historical and (store.root / ".git").exists():
+                references = subprocess.run(["git", "grep", "-l", "-F", "-e", sha256, "--"],
+                                            cwd=store.root, capture_output=True, text=True)
+                if references.returncode not in (0, 1):
+                    raise ValueError("Could not check tracked Program archive references")
+                reasons.extend("tracked archive reference " + path for path in references.stdout.splitlines())
             object_row = connection.execute("SELECT * FROM analysis_objects WHERE sha256=?", (sha256,)).fetchone()
             if object_row is None or object_row[3] != "ghidra-program-archive":
                 reasons.append("unknown canonical object owner")
@@ -414,7 +451,7 @@ def _retire_record(store, record, replacement, validation=False):
             allocated = path.stat().st_blocks * 512
             payload = {"record": list(record), "object": list(object_row),
                        "policy": [archive_id, policy[0] if policy else "pinned"], "observations": owned,
-                       "replacement": replacement, "validation": validation}
+                       "replacement": replacement, "validation": validation, "historical": historical}
             connection.execute("INSERT OR REPLACE INTO program_archive_retirements VALUES(?,?)",
                                (archive_id, canonical(payload)))
         # The durable retirement journal predates metadata removal. A crash can
@@ -427,11 +464,75 @@ def _retire_record(store, record, replacement, validation=False):
             connection.execute("DELETE FROM program_archive_policy WHERE archive_id=?", (archive_id,))
             connection.execute("DELETE FROM program_archive_records WHERE archive_id=?", (archive_id,))
             connection.execute("DELETE FROM analysis_objects WHERE sha256=?", (sha256,))
+        if historical:
+            _mark_historical_retired(descriptor.parent, historical["retired"])
         path.unlink()
         _fsync_directory(path.parent)
         with store.connect() as connection:
             connection.execute("DELETE FROM program_archive_retirements WHERE archive_id=?", (archive_id,))
         return {"archive_id": archive_id, "retired": True, "reclaimed_allocated_bytes": allocated}
+
+
+def _retire_expanded_program(project, target_sha256):
+    descriptor = project / DESCRIPTOR
+    if descriptor.exists():
+        retirement = json.loads(descriptor.read_text())
+        if retirement.get("state") != "retiring-expanded" or retirement.get("target_sha256") != target_sha256:
+            raise ValueError("Expanded Program has a different retirement commitment")
+    else:
+        workspace = json.loads((project.parent / "workspace.json").read_text())
+        if workspace.get("identity", {}).get("target_sha256") != target_sha256:
+            raise ValueError("Expanded Program workspace does not bind the historical EXE")
+        retirement = {"format": "rea-program-archive-v1", "state": "retiring-expanded",
+                      "target_sha256": target_sha256, "manifest": _inventory(project)}
+        _save(descriptor, retirement)
+    allocated = _remove_verified_originals(project, retirement["manifest"])
+    _mark_historical_retired(project, {"format": retirement["format"], "state": "retired",
+                                       "target_sha256": target_sha256})
+    return {"retired": True, "reclaimed_allocated_bytes": allocated}
+
+
+def retire_historical_program(project_root, target_sha256, root=None, check_processes=True):
+    """Discard one inactive older Program while preserving its evidence and logical path."""
+    root = Path(root or ROOT).resolve()
+    project = _project_path(root, project_root)
+    if target_sha256 not in project.relative_to(root / "runtime").parts:
+        raise ValueError("Historical Program path does not bind the selected target")
+    store = SharedAnalysis(root)
+    _catalog(store)
+    descriptor = project / DESCRIPTOR
+    if descriptor.is_symlink():
+        raise ValueError("Program archive descriptor is redirected")
+    original = json.loads(descriptor.read_text()) if descriptor.exists() else None
+    if original is None or original.get("state") == "retiring-expanded":
+        with _program_lease(root, project, check_processes):
+            return _retire_expanded_program(project, target_sha256)
+    with store.connect() as connection:
+        row = connection.execute("SELECT * FROM program_archive_records WHERE archive_id=?",
+                                 (original.get("archive_id"),)).fetchone()
+    legacy_path = root / row[1] if row else None
+    if legacy_path is not None and (legacy_path.resolve() != project or target_sha256 not in legacy_path.parts):
+        raise ValueError("Historical Program path differs from the archive catalog")
+    with _program_lease(root, project, check_processes, legacy_path=legacy_path):
+        _finish_retirements(store, project)
+        original = json.loads(descriptor.read_text())
+        if original["state"] == "retired":
+            if original["target_sha256"] != target_sha256:
+                raise ValueError("Retired Program descriptor binds a different target")
+            _mark_historical_retired(project, original)
+            return {"retired": False, "already_retired": True}
+        if original["state"] != "cold" or set(p.name for p in project.iterdir()) - {DESCRIPTOR, ".program-archive.lock"}:
+            raise ValueError("Historical Program still has expanded or in-flight state")
+        with store.connect() as connection:
+            row = connection.execute("SELECT * FROM program_archive_records WHERE archive_id=?",
+                                     (original["archive_id"],)).fetchone()
+        if (row is None or root / row[1] != legacy_path or legacy_path.resolve() != project
+                or row[5] != "cold" or json.loads(row[4]) != original["receipt"]):
+            raise ValueError("Historical Program descriptor disagrees with the archive catalog")
+        retired = {"format": original["format"], "state": "retired", "archive_id": original["archive_id"],
+                   "target_sha256": target_sha256}
+        return _retire_record(store, row, None, validation=True,
+                              historical={"original": original, "retired": retired})
 
 
 def _retire_previous_caches(store, project, current):
@@ -479,6 +580,8 @@ def archive_program(project_root, root=None, check_processes=True, automatic_cac
         descriptor_path = project / DESCRIPTOR
         if descriptor_path.is_file():
             previous = json.loads(descriptor_path.read_text())
+            if previous.get("state") in {"retired", "retiring-expanded"}:
+                raise ValueError("This historical Program was retired or is being retired")
             if previous.get("state") == "restoring":
                 raise ValueError("Complete the interrupted restore before archiving again")
             if previous.get("state") == "cold":
@@ -562,6 +665,8 @@ def ensure_program_available(project_root, root=None, check_processes=True):
     descriptor = json.loads(descriptor_path.read_text())
     if descriptor.get("format") != "rea-program-archive-v1":
         raise ValueError("Unsupported Program archive descriptor")
+    if descriptor.get("state") in {"retired", "retiring-expanded"}:
+        raise ValueError("This historical Program was retired; use retained exports and query evidence")
     if descriptor.get("state") == "hot":
         if list(project.glob("*.gpr")) and any(project.glob("*.rep")):
             return {"project": str(project), "state": "hot", "restored": False}

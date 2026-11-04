@@ -47,7 +47,7 @@
     "path": "docs/analysis/coverage/full-image-declared-0.139.1.json",
     "sha256": "05846cbd9bf9392f98d5a97cebc7e3b7425b832aa56627f13542c79170e2eb45"
   },
-  "limits": "The failed profile is preserved as failed, not relabeled or overwritten. Exact prior producers, native inputs, checkpoints and verified cold Program remain reusable. Compilation of the reconstructed application, game/client/server execution and parity were not performed.",
+  "limits": "The failed profile remains recorded with its exact prior producers, native inputs, checkpoint receipts and diagnostic. The mutable Program was retired after the installed baseline advanced. Compilation of the reconstructed application, game/client/server execution and parity were not performed.",
   "correction": {
     "commit": "1f959de8",
     "collector_sha256": "8b94d1cc686c61e1da81c8654c2e634120eb16685ab44f89f2e1ff487ab31e7d",
@@ -60,7 +60,8 @@
     "archive_id": "7d635670e0e89a937721b287b3bc9e455d4f8be70c878d7889eab14f5827e969",
     "original_bytes": 1348404268,
     "archive_bytes": 447581018,
-    "purpose": "Exact original declared-pass and failed expansion Program/checkpoints, preserved losslessly in cold storage; neither is relabeled as v2.",
+    "purpose": "The original declared-pass and failed expansion Program was verified losslessly in cold storage before retirement. This records the historical restore verification.",
+    "retention": "retired_after_successor_verification",
     "lossless_restore_and_recold_round_trip_verified": true,
     "verified_restored_files": 9,
     "verified_restored_bytes": 1348404268

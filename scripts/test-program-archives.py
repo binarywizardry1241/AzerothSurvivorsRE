@@ -126,6 +126,59 @@ class ProgramArchiveTests(unittest.TestCase):
         self.assertIn((manual["archive_id"], "pinned"), [(r["archive_id"], r["retention"]) for r in rows])
         self.assertEqual(SharedAnalysis(self.root).verify()["objects"], 2)
 
+    def test_retired_historical_program_keeps_export_and_invalidates_resume(self):
+        target = "a" * 64
+        parent = self.project.parent / target
+        parent.mkdir()
+        moved = parent / "project"
+        self.project.rename(moved)
+        self.project = moved
+        saved = self.archive()
+        receipt = json.loads((moved / programs.DESCRIPTOR).read_text())["receipt"]
+        store = SharedAnalysis(self.root)
+        proof = store.put_bytes(b"prior native instructions", "frozen-native-census-export")
+        ready = parent / "ready.json"
+        ready.write_text(json.dumps({"target_sha256": target, "ready": True}))
+        alias = self.root / "runtime/historical-program.tar.gz"
+        store.link_alias(alias, receipt)
+        with self.assertRaisesRegex(ValueError, "path does not bind"):
+            programs.retire_historical_program(moved, "b" * 64, self.root, check_processes=False)
+        blocked = programs.retire_historical_program(moved, target, self.root, check_processes=False)
+        self.assertFalse(blocked["retired"])
+        self.assertTrue(ready.exists())
+        alias.unlink()
+        with store.connect() as connection:
+            connection.execute("DELETE FROM analysis_aliases WHERE path=?", (alias.relative_to(self.root).as_posix(),))
+        relocated = parent / "retained"
+        moved.rename(relocated)
+        moved.symlink_to(relocated, target_is_directory=True)
+        self.project = relocated
+        retired = programs.retire_historical_program(relocated, target, self.root, check_processes=False)
+        self.assertEqual(retired["archive_id"], saved["archive_id"])
+        self.assertTrue(retired["retired"])
+        self.assertFalse(ready.exists())
+        self.assertFalse((self.root / receipt["path"]).exists())
+        self.assertEqual(store.verify_receipt(proof).read_bytes(), b"prior native instructions")
+        with self.assertRaisesRegex(ValueError, "historical Program was retired"):
+            self.ensure()
+        self.assertTrue(programs.retire_historical_program(relocated, target, self.root, check_processes=False)["already_retired"])
+
+    def test_handover_retires_expanded_program_without_creating_archive(self):
+        target = "c" * 64
+        parent = self.project.parent / target
+        parent.mkdir()
+        moved = parent / "project"
+        self.project.rename(moved)
+        (parent / "workspace.json").write_text(json.dumps({"identity": {"target_sha256": target}}))
+        with patch.object(programs, "_remove_verified_originals", side_effect=OSError("interrupted handover")):
+            with self.assertRaisesRegex(OSError, "interrupted handover"):
+                programs.retire_historical_program(moved, target, self.root, check_processes=False)
+        self.assertEqual(json.loads((moved / programs.DESCRIPTOR).read_text())["state"], "retiring-expanded")
+        result = programs.retire_historical_program(moved, target, self.root, check_processes=False)
+        self.assertTrue(result["retired"])
+        self.assertFalse((moved / "Saved.rep").exists())
+        self.assertEqual(programs.list_archives(self.root), [])
+
     def test_external_alias_keeps_previous_automatic_archive(self):
         previous = self.automatic()
         descriptor = json.loads((self.project / programs.DESCRIPTOR).read_text())

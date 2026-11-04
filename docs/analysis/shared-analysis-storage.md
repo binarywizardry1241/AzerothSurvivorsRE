@@ -106,10 +106,11 @@ values, layouts and producers/consumers are mapped under the existing
 No content match transfers runtime validation or original/rebuilt parity.
 Required whole-image scans and exact selected-target accounting still run.
 
-Ghidra requires separate writable Programs for incompatible executable images
-or analysis experiments. Those Programs share the surrounding catalog/results
-and can become cold archives when inactive. The implementation does not pretend
-one Program's addresses or decoded state belong to another EXE.
+Ghidra's writable state binds the imported executable's exact bytes, addresses
+and analysis mode. Use full-EXE Programs for the registered installed target.
+Across an update, compare the new image with the historical exports and stored
+native facts. The audit still scans the new image and verifies the current
+addresses and dependencies before applying an older conclusion.
 
 ## Native SQLite inventories
 
@@ -145,7 +146,7 @@ python3 -B scripts/shared_native_inventory.py
 python3 -B scripts/shared_native_inventory.py --apply
 python3 -B scripts/shared_native_inventory.py --verify
 python3 -B scripts/manage-program-archives.py --historical
-python3 -B scripts/manage-program-archives.py --archive-historical
+python3 -B scripts/manage-program-archives.py --retire-historical
 python3 -B scripts/manage-program-archives.py --idle-slices
 python3 -B scripts/manage-program-archives.py --archive-idle-slices
 python3 -B scripts/manage-program-archives.py --ensure runtime/path/to/project
@@ -201,16 +202,15 @@ EXE before loading. Former project-copy EXE accesses are routed to that same
 authorized input. The adapter reports the original producer and its own executed
 source separately, including when a frozen generator records its own commitment.
 
-Cold Program archival preserves every committed file's bytes, mode and timestamp,
-including unfinished database state. Archive contents are checked against a
-per-file manifest before removing originals. Restore stages remain inside the
-workspace and are verified before publication. Shared launchers restore cold
-Programs before opening them. A lock or unresolved active owner is investigated,
-not deleted based on age. Old databases are retained compressed rather than
-discarded merely because another Program was selected as the active baseline.
-Run the historical archive sweep after advancing the registered baseline to
-return idle older Programs to cold storage. Keep the selected baseline ready
-for subsequent census work.
+Cold storage is a working cache for Programs with a likely consumer. The
+default native audit retires full-EXE Programs for earlier registered hashes,
+including earlier hashes of the same release, before starting the successor's
+census. The retirement command verifies the
+installed EXE, acquires the Program lease, checks for archive consumers and
+replaces retired descriptors with small records that prevent stale resume.
+Completed exports, query results, native snapshots and findings remain
+available for cross-version comparison. A referenced or active Program blocks
+the handover until its consumer releases it.
 
 Cold restoration permits a positively identified headless process using another
 project directory. The restored Program's runner leases, process ownership and
@@ -222,7 +222,8 @@ has stopped and released its lease. `REA_ARCHIVE_RAW_PROGRAMS=0` retains an
 expanded Program for an immediate sequence of queries. Archival failure is
 nonfatal and leaves the saved Program available. Only an unreferenced older
 automatic cache generation can retire after a verified replacement; manually
-retained historical archives remain pinned. This avoids retaining a new full
+retained archives remain pinned until explicitly retired under their owning
+retention policy. This avoids retaining a new full
 snapshot after every query while preserving referenced evidence and checkpoints.
 
 Both Java launchers set Ghidra's supported `pdb.cache.dir` property to the shared

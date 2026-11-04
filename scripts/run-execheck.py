@@ -133,6 +133,9 @@ def main():
         return 0
     if not args.plan and args.phase == "reconcile":
         reconcile_frontier(ROOT, target, args.census_summary)
+    if not args.plan and args.phase == "native":
+        subprocess.run([sys.executable, "-B", "scripts/manage-program-archives.py", "--retire-historical"],
+                       cwd=ROOT, check=True)
     environment = {"PYTHONDONTWRITEBYTECODE": "1"}
     if args.python_path:
         environment["PYTHONPATH"] = str(project_path(args.python_path))
