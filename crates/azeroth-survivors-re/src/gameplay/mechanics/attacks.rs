@@ -397,6 +397,7 @@ mod tests {
             talent: true,
         };
         game.effect_state.meter_sources.push(source);
+        game.effect_state.equipped.meter_talents.push(("periodic_talent", 2));
         game.execution.vitals.health = game.max_health() - 10.0;
         game.actors[0].periodic.push(periodic::ActorPeriodic {
             owner_kind: 1,
@@ -424,6 +425,11 @@ mod tests {
         assert_eq!(damage.total, 3.0);
         assert_eq!(healing.total, 1.5);
         assert_eq!(game.spell_damage(589), 3.0);
+        assert!(game.events.iter().any(|event| matches!(
+            event,
+            RunEvent::Damage { meter_attribution: Some((attribution, key)), spell_id: 589, .. }
+                if *attribution == source && key == "talent:periodic_talent:r2"
+        )));
         assert!(
             !game
                 .damage_meter()

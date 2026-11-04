@@ -138,7 +138,6 @@ pub fn meter_source(
     spell_id: u32,
     definition: Option<&crate::player_abilities::AbilityDefinition>,
 ) -> MeterSource {
-    let pair = |words: [u32; 4], at: usize| u64::from(words[at]) | (u64::from(words[at + 1]) << 32);
     if kind == 2 {
         return MeterSource {
             name: "Pets",
@@ -146,13 +145,7 @@ pub fn meter_source(
             talent: false,
         };
     }
-    let index = if kind == 3 {
-        (pair(source_words, 0) == 1).then(|| pair(source_words, 2) as usize)
-    } else if effect.is_some() || pair(cast_words, 0) != 0 {
-        effect.or_else(|| Some(pair(cast_words, 2) as usize))
-    } else {
-        (kind == 1 && pair(source_words, 0) == 1).then(|| pair(source_words, 2) as usize)
-    };
+    let index = meter_effect_index(kind, source_words, cast_words, effect);
     if let Some(source) = index.and_then(|index| provenance.get(index)) {
         return *source;
     }
@@ -197,6 +190,24 @@ pub fn meter_source(
             icon: "INV_Misc_QuestionMark",
             talent: false,
         }
+    }
+}
+
+pub fn meter_effect_index(
+    kind: u8,
+    source_words: [u32; 4],
+    cast_words: [u32; 4],
+    effect: Option<usize>,
+) -> Option<usize> {
+    let pair = |words: [u32; 4], at: usize| u64::from(words[at]) | (u64::from(words[at + 1]) << 32);
+    match kind {
+        2 => None,
+        3 => (pair(source_words, 0) == 1).then(|| pair(source_words, 2) as usize),
+        _ if effect.is_some() || pair(cast_words, 0) != 0 => {
+            effect.or_else(|| Some(pair(cast_words, 2) as usize))
+        }
+        1 if pair(source_words, 0) == 1 => Some(pair(source_words, 2) as usize),
+        _ => None,
     }
 }
 

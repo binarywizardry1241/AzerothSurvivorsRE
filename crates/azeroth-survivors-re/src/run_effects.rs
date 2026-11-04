@@ -271,6 +271,9 @@ impl EffectRow {
 pub struct Effects {
     pub gear: Vec<(u8, f32)>,
     pub talents: Vec<EffectRow>,
+    /// Allocation key and rank in generic talent row order. Set and amulet
+    /// rows follow this prefix and use separate source descriptors.
+    pub meter_talents: Vec<(&'static str, u8)>,
     /// Native Game+828: only generic effects, in talent then amulet order.
     pub rows: Vec<EffectRow>,
     /// Numeric spell modifiers have their own native vector and no proc index.

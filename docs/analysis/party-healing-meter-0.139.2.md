@@ -102,3 +102,86 @@ The Rust changes parse with Rustfmt. The composed bootstrap passed the
 standalone Lua check for the startup request, repeat suppression and
 world-entry retry. Compilation, co-op/game execution and parity are
 unverified.
+
+## Current ledger boundaries in 0.140.0
+
+The installed 0.140.0 PE has SHA-256
+`27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`.
+The earlier healing repair and its evidence retain the 0.139.2 target.
+
+The current request owner `0x145de6390` normalizes the request span
+through `0x140002210` before comparing its length and bytes with `full`,
+`party` or `lines`. The current handler sets `+0xf8/+0xfa`,
+`+0xf8/+0xf9` or `+0xfa` in the same order. It is called from the
+current incoming chat owner at `0x145ea67f6`. This preserves the
+already-connected ordinary-line replay boundary.
+
+The detailed recorder `0x145deff10` interns 0x108-byte source metadata
+by key, then matches a 0x80-byte counter row against the source, tags
+and additional identities at row offsets `+0x18`, `+0x30`, and
+`+0x68..+0x7c`. It assigns a one-based row ID at `+0x6c` and
+accumulates a widened amount at `+0x50`. The optional encounter ID
+at `+0x70` fences the encounter amount at `+0x60`. The history uses
+32-byte bucket records, each holding 40-byte entries keyed by the
+zero-based row index. It preserves cumulative and in-bucket totals.
+Exact equal clocks reuse the current bucket. An increasing clock at
+most `0.2f32` beyond the prior bucket boundary advances the bucket
+clock and zeros its in-bucket accumulators before adding the new
+contribution. The pruning comparison uses `now - 120.0f32` and retains
+at least one bucket. The merge and retention constants are at
+`0x14656af20` and `0x1473c3a60`. The damage path calls the recorder
+twice from `0x145f2e510`, and the healing path calls it at
+`0x145f96125`. Those joins separate authoritative effective deltas
+from the legacy display-name totals.
+
+The current frame builder `0x145ff5dd0` calls `0x145dfcac0` to
+serialize source metadata. The latter references the packed `S,`
+record at `0x1473e68be` and the icon path formatter at
+`0x1473e6894`. The frame builder has procedure metadata. Ghidra
+reported an unrecoverable unique-varnode error for its whole
+decompilation. Original PE instructions establish the serializer call
+and the separate solo/party authority formatting. The complete loader
+still depends on the row, actor, loadout and encounter producers.
+
+The canonical hit suffix and detailed companion descriptor call the
+same key formatter for `demon:` attacks. The combat packet source
+connection is recovered separately. The current talent descriptor
+constructor `0x145de8b30` formats `talent:<key>:r<rank>` at
+`0x145de91d7`. The selector `0x145fd1b40` resolves source-3
+effect indices and proc-owned periodic indices against that descriptor
+table. When an active sourced cast matches an ability, the ability
+remains the primary row key and the talent supplies origin metadata.
+The reconstructed packet source now carries the actual allocation key
+and rank beside its generic effect rows. It uses that key for direct
+talent and proc-owned periodic hits, and keeps the ability key for the
+matched sourced cast. The legacy meter retains the producer's label.
+
+In the current detailed selector
+`0x145fd1b40`, the effect-row tag 54 subtype 4 arm at
+`0x145fd2092..0x145fd20fc` associates the origin descriptor with
+the matched ability descriptor. The separate name selector handles
+the origin's displayed label. The current Windfury Weapon descriptor
+has that subtype, and the source still needs its actual live producer.
+The Tier 0.5 set damage producers and their source identities also
+remain open. [Combat packet evidence](combat-text-0.139.2.md#01400-companion-and-fixed-packet-attribution),
+[class attribution review](class-balance-0.140.0.md#attack-range-pickups-attribution-and-input).
+
+| Current native range | File offset | SHA-256 |
+| --- | --- | --- |
+| Request `0x145de6390..0x145de6411` | `0x5de5790` | `84e4a69fe50fbf523d07a52ef958b17d34b45138ee99a43835955e6de72c2f05` |
+| Recorder `0x145deff10..0x145df0f3a` | `0x5def310` | `c1b67c25037547f191b57dfbd2a6e23d35699d5fe498cf92d3e9983628d6da02` |
+| Source serializer `0x145dfcac0..0x145dfd472` | `0x5dfbec0` | `370ec6601bea4a1d0a11dae8e0f70b7a0edea6e9db59069c62a0f53af922abe9` |
+| Frame builder `0x145ff5dd0..0x145ffa411` | `0x5ff51d0` | `b05647ed510eeda508c9ff60db9240527a6d6c50595d200869a6ae2f47eb95b4` |
+| Talent constructor `0x145de8b30..0x145de92c8` | `0x5de7f30` | `223b6dddbaf7e53758f9dd95f7eb7e8b9d24e4470f5e99e561ff8c3524007408` |
+
+Ghidra raw-slice results include the recorder
+`ev_bed43fd7170e807f897396deefbd2b6e5a6578dbb26be83da800a3ad78701b7c`,
+source serializer
+`ev_cf3d124ee980790e6e0dadf14c37865f490cd5028baef3b085abab1360c4d369`,
+frame metadata
+`ev_22811b1f94934ff715ceed2282d7a1f7330a9d08b241b3f83baa405e3c653c0b`,
+and talent descriptor
+`ev_29f812f96a43754489e3d52b924851e6fe45c6cd7432e9553c308ce5673b326d`.
+The raw slices omit external code and data. Row identity fields,
+actor and recipient joins, loadout transitions, and complete replay
+remain open under [#75](../CURRENT-STATE.md#gap-75).

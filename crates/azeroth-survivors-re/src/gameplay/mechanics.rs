@@ -2214,6 +2214,20 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
                 return Some((source, key));
             }
         }
+        let talent = azeroth_survivors_re::run_effects::healing::meter_effect_index(
+            kind,
+            self.attribution.source_words,
+            self.attribution.cast_words,
+            self.generic.source,
+        )
+        .filter(|&index| self.meter_sources.get(index) == Some(&source))
+        .and_then(|index| self.equipped.meter_talents.get(index).copied());
+        let talent_attribution = |(key, rank)| (source, format!("talent:{key}:r{rank}"));
+        let sourced_cast = matches!(kind, 0 | 1)
+            && (self.generic.source.is_some() || self.attribution.cast_words[..2] != [0, 0]);
+        if let Some(talent) = talent.filter(|_| !sourced_cast || spell == 0) {
+            return Some(talent_attribution(talent));
+        }
         // The fixed descriptors are separate from provenance-bearing talents.
         let fixed_key = match (self.attribution.source_kind, spell, source.name) {
             (3, 467, "Thorns") => Some("thorns"),
@@ -2228,13 +2242,17 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             return (companion || (self.attribution.source_kind == 0 && source.name == "Melee"))
                 .then(|| (source, "melee".into()));
         }
-        if source.talent || self.attribution.source_kind > 2 {
+        if kind > 2 || (source.talent && talent.is_none()) {
             return None;
         }
         let definition = azeroth_survivors_re::run_meter::source_definition(
             spell, self.meter_abilities.iter().map(|row| row.0), self.meter_racial,
-        )?;
-        if !companion && (source.name, source.icon) != (definition.name, definition.icon) {
+        ) else {
+            return talent.map(talent_attribution);
+        };
+        if !companion && talent.is_none()
+            && (source.name, source.icon) != (definition.name, definition.icon)
+        {
             return None;
         }
         let mut key = format!("ability:{}", definition.key);

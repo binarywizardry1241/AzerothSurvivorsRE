@@ -309,6 +309,7 @@ impl Mechanics {
             .iter()
             .find(|row| row.id == class);
         self.effect_state.equipped.talents.clear();
+        self.effect_state.equipped.meter_talents.clear();
         self.effect_state.spell_display_talents = allocation
             .iter()
             .filter(|(key, rank)| *rank != 0 && key != crate::save::talents::WHITE_DEVILSAUR)
@@ -329,6 +330,10 @@ impl Mechanics {
                             .map(|effect| EffectRow::talent(effect, *rank))
                             .collect();
                         let generic_count = effects.iter().filter(|row| row.is_generic()).count();
+                        self.effect_state.equipped.meter_talents.extend(std::iter::repeat_n(
+                            (talent.key.as_str(), *rank),
+                            generic_count,
+                        ));
                         self.effect_state
                             .talent_meter_sources
                             .extend(std::iter::repeat_n(
@@ -359,6 +364,7 @@ impl Mechanics {
             ) {
                 self.effect_state.talent_provenance.remove(index);
                 self.effect_state.talent_meter_sources.remove(index);
+                self.effect_state.equipped.meter_talents.remove(index);
             }
         }
         self.effect_state.set_generic_start = self.effect_state.talent_provenance.len();
