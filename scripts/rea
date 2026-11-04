@@ -78,7 +78,22 @@ fi
 
 if [ "${1-}" = census-native-image ]; then
   shift
-  exec "$rea_node" "$rea_project_root/scripts/rea-native-census.mjs" "$@"
+  # Keep the frozen driver unchanged. Publish immutable exports only after it
+  # has verified the saved Program and released the census output lease.
+  "$rea_node" "$rea_project_root/scripts/rea-native-census.mjs" "$@" <&0 &
+  census_pid=$!
+  stop_census() {
+    trap '' HUP INT TERM
+    kill -TERM "$census_pid" 2>/dev/null || :
+    wait "$census_pid" || :
+    exit "$1"
+  }
+  trap 'stop_census 129' HUP
+  trap 'stop_census 130' INT
+  trap 'stop_census 143' TERM
+  wait "$census_pid"
+  trap - HUP INT TERM
+  exec python3 -B "$rea_project_root/scripts/manage-analysis-store.py" --share-census-exports "$1"
 fi
 
 exec "$rea_node" "$rea_project_root/node_modules/rea-agents/scripts/rea.mjs" "$@"

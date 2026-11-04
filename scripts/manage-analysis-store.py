@@ -9,12 +9,13 @@ selected. This does not infer semantic equivalence or remove historical evidence
 
 import argparse
 from collections import defaultdict
+import fcntl
 import json
 import os
 from pathlib import Path
 import re
 
-from shared_analysis import SharedAnalysis, file_digest
+from shared_analysis import SharedAnalysis, _fsync_directory, file_digest
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOCKED_PARTS = {"analysis", "cargo", "cargo-target", "node_modules", "target", "project", "runner",
@@ -23,6 +24,86 @@ BLOCKED_PARTS = {"analysis", "cargo", "cargo-target", "node_modules", "target", 
 BLOCKED_NAME = re.compile(r"journal|progress|ready|bootstrap|active.process|ownership|persistent.profile|"
                           r"session.result|^plan[.-]|^attempts[.]|^.*[.]lock$", re.I)
 IMMUTABLE_SUFFIXES = (".tsv.gz", ".csv.gz", ".json.gz", ".asm", ".ghidra.c", ".bin")
+CENSUS_EXPORTS = ("instructions.tsv.gz", "bodies.tsv.gz", "references.tsv.gz",
+                  "externals.tsv.gz", "direct-call-helpers.tsv.gz")
+
+
+def share_census_exports(plan_path, root=ROOT):
+    """Share immutable completed exports without changing any saved plan or receipt."""
+    plan_path = (root / plan_path).resolve(strict=True)
+    output = plan_path.parent
+    if plan_path.name != "plan.json" or not output.is_relative_to(root / "runtime"):
+        raise ValueError("Expected a saved census plan under runtime/")
+    with os.fdopen(os.open(output / "census.lock", os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600)) as lease:
+        try:
+            fcntl.flock(lease, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            return {"shared": 0, "reclaimed_allocated_bytes": 0, "skipped": "census output is in use"}
+        plan = json.loads(plan_path.read_text())
+        progress_path = output / "progress.json"
+        progress = json.loads(progress_path.read_text())
+        if progress.get("stage") != "completed":
+            return {"shared": 0, "reclaimed_allocated_bytes": 0, "skipped": "census is unfinished"}
+        plan_sha = file_digest(plan_path)
+        if (Path(plan["output"]).resolve() != output or progress.get("plan_sha256") != plan_sha
+                or progress.get("target_sha256") != plan["target_sha256"]
+                or progress.get("script_sha256") != plan["script_sha256"]):
+            raise ValueError(f"Completed census does not match its saved plan: {output}")
+        names = CENSUS_EXPORTS + (("reuse-state.json.gz",) if progress.get("reuse_state") else ())
+        files = []
+        for name in names:
+            record = progress["files"][name]
+            path = output / name
+            if path.resolve(strict=True) != path or not path.is_file():
+                raise ValueError(f"Census export is not a local regular file: {path}")
+            with path.open("rb") as stream:
+                if stream.read(2) != b"\x1f\x8b":
+                    raise ValueError(f"Census export is not gzip: {path}")
+            if path.stat().st_size != record["bytes"] or file_digest(path) != record["sha256"]:
+                raise ValueError(f"Census export differs from its saved commitment: {path}")
+            files.append((path, record))
+
+        store = SharedAnalysis(root)
+        shared = reclaimed = 0
+        with store.lock():
+            for path, record in files:
+                original = path.stat()
+                receipt = store.put_file(path, "frozen-native-census-export", {
+                    "path": path.relative_to(root).as_posix(),
+                    "plan_sha256": plan_sha, "target_sha256": plan["target_sha256"],
+                })
+                if receipt["sha256"] != record["sha256"] or receipt["bytes"] != record["bytes"]:
+                    raise ValueError(f"Census export changed during publication: {path}")
+                destination = store.verify_receipt(receipt)
+                pending = path.with_name("." + path.name + ".shared.pending")
+                if pending.is_symlink() or (pending.exists() and not pending.samefile(destination)):
+                    raise ValueError(f"Unexpected census link staging file: {pending}")
+                try:
+                    if not path.samefile(destination):
+                        pending.unlink(missing_ok=True)
+                        os.link(destination, pending)
+                        os.replace(pending, path)
+                        _fsync_directory(output)
+                        if original.st_nlink == 1:
+                            reclaimed += original.st_blocks * 512
+                        shared += 1
+                finally:
+                    pending.unlink(missing_ok=True)
+        return {"shared": shared, "reclaimed_allocated_bytes": reclaimed}
+
+
+def migrate_census_exports(root=ROOT):
+    result = {"passes": 0, "shared": 0, "reclaimed_allocated_bytes": 0, "skipped": []}
+    for plan_path in sorted((root / "runtime/analysis/census").glob("*/*/plan.json")):
+        if not (plan_path.parent / "progress.json").is_file():
+            continue
+        row = share_census_exports(plan_path, root)
+        result["passes"] += 1
+        for field in ("shared", "reclaimed_allocated_bytes"):
+            result[field] += row[field]
+        if row.get("skipped"):
+            result["skipped"].append({"plan": plan_path.relative_to(root).as_posix(), "reason": row["skipped"]})
+    return result
 
 
 def candidates(root, minimum=65536):
@@ -122,6 +203,8 @@ def main():
     mode.add_argument("--recover", action="store_true")
     mode.add_argument("--repair-aliases", action="store_true", help="Repair only dangling catalog-verified CAS aliases")
     mode.add_argument("--audit-aliases", action="store_true", help="List repairable aliases without changing links")
+    mode.add_argument("--share-census-exports", metavar="PLAN", help="Share completed exports under the saved census lock")
+    mode.add_argument("--migrate-census-exports", action="store_true", help="Share completed exports in the canonical census store")
     parser.add_argument("--find-sha256", help="Find a shared payload and every retained provenance/alias")
     parser.add_argument("--find-target", help="Find observations/query identities mentioning this exact target SHA")
     parser.add_argument("--find-text", help="Find function/range labels, addresses or legacy paths in provenance")
@@ -131,7 +214,8 @@ def main():
     if args.minimum_bytes < 1:
         parser.error("--minimum-bytes must be positive")
     if any([args.find_sha256, args.find_target, args.find_text]):
-        if args.migrate or args.verify or args.recover or args.repair_aliases or args.audit_aliases:
+        if any((args.migrate, args.verify, args.recover, args.repair_aliases, args.audit_aliases,
+                args.share_census_exports, args.migrate_census_exports)):
             parser.error("Search cannot be combined with a mutation or verification mode")
         if not (ROOT / "runtime/analysis/knowledge.sqlite").is_file():
             parser.error("No shared catalog exists yet")
@@ -148,6 +232,10 @@ def main():
         if not (ROOT / "runtime/analysis/knowledge.sqlite").is_file():
             parser.error("No shared catalog exists yet")
         result = SharedAnalysis(ROOT).repair_aliases(apply=args.repair_aliases)
+    elif args.share_census_exports:
+        result = share_census_exports(args.share_census_exports)
+    elif args.migrate_census_exports:
+        result = migrate_census_exports()
     else:
         result = audit(ROOT, args.minimum_bytes)
     print(json.dumps(result, indent=2))

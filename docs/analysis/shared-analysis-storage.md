@@ -81,6 +81,15 @@ pass identity depends on native input hashes rather than task directory names.
 Earlier exact collectors/driver commitments remain available for historical
 resume; storage adaptation is not represented as a new native analysis pass.
 
+After the census runner verifies completion against the saved Program, the REA
+launcher publishes the frozen gzip exports to the object store. Each pass keeps
+its original files as read-only hard links to the objects, so existing resume
+checks and historical consumers still open the exact path and bytes they
+recorded. Identical compressed bytes share an inode across passes and with
+other object-store consumers. The collector writes new exports to staging
+files before renaming them into place. Unfinished exports and the writable
+Program remain separate from this immutable publication.
+
 ## Across EXE updates
 
 The catalog, content store and discovery interface span all versions. Equal
@@ -129,6 +138,7 @@ publishing aliases or removing expanded copies. Run commands from this checkout:
 ```sh
 python3 -B scripts/manage-analysis-store.py
 python3 -B scripts/manage-analysis-store.py --migrate
+python3 -B scripts/manage-analysis-store.py --migrate-census-exports
 python3 -B scripts/index-analysis-history.py --apply
 python3 -B scripts/manage-analysis-store.py --verify
 python3 -B scripts/shared_native_inventory.py
@@ -198,6 +208,9 @@ workspace and are verified before publication. Shared launchers restore cold
 Programs before opening them. A lock or unresolved active owner is investigated,
 not deleted based on age. Old databases are retained compressed rather than
 discarded merely because another Program was selected as the active baseline.
+Run the historical archive sweep after advancing the registered baseline to
+return idle older Programs to cold storage. Keep the selected baseline ready
+for subsequent census work.
 
 Cold restoration permits a positively identified headless process using another
 project directory. The restored Program's runner leases, process ownership and

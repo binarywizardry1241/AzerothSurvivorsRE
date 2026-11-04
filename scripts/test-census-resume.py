@@ -7,6 +7,7 @@ validation; JSON progress alone is deliberately never treated as that cursor.
 """
 
 from copy import deepcopy
+import gzip
 import hashlib
 import importlib.util
 import json
@@ -14,12 +15,16 @@ from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
+from shared_analysis import SharedAnalysis
 
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location("durable_census", ROOT / "scripts/census-native-image.py")
 census = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(census)
+store_spec = importlib.util.spec_from_file_location("manage_analysis_store", ROOT / "scripts/manage-analysis-store.py")
+store_manager = importlib.util.module_from_spec(store_spec)
+store_spec.loader.exec_module(store_manager)
 
 
 def digest(path):
@@ -211,6 +216,49 @@ class DurableCensusResume(unittest.TestCase):
         self.assertFalse(moved.exists())
         census.restore_census_aliases(frozen,self.root)
         self.assertEqual(digest(moved),digest(object))
+
+    def test_completed_pass_exports_share_one_inode_without_changing_resume_paths(self):
+        def completed(output):
+            output.mkdir(parents=True, exist_ok=True)
+            plan = {**self.plan, "output": str(output)}
+            path = output / "plan.json"
+            path.write_text(json.dumps(plan))
+            files = {}
+            for name in store_manager.CENSUS_EXPORTS:
+                export = output / name
+                export.write_bytes(gzip.compress(name.encode(), mtime=0))
+                files[name] = {"sha256": digest(export), "bytes": export.stat().st_size}
+            progress = dict(stage="completed", plan_sha256=digest(path),
+                            target_sha256=plan["target_sha256"], script_sha256=plan["script_sha256"],
+                            files=files)
+            (output / "progress.json").write_text(json.dumps(progress))
+            return path, progress
+
+        first, progress = completed(self.output)
+        second, _ = completed(self.root / "runtime/another-pass")
+        source = first.with_name("instructions.tsv.gz")
+        peer = second.with_name(source.name)
+        saved_progress = first.with_name("progress.json").read_bytes()
+        self.assertFalse(source.samefile(peer))
+        store = SharedAnalysis(self.root)
+        canonical = store.object_path(progress["files"][source.name]["sha256"])
+        # A corrupt pass must fail before any of its files are consolidated.
+        corrupt = second.with_name("externals.tsv.gz")
+        original = corrupt.read_bytes()
+        corrupt.write_bytes(gzip.compress(b"wrong export", mtime=0))
+        with self.assertRaisesRegex(ValueError, "differs from its saved commitment"):
+            store_manager.share_census_exports(second, self.root)
+        self.assertFalse(canonical.exists())
+        corrupt.write_bytes(original)
+
+        store_manager.share_census_exports(first, self.root)
+        store_manager.share_census_exports(second, self.root)
+        self.assertTrue(source.samefile(canonical) and peer.samefile(canonical))
+        self.assertEqual(peer.resolve(), peer)  # Existing launchers require an in-pass path.
+        self.assertEqual(peer.stat().st_mode & 0o222, 0)
+        self.assertEqual(gzip.decompress(peer.read_bytes()), source.name.encode())
+        self.assertEqual(first.with_name("progress.json").read_bytes(), saved_progress)
+        self.assertEqual(store_manager.share_census_exports(second, self.root)["shared"], 0)
 
 
 if __name__ == "__main__":
