@@ -12,11 +12,65 @@ use crate::{
     update::{
         install::ReadyDelay,
         worker::{self, Shared, State},
-        CheckRequest,
+        CheckRequest, UpdatePlan,
     },
 };
 use bevy::app::AppExit;
-use bevy::{prelude::*, ui::FocusPolicy};
+use bevy::{picking::Pickable, prelude::*, ui::FocusPolicy};
+use std::sync::{mpsc, Mutex};
+
+const CHECKING: &str = "Checking for updates…";
+const BUSY: &str = "An update is already downloading.";
+const CURRENT: &str = "You’re up to date (v{version}).";
+const CHECK_ERROR: &str = "Could not check for updates: {error}. Press the button to try again.";
+const DATA_WAITING: &str = "New game data is out. It waits in the hero picker’s corner.";
+const EXE_WAITING: &str = "v{version} is out. It waits in the hero picker’s corner.";
+
+type CheckResult = Result<Option<UpdatePlan>, String>;
+
+struct PendingCheck {
+    result: Mutex<mpsc::Receiver<CheckResult>>,
+    startup: bool,
+    manual: bool,
+}
+
+impl PendingCheck {
+    fn spawn(request: CheckRequest, startup: bool) -> Option<Self> {
+        let (send, receive) = mpsc::channel();
+        std::thread::Builder::new()
+            .name("rogue-update".into())
+            .spawn(move || {
+                let _ = send.send(request.check());
+            })
+            .ok()?;
+        Some(Self {
+            result: Mutex::new(receive),
+            startup,
+            manual: !startup,
+        })
+    }
+
+    fn poll(&mut self) -> Option<CheckResult> {
+        match self.result.get_mut().unwrap().try_recv() {
+            Ok(result) => Some(result),
+            Err(mpsc::TryRecvError::Empty) => None,
+            Err(mpsc::TryRecvError::Disconnected) => {
+                Some(Err("could not start the check".into()))
+            }
+        }
+    }
+}
+
+struct CheckNotice {
+    text: String,
+    expires: Option<f32>,
+}
+
+#[derive(Component)]
+pub(crate) struct ManualCheckButton;
+
+#[derive(Component)]
+struct Toast;
 
 /// Current popup1401c78d0/banner1401c6520 read the frontend's tag+0 and bool+13.
 /// Keyboard14018dc00 owns the entering tag; login/logout change the menu flag.
@@ -52,6 +106,9 @@ impl NativeUpdateContext {
 pub struct UpdateUi {
     shared: Shared,
     state: State,
+    manual_enabled: bool,
+    pending_check: Option<PendingCheck>,
+    check_notice: Option<CheckNotice>,
     //011351: newer results open the dialog first. Later is not persisted.
     dismissed: bool,
     delay: ReadyDelay,
@@ -59,6 +116,14 @@ pub struct UpdateUi {
 impl UpdateUi {
     pub fn modal_open(&self, context: &NativeUpdateContext) -> bool {
         self.state.modal(self.dismissed, context.visible())
+    }
+
+    pub(crate) fn manual_enabled(&self) -> bool {
+        self.manual_enabled
+    }
+
+    fn show_notice(&mut self, text: String, expires: Option<f32>) {
+        self.check_notice = Some(CheckNotice { text, expires });
     }
 }
 
@@ -89,7 +154,7 @@ impl Plugin for UpdateUiPlugin {
             .add_systems(PreUpdate, sync_context)
             .add_systems(
                 Update,
-                (poll_state, input, finish_ready)
+                (manual_input, poll_state, input, finish_ready)
                     .chain()
                     .in_set(UpdateUiSet::Input),
             )
@@ -101,6 +166,7 @@ impl Plugin for UpdateUiPlugin {
                     rebuild_body,
                     animate,
                     refresh_progress,
+                    draw_check_notice,
                 )
                     .chain()
                     .after(UpdateUiSet::Input)
@@ -160,22 +226,160 @@ struct Drawn {
     opened_at: f32,
 }
 
-fn start_check(state: Res<UpdateUi>) {
+fn start_check(mut state: ResMut<UpdateUi>) {
     let Some(request) = CheckRequest::from_environment() else {
         return;
     };
-    let shared = state.shared.clone();
-    //112920/113bf0 discard spawn errors; no synthetic Failed state is introduced.
-    let _ = std::thread::Builder::new()
-        .name("rogue-update".into())
-        .spawn(move || shared.checked(request.check()));
+    state.manual_enabled = true;
+    state.pending_check = PendingCheck::spawn(request, true);
 }
-fn poll_state(mut state: ResMut<UpdateUi>) {
+
+fn poll_state(
+    mut state: ResMut<UpdateUi>,
+    context: Res<NativeUpdateContext>,
+    coop: Res<crate::coop_ui::CoopUi>,
+    locale: Res<Localization>,
+    time: Res<Time>,
+) {
+    if let Some(result) = state.pending_check.as_mut().and_then(PendingCheck::poll) {
+        let PendingCheck { startup, manual, .. } = state.pending_check.take().unwrap();
+        let now = time.elapsed_secs();
+        match result {
+            Ok(Some(plan)) => {
+                if manual {
+                    // 0x1401a9690: a non-menu or active party leaves the plan
+                    // available at the picker badge instead of opening the dialog.
+                    state.dismissed = !context.visible()
+                        || matches!(coop.status.as_str(), "hosting" | "joining" | "joined" | "left");
+                    if state.dismissed {
+                        let label = if plan.executable.is_some() { EXE_WAITING } else { DATA_WAITING };
+                        state.show_notice(
+                            locale.label(label).replace("{version}", &plan.version),
+                            Some(now + 9.),
+                        );
+                    } else {
+                        state.check_notice = None;
+                    }
+                }
+                if !matches!(state.shared.snapshot(), State::Downloading { .. } | State::Ready(_)) {
+                    if startup {
+                        state.shared.checked(Some(plan));
+                    } else {
+                        state.shared.publish(State::Available(plan));
+                    }
+                }
+            }
+            Ok(None) if manual => state.show_notice(
+                locale.label(CURRENT).replace("{version}", env!("CARGO_PKG_VERSION")),
+                Some(now + 5.),
+            ),
+            Err(error) if manual => state.show_notice(
+                locale.label(CHECK_ERROR).replace("{error}", &error),
+                Some(now + 9.),
+            ),
+            _ => {}
+        }
+    }
     let next = state.shared.snapshot();
     if next != state.state {
         state.state = next;
     }
 }
+
+fn manual_input(
+    mut state: ResMut<UpdateUi>,
+    context: Res<NativeUpdateContext>,
+    locale: Res<Localization>,
+    time: Res<Time>,
+    buttons: Query<&Interaction, (Changed<Interaction>, With<ManualCheckButton>)>,
+) {
+    if !context.visible() || !buttons.iter().any(|press| *press == Interaction::Pressed) {
+        return;
+    }
+    let Some(request) = CheckRequest::manual_from_environment() else {
+        return;
+    };
+    let now = time.elapsed_secs();
+    if matches!(state.state, State::Downloading { .. } | State::Ready(_)) {
+        state.show_notice(locale.label(BUSY).to_owned(), Some(now + 5.));
+        return;
+    }
+    if let Some(pending) = &mut state.pending_check {
+        pending.manual = true;
+    } else {
+        state.pending_check = PendingCheck::spawn(request, false);
+        if state.pending_check.is_none() {
+            state.show_notice(
+                locale.label(CHECK_ERROR).replace("{error}", "could not start the check"),
+                Some(now + 9.),
+            );
+            return;
+        }
+    }
+    state.show_notice(locale.label(CHECKING).to_owned(), None);
+}
+
+/// 0.139.2 0x1401aaaa0 and 0x1403a9fb0 own the independent update toast.
+fn draw_check_notice(
+    mut commands: Commands,
+    mut state: ResMut<UpdateUi>,
+    art: Res<MenuArt>,
+    time: Res<Time>,
+    toasts: Query<Entity, With<Toast>>,
+    mut drawn: Local<Option<(String, Handle<Font>)>>,
+) {
+    if state
+        .check_notice
+        .as_ref()
+        .is_some_and(|notice| notice.expires.is_some_and(|end| time.elapsed_secs() > end))
+    {
+        state.check_notice = None;
+    }
+    let key = state
+        .check_notice
+        .as_ref()
+        .map(|notice| (notice.text.clone(), art.font.clone()));
+    if *drawn == key {
+        return;
+    }
+    *drawn = key;
+    for toast in &toasts {
+        commands.entity(toast).despawn();
+    }
+    let Some((label, font)) = drawn.as_ref() else {
+        return;
+    };
+    commands
+        .spawn((
+            Toast,
+            Pickable::IGNORE,
+            GlobalZIndex(6350),
+            Node {
+                position_type: PositionType::Absolute,
+                top: Val::Px(64.),
+                width: Val::Percent(100.),
+                justify_content: JustifyContent::Center,
+                ..default()
+            },
+        ))
+        .with_children(|root| {
+            root.spawn((
+                Pickable::IGNORE,
+                Node {
+                    max_width: Val::Px(520.),
+                    padding: UiRect::axes(Val::Px(18.), Val::Px(9.)),
+                    border: UiRect::all(Val::Px(1.)),
+                    border_radius: BorderRadius::all(Val::Px(10.)),
+                    ..default()
+                },
+                menu::native_panel_style(),
+            ))
+            .with_children(|panel| {
+                text(panel, font, 15., PAPER, label.as_str());
+            });
+        });
+}
+
 fn input(
     mut state: ResMut<UpdateUi>,
     buttons: Query<(&Interaction, &Act), (Changed<Interaction>, With<Button>)>,

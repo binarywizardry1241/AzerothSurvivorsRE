@@ -1,0 +1,173 @@
+{
+  "target": {
+    "version": "0.139.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+    "size_bytes": 150793728
+  },
+  "slices": [
+    {
+      "name": "manual-check-admission",
+      "address": "0x1401a9130",
+      "end": "0x1401a9514",
+      "source_file_offset": "0x1a8530",
+      "bytes": 996,
+      "sha256": "d7b67059989b65c25c8912d1b6ff1c9215f0f6e8c79276ca656cbbd424d5a172",
+      "ghidra_result": {
+        "evidence_id": "ev_45caf8bfed5eed8f80717419a7af8af5016640987f168dbb38ca11105d3833b6",
+        "sha256": "f55321b498f1d9f1c4eef298d16c5c48ce437cdf1c25726ce1446ee4e5c70fab"
+      }
+    },
+    {
+      "name": "manual-check-result",
+      "address": "0x1401a9520",
+      "end": "0x1401a98a4",
+      "source_file_offset": "0x1a8920",
+      "bytes": 900,
+      "sha256": "dc7ca01dd44bae00e84961fbaca77942a6a80aeab3fb27d08c0567d3ef0415b2",
+      "ghidra_result": {
+        "evidence_id": "ev_8fc1f7ae34b92efcc074aa4e3e95de837716147da4dcc15f734359fc2beb4965",
+        "sha256": "a577bd6417fbf1bd8c9aebaebd5eb82603ab3a5d81db69b692db85b5097bf196"
+      }
+    },
+    {
+      "name": "picker-control",
+      "address": "0x140395ab0",
+      "end": "0x140396c56",
+      "source_file_offset": "0x394eb0",
+      "bytes": 4518,
+      "sha256": "367f147ac08a76e65b50a8eb9a40cb7247bba5d007d1aed5c50dcfcf98876b0c",
+      "ghidra_result": {
+        "evidence_id": "ev_9e0afc6c370ed52aa690b39dcb0d3e498cddc1f7e384ef05d26bdc62acf6d410",
+        "sha256": "366b3da0cb9924ff24e89e9fb9584ed43647415262314757d6955c2f8edd0995"
+      }
+    },
+    {
+      "name": "start-manual-check",
+      "address": "0x140019cf0",
+      "end": "0x14001a32f",
+      "source_file_offset": "0x190f0",
+      "bytes": 1599,
+      "sha256": "073c29a1d469b145892a28ac213cf0593c3610e240bb8371914a2da4c98c42e8",
+      "ghidra_result": {
+        "evidence_id": "ev_31d5b3ee0f7647826ce597e94e9912ac4e71584c4e72fe7d205f5c11929bfe5e",
+        "sha256": "363f358879124cf74d78bbf663e19d7ef93cf04d233bccaf615e0c729a521a54"
+      }
+    },
+    {
+      "name": "check-outcome",
+      "address": "0x140029410",
+      "end": "0x140029e0b",
+      "source_file_offset": "0x28810",
+      "bytes": 2555,
+      "sha256": "7946f58990a79eec575809ee7675bc541661d583aa589703847bd52372ba70a9",
+      "ghidra_result": {
+        "evidence_id": "ev_0d6eddd41df888f4079ae21a069b7fb9f83eeae40e5f0bd15be8cb3451b0dfeb",
+        "sha256": "ca5867862725aa0afa1d5c21fd6676871ae2a969055233a255ff921c0edc5978"
+      }
+    },
+    {
+      "name": "update-toast",
+      "address": "0x1401aaaa0",
+      "end": "0x1401ab218",
+      "source_file_offset": "0x1a9ea0",
+      "bytes": 1912,
+      "sha256": "e07b57e11127959a6892b1e4bd70de864c75e4cd14f412db1f6d78144eab5756",
+      "ghidra_result": {
+        "evidence_id": "ev_05b7ca86681404d7ce2b00d4a195bd704ac097e920a73e6baafefae041264ad3",
+        "sha256": "f328c896199d83a8e53b5b1b17a1b39d8b1edc1a4c1599a9c8133e222fbf61be"
+      }
+    },
+    {
+      "name": "update-toast-child",
+      "address": "0x1403a9fb0",
+      "end": "0x1403aa32b",
+      "source_file_offset": "0x3a93b0",
+      "bytes": 891,
+      "sha256": "e97ed2313ef97ae2a16a9859ea5fbdd708b2cc09b0cea79166aa434ee2a4e438",
+      "ghidra_result": {
+        "evidence_id": "ev_553979108613ce2371ebb6a83f542c80eb7d65f8dfba8cd4efe05f7a553c74e0",
+        "sha256": "d1cb97cd303923a7e9ae5b8e42158254d129bac154662794998742aa927266a1"
+      }
+    }
+  ],
+  "additional_ranges": [
+    {
+      "role": "Installed-stem and exact opt-out gate",
+      "address": "0x140029220",
+      "end": "0x1400293c3",
+      "source_file_offset": "0x28620",
+      "bytes": 419,
+      "sha256": "703dcd2e3e387972c7306c64eb550ecaa6433afc842ae8c4b45d9d58c11e982c"
+    },
+    {
+      "role": "Manual worker fetch, outcome and publication calls",
+      "address": "0x140007e70",
+      "end": "0x140007f92",
+      "source_file_offset": "0x7270",
+      "bytes": 290,
+      "sha256": "1c4133f311dbf54dd266013be4413f010e90ef3861d5fa3fed07ae49ec1a7ff3"
+    },
+    {
+      "role": "Startup worker and independent automatic-install gate",
+      "address": "0x1400080e0",
+      "end": "0x14000828a",
+      "source_file_offset": "0x74e0",
+      "bytes": 426,
+      "sha256": "69896417056ab63a7df8b3e108e151f283eb9e412d95158844172430484e1edd"
+    },
+    {
+      "role": "Shared check result publication and active install guard",
+      "address": "0x14001b1f0",
+      "end": "0x14001b5a2",
+      "source_file_offset": "0x1a5f0",
+      "bytes": 946,
+      "sha256": "6aaa90e0fd6790ffa8d6087fbd9e14ecefaf2288afbc1760ab7d2da77c66a127"
+    },
+    {
+      "role": "Active cooperative service status predicate",
+      "address": "0x140198610",
+      "end": "0x14019867f",
+      "source_file_offset": "0x197a10",
+      "bytes": 111,
+      "sha256": "d21770b6bef80a74968a0564579b42d127696b656ba7238ce8249cc7d28310ff"
+    },
+    {
+      "role": "Update badge consumer and custom frontend gate",
+      "address": "0x1401a9ed0",
+      "end": "0x1401aa898",
+      "source_file_offset": "0x1a92d0",
+      "bytes": 2504,
+      "sha256": "dec4e32053b489d9231fc4b4425c67848ab5c445eaaeaaf447bdea52fa097339"
+    },
+    {
+      "role": "Five-way result dispatch",
+      "address": "0x1465422c8",
+      "end": "0x1465422dc",
+      "source_file_offset": "0x65414c8",
+      "bytes": 20,
+      "sha256": "4ab6db137b37167e169976e40b2231623be7a2b175b60da33aad502f931dca0d"
+    },
+    {
+      "role": "5-second current and active-download notices",
+      "address": "0x1464fb174",
+      "end": "0x1464fb178",
+      "source_file_offset": "0x64fa374",
+      "bytes": 4,
+      "sha256": "fca31f1667a6aa1bba12fca4e4ea1becd503379d80da3213af07f6cc5702828d"
+    },
+    {
+      "role": "9-second failure and deferred-update notices",
+      "address": "0x1465376c0",
+      "end": "0x1465376c4",
+      "source_file_offset": "0x65368c0",
+      "bytes": 4,
+      "sha256": "5eaa5c1a4fa99cf34af94ccef42ea122dbc921d2498f68c20bf9b4d5150f5083"
+    }
+  ],
+  "limits": [
+    "The installed reference EXE was read in place and did not execute.",
+    "The seven Ghidra queries use x86-64 raw slices with PE unwind boundaries. Direct calls, external data and dispatch tables are verified in the mapped original PE.",
+    "The source carries the bounded manual-check contract; this is not a target registration, complete updater recovery or runtime/parity validation."
+  ]
+}

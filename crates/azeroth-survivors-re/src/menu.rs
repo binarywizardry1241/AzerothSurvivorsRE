@@ -480,6 +480,7 @@ fn rebuild(
     armory: Res<crate::armory::ArmoryCatalog>,
     armory_view: Res<crate::armory::ArmoryState>,
     coop: Res<crate::coop_ui::CoopUi>,
+    update: Res<crate::update_ui::UpdateUi>,
     mut previous_waiting: Local<bool>,
 ) {
     if state.in_run {
@@ -583,6 +584,15 @@ fn rebuild(
                     );
                     community_button(controls, &art);
                     utility_button(controls, &art, locale.name(), Action::Language);
+                    // 0.139.2 0x14039656f inserts a tagged updater button before Options.
+                    if update.manual_enabled() {
+                        utility_button(
+                            controls,
+                            &art,
+                            locale.label("Check for Updates"),
+                            crate::update_ui::ManualCheckButton,
+                        );
+                    }
                     utility_button(
                         controls,
                         &art,
@@ -697,7 +707,7 @@ pub fn rect(bounds: [f32; 4]) -> Node {
     }
 }
 
-fn utility_button(ui: &mut ChildSpawnerCommands, art: &MenuArt, label: &str, action: Action) {
+fn utility_button(ui: &mut ChildSpawnerCommands, art: &MenuArt, label: &str, action: impl Component) {
     ui.spawn((
         Button,
         NativeStaticFrame,

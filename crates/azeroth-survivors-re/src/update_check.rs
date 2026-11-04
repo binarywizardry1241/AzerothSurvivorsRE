@@ -72,37 +72,55 @@ impl CheckRequest {
         Self::prepare_with(&mut Environment)
     }
 
+    pub fn manual_from_environment() -> Option<Self> {
+        Self::prepare_manual_with(&mut Environment)
+    }
+
     /// Native opt-out is read before current_exe; rejected names perform no cleanup/URL reads.
     pub fn prepare_with(host: &mut impl PrepareHost) -> Option<Self> {
+        let executable = Self::eligible_path(host)?;
+        let _ = host.remove_file(&executable.with_extension("old"));
+        Some(Self::for_path(host, executable))
+    }
+
+    /// 0.139.2 0x140019cf0 takes the shipped path and rereads both endpoint
+    /// settings. Backup cleanup belongs to startup.
+    fn prepare_manual_with(host: &mut impl PrepareHost) -> Option<Self> {
+        let executable = Self::eligible_path(host)?;
+        Some(Self::for_path(host, executable))
+    }
+
+    fn eligible_path(host: &mut impl PrepareHost) -> Option<PathBuf> {
         let update_setting = host.env("WOW_ROGUE_UPDATE").ok();
         if update_setting.as_deref() == Some("0") {
             return None;
         }
         let executable = host.current_exe().ok()?;
-        if !eligible_executable(&executable, update_setting.as_deref()) {
-            return None;
-        }
-        let _ = host.remove_file(&executable.with_extension("old"));
+        eligible_executable(&executable, update_setting.as_deref()).then_some(executable)
+    }
+
+    fn for_path(host: &mut impl PrepareHost, executable: PathBuf) -> Self {
         let manifest_url = host
             .env("WOW_ROGUE_UPDATE_URL")
             .unwrap_or_else(|_| MANIFEST_URL.to_owned());
         let data_manifest_url = host
             .env("WOW_ROGUE_DATA_URL")
             .unwrap_or_else(|_| DATA_MANIFEST_URL.to_owned());
-        Some(Self {
+        Self {
             executable,
             manifest_url,
             data_manifest_url,
-        })
+        }
     }
 
-    /// Metadata and local lengths only. A failed endpoint is logged, then the other path proceeds.
-    pub fn check(self) -> Option<UpdatePlan> {
+    /// Metadata and local lengths only. Both endpoints are tried independently.
+    pub fn check(self) -> Result<Option<UpdatePlan>, String> {
         self.check_with(&mut Environment)
     }
 
-    pub fn check_with(self, host: &mut impl CheckHost) -> Option<UpdatePlan> {
+    pub fn check_with(self, host: &mut impl CheckHost) -> Result<Option<UpdatePlan>, String> {
         let current_version = env!("CARGO_PKG_VERSION");
+        let mut error_message = None;
         let latest = match host.latest(&self.manifest_url) {
             Ok(latest) if newer(&latest.version, current_version) => {
                 host.log(&format!(
@@ -123,6 +141,7 @@ impl CheckRequest {
                     "update: could not check {}: {error}",
                     self.manifest_url
                 ));
+                error_message = Some(error);
                 None
             }
         };
@@ -140,6 +159,9 @@ impl CheckRequest {
                     "update: could not check {}: {error}",
                     self.data_manifest_url
                 ));
+                if error_message.is_none() {
+                    error_message = Some(error);
+                }
                 Vec::new()
             }
         };
@@ -147,19 +169,19 @@ impl CheckRequest {
             host.log(&format!("update: {} is missing", patch.name));
         }
         match latest {
-            Some(latest) => Some(UpdatePlan {
+            Some(latest) => Ok(Some(UpdatePlan {
                 version: latest.version,
                 notes: latest.notes,
                 executable: Some(latest.download),
                 patches,
-            }),
-            None if !patches.is_empty() => Some(UpdatePlan {
+            })),
+            None if !patches.is_empty() => Ok(Some(UpdatePlan {
                 version: current_version.to_owned(),
                 notes: DATA_ONLY_NOTES.to_owned(),
                 executable: None,
                 patches,
-            }),
-            None => None,
+            })),
+            None => error_message.map_or(Ok(None), Err),
         }
     }
 }
@@ -338,6 +360,21 @@ mod tests {
     }
 
     #[test]
+    fn manual_preparation_skips_startup_backup_cleanup() {
+        let mut fixture = Fixture::new();
+        assert!(CheckRequest::prepare_manual_with(&mut fixture).is_some());
+        assert_eq!(
+            fixture.calls,
+            [
+                "env:WOW_ROGUE_UPDATE",
+                "current_exe",
+                "env:WOW_ROGUE_UPDATE_URL",
+                "env:WOW_ROGUE_DATA_URL",
+            ]
+        );
+    }
+
+    #[test]
     fn latest_failure_still_checks_data_and_builds_native_data_only_plan() {
         let mut fixture = Fixture::new();
         fixture.latest = Err("latest failure".into());
@@ -348,7 +385,7 @@ mod tests {
         .unwrap());
         let request = fixture.request();
         fixture.calls.clear();
-        let plan = request.check_with(&mut fixture).unwrap();
+        let plan = request.check_with(&mut fixture).unwrap().unwrap();
         assert_eq!(
             fixture.calls,
             [
@@ -372,7 +409,7 @@ mod tests {
         fixture.data = Err("data failure".into());
         let request = fixture.request();
         fixture.calls.clear();
-        let plan = request.check_with(&mut fixture).unwrap();
+        let plan = request.check_with(&mut fixture).unwrap().unwrap();
         assert_eq!(plan.version, "999.0.0");
         assert!(plan.executable.is_some());
         assert!(plan.patches.is_empty());
@@ -398,7 +435,7 @@ mod tests {
             .insert(PathBuf::from("fixture/Data/patch-A.mpq"), 100);
         let request = fixture.request();
         fixture.calls.clear();
-        let plan = request.check_with(&mut fixture).unwrap();
+        let plan = request.check_with(&mut fixture).unwrap().unwrap();
         assert_eq!(
             plan.patches
                 .iter()
@@ -421,12 +458,12 @@ mod tests {
     }
 
     #[test]
-    fn non_newer_or_failed_latest_and_no_pending_data_publish_nothing() {
+    fn no_plan_distinguishes_current_from_failed_checks() {
         let mut fixture = Fixture::new();
         fixture.latest = Ok(latest("0.92.0"));
         let request = fixture.request();
         fixture.calls.clear();
-        assert!(request.check_with(&mut fixture).is_none());
+        assert_eq!(request.check_with(&mut fixture), Ok(None));
         assert_eq!(
             fixture.calls,
             [
@@ -438,6 +475,20 @@ mod tests {
         fixture.latest = Err("latest failure".into());
         fixture.data = Err("data failure".into());
         let request = fixture.request();
-        assert!(request.check_with(&mut fixture).is_none());
+        assert_eq!(
+            request.check_with(&mut fixture),
+            Err("latest failure".into())
+        );
+
+        fixture.data = Err("data failure".into());
+        let request = fixture.request();
+        assert_eq!(
+            request.check_with(&mut fixture),
+            Err("latest failure".into())
+        );
+
+        fixture.latest = Ok(latest("0.92.0"));
+        let request = fixture.request();
+        assert_eq!(request.check_with(&mut fixture), Err("data failure".into()));
     }
 }
