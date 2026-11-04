@@ -250,7 +250,9 @@ pub(super) fn sync_visuals(
     for actor in &actors {
         if let Some(unit) = unit_snapshot(actor, actor.scale, game.actor_form_fields(actor.guid)) {
             let state = actor.actor.expect("unit snapshot has an actual actor");
-            let path = unit_path(state, game.clock, |xy| floor.terrain_ref()?.height(xy));
+            let path = unit_path(state, game.clock, |xy| {
+                floor.terrain_ref()?.actor_movement_height(xy)
+            });
             if let Some(&root) = cache.actors.get(&actor.guid) {
                 if let Ok((_, mut visual, _, _)) = roots.get_mut(root) {
                     // The normal live-display owner retains scale easing and all

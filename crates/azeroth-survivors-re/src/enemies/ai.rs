@@ -127,6 +127,10 @@ pub enum Action {
 /// native absent-grid/no-correction result, not a replacement flat world.
 pub trait World {
     fn ray_fraction(&self, from: Position, to: Position) -> Option<f32>;
+    /// Height for the movement packet at this XY. The actor keeps its raw pose.
+    fn actor_movement_height(&self, _xy: [f32; 2]) -> Option<f32> {
+        None
+    }
     /// Current caster/hostile-impact query145b98c90. The live terrain adapter
     /// also applies its blocked-destination correction before this segment.
     /// No occupancy grid admits the cast, as in the native optional-grid path.

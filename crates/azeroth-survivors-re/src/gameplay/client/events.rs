@@ -225,8 +225,8 @@ fn stopped(target:u64,point:Position,serial:u32)->SessionEvent {
         path:Vec::new(),facing:MonsterMoveFacing::None,stop:true,duration_ms:0,flying:false,run_mode:false}
 }
 
-/// 0.105.0 serializer1458aa520 sends type3, a raw target GUID, flags0x100,
-/// one millisecond and one destination equal to the unadjusted start.
+/// The 0.140.0 serializer sends type 3, a raw target GUID, flags 0x100,
+/// one millisecond and one destination equal to the supplied start.
 fn stationary_facing(source:u64,point:Position,serial:u32,target:u64)->SessionEvent {
     let start=position(point);
     SessionEvent::MonsterMove {guid:source,transport:None,start,spline_id:serial,

@@ -319,6 +319,10 @@ impl azeroth_survivors_re::enemies::spawning::Terrain for WorldTerrain<'_, '_, '
 }
 
 impl azeroth_survivors_re::enemies::ai::World for WorldTerrain<'_, '_, '_> {
+    fn actor_movement_height(&self, xy: [f32; 2]) -> Option<f32> {
+        self.native?.actor_movement_height(xy)
+    }
+
     fn sight_clear(
         &self,
         from: azeroth_survivors_re::enemies::Position,

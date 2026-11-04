@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Revalidate #1 primary-cache and movement publication against installed 0.113.2.
+"""Revalidate #1 primary-cache and actor movement against the selected EXE.
 
 Executes isolated native instructions with explicit seams, never Rust or a game.
 Default checks canonical byte/result commitments; --stage writes ignored output.
@@ -120,7 +120,7 @@ def check_indoor_surface(evidence, stage=False):
     world_source=(ROOT/'crates/azeroth-survivors-re/src/gameplay/world.rs').read_text()
     require('return native.height([x, y]);' in world_source,'Spawns stopped reading primary floor')
     visuals=(ROOT/'crates/azeroth-survivors-re/src/gameplay/visuals.rs').read_text()
-    for guard in ['floor.terrain_ref()?.height(xy)', 'from[2] = height([from[0], from[1]]).unwrap_or(from[2])',
+    for guard in ['floor.terrain_ref()?.actor_movement_height(xy)', 'from[2] = height([from[0], from[1]]).unwrap_or(from[2])',
                   'to[2] = height([to[0], to[1]]).unwrap_or(to[2])']:
         require(guard in visuals,'Live actor path stopped reading primary floor')
     digest=lambda value:hashlib.sha256(json.dumps(value,sort_keys=True,separators=(',',':')).encode()).hexdigest()
@@ -132,9 +132,144 @@ def check_indoor_surface(evidence, stage=False):
         require(result==manifest['validation'],'Current replay result differs from retained commitment')
     print(f"0.127.0 indoor ground: {len(rows)} surface + {len(primary)} primary native cases pass; source guards pass. No compilation/world/game/parity.")
 
+
+def check_actor_publication(evidence):
+    from native_terminal import NativeReplay, verified_input, require
+    from capstone import Cs, CS_ARCH_X86, CS_MODE_64
+    from unicorn import UcError
+
+    manifest, target, data, pe = verified_input(evidence)
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    ranges = {}
+    decoded = 0
+    for row in manifest['ranges']:
+        start, end = int(row['start'], 16), int(row['end_exclusive'], 16)
+        offset = pe.rva_offset(start - pe.image_base)
+        require(offset == int(row['file_offset'], 16), row['role'])
+        insns = list(decoder.disasm(data[offset:offset + end - start], start))
+        require(sum(i.size for i in insns) == end - start, 'Incomplete retained decode')
+        decoded += len(insns)
+        ranges[row['role']] = (start, end)
+    for name, sha in manifest['reviewed_source'].items():
+        require(hashlib.sha256((ROOT / name).read_bytes()).hexdigest() == sha, name)
+
+    replay = NativeReplay(data, pe)
+    u, r = replay.machine, replay.registers
+    game, queue, terrain = replay.mem + 0x1000, replay.mem + 0x3000, replay.mem + 0x4000
+    actor, original, adjusted = replay.mem + 0x6000, replay.mem + 0x8000, replay.mem + 0x9000
+    guid, target_guid = 0xf130123400000011, 0x2222
+    from_point, to_point = (0.25, 0.25, 40.0), (0.75, 0.25, 50.0)
+    start, end = ranges['accepted-stop-state']
+    replay.reset('stop-state', [(start, end)], {end})
+    replay.put(replay.bp + 0x3e0, '<Q', actor)
+    replay.put(replay.bp + 0x3a0, '<3f', *from_point)
+    replay.put(replay.bp + 0x2e0, '<3Q', 2, queue, 0)
+    replay.put(actor + 0x110, '<Q', guid)
+    replay.put(actor + 0x1cc, '<2f', 0.0, 5.0)
+    u.reg_write(r.UC_X86_REG_RSI, actor)
+    replay.scalar(r.UC_X86_REG_XMM6, 2.0)
+    replay.scalar(r.UC_X86_REG_XMM11, 2.0)
+    replay.run(start)
+    require(replay.get(actor + 0x1b4, '<8f') == (*from_point, *from_point, 2.0, 0.0), 'Raw actor stop differs')
+    require(replay.get(queue, '<Q7f') == (guid, *from_point, *from_point, 0.0), 'Raw stop queue differs')
+
+    dispatch = ranges['movement-dispatch'][0]
+    executable = [ranges[name] for name in ('movement-dispatch', 'primary-surface', 'nearest-indoor-floor')]
+    primary = ranges['primary-surface'][0]
+    nearest = ranges['nearest-indoor-floor'][0]
+    facing = ranges['type-3-serializer'][0]
+    travel = 0x145ef9300
+    cases = 0
+    for duration in (0.0, -0.0, -1.0, 0.25, math.nan):
+        stopped = duration <= 0.0
+        for mode, heights, fallback_calls in (
+            ('flat', (64.0, 64.0), 0),
+            ('adjusted', (61.0, 62.0), 0),
+            ('one-hole', (62.0, 62.0), 1),
+            ('two-holes', (72.0, 72.0), 1 if stopped else 2),
+            ('empty', (40.0, 50.0), 1 if stopped else 2),
+            ('absent', (40.0, 50.0), 0),
+        ):
+            stop_at = 0x145f508e8 if stopped else 0x145f50999
+            replay.reset('publication', executable, {stop_at})
+            replay.put(replay.bp + 0x3f0, '<Q', game)
+            replay.put(game + 0x5b0, '<Q', target_guid)
+            replay.put(game + 0xf58, '<Q', terrain)
+            replay.put(game + 0x1048, '<I', 0xffffffff)
+            replay.put(queue, '<Q7f', guid, *from_point, *to_point, duration)
+            queued = bytes(u.mem_read(queue, 0x28))
+            replay.put(terrain + 0x68, '<Q', 0xffffffffffffffff)
+            replay.put(terrain + 0xa8, '<Q', 0xffffffffffffffff)
+            if mode == 'flat':
+                replay.put(terrain + 0xd0, '<fB', 64.0, 1)
+            elif mode != 'absent':
+                replay.put(terrain + 0x68, '<7Q2f', 4, original, 4, 4, adjusted, 4, 2, 0.0, 0.0)
+                replay.put(original, '<4f', 81.0, 82.0, 83.0, 84.0)
+                surface = {
+                    'adjusted': (61.0, 62.0, math.nan, math.nan),
+                    'one-hole': (math.nan, 62.0, math.nan, math.nan),
+                    'two-holes': (math.nan, math.nan, 72.0, math.nan),
+                }
+                replay.put(adjusted, '<4f', *surface.get(mode, (math.nan,) * 4))
+            for register, value in ((r.UC_X86_REG_RDI, replay.bp + 0x320),
+                                    (r.UC_X86_REG_R13, game), (r.UC_X86_REG_R14, queue),
+                                    (r.UC_X86_REG_R15, replay.bp + 0x38),
+                                    (r.UC_X86_REG_RBX, queue + 0x28)):
+                u.reg_write(register, value)
+            replay.scalar(r.UC_X86_REG_XMM13, 1000.0)
+            replay.scalar(r.UC_X86_REG_XMM11, 4294967296.0)
+            lookups, packets = [], []
+
+            def seam(address):
+                if address in (primary, nearest):
+                    lookups.append(address)
+                    return False
+                if address == 0x145dd19a0:  # ADT sample miss
+                    u.reg_write(r.UC_X86_REG_RAX, 0)
+                elif address == 0x1463abbbb:  # imported floorf in the nearest-cell helper
+                    x = struct.unpack('<f', u.reg_read(r.UC_X86_REG_XMM0).to_bytes(16, 'little')[:4])[0]
+                    replay.scalar(r.UC_X86_REG_XMM0, math.floor(x))
+                elif address in (facing, travel):
+                    r8 = u.reg_read(r.UC_X86_REG_R8)
+                    stack = u.reg_read(r.UC_X86_REG_RSP)
+                    start_point = replay.get(r8, '<3f')
+                    source = u.reg_read(r.UC_X86_REG_RDX)
+                    if address == facing:
+                        packets.append((address, source, start_point, u.reg_read(r.UC_X86_REG_R9), replay.get(stack + 0x28, '<Q')[0]))
+                    else:
+                        end_point = replay.get(u.reg_read(r.UC_X86_REG_R9), '<3f')
+                        serial, millis = replay.get(stack + 0x28, '<I4xI')
+                        packets.append((address, source, start_point, end_point, serial, millis))
+                else:
+                    return False
+                replay.return_seam()
+                return True
+
+            replay.seam = seam
+            try:
+                u.emu_start(dispatch, 0, count=400000)  # An empty grid exhausts all 20 rings.
+            except UcError as error:
+                raise ValueError(f'{mode}, duration {duration}: {u.reg_read(r.UC_X86_REG_RIP):#x}: {error}') from error
+            require(u.reg_read(r.UC_X86_REG_RIP) == stop_at, 'Publication did not reach its serializer')
+            expected = (facing, guid, (*from_point[:2], heights[0]), 0, target_guid) if stopped else (
+                travel, guid, (*from_point[:2], heights[0]), (*to_point[:2], heights[1]), 0, 0 if math.isnan(duration) else 250)
+            require(packets == [expected], f'{mode}: wrong movement serializer inputs: {packets}')
+            require(lookups.count(primary) == (1 if stopped else 2) and lookups.count(nearest) == fallback_calls,
+                    f'{mode}: wrong primary/secondary lookup count')
+            require(bytes(u.mem_read(queue, 0x28)) == queued and replay.get(game + 0x1048, '<I')[0] == 0,
+                    'Movement publication changed the queued pose or serial wrap')
+            cases += 1
+    print(f"{target['version']} ground: 1 raw stop and {cases} native publication cases pass. {decoded} decoded instructions and source receipts verified.")
+
 ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--stage',action='store_true')
 ap.add_argument('--evidence',type=Path,help='Check a retained current indoor-surface contract instead of historical 0.113.2')
+ap.add_argument('--actor-publication',type=Path,help='Check the retained actor movement height dispatch')
 args=ap.parse_args()
+if args.actor_publication:
+    evidence=(ROOT/args.actor_publication).resolve()
+    if not evidence.is_relative_to(ROOT): ap.error('evidence must stay in this checkout')
+    check_actor_publication(evidence)
+    raise SystemExit(0)
 if args.evidence:
     evidence=(ROOT/args.evidence).resolve()
     if not evidence.is_relative_to(ROOT): ap.error('evidence must stay in this checkout')
@@ -192,7 +327,7 @@ def compact(value):
 source=(ROOT/'crates/azeroth-survivors-re/src/floor_recovery/cache.rs').read_text()
 assert 'if x < 0.0 || y < 0.0 || x >= self.side as f32 || y >= self.side as f32' in source
 visuals=(ROOT/'crates/azeroth-survivors-re/src/gameplay/visuals.rs').read_text()
-assert 'floor.terrain_ref()?.height(xy)' in visuals
+assert 'floor.terrain_ref()?.actor_movement_height(xy)' in visuals
 assert 'from[2] = height([from[0], from[1]]).unwrap_or(from[2])' in visuals
 assert 'to[2] = height([to[0], to[1]]).unwrap_or(to[2])' in visuals
 ranges=[]

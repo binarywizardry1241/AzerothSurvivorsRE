@@ -196,6 +196,20 @@ impl NativeTerrain {
     pub fn height(&self, xy: [f32; 2]) -> Option<f32> {
         self.primary.height(xy, |xy| self.adt(xy))
     }
+
+    /// Actor movement publication samples the primary surface first. On a
+    /// miss, use only the height of the nearest adjusted indoor surface cell.
+    pub fn actor_movement_height(&self, xy: [f32; 2]) -> Option<f32> {
+        self.height(xy).or_else(|| {
+            self.primary
+                .indoor
+                .as_ref()?
+                .surface_grid()
+                .nearest(xy)
+                .map(|point| point[2])
+        })
+    }
+
     /// Current actor owner1459404a0 reuses the same player cell. A changed cell
     /// rebuilds only after .2 seconds; an absent field builds immediately.
     pub fn refresh_navigation(&mut self, xy: [f32; 2], now: f32) {

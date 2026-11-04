@@ -34163,23 +34163,46 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Trace the primary surface and stopped-pose writer rather than extrapolating from moving path samples.",
+      "status": "static_checked",
+      "rationale": "The native dispatcher samples the facing start and travel endpoints before local and co-op publication. The prior reported occurrence still needs reproduction.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/gameplay/visuals.rs"
+        "crates/azeroth-survivors-re/src/enemies/ai.rs",
+        "crates/azeroth-survivors-re/src/floor_recovery/cache.rs",
+        "crates/azeroth-survivors-re/src/floor_recovery/map.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs",
+        "crates/azeroth-survivors-re/src/gameplay/visuals.rs",
+        "crates/azeroth-survivors-re/src/gameplay/world.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/actor-movement-surface-0.140.0.md",
+        "docs/analysis/evidence/0.140.0/actor-movement-surface/manifest.json"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/visuals.rs": "3befdf6dbc8e233d6e1cd59c1349df6876d67aab0894e9a6170a6af03c529232",
-        "docs/analysis/class-balance-0.140.0.md": "b7a97d9b97467391c23b5b1a5973abe1e76ee4bede640499e09258ab03de360f"
+        "crates/azeroth-survivors-re/src/enemies/ai.rs": "48b8767d2beb3e6b1dd923e10cb66eb4abb4a8730b9ccbbfad61ae97cd14bd1e",
+        "crates/azeroth-survivors-re/src/floor_recovery/cache.rs": "71ba9ce117090cfe48da153e516ab11bc89edf1054f27c7d4a30245c356f16c5",
+        "crates/azeroth-survivors-re/src/floor_recovery/map.rs": "ffa56d957b5556e269bee3f7d8af9de8d208d94ae525347b29e40d94f97fafc1",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs": "c9569182fa73f5bba70184101b70ed1e0f16f0a4b8be2ac6b3da74fcd7e6df4a",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs": "d8e920cb95030a7f5614b9d4fc28f0dffb792b5024d092da1dc5ce950249e6ce",
+        "crates/azeroth-survivors-re/src/gameplay/visuals.rs": "fc5c0b4b69818653bfa926c0a0e9569571ddd9498fd3d3f56278ec4a0e88b577",
+        "crates/azeroth-survivors-re/src/gameplay/world.rs": "cd4b7175436ed0b72b87991ff06b1e9352b643e0dfe1df855893a5d01ee5e3ab",
+        "docs/analysis/actor-movement-surface-0.140.0.md": "dd300f95f0172f1a3a89b5e837f8e4dfa128db8e1cb4febc99d96652ac84c2d6",
+        "docs/analysis/evidence/0.140.0/actor-movement-surface/manifest.json": "ece414abaa7809eda08e82663c17844f691a10281d0a959bce7b4885031ec1b9"
       },
       "systems": [
-        "custom-game-game-enemy"
+        "custom-game-game-enemy",
+        "custom-game-terrain"
       ],
       "gap_ids": [
         1
+      ],
+      "native_contract": "0.140.0 active chase stop, raw actor state, serial order, primary surface and adjusted indoor fallback into the type-3 facing and travel serializers.",
+      "static_checks": [
+        {
+          "command": "python3 -B scripts/check-ground-contracts.py --actor-publication docs/analysis/evidence/0.140.0/actor-movement-surface",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/actor-movement-surface-0.140.0.md"
+        }
       ]
     },
     {

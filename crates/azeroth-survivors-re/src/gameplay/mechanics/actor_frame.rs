@@ -243,9 +243,22 @@ impl Mechanics {
             .retain(|row| !frame.removals.contains(&row.guid));
         self.bosses
             .retain(|row| !frame.removals.contains(&row.guid));
-        for (guid, movement) in frame.movements {
+        for (guid, mut movement) in frame.movements {
+            // 0.140.0 samples the facing start just like the travel start.
+            // Correct the queued copy so the simulation retains its raw pose.
+            let stationary = movement.duration <= 0.0;
+            let from = &mut movement.from;
+            from.z = world
+                .actor_movement_height([from.x, from.y])
+                .unwrap_or(from.z);
+            if !stationary {
+                let to = &mut movement.to;
+                to.z = world
+                    .actor_movement_height([to.x, to.y])
+                    .unwrap_or(to.z);
+            }
             publish_actor_movement(&mut self.events, &mut self.movement_counter, guid, movement);
-            if movement.duration <= 0.0 {
+            if stationary {
                 let slot = self.coop.targets.get(&guid).copied().unwrap_or(0);
                 let target_guid = self.party_guid(slot).unwrap_or(self.player_guid);
                 if let Some(RunEvent::StationaryFacing { target, .. }) = self.events.last_mut() {
