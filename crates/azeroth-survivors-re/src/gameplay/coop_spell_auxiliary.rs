@@ -121,6 +121,43 @@ pub(super) fn append(rows: &mut Vec<ResourceRow>, game: &Mechanics, locale: &Loc
         };
         rows.push(row(id, entry.name.clone().unwrap_or(fallback), text));
     }
+
+    // 0.140.0 resource owner 145f3c6c0 publishes the shared debuff
+    // and the two equipped Enhancement buff descriptions.
+    rows.push(row(
+        7386,
+        locale.label("Elemental Sunder").to_owned(),
+        locale.label("Taking 10% increased Fire and Nature damage.").to_owned(),
+    ));
+    let enhancement_rank = |subtype| {
+        effects.iter().find_map(|entry| {
+            let effect = &entry.effect;
+            (effect.tag() == 54 && effect.bytes[4] == subtype)
+                .then_some(u32::from(effect.bytes[5]))
+        })
+    };
+    for (subtype, id, name, template, per_rank) in [
+        (10, 16280, "Flurry", "Rockbiter Weapon and Stormstrike cooldowns recover {p}% faster.", 6),
+        (3, 16246, "Shattering Elements", "Your next different Shock deals +{p}% damage.", 4),
+    ] {
+        if let Some(rank) = enhancement_rank(subtype) {
+            let text = locale.label(template).replace("{p}", &(rank * per_rank).to_string());
+            rows.push(row(id, locale.label(name).to_owned(), text));
+        }
+    }
+    // 145f3dfbe..145f3e5f0 appends Stormguard only to the Lightning
+    // Shield aura text. The ordinary spell description is independent.
+    if let Some(rank) = enhancement_rank(1).filter(|&rank| rank > 0)
+        && let Some(shield) = rows.iter_mut().find(|row| row.id == 324)
+    {
+        if !shield.text_30.is_empty() {
+            shield.text_30.push('\n');
+        }
+        shield.text_30.push_str(
+            &locale.label("Stormguard: you take {p}% less damage.")
+                .replace("{p}", &(rank * 3).to_string()),
+        );
+    }
 }
 
 fn shield_amount(absorb: f32) -> u32 {

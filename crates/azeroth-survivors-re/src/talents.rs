@@ -59,7 +59,12 @@ impl std::ops::Deref for TalentCatalog {
 impl Talent {
     fn description(&self, rank: u8, catalog: &MenuCatalog) -> String {
         let rank = rank.max(1).min(self.max_rank) as usize;
-        let text = catalog.label(&self.description);
+        let description = if rank == usize::from(self.max_rank) {
+            self.max_rank_description.as_deref().unwrap_or(&self.description)
+        } else {
+            &self.description
+        };
+        let text = catalog.label(description);
         let mut text = self.numeric_values
             .get(rank - 1)
             .and_then(Option::as_ref)

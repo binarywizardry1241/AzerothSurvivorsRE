@@ -1,0 +1,369 @@
+{
+  "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+  "name": "Enhancement",
+  "background": "ShamanEnhancement",
+  "icon": "Spell_Nature_LightningShield",
+  "talents": [
+    {
+      "key": "enh_thundering_strikes",
+      "name": "Thundering Strikes",
+      "icon": "Ability_ThunderBolt",
+      "description": "Rockbiter and Stormstrike gain +{v}% critical chance.",
+      "row": 0,
+      "column": 1,
+      "max_rank": 5,
+      "prerequisite": null,
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": false,
+      "numeric_values": [
+        "1.5",
+        "3",
+        "4.5",
+        "6",
+        "7.5"
+      ],
+      "effects": [
+        {
+          "tag": 54,
+          "payload": "36000000000100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        }
+      ]
+    },
+    {
+      "key": "enh_earthen_bulwark",
+      "name": "Stormguard",
+      "icon": "Spell_Nature_LightningShield",
+      "description": "While Lightning Shield is active, you take {v}% less damage.",
+      "row": 0,
+      "column": 2,
+      "max_rank": 5,
+      "prerequisite": null,
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": false,
+      "numeric_values": [
+        "3",
+        "6",
+        "9",
+        "12",
+        "15"
+      ],
+      "effects": [
+        {
+          "tag": 54,
+          "payload": "36000000010100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        }
+      ]
+    },
+    {
+      "key": "enh_resonant_shocks",
+      "name": "Resonant Shocks",
+      "icon": "Spell_Nature_EarthShock",
+      "description": "Your Shocks strike {v} additional nearby enemies for 35% damage.",
+      "row": 1,
+      "column": 0,
+      "max_rank": 3,
+      "prerequisite": null,
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": false,
+      "numeric_values": [
+        "1",
+        "2",
+        "3"
+      ],
+      "effects": [
+        {
+          "tag": 54,
+          "payload": "36000000020100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        }
+      ]
+    },
+    {
+      "key": "enh_shattering_elements",
+      "name": "Shattering Elements",
+      "icon": "Spell_Frost_FrostShock",
+      "description": "Your next different Shock within 6 sec deals +{v}% damage.",
+      "row": 1,
+      "column": 2,
+      "max_rank": 3,
+      "prerequisite": null,
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": false,
+      "numeric_values": [
+        "4",
+        "8",
+        "12"
+      ],
+      "effects": [
+        {
+          "tag": 54,
+          "payload": "36000000030100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        }
+      ]
+    },
+    {
+      "key": "rockbiter_initiation",
+      "name": "Rockbiter Initiation",
+      "icon": "Spell_Nature_RockBiter",
+      "description": "Milestone. Start each run with Rockbiter Weapon instead of Lightning Bolt.",
+      "row": 2,
+      "column": 1,
+      "max_rank": 1,
+      "prerequisite": null,
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": true,
+      "numeric_values": [],
+      "effects": [
+        {
+          "tag": 28,
+          "payload": "1c00000000000000ee423c4701000000090000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": [
+            {
+              "offset": 8,
+              "value": "rockbiter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "enh_windfury_weapon",
+      "name": "Windfury Weapon",
+      "icon": "Spell_Nature_Cyclone",
+      "description": "Rockbiter and Stormstrike have a {v}% chance to strike two additional times.",
+      "row": 2,
+      "column": 2,
+      "max_rank": 3,
+      "prerequisite": null,
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": false,
+      "numeric_values": [
+        "10",
+        "18",
+        "25"
+      ],
+      "effects": [
+        {
+          "tag": 54,
+          "payload": "36000000040100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        }
+      ],
+      "max_rank_description": "Rockbiter and Stormstrike have a 25% chance to strike two additional times, or a 12.5% chance to strike three additional times."
+    },
+    {
+      "key": "enh_flametongue_weapon",
+      "name": "Flametongue Weapon",
+      "icon": "Spell_Fire_FlameTounge",
+      "description": "Rockbiter Weapon has a {v}% chance to cast a free Fire Nova, dealing {v2}% increased damage.",
+      "row": 3,
+      "column": 0,
+      "max_rank": 3,
+      "prerequisite": null,
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": false,
+      "numeric_values": [
+        "5",
+        "10",
+        "15"
+      ],
+      "effects": [
+        {
+          "tag": 54,
+          "payload": "36000000050100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        },
+        {
+          "tag": 54,
+          "payload": "36000000060100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        }
+      ],
+      "secondary_numeric_values": [
+        "10",
+        "20",
+        "50"
+      ]
+    },
+    {
+      "key": "enh_frostbrand_weapon",
+      "name": "Frostbrand Weapon",
+      "icon": "Spell_Frost_FrostBrand",
+      "description": "Stormstrike has a {v}% chance to cast a free Frost Shock against up to 3 enemies.",
+      "row": 3,
+      "column": 2,
+      "max_rank": 3,
+      "prerequisite": "rockbiter_initiation",
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": false,
+      "numeric_values": [
+        "10",
+        "20",
+        "30"
+      ],
+      "effects": [
+        {
+          "tag": 54,
+          "payload": "36000000070100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        }
+      ]
+    },
+    {
+      "key": "enh_unleashed_weapons",
+      "name": "Elemental Sunder",
+      "icon": "Ability_Warrior_Sunder",
+      "description": "Milestone. Rockbiter Weapon and Stormstrike cause enemies they hit to take 10% increased Fire and Nature damage for 4 sec.",
+      "row": 4,
+      "column": 1,
+      "max_rank": 1,
+      "prerequisite": null,
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": true,
+      "numeric_values": [],
+      "effects": [
+        {
+          "tag": 54,
+          "payload": "36000000080100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        }
+      ]
+    },
+    {
+      "key": "enh_ancestral_fortitude",
+      "name": "Ancestral Fortitude",
+      "icon": "Spell_Nature_UndyingStrength",
+      "description": "Every {v} Stormstrikes casts a free Healing Wave at 50% effectiveness.",
+      "row": 4,
+      "column": 2,
+      "max_rank": 3,
+      "prerequisite": null,
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": false,
+      "numeric_values": [
+        "8",
+        "6",
+        "4"
+      ],
+      "effects": [
+        {
+          "tag": 54,
+          "payload": "36000000090100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        }
+      ]
+    },
+    {
+      "key": "enh_flurry",
+      "name": "Flurry",
+      "icon": "Ability_GhoulFrenzy",
+      "description": "Melee critical strikes make Rockbiter and Stormstrike cooldowns recover {v}% faster for 4 sec.",
+      "row": 5,
+      "column": 0,
+      "max_rank": 3,
+      "prerequisite": null,
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": false,
+      "numeric_values": [
+        "6",
+        "12",
+        "18"
+      ],
+      "effects": [
+        {
+          "tag": 54,
+          "payload": "360000000a0100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        }
+      ]
+    },
+    {
+      "key": "enh_sweeping_storm",
+      "name": "Sweeping Storm",
+      "icon": "Spell_Holy_SealOfMight",
+      "description": "Stormstrike hits {v} additional nearby enemies.",
+      "row": 5,
+      "column": 2,
+      "max_rank": 3,
+      "prerequisite": "enh_unleashed_weapons",
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": false,
+      "numeric_values": [
+        "1",
+        "2",
+        "2"
+      ],
+      "effects": [
+        {
+          "tag": 31,
+          "payload": "1f00000000000000010000000000000048423c47010000000b000000000000000000803f02000000000000000000000000000000000000000000000000000000",
+          "strings": [
+            {
+              "offset": 16,
+              "value": "stormstrike"
+            }
+          ],
+          "rank_values": [
+            1.0,
+            2.0,
+            2.0
+          ]
+        }
+      ],
+      "max_rank_description": "Stormstrike hits {v} additional nearby enemies. Stormstrike and Windfury deal 20% more damage."
+    },
+    {
+      "key": "enh_stormbound_echoes",
+      "name": "Stormbound Echoes",
+      "icon": "Spell_Nature_CallStorm",
+      "description": "Capstone. All Enhancement Shaman procs have a {v}% chance to trigger one additional time. 1% of all the damage you deal heals you. You start every run with Stormstrike.",
+      "row": 6,
+      "column": 1,
+      "max_rank": 1,
+      "prerequisite": null,
+      "alternative_prerequisite": null,
+      "exclusive": false,
+      "milestone": true,
+      "numeric_values": [
+        "5"
+      ],
+      "effects": [
+        {
+          "tag": 54,
+          "payload": "360000000b0100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        },
+        {
+          "tag": 30,
+          "payload": "1e0000000ad7233c0e00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": []
+        },
+        {
+          "tag": 27,
+          "payload": "1b0000000000000048423c47010000000b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "strings": [
+            {
+              "offset": 8,
+              "value": "stormstrike"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

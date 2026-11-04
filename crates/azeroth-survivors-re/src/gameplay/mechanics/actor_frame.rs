@@ -259,7 +259,7 @@ impl Mechanics {
                 position: player, facing, velocity: [0.0; 2] });
             self.with_party_hero(slot, |game| {
                 game.events.push(RunEvent::Melee { source: source_guid, target: game.player_guid,
-                    amount: ai::melee_damage_after_armor(amount, game.stats.armor_fraction) as u32,
+                    amount: ai::melee_damage_after_armor(amount, game.effective_armor()) as u32,
                     critical: false });
                 game.damage_player(amount, melee, source_guid, input.position, input.facing, world);
             });

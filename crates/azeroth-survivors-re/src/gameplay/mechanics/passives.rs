@@ -187,6 +187,27 @@ impl<W: RunWorld> CastPort for PassiveCombat<'_, '_, '_, W> {
     fn critical(&self) -> Critical {
         CastPort::critical(self.core)
     }
+    fn critical_for(&self, definition: &AbilityDefinition) -> Critical {
+        let mut critical = CastPort::critical(self.core);
+        critical.chance += enhancement::critical_bonus(&self.core.equipped.rows, definition.key);
+        critical
+    }
+    fn direct_power(&self, instance: &RuntimeInstance<'_>, power: f32, context: HitContext) -> f32 {
+        enhancement::sweeping_storm_power(self.core.equipped, instance, power, context.proc_source)
+    }
+    fn record_direct_hit(
+        &mut self,
+        spell_id: u32,
+        target: u64,
+        raw_power: f32,
+        critical: bool,
+        context: HitContext,
+    ) {
+        self.core.generic.enhancement.record_hit(spell_id, target, raw_power, critical, context);
+    }
+    fn record_cast_targets(&mut self, spell_id: u32, targets: &[&Target], context: HitContext) {
+        self.core.generic.enhancement.record_targets(spell_id, targets, context);
+    }
     fn primary_height(&mut self, xy: [f32; 2]) -> Option<f32> {
         CastPort::primary_height(self.core, xy)
     }
@@ -210,6 +231,8 @@ impl<W: RunWorld> CastPort for PassiveCombat<'_, '_, '_, W> {
         counter: &mut dyn NativeCounter,
     ) {
         self.hit_with_execution(hit, rng, state, counter);
+        self.elemental_sunder_hit(hit);
+        self.cinderheart_hit(hit, state, rng, counter);
     }
     fn heal(&mut self, spell: u32, amount: f32) {
         self.core.heal(spell, amount);

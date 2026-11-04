@@ -139,3 +139,113 @@ talent name and annotation were compared with all fourteen pointer/length
 bound native locale payloads, for 42 exact key/value comparisons. These
 checks cover the descriptor, pool separation and text inputs. Compilation,
 rendered placement, gameplay and original/rebuilt comparison are open.
+
+## Enhancement mechanics in 0.140.0
+
+The same current PE supplies 13 Enhancement talent descriptors starting at
+`0x1473d9e18` with stride 176. Their 16 effect records retain the original
+definition order. The current tree replaces the pre-rework keys while
+preserving the Stormguard and Elemental Sunder keys from the intervening
+release. The existing allocation normalizer drops removed allocations,
+keeps XP and validates the retained ranks against the current tree.
+Native tag 41 replaces the first spell with Rockbiter and tag 40 adds
+Stormstrike. The same overlay supplies the allocation catalog and the live
+effect rows. Rank-three Sweeping Storm retains the target rank table
+`[1, 2, 2]` and applies a separate 1.2 multiplier for Stormstrike or either
+spell under Windfury. The native origin check and allocation lookup are in
+`0x145f25dc0..0x145f25eee`.
+
+The current melee hit collector records the victim and precritical power
+at `0x145f7d07b..0x145f7d18f`. Thundering Strikes adds 1.5 percentage
+points of critical chance per rank to those attacks. The current proc
+driver at `0x145f25ef0` processes Flametongue before Windfury for Rockbiter,
+and continues Stormstrike through Frostbrand, Ancestral Fortitude and Eye
+of the Tempest. Its Windfury rank-three branches use one draw and ordered
+cutoffs 0.25 and 0.375 for two and three strikes. The first two ranks use
+0.10 and 0.18, then a second draw selects five strikes below 0.0001 or two
+otherwise. The dispatcher at `0x145f26a70` rebuilds each Windfury strike,
+captures its targets and crits, and re-enters the proc driver with Windfury
+disabled. Stormbound Echoes repeats a primary proc on a 0.05 draw, retaining
+its payload and suppressing further repeat draws. The source routes
+Windfury, Flametongue and Frostbrand through their allocated talent
+identities for meter publication.
+
+Flametongue uses the rank table `[10, 20, 50]` at
+`0x145f26090..0x145f260ee` for added Fire Nova damage and a 5% draw
+per rank. Frostbrand adds one target to the effective Frost Shock instance
+and rolls 10% per rank. Ancestral Fortitude consumes its eight-, six- or
+four-strike counter before a half-strength Healing Wave. The Flurry
+deadline and both cooldown consumers are [separately bound to the current
+EXE](native-interface-correspondence-0.140.0.md#enhancement-timed-cooldown--305).
+The source uses the active interval to scale the scheduled decrement and
+calculates the remaining wall time across expiry for cooldown publication.
+
+Shattering Elements uses the previous successful learned Shock's key and
+time. A different Shock at elapsed time up to and including six seconds
+adds 4% per rank before the cast. Successful casts update the key and time
+and refresh spell 16246. The buff collector admits only a strictly
+future deadline. Elemental Sunder applies spell 7386 to a surviving
+Rockbiter or Stormstrike victim, stores a four-second actor deadline and
+adds 0.10 to the damage taken multiplier only for Fire or Nature before
+expiry. The source retains that deadline with the shared victim's control
+state and publishes the application, removal and addon duration.
+Current auxiliary spell resources provide the localized Flurry,
+Shattering Elements and Elemental Sunder rows. Lightning Shield retains
+its existing resource and appends the Stormguard description for an
+allocated rank.
+
+Resonant Shocks captures the successful learned Shock's base target list.
+The secondary query at `0x145f25350` centers on the first base target,
+excludes the full base list, and selects up to the allocated rank within
+eight yards. Earth and Frost use 35% of the composed power and independent
+critical draws, then apply the original status. Flame installs its normal
+periodic payload with the reduced power, scaled duration and tick factors.
+Stormbound repeats the secondary query with the same exclusions on a
+successful repeat draw. The detailed and legacy meter selectors omit
+the Resonant talent identity and attribute the results to the source Shock.
+
+The current necklace constructors supply Heart of the Earthbreaker
+(Rockbiter power and first-hit splash), Cinderheart Pendant (Fire Nova
+area, power and Flame Shock remainder), and Eye of the Tempest (stat 19,
+Chain Lightning chance and power). The Earthbreaker splash centers on
+the first captured victim, excludes it from the six-yard secondary
+selection, and draws a fresh critical for each secondary victim.
+Cinderheart uses the surviving Fire Nova victim's remaining Flame Shock
+ticks and per-tick damage without consuming the periodic rows. A party
+caster counts unattributed rows and its own rows, and the additional hit
+has its own critical draw. Its damage inherits Flametongue's effect
+identity when Fire Nova was triggered by Flametongue. Tempest's first
+line uses the selected native boss/elite wording, while the shared stat
+19 damage consumer also admits Guardian metadata and has no spell filter.
+These definitions enter the same worn-effect growth, loot offer and
+tooltip path as other legendary amulets. Stormguard uses the live
+Lightning Shield state for its capped Armor contribution and publishes
+the `bwk` and `bwa` fields to the retained PaperDoll consumer.
+
+| Current PE range | SHA-256 |
+| --- | --- |
+| `0x1473d9e18..0x1473da6f8` Enhancement records | `9970d57b6e8420fc077de2997018ac989451c9d44814d2b06ac056dd47ed876c` |
+| `0x145f25dc0..0x145f25eee` Sweeping damage | `b27d245663f6b6c82753dbc0a245bbdd0bf83db91d7cee21bd5a272cad87827b` |
+| `0x145f25ef0..0x145f26a6d` proc driver | `ce8b0092fc2868a2d7ce612408f1924887720468954302c5ef7085faabd2d12e` |
+| `0x145f26a70..0x145f2717b` proc dispatcher | `bdd9082068917adbdb0dfe71b69fbfcef2bfd2a5db7d065567c261e8383792b0` |
+| `0x145f7d07b..0x145f7d18f` melee capture | `cd8238bf51cd5a48fd498bc086d13fc7822b63cbb18312f150196bdea3a6500d` |
+| `0x145f8e773..0x145f8eb99` Earthbreaker consumer | `70ea6618aab7dd0ff33a9a9c705ca71cbc45d5df018ff6593b056a4e6b368242` |
+| `0x145f8e23b..0x145f8e35f` Shattering cast | `284dd46fdc5817466fa3ca446a3f192796b4f3e81d87282e6460f27652262a34` |
+| `0x145f8ad99..0x145f8ade9` Shattering aura | `d9c41378000deca558c5ce8f60baf0bcf3ff852210739a51c7cd9dd9d9a5a5d5` |
+| `0x145f7d37d..0x145f7d409` Sunder application | `59bf53671feca37535e0ff3313e7aabbfadfa75f7ead1ef7b90b7860b55fc48f` |
+| `0x145f432c3..0x145f4333b` Sunder hit filter | `c9329f9908b893e1433d78858d15cbed232002c988f8fb5918700d5212dd76f6` |
+| `0x145f25350..0x145f25be0` Resonant hit and periodic dispatch | `f359c03c2e3848f34561b36309ceabb4f58b3c05988b9817711107df64738c47` |
+| `0x145deaef6..0x145deaf90` Heart constructor | `89549aedd9a90d6511f27314b875c6b8dde4a2738aac98b9a6c359b3ebb7da6b` |
+| `0x145debb35..0x145debbe9` Cinderheart constructor | `e7b75019c12a5c1fdfe68c952b89e4369656c9f6584ecc264cad773670bf98a6` |
+| `0x145f7e45a..0x145f7e77c` Cinderheart consumer | `f98ca6c5765b336fe00792e638a463eed71980e03697909bd48cc4be5b3e3761` |
+| `0x145dec3ba..0x145dec445` Tempest constructor | `35518bf5862a89e953a89e68072d4d3ef92d6d399bfac4ea324cc9ea6c3462eb` |
+| `0x145fbbfb4..0x145fbbfcd` Tempest target filter | `cb09e527558384e58864be895076ddd26291a5b05d7d259724716a0720e6fc0d` |
+
+The proc driver and dispatcher use separate Ghidra raw slices, with the
+unresolved dispatcher jump table verified in the original PE. The larger
+mixed scheduler exceeded Ghidra's inline response size. The bounded
+instruction comparisons above use the original file mapping and complete
+declared extent decoding. Current tree, necklace and Armor labels were
+compared across all fourteen native locale payloads. Compilation, rebuilt
+execution, network exchange, rendered UI and original/rebuilt comparison
+remain open.

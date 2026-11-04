@@ -74,7 +74,11 @@ fn scale_effect(raw_hex: &str, factor: f32, equipped_amulet: bool) -> [u8; 64] {
             .expect("source-owned Effect64 hex");
     }
     let offset = match bytes[0] {
-        0 | 2 | 3 | 4 | 5 | 7 | 11 | 13 | 15 | 16 | 17 | 18 | 22 | 30 | 61..=63 => Some(4),
+        0 | 2 | 3 | 4 | 5 | 7 | 11 | 13 | 15 | 16 | 17 | 18 | 22 | 30 => Some(4),
+        // Current Enhancement damage fractions and proc payloads. Earthbreaker's
+        // radius is stored independently. Tempest chance alone saturates.
+        55..=58 => Some(4),
+        61..=63 => Some(4),
         6 | 9 | 12 => Some(8),
         8 => Some(if bytes[8..12] == [255; 4] { 12 } else { 4 }),
         31 => Some(32),
@@ -83,6 +87,9 @@ fn scale_effect(raw_hex: &str, factor: f32, equipped_amulet: bool) -> [u8; 64] {
     if let Some(offset) = offset {
         let base = f32::from_le_bytes(bytes[offset..offset + 4].try_into().unwrap());
         let mut amount = base * factor;
+        if bytes[0] == 56 {
+            amount = amount.min(1.0);
+        }
         if bytes[0] == 61 {
             amount = amount.min(0.2);
         }
@@ -266,6 +273,25 @@ pub fn catalog() -> &'static Catalog {
             row.raw_hex.replace_range(64..74, &format!(
                 "{:08x}{ABSORB_CAP_MODIFIER:02x}", amount_bits.swap_bytes(),
             ));
+        }
+        #[derive(Deserialize)]
+        struct Enhancement {
+            target_sha256: String,
+            definitions: Vec<Definition>,
+        }
+        let enhancement: Enhancement = serde_json::from_str(include_str!(
+            "../../assets/enhancement-amulets-0.140.0.json"
+        )).expect("current Enhancement legendary amulets");
+        assert_eq!(
+            enhancement.target_sha256,
+            "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
+        );
+        for definition in enhancement.definitions {
+            if let Some(old) = catalog.generated.iter_mut().find(|row| row.key == definition.key) {
+                *old = definition;
+            } else {
+                catalog.generated.push(definition);
+            }
         }
         catalog
     })

@@ -77,6 +77,10 @@ impl<'a> RuntimeInstance<'a> {
 /// World boundary for the current ordered auto-cast loop. Passing the entire
 /// ability slice allows native cast/proc logic to shorten another cooldown.
 pub trait SchedulerPort {
+    /// Some run-local effects accelerate only selected learned cooldowns.
+    fn cooldown_elapsed(&self, _instance: &RuntimeInstance<'_>, delta: f32) -> f32 {
+        delta
+    }
     fn cast(
         &mut self,
         abilities: &mut [RuntimeInstance<'_>],
@@ -104,7 +108,8 @@ pub fn tick_cooldowns(
     port: &mut impl SchedulerPort,
 ) {
     for index in 0..abilities.len() {
-        abilities[index].remaining -= delta;
+        let elapsed = port.cooldown_elapsed(&abilities[index], delta);
+        abilities[index].remaining -= elapsed;
         if abilities[index].definition.kind == 11 {
             abilities[index].remaining = native_max(abilities[index].remaining, 0.0);
             continue;

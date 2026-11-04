@@ -100,9 +100,14 @@ pub struct ControlWindow {
     pub applications: u8,
     pub resistant: bool,
     pub polymorph_duration: f32,
+    pub elemental_sunder_until: f32,
 }
 
 impl ControlWindow {
+    pub fn elemental_sunder(&self, school: u8, now: f32) -> f32 {
+        if matches!(school, 2 | 3) && self.elemental_sunder_until > now { 0.1 } else { 0.0 }
+    }
+
     pub fn for_enemy(resistant: bool) -> Self {
         Self { resistant, ..Self::default() }
     }

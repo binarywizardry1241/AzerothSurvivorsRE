@@ -177,10 +177,40 @@ fn stat_description(tag: u8, amount: f32) -> Option<Text> {
     Some(template(key, vec![(name, value)]))
 }
 
-fn effect_description(record: &EffectRecord, bytes: &[u8; 64]) -> Option<Text> {
+fn effect_description(definition: &Definition, record: &EffectRecord, bytes: &[u8; 64]) -> Option<Text> {
     let value = |at| float(bytes, at);
     Some(match bytes[0] {
+        30 if bytes[8] == 19 && definition.ability_key.as_deref() == Some("stormstrike") =>
+            template(
+                "{spell}: +{p} damage to bosses and elites",
+                vec![("spell", ability("stormstrike")?), ("p", percent(value(4)))],
+            ),
         30 => return stat_description(bytes[8], value(4)),
+        55 => template(
+            "{spell}'s primary hit unleashes a seismic shockwave, dealing {p} damage to enemies within {r} yd.",
+            vec![
+                ("spell", ability("rockbiter")?),
+                ("p", percent(value(4))),
+                ("r", number(value(8))),
+            ],
+        ),
+        56 | 57 => template(
+            if bytes[0] == 56 { "{spell}: {p} chance to cast a free {cast}" }
+            else { "{spell}'s free {cast} deals {p} damage" },
+            vec![
+                ("spell", ability("stormstrike")?),
+                ("cast", ability("chain_lightning")?),
+                ("p", percent(value(4))),
+            ],
+        ),
+        58 => template(
+            "{spell} instantly deals {p} of your remaining {dot} damage to enemies hit, without removing {dot}.",
+            vec![
+                ("spell", ability("fire_nova")?),
+                ("dot", ability("flame_shock")?),
+                ("p", percent(value(4))),
+            ],
+        ),
         31 => {
             let who = if let Some(key) = key(record) {
                 ability(key)?
@@ -387,6 +417,7 @@ pub fn amulet_lines(definition: &Definition, rarity: usize, picks: u32) -> Optio
         .iter()
         .map(|record| {
             effect_description(
+                definition,
                 record,
                 &amulets::equipped_bytes(definition, record, rarity, picks),
             )

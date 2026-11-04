@@ -22,6 +22,7 @@ pub(super) struct State {
     pub cooldowns_dirty: bool,
     pub depth: u32,
     pub first_criticals: Vec<u32>,
+    pub enhancement: enhancement::State,
     pub source: Option<usize>,
     /// Current named-pet descriptor, restored with deferred hit attribution.
     pub meter_pet_entry: Option<u32>,
@@ -80,6 +81,8 @@ impl State {
     pub(super) fn flush_cooldowns(
         &mut self,
         learned: &[RuntimeInstance<'_>],
+        effects: &azeroth_survivors_re::run_effects::Effects,
+        auras: &[buffs::Aura],
         now: f32,
         published: &mut Vec<(u32, RunCooldown)>,
     ) {
@@ -88,7 +91,10 @@ impl State {
             ability.remaining > 0.0 && ability.remaining.is_finite())
         {
             let spell_id = ability.definition.spell_id;
-            let cooldown = RunCooldown::published(now, ability.remaining);
+            let remaining = enhancement::cooldown_wall_time(
+                &effects.rows, auras, now, ability.definition.key, ability.remaining,
+            );
+            let cooldown = RunCooldown::published(now, remaining);
             if let Some((_, old)) = published.iter_mut().find(|(id, _)| *id == spell_id) {
                 *old = cooldown;
             } else {
@@ -234,6 +240,13 @@ impl State {
             events.push(ActorAuraUpdate::Remove {
                 target: actor.guid,
                 spell_id: FROST_SHOCK_AURA,
+            });
+        }
+        if window.elemental_sunder_until != 0.0 && now >= window.elemental_sunder_until {
+            window.elemental_sunder_until = 0.0;
+            events.push(ActorAuraUpdate::Remove {
+                target: actor.guid,
+                spell_id: enhancement::ELEMENTAL_SUNDER,
             });
         }
         if let Some(howls) = self.packlord_howl.get_mut(&actor.guid) {

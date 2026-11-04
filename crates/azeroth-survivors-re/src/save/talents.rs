@@ -101,6 +101,13 @@ impl Catalog {
                 .expect("native Hunter talent");
             talent.description.clone_from(&current.description);
         }
+        let shaman = catalog.classes.iter_mut().find(|class| class.id == 7)
+            .expect("native Shaman class");
+        let enhancement = shaman.trees.iter_mut().find(|tree| tree.name == "Enhancement")
+            .expect("native Enhancement tree");
+        *enhancement = serde_json::from_str(include_str!(
+            "../../assets/enhancement-talents-0.140.0.json"
+        )).expect("recovered Enhancement tree and saved allocation keys");
         catalog
     }
     pub fn class(&self, id: u8) -> &TalentClass {
@@ -131,6 +138,8 @@ pub struct Talent {
     pub name: String,
     pub icon: String,
     pub description: String,
+    #[serde(default)]
+    pub max_rank_description: Option<String>,
     pub row: u8,
     pub column: u8,
     pub max_rank: u8,

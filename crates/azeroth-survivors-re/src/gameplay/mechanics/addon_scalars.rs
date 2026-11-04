@@ -91,6 +91,7 @@ impl Mechanics {
                 .filter(|(kind, _)| *kind == tag)
                 .fold(0.0_f32, |total, (_, value)| total + value)
         };
+        let (stormguard, stormguard_active) = self.stormguard();
         format!(
             concat!(
                 "hp={:.0};dmg={:.3};cd={:.3};crit={:.3};cm={:.2};arm={:.3};reg={:.2};",
@@ -98,7 +99,7 @@ impl Mechanics {
                 "ghp={:.0};gdmg={:.3};gcd={:.3};gcrit={:.3};gcm={:.2};garm={:.3};greg={:.2};",
                 "garea={:.3};gcnt={};gecho={:.3};gspd={:.3};gpick={:.3};ggold={:.3};",
                 "lch={:.4};thn={:.3};liv={};bp={:.3};dots={};doth={:.3};",
-                "big={:.3};exe={:.3};cc={:.3};dotd={:.3};shd={:.3};auto={:.3};pet={:.3}"
+                "big={:.3};exe={:.3};cc={:.3};dotd={:.3};shd={:.3};auto={:.3};pet={:.3};bwk={:.3};bwa={}"
             ),
             // Current stat refresh1458f9dd5..9f67 folds active aura8/9 and
             // spell23505/23451 before storing native Game47c/480/48c.
@@ -107,7 +108,7 @@ impl Mechanics {
             self.current_cooldown_multiplier(),
             numeric.crit,
             numeric.crit_damage,
-            numeric.armor,
+            self.effective_armor(),
             numeric.regeneration,
             numeric.area,
             numeric.targets,
@@ -144,6 +145,8 @@ impl Mechanics {
             sum(28),
             sum(16),
             sum(17),
+            stormguard,
+            u8::from(stormguard_active),
         )
     }
 }

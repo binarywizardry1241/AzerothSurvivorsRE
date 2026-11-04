@@ -310,6 +310,12 @@ impl Mechanics {
             .iter()
             .find(|row| row.id == class);
         self.effect_state.equipped.talents.clear();
+        self.effect_state.equipped.sweeping_storm_rank = if class == 7 {
+            allocation.iter().find(|(key, _)| key == "enh_sweeping_storm")
+                .map_or(0, |(_, rank)| *rank)
+        } else {
+            0
+        };
         self.effect_state.equipped.meter_talents.clear();
         self.effect_state.spell_display_talents = allocation
             .iter()

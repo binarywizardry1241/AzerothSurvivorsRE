@@ -116,7 +116,7 @@ impl Mechanics {
                 }));
                 // The native request compensates the canonical reduction
                 // before entering its ordinary absorb/immunity/death owner.
-                let reduction = 1.0 - self.stats.armor_fraction;
+                let reduction = 1.0 - self.effective_armor();
                 let reduction = if reduction > 0.1 { reduction } else { 0.1 };
                 let raw = (fraction * self.execution.vitals.maximum_health) / reduction;
                 self.damage_player_from(raw, super::incoming::DamageKind::Mechanic(20475),
@@ -280,7 +280,8 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             vulnerability_until: row.vulnerability_until,
             demoralizing_amplification: self.generic.demoralizing_amplification
                 .get(&row.guid).map_or(0.0, |window| window.value_at(self.now)),
-            additional_damage_taken: row.additional_damage_taken + packlord,
+            additional_damage_taken: row.additional_damage_taken
+                + row.control.elemental_sunder(hit.school, self.now) + packlord,
             dead: false,
         };
         let cap = orb.then_some(victim.maximum_health / 5.0);

@@ -144,7 +144,7 @@ impl Mechanics {
         let raw = if matches!(kind, DamageKind::Mechanic(_)) && self.bosses.iter().any(|row| {
             row.guid == source_guid && matches!(row.definition.id, 10506 | 10508 | 11261 | 10504 | 1853)
         }) {
-            let armor = self.stats.armor_fraction.min(0.95);
+            let armor = self.effective_armor().min(0.95);
             let softened = if armor < 0.4 { armor } else { (armor - 0.4) * 0.5 + 0.4 };
             let compensation = (1.0 - softened) / (1.0 - armor);
             raw * compensation
@@ -167,6 +167,7 @@ impl Mechanics {
                 actor.movement.position_at(self.clock), player) <= 64.0)
             .nth(4).is_some()
         { crowd_reduction } else { 0.0 };
+        let armor = self.effective_armor();
         let Some(applied) = native::apply_damage_with_crowd(
             &mut self.execution.vitals,
             &mut self.execution.shield,
@@ -174,7 +175,7 @@ impl Mechanics {
             &mut self.effect_state.incoming,
             self.clock,
             raw,
-            self.stats.armor_fraction,
+            armor,
             crowd_reduction,
         ) else {
             return;

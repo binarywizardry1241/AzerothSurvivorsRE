@@ -69,6 +69,8 @@ mod addon_timers;
 mod bosses;
 #[path = "mechanics/actor_frame.rs"]
 mod actor_frame;
+#[path = "mechanics/enhancement.rs"]
+mod enhancement;
 #[path = "mechanics/affixes.rs"]
 mod affixes;
 mod wards;
@@ -1070,7 +1072,8 @@ impl Mechanics {
                 .record(source, actual);
         }
         self.effect_state.generic.flush_cooldowns(
-            &self.abilities, now, &mut self.published_cooldowns,
+            &self.abilities, &self.effect_state.equipped, &self.execution.auras,
+            now, &mut self.published_cooldowns,
         );
         let mut context = self.cast_context(player, facing);
         let mut passive_context = behavior::passive_tick::TickContext {
@@ -1208,7 +1211,8 @@ impl Mechanics {
             }
             scheduler.tick_timed(&mut self.effect_state.timed, &mut self.abilities, delta);
             scheduler.port.generic.flush_cooldowns(
-                &self.abilities, now, scheduler.published_cooldowns,
+                &self.abilities, scheduler.port.equipped, &scheduler.execution.auras,
+                now, scheduler.published_cooldowns,
             );
         }
         context = port.current_context(context, &self.execution);
@@ -2207,14 +2211,33 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
                 return source;
             }
         }
+        if self.is_resonant_damage() {
+            return azeroth_survivors_re::run_effects::healing::meter_source(
+                0, [0; 4], [0; 4], None, &[], hit.spell_id,
+                azeroth_survivors_re::run_meter::source_definition(
+                    hit.spell_id, self.meter_abilities.iter().map(|row| row.0), self.meter_racial,
+                ),
+            );
+        }
         self.healing_source(hit.spell_id)
+    }
+    fn is_resonant_damage(&self) -> bool {
+        // 0x145f90dfa and 0x145fd1c02 bypass the talent descriptor for
+        // Resonant Shocks while the actual combat event keeps source kind 3.
+        self.attribution.source_kind == 3
+            && azeroth_survivors_re::run_effects::healing::meter_effect_index(
+                3, self.attribution.source_words, self.attribution.cast_words, self.generic.source,
+            )
+            .and_then(|index| self.equipped.rows.get(index))
+            .is_some_and(|row| row.tag() == 54 && row.bytes[4] == 2)
     }
     /// The recovered ability, weapon, companion and talent attribution arms.
     fn damage_attribution(
         &self, hit: &PendingHit, source: azeroth_survivors_re::run_effects::healing::MeterSource,
     ) -> Option<(azeroth_survivors_re::run_effects::healing::MeterSource, String)> {
         let spell = hit.spell_id;
-        let kind = self.attribution.source_kind;
+        let resonant = self.is_resonant_damage();
+        let kind = if resonant { 0 } else { self.attribution.source_kind };
         let companion = kind == 2;
         if companion {
             if let Some(key) = hit.context.meter_attack.or(self.generic.meter_attack)
@@ -2229,12 +2252,15 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             self.attribution.cast_words,
             self.generic.source,
         )
+        .filter(|_| !resonant)
         .filter(|&index| self.meter_sources.get(index) == Some(&source))
         .and_then(|index| self.equipped.meter_talents.get(index).copied());
         let talent_attribution = |(key, rank)| (source, format!("talent:{key}:r{rank}"));
         let sourced_cast = matches!(kind, 0 | 1)
             && (self.generic.source.is_some() || self.attribution.cast_words[..2] != [0, 0]);
-        if let Some(talent) = talent.filter(|_| !sourced_cast || spell == 0) {
+        let enhancement_proc = self.generic.source.and_then(|index| self.equipped.rows.get(index))
+            .is_some_and(|row| row.tag() == 54 && matches!(row.bytes[4], 4 | 5 | 7));
+        if let Some(talent) = talent.filter(|_| !sourced_cast || spell == 0 || enhancement_proc) {
             return Some(talent_attribution(talent));
         }
         // The fixed descriptors are separate from provenance-bearing talents.
@@ -2385,7 +2411,8 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             vulnerability_until: row.vulnerability_until,
             demoralizing_amplification: self.generic.demoralizing_amplification
                 .get(&row.guid).map_or(0.0, |window| window.value_at(self.now)),
-            additional_damage_taken: row.additional_damage_taken + packlord,
+            additional_damage_taken: row.additional_damage_taken
+                + row.control.elemental_sunder(hit.school, self.now) + packlord,
             dead: row.actor.dead,
         };
         let raid_multiplier = if victim.guardian {
@@ -2855,6 +2882,12 @@ impl<W: RunWorld> AbilityScheduler<'_, '_, W> {
     }
 }
 impl<W: RunWorld> behavior::SchedulerPort for AbilityScheduler<'_, '_, W> {
+    fn cooldown_elapsed(&self, instance: &RuntimeInstance<'_>, delta: f32) -> f32 {
+        enhancement::cooldown_elapsed(
+            &self.port.equipped.rows, &self.execution.auras, self.context.now,
+            instance.definition.key, delta,
+        )
+    }
     fn cast(&mut self, learned: &mut [RuntimeInstance<'_>], snapshot: RuntimeInstance<'_>) -> bool {
         // Definitions in this module originate solely from the static catalog.
         let Some(definition) = AbilityDefinition::by_key(snapshot.definition.key) else {
@@ -2892,14 +2925,13 @@ impl<W: RunWorld> behavior::SchedulerPort for AbilityScheduler<'_, '_, W> {
             object_counter: None,
             native_30: false,
         };
-        let success = dispatch::cast(
+        let success = passive.cast_with_enhancement(
             &snapshot,
             context,
             &targets,
             self.execution,
             self.rng,
             self.counter,
-            &mut passive,
         );
         passive.core.flush_vitals(&mut self.execution.vitals);
         success
@@ -2932,6 +2964,10 @@ impl<W: RunWorld> behavior::SchedulerPort for AbilityScheduler<'_, '_, W> {
         self.port.extra_cast = false;
     }
     fn publish_cooldown(&mut self, spell_id: u32, remaining: f32) {
+        let key = AbilityDefinition::by_spell_id(spell_id).map_or("", |definition| definition.key);
+        let remaining = enhancement::cooldown_wall_time(
+            &self.port.equipped.rows, &self.execution.auras, self.context.now, key, remaining,
+        );
         let cooldown = RunCooldown::published(self.context.now, remaining);
         if let Some((_, previous)) = self
             .published_cooldowns

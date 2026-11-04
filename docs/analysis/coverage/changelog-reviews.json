@@ -32678,7 +32678,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/bosses/spawning.rs": "ae92e24b1c8a09732d6f58d7e15d2c775f79c2c242853a5721cdabd707789a16",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "08864ee8fa7c7bb56c924f25cb5447eab6c429639d23d148d3df314975e13b49",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "70ff5406edddf8b3b8643c3cae8e0af44dff26b7e716ef0ae5b31ac0d7278427",
         "docs/analysis/scholomance-encounters-0.140.0.md": "56b2e1e85eb0eebc0902533c4b0f19d6e902a132677ebfa09de1f8dec265cd3c"
       },
       "systems": [
@@ -32705,7 +32705,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/bosses/raid_transforms.rs": "efb7a38c2b63b06d752eba6c9fcbec03f1b1fbd5724fdb588d9b533a1a6bb09b",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "08864ee8fa7c7bb56c924f25cb5447eab6c429639d23d148d3df314975e13b49",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "70ff5406edddf8b3b8643c3cae8e0af44dff26b7e716ef0ae5b31ac0d7278427",
         "docs/analysis/scholomance-encounters-0.140.0.md": "56b2e1e85eb0eebc0902533c4b0f19d6e902a132677ebfa09de1f8dec265cd3c"
       },
       "systems": [
@@ -32985,7 +32985,7 @@
         "docs/analysis/scholomance-encounters-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs": "8269dca11ecd4710a02a8fa0b26208fc9d7decf4d5c5eaba50e69743da560d4d",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs": "37fab50a440b4c1f912355dae46a0c6050dc1599e4857437e2f61a4a1e8d1148",
         "docs/analysis/scholomance-encounters-0.140.0.md": "56b2e1e85eb0eebc0902533c4b0f19d6e902a132677ebfa09de1f8dec265cd3c"
       },
       "systems": [
@@ -33012,7 +33012,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/localization.rs": "943031248d26ca0d483d803e5cc563f99fd603b974cc797723a451f9616bfae8",
-        "crates/azeroth-survivors-re/assets/locales/en.json": "f420c64160e5aef8ff861d9e3ffa99a5c561bee97ef399b2655b843c4ddafcbe",
+        "crates/azeroth-survivors-re/assets/locales/en.json": "bde3f0ddeeec9c8fde86896488c16211d136ec4569a12a5b2099055c3c23c84e",
         "docs/analysis/scholomance-localization-0.140.0.md": "4538731b39bdbbb5ee18b014d3b0b450f472202962344cc458422c8aa6f7187a"
       },
       "systems": [
@@ -33028,17 +33028,23 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Trace the third Sweeping Storm rank to its two damage consumers and retained target count.",
+      "status": "source_connected",
+      "rationale": "Sweeping Storm keeps its keyed target bonus and applies the recovered rank-three 1.2 damage multiplier at the direct hit boundary.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs"
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs",
+        "crates/azeroth-survivors-re/assets/enhancement-talents-0.140.0.json",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/enhancement-0.139.2.md#enhancement-mechanics-in-01400"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs": "a0a64aceffa6bc0c7306f658c971f5b835378ea7d835f536aeca81b4a0fb0212",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs": "d1a5a883be4d6c9b7d5ce6dae059f774eb7396fb95657c6d8b4f8e8d4e74021e",
+        "crates/azeroth-survivors-re/assets/enhancement-talents-0.140.0.json": "3b79873ad793d082dc8e1c2fd61d11901697ea65955172244a898ec258f3b77e",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "1106015b2f5dd32d5395d0f9fd4594b156af761ba60086d006af3cf6a5a1e839",
+        "docs/analysis/enhancement-0.139.2.md": "1b8072e23309f40287000e45b988540231d96bcf532b8e0de20618238c141fe0"
       },
       "systems": [
         "custom-game-game-enhancement"
@@ -33062,7 +33068,7 @@
         "docs/analysis/scholomance-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "e273468d79f3ec1e5298621ce257742362c8045c2928656dc99b24ea55bedab7",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "1106015b2f5dd32d5395d0f9fd4594b156af761ba60086d006af3cf6a5a1e839",
         "docs/analysis/scholomance-0.140.0.md": "9cf67c73d74b98f1473876fd542e299d3f60b7744472c994b53dc34c89e0c997"
       },
       "systems": [
@@ -33094,9 +33100,9 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "869c51a7c294bf0157bb3359e319c8fc4462e655dd2112aec7140a7bb9ee3d2a",
-        "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "87d2b8a64ec0f58a5a8dc703b7b03a015a47d41f012ac0895ec2d2eea3c910f8",
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "e273468d79f3ec1e5298621ce257742362c8045c2928656dc99b24ea55bedab7",
-        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "279b73fa89fd80249763b76aaa12b1f810cbab117fb2f549a37cbc5e932ec738",
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "6b7ea9e850711c09cbd4fc64363a8180ac52f69be9c6eea4917c8cd56b8e935c",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "1106015b2f5dd32d5395d0f9fd4594b156af761ba60086d006af3cf6a5a1e839",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "ccdae23b036bf8b3710929049204af489e338625e44665bc2452e681754600c5",
         "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs": "5992c71f53651bdb23f0ade4c3aab4e4ac7285dc5ac34b7a73c6758733dfe92f",
         "crates/azeroth-survivors-re/src/codex.rs": "8e8b1dfb1b0ad8f77e709e7d8e0559e2a737fb6e1a5cba2971f28d16fa858297",
         "crates/azeroth-survivors-re/assets/ability-tooltips.json": "f73e015c6083f810f0c24f2b7adffa2bb871dae3dac5620c99ec2fde288cd231",
@@ -33129,11 +33135,11 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "869c51a7c294bf0157bb3359e319c8fc4462e655dd2112aec7140a7bb9ee3d2a",
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "e273468d79f3ec1e5298621ce257742362c8045c2928656dc99b24ea55bedab7",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "1106015b2f5dd32d5395d0f9fd4594b156af761ba60086d006af3cf6a5a1e839",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs": "45f87560e50a105e3d6e68678e08f948eaffcd0b55c395ce9ecfc30ce2c2fc3d",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs": "5901f5fce5b314f3ac38d50b81351600c40ff8f197b6781ea03694c3efbbf09f",
         "crates/azeroth-survivors-re/src/catalog.rs": "8e048310728e0570d695c66dc4eb5f654dd3c22159f5e9a630954f1b150bb760",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40"
       },
       "systems": [
         "custom-game-game-kill-command"
@@ -33162,13 +33168,13 @@
         "docs/analysis/class-balance-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "279b73fa89fd80249763b76aaa12b1f810cbab117fb2f549a37cbc5e932ec738",
-        "crates/azeroth-survivors-re/src/loot_rewards/prose.rs": "356bb6d87d98160d1bb9482bf33a95644dd4d6833d68b5d58636bfbfbf4777c1",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "ccdae23b036bf8b3710929049204af489e338625e44665bc2452e681754600c5",
+        "crates/azeroth-survivors-re/src/loot_rewards/prose.rs": "297485016349c582d823180ba5c4507876433fc9d3c5553d484236e2115844dd",
         "crates/azeroth-survivors-re/src/save/gear.rs": "1f519654681258456bcfe3475c9c00ce680cd3785a2708f24f642dc49e14a5bb",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs": "45f87560e50a105e3d6e68678e08f948eaffcd0b55c395ce9ecfc30ce2c2fc3d",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "5e0ec75d10dcf902e3f0e7e34d656b3938a81af7f4bb0328ceaa2ede9eadce27",
-        "crates/azeroth-survivors-re/src/localization/amulet_names.rs": "9e0342886db6d1ab72ad55287b205653dd75d67f9a9883264823da8d38f73968",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "ef0ce4f6bdc34e354d34f0e7e576355d6fce9271d90a603d378ee5ea26280442",
+        "crates/azeroth-survivors-re/src/localization/amulet_names.rs": "95db75ad525398213539153f52af0ff6325edf11f046da3b6bb01db8956d0992",
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40"
       },
       "systems": [
         "custom-game-jewelry"
@@ -33196,10 +33202,10 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/sets.rs": "bdddfba23245b914310482fb4cc62a12511dabf0eebd796b5e5d7093a240c15b",
-        "crates/azeroth-survivors-re/src/run_effects.rs": "154d8b62cb44a9561ca4f4104dbb5e23339c6320c98c4091450b9d7f4dbe92b0",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "6ca750ac807d6bfcbb834552429c9f2885fbee5f53427ea99a36845417e2c356",
         "crates/azeroth-survivors-re/src/run_effects/pets.rs": "861612137180bc40d3f04fd85993dac5fc026d10e67ef092cddbe36321f250b0",
         "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs": "b927e16afbc2181abfccf25193da119281a54b2848cdf8e04b7b8dc4da8680bf",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40"
       },
       "systems": [
         "custom-game-sets"
@@ -33228,10 +33234,10 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/sets.rs": "bdddfba23245b914310482fb4cc62a12511dabf0eebd796b5e5d7093a240c15b",
-        "crates/azeroth-survivors-re/src/run_effects.rs": "154d8b62cb44a9561ca4f4104dbb5e23339c6320c98c4091450b9d7f4dbe92b0",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "6ca750ac807d6bfcbb834552429c9f2885fbee5f53427ea99a36845417e2c356",
         "crates/azeroth-survivors-re/src/run_effects/pets.rs": "861612137180bc40d3f04fd85993dac5fc026d10e67ef092cddbe36321f250b0",
         "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs": "b927e16afbc2181abfccf25193da119281a54b2848cdf8e04b7b8dc4da8680bf",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639",
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40",
         "crates/azeroth-survivors-re/src/gameplay/client/addon_summons.rs": "879cc05db119aa553160b13df3818df841f3342c9d26e06b3f6a79084e3753dc"
       },
       "systems": [
@@ -33265,11 +33271,11 @@
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/run_effects/milestones.rs": "07e807752b7d9b8270b640f5baed8b20e53395a81c9fc68be62f1b0cb65b27c7",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/spell_display.rs": "36a8ad5be8a34c3f93245abcc6ec7bd56e6e24981e301cfbf2d5c63d43a1c2c0",
-        "crates/azeroth-survivors-re/src/save/talents.rs": "edbc20263331567a2b58dd8e6a57016775b8714a4091cfc8f538591a89139a71",
-        "crates/azeroth-survivors-re/assets/locales/en.json": "f420c64160e5aef8ff861d9e3ffa99a5c561bee97ef399b2655b843c4ddafcbe",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "95b13408bdf89ae490ae50c64960435a7e6ecd0e824866b3b2abafd481f6c033",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "d20313409f4a06e52e87fe8ffd5fd9942e940c7ad6d323bec6518ae7026ddc03",
+        "crates/azeroth-survivors-re/src/save/talents.rs": "d0d6526c9fa5d2ac16735b92e302e79644e6244ef8caa4bae8d7ddc16c560180",
+        "crates/azeroth-survivors-re/assets/locales/en.json": "bde3f0ddeeec9c8fde86896488c16211d136ec4569a12a5b2099055c3c23c84e",
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "1f4e5b2f27f29701b4181cfb1cfceb53b8be0805570ef2661e235f47557319ef",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "af7ed444b691204e7878fa6e46be122c9214751645f63dbdd1f5d0c3c63d4003",
         "crates/azeroth-survivors-re/src/run_effects/actions.rs": "8cb2ad3e4ba8764ec23718cf6d86169157a707b90a4fb29e1889471a78476ed9",
         "crates/azeroth-survivors-re/assets/talent-replacements-0.140.0.json": "a91080b3660d37dbf2e822771e850580526393fa652a404d4cc1f6baf0b45e90"
       },
@@ -33304,11 +33310,11 @@
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/run_effects/milestones.rs": "07e807752b7d9b8270b640f5baed8b20e53395a81c9fc68be62f1b0cb65b27c7",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/spell_display.rs": "36a8ad5be8a34c3f93245abcc6ec7bd56e6e24981e301cfbf2d5c63d43a1c2c0",
-        "crates/azeroth-survivors-re/src/save/talents.rs": "edbc20263331567a2b58dd8e6a57016775b8714a4091cfc8f538591a89139a71",
-        "crates/azeroth-survivors-re/assets/locales/en.json": "f420c64160e5aef8ff861d9e3ffa99a5c561bee97ef399b2655b843c4ddafcbe",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "95b13408bdf89ae490ae50c64960435a7e6ecd0e824866b3b2abafd481f6c033",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "d20313409f4a06e52e87fe8ffd5fd9942e940c7ad6d323bec6518ae7026ddc03",
+        "crates/azeroth-survivors-re/src/save/talents.rs": "d0d6526c9fa5d2ac16735b92e302e79644e6244ef8caa4bae8d7ddc16c560180",
+        "crates/azeroth-survivors-re/assets/locales/en.json": "bde3f0ddeeec9c8fde86896488c16211d136ec4569a12a5b2099055c3c23c84e",
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "1f4e5b2f27f29701b4181cfb1cfceb53b8be0805570ef2661e235f47557319ef",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "af7ed444b691204e7878fa6e46be122c9214751645f63dbdd1f5d0c3c63d4003",
         "crates/azeroth-survivors-re/src/run_effects/actions.rs": "8cb2ad3e4ba8764ec23718cf6d86169157a707b90a4fb29e1889471a78476ed9",
         "crates/azeroth-survivors-re/assets/talent-replacements-0.140.0.json": "a91080b3660d37dbf2e822771e850580526393fa652a404d4cc1f6baf0b45e90"
       },
@@ -33354,26 +33360,26 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "869c51a7c294bf0157bb3359e319c8fc4462e655dd2112aec7140a7bb9ee3d2a",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639",
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40",
         "crates/azeroth-survivors-re/assets/ability-tooltips.json": "f73e015c6083f810f0c24f2b7adffa2bb871dae3dac5620c99ec2fde288cd231",
-        "crates/azeroth-survivors-re/src/save/talents.rs": "edbc20263331567a2b58dd8e6a57016775b8714a4091cfc8f538591a89139a71",
-        "crates/azeroth-survivors-re/src/run_effects.rs": "154d8b62cb44a9561ca4f4104dbb5e23339c6320c98c4091450b9d7f4dbe92b0",
-        "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "87d2b8a64ec0f58a5a8dc703b7b03a015a47d41f012ac0895ec2d2eea3c910f8",
+        "crates/azeroth-survivors-re/src/save/talents.rs": "d0d6526c9fa5d2ac16735b92e302e79644e6244ef8caa4bae8d7ddc16c560180",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "6ca750ac807d6bfcbb834552429c9f2885fbee5f53427ea99a36845417e2c356",
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "6b7ea9e850711c09cbd4fc64363a8180ac52f69be9c6eea4917c8cd56b8e935c",
         "crates/azeroth-survivors-re/assets/talent-replacements-0.140.0.json": "a91080b3660d37dbf2e822771e850580526393fa652a404d4cc1f6baf0b45e90",
-        "crates/azeroth-survivors-re/assets/locales/en.json": "f420c64160e5aef8ff861d9e3ffa99a5c561bee97ef399b2655b843c4ddafcbe",
-        "crates/azeroth-survivors-re/assets/locales/cs.json": "6cdaa50f242b4d2d3f627344991026b89b549d30faf07e7016809cbc06d8d3f7",
-        "crates/azeroth-survivors-re/assets/locales/de.json": "7622ed329d84431d794226cbe1cc5129a0474316ed98bff2eb0f29ee6606de2d",
-        "crates/azeroth-survivors-re/assets/locales/es.json": "6b06b7d9c3114978b0ef2f300532866542723a54ec7b9595e886c63146714c40",
-        "crates/azeroth-survivors-re/assets/locales/fr.json": "3a69370a6e68af5ce32a88944d1395a9a103315e961ecbbaabf3fe257627ceac",
-        "crates/azeroth-survivors-re/assets/locales/ja.json": "13c68fd06a20c03dc829f880bd968eb5523c6316924c184aa97b5735fc830783",
-        "crates/azeroth-survivors-re/assets/locales/ko.json": "a14ff5fe79d109d8aad26d371a342580d4d3edb00c825c8940598847fe886b32",
-        "crates/azeroth-survivors-re/assets/locales/pl.json": "96c1b5708e5858d4f8600fc61bee31106f60b6c554e958511461e416604d3f39",
-        "crates/azeroth-survivors-re/assets/locales/pt.json": "8cb342f6ae4aa6caf5d03aa0ea900f2e24ba1cee72001ebbb997b02a9645d826",
-        "crates/azeroth-survivors-re/assets/locales/ro.json": "387fcf689a33af57e6b0ef301eb64e9e09afbaf1ac9aae3fc34d9acbc2cba040",
-        "crates/azeroth-survivors-re/assets/locales/ru.json": "e06d27638e036d132d295484b910aaaa84068112c4d998270b276f4d483177f4",
-        "crates/azeroth-survivors-re/assets/locales/tr.json": "79dbfd7dbfe9c384918526693c398910fc93562b0c9dbff81f059e38e20ca34a",
-        "crates/azeroth-survivors-re/assets/locales/uk.json": "f48b457bcd2d9e73dec0c7cef2ed267127b88d7b3d7def8d2673609ce3623e3a",
-        "crates/azeroth-survivors-re/assets/locales/zh.json": "90358f86660ec5537585a7862800564970294bcb424724e6c10b44264508e50d"
+        "crates/azeroth-survivors-re/assets/locales/en.json": "bde3f0ddeeec9c8fde86896488c16211d136ec4569a12a5b2099055c3c23c84e",
+        "crates/azeroth-survivors-re/assets/locales/cs.json": "6eb313b7b40cf5795309bd4a1d2363b78b90a9920bc7f1e2ece9cdc138d8ebee",
+        "crates/azeroth-survivors-re/assets/locales/de.json": "9c66f6148059c47b7bad3bec9a247f667c1a4afb5af0b8f3bfced300a8b2a770",
+        "crates/azeroth-survivors-re/assets/locales/es.json": "996e50698d11565e9b96e784931f09054ea39be0d328729e816563156c8de013",
+        "crates/azeroth-survivors-re/assets/locales/fr.json": "fc804cf7e6ac451d193bd017e7ba939865f023ba1f3b613fc5c22b1c8bbe98f9",
+        "crates/azeroth-survivors-re/assets/locales/ja.json": "1e21c5bb7d37c81353b681d73ea758ae6d8a7a897ea0946b092380db1e3e70ab",
+        "crates/azeroth-survivors-re/assets/locales/ko.json": "091b265e7a13facc5eb2053ff7bc387f25bfcfbdae7fa461c0b27231fcd10529",
+        "crates/azeroth-survivors-re/assets/locales/pl.json": "828f273ab3dc21733df2f2be22dd2460c69f374878a9c0a1fc8bce4cc56f7e22",
+        "crates/azeroth-survivors-re/assets/locales/pt.json": "ee13235c476534013b386e05aff61b2a50def0c98416619f3e93a9796af74363",
+        "crates/azeroth-survivors-re/assets/locales/ro.json": "d4254cc8036722fde2f5bae1713870df2c07d6eb2c34f16c1b713f83b77236e6",
+        "crates/azeroth-survivors-re/assets/locales/ru.json": "be0edd225f5856b5b23b74af7bae24149a497303eb25d676ee711361a8af0a7d",
+        "crates/azeroth-survivors-re/assets/locales/tr.json": "c2ae9338c3e106f961aaa802e3eda517fd70d79ed49a36ab697834b157a9bc9f",
+        "crates/azeroth-survivors-re/assets/locales/uk.json": "f61b63b3831449859eb2abb04cbefb842b94a43361f59fd15b173e58ab9abd0c",
+        "crates/azeroth-survivors-re/assets/locales/zh.json": "874fa8601210142c18f8469ea44a636547433da73e781d52185b7dbd652ddaed"
       },
       "systems": [
         "custom-game-game-abilities"
@@ -33388,17 +33394,23 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Trace the first Eye of the Tempest descriptor line into its specific target filter and Stormstrike consumer.",
+      "status": "source_connected",
+      "rationale": "The Eye of the Tempest first line uses the current Stormstrike label and localized boss-and-elite text.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs"
+        "crates/azeroth-survivors-re/src/loot_rewards/prose.rs",
+        "crates/azeroth-survivors-re/src/localization/amulet_names.rs",
+        "crates/azeroth-survivors-re/assets/enhancement-amulets-0.140.0.json"
       ],
       "evidence_refs": [
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/enhancement-0.139.2.md#enhancement-mechanics-in-01400"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs": "a0a64aceffa6bc0c7306f658c971f5b835378ea7d835f536aeca81b4a0fb0212",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639",
+        "crates/azeroth-survivors-re/src/loot_rewards/prose.rs": "297485016349c582d823180ba5c4507876433fc9d3c5553d484236e2115844dd",
+        "crates/azeroth-survivors-re/src/localization/amulet_names.rs": "95db75ad525398213539153f52af0ff6325edf11f046da3b6bb01db8956d0992",
+        "crates/azeroth-survivors-re/assets/enhancement-amulets-0.140.0.json": "c29671a09d30e7fb06a932e99dedcee26a6a09c79fb25496113a5c577c56d937",
+        "docs/analysis/enhancement-0.139.2.md": "1b8072e23309f40287000e45b988540231d96bcf532b8e0de20618238c141fe0"
       },
       "systems": [
         "custom-game-game-enhancement"
@@ -33428,12 +33440,12 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/run_effects/healing.rs": "008b92480d99cc376a2d359f930d68452a5ff8cecd15ac0487f2e741f0520dde",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "5e0ec75d10dcf902e3f0e7e34d656b3938a81af7f4bb0328ceaa2ede9eadce27",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "95b13408bdf89ae490ae50c64960435a7e6ecd0e824866b3b2abafd481f6c033",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "ef0ce4f6bdc34e354d34f0e7e576355d6fce9271d90a603d378ee5ea26280442",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "1f4e5b2f27f29701b4181cfb1cfceb53b8be0805570ef2661e235f47557319ef",
         "crates/azeroth-survivors-re/src/sets.rs": "bdddfba23245b914310482fb4cc62a12511dabf0eebd796b5e5d7093a240c15b",
         "crates/azeroth-survivors-re/src/save/gear.rs": "1f519654681258456bcfe3475c9c00ce680cd3785a2708f24f642dc49e14a5bb",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs": "45dd563f1fe798024f6904b0b8b12090d02e584172cebb104ecea286dbeb3e2a",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40"
       },
       "systems": [
         "custom-game-game-abilities"
@@ -33463,12 +33475,12 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/run_effects/healing.rs": "008b92480d99cc376a2d359f930d68452a5ff8cecd15ac0487f2e741f0520dde",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "5e0ec75d10dcf902e3f0e7e34d656b3938a81af7f4bb0328ceaa2ede9eadce27",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "95b13408bdf89ae490ae50c64960435a7e6ecd0e824866b3b2abafd481f6c033",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "ef0ce4f6bdc34e354d34f0e7e576355d6fce9271d90a603d378ee5ea26280442",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "1f4e5b2f27f29701b4181cfb1cfceb53b8be0805570ef2661e235f47557319ef",
         "crates/azeroth-survivors-re/src/sets.rs": "bdddfba23245b914310482fb4cc62a12511dabf0eebd796b5e5d7093a240c15b",
         "crates/azeroth-survivors-re/src/save/gear.rs": "1f519654681258456bcfe3475c9c00ce680cd3785a2708f24f642dc49e14a5bb",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs": "45dd563f1fe798024f6904b0b8b12090d02e584172cebb104ecea286dbeb3e2a",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40"
       },
       "systems": [
         "custom-game-game-abilities"
@@ -33498,12 +33510,12 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/run_effects/healing.rs": "008b92480d99cc376a2d359f930d68452a5ff8cecd15ac0487f2e741f0520dde",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "5e0ec75d10dcf902e3f0e7e34d656b3938a81af7f4bb0328ceaa2ede9eadce27",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "95b13408bdf89ae490ae50c64960435a7e6ecd0e824866b3b2abafd481f6c033",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "ef0ce4f6bdc34e354d34f0e7e576355d6fce9271d90a603d378ee5ea26280442",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "1f4e5b2f27f29701b4181cfb1cfceb53b8be0805570ef2661e235f47557319ef",
         "crates/azeroth-survivors-re/src/sets.rs": "bdddfba23245b914310482fb4cc62a12511dabf0eebd796b5e5d7093a240c15b",
         "crates/azeroth-survivors-re/src/save/gear.rs": "1f519654681258456bcfe3475c9c00ce680cd3785a2708f24f642dc49e14a5bb",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs": "45dd563f1fe798024f6904b0b8b12090d02e584172cebb104ecea286dbeb3e2a",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40"
       },
       "systems": [
         "custom-game-game-procs"
@@ -33537,11 +33549,11 @@
         "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs": "2bc8f34114d6e6ab9b73812d73d85cd8598d3c5b28b890470989731ec4aca701",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs": "65b73eee636eec3a44ae462a055aca4abfea71b4e0c40c068c5c5212d33ba58b",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs": "b6b27edab3676d6455c1ac6888b5afe9920ef14d07ec7809ae780dfe64f3769e",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "d20313409f4a06e52e87fe8ffd5fd9942e940c7ad6d323bec6518ae7026ddc03",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "5e0ec75d10dcf902e3f0e7e34d656b3938a81af7f4bb0328ceaa2ede9eadce27",
-        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "279b73fa89fd80249763b76aaa12b1f810cbab117fb2f549a37cbc5e932ec738",
-        "crates/azeroth-survivors-re/src/loot_rewards/prose.rs": "356bb6d87d98160d1bb9482bf33a95644dd4d6833d68b5d58636bfbfbf4777c1",
-        "crates/azeroth-survivors-re/src/run_effects.rs": "154d8b62cb44a9561ca4f4104dbb5e23339c6320c98c4091450b9d7f4dbe92b0",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "af7ed444b691204e7878fa6e46be122c9214751645f63dbdd1f5d0c3c63d4003",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "ef0ce4f6bdc34e354d34f0e7e576355d6fce9271d90a603d378ee5ea26280442",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "ccdae23b036bf8b3710929049204af489e338625e44665bc2452e681754600c5",
+        "crates/azeroth-survivors-re/src/loot_rewards/prose.rs": "297485016349c582d823180ba5c4507876433fc9d3c5553d484236e2115844dd",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "6ca750ac807d6bfcbb834552429c9f2885fbee5f53427ea99a36845417e2c356",
         "docs/analysis/shield-capacity-0.140.0.md": "5c1470029363f05ccf3768cd45cc6db19f7be5d417f0f6929a98b28a5f81331d"
       },
       "systems": [
@@ -33595,7 +33607,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/run_effects/loot_companions.rs": "924a5d7c778458cce68ea5d389a1d698442f9787ac997698aebcfea194e73bf0",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639",
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs": "9eae853aeffa7c41fcca158b631371fc99f85e4f6ea65b0d2ade67390ff94166",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/loot_companions.rs": "cba0c5546ea2580138ed0f82318c77601d500774c738ffa023288d752c24b61a",
         "crates/azeroth-survivors-re/src/run_pickups.rs": "295d4d4e70f22700d52d9943f52da0c17fd33b02d2327a4c4d38f0837c2b8c07"
@@ -33623,7 +33635,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/gameplay/native_overlays.rs": "790691891679745c3ba52b09422d3344a54336c2bddefb1697cd1abd24b284ee",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40"
       },
       "systems": [
         "custom-app-screens-cards"
@@ -33638,22 +33650,25 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "The current 66-power descriptor, 92-damage picker and native talent-origin text are connected. The Rockbiter Initiation startup replacement remains in #305.",
+      "status": "source_connected",
+      "rationale": "Rockbiter raw power 66 feeds the talent-only startup replacement and current localized picker.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
-        "crates/azeroth-survivors-re/src/catalog.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+        "crates/azeroth-survivors-re/assets/enhancement-talents-0.140.0.json",
         "crates/azeroth-survivors-re/assets/rockbiter-tooltip-0.140.0.json"
       ],
       "evidence_refs": [
-        "docs/analysis/enhancement-0.139.2.md#rockbiter-and-the-picker-in-01400"
+        "docs/analysis/enhancement-0.139.2.md#enhancement-mechanics-in-01400"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "869c51a7c294bf0157bb3359e319c8fc4462e655dd2112aec7140a7bb9ee3d2a",
         "docs/analysis/class-balance-0.140.0.md": "03b44adeace59b747d2e679382a8e7b27b15ce5888113563c9c572b2d8177675",
         "crates/azeroth-survivors-re/src/catalog.rs": "8e048310728e0570d695c66dc4eb5f654dd3c22159f5e9a630954f1b150bb760",
         "crates/azeroth-survivors-re/assets/rockbiter-tooltip-0.140.0.json": "a82e28fc3dd0acfad9572772df64a70a25994cdc9d93cfd30357e029e842ab53",
-        "docs/analysis/enhancement-0.139.2.md": "86c9e2e1a0b65b246016e28b0adb0b63f98312cad9a7cfd29cfd9dc7d0f76fde"
+        "docs/analysis/enhancement-0.139.2.md": "1b8072e23309f40287000e45b988540231d96bcf532b8e0de20618238c141fe0",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "af7ed444b691204e7878fa6e46be122c9214751645f63dbdd1f5d0c3c63d4003",
+        "crates/azeroth-survivors-re/assets/enhancement-talents-0.140.0.json": "3b79873ad793d082dc8e1c2fd61d11901697ea65955172244a898ec258f3b77e"
       },
       "systems": [
         "custom-game-game-enhancement"
@@ -33668,17 +33683,21 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Recover the two Windfury strike outcomes, shared or separate RNG and recursive proc suppression.",
+      "status": "source_connected",
+      "rationale": "The rank-three Windfury draw selects two or three extra strikes at 0.25 and 0.375 with the native recursive proc gates.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs"
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs",
+        "crates/azeroth-survivors-re/assets/enhancement-talents-0.140.0.json"
       ],
       "evidence_refs": [
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/enhancement-0.139.2.md#enhancement-mechanics-in-01400"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs": "a0a64aceffa6bc0c7306f658c971f5b835378ea7d835f536aeca81b4a0fb0212",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs": "d1a5a883be4d6c9b7d5ce6dae059f774eb7396fb95657c6d8b4f8e8d4e74021e",
+        "crates/azeroth-survivors-re/assets/enhancement-talents-0.140.0.json": "3b79873ad793d082dc8e1c2fd61d11901697ea65955172244a898ec258f3b77e",
+        "docs/analysis/enhancement-0.139.2.md": "1b8072e23309f40287000e45b988540231d96bcf532b8e0de20618238c141fe0"
       },
       "systems": [
         "custom-game-game-enhancement"
@@ -33693,17 +33712,21 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Recover rank-three free Fire Nova modifier and application order.",
+      "status": "source_connected",
+      "rationale": "Flametongue rank three supplies a 50 percent power bonus to its free Fire Nova.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs"
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs",
+        "crates/azeroth-survivors-re/assets/enhancement-talents-0.140.0.json"
       ],
       "evidence_refs": [
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/enhancement-0.139.2.md#enhancement-mechanics-in-01400"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs": "a0a64aceffa6bc0c7306f658c971f5b835378ea7d835f536aeca81b4a0fb0212",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs": "d1a5a883be4d6c9b7d5ce6dae059f774eb7396fb95657c6d8b4f8e8d4e74021e",
+        "crates/azeroth-survivors-re/assets/enhancement-talents-0.140.0.json": "3b79873ad793d082dc8e1c2fd61d11901697ea65955172244a898ec258f3b77e",
+        "docs/analysis/enhancement-0.139.2.md": "1b8072e23309f40287000e45b988540231d96bcf532b8e0de20618238c141fe0"
       },
       "systems": [
         "custom-game-game-enhancement"
@@ -33718,17 +33741,21 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Recover the Guardian-inclusive target filter and its Eye of the Tempest consumer.",
+      "status": "source_connected",
+      "rationale": "The Eye of the Tempest uses the shared stat 19 target bonus. That predicate admits bosses, elites and Guardians and has no spell filter.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs"
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+        "crates/azeroth-survivors-re/assets/enhancement-amulets-0.140.0.json"
       ],
       "evidence_refs": [
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/enhancement-0.139.2.md#enhancement-mechanics-in-01400"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs": "a0a64aceffa6bc0c7306f658c971f5b835378ea7d835f536aeca81b4a0fb0212",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639",
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "6b7ea9e850711c09cbd4fc64363a8180ac52f69be9c6eea4917c8cd56b8e935c",
+        "crates/azeroth-survivors-re/assets/enhancement-amulets-0.140.0.json": "c29671a09d30e7fb06a932e99dedcee26a6a09c79fb25496113a5c577c56d937",
+        "docs/analysis/enhancement-0.139.2.md": "1b8072e23309f40287000e45b988540231d96bcf532b8e0de20618238c141fe0"
       },
       "systems": [
         "custom-game-game-enhancement"
@@ -33758,12 +33785,12 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs": "2bc8f34114d6e6ab9b73812d73d85cd8598d3c5b28b890470989731ec4aca701",
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "e273468d79f3ec1e5298621ce257742362c8045c2928656dc99b24ea55bedab7",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "1106015b2f5dd32d5395d0f9fd4594b156af761ba60086d006af3cf6a5a1e839",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs": "65b73eee636eec3a44ae462a055aca4abfea71b4e0c40c068c5c5212d33ba58b",
-        "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "87d2b8a64ec0f58a5a8dc703b7b03a015a47d41f012ac0895ec2d2eea3c910f8",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "95b13408bdf89ae490ae50c64960435a7e6ecd0e824866b3b2abafd481f6c033",
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "6b7ea9e850711c09cbd4fc64363a8180ac52f69be9c6eea4917c8cd56b8e935c",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "1f4e5b2f27f29701b4181cfb1cfceb53b8be0805570ef2661e235f47557319ef",
         "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs": "541cd771dc3dae4825490a0c2fc6790995c75dd17c9288faeaac6da92327925e",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40"
       },
       "systems": [
         "custom-game-jewelry"
@@ -33797,11 +33824,11 @@
         "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs": "2bc8f34114d6e6ab9b73812d73d85cd8598d3c5b28b890470989731ec4aca701",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs": "65b73eee636eec3a44ae462a055aca4abfea71b4e0c40c068c5c5212d33ba58b",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs": "b6b27edab3676d6455c1ac6888b5afe9920ef14d07ec7809ae780dfe64f3769e",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "d20313409f4a06e52e87fe8ffd5fd9942e940c7ad6d323bec6518ae7026ddc03",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "5e0ec75d10dcf902e3f0e7e34d656b3938a81af7f4bb0328ceaa2ede9eadce27",
-        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "279b73fa89fd80249763b76aaa12b1f810cbab117fb2f549a37cbc5e932ec738",
-        "crates/azeroth-survivors-re/src/loot_rewards/prose.rs": "356bb6d87d98160d1bb9482bf33a95644dd4d6833d68b5d58636bfbfbf4777c1",
-        "crates/azeroth-survivors-re/src/run_effects.rs": "154d8b62cb44a9561ca4f4104dbb5e23339c6320c98c4091450b9d7f4dbe92b0",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "af7ed444b691204e7878fa6e46be122c9214751645f63dbdd1f5d0c3c63d4003",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "ef0ce4f6bdc34e354d34f0e7e576355d6fce9271d90a603d378ee5ea26280442",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "ccdae23b036bf8b3710929049204af489e338625e44665bc2452e681754600c5",
+        "crates/azeroth-survivors-re/src/loot_rewards/prose.rs": "297485016349c582d823180ba5c4507876433fc9d3c5553d484236e2115844dd",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "6ca750ac807d6bfcbb834552429c9f2885fbee5f53427ea99a36845417e2c356",
         "docs/analysis/shield-capacity-0.140.0.md": "5c1470029363f05ccf3768cd45cc6db19f7be5d417f0f6929a98b28a5f81331d"
       },
       "systems": [
@@ -33830,12 +33857,12 @@
         "docs/analysis/class-balance-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "d20313409f4a06e52e87fe8ffd5fd9942e940c7ad6d323bec6518ae7026ddc03",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "af7ed444b691204e7878fa6e46be122c9214751645f63dbdd1f5d0c3c63d4003",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs": "45f87560e50a105e3d6e68678e08f948eaffcd0b55c395ce9ecfc30ce2c2fc3d",
         "crates/azeroth-survivors-re/src/run_effects/pets.rs": "861612137180bc40d3f04fd85993dac5fc026d10e67ef092cddbe36321f250b0",
-        "crates/azeroth-survivors-re/src/talents.rs": "875c2282b59403123290b40e46d114c3c702915f57ef23bae24ded7857255b76",
-        "crates/azeroth-survivors-re/assets/locales/en.json": "f420c64160e5aef8ff861d9e3ffa99a5c561bee97ef399b2655b843c4ddafcbe",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "crates/azeroth-survivors-re/src/talents.rs": "9102e7f13a94a3e8e1751cdf4ae4644e4475709cbac110fd240e1083ed7fd1a0",
+        "crates/azeroth-survivors-re/assets/locales/en.json": "bde3f0ddeeec9c8fde86896488c16211d136ec4569a12a5b2099055c3c23c84e",
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40"
       },
       "systems": [
         "custom-game-appearance"
@@ -33906,20 +33933,24 @@
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
       "status": "pending_claim_recovery",
-      "rationale": "Ranked talent, companion and ordinary totem identities are checked. Actual Windfury and Tier 0.5 producers and the detailed AZSM row/loadout/replay joins remain open.",
+      "rationale": "Windfury now carries its recovered talent origin from the cast through the local meter and addon selection. The broader Tier 0.5 and detailed AZSM replay, encounter and loadout joins remain open in #75 and #307.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs"
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs"
       ],
       "evidence_refs": [
         "docs/analysis/party-healing-meter-0.139.2.md",
-        "docs/analysis/combat-text-0.139.2.md"
+        "docs/analysis/combat-text-0.139.2.md",
+        "docs/analysis/enhancement-0.139.2.md#enhancement-mechanics-in-01400"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "95b13408bdf89ae490ae50c64960435a7e6ecd0e824866b3b2abafd481f6c033",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "d20313409f4a06e52e87fe8ffd5fd9942e940c7ad6d323bec6518ae7026ddc03",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "1f4e5b2f27f29701b4181cfb1cfceb53b8be0805570ef2661e235f47557319ef",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "af7ed444b691204e7878fa6e46be122c9214751645f63dbdd1f5d0c3c63d4003",
         "docs/analysis/party-healing-meter-0.139.2.md": "added000242727264453c288e99ef3dcf18366e56738f98c215443b656f7dba6",
-        "docs/analysis/combat-text-0.139.2.md": "53a4c5f0638f278a2269172c3b1adc1951a2189d0a31ae41f6e1f3337a1b07de"
+        "docs/analysis/combat-text-0.139.2.md": "53a4c5f0638f278a2269172c3b1adc1951a2189d0a31ae41f6e1f3337a1b07de",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs": "d1a5a883be4d6c9b7d5ce6dae059f774eb7396fb95657c6d8b4f8e8d4e74021e",
+        "docs/analysis/enhancement-0.139.2.md": "1b8072e23309f40287000e45b988540231d96bcf532b8e0de20618238c141fe0"
       },
       "systems": [
         "custom-game-game-meterfeed"
@@ -33956,11 +33987,11 @@
         "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs": "2bc8f34114d6e6ab9b73812d73d85cd8598d3c5b28b890470989731ec4aca701",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs": "65b73eee636eec3a44ae462a055aca4abfea71b4e0c40c068c5c5212d33ba58b",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs": "b6b27edab3676d6455c1ac6888b5afe9920ef14d07ec7809ae780dfe64f3769e",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "d20313409f4a06e52e87fe8ffd5fd9942e940c7ad6d323bec6518ae7026ddc03",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "5e0ec75d10dcf902e3f0e7e34d656b3938a81af7f4bb0328ceaa2ede9eadce27",
-        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "279b73fa89fd80249763b76aaa12b1f810cbab117fb2f549a37cbc5e932ec738",
-        "crates/azeroth-survivors-re/src/loot_rewards/prose.rs": "356bb6d87d98160d1bb9482bf33a95644dd4d6833d68b5d58636bfbfbf4777c1",
-        "crates/azeroth-survivors-re/src/run_effects.rs": "154d8b62cb44a9561ca4f4104dbb5e23339c6320c98c4091450b9d7f4dbe92b0",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "af7ed444b691204e7878fa6e46be122c9214751645f63dbdd1f5d0c3c63d4003",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "ef0ce4f6bdc34e354d34f0e7e576355d6fce9271d90a603d378ee5ea26280442",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "ccdae23b036bf8b3710929049204af489e338625e44665bc2452e681754600c5",
+        "crates/azeroth-survivors-re/src/loot_rewards/prose.rs": "297485016349c582d823180ba5c4507876433fc9d3c5553d484236e2115844dd",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "6ca750ac807d6bfcbb834552429c9f2885fbee5f53427ea99a36845417e2c356",
         "docs/analysis/shield-capacity-0.140.0.md": "5c1470029363f05ccf3768cd45cc6db19f7be5d417f0f6929a98b28a5f81331d"
       },
       "systems": [
@@ -33985,7 +34016,7 @@
         "docs/analysis/scholomance-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "e273468d79f3ec1e5298621ce257742362c8045c2928656dc99b24ea55bedab7",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "1106015b2f5dd32d5395d0f9fd4594b156af761ba60086d006af3cf6a5a1e839",
         "docs/analysis/scholomance-0.140.0.md": "9cf67c73d74b98f1473876fd542e299d3f60b7744472c994b53dc34c89e0c997"
       },
       "systems": [
@@ -34017,7 +34048,7 @@
         "crates/azeroth-survivors-re/src/run_effects/weapon.rs": "02f491f7f56cf3b573e1f97bc0403d32a3a9420264946399c85b37475ae83c4e",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs": "22737b8e7f7b4dfe2c51b784883bababb4031d67599fe6714b17a35233e8f37b",
         "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "869c51a7c294bf0157bb3359e319c8fc4462e655dd2112aec7140a7bb9ee3d2a",
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "e273468d79f3ec1e5298621ce257742362c8045c2928656dc99b24ea55bedab7",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "1106015b2f5dd32d5395d0f9fd4594b156af761ba60086d006af3cf6a5a1e839",
         "docs/analysis/rogue-reach-0.140.0.md": "ac5230dfe428b08319f4f971cb005d7d7afc0ffb8624b6192d30aa8677c79112",
         "crates/azeroth-survivors-re/assets/ability-tooltips.json": "f73e015c6083f810f0c24f2b7adffa2bb871dae3dac5620c99ec2fde288cd231"
       },
@@ -34083,7 +34114,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/gameplay/visuals.rs": "3befdf6dbc8e233d6e1cd59c1349df6876d67aab0894e9a6170a6af03c529232",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40"
       },
       "systems": [
         "custom-game-game-enemy"
@@ -34113,12 +34144,12 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs": "2bc8f34114d6e6ab9b73812d73d85cd8598d3c5b28b890470989731ec4aca701",
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "e273468d79f3ec1e5298621ce257742362c8045c2928656dc99b24ea55bedab7",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "1106015b2f5dd32d5395d0f9fd4594b156af761ba60086d006af3cf6a5a1e839",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs": "65b73eee636eec3a44ae462a055aca4abfea71b4e0c40c068c5c5212d33ba58b",
-        "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "87d2b8a64ec0f58a5a8dc703b7b03a015a47d41f012ac0895ec2d2eea3c910f8",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "95b13408bdf89ae490ae50c64960435a7e6ecd0e824866b3b2abafd481f6c033",
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "6b7ea9e850711c09cbd4fc64363a8180ac52f69be9c6eea4917c8cd56b8e935c",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "1f4e5b2f27f29701b4181cfb1cfceb53b8be0805570ef2661e235f47557319ef",
         "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs": "541cd771dc3dae4825490a0c2fc6790995c75dd17c9288faeaac6da92327925e",
-        "docs/analysis/class-balance-0.140.0.md": "181d521d3762916d521a537f3d08cf001452d115546c37d8753ad4c37b012639"
+        "docs/analysis/class-balance-0.140.0.md": "ebfb1ad0179be8874462ebb570699c167f46004548cb689f48cc0aaefae1ca40"
       },
       "systems": [
         "custom-game-game-abilities",

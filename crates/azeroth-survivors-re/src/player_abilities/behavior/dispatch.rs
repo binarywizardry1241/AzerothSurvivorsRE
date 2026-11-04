@@ -71,6 +71,23 @@ pub trait CastPort: ProjectilePort {
                     _targets: &[Target]) -> bool { false }
     /// Native Game+0x464/+0x468, read for each victim/launch after prior procs.
     fn critical(&self) -> Critical;
+    fn critical_for(&self, _definition: &super::super::catalog::AbilityDefinition) -> Critical {
+        self.critical()
+    }
+    fn direct_power(&self, _instance: &RuntimeInstance<'_>, power: f32, _context: HitContext) -> f32 {
+        power
+    }
+    fn record_direct_hit(
+        &mut self,
+        _spell_id: u32,
+        _target: u64,
+        _raw_power: f32,
+        _critical: bool,
+        _context: HitContext,
+    ) {}
+    fn record_cast_targets(
+        &mut self, _spell_id: u32, _targets: &[&Target], _context: HitContext,
+    ) {}
     fn primary_height(&mut self, xy: [f32; 2]) -> Option<f32>;
     fn secondary_height(&mut self, xy: [f32; 2]) -> Option<f32>;
     fn fallback_height(&self) -> f32;
@@ -166,8 +183,10 @@ pub(super) fn direct(
     guid_counter: &mut dyn crate::native_counter::NativeCounter,
 ) {
     let roll = unit24(rng);
-    let stats = port.critical();
+    let stats = port.critical_for(instance.definition);
     let critical = roll < stats.chance;
+    port.record_direct_hit(instance.definition.spell_id, target, power, critical, context.hit_context);
+    let power = port.direct_power(instance, power, context.hit_context);
     port.direct_hit_with_execution(
         PendingHit {
             context: context.hit_context,
@@ -252,6 +271,7 @@ pub fn cast<'a>(
                 }
                 selected.truncate(count as usize);
             }
+            port.record_cast_targets(definition.spell_id, &selected, context.hit_context);
             for target in selected {
                 execution::launch_projectile(
                     instance,
@@ -468,6 +488,7 @@ pub fn cast<'a>(
                 return false;
             }
             let plan = DotPlan::new(instance, power, context.global_dot_tick_bonus);
+            port.record_cast_targets(definition.spell_id, &selected, context.hit_context);
             let mut hit_context = context.hit_context;
             hit_context.cast_words = plan.words();
             for target in selected {

@@ -264,6 +264,10 @@ impl Mechanics {
                     && let Some(duration) = self.effect_state.generic.frost_shock_durations.get(&guid)
                 {
                     (*duration, actor.slow.until)
+                } else if spell == enhancement::ELEMENTAL_SUNDER
+                    && control.elemental_sunder_until > self.clock
+                {
+                    (4.0, control.elemental_sunder_until)
                 } else if self.effect_state.generic.reduction_spells.get(&guid) == Some(&spell)
                     && actor.damage_reduction.until > self.clock
                 {

@@ -105,6 +105,7 @@ struct SourceClass {
 }
 #[derive(Deserialize)]
 struct SourceTree {
+    name: String,
     talents: Vec<Talent>,
 }
 #[derive(Deserialize)]
@@ -141,8 +142,15 @@ pub fn catalog() -> &'static Catalog {
                     // class rows retain their independently recovered values.
                     leech_bits: if class.id == 8 { 0x3ba3d70a } else { class.leech_bits },
                     talents: {
-                        let mut talents: Vec<_> = class
-                            .trees
+                        let mut trees = class.trees;
+                        if class.id == 7 {
+                            let enhancement = trees.iter_mut().find(|tree| tree.name == "Enhancement")
+                                .expect("native Enhancement tree");
+                            *enhancement = serde_json::from_str(include_str!(
+                                "../assets/enhancement-talents-0.140.0.json"
+                            )).expect("recovered Enhancement talent effects");
+                        }
+                        let mut talents: Vec<_> = trees
                             .into_iter()
                             .flat_map(|tree| tree.talents)
                             .collect();
@@ -210,7 +218,10 @@ impl EffectRow {
             strings: &payload.strings,
             lists: &payload.lists,
         };
-        if value.bytes[0] == 253 && matches!(value.bytes[63], 30 | 33) {
+        if value.bytes[0] == 54 {
+            // Current Enhancement rows carry their allocated rank in byte 5.
+            value.bytes[5] = rank;
+        } else if value.bytes[0] == 253 && matches!(value.bytes[63], 30 | 33) {
             value.bytes[1] = rank.clamp(1, 3);
         } else if value.bytes[0] == 253 && value.bytes[63] == 31 {
             // Current Soul Link retains the ordered raw31 contribution used
@@ -292,6 +303,8 @@ impl EffectRow {
 pub struct Effects {
     pub gear: Vec<(u8, f32)>,
     pub talents: Vec<EffectRow>,
+    /// The rank-three damage lane is independent of the keyed target effect.
+    pub sweeping_storm_rank: u8,
     /// Allocation key and rank in generic talent row order. Set and amulet
     /// rows follow this prefix and use separate source descriptors.
     pub meter_talents: Vec<(&'static str, u8)>,

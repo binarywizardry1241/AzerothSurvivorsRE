@@ -180,7 +180,8 @@ pub fn victim_multiplier(victim: &Victim, context: &VictimContext<'_>) -> f32 {
     if victim.stun_until > context.now || victim.slow_until > context.now || victim.forced_escape_until > context.now {
         multiplier = talent_sum(context.talent_effects, 18) + 1.0;
     }
-    if victim.primary_boss || victim.native_flag_158 == 1 {
+    // 0.140.0 145fbbfb4..145fbbfcd also admits Guardian metadata for stat19.
+    if victim.primary_boss || victim.native_flag_158 == 1 || victim.guardian {
         multiplier += talent_sum(context.talent_effects, 19);
     }
     if victim.maximum_health * 0.3 > victim.health {
