@@ -99,10 +99,9 @@ impl Plugin for ClientBridgePlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<crate::localization::Localization>();
         let mut extension = addon_bootstrap::extension();
-        glue_strings::configure(
-            &mut extension,
-            app.world().resource::<crate::localization::Localization>(),
-        );
+        let locale = app.world().resource::<crate::localization::Localization>();
+        glue_strings::configure(&mut extension, locale);
+        addon_bootstrap::meter_language(&mut extension, locale.code());
         extension.talent_toggle_counter = Some("AZS_TALENT_TOGGLES".into());
         extension.framexml_appends.splice(0..0, framexml_hud::appends());
         extension.framexml_appends.extend(raid_targets::appends());
@@ -114,7 +113,7 @@ impl Plugin for ClientBridgePlugin {
         // The previous completed run tick is coherent here. Keeping this outside Update
         // avoids ordering a post-stream mechanics tick ahead of the pre-input UI feed.
         .add_systems(First, sync_to_client.after(crate::coop_runtime::CoopSet::Apply)
-            .before(LocalClientSet::Lifecycle));
+            .before(LocalClientSet::Configuration));
         events::install(app);
         spell_scales::install(app);
         inventory::install(app);
@@ -201,14 +200,15 @@ fn sync_to_client(
     }
     extension.combat_text_run = session.mechanics.as_ref().filter(|_| menu.in_run)
         .map(|_| session.identity);
-    if coop.as_ref().is_some_and(|coop|coop.is_guest()) {
-        coop_feed::publish(&session,&menu,&world,&input,&locale,&mut state,&mut extension,&mut packets);
-        return;
-    }
     if state.stats_locale != Some(locale.code()) {
         extension.script_postlude = run_stats::source(Some(&locale));
         glue_strings::configure(&mut extension, &locale);
+        addon_bootstrap::meter_language(&mut extension, locale.code());
         state.stats_locale = Some(locale.code());
+    }
+    if coop.as_ref().is_some_and(|coop|coop.is_guest()) {
+        coop_feed::publish(&session,&menu,&world,&input,&locale,&mut state,&mut extension,&mut packets);
+        return;
     }
     let in_menu = session.mechanics.is_none() || !menu.in_run;
     extension.custom_game_menu = !in_menu;

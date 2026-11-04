@@ -4,6 +4,7 @@
 //! the ordinary core-file load in WorldStateFrame.lua before addons.
 
 use benilla_app::local_client::LocalClientExtension;
+use std::sync::OnceLock;
 
 mod creature_sound;
 
@@ -48,6 +49,24 @@ fn append_meter_api(source: &mut String) {
     ));
 }
 
+pub(super) fn meter_language(extension: &mut LocalClientExtension, code: &str) {
+    extension.session_cvar_writes.push(("azsLanguage", "en", code.into()));
+}
+
+fn meter_process() -> &'static str {
+    static PROCESS: OnceLock<String> = OnceLock::new();
+    PROCESS.get_or_init(|| {
+        // 0.141.0 0x1400505f1..0x140050752 draws one process token and
+        // formats its u64 as 16 lowercase hexadecimal digits.
+        let mut bytes = [0; 8];
+        if getrandom::fill(&mut bytes).is_err() {
+            // The retained Lua supplies its own tag when this CVar is empty.
+            return String::new();
+        }
+        format!("{:016x}", u64::from_le_bytes(bytes))
+    })
+}
+
 pub(super) fn extension() -> LocalClientExtension {
     let cvar_defaults = [
         ("storeLevels".into(), "0".into()),
@@ -89,6 +108,7 @@ pub(super) fn extension() -> LocalClientExtension {
         on_top_frames_global: Some("AZS_ON_TOP_FRAMES".into()),
         ignored_logical_keys: vec![bevy::input::keyboard::Key::Process],
         cvar_defaults,
+        session_cvar_writes: vec![("azsProcess", "", meter_process().into())],
         binding_commands: crate::native_bindings::commands(),
         binding_defaults: crate::native_bindings::defaults(),
         script_initializer: Some(super::super::run_hud::local_clock::install_lua),

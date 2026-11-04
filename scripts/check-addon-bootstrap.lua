@@ -22,7 +22,8 @@ table.getn = table.getn or function(t)
 end;
 
 local now = 100;
-local settings = { storeLevels = "1", hudClock = "0", hudScale = "1.5" };
+local settings = { storeLevels = "1", hudClock = "0", hudScale = "1.5",
+    azsLanguage = "pl", azsProcess = "0123456789abcdef" };
 local created, registered = 0, 0;
 local replay_requests = {};
 function GetTime() return now; end
@@ -99,8 +100,14 @@ if type(AZS_GetMeterSnapshot) == "function" then
         "R,H101,1,d,H101,ability:fireball:r1,,n,n,d,0,k,4,1,k,,,,,21,0,0,"
     }, ";");
     local first, second = "v=1;seq=7;i=1;n=2|" .. f, "v=1;seq=7;i=2;n=2|" .. tail;
-    assert(AZS_GetMeterCapabilities().features.liveInstancePosition);
-    assert(not AZS_GetMeterCapabilities().features.completeSourceBreakdowns);
+    local capabilities = AZS_GetMeterCapabilities();
+    assert(capabilities.features.liveInstancePosition and not capabilities.features.completeSourceBreakdowns);
+    assert(capabilities.languageCode == "pl" and capabilities.languageRevision == "l.pl");
+    assert(string.find(capabilities.uiSessionId, AZS_MHash("0123456789abcdef|ui"), 1, true));
+    settings.azsLanguage = "de";
+    local localized = AZS_GetMeterCapabilities();
+    assert(localized.languageCode == "de" and localized.languageRevision == "l.de");
+    assert(localized.uiSessionId == capabilities.uiSessionId);
     line("PARTY", "Boss", first);
     line("UNKNOWN", "Another player", first);
     assert(AZS_ML.pend == nil);

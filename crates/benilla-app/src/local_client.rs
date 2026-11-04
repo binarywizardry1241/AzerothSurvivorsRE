@@ -80,6 +80,8 @@ pub struct LocalClientPlugin;
 /// Ordering hooks for an embedding application's authoritative state and input consumers.
 #[derive(SystemSet, Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum LocalClientSet {
+    /// Register embedding CVars before the lifecycle can seed a new VM.
+    Configuration,
     Lifecycle,
     Feed,
     Input,
@@ -133,7 +135,8 @@ impl Plugin for LocalClientPlugin {
             .configure_sets(Update, LocalClientSet::Options.after(LocalClientSet::Input)
                 .before(crate::ui_script::UiDrain))
             .add_systems(First, reset_overlay_pointer)
-            .add_systems(First, extension::register.before(LocalClientSet::Lifecycle))
+            .add_systems(First, extension::register.in_set(LocalClientSet::Configuration)
+                .before(LocalClientSet::Lifecycle))
             .add_systems(First, follow_session.in_set(LocalClientSet::Lifecycle))
             .add_systems(
                 PreUpdate,

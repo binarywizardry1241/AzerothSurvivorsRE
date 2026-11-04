@@ -29,11 +29,6 @@ pub(super) fn publish(
     extension: &mut LocalClientExtension,
     packets: &mut LocalPresentationEvents,
 ) {
-    if state.stats_locale != Some(locale.code()) {
-        extension.script_postlude = super::run_stats::source(Some(locale));
-        super::glue_strings::configure(extension, locale);
-        state.stats_locale = Some(locale.code());
-    }
     let Some(game) = session.mechanics.as_ref().filter(|_| menu.in_run) else {
         state.addon.idle(input.ui_time);
         extension.custom_game_menu = false;

@@ -47,6 +47,9 @@ pub struct LocalClientExtension {
     pub cvar_defaults: Vec<(String, String)>,
     /// Queued through the ordinary registry, never a parallel config store.
     pub cvar_writes: Vec<(String, String)>,
+    /// Engine metadata with a declared default and a session-owned value.
+    /// These rows are available to new Lua VMs but never saved to Config.wtf.
+    pub session_cvar_writes: Vec<(&'static str, &'static str, String)>,
     /// Selected custom Options globals, with true for Lua 1/nil toggles.
     /// The owning FrameXML saved-variable reader seats these at VM startup.
     pub option_globals: Vec<(String, bool)>,
@@ -108,13 +111,27 @@ pub struct LocalClientExtension {
 pub(crate) fn register(world: &mut World) {
     sync_names(world);
     if !world.contains_resource::<crate::cvars::Cvars>() { return; }
-    let (defaults, writes) = {
+    let (defaults, writes, session_writes) = {
         let Some(mut extension) = world.get_resource_mut::<LocalClientExtension>() else { return; };
-        (extension.cvar_defaults.clone(), std::mem::take(&mut extension.cvar_writes))
+        (
+            extension.cvar_defaults.clone(),
+            std::mem::take(&mut extension.cvar_writes),
+            std::mem::take(&mut extension.session_cvar_writes),
+        )
     };
-    let mut cvars = world.resource_mut::<crate::cvars::Cvars>();
-    for (name, value) in defaults { cvars.learn_addon_row(&name, &value); }
-    for (name, value) in writes { cvars.set(&name, &value); }
+    let session_rows = {
+        let mut cvars = world.resource_mut::<crate::cvars::Cvars>();
+        for (name, value) in defaults { cvars.learn_addon_row(&name, &value); }
+        for (name, value) in writes { cvars.set(&name, &value); }
+        session_writes.into_iter().filter_map(|(name, default, value)| {
+            cvars.learn_addon_row(name, default);
+            cvars.own_for_session(name, Some(&value));
+            cvars.vm_seed_named(name)
+        }).collect::<Vec<_>>()
+    };
+    if !session_rows.is_empty() && let Some(script) = world.get_non_send_resource::<UiScript>() {
+        script.seed_cvars(session_rows);
+    }
 }
 
 #[derive(Resource, Default)]

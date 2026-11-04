@@ -654,16 +654,24 @@ impl Cvars {
     pub(crate) fn vm_seed(&self) -> Vec<SeededCvar> {
         self.listed()
             .into_iter()
-            .map(|r| SeededCvar {
-                name: r.name.clone(),
-                value: r.value.clone(),
-                default: r.default.clone(),
-                latched: r.latched,
-                check: r.check,
-                reset: r.reset.clone(),
-                session: self.session_owned.contains(&r.name.to_ascii_lowercase()),
-            })
+            .map(|row| self.vm_seed_row(row))
             .collect()
+    }
+
+    pub(crate) fn vm_seed_named(&self, name: &str) -> Option<SeededCvar> {
+        self.slot(name).map(|i| self.vm_seed_row(&self.rows[i]))
+    }
+
+    fn vm_seed_row(&self, row: &Row) -> SeededCvar {
+        SeededCvar {
+            name: row.name.clone(),
+            value: row.value.clone(),
+            default: row.default.clone(),
+            latched: row.latched,
+            check: row.check,
+            reset: row.reset.clone(),
+            session: self.session_owned.contains(&row.name.to_ascii_lowercase()),
+        }
     }
 
     /// The change callbacks' lines since the last call.

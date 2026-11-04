@@ -38,6 +38,33 @@ synthetic parts and stub host bindings. The Rust adapter parses with
 Rustfmt. Compilation, native-host interoperability, actual frame
 delivery after `/reload`, and gameplay parity remain unverified.
 
+### Language and process metadata
+
+The client metadata owner at `0x140050550..0x14005081c` (file
+`0x4f950`, SHA-256
+`d2115e0982e5076771a2cfd952e9f88525772b47346b34840df40fa7c73ff030`)
+registers `azsLanguage` with default `en` and `azsProcess` with an
+empty default. Its first registration draws a process token and formats
+it as 16 zero-padded lowercase hexadecimal digits at
+`0x14005071d..0x14005072c`. The shared locale getter at
+`0x145e7a830` supplies the current language; the update at
+`0x1400507f1` writes it when it differs. Ghidra raw-slice result
+`ev_96d4b02818910186b2e1f329dc611cec30cc3b58f5c83b92864b1edfcb8ed7d3`
+covers that owner; the original PE resolves the format flags and
+external lowercase hex renderer.
+
+The rebuilt client seeds one OS-random 64-bit token per process and
+mirrors the active game language from the existing locale owner. Both
+values use the engine's session CVar registry and the same rows seed
+the active and replacement Lua VMs, before addon code on entry and
+`/reload`. The client does not persist those session values as
+configuration. The retained Lua therefore reports the selected
+language before any detailed frame, with stable process input to its
+VM session ID. The standalone Lua harness verifies initial Polish,
+a switch to German, and an unchanged UI session ID across the language
+change. That harness supplies stub CVar values; Rust was syntax parsed,
+with actual engine execution still unverified.
+
 ## Recipient request and publication
 
 The current chat owner `0x145e9e690` builds the `AZSMREQ` plus tab
