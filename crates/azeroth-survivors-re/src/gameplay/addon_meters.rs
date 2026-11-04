@@ -5,7 +5,7 @@
 //! four-decimal share. Accounting stays with the shared combat/healing owners.
 
 use azeroth_survivors_re::{
-    player_abilities::ABILITIES,
+    player_abilities::{ABILITIES, CLASSES},
     loot_rewards::amulets,
     run_effects::healing::{MeterEntry, MeterSource},
 };
@@ -85,6 +85,13 @@ pub(super) fn source_name(source: MeterSource, locale: &Localization) -> String 
     // Current native provenance already contains the constructor's localized
     // name. Source accounting retains the stable English name/icon identity.
     if source.talent {
+        if let Some(class) = CLASSES.iter().find(|class| {
+            azeroth_survivors_re::tier05::class(class.class_id)
+                .is_some_and(|set| set.name == source.name)
+        }) {
+            let key = format!("set.{}.{}", class.key, azeroth_survivors_re::sets::TIER_HALF);
+            return locale.lookup(&key).unwrap_or(source.name).to_owned();
+        }
         if let Some(amulet) = amulets::catalog().generated.iter()
             .find(|row| row.name == source.name && row.icon == source.icon)
         {

@@ -330,6 +330,8 @@ pub struct Effects {
     /// Allocation key and rank in generic talent row order. Set and amulet
     /// rows follow this prefix and use separate source descriptors.
     pub meter_talents: Vec<(&'static str, u8)>,
+    /// Each generic set row follows the allocated talent prefix in this order.
+    pub meter_sets: Vec<(&'static str, crate::sets::ActiveSet)>,
     /// Stable key and pick count of the equipped amulet supplying the tail.
     pub meter_amulet: Option<(&'static str, u32)>,
     /// Native Game+828: only generic effects, in talent then amulet order.

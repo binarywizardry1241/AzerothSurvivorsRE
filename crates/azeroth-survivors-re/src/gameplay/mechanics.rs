@@ -1151,6 +1151,7 @@ impl Mechanics {
             meter_sources: &self.effect_state.meter_sources,
             meter_abilities: self.abilities.iter().map(|row| (row.definition, row.rank)).collect(),
             meter_racial: self.racial.map(|row| row.definition),
+            meter_spells: self.recap_spells.as_deref(),
             aura_provenance: &self.effect_state.display_provenance,
             rescue_ready_at: self.effect_state.incoming.lethal_talent_ready_at,
             soul_link_absorb: &mut self.effect_state.incoming.soul_link_absorb,
@@ -1605,6 +1606,7 @@ impl Mechanics {
             meter_sources: &self.effect_state.meter_sources,
             meter_abilities: self.abilities.iter().map(|row| (row.definition, row.rank)).collect(),
             meter_racial: self.racial.map(|row| row.definition),
+            meter_spells: self.recap_spells.as_deref(),
             aura_provenance: &self.effect_state.display_provenance,
             rescue_ready_at: self.effect_state.incoming.lethal_talent_ready_at,
             soul_link_absorb: &mut self.effect_state.incoming.soul_link_absorb,
@@ -1851,6 +1853,7 @@ impl Mechanics {
             meter_sources: &self.effect_state.meter_sources,
             meter_abilities: self.abilities.iter().map(|row| (row.definition, row.rank)).collect(),
             meter_racial: self.racial.map(|row| row.definition),
+            meter_spells: self.recap_spells.as_deref(),
             aura_provenance: &self.effect_state.display_provenance,
             rescue_ready_at: self.effect_state.incoming.lethal_talent_ready_at,
             soul_link_absorb: &mut self.effect_state.incoming.soul_link_absorb,
@@ -2126,6 +2129,7 @@ struct CombatAdapter<'a, W> {
     meter_sources: &'a [azeroth_survivors_re::run_effects::healing::MeterSource],
     meter_abilities: Vec<(&'static AbilityDefinition, u32)>,
     meter_racial: Option<&'static AbilityDefinition>,
+    meter_spells: Option<&'a benilla_formats::SpellCatalog>,
     aura_provenance: &'a [String],
     rescue_ready_at: f32,
     soul_link_absorb: &'a mut f32,
@@ -2321,7 +2325,30 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             .and_then(|index| self.equipped.rows.get(index))
             .is_some_and(|row| row.tag() == 54 && row.bytes[4] == 2)
     }
-    /// The recovered ability, weapon, companion and talent attribution arms.
+
+    fn effect_meter_key(&self, index: usize) -> Option<String> {
+        if let Some((key, rank)) = self.equipped.meter_talents.get(index) {
+            return Some(format!("talent:{key}:r{rank}"));
+        }
+        let row = self.equipped.rows.get(index)?;
+        let after_talents = index.checked_sub(self.equipped.meter_talents.len())?;
+        if let Some((class, set)) = self.equipped.meter_sets.get(after_talents) {
+            // 0.141.0 145e086b0 constructs the set key. 145efd9f0 keeps it
+            // for generic rows and appends the English effect slug for these three.
+            let empowerment = if set.empowered { ".empowered" } else { "" };
+            let effect = match row.tag() {
+                66 => ":thunderburst",
+                69 => ":deathmist_burn",
+                70 => ":seed_of_life",
+                _ => "",
+            };
+            return Some(format!("set:{class}.{}{empowerment}{effect}", set.tier));
+        }
+        let (key, picks) = self.equipped.meter_amulet?;
+        Some(format!("amulet:{key}:r{picks}"))
+    }
+
+    /// Select the primary key independently of the ordinary meter's label.
     fn damage_attribution(
         &self, hit: &PendingHit, source: azeroth_survivors_re::run_effects::healing::MeterSource,
     ) -> Option<(azeroth_survivors_re::run_effects::healing::MeterSource, String)> {
@@ -2344,23 +2371,17 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         )
         .filter(|_| !resonant)
         .filter(|&index| self.meter_sources.get(index) == Some(&source));
-        // Native 145de85e0 gives the equipped Emberwake proc its item key
-        // and live pick count, separately from Flame Shock's ordinary row.
-        if kind == 3 && effect_index.and_then(|index| self.equipped.rows.get(index))
-            .is_some_and(|row| row.tag() == 53)
-            && let Some((key, picks)) = self.equipped.meter_amulet
-        {
-            return Some((source, format!("amulet:{key}:r{picks}")));
-        }
-        let talent = effect_index
-        .and_then(|index| self.equipped.meter_talents.get(index).copied());
-        let talent_attribution = |(key, rank)| (source, format!("talent:{key}:r{rank}"));
-        let sourced_cast = matches!(kind, 0 | 1)
+        let effect_key = effect_index.and_then(|index| self.effect_meter_key(index));
+        let sourced_cast = kind == 0
             && (self.generic.source.is_some() || self.attribution.cast_words[..2] != [0, 0]);
-        let enhancement_proc = self.generic.source.and_then(|index| self.equipped.rows.get(index))
-            .is_some_and(|row| row.tag() == 54 && matches!(row.bytes[4], 4 | 5 | 7));
-        if let Some(talent) = talent.filter(|_| !sourced_cast || spell == 0 || enhancement_proc) {
-            return Some(talent_attribution(talent));
+        // Native 145fa4313 promotes only Windfury (54/4) over the cast's
+        // ability. Flametongue and Frostbrand keep the ability primary.
+        let windfury = effect_index.and_then(|index| self.equipped.rows.get(index))
+            .is_some_and(|row| row.tag() == 54 && row.bytes[4] == 4);
+        if !sourced_cast || spell == 0 || windfury {
+            if let Some(key) = effect_key {
+                return Some((source, key));
+            }
         }
         // The fixed descriptors are separate from provenance-bearing talents.
         let fixed_key = match (kind, spell, source.name) {
@@ -2373,18 +2394,25 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             return Some((source, key.to_owned()));
         }
         if spell == 0 {
-            return (companion || (kind == 0 && source.name == "Melee"))
+            return (companion || source.name == "Melee")
                 .then(|| (source, "melee".into()));
-        }
-        if kind > 2 || (source.talent && talent.is_none()) {
-            return None;
         }
         let Some(definition) = azeroth_survivors_re::run_meter::source_definition(
             spell, self.meter_abilities.iter().map(|row| row.0), self.meter_racial,
         ) else {
-            return talent.map(talent_attribution);
+            // Native 145fa36b0 uses the DBC spell when it has a display name.
+            let key = effect_key.unwrap_or_else(|| {
+                if self.meter_spells.and_then(|catalog| catalog.get(spell))
+                    .is_some_and(|entry| !entry.name.is_empty())
+                {
+                    format!("spell:{spell}")
+                } else {
+                    "other".into()
+                }
+            });
+            return Some((source, key));
         };
-        if !companion && talent.is_none()
+        if !companion && effect_key.is_none()
             && (source.name, source.icon) != (definition.name, definition.icon)
         {
             return None;

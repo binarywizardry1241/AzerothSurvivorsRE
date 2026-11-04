@@ -329,6 +329,7 @@ impl Mechanics {
                 .map(|instance| (instance.definition, instance.rank))
                 .collect(),
             meter_racial: self.racial.as_ref().map(|instance| instance.definition),
+            meter_spells: self.recap_spells.as_deref(),
             aura_provenance: &self.effect_state.display_provenance,
             rescue_ready_at: self.effect_state.incoming.lethal_talent_ready_at,
             soul_link_absorb: &mut self.effect_state.incoming.soul_link_absorb,

@@ -406,6 +406,7 @@ impl Mechanics {
             0
         };
         self.effect_state.equipped.meter_talents.clear();
+        self.effect_state.equipped.meter_sets.clear();
         self.effect_state.spell_display_talents = allocation
             .iter()
             .filter(|(key, rank)| *rank != 0 && key != crate::save::talents::WHITE_DEVILSAUR)
@@ -509,11 +510,17 @@ impl Mechanics {
                         .expect("current set descriptor has an ability icon").icon;
                     self.effect_state.talent_provenance.push(set_name);
                     let (name, icon) = match row.tag() {
-                        // 0.140.0 145f250be..145f250e7 uses distinct source descriptors.
+                        // 0.141.0 145efd9f0 uses separate source descriptors.
                         66 => ("Thunderburst", "Spell_Nature_ThunderClap"),
                         69 => ("Deathmist burn", "Spell_Fire_Immolation"),
+                        70 => ("Seed of Life", "Spell_Nature_Tranquility"),
                         _ => (set_name, icon),
                     };
+                    self.effect_state.equipped.meter_sets.push((self.class.key,
+                        azeroth_survivors_re::sets::ActiveSet {
+                            tier: descriptor.tier,
+                            empowered: descriptor.empowered,
+                        }));
                     self.effect_state.talent_meter_sources.push(
                         azeroth_survivors_re::run_effects::healing::MeterSource {
                             name,

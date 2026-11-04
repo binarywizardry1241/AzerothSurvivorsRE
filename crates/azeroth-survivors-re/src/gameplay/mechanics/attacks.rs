@@ -440,6 +440,46 @@ mod tests {
     }
 
     #[test]
+    fn empowered_deathmist_tick_has_its_own_addon_source() {
+        let (mut game, mut world, player) = attack_run("warlock", &[], 10.0);
+        let mut equipment = [0; 19];
+        let mut stars = [0; 19];
+        for slot in 0..azeroth_survivors_re::sets::ARMOR_SLOTS {
+            equipment[slot] = azeroth_survivors_re::tier05::item_id(9, slot as u8);
+            stars[slot] = 5;
+        }
+        game.configure_armor_set(equipment, stars);
+        game.configure_effects(&[], &[]);
+        let effect_index = game.effect_state.equipped.rows.iter()
+            .position(|effect| effect.tag() == 69)
+            .expect("empowered Deathmist effect");
+        game.actors[0].periodic.push(periodic::ActorPeriodic {
+            owner_kind: 1,
+            owner_guid: effect_index as u64,
+            effect_owner: None,
+            spell_id: 12654,
+            power_per_tick: 3.0,
+            interval: 1.0,
+            next_tick_at: 0.0,
+            ticks_remaining: 1,
+            initial_ticks: 1,
+            leech_fraction: 0.0,
+            school: 2,
+        });
+
+        game.tick(0.01, player, [0.0; 2], 0.0, &mut world);
+
+        assert!(game.damage_meter().iter().any(|row|
+            row.source.name == "Deathmist burn" && row.total == 3.0
+        ));
+        assert!(game.events.iter().any(|event| matches!(
+            event,
+            RunEvent::Damage { meter_attribution: Some((source, key)), spell_id: 12654, .. }
+                if source.name == "Deathmist burn" && key == "set:warlock.7.empowered:deathmist_burn"
+        )));
+    }
+
+    #[test]
     fn learned_penance_wins_the_shared_primary_id_for_live_damage_and_healing() {
         let (mut game, mut world, player) = attack_run("priest", &[], 10.0);
         let penance = AbilityDefinition::by_key("penance").unwrap();
