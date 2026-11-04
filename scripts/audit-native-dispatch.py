@@ -7,6 +7,7 @@ import importlib.util
 from coverage_common import ROOT,latest_target,target_bytes,load_json,json_text,file_sha256,project_path
 
 from instruction_facts import InstructionFacts, derived_json, HELPER_SHA256 as FACTS_SHA256
+from shared_analysis import SharedAnalysis
 GENERATOR_SHA256=file_sha256(ROOT/'scripts/audit-native-dispatch.py')
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,ROOT/path);value=importlib.util.module_from_spec(spec);spec.loader.exec_module(value);return value
@@ -85,6 +86,7 @@ def main():
     artifact_directory=project_path(args.artifact_directory) if args.artifact_directory else directory
     if not artifact_directory.is_relative_to(ROOT/'runtime'):raise ValueError('Dispatch artifacts must stay inside runtime/')
     output=artifact_directory/'dispatch-boundaries.json'
-    derived_json(output,payload,publish=args.write)
+    if args.write:SharedAnalysis(ROOT).publish_output(output,json_text(payload).encode())
+    else:derived_json(output,payload)
     print(json_text({k:v for k,v in payload.items() if k not in ('producer_records','unowned_direct_destinations')}))
 if __name__=='__main__':main()

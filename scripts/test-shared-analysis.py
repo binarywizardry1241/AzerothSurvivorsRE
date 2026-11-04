@@ -60,6 +60,18 @@ class SharedStoreTests(unittest.TestCase):
         second = self.store.publish_query({"query": 2}, {"b": 2, "a": 1})
         self.assertEqual(first["sha256"], second["sha256"])
 
+    def test_runtime_publication_reuses_bytes_and_preserves_old_object(self):
+        path = self.root / "runtime/coverage/proof.json"
+        first = self.store.publish_output(path, b"first")
+        old_target = path.resolve()
+        stamp = path.lstat().st_mtime_ns
+        self.assertEqual(self.store.publish_output(path, b"first"), first)
+        self.assertEqual(path.lstat().st_mtime_ns, stamp)
+        second = self.store.publish_output(path, b"second")
+        self.assertEqual(path.resolve(), self.store.verify_receipt(second))
+        self.assertEqual(old_target.read_bytes(), b"first")
+        self.assertEqual(self.store.verify()["aliases"], 1)
+
     def test_migration_aliases_preserve_hash_and_do_not_copy_unique_bytes(self):
         data = b"native evidence\n" * 200
         a = self.file("runtime/history-a/export.bin", data)

@@ -23,6 +23,7 @@ import re
 import subprocess
 
 from coverage_common import ROOT, file_sha256, json_text, latest_target, project_path, target_bytes
+from shared_analysis import SharedAnalysis
 
 
 SUMMARY = ROOT / "docs/analysis/coverage/diagnostic-ownership.json"
@@ -325,7 +326,7 @@ def main():
         if args.write:
             output.parent.mkdir(parents=True, exist_ok=True)
             if not output.is_file() or output.read_text() != serialized:
-                output.write_text(serialized)
+                SharedAnalysis(ROOT).publish_output(output, serialized.encode("utf-8"))
             SUMMARY.write_text(json_text(summary))
         if args.check:
             if not output.exists() or output.read_text() != serialized or not SUMMARY.exists() or SUMMARY.read_text() != json_text(summary):

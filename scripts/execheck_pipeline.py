@@ -6,6 +6,7 @@ are execution evidence, not a semantic review or a completeness certificate.
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from contextlib import contextmanager
 import ast
+import ctypes
 import fcntl
 import hashlib
 import json
@@ -21,6 +22,28 @@ import time
 import uuid
 
 from shared_analysis import SharedAnalysis, file_digest
+
+# These producers replace changed files atomically and can keep a stable CAS
+# alias when the data is unchanged. Mutable checkpoints are deliberately separate.
+SHARED_STAGE_OUTPUTS = frozenset({
+    "inventory.json", "diagnostic-ownership.json", "dispatch-boundaries.json",
+    "guarded-proposals.json", "guarded-jump-tables.json", "diagnostics.json",
+})
+
+
+def shareable_stage_output(root, path):
+    return path.is_relative_to(root / "runtime/coverage") and path.name in SHARED_STAGE_OUTPUTS
+
+
+def clone_file(source, destination):
+    """Use APFS copy-on-write for mutable views when available."""
+    if sys.platform != "darwin":
+        return False
+    clone = getattr(ctypes.CDLL(None), "clonefile", None)
+    if clone is None:
+        return False
+    clone.argtypes = (ctypes.c_char_p, ctypes.c_char_p, ctypes.c_int)
+    return clone(os.fsencode(source), os.fsencode(destination), 0) == 0
 
 FORMAT = "execheck-stage-v1"
 SCHEMA = """CREATE TABLE IF NOT EXISTS execheck_stage_cache (
@@ -372,6 +395,9 @@ class Pipeline:
         return receipt | {"seal_sha256": row[0]}
 
     def _seal_file(self, path, key):
+        if shareable_stage_output(self.root, path):
+            receipt = self.store.migrate_file(path, {"stage_key": key})
+            return {field: receipt[field] for field in ("sha256", "bytes")}
         sha = file_digest(path)
         destination = self.store.object_path(sha)
         if destination.exists():
@@ -379,16 +405,13 @@ class Pipeline:
                 raise ValueError("Corrupt stage output in CAS")
             return {"sha256": sha, "bytes": path.stat().st_size}
         # put_file hard-links; snapshot first so a later producer cannot mutate CAS.
-        descriptor, name = tempfile.mkstemp(prefix=".seal-", dir=self.directory)
-        os.close(descriptor)
-        pending = Path(name)
-        try:
-            shutil.copyfile(path, pending)
+        with tempfile.TemporaryDirectory(prefix=".seal-", dir=self.directory) as staging:
+            pending = Path(staging) / "payload"
+            if not clone_file(path, pending):
+                shutil.copyfile(path, pending)
             if file_digest(pending) != sha or file_digest(path) != sha:
                 raise ValueError("Stage output changed during publication")
             self.store.put_file(pending, "execheck-stage-output", {"stage_key": key})
-        finally:
-            pending.unlink(missing_ok=True)
         return {"sha256": sha, "bytes": path.stat().st_size}
 
     def _detach_output_aliases(self, stage):
@@ -401,13 +424,14 @@ class Pipeline:
             target = path.resolve(strict=True)
             if not target.is_relative_to(self.store.objects):
                 raise ValueError(f"Output aliases an unexpected mutable file: {name}")
-            descriptor, pending_name = tempfile.mkstemp(prefix=".producer-", dir=path.parent)
-            os.close(descriptor)
-            try:
-                shutil.copyfile(target, pending_name)
-                os.replace(pending_name, path)
-            finally:
-                Path(pending_name).unlink(missing_ok=True)
+            if shareable_stage_output(self.root, path):
+                continue
+            with tempfile.TemporaryDirectory(prefix=".producer-", dir=path.parent) as staging:
+                pending = Path(staging) / "payload"
+                if not clone_file(target, pending):
+                    shutil.copyfile(target, pending)
+                pending.chmod(0o600)
+                os.replace(pending, path)
             aliases.append(name)
         return aliases
 
@@ -496,6 +520,7 @@ class Pipeline:
                 self.audit_session.remember(name, key, seal["sha256"])
             # Timings are deliberately outside immutable evidence/cache identities.
             atomic_json(metrics_path, metrics)
+            log.unlink(missing_ok=True)
             self.notify(f"{name}: finished in {metrics['wall_seconds']:.2f}s")
             return receipt | {"seal_sha256": seal["sha256"], "cache_hit": False, "metrics": metrics}
 

@@ -21,6 +21,7 @@ import uuid
 from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes, load_json, json_text, file_sha256, artifact_path
 from shared_native_inventory import open_readonly as open_native_inventory
+from shared_analysis import SharedAnalysis
 
 # These exact predecessors differ only in storage/launch coordination. Their
 # archived bytes remain verifiable inputs; the collector itself is executed from
@@ -44,10 +45,18 @@ RETAINED_PREDECESSORS = {
                                          '9620e0505314b2ce1797f7419c89c9919beac2adfa772289bcfc15006a9be9df'},
 }
 
+GIT_STORAGE_PREDECESSORS = {
+    'scripts/census-native-image.py': '96e45cfd9ade2d479e3fe27ad0a483620f8e2ae0c75425e608994ed2ce1b2c37',
+    'scripts/rea-native-census.mjs': '9733aa2c5cfd7ec9934a1ad060eba0b8fcaf591bb404333ce6842c4100da5cdb',
+}
+
 def committed_tool_path(name, expected, root=ROOT):
     path=(Path(root)/name).resolve()
     if not path.is_relative_to(Path(root).resolve()):raise ValueError('Resume tool/input path escapes project')
     if path.is_file() and hashlib.sha256(path.read_bytes()).hexdigest()==expected:return path
+    if GIT_STORAGE_PREDECESSORS.get(name)==expected:
+        original=subprocess.check_output(['git','cat-file','blob','0bbcb5f5:'+name],cwd=root)
+        if hashlib.sha256(original).hexdigest()==expected:return None
     retained=Path(root)/'runtime/analysis/tools'/expected/Path(name).name
     if (STORAGE_PREDECESSORS.get(name)==expected or expected in RETAINED_PREDECESSORS.get(name,set())) and retained.is_file() and hashlib.sha256(retained.read_bytes()).hexdigest()==expected:return retained
     raise ValueError('Resume tool/input digest differs: '+name)
@@ -190,7 +199,15 @@ def snapshot_input(source,destination,expected_digest):
     """Commit exactly the bytes selected by a hash-bound proof summary."""
     raw=source.read_bytes()
     if hashlib.sha256(raw).hexdigest()!=expected_digest:raise ValueError('Proof input changed before immutable snapshot')
-    destination.write_bytes(raw)
+    return snapshot_bytes(raw,destination)
+
+
+def snapshot_bytes(raw,destination):
+    store=SharedAnalysis(ROOT)
+    receipt=store.put_bytes(raw,'frozen-native-census-input',{'path':destination.name})
+    # The staging directory may be moved or discarded when an exact pass
+    # already exists. Only the plan and its eventual paths bind the link.
+    destination.symlink_to(os.path.relpath(store.verify_receipt(receipt),destination.parent))
     return destination
 
 
@@ -317,7 +334,7 @@ def main():
         helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper)
         if summary['generator']['sha256']!=file_sha256(ROOT/'scripts/recover-native-import-thunks.py'):raise ValueError('Import-thunk proof generator differs')
         starts.update(helper.verify_inventory(load_json(inventory),target,pe,capstone))
-        snapshot=directory/'import-thunks-input-summary.json';snapshot.write_bytes(summary_bytes)
+        snapshot=snapshot_bytes(summary_bytes,directory/'import-thunks-input-summary.json')
         import_thunks={'path':inventory.relative_to(ROOT).as_posix(),'sha256':file_sha256(inventory),
             'summary':snapshot.relative_to(ROOT).as_posix(),'summary_sha256':file_sha256(snapshot)}
     unwind_handlers=None
@@ -332,10 +349,10 @@ def main():
         helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper)
         if summary['generator']['sha256']!=file_sha256(ROOT/'scripts/recover-native-unwind-handlers.py'):raise ValueError('PE metadata generator differs')
         starts.update(helper.verify_inventory(load_json(inventory),target,pe))
-        snapshot=directory/'unwind-handlers-input-summary.json';snapshot.write_bytes(summary_bytes)
+        snapshot=snapshot_bytes(summary_bytes,directory/'unwind-handlers-input-summary.json')
         unwind_handlers={'path':inventory.relative_to(ROOT).as_posix(),'sha256':file_sha256(inventory),
             'summary':snapshot.relative_to(ROOT).as_posix(),'summary_sha256':file_sha256(snapshot)}
-    starts_path=directory/'starts.tsv';starts_path.write_text(''.join(f'{address:x}\n' for address in sorted(starts)))
+    starts_path=snapshot_bytes(''.join(f'{address:x}\n' for address in sorted(starts)).encode(),directory/'starts.tsv')
     patch_spec=importlib.util.spec_from_file_location('rea_census_patch',ROOT/'scripts/repair-rea-native-census.py')
     patch=importlib.util.module_from_spec(patch_spec);patch_spec.loader.exec_module(patch)
     path,expected,changed,upstream=patch.changes()
@@ -352,8 +369,7 @@ def main():
         jump_path=(ROOT/jump_summary['inventory']['path']).resolve()
         if not jump_path.is_relative_to(ROOT):raise ValueError('Jump table inventory escapes checkout')
         jump_path=snapshot_input(jump_path,directory/'guarded-tables-input.json',jump_summary['inventory']['sha256'])
-        jump_summary_snapshot=directory/'jump-tables-input-summary.json'
-        jump_summary_snapshot.write_bytes(jump_summary_bytes)
+        jump_summary_snapshot=snapshot_bytes(jump_summary_bytes,directory/'jump-tables-input-summary.json')
         jump_tables={'path':str(jump_path),'sha256':jump_summary['inventory']['sha256'],
             'summary':jump_summary_snapshot.relative_to(ROOT).as_posix(),'summary_sha256':file_sha256(jump_summary_snapshot),
             'selected_summary':jump_summary_path.relative_to(ROOT).as_posix()}
@@ -378,7 +394,7 @@ def main():
         spec=importlib.util.spec_from_file_location('address_code_selection',ROOT/'scripts/recover-native-address-leads.py');helper=importlib.util.module_from_spec(spec);spec.loader.exec_module(helper)
         if summary['generator']['sha256']!=file_sha256(ROOT/'scripts/recover-native-address-leads.py'):raise ValueError('Address-code generator differs')
         helper.verify_inventory(load_json(inventory),target,pe,capstone)
-        snapshot=directory/'address-code-input-summary.json';snapshot.write_bytes(summary_bytes)
+        snapshot=snapshot_bytes(summary_bytes,directory/'address-code-input-summary.json')
         address_leads={'path':str(inventory),'sha256':file_sha256(inventory),'summary':snapshot.relative_to(ROOT).as_posix(),'summary_sha256':file_sha256(snapshot)}
         tools['scripts/recover-native-address-leads.py']=file_sha256(ROOT/'scripts/recover-native-address-leads.py')
     if import_thunks:tools['scripts/recover-native-import-thunks.py']=file_sha256(ROOT/'scripts/recover-native-import-thunks.py')

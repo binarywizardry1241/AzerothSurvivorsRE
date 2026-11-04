@@ -103,8 +103,19 @@ def main():
     from execheck_pipeline import digest
     # Only native-profile changes need a different durable census plan. Other
     # producer changes invalidate their own stage and descendants in place.
-    profile_hash = digest({"collector": {name: file_sha256(ROOT / name) for name in
-                          ("scripts/ghidra/ReaNativeCensus.java", "scripts/census-native-image.py", "scripts/rea-native-census.mjs", "package-lock.json")}})[:16]
+    collector = {name: file_sha256(ROOT / name) for name in
+                 ("scripts/ghidra/ReaNativeCensus.java", "scripts/census-native-image.py",
+                  "scripts/rea-native-census.mjs", "package-lock.json")}
+    # Preserve the existing work namespace for these exact storage-only adapters.
+    for name, updated, prior in (
+        ("scripts/census-native-image.py", "c0d9e29540db6bfa3dc8eed8171a05626f8e74f7e14661675b4f9b9b4ad85d2b",
+         "96e45cfd9ade2d479e3fe27ad0a483620f8e2ae0c75425e608994ed2ce1b2c37"),
+        ("scripts/rea-native-census.mjs", "894d8111dcb6047e5b583d9c71a937946043aee040a9a2287887e96c7ba60253",
+         "9733aa2c5cfd7ec9934a1ad060eba0b8fcaf591bb404333ce6842c4100da5cdb"),
+    ):
+        if collector[name] == updated:
+            collector[name] = prior
+    profile_hash = digest({"collector": collector})[:16]
     summary_profile = digest(source_closure(ROOT, ["scripts/summarize-native-image.py"]))[:16]
     work = args.work or f"runtime/coverage/{target['sha256']}/pipeline/{profile_hash}"
     if not project_path(work).is_relative_to(ROOT / "runtime"):
@@ -135,6 +146,8 @@ def main():
         reconcile_frontier(ROOT, target, args.census_summary)
     if not args.plan and args.phase == "native":
         subprocess.run([sys.executable, "-B", "scripts/manage-program-archives.py", "--retire-historical"],
+                       cwd=ROOT, check=True)
+        subprocess.run([sys.executable, "-B", "scripts/manage-program-archives.py", "--sweep-ready-raw"],
                        cwd=ROOT, check=True)
     environment = {"PYTHONDONTWRITEBYTECODE": "1"}
     if args.python_path:

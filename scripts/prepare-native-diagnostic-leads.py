@@ -11,6 +11,8 @@ from collections import Counter
 import gzip
 import importlib.util
 from coverage_common import ROOT,latest_target,target_bytes,load_json,json_text,file_sha256,project_path
+from instruction_facts import artifact_path, derived_bytes
+from shared_analysis import SharedAnalysis
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--census-summary',default='docs/analysis/coverage/full-image-switches-v2.json');parser.add_argument('--inventory-output',help='Project-local inventory path; defaults beside the source census');parser.add_argument('--write',action='store_true');args=parser.parse_args()
@@ -54,7 +56,10 @@ def main():
         'diagnostic_input':{'path':source.relative_to(ROOT).as_posix(),'sha256':file_sha256(source)},
         'generator':{'path':'scripts/prepare-native-diagnostic-leads.py','sha256':file_sha256(ROOT/'scripts/prepare-native-diagnostic-leads.py')},
         'counts':dict(counts),'records':records,'code_only_seeds':seeds,'function_entry_or_incoming_flow_edges_inferred':False}
-    output=project_path(args.inventory_output) if args.inventory_output else directory/'diagnostic-code-leads.json'
-    if args.write:output.write_text(json_text(payload))
+    output=artifact_path(args.inventory_output) if args.inventory_output else directory/'diagnostic-code-leads.json'
+    if args.write:
+        data=json_text(payload).encode()
+        if output.is_relative_to(ROOT/'runtime'):SharedAnalysis(ROOT).publish_output(output,data)
+        else:derived_bytes(output,data,publish=True)
     print(json_text({'counts':dict(counts),'code_only_seeds':len(seeds),'inventory':{'path':output.relative_to(ROOT).as_posix(),'sha256':file_sha256(output) if output.exists() else None}}))
 if __name__=='__main__':main()

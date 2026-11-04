@@ -18,6 +18,7 @@ import struct
 import sys
 
 from coverage_common import ROOT, file_sha256, json_text, latest_target, project_path, target_bytes
+from shared_analysis import SharedAnalysis
 
 SUMMARY = ROOT / "docs/analysis/coverage/native-summary.json"
 GENERATOR = "scripts/inventory-current-target.py"
@@ -220,7 +221,7 @@ def main():
         output, payload, summary = inventory()
         if args.write:
             output.parent.mkdir(parents=True, exist_ok=True)
-            output.write_text(payload, encoding="utf-8")
+            SharedAnalysis(ROOT).publish_output(output, payload.encode("utf-8"))
             SUMMARY.parent.mkdir(parents=True, exist_ok=True)
             SUMMARY.write_text(json_text(summary), encoding="utf-8")
         elif args.check:
