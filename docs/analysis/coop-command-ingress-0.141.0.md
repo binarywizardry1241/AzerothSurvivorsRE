@@ -129,6 +129,59 @@ The 827-byte current follow-up slice has SHA-256
 `d52a6ded9328d67dcded18306292b1fe7e3056fe948d852c0e36834a40d314e0`,
 and its verified Ghidra result digest is
 `2c17f124d7c5673a22568526af6b093b811179012088cad816207220a04265f4`.
-Current initialization of the capability for each desktop recipient
-remains open. The reconstructed desktop already presents the custom choice
-and result views through their ordinary state owners.
+The phase-2 publisher rejects capability zero and choice kind `0xff`;
+the phase-4/5 publisher requires capability one.
+
+## Desktop and guest Gossip capability initialization
+
+The common Game constructor `0x145f7cfb0` writes little-endian dword
+`1` to `[rbp+0x1098]` at `0x145f7e0ea`. The returned Game is copied
+from `rbp-0x38` for `0x10f0` bytes. The third byte of that dword is
+the initial Game `+0x10d2` value, zero.
+
+For the local hero, `0x145ec08c9` calls the constructor with Game output
+at `rbp-0x48`. It then calls Core's callback slot `+0x40` and writes
+AL at `rbp+0x108a`, the same Game offset. Desktop startup supplies
+vtable `0x146554a08` in R9 at `0x14003ddc6`. The driver forwards it
+in R9 at `0x145e80f69`, the Core forwarding call moves it to R8 at
+`0x145ed0c4c`, and `0x145ea2d61` stores it at Core `+0x1fb0`.
+Vtable slot `0x146554a48` points to `0x14006e750` (`31 c0 c3`,
+`xor eax,eax; ret`), so the desktop override is zero.
+
+Guest admission constructs the temporary Game at `rbp+0x1cb8`
+through the locale wrapper `0x145e6d8f0`. The wrapper forwards the
+output to the same constructor at `0x145e6da54`. Admission copies
+the host's Game `+0x10d0` byte individually at `0x145f1301a`, leaving
+`+0x10d2` at the constructor default. The row conversion at
+`0x145e49166..0x145e491af` moves the eight bytes at Game `+0x10d0`
+to row `+0xc0c`. The subsequent `0xc20`-byte row copy installs
+the zero at row `+0xc0e`. The self-selection refresh seats the row
+at `0x145ef9548`, sets the actor slot, and calls the locale-aware
+phase dispatcher `0x145e74200` before restoring the row. The capability
+guards suppress both Gossip publishers for the seated desktop recipient.
+
+| PE span | File offset | Bytes | SHA-256 |
+| --- | ---: | ---: | --- |
+| Common packed initialization `0x145f7e0ea` | `0x5f7d4ea` | 10 | `1d636e8d50dcfcbfa199a8d6d18a7ffb608a0d915d29298284537b2750e872f9` |
+| Game publication `0x145f7ece9` | `0x5f7e0e9` | 25 | `d61e0685b9f1e3f0fe133a9c12602da040e90fc15657bffe2e1c87fb5e1119f5` |
+| Desktop vtable argument `0x14003ddbf` | `0x3d1bf` | 27 | `c5df319fa008bc569f4502023e7f0e3495430ad3d05ff04aa48d6c2bc18a64a9` |
+| Callback slot `0x146554a48` | `0x6553048` | 8 | `acced0327cccf088b50ad9a029cf3f6edb7d3ad1146a05de0cf97a3f18e1eb44` |
+| Zero-return leaf `0x14006e750` | `0x6db50` | 3 | `251447ee91a9067dcd6ab96703133f617565974cd6c4819021760c4688c91abf` |
+| Desktop factory override `0x145ec08bf` | `0x5ebfcbf` | 40 | `2e8570054e52c6a3a551b918a1601633b3513ad6388260c12791882178f811d3` |
+| Guest Game construction `0x145f12df9` | `0x5f121f9` | 35 | `1334d734dd6ea9f3a9c39f1d02c7cdc231602d4065db6c8557a90ecdb4059ba9` |
+| Guest row conversion and publication `0x145f1301a` | `0x5f1241a` | 145 | `85c32c5669815eef3278161424b3dd7f2fb2ca6735d7b3facc7bfbea36245b38` |
+| Packed copy into row `0x145e49166` | `0x5e48566` | 74 | `2dbbbb2308981480f5c1c7b27d3f5d8017445dfcd9e358fa15572f537085f054` |
+
+The journaled Ghidra slices for guest admission and the common constructor
+have SHA-256 `b2f70a80fef776732df3eb4a8675712bc88849fb814ed247fbbcb5396fd78663`
+and `2a0a93e9b7e98c04959b1b6ea70d3d294301a94cff0498d4ce4afe572b2ac5e1`.
+Their verified result digests are
+`69c04b33ed18581e2518991d877f33f6fb9c920231a3c811475ef90fc7c5ce28` and
+`3d9513c02c5e35e4e85af3b6ae1d0f7add06fd90102ed613e7b4a7990b38b700`.
+
+The reconstructed desktop sends custom choices through the existing
+[recipient overlay publisher](../../crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs)
+and consumes the authoritative guest terminal state in the
+[results overlay](../../crates/azeroth-survivors-re/src/gameplay/terminal.rs).
+Those paths require no alternate Gossip emitter for this desktop contract.
+Actual co-op delivery and rendered behavior remain unverified.
