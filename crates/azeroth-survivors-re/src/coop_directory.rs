@@ -763,12 +763,21 @@ fn poll(
             }
             request @ (FormRequest::Leave | FormRequest::LeaveRun) => {
                 let end_run = request == FormRequest::LeaveRun;
-                if end_run && !runtime.is_guest() {
+                let was_guest = runtime.is_guest();
+                if end_run && !was_guest {
                     continue;
                 }
-                // Current0.119.0 command23 invokes the complete guest close
-                // transaction before replacing the driver/service state.
-                if runtime.is_guest() {
+                if end_run {
+                    if let Some(mut driver) = runtime.driver.take() {
+                        driver.leave_guest_run(time.elapsed_secs_f64());
+                        for command in driver.take_service_commands() {
+                            send_relay(&mut service, command);
+                        }
+                    }
+                    service.close();
+                }
+                // Both departures settle the cached run before discarding it.
+                if was_guest {
                     let now = std::time::SystemTime::now()
                         .duration_since(std::time::UNIX_EPOCH)
                         .map_or(0, |duration| duration.as_secs());
@@ -800,17 +809,12 @@ fn poll(
                             .then_some(benilla_protocol::SessionEnd::LoggedOut),
                     );
                 }
-                if let Some(mut driver) = runtime.driver.take() {
-                    if end_run {
-                        driver.leave_guest_run(time.elapsed_secs_f64());
-                        for command in driver.take_service_commands() {
-                            send_relay(&mut service, command);
-                        }
-                    } else {
+                if !end_run {
+                    if let Some(mut driver) = runtime.driver.take() {
                         driver.leave(time.elapsed_secs_f64(), |command| send_relay(&mut service, command));
                     }
+                    service.close();
                 }
-                service.close();
                 service.hosting = false;
                 service.profile_identity = None;
                 runtime.party.clear();

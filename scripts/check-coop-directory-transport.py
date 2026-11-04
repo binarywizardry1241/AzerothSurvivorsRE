@@ -311,7 +311,7 @@ def check_current_close(target, data, pe):
         < close.index("self.secondary.take()") < close.index("secondary.submit(ClientMessage::Leave)") \
         < close.index("self.secondary_lifetime = None")
     for departure in (
-        block_after(directory, "FormRequest::Leave"),
+        block_after(block_after(directory, "FormRequest::Leave"), "if !end_run"),
         block_after(directory, "if exits.read().next().is_some()"),
     ):
         assert departure.index("driver.leave(") < departure.index("service.close()")

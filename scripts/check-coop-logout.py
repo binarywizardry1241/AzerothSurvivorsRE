@@ -124,7 +124,9 @@ def guest_end_run():
     pause = (source / 'gameplay/run_hud/pause.rs').read_text()
     assert 'coop_ui.request_leave_run();' in pause and 'kind:5' not in pause
     directory = (source / 'coop_directory.rs').read_text()
-    assert 'driver.leave_guest_run(' in directory and '"you left the run"' in directory
+    leave = directory.split('request @ (FormRequest::Leave | FormRequest::LeaveRun)', 1)[1]
+    assert (leave.index('driver.leave_guest_run(') < leave.index('service.close();')
+            < leave.index('guest.settle(') < leave.index('"you left the run"'))
     mechanics = (source / 'gameplay/mechanics/coop.rs').read_text()
     departure = mechanics.split('pub fn leave_party_hero(', 1)[1].split('fn refresh_party_live_heroes', 1)[0]
     assert '.all(|hero| hero.departed)' in departure

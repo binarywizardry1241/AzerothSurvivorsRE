@@ -13,7 +13,9 @@ The local request 9 producer at `0x145e4c54f` enters the guest dispatcher
 `0x145e767ae`. That case flushes existing guest output, serializes variant 16
 using constant `0x1476c5b00`, submits it through the guest connection writer,
 takes the service state and invokes the terminal close owner `0x145f94b20`.
-It then publishes the exact local reason `you left the run`. The writer case
+It then enters `0x145e752b0`, which consumes the still-available guest summary
+and account state before the role-Off publication with the exact local reason
+`you left the run`. The writer case
 `0x145dc9290` emits only byte `0x10`. The joined-host variant 16 cell at
 `0x1476c8220` selects the connection close slot through `0x145e78345`.
 Control 5 has its own per-actor action under `0x145ec30a0` and does not own
@@ -22,8 +24,9 @@ this request.
 The confirmed pause action queues a distinct Leave Run request. It uses the
 existing Disconnect codec, party teardown, guest settlement and hero-picker
 return. The role writes Disconnect after pending guest packets. The service
-then performs its terminal primary and secondary Leave/close sequence. The
-picker receives the existing localized reason. The earlier [logout contract](coop-logout-0.115.0.md)
+then performs its terminal primary and secondary Leave/close sequence before
+the local settlement consumes the retained guest state. The picker receives
+the existing localized reason. The earlier [logout contract](coop-logout-0.115.0.md)
 keeps its original target and its separate host End packet.
 
 ## Permanent departure and the last active run
