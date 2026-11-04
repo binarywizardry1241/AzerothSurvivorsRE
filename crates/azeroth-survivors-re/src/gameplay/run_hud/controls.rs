@@ -41,13 +41,14 @@ pub(super) fn capture_pointer(
     nodes: Query<(&HudPart, &RelativeCursorPosition)>,
     mut extension: ResMut<LocalClientExtension>,
 ) {
-    if menu.in_run && session.mechanics.is_some() {
-        extension.pointer_over_ui |= state.drag.is_some()
-            || session.paused
-            || nodes
-                .iter()
-                .any(|(part, cursor)| settings.shown(part.0) && cursor.cursor_over);
-    }
+    extension.pointer_drag_capture |= state.drag.is_some();
+    extension.pointer_over_ui |= state.drag.is_some()
+        || (menu.in_run
+            && session.mechanics.is_some()
+            && (session.paused
+                || nodes
+                    .iter()
+                    .any(|(part, cursor)| settings.shown(part.0) && cursor.cursor_over)));
 }
 
 pub(super) fn input(
@@ -74,16 +75,14 @@ pub(super) fn input(
                 || nodes
                     .iter()
                     .any(|(part, _, _, _, cursor)| settings.shown(part.0) && cursor.cursor_over));
-    let Ok(window) = windows.single() else {
-        return;
-    };
     // The native secondary resource is Bevy Touches. It reads the first
     // currently pressed map entry directly, without scaling or choosing an ID.
-    let pointer = window
-        .cursor_position()
-        .or_else(|| touches.iter().next().map(|touch| touch.position()));
+    let touch = touches.iter().next();
+    let pointer = windows.single().ok().and_then(|window| {
+        window.cursor_position().or_else(|| touch.map(|touch| touch.position()))
+    });
     if let Some(drag) = state.drag.as_ref() {
-        if !mouse.pressed(MouseButton::Left) && touches.iter().next().is_none() {
+        if !mouse.pressed(MouseButton::Left) && touch.is_none() {
             state.drag = None;
             if let Some(path) = &state.path {
                 if let Err(error) = layout::write(path, &settings.positions) {

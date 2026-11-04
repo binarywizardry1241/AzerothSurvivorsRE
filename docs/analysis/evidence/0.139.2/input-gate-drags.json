@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "gap_id": 310,
+  "target": {
+    "version": "0.139.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+    "size_bytes": 150793728
+  },
+  "provider": {
+    "id": "ghidra",
+    "version": "12.1.4"
+  },
+  "native_ranges": [
+    {
+      "role": "meter_update",
+      "address": "0x140166810",
+      "end_exclusive": "0x140166b3c",
+      "file_offset": "0x165c10",
+      "byte_count": 812,
+      "sha256": "3f3cd20d0ed464fe07d5816e9a9fbf85d839544ca5fa45de498fdda421bd2f45",
+      "query_journal_sha256": "d03b6db44a444eb9b232d2314c76c89ca6c7bff2d63e5c60ba644aa4cb659e7e",
+      "queries": [
+        {
+          "operation": "procedure_info",
+          "operation_id": "5a6c3b95e002c8eaebb2eebffd9c203244acf57f74464c731c7cfbf4abb43fa1",
+          "result_sha256": "3c67bc1287c5a26a0b9996e0191c6659e1219af0a466fa2a4d2c9f106e538bd3",
+          "evidence_id": "ev_20e1ede51761f320c1f8ce604e78799856c851cc0cca88a5654b8dc3e3dd2599"
+        },
+        {
+          "operation": "procedure_pseudo_code",
+          "operation_id": "bcc06706ee80690a68d1395587ae96f37ff455a7b4b308ddf6b86050b777c75f",
+          "result_sha256": "61e19eacfc860348848f2f836c977169968390735023fa75f3c089209a4b6555",
+          "evidence_id": "ev_1a753bcd61334ae2f4b94bc81cb633fd840ffebf86120bfcfc875d33cdc26f04"
+        }
+      ]
+    },
+    {
+      "role": "meter_capture",
+      "address": "0x140176e60",
+      "end_exclusive": "0x14017708a",
+      "file_offset": "0x176260",
+      "byte_count": 554,
+      "sha256": "4f16021dde0b9d8f9ff94b2af023e595a6a375b8597faf5270d275afa9239b66"
+    },
+    {
+      "role": "run_hud_update",
+      "address": "0x140285730",
+      "end_exclusive": "0x140285b9f",
+      "file_offset": "0x284b30",
+      "byte_count": 1135,
+      "sha256": "d0b060f6f1b5f5a87c3032f7e42b17e08fed27956194e9440f7229d33ad27545",
+      "query_journal_sha256": "71bf9925638d69639ef16e38c43474074aaeabaf11143196304d900854845eba",
+      "queries": [
+        {
+          "operation": "procedure_info",
+          "operation_id": "1c7a6780c82d0030584af01313f99cf97228a1e380cef3ed49b3af9e7a4ef191",
+          "result_sha256": "5c37135d463d7b7694faa24377271b0f39cb09c8d3ef09bb5e0d430dfec5ab6d",
+          "evidence_id": "ev_1de057738c17a39899e8c64a94a93aa6f2bb18660bfd4887e7d5c19497fe6a22"
+        },
+        {
+          "operation": "procedure_pseudo_code",
+          "operation_id": "489601064382995dfa7f47c6e2e3c63492455a4d07b4b40df1fc9e654e416f5b",
+          "result_sha256": "1395e9656bf1f4cdfcc9393846bdcd89985e28b033932f36156caa6a6060e356",
+          "evidence_id": "ev_ccf71da70d0fac76b98aa7bcda40fd84a5c110a3d02ab847904f5b7a832ba225"
+        }
+      ]
+    },
+    {
+      "role": "run_hud_capture",
+      "address": "0x14029e210",
+      "end_exclusive": "0x14029e43a",
+      "file_offset": "0x29d610",
+      "byte_count": 554,
+      "sha256": "53726bd417bd922031cb693fc39cf0f7d51a9dbfa78d0277584908d913558da7"
+    }
+  ],
+  "drag_connections": [
+    {
+      "name": "meter",
+      "update": "0x140166810",
+      "capture": "0x140176e60",
+      "type_id": "0x1465458a0",
+      "capture_type_xref": "0x140176bc8",
+      "update_type_xref": "0x1401772df",
+      "update_call": "0x140177892",
+      "drag_offset": "0x24",
+      "active_tag_test": "0x140176f6c",
+      "capture_write": "0x140176f75",
+      "release_branch": "0x140166929",
+      "clear_tag": "0x140166ab8",
+      "write_call": "0x140166af3",
+      "write_target": "0x14015b470",
+      "capture_after_hover": "0x14015cf12",
+      "source": "crates/azeroth-survivors-re/src/gameplay/meter.rs",
+      "type_id_bytes": "721aaae49778c89a86eedd75b0f480c8"
+    },
+    {
+      "name": "run_hud",
+      "update": "0x140285730",
+      "capture": "0x14029e210",
+      "type_id": "0x146545820",
+      "capture_type_xref": "0x14029df78",
+      "update_type_xref": "0x14029e683",
+      "update_call": "0x14029eb19",
+      "drag_offset": "0x20",
+      "active_tag_test": "0x14029e31c",
+      "capture_write": "0x14029e325",
+      "release_branch": "0x140285843",
+      "clear_tag": "0x1402859b9",
+      "write_call": "0x140285b50",
+      "write_target": "0x145e3aaf0",
+      "capture_after_hover": "0x140280ee1",
+      "source": "crates/azeroth-survivors-re/src/gameplay/run_hud/controls.rs",
+      "type_id_bytes": "de28c7f1b75f931085be9fd9e903df5e"
+    }
+  ],
+  "pressed_touch_iterator": "0x1443c2840",
+  "limits": [
+    "Raw-slice Ghidra imports omit external callees/data. PE instructions independently establish exact Win64 call and field edges.",
+    "The source uses the existing overlay capture and ordered UI dispatch interfaces.",
+    "No compilation, interaction, runtime or original/rebuilt comparison was performed."
+  ]
+}

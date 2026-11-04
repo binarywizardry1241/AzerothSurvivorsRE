@@ -86,6 +86,10 @@ impl Plugin for MenuPlugin {
             return;
         }
         app.add_systems(
+            Update,
+            capture_picker_enter.in_set(benilla_app::local_client::LocalClientSet::OverlayCapture),
+        );
+        app.add_systems(
                 PostUpdate,
                 crate::picker::keep_selected_visible.after(bevy::ui::UiSystems::Layout),
             )
@@ -109,6 +113,16 @@ impl Plugin for MenuPlugin {
                 .before(crate::gameplay::RunSet::Input));
     }
 }
+
+fn capture_picker_enter(
+    state: Res<MenuState>,
+    mut extension: ResMut<benilla_app::local_client::LocalClientExtension>,
+) {
+    // The custom frontend owns these keys across its pages and entry wait.
+    // The shared collector separately observes the preceding UI typing state.
+    extension.picker_enter_capture = !state.in_run;
+}
+
 #[derive(Component)]
 struct Root;
 #[derive(Component)]

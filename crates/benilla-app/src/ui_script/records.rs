@@ -109,9 +109,12 @@ pub(crate) fn collect_input_records(
 ) {
     let binding_capture = extension.as_ref().is_some_and(|e| e.binding_capture);
     let ignored_keys = extension.as_ref().map_or(&[][..], |e| e.ignored_logical_keys.as_slice());
-    let menu_escape = extension.as_ref().is_some_and(|e| e.custom_game_menu)
-        && session.as_ref().is_some_and(|s| s.active)
-        && capture.as_ref().is_none_or(|c| !c.typing);
+    let not_typing = capture.as_ref().is_none_or(|c| !c.typing);
+    let menu_escape = not_typing
+        && extension.as_ref().is_some_and(|e| e.custom_game_menu)
+        && session.as_ref().is_some_and(|s| s.active);
+    let picker_enter_capture =
+        not_typing && extension.as_ref().is_some_and(|e| e.picker_enter_capture);
     let events: Vec<&WindowEvent> = events.read().collect();
     let now = window.single().ok().and_then(Window::cursor_position);
     let base_scale = window
@@ -181,6 +184,11 @@ pub(crate) fn collect_input_records(
                     if ev.state == ButtonState::Released {
                         records.captured_keys.retain(|&key| key != ev.key_code);
                     }
+                    continue;
+                }
+                if picker_enter_capture
+                    && matches!(ev.key_code, KeyCode::Enter | KeyCode::NumpadEnter)
+                {
                     continue;
                 }
                 if binding_capture && ev.state == ButtonState::Pressed
@@ -440,6 +448,34 @@ mod tests {
         // A frame with no move puts every record at the window's cursor.
         let got = collect(&mut w, vec![button(ButtonState::Released)]);
         assert_eq!(got[0].at, Some(Vec2::new(10.0, 10.0)));
+    }
+
+    #[test]
+    fn picker_owns_both_enter_edges_while_the_previous_ui_was_not_typing() {
+        let mut w = world();
+        w.0.insert_resource(crate::local_client::LocalClientExtension {
+            picker_enter_capture: true,
+            ..default()
+        });
+        w.0.init_resource::<super::super::UiKeyboardCapture>();
+        let got = collect(
+            &mut w,
+            vec![
+                key(KeyCode::Enter, ButtonState::Pressed),
+                key(KeyCode::NumpadEnter, ButtonState::Pressed),
+                key(KeyCode::Digit1, ButtonState::Pressed),
+                key(KeyCode::Enter, ButtonState::Released),
+                key(KeyCode::NumpadEnter, ButtonState::Released),
+            ],
+        );
+        assert_eq!(shape(&got), ["Digit1@Some(10.0)"]);
+
+        w.0.resource_mut::<super::super::UiKeyboardCapture>().typing = true;
+        let got = collect(
+            &mut w,
+            vec![key(KeyCode::Enter, ButtonState::Pressed)],
+        );
+        assert_eq!(shape(&got), ["Enter@Some(10.0)"]);
     }
 
     /// Each record reads the modifiers its own place in the frame left: a Shift that goes down

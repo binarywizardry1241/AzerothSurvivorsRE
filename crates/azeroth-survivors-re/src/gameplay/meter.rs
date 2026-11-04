@@ -183,13 +183,14 @@ fn capture_pointer(
     )>,
     mut extension: ResMut<LocalClientExtension>,
 ) {
-    if !menu.in_run || session.mechanics.is_none() || !meter.shown {
-        return;
-    }
+    extension.pointer_drag_capture |= meter.drag.is_some();
     extension.pointer_over_ui |= meter.drag.is_some()
-        || nodes.iter().any(|(cursor, window, button)| {
-            cursor.cursor_over && (button.is_some() || (window.is_some() && meter.settings.open))
-        });
+        || (menu.in_run
+            && session.mechanics.is_some()
+            && meter.shown
+            && nodes.iter().any(|(cursor, window, button)| {
+                cursor.cursor_over && (button.is_some() || (window.is_some() && meter.settings.open))
+            }));
 }
 
 fn cvars(
@@ -255,6 +256,7 @@ fn input(
     session: Res<RunSession>,
     menu: Res<MenuState>,
     mouse: Res<ButtonInput<MouseButton>>,
+    touches: Res<Touches>,
     windows: Query<&Window, With<PrimaryWindow>>,
     nodes: Query<(&Action, Ref<Interaction>, &RelativeCursorPosition)>,
     hover: Query<&RelativeCursorPosition, With<MeterWindow>>,
@@ -268,8 +270,15 @@ fn input(
     }
     extension.pointer_over_ui |= meter.drag.is_some()
         || (meter.settings.open && hover.iter().any(|cursor| cursor.cursor_over));
+    // The retained move/resize owner finishes the drag before querying the cursor.
+    let touch = touches.iter().next();
+    if meter.drag.is_some() && !mouse.pressed(MouseButton::Left) && touch.is_none() {
+        meter.drag = None;
+        meter.settings.save();
+        return;
+    }
     let Ok(window) = windows.single() else { return };
-    let Some(pointer) = window.cursor_position() else {
+    let Some(pointer) = window.cursor_position().or_else(|| touch.map(|touch| touch.position())) else {
         return;
     };
     if let Some((resize, start, position, size)) = meter
@@ -277,16 +286,11 @@ fn input(
         .as_ref()
         .map(|drag| (drag.resize, drag.pointer, drag.position, drag.size))
     {
-        if !mouse.pressed(MouseButton::Left) {
-            meter.drag = None;
-            meter.settings.save();
+        let delta = pointer - start;
+        if resize {
+            meter.settings.size = settings::bounded_size(size + delta / meter.scale);
         } else {
-            let delta = pointer - start;
-            if resize {
-                meter.settings.size = settings::bounded_size(size + delta / meter.scale);
-            } else {
-                meter.settings.position = Some(position + delta);
-            }
+            meter.settings.position = Some(position + delta);
         }
         return;
     }
@@ -730,7 +734,6 @@ fn present(
             commands.entity(root).despawn();
         }
         meter.identity = None;
-        meter.drag = None;
         return;
     };
     if meter.identity != Some(session.identity) {

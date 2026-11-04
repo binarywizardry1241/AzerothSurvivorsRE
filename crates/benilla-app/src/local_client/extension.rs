@@ -22,6 +22,8 @@ pub struct LocalClientExtension {
     /// Custom embedding UI participates in the production mouse owner arbiter.
     /// OR hover/drag capture in OverlayCapture/OverlayInput before mouse routing.
     pub pointer_over_ui: bool,
+    /// A held embedding drag also blocks input over a registered on-top frame.
+    pub pointer_drag_capture: bool,
     /// Optional VM string global listing comma-separated frame names whose
     /// subtrees paint above embedding screens and retain their ordinary input.
     pub on_top_frames_global: Option<String>,
@@ -37,6 +39,8 @@ pub struct LocalClientExtension {
     /// Own unfocused Escape before the Lua key/binding walk for the embedding's
     /// custom menu. A stock GameMenuFrame opening also hands off before paint.
     pub custom_game_menu: bool,
+    /// The custom picker owns both Enter keys before the shared UI walk.
+    pub picker_enter_capture: bool,
     pub cvar_defaults: Vec<(String, String)>,
     /// Queued through the ordinary registry, never a parallel config store.
     pub cvar_writes: Vec<(String, String)>,

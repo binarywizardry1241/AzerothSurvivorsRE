@@ -248,6 +248,8 @@ pub(super) fn feed_ui_input(
         && local_session.is_some_and(|s| s.active)
         && pointer.embedding.as_ref().is_some_and(|e| e.custom_game_menu);
     let binding_capture = pointer.embedding.as_ref().is_some_and(|e| e.binding_capture);
+    let pointer_capture = binding_capture
+        || pointer.embedding.as_ref().is_some_and(|e| e.pointer_drag_capture);
     let touch = pointer.device.as_ref().and_then(|device| device.touch);
     let on_top_global = pointer.embedding.as_ref().and_then(|e| e.on_top_frames_global.clone());
     if first {
@@ -279,12 +281,12 @@ pub(super) fn feed_ui_input(
             capture.typing = false;
             capture.arrows_fall_through = false;
             if in_world {
-                let over_ui = hover.0.is_some() || egui_pointer;
+                let pointer_blocked = egui_pointer || embedding_pointer || pointer_capture;
+                let over_ui = hover.0.is_some() || pointer_blocked;
                 let mut legs = |mut s: Option<&mut UiScript>| {
                     for r in records.iter().skip(start) {
-                        // No sweep: every notch is the world's, unless the dev overlay holds the
-                        // pointer.
-                        if matches!(r.record, super::Record::Wheel { .. }) && egui_pointer {
+                        // With no sweep there is no registered on-top hit.
+                        if matches!(r.record, super::Record::Wheel { .. }) && pointer_blocked {
                             continue;
                         }
                         let verdict = crate::bindings::KeyVerdict::default();
@@ -335,7 +337,7 @@ pub(super) fn feed_ui_input(
         extension.on_top_pointer = !binding_capture && end.is_some_and(|at| on_top_at(&script, at));
     }
     let admitted = |script: &UiScript, at: Vec2| {
-        !binding_capture && (!embedding_pointer || on_top_at(script, at) || touch.is_some())
+        !pointer_capture && (!embedding_pointer || on_top_at(script, at))
     };
     let walk = &mut *walk;
     let feed = |script: &mut UiScript| {
@@ -385,7 +387,7 @@ pub(super) fn feed_ui_input(
             } else {
                 false
             };
-            let pointer_blocked = stock_menu_click || binding_capture || (embedding_pointer
+            let pointer_blocked = stock_menu_click || pointer_capture || (embedding_pointer
                 && !raw_at.is_some_and(|at| admitted(script, at)));
             let at = raw_at.filter(|&at| !stock_menu_click && admitted(script, at));
             // The cursor an arm the record's walk or binding makes picks at: the last mouse event's
@@ -447,14 +449,20 @@ pub(super) fn feed_ui_input(
                 // The walk above was the move's handler.
                 super::Record::Move => {}
                 super::Record::Wheel { up } => {
-                    let mut slot = WorldSlot {
-                        frame: &mut world_frame,
-                        mods,
-                        live: in_world && !egui_pointer && !pointer_blocked,
-                    };
-                    script.set_click_press(click_press(r, click_consumed.0));
-                    feed_wheel(script, at, *up, &mut slot);
-                    script.set_click_press(ClickPress::default());
+                    // An overlay-owned notch must stop before the wheel walk can fall
+                    // back to FrameXML's saved cursor. The registered hit keeps its input.
+                    if !pointer_capture
+                        && (!embedding_pointer || raw_at.is_some_and(|at| on_top_at(script, at)))
+                    {
+                        let mut slot = WorldSlot {
+                            frame: &mut world_frame,
+                            mods,
+                            live: in_world && !egui_pointer,
+                        };
+                        script.set_click_press(click_press(r, click_consumed.0));
+                        feed_wheel(script, at, *up, &mut slot);
+                        script.set_click_press(ClickPress::default());
+                    }
                     // Its world frame's leg ran inside the walk.
                     leg = false;
                 }

@@ -135,6 +135,12 @@ impl Plugin for LocalClientPlugin {
             .add_systems(First, extension::register.before(LocalClientSet::Lifecycle))
             .add_systems(First, follow_session.in_set(LocalClientSet::Lifecycle))
             .add_systems(
+                PreUpdate,
+                crate::ui_script::capture_on_top_press
+                    .after(bevy::input::InputSystems)
+                    .before(bevy::ui::UiSystems::Focus),
+            )
+            .add_systems(
                 Update,
                 capture_game_menu_input.in_set(LocalClientSet::OverlayCapture),
             )
@@ -185,6 +191,7 @@ fn reset_overlay_pointer(
     mut context: ResMut<LocalContextBinding>,
 ) {
     extension.pointer_over_ui = false;
+    extension.pointer_drag_capture = false;
     extension.on_top_pointer = false;
     extension.binding_capture = false;
     context.chords.clear();

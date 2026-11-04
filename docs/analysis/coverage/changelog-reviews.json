@@ -32351,6 +32351,132 @@
         "docs/analysis/ime-bridge-0.139.2.md": "a84eda82cc573a5d5c6a8cdbef7a2642c1bb18ea6b4e0c53f329c05479bb0bcb",
         "docs/analysis/evidence/0.139.2/ime-bridge.json": "d698aa800b1763f9ab813403dfcb0333821e45d20726f67068c453f85c83f4a6"
       }
+    },
+    {
+      "claim_id": "changelog:0.139.1:2947d2c3823fd003",
+      "target": {
+        "version": "0.139.2",
+        "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908"
+      },
+      "status": "static_checked",
+      "rationale": "Current producer and pause consumer share the exact request resource. The reconstruction also hands off an already-open stock menu before the next click reaches its Exit Game action. Actual interaction, reload and parity remain unverified.",
+      "source_refs": [
+        "crates/benilla-app/src/ui_script/input.rs",
+        "crates/benilla-app/src/local_client.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/escape-game-menu-2026-10-23.md"
+      ],
+      "systems": [
+        "custom-app-screens-hud",
+        "engine-selected-target-deltas"
+      ],
+      "gap_ids": [
+        59,
+        310
+      ],
+      "reviewed_ref_sha256": {
+        "crates/benilla-app/src/ui_script/input.rs": "e28fdb890b3f7e9b6e80daee43b8d3037b1d4533ba732da4b3ab147df69147ac",
+        "crates/benilla-app/src/local_client.rs": "4caaed4f02c1e0ba8cc756033b933dca1ef08fe36450b4c956c33ba1fb9e07d7",
+        "docs/analysis/escape-game-menu-2026-10-23.md": "58dfd917207c3cd7c315333c14887208767d99ae834605f9761ff5a633d5efe3"
+      },
+      "native_contract": "Fresh nonrepeat Escape produces an independent pause request. The physical deny list withholds it before ordered dispatch. The embedded stock menu wrapper is byte-identical to the source asset.",
+      "static_checks": [
+        {
+          "command": "python3 -B scripts/check-escape-menu.py --installed-producer",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/escape-game-menu-2026-10-23.md"
+        }
+      ]
+    },
+    {
+      "claim_id": "changelog:0.139.1:9bc9e9a945e88a72",
+      "target": {
+        "version": "0.139.2",
+        "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908"
+      },
+      "status": "source_connected",
+      "rationale": "Blocking-node pointer ownership reaches the ordered UI, wheel and world binding consumers. The registered on-top exception remains connected and raw Options capture is preserved. Runtime and parity remain unverified.",
+      "source_refs": [
+        "crates/benilla-app/src/ui_script/input.rs",
+        "crates/benilla-app/src/ui_script/on_top.rs",
+        "crates/azeroth-survivors-re/src/native_input/mod.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/input-gate-native-0.139.2.md"
+      ],
+      "systems": [
+        "engine-selected-target-deltas"
+      ],
+      "gap_ids": [
+        310
+      ],
+      "reviewed_ref_sha256": {
+        "crates/benilla-app/src/ui_script/input.rs": "e28fdb890b3f7e9b6e80daee43b8d3037b1d4533ba732da4b3ab147df69147ac",
+        "crates/benilla-app/src/ui_script/on_top.rs": "db7eb95fbf5e156363d30aeefb1182a5b9262232abac347b327f2fe0f347d9d1",
+        "crates/azeroth-survivors-re/src/native_input/mod.rs": "ab45351a4af0f1bbce47504590e40123206fd22cb92fc4c9a88ba3d02f0a94ee",
+        "docs/analysis/input-gate-native-0.139.2.md": "bdb1cb3649f99641facb9848337eba5611a9f2b6a09874e0f23a5e6d97a1e1a6"
+      }
+    },
+    {
+      "claim_id": "changelog:0.139.1:86b87a2556a999d3",
+      "target": {
+        "version": "0.139.2",
+        "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908"
+      },
+      "status": "source_connected",
+      "rationale": "Active HUD and meter drags own the pointer before ordered dispatch, including release or teardown. The meter uses the native touch fallback and persists off-window release. Runtime and parity remain unverified.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/controls.rs",
+        "crates/azeroth-survivors-re/src/gameplay/meter.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/input-gate-native-0.139.2.md",
+        "docs/analysis/evidence/0.139.2/input-gate-drags.json"
+      ],
+      "systems": [
+        "custom-app-screens-hud",
+        "engine-selected-target-deltas"
+      ],
+      "gap_ids": [
+        7,
+        8,
+        310
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/controls.rs": "642fedf3ba1df3e22a5866d11a6c8b74e44bc9fbf8f01ebdf47168a08f039ef6",
+        "crates/azeroth-survivors-re/src/gameplay/meter.rs": "c09bce50b5ac8d8328cb9c1d8cae770abbe3ee3096ff576d85c4062706e693af",
+        "docs/analysis/input-gate-native-0.139.2.md": "bdb1cb3649f99641facb9848337eba5611a9f2b6a09874e0f23a5e6d97a1e1a6",
+        "docs/analysis/evidence/0.139.2/input-gate-drags.json": "6d863fcb9f8b01636c8ec431508390599af0ce0b09d411a02a2c73ea1f5ed652"
+      }
+    },
+    {
+      "claim_id": "changelog:0.139.1:6997016548d527f7",
+      "target": {
+        "version": "0.139.2",
+        "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908"
+      },
+      "status": "source_connected",
+      "rationale": "The custom frontend withholds both physical Enter keys from the shared ordered stream when prior typing is clear. The picker action and explicit stock frontend keep their respective admission paths. Runtime and parity remain unverified.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/menu.rs",
+        "crates/benilla-app/src/ui_script/records.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/input-gate-native-0.139.2.md"
+      ],
+      "systems": [
+        "custom-app-screens-picker",
+        "engine-selected-target-deltas"
+      ],
+      "gap_ids": [
+        310
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/menu.rs": "3a7ca07451cdd2cb4cc22ce0cdbd0fe1d2b93e535ca812ba3a04b430eb180f20",
+        "crates/benilla-app/src/ui_script/records.rs": "9ac5246c5729af8a3107cb144c305aa7b0b3795ed174059876e8c28b4a68dd3f",
+        "docs/analysis/input-gate-native-0.139.2.md": "bdb1cb3649f99641facb9848337eba5611a9f2b6a09874e0f23a5e6d97a1e1a6"
+      }
     }
   ]
 }

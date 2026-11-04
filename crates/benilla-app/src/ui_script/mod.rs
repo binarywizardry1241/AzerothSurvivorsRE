@@ -25,6 +25,7 @@ pub(crate) mod glue_mgr;
 pub(crate) mod glue_scene;
 mod input;
 mod on_top;
+pub(crate) use on_top::capture_on_top_press;
 mod movie;
 pub(crate) mod raise_origin;
 mod records;

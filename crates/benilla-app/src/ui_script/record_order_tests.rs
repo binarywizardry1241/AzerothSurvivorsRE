@@ -262,6 +262,55 @@ fn a_box_a_key_focused_takes_the_next_key_of_the_frame() {
     assert_eq!(log(&app), "", "the box took W");
 }
 
+#[test]
+fn an_embedding_overlay_owns_wheel_at_the_current_or_saved_cursor() {
+    let mut app = client();
+    app.insert_resource(crate::local_client::LocalClientExtension {
+        pointer_over_ui: true,
+        ..default()
+    });
+    wheel_up(&mut app);
+    app.update();
+    assert_eq!(log(&app), "");
+
+    move_to(&mut app, Vec2::new(900.0, 100.0));
+    wheel_up(&mut app);
+    app.update();
+    assert_eq!(log(&app), "");
+
+    let window = app.world().resource::<PrimaryId>().0;
+    app.world_mut().entity_mut(window).remove::<Window>();
+    wheel_up(&mut app);
+    app.update();
+    assert_eq!(log(&app), "");
+}
+
+#[test]
+fn a_registered_hit_keeps_its_wheel_above_an_embedding_overlay() {
+    let mut app = client();
+    app.insert_resource(crate::local_client::LocalClientExtension {
+        pointer_over_ui: true,
+        on_top_frames_global: Some("PROBE_ON_TOP".into()),
+        ..default()
+    });
+    app.world_mut()
+        .non_send_resource_mut::<UiScript>()
+        .run(r#"PROBE_ON_TOP = "RecordOrderButton""#)
+        .unwrap();
+    wheel_up(&mut app);
+    app.update();
+    assert_eq!(log(&app), "wheel;");
+
+    app.world_mut()
+        .resource_mut::<crate::local_client::LocalClientExtension>()
+        .pointer_drag_capture = true;
+    wheel_up(&mut app);
+    button(&mut app, ButtonState::Pressed);
+    button(&mut app, ButtonState::Released);
+    app.update();
+    assert_eq!(log(&app), "wheel;", "a held drag takes precedence over the registered hit");
+}
+
 /// A press over the world whose cursor reaches the button before the frame ends: the press is the
 /// world frame's, so its binding runs; one over the button whose cursor leaves it is neither's.
 #[test]
@@ -439,4 +488,30 @@ fn a_stock_menu_opened_mid_batch_cannot_take_the_next_click_during_a_custom_run(
             if custom_game_menu { "opened;" } else { "opened;exit;" }
         );
     }
+}
+
+#[test]
+fn an_embedding_overlay_blocks_a_touch_from_the_ordered_pointer_walk() {
+    use crate::local_client::{LocalClientExtension, LocalDeviceInput, LocalTouchPointer};
+
+    let mut app = client();
+    app.insert_resource(LocalClientExtension {
+        pointer_over_ui: true,
+        ..default()
+    });
+    let mut device = LocalDeviceInput::default();
+    device.touch = Some(LocalTouchPointer {
+        position: Vec2::new(100., 100.),
+        pressed: true,
+        released: false,
+        canceled: false,
+    });
+    app.insert_resource(device);
+    app.update();
+    let mut device = app.world_mut().resource_mut::<LocalDeviceInput>();
+    let touch = device.touch.as_mut().unwrap();
+    touch.pressed = false;
+    touch.released = true;
+    app.update();
+    assert_eq!(log(&app), "");
 }

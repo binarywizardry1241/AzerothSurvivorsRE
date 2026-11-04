@@ -71,6 +71,16 @@ world pointer arbiter after overlay actions. Its per-frame union resets in
 `First`; independent overlays cannot release one another's capture. The minimap
 bridge reads the visible named FrameXML frame's resolved normalized bounds.
 
+The retained [move/resize instructions](evidence/0.105.0/run-meters/screen/move-resize.asm)
+check left-button or active-touch ownership before querying the cursor. A released
+drag clears its state and calls the settings writer at `0x14016db76` even when
+the cursor has left the window. While held, a valid cursor supplies the movement,
+with the first active touch as the fallback. The source keeps active drag capture
+through release or departure and leaves persistence with the drag input owner.
+The [0.139.2 input isolation trace](input-gate-native-0.139.2.md) revalidates
+the drag tag, pointer capture and release writer for #310. Platform interaction
+and original/rebuilt comparison remain open.
+
 A later reconstruction screenshot shows the swords icon displaced from its
 circular minimap border; [gap #56](../verification-needed.md) owns that
 presentation defect. These historical constructor/placement contracts do not

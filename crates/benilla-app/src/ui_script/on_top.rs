@@ -4,6 +4,41 @@
 use crate::ui_pass::UiQuad;
 use benilla_ui::script::UiScript;
 use benilla_ui::widget::FrameHandle;
+use bevy::{prelude::*, window::PrimaryWindow};
+
+/// Let the registered FrameXML hit keep its ordered records while withholding
+/// fresh mouse edges from Bevy controls behind it.
+pub(crate) fn capture_on_top_press(
+    extension: Res<crate::local_client::LocalClientExtension>,
+    script: Option<NonSend<UiScript>>,
+    windows: Query<&Window, With<PrimaryWindow>>,
+    widescreen: Option<Res<crate::video::Widescreen>>,
+    mut mouse: ResMut<ButtonInput<MouseButton>>,
+) {
+    const BUTTONS: [MouseButton; 3] = [MouseButton::Left, MouseButton::Right, MouseButton::Middle];
+    if !mouse.any_just_pressed(BUTTONS) {
+        return;
+    }
+    let (Some(global), Some(script), Ok(window)) =
+        (extension.on_top_frames_global.as_deref(), script, windows.single())
+    else {
+        return;
+    };
+    let Some(cursor) = window.cursor_position() else {
+        return;
+    };
+    let names = registered_names(&script, Some(global));
+    if names.is_empty() {
+        return;
+    }
+    let screen = super::UiScreen::of_window(window, widescreen.as_deref());
+    let at = super::window_to_ui(screen, cursor);
+    if registered_ancestor(&script, script.hit_test_frame(at.x, at.y), &names) {
+        for button in BUTTONS {
+            mouse.clear_just_pressed(button);
+        }
+    }
+}
 
 /// Read the active VM on every pass: ReloadUI and clearing the global must not
 /// leave registrations attached to an old VM. Native splitting drops empty
@@ -88,6 +123,37 @@ mod tests {
             )
             .unwrap();
         script
+    }
+
+    #[test]
+    fn a_registered_hit_clears_fresh_mouse_edges_and_keeps_held_buttons() {
+        use bevy::ecs::system::RunSystemOnce;
+
+        let mut world = World::new();
+        let mut script = script();
+        script.resolve();
+        world.insert_non_send_resource(script);
+        world.insert_resource(crate::local_client::LocalClientExtension {
+            on_top_frames_global: Some("ON_TOP".into()),
+            ..default()
+        });
+        let mut window = Window {
+            resolution: (1024, 768).into(),
+            ..default()
+        };
+        window.set_cursor_position(Some(Vec2::new(50., 718.)));
+        world.spawn((window, PrimaryWindow));
+        let mut mouse = ButtonInput::default();
+        mouse.press(MouseButton::Left);
+        mouse.press(MouseButton::Forward);
+        world.insert_resource(mouse);
+
+        world.run_system_once(capture_on_top_press).unwrap();
+
+        let mouse = world.resource::<ButtonInput<MouseButton>>();
+        assert!(mouse.pressed(MouseButton::Left));
+        assert!(!mouse.just_pressed(MouseButton::Left));
+        assert!(mouse.just_pressed(MouseButton::Forward));
     }
 
     #[test]

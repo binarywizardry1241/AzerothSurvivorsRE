@@ -21,6 +21,7 @@ use bevy::{
         ButtonState,
     },
     prelude::*,
+    ui::FocusPolicy,
     window::{CursorMoved, PrimaryWindow},
 };
 
@@ -47,6 +48,10 @@ impl Plugin for NativeInputPlugin {
             .init_resource::<DeviceUiInput>()
             .add_systems(
                 Update,
+                capture_blocking_ui.in_set(LocalClientSet::OverlayCapture),
+            )
+            .add_systems(
+                Update,
                 update
                     .in_set(DeviceInputSet)
                     .before(LocalClientSet::OverlayCapture)
@@ -56,6 +61,16 @@ impl Plugin for NativeInputPlugin {
                     .before(crate::gameplay::RunSet::Input),
             );
     }
+}
+
+fn capture_blocking_ui(
+    interactions: Query<(&Interaction, &FocusPolicy)>,
+    mut extension: ResMut<LocalClientExtension>,
+) {
+    extension.pointer_over_ui |= interactions.iter().any(|(interaction, policy)| {
+        matches!(*interaction, Interaction::Hovered | Interaction::Pressed)
+            && *policy == FocusPolicy::Block
+    });
 }
 
 #[derive(Resource, Default)]
