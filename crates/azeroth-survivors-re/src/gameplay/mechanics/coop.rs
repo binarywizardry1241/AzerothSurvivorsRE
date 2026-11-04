@@ -1157,7 +1157,7 @@ impl Mechanics {
             words: self.damaged_by_bosses().to_vec(),
             secondary_rows: self.personal_boss_killing_blows().iter().map(StateRow::from).collect(),
             enhancement: self.graduation_enhancement(),
-            boss_flags: Vec::new(),
+            boss_flags: self.boss_flags().to_vec(),
             coop: self.cooperative_feat_context(),
         }
     }
@@ -1198,6 +1198,7 @@ impl Mechanics {
             .generic
             .damaged_by_bosses
             .clone_from(&state.words);
+        self.effect_state.generic.boss_flags.clone_from(&state.boss_flags);
         self.effect_state.victory_reached = state.flag_8d;
         self.coop.replica_feats.clone_from(&state.coop);
     }
@@ -1580,6 +1581,7 @@ impl Mechanics {
             .unwrap_or_default();
         let strength = std::mem::take(&mut self.guardian_state.shared_strength);
         let killing_blows = std::mem::take(&mut self.boss_state.shared_killing_blows);
+        let boss_flags = std::mem::take(&mut self.boss_state.shared_boss_flags);
         for (slot, _) in self.party_members() {
             self.with_party_hero(slot, |game| {
                 // Native1458fa70e includes downed heroes for equipment unless
@@ -1633,6 +1635,9 @@ impl Mechanics {
                         game.effect_state.generic.killing_blows.push((hit.boss_id, hit.spell_id));
                         game.effect_state.generic.boss_killing_blows.push(hit);
                     }
+                    game.effect_state.generic.boss_flags.extend(
+                        boss_flags.iter().filter_map(|&(killer, result)| (killer != slot).then_some(result)),
+                    );
                 }
                 if game.dead {
                     return;
@@ -2098,6 +2103,12 @@ impl Mechanics {
             }),
         )
     }
+    pub(super) fn active_scripted_targets(&self) -> impl Iterator<Item = (u64, Position)> + '_ {
+        self.coop.snapshot.heroes.iter()
+            .filter(|row| row.state == 1 && !row.finished)
+            .map(|row| (row.guid, row.position.into()))
+    }
+
     pub(super) fn party_input_for(&self, slot: u8) -> Option<PartyInput> {
         if slot == 0 {
             self.coop.local_input
@@ -2362,6 +2373,7 @@ impl Mechanics {
                 game.resolve_boss_effects(delta, input.position, input.facing, world)
             });
         }
+        self.expire_scripted_attacks();
         self.tick_actor_frame(delta, player, facing, world);
         self.capture_party(false);
         self.schedule_party_world(delta, world);

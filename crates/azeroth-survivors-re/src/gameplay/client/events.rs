@@ -144,7 +144,9 @@ fn receive_coop(mut coop: Option<ResMut<crate::coop_runtime::CoopRuntime>>,
         let Ok(value) = serde_json::from_str::<serde_json::Value>(&text) else { continue };
         match value.get("type").and_then(serde_json::Value::as_str) {
             Some("talentxp") => terminal.queue_talent(value),
-            Some("hz" | "hzt" | "hzend") => markers.0.push(value),
+            Some("hz" | "hzt" | "hzend" | "atk" | "atku" | "atkl" | "atka" | "atkx") => {
+                markers.0.push(value);
+            }
             Some("banner") => {
                 let kind = value.get("kind").and_then(serde_json::Value::as_str).unwrap_or("");
                 let name = value.get("name").and_then(serde_json::Value::as_str).unwrap_or("");
@@ -420,6 +422,17 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
             RunEvent::Spell(cast)=>{ packets.0.push(spell_go(cast));None },
             RunEvent::Ground(row)=>{ packets.0.push(object(row.guid,EntityKind::DynamicObject,
                 row.position,0.,&row.fields));None },
+            RunEvent::ScriptedUnit(row) => {
+                let mut event = object(row.guid, EntityKind::Unit, row.position, row.orientation, &row.fields);
+                if let SessionEvent::ObjectCreate { speeds, .. } = &mut event {
+                    *speeds = Some(benilla_app::local_client::events::MoveSpeeds {
+                        walk: 2.5, run: 7., run_back: 4.5, swim: f32::from_bits(0x40971c71),
+                        swim_back: 2.5, turn_rate: std::f32::consts::PI,
+                    });
+                }
+                packets.0.push(event);
+                None
+            }
             RunEvent::GroundMoved {target,position:point}=>{
                 packets.0.push(SessionEvent::ObjectMove {guid:target,position:position(point),orientation:0.});
                 packets.0.push(SessionEvent::ObjectValues {guid:target,fields:ObjectFields::from_pairs(&[

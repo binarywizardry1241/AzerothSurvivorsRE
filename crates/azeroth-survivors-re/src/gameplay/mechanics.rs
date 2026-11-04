@@ -414,6 +414,7 @@ pub enum RunEvent {
     ResourceBar(ResourceBar),
     Lightwell(LightwellObject),
     BoundaryPillar(LightwellObject),
+    ScriptedUnit(LightwellObject),
     PickupObject(LightwellObject),
     PassiveStarted(PassiveStarted),
     StoppedMovement {
@@ -1370,7 +1371,10 @@ impl Mechanics {
         }
         // Current145900736 continues the admitted frame after lethal damage.
         // Individual damage/movement callbacks retain their own mode gates.
-        if !player_only { self.resolve_boss_effects(delta, player, facing, world); }
+        if !player_only {
+            self.resolve_boss_effects(delta, player, facing, world);
+            self.expire_scripted_attacks();
+        }
         if let Some((point, angle)) = self.boss_state.player_override.take() {
             player = point; facing = angle;
             forced_position = Some(point);

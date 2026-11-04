@@ -1,4 +1,4 @@
-//! Exact client-event projection admitted to other party members (0.115.0).
+//! Client-event projection admitted to other party members.
 //!
 //! This deliberately operates on the native text layout, including its strict
 //! leading prefix and substring checks; parsing/reserializing arbitrary JSON
@@ -26,14 +26,14 @@ pub fn guest_event_allowed(packet: &str) -> bool {
 /// Return the exact event bytes eligible for forwarding to another hero.
 /// Local delivery is independent and must retain the original packet.
 ///
-/// Native owner `14584a210..14584a68d`: hz/hzend pass through; hzt needs m,
-/// strips the trailing input payload and adds keep; only four banner kinds
-/// cross the player boundary. Everything else stays local.
+/// Current 0.140.0 owner `145e95c70..145e9615f` copies hz, hzend and
+/// scripted attack messages verbatim. The hzt and banner branches retain
+/// the independently recovered input stripping and banner filters.
 pub fn forward_to_peers(packet: &str) -> Option<String> {
     let remainder = packet.strip_prefix(TYPE_PREFIX)?;
     let kind = remainder.split('"').next()?;
     match kind {
-        "hz" | "hzend" => Some(packet.to_owned()),
+        "hz" | "hzend" | "atk" | "atku" | "atkl" | "atka" | "atkx" => Some(packet.to_owned()),
         "hzt" if packet.contains(METER_FIELD) => {
             let end = packet.find(INPUT_FIELD).unwrap_or(packet.len() - 1);
             // Like the native string slicing path, malformed UTF-8 boundaries
@@ -84,7 +84,7 @@ mod tests {
 
     #[test]
     fn only_recovered_shared_banner_kinds_and_hazard_lifecycles_cross_players() {
-        for kind in ["hz", "hzend"] {
+        for kind in ["hz", "hzend", "atk", "atku", "atkl", "atka", "atkx"] {
             let packet = format!("{{\"type\":\"{kind}\",\"x\":1}}");
             assert_eq!(forward_to_peers(&packet), Some(packet));
         }

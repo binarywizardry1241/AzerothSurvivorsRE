@@ -21,6 +21,7 @@ pub(super) struct State {
     pub prepared: super::prepared::Use,
     pub personal_boss_killing_blows: Vec<azeroth_survivors_re::account_progression::BossKillingBlow>,
     pub damaged_by_bosses: Vec<u32>,
+    pub boss_flags: Vec<azeroth_survivors_re::coop::replication::BossFlagRow>,
     pub deadlines: Vec<f32>,
     pub cooldowns_dirty: bool,
     pub depth: u32,

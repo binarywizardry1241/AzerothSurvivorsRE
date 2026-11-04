@@ -19,6 +19,7 @@ pub mod raid_sequences;
 pub mod raid_wards;
 pub mod raid_warnings;
 pub mod scaling;
+pub mod scripted_attack_geometry;
 pub mod spawning;
 
 pub use crate::enemies::{NativeRng, Position};

@@ -22,7 +22,7 @@ The hit consumer at `0x145fcf93a` reads the attack row's damage, source GUID and
 
 ## Scripted warning transport and the checkerboard
 
-The attack constructor `0x145fcc5e0` adds the attack to the active vector and queues the JSON from `0x145fc7ce0`. An `atk` message carries `id`, `t0`, `lock`, `impact`, `end`, `locked` and `parts`. The parts support circle, rectangle, cone, capsule, donut, sweep, rotor, grid, polygon and field variants with individual times, appearance, tracking and safe-area fields. The app routes these messages at `0x14004fe20`. The client decoder at `0x1400b29a0` maintains separate scripted rows. The `atku`, `atkl`, `atka` and `atkx` branches enter at `0x1400b3489`, `0x1400b5a57`, `0x1400b2ae2` and `0x1400b3310`. The current rebuilt client only consumes the earlier `hz`, `hzt` and `hzend` channel.
+The attack constructor `0x145fcc5e0` adds the attack to the active vector and queues the JSON from `0x145fc7ce0`. An `atk` message carries `id`, `t0`, `lock`, `impact`, `end`, `locked` and `parts`. The parts support circle, rectangle, cone, capsule, donut, sweep, rotor, grid, polygon and field variants with individual times, appearance, tracking and safe-area fields. The app routes these messages at `0x14004fe20`. The client decoder at `0x1400b29a0` maintains separate scripted rows. The `atku`, `atkl`, `atka` and `atkx` branches enter at `0x1400b3489`, `0x1400b5a57`, `0x1400b2ae2` and `0x1400b3310`. The rebuilt client handles the Gandling field, rectangle and circle parts in their own stream alongside the earlier `hz`, `hzt` and `hzend` rows.
 
 The client draw owner `0x1400b8130` calls the contour helper `0x1400b0d90` at `0x1400bba46` and polygon geometry owner `0x1400acdd0` at `0x1400bbacc` and `0x1400bd72b`. The geometry owner computes the point bounds, then passes the centered contour and vertical projection extent into `0x14002f390` and `0x1400aba70`. These are the next boundaries for matching the decoder's part variants to the existing terrain decal stream. The bounded raw pseudocode leaves jump-table arms and external material, geometry and paint bodies separate. Their branch and value correspondence remains open.
 
@@ -38,9 +38,24 @@ The final paint owner at `0x1400c1090` walks the scripted rows and submits the b
 
 The host dispatcher at `0x145f74bd0` admits recurring actions only after checking the script hold and pending callbacks. It vetoes selection if an active record belongs to the same script and its `+0xd0` deadline is still ahead of the run clock. It also checks the pending scripted queue for held rows and matching live attack records. Ras has a 1.5-second Frostbolt Volley deadline and a 7.5-second Chill Nova deadline alongside the 4.5-second Checkmate deadline. The 60% phase publishes Frost Armor through the same attack constructor. An isolated Checkmate schedule would miss the active records and queue entries created by those actions.
 
+## Gandling's scripted attacks and Straight A's
+
+The [native receipt](evidence/0.140.0/scholomance-straight-as.json) binds the Gandling producers, part geometry, recipient hit sampler, expiry, death callback and achievement inputs to the installed 0.140.0 image. The script starts its Office, Dismissed and Quiz deadlines at spawn plus 1.5, 5.25 and 15 seconds. Their priorities are 30, 20 and 10 and their successful repeat delays are 21, 24 and 28 seconds before rank and enrage scaling. A live blocking attack or pending follow-up holds the scheduler.
+
+| Attack | Recovered source behavior |
+| --- | --- |
+| Headmaster's Office | Publish an empty warning row for 2.75 seconds. After that row retires, start the scaled 2.5-second field over the arena contour. The safe square runs from (122,159) to (138,175), inset on both axes by the effective player radius. |
+| Class Dismissed | Four horizontal strips use the recovered band widths and a scaled 1.75-second impact. The attack owns six temporary Risen Guard units, removed when it retires. |
+| Pop Quiz | Track the farthest eligible hero, with the lower GUID winning a distance tie. Lock 1.2 seconds before the scaled 2.5-second impact. The second radius-five part pulses at impact plus 0.5, 1.5 and 2.5 seconds. |
+| The Last Examination | At 35 percent HP or below, cancel the prior attacks and begin a 3.75-second harmless line. Its removal and each later strip removal advance the sequence. Each damaging half has a scaled 1.75-second windup and a quarter-second tail. After the second half, shift the ordinary deadlines by the elapsed phase time and floor them at current time plus two seconds. |
+
+The hit stage uses the accepted positions on both sides of the impact time and the movement-report projection offset. Both sampled points must hit the part. Append the victim and part ID before damage, so armor and absorbs cannot erase a recorded hit. Solo and party simulation sample after player abilities and retire attacks after sampling all recipients. Gandling's death callback reads only the still-present Office and Examination rows for that boss GUID, then retires his attacks. Hits from a row already retired do not affect the feat.
+
+The [script adapter](../../crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs) sends the native warning lifecycle through the existing marker stream. The [client](../../crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs) decodes these parts separately from legacy hazards and projects the field, strips and circles onto terrain. The [account path](scholomance-0.140.0.md#graduation-and-straight-as-combat-records) delivers the resulting bit to each admitted recipient, including the cached State15 path. Native replay covered 1,458 hit geometry cases, 528 hit sampler cases and 2,560 bit-exact square mask alpha cases. Compilation, rendered output, network delivery and original/rebuilt parity remain open.
+
 ## Remaining source work
 
-The descriptor and callback joins below locate the current mechanics. The attack producers, recipient state and renderer still need a connected source implementation.
+The remaining bosses need their attack producers, recipient state and renderer parts connected.
 
 | Boss | Native source frontier |
 | --- | --- |
@@ -48,6 +63,5 @@ The descriptor and callback joins below locate the current mechanics. The attack
 | Ras | Header `0x147af49c8` binds the 60% phase to thunk `0x145ee66d0` and body `0x145ee55a0`. The checkerboard action is `0x145ee6300`. Trace tile partitioning and the touch-to-remove armor and vulnerability path into the same scripted attack state. |
 | Krastinov | Header `0x147af4ab0` binds four actions and the movement update `0x145eedb80`. Join its interpolated movement and victim choice to both cleaves, dash, moving Bladestorm, and farthest-target hook delivery. |
 | Barov | Header `0x147af4b98` binds four actions, update `0x145ddc870` and hit callback `0x145ddb1f0`. Recover the changing ring, cross and wall rows and their retirement, then bind their warnings and active damage tests. |
-| Gandling | Header `0x147af4c68` binds three recurring actions, update `0x145ee83f0` and the 35% phase callback `0x145ee6c70`. Bind closing safe-square publication, band and gap geometry, Pop Quiz selection and the two-step examination hits. |
 
 Rustfmt parsed the changed files and the scoped diff passed whitespace checks. The authored schedule and form regressions still need compilation. Game, cooperative execution and original/rebuilt parity remain open.

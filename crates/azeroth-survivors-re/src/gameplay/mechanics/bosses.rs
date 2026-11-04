@@ -3,6 +3,8 @@
 
 use super::*;
 use super::incoming::DamageKind;
+#[path = "gandling.rs"]
+mod gandling;
 use azeroth_survivors_re::{
     bosses as native,
     mob_loot::{EquipmentRoll, MobLootWorld},
@@ -20,6 +22,7 @@ pub struct RunBoss {
     pub ai: native::ai::BossAiState,
     pub minion_phases: native::minion_phases::PhaseState,
     kirtonos_forms: native::raid_transforms::KirtonosForms,
+    gandling: Option<gandling::Script>,
     pub control: ControlWindow,
     pub periodic: Vec<ActorPeriodic>,
     pub additional_damage_taken: f32,
@@ -75,6 +78,7 @@ pub(super) struct BossState {
     pub(super) death: native::death::BossDeathState,
     pub(super) completion: native::death::CompletionState,
     effects: native::abilities::PendingEffects,
+    gandling: gandling::State,
     pub(super) defenses: std::collections::HashMap<u64, native::raid_shields::RaidDefense>,
     pub(super) wards: native::raid_wards::WardState,
     pub(super) forms: std::collections::HashMap<u64, native::raid_transforms::TransformFields>,
@@ -90,12 +94,14 @@ pub(super) struct BossState {
     pub(super) endless_bosses: u32,
     pub(super) shared_killing_blows: Vec<(u8, azeroth_survivors_re::account_progression::BossKillingBlow)>,
     pub(super) party_feats: super::party_achievements::State,
+    pub(super) shared_boss_flags: Vec<(u8, azeroth_survivors_re::coop::replication::BossFlagRow)>,
 }
 
 impl BossState {
     pub(super) fn retirement_ground_objects(&self) -> Vec<u64> {
         self.effects.impacts.iter().filter_map(|row| row.remove_object)
             .chain(self.effects.raid_areas.object_guids())
+            .chain(self.gandling.object_guids())
             .filter(|guid| *guid != 0).collect()
     }
 
@@ -130,6 +136,7 @@ impl BossState {
                 victories: 0,
             },
             effects: native::abilities::PendingEffects::default(),
+            gandling: gandling::State::default(),
             defenses: std::collections::HashMap::new(),
             wards: native::raid_wards::WardState::default(),
             forms: std::collections::HashMap::new(),
@@ -144,6 +151,7 @@ impl BossState {
             endless_bosses: 0,
             shared_killing_blows: Vec::new(),
             party_feats: Default::default(),
+            shared_boss_flags: Vec::new(),
         }
     }
 }
@@ -314,6 +322,19 @@ impl Mechanics {
         self.boss_state.defenses.retain(|guid, _| actors.iter().any(|row| row.guid == *guid)
             || bosses.iter().any(|row| row.guid == *guid)
             || wards.actors.iter().any(|row| row.guid == *guid));
+        let gandling_active = self.zone.key == azeroth_survivors_re::zones::scholomance::KEY
+            || bosses.iter().any(|row| row.gandling.is_some());
+        let gandling_heroes = if !gandling_active || self.coop.active_slot != 0 {
+            Vec::new()
+        } else if self.has_party() {
+            self.active_scripted_targets()
+                .map(|(guid, position)| gandling::HeroPose { guid, position })
+                .collect()
+        } else if self.active_run_state() {
+            vec![gandling::HeroPose { guid: self.player_guid, position: player }]
+        } else {
+            Vec::new()
+        };
         let mut incoming = Vec::new();
         let mut port = BossCombat {
             aim_report: self.boss_state.aim_report,
@@ -350,6 +371,12 @@ impl Mechanics {
         }
         self.boss_state.effects.resolve_due_with_rng(self.clock, elapsed, &mut port,
             &mut self.rng, &mut self.counter);
+        if gandling_active {
+            if port.active_slot == 0 {
+                port.advance_gandling(&mut self.boss_state.gandling, &gandling_heroes);
+            }
+            port.sample_gandling(&mut self.boss_state.gandling, elapsed);
+        }
         let boundary = port.damage_event_boundary;
         let knockback = port.knockback;
         let root = port.root;
@@ -376,6 +403,10 @@ impl Mechanics {
         self.apply_raid_bomb_hits(bomb_bursts, player, facing, world);
         self.apply_raid_post_actions(post_actions, player, world);
         self.events.extend(trailing);
+    }
+
+    pub(super) fn expire_scripted_attacks(&mut self) {
+        self.boss_state.gandling.expire(self.clock, &mut self.events);
     }
 
     pub(super) fn tick_boss(
@@ -570,6 +601,7 @@ impl<W: RunWorld> native::spawning::SpawnPort for BossSpawner<'_, W> {
             ai: native::ai::BossAiState::new(definition),
             minion_phases: native::minion_phases::PhaseState::default(),
             kirtonos_forms: native::raid_transforms::KirtonosForms::default(),
+            gandling: (definition.id == gandling::ENTRY).then(|| gandling::Script::new(self.now)),
             control: ControlWindow::for_enemy(true),
             periodic: Vec::new(),
             additional_damage_taken: 0.0,
@@ -1181,6 +1213,14 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         row.actor.died_at = self.now;
         let definition = row.definition;
         let guid = row.guid;
+        if row.gandling.is_some() {
+            // The native death callback reads this source's live rows before removing them.
+            let result = self.boss_state.gandling.finish(guid, row.health, self.now, self.events);
+            self.generic.boss_flags.push(result);
+            if self.boss_state.shared_equipment.is_some() {
+                self.boss_state.shared_boss_flags.push((self.party_healing.source_slot, result));
+            }
+        }
         let endless_bosses = if !self.showcase && self.boss_state.completion.phase != 0 {
             self.boss_state.endless_bosses = self.boss_state.endless_bosses.wrapping_add(1);
             Some(self.boss_state.endless_bosses)

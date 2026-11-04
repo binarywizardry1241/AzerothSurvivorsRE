@@ -6,7 +6,7 @@ use azeroth_survivors_re::{
     coop::{
         client_state::RunProjection,
         game_party::class_key,
-        replication::{NativeCoopFeats, NativeState},
+        replication::{BossFlagRow, NativeCoopFeats, NativeState},
     },
     run_progression::{self, RunResult, TerminalDelivery},
 };
@@ -136,6 +136,7 @@ pub(super) struct Snapshot {
     boss_killing_blows: Vec<BossKillingBlow>,
     personal_boss_killing_blows: Vec<BossKillingBlow>,
     damaged_by_bosses: Vec<u32>,
+    boss_flags: Vec<BossFlagRow>,
     cooperative: Option<NativeCoopFeats>,
     class_key: &'static str,
 }
@@ -162,6 +163,7 @@ impl Snapshot {
             boss_killing_blows: game.boss_killing_blows().to_vec(),
             personal_boss_killing_blows: game.personal_boss_killing_blows().to_vec(),
             damaged_by_bosses: game.damaged_by_bosses().to_vec(),
+            boss_flags: game.boss_flags().to_vec(),
             cooperative: game.cooperative_feat_context(),
             class_key: game.class.key,
         })
@@ -240,6 +242,7 @@ impl Snapshot {
             boss_killing_blows: state.rows.iter().map(BossKillingBlow::from).collect(),
             personal_boss_killing_blows: state.secondary_rows.iter().map(BossKillingBlow::from).collect(),
             damaged_by_bosses: state.words.clone(),
+            boss_flags: state.boss_flags.clone(),
             cooperative: state.coop.clone(),
             class_key: class_key(projection.class),
         }
@@ -326,7 +329,8 @@ impl Snapshot {
             self.result.class, self.result.zone_key));
         let mut granted = crate::progression::grant_run_feats(
             &mut menu.backend_save, feats, &self.killing_blows,
-            &self.boss_killing_blows, &self.damaged_by_bosses, &self.personal_boss_killing_blows, now,
+            &self.boss_killing_blows, &self.damaged_by_bosses, &self.personal_boss_killing_blows,
+            &self.boss_flags, now,
         );
         if let Some(context) = &self.cooperative {
             if let Some(zone) = azeroth_survivors_re::guardians::catalog::ZONES.iter()
@@ -361,6 +365,7 @@ impl Snapshot {
             &self.boss_killing_blows,
             &self.damaged_by_bosses,
             &self.personal_boss_killing_blows,
+            &self.boss_flags,
             now,
         );
         if let Some(context) = &self.cooperative {
@@ -512,6 +517,30 @@ mod tests {
         down.account(&mut menu, Some(42), 300);
         assert_eq!(menu.backend_save.achievement_dates().get("coop:insane"), Some(&100));
         assert_eq!(menu.backend_save.statistics().get("kills"), Some(&2500));
+    }
+
+    #[test]
+    fn gandling_result_reaches_the_cached_and_live_guest_save_once() {
+        let mut value = state(1, false);
+        value.text = "scholomance".into();
+        let checkpoints = Checkpoints::default();
+        for flags in [0, 1] {
+            value.boss_flags = vec![BossFlagRow { boss_id: 1853, flags }];
+            let cached = Snapshot::from_cached(&value, entry(42), &checkpoints);
+            let replica = replica(&value);
+            let live = Snapshot::from_mechanics(&replica, [0; 19]).unwrap();
+            let mut menu = menu();
+            let earned = cached.live_feats(&mut menu, Some(42), 100);
+            assert_eq!(earned.iter().any(|event| matches!(
+                event, RunEvent::Achievement(key) if key == "feat:straightas"
+            )), flags != 0);
+            let repeated = live.live_feats(&mut menu, Some(42), 200);
+            assert!(!repeated.iter().any(|event| matches!(
+                event, RunEvent::Achievement(key) if key == "feat:straightas"
+            )));
+            assert_eq!(menu.backend_save.achievement_dates().get("feat:straightas").copied(),
+                (flags != 0).then_some(100));
+        }
     }
 
     #[test]

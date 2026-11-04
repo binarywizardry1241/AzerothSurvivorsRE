@@ -107,7 +107,7 @@ pub struct NativeCoopFeats {
     pub first_fall_bits: u32,
     pub events: Vec<NativeFeatEvent>,
 }
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct BossFlagRow {
     pub boss_id: u32,
     /// Native boolean encoded as one byte.

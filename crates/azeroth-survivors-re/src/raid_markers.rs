@@ -239,7 +239,7 @@ pub fn windup_millis(spell_id: u32, seconds: f32) -> Option<u32> {
     (spell_id != 0).then_some((seconds * 1000.) as u32)
 }
 
-pub const MASK_SIZES: [(u32, u32); 8] = [
+pub const MASK_SIZES: [(u32, u32); 9] = [
     (512, 512),
     (512, 512),
     (8, 256),
@@ -248,6 +248,7 @@ pub const MASK_SIZES: [(u32, u32); 8] = [
     (8, 256),
     (256, 8),
     (256, 4),
+    (256, 256),
 ];
 
 /// 1400ebdc0. Samples are texel centers and quantized to 8-bit alpha at startup.
@@ -279,6 +280,15 @@ pub fn mask(kind: usize, u: f32, v: f32, edge: f32) -> f32 {
             0.45 + 0.55
                 * ((u * 43.9823).sin() * 0.5 + 0.5)
                 * ((u * 18.849556 + 1.3).sin() * 0.5 + 0.5)
+        }
+        // 0.140.0 field warning mask, 1400a93a5 and 1400a959b.
+        8 => {
+            let distance = x.abs().max(y.abs());
+            if distance < 0.82 {
+                (0.34 + 0.4 * smooth((distance - 0.72) / (0.82 - 0.72))) / 0.74
+            } else {
+                (0.74 - f32::from_bits(0x3df5c290) * smooth((distance - 0.82) / (0.98 - 0.82))) / 0.74
+            }
         }
         _ => 0.,
     }

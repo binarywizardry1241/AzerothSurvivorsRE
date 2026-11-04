@@ -618,14 +618,15 @@ pub(crate) fn grant_run_feats(
     boss_killing_blows: &[azeroth_survivors_re::account_progression::BossKillingBlow],
     damaged_by_bosses: &[u32],
     personal_boss_killing_blows: &[azeroth_survivors_re::account_progression::BossKillingBlow],
+    boss_flags: &[azeroth_survivors_re::coop::replication::BossFlagRow],
     earned_at: u64,
 ) -> Vec<String> {
     let keys = azeroth_survivors_re::account_progression::definitions()
         .iter()
         .filter(|definition| {
-            azeroth_survivors_re::account_progression::meets_feat_with_personal_history(
+            azeroth_survivors_re::account_progression::meets_feat_with_history(
                 definition, snapshot, killing_blows, boss_killing_blows, damaged_by_bosses,
-                personal_boss_killing_blows,
+                personal_boss_killing_blows, boss_flags,
             )
         })
         .map(|definition| definition.key.clone())

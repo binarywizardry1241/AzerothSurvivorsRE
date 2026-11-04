@@ -1221,6 +1221,7 @@ fn persist_run_at(
             game.boss_killing_blows(),
             game.damaged_by_bosses(),
             game.personal_boss_killing_blows(),
+            game.boss_flags(),
             now,
         );
         if !feats.is_empty() {
@@ -1318,6 +1319,7 @@ fn persist_run_at(
                     game.boss_killing_blows(),
                     game.damaged_by_bosses(),
                     game.personal_boss_killing_blows(),
+                    game.boss_flags(),
                     now,
                 ));
                 granted.extend(crate::progression::grant_account(&mut menu.backend_save, Some(now)));

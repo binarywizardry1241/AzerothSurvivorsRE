@@ -78,8 +78,8 @@ the raid action and warning helpers, and their live mechanics adapter.
 | `changelog:0.140.0:763ec669be4a88e7` | #313 Ras. `game/scripts/ras.rs` locations identify `0x145ee3900`, `0x145ee4fc0` and `0x145ee5f20`. Recover the checkerboard phase and bounds, rune placement, touch authority, armor removal and vulnerability lifetime through those bodies and their consumers. |
 | `changelog:0.140.0:abf600240606fb36` | #313 Krastinov. `game/scripts/krastinov.rs` locations identify `0x145eebea0` and `0x145eedb80`. Recover dash and cleave order/geometry, moving Bladestorm, farthest-hero selection and hook delivery for local and remote heroes. |
 | `changelog:0.140.0:8c658dbf737af799` | #313 Barov. Follow entry 10504 to the ring warning and impact schedule, ground burn retirement, separate X/+ shapes, and moving wall collision and gap geometry. [Existing shape helper](../../crates/azeroth-survivors-re/src/bosses/raid_shapes.rs). |
-| `changelog:0.140.0:9438516c781c1935` | #313 Gandling. Follow entry 1853 to Headmaster's Office, Class Dismissed, Pop Quiz and The Last Examination. Recover each warning/hit dispatch, arena partitions, farthest-hero selection and the low-health phase transition. |
-| `changelog:0.140.0:16857431d6009747` | #313 Office warning. The packed warning group starts at `0x14776b0eb`. Trace warning construction from the same Gandling dispatch to purple area interpolation, safe-square clipping, damage admission and retirement. |
+| `changelog:0.140.0:9438516c781c1935` | #313 Gandling. Follow entry 1853 to Headmaster's Office, Class Dismissed, Pop Quiz and The Last Examination. The warning and hit dispatch, arena partitions, farthest-hero selection and low-health sequence are [source connected](scholomance-encounters-0.140.0.md#gandlings-scripted-attacks-and-straight-as). |
+| `changelog:0.140.0:16857431d6009747` | #313 Office warning. The packed warning group starts at `0x14776b0eb`. The Gandling dispatch now publishes the closing field and the client projects its contour and safe square. Damage admission and retirement use the same attack record. |
 | `changelog:0.140.0:c078696451fa5441` | #89. The zone's four keyed point records at `0x1473b2f90` give `(102,148)`, `(102,186)`, `(158,186)` and `(158,156)`. The four index words at `0x1473b2fd0` select enemy rows 6–9 at `0x1473b3308`, `0x1473b3358`, `0x1473b33a8` and `0x1473b33f8`. The existing layout reads entries 10488 Risen Construct, 11551 Necrofiend, 10498 Spectral Tutor and 11582 Scholomance Dark Summoner. Trace the current placement and move consumers starting at `game/guardians.rs` owners `0x145fae260` and `0x145ff3d20`. Recover each pair of moves, warning/hit geometry and recipient rules. [Guardian source](../../crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs). |
 
 ## Equipment and set consumers
@@ -442,7 +442,7 @@ account settlement, network execution and parity remain unverified.
 
 | 0.140.0 claim ID | Finding and next static step |
 | --- | --- |
-| `changelog:0.140.0:1bd2ec64e4e8aedc` | #315. The 83-item collection, Stormstrike Graduation and the nine-class Prepared save/use gate are connected. Lifestealing is gated and selectable in local Armory and preview. Straight A’s needs the Gandling attack producers and recipient result delivery. [Combat records](#graduation-and-straight-as-combat-records), [Prepared and glow](#prepared-use-and-lifestealing). |
+| `changelog:0.140.0:1bd2ec64e4e8aedc` | #315. The 83-item collection, Stormstrike Graduation and the nine-class Prepared save/use gate are connected. Lifestealing is gated and selectable in local Armory and preview. Straight A’s uses Gandling’s attack records and recipient result delivery. Co-op enchant admission uses the peer achievement carrier, which remains under #299. [Combat records](#graduation-and-straight-as-combat-records), [Prepared and glow](#prepared-use-and-lifestealing). |
 | `changelog:0.140.0:6e6db84119aec942` | #315. The Whole Armory is at `0x1473f9b3d` and the Heroic Across Azeroth descriptor at `0x1473fa06f`. `Still to beat: {zones}` is at `0x147770455`. Trace the current catalog denominator, previously owned item admission and missing-zone order/locale through the account and presentation owners. The source already counts `account.gear` and evaluates the retained 12 Heroic zone ordinals. [Progress evaluator](../../crates/azeroth-survivors-re/src/account_progression.rs), [achievement panels](../../crates/azeroth-survivors-re/src/progression.rs). |
 | `changelog:0.140.0:094d1782a8db36a3` | #285. The Insane uses the starting party size and first party fall, with the exact effective Heroic V and 40-minute boundaries. Host, State15 and live/cached guest award paths share the recovered inputs. [Party gate](#the-insane-party-gate), [verification #285](../verification-needed.md#gap-285). |
 
@@ -489,10 +489,13 @@ The callback appends `{boss_id, flag}` to Game `+0x988`, and in party mode
 queues `{active_hero_index, boss_id, flag}` at `+0xe90`. The party merge
 `0x145f3214d..0x145f321cd` transfers that result to the other admitted
 heroes. Their settlement snapshots consume the resulting boss flag list.
-The source still needs the Office and Examination attack rows, hit capture,
-and retirement from [#313](../CURRENT-STATE.md#gap-313) before it can produce
-a Straight A's result. The generic incoming-boss damage history cannot
-substitute for those retained scripted records.
+The [Gandling script](scholomance-encounters-0.140.0.md#gandlings-scripted-attacks-and-straight-as)
+now supplies the retained attack records and appends this result before
+retiring the source. The party distributor copies the row to non-abandoned
+recipients other than its producer. The solo, live guest and cached guest
+paths pass the same typed result to the achievement evaluator and existing
+dated save grant. The current descriptor follows Graduation, awards 25
+points and uses `INV_Misc_Note_01`.
 
 Three Ghidra slices bound the death callback, tree tally and scripted hit
 sampler to the installed hash. Original instructions supplied the external

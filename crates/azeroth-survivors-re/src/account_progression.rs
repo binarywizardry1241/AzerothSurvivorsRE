@@ -39,6 +39,7 @@ pub enum CurrentFeat {
     Unpolished { rank: u8 },
     SetVictory { zone: usize, tier: u8 },
     Graduation,
+    StraightAs,
 }
 fn catalog() -> &'static Catalog {
     static CATALOG: OnceLock<Catalog> = OnceLock::new();
@@ -104,6 +105,7 @@ pub fn scholomance_achievement_predecessor(key: &str) -> &str {
     match key {
         "collection:t05" => "armoryoflegends",
         "feat:graduation" => "feat:azuregos",
+        "feat:straightas" => "feat:graduation",
         "heroic:prepared" => "radiantarmory",
         _ => unreachable!("Scholomance achievement: {key}"),
     }
@@ -590,18 +592,19 @@ pub fn meets_feat_with_events(
     boss_killing_blows: &[BossKillingBlow],
     damaged_by_bosses: &[u32],
 ) -> bool {
-    meets_feat_with_personal_history(
-        definition, run, killing_blows, boss_killing_blows, damaged_by_bosses, &[],
+    meets_feat_with_history(
+        definition, run, killing_blows, boss_killing_blows, damaged_by_bosses, &[], &[],
     )
 }
 
-pub fn meets_feat_with_personal_history(
+pub fn meets_feat_with_history(
     definition: &Definition,
     run: RunSnapshot,
     killing_blows: &[(u32, u32)],
     boss_killing_blows: &[BossKillingBlow],
     damaged_by_bosses: &[u32],
     personal_boss_killing_blows: &[BossKillingBlow],
+    boss_flags: &[crate::coop::replication::BossFlagRow],
 ) -> bool {
     if let Some(condition) = &definition.current_feat {
         return match *condition {
@@ -616,6 +619,9 @@ pub fn meets_feat_with_personal_history(
                 && personal_boss_killing_blows.iter().any(|hit| {
                     hit.boss_id == 1853 && hit.spell_id == 17364 && hit.source_kind != 2
                 }),
+            CurrentFeat::StraightAs => boss_flags.iter().any(|row| {
+                u64::from(row.boss_id) == definition.target && row.flags & 1 != 0
+            }),
         };
     }
     if definition.cooperative.is_some() || definition.kind != 9 {
@@ -698,7 +704,7 @@ mod tests {
             source_kind: 0, melee: true };
         let run = RunSnapshot { enhancement: true, ..RunSnapshot::default() };
         let earned = |run, shared: &[BossKillingBlow], personal: &[BossKillingBlow]| {
-            meets_feat_with_personal_history(definition, run, &[], shared, &[], personal)
+            meets_feat_with_history(definition, run, &[], shared, &[], personal, &[])
         };
         assert!(earned(run, &[], &[hit]));
         assert!(!earned(run, &[hit], &[]));

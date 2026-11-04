@@ -269,8 +269,8 @@ impl Builder<'_, '_, '_> {
         );
     }
 
-    fn line_outline(&mut self, row: &Marker, length: f32, width: f32) {
-        let thickness = (width * 0.3).min(0.9);
+    fn line_outline(&mut self, row: &Marker, length: f32, width: f32, scale: f32) {
+        let thickness = (width * 0.3).min(0.9) * scale;
         let depth = length * 0.25 + 4.;
         // Current140166bf0: side strips end at 0 and length; caps share endpoints.
         // Extending the side-strip frames past them recreates the old |-| bug.
@@ -327,7 +327,7 @@ pub(super) fn outline(ground: &WorldDecal, row: &Marker) -> Vec<Group> {
         }
         Shape::Line { length, width } => {
             b.rectangle(row, length, width, length * 0.25 + 4., 0, 2);
-            b.line_outline(row, length, width);
+            b.line_outline(row, length, width, 1.);
         }
         Shape::Cone { radius, arc } if arc >= 6.2731853 => {
             b.disc(p, radius, radius, 0, 0, None);
@@ -523,4 +523,197 @@ mod tests {
         assert!((side.sin - 1.).abs() < 0.000001);
         assert!(side.cos.abs() < 0.000001);
     }
+}
+
+/// 0.140.0 shape 9 triangulates the arena contour, then clips the projected
+/// ground to the danger area outside the authored safe square.
+fn field(
+    ground: &WorldDecal,
+    polygon: &[[f32; 2]],
+    [left, bottom, right, top]: [f32; 4],
+    [low, high]: [f32; 2],
+) -> Group {
+    let points: Vec<_> = polygon.iter().map(|&[x, y]| Vec2::new(x, y)).collect();
+    let min = points
+        .iter()
+        .copied()
+        .fold(Vec2::splat(f32::MAX), Vec2::min);
+    let max = points
+        .iter()
+        .copied()
+        .fold(Vec2::splat(f32::MIN), Vec2::max);
+    let center = (min + max) * 0.5;
+    let half = (max - min).max_element() * 0.5;
+    let origin = [center.x, center.y, low];
+    let mut frame = frame(origin, 0., [-half, half, -half, half], 0.);
+    frame.max_y = high - low;
+    let mut ground_vertices = Vec::new();
+    ground.project(
+        &mut ground_vertices,
+        &frame,
+        |_| 1.,
+        |x, z| frame.rect_uv(x, z),
+    );
+
+    let area: f32 = points
+        .iter()
+        .zip(points.iter().cycle().skip(1))
+        .map(|(a, b)| a.perp_dot(*b))
+        .sum();
+    let mut contour = points.clone();
+    if area < 0. {
+        contour.reverse();
+    }
+    let origin_xy = Vec2::new(origin[0], origin[1]);
+    let plane = |a: Vec2, b: Vec2| {
+        let edge = b - a;
+        let normal = Vec2::new(-edge.y, edge.x);
+        [normal.x, normal.y, normal.dot(a - origin_xy)]
+    };
+    let mut vertices = Vec::new();
+    let regions: [&[[f32; 3]]; 4] = [
+        &[[-1., 0., center.x - left]],
+        &[[1., 0., right - center.x]],
+        &[
+            [1., 0., left - center.x],
+            [-1., 0., center.x - right],
+            [0., -1., center.y - bottom],
+        ],
+        &[
+            [1., 0., left - center.x],
+            [-1., 0., center.x - right],
+            [0., 1., top - center.y],
+        ],
+    ];
+    // Each clipped ear is convex and the ears only share their boundary.
+    while contour.len() >= 3 {
+        let len = contour.len();
+        let Some(index) = (0..len).find(|&i| {
+            let a = contour[(i + len - 1) % len];
+            let b = contour[i];
+            let c = contour[(i + 1) % len];
+            (b - a).perp_dot(c - a) > 0.0001
+                && !contour.iter().copied().any(|p| {
+                    p != a
+                        && p != b
+                        && p != c
+                        && (b - a).perp_dot(p - a) >= 0.
+                        && (c - b).perp_dot(p - b) >= 0.
+                        && (a - c).perp_dot(p - c) >= 0.
+                })
+        }) else {
+            break;
+        };
+        let a = contour[(index + len - 1) % len];
+        let b = contour[index];
+        let c = contour[(index + 1) % len];
+        let in_contour = clip(
+            &ground_vertices,
+            origin,
+            &[plane(a, b), plane(b, c), plane(c, a)],
+        );
+        for planes in regions {
+            vertices.extend(clip(&in_contour, origin, planes));
+        }
+        contour.remove(index);
+    }
+    Group {
+        vertices,
+        style: 7,
+        mask: 8,
+        overlay: false,
+    }
+}
+
+pub(super) fn scripted_body(
+    ground: &WorldDecal,
+    row: &super::scripted::Part,
+    scale: f32,
+) -> Vec<Group> {
+    use super::scripted::Shape;
+    let mut builder = Builder {
+        ground,
+        groups: Vec::new(),
+    };
+    match &row.shape {
+        Shape::Field {
+            polygon,
+            square,
+            z_range,
+        } => {
+            vec![field(ground, polygon, *square, *z_range)]
+        }
+        Shape::Circle { radius } => {
+            builder.disc(row.position, *radius, *radius, 0, 0, None);
+            builder.arc(
+                row.position,
+                *radius,
+                0.,
+                TAU,
+                (radius * 0.3).min(0.9) * scale,
+                1,
+                4,
+            );
+            builder.groups
+        }
+        Shape::Rect { length, width } => {
+            let marker = row.rectangle_marker(*length, *width);
+            builder.rectangle(&marker, *length, *width, length * 0.25 + 4., 0, 2);
+            builder.line_outline(&marker, *length, *width, scale);
+            builder.groups
+        }
+    }
+}
+
+pub(super) fn scripted_fill(
+    ground: &WorldDecal,
+    row: &super::scripted::Part,
+    clock: f32,
+) -> Vec<Group> {
+    use super::scripted::Shape;
+    let mut builder = Builder {
+        ground,
+        groups: Vec::new(),
+    };
+    let progress = row.progress();
+    if progress <= 0.01 {
+        return builder.groups;
+    }
+    match &row.shape {
+        Shape::Field { .. } => {}
+        Shape::Circle { radius } => {
+            let filled = progress * radius;
+            builder.disc(row.position, filled, *radius, 2, 1, None);
+            if row.winding(clock) {
+                builder.arc(row.position, filled, 0., TAU, (radius * 0.3).min(1.2), 3, 5);
+            }
+        }
+        Shape::Rect { length, width } => {
+            let filled = length * progress;
+            let depth = length * 0.25 + 4.;
+            builder.rectangle(
+                &row.rectangle_marker(*length, *width),
+                filled,
+                *width,
+                depth,
+                2,
+                3,
+            );
+            if row.winding(clock) {
+                builder.project(
+                    frame(
+                        row.position,
+                        row.angle,
+                        [(filled - 1.8).max(0.), filled, -width * 0.5, width * 0.5],
+                        depth,
+                    ),
+                    row.position,
+                    &[],
+                    3,
+                    6,
+                );
+            }
+        }
+    }
+    builder.groups
 }

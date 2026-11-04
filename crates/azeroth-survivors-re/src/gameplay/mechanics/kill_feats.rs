@@ -20,6 +20,10 @@ impl Mechanics {
         self.effect_state.graduation_enhancement
     }
 
+    pub fn boss_flags(&self) -> &[azeroth_survivors_re::coop::replication::BossFlagRow] {
+        &self.effect_state.generic.boss_flags
+    }
+
     pub fn damaged_by_bosses(&self) -> &[u32] {
         &self.effect_state.generic.damaged_by_bosses
     }
