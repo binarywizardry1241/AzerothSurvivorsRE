@@ -34841,6 +34841,35 @@
       }
     },
     {
+      "claim_id": "changelog:0.116.0:6605512143071e25",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "The current guest resource callback replaces a local raw resource vector. The native player and party aura methods call a shared aura helper. The selected subject and raw-resource handoff to that view remain unresolved. Existing rebuilt name and secondary-or-primary text overrides retain their source connection.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
+        "crates/benilla-app/src/local_client/spell_descriptions.rs",
+        "crates/benilla-ui/src/script/tooltip_aura.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/coop-guest-spell-rows-0.141.0.md"
+      ],
+      "systems": [
+        "custom-game-game-auras"
+      ],
+      "gap_ids": [
+        110
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs": "385e4b10464d13e119667040ad32df51ac23d3b4fde803490534add896a07578",
+        "crates/benilla-app/src/local_client/spell_descriptions.rs": "53309310bc79da50e198b1bae027082c4b105eaca84887b7616cf6b8e566832c",
+        "crates/benilla-ui/src/script/tooltip_aura.rs": "29433a3ec7a8e19ce79c9a34d3ab0e1a4aba67a93f241070b717b061d05e424c",
+        "docs/analysis/coop-guest-spell-rows-0.141.0.md": "61bed2f7395b7f6eba4bb5f474d32f74046268ebba131c93d7a41474269da46c"
+      }
+    },
+    {
       "claim_id": "changelog:0.141.0:6ea2cb1d0b80a4b9",
       "gap_ids": [
         319
