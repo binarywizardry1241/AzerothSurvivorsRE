@@ -95,6 +95,58 @@ reports a protocol mismatch against the 0.140.0 gate.
 Compilation, client or server execution, network interoperability and
 original/rebuilt comparison remain unverified.
 
+## Ready Check first-answer correspondence
+
+The current server Ready Check owner at `0x145ecc300..0x145ecc3a8` retains
+the local first-answer mutation registered under #306. Its field layout has
+changed. The owner still requires phase 3, a bounded peer index, non-sentinel
+profile and check state, and a nonempty response vector. It scans 16-byte rows,
+matches the selected peer identity, and writes `2 - r8b` at row `+8` only for
+the first matching row whose answer byte is zero. A nonzero answer byte is
+skipped. [Retained 0.139.1 contract](native-interface-correspondence-0.139.1.md#scope-correspondence).
+
+| Operand role | 0.139.1 | 0.140.0 |
+| --- | ---: | ---: |
+| Phase | `+0xf60` | `+0x10e8` |
+| Peer vector data and count | `+0xf98`, `+0xfa0` | `+0x1120`, `+0x1128` |
+| Peer stride | `0x858` | `0x870` |
+| Peer profile sentinel and identity | `+0x390`, `+0x560` | `+0x3a8`, `+0x578` |
+| Check sentinel | `+0xfe0` | `+0x1168` |
+| Response vector data and count | `+0xfe8`, `+0xff0` | `+0x1170`, `+0x1178` |
+
+The reconstructed 0.139.1 instruction bytes match the retained 168-byte digest
+`36f5d17205e3820dc19654b9b0caba293ee8b1e72e5405e995d05445936ab474`.
+All instruction offsets and sizes match. The nine layout operands above and
+the invalid-index path's two relative references account for all changed
+instructions. The nine internal jump instructions retain their exact bytes
+and owner-relative source and target offsets. Every jump target is a decoded
+instruction start in the declared owner. The invalid-index path still passes
+the peer index, count and Rust Location to a helper, then reaches `ud2`.
+The current Location resolves `server/party/readycheck.rs:72:33`, binding the
+owner to `systems[id=custom-game-server-party-readycheck]`. The direct call
+from the host dispatcher supplies a caller navigation point. [Prior machine
+evidence](evidence/0.139.1/native-interface-correspondence.json).
+
+| Range | File offset | VA | Bytes | SHA-256 |
+| --- | --- | --- | ---: | --- |
+| Ready Check first-answer owner | `0x5ecb700` | `0x145ecc300` | 168 | `1a2978454bc56fe842a27824cc45ea8e787cb967b9db3da64d680829b6172d6f` |
+| Answer byte store | `0x5ecb78b` | `0x145ecc38b` | 4 | `6640b3906f28c9987336d9386d48bec6d82c93e5d48fdc333f4891c43e3e9313` |
+| Ready Check Location reference | `0x5ecb794` | `0x145ecc394` | 7 | `4cc4493b89dda469e17fb19abd705d53773fa1c5e0f4b33260d9bc0ba5374a22` |
+| Ready Check Location record | `0x7aef848` | `0x147af0848` | 24 | `2774e16f2c29ff1100e76f8203b6caa31bf6d6ca16399797891a66d4c742f983` |
+| Host dispatcher call | `0x5ed082c` | `0x145ed142c` | 5 | `ae8714634791e673ed6d9822ddbdabc6084048976f91b785c16986d41009a6eb` |
+
+Both original instruction spans returned the same results in **768 synthetic
+cases per target** across phase, peer bounds, absent profile or check, empty
+and populated response rows, prior answers, duplicate identities and raw input
+bytes. Each replay processed 6,432 instruction steps and stopped at the
+generic panic boundary when the peer index was invalid. Rebuilt
+`Check::answer` uses the retained peer identity and the first matching
+pending row. The current proof preserves the narrow native scope. Caller
+boolean and enum semantics, request routing, membership production, deadline,
+cancellation, all-ready run admission and original/rebuilt parity remain
+outside it. [Rebuilt answer owner](../../crates/azeroth-survivors-re/src/coop/readycheck.rs),
+[session adapter](../../crates/azeroth-survivors-re/src/coop/session.rs).
+
 ## Current co-op correspondence frontier
 
 | Finding | Current selector and next action |

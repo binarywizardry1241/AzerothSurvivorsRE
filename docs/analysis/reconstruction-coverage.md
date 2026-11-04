@@ -14,6 +14,11 @@ executable complement is separate. The installed chain has twelve MPQs,
 including the new patch-C. Current [member accounting](evidence/0.140.0/mpq-member-coverage.json)
 records 30,172 active slots and 30,161 unique names with zero opaque slots.
 
+The [selected census](native-census-0.140.0.md) verified 24,332,715
+instructions, 97,617,587 instruction bytes and 4,219,955 references. All 3,943
+guarded tables are applied and the final proposal matches their exact vectors.
+The executable residual is 8,631,211 bytes.
+
 The [release review](release-review-0.140.0.md) retains all 52 new claim
 assessments. The [module register](module-contracts-0.140.0.md) records 82
 diagnostic module assignments and current proof questions. Prior native

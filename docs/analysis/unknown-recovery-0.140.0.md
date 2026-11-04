@@ -22,3 +22,25 @@ stable questions, original selectors and resolved historical classifications.
 Whole-image structural observation, bounded behavior, source correspondence
 and parity remain separate. Preserve all six semantic discovery fronts where
 a producer, type, indirect edge or source consumer is still open.
+
+The [selected census](coverage/full-image-selected-0.140.0.json) leaves
+8,631,211 executable bytes across 488,461 ranges. The
+[residual manifest](evidence/0.140.0/native-residuals.json) adds exact selectors
+for 124,249 instruction records outside recovered bodies, 11,340 distinct
+unowned executable destinations and 74 AS diagnostic sites without a body
+owner. These overlap other reference populations. Keep failure blocks and
+declared code candidates separate from callable entries.
+
+The [indirect ownership record](coverage/native-ownership-classification.json)
+has separate encoded native, import and unresolved indirect populations.
+The four final added switch sites `0x141f7a403`, `0x141f7a9b6`,
+`0x141f7ab07` and `0x141f7ae06` have verified guards and successors in the
+[selected proof](evidence/0.140.0/native-switch-proposal-review.json). Follow
+their incoming registration or table owners under #41. Their containing
+bodies have no AS diagnostic-context assignment.
+
+The [current computed frontier](evidence/0.140.0/computed-correspondence-frontier.json)
+keeps all 14 stable questions. Start with the four mapped geometry candidates,
+then prove their input types and consumers. The remaining ten retain their
+predecessor selectors and the exact mapping question. Historical recovery and
+source implementations retain their original scope.

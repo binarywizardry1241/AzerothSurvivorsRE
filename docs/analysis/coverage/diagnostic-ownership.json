@@ -624,7 +624,7 @@
     },
     "source_mapping": {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "fdca9ea82176f870c9a8838a701f1cc15320f50a823d06c1535cadcf56a7028f"
+      "sha256": "d02b8da3404d91ba57bf640150547c41db2ef1e467da0232f5991afa9059ea15"
     },
     "native_execution_sources": [
       {
@@ -640,5 +640,17 @@
     ],
     "native_fact_sha256": "f820b9172ca786267dd2470afb9d52b9010740aecc6ee174f3e75635c1342509",
     "scope": "Current system IDs/custom membership only; frozen native payload and original producer remain unchanged. No source or semantic proof is promoted."
+  },
+  "fresh_native_verification": {
+    "generator": {
+      "path": "scripts/discover-native-ownership.py",
+      "sha256": "0cfff625453c85627d1f11fb35292b590c9a8cdbb497b59424cf23da56633ea5",
+      "candidate_parser_path": "scripts/inventory-executable.py",
+      "candidate_parser_sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa",
+      "decoder": "Capstone",
+      "decoder_version": "5.0.7"
+    },
+    "native_fact_sha256": "f820b9172ca786267dd2470afb9d52b9010740aecc6ee174f3e75635c1342509",
+    "method": "fresh_decode_exact_native_fact_comparison"
   }
 }

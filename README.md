@@ -12,7 +12,7 @@ configured installed game; this checkout contains no game EXE or MPQ copies.
 Existing gameplay, catalogs, repairs and native contracts retain their actual
 historical version/hash until current applicability is established.
 
-The [module register](docs/analysis/module-contracts-0.139.1.md) distinguishes
+The [module register](docs/analysis/module-contracts-0.140.0.md) distinguishes
 partial source, bounded native contracts and remaining source connections.
 Co-op transport, server/party, world bootstrap and replication source remains
 available. New release requirements and current-target correspondence remain
