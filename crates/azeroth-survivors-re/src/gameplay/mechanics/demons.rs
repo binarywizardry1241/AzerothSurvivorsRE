@@ -150,7 +150,7 @@ pub(super) fn create(
         events.push(RunEvent::Pet(SummonedObject {
             guid: initial.guid,
             position: position(initial.position),
-            fields: definitions::object_fields(definition, initial.guid, 1, level, race),
+            fields: definitions::object_fields(definition, definition, initial.guid, 1, level, race),
         }));
         let demon = Demon {
             guid: initial.guid,

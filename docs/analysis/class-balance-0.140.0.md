@@ -38,7 +38,7 @@ The White Devilsaur variant remains a separate appearance constituent under
 | --- | --- |
 | `bd0b3730a63334f2` Wyvern Sting | Talent record `0x1473d1d20` points to the startup Frost Trap row (native tag 40) and the Immolation Trap timer at `0x1473d1420` (native tag 39, interval 5.0). The source projects those rows into its existing startup grant and timed freecast payloads. |
 | `b6e494b0be86ca3b` Rapid Fire | Talent record `0x1473d09a0` points to native tag 7 at `0x1473d0008`. The four admitted cast keys are Auto Shot, Arcane Shot, Multi-Shot and Concussive Shot. The row selects Aimed Shot with a threshold of six, a rate cap of two and a set count-preservation flag. The source projects it into its existing capped milestone payload. |
-| `350e45ff46b443ac` White Devilsaur | The name at `0x1465c8fe5` and save/switch key at `0x1465c8c98` seed the two-actor investigation. The [0.117.0 proof](white-devilsaur-0.117.0.md) and current `run_effects/pets.rs::replace_white_devilsaur` remove the first Raptor and substitute a single variant for the usual Wolf. Map both original actor IDs 9510/9511 into current effect descriptors, then follow independent bite presentation and combat identity through the actor tick and existing creature queries. |
+| `350e45ff46b443ac` White Devilsaur | The spawn constructor `0x145fb7990` applies the visual substitution separately to Wolf and Raptor while preserving their combat descriptors. Source now takes the switch through spawn, publishes White Devilsaur creature identity and display, and leaves the actor count and bite paths independent. |
 
 ### Timed Hunter casts
 
@@ -77,6 +77,39 @@ decompiler's signatures are ambiguous. The localized descriptions come from
 the installed target's fourteen embedded catalogs. The between-run talent menu reads
 those two descriptions from the live talent catalog. Wyvern Sting's spell
 tooltip uses the trap key from that same timed effect.
+
+### White Devilsaur appearance
+
+The independent switch at run offset `+0x2d8` is read at `0x145fb7ac3`.
+The native spawn constructor keeps the input descriptor in `rdi` and chooses
+a visual descriptor in `r13` at `0x145fb7acf..0x145fb7af9`.
+
+| Combat descriptor and entry | White visual descriptor and entry | Display / scale | Ordinary bite base / period |
+| --- | --- | --- | --- |
+| `0x1473e6cb8` / 9510 | `0x1473e6c78` / 9530 | 5239 / 0.3 | 67 / 1.2 s |
+| `0x1473e6cf8` / 9511 | `0x1473e6428` / 9531 | 5239 / 0.3 | 53 / 1.2 s |
+
+The visual entry enters the creature GUID at `0x145fb7af9..0x145fb7b2a`
+and the display comes from the visual descriptor at `0x145fb833a`.
+The 126 attack-time update reads the original period at `0x145fb810d`.
+The 129 and 130 collision fields read original scale at `0x145fb81d3`.
+The active actor row stores the **original** combat pointer at `0x145fb866b`,
+so the ordinary attack and Kill Command selectors still see the Wolf or
+Raptor, even while creature queries select the two White variants at
+`0x145ea6b58` and `0x145ea6b70`.
+
+The source carries the existing point-free allocation flag to follower spawn.
+The original effect rows, provenance, grant order and combat descriptor stay
+intact. Each grant independently selects its White GUID, entry, scale and
+display. The localized switch text describes the two appearances and retains
+the existing talent requirements.
+
+Ghidra evidence `ev_2c6bdb5360148a365f3142d8e6b974745fa06316cd2bce68038f11112d95a41c`
+maps the exact slice `0x145fb7990..0x145fb8765` at its original unwind start
+with SHA-256 `2b7dd011c86890a4bc7ca6b2b4d3d0c29f373218c170c5143764845c85389ee0`.
+This supersedes the old actor replacement under [0.117.0](white-devilsaur-0.117.0.md).
+Compilation, authored regression execution, rendered appearance, actual combat
+and original/rebuilt parity remain open.
 
 ## Enhancement, Consecration and Mind Blast
 

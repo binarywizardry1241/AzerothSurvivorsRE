@@ -7,6 +7,7 @@ use azeroth_survivors_re::run_effects::{pet_power, pet_tick, pets};
 pub(super) struct State {
     pub grants: Vec<u32>,
     pub started: bool,
+    pub white_devilsaur: bool,
     pub rows: Vec<Pet>,
 }
 
@@ -46,13 +47,18 @@ impl Mechanics {
         self.pet_state.started = true;
         for (index, entry) in self.pet_state.grants.iter().copied().enumerate() {
             let definition = pets::definition(entry).expect("recovered follower definition");
+            let appearance = if self.pet_state.white_devilsaur {
+                pets::white_devilsaur_appearance(definition)
+            } else {
+                definition
+            };
             let relative_angle = pets::initial_relative_angle(index, self.pet_state.grants.len());
             let xy = pets::spawn_xy(coordinates(player), facing, relative_angle);
             let z = world
                 .height(xy)
                 .unwrap_or_else(|| Terrain::fallback_height(world));
             let initial = pets::initial_state(
-                definition,
+                appearance,
                 None,
                 [xy[0], xy[1], z],
                 relative_angle,
@@ -64,6 +70,7 @@ impl Mechanics {
                 position: position(initial.position),
                 fields: pets::object_fields(
                     definition,
+                    appearance,
                     initial.guid,
                     self.player_guid,
                     self.level,

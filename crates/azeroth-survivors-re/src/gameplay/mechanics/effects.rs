@@ -320,6 +320,11 @@ impl Mechanics {
         self.effect_state.talent_meter_sources.clear();
         if !self.pet_state.started {
             self.pet_state.grants.clear();
+            // The independent Hunter switch controls the spawn appearance.
+            self.pet_state.white_devilsaur = class == 3
+                && allocation.iter().any(|(key, rank)| {
+                    key == crate::save::talents::WHITE_DEVILSAUR && *rank != 0
+                });
         }
         if let Some(definitions) = definitions {
             for talent in &definitions.talents {
@@ -354,18 +359,6 @@ impl Mechanics {
                         self.effect_state.equipped.talents.extend(effects);
                     }
                 }
-            }
-        }
-        // 0.117.0 allocation+18 is an independent, point-free Hunter switch.
-        // Transform actual raw29 effects and their parallel provenance before
-        // the shared follower creation path consumes any grants.
-        if class == 3 && allocation.iter().any(|(key, value)| key == crate::save::talents::WHITE_DEVILSAUR && *value != 0) {
-            if let Some(index) = run_effects::pets::replace_white_devilsaur(
-                &mut self.effect_state.equipped.talents,
-            ) {
-                self.effect_state.talent_provenance.remove(index);
-                self.effect_state.talent_meter_sources.remove(index);
-                self.effect_state.equipped.meter_talents.remove(index);
             }
         }
         self.effect_state.set_generic_start = self.effect_state.talent_provenance.len();

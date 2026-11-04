@@ -209,9 +209,8 @@ pub static DEFINITIONS: [PetDefinition; 15] = [
         native_address: 0x146e75210,
     },
     DREAD_LORD,
-    // 0.117.0 independent Hunter switch; both use the ordinary special0
-    // creature lifecycle. Keep their actual target addresses separate from
-    // the historical descriptor addresses above.
+    // 0.140.0 visual descriptors. The active pet retains its original combat
+    // descriptor, including the Wolf or Raptor identity used by Kill Command.
     PetDefinition {
         key: "white_devilsaur",
         name: "White Devilsaur",
@@ -224,7 +223,7 @@ pub static DEFINITIONS: [PetDefinition; 15] = [
         spell_id: 0,
         school: 0,
         special: 0,
-        native_address: 0x1472c3a40,
+        native_address: 0x1473e6c78,
     },
     PetDefinition {
         key: "white_devilsaur_raptor",
@@ -233,12 +232,12 @@ pub static DEFINITIONS: [PetDefinition; 15] = [
         entry: 9531,
         model: 5239,
         scale: f32::from_bits(0x3e99999a),
-        damage: 60.0,
-        period: f32::from_bits(0x3f19999a),
+        damage: 53.0,
+        period: f32::from_bits(0x3f99999a),
         spell_id: 0,
         school: 0,
         special: 0,
-        native_address: 0x1472c3a00,
+        native_address: 0x1473e6428,
     },
 ];
 
@@ -290,63 +289,42 @@ pub fn raw29_definition(bytes: &[u8; 64]) -> Option<&'static PetDefinition> {
         .find(|definition| definition.native_address == address)
 }
 
-/// Native145ab2f90 transforms the collected effect vector, before actor
-/// creation. Remove only the first Raptor and replace every Wolf in place.
-/// The return value identifies the removed parallel generic-provenance row.
-pub fn replace_white_devilsaur(rows: &mut Vec<super::EffectRow>) -> Option<usize> {
-    let removed = rows.iter().position(|row| {
-        raw29_definition(&row.bytes).is_some_and(|definition| definition.entry == 9511)
-    });
-    let provenance = removed.map(|index| rows[..index].iter().filter(|row| row.is_generic()).count());
-    if let Some(index) = removed {
-        rows.remove(index);
+/// 0.140.0 uses this substitution for the spawned unit's identity and model.
+pub fn white_devilsaur_appearance(combat: &'static PetDefinition) -> &'static PetDefinition {
+    match combat.entry {
+        9510 => definition(9530).expect("recovered White Devilsaur Wolf appearance"),
+        9511 => definition(9531).expect("recovered White Devilsaur Raptor appearance"),
+        _ => combat,
     }
-    let replacement = definition(if removed.is_some() { 9531 } else { 9530 })
-        .expect("recovered White Devilsaur descriptor");
-    for row in rows {
-        if raw29_definition(&row.bytes).is_some_and(|definition| definition.entry == 9510) {
-            row.bytes[8..16].copy_from_slice(&replacement.native_address.to_le_bytes());
-        }
-    }
-    provenance
 }
 
 #[cfg(test)]
 mod white_devilsaur_tests {
     use super::*;
 
-    fn effect(entry: u32) -> super::super::EffectRow {
-        let mut bytes = [0; 64];
-        bytes[0] = 29;
-        bytes[8..16].copy_from_slice(&definition(entry).unwrap().native_address.to_le_bytes());
-        super::super::EffectRow { bytes, strings: &[], lists: &[] }
-    }
-
-    fn entries(rows: &[super::super::EffectRow]) -> Vec<u32> {
-        rows.iter().filter_map(|row| raw29_definition(&row.bytes))
-            .map(|definition| definition.entry).collect()
-    }
-
     #[test]
-    fn exact_first_raptor_removal_replaces_all_wolves_and_preserves_parallel_index() {
-        let mut stat = effect(9510);
-        stat.bytes[0] = 30;
-        let mut rows = vec![stat, effect(9510), effect(9511), effect(9511), effect(9510)];
-        assert_eq!(replace_white_devilsaur(&mut rows), Some(1));
-        assert_eq!(entries(&rows), [9531, 9511, 9531]);
-        assert_eq!(rows[0].tag(), 30);
-    }
-
-    #[test]
-    fn wolf_only_selects_9530_and_raptor_only_creates_no_white_pet() {
-        let mut rows = vec![effect(9510)];
-        assert_eq!(replace_white_devilsaur(&mut rows), None);
-        assert_eq!(entries(&rows), [9530]);
-        let mut rows = vec![effect(9511)];
-        assert_eq!(replace_white_devilsaur(&mut rows), Some(0));
-        assert!(rows.is_empty());
-        assert_eq!(definition(9530).unwrap().period.to_bits(), 0x3f99999a);
-        assert_eq!(definition(9531).unwrap().period.to_bits(), 0x3f19999a);
+    fn independent_white_appearances_keep_combat_packet_fields() {
+        for (combat_entry, visual_entry) in [(9510, 9530), (9511, 9531)] {
+            let combat = definition(combat_entry).unwrap();
+            let appearance = white_devilsaur_appearance(combat);
+            assert_eq!(appearance.entry, visual_entry);
+            assert_eq!(appearance.damage, combat.damage);
+            assert_eq!(appearance.period, combat.period);
+            let fields = object_fields(combat, appearance, 1, 2, 1, 1);
+            for (field, value) in [
+                (3, visual_entry),
+                (4, 0.3_f32.to_bits()),
+                (126, 1200),
+                (129, 0.5_f32.to_bits()),
+                (130, 1.5_f32.to_bits()),
+                (131, 5239),
+                (132, 5239),
+            ] {
+                assert!(fields.contains(&(field, value)), "missing field {field}");
+            }
+        }
+        let treant = definition(9515).unwrap();
+        assert!(std::ptr::eq(white_devilsaur_appearance(treant), treant));
     }
 }
 
@@ -456,6 +434,7 @@ pub fn display_scale(definition: &PetDefinition) -> f32 {
 /// constructor; other fields retain their separately stated catalog provenance.
 pub fn object_fields(
     definition: &PetDefinition,
+    appearance: &PetDefinition,
     guid: u64,
     player_guid: u64,
     player_level: u32,
@@ -475,8 +454,8 @@ pub fn object_fields(
         (0, guid as u32),
         (1, (guid >> 32) as u32),
         (2, 9),
-        (3, definition.entry),
-        (4, display_scale(definition).to_bits()),
+        (3, appearance.entry),
+        (4, display_scale(appearance).to_bits()),
         (12, player_guid as u32),
         (13, (player_guid >> 32) as u32),
         (14, player_guid as u32),
@@ -489,8 +468,8 @@ pub fn object_fields(
         (126, (definition.period * 1000.0) as u32),
         (129, (definition.scale * 0.5).to_bits()),
         (130, (definition.scale * 1.5).to_bits()),
-        (131, definition.model),
-        (132, definition.model),
+        (131, appearance.model),
+        (132, appearance.model),
         (145, 1.0f32.to_bits()),
     ]
 }
@@ -646,7 +625,7 @@ mod tests {
         .unwrap();
         for row in fixture["cases"].as_array().unwrap() {
             let definition = definition(row["entry"].as_u64().unwrap() as u32).unwrap();
-            let fields = object_fields(definition, 1, 2, 1, 1);
+            let fields = object_fields(definition, definition, 1, 2, 1, 1);
             for (field, key) in [(4, "display_bits"), (129, "radius_bits"), (130, "reach_bits")] {
                 let actual = fields.iter().find(|(index, _)| *index == field).unwrap().1;
                 let evidence = if field == 4 && definition.entry == DREAD_LORD.entry {

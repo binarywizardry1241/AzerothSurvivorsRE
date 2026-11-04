@@ -821,7 +821,7 @@ fn draw_white_devilsaur_details(
             &[("name", catalog.label("Jurassic Pack").into())]), 13.,
             Color::srgb(1., 0.353, 0.235));
     }
-    text(body, art, catalog.label("A White Devilsaur fights at your side in place of the wolf Tame Beast brings and the raptor Bestial Wrath adds: one beast, biting as often and as hard as they would. Tame Beast and Bestial Wrath still need their points."), 14., PAPER);
+    text(body, art, catalog.label("The wolf Tame Beast brings and the raptor Bestial Wrath adds each take the look of a White Devilsaur: two bodies, biting exactly as the wolf and the raptor do. Only the look changes. Tame Beast and Bestial Wrath still need their points."), 14., PAPER);
     if !read_only {
         action_button(body, art, catalog.label(if on { "Turn off" } else { "Turn on" }),
             Action::WhiteDevilsaur, enabled);
