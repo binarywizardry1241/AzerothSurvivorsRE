@@ -35200,7 +35200,7 @@
         "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs": "fe2918603349ce1a1ffb98aebed9aa19654516b2c61a6770aa565c2399799a0e",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs": "a0f7cc92d5ae5c6e787dd4b3aefec3868e804d0025bf5038d103acb771add5d5",
         "crates/azeroth-survivors-re/src/gameplay/client/events.rs": "bf2e8663c2ec3d331d1f0102def6187db013107b6bd0a3ee2a08b1021c0ed71e",
-        "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "22f2503991e56c49677cf21007fec380488fff1c2a84e80cd45bc1e15cfa7ad7",
+        "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "7f177ea3109b0888fe880cb21dc23c191d3848f7420a8e43e8cf78e9816cbac3",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs": "79241751af7c0a60d015466362ceec06f8ae135122dacfd6f34790d8db6f1661",
         "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "7d64f4161b2151ad204c28c14e4f4ae29f4479c02ac667c78c72a75802721359",
         "crates/azeroth-survivors-re/src/run_meter.rs": "f2ae81bef7ae97908ae721ab6603f0f5560331dc48da263b44ef97ca194a3282",
@@ -35348,16 +35348,18 @@
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
       },
       "status": "pending_claim_recovery",
-      "rationale": "Live player position and the authoritative multipart Lua receiver are source-connected. Rebuilt detailed damage/healing accounting, actor and party joins, and full producer replay after ReloadUI remain open. Native recipient-self whisper delivery uses the embedded Lua receiver. Request, typed actor/counter records and loadout revision are mapped; the rebuilt authority still lacks the complete recorder and replay.",
+      "rationale": "Live player position and the authoritative multipart Lua receiver are source-connected. Rebuilt detailed damage/healing accounting, actor and party joins, and full producer replay after ReloadUI remain open. Native recipient-self whisper delivery uses the embedded Lua receiver. Request, typed actor/counter records and loadout revision are mapped; the rebuilt authority still lacks the complete recorder and replay. Ordinary guest addon rows now come from the seated authority ledger and existing per-recipient replay cache.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/coop_feed.rs"
       ],
       "evidence_refs": [
         "docs/analysis/detailed-meter-0.141.0.md"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": "b629b66b1142b4f17207935ff8b9e6ea00f8a7077c7d628bbeec3f5807b7d11d",
-        "docs/analysis/detailed-meter-0.141.0.md": "bcaa4a916b828ae8c86a116bc45c5a263322864197084e3179f728ba6312eadc"
+        "docs/analysis/detailed-meter-0.141.0.md": "303e41ffa75b22d8414184a13fc02a7417d26caf084d8fed86ae9c40a575a2e0",
+        "crates/azeroth-survivors-re/src/gameplay/client/coop_feed.rs": "17a88f2ea040f30bb4776dac33971e841003b7df38c94ebfabbd0256da1588e5"
       },
       "systems": [
         "custom-game-game-meterfeed"
@@ -35385,7 +35387,7 @@
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "e7a0fe7c5b7582e4807325341a4f437a5387814ecfff1679ae0a964af28397ca",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "4c0856f7bb085416e5426f210371e3c7fceb16b05adfac329ade5e7a831b8227",
-        "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "22f2503991e56c49677cf21007fec380488fff1c2a84e80cd45bc1e15cfa7ad7",
+        "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "7f177ea3109b0888fe880cb21dc23c191d3848f7420a8e43e8cf78e9816cbac3",
         "docs/analysis/combat-meter-attribution-0.141.0.md": "9da9d9604703fd5e86dba494cdb1d410a3a230f840b2ee10d42c407b4feb5fee"
       },
       "systems": [

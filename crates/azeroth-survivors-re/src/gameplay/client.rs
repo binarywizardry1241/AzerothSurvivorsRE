@@ -5,6 +5,7 @@ mod addon_bootstrap;
 pub(super) mod addon_banners;
 pub(super) mod addon_feed;
 mod coop_feed;
+pub(super) use coop_feed::recipient_addon_snapshot;
 pub(super) mod raid_targets;
 mod addon_lists;
 mod addon_scalars;
@@ -50,23 +51,38 @@ pub(super) fn presence_phase(session: &RunSession) -> &'static str {
     addon_scalars::phase(session)
 }
 
-/// Build the recovered recipient streams while with_party_hero seats that
-/// hero's state and the shared world's actual destinations and affix vector.
-pub(super) fn recipient_addon_snapshot(
-    game: &super::mechanics::Mechanics, name: &str,
-    started: bool, paused: bool, pose: (azeroth_survivors_re::enemies::Position, f32),
-    locale: &crate::localization::Localization, catalog: &BridgeCatalog,
+fn addon_messages(
+    game: &super::mechanics::Mechanics,
+    scalars: addon_scalars::Payloads,
+    locale: &crate::localization::Localization,
+    catalog: &BridgeCatalog,
+    [party, revive]: [String; 2],
 ) -> Vec<addon_feed::AddonMessage> {
-    let Some(scalars) = addon_scalars::snapshot_for(game, name,
-        addon_scalars::phase_for(game, started, paused), addon_scalars::Inputs {
-            position: pose.0, facing: pose.1, target: None,
-        }, locale) else { return Vec::new() };
-    let [chests, lairs] = addon_lists::destination_messages(game, locale, catalog);
-    vec![addon_feed::AddonMessage::new("AZSZONE", scalars.zone),
-        addon_feed::AddonMessage::new("AZSRUN", scalars.run),
-        addon_feed::AddonMessage::new("AZSTOTEMS", addon_summons::totems(game, locale)),
-        addon_feed::AddonMessage::new("AZSDOWNED", game.party_downed_payload()),
-        chests, lairs]
+    let [bosses, units, debuffs, spells, buffs, chests, lairs] =
+        addon_lists::snapshot(game, locale, catalog);
+    let [meter, healing, boss_meter, taken] = game.addon_meter_lines(locale);
+    use addon_feed::AddonMessage as M;
+    vec![
+        M::new("AZS", scalars.stats),
+        M::new("AZSZONE", scalars.zone),
+        M::new("AZSRUN", scalars.run),
+        bosses, units, debuffs,
+        M::new("AZSTGT", scalars.target),
+        spells,
+        M::new("AZSTIMERS", addon_timers::snapshot(game, locale)),
+        buffs,
+        M::new("AZSPETS", addon_summons::snapshot(game, locale)),
+        M::new("AZSTOTEMS", addon_summons::totems(game, locale)),
+        M::new("AZSMETER", meter),
+        M::new("AZSHEAL", healing),
+        M::new("AZSBOSSDMG", boss_meter),
+        M::new("AZSPARTY", party),
+        M::new("AZSREVIVE", revive),
+        M::new("AZSDOWNED", game.party_downed_payload()),
+        chests, lairs,
+        M::new("AZSTAKEN", taken),
+        M::new("AZSEND", scalars.end),
+    ]
 }
 
 /// Drain the run's shared player-mover queue, including an immediate terminal
@@ -207,7 +223,9 @@ fn sync_to_client(
         state.stats_locale = Some(locale.code());
     }
     if coop.as_ref().is_some_and(|coop|coop.is_guest()) {
-        coop_feed::publish(&session,&menu,&world,&input,&locale,&mut state,&mut extension,&mut packets);
+        let in_run = session.mechanics.is_some() && menu.in_run;
+        extension.custom_game_menu = in_run;
+        extension.script_update = talent_view::publication(in_run, in_run && session.talent_view_open);
         return;
     }
     let in_menu = session.mechanics.is_none() || !menu.in_run;
@@ -343,24 +361,12 @@ fn sync_to_client(
         if let Some(scalars) = addon_scalars::snapshot(&session, &menu,
             addon_scalars::Inputs { position, facing: world.facing,
                 target: selection.as_ref().and_then(|selection| selection.guid) }, &locale) {
-            use addon_feed::AddonMessage as M;
-            let mut lists = addon_lists::snapshot(game, &locale, &catalog, position).into_iter();
-            let mut next = || lists.next().expect("seven native addon lists");
-            let [meter, healing, boss_meter, taken] = game.addon_meter_lines(&locale);
-            let snapshot = vec![M::new("AZS", scalars.stats), M::new("AZSZONE", scalars.zone),
-                M::new("AZSRUN", scalars.run), next(), next(), next(), M::new("AZSTGT", scalars.target),
-                next(), M::new("AZSTIMERS", addon_timers::snapshot(game, &locale)),
-                next(), M::new("AZSPETS", addon_summons::snapshot(game, &locale)),
-                M::new("AZSTOTEMS", addon_summons::totems(game, &locale)),
-                M::new("AZSMETER", meter), M::new("AZSHEAL", healing),
-                M::new("AZSBOSSDMG", boss_meter),
-                M::new("AZSPARTY", coop.as_ref().map_or_else(String::new,
-                    |state| state.party.meter_payload(game.clock))),
-                M::new("AZSREVIVE", coop.as_ref().map_or_else(String::new,
-                    |state| state.party.revive_payload(0, state.shared_running))),
-                M::new("AZSDOWNED", game.party_downed_payload()),
-                next(), next(), M::new("AZSTAKEN", taken),
-                M::new("AZSEND", scalars.end)];
+            let party = coop.as_ref().map_or_else(
+                || [String::new(), String::new()],
+                |state| [state.party.meter_payload(game.clock),
+                    state.party.revive_payload(0, state.shared_running)],
+            );
+            let snapshot = addon_messages(game, scalars, &locale, &catalog, party);
             packets.0.extend(state.addon.changed_from(snapshot,game.player_guid));
         }
     }

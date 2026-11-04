@@ -107,6 +107,47 @@ uses the exact original slice. Original PE operands establish external
 call and data edges omitted by that slice. This trace establishes the
 transport shape and source receipt route, with no live co-op validation.
 
+### Ordinary recipient snapshots
+
+The peer poll at `0x145ea9498` calls `0x145ef58e0`. Its remote arm
+seats the selected hero, invokes the locale adapter at `0x145ef5be0`,
+and restores the seat. That adapter sets the recipient locale at
+`0x145e6e470` and calls the 21-line builder at `0x145e6e4bb`.
+The builder takes the seated hero's damage and healing vectors at
+`+0x918/+0x920` and `+0x930/+0x938`. Both use the full run clock at
+`+0x1028`. The third formatter call uses the boss vector and segment
+clock. The selected line slots carry `AZSMETER`, `AZSHEAL`,
+`AZSBOSSDMG`, and `AZSTAKEN`; the remaining slots use their own scalar
+or list producers. The ordinary `AZS` stats line uses the separate
+three-byte prefix at `0x145e7391e`. The peer poll compares ordinary
+payloads against its cache, appends detailed parts to the changed
+rows, then sends the selected recipient's addon-language whispers.
+
+| Original range | File offset | SHA-256 |
+| --- | --- | --- |
+| Recipient snapshot owner `0x145ef58e0..0x145ef5ceb` | `0x5ef4ce0` | `78e6f2d56b9a052e07c1574cd43c3fc34fb12b6b2c96a307cf69592db021d4df` |
+| Recipient locale adapter `0x145e6e340..0x145e6e562` | `0x5e6d740` | `baeacc2e0dee863750453a57d828a0d9bfaec67fbd1f9e8c83b8d5f5cff47163` |
+| Ordinary line builder `0x145e60e50..0x145e617f9` | `0x5e60250` | `e5f7daa4ca3f0ebe5650b0a602ccccaf963b4a4648ef87326136b8abd396ba1d` |
+
+Ghidra 12.1.4 raw-slice result
+`ev_bb4f9787a0fe9351518f7d9ba4bbe2efa665c039f262305ddf730ff00f940c84`
+matches the recipient snapshot slice. Original PE operands bind the
+external calls, payload slots and prefix bytes.
+
+The rebuilt [recipient feed](../../crates/azeroth-survivors-re/src/gameplay/client/coop_feed.rs)
+uses the same ordinary producers as the [local bridge](../../crates/azeroth-survivors-re/src/gameplay/client.rs)
+while the guest's hero and locale are seated. The existing changed-payload
+cache and `full`/`lines` requests own replay. The guest receives those
+lines through the authenticated engine packet path. This keeps meter
+rates and shares on their fractional authority inputs and supplies
+world-anchor units, debuffs, timers, pets and terminal rows from actual
+game state. The native HUD keeps using its HUD JSON. The guest target
+row still depends on the host's admitted selection state.
+
+The retained 0.140.0 Lua stream consumers, byte-identical in 0.141.0,
+passed the existing stub-host bootstrap checks. Rustfmt parsed the
+changed source. Compilation, live transport, replay and parity remain open.
+
 ## Native recorder and frame
 
 The 0.141.0 counter reducer at `0x145e10f60` is called from the damage

@@ -114,10 +114,7 @@ fn meter_line(
     )
 }
 
-/// The guest receives already localized totals in native HUD JSON. Keep the
-/// same aggregation, stable ordering, rate denominator and addon precision as
-/// the authoritative ledger projection.
-pub(in crate::gameplay) fn meter_totals(
+fn meter_totals(
     entries: impl IntoIterator<Item = (String, bool, f64)>,
     seconds: f32,
 ) -> String {

@@ -1,5 +1,9 @@
 # Co-op guest addon feed — 0.115.0
 
+This report describes the historical guest HUD projection. The
+[0.141.0 recipient proof](detailed-meter-0.141.0.md#ordinary-recipient-snapshots)
+connects the current host-owned ordinary stream.
+
 `gameplay/client/coop_feed.rs` connects received co-op run/HUD state to the
 existing FrameXML `CHAT_MSG_ADDON` API. The guest bridge no longer stops before
 publishing these snapshots. Ordinary engine packets continue to own character

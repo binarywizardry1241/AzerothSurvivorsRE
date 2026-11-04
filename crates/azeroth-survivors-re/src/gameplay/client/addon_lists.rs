@@ -3,10 +3,7 @@
 
 use std::sync::LazyLock;
 
-use azeroth_survivors_re::{
-    enemies::Position,
-    player_abilities::{behavior::totem_passives, damage},
-};
+use azeroth_survivors_re::player_abilities::{behavior::totem_passives, damage};
 use benilla_formats::WorldMapArea;
 use serde::Deserialize;
 
@@ -140,8 +137,7 @@ pub(super) fn snapshot(
     game: &Mechanics,
     locale: &Localization,
     catalog: &BridgeCatalog,
-    _position: Position,
-) -> Vec<AddonMessage> {
+) -> [AddonMessage; 7] {
     let zone = zone_record(game.zone.key);
     let progress = game.addon_progress();
     let schedule = zone.map_or_else(String::new, |zone| {
@@ -305,7 +301,7 @@ pub(super) fn snapshot(
         .collect::<Vec<_>>()
         .join(";");
     let [chests, lairs] = destination_messages(game, locale, catalog);
-    vec![
+    [
         AddonMessage::new("AZSBOSSES", schedule),
         AddonMessage::new("AZSUNITS", unit_rows),
         AddonMessage::new("AZSDEBUFFS", debuffs),
@@ -317,7 +313,7 @@ pub(super) fn snapshot(
 }
 
 /// Shared world destinations with the active recipient's guardian flag and locale.
-pub(super) fn destination_messages(
+fn destination_messages(
     game: &Mechanics,
     locale: &Localization,
     catalog: &BridgeCatalog,
