@@ -2,7 +2,7 @@
 //! Current 0.112.0 Warlock and selected Warrior definitions, with shared
 //! allocation/persistence rules. Other records retain 0.109.0 provenance. See
 //! docs/analysis/talent-allocations-0.112.0.md for current native evidence.
-use crate::run_effects::demon_talents::{PACT_DESCRIPTION, PACT_KEY, PACT_NAME};
+use azeroth_survivors_re::run_effects::{self, demon_talents::{PACT_DESCRIPTION, PACT_KEY, PACT_NAME}};
 use serde::Deserialize;
 use std::{collections::BTreeMap, sync::OnceLock};
 pub const MAX_POINTS: u32 = 51;
@@ -88,6 +88,19 @@ impl Catalog {
         improved_mind_blast.description =
             "Mind Blast's cooldown is 6% shorter and its damage is 6% higher per rank.".into();
         improved_mind_blast.numeric_values.clear();
+        // Current Hunter descriptions share the live effect catalog; keep the
+        // historical menu asset's point, tree and allocation data intact.
+        let effects = run_effects::catalog().classes.iter()
+            .find(|class| class.id == 3).expect("native Hunter effects");
+        let hunter = catalog.classes.iter_mut().find(|class| class.id == 3)
+            .expect("native Hunter class");
+        for talent in hunter.trees.iter_mut().flat_map(|tree| tree.talents.iter_mut())
+            .filter(|talent| matches!(talent.key.as_str(), "rapid_fire" | "wyvern_sting"))
+        {
+            let current = effects.talents.iter().find(|effect| effect.key == talent.key)
+                .expect("native Hunter talent");
+            talent.description.clone_from(&current.description);
+        }
         catalog
     }
     pub fn class(&self, id: u8) -> &TalentClass {

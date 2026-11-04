@@ -42,7 +42,7 @@ pub struct AuxiliaryEffect {
 fn catalog() -> &'static DisplayCatalog {
     static VALUE: OnceLock<DisplayCatalog> = OnceLock::new();
     VALUE.get_or_init(|| {
-        let catalog: DisplayCatalog = serde_json::from_str(include_str!(
+        let mut catalog: DisplayCatalog = serde_json::from_str(include_str!(
             "../../../assets/native-spell-talents-0.115.0.json"
         ))
         .expect("current spell display talent projection");
@@ -50,6 +50,23 @@ fn catalog() -> &'static DisplayCatalog {
             catalog.target_sha256,
             "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
         );
+        // Wyvern Sting's live timer supplies the current spell tooltip row.
+        let effects = azeroth_survivors_re::run_effects::catalog().classes.iter()
+            .find(|class| class.id == 3).expect("native Hunter effects");
+        let wyvern = effects.talents.iter().find(|talent| talent.key == "wyvern_sting")
+            .expect("native Wyvern Sting");
+        let timer = wyvern.effects.iter().find_map(|payload| {
+            azeroth_survivors_re::run_effects::actions::TimedCast::from_effect(
+                &EffectRow::talent(payload, 1), 0.0,
+            )
+        }).expect("native Wyvern Sting timed cast");
+        let hunter = catalog.classes.iter_mut().find(|class| class.id == 3)
+            .expect("Hunter tooltip projection");
+        let wyvern = hunter.talents.iter_mut().find(|talent| talent.key == "wyvern_sting")
+            .expect("Wyvern Sting tooltip projection");
+        let old_trap = wyvern.spells.iter_mut().find(|spell| spell.as_str() == "explosive_trap")
+            .expect("retained Wyvern Sting trap row");
+        *old_trap = timer.key.to_owned();
         catalog
     })
 }

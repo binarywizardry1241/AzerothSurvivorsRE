@@ -37915,7 +37915,8 @@
         "docs/analysis/evidence/0.139.0/source-frontier.json",
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
-        "docs/analysis/native-census-0.139.1.md"
+        "docs/analysis/native-census-0.139.1.md",
+        "docs/analysis/class-balance-0.140.0.md"
       ],
       "gap_ids": [
         13,
@@ -38802,6 +38803,28 @@
           "crates/azeroth-survivors-re/src/sets.rs",
           "crates/azeroth-survivors-re/src/save/gear.rs",
           "crates/azeroth-survivors-re/src/player_abilities/behavior/execution.rs"
+        ]
+      },
+      "gap_90_source_review_0_140_0": {
+        "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        "gap_id": 90,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/class-balance-0.140.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "The native periodic row selects Immolation Trap with a five-second override and preserves the startup Frost Trap. The connected cast, menu and spell-tooltip paths use the current selected key. The native six-cast milestone preserves a capped count on rejection and uses at most two admissions per rolling second. The source connects that cap to the shared cast event and the current description.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/assets/talents.json",
+          "crates/azeroth-survivors-re/src/run_effects/milestones.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+          "crates/azeroth-survivors-re/src/run_effects/actions.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/spell_display.rs",
+          "crates/azeroth-survivors-re/src/save/talents.rs",
+          "crates/azeroth-survivors-re/assets/locales/en.json"
         ]
       }
     },

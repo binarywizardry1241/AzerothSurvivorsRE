@@ -29,16 +29,54 @@ the cast path, effect handling and shared failure paths.
 | `294bc25772dd45de` Giantstalker eight-piece | The title at `0x1473eeddf` seeds the set lookup. The checkout loads `assets/sets-0.121.0.json` through `sets.rs`. Follow the current descriptor's eight-piece effect through spell selection and effective cooldown/power before recording the 20% and 30% claim values as live rules. |
 | `4ce9c90071dde8fd` Beastmaster Matriarch | The pet name begins at `0x1473e640f`; it also appears in set descriptions near `0x1473eb244`. The retained `run_effects/pets.rs` table has the ordinary Wolf/Raptor lifecycle, with no Matriarch descriptor. Follow the set's actor grant and bind normal bite, Hunter's Mark and five-star branches, including whether a bleed producer remains. |
 
-The timed Hunter casts share the [proc dispatcher #90](../CURRENT-STATE.md#gap-90).
+The timed Hunter casts share the [proc dispatcher #90](../verification-needed.md#gap-90).
 The White Devilsaur variant remains a separate appearance constituent under
 [#119](../verification-needed.md#gap-119), with the appearance registry in
 [#83](../CURRENT-STATE.md#gap-83).
 
 | Claim | Current observation and source frontier |
 | --- | --- |
-| `bd0b3730a63334f2` Wyvern Sting | Talent record `0x1473d1d20` points to two effect rows at `0x1473d13e0`. They retain `frost_trap` and select `immolation_trap` with f32 `5.0`. Source `assets/talents.json` still selects `explosive_trap` for the timed effect. Follow native tag 39 into the timing, caster and floor-position consumers and compare `player_abilities/behavior/passive_tick.rs`. |
-| `b6e494b0be86ca3b` Rapid Fire | Talent record `0x1473d09a0` names the twice-per-second limit. Its effect at `0x1473d0008` selects `aimed_shot`. The checkout's older tag 1 effect describes counted shots without this limit. Trace the current trigger at `game/procs.rs` candidates `0x145fd5db0` and `0x145fdc310`, including count preservation when a cast is suppressed and the clock used by the successful-cast deadline. |
+| `bd0b3730a63334f2` Wyvern Sting | Talent record `0x1473d1d20` points to the startup Frost Trap row (native tag 40) and the Immolation Trap timer at `0x1473d1420` (native tag 39, interval 5.0). The source projects those rows into its existing startup grant and timed freecast payloads. |
+| `b6e494b0be86ca3b` Rapid Fire | Talent record `0x1473d09a0` points to native tag 7 at `0x1473d0008`. The four admitted cast keys are Auto Shot, Arcane Shot, Multi-Shot and Concussive Shot. The row selects Aimed Shot with a threshold of six, a rate cap of two and a set count-preservation flag. The source projects it into its existing capped milestone payload. |
 | `350e45ff46b443ac` White Devilsaur | The name at `0x1465c8fe5` and save/switch key at `0x1465c8c98` seed the two-actor investigation. The [0.117.0 proof](white-devilsaur-0.117.0.md) and current `run_effects/pets.rs::replace_white_devilsaur` remove the first Raptor and substitute a single variant for the usual Wolf. Map both original actor IDs 9510/9511 into current effect descriptors, then follow independent bite presentation and combat identity through the actor tick and existing creature queries. |
+
+### Timed Hunter casts
+
+The 0.140.0 cast-event caller at `0x145fb8d86` sends kind 3 to
+`0x145fbc7c0`. For Rapid Fire the cast selector at `0x145fbd933`
+precedes counter increment and saturation at `0x145fbd967..0x145fbd976`.
+The flag check at `0x145fbd97c` skips the pre-admission reset.
+`0x145fbd993..0x145fbda11` selects the effect-index timestamp row,
+dropping timestamps at age 1.0 or older through `0x145fc0512`.
+A rejected attempt leaves the capped count intact. The admitted path at
+`0x145fbe977..0x145fbe9cd` records the current run time and clears the count
+before preparing and dispatching the free cast at `0x145fbea15..0x145fbea5e`.
+The existing source milestone decoder and live cast-event callback already
+implement these fields. Two attempts may fall within one second, including
+when the earlier dispatch finds no target.
+
+For Wyvern Sting, `0x145fb8ac7..0x145fb8b0f` subtracts the frame delta,
+loads the selected timer's ability and override, and prepares its free
+instance. Cast dispatch at `0x145fb8cac` shares the ordinary ground spell
+path. The timer writes the positive override times current recovery, with a
+0.25-second floor, following a successful cast. Failure writes 0.3 seconds
+at `0x145fb8da0`. The source reuses that live timed path. Its zero-range
+Immolation Trap selects the hero position and samples the floor before
+publishing the ground spell. The startup Frost Trap and the independent
+Counterattack explosive effect keep their own selectors.
+
+The shared Ghidra runner returned `ev_266451b1d5c0afdb1debbc05e6b4fac1744fe917cbe7fec1462bc0ef3f1b23de`
+for the counted dispatcher and
+`ev_4eab61f91c33f42d5d1a5dfd5127a7d5c35e497ce30a952d5f1f96c50bbbd6c2`
+for the timer. Both are exact current PE slices mapped at their original
+unwind starts, with input digests
+`b0a3a34ba67d4e07d7853bf709fd4546e915757b44a48172039b36dd696b7c48`
+and `238fcb524f00b94fb6c5f4ff43fc5849fffaf50dd4f6f6e953d707f6e4625978`.
+Instruction review resolves Windows x64 register ownership where the raw
+decompiler's signatures are ambiguous. The localized descriptions come from
+the installed target's fourteen embedded catalogs. The between-run talent menu reads
+those two descriptions from the live talent catalog. Wyvern Sting's spell
+tooltip uses the trap key from that same timed effect.
 
 ## Enhancement, Consecration and Mind Blast
 

@@ -78,6 +78,7 @@ pub struct Talent {
     pub key: String,
     pub name: String,
     pub icon: String,
+    pub description: String,
     pub effects: Vec<Payload>,
 }
 #[derive(Debug, Deserialize)]
