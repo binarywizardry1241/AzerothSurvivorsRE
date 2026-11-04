@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Measure bounded current-target decode reuse without altering census evidence."""
 import argparse
+from contextlib import nullcontext
 import importlib.util
 from itertools import islice
+import tempfile
 import time
 
 import capstone
@@ -41,7 +43,9 @@ def main():
     parser.add_argument('--skip', type=int, default=0, help='Skip this many sorted records before the measured window')
     parser.add_argument('--output', required=True, help='Project runtime benchmark JSON')
     parser.add_argument('--window-in-memory', action='store_true', help='Read a bounded <=1m window once so repeated gzip traversal is outside decoding timings')
-    parser.add_argument('--stream-only', action='store_true', help='Measure the default dense operand stream without populating unused detail caches')
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument('--stream-only', action='store_true', help='Measure the dense operand stream (default)')
+    modes.add_argument('--compare-cache', action='store_true', help='Also benchmark a temporary detail cache')
     args = parser.parse_args()
     if args.instructions < 1 or args.skip < 0:
         raise ValueError('Positive sample size and nonnegative skip required')
@@ -86,33 +90,38 @@ def main():
         for _row,_instruction in boundaries.instructions(rows()):pass
         boundary_receipt=boundaries.receipt()
     boundary_measurement={**boundaries.metrics,'elapsed_seconds':time.monotonic()-started,'receipt':boundary_receipt}
-    measurements = []
-    for publish in (() if args.stream_only else (True, False)):
-        started = time.monotonic()
-        with InstructionFacts(target['sha256'],pe,capstone,publish=publish) as facts:
-            for _, instruction in facts.instructions(rows()):
-                # Exercise cached operand wrappers as the consuming audit does.
-                list(instruction.operands)
-            receipt = facts.receipt()
-        measurements.append({'publish':publish,**facts.metrics,'elapsed_seconds':time.monotonic() - started})
-    if measurements and measurements[-1]['decoded_instructions']:
-        raise ValueError('Measured replay did not reuse every verified instruction')
     started=time.monotonic()
     with NativeOperandStream(target['sha256'],pe,capstone) as stream:
         for _,instruction in stream.instructions(rows()):list(instruction.operands)
         receipt=stream.receipt()
     stream_measurement={**stream.metrics,'elapsed_seconds':time.monotonic()-started}
-    # Keep this stronger public-API comparison outside the timing windows. The
-    # persisted producer reads C details directly; an independent public view
-    # catches omitted or misinterpreted fields on the actual selected image.
-    started=time.monotonic();equivalent=0
-    decoder=capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_64);decoder.detail=True
-    with (NativeOperandStream(target['sha256'],pe,capstone) if args.stream_only else InstructionFacts(target['sha256'],pe,capstone,publish=False)) as facts:
-        for row,instruction in facts.instructions(rows()):
-            legacy=list(decoder.disasm(bytes.fromhex(row['bytes']),int(row['address'],16),count=1))
-            if len(legacy)!=1 or consumer_fields(legacy[0])!=consumer_fields(instruction):
-                raise ValueError('Cached consumer fields differ from independent Capstone at '+row['address'])
-            equivalent+=1
+    measurements = []
+    temporary = (tempfile.TemporaryDirectory(dir=ROOT / 'runtime', prefix='instruction-facts-benchmark-')
+                 if args.compare_cache else nullcontext())
+    with temporary as scratch:
+        if scratch:
+            for publish in (True, False):
+                started = time.monotonic()
+                with InstructionFacts(target['sha256'], pe, capstone, publish=publish, root=scratch) as facts:
+                    for _, instruction in facts.instructions(rows()):
+                        list(instruction.operands)
+                    facts.receipt()
+                measurements.append({'publish': publish, **facts.metrics, 'elapsed_seconds': time.monotonic() - started})
+            if measurements[-1]['decoded_instructions']:
+                raise ValueError('Measured replay did not reuse every verified instruction')
+        # Compare every consumer field with the independent public API outside the timing windows.
+        started = time.monotonic()
+        equivalent = 0
+        decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_64)
+        decoder.detail = True
+        reader = (InstructionFacts(target['sha256'], pe, capstone, root=scratch) if scratch
+                  else NativeOperandStream(target['sha256'], pe, capstone))
+        with reader as facts:
+            for row, instruction in facts.instructions(rows()):
+                legacy = list(decoder.disasm(bytes.fromhex(row['bytes']), int(row['address'], 16), count=1))
+                if len(legacy) != 1 or consumer_fields(legacy[0]) != consumer_fields(instruction):
+                    raise ValueError('Consumer fields differ from independent Capstone at ' + row['address'])
+                equivalent += 1
     if file_sha256(source) != digest:
         raise ValueError('Benchmark input changed during measurement')
     payload = {'target_sha256':target['sha256'],'source_sha256':digest,'sample':{'skip':args.skip,'limit':args.instructions},
