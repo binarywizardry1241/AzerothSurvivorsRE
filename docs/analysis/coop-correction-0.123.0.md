@@ -43,6 +43,55 @@ floor/teleport behavior, network delivery, compilation and original/rebuilt
 parity remain unverified. Wider floor/cache/navigation applicability is separate
 from this completed packet-clock source connection.
 
+## 0.141.0 teleport acknowledgement
+
+The installed 0.141.0 EXE SHA-256 is
+`6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
+The [current manifest](evidence/0.141.0/coop-replication.json) binds the
+selected ingress, packed GUID reader, local and seated consumers, and
+correction producers to that EXE.
+
+Engine7 opcode `0xc7` enters `0x145e9e8d7` and skips the packed GUID with
+`0x145ecfe20`. The reader assembles a little-endian counter from up to four
+remaining bytes and zero-fills a missing suffix. The GUID bytes are consumed
+without selecting an actor. The indexed admitted peer and present Game
+select the actual actor at `0x145e9f7bc..0x145e9f815`. The local branch
+`0x145ef71c3` and seated branch `0x145ef73ba` clear the armed
+`Game+0xf30` flag when the acknowledgement is unsigned greater than or equal
+to the stored counter at `+0xf40`. The journaled Ghidra result below
+supports the swap and restoration boundaries.
+
+Floor correction at `0x145f6b6af..0x145f6b7c4` passes the old sequence to
+the teleport serializer, increments the mover sequence and stores the same
+sent counter in the pending correction. The forced-position path at
+`0x145f3a5ae..0x145f3a680` follows the same sequence. Position and simulation
+time belong to the same pending record.
+
+The rebuilt publication binds the actual teleport counter to its matching
+pending pose for the local or remote owner. The guest forwards the
+controller's acknowledgement with a packed GUID on the AS wire. Stock
+socket serialization keeps its existing shape. The host consumes the
+guest ACK at the front of its ordered ingress with the assigned actor and
+without waiting for terrain. It consumes its own controller ACKs in the
+existing local report order, including when ordinary movement is held.
+Lower counters leave the correction armed. Proximity and elapsed simulation
+time retain their existing movement-report behavior.
+
+```sh
+PYTHONPATH=runtime/armory-recovery/python-libs \
+  python3 -B scripts/check-coop-correction.py --teleport-ack
+```
+
+The replay passed 3,329 packed prefixes, four peer admission cases and
+100 local and seated counter cases over 412,781 original instructions.
+The checker also checked the source routes and syntax-parsed eight Rust
+files. The fixture, compilation, live transport, movement and parity
+remain unverified. The seated wrapper result
+`ev_c82fabb74b8b04f5f54413d96584c3a114f344d45d4664e648c99fcad997a189`
+has digest `b3af33991abc51f0137cbf56725cdec2fbbbd6786c546ba41d3db9cda51b2813`.
+Its exact PE slice at file offset `0x5ef6580` is 832 bytes with SHA-256
+`6df8c73c4c29d7b885848edbc12873926d8dbceb065842ef603cfd8c2322e1fd`.
+
 ## Native contract
 
 | Current owner / exact range | Recovered contract |

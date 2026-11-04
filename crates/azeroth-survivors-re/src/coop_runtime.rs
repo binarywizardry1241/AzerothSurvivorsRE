@@ -450,7 +450,13 @@ fn flush(
 ) {
     let packets = std::mem::take(&mut wire.packets);
     if runtime.is_guest() {
-        for (opcode, payload) in packets {
+        for (opcode, mut payload) in packets {
+            if opcode == benilla_protocol::messages::opcode::MSG_MOVE_TELEPORT_ACK {
+                let Some(packed) = azeroth_survivors_re::coop::engine_packets::pack_teleport_ack(&payload) else {
+                    continue;
+                };
+                payload = packed;
+            }
             runtime.send(
                 None,
                 azeroth_survivors_re::coop::replication::EnginePacket { opcode, payload }

@@ -396,9 +396,10 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
            mut markers:ResMut<super::super::raid_markers::MarkerInbox>,
            time:Res<Time>,locale:Res<Localization>,catalog:Res<crate::catalog::MenuCatalog>,
            mut coop:Option<ResMut<crate::coop_runtime::CoopRuntime>>,
-           party:Option<Res<super::super::coop::CoopGame>>,
+           mut party:Option<ResMut<super::super::coop::CoopGame>>,
            floor:Option<Res<super::super::world::NativeFloor>>) {
-    let Some(game)=session.mechanics.as_mut() else { return };
+    let RunSession { mechanics, recovery, .. } = &mut *session;
+    let Some(game)=mechanics.as_mut() else { return };
     // Taking the buffer exactly once also handles a run paused immediately
     // after a cast or choice. It does not replay its last tick every frame.
     if menu.in_run { game.publish_party_fall_banners(); }
@@ -411,6 +412,9 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
         time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),Some(&mut terminal),None,party.as_deref(),
         floor.as_deref().and_then(|floor| floor.terrain_ref()));
     for event in local.0 {
+        if let SessionEvent::Teleport { position, counter, .. } = &event {
+            recovery.bind_teleport_counter(*position, *counter);
+        }
         if let Some(coop)=coop.as_deref_mut() {
             route_run_event(coop, party.as_deref(), &locale, 0, &event);
         }
@@ -426,6 +430,11 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
         project(events,guid,slot,&mut projected,&mut unsupported,&mut Default::default(),&mut Default::default(),
             &mut Default::default(),time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),None,language,party.as_deref(),None);
         for event in projected.0 {
+            if let (Some(client), Some(party), SessionEvent::Teleport { position, counter, .. }) =
+                (client, party.as_deref_mut(), &event)
+            {
+                party.bind_remote_teleport(client, *position, *counter);
+            }
             if let Some(coop)=coop.as_deref_mut() {
                 if route_run_event(coop, party.as_deref(), &locale, slot, &event) {
                     packets.0.push(event);

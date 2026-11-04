@@ -286,7 +286,7 @@ pub(crate) fn incapacitated_flags(flags: u32, translate_gated: bool, turn_gated:
     out
 }
 
-/// One actual movement-stream position report, including identical-position heartbeats.
+/// One actual movement-stream report, including identical-position heartbeats.
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct MovementReport {
     pub position_wow: [f32; 3],
@@ -297,6 +297,8 @@ pub struct MovementReport {
     pub movement_opcode: Option<u16>,
     /// The packet timestamp, shared with its queued movement or acknowledgement.
     pub timestamp_ms: Option<u32>,
+    /// An actual same-map teleport acknowledgement in the same capture order.
+    pub teleport_ack_counter: Option<u32>,
 }
 
 /// The local player's own control, the reference's `[0xb4b3e4]` cleared (`0x4958e0`): written by
@@ -590,6 +592,20 @@ impl Player {
                 flags,
                 movement_opcode,
                 timestamp_ms,
+                teleport_ack_counter: None,
+            });
+        }
+    }
+
+    pub(super) fn record_teleport_ack(&mut self, position: [f32; 3], facing: f32, counter: u32) {
+        if let Some(reports) = &mut self.report_capture {
+            reports.push(MovementReport {
+                position_wow: position,
+                facing,
+                flags: 0,
+                movement_opcode: None,
+                timestamp_ms: None,
+                teleport_ack_counter: Some(counter),
             });
         }
     }

@@ -61405,6 +61405,27 @@
         "runtime_validation": "not_run",
         "parity": "unverified"
       },
+      "gap_63_teleport_ack_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_ids": [
+          63,
+          270
+        ],
+        "scope": "Packed Engine7 0xc7 and ordered controller ACKs release the pending correction of the selected hero on an unsigned counter match or advance.",
+        "source_status": "connected",
+        "evidence_ref": "docs/analysis/coop-correction-0.123.0.md#01410-teleport-acknowledgement",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/floor_recovery.rs",
+          "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+          "crates/azeroth-survivors-re/src/coop_runtime.rs",
+          "crates/benilla-app/src/player/wire_in.rs",
+          "scripts/check-coop-correction.py"
+        ],
+        "native_cases": 3433,
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "gap_63_hero_wire_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 63,

@@ -90,6 +90,16 @@ fn point(out: &mut Vec<u8>, v: &[f32; 3]) {
 fn guid(out: &mut Vec<u8>, v: u64) {
     benilla_protocol::wire::write_packed_guid(v, out).expect("Vec writes are infallible");
 }
+
+/// Convert the stock client's teleport acknowledgement to the AS ingress shape.
+pub fn pack_teleport_ack(payload: &[u8]) -> Option<Vec<u8>> {
+    let (actor, tail) = payload.split_first_chunk::<8>()?;
+    let mut packed = Vec::with_capacity(payload.len() + 1);
+    guid(&mut packed, u64::from_le_bytes(*actor));
+    packed.extend_from_slice(tail);
+    Some(packed)
+}
+
 fn cstr(out: &mut Vec<u8>, v: &str) {
     out.extend_from_slice(v.as_bytes());
     out.push(0);

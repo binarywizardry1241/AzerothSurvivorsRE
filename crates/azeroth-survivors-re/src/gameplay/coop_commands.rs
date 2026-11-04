@@ -33,6 +33,12 @@ impl CoopGame {
     ) {
         self.motion.entry(client).or_default().recovery.expect_position(position, now);
     }
+
+    pub(crate) fn bind_remote_teleport(&mut self, client: ClientId, position: [f32; 3], counter: u32) {
+        if let Some(motion) = self.motion.get_mut(&client) {
+            motion.recovery.bind_teleport_counter(position, counter);
+        }
+    }
 }
 
 fn u32_at(body: &[u8], offset: usize) -> Option<u32> {
@@ -62,6 +68,13 @@ fn name_query_guid(body: &[u8]) -> u64 {
         *to = *from;
     }
     u64::from_le_bytes(bytes)
+}
+
+fn teleport_ack_counter(mut body: &[u8]) -> u32 {
+    if benilla_protocol::wire::read_packed_guid(&mut body).is_err() {
+        return 0;
+    }
+    template_entry(body)
 }
 
 fn movement(opcode: u16) -> bool {
@@ -122,7 +135,9 @@ pub(super) fn drain(
     while let Some((_, queued)) = state.commands.front() {
         let reply_without_world = matches!(queued, Input::Engine(packet)
             if matches!(packet.opcode, opcode::CMSG_NAME_QUERY | opcode::CMSG_PING));
-        if matches!(queued, Input::Engine(_)) && !reply_without_world
+        let teleport_ack = matches!(queued, Input::Engine(packet)
+            if packet.opcode == opcode::MSG_MOVE_TELEPORT_ACK);
+        if matches!(queued, Input::Engine(_)) && !reply_without_world && !teleport_ack
             && (world_inputs.is_none() || floor.is_none())
         {
             // A command waiting on the world keeps its place in receive order.
@@ -178,6 +193,12 @@ pub(super) fn drain(
                 continue;
             }
         };
+        if teleport_ack {
+            if let Some(motion) = state.motion.get_mut(&client) {
+                motion.recovery.acknowledge_teleport(teleport_ack_counter(&packet.payload));
+            }
+            continue;
+        }
         let (Some(((streamer, tiles), zone)), Some(floor)) = (world_inputs, floor.as_deref_mut()) else {
             break;
         };
@@ -424,7 +445,7 @@ mod tests {
     }
 
     #[test]
-    fn movement_dispatch_does_not_accept_native_noop_c7() {
+    fn movement_dispatch_keeps_the_teleport_ack_separate() {
         assert!(movement(0xb5));
         assert!(movement(0xee));
         assert!(!movement(0xc7));

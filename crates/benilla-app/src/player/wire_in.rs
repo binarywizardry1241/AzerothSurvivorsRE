@@ -410,7 +410,9 @@ pub(super) fn apply_teleport(
     snap_near_teleport(player, &mut cam.yaw, t, now);
     // The echo is the whole handshake: the reference echoes on its next movement tick
     // (`0x60e0a0`), and vmangos relocates us only when it lands.
-    let _ = net_cmds.0.send(ClientCommand::TeleportAck { guid: t.guid, counter: t.counter });
+    if net_cmds.0.send(ClientCommand::TeleportAck { guid: t.guid, counter: t.counter }).is_ok() {
+        player.record_teleport_ack(t.position, t.orientation, t.counter);
+    }
     info!("teleport: snapped to {:?}, acked", t.position);
 }
 

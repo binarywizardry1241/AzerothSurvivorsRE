@@ -15,8 +15,9 @@ import struct
 import subprocess
 import sys
 
-from coverage_common import ROOT, latest_target, project_path, target_bytes
+from coverage_common import ROOT, installed_identity, latest_target, project_path, target_bytes
 from discovery_native_subject import verify_native_query_subject
+from native_terminal import NativeReplay
 from script_sources import load_script
 
 BASE = ROOT / "docs/analysis/evidence/0.123.0/coop-correction"
@@ -204,10 +205,12 @@ def source_checks():
     assert "body.extend_from_slice(&packet.payload);" in commands and "body.get_mut(prefix" not in commands
     runtime = (base / "src/coop_runtime.rs").read_text()
     assert "if exclude_source { *slot != source } else { !private || *slot == source }" in runtime
-    assert "self.engine_events.push((source, packet, true));" in runtime
-    assert "self.engine_events.push((source, packet, false));" in runtime
-    assert "for (source, packet, exclude_source)" in runtime
-    assert "self.route_clients(source, packet, exclude_source);" in runtime
+    assert "EngineDispatch { source, packet, exclude_source: false, localized }" in runtime
+    movement_route = runtime.split("pub(crate) fn route_movement", 1)[1].split("fn dispatch_engine", 1)[0]
+    assert "exclude_source: true" in movement_route
+    assert "self.engine_events.push(dispatch);" in runtime
+    assert "for dispatch in std::mem::take(&mut self.engine_events)" in runtime
+    assert "self.route_clients(dispatch);" in runtime
     assert "self.local_admissions.remove(index).2" in runtime
     assert "runtime.take_local_admission(opcode, original)" in runtime
     assert "if point != original { continue; }" in runtime
@@ -254,11 +257,110 @@ def source_checks():
     return len(paths)
 
 
+def check_teleport_ack():
+    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/coop-replication.json').read_text())
+    target = installed_identity()
+    assert target == proof['target']
+    image = target_bytes(target)
+    pe = load_script('teleport_ack_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+    replay = NativeReplay(image, pe)
+    ranges = {}
+    for row in proof['ranges']:
+        if not row['role'].startswith('teleport_'):
+            continue
+        start, end = int(row['start'], 16), int(row['end_exclusive'], 16)
+        assert pe.rva_offset(start - pe.image_base) == int(row['file_offset'], 16)
+        assert sha(replay.raw(start, end - start)) == row['sha256']
+        ranges[row['role']] = (start, end)
+
+    reg, cpu = replay.registers, replay.machine
+    core, peer, body = replay.app, replay.app + 0x3000, replay.app + 0x4000
+    ingress = [ranges['teleport_ack_' + role] for role in
+               ('ingress', 'empty_prefix', 'peer_and_counter', 'packed_guid')]
+    seated, reject = 0x145ef7180, 0x145ea10bf
+
+    def admit(payload, role=3, peer_count=1, peer_state=1, game_kind=0):
+        replay.reset('teleport acknowledgement ingress', ingress, [seated, reject])
+        cpu.mem_write(body, payload)
+        replay.put(replay.bp + 0x2a8, '<QQ', body, len(payload))
+        replay.put(core + 0x10, '<I', game_kind)
+        replay.put(core + 0x1100, '<I', role)
+        replay.put(core + 0x1138, '<QQ', peer, peer_count)
+        replay.put(peer, '<I4xQ', peer_state, 2)
+        cpu.reg_write(reg.UC_X86_REG_RSI, core)
+        cpu.reg_write(reg.UC_X86_REG_RBX, 1)
+        return replay.run(ingress[0][0])
+
+    payloads = [b''] + [bytes([mask]) + bytes(range(0x81, 0x81 + length))
+                        for mask in range(256) for length in range(13)]
+    for payload in payloads:
+        end = 1 + payload[0].bit_count() if payload else 0
+        expected = int.from_bytes(payload[end:end + 4], 'little')
+        assert admit(payload) == seated
+        assert cpu.reg_read(reg.UC_X86_REG_RDX) == 2
+        assert replay.get(cpu.reg_read(reg.UC_X86_REG_R8), '<I') == (expected,)
+    gates = ((2, 1, 1, 0), (3, 0, 1, 0), (3, 1, 0, 0), (3, 1, 1, 2))
+    for gate in gates:
+        assert admit(b'\0\x01', *gate) == reject
+
+    clear_cases = 0
+    counters = [0, 1, 0x7fffffff, 0x80000000, 0xffffffff]
+    for key in ('teleport_ack_local_clear', 'teleport_ack_seated_clear'):
+        span = ranges[key]
+        for armed in (0, 1):
+            for expected in counters:
+                for counter in counters:
+                    replay.reset('pending correction acknowledgement', [span], [span[1]])
+                    replay.put(core + 0xf30, '<I', armed)
+                    replay.put(core + 0xf40, '<I', expected)
+                    replay.put(body, '<I', counter)
+                    replay.put(replay.bp + 0x17f8, '<Q', body)
+                    cpu.reg_write(reg.UC_X86_REG_RSI, core)
+                    cpu.reg_write(reg.UC_X86_REG_R8, body)
+                    replay.run(span[0])
+                    assert replay.get(core + 0xf30, '<I') == (int(armed and counter < expected),)
+                    assert replay.get(core + 0xf40, '<I') == (expected,)
+                    clear_cases += 1
+
+    base = ROOT / 'crates/azeroth-survivors-re/src'
+    sources = {
+        base / 'floor_recovery.rs': ('pending.position == position', 'counter >= expected',
+                                    'self.pending = None;'),
+        base / 'coop/engine_packets.rs': ('pub fn pack_teleport_ack', 'payload.split_first_chunk::<8>()?',
+                                        'guid(&mut packed, u64::from_le_bytes(*actor))'),
+        base / 'coop_runtime.rs': ('MSG_MOVE_TELEPORT_ACK', 'pack_teleport_ack(&payload)'),
+        base / 'gameplay/client/events.rs': ('recovery.bind_teleport_counter(*position, *counter)',
+                                             'party.bind_remote_teleport(client, *position, *counter)'),
+        base / 'gameplay/coop_commands.rs': ('read_packed_guid(&mut body)', 'template_entry(body)',
+                                            'motion.recovery.acknowledge_teleport(teleport_ack_counter(&packet.payload))'),
+        base / 'gameplay/mod.rs': ('report.teleport_ack_counter', 'session.recovery.acknowledge_teleport(counter)'),
+        ROOT / 'crates/benilla-app/src/player/state.rs': ('teleport_ack_counter: Some(counter)',),
+        ROOT / 'crates/benilla-app/src/player/wire_in.rs': ('player.record_teleport_ack(t.position, t.orientation, t.counter)',),
+    }
+    hosts = {('Darwin', 'arm64'): 'aarch64-apple-darwin', ('Darwin', 'x86_64'): 'x86_64-apple-darwin',
+             ('Linux', 'x86_64'): 'x86_64-unknown-linux-gnu', ('Linux', 'aarch64'): 'aarch64-unknown-linux-gnu'}
+    parser = ROOT / '.tools/rust' / ('1.98.1-' + hosts[(platform.system(), platform.machine())]) / 'bin/rustfmt'
+    for path, anchors in sources.items():
+        source = path.read_text()
+        assert all(anchor in source for anchor in anchors), path
+        subprocess.run([str(parser), '--edition', '2024', '--emit', 'stdout',
+                        '--config', 'skip_children=true'], input=source, text=True,
+                       stdout=subprocess.DEVNULL, check=True, timeout=30)
+    print(f'PASS: {len(payloads)} packed ACK prefixes, {len(gates)} peer gates and '
+          f'{clear_cases} pending-counter cases over {replay.instructions:,} original steps; '
+          f'{len(sources)} Rust syntax parses and source routes')
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source-only", action="store_true",
                         help="check retained-contract source connections without replaying historical EXE evidence")
+    parser.add_argument("--teleport-ack", action="store_true",
+                        help="check the 0.141.0 local and guest teleport acknowledgement routes")
     arguments = parser.parse_args()
+    if arguments.teleport_ack:
+        check_teleport_ack()
+        sys.exit(0)
     if arguments.source_only:
         files = source_checks()
         print(json.dumps(dict(status="passed", scope="retained_contract_source_connections",

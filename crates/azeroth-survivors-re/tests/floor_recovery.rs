@@ -443,6 +443,25 @@ fn current_pending_correction_uses_simulation_seconds_instead_of_report_count() 
 }
 
 #[test]
+fn only_the_pending_teleport_counter_can_release_a_distant_report() {
+    let zone = Zone { key: "fixture".into(), center: [0., 0.], radius: 1000., indoor: false, polygon: vec![] };
+    let mut terrain = ControlledTerrain { blocked: false };
+    let mut state = Recovery::default();
+    let position = [0., 0., 10.];
+    let report = Report { position: [20., 0., 10.], facing: 0., flags: 1, phase: 1, now: 100. };
+
+    state.expect_position(position, 100.);
+    state.bind_teleport_counter([1., 0., 10.], 5);
+    state.acknowledge_teleport(u32::MAX);
+    assert_eq!(state.admit(&zone, report, &mut terrain), Admission::Ignored);
+    state.bind_teleport_counter(position, 0x8000_0000);
+    state.acknowledge_teleport(0x7fff_ffff);
+    assert_eq!(state.admit(&zone, report, &mut terrain), Admission::Ignored);
+    state.acknowledge_teleport(0x8000_0000);
+    assert_eq!(state.admit(&zone, report, &mut terrain), Admission::Accepted);
+}
+
+#[test]
 fn guest_indoor_stationary_timer_follows_movement_timestamp_during_delivery_delay() {
     let zone = Zone { key: "fixture".into(), center: [0., 0.], radius: 1000., indoor: true, polygon: vec![] };
     let mut terrain = ControlledTerrain { blocked: false };

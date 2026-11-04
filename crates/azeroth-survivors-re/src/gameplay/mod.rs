@@ -914,6 +914,16 @@ fn keyboard_choice_actions(
     (selected, can_reroll && keys.just_pressed(KeyCode::KeyR))
 }
 
+fn acknowledge_teleports_without_movement(
+    session: &mut RunSession, reports: &benilla_app::local_client::LocalMovementReports,
+) {
+    if reports.identity == session.identity {
+        for counter in reports.reports.iter().filter_map(|report| report.teleport_ack_counter) {
+            session.recovery.acknowledge_teleport(counter);
+        }
+    }
+}
+
 fn tick(
     time: Res<Time>,
     hud_settings: Res<run_hud::HudSettings>,
@@ -928,10 +938,15 @@ fn tick(
     mut replica: Option<ResMut<coop::CoopGame>>,
     loading: Res<benilla_app::local_client::LocalLoadingScreen>,
 ) {
-    if coop.as_ref().is_some_and(|coop|coop.is_guest()) || loading.covering() || !world.ready || !session.playing() {
+    if coop.as_ref().is_some_and(|coop| coop.is_guest()) {
+        return;
+    }
+    if loading.covering() || !world.ready || !session.playing() {
+        acknowledge_teleports_without_movement(&mut session, &reports);
         return;
     }
     let Some((terrain, tiles)) = terrain.as_deref().zip(tiles.as_deref()) else {
+        acknowledge_teleports_without_movement(&mut session, &reports);
         return;
     };
     let position = world.position_wow;
@@ -949,15 +964,21 @@ fn tick(
     });
     session.last_position = Some(position);
     let Some(floor) = native_floor.terrain() else {
+        acknowledge_teleports_without_movement(&mut session, &reports);
         return;
     };
     let zone_key = session.mechanics.as_ref().unwrap().zone.key;
     let Some(zone) = azeroth_survivors_re::floor_recovery::Zone::for_key(zone_key) else {
+        acknowledge_teleports_without_movement(&mut session, &reports);
         return;
     };
     if reports.identity == session.identity {
         for report in &reports.reports {
             use azeroth_survivors_re::floor_recovery::Report;
+            if let Some(counter) = report.teleport_ack_counter {
+                session.recovery.acknowledge_teleport(counter);
+                continue;
+            }
             // The stock mover also captures speed/knockback acknowledgements.
             // The AS floor dispatcher admits ordinary movement packets only.
             let Some(opcode) = report.movement_opcode else { continue; };

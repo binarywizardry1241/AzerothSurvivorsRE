@@ -128,6 +128,7 @@ struct TimedPosition {
 struct PendingCorrection {
     position: [f32; 3],
     since: f32,
+    teleport_counter: Option<u32>,
 }
 
 #[derive(Clone, Debug, Default)]
@@ -146,7 +147,28 @@ impl Recovery {
         self.pending = Some(PendingCorrection {
             position,
             since: now,
+            teleport_counter: None,
         });
+    }
+
+    /// Bind the counter of the actual outgoing teleport to its pending pose.
+    /// A pose already admitted by movement has no correction left to bind.
+    pub fn bind_teleport_counter(&mut self, position: [f32; 3], counter: u32) {
+        if let Some(pending) = &mut self.pending
+            && pending.position == position
+        {
+            pending.teleport_counter = Some(counter);
+        }
+    }
+
+    /// 0.141.0 compares the acknowledged counter as an unsigned word.
+    pub fn acknowledge_teleport(&mut self, counter: u32) {
+        if self.pending
+            .and_then(|pending| pending.teleport_counter)
+            .is_some_and(|expected| counter >= expected)
+        {
+            self.pending = None;
+        }
     }
 
     /// Call per incoming movement report, before committing its XYZ. Native
