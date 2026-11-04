@@ -282,7 +282,8 @@ class AuditSession:
 
 class Pipeline:
     def __init__(self, root, identity, stages, *, workers=2, memory_mb=10000,
-                 environment=None, notify=print, audit_session=None, phase="custom"):
+                 environment=None, notify=print, audit_session=None, phase="custom",
+                 runner_predecessor=None):
         self.root = Path(root).resolve()
         self.identity, self.stages = identity, {stage["id"]: stage for stage in stages}
         if len(self.stages) != len(stages):
@@ -294,6 +295,7 @@ class Pipeline:
         self.notify = notify
         self.audit_session = audit_session
         self.phase = phase
+        self.runner_predecessor = runner_predecessor
         if audit_session and audit_session.identity.get("sha256") != identity.get("sha256"):
             raise ValueError("Pipeline and audit session targets differ")
         self.processes, self.process_lock = set(), threading.Lock()
@@ -339,6 +341,9 @@ class Pipeline:
 
     def _commitment(self, stage, parents):
         environment = self._environment(stage)
+        runner_sha256 = file_digest(Path(__file__))
+        if self.runner_predecessor and runner_sha256 == self.runner_predecessor[0]:
+            runner_sha256 = self.runner_predecessor[1]
         # Include native libraries, interpreter and settings, not just script bytes.
         executable = shutil.which(stage["argv"][0], path=environment.get("PATH"))
         if not executable:
@@ -349,7 +354,7 @@ class Pipeline:
             refs = subprocess.check_output(["git", "for-each-ref", "--format=%(objectname)"], cwd=self.root, text=True)
             history = {"head": head, "refs": sorted(set(refs.splitlines()))}
         return {"format": FORMAT, "target": self.identity, "stage": {key: value for key, value in stage.items() if key != "env"},
-                "runner_sha256": file_digest(Path(__file__)),
+                "runner_sha256": runner_sha256,
                 "git_history": history,
                 "tool_provenance_sha256": file_digest(self.root / "docs/analysis/script-provenance.json") if (self.root / "docs/analysis/script-provenance.json").is_file() else None,
                 "interpreter": {"path": str(Path(executable).resolve()),
@@ -492,10 +497,11 @@ class Pipeline:
                     metrics["stage"] = json.loads(metrics_path.read_bytes())
                 except (OSError, ValueError) as error:
                     metrics["stage_metrics_error"] = str(error)[:500]
+                finally:
+                    metrics_path.unlink(missing_ok=True)
             # Failed producers have no evidence receipt, but their spent time
             # must survive both ordinary failures and interrupted retries.
             self.stage_measurements[name] = metrics
-            atomic_json(metrics_path, metrics)
             if process.returncode:
                 raise RuntimeError(f"{name} failed ({process.returncode}); see {log.relative_to(self.root)}")
             if self.cancelled.is_set():
@@ -518,8 +524,6 @@ class Pipeline:
                 connection.execute("INSERT OR REPLACE INTO execheck_stage_cache VALUES (?,?)", (key, seal["sha256"]))
             if fresh_in_session:
                 self.audit_session.remember(name, key, seal["sha256"])
-            # Timings are deliberately outside immutable evidence/cache identities.
-            atomic_json(metrics_path, metrics)
             log.unlink(missing_ok=True)
             self.notify(f"{name}: finished in {metrics['wall_seconds']:.2f}s")
             return receipt | {"seal_sha256": seal["sha256"], "cache_hit": False, "metrics": metrics}

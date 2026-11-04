@@ -75,9 +75,30 @@ class PipelineTests(unittest.TestCase):
         self.assertIn("stage_metrics_error", report["stages"]["left"]["metrics"])
         self.assertIn("failed (3)", report["errors"]["left"])
         self.assertNotIn("seal_sha256", report["stages"]["left"])
+        self.assertFalse(list((self.root / "runtime/analysis/pipeline").glob("*.metrics.json")))
         resumed = self.run_plan([self.stage("left", "left.txt"), self.stage("join", "left.txt", needs=("left",)), self.stage("right", "right.txt")])
         self.assertFalse(resumed["errors"])
         self.assertTrue(resumed["stages"]["right"]["cache_hit"])
+
+    def test_timing_only_runner_reuses_seals_and_consumes_sidecar(self):
+        from execheck_pipeline import file_digest
+        stage = self.stage("copy", "left.txt")
+        stage["argv"] = [sys.executable, "-c",
+                         "import os;from pathlib import Path;"
+                         "Path('copy.txt').write_text('first');"
+                         "Path(os.environ['REA_STAGE_METRICS_PATH']).write_text('{\"rows\":3}')"]
+        session = AuditSession(self.root, "runtime/audit.json", self.identity, new=True)
+        revision = file_digest(ROOT / "scripts/execheck_pipeline.py")
+        original = "b" * 64
+        first = self.run_plan([stage], audit_session=session, runner_predecessor=(revision, original))
+        self.assertEqual(first["stages"]["copy"]["metrics"]["stage"], {"rows": 3})
+        self.assertFalse(list((self.root / "runtime/analysis/pipeline").glob("*.metrics.json")))
+        phase = json.loads(session.path.read_bytes())["phases"][0]
+        self.assertEqual(phase["stages"]["copy"]["metrics"], first["stages"]["copy"]["metrics"])
+        cached = self.run_plan([stage], audit_session=session, runner_predecessor=(revision, original))
+        self.assertTrue(cached["stages"]["copy"]["cache_hit"])
+        changed = self.run_plan([stage], audit_session=session, runner_predecessor=("c" * 64, original))
+        self.assertFalse(changed["stages"]["copy"]["cache_hit"])
 
     def test_tool_and_environment_invalidation(self):
         stages = [self.stage("left", "left.txt")]

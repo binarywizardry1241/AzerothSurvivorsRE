@@ -105,7 +105,9 @@ checkpoints. Repeating the same command resumes work.
 Stage wall/CPU/peak-RSS measurements, cache hits and collector-specific counters
 live under ignored `runtime/analysis/pipeline/`. They are separate from evidence
 hashes. `REA_STAGE_METRICS_PATH` lets an individual producer record additional
-decode/search/checkpoint counters. CPU/RSS describe measured child resource use;
+decode/search/checkpoint counters. The runner consumes that temporary file and
+records the counters in the phase report alongside CPU, wall time and RSS.
+CPU/RSS describe measured child resource use;
 declared memory reservations are scheduling limits, not OS memory enforcement.
 
 ## Native repair and checkpoints

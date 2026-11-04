@@ -15,6 +15,12 @@ from coverage_common import ROOT, file_sha256, latest_target, load_json, project
 from execheck_pipeline import Pipeline, source_closure, AuditSession
 from shared_analysis import file_digest
 
+# This exact revision only moves timing sidecars into the existing phase report.
+TIMING_ONLY_RUNNER_REVISION = (
+    "74205d52028069dca32a56362e92c4a0d00cf40c5f2a608229072d926e4b946d",
+    "047cd44e961bbab64e50a88f5160fd352db142a52c38eca0059fb536e2282ab6",
+)
+
 
 def substitute(value, bindings):
     if isinstance(value, str):
@@ -158,6 +164,7 @@ def main():
         session = AuditSession(ROOT, args.audit_session, session_identity, new=args.new_audit)
     report = Pipeline(ROOT, identity, stages, workers=args.workers, memory_mb=args.memory_mb,
                       environment=environment, audit_session=session, phase=args.phase,
+                      runner_predecessor=TIMING_ONLY_RUNNER_REVISION,
                       notify=lambda message: print(message, flush=True)).run()
     # A game update during processing invalidates the run even if all children passed.
     subprocess.run([sys.executable, "-B", "scripts/register-target.py", "--check"], cwd=ROOT, check=True)
