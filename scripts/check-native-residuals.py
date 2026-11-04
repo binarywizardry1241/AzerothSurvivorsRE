@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 
 from coverage_common import ROOT, latest_target, load_json, project_path, file_sha256
+from native_residual_inputs import residual_input_matches
 
 ARTIFACT_NAMES = frozenset(('diagnostic-sites.jsonl.gz', 'static-reference-roles.tsv.gz',
     'ownerless-reference-sources.tsv.gz', 'unowned-executable-destinations.tsv.gz',
@@ -74,7 +75,8 @@ def validate(record, target, census, *, artifacts=True, root=None,
         binding=record['independent_inputs'][name]
         source=root/'docs/analysis/coverage'/f'{name}.json'
         require(summary['target']==record['target'], 'Independent inventory target differs: '+name)
-        require(binding['summary']==dict(path=source.relative_to(root).as_posix(),sha256=file_sha256(source)),
+        require(binding['summary']['path']==source.relative_to(root).as_posix()
+                and residual_input_matches(source, binding['summary']['sha256'], file_sha256(source), root),
                 'Independent summary commitment differs: '+name)
         require(binding['inventory']==dict(path=summary['inventory']['path'],sha256=summary['inventory']['sha256']),
                 'Independent inventory does not match owning summary: '+name)
@@ -97,7 +99,8 @@ def validate(record, target, census, *, artifacts=True, root=None,
     if artifacts:
         for item in [record['generator'],*record['dependencies'],*record['inputs'],*rows.values()]:
             path=artifact_path(item['path'])
-            require(path.is_file() and file_sha256(path)==item['sha256'], 'Changed residual commitment: '+item['path'])
+            require(path.is_file() and residual_input_matches(path, item['sha256'], file_sha256(path), root),
+                    'Changed residual commitment: '+item['path'])
         for name,item in rows.items():
             with gzip.open(artifact_path(item['path']),'rt') as stream:
                 observed=sum(1 for _ in stream)-(1 if name.endswith('.tsv.gz') else 0)

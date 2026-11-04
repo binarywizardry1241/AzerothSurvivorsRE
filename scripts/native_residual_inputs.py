@@ -6,14 +6,53 @@ the byte-verified census's computed flows, without running native analysis.
 from pathlib import Path
 from collections import Counter
 from collections import defaultdict
+from functools import lru_cache
 import csv
 import gzip
 import hashlib
 import importlib.util
 import json
 import re
+import subprocess
 
 from coverage_common import ROOT, file_sha256, load_json
+from script_sources import historical_matches, provenance
+
+DIAGNOSTIC_SUMMARY = 'docs/analysis/coverage/diagnostic-ownership.json'
+
+
+@lru_cache(maxsize=8)
+def diagnostic_predecessor(root, expected):
+    commit = provenance(root).get('diagnostic_summary_predecessors', {}).get(expected, '')
+    if not re.fullmatch('[0-9a-f]{40}', commit):
+        return None
+    blob = subprocess.run(['git', 'cat-file', 'blob', f'{commit}:{DIAGNOSTIC_SUMMARY}'],
+                          cwd=root, capture_output=True)
+    if blob.returncode or hashlib.sha256(blob.stdout).hexdigest() != expected:
+        return None
+    return json.loads(blob.stdout)
+
+
+def residual_input_matches(path, expected, current, root):
+    if current == expected:
+        return True
+    name = path.relative_to(root).as_posix()
+    if name.startswith('scripts/'):
+        return historical_matches(name, expected, root)
+    if name != DIAGNOSTIC_SUMMARY:
+        return False
+    previous = diagnostic_predecessor(root, expected)
+    if previous is None:
+        return False
+    # The residual proof consumes native diagnostics. Require the original
+    # receipt and equality of all fields outside the refreshed projection.
+    current_summary = load_json(path)
+    projection = 'source_mapping_projection'
+    native_digest = previous.get(projection, {}).get('native_fact_sha256')
+    return (bool(native_digest) and native_digest ==
+            current_summary.get(projection, {}).get('native_fact_sha256') and
+            {k: v for k, v in previous.items() if k != projection} ==
+            {k: v for k, v in current_summary.items() if k != projection})
 
 SUPPORT = {
     'native-operands': ('scripts/audit-native-operands.py', 'generator_dependencies',
@@ -352,6 +391,16 @@ class SupportInputs:
         require(hashlib.sha256(text[start:cursor].encode()).hexdigest() == source['body_sha256'], 'AS source contract changed')
 
     def validate(self, name, record):
+        if name == 'engine-diagnostic-roles' and isinstance(record.get('inputs'), list):
+            # The residual-based engine proof has its own bounded checker and
+            # binds the exact census through the native residual proof.
+            residual = self.residual()
+            require(self.receipt(self.census_summary) in residual['inputs'],
+                    'engine diagnostic owning census differs')
+            owner = checker('check-engine-diagnostic-roles')
+            require(owner.derive_residual_roles(self.selected, record['interfaces']) == record,
+                    'engine diagnostic residual proof differs')
+            return
         self.schema(name,record)
         if name == 'native-operands': self.operands(record)
         elif name == 'native-address-leads': self.addresses(record)
@@ -452,7 +501,7 @@ def verified_classifications(selected, *, root=None, census_summary=None):
              'owned-custom-diagnostics', 'as-address-candidates')
     admitted, hashes = {}, {}
 
-    def bound(record):
+    def bound(record, *, allow_residual_predecessors=False):
         if not isinstance(record, dict) or 'path' not in record or 'sha256' not in record:
             raise ValueError('Missing native classification commitment')
         name, expected = record['path'], record['sha256']
@@ -465,20 +514,21 @@ def verified_classifications(selected, *, root=None, census_summary=None):
             if not path.is_file():
                 raise ValueError('Native classification artifact missing: ' + name)
             hashes[path] = file_sha256(path)
-        if hashes[path] != expected:
+        if hashes[path] != expected and not (allow_residual_predecessors and
+                residual_input_matches(path, expected, hashes[path], root)):
             raise ValueError('Native classification artifact changed: ' + name)
         return dict(path=path.relative_to(root).as_posix(), sha256=expected)
 
-    def commitments(value):
+    def commitments(value, *, allow_residual_predecessors):
         if isinstance(value, dict):
             if 'path' in value and 'sha256' in value:
-                bound(value)
+                bound(value, allow_residual_predecessors=allow_residual_predecessors)
             for key, child in value.items():
                 if key != 'target':  # Portable target identity is not a workspace file.
-                    commitments(child)
+                    commitments(child, allow_residual_predecessors=allow_residual_predecessors)
         elif isinstance(value, list):
             for child in value:
-                commitments(child)
+                commitments(child, allow_residual_predecessors=allow_residual_predecessors)
 
     support = SupportInputs(selected,root,bound,census_name)
 
@@ -497,7 +547,8 @@ def verified_classifications(selected, *, root=None, census_summary=None):
                       'runtime_dispatch_verified', 'dynamic_dispatch_verified', 'gameplay_parity_verified'):
             if value.get(field) is True:
                 raise ValueError('Native classification cannot certify ' + field)
-        commitments({k: v for k, v in value.items() if k != 'target'})
+        commitments({k: v for k, v in value.items() if k != 'target'},
+                    allow_residual_predecessors=name == 'native-residuals')
         if name == 'native-ownership':
             validate_ownership(value, selected, root, bound, census_name)
         if name == 'independent-indirects':

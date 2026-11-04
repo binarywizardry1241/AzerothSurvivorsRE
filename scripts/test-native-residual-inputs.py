@@ -121,6 +121,26 @@ class ClassificationInputs(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'owning census commitment'):
             verified_classifications(self.target,root=self.root,census_summary=alternate)
 
+    def test_residual_accepts_projection_refresh_with_exact_predecessor(self):
+        name = 'docs/analysis/coverage/diagnostic-ownership.json'
+        previous = json.loads((self.root / name).read_text())
+        previous['source_mapping_projection'] = dict(native_fact_sha256='a'*64, source_mapping='old')
+        self.write_json(name, previous)
+        new_receipt = self.receipt(name)
+        binding = self.record['independent_inputs']['diagnostic-ownership']
+        self.record['inputs'] = [new_receipt if item == binding['summary'] else item
+                                 for item in self.record['inputs']]
+        binding['summary'] = new_receipt
+        current = deepcopy(previous)
+        current['source_mapping_projection']['source_mapping'] = 'new'
+        self.write_json(name, current)
+        with patch('native_residual_inputs.diagnostic_predecessor', return_value=previous):
+            self.assertTrue(self.run_record()['explicit_ownerless_site_inventory_available'])
+            current['counts']['reference_kinds']['jump_indirect'] += 1
+            self.write_json(name, current)
+            with self.assertRaisesRegex(ValueError, 'artifact changed'):
+                self.run_record()
+
     def ownership(self):
         row = dict(site='0x1002',kind='call',instruction_bytes='ffd0',ghidra_flow='COMPUTED_CALL',
             runtime_dispatch_verified=False,unknown_reason='register-value-not-established-in-observed-block')
