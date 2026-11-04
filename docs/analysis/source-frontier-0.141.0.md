@@ -56,6 +56,100 @@ extract](evidence/0.140.0/embedded-api.lua) with SHA-256
 Exact Lua bytes leave native producer and scheduling correspondence
 as separate questions.
 
+## Q41-I01 embedded Lua, bindings and persistence
+
+The [embedded classification receipt](evidence/0.141.0/data-classification/manifest.json)
+selects all 2,901 occurrences. The following byte joins account for 930 of
+949 binding-identifier, 149 of 259 Lua declaration, 29 of 347 Lua
+registration-token and five of seven textual-ID occurrences. Select each
+row in `outputs['embedded-classification.jsonl']` by file offset within the
+half-open span and category. The two combat slices fall within the main
+addon API span and their occurrences count once.
+
+| File offset / bytes | Exact payload and rebuilt consumer |
+| --- | --- |
+| `0x76ec4d8` / 11,034 | The [core patch](evidence/0.108.0/hud-framexml/world-state-patch.lua) with the [raid popup](evidence/0.115.0/raid-targets/popup.lua) inserted at byte 9,728. The pointer/length at file `0x76eeff8` confirms the full span and its SHA-256 is `c71f24c567d36c3c7f7c557e71ef8e136c6d62ae34369f3fdae386f623061809`. The rebuilt client installs these through the [core](../../crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs) and [raid](../../crates/azeroth-survivors-re/src/gameplay/client/raid_targets.rs) append paths. |
+| `0x73a90c3` / 271 | [StaticPopup death wrapper](evidence/0.115.0/death-popup.lua), installed by the core append path. |
+| `0x7ae141a` / 28,656 | [Main addon API](evidence/0.140.0/embedded-api.lua). The [rebuilt extension](../../crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs) composes recovered sections into the WorldStateFrame append. |
+| `0x76dfef4` / 50,637 | [Meter API](evidence/0.139.1/meter-api.lua), including the five textual IDs at ordinals 2–6. The `AZS_ML_QUERY` and `AZS_ML_LOADOUT` Lua tables use value 1 as request defaults. The [typed producer and publication gap](detailed-meter-0.141.0.md) remains #75. |
+| `0x76ef063` / 9,167 | [PaperDoll Lua](evidence/0.139.1/paperdoll-run-stats.lua). [The rebuilt character pane](../../crates/azeroth-survivors-re/src/gameplay/client/run_stats.rs) incorporates its Stormguard helper in the retained run-stats postlude. Byte identity of the native span does not establish whole-pane source equivalence. |
+| `0x7ae478c` / 1,810 and `0x7ae4e9e` / 830 | [Combat text API](evidence/0.139.2/combat-text/event-projection-api.lua) and [frame handlers](evidence/0.139.2/combat-text/frame-handlers.lua), appended by the rebuilt extension. |
+
+Outside those spans, the other two textual IDs are the `bagId = 0`
+loop starts in `BenillaOpenBackpack` and `BenillaCloseBackpack` at
+`0x1466cbbad` and `0x1466cbdc6`. The [existing XML adapter](../../crates/benilla-app/assets/ui/ContainerFrameAdapters.xml)
+contains both loops. Of the 110 remaining Lua declaration matches, 109 have
+engine source-literal context and ordinal 109 crosses the end of the
+shader diagnostic “Not a global variable or a function argument” into the
+next packed diagnostic. The remaining 318 registration-token rows have
+source-literal occurrences. These engine source matches establish lexical
+context only. Recover an actual loader, callback or dispatch edge before
+assigning behavior to any remaining token.
+
+All 19 binding-identifier rows outside the seven spans have bounded roles.
+Ordinals 0–6 are machine operands. The instructions at `0x140080fa2`,
+`0x1401ef4cb`, `0x1401f3239`, `0x1401ffd51` and `0x1402005c6` carry
+eight-byte `AZS_SKIP` immediates. `0x1401f3c38` and `0x1401fff57` carry the
+first eight bytes of `AZS_OPENLEVELS`. Their partner immediates at
+`0x1401f3c45` and `0x1401fff61` overlap by two bytes to cover the 14-byte
+name. Longer apparent spellings consume the next instruction's prefix or
+opcode. The [source command table](../../crates/azeroth-survivors-re/src/native_bindings.rs)
+and Options use the actual names. Ordinals 7–13 contain player sample,
+packed combat/world callback names, talent toggles, local clock, the
+skip name and the overlay registry. The [callback trace](world-anchors-0.141.0.md#frame-callback-registration)
+establishes separate registration for the two packed callback families.
+Ordinals 16–18 are the SC/JP/KR font filenames used by [menu fonts](../../crates/azeroth-survivors-re/src/menu_fonts.rs).
+Ordinals 947–948 select the stored-level binding and its Lua command.
+
+The packed namespace change has a concrete name boundary. The native
+`0x1401dc950` leaf returns the 59-byte OverScreens plugin name at
+`0x14659c542` inside namespace ordinal 5. Its [descriptor and consumer](above-card-frames-0.141.0.md#registration-and-shared-state)
+prove that the whole concatenation is not one registration or a schedule
+order. The adjacent generic tracing rows at namespace ordinals 933 and
+987 have independent relocation-backed slices for the namespace and the
+seven-byte `message` field. Their trailing characters are outside that field.
+Other plugin interfaces retain the individual owners above.
+
+The ReputationFrame path at resource ordinal 222 has distinct read and
+publication sites at `0x145ddb13a` and `0x145ddb1f6`. In between, the
+formatter at `0x145ddb1c8` takes the little-endian `u32` value 120 at
+`0x1476e1848` and the packed template at `0x1476e184c`. This explains why
+the completed Lua line is absent as a contiguous PE string. The existing
+[ReputationFrame append](evidence/0.127.0/run-level-cap.lua) supplies the
+result under [#181](../verification-needed.md#gap-181).
+
+| Save/configuration ordinal | Current role and source boundary |
+| --- | --- |
+| 0, 4 | The producer in `0x145ebb750` writes eight bytes from `0x147aeaade` into the four-byte JSON key `type` at `0x145ebc203`. The frontend `movabs/cmp/je` at `0x140052b75..0x140052b88` dispatches to `0x140053216`; that case selects the six-byte `talent` context at `0x140053260`. The [existing request and context](../../crates/azeroth-survivors-re/src/talent_context.rs) connect to the [terminal consumer](../../crates/azeroth-survivors-re/src/gameplay/terminal.rs). This is an event discriminator. |
+| 1 | `0x14001872e` selects an 11-byte relative-name comparison in the [legacy migration](legacy-config-0.113.2.md) path. The current source counterpart is [legacy_config.rs](../../crates/azeroth-survivors-re/src/legacy_config.rs). |
+| 2 | `0x1411e64b3` and `0x1411e8652` pass the same 11-byte filename to the shared path join. The existing [CVar owner](../../crates/benilla-app/src/cvars/mod.rs) and [home resolver](../../crates/benilla-app/src/local_state.rs) use this filename. |
+| 3 | The bytes occur within the saved-account-name migration diagnostic at `0x146726f70`. `adopt_legacy_account` has the corresponding message and CVar path. |
+| 5 | The resolver `0x145eef4b0` checks the 14-byte `WOW_ROGUE_SAVE` first and returns a present override. Otherwise it calls the base-directory helper at `0x145eef506` and appends the 14-byte `characters.txt` from `0x147aee27d`. [save.rs](../../crates/azeroth-survivors-re/src/save.rs) uses the same priority. |
+
+The bounded classification identifies no new gameplay or persistence source
+defect. The full inventory remains intact. Unresolved type layouts,
+registration lifetimes, resource joins and dynamic consumers remain under
+their individual findings and #41.
+
+### Native query receipts
+
+Ghidra 12.1.4 analyzed six exact, unwind-bounded slices. Reproduce the inputs
+with `scripts/extract-menu-native-slices.py --current-target`, the start
+addresses below and a project-local workdir, then run the resulting plans
+through `./scripts/rea query`. The journal target hashes match the original
+PE slice hashes. Original instructions establish Win64 arguments, external
+data and the computed frontend case that the raw imports omit. The last
+column selects the immutable result in the shared analysis store.
+
+| Start VA / bytes | Slice SHA-256 | Ghidra evidence | Result SHA-256 |
+| --- | --- | --- | --- |
+| `0x1400178f0` / 7,678 | `80ffb92be8e1d0aedfcba13b182c2a9aa35272fd7038a3b9676bf1fb21b2cbfa` | `ev_d92cdc92301e88495cde4962350b6a40a19a9ecc948ac718b6756b0ccff14761` | `ba464b3358a5d292b3f2adb4ff4ed2e114c3c7ed8f8f3bee9d8b881f02d89f50` |
+| `0x140052100` / 6,026 | `67ff7ae2c1adf204662f8f16f1e29c3138c4c6e4482751ef1aca5dd3cde088fe` | `ev_a3e456a0163d98623bbf1da1d883444e380f7122c44da7f5fa8e1cdb58d7a01b` | `01272a556643fdc224884b3dc074c978df207a74186dc1fe800a20407f8b4262` |
+| `0x1411e6400` / 4,209 | `609deda9ba292dc4ce835fe78e472db80d93064fadba3b3243e1bca7e22d1766` | `ev_ffb70b4ae8b3684b5c733f3c1486719a608aee5906c9548325742f2336aaf2a9` | `2334f8cd5c69ef8417d24a5550523112e338645bd7ecfebe2d8d88b38702fcb5` |
+| `0x1411e8600` / 1,089 | `554dd630af0c06d604b88a9fe7312d898d31e733d711d7da68c37b1d69a9d3cb` | `ev_2e31fe161aace47caab22c95a9eff82cc8fef6865d99c2c65fc166b612b3059a` | `5bf0d45a2ae42903f151967920f4fc2870e2231c3625d404111546e175d9aa33` |
+| `0x145ebb750` / 5,133 | `8e3748d6773d78d05ca31ce64caa20c0e9719ac8857d5a12727dcc62c5ebd030` | `ev_d092161829001d6bb011d986a3e0656aa69b5c0c08a55ea22852ad810858ced7` | `5ad871499a1d59cf557fb474e2a1ba182a507c7525dfb7027d5e938e32ce7015` |
+| `0x145eef4b0` / 208 | `6c95a4fdf8ff7e53d30070cce3435c5f57a9d05edd74fb2220c6d1eeb5d5c2f0` | `ev_b10a470e62922d3d58535e75920cf2f4beb64889350eb001a4e441526d8143d7` | `7c551aeef4bc4bf9d5c34baba283a29d1aca4a687ba85d78af7aaf986033adc1` |
+
 ## Bounded native and source connections beyond the literal delta
 
 | Scope | Current evidence and remaining action |
