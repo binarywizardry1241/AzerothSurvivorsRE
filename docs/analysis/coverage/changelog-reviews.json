@@ -23012,6 +23012,37 @@
       }
     },
     {
+      "claim_id": "changelog:0.126.0:dd708b2fb04b31f5",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "The installed Windows path publishes caret and preedit events. Its only resolved typed AS reader handles Commit. Windows composition display and candidate-key behavior remain platform verification. The separately hash-bound 0.141.0 browser WASM proves the DOM focus and synthetic-key handoff. Browser integration depends on a rebuilt app/data bootstrap with the canvas and Winit web event loop.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/ime.rs",
+        "crates/azeroth-survivors-re/src/main.rs",
+        "crates/azeroth-survivors-re/Cargo.toml"
+      ],
+      "evidence_refs": [
+        "docs/analysis/native-ime-preedit-0.141.0.md",
+        "docs/analysis/browser-ime-0.141.0.md"
+      ],
+      "systems": [
+        "custom-app-screens-ime"
+      ],
+      "gap_ids": [
+        293
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/ime.rs": "eb99c84d3072d2bbe3b394cec681b1e6ca29edc8bf84a43829cabf1c16c6fe05",
+        "crates/azeroth-survivors-re/src/main.rs": "bd34e403d6db3b6dead607ac2f61b3a1469118c48db8b2f8fe2d5516d51864ab",
+        "crates/azeroth-survivors-re/Cargo.toml": "d5bb77fd33f92c3913bb51d9ae149433fd9354bef8f0222866c749f56f751b92",
+        "docs/analysis/native-ime-preedit-0.141.0.md": "2ea4e71964f89ad124b050003c188b09b0e97811e58dd44340833d0d6e866661",
+        "docs/analysis/browser-ime-0.141.0.md": "b9bfe83ed7de1c44ffa5f0394d7ac1faf87a4c94d9489e3260bfbbe44d524fb5"
+      }
+    },
+    {
       "claim_id": "changelog:0.126.0:8def44f0a23e8e21",
       "target": {
         "version": "0.127.0",

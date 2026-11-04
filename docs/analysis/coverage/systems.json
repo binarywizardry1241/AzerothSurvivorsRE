@@ -65075,6 +65075,26 @@
         "docs/analysis/ime-bridge-0.127.0.md",
         "docs/analysis/evidence/0.127.0/ime-bridge/manifest.json",
         "scripts/check-picker-name.py",
+      "native_preedit_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_ids": [293],
+        "evidence_refs": ["docs/analysis/native-ime-preedit-0.141.0.md"],
+        "source_refs": ["crates/azeroth-survivors-re/src/ime.rs"],
+        "recovery": "Windows caret and preedit event production, nine typed IME identity references, and the existing two-stream Commit consumer. No separate AS renderer within the selected typed references.",
+        "static_validation": "Hash-bound PE decode, retained forwarder comparison and journaled Ghidra analysis.",
+        "runtime_validation": "unverified",
+        "parity": "unverified"
+      },
+      "browser_input_0_141_0": {
+        "wasm_sha256": "c1b2c99d39f5809215079951e5df46f091c2d57669ffd9e96edcea61169a17c0",
+        "gap_ids": [293],
+        "evidence_refs": ["docs/analysis/browser-ime-0.141.0.md"],
+        "recovery": "The deployed WASM calls the DOM bridge with focus and caret coordinates. DOM composition ends in the normal Winit key and text path.",
+        "static_validation": "WABT validation and eight exact function-range checks.",
+        "remaining_source_work": "Connect focus and DOM input once a rebuilt browser app/data bootstrap provides the canvas and event loop.",
+        "runtime_validation": "unverified",
+        "parity": "unverified"
+      },
         "docs/analysis/evidence/0.139.0/discovery-delta.json",
         "docs/analysis/source-frontier-0.139.0.md",
         "docs/analysis/evidence/0.139.0/source-frontier.json",
