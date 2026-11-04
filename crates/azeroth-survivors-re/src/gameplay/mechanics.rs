@@ -614,6 +614,7 @@ pub struct Mechanics {
     pub clock: f32,
     /// Current Game+d30; initialized to zero and reset only by an actual revival.
     alive_since: f32,
+    fall_epoch: f32,
     pub level: u32,
     pub xp: u32,
     pub gold: u32,
@@ -773,6 +774,7 @@ impl Mechanics {
             },
             clock: 0.0,
             alive_since: 0.0,
+            fall_epoch: 0.0,
             level: 1,
             xp: 0,
             gold: 0,

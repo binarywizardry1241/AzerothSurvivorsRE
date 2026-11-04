@@ -65,6 +65,7 @@ pub(super) fn recipient_addon_snapshot(
     vec![addon_feed::AddonMessage::new("AZSZONE", scalars.zone),
         addon_feed::AddonMessage::new("AZSRUN", scalars.run),
         addon_feed::AddonMessage::new("AZSTOTEMS", addon_summons::totems(game, locale)),
+        addon_feed::AddonMessage::new("AZSDOWNED", game.party_downed_payload()),
         chests, lairs]
 }
 
@@ -357,6 +358,7 @@ fn sync_to_client(
                     |state| state.party.meter_payload(game.clock))),
                 M::new("AZSREVIVE", coop.as_ref().map_or_else(String::new,
                     |state| state.party.revive_payload(0, state.shared_running))),
+                M::new("AZSDOWNED", game.party_downed_payload()),
                 next(), next(), M::new("AZSTAKEN", taken),
                 M::new("AZSEND", scalars.end)];
             packets.0.extend(state.addon.changed_from(snapshot,game.player_guid));

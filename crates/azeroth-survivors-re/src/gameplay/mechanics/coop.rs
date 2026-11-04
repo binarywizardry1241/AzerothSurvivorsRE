@@ -184,6 +184,31 @@ mod tests {
     }
 
     #[test]
+    fn downed_addon_rows_use_world_identity_and_exclude_the_borrowed_recipient() {
+        let mut game = pair();
+        let point = Position::from([1.5, -2.5, 3.0]);
+        game.party_input(1, PartyInput { position: point, facing: 0.0, velocity: [0.0; 2] });
+        game.clock = 12.5;
+        game.with_party_hero(1, |hero| {
+            hero.dead = true;
+            hero.fall_epoch = hero.clock;
+        }).unwrap();
+        assert_eq!(game.party_downed_payload(), "u200,Remote,1.5,-2.5,3.0,12.5,down");
+        assert!(game.with_party_hero(1, |hero| hero.party_downed_payload()).unwrap().is_empty());
+
+        game.with_party_hero(1, |hero| hero.apply_party_revive(
+            azeroth_survivors_re::coop::game_party::Revived {
+                slot: 1, health: 60.0, immunity_spell: 1020, immunity_expires: 14.5,
+            },
+        )).unwrap();
+        assert!(game.party_downed_payload().is_empty());
+
+        game.clock = 15.0;
+        assert!(game.leave_party_hero(1));
+        assert_eq!(game.party_downed_payload(), "u200,Remote,1.5,-2.5,3.0,15.0,left");
+    }
+
+    #[test]
     fn missing_card_request_keeps_each_heros_offer_and_progress() {
         let mut game = pair();
         for slot in [0, 1] {
@@ -910,7 +935,7 @@ hero_state! {
     execution: ExecutionState<'static>, level: u32, xp: u32,
     gold: u32, gold_earned: u32, kills: u32, elite_kills: u32,
     choices: Vec<RunChoice>, dead: bool, completed: bool, abandoned: bool,
-    alive_since: f32,
+    alive_since: f32, fall_epoch: f32,
     taken_damage: super::super::addon_meters::TakenLedger,
     damage_history: super::super::death_recap::DamageHistory,
     death_recap: Option<super::super::death_recap::DeathRecap>,
@@ -1891,6 +1916,14 @@ impl Mechanics {
     pub fn party_snapshot(&self) -> &Party {
         &self.coop.snapshot
     }
+
+    pub fn party_downed_payload(&self) -> String {
+        self.coop.snapshot.downed_payload(
+            usize::from(self.coop.active_slot),
+            self.party_terminal_phase() == Some(4),
+        )
+    }
+
     pub fn localized_party_snapshot(&self, locale: &crate::localization::Localization) -> Party {
         let mut party = self.coop.snapshot.clone();
         for hero in &mut party.heroes {
@@ -2185,9 +2218,11 @@ impl Mechanics {
         });
         let mut rows = vec![PartyHero {
             slot: 0,
+            guid: self.player_guid,
             name: self.coop.local_name.clone(),
             class: self.class.class_id,
             position: local_position,
+            fall_epoch: self.fall_epoch,
             state: if self.completed {
                 5
             } else if self.dead {
@@ -2214,6 +2249,7 @@ impl Mechanics {
             let state = &hero.state;
             rows.push(PartyHero {
                 slot: usize::from(hero.slot),
+                guid: state.player_guid,
                 name: hero.name.clone(),
                 class: state.class.class_id,
                 position: [
@@ -2221,6 +2257,7 @@ impl Mechanics {
                     hero.input.position.y,
                     hero.input.position.z,
                 ],
+                fall_epoch: state.fall_epoch,
                 state: if state.completed {
                     5
                 } else if state.dead {
@@ -2253,16 +2290,7 @@ impl Mechanics {
             }
         }
         for row in &mut rows {
-            let guid = if row.slot == 0 {
-                self.player_guid
-            } else {
-                self.coop
-                    .remotes
-                    .iter()
-                    .find(|hero| usize::from(hero.slot) == row.slot)
-                    .map_or(0, |hero| hero.state.player_guid)
-            };
-            if let Some((damage, entries)) = self.coop.meter.get(&guid) {
+            if let Some((damage, entries)) = self.coop.meter.get(&row.guid) {
                 row.damage = *damage;
                 row.spells = spells(entries);
             }

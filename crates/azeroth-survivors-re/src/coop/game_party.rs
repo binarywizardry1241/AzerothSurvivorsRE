@@ -20,9 +20,11 @@ pub struct PartySpell {
 #[derive(Clone, Debug, Default)]
 pub struct PartyHero {
     pub slot: usize,
+    pub guid: u64,
     pub name: String,
     pub class: u8,
     pub position: [f32; 3],
+    pub fall_epoch: f32,
     /// Only 1 is an AI target. States 1 and 2 remain nearby revive helpers;
     /// only state 1 advances the clock, while chooser-only presence holds it.
     pub state: u8,
@@ -238,6 +240,24 @@ impl Party {
                 let _ = write!(output, ";reviving={};rshare={:.2}",
                     sanitize(&row.target_name), row.share);
             }
+        }
+        output
+    }
+
+    /// 0.140.0 publishes the other retained world rows that fell or left.
+    pub fn downed_payload(&self, recipient: usize, ended: bool) -> String {
+        let mut output = String::new();
+        if !self.active {
+            return output;
+        }
+        for hero in self.heroes.iter().filter(|hero| hero.slot != recipient && (hero.state == 4 || hero.finished)) {
+            if !output.is_empty() {
+                output.push(';');
+            }
+            let state = if hero.finished { "left" } else if ended { "ended" } else { "down" };
+            let [x, y, z] = hero.position;
+            let _ = write!(output, "u{},{},{x:.1},{y:.1},{z:.1},{:.1},{state}",
+                hero.guid, sanitize(&hero.name), hero.fall_epoch);
         }
         output
     }
