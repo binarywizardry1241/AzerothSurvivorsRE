@@ -34031,6 +34031,74 @@
       "gap_ids": [
         288
       ]
+    },
+    {
+      "claim_id": "changelog:0.129.0:46a11391b04357ec",
+      "target": {
+        "version": "0.139.2",
+        "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908"
+      },
+      "status": "source_connected",
+      "rationale": "The retained 0.139.2 ring offer and equipped stat paths use the native 100% ceiling. The periodic plan increases ticks and total damage while preserving duration.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/loot_rewards.rs",
+        "crates/azeroth-survivors-re/src/run_effects.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs",
+        "crates/azeroth-survivors-re/src/codex.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/seal-of-the-damned-0.139.2.md",
+        "docs/analysis/evidence/0.139.2/seal-of-the-damned.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/loot_rewards.rs": "ccbe20713c6755be7b5e61afd056704f7317d51fff920720d9d3d9d2a1632187",
+        "crates/azeroth-survivors-re/src/run_effects.rs": "2e9352c04455405102b2cff8d8809c3d280b87913e1b3e0be086c3b0a5cb5980",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs": "523d56019be07a1f7aed58797854faf7e2534bbeeab271f06cc37535efc91f71",
+        "crates/azeroth-survivors-re/src/codex.rs": "4047cfdc07281f7311ba9d5f97c6572db39c04b3169c74998ddff02e9115474b",
+        "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs": "7e27cd568707db14ab4dbf26a2697b9cd5478ec99c9eadd2c5f40dfff354851f",
+        "docs/analysis/seal-of-the-damned-0.139.2.md": "5ab6c921af1b9e6467e38df192c48d631067154476d9ecffaf3c48d824cf4281",
+        "docs/analysis/evidence/0.139.2/seal-of-the-damned.json": "7b18e0a5bc22d7518c76a3e07a54cae36a69f6e65aaa0773ed0df5640e6547f4"
+      },
+      "systems": [
+        "custom-game-jewelry",
+        "custom-game-game-abilities"
+      ],
+      "gap_ids": [
+        308
+      ]
+    },
+    {
+      "claim_id": "changelog:0.134.0:48eb9d1528e0a075",
+      "target": {
+        "version": "0.139.2",
+        "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908"
+      },
+      "status": "source_connected",
+      "rationale": "The retained 0.139.2 cast-kind branch uses the ring bonus only when the player applies an actor-targeted damage-over-time spell. Other periodic constructors keep separate inputs.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/seal-of-the-damned-0.139.2.md",
+        "docs/analysis/evidence/0.139.2/seal-of-the-damned.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "2ff1e7a127f06bec47319b03fb6cd167a08c59cccdc122fc8b78357cf0975dd2",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs": "523d56019be07a1f7aed58797854faf7e2534bbeeab271f06cc37535efc91f71",
+        "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs": "0174c914e1f1915075f978f9ccfad1c72bd851125c7de116056dd13df24f8100",
+        "docs/analysis/seal-of-the-damned-0.139.2.md": "5ab6c921af1b9e6467e38df192c48d631067154476d9ecffaf3c48d824cf4281",
+        "docs/analysis/evidence/0.139.2/seal-of-the-damned.json": "7b18e0a5bc22d7518c76a3e07a54cae36a69f6e65aaa0773ed0df5640e6547f4"
+      },
+      "systems": [
+        "custom-game-game-abilities",
+        "custom-game-game-procs"
+      ],
+      "gap_ids": [
+        308
+      ]
     }
   ]
 }

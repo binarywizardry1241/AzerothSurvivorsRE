@@ -133,7 +133,6 @@ Apply source eligibility per member; selecting an exact ID does not select sibli
 | Enhancement rework | #305, #136, #141, #148, #75 | Current spell/tree/save/proc/jewelry/buff/Armor/tooltip/meter chain; later aspects supersede intermediate rules. | Classes & talents · Shaman, Enhancement, procs |
 | Co-op Ready Check | #306, #150, #153, #154 | Authoritative ready/response/countdown/cancel roster and run-start boundary. | Co-op & networking · Lobby |
 | World combat-text addon feed | #307, #75 | Exact events, target/anchor lifetime, camera projection/frame callbacks and source-key correspondence. | Addons & Lua · Combat text, meter source keys |
-| Player-applied periodic damage acceleration | #308, #136, #90 | Seal magnitude and owner/application-kind filter. | Gameplay & combat · Damage over time, jewelry |
 | Arcane Power echo cascade | #309, #90, #136 | Full-Echo continuation and repeat admission. | Classes & talents · Mage, Arcane, echoes |
 | Party damage symmetry | #239, #153, #147 | Two-player guest context and host/recipient incoming-damage factors. | Co-op & networking · Incoming damage |
 | Menu/window input ownership and composition | #17, #22, #59, #293, #310 | Preserve distinct binding, Back/Select, Escape and IME identities. Map current gate producers, event lifetime and actual downstream consumers; HUD/meter drag source history stays under #7/#8 in verification. No shared root cause is proved. | Controls & camera · IME, focus |

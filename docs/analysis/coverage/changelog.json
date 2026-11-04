@@ -134,7 +134,7 @@
     },
     "reviews": {
       "path": "docs/analysis/coverage/changelog-reviews.json",
-      "sha256": "19d2d69df3e3e1140f120c3b1b0f47db29d86fdc701434a8582a6c60fc5923bf",
+      "sha256": "d23204790c4748348ff625f04b9099d0f13d85b63cbfdac16f08114736a939d7",
       "applied_reviews": 23,
       "historical_unapplied_reviews": [
         {
@@ -11440,6 +11440,33 @@
           "status": "source_connected",
           "application": "historical_unapplied",
           "changed_refs": []
+        },
+        {
+          "claim_id": "changelog:0.129.0:46a11391b04357ec",
+          "target": {
+            "version": "0.139.2",
+            "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908"
+          },
+          "status": "source_connected",
+          "application": "historical_unapplied",
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/run_effects.rs",
+            "crates/azeroth-survivors-re/src/codex.rs",
+            "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs"
+          ]
+        },
+        {
+          "claim_id": "changelog:0.134.0:48eb9d1528e0a075",
+          "target": {
+            "version": "0.139.2",
+            "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908"
+          },
+          "status": "source_connected",
+          "application": "historical_unapplied",
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+            "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs"
+          ]
         }
       ],
       "applied_ownership_reviews": 30
