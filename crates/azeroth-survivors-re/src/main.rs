@@ -77,6 +77,7 @@ struct Capture {
 }
 
 fn main() {
+    benilla_formats::Chain::use_survivors_archive_layout();
     legacy_config::migrate();
     let mut arguments = std::env::args().skip(1);
     let mut check_data = false;

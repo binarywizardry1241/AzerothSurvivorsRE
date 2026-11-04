@@ -53056,6 +53056,23 @@
     },
     {
       "id": "engine-selected-target-deltas",
+      "mpq_mount_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_ids": [41, 320],
+        "evidence_refs": [
+          "docs/analysis/mpq-mount-0.141.0.md",
+          "docs/analysis/evidence/0.141.0/mpq-member-coverage.json"
+        ],
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/main.rs",
+          "crates/azeroth-survivors-re/examples/native_floor_probe.rs",
+          "crates/benilla-formats/src/chain.rs"
+        ],
+        "scope": "The Survivors entry points admit present stock archives and the installed patch-only set through the shared chain. Selected archive failures still propagate. Locale precedence and wider resource consumers remain open.",
+        "source_status": "connected",
+        "runtime_validation": "not_run",
+        "parity_verified": false
+      },
       "source_assessment_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_id": 311,
@@ -53460,7 +53477,8 @@
         311,
         312,
         313,
-        317
+        317,
+        320
       ],
       "recovery": {
         "status": "partial",

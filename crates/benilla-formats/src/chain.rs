@@ -4,11 +4,14 @@
 
 use std::collections::HashSet;
 use std::path::Path;
+use std::sync::atomic::{AtomicBool, Ordering};
 
 use anyhow::{anyhow, bail, Context, Result};
 use benilla_mpq::Archive;
 
 use crate::{Locale, VANILLA_BASE_ORDER};
+
+static SURVIVORS_ARCHIVE_LAYOUT: AtomicBool = AtomicBool::new(false);
 
 /// One entry from a chain listing: an internal path and its uncompressed size.
 pub struct ChainEntry {
@@ -43,11 +46,12 @@ fn is_patch_glob_match(name: &str) -> bool {
 /// reference sorts descending with `strnicmp` and walks backwards), then `speech2.MPQ`. Names
 /// match case-insensitively and come back as found on disk.
 ///
-/// A base archive missing from the listing is an error naming it, as the reference's open loop
+/// In stock mode a missing base archive is an error naming it, as the 1.12.1 open loop
 /// (`0x4038b5`-`0x403912`, the table `0x82e12c`, `model` first) ends the process on the first base
 /// archive that does not open (`0x4038ef` → `0x64d0e0`, Error #134); `speech2.MPQ` and the patches
-/// are optional.
-fn mount_order(dir_names: &[String]) -> Result<Vec<String>> {
+/// are optional. Survivors collects only listed base names, so the shipped patch-only directory
+/// also mounts.
+fn mount_order(dir_names: &[String], allow_missing_base: bool) -> Result<Vec<String>> {
     let find = |want: &str| {
         dir_names
             .iter()
@@ -56,10 +60,11 @@ fn mount_order(dir_names: &[String]) -> Result<Vec<String>> {
     };
     let mut order = Vec::with_capacity(VANILLA_BASE_ORDER.len());
     for base in VANILLA_BASE_ORDER.iter().rev() {
-        let Some(name) = find(base) else {
+        if let Some(name) = find(base) {
+            order.push(name);
+        } else if !allow_missing_base {
             bail!("Failed to open archive Data\\{base}: the file is not there");
-        };
-        order.push(name);
+        }
     }
     order.reverse();
     order.extend(find("patch.MPQ"));
@@ -71,10 +76,19 @@ fn mount_order(dir_names: &[String]) -> Result<Vec<String>> {
     patches.sort_by_key(|n| n.to_ascii_lowercase());
     order.extend(patches);
     order.extend(find("speech2.MPQ"));
+    if order.is_empty() {
+        bail!("no known MPQs found");
+    }
     Ok(order)
 }
 
 impl Chain {
+    /// Select the Survivors archive layout for this process before opening any chains.
+    /// Asset, world and FrameXML readers all consult this startup setting.
+    pub fn use_survivors_archive_layout() {
+        SURVIVORS_ARCHIVE_LAYOUT.store(true, Ordering::Relaxed);
+    }
+
     /// Open a `Data` directory's archives in [`mount_order`], or a single `.MPQ` file.
     ///
     /// Deviation: an archive that fails to open is an error. In 1.12.1 a failed base archive is
@@ -95,7 +109,7 @@ impl Chain {
                 .collect();
             // read_dir order is arbitrary; sort so case-variant ties resolve deterministically.
             names.sort();
-            let order = mount_order(&names)
+            let order = mount_order(&names, SURVIVORS_ARCHIVE_LAYOUT.load(Ordering::Relaxed))
                 .with_context(|| format!("mounting the archives in {}", path.display()))?;
             for name in order {
                 let mpq = path.join(&name);
@@ -461,7 +475,7 @@ mod tests {
             "speech2.MPQ",
         ]);
         dir.reverse();
-        let got = mount_order(&dir).unwrap();
+        let got = mount_order(&dir, false).unwrap();
         assert_eq!(&got[..10], &with_bases(&[])[..]);
         assert_eq!(
             &got[10..],
@@ -473,7 +487,7 @@ mod tests {
     fn patch_sort_is_ascending_and_case_folded() {
         let dir = with_bases(&["patch-B.MPQ", "patch-3.MPQ", "patch-a.MPQ", "patch-2.MPQ"]);
         assert_eq!(
-            &mount_order(&dir).unwrap()[10..],
+            &mount_order(&dir, false).unwrap()[10..],
             &owned(&["patch-2.MPQ", "patch-3.MPQ", "patch-a.MPQ", "patch-B.MPQ"])[..]
         );
     }
@@ -485,7 +499,7 @@ mod tests {
             .map(|n| n.to_ascii_uppercase())
             .chain(["PATCH.mpq".to_string()])
             .collect();
-        let got = mount_order(&dir).unwrap();
+        let got = mount_order(&dir, false).unwrap();
         assert_eq!(got.len(), 11);
         assert_eq!(got[0], "DBC.MPQ");
         assert_eq!(got[10], "PATCH.mpq");
@@ -501,7 +515,7 @@ mod tests {
                 .into_iter()
                 .filter(|n| n != missing)
                 .collect();
-            let err = mount_order(&dir).expect_err(missing).to_string();
+            let err = mount_order(&dir, false).expect_err(missing).to_string();
             assert!(
                 err.contains(&format!("Failed to open archive Data\\{missing}")),
                 "{err}"
@@ -512,18 +526,38 @@ mod tests {
             .into_iter()
             .filter(|n| n != "dbc.MPQ" && n != "model.MPQ")
             .collect();
-        assert!(mount_order(&dir)
+        assert!(mount_order(&dir, false)
             .unwrap_err()
             .to_string()
             .contains("model.MPQ"));
         assert!(
-            mount_order(&[]).is_err(),
+            mount_order(&[], false).is_err(),
             "an empty Data folder mounts nothing"
         );
         assert!(
-            mount_order(&with_bases(&[])).is_ok(),
+            mount_order(&with_bases(&[]), false).is_ok(),
             "no patch, no speech2"
         );
+    }
+
+    #[test]
+    fn survivors_mounts_patch_only_and_partial_base_layouts() {
+        let mut dir = owned(&["patch-C.MPQ", "PATCH.mpq", "patch-2.MPQ", "extra.MPQ"]);
+        let patches = owned(&["PATCH.mpq", "patch-2.MPQ", "patch-C.MPQ"]);
+        assert_eq!(mount_order(&dir, true).unwrap(), patches);
+        dir.extend(owned(&["model.MPQ", "speech2.MPQ", "Dbc.Mpq"]));
+        assert_eq!(
+            mount_order(&dir, true).unwrap(),
+            owned(&[
+                "Dbc.Mpq",
+                "model.MPQ",
+                "PATCH.mpq",
+                "patch-2.MPQ",
+                "patch-C.MPQ",
+                "speech2.MPQ"
+            ])
+        );
+        assert!(mount_order(&[], true).is_err());
     }
 
     /// The error reaches `Chain::open`'s caller (the boot's fatal dialog) with the folder.

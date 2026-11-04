@@ -38,6 +38,7 @@ fn main() -> anyhow::Result<()> {
         }
     }
     let data = data.ok_or_else(|| anyhow::anyhow!("--data-dir is required"))?;
+    benilla_formats::Chain::use_survivors_archive_layout();
     let mut chain = benilla_formats::Chain::open(&data)?;
     let maps = benilla_formats::load_map_catalog(&mut chain)?;
     let catalog: Catalog = serde_json::from_str(include_str!("../assets/run-entry-0.100.1.json"))?;
