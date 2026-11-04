@@ -1,5 +1,6 @@
 //! Current kind14 healing-event producer and party recipient interface.
 use super::*;
+use azeroth_survivors_re::{run_effects::healing, run_meter};
 
 #[derive(Clone, Copy, Debug)]
 pub(super) struct AdmissionHero {
@@ -89,14 +90,19 @@ impl Mechanics {
                 &mut self.execution.auras, event.source_guid, healing,
                 self.clock, self.execution.vitals.maximum_health,
             ) {
-                // The generic nonpositive-duration receiver clamps health
-                // directly. It does not trigger recipient effect20/21 hooks.
-                let result = azeroth_survivors_re::run_effects::healing::apply(
+                // Native 145eda43b clamps the recipient's coefficient-based heal
+                // directly, then credits the effective gain before the log gate.
+                let result = healing::apply(
                     &mut self.execution.vitals, &[],
-                    &mut azeroth_survivors_re::run_effects::healing::HealingState::default(),
-                    amount * azeroth_survivors_re::heroic::healing_factor(self.rules.heroic_rank),
-                    healing.spell_id,
+                    &mut healing::HealingState::default(), amount, healing.spell_id,
                 );
+                // The received-heal descriptor looks up the shared spell in the
+                // static catalog. The recipient's loadout cannot pick its label.
+                let definition = run_meter::source_definition(healing.spell_id, [], None);
+                let source = healing::meter_source(
+                    0, [0; 4], [0; 4], None, &[], healing.spell_id, definition,
+                );
+                self.effect_state.generic.healing_meter.record(source, result.actual);
                 if result.emit_log {
                     self.events.push(RunEvent::Healing {
                         amount: result.actual, emit_log: true, fields: result.fields,

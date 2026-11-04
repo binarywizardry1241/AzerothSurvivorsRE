@@ -9117,6 +9117,22 @@
     },
     {
       "id": "custom-app-screens-meter",
+      "gap_75_source_review_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7b7e03b8a163b95489496e908",
+        "gap_id": 75,
+        "source_status": "partial",
+        "evidence_refs": [
+          "docs/analysis/party-healing-meter-0.139.2.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Direct received party heals now reach the retained aggregate healing rows. The enclosing audit retains its 0.139.1 identity.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs",
+          "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs"
+        ]
+      },
       "title": "Damage/healing/boss meter screens",
       "original_path": "crates/wenilla-rogue-app/src/screens/meter.rs",
       "native_path_evidence": [
@@ -64846,6 +64862,19 @@
     },
     {
       "id": "custom-game-game-meterfeed",
+      "gap_75_source_review_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7b7e03b8a163b95489496e908",
+        "gap_id": 75,
+        "source_status": "partial",
+        "evidence_refs": [
+          "docs/analysis/party-healing-meter-0.139.2.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "0.139.2 frame producer, request flags and ordinary-line replay control are located. Detailed frame producer source remains open.",
+        "source_refs": []
+      },
       "gap_307_source_review_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_id": 307,
@@ -64947,6 +64976,21 @@
     },
     {
       "id": "custom-game-game-meterlog",
+      "gap_75_source_review_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7b7e03b8a163b95489496e908",
+        "gap_id": 75,
+        "source_status": "partial",
+        "evidence_refs": [
+          "docs/analysis/party-healing-meter-0.139.2.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "The shared received-heal caller and effective-healing recorder carry native caster and spell identity. The connected aggregate source credits the recipient. Detailed ledger joins remain open.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs"
+        ]
+      },
       "title": "game/meterlog.rs",
       "original_path": "crates/wenilla-rogue/src/game/meterlog.rs",
       "native_path_evidence": [

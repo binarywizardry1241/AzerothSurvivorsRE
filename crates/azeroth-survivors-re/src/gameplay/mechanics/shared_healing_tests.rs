@@ -194,6 +194,48 @@ fn shared_heal_includes_thirty_yards_and_excludes_beyond_it() {
 }
 
 #[test]
+fn direct_party_heal_credits_effective_amount_before_the_log_gate() {
+    let mut game = party(2);
+    let input = game.party_pose(0).unwrap();
+    game.rules.heroic_rank = 5;
+    game.execution.vitals.health = 90.0;
+    let mut event = shared_healing::Event {
+        source_slot: 1,
+        source_guid: guid(1),
+        position: input.position,
+        payload: shared_healing::Payload::Healing(buffs::SharedHealing {
+            spell_id: 331,
+            coefficient: 0.125,
+            duration: 0.0,
+        }),
+    };
+    game.receive_party_healing(&[event], input);
+    assert_eq!(game.health(), 100.0);
+    assert!(matches!(
+        game.events.last(),
+        Some(RunEvent::Healing {
+            amount: 10.0,
+            context: Some(HealingContext { source, target, spell_id: 331, .. }),
+            ..
+        }) if (*source, *target) == (guid(1), guid(0))
+    ));
+    assert_eq!(game.healing_meter()[0].source.name, "Healing Wave");
+    assert_eq!(game.healing_meter()[0].total, 10.0);
+
+    game.events.clear();
+    game.execution.vitals.health = 99.5;
+    game.receive_party_healing(&[event, event], input);
+    assert!(game.events.is_empty());
+    assert_eq!(game.healing_meter()[0].total, 10.5);
+
+    event.source_slot = 0;
+    game.execution.vitals.health = 90.0;
+    game.receive_party_healing(&[event], input);
+    assert_eq!(game.health(), 90.0);
+    assert_eq!(game.healing_meter()[0].total, 10.5);
+}
+
+#[test]
 fn choosing_downed_and_abandoned_heroes_reject_shared_healing() {
     let mut game = party(5);
     set_casts(&mut game, &[0]);
