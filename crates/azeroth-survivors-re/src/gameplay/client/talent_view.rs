@@ -3,7 +3,7 @@
 //! before addons load. Publication owns only the custom overlay's input guard.
 
 /// Publish the overlay state without replacing core functions or addon hooks.
-pub(super) fn publication(active: bool, open: bool) -> String {
+pub(in crate::gameplay) fn publication(active: bool, open: bool) -> String {
     format!(
         "AZS_TALENT_ACTIVE = {}; AZS_TALENT_VIEW_OPEN = {};\n{}",
         if active { "true" } else { "false" },

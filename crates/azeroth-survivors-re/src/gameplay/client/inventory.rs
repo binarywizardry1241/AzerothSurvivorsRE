@@ -338,7 +338,7 @@ fn item_sets(catalog: &ArmoryCatalog, labels: &MenuCatalog)
                         labels.label("{bonus} (all eight at {stars}+ stars) At {max}: {empowered}")
                             .replace("{empowered}", &empowered)
                     } else {
-                        labels.label("{bonus} (all eight at {stars}+ stars; half again as strong at {max})")
+                        labels.label("{bonus} (all eight at {stars}+ stars; half again as strong at {max})").to_owned()
                     };
                     bonuses.push((8, text.replace("{bonus}", &eight).replace("{stars}", "3").replace("{max}", "5")));
                 }

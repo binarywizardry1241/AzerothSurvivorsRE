@@ -2,6 +2,7 @@
 //! Current 1459770c0 owns the card JSON; 14590f0f0 owns the HUD snapshot.
 //! See docs/analysis/coop-overlay-0.115.0.md for producer and validation limits.
 use super::*;
+use azeroth_survivors_re::player_abilities::damage;
 use benilla_app::local_client::{LocalClientExtension, LocalClientInput};
 use serde_json::{Value, json};
 

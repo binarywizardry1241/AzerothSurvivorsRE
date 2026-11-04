@@ -2,6 +2,7 @@
 use super::mechanics::Mechanics;
 use crate::localization::Localization;
 use azeroth_survivors_re::{coop::replication::ResourceRow, run_effects};
+use azeroth_survivors_re::player_abilities::behavior::buffs::{Aura, effective_auras};
 
 fn row(id: u32, name: String, text: String) -> ResourceRow {
     ResourceRow {
@@ -17,12 +18,12 @@ fn row(id: u32, name: String, text: String) -> ResourceRow {
 /// Shout resource from the strongest live contribution, including a friend.
 pub(super) fn active_battle_shout(
     rows: &mut [ResourceRow],
-    auras: &[crate::player_abilities::behavior::buffs::Aura],
+    auras: &[Aura],
     now: f32,
     buff_bonus: f32,
     locale: &Localization,
 ) {
-    let Some(aura) = crate::player_abilities::behavior::buffs::effective_auras(auras, now)
+    let Some(aura) = effective_auras(auras, now)
         .find(|aura| aura.spell_id == 6673 && now < aura.expires_at) else { return; };
     if aura.effect.tag != 8 { return; }
     let Some(row) = rows.iter_mut().find(|row| row.id == aura.spell_id) else { return; };

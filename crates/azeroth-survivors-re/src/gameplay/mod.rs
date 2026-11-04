@@ -113,7 +113,7 @@ pub(crate) fn stock_roster(
             level: row.best_level.clamp(1, 60) as u8, new_character: false,
             zone: zone.zone_id, map: zone.map_id,
             position: LocalStockPosition { x: zone.position[0], y: zone.position[1], z: zone.position[2] },
-            flags: 0, equipment, pet_display_id: 0, pet_level: 0, pet_family: 0,
+            guild_id: 0, flags: 0, equipment, pet_display_id: 0, pet_level: 0, pet_family: 0,
         }
     }).collect()
 }

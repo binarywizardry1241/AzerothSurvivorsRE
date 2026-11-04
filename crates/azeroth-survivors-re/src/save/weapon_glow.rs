@@ -56,8 +56,7 @@ impl Save {
             |line| line.starts_with("glow|"),
             choices
                 .into_iter()
-                .map(|(owner, choice)| format!("glow|{owner}|{choice}"))
-                .collect(),
+                .map(|(owner, choice)| format!("glow|{owner}|{choice}")),
         );
         true
     }

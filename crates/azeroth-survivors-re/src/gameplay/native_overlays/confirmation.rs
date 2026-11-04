@@ -80,7 +80,7 @@ pub(in crate::gameplay) fn sync(
         .map(|(index, at)| (index, at.to_bits()))
         .filter(|(index, _)| {
             cards.iter().any(|(action, card)| {
-                **action == OverlayAction::Select(*index) && card.0.replacement.is_some()
+                *action == OverlayAction::Select(*index) && card.0.replacement.is_some()
             })
         });
     if pending == *previous && !art.is_changed() && !locale.is_changed() {

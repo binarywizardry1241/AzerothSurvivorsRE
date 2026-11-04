@@ -275,7 +275,7 @@ pub(super) fn drain(
                         .inventory
                         .entry(client)
                         .or_default()
-                        .query(entry, stars, &armory, &locale, &language, &mut item_texts),
+                        .query(entry, stars, &armory, &locale, &language, item_texts),
                 );
             }
             opcode::CMSG_CAST_SPELL => {
