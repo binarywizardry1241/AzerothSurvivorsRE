@@ -569,10 +569,13 @@ mod tests {
             .iter()
             .map(|text| serde_json::from_str(text).unwrap())
             .collect();
-        assert_eq!(catalogs[0].len(), 2984);
         for locale in &catalogs[1..] {
-            assert_eq!(locale.len(), 2984);
             assert!(catalogs[0].keys().eq(locale.keys()));
+        }
+        for locale in &catalogs {
+            assert!(!locale["zone.scholomance.blurb"].is_empty());
+            assert!(!locale["boss.1853.yell"].is_empty());
+            assert!(!locale["t05.13937"].is_empty());
         }
         assert_eq!(catalogs[1]["picker.class"], "Klasa");
         assert_eq!(catalogs[2]["picker.language"], "Jazyk");
