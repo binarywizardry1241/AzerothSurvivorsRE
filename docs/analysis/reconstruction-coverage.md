@@ -1,72 +1,26 @@
 # Current-target reconstruction coverage
 
-Selected reconstruction/package baseline **0.139.1**, SHA-256
-`1c0912276637a41a1a971886bb74626577d021af55a313128f85fdbfcc3b2f1d`
-(150,633,472 bytes). [Identity](target-refresh-0.139.1.json),
-[target review](target-0.139.1.md), [native census](native-census-0.139.1.md),
-[release review](release-review-0.139.1.md), [AS review](as-discovery-0.139.1.md)
-and [unknown queue](unknown-recovery-0.139.1.md) own the completed 0.139.1 audit.
-Configured installed inputs were read directly without compilation or application operation.
+The installed and registered reconstruction target is **0.140.0**, SHA-256
+`27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`
+(151,521,280 bytes). The [identity](target-refresh-0.140.0.json) and
+[CURRENT-STATE](../CURRENT-STATE.md) give the exact input and audit status.
+The completed [0.139.1 census](native-census-0.139.1.md) and
+[0.139.1 graph](as-discovery-0.139.1.md) retain their original target.
 
-The installed 0.139.2 EXE is unregistered and awaits refresh, as recorded in
-[CURRENT-STATE](../CURRENT-STATE.md). The following accounting retains its
-0.139.1 target; it does not apply to the newer installed bytes.
+The current 26-range ledger partitions the whole image. The independent
+linear pass decodes 24,899,412 instructions across all 372,642 declared extents,
+covering 100,870,444 union bytes with zero undecoded suffix. The 5,378,354-byte
+executable complement is separate. The installed chain has twelve MPQs,
+including the new patch-C. Current [member accounting](evidence/0.140.0/mpq-member-coverage.json)
+records 30,172 active slots and 30,161 unique names with zero opaque slots.
 
-The disjoint 26-range ledger covers every file byte with zero overlap/omission.
-All 371,460 declared extents decode linearly: 24,784,974 instructions /
-100,364,046 union bytes, zero undecoded suffix. The 5,359,888-byte complement
-is inventoried independently. The selected full-image Ghidra pass and independent
-original-byte/boundary verification are complete: 24,223,688 instructions /
-97,143,165 bytes, 446,999 functions / 503,162 body ranges and 4,202,087 references.
-The 3,924-table guarded frontier is applied and structurally stable; 8,580,769
-executable bytes remain unobserved.
-These structural populations do not measure semantic or reconstruction completeness.
-
-All eleven MPQ identities are unchanged. Current
-[member accounting](evidence/0.139.1/mpq-member-coverage.json) retains 29,701 active
-slots / 29,691 names, no opaque slots or orphan blocks. Exact current embedded
-Lua consists of the 22,984-byte main API, 50,637-byte meter API and 9,167-byte
-PaperDoll patch. All 23 added and 28 removed predecessor candidate occurrences
-have [source-first dispositions](source-frontier-0.139.1.md); no AS diagnostic
-path was added or removed. Script/resource equality and names do not establish
-native producers, loaders, scheduling, source assignment or parity.
-
-All 97 supplied items from 0.128 through 0.139.1 retain individual current reviews
-and stable feature/group owners. #310 owns menu/window and picker input isolation;
-#311 separately owns the Windows-on-Wine/Proton activation repair. Prior Escape,
-drag, binding-capture, controller and IME repairs remain retained. The new
-[InputGate proof](input-gate-native-0.139.1.md) recovers bounded descriptor/filter
-facts outside the 77 AS diagnostic-module denominator, with producer, types,
-schedule, admission and downstream consumers still open. Four earlier bounded
-contracts have [current code/data/CFG correspondence](native-interface-correspondence-0.139.1.md)
-within their original scopes and exclusions.
-
-| AS-only module measure | Current registered source/recovery dimension |
-| --- | ---: |
-| Known modules with partial reconstructed source | 89.6% — 69/77 |
-| Modules with registered current-target bounded recovery contracts | 5.2% — 4/77 |
-
-The current [connection ledger](coverage/exe-connections.json) owns these counts.
-The [module register](module-contracts-0.139.1.md) records precise scopes and
-remaining dimensions. These are module counts, not percentages of all AS code
-decompiled, implemented or matched. Neither a partial source assignment nor one
-bounded contract certifies a complete module.
-
-[Incremental correspondence](evidence/0.139.1/incremental-correspondence.json)
-preserves the immediate predecessor source/review work and the last published
-0.127.0 graph/queue independently; no unpublished 0.139.0 graph is invented.
-The historical 463-subject caller review retains 416 bounded interfaces and
-47 contracts across 897 references. All fourteen indirect questions keep stable
-identities and exact remaining applicability/type/producer/consumer obligations.
-All six global semantic discovery stages remain partial. Preserve existing
-source and recovery; follow only affected or unresolved AS interfaces and stop
-at established benilla boundaries for generic supporting context.
-
-[CURRENT-STATE](../CURRENT-STATE.md) owns source/recovery work;
-[verification-needed](../verification-needed.md) owns completed source history,
-compilation, execution and controlled original/rebuilt comparisons. No compilation,
-compiling tests, client/game/network/server operation or parity comparison was
-performed. Parity remains unverified.
+The [release review](release-review-0.140.0.md) retains all 52 new claim
+assessments. The [module register](module-contracts-0.140.0.md) records 82
+diagnostic module assignments and current proof questions. Prior native
+behavior, source implementations and individual reviews remain retained.
+Incomplete native recovery and correspondence stay under
+[#41](../CURRENT-STATE.md#gap-41). Compilation, runtime and original/rebuilt
+comparison belong to [verification-needed](../verification-needed.md).
 
 **Recovery descriptions below retain their stated historical target.** No old
 RVA, layout, ID, dependency or behavioral proof is promoted by registration,
