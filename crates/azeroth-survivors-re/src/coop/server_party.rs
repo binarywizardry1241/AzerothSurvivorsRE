@@ -595,6 +595,7 @@ impl PartyServer {
         self.config.as_ref().map_or(MAX_PARTY_SIZE, |config| config.capacity.min(MAX_PARTY_SIZE))
     }
     pub fn set_run_under_way(&mut self, value: bool) { self.run_under_way = value; }
+    pub fn run_under_way(&self) -> bool { self.run_under_way }
     pub fn clients(&self) -> &[ServerClient] { &self.clients }
     pub fn accept_connection(&mut self) -> ClientId {
         self.next_handle = self.next_handle.wrapping_add(1);

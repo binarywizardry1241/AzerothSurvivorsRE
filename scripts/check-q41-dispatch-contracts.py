@@ -8,12 +8,14 @@ from portable_paths import portable_json, portable_record
 import argparse
 import gzip
 import hashlib
+import itertools
 import importlib.util
 import json
+import math
 import re
 import struct
 
-from coverage_common import ROOT, latest_target, target_bytes, file_sha256
+from coverage_common import ROOT, installed_identity, latest_target, target_bytes, file_sha256
 
 SITES = [int(s, 16) for s in (
     '1400a4137 1400b0e45 14010c265 140113990 140113bf0 1402553a6 '
@@ -340,15 +342,129 @@ def current_coop_contract():
                           target_executed=False, compiled=False), sort_keys=True))
 
 
+def hero_refresh_contract():
+    from equipment_native import EquipmentProbe
+
+    manifest = ROOT / 'docs/analysis/evidence/0.139.2/coop-hero-refresh.json'
+    proof = json.loads(manifest.read_text())
+    target = installed_identity()
+    require(target == proof['target'], 'Wrong target for cooperative Hero dispatch')
+    pe = module('hero_refresh_pe', 'scripts/inventory-executable.py').PE(target_bytes(target))
+
+    def read(row, length):
+        offset = pe.rva_offset(int(row['start'], 16) - pe.image_base)
+        require(offset == int(row['file_offset'], 16), 'Changed Hero evidence mapping')
+        raw = pe.data[offset:offset + length]
+        require(sha(raw) == row['sha256'], 'Changed Hero evidence bytes')
+        return raw
+
+    ranges = {}
+    for row in proof['native_ranges']:
+        start, end = int(row['start'], 16), int(row['end_exclusive'], 16)
+        read(row, end - start)
+        ranges[row['role']] = start, end
+    for row in proof['tables']:
+        base = int(row['start'], 16)
+        payload = read(row, len(row['case_targets']) * 4)
+        require([hex(base + value[0]) for value in struct.iter_unpack('<i', payload)]
+                == row['case_targets'], 'Changed host dispatch vector')
+    constant = struct.unpack('<d', read(proof['interval'], 8))[0]
+    require(constant == 0.1, 'Changed Hero interval')
+    receive, take, replace = (ranges[role] for role in (
+        'Hero update gate', 'pending Hero take', 'existing Hero replacement gate'))
+    exits = {int(address, 16) for address in proof['replay_exits'].values()}
+    native = {label: int(address, 16) for label, address in proof['replay_exits'].items()}
+
+    class Probe(EquipmentProbe):
+        def hook(self, uc, pc, size, unused):
+            if pc in exits:
+                uc.emu_stop()
+            else:
+                require(any(start <= pc and pc + size <= end for start, end in self.ranges),
+                        f'Unexpected Hero instruction {pc:#x}')
+
+    probe = Probe(pe.data, pe, [receive, take, replace])
+    row, clock = probe.alloc(0x870), probe.alloc(8)
+    absent = 0xffffffffffffffff
+    cases = 0
+    for now in (-1., 0., math.nextafter(constant, 0.), constant,
+                math.nextafter(constant, math.inf), 1., float('nan')):
+        now_bits = struct.unpack('<Q', struct.pack('<d', now))[0]
+        for present in (False, True):
+            probe.put(row + 0x3a8, 1 if present else absent)
+            probe.put(row + 0x860, 0)
+            probe.reg('RBX', row)
+            probe.reg('XMM6', now_bits)
+            probe.native.emu_start(receive[0], probe.DONE, count=12)
+            expected = native['defer'] if present and now < constant else native['immediate']
+            require(probe.reg('RIP') == expected, 'Unexpected native Hero receive admission')
+            cases += 1
+            for closing in (0, 1, 255):
+                pending = 1 if present else absent
+                probe.native.mem_write(row + 0x10, bytes([closing]))
+                probe.put(row + 0x5f8, pending)
+                probe.put(clock, now_bits)
+                probe.reg('RDI', row + 0x870)
+                probe.reg('R13', clock)
+                probe.reg('XMM6', struct.unpack('<Q', struct.pack('<d', constant))[0])
+                probe.native.emu_start(take[0], probe.DONE, count=12)
+                due = not closing and now >= constant
+                expected = native['take'] if due and present else native['skip']
+                require(probe.reg('RIP') == expected, 'Unexpected native pending Hero admission')
+                require(probe.q(row + 0x5f8) == (absent if due else pending),
+                        'Native pending Hero take did not consume exactly one record')
+                cases += 1
+    for assigned, duplicate, game_allows in itertools.product((0, 1), repeat=3):
+        probe.put(row, assigned)
+        probe.reg('R13', row)
+        probe.reg('R15', 0)
+        probe.reg('RBX', duplicate)
+        probe.reg('R12', game_allows)
+        probe.native.emu_start(replace[0], probe.DONE, count=12)
+        expected = native['replace'] if not assigned and not duplicate and game_allows else native['reject_replacement']
+        require(probe.reg('RIP') == expected, 'Unexpected native existing Hero replacement admission')
+        cases += 1
+
+    source = (ROOT / 'crates/azeroth-survivors-re/src/gameplay/coop.rs').read_text()
+    immediate = source.split('fn receive_hero(', 1)[1].split('fn apply_hero(', 1)[0]
+    apply = source.split('fn apply_hero(', 1)[1].split('fn drain_hero_update(', 1)[0]
+    drain = source.split('fn drain_hero_update(', 1)[1].split('fn retire_hero_profile(', 1)[0]
+    host = source.split('let profile_now = time.elapsed_secs_f64();', 1)[1]
+    source_checks = [
+        'const HERO_UPDATE_INTERVAL: f64 = 0.1' in source,
+        'self.profiles.contains_key(&client)' in immediate
+        and 'now - last < HERO_UPDATE_INTERVAL' in immediate and 'update.pending = Some(hero)' in immediate,
+        'pending.take()' not in immediate,
+        apply.index('last_applied = Some(now)') < apply.index('crate::coop_profile::sanitize('),
+        apply.index('run_under_way || self.admitted.contains_key(&client)')
+        < apply.index('self.profiles.insert(client, hero)'),
+        'now - last >= HERO_UPDATE_INTERVAL' in drain
+        and drain.index('update.pending.take()') < drain.index('self.apply_hero('),
+        'driver.server.run_under_way()' in host
+        and 'driver.server.clients().iter().filter(|row| row.closing_since.is_none())' in host
+        and host.index('driver.next_host_event()') < host.index('state.drain_hero_update(')
+        < host.index('let selected_zone ='),
+        'state.retire_hero_profile(client)' in host and 'self.hero_updates.remove(&client)' in source,
+    ]
+    require(all(source_checks), 'Live Hero refresh source path changed')
+    print(json.dumps(dict(hero_gate_cases=cases, native_ranges=len(ranges),
+        dispatch_vectors=len(proof['tables']), source_checks=len(source_checks),
+        compiled=False, target_executed=False), sort_keys=True))
+
+
 def main():
-    import capstone
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--write', action='store_true')
     parser.add_argument('--current-coop', action='store_true', help='Check the bounded 0.127.0 co-op dispatch proof')
+    parser.add_argument('--hero-refresh', action='store_true', help='Check 0.139.2 host dispatch and Hero update timing')
     args = parser.parse_args()
+    if args.hero_refresh:
+        require(not args.write and not args.current_coop, 'The Hero refresh proof is read-only')
+        return hero_refresh_contract()
     if args.current_coop:
         require(not args.write, 'The current co-op proof is read-only')
         return current_coop_contract()
+    import capstone
     target = latest_target(verify=True)
     require(target['sha256'] == '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c', 'Wrong target')
     identity = {k: target[k] for k in ('version', 'path', 'sha256', 'size_bytes')}

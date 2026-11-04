@@ -27,10 +27,19 @@ use benilla_app::local_client::{
 };
 use std::collections::{HashMap, HashSet, VecDeque};
 
+const HERO_UPDATE_INTERVAL: f64 = 0.1;
+
+#[derive(Default)]
+struct HeroUpdate {
+    last_applied: Option<f64>,
+    pending: Option<Box<NativeHero>>,
+}
+
 #[derive(Resource, Default)]
 pub(crate) struct CoopGame {
     local: Option<NativeHero>,
     profiles: HashMap<ClientId, NativeHero>,
+    hero_updates: HashMap<ClientId, HeroUpdate>,
     world_profiles: HashMap<u64, NativeHero>,
     admitted: HashMap<ClientId, u64>,
     commands: VecDeque<(ClientId, commands::Input)>,
@@ -71,6 +80,51 @@ pub(crate) struct CoopGame {
 }
 
 impl CoopGame {
+    fn receive_hero(&mut self, client: ClientId, host_guid: u64, hero: Box<NativeHero>, now: f64, run_under_way: bool) {
+        let update = self.hero_updates.entry(client).or_default();
+        if self.profiles.contains_key(&client)
+            && update.last_applied.is_some_and(|last| now - last < HERO_UPDATE_INTERVAL)
+        {
+            update.pending = Some(hero);
+            return;
+        }
+        self.apply_hero(client, host_guid, *hero, now, run_under_way);
+    }
+
+    fn apply_hero(&mut self, client: ClientId, host_guid: u64, hero: NativeHero, now: f64, run_under_way: bool) {
+        self.hero_updates.entry(client).or_default().last_applied = Some(now);
+        let others = self.profiles.iter()
+            .filter_map(|(id, hero)| (*id != client).then_some(hero.guid))
+            .collect::<Vec<_>>();
+        match crate::coop_profile::sanitize(hero, Some(host_guid), Some(host_guid), others) {
+            Ok(hero) => {
+                // Identity storage remains separate from world admission.
+                if self.profiles.contains_key(&client)
+                    && (run_under_way || self.admitted.contains_key(&client))
+                {
+                    return;
+                }
+                self.profiles.insert(client, hero);
+            }
+            Err(error) => warn!("Co-op hero identity rejected: {error:?}"),
+        }
+    }
+
+    fn drain_hero_update(&mut self, client: ClientId, host_guid: u64, now: f64, run_under_way: bool) {
+        let pending = self.hero_updates.get_mut(&client).and_then(|update| {
+            update.last_applied.filter(|last| now - last >= HERO_UPDATE_INTERVAL)?;
+            update.pending.take()
+        });
+        if let Some(hero) = pending {
+            self.apply_hero(client, host_guid, *hero, now, run_under_way);
+        }
+    }
+
+    fn retire_hero_profile(&mut self, client: ClientId) {
+        self.profiles.remove(&client);
+        self.hero_updates.remove(&client);
+    }
+
     pub(super) fn terminal_recap(&self) -> Option<&death_recap::DeathRecap> {
         self.state.as_ref().filter(|state| {
             state.flag_8c && RunPhase::from_native(state.byte_8f) == RunPhase::Dead
@@ -122,6 +176,7 @@ impl CoopGame {
         self.hud = None;
         self.pick.clear();
         self.commands.clear();
+        self.hero_updates.clear();
         self.sync_sent = false;
         self.resources.clear();
         self.timers.clear();
@@ -501,6 +556,7 @@ fn receive(
     let mut events = std::collections::VecDeque::from(std::mem::take(&mut runtime.party_events));
     events.extend(std::mem::take(&mut runtime.incoming).into_iter()
         .map(azeroth_survivors_re::coop::session::PartyEvent::Incoming));
+    let profile_now = time.elapsed_secs_f64();
     loop {
         let event = events.pop_front().or_else(|| runtime.driver.as_mut()
             .filter(|driver| driver.is_hosting()).and_then(|driver| driver.next_host_event()));
@@ -508,7 +564,7 @@ fn receive(
         if let azeroth_survivors_re::coop::session::PartyEvent::Membership(
             MembershipEvent::Left { client, .. }) = &event {
             let client = *client;
-            state.profiles.remove(&client);
+            state.retire_hero_profile(client);
             if let Some(guid) = state.admitted.remove(&client) {
                 if let Some(game) = run.mechanics.as_mut() {
                     if let Some(slot) = game.party_slot(guid) {
@@ -568,19 +624,8 @@ fn receive(
             }
             NativeMessage::Lifecycle(LifecyclePacket::Hero(hero)) if !guest => {
                 let Some(client) = client else { continue };
-                let others = state
-                    .profiles
-                    .iter()
-                    .filter_map(|(id, hero)| (*id != client).then_some(hero.guid))
-                    .collect::<Vec<_>>();
-                match crate::coop_profile::sanitize(*hero, Some(guid), Some(guid), others) {
-                    Ok(hero) => {
-                        // Current profile reception admits identity separately from
-                        // run entry. Ineligible members remain visible in the roster.
-                        state.profiles.insert(client, hero);
-                    }
-                    Err(error) => warn!("Co-op hero identity rejected: {error:?}"),
-                }
+                let run_under_way = runtime.driver.as_ref().is_some_and(|driver| driver.server.run_under_way());
+                state.receive_hero(client, guid, hero, profile_now, run_under_way);
             }
             NativeMessage::Lifecycle(LifecyclePacket::Synchronize) if !guest => {
                 if let Some(client) = client {
@@ -825,6 +870,13 @@ fn receive(
                 &mut state, &mut runtime, &mut run, &world, &mut terrain,
                 &locale, &mut presentation, &armory, &mut item_texts,
             );
+        }
+    }
+    if let Some(driver) = runtime.driver.as_ref().filter(|driver| driver.is_hosting()) {
+        // The native frame takes due profiles after peer input, before roster
+        // publication, in the live connection order.
+        for row in driver.server.clients().iter().filter(|row| row.closing_since.is_none()) {
+            state.drain_hero_update(row.id, guid, profile_now, driver.server.run_under_way());
         }
     }
     if !guest {
@@ -1272,6 +1324,7 @@ fn bootstrap(
         }
         if state.host_identity.is_some() {
             state.profiles.clear();
+            state.hero_updates.clear();
         }
         state.admitted.clear();
         state.world_profiles.clear();
@@ -1325,7 +1378,7 @@ fn bootstrap(
             if let Some(driver) = runtime.driver.as_mut() {
                 driver.server.begin_closing(client, time.elapsed_secs_f64());
             }
-            state.profiles.remove(&client);
+            state.retire_hero_profile(client);
             continue;
         }
         let Ok(remote) = template(
@@ -1770,6 +1823,53 @@ fn settings(
 #[cfg(test)]
 mod guest_engine_tests {
     use super::*;
+
+    #[test]
+    fn guest_hero_updates_replace_the_pending_record_and_drain_at_the_boundary() {
+        let menu = MenuState::from_save_path(None);
+        let client = ClientId(7);
+        let profile = crate::coop_profile::build(
+            &menu.backend_save, menu.backend_pick(), 0x800021, "en", [0; 3], None,
+        );
+        let hero = |name: &[u8]| Box::new(NativeHero { name: name.to_vec(), ..profile.clone() });
+        let mut state = CoopGame::default();
+        state.receive_hero(client, 77, hero(b"First"), 0., false);
+        state.receive_hero(client, 77, hero(b"Second"), 0.02, false);
+        state.receive_hero(client, 77, hero(b"Third"), 0.05, false);
+        state.drain_hero_update(client, 77, 0.099, false);
+        assert_eq!(state.profiles[&client].name.as_slice(), b"First");
+        state.drain_hero_update(client, 77, 0.1, false);
+        assert_eq!(state.profiles[&client].name.as_slice(), b"Third");
+        assert!(state.hero_updates[&client].pending.is_none());
+    }
+
+    #[test]
+    fn immediate_guest_hero_update_retains_pending_until_next_interval_or_retirement() {
+        let menu = MenuState::from_save_path(None);
+        let client = ClientId(8);
+        let profile = crate::coop_profile::build(
+            &menu.backend_save, menu.backend_pick(), 0x800022, "en", [0; 3], None,
+        );
+        let hero = |name: &[u8]| Box::new(NativeHero { name: name.to_vec(), ..profile.clone() });
+        let mut state = CoopGame::default();
+        state.receive_hero(client, 77, hero(b"First"), 0., false);
+        state.receive_hero(client, 77, hero(b"Pending"), 0.05, false);
+        state.receive_hero(client, 77, hero(b"Immediate"), 0.1, false);
+        state.drain_hero_update(client, 77, 0.1, false);
+        assert_eq!(state.profiles[&client].name.as_slice(), b"Immediate");
+        state.drain_hero_update(client, 77, 0.2, false);
+        assert_eq!(state.profiles[&client].name.as_slice(), b"Pending");
+        state.receive_hero(client, 77, hero(b"Discarded"), 0.25, false);
+        state.receive_hero(client, 77, hero(b"Under way"), 0.35, true);
+        assert_eq!(state.profiles[&client].name.as_slice(), b"Pending");
+        state.admitted.insert(client, 34);
+        state.receive_hero(client, 77, hero(b"Assigned"), 0.5, false);
+        assert_eq!(state.profiles[&client].name.as_slice(), b"Pending");
+        state.retire_hero_profile(client);
+        state.drain_hero_update(client, 77, 1., false);
+        assert!(!state.profiles.contains_key(&client));
+        assert!(!state.hero_updates.contains_key(&client));
+    }
 
     #[test]
     fn local_kick_resolves_the_admitted_guid_instead_of_client_or_service_numbers() {

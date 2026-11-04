@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "gap_ids": [
+    63
+  ],
+  "target": {
+    "version": "0.139.2",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+    "size_bytes": 150793728
+  },
+  "native_ranges": [
+    {
+      "role": "local co-op request selector",
+      "start": "0x145e54bba",
+      "end_exclusive": "0x145e54be9",
+      "file_offset": "0x5e53fba",
+      "sha256": "1eea426ffdcb13209e2ad28d4ae539fe6ff2ae6171c6b9fc6c280db2dd5644cc"
+    },
+    {
+      "role": "Hero update gate",
+      "start": "0x145e77ca5",
+      "end_exclusive": "0x145e77cd1",
+      "file_offset": "0x5e770a5",
+      "sha256": "c1e874830c22df93467b3668cf49098b1b98f34e352b44be0e581028dda3500f"
+    },
+    {
+      "role": "owned pending Hero replacement",
+      "start": "0x145e77cd1",
+      "end_exclusive": "0x145e77d00",
+      "file_offset": "0x5e770d1",
+      "sha256": "84f7463ba3a721588933966ab5f1cf79a880bf0bb0825a7503f028d4efb728b1"
+    },
+    {
+      "role": "host joined native message selector",
+      "start": "0x145e77c65",
+      "end_exclusive": "0x145e77ca5",
+      "file_offset": "0x5e77065",
+      "sha256": "3a727c69a38908333cdf5faf3f27441dfec85ea802db46968ff5c0ed049a2779"
+    },
+    {
+      "role": "compressed message cleanup selector",
+      "start": "0x145e77fa2",
+      "end_exclusive": "0x145e77fd5",
+      "file_offset": "0x5e773a2",
+      "sha256": "16ce934376987a7dbe6744f6fea3930cd595dcc555a7213c4327046d73a24668"
+    },
+    {
+      "role": "ordinary message cleanup selector and owned exits",
+      "start": "0x145e78794",
+      "end_exclusive": "0x145e78869",
+      "file_offset": "0x5e77b94",
+      "sha256": "8c4295f9cfe8da4da90bac79749a1ac836330d4c120c399f30e565dc49b4ca26"
+    },
+    {
+      "role": "guest message cleanup selector and owned exits",
+      "start": "0x145e7ae3f",
+      "end_exclusive": "0x145e7aeb2",
+      "file_offset": "0x5e7a23f",
+      "sha256": "d56490478d8d59845d44764a555f6e2889b4f4291380f4e24dae536d7193f0fc"
+    },
+    {
+      "role": "host frame receive boundary",
+      "start": "0x145e53222",
+      "end_exclusive": "0x145e53239",
+      "file_offset": "0x5e52622",
+      "sha256": "314c30ddd4a22aef9c2d02c190f2a1864f98e85b05a802da4846041219c15644"
+    },
+    {
+      "role": "host frame collector and ordered apply",
+      "start": "0x145e53318",
+      "end_exclusive": "0x145e533f2",
+      "file_offset": "0x5e52718",
+      "sha256": "f8d3f1b7a0885db69fb1ca441adefe70ea5cf37ec38f72873ef8d9a311a69910"
+    },
+    {
+      "role": "pending Hero collector",
+      "start": "0x145fc4bf0",
+      "end_exclusive": "0x145fc5067",
+      "file_offset": "0x5fc3ff0",
+      "sha256": "9bbddc91e697ad558ed35a2dfa8067428b4297aaca7a09b71eb77a7c50ea1184"
+    },
+    {
+      "role": "pending Hero take",
+      "start": "0x145fc4d1f",
+      "end_exclusive": "0x145fc4d51",
+      "file_offset": "0x5fc411f",
+      "sha256": "1b27979601eb3d32f77e53f177c384707600c8aa9bcad178fb6895aaa1816e73"
+    },
+    {
+      "role": "application timestamp before sanitize",
+      "start": "0x145e7c199",
+      "end_exclusive": "0x145e7c1ff",
+      "file_offset": "0x5e7b599",
+      "sha256": "a751c052796075efb026926a3bd9a086427229b11dacbc137784040905e29b86"
+    },
+    {
+      "role": "Hero identity and world-phase admission",
+      "start": "0x145e7c227",
+      "end_exclusive": "0x145e7c34c",
+      "file_offset": "0x5e7b627",
+      "sha256": "d42b2b2bc95f698927b2e4a532e720b694a5b600fac3adcacdc70b3c3242e80a"
+    },
+    {
+      "role": "existing Hero replacement gate",
+      "start": "0x145e7c2fd",
+      "end_exclusive": "0x145e7c319",
+      "file_offset": "0x5e7b6fd",
+      "sha256": "c29f0abe77db8f0749597df6f56683ce1d70bdf3dbc882285eb3e42ebf339563"
+    },
+    {
+      "role": "Join consumes the same ongoing-run flag",
+      "start": "0x145e7869b",
+      "end_exclusive": "0x145e786c0",
+      "file_offset": "0x5e77a9b",
+      "sha256": "5157292c276088ba7f88ed032a310c300aab3c1824e5699dc05b1b3c1c0719db"
+    }
+  ],
+  "tables": [
+    {
+      "role": "local requests 22 through 29",
+      "start": "0x1476c803c",
+      "end_exclusive": "0x1476c805c",
+      "file_offset": "0x76c723c",
+      "sha256": "b39f0749d4da356254fc616baea32500b47d1f616792b3b6762dd95b1b627d27",
+      "case_targets": [
+        "0x145e54be9",
+        "0x145e5514e",
+        "0x145e54ec2",
+        "0x145e55033",
+        "0x145e54ca7",
+        "0x145e55246",
+        "0x145e5546b",
+        "0x145e550c5"
+      ]
+    },
+    {
+      "role": "joined host decoded variants 3 through 26",
+      "start": "0x1476c81ec",
+      "end_exclusive": "0x1476c824c",
+      "file_offset": "0x76c73ec",
+      "sha256": "c027a92c2f511ac036756ce99446f0959603029fdf75f5fda5069349a2e66d28",
+      "case_targets": [
+        "0x145e77ca5",
+        "0x145e78794",
+        "0x145e78179",
+        "0x145e782b7",
+        "0x145e78310",
+        "0x145e78794",
+        "0x145e78794",
+        "0x145e78794",
+        "0x145e78794",
+        "0x145e78794",
+        "0x145e78794",
+        "0x145e78794",
+        "0x145e78794",
+        "0x145e78345",
+        "0x145e78794",
+        "0x145e78794",
+        "0x145e78794",
+        "0x145e78794",
+        "0x145e7812d",
+        "0x145e78794",
+        "0x145e781c1",
+        "0x145e78794",
+        "0x145e78794",
+        "0x145e78281"
+      ]
+    },
+    {
+      "role": "compressed cleanup niche cases 0 through 21",
+      "start": "0x1476c8194",
+      "end_exclusive": "0x1476c81ec",
+      "file_offset": "0x76c7394",
+      "sha256": "4f89e5fca66e9f0469fec38e2c376ab211f194eac18526bf33e48ba8c74e470b",
+      "case_targets": [
+        "0x145e7884f",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787c3",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787ea",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e7884f",
+        "0x145e787d1",
+        "0x145e77fd5"
+      ]
+    },
+    {
+      "role": "ordinary cleanup niche cases 0 through 21",
+      "start": "0x1476c82a4",
+      "end_exclusive": "0x1476c82fc",
+      "file_offset": "0x76c74a4",
+      "sha256": "ed0fd30f1377e64283601a99916ebf36c5a877f8a4a48b225cdfec42e8899503",
+      "case_targets": [
+        "0x145e7884f",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787c3",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787df",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e787d1",
+        "0x145e7884f",
+        "0x145e787d1",
+        "0x145e78805"
+      ]
+    },
+    {
+      "role": "guest decoded variants 1 through 25",
+      "start": "0x1476c82fc",
+      "end_exclusive": "0x1476c8360",
+      "file_offset": "0x76c74fc",
+      "sha256": "74b42d8fb118f58a63ff19ea97a5adfdb5a594423ef224ec459110b211f8e69d",
+      "case_targets": [
+        "0x145e7934c",
+        "0x145e79b70",
+        "0x145e7ae3f",
+        "0x145e796d6",
+        "0x145e7ae3f",
+        "0x145e7a0d0",
+        "0x145e7ae3f",
+        "0x145e7a1a7",
+        "0x145e79967",
+        "0x145e79bea",
+        "0x145e79ca0",
+        "0x145e7a335",
+        "0x145e7a230",
+        "0x145e79520",
+        "0x145e79a7d",
+        "0x145e795dd",
+        "0x145e79467",
+        "0x145e79e4d",
+        "0x145e79f4f",
+        "0x145e7a4e1",
+        "0x145e7a425",
+        "0x145e79391",
+        "0x145e7ae3f",
+        "0x145e79606",
+        "0x145e7a520"
+      ]
+    }
+  ],
+  "interval": {
+    "role": "elapsed Hero update interval",
+    "start": "0x146734e10",
+    "end_exclusive": "0x146734e18",
+    "file_offset": "0x6734010",
+    "sha256": "45d2b662d9d490ae9b932759c910b26b9a874065de620f4ac0a3a23a65e40b8c"
+  },
+  "replay_exits": {
+    "immediate": "0x145e78382",
+    "defer": "0x145e77cd1",
+    "take": "0x145fc4d51",
+    "skip": "0x145fc4d10",
+    "replace": "0x145e7c319",
+    "reject_replacement": "0x145e7c3eb"
+  },
+  "raw_collector_ghidra": {
+    "slice_sha256": "9bbddc91e697ad558ed35a2dfa8067428b4297aaca7a09b71eb77a7c50ea1184",
+    "journal_identity_sha256": "be2570080d28fc88e4aeb98098623b29073349e43d5bc56876fc2f496146a0b2",
+    "completed_queries": [
+      {
+        "operation": "procedure_info",
+        "address": "0x145fc4bf0",
+        "result_sha256": "984aae03ef2eb9db41bd6a9f5046d08a74c7bfd7e42d52dc81ebf2fec2033b49",
+        "evidence_id": "ev_1e6f151dda084108812d1d673891b26dda9a01f458599682121a460e12ad5d9f"
+      },
+      {
+        "operation": "procedure_pseudo_code",
+        "address": "0x145fc4bf0",
+        "result_sha256": "e66a105a8d34485e52b3189794efd514cf7895959b7454380454cee90b4a9131",
+        "evidence_id": "ev_e312e9520b08dafb3a643a6105d280001eb52ec44bcfc55d3506cbb3c3a3bebd"
+      }
+    ]
+  }
+}
