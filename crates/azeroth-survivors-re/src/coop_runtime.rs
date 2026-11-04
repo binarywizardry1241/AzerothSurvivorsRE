@@ -247,7 +247,7 @@ impl Plugin for CoopPlugin {
             .configure_sets(First, (CoopSet::Network, CoopSet::Apply).chain())
             .add_systems(Startup, start)
             .add_systems(First, poll.in_set(CoopSet::Network))
-            .add_systems(Last, (flush.in_set(CoopSet::Flush), shutdown).chain());
+            .add_systems(Last, flush.in_set(CoopSet::Flush));
     }
 }
 
@@ -448,15 +448,6 @@ fn flush(
     }
     if let Some(driver) = &mut runtime.driver {
         driver.flush(time.elapsed_secs_f64());
-    }
-}
-
-fn shutdown(mut exits: MessageReader<bevy::app::AppExit>, mut runtime: ResMut<CoopRuntime>) {
-    if exits.read().next().is_some() {
-        if let Some(driver) = &mut runtime.driver {
-            driver.close();
-        }
-        runtime.party.clear();
     }
 }
 

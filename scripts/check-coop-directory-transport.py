@@ -13,7 +13,7 @@ import re
 import struct
 import tomllib
 
-from coverage_common import ROOT, latest_target, target_bytes
+from coverage_common import ROOT, installed_identity, latest_target, target_bytes
 from script_sources import load_script
 
 
@@ -285,21 +285,68 @@ def check_current_rtt(target, data, pe):
         authored_rust_tests_executed=False, network_or_game_executed=False, parity_verified=False)))
 
 
+def check_current_close(target, data, pe):
+    proof = json.loads(path("docs/analysis/evidence/0.139.2/coop-close.json").read_text())
+    assert proof["target"] == target
+
+    def raw(address, length):
+        offset = pe.rva_offset(address - pe.image_base)
+        return data[offset:offset + length]
+
+    for row in proof["native_ranges"]:
+        start, end = int(row["start"], 16), int(row["end_exclusive"], 16)
+        assert pe.rva_offset(start - pe.image_base) == int(row["file_offset"], 16)
+        assert digest(raw(start, end - start)) == row["sha256"], row["role"]
+
+    for anchor in proof["instruction_and_data_anchors"]:
+        address = int(anchor["address"], 16)
+        expected = bytes.fromhex(anchor["hex"])
+        assert raw(address, len(expected)) == expected, anchor["role"]
+
+    directory = path("crates/azeroth-survivors-re/src/coop_directory.rs").read_text()
+    session = path("crates/azeroth-survivors-re/src/coop/session.rs").read_text()
+    assert "relay.after(CoopSet::Flush)" in directory
+    close = block_after(directory, "fn close(&mut self)")
+    assert close.index("self.worker.take()") < close.index("primary.submit(ClientMessage::Leave)") \
+        < close.index("self.secondary.take()") < close.index("secondary.submit(ClientMessage::Leave)") \
+        < close.index("self.secondary_lifetime = None")
+    for departure in (
+        block_after(directory, "FormRequest::Leave"),
+        block_after(directory, "if exits.read().next().is_some()"),
+    ):
+        assert departure.index("driver.leave(") < departure.index("service.close()")
+    role = block_after(session, "pub fn leave(&mut self")
+    assert role.index("peer.flush(now)") < role.index("peer.connection.send(&disconnect)") \
+        < role.index("peer.connection.close()") < role.index("for_each(&mut submit)")
+    assert role.index("self.disconnect_upstream(now, &disconnect)") < role.index("upstream.close()")
+    upstream = block_after(session, "fn disconnect_upstream(")
+    assert upstream.index("self.flush(now)") < upstream.index("upstream.send(disconnect)")
+    codec = path("crates/azeroth-survivors-re/src/coop/service.rs").read_text()
+    assert "Self::Leave => out.push(8)" in codec
+    print(json.dumps(dict(status="passed", target=target["version"],
+        native_ranges=len(proof["native_ranges"]),
+        native_anchors=len(proof["instruction_and_data_anchors"]),
+        source_paths=3, compilation=False, network_or_game_executed=False)))
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--source-only", action="store_true", help="Check retained socket source wiring without revalidating historical native evidence")
     mode.add_argument("--current-rtt", action="store_true", help="Check the canonical 0.127.0 raw service RTT proof and source")
+    mode.add_argument("--current-close", action="store_true", help="Check the 0.139.2 explicit cooperative close proof and source")
     args = parser.parse_args()
     if args.source_only:
         check_source()
         print("PASS: retained socket source guards; native evidence not revalidated; no compilation or execution")
         return
-    target = latest_target(verify=True)
+    target = installed_identity() if args.current_close else latest_target(verify=True)
     data = target_bytes(target)
     pe = load_script("coop_directory_transport_pe", ROOT / "scripts/inventory-executable.py").PE(data)
     if args.current_rtt:
         return check_current_rtt(target, data, pe)
+    if args.current_close:
+        return check_current_close(target, data, pe)
     owners, tables, literals, certificates, local_results = check_manifest(target, data, pe)
     check_source()
     print(f"PASS: {owners} current native transport ranges/extracts, {tables} tables, "

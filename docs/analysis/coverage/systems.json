@@ -62735,6 +62735,24 @@
     },
     {
       "id": "custom-game-coop-relay",
+      "gap_206_explicit_close_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 206,
+        "source_status": "bounded_source_connected",
+        "scope": "Explicit role departure flush and separate Disconnect, followed by terminal primary/secondary Leave and close. The reconstructed AppExit runs after the cooperative flush. Exact native desktop/process trigger correspondence is open.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/coop/session.rs",
+          "crates/azeroth-survivors-re/src/coop_directory.rs",
+          "crates/azeroth-survivors-re/src/coop_runtime.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/coop-close-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/coop-close.json"
+        ],
+        "static_checker": "scripts/check-coop-directory-transport.py --current-close",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "gap_213_source_review": {
         "native_evidence_target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
         "installed_target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",

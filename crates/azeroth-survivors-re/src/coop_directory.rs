@@ -250,6 +250,20 @@ impl Service {
             worker.submit(message);
         }
     }
+
+    fn close(&mut self) {
+        // Native terminal close writes to, then closes, the primary before
+        // doing the same to the selected secondary.
+        if let Some(primary) = self.worker.take() {
+            primary.submit(ClientMessage::Leave);
+        }
+        if let Some(secondary) = self.secondary.take() {
+            secondary.submit(ClientMessage::Leave);
+        }
+        self.secondary_lifetime = None;
+        self.secondary_config = None;
+    }
+
     fn heartbeat(&self) {
         // Current service pump145aeb92f..145aeb9ef checks each transport
         // independently. A closed lobby must not starve the selected relay.
@@ -324,11 +338,7 @@ fn poll(
             service.last_command,
         )
     {
-        service.send(ClientMessage::Leave);
-        service.worker = None;
-        service.secondary = None;
-        service.secondary_lifetime = None;
-        service.secondary_config = None;
+        service.close();
         service.profile_identity = None;
         service.profile = None;
         runtime.roster_profile = None;
@@ -786,27 +796,12 @@ fn poll(
                             .then_some(benilla_protocol::SessionEnd::LoggedOut),
                     );
                 }
-                let mut sent_leave = false;
                 if let Some(mut driver) = runtime.driver.take() {
-                    driver.close();
-                    for command in driver.take_service_commands() {
-                        sent_leave |= matches!(
-                            command,
-                            azeroth_survivors_re::coop::session::RelayCommand::Leave
-                                | azeroth_survivors_re::coop::session::RelayCommand::GuestLeave
-                        );
-                        send_relay(&mut service, command);
-                    }
+                    driver.leave(time.elapsed_secs_f64(), |command| send_relay(&mut service, command));
                 }
-                if !sent_leave {
-                    service.send(ClientMessage::Leave);
-                }
+                service.close();
                 service.hosting = false;
                 service.profile_identity = None;
-                service.secondary = None;
-                service.secondary_lifetime = None;
-                service.secondary_config = None;
-                service.worker = None;
                 runtime.party.clear();
                 runtime.shared_running = false;
                 runtime.actor_clients.clear();
@@ -1026,11 +1021,24 @@ fn drain_service_relay(service: &mut Service) {
     }
 }
 
-fn relay(mut service: ResMut<Service>, mut runtime: ResMut<CoopRuntime>) {
+fn relay(
+    mut service: ResMut<Service>,
+    mut runtime: ResMut<CoopRuntime>,
+    mut exits: MessageReader<bevy::app::AppExit>,
+    time: Res<Time>,
+) {
     // The native pump owns control/replay output even while the Game is Off.
     drain_service_relay(&mut service);
     for command in std::mem::take(&mut runtime.service_commands) {
         send_relay(&mut service, command);
+    }
+    if exits.read().next().is_some() {
+        if let Some(mut driver) = runtime.driver.take() {
+            driver.leave(time.elapsed_secs_f64(), |command| send_relay(&mut service, command));
+        }
+        service.close();
+        runtime.party.clear();
+        return;
     }
     let mut refused = false;
     if let Some(driver) = &mut runtime.driver {
@@ -1166,6 +1174,27 @@ mod tests {
             },
             commands,
         )
+    }
+
+    #[test]
+    fn terminal_service_close_submits_leave_before_retiring_each_transport() {
+        let (primary, primary_commands) = worker(1);
+        let (secondary, secondary_commands) = worker(1);
+        let mut service = Service {
+            worker: Some(primary),
+            secondary: Some(secondary),
+            ..Default::default()
+        };
+        service.close();
+        service.close();
+        for commands in [primary_commands, secondary_commands] {
+            let WorkerCommand::Send(bytes) = commands.try_recv().unwrap() else {
+                panic!("Leave must precede Stop");
+            };
+            assert_eq!(bytes, [8]);
+            assert!(matches!(commands.try_recv(), Ok(WorkerCommand::Stop)));
+            assert!(commands.try_recv().is_err());
+        }
     }
 
     #[test]

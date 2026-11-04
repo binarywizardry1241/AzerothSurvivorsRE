@@ -25,6 +25,10 @@ The old target-specific checkers reject this new hash; they were not relabelled
 or treated as current replays. Pending correspondence is separate from missing
 implementation.
 
+The [0.139.2 explicit-close recovery](coop-close-0.139.2.md) resolves the
+outer writer and terminal service teardown subcases of #206 on the later
+target. The observations below retain their original 0.120.4 provenance.
+
 ## Individual supplied items
 
 Each pending item names an exact current connection-ledger selector and a

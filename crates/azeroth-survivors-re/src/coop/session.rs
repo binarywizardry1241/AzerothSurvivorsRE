@@ -1396,6 +1396,48 @@ impl Session {
     pub fn take_party_events(&mut self) -> Vec<PartyEvent> {
         self.party_events.drain(..).collect()
     }
+
+    /// Explicit role departure flushes queued game traffic, sends Disconnect
+    /// as its own frame, then closes each transport before advancing.
+    pub fn leave(&mut self, now: f64, mut submit: impl FnMut(RelayCommand)) {
+        let disconnect = encode_lifecycle(&LifecyclePacket::Disconnect)
+            .expect("fixed native disconnect packet");
+        for index in 0..self.peers.len() {
+            let peer = &mut self.peers[index];
+            peer.flush(now);
+            peer.connection.send(&disconnect);
+            peer.connection.close();
+            self.take_service_commands().into_iter().for_each(&mut submit);
+        }
+        self.disconnect_upstream(now, &disconnect);
+        if let Some(upstream) = &mut self.upstream {
+            upstream.close();
+        }
+        self.take_service_commands().into_iter().for_each(submit);
+        self.finish_close();
+    }
+
+    /// A guest ending a run writes Disconnect, then the frontend closes the
+    /// entire service. The guest handle must not close the secondary first.
+    pub fn leave_guest_run(&mut self, now: f64) {
+        let disconnect = encode_lifecycle(&LifecyclePacket::Disconnect)
+            .expect("fixed native disconnect packet");
+        self.disconnect_upstream(now, &disconnect);
+        // TCP still needs its ordinary socket close. A service guest only owns
+        // a shared handle, and the terminal service action closes its sockets.
+        if let Some(Connection::Tcp(upstream)) = &mut self.upstream {
+            upstream.close();
+        }
+        self.finish_close();
+    }
+
+    fn disconnect_upstream(&mut self, now: f64, disconnect: &[u8]) {
+        self.flush(now);
+        if let Some(upstream) = &mut self.upstream {
+            upstream.send(disconnect);
+        }
+    }
+
     pub fn close(&mut self) {
         let leave_service = self.service && self.relay_alive && self.is_hosting();
         for peer in &mut self.peers {
@@ -1403,11 +1445,6 @@ impl Session {
             self.relay_commands
                 .extend(peer.connection.take_relay_commands());
         }
-        self.peers.clear();
-        self.chat_times.clear();
-        self.lobby_chat.clear();
-        self.ready_check = None;
-        self.ready_updates.clear();
         if let Some(upstream) = &mut self.upstream {
             upstream.close();
             self.relay_commands.extend(upstream.take_relay_commands());
@@ -1415,6 +1452,15 @@ impl Session {
         if leave_service {
             self.relay_commands.push(RelayCommand::Leave);
         }
+        self.finish_close();
+    }
+
+    fn finish_close(&mut self) {
+        self.peers.clear();
+        self.chat_times.clear();
+        self.lobby_chat.clear();
+        self.ready_check = None;
+        self.ready_updates.clear();
         self.upstream = None;
         self.listener = None;
         self.relay_alive = false;
@@ -1433,6 +1479,36 @@ impl Session {
 #[cfg(test)]
 mod relay_protocol_tests {
     use super::*;
+
+    #[test]
+    fn guest_departure_flushes_pending_traffic_before_a_separate_disconnect() {
+        for end_run in [false, true] {
+            let mut guest = Session::service_join(Vec::new());
+            guest.take_service_commands();
+            guest.upstream_outgoing.push(NativeMessage::Time(23));
+            let mut commands = Vec::new();
+            if end_run {
+                guest.leave_guest_run(1.);
+                commands.extend(guest.take_service_commands());
+            } else {
+                guest.leave(1., |command| commands.push(command));
+            }
+            let [RelayCommand::Send { id: 0, payload: queued },
+                RelayCommand::Send { id: 0, payload: disconnect }, tail @ ..] =
+                commands.as_slice()
+            else {
+                panic!("departure must preserve two separate frames");
+            };
+            assert_eq!(&queued[9..], &[21, 23, 0, 0, 0]);
+            assert_eq!(&disconnect[9..], &[16]);
+            if end_run {
+                assert!(tail.is_empty());
+            } else {
+                assert_eq!(tail, [RelayCommand::GuestLeave]);
+            }
+            assert!(!guest.connected());
+        }
+    }
 
     #[test]
     fn denied_stops_the_current_decoded_batch_and_later_buffered_frames() {
