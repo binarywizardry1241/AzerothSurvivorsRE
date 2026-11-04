@@ -68,7 +68,6 @@ pub(crate) struct CoopGame {
     marks_received: f32,
     duplicate_marks: crate::save::gear_rewards::DuplicateMarks,
     seen_received: usize,
-    sent_state: HashMap<ClientId, NativeState>,
     motion: HashMap<ClientId, commands::Motion>,
     inventory: HashMap<ClientId, client::inventory::RemoteInventory>,
     sent_players: HashMap<u64, Vec<(u16, u32)>>,
@@ -618,7 +617,6 @@ fn receive(
                     }
                 }
             }
-            state.sent_state.remove(&client);
             state.motion.remove(&client);
             state.inventory.remove(&client);
             state.sent_seen.remove(&client);
@@ -1422,7 +1420,6 @@ fn bootstrap(
             })
         });
         state.sent_seen.clear();
-        state.sent_state.clear();
         state.state_sent_at.clear();
         state.units.clear();
         state.choice_generations.clear();

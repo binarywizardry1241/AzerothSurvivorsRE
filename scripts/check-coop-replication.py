@@ -15,6 +15,7 @@ SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 MANIFEST = ROOT / 'docs/analysis/evidence/0.115.0/coop-replication/manifest.json'
 GUEST_SPELL_ROWS = ROOT / 'docs/analysis/evidence/0.141.0/coop-guest-spell-rows.json'
 PROTOCOL_13 = ROOT / 'docs/analysis/evidence/0.141.0/coop-replication.json'
+SETTLEMENT = ROOT / 'docs/analysis/evidence/0.141.0/party-achievement-settlement.json'
 
 
 def digest(raw):
@@ -207,19 +208,75 @@ def replay_controls(replay, proof, ranges):
     return cases
 
 
+def replay_state_party_context(replay, target):
+    proof = json.loads(SETTLEMENT.read_text())
+    assert proof['target'] == target
+    span = next(row for row in proof['native_spans'] if row['role'] == 'local-party-context')
+    start, end = int(span['start'], 16), int(span['end_exclusive'], 16)
+    assert replay.pe.rva_offset(start - replay.pe.image_base) == int(span['file_offset'], 16)
+    assert digest(replay.raw(start, end - start)) == span['sha256']
+    reg, cpu = replay.registers, replay.machine
+    game, result = replay.app, replay.app + 0x2000
+
+    def clone_empty_event_vector(address):
+        if address != 0x146040e60:
+            return False
+        assert cpu.reg_read(reg.UC_X86_REG_RDX) == game + 0xe60
+        replay.put(cpu.reg_read(reg.UC_X86_REG_RCX), '<QQQ', 0, 8, 0)
+        replay.return_seam()
+        return True
+
+    replay.seam = clone_empty_event_vector
+    cases = 0
+    for mode, remote_count in product((0, 1, 2, 255), (0, 1, 4)):
+        replay.reset('party-context', [(start, end)], [replay.done])
+        replay.put(game + 0x10e3, '<B', mode)
+        replay.put(game + 0xcf0, '<Q', remote_count)
+        replay.put(game + 0xff8, '<Q', 3)
+        replay.put(game + 0x47f, '<B', 5)
+        replay.put(game + 0x10c8, '<I', 7)
+        replay.put(game + 0xf68, '<If', 1, 123.0)
+        cpu.reg_write(reg.UC_X86_REG_RCX, result)
+        cpu.reg_write(reg.UC_X86_REG_RDX, game)
+        replay.run(start)
+        if mode:
+            assert replay.get(result, '<QQQ') == (0, 4, 0)
+            assert replay.get(result + 0x30, '<IfIBB') == (1, 123.0, 7, 3, 5)
+        else:
+            assert replay.get(result, '<q') == (-1,)
+        cases += 1
+    replay.seam = None
+    return cases
+
+
 def check_protocol_13():
     proof, data, pe, ranges = installed_ranges(PROTOCOL_13)
     replay = NativeReplay(data, pe)
     cadence = replay_state_cadence(replay, proof, ranges)
     controls = replay_controls(replay, proof, ranges)
+    party_context = replay_state_party_context(replay, proof['target'])
 
     base = ROOT / 'crates/azeroth-survivors-re/src'
-    publish = (base / 'gameplay/coop_publish.rs').read_text().split('fn publish_recipient_state(', 1)[1].split('pub(in crate::gameplay) fn publish(', 1)[0]
-    publish = ' '.join(publish.split())
-    assert 'let periodic = now - state.state_sent_at.get(&client).copied().unwrap_or(0.) >= 1.0;' in publish
+    publish = ' '.join((base / 'gameplay/coop_publish.rs').read_text().split())
+    cadence_source = publish.split('fn recipient_state_due(', 1)[1].split('fn publish(', 1)[0]
+    assert 'let periodic = now - state.state_sent_at.get(&client).copied().unwrap_or(0.) >= 1.0;' in cadence_source
+    assert 'if periodic { state.state_sent_at.insert(client, now); } periodic || terminal' in cadence_source
     assert publish.count('state.state_sent_at.insert(client, now);') == 1
-    assert 'if periodic { state.state_sent_at.insert(client, now); }' in publish
-    assert 'if (periodic || native.flag_8c) && runtime.send(Some(client), NativeMessage::State(' in publish
+    assert 'recipient_state_due(&mut state, client, game.native_state_terminal(), now)' in publish
+    assert 'let Some(display) = display else {' in publish
+    no_display = publish.split('let Some(display) = display else {', 1)[1].split('let addon_due', 1)[0]
+    assert 'client.filter(|_| state_due)' in no_display
+    assert '.with_party_hero(slot, |game| game.native_state())' in no_display
+    assert 'runtime.send(Some(client), NativeMessage::State(native));' in no_display
+    assert 'state_due.then(|| game.native_state())' in publish
+    assert 'if let Some(native) = native { runtime.send(Some(client), NativeMessage::State(native)); }' in publish
+
+    mechanics = (base / 'gameplay/mechanics/coop.rs').read_text()
+    context = mechanics.split('pub fn cooperative_feat_context(', 1)[1].split('pub fn set_equipment_ids(', 1)[0]
+    assert 'return self.coop.replica_feats.clone();' in context
+    assert 'if !self.has_party()' in context
+    assert 'remotes' not in context and 'active_slot' not in context
+    assert 'flag_8c: self.native_state_terminal(),' in mechanics
 
     wire = (base / 'coop/replication.rs').read_text()
     writer = wire.split('fn encode_control_argument(', 1)[1].split('pub fn encode_message(', 1)[0]
@@ -229,7 +286,7 @@ def check_protocol_13():
     assert '7..=9 => u8::from(argument != 0),' in reader
     assert '0 | 2 => argument,' in reader
     assert 'if matches!(kind, 0 | 3) { reader.word()? } else { 0 }' in reader
-    print(f'PASS: {cadence} State15 cadence cases, {controls} Control8 cases, '
+    print(f'PASS: {cadence} State15 cadence cases, {party_context} party context cases, {controls} Control8 cases, '
           f'{replay.instructions} native steps and source route checks')
 
 

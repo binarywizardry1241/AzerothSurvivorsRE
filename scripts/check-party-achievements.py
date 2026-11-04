@@ -186,7 +186,7 @@ def main():
             "save.grant_achievements(&keys, Some(earned_at))",
         ],
         "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs": [
-            ".with_party_hero(slot, |game|", "game.native_state()", "NativeMessage::State(native.clone())",
+            ".with_party_hero(slot, |game|", "game.native_state()", "NativeMessage::State(native)",
         ],
         "crates/azeroth-survivors-re/src/gameplay/coop.rs": [
             "coop::client_state::validate_state(", "game.apply_replica_native(&value)",

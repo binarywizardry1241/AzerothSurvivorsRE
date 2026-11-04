@@ -37,8 +37,42 @@ damaged-by list, personal history, Enhancement byte, boss flags, and optional
 party context. Its member records cap at five, including each lethal-event
 member list. These packet fields retain their earlier
 [0.140.0 party context evidence](scholomance-0.140.0.md#the-insane-party-gate).
-The rebuilt host uses its existing seated snapshot builder and State15 codec
-for both pre-Sync and synchronized recipients.
+The poll checks the host role, indexed peer and live Game at
+`0x145ea9163..0x145ea924c`. It constructs the snapshot only after cadence
+admission and reaches the peer's outgoing queue at `0x145ea9354`. The
+rebuilt host now makes that decision before building the recipient snapshot.
+It uses the same seated snapshot and State15 codec before Sync6 and when
+character-creation display data is unavailable. The presentation branch
+retains its own Sync6 and display gates.
+
+The builder and writer join the following histories in source order.
+
+| History | Game pointer/count | Snapshot copy begins | Wire row |
+| --- | --- | --- | --- |
+| Boss and spell pairs | `+0x960/+0x968` | `0x146051f95` | Two u32 words |
+| Main lethal history | `+0x978/+0x980` | `0x146052045` | Two u32 words and three bytes |
+| Damaged-by bosses | `+0x9c0/+0x9c8` | `0x1460520e8` | One u32 word |
+| Personal lethal history | `+0x990/+0x998` | `0x1460521ae` | Two u32 words and three bytes |
+| Boss result flags | `+0x9a8/+0x9b0` | `0x14605230f` | Boss u32 and one flag byte |
+
+The recipient swap at `0x145f38112..0x145f381dd` exchanges the vectors
+covering all five pointer/count pairs. The class-7 Enhancement branch at
+`0x1460522b3..0x14605230f` requires a positive tree-1 tally that strictly
+exceeds trees 0 and 2. The source's ordinary kill, shared kill-credit, damage,
+Enhancement and flag owners feed the same fields. The guest validator at
+`0x145e3727e..0x145e372c9` builds the five zone boss IDs. Its filter and
+cap sequence at `0x145e375f0..0x145e37693` keeps retained rows in wire order
+and caps the damaged-by list at five. The other four history lists use the
+clock-derived limit. Both host and guest consume the shared feat context
+separately from these histories.
+
+The [party context helper](evidence/0.141.0/party-achievement-settlement.json)
+at `0x145f0f6c0` returns an absent value for zero at `Game+0x10e3`.
+Its present branch clones the cached member and event vectors and copies the
+shared death count, starting roster size, first-fall option and raw rank.
+The 0.141.0 helper uses the co-op mode byte even when the retained remote
+count is zero. The source now uses the same gate for seated host snapshots
+and local feat evaluation. Guests still consume the accepted optional value.
 
 The scalar producer reads the seated hero's run clock at `Game+0x1028`,
 level at `+0x5f0` and the independent won latch at `+0xf20`. The five
@@ -67,6 +101,10 @@ and raw slice SHA-256 `6d3fe23bd5b101096f0343322ea410be01dca9f7e9054551af1742a41
 The installed PE range `0x145ea3420..0x145ead071` matches that raw slice.
 The shared [writer receipt](coop-inspection-0.141.0.md#exact-static-evidence)
 was used for the protocol 13 tag selectors.
+The snapshot-builder Ghidra result
+`ev_290ab1230287a8b450c02cd6b2c5ff9395f74e4a34bf8664b0c7a617a956de8d`
+has result SHA-256 `b20b5df6f2172d2cf391a5c2fe95b0092d4c7f76f62b13784d8bc3907e611eea`
+and matches the manifest's `state_game_snapshot` PE slice.
 
 ## Engine7 and Control8
 
@@ -100,14 +138,16 @@ PYTHONPATH=runtime/armory-recovery/python-libs \
   python3 -B scripts/check-coop-replication.py --protocol-13
 ```
 
-The maintained check passed 7,168 State15 cadence cases and 5,877 Control8
-cases over 334,174 original instruction steps. Cadence replay stops before
-snapshot construction or delivery. The control writer substitutes only the
+The maintained check passed 7,168 State15 cadence cases, 12 party-context
+cases and 5,877 Control8 cases over 334,945 original instruction steps.
+Cadence replay stops before snapshot construction or delivery. The context
+replay supplies empty member and event vectors and replaces the event clone.
+It tests mode and remote-count combinations and the shared scalar fields.
+The control writer substitutes only the
 byte and dword append primitives. Its reader executes the original input
 primitives through subtype dispatch and verifies the exact consumed length.
 The checker also checks the live source routes. Rustfmt parsed both changed
 Rust files. The extended Rust fixture remains uncompiled and unrun.
 
-The wider State15 history-producer audit, ordinary Engine opcode semantics
-outside the selected ingress and trust contracts, compilation, live socket
-delivery, and original/rebuilt comparison remain separate work.
+Compilation, live State15 delivery, save settlement and original/rebuilt
+comparison remain open.

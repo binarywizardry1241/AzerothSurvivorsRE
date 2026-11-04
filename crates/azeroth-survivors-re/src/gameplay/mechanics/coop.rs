@@ -954,6 +954,11 @@ mod tests {
 
     #[test]
     fn party_feat_context_survives_the_single_remote_swap_and_departure() {
+        let mut rolled_back = pair();
+        assert!(rolled_back.remove_party_hero(1));
+        assert!(rolled_back.coop.remotes.is_empty());
+        assert!(rolled_back.native_state().coop.is_some());
+
         let mut game = pair();
         game.refresh_party_feat_members();
         let expected = game.cooperative_feat_context().unwrap();
@@ -1177,16 +1182,13 @@ impl Mechanics {
         }
     }
 
-    /// Current0.121.0 145bc28c0: cooperative presence needs a retained remote row;
-    /// Raw Heroic rank and the party-wide survival history travel separately.
+    /// The 0.141.0 snapshot gates the shared context on cooperative mode.
     /// Prior shared lethal snapshots survive a member's death or departure.
     pub fn cooperative_feat_context(&self) -> Option<azeroth_survivors_re::coop::replication::NativeCoopFeats> {
         if self.replica_state().is_some() {
             return self.coop.replica_feats.clone();
         }
-        // with_party_hero temporarily owns one removed remote row. It still
-        // counts as a retained member while publishing that recipient's state.
-        if !self.has_party() || (self.coop.remotes.is_empty() && self.coop.active_slot == 0) {
+        if !self.has_party() {
             return None;
         }
         Some(azeroth_survivors_re::coop::replication::NativeCoopFeats {
@@ -1210,8 +1212,13 @@ impl Mechanics {
             .insert(self.player_guid, [flags[0], flags[2]]);
     }
 
-    /// Current145d168c8 exports -1 only for effective phase4. Victory retains
-    /// the last revival clock, including a shared clear reached while downed.
+    pub(in crate::gameplay) fn native_state_terminal(&self) -> bool {
+        if self.has_party() {
+            self.party_terminal_phase().is_some()
+        } else {
+            self.completed || self.dead
+        }
+    }
 
     pub fn native_state(&self) -> azeroth_survivors_re::coop::replication::NativeState {
         use azeroth_survivors_re::coop::{
@@ -1228,15 +1235,10 @@ impl Mechanics {
         } else {
             RunPhase::Ready
         };
-        let terminal = if self.has_party() {
-            self.party_terminal_phase().is_some()
-        } else {
-            matches!(phase, RunPhase::Dead | RunPhase::Victory)
-        };
         NativeState {
             float_68_bits: self.clock.to_bits(),
             byte_8f: phase.native(),
-            flag_8c: terminal,
+            flag_8c: self.native_state_terminal(),
             word_6c: self.level,
             flag_8d: self.victory_reached(),
             words_70: [

@@ -29,17 +29,12 @@ fn emit(
     }
 }
 
-fn publish_recipient_state(
-    runtime: &mut CoopRuntime, state: &mut CoopGame, client: ClientId,
-    native: NativeState, now: f64,
-) {
+fn recipient_state_due(state: &mut CoopGame, client: ClientId, terminal: bool, now: f64) -> bool {
     let periodic = now - state.state_sent_at.get(&client).copied().unwrap_or(0.) >= 1.0;
     if periodic {
         state.state_sent_at.insert(client, now);
     }
-    if (periodic || native.flag_8c) && runtime.send(Some(client), NativeMessage::State(native.clone())) {
-        state.sent_state.insert(client, native);
-    }
+    periodic || terminal
 }
 
 pub(in crate::gameplay) fn publish(
@@ -80,7 +75,6 @@ pub(in crate::gameplay) fn publish(
         state.inventory.clear();
         state.sent_seen.clear();
         state.state_sent_at.clear();
-        state.sent_state.clear();
         runtime.actor_clients.clear();
         return;
     };
@@ -94,9 +88,6 @@ pub(in crate::gameplay) fn publish(
     if !world.ready {
         return;
     }
-    let Some(creation) = &bridge.creation else {
-        return;
-    };
     let local_profile = state.local.clone();
     let mut members = state
         .world_profiles
@@ -118,21 +109,27 @@ pub(in crate::gameplay) fn publish(
     let now = time.elapsed_secs_f64();
     let mut detailed_owners = None;
     for (slot, client, hero) in members {
-        if let Some(client) = client {
-            let synced =
-                runtime.driver.as_ref().is_some_and(|driver| {
-                    driver.server.clients().iter().any(|row| {
-                        row.id == client && row.synchronized && row.closing_since.is_none()
-                    })
-                });
-            if !synced {
+        let synced = client.is_none_or(|client| {
+            runtime.driver.as_ref().is_some_and(|driver| {
+                driver.server.clients().iter().any(|row| {
+                    row.id == client && row.synchronized && row.closing_since.is_none()
+                })
+            })
+        });
+        let state_due = client.is_some_and(|client| {
+            recipient_state_due(&mut state, client, game.native_state_terminal(), now)
+        });
+        let display = bridge.creation.as_ref()
+            .filter(|_| synced)
+            .and_then(|creation| creation.body_display(hero.race, hero.sex));
+        let Some(display) = display else {
+            // State15 uses the admitted hero and shared run phase. Engine
+            // presentation and the Sync6 latch have their own admission.
+            if let Some(client) = client.filter(|_| state_due) {
                 if let Some(native) = game.with_party_hero(slot, |game| game.native_state()) {
-                    publish_recipient_state(&mut runtime, &mut state, client, native, now);
+                    runtime.send(Some(client), NativeMessage::State(native));
                 }
-                continue;
             }
-        }
-        let Some(display) = creation.body_display(hero.race, hero.sex) else {
             continue;
         };
         let addon_due = client.is_some_and(|client|
@@ -203,7 +200,7 @@ pub(in crate::gameplay) fn publish(
                 });
                 (
                     fields,
-                    game.native_state(),
+                    state_due.then(|| game.native_state()),
                     learned,
                     attack,
                     inventory,
@@ -240,16 +237,6 @@ pub(in crate::gameplay) fn publish(
         }
         state.sent_players.insert(hero.guid, fields);
         let Some(client) = client else { continue };
-        let synced = runtime.driver.as_ref().is_some_and(|driver| {
-            driver
-                .server
-                .clients()
-                .iter()
-                .any(|row| row.id == client && row.synchronized && row.closing_since.is_none())
-        });
-        if !synced {
-            continue;
-        }
         let publisher = state.addon_publishers.entry(client).or_default();
         if addon_due {
             for event in publisher.changed_from(addon, hero.guid) {
@@ -302,7 +289,9 @@ pub(in crate::gameplay) fn publish(
         if !unsent.is_empty() && runtime.send(Some(client), NativeMessage::StringRanks(unsent)) {
             state.sent_seen.insert(client, seen);
         }
-        publish_recipient_state(&mut runtime, &mut state, client, native, now);
+        if let Some(native) = native {
+            runtime.send(Some(client), NativeMessage::State(native));
+        }
     }
 }
 
