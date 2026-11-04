@@ -741,8 +741,8 @@ pub(crate) fn capture_hit(
                 *unit_caster
             };
             for miss in misses {
-                for (target, result) in [
-                    (miss.target, miss.info),
+                for (target, result, reflected) in [
+                    (miss.target, miss.info, false),
                     (
                         *unit_caster,
                         if miss.info == 11 {
@@ -750,6 +750,7 @@ pub(crate) fn capture_hit(
                         } else {
                             0
                         },
+                        true,
                     ),
                 ] {
                     if let Some((word, _)) = super::miss_word(result) {
@@ -760,7 +761,7 @@ pub(crate) fn capture_hit(
                             school: Some(spell.school),
                             critical: false,
                             periodic: false,
-                            reflected: miss.info == 11,
+                            reflected,
                             outcome: Outcome::Miss(word),
                         });
                     }
