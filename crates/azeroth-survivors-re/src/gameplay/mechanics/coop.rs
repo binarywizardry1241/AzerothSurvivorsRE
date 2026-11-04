@@ -3,6 +3,7 @@
 use super::*;
 use azeroth_survivors_re::coop::client_state::{RunPhase, RunProjection};
 use azeroth_survivors_re::coop::game_party::{Party, PartyHero, PartySpell};
+use azeroth_survivors_re::mob_loot::EquipmentRoll;
 use std::collections::HashMap;
 
 ///145983f40: damage-sorted JSON rows, optional ordered breakdown objects.

@@ -2,6 +2,11 @@
 
 use super::*;
 
+pub(super) fn polygon(zone: &ZoneDefinition) -> &'static [[f32; 2]] {
+    azeroth_survivors_re::floor_recovery::Zone::for_key(zone.key)
+        .map_or(&[], |floor| floor.polygon.as_slice())
+}
+
 pub(super) fn clip_segment(
     world: &impl ai::World,
     zone: &ZoneDefinition,
@@ -10,7 +15,7 @@ pub(super) fn clip_segment(
 ) -> Position {
     let cross = |[a, b]: [f32; 2], [c, d]: [f32; 2]| a * d - b * c;
     let direction = [to.x - from.x, to.y - from.y];
-    let polygon = azeroth_survivors_re::zones::resolve(zone.key).polygon;
+    let polygon = polygon(zone);
     let mut fraction = 1.0_f32;
     for (&first, &last) in polygon.iter().zip(polygon.iter().cycle().skip(1)) {
         let edge = [last[0] - first[0], last[1] - first[1]];

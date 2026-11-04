@@ -107,7 +107,7 @@ pub(super) fn hook_endpoint(
 }
 
 fn landing_admitted(world: &impl RunWorld, zone: &ZoneDefinition, [x, y]: [f32; 2]) -> bool {
-    let polygon = azeroth_survivors_re::zones::resolve(zone.key).polygon;
+    let polygon = super::scripted_arena::polygon(zone);
     let inside = polygon.iter().zip(polygon.iter().cycle().skip(1)).fold(
         false,
         |inside, (&[x0, y0], &[x1, y1])| {
@@ -187,7 +187,7 @@ impl<W: RunWorld> BossCombat<'_, W> {
                         let z = self
                             .primary_height([x, y])
                             .or_else(|| self.secondary_height([x, y]))
-                            .unwrap_or_else(|| self.world.fallback_height());
+                            .unwrap_or_else(|| Terrain::fallback_height(self.world));
                         self.events.push(RunEvent::RaidSpellGo(SpellCast {
                             source_guid: source,
                             spell_id: HOOK,

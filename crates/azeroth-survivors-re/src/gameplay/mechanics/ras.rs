@@ -94,7 +94,7 @@ fn rune_pair(
     rotation: f32,
     radii: &[f32],
 ) -> Option<[[f32; 2]; 2]> {
-    let polygon = azeroth_survivors_re::zones::resolve(zone.key).polygon;
+    let polygon = super::scripted_arena::polygon(zone);
     let mut candidates = Vec::new();
     for &radius in radii {
         for index in 0..16 {

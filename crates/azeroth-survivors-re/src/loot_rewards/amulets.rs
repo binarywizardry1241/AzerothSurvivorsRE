@@ -518,7 +518,7 @@ impl Aggregate {
             if !selector.matches(definition) {
                 continue;
             }
-            match modifier {
+            match *modifier {
                 0 => result.power += amount,
                 1 => cooldown_reduction += amount,
                 2 => targets += amount,

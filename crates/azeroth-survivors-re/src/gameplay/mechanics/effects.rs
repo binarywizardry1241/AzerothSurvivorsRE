@@ -435,10 +435,11 @@ impl Mechanics {
                                 if soulforge_four_piece && row.tag() == 3 && row.word(16) == 10 {
                                     row.bytes[4..8].copy_from_slice(&0.75_f32.to_le_bytes());
                                 }
-                                if let Some(fraction) = soulforge_hammer_fraction
-                                    && row.tag() == 5 && row.word(8) == 0
-                                    && row.bytes[16] == 1 && row.key(24) == Some("hammer_of_justice")
-                                {
+                                if let Some(fraction) = soulforge_hammer_fraction.filter(|_| {
+                                    row.tag() == 5 && row.word(8) == 0
+                                        && row.bytes[16] == 1
+                                        && row.key(24) == Some("hammer_of_justice")
+                                }) {
                                     row.bytes[4..8].copy_from_slice(&fraction.to_le_bytes());
                                 }
                                 if self.effect_state.tier_half_four_piece.is_some() {

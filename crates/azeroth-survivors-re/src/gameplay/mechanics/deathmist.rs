@@ -89,10 +89,10 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             None
         };
 
-        if let Some(previous) = self.generic.deathmist_brand
-            && previous.target != guid
-            && self.deathmist_victim(previous.target).is_some_and(|(victim, _)| !victim.dead)
-        {
+        if let Some(previous) = self.generic.deathmist_brand.filter(|previous| {
+            previous.target != guid
+                && self.deathmist_victim(previous.target).is_some_and(|(victim, _)| !victim.dead)
+        }) {
             self.actor_aura(previous.target, BRAND_AURA, false);
         }
         self.generic.deathmist_brand = Some(Brand { target: guid, expires: self.now + 10.0 });

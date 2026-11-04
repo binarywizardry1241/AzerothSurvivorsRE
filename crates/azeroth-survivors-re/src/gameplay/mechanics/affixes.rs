@@ -75,7 +75,7 @@ impl Mechanics {
         let z = world
             .height(xy)
             .or_else(|| world.secondary_height(xy))
-            .unwrap_or_else(|| world.fallback_height());
+            .unwrap_or_else(|| Terrain::fallback_height(world));
         let maximum =
             scaling::health_polynomial(now / 60.0, self.rules.difficulty * self.zone.scalar_e0, 0)
                 * (baseline.base_hp * 4.95);
@@ -225,7 +225,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
                 .world
                 .height([position.x, position.y])
                 .or_else(|| self.world.secondary_height([position.x, position.y]))
-                .unwrap_or_else(|| self.world.fallback_height());
+                .unwrap_or_else(|| Terrain::fallback_height(self.world));
             let position = Position {
                 z: height,
                 ..position

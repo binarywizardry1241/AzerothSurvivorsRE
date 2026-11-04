@@ -127,8 +127,9 @@ mod guardians;
 mod incoming;
 #[path = "mechanics/passives.rs"]
 mod passives;
-#[path = "mechanics/progression.rs"]
+#[path = "mechanics/prepared.rs"]
 mod prepared;
+#[path = "mechanics/progression.rs"]
 mod progression;
 #[path = "mechanics/terminal_movement.rs"]
 mod terminal_movement;
@@ -770,7 +771,9 @@ impl Mechanics {
         stats: RunPlayerStats,
         seed: [u64; 4],
     ) -> Result<Self, String> {
-        let zone = azeroth_survivors_re::zones::resolve(zone_key);
+        let zone_key = azeroth_survivors_re::zones::resolve(zone_key).key;
+        let zone = ZoneDefinition::by_key(zone_key)
+            .ok_or_else(|| format!("No recovered enemy catalog for {zone_key}"))?;
         let class = player_abilities::CLASSES
             .iter()
             .find(|class| class.key == class_key)
@@ -2757,7 +2760,7 @@ impl<W: RunWorld> CastPort for CombatAdapter<'_, W> {
                 .map(|row| (row.health,row.maximum_health)))
     }
     fn direct_hit(&mut self, hit: PendingHit, rng: &mut NativeRng) {
-        self.hit(hit, rng, None);
+        self.hit(hit, rng, None, None);
     }
     fn heal(&mut self, spell: u32, amount: f32) {
         let meter_source = Some(self.healing_source(spell));
@@ -2837,6 +2840,7 @@ impl<W: RunWorld> PassivePort for CombatAdapter<'_, W> {
                 school: hit.school,
             },
             rng,
+            None,
             None,
         );
     }

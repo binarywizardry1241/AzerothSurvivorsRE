@@ -3,6 +3,7 @@
 use super::*;
 use azeroth_survivors_re::bosses::abilities::CastTarget;
 use azeroth_survivors_re::run_effects::conditions::Event;
+use azeroth_survivors_re::run_effects::EffectRow;
 use behavior::hit_passives::HitPassivePort;
 use behavior::targeting;
 #[path = "milestones.rs"]
@@ -1219,12 +1220,12 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             match row.tag() {
                 60 => {
                     // 145fbdf06 uses the first keyed hit and its captured position.
-                    if let Some(center) = victim_position
-                        && row.condition_matches(
+                    if let Some(center) = victim_position.filter(|_| {
+                        row.condition_matches(
                             8, &event, definition, execution.vitals.health,
                             execution.vitals.maximum_health,
                         )
-                    {
+                    }) {
                         self.soulforge_shield_burst(row, index, center, execution, rng, counter);
                     }
                     continue;

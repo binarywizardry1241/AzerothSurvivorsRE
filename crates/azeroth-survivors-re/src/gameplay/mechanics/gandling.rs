@@ -85,8 +85,7 @@ pub(super) struct Part {
 impl Part {
     fn anchor(self, zone: &ZoneDefinition) -> [f32; 2] {
         match self.shape {
-            Shape::Field { .. } => azeroth_survivors_re::zones::resolve(zone.key)
-                .polygon
+            Shape::Field { .. } => super::scripted_arena::polygon(zone)
                 .first()
                 .copied()
                 .unwrap_or([zone.center[0], zone.center[1]]),
@@ -461,7 +460,7 @@ impl Attack {
                         row["s"] = json!("field");
                         row["a"] = json!(0.0);
                         row["w"] = json!(0);
-                        row["v"] = json!(azeroth_survivors_re::zones::resolve(zone.key).polygon);
+                        row["v"] = json!(super::scripted_arena::polygon(zone));
                         row["sq"] = json!(safe);
                         row["zr"] = json!([91.0, 98.0]);
                     }
