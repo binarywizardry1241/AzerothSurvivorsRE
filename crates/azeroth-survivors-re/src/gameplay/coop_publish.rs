@@ -180,9 +180,11 @@ pub(in crate::gameplay) fn publish(
                     .collect::<Vec<_>>();
                 let recipient_locale = locale.for_code(
                     std::str::from_utf8(&hero.bytes_30).unwrap_or("en"));
-                let addon = addon_pose.map_or_else(Vec::new, |pose|
+                let addon = addon_pose.map_or_else(Vec::new, |(position, facing)| {
+                    let target = client.and_then(|client| runtime.driver.as_ref()?.peer_selection(client));
                     client::recipient_addon_snapshot(game, &String::from_utf8_lossy(&hero.name),
-                        started, addon_paused, pose, &recipient_locale, &bridge));
+                        started, addon_paused, (position, facing, target), &recipient_locale, &bridge)
+                });
                 (
                     fields,
                     game.native_state(),

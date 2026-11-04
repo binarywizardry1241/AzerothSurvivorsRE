@@ -13,7 +13,7 @@ pub(in crate::gameplay) fn recipient_addon_snapshot(
     name: &str,
     started: bool,
     paused: bool,
-    (position, facing): (Position, f32),
+    (position, facing, target): (Position, f32, Option<u64>),
     locale: &Localization,
     catalog: &BridgeCatalog,
 ) -> Vec<AddonMessage> {
@@ -21,18 +21,15 @@ pub(in crate::gameplay) fn recipient_addon_snapshot(
         game,
         name,
         addon_scalars::phase_for(game, started, paused),
-        addon_scalars::Inputs { position, facing, target: None },
+        addon_scalars::Inputs { position, facing, target },
         locale,
     ) else {
         return Vec::new();
     };
     let party = game.localized_party_snapshot(locale);
     let slot = game.party_slot(game.player_guid).unwrap_or(0);
-    let mut snapshot = addon_messages(game, scalars, locale, catalog, [
+    addon_messages(game, scalars, locale, catalog, [
         party.meter_payload(game.clock),
         party.revive_payload(usize::from(slot), started && game.party_shared_running()),
-    ]);
-    // Guest selection still has to reach the authority before it can send AZSTGT.
-    snapshot.retain(|message| message.prefix != "AZSTGT");
-    snapshot
+    ])
 }

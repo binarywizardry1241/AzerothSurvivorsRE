@@ -420,6 +420,7 @@ struct Peer {
     outgoing: Vec<NativeMessage>,
     last_ping: f64,
     ping_ms: Option<u16>,
+    selection: u64,
 }
 
 impl Peer {
@@ -691,6 +692,7 @@ impl Session {
                 outgoing: Vec::new(),
                 last_ping: f64::NEG_INFINITY,
                 ping_ms: None,
+                selection: 0,
             });
             accepted.push((id, client));
         }
@@ -898,6 +900,7 @@ impl Session {
                 outgoing: Vec::new(),
                 last_ping: f64::NEG_INFINITY,
                 ping_ms: None,
+                selection: 0,
             });
         }
         for peer in &mut self.peers {
@@ -963,6 +966,16 @@ impl Session {
                     NativeMessage::Lifecycle(LifecyclePacket::Disconnect) if joined => {
                         self.peers[tick.index].connection.close();
                         self.retire_client(client);
+                    }
+                    NativeMessage::Lifecycle(LifecyclePacket::EngineCommand {
+                        opcode: benilla_protocol::messages::opcode::CMSG_SET_SELECTION,
+                        payload,
+                    }) if synchronized => {
+                        let mut guid = [0; 8];
+                        for (byte, received) in guid.iter_mut().zip(payload) {
+                            *byte = received;
+                        }
+                        self.peers[tick.index].selection = u64::from_le_bytes(guid);
                     }
                     NativeMessage::Lifecycle(LifecyclePacket::EngineCommand { .. }) if synchronized => {
                         self.party_events
@@ -1351,6 +1364,11 @@ impl Session {
 
     pub fn take_ready_checks(&mut self) -> Vec<super::readycheck::Snapshot> {
         std::mem::take(&mut self.ready_updates)
+    }
+
+    pub fn peer_selection(&self, client: ClientId) -> Option<u64> {
+        self.peers.iter().find(|peer| peer.id == client)
+            .map(|peer| peer.selection).filter(|guid| *guid != 0)
     }
 
     pub fn peer_lobby_metadata(&self, client: ClientId) -> (Option<u16>, String) {

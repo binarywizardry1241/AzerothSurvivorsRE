@@ -51,3 +51,36 @@ prefix/slot/reason cases. The replay checked 152 instruction sites across
 1,680,116 steps and stopped before the native serializers. The edited host
 source syntax-parsed. These checks leave compilation, client and server
 execution, network delivery and original/rebuilt parity open.
+
+## Guest target selection and addon publication
+
+Opcode `0x13d` enters `0x145e9ea59`. Its bounded reader assembles up to
+eight little-endian bytes at `0x145e9f38c`; missing bytes are zero and
+later bytes are ignored. The host path requires role 3 and an in-range
+peer index, then stores the GUID at `0x145e9f3c8` in that peer's
+`+0x370` slot in the 0x8a0-byte row. The command's additional active-game
+match and follow-up at `0x145ea05ab..0x145ea0603` retain a separate
+consumer question.
+
+The host poll at `0x145ea91cb` and `0x145ea920c` loads that same peer slot
+into its `+0xbc0` staging record. At `0x145ea9491` it passes that record
+to `0x145ef58e0`. The wrapper forwards the GUID at `0x145ef5967` to
+`0x145e60e50`. The common list builder calls the target formatter
+`0x145f05000` at `0x145e60f6f` and binds the result to `AZSTGT` at
+`0x145e61412`. A zero GUID produces `kind=none`; the seated hero's own
+GUID produces `kind=player`. The source reuses its existing target
+formatter and the seated recipient snapshot.
+
+The stock selection writer sends the full GUID, including zero on clear.
+The guest wire bridge already transports that opcode. The rebuilt Session
+now stores it in the synchronized host peer, where ordinary peer retirement
+also retires its selection. The existing authority-generated recipient feed
+passes the value to the target formatter and publishes through the same
+changed-payload addon message path as the other snapshot rows.
+[Host Session](../../crates/azeroth-survivors-re/src/coop/session.rs),
+[recipient publisher](../../crates/azeroth-survivors-re/src/gameplay/coop_publish.rs).
+
+Bounded replay checked 11,265 original prefix cases, 91 instruction sites
+and 798,769 steps, stopping before peer mutation. Current original-byte
+stores and calls establish the producer and consumer separately. Rust
+syntax checks leave socket ordering, actual addon display and parity open.
