@@ -3,8 +3,8 @@
 
 use azeroth_survivors_re::coop::{
     game_party::{Party, class_key},
-    replication::NativeMessage,
-    server_party::LifecyclePacket,
+    replication::{EnginePacket, NativeMessage},
+    server_party::{ClientId, LifecyclePacket},
     session::{IncomingMessage, PartyEvent, ReconnectionChange, Session},
     tcp::StartupConfig,
 };
@@ -15,6 +15,13 @@ pub(crate) enum CoopSet {
     Network,
     Apply,
     Flush,
+}
+
+struct EngineDispatch {
+    source: u8,
+    packet: EnginePacket,
+    exclude_source: bool,
+    localized: Vec<(ClientId, EnginePacket)>,
 }
 
 #[derive(Resource, Default)]
@@ -45,7 +52,7 @@ pub(crate) struct CoopRuntime {
     pub kick_requests: Vec<u64>,
     defer_engine: bool,
     deferred_values: Vec<(u8, serde_json::Value)>,
-    engine_events: Vec<(u8, azeroth_survivors_re::coop::replication::EnginePacket, bool)>,
+    engine_events: Vec<EngineDispatch>,
 }
 
 impl CoopRuntime {
@@ -66,20 +73,21 @@ impl CoopRuntime {
 
     /// Exact14584a6e0 ownership classification runs on real engine bytes.
     /// Return whether the local engine is also a native recipient.
-    pub(crate) fn route_engine(
+    pub(crate) fn route_engine(&mut self, source: u8, packet: EnginePacket) -> bool {
+        self.route_engine_localized(source, packet, Vec::new())
+    }
+
+    pub(crate) fn route_engine_localized(
         &mut self,
         source: u8,
-        packet: azeroth_survivors_re::coop::replication::EnginePacket,
+        packet: EnginePacket,
+        localized: Vec<(ClientId, EnginePacket)>,
     ) -> bool {
         let private = azeroth_survivors_re::coop::server_party::owner_only_engine_packet(
             packet.opcode,
             &packet.payload,
         );
-        if self.defer_engine {
-            self.engine_events.push((source, packet, false));
-        } else {
-            self.route_world(source, packet);
-        }
+        self.dispatch_engine(EngineDispatch { source, packet, exclude_source: false, localized });
         !private || source == 0
     }
 
@@ -90,12 +98,18 @@ impl CoopRuntime {
         source: u8,
         packet: azeroth_survivors_re::coop::replication::EnginePacket,
     ) -> bool {
-        if self.defer_engine {
-            self.engine_events.push((source, packet, true));
-        } else {
-            self.route_clients(source, packet, true);
-        }
+        self.dispatch_engine(EngineDispatch {
+            source, packet, exclude_source: true, localized: Vec::new(),
+        });
         source != 0
+    }
+
+    fn dispatch_engine(&mut self, dispatch: EngineDispatch) {
+        if self.defer_engine {
+            self.engine_events.push(dispatch);
+        } else {
+            self.route_clients(dispatch);
+        }
     }
 
     fn take_local_admission(&mut self, opcode: u16, point: [f32; 3]) -> Option<[f32; 3]> {
@@ -108,15 +122,13 @@ impl CoopRuntime {
         source: u8,
         packet: azeroth_survivors_re::coop::replication::EnginePacket,
     ) {
-        self.route_clients(source, packet, false);
+        self.route_clients(EngineDispatch {
+            source, packet, exclude_source: false, localized: Vec::new(),
+        });
     }
 
-    fn route_clients(
-        &mut self,
-        source: u8,
-        packet: azeroth_survivors_re::coop::replication::EnginePacket,
-        exclude_source: bool,
-    ) {
+    fn route_clients(&mut self, dispatch: EngineDispatch) {
+        let EngineDispatch { source, packet, exclude_source, localized } = dispatch;
         let private = azeroth_survivors_re::coop::server_party::owner_only_engine_packet(
             packet.opcode,
             &packet.payload,
@@ -134,14 +146,17 @@ impl CoopRuntime {
                 })
                 .collect();
             for client in recipients {
+                let packet = localized.iter()
+                    .find_map(|(recipient, packet)| (*recipient == client).then_some(packet))
+                    .unwrap_or(&packet);
                 driver.send_message(Some(client), packet.clone().into_message());
             }
         }
     }
     pub(crate) fn flush_engine_events(&mut self) {
         self.defer_engine = false;
-        for (source, packet, exclude_source) in std::mem::take(&mut self.engine_events) {
-            self.route_clients(source, packet, exclude_source);
+        for dispatch in std::mem::take(&mut self.engine_events) {
+            self.route_clients(dispatch);
         }
         for (source, value) in std::mem::take(&mut self.deferred_values) {
             self.send_value_from(source, &value);
@@ -476,13 +491,20 @@ mod correction_admission_tests {
 
     #[test]
     fn movement_and_owner_events_keep_one_deferred_publication_order() {
-        use azeroth_survivors_re::coop::replication::EnginePacket;
         let mut runtime = CoopRuntime::default();
         runtime.defer_engine = true;
         assert!(runtime.route_movement(2, EnginePacket { opcode: 0xb5, payload: vec![] }));
         assert!(!runtime.route_engine(2, EnginePacket { opcode: 0xc7, payload: vec![] }));
+        let translated = EnginePacket { opcode: 0x96, payload: vec![0x5a, 2] };
+        assert!(runtime.route_engine_localized(
+            0, EnginePacket { opcode: 0x96, payload: vec![0x5a, 1] },
+            vec![(ClientId(7), translated.clone())],
+        ));
         assert!(!runtime.route_movement(0, EnginePacket { opcode: 0xb7, payload: vec![] }));
-        let routes: Vec<_> = runtime.engine_events.iter().map(|(slot, packet, others)| (*slot, packet.opcode, *others)).collect();
-        assert_eq!(routes, vec![(2, 0xb5, true), (2, 0xc7, false), (0, 0xb7, true)]);
+        let routes: Vec<_> = runtime.engine_events.iter()
+            .map(|dispatch| (dispatch.source, dispatch.packet.opcode, dispatch.exclude_source))
+            .collect();
+        assert_eq!(routes, vec![(2, 0xb5, true), (2, 0xc7, false), (0, 0x96, false), (0, 0xb7, true)]);
+        assert_eq!(runtime.engine_events[2].localized, vec![(ClientId(7), translated)]);
     }
 }

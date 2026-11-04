@@ -42507,10 +42507,16 @@
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_ids": [142],
         "evidence_refs": ["docs/analysis/scholomance-localization-0.141.0.md"],
-        "source_refs": ["crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs", "crates/azeroth-survivors-re/src/gameplay/mod.rs"],
-        "recovery": "Fourteen locale descriptors and current creature, warning, gear and progress format inputs.",
-        "implementation": "The ordinary creature-query path localizes the Risen Guard. The Prepared progress producer wraps the completed localized notice in the native green chat markup.",
-        "static_validation": "2,324 exact catalog values, journaled native getter, checked PE ranges and Rust syntax parsing.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+          "crates/azeroth-survivors-re/src/localization.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+          "crates/azeroth-survivors-re/src/coop_runtime.rs"
+        ],
+        "recovery": "Fourteen locale descriptors, current creature, warning, gear and progress format inputs, and the exact-literal guest chat rewrite.",
+        "implementation": "Connect the Risen Guard query and green Prepared notice. Translate the speaker and body for the admitted guest and publish through the ordered engine queue.",
+        "static_validation": "2,324 exact catalog values, 588 mixed-language field cases, journaled Ghidra getter and reverse-map checks, exact PE ranges and Rust syntax parsing.",
         "runtime_validation": "unverified",
         "parity": "unverified"
       },

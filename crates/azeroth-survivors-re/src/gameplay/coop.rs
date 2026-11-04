@@ -141,6 +141,11 @@ impl CoopGame {
         self.hero_updates.remove(&client);
     }
 
+    pub(super) fn member_language(&self, client: ClientId) -> Option<&[u8]> {
+        let guid = self.admitted.get(&client)?;
+        self.world_profiles.get(guid).map(|hero| hero.bytes_30.as_slice())
+    }
+
     pub(super) fn terminal_recap(&self) -> Option<&death_recap::DeathRecap> {
         self.state.as_ref().filter(|state| {
             state.flag_8c && RunPhase::from_native(state.byte_8f) == RunPhase::Dead

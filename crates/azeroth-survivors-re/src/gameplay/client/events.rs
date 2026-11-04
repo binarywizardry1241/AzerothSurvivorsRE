@@ -275,6 +275,47 @@ fn object(guid:u64,kind:EntityKind,point:Position,orientation:f32,
         scale,speeds:None,mover:None,transport_progress:None,transport:None,spline:None,fields }
 }
 
+fn route_run_event(
+    coop: &mut crate::coop_runtime::CoopRuntime,
+    party: Option<&super::super::coop::CoopGame>,
+    locale: &Localization,
+    source: u8,
+    event: &SessionEvent,
+) -> bool {
+    use azeroth_survivors_re::coop::engine_packets::encode;
+    let packet = match encode(event, None) {
+        Ok(Some(packet)) => packet,
+        Ok(None) => return false,
+        Err(error) => {
+            if source != 0 {
+                warn!("Co-op event encoding incomplete: {error:?}");
+            }
+            return false;
+        }
+    };
+    let (Some(party), SessionEvent::Chat(chat)) = (party, event) else {
+        return coop.route_engine(source, packet);
+    };
+    if !matches!(chat.chat_type, 0x0c | 0x5a) {
+        return coop.route_engine(source, packet);
+    }
+    let localized = coop.actor_clients.values().filter_map(|&client| {
+        let language = party.member_language(client)?;
+        let speaker = chat.sender_name.as_deref().unwrap_or("");
+        let name = locale.translate_announcement(speaker, language);
+        let text = locale.translate_announcement(&chat.text, language);
+        if name == speaker && text == chat.text {
+            return None;
+        }
+        let mut chat = chat.clone();
+        chat.sender_name = Some(name.to_owned());
+        chat.text = text.to_owned();
+        let packet = encode(&SessionEvent::Chat(chat), None).ok().flatten()?;
+        Some((client, packet))
+    }).collect();
+    coop.route_engine_localized(source, packet, localized)
+}
+
 fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
            mut terminal:ResMut<super::super::terminal::TerminalState>,
            mut packets:ResMut<LocalPresentationEvents>,mut unsupported:Local<HashSet<&'static str>>,
@@ -282,7 +323,8 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
            mut loot:ResMut<super::super::run_hud::LootNotices>,
            mut markers:ResMut<super::super::raid_markers::MarkerInbox>,
            time:Res<Time>,locale:Res<Localization>,catalog:Res<crate::catalog::MenuCatalog>,
-           mut coop:Option<ResMut<crate::coop_runtime::CoopRuntime>>) {
+           mut coop:Option<ResMut<crate::coop_runtime::CoopRuntime>>,
+           party:Option<Res<super::super::coop::CoopGame>>) {
     let Some(game)=session.mechanics.as_mut() else { return };
     // Taking the buffer exactly once also handles a run paused immediately
     // after a cast or choice. It does not replay its last tick every frame.
@@ -295,9 +337,7 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
         time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),Some(&mut terminal));
     for event in local.0 {
         if let Some(coop)=coop.as_deref_mut() {
-            if let Ok(Some(packet))=azeroth_survivors_re::coop::engine_packets::encode(&event,None) {
-                coop.route_engine(0,packet);
-            }
+            route_run_event(coop, party.as_deref(), &locale, 0, &event);
         }
         packets.0.push(event);
     }
@@ -310,10 +350,8 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
             &mut Default::default(),time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),None);
         for event in projected.0 {
             if let Some(coop)=coop.as_deref_mut() {
-                match azeroth_survivors_re::coop::engine_packets::encode(&event,None) {
-                    Ok(Some(packet))=>if coop.route_engine(slot,packet){packets.0.push(event);},
-                    Ok(None)=>{},
-                    Err(error)=>warn!("Co-op event encoding incomplete: {error:?}"),
+                if route_run_event(coop, party.as_deref(), &locale, slot, &event) {
+                    packets.0.push(event);
                 }
             }
         }
@@ -556,7 +594,7 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
             },
             RunEvent::StoppedMovement {target,position,serial}=>{packets.0.push(stopped(target,position,serial));None},
             RunEvent::Announcement(event)=>{
-                packets.0.push(SessionEvent::Chat(event.chat(&|key|locale.label(key).to_owned())));None
+                packets.0.push(SessionEvent::Chat(event.chat(&|key|locale.lookup(key).map(str::to_owned))));None
             },
             RunEvent::LevelUp(level)=>{
                 packets.0.push(SessionEvent::ObjectValues {guid:player_guid,

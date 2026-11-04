@@ -30,7 +30,7 @@ requesting member’s locale for the same constructor.
 
 ## Encounter, equipment and progression formatting
 
-The Office and Examination producers find the living actor row for the
+The Office and Examination producers find the actor row for the
 source GUID and obtain its localized boss name. Each separately looks up the
 warning literal and keeps its raw `%s` slot. The common serializer
 `0x145fdbe30` emits chat type `0x5a` with the speaker separate from the
@@ -59,6 +59,44 @@ descriptor and Armory’s Lifestealing choice keep their separate localized
 labels. [Achievement card](../../crates/azeroth-survivors-re/src/progression.rs),
 [set and progression producers](scholomance-0.140.0.md).
 
+## Guest warning language
+
+The host publishes the raw speaker and body separately in its source locale.
+Native wrapper `0x145e6c050` installs the recipient’s recognized two-byte
+locale in thread-local state and passes the source locale to the packet
+rewriter at `0x145fe3180`. The rewriter admits opcode `0x96` subtypes
+`0x0c` and `0x5a`, translates the speaker and body independently through
+`0x145e76cf0`, and reconstructs the same message shape. The speaker GUID in
+a yell is retained. Empty fields and equal source and recipient locale
+indices retain the original text. An invalid or absent recipient code uses
+the process language, which is the host projection’s source locale.
+
+The literal path first reverses the displayed value through the source
+locale’s merged map, then through the English map. The forward lookup
+uses the recipient’s selected map followed by English. The reverse-map
+initializer walks each merged forward hash table and overwrites an earlier
+reverse entry when a later bucket has the same displayed value. The rebuilt
+lookup uses the same last-visited rule. Duplicate override choices can
+depend on hash-table iteration order in either application.
+
+The [run event bridge](../../crates/azeroth-survivors-re/src/gameplay/client/events.rs)
+prepares recipient-specific bodies using the admitted Hero’s language
+bytes, then submits them through the [existing ordered engine queue](../../crates/azeroth-survivors-re/src/coop_runtime.rs).
+The ordinary owner-only classifier and synchronized-recipient check still
+select delivery. The local FrameXML keeps the host message. During `First`,
+network receive and admission apply before event projection, and unit
+publication flushes the same queue after local lifecycle and visuals.
+Later bootstrap runs in `Update`. Both Gandling bodies retain the raw
+`%s` slot through delivery.
+
+The speaker and two warning bodies each reverse to their unique key in
+every stock language. Static catalog checks covered all 588 combinations
+of source language, recipient language and field. The native rewriter
+also contains a general template-matching path for arbitrary formatted
+packet prose. The three selected Scholomance strings use exact reverse
+hits, and the source repair covers the literal route used by these
+announcements.
+
 ## Static evidence
 
 | PE range | Preferred VA | File offset | Bytes | SHA-256 |
@@ -73,13 +111,20 @@ labels. [Achievement card](../../crates/azeroth-survivors-re/src/progression.rs)
 | Prepared notice | `0x145ec26e5` | `0x5ec1ae5` | 572 | `59f1ba059a86a10a28d4ee4e3d14060072e080939694496cc242c1e1c1052005` |
 | Heroic Across Azeroth card | `0x14033f1c9` | `0x33e5c9` | 143 | `27558aff47af2ced65e49f8369002eb16f1138ade0807b770e4a09dfa2ecaa7f` |
 | Locale descriptors | `0x147ae1870` | `0x7adfe70` | 784 | `ecdc0eec7b39e5fb07ced1d60317d820fc9ca39320184a44db36a2a64ffed515` |
+| Recipient locale scope | `0x145e6c050` | `0x5e6b450` | 360 | `66e107075e3bfd4ff726db39969dfb169bfe0c25308050eb4396883b391dca6d` |
+| Announcement packet rewrite | `0x145fe3180` | `0x5fe2580` | 1167 | `5f34bd9116ad1d7acf4aecb9837fc1d053a6107d5aad2be021ef7c10347bf719` |
+| Exact and template translation | `0x145e76cf0` | `0x5e760f0` | 3314 | `9e326ff9f7edb41a5a268af3598c3607b739964d850372e9a30c8e7cf9096069` |
+| Reverse map iterator | `0x145e7f2f0` | `0x5e7e6f0` | 1183 | `8d13c40453b178b0c1b1177426164a505346d8c40cd04396f83d7ce6712737f5` |
+| Reverse map initializer | `0x146007530` | `0x6006930` | 119 | `1dff2da1dcfaee8d5b51488bd4271f9e5dd0e5dc0efec35373297426bafc31db` |
 
 The journaled Ghidra getter result is
 `ev_c36d5b1cda0a83047b4a2a0a42fc5e91df0ef1e8e1f04f734da9c7296e4d7e2a`.
+The reverse-map iteration result is
+`ev_a41831b7f547245c45a5c9b0e39b9899d591338f9cb6a34cd6bea38924689fbd`.
 The shared subject validator checked the original PE bytes, slice address,
 journal and result digests. Original instructions establish the branch
 arguments where the raw slice leaves external calls opaque. Source checks
 validated the query row and the post-insert Prepared formatting inputs.
-Rustfmt parsed both changed Rust files. The authored query regression,
+Rustfmt parsed the changed Rust files. The authored query, language and queue regressions,
 compilation, live client and guest delivery, rendered presentation and
 original/rebuilt comparison remain open.

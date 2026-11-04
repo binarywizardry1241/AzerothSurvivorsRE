@@ -83,7 +83,7 @@ impl RunAnnouncement {
         Self::emote(name, warning.text())
     }
 
-    pub fn chat(&self, label: &impl Fn(&str) -> String) -> ChatMessage {
+    pub fn chat(&self, lookup: &impl Fn(&str) -> Option<String>) -> ChatMessage {
         let (chat_type, sender_guid, name, text) = match self {
             Self::Emote { name, text } => (0x5a, 0, name, text),
             Self::Yell { guid, name, text } => (0x0c, *guid, name, text),
@@ -93,9 +93,9 @@ impl RunAnnouncement {
             language: 0,
             sender_guid,
             target_guid: 0,
-            sender_name: Some(name.render(label)),
+            sender_name: Some(lookup(&name.key).unwrap_or_else(|| name.fallback.clone())),
             channel: None,
-            text: text.render(label),
+            text: lookup(&text.key).unwrap_or_else(|| text.fallback.clone()),
             chat_tag: 0,
         }
     }
@@ -112,9 +112,9 @@ mod tests {
             "%s approaches!",
         );
         let message = event.chat(&|key| match key {
-            "enemy.603" => "Gnoll localisé".into(),
-            "%s approaches!" => "%s approche !".into(),
-            _ => key.to_owned(),
+            "enemy.603" => Some("Gnoll localisé".into()),
+            "%s approaches!" => Some("%s approche !".into()),
+            _ => None,
         });
         assert_eq!(
             (message.chat_type, message.sender_guid, message.target_guid),
@@ -132,9 +132,9 @@ mod tests {
         let event = RunAnnouncement::raid_warning(
             AnnouncementLabel::enemy(1311, "Guardian"), RaidWarning::Tether);
         let message = event.chat(&|key| match key {
-            "enemy.1311" => "Gardien".into(),
-            "%s's tether drains you! Get away to break it!" => "%s vous lie ! Éloignez-vous !".into(),
-            _ => key.to_owned(),
+            "enemy.1311" => Some("Gardien".into()),
+            "%s's tether drains you! Get away to break it!" => Some("%s vous lie ! Éloignez-vous !".into()),
+            _ => None,
         });
         assert_eq!((message.chat_type, message.sender_guid, message.target_guid), (0x5a, 0, 0));
         assert_eq!(message.sender_name.as_deref(), Some("Gardien"));
@@ -150,14 +150,14 @@ mod tests {
             name: AnnouncementLabel::boss(690, "Hogger"),
             text: AnnouncementLabel::boss_yell(690, "Grrr... fresh meat!"),
         };
-        let fallback = event.chat(&str::to_owned);
+        let fallback = event.chat(&|_| None);
         assert_eq!(fallback.chat_type, 0x0c);
         assert_eq!(fallback.sender_guid, 0xf1300002b2000007);
         assert_eq!(fallback.sender_name.as_deref(), Some("Hogger"));
         assert_eq!(fallback.text, "Grrr... fresh meat!");
         let localized = event.chat(&|key| match key {
-            "boss.690.yell" => "Viande fraîche !".into(),
-            _ => key.to_owned(),
+            "boss.690.yell" => Some("Viande fraîche !".into()),
+            _ => None,
         });
         assert_eq!(localized.sender_name, fallback.sender_name);
         assert_eq!(localized.text, "Viande fraîche !");
@@ -179,14 +179,14 @@ mod tests {
         let RunEvent::Announcement(yell) = &game.events[0] else {
             panic!("entry yell first")
         };
-        let yell = yell.chat(&str::to_owned);
+        let yell = yell.chat(&|_| None);
         assert_eq!((yell.chat_type, yell.sender_guid), (0x0c, guid));
         assert_eq!(yell.sender_name.as_deref(), Some(definition.name));
         assert_eq!(yell.text, definition.yell);
         let RunEvent::Announcement(notice) = &game.events[1] else {
             panic!("arrival notice second")
         };
-        let notice = notice.chat(&str::to_owned);
+        let notice = notice.chat(&|_| None);
         assert_eq!(notice.chat_type, 0x5a);
         assert_eq!(notice.sender_name.as_deref(), Some(definition.name));
         assert_eq!(notice.text, "%s enters the battlefield!");

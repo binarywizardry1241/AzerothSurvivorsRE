@@ -16,7 +16,7 @@ use crate::{
     menu_state::{Dialog, MenuState},
 };
 use bevy::{prelude::*, ui::RelativeCursorPosition};
-use std::{collections::BTreeMap, path::PathBuf};
+use std::{collections::HashMap, path::PathBuf};
 
 pub const LANGUAGES: [(&str, &str); 14] = [
     ("en", "English"),
@@ -54,7 +54,7 @@ const CATALOGS: [&str; 14] = [
 #[derive(Resource, Debug)]
 pub struct Localization {
     index: usize,
-    catalogs: Vec<BTreeMap<String, String>>,
+    catalogs: Vec<HashMap<String, String>>,
     path: Option<PathBuf>,
     pub error: Option<String>,
 }
@@ -79,7 +79,10 @@ impl Default for Localization {
             .unwrap_or(0);
         Self {
             index,
-            catalogs: catalogs::load(save_directory.as_deref()),
+            catalogs: catalogs::load(save_directory.as_deref())
+                .into_iter()
+                .map(|catalog| catalog.into_iter().collect())
+                .collect(),
             path,
             error: None,
         }
@@ -90,7 +93,7 @@ impl Localization {
     /// changing the host's selection or writing language.txt.
     pub(crate) fn for_code(&self, code: &str) -> Self {
         let index = language_index(code).unwrap_or(0);
-        let mut catalogs = vec![BTreeMap::new(); LANGUAGES.len()];
+        let mut catalogs = vec![HashMap::new(); LANGUAGES.len()];
         catalogs[0] = self.catalogs[0].clone();
         if index != 0 {
             catalogs[index] = self.catalogs[index].clone();
@@ -122,6 +125,27 @@ impl Localization {
     }
     pub fn label<'a>(&'a self, key: &'a str) -> &'a str {
         self.lookup(key).unwrap_or(key)
+    }
+
+    /// The host has already rendered the name and body into this locale.
+    /// Recover their literal keys before looking up the recipient's values.
+    pub(crate) fn translate_announcement<'a>(&'a self, text: &'a str, language: &[u8]) -> &'a str {
+        let recipient = std::str::from_utf8(language).ok().and_then(language_index);
+        let Some(recipient) = recipient.filter(|&index| index != self.index && !text.is_empty()) else {
+            return text;
+        };
+        let reverse_key = |index: usize| {
+            // The native reverse-map constructor overwrites on duplicate values
+            // as it visits the merged forward hash table.
+            self.catalogs[index]
+                .iter()
+                .filter_map(|(key, value)| (value == text).then_some(key))
+                .last()
+        };
+        reverse_key(self.index)
+            .or_else(|| reverse_key(0))
+            .and_then(|key| self.catalogs[recipient].get(key).or_else(|| self.catalogs[0].get(key)))
+            .map_or(text, String::as_str)
     }
     /// Current generated amulets translate their constructed name parts;
     /// shared amulets and ordinary effect names use literal-name lookup.
@@ -155,8 +179,9 @@ impl Localization {
         let mut translated = MenuCatalog::embedded();
         // Current145b29ab0 searches selected then English; label callers retain
         // their key fallback. Preserve that priority in every MenuCatalog consumer.
-        translated.labels = self.catalogs[0].clone();
-        translated.labels.extend(self.catalogs[self.index].clone());
+        let owned_entry = |(key, value): (&String, &String)| (key.clone(), value.clone());
+        translated.labels = self.catalogs[0].iter().map(owned_entry).collect();
+        translated.labels.extend(self.catalogs[self.index].iter().map(owned_entry));
         translated.title = self.label("game.title").into();
         for class in &mut translated.classes {
             class.name = self.label(&format!("class.{}.name", class.key)).into();
@@ -468,6 +493,7 @@ pub fn popover(ui: &mut ChildSpawnerCommands, art: &MenuArt, locale: &Localizati
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::collections::BTreeMap;
 
     fn recipient_host() -> Localization {
         Localization {
@@ -501,6 +527,33 @@ mod tests {
         assert_eq!(host.path.as_deref(), Some(std::path::Path::new("language.txt")));
         assert_eq!(host.error.as_deref(), Some("existing host error"));
         assert_eq!(host.catalogs, original_catalogs);
+    }
+
+    #[test]
+    fn gandling_announcements_translate_from_every_host_locale() {
+        let mut host = recipient_host();
+        let keys = [
+            "boss.1853.name",
+            "%s calls you to the Headmaster's Office. To the centre!",
+            "%s calls The Last Examination. To the line!",
+        ];
+        for source in 0..LANGUAGES.len() {
+            host.index = source;
+            for (recipient, (code, _)) in LANGUAGES.iter().enumerate() {
+                for key in keys {
+                    assert_eq!(
+                        host.translate_announcement(host.label(key), code.as_bytes()),
+                        host.catalogs[recipient][key],
+                    );
+                }
+            }
+        }
+        let warning = host.label(keys[1]);
+        for code in [b"KO".as_slice(), b"ko-KR", b"de ", b"xx", b"\xff\xff"] {
+            assert_eq!(host.translate_announcement(warning, code), warning);
+        }
+        assert_eq!(host.translate_announcement("", b"en"), "");
+        assert_eq!(host.translate_announcement("unknown text", b"en"), "unknown text");
     }
 
     #[test]
