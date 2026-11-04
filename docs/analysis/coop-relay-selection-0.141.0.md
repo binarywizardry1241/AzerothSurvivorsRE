@@ -53,3 +53,32 @@ The exact PE table cells, Leave variant, instruction operands and live
 source order were checked. Both changed Rust paths syntax-parsed with the
 pinned formatter. The existing reset regression remains uncompiled and
 unrun. Actual worker, socket and original/rebuilt comparison remain open.
+
+## Local poller commands
+
+The native game poller at `0x145ea3420` subtracts 22 from the local
+request tag and guards at seven before the jump at `0x145ea7797`. Its
+32-byte table at `0x147aeda3c` (file offset `0x7aec03c`) has SHA-256
+`0042310fe14b49c9be3552fdc38788cb5c303f8bf07bc8d50be208fee1ded069`.
+These are local request tags. Directory and game messages use their own
+serializers.
+
+| Request | Destination | Input and side effect |
+| --- | --- | --- |
+| 22 | `0x145ea7799` | The [terminal lobby status producer](switch-context-source-review-0.141.0.md#lobby-event-dispatch) triggers the existing directory refresh. |
+| 23 | `0x145ea7cfc` | The Host form writes the tag at `0x1400ebc18`. The poller requires Off and no active game, ensures the service and passes the form/profile to the Host serializer. |
+| 24 | `0x145ea7a72` | The Join form writes the tag at `0x1401055cb`. The same Off/game and service admission gates lead to submission of the code/password record at `0x145ea7bd6`. |
+| 25 | `0x145ea7be1` | [Explicit form departure](coop-desktop-exit-0.141.0.md#appexit-type-and-local-departure-boundaries) reaches the terminal service writer. |
+| 26 | `0x145ea7857` | The selected lobby row supplies the Hero identity at `0x140104d8d` before the tag write. The hosting poller finds that identity in an admitted peer profile, flushes the peer, submits wire 3 with `the host sent you away`, closes the peer and removes its row. |
+| 27 | `0x145ea7df2` | The chat producers at `0x140104a03` and `0x140109a06` supply text. The poller normalizes it and routes host publication or accepted guest chat through their own gates. |
+| 28 | `0x145ea8017` | The [host Ready Check starter](native-interface-correspondence-0.141.0.md#game-side-ready-check-routing) requires lobby state and at least two identities. |
+| 29 | `0x145ea7c73` | The [Ready Check answer](native-interface-correspondence-0.141.0.md#game-side-ready-check-routing) cancels the host's current check or submits the gated guest response. |
+
+The rebuilt [form queue](../../crates/azeroth-survivors-re/src/coop_forms.rs)
+and [service pump](../../crates/azeroth-survivors-re/src/coop_directory.rs)
+already route those actions. Kick and Chat use the admitted identities in
+the [gameplay consumer](../../crates/azeroth-survivors-re/src/gameplay/coop.rs)
+and the [session sender](../../crates/azeroth-survivors-re/src/coop/session.rs).
+The table classification establishes these action identities and the
+bounded consumer edges. The full payload, frame scheduling and delivery
+contracts retain their own evidence.
