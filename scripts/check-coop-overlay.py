@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Current byte/source integrity only; no Rust or native code is executed."""
+import argparse
 import hashlib
 import importlib.util
 import json
@@ -105,5 +106,58 @@ def check():
     print(f'co-op overlay 0.115.0: {count} byte/table/source guards passed; no compilation/runtime validation')
 
 
+def check_diagnostic_consumers():
+    from capstone import Cs, CS_ARCH_X86, CS_MODE_64
+    from capstone.x86_const import X86_OP_MEM, X86_REG_RIP
+    from script_sources import load_script
+
+    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/q41-diagnostic-consumers.json').read_text())
+    target = latest_target(verify=True)
+    assert target['sha256'] == proof['target_sha256']
+    pe = load_script('overlay_pe', ROOT / 'scripts/inventory-current-target.py').pe_parser(target_bytes(target))
+
+    def raw(address, length):
+        offset = pe.rva_offset(address - pe.image_base)
+        return pe.data[offset:offset + length]
+
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    decoder.detail = True
+    instructions = {}
+    for start, end, digest in proof['ranges']:
+        start, end = int(start, 16), int(end, 16)
+        data = raw(start, end - start)
+        assert hashlib.sha256(data).hexdigest() == digest, hex(start)
+        decoded = list(decoder.disasm(data, start))
+        assert sum(i.size for i in decoded) == len(data), hex(start)
+        instructions.update((hex(i.address), i) for i in decoded)
+
+    for address, text in proof['instruction_anchors'].items():
+        instruction = instructions[address]
+        assert f'{instruction.mnemonic} {instruction.op_str}' == text, address
+
+    for site, (address, payload) in proof['rip_data_anchors'].items():
+        instruction = instructions[site]
+        operands = [op for op in instruction.operands if op.type == X86_OP_MEM and op.mem.base == X86_REG_RIP]
+        assert len(operands) == 1, site
+        resolved = instruction.address + instruction.size + operands[0].mem.disp
+        expected = bytes.fromhex(payload[4:]) if payload.startswith('hex:') else payload.encode('ascii')
+        assert resolved == int(address, 16) and raw(resolved, len(expected)) == expected, site
+
+    address, *suffixes = proof['rank_suffix_table']
+    for index, suffix in enumerate(suffixes):
+        pointer, length = struct.unpack('<QQ', raw(int(address, 16) + index * 16, 16))
+        assert length == len(suffix) and (length == 0 or raw(pointer, length).decode('ascii') == suffix), index
+
+    print(f'0.141.0 diagnostic consumers: {len(proof["ranges"])} ranges, '
+          f'{len(proof["instruction_anchors"])} instruction anchors, '
+          f'{len(proof["rip_data_anchors"])} data anchors and {len(suffixes)} rank rows passed')
+
+
 if __name__ == '__main__':
-    check()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--diagnostic-consumers', action='store_true',
+                        help='Verify the installed 0.141.0 diagnostic callers and payload boundaries')
+    if parser.parse_args().diagnostic_consumers:
+        check_diagnostic_consumers()
+    else:
+        check()

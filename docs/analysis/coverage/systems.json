@@ -40311,6 +40311,29 @@
     },
     {
       "id": "custom-game-game-upgrades",
+      "spell_choice_titles_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_ids": [
+          41,
+          63,
+          91
+        ],
+        "lead_id": "Q41-D01",
+        "evidence_refs": [
+          "docs/analysis/evidence/0.141.0/as-ownerless-sites.json",
+          "docs/analysis/evidence/0.141.0/q41-diagnostic-consumers.json",
+          "docs/analysis/q41-diagnostic-consumers-0.141.0.md"
+        ],
+        "scope": "Native learn and upgrade title construction, keyed spell name, next rank and private guest title publication.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs",
+          "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs"
+        ],
+        "source_status": "connected_for_selected_title_contract",
+        "static_checker": "scripts/check-coop-overlay.py --diagnostic-consumers",
+        "runtime_validation": "not_run",
+        "parity_verified": false
+      },
       "title": "Upgrade offers, application and stored levels",
       "original_path": "crates/wenilla-rogue/src/game/upgrades.rs",
       "native_path_evidence": [

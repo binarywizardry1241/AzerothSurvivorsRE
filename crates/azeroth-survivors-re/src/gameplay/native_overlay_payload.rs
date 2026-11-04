@@ -236,11 +236,9 @@ pub fn for_choice(
     let Some(definition) = AbilityDefinition::by_key(choice.ability_key) else {
         return Card::default();
     };
-    let name = if definition.key == "kill_command" {
-        locale.lookup("ability.kill_command.name").unwrap_or(definition.name)
-    } else {
-        locale.label(definition.name)
-    };
+    let name = locale
+        .lookup(&format!("ability.{}.name", definition.key))
+        .unwrap_or(definition.name);
     let mut card = Card {
         name: name.to_owned(),
         icon: art.icons.get(choice.ability_key).cloned(),
@@ -249,6 +247,7 @@ pub fn for_choice(
     };
     if choice.upgrades.is_empty() {
         card.kind = CardKind::NewSpell;
+        card.title = locale.label("New: {spell}").replace("{spell}", name);
         let instance = game.preview_spell(definition, choice.rarity);
         card.text = description(&instance, context, &context.bonuses, locale).unwrap_or_default();
         card.slot_count = Some((game.abilities.len() as u64 + 1).min(6));
@@ -258,7 +257,12 @@ pub fn for_choice(
         .find(|instance| instance.definition.key == choice.ability_key)
     {
         card.kind = CardKind::UpgradeSpell;
-        card.rank = Some(instance.rank.wrapping_add(1) as u64);
+        let rank = instance.rank.wrapping_add(1);
+        card.rank = Some(u64::from(rank));
+        card.title = locale
+            .label("{spell} rank {rank}")
+            .replace("{rank}", &rank.to_string())
+            .replace("{spell}", name);
         card.lines = upgrade_lines(instance, &choice.upgrades, choice.rarity, context, locale);
     }
     card

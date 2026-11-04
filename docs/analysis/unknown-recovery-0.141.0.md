@@ -54,9 +54,13 @@ observation retains its historical target.
 The references at `0x145fc2364` and `0x145fc262f` both load
 `c0 c0 00` at `0x147aeece6` into `0x146378290`. Its interpreter at
 `0x14637fd90` consumes two default argument descriptors before the
-terminator. The role of these three bytes is resolved. The meter payload
-and recipient publication remain under [#75](../CURRENT-STATE.md#gap-75).
-Broader caller, record-field and dynamic alias proof remains separate.
+terminator. The [caller and record trace](q41-diagnostic-consumers-0.141.0.md)
+connects these operands to temporary equipment display names for jewelry and
+amulets under [#55](../verification-needed.md#gap-55). The choice-title
+and upgrade-line token producers are also resolved there. Their source
+consequence is tracked under [#91](../verification-needed.md#gap-91).
+This completes the selected diagnostic roles and bounded successful consumers.
+Full caller semantics and dynamic aliases remain separate.
 
 ```sh
 PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/classify-as-ownerless-sites.py

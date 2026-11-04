@@ -523,20 +523,19 @@ fn choice_payload(
         .enumerate()
         .map(|(index, choice)| {
             let mut card = if let Some(reward) = game.cache_reward(index) {
-                native_overlay_payload::for_treasure(reward, game, art, locale)
+                let mut card = native_overlay_payload::for_treasure(reward, game, art, locale);
+                if let Some(definition) =
+                    azeroth_survivors_re::player_abilities::AbilityDefinition::by_key(choice.ability_key)
+                {
+                    card.name = locale
+                        .lookup(&format!("ability.{}.name", definition.key))
+                        .unwrap_or(definition.name)
+                        .to_owned();
+                }
+                card
             } else {
                 native_overlay_payload::for_choice(choice, game, &context, art, locale)
             };
-            if let Some(definition) =
-                azeroth_survivors_re::player_abilities::AbilityDefinition::by_key(
-                    choice.ability_key,
-                )
-            {
-                card.name = locale
-                    .lookup(&format!("ability.{}.name", definition.key))
-                    .unwrap_or(definition.name)
-                    .to_owned();
-            }
             card.banish = game.can_banish_choice(index);
             card_payload(&card, art, locale)
         })
