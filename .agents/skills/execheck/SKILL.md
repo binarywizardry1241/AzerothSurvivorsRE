@@ -144,6 +144,11 @@ and retry. Never reuse a prior audit's fresh-scan witness without
 `--new-audit`. This preserves fresh whole-image scans per audit while avoiding
 repeating them at every phase. The journal retains all phase timings, failures
 and cache outcomes, including time between phases, for end-to-end diagnosis.
+Keep producer timings in the phase report and remove timing sidecars after
+consumption. Let the runner restore eligible missing derived files from their
+verified sealed outputs. Keep the selected census and the distinct declared or
+expanded exports consumed by the current audit. Retain other instruction and
+reference streams according to their exact proof readers.
 
 For unchanged targets, validate/reuse a completed native pass or resume it with
 the native driver. A generic cache must never bypass the driver's provider and

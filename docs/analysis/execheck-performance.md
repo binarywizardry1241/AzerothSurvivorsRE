@@ -96,6 +96,9 @@ assembly or another exact source. Restoring a missing input invalidates its
 dependent stage. Successful outputs are snapshotted once into the existing
 shared CAS before an immutable receipt is committed to the common catalog.
 Cached receipts require their outputs and referenced payloads to remain valid.
+The runner can restore missing shared runtime outputs from verified seals after
+checking their complete output dependencies. Existing differing files still
+invalidate the hit.
 Before launching a legacy writer, existing output aliases are detached from CAS;
 successful publication restores runtime aliases without modifying old objects.
 Failed or interrupted producers cannot publish dependent results. Interrupts
@@ -154,6 +157,9 @@ are reusable; Ghidra bodies, applied edges and source ownership are joined from
 the current census. Sparse ownership/dispatch consumers request only the sites
 and fallthrough contexts their analyses need without decompressing thousands of
 unrelated full-image fact blocks.
+The instruction benchmark streams by default. `--compare-cache` puts its
+measured detail cache in a temporary project directory and removes it when
+the comparison finishes.
 
 Ownership classification separately caches its native resolution/artifacts by
 exact census, operand/proof, decoder and algorithm commitments. A source mapping

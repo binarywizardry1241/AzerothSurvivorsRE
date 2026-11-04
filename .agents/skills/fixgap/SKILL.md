@@ -30,6 +30,10 @@ Use the [shared analysis workspace](../../../docs/analysis/shared-analysis-stora
 for those operations: search retained operations, reuse compatible saved
 Programs and append missing work. Task paths and compatible seed additions must
 not create another large database. Preserve cross-version correspondence limits.
+Reuse exact sealed query results and the active census exports where a reader
+needs them. Apply the shared storage retention rules to bulk historical
+instruction and reference streams. Use bounded streaming checks for operand
+work and keep cache experiments in task scratch.
 
 Use the **currently installed, hash-verified EXE** for fresh native work. Keep
 its identity separate from the last fully audited target. Historical reports
