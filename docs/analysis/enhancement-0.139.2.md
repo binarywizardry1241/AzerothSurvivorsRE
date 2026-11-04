@@ -118,3 +118,24 @@ necklace records. Full item growth, the Cinderheart consumer and the live
 source integration require separate evidence. The dispatcher result uses a
 raw function slice. Its jump table and Windows x64 call arguments were
 resolved against the original PE bytes.
+
+## Rockbiter and the picker in 0.140.0
+
+The installed 0.140.0 PE has SHA-256
+`27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`.
+Its Rockbiter descriptor at `0x1473bb450` is 120 bytes with SHA-256
+`ce1ce0ba464dfe96932f54b84daec993844c9b2c0521793ad1c46995820e28da`.
+It carries power 66, interval bits `0x3fc92493`, range 10, two targets, spell
+8017, Nature school, cast kind 5 and the upgrade list `[0, 1, 2]`. The
+existing spell arithmetic scales the raw power to 92.4 and the interval to
+2.2 for the unmodified picker display. The source adds the descriptor to
+the ordinary cast catalog and lists it only in the Shaman picker. The
+level-up spell pool and default Lightning Bolt starter still come from the
+class's gameplay descriptor.
+
+The picker uses the existing multiple-target text expression and the native
+`Learnt from {talent}` annotation. The three added keys for the spell name,
+talent name and annotation were compared with all fourteen pointer/length
+bound native locale payloads, for 42 exact key/value comparisons. These
+checks cover the descriptor, pool separation and text inputs. Compilation,
+rendered placement, gameplay and original/rebuilt comparison are open.

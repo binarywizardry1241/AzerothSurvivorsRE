@@ -32988,7 +32988,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/localization.rs": "f0c43c50dea3301101f6e8fc4233a858035f4c9930c02f3853959f4b5d6c5400",
-        "crates/azeroth-survivors-re/assets/locales/en.json": "67c9e948d5932aa1c3cd82b1ac3bdd9025241a228b0b136f7c121a27a6b86cb6",
+        "crates/azeroth-survivors-re/assets/locales/en.json": "b59e2a293adb2e8ede3894d07545d1fade286ed89bc857bdc158f0b5019f7ca3",
         "docs/analysis/scholomance-localization-0.140.0.md": "4538731b39bdbbb5ee18b014d3b0b450f472202962344cc458422c8aa6f7187a"
       },
       "systems": [
@@ -33063,7 +33063,7 @@
         "docs/analysis/class-balance-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "a05a174bf724ff349adb37620a9c1146e893699c7a9385c045d9ac51419b02de",
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "d6dd2d48ada63c55c66e76d8762def40731cca3d5f2d937ca700715f52f7fd69",
         "docs/analysis/class-balance-0.140.0.md": "4c7951771575183256a439b7909b9010c65eccc9035fd145aab3e967a7d74e53"
       },
       "systems": [
@@ -33088,7 +33088,7 @@
         "docs/analysis/class-balance-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "a05a174bf724ff349adb37620a9c1146e893699c7a9385c045d9ac51419b02de",
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "d6dd2d48ada63c55c66e76d8762def40731cca3d5f2d937ca700715f52f7fd69",
         "docs/analysis/class-balance-0.140.0.md": "4c7951771575183256a439b7909b9010c65eccc9035fd145aab3e967a7d74e53"
       },
       "systems": [
@@ -33243,7 +33243,7 @@
         "docs/analysis/class-balance-0.140.0.md#mind-blast-power-cooldown-and-descriptions"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "a05a174bf724ff349adb37620a9c1146e893699c7a9385c045d9ac51419b02de",
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "d6dd2d48ada63c55c66e76d8762def40731cca3d5f2d937ca700715f52f7fd69",
         "docs/analysis/class-balance-0.140.0.md": "4c7951771575183256a439b7909b9010c65eccc9035fd145aab3e967a7d74e53",
         "crates/azeroth-survivors-re/assets/talents.json": "1dd3338c86565c58102b159a7f528ff82fd041f1b327205d31c7b82ed1aa40ab",
         "crates/azeroth-survivors-re/assets/ability-tooltips.json": "ac5db1ae924db20fb72cce68247e9a568af26b95e003eb85f63cd2fe9223ae9c",
@@ -33465,16 +33465,21 @@
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
       "status": "pending_claim_recovery",
-      "rationale": "Current Rockbiter data contains raw power 66. Trace the live base and bonus damage composition.",
+      "rationale": "The current 66-power descriptor, 92-damage picker and native talent-origin text are connected. The Rockbiter Initiation startup replacement remains in #305.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs"
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+        "crates/azeroth-survivors-re/src/catalog.rs",
+        "crates/azeroth-survivors-re/assets/rockbiter-tooltip-0.140.0.json"
       ],
       "evidence_refs": [
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/enhancement-0.139.2.md#rockbiter-and-the-picker-in-01400"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "a05a174bf724ff349adb37620a9c1146e893699c7a9385c045d9ac51419b02de",
-        "docs/analysis/class-balance-0.140.0.md": "4c7951771575183256a439b7909b9010c65eccc9035fd145aab3e967a7d74e53"
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "d6dd2d48ada63c55c66e76d8762def40731cca3d5f2d937ca700715f52f7fd69",
+        "docs/analysis/class-balance-0.140.0.md": "4c7951771575183256a439b7909b9010c65eccc9035fd145aab3e967a7d74e53",
+        "crates/azeroth-survivors-re/src/catalog.rs": "f2b06ec8fc8d74f7d761c2a04efad4dd797fced3930cf256c4510ef86660404b",
+        "crates/azeroth-survivors-re/assets/rockbiter-tooltip-0.140.0.json": "a82e28fc3dd0acfad9572772df64a70a25994cdc9d93cfd30357e029e842ab53",
+        "docs/analysis/enhancement-0.139.2.md": "86c9e2e1a0b65b246016e28b0adb0b63f98312cad9a7cfd29cfd9dc7d0f76fde"
       },
       "systems": [
         "custom-game-game-enhancement"

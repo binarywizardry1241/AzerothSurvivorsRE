@@ -1,0 +1,30 @@
+{
+  "subtitle": {
+    "concat": [
+      {"template": "Nature", "values": {}},
+      {"literal": " · "},
+      {"template": "common.cooldown_sec", "values": {"s": {"literal": "2.2"}}}
+    ]
+  },
+  "body": {
+    "concat": [
+      {
+        "template": "Strikes up to {n} enemies within {range} yd for {hit} each.{focus}",
+        "values": {
+          "n": {"literal": "2"},
+          "range": {"literal": "10"},
+          "hit": {
+            "template": "{dmg} {school} damage",
+            "values": {
+              "dmg": {"literal": "92"},
+              "school": {"template": "Nature", "values": {}}
+            }
+          },
+          "focus": {"template": " Bosses and elites are targeted first.", "values": {}}
+        }
+      },
+      {"literal": "\n"},
+      {"template": "Learnt from {talent}", "values": {"talent": {"template": "Rockbiter Initiation", "values": {}}}}
+    ]
+  }
+}

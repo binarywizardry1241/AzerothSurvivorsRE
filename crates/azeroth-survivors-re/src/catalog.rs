@@ -55,12 +55,19 @@ impl MenuCatalog {
             .expect("retained Call of Flame slot");
         shaman.spell_keys[replaced] = stormstrike.key.into();
         shaman.spell_names[replaced] = stormstrike.name.into();
-        catalog.abilities.push(AbilityDef {
-            key: stormstrike.key.into(),
-            name: stormstrike.name.into(),
-            icon: stormstrike.icon.into(),
-            description: String::new(),
-        });
+        let rockbiter =
+            azeroth_survivors_re::player_abilities::AbilityDefinition::by_key("rockbiter")
+                .expect("recovered Shaman Rockbiter Weapon");
+        shaman.spell_keys.push(rockbiter.key.into());
+        shaman.spell_names.push(rockbiter.name.into());
+        for ability in [stormstrike, rockbiter] {
+            catalog.abilities.push(AbilityDef {
+                key: ability.key.into(),
+                name: ability.name.into(),
+                icon: ability.icon.into(),
+                description: String::new(),
+            });
+        }
         catalog
     }
 

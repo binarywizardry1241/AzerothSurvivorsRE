@@ -67,6 +67,11 @@ fn entries() -> &'static BTreeMap<String, SpellText> {
             serde_json::from_str(include_str!("../assets/stormstrike-tooltip-0.139.2.json"))
                 .expect("current Stormstrike picker tooltip"),
         );
+        entries.insert(
+            "rockbiter".into(),
+            serde_json::from_str(include_str!("../assets/rockbiter-tooltip-0.140.0.json"))
+                .expect("current Rockbiter Weapon picker tooltip"),
+        );
         entries
     })
 }
