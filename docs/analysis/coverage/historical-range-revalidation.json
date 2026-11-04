@@ -1,37 +1,37 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.140.0",
+    "version": "0.141.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
-    "size_bytes": 151521280
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
   },
   "generator": {
     "path": "scripts/revalidate-historical-native-ranges.py",
     "sha256": "0fff2c69efe608474198ffcb6503a78d7d96e37868d6bd142b1d121dbc353df5"
   },
   "counts": {
-    "ambiguous-exact-bytes-at-least-two-locations": 5262,
-    "canonical-preimage-bytes-hash-verified": 12715,
-    "canonical-preimage-bytes-unavailable": 10622,
+    "ambiguous-exact-bytes-at-least-two-locations": 5269,
+    "canonical-preimage-bytes-hash-verified": 12737,
+    "canonical-preimage-bytes-unavailable": 10737,
     "documents-admitted-by-exact-owning-manifest-hash": 4,
     "documents-with-ambiguous-owning-target-bindings": 1,
-    "documents-with-explicit-target-identity": 1727,
+    "documents-with-explicit-target-identity": 1753,
     "documents-without-explicit-target-or-exact-manifest-binding": 73,
-    "exact-bytes-not-found": 5986,
-    "historical-documents-with-range-commitments": 1005,
-    "historical-documents-without-supported-range-commitments": 713,
-    "historical-location-not-revalidated": 23328,
+    "exact-bytes-not-found": 6009,
+    "historical-documents-with-range-commitments": 1015,
+    "historical-documents-without-supported-range-commitments": 723,
+    "historical-location-not-revalidated": 23458,
     "preimage:assembly-byte-columns": 1840,
     "preimage:committed-native-range-artifact": 25,
     "preimage:contiguous-addressed-json-spans": 191,
-    "preimage:explicit-json-bytes": 94,
-    "preimage:explicit-json-bytes_hex": 1458,
+    "preimage:explicit-json-bytes": 92,
+    "preimage:explicit-json-bytes_hex": 1480,
     "preimage:explicit-json-hex": 5697,
     "preimage:explicit-json-native_record_hex": 132,
     "preimage:explicit-json-payload": 241,
     "preimage:explicit-json-raw_hex": 1652,
-    "preimage:literal-json-utf8": 1022,
+    "preimage:literal-json-utf8": 1024,
     "preimage:little-endian-enemy-u32-words": 7,
     "preimage:little-endian-i32-relative-entries": 2,
     "preimage:little-endian-notification-14Q": 1,
@@ -44,15 +44,15 @@
     "preimage:native-range-artifact-with-added-terminal-LF": 1,
     "preimage:ordered-verbatim-64-byte-effects": 295,
     "preimage:verbatim-notification-constant-bytes": 17,
-    "same-address-byte-match": 2,
-    "same-offset-byte-match": 7,
-    "selected-target-documents-excluded-from-historical-audit": 13,
-    "unique-exact-byte-range": 1467,
-    "unique-match:executable-without-complete-body-owner": 46,
-    "unique-match:non-executable-data-or-headers": 1319,
-    "unique-match:whole-native-body-range": 102
+    "same-address-byte-match": 5,
+    "same-offset-byte-match": 11,
+    "selected-target-documents-excluded-from-historical-audit": 19,
+    "unique-exact-byte-range": 1459,
+    "unique-match:executable-without-complete-body-owner": 42,
+    "unique-match:non-executable-data-or-headers": 1321,
+    "unique-match:whole-native-body-range": 96
   },
-  "unique_range_commitments": 23337,
+  "unique_range_commitments": 23474,
   "historical_targets": {
     "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c": {
       "range-references": 1115
@@ -74,6 +74,9 @@
     },
     "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150": {
       "range-references": 1464
+    },
+    "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9": {
+      "range-references": 159
     },
     "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08": {
       "range-references": 186
@@ -143,8 +146,8 @@
     }
   },
   "current_native_body_census": {
-    "path": "docs/analysis/coverage/full-image-selected-0.140.0.json",
-    "sha256": "70113c16856462f272d978f31d18a4c5a534b7ea636c349f63380a339ac10759"
+    "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
+    "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
   },
   "unique_match_records_in_inventory": true,
   "matched_range_references": [
@@ -168,6 +171,18 @@
         {
           "manifest": "docs/analysis/evidence/0.100.1/world-tuning.json",
           "json_pointer": "/zones/2/source",
+          "role": null
+        }
+      ]
+    },
+    {
+      "file_offset": "0x6732ccc",
+      "byte_count": 4,
+      "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
+      "references": [
+        {
+          "manifest": "docs/analysis/evidence/0.100.1/world-tuning.json",
+          "json_pointer": "/zones/3/source",
           "role": null
         }
       ]
@@ -236,6 +251,18 @@
       ]
     },
     {
+      "file_offset": null,
+      "byte_count": 2,
+      "sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+      "references": [
+        {
+          "manifest": "docs/analysis/evidence/0.109.0/native-pe-boundaries.json",
+          "json_pointer": "/load_config_auxiliary_fields/5/field",
+          "role": null
+        }
+      ]
+    },
+    {
       "file_offset": "0xb79",
       "byte_count": 38,
       "sha256": "015460439888642b36663338384a15ad59e2a741626027d92678f9e43f73e282",
@@ -280,21 +307,86 @@
       ]
     },
     {
-      "file_offset": "0x6732bdc",
+      "file_offset": "0x85c5938",
+      "byte_count": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+      "references": [
+        {
+          "manifest": "docs/analysis/evidence/0.121.0/as-data-slots.json",
+          "json_pointer": "/slots/25/initial_state",
+          "role": "spell-effect-admission"
+        }
+      ]
+    },
+    {
+      "file_offset": "0x6732ccc",
       "byte_count": 4,
       "sha256": "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119",
       "references": [
         {
           "manifest": "docs/analysis/evidence/0.123.0/refresh-baseline/historical-range-revalidation.json",
-          "json_pointer": "/matched_range_references/0",
+          "json_pointer": "/matched_range_references/1",
+          "role": null
+        }
+      ]
+    },
+    {
+      "file_offset": "0x67184a3",
+      "byte_count": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+      "references": [
+        {
+          "manifest": "docs/analysis/evidence/0.123.0/refresh-baseline/historical-range-revalidation.json",
+          "json_pointer": "/matched_range_references/20",
+          "role": null
+        }
+      ]
+    },
+    {
+      "file_offset": null,
+      "byte_count": 32,
+      "sha256": "58e76101d91e09c7e9cc43e0c5cb007cdf04ce935d8c4fb913a8b2a1ded32a8b",
+      "references": [
+        {
+          "manifest": "docs/analysis/evidence/0.127.0/ime-bridge/manifest.json",
+          "json_pointer": "/ranges/24",
+          "role": "chained-metadata-value"
+        }
+      ]
+    },
+    {
+      "file_offset": "0x69883d8",
+      "byte_count": 8,
+      "sha256": "7c9fa136d4413fa6173637e883b6998d32e1d675f88cddff9dcbcf331820f4b8",
+      "references": [
+        {
+          "manifest": "docs/analysis/evidence/0.97.2/mob-loot.json",
+          "json_pointer": "/classes/1/count_span",
+          "role": null
+        }
+      ]
+    },
+    {
+      "file_offset": "0x67184a3",
+      "byte_count": 1,
+      "sha256": "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+      "references": [
+        {
+          "manifest": "docs/analysis/evidence/0.97.2/player-abilities/catalog.json",
+          "json_pointer": "/definitions/60/upgrade_slice",
+          "role": null
+        },
+        {
+          "manifest": "docs/analysis/evidence/0.97.2/player-abilities/catalog.json",
+          "json_pointer": "/definitions/98/upgrade_slice",
           "role": null
         }
       ]
     }
   ],
   "inventory": {
-    "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/historical-range-revalidation.json",
-    "sha256": "a06a47e385c2649fad3e29369fe1405f02e1eefc486c639d4edfd1cdeea8ed07"
+    "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/historical-range-revalidation.json",
+    "sha256": "cd4aeef92c08918b740666f8cfffc02220001821dc5a61a273e6b0bcbad958d4"
   },
   "historical_behavior_revalidation_complete": false,
   "parity_verified": false,

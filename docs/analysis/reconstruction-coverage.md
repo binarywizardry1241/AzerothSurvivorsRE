@@ -1,31 +1,28 @@
 # Current-target reconstruction coverage
 
-The installed and registered reconstruction target is **0.140.0**, SHA-256
-`27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`
-(151,521,280 bytes). The [identity](target-refresh-0.140.0.json) and
-[CURRENT-STATE](../CURRENT-STATE.md) give the exact input and audit status.
-The completed [0.139.1 census](native-census-0.139.1.md) and
-[0.139.1 graph](as-discovery-0.139.1.md) retain their original target.
+The installed and registered reconstruction target is **0.141.0**, SHA-256
+`6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`
+(151,493,632 bytes). The [identity](target-refresh-0.141.0.json) and
+[CURRENT-STATE](../CURRENT-STATE.md) record the input and audit status.
+The [0.140.0 census](native-census-0.140.0.md) and
+[0.140.0 graph](as-discovery-0.140.0.md) retain their original target.
 
-The current 26-range ledger partitions the whole image. The independent
-linear pass decodes 24,899,412 instructions across all 372,642 declared extents,
-covering 100,870,444 union bytes with zero undecoded suffix. The 5,378,354-byte
-executable complement is separate. The installed chain has twelve MPQs,
-including the new patch-C. Current [member accounting](evidence/0.140.0/mpq-member-coverage.json)
-records 30,172 active slots and 30,161 unique names with zero opaque slots.
+The 26-range ledger partitions the whole image. The independent linear pass
+decodes 24,893,474 instructions across 372,623 declared extents, covering
+100,845,169 bytes with zero undecoded suffix. The 5,376,717-byte executable
+complement is separate. All twelve MPQ hashes match the prior chain.
+[Member accounting](evidence/0.141.0/mpq-member-coverage.json)
 
-The [selected census](native-census-0.140.0.md) verified 24,332,715
-instructions, 97,617,587 instruction bytes and 4,219,955 references. All 3,943
-guarded tables are applied and the final proposal matches their exact vectors.
-The executable residual is 8,631,211 bytes.
+The [selected census](native-census-0.141.0.md) verifies 24,328,399 instructions,
+97,600,287 instruction bytes and 4,218,711 references. It retains 8,621,599
+executable residual bytes. The [exact queue](unknown-recovery-0.141.0.md) and
+[#41](../CURRENT-STATE.md#gap-41) track remaining recovery.
 
-The [release review](release-review-0.140.0.md) retains all 52 new claim
-assessments. The [module register](module-contracts-0.140.0.md) records 82
-diagnostic module assignments and current proof questions. Prior native
-behavior, source implementations and individual reviews remain retained.
-Incomplete native recovery and correspondence stay under
-[#41](../CURRENT-STATE.md#gap-41). Compilation, runtime and original/rebuilt
-comparison belong to [verification-needed](../verification-needed.md).
+The [release review](release-review-0.141.0.md) records the 11 supplied
+0.141.0 claims. The [module register](module-contracts-0.141.0.md) records 83
+diagnostic module assignments and their bounded and pending contracts.
+Compilation, runtime and original/rebuilt comparisons belong to the
+[verification register](../verification-needed.md).
 
 **Recovery descriptions below retain their stated historical target.** No old
 RVA, layout, ID, dependency or behavioral proof is promoted by registration,

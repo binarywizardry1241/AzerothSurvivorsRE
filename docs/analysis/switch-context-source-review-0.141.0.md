@@ -1,0 +1,125 @@
+# AS guarded dispatch and source correspondence in 0.141.0
+
+The installed EXE contains 151,493,632 bytes and has SHA-256
+`6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
+The [applied and proposed switch proof](evidence/0.141.0/native-switch-proposal-review.json)
+selects each current context under
+`complete_AS_context_reconciliation.current_AS_context_tables[site]`.
+Thirty of 54 AS diagnostic-context tables have one exact predecessor
+geometry candidate. Twenty-four have no match in the predecessor's full
+proposal population. All 54 are applied. All 24 unmatched 0.140.0 contexts
+retain their original scope and finding ownership. The geometry comparison
+uses the complete guard kind, register, selector bounds, distance to the
+dispatch and all dispatch-relative destinations. A match is navigation for
+current applicability. The guard and diagnostic association alone cannot
+identify the producer, consumer, or semantics of a table's cases.
+[Predecessor source review](switch-context-source-review-0.140.0.md).
+
+## Source owners and remaining questions
+
+| Context and finding | Current source boundary and next static action |
+| --- | --- |
+| Menu [#128](../CURRENT-STATE.md#gap-128) and marker [#96](../CURRENT-STATE.md#gap-96) | Trace the menu input tag through `menu.rs::Action`, `input` and `menu_state.rs::Page`. Follow the separate marker tag into `raid_markers.rs::Markers::receive`, `Kind`, `Shape`, `paint` and `mask`. The exact geometry candidates retain the earlier menu and marker questions. [Menu](../../crates/azeroth-survivors-re/src/menu.rs), [markers](../../crates/azeroth-survivors-re/src/raid_markers.rs). |
+| Lobby [#150](../CURRENT-STATE.md#gap-150) | Three current-only tables share the final exported body entry `0x140106060`, the declared extent `0x140106060..0x140108579` and the `screens/coop.rs:440` context. The guards admit RCX 0–6, RDI 0–8 and an RDI-alias 0–8. Follow the actual value producers and cases into existing `coop_ui.rs::input` and `rebuild`, `coop_forms.rs::Forms` and request handoffs to `coop_directory.rs`. Separate generic UI/form values from admission, Ready Check and inspection only after the typed branch evidence is available. [Lobby](../../crates/azeroth-survivors-re/src/coop_ui.rs), [forms](../../crates/azeroth-survivors-re/src/coop_forms.rs), [directory](../../crates/azeroth-survivors-re/src/coop_directory.rs). |
+| Inspection [#299](../CURRENT-STATE.md#gap-299) and Armory [#123](../CURRENT-STATE.md#gap-123) | Keep the three read-only inspection candidates distinct from the three Armory candidates. Reuse the [current wire and UI connection](coop-inspection-0.141.0.md) for the roster and sidebar scope. Identify the exact inspection item-kind detail branches, preview lighting and achievement selection where their producers can be bound. For Armory, follow the selectors into the existing build, input, equipment summary and item detail paths and the save gear model. [Inspection](../../crates/azeroth-survivors-re/src/coop_inspect.rs), [Armory](../../crates/azeroth-survivors-re/src/armory.rs), [save gear](../../crates/azeroth-survivors-re/src/save/gear.rs). |
+| Codex [#73](../CURRENT-STATE.md#gap-73) and [#17](../CURRENT-STATE.md#gap-17) | Map the three descriptor selectors through `CodexCatalog`, `CodexText`, detail assembly and `MenuCatalog`. Site `0x140374fd5` is the current unique geometry candidate for `retained-table-1403076a2`. The [growth-text recovery](codex-growth-dispatch-0.120.2.md) retains its separately proved scope. [Codex](../../crates/azeroth-survivors-re/src/codex.rs), [catalog](../../crates/azeroth-survivors-re/src/catalog.rs). |
+| Font augmentation [#135](../CURRENT-STATE.md#gap-135) | The [current exact font proof](font-table-publication-0.141.0.md) independently identifies `0x145dd9057` as the nested second-byte dispatch for the `h` branch. Its 40-byte table at `0x1476f3d18` matches the proved SHA-256 `1e34d391a995f7082ae67a16640be5dc1744de10c921ff55caae093eff0906ba`. Keep the repaired scaler, post table and original-provider fallback paths. Trace remaining font selection and layout dependencies only where required by AS. [Font patch](../../crates/azeroth-survivors-re/src/font_patch.rs), [provider](../../crates/azeroth-survivors-re/src/menu_fonts.rs). |
+| Save [#146](../CURRENT-STATE.md#gap-146) and gear [#92](../CURRENT-STATE.md#gap-92) | The two save sites retain candidates for row-family dispatch and normalization. The three standalone gear sites retain candidates for descriptor and ranking work. Trace row tags through `save.rs::Save`, `save/schema.rs` and the talent allocation parser, and equipment/rank selectors through the actual gear and Armory consumers. Preserve the independent Scholomance reward scope under [#314](../verification-needed.md#gap-314). [Save](../../crates/azeroth-survivors-re/src/save.rs), [schema](../../crates/azeroth-survivors-re/src/save/schema.rs), [talents](../../crates/azeroth-survivors-re/src/save/talents.rs), [gear](../../crates/azeroth-survivors-re/src/save/gear.rs). |
+| Peer trust [#186](../CURRENT-STATE.md#gap-186), relay [#197](../CURRENT-STATE.md#gap-197) and [#198](../verification-needed.md#gap-198), and route [#151](../CURRENT-STATE.md#gap-151) | Verify the trust selector through `validate_hero_identity` and the gameplay admission adapter. Follow the relay selector through event bytes, ACK/replay state and recipient delivery, and the separate route selector into peer forwarding and fallback. The unmatched predecessor TCP lifecycle table retains [#152](../CURRENT-STATE.md#gap-152). [Party](../../crates/azeroth-survivors-re/src/coop/server_party.rs), [relay](../../crates/azeroth-survivors-re/src/coop/relay.rs), [route](../../crates/azeroth-survivors-re/src/coop/route.rs), [TCP](../../crates/azeroth-survivors-re/src/coop/tcp.rs). |
+| Mixed command and template queries [#63](../CURRENT-STATE.md#gap-63), [#154](../CURRENT-STATE.md#gap-154), [#64](../CURRENT-STATE.md#gap-64), [#65](../CURRENT-STATE.md#gap-65) and [#92](../CURRENT-STATE.md#gap-92) | Fifteen current-only sites share owner `0x145e9e690` and the `gear.rs` and `server/party.rs` context. The [meter request trace](detailed-meter-0.141.0.md#recipient-request-and-publication) identifies the `AZSMREQ` branch at `0x145ea0746` under [#75](../CURRENT-STATE.md#gap-75). Recover the separate per-table command opcode, admitted input layout, descriptor domain and recipient output before assigning gear, CreatureQuery, GameObject or other request semantics. [Command handler](../../crates/azeroth-survivors-re/src/gameplay/coop_commands.rs), [creature queries](../../crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs), [query decoder](../../crates/azeroth-survivors-re/src/gameplay/client/query_packets.rs), [packet codec](../../crates/azeroth-survivors-re/src/coop/engine_packets.rs). |
+| Service and party lifecycle [#63](../CURRENT-STATE.md#gap-63) and [#154](../CURRENT-STATE.md#gap-154) | The current-only eight-cell site `0x145ea7797` belongs to the existing service/peer poller at `0x145ea3420`. Trace its event producer, admitted peer phase and destination side effects. Four other lifecycle sites retain geometry candidates. The [current desktop exit trace](coop-desktop-exit-0.141.0.md) and [meter request trace](detailed-meter-0.141.0.md#recipient-request-and-publication) separately establish uses of the poller without identifying this eight-cell dispatch. Retain the current exact Join, wire-17 and guest-spell-row scopes separately. [Session](../../crates/azeroth-survivors-re/src/coop/session.rs), [party](../../crates/azeroth-survivors-re/src/coop/server_party.rs), [replication](../../crates/azeroth-survivors-re/src/coop/replication.rs). |
+| Hazards [#149](../CURRENT-STATE.md#gap-149) and [#294](../verification-needed.md#gap-294), mixed attack/script [#313](../verification-needed.md#gap-313) and [#318](../verification-needed.md#gap-318) | The 32-cell hazard and six-cell attack/script tables retain exact geometry candidates. Identify the hazard action producer and the mixed tagged-value constructor before associating cases with the existing raid shapes, attack targeting or encounter script consumers. [Raid areas](../../crates/azeroth-survivors-re/src/bosses/raid_areas.rs), [attacks](../../crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs), [boss effects](../../crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs). |
+| Ability/status and Kill Command [#136](../verification-needed.md#gap-136) and [#316](../verification-needed.md#gap-316) | Four 11-cell sites share the declared ordinary-cast extent `0x145f51870..0x145f55f05` with both ability and Kill Command Locations. Two current-only sites and two geometry matches retain separate selector and output questions. Trace case input and actor/float consumers to `scaled_hit_effect`, the ordinary cast/impact route or a pet action. The current [Counterattack](counterattack-0.141.0.md) and [pet attribution](pet-meter-0.141.0.md) proofs keep their independent boundaries. [Status](../../crates/azeroth-survivors-re/src/player_abilities/behavior/state.rs), [dispatch](../../crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs), [pets](../../crates/azeroth-survivors-re/src/run_effects/pets.rs). |
+| Runtime talents [#141](../verification-needed.md#gap-141) | The two current-only tables share the declared talent extent `0x145f8e670..0x145f92a55`. Identify the seven-cell and nine-cell producers and destinations independently through `Event`, `EffectRow::matches_event` and `condition_matches`. The [Counterattack tag-12 cell](counterattack-0.141.0.md) at `0x147af368c` is immediately past the nine-cell span at `0x147af3668`. The retained [kill reset](kill-selector-0.139.2.md) remains a bounded lead for matching input, field and effect. [Runtime conditions](../../crates/azeroth-survivors-re/src/run_effects/conditions.rs), [effects](../../crates/azeroth-survivors-re/src/run_effects.rs). |
+| Demon effects [#24](../verification-needed.md#gap-24) and [#138](../CURRENT-STATE.md#gap-138), mixed content and localization [#85](../CURRENT-STATE.md#gap-85) and [#142](../verification-needed.md#gap-142) | The demon pair retains its prior geometry candidates. Follow the actual timer/target and hit/effect producers through the existing companion adapters. The mixed content/locale table retains its candidate. Prove the tag/value producer and its formatting or data consumer before assigning the dispatch to locale selection. [Demons](../../crates/azeroth-survivors-re/src/run_effects/demons.rs), [localization](../../crates/azeroth-survivors-re/src/localization.rs). |
+
+## Exact current selectors
+
+Each dispatch site is `AS-context-table:<site>` in the proof above. Table
+and guard addresses below use preferred PE VAs. A predecessor address means
+one geometry candidate, with source correspondence and runtime proof separate.
+
+| Site | Table VA | Guard VA | Cells / distinct | Predecessor | Finding |
+| --- | --- | --- | ---: | --- | --- |
+| `0x1400565d8` | `0x1465636a0` | `0x1400565c5` | 24 / 6 | `0x1400542f8` | #128 |
+| `0x1400ca5b9` | `0x146567804` | `0x1400ca59d` | 5 / 4 | `0x1400bb469` | #96 |
+| `0x14010628e` | `0x14656d9a4` | `0x140106276` | 7 / 6 | — | #150 |
+| `0x140107bb3` | `0x14656d9c0` | `0x140107b9b` | 9 / 6 | — | #150 |
+| `0x140107cef` | `0x14656d9e4` | `0x140107cd0` | 9 / 6 | — | #150 |
+| `0x1401b6504` | `0x14659c884` | `0x1401b64ec` | 7 / 5 | `0x1401acbd4` | #299 |
+| `0x1401b92f1` | `0x14659c8a0` | `0x1401b92d9` | 7 / 5 | `0x1401af9c1` | #299 |
+| `0x140374890` | `0x1465cb8e4` | `0x140374878` | 17 / 6 | `0x1403bb560` | #73 |
+| `0x140374f2d` | `0x1465cb978` | `0x140374f15` | 20 / 5 | `0x1403bbbfd` | #73 |
+| `0x140374fd5` | `0x1465cb928` | `0x140374fbd` | 20 / 5 | `0x1403bbca5` | #17/#73 |
+| `0x140392338` | `0x1465cba30` | `0x140392324` | 7 / 5 | `0x1403d8ca8` | #123 |
+| `0x140397aa2` | `0x1465cba94` | `0x140397a8a` | 7 / 5 | `0x1403de412` | #123 |
+| `0x14039aceb` | `0x1465cbab0` | `0x14039acd3` | 4 / 4 | `0x1403e165b` | #123 |
+| `0x1403c0ba7` | `0x1465cbadc` | `0x1403c0b8f` | 7 / 5 | `0x140407517` | #299 |
+| `0x145dd9057` | `0x1476f3d18` | `0x145dd9040` | 10 / 5 | — | #135 |
+| `0x145de759b` | `0x1476f75b0` | `0x145de7583` | 7 / 7 | `0x145e0a13b` | #146 |
+| `0x145de92a7` | `0x1476f75cc` | `0x145de928f` | 6 / 5 | `0x145e0be47` | #146 |
+| `0x145e2cbb3` | `0x147724638` | `0x145e2cb9c` | 8 / 8 | `0x145e2bdb3` | #92 |
+| `0x145e2d8d6` | `0x147724924` | `0x145e2d8bf` | 114 / 36 | `0x145e2cad6` | #92 |
+| `0x145e2e683` | `0x147724aec` | `0x145e2e661` | 7 / 7 | `0x145e2d883` | #92 |
+| `0x145e389ba` | `0x147725244` | `0x145e389a2` | 9 / 4 | `0x145e37e0a` | #186 |
+| `0x145e83fd6` | `0x147aea194` | `0x145e83fbe` | 13 / 11 | `0x145e89a86` | #197/#198 |
+| `0x145e90633` | `0x147aea224` | `0x145e90615` | 5 / 5 | `0x145e95d63` | #151 |
+| `0x145e9e71c` | `0x147aec588` | `0x145e9e705` | 52 / 4 | — | #63/#154/#64/#65/#92 |
+| `0x145e9e761` | `0x147aec530` | `0x145e9e74a` | 22 / 6 | — | #63/#154/#64/#65/#92 |
+| `0x145e9f009` | `0x147aec658` | `0x145e9eff2` | 115 / 16 | — | #63/#154/#64/#65/#92 |
+| `0x145ea0f9d` | `0x147aecb74` | `0x145ea0f7f` | 101 / 19 | — | #63/#154/#64/#65/#92 |
+| `0x145ea10fb` | `0x147aecd08` | `0x145ea10e8` | 95 / 18 | — | #63/#154/#64/#65/#92 |
+| `0x145ea112b` | `0x147aec9f8` | `0x145ea1114` | 95 / 18 | — | #63/#154/#64/#65/#92 |
+| `0x145ea115e` | `0x147aece84` | `0x145ea1147` | 12 / 12 | — | #63/#154/#64/#65/#92 |
+| `0x145ea1580` | `0x147aecedc` | `0x145ea1564` | 195 / 35 | — | #63/#154/#64/#65/#92 |
+| `0x145ea15a8` | `0x147aed1e8` | `0x145ea1595` | 95 / 18 | — | #63/#154/#64/#65/#92 |
+| `0x145ea15ec` | `0x147aeceb4` | `0x145ea15d5` | 10 / 9 | — | #63/#154/#64/#65/#92 |
+| `0x145ea161f` | `0x147aed364` | `0x145ea1608` | 5 / 5 | — | #63/#154/#64/#65/#92 |
+| `0x145ea19cc` | `0x147aed4dc` | `0x145ea19b3` | 195 / 35 | — | #63/#154/#64/#65/#92 |
+| `0x145ea1ab2` | `0x147aed378` | `0x145ea1a94` | 89 / 10 | — | #63/#154/#64/#65/#92 |
+| `0x145ea1ade` | `0x147aed800` | `0x145ea1ac7` | 34 / 11 | — | #63/#154/#64/#65/#92 |
+| `0x145ea1b6f` | `0x147aed7e8` | `0x145ea1b58` | 6 / 6 | — | #63/#154/#64/#65/#92 |
+| `0x145ea7797` | `0x147aeda3c` | `0x145ea7780` | 8 / 8 | — | #63/#154 |
+| `0x145eb5cdb` | `0x147aeda5c` | `0x145eb5cc4` | 8 / 5 | `0x145ebb4eb` | #63/#154 |
+| `0x145ecaff3` | `0x147aedbec` | `0x145ecafd8` | 24 / 9 | `0x145ed0e23` | #63/#154 |
+| `0x145ecb323` | `0x147aedb94` | `0x145ecb30b` | 22 / 5 | `0x145ed1153` | #63/#154 |
+| `0x145ecbb11` | `0x147aedca4` | `0x145ecbafd` | 22 / 5 | `0x145ed1941` | #63/#154 |
+| `0x145f441d0` | `0x147af2fd8` | `0x145f441a4` | 32 / 32 | `0x145f6e4a0` | #149/#294 |
+| `0x145f4c76c` | `0x147af30c0` | `0x145f4c754` | 6 / 6 | `0x145f76a3c` | #313/#318 |
+| `0x145f53e53` | `0x147af3210` | `0x145f53e37` | 11 / 4 | — | #136/#316 |
+| `0x145f5402e` | `0x147af323c` | `0x145f5401b` | 11 / 9 | `0x145f7e2fe` | #136/#316 |
+| `0x145f546c9` | `0x147af3134` | `0x145f546ab` | 11 / 9 | — | #136/#316 |
+| `0x145f5499b` | `0x147af318c` | `0x145f5498f` | 11 / 9 | `0x145f7ec6b` | #136/#316 |
+| `0x145f8ebbd` | `0x147af37d0` | `0x145f8eb93` | 7 / 5 | — | #141 |
+| `0x145f927b4` | `0x147af3668` | `0x145f9279d` | 9 / 9 | — | #141 |
+| `0x145fb6b98` | `0x147af395c` | `0x145fb6b80` | 7 / 7 | `0x145fe5458` | #24/#138 |
+| `0x145fb6c1c` | `0x147af3978` | `0x145fb6c04` | 7 / 7 | `0x145fe54dc` | #24/#138 |
+| `0x14606561d` | `0x147afb0b8` | `0x146065606` | 49 / 29 | `0x14606be4d` | #85/#142 |
+
+## Unmatched predecessor contexts and stable questions
+
+Each unmatched site below selects the corresponding 0.140.0 record in the
+`predecessor_AS_context_tables` object. All 24 retain their original evidence
+and source owners. Use the required selector, producer and consumer to
+establish applicability when no equal geometry exists.
+
+| 0.140.0 finding | Unmatched predecessor sites |
+| --- | --- |
+| #152 | `0x145e0493a` |
+| #135 | `0x145e61955` |
+| #63/#154 | `0x145ea43dc`, `0x145ea4421`, `0x145eacf77` |
+| #63/#154/#64/#65/#92 | `0x145ea4cc9`, `0x145ea6893`, `0x145ea6acf`, `0x145ea6c2b`, `0x145ea6c54`, `0x145ea6c80`, `0x145ea700c`, `0x145ea72c0`, `0x145ea73ad`, `0x145ea73d5`, `0x145ea7452`, `0x145ea7666` |
+| #64/#65 | `0x145ea6f7b`, `0x145ea6fa3`, `0x145ea6fe0` |
+| #136/#316 | `0x145f7e124`, `0x145f7e996` |
+| #141 | `0x145fbcd0a`, `0x145fc0924` |
+
+All 14 stable historical questions remain in the
+[computed correspondence frontier](evidence/0.141.0/computed-correspondence-frontier.json).
+Only the Codex question `retained-table-1403076a2` has one exact current
+geometry candidate, `0x140374fd5`. The other 13 remain current applicability
+work under #64/#65. Recover actual opcode admission, selector domains,
+descriptor production and recipient packet/cache boundaries. This retains
+the prior classifications and source contracts with their original target.
+The remaining computed-edge, code/data and dynamic-reference queue lives
+under [#41](../CURRENT-STATE.md#gap-41). Compilation, game and service execution,
+and controlled original/rebuilt comparisons remain open.

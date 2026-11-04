@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "queries": [
+    {
+      "id": "soulfire-upgrade",
+      "procedure": "0x145e27300",
+      "file_offset": "0x5e26700",
+      "byte_count": 513,
+      "operations": [
+        {
+          "name": "procedure_pseudo_code",
+          "proof": {
+            "raw_input": {
+              "path": "runtime/fixgap-soulfire-01410/upgrade.bin",
+              "sha256": "56fab00d07bd0fe36ebf5d8fd5fdc58df6b338a61dbcb28bc7a4d36e520950c4"
+            },
+            "plan": {
+              "path": "runtime/fixgap-soulfire-01410/upgrade.json",
+              "sha256": "2297d6e897cc774c6f3a6d56de4df599a4e9ff09627de834923739a90b226a50"
+            },
+            "journal": {
+              "path": "runtime/fixgap-soulfire-01410/upgrade/journal.json",
+              "sha256": "a8ce4487492b00eef546e9be47eb20dbe4c90e2e645f60679668400954e5bd57"
+            },
+            "result": {
+              "path": "runtime/fixgap-soulfire-01410/upgrade/results/f4a7febef848954c9a48ab33564fbe109e46e17201a8619d9940bce66e20002b-491ffb12a4fcf9c7.json",
+              "sha256": "0f89191dd79ab2754e15ee248c4d97f8caf403c0e73597adb50130775550b48e"
+            },
+            "procedure": "0x145e27300",
+            "slice_virtual_address": "0x145e27300",
+            "evidence_id": "ev_4ea3ab6b12e0ed5a9201bdda73cf58af6a67cbc5998714ed7e71975c28a3166f",
+            "provider": {
+              "id": "ghidra",
+              "name": "Ghidra",
+              "version": "12.1.4"
+            },
+            "analysis_profile_digest": "643b0d03b8d3baf1f08d1cb08cdd228fb48017139f599b4735584a24cb73636c"
+          },
+          "result_scope": {
+            "pseudocode_bytes": 318
+          },
+          "subject_binding": {
+            "kind": "exact_declared_PE_raw_slice",
+            "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+            "raw_sha256": "56fab00d07bd0fe36ebf5d8fd5fdc58df6b338a61dbcb28bc7a4d36e520950c4",
+            "virtual_address": "0x145e27300",
+            "file_offset": "0x5e26700",
+            "byte_count": 513,
+            "result": "runtime/analysis/objects/0f/0f89191dd79ab2754e15ee248c4d97f8caf403c0e73597adb50130775550b48e",
+            "semantic_or_runtime_correspondence_established": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "soulfire-launch",
+      "procedure": "0x145fac590",
+      "file_offset": "0x5fab990",
+      "byte_count": 2374,
+      "operations": [
+        {
+          "name": "procedure_pseudo_code",
+          "proof": {
+            "raw_input": {
+              "path": "runtime/fixgap-soulfire-01410/cast.bin",
+              "sha256": "b19ccf847c2def18dcd54ff0b65bbf40430e7353351f93ce3d9083b1c294ef86"
+            },
+            "plan": {
+              "path": "runtime/fixgap-soulfire-01410/cast.json",
+              "sha256": "5c1c1d4ce830962c44ccebcf9e2bac0cb5d77a75bcc2d4eaf8017a61decd5fd9"
+            },
+            "journal": {
+              "path": "runtime/fixgap-soulfire-01410/cast/journal.json",
+              "sha256": "3f8ff165e3012959c9e3933f0f3271dd8a6116f453b0075feca2a256ee956604"
+            },
+            "result": {
+              "path": "runtime/fixgap-soulfire-01410/cast/results/e5cd96340c7d917a1790b9bf982e2a830a003cd2621037f5ae1100d56a5095cd-682919d6b3ae2895.json",
+              "sha256": "f2f0283521d1214f97ba219f32dbf67586ca11acb96f1fc62ea18b67049df39c"
+            },
+            "procedure": "0x145fac590",
+            "slice_virtual_address": "0x145fac590",
+            "evidence_id": "ev_2b4435372c2fcbdcd881a7ae1cd1116c751d06ee974de421b5f73de304dc3416",
+            "provider": {
+              "id": "ghidra",
+              "name": "Ghidra",
+              "version": "12.1.4"
+            },
+            "analysis_profile_digest": "0940268e6af5393685614db69d50e7ec8b58c9354559e6fdafce52772041f625"
+          },
+          "result_scope": {
+            "pseudocode_bytes": 10275
+          },
+          "subject_binding": {
+            "kind": "exact_declared_PE_raw_slice",
+            "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+            "raw_sha256": "b19ccf847c2def18dcd54ff0b65bbf40430e7353351f93ce3d9083b1c294ef86",
+            "virtual_address": "0x145fac590",
+            "file_offset": "0x5fab990",
+            "byte_count": 2374,
+            "result": "runtime/analysis/objects/f2/f2f0283521d1214f97ba219f32dbf67586ca11acb96f1fc62ea18b67049df39c",
+            "semantic_or_runtime_correspondence_established": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "soulfire-tooltip",
+      "procedure": "0x145fae6c0",
+      "file_offset": "0x5fadac0",
+      "byte_count": 6133,
+      "operations": [
+        {
+          "name": "procedure_pseudo_code",
+          "proof": {
+            "raw_input": {
+              "path": "runtime/fixgap-soulfire-01410/tooltip.bin",
+              "sha256": "2d66c06588b104b7749b84e496031cc74dcff053b3467a5f3c20dfcd96a0201c"
+            },
+            "plan": {
+              "path": "runtime/fixgap-soulfire-01410/tooltip.json",
+              "sha256": "240ac5f840dca8c8d9938604e9219722d0c706e819fd1a0703e9a019aacd5b53"
+            },
+            "journal": {
+              "path": "runtime/fixgap-soulfire-01410/tooltip/journal.json",
+              "sha256": "9e694834b6013bc652b37988450235a406552dc18b7633821aab49ad9731091c"
+            },
+            "result": {
+              "path": "runtime/fixgap-soulfire-01410/tooltip/results/b1d32bca6775c99fddc61a2f0ed8eadb60de21837e1e7ea69e54e926d6ac407d-1f0382626d1043f6.json",
+              "sha256": "5a276ae53c2bd5565b333b80f463d550e2656225f69ac6e344d9eb4fe3ad2f07"
+            },
+            "procedure": "0x145fae6c0",
+            "slice_virtual_address": "0x145fae6c0",
+            "evidence_id": "ev_0f06e9abaaad47596735ed8200317699cbd30f1e590d02db667f460f4e810024",
+            "provider": {
+              "id": "ghidra",
+              "name": "Ghidra",
+              "version": "12.1.4"
+            },
+            "analysis_profile_digest": "dce8ddf6f5f09d75a6c9fa48b64c17b036d23a7d66b17fc09f5c456292a12983"
+          },
+          "result_scope": {
+            "pseudocode_bytes": 1966
+          },
+          "subject_binding": {
+            "kind": "exact_declared_PE_raw_slice",
+            "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+            "raw_sha256": "2d66c06588b104b7749b84e496031cc74dcff053b3467a5f3c20dfcd96a0201c",
+            "virtual_address": "0x145fae6c0",
+            "file_offset": "0x5fadac0",
+            "byte_count": 6133,
+            "result": "runtime/analysis/objects/5a/5a276ae53c2bd5565b333b80f463d550e2656225f69ac6e344d9eb4fe3ad2f07",
+            "semantic_or_runtime_correspondence_established": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "coop-terminal-close",
+      "procedure": "0x145e8dc70",
+      "file_offset": "0x5e8d070",
+      "byte_count": 377,
+      "operations": [
+        {
+          "name": "analyze_function",
+          "proof": {
+            "raw_input": {
+              "path": "runtime/analysis/tasks/fixgap-206-exit-0.141.0/slices/picker-145e8dc70.bin",
+              "sha256": "74c021af31c50e669826d2d84a85b3b5b5273d26ab2ed29c466a598155c99153"
+            },
+            "plan": {
+              "path": "runtime/analysis/tasks/fixgap-206-exit-0.141.0/slices/plan-145e8dc70.json",
+              "sha256": "c3330518c487d49a8d93c33b6f9bb463ae89d9941d5a49680c3f5f7c032e3c13"
+            },
+            "journal": {
+              "path": "runtime/analysis/tasks/fixgap-206-exit-0.141.0/rea-145e8dc70/journal.json",
+              "sha256": "6c8e698d695c89bb1a1a2030b41fac2ce56829c5e4c4834635223655b7a09edc"
+            },
+            "result": {
+              "path": "runtime/analysis/tasks/fixgap-206-exit-0.141.0/rea-145e8dc70/results/92e289136a0296e7f3840f638d03b64f44f0915749a3e6e2c6bb34f15ba57176-1e2e869e9872c762.json",
+              "sha256": "86f28251737e790dd0ffc56e2bab4843f6bd6c1ea7910128c78a5878284f07f5"
+            },
+            "procedure": "0x145e8dc70",
+            "slice_virtual_address": "0x145e8dc70",
+            "evidence_id": "ev_2a83f2a975a7f83bb74c928e77019ddb28ed74b807f2c883d4ce60f2c251cffe",
+            "provider": {
+              "id": "ghidra",
+              "name": "Ghidra",
+              "version": "12.1.4"
+            },
+            "analysis_profile_digest": "ecf4f14a906578ab6772f73c38fa4f822e16b7f4b6da8f3beb22394bfe9a4c50"
+          },
+          "result_scope": {},
+          "subject_binding": {
+            "kind": "exact_declared_PE_raw_slice",
+            "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+            "raw_sha256": "74c021af31c50e669826d2d84a85b3b5b5273d26ab2ed29c466a598155c99153",
+            "virtual_address": "0x145e8dc70",
+            "file_offset": "0x5e8d070",
+            "byte_count": 377,
+            "result": "runtime/analysis/objects/86/86f28251737e790dd0ffc56e2bab4843f6bd6c1ea7910128c78a5878284f07f5",
+            "semantic_or_runtime_correspondence_established": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "coop-inspection-lifecycle",
+      "procedure": "0x1401c6bf0",
+      "file_offset": "0x1c5ff0",
+      "byte_count": 1908,
+      "operations": [
+        {
+          "name": "analyze_function",
+          "proof": {
+            "raw_input": {
+              "path": "runtime/analysis/tasks/fixgap-299-inspect-0.141.0/slices/picker-1401c6bf0.bin",
+              "sha256": "1460373ddc06f32e62bd6160e461ff8349ecbfc8b69bd539d7d6c126a366309b"
+            },
+            "plan": {
+              "path": "runtime/analysis/tasks/fixgap-299-inspect-0.141.0/slices/plan-1401c6bf0.json",
+              "sha256": "3c4149b7215bf637c17d714c6a16e6dbdb4b1f39ad36084c5ac36e2523f85a88"
+            },
+            "journal": {
+              "path": "runtime/analysis/tasks/fixgap-299-inspect-0.141.0/rea-1401c6bf0/journal.json",
+              "sha256": "254da82c434e2b78190a23adc097a3d61a9dbe2414e5493cc49e8a7c93f8744d"
+            },
+            "result": {
+              "path": "runtime/analysis/tasks/fixgap-299-inspect-0.141.0/rea-1401c6bf0/results/77262a76aa6c62f5229a0b466daa00acc6cb5ed4143d63c9cc92157183a1c312-29bdadb42c93ccb3.json",
+              "sha256": "ff29ebc46f80c77bda2a63526a768146a2fdbdebe4e764d1bf70a97c723a9c97"
+            },
+            "procedure": "0x1401c6bf0",
+            "slice_virtual_address": "0x1401c6bf0",
+            "evidence_id": "ev_85d5b9a1c9d6482e13fd5233f47dc0fc7bacc20f0cbd789ba105efb92277729f",
+            "provider": {
+              "id": "ghidra",
+              "name": "Ghidra",
+              "version": "12.1.4"
+            },
+            "analysis_profile_digest": "5bbee2bbe898754771635a799d64ccd7fb5fec9f44a93b5642484832b458aa57"
+          },
+          "result_scope": {},
+          "subject_binding": {
+            "kind": "exact_declared_PE_raw_slice",
+            "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+            "raw_sha256": "1460373ddc06f32e62bd6160e461ff8349ecbfc8b69bd539d7d6c126a366309b",
+            "virtual_address": "0x1401c6bf0",
+            "file_offset": "0x1c5ff0",
+            "byte_count": 1908,
+            "result": "runtime/analysis/objects/ff/ff29ebc46f80c77bda2a63526a768146a2fdbdebe4e764d1bf70a97c723a9c97",
+            "semantic_or_runtime_correspondence_established": false
+          }
+        }
+      ]
+    }
+  ],
+  "limits": "Retained Ghidra receipts for selected exact PE raw slices. External producers and consumers need their separately recorded PE evidence. These results establish no full-image semantic closure or runtime parity."
+}

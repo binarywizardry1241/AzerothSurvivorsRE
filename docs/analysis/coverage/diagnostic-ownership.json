@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.140.0",
+    "version": "0.141.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
-    "size_bytes": 151521280
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
   },
   "generator": {
     "path": "scripts/discover-native-ownership.py",
@@ -15,19 +15,19 @@
     "decoder_version": "5.0.7"
   },
   "inventory": {
-    "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/diagnostic-ownership.json",
-    "sha256": "bfc7c94d107f2fec75823017643a08027480530168c5057fe7a0277dc11eebd1",
+    "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/diagnostic-ownership.json",
+    "sha256": "752192ffd18c4aa84bac2c038bedb848424a79a9c19cc9dfd5f92b3ae3f335cf",
     "regenerate": "python3 -B scripts/discover-native-ownership.py --write"
   },
   "counts": {
-    "candidate_unwind_extents_decoded": 7163,
-    "instructions_in_candidate_extents": 2180140,
-    "decoded_bytes_summed_across_candidate_extents": 10109173,
-    "diagnostic_paths": 844,
-    "custom_diagnostic_paths": 82,
-    "verified_instruction_references": 19938,
-    "paths_with_verified_references": 689,
-    "custom_paths_with_verified_references": 82,
+    "candidate_unwind_extents_decoded": 7170,
+    "instructions_in_candidate_extents": 2179467,
+    "decoded_bytes_summed_across_candidate_extents": 10107413,
+    "diagnostic_paths": 845,
+    "custom_diagnostic_paths": 83,
+    "verified_instruction_references": 19956,
+    "paths_with_verified_references": 690,
+    "custom_paths_with_verified_references": 83,
     "unverified_candidates": 7
   },
   "custom_diagnostics": [
@@ -69,14 +69,14 @@
     {
       "path": "crates/wenilla-rogue-app/src/screens/codex.rs",
       "system_id": "custom-app-screens-codex",
-      "verified_instruction_references": 39,
-      "candidate_native_owner_count": 14,
+      "verified_instruction_references": 41,
+      "candidate_native_owner_count": 15,
       "unverified_byte_candidates": 0
     },
     {
       "path": "crates/wenilla-rogue-app/src/screens/coop.rs",
       "system_id": "custom-app-screens-coop",
-      "verified_instruction_references": 8,
+      "verified_instruction_references": 11,
       "candidate_native_owner_count": 4,
       "unverified_byte_candidates": 0
     },
@@ -146,7 +146,7 @@
     {
       "path": "crates/wenilla-rogue-app/src/screens/mod.rs",
       "system_id": "custom-app-screens-mod",
-      "verified_instruction_references": 33,
+      "verified_instruction_references": 34,
       "candidate_native_owner_count": 12,
       "unverified_byte_candidates": 0
     },
@@ -202,8 +202,8 @@
     {
       "path": "crates/wenilla-rogue-app/src/screens/runmods.rs",
       "system_id": "custom-app-screens-runmods",
-      "verified_instruction_references": 5,
-      "candidate_native_owner_count": 2,
+      "verified_instruction_references": 6,
+      "candidate_native_owner_count": 3,
       "unverified_byte_candidates": 0
     },
     {
@@ -251,15 +251,15 @@
     {
       "path": "crates/wenilla-rogue/src/achievements.rs",
       "system_id": "custom-game-achievements",
-      "verified_instruction_references": 3,
-      "candidate_native_owner_count": 2,
+      "verified_instruction_references": 8,
+      "candidate_native_owner_count": 4,
       "unverified_byte_candidates": 0
     },
     {
       "path": "crates/wenilla-rogue/src/appearance.rs",
       "system_id": "custom-game-appearance",
-      "verified_instruction_references": 2,
-      "candidate_native_owner_count": 1,
+      "verified_instruction_references": 4,
+      "candidate_native_owner_count": 2,
       "unverified_byte_candidates": 0
     },
     {
@@ -279,8 +279,8 @@
     {
       "path": "crates/wenilla-rogue/src/content.rs",
       "system_id": "custom-game-content",
-      "verified_instruction_references": 64,
-      "candidate_native_owner_count": 51,
+      "verified_instruction_references": 63,
+      "candidate_native_owner_count": 50,
       "unverified_byte_candidates": 0
     },
     {
@@ -349,8 +349,8 @@
     {
       "path": "crates/wenilla-rogue/src/game/abilities.rs",
       "system_id": "custom-game-game-abilities",
-      "verified_instruction_references": 20,
-      "candidate_native_owner_count": 6,
+      "verified_instruction_references": 22,
+      "candidate_native_owner_count": 7,
       "unverified_byte_candidates": 0
     },
     {
@@ -398,8 +398,8 @@
     {
       "path": "crates/wenilla-rogue/src/game/enemy.rs",
       "system_id": "custom-game-game-enemy",
-      "verified_instruction_references": 38,
-      "candidate_native_owner_count": 15,
+      "verified_instruction_references": 36,
+      "candidate_native_owner_count": 14,
       "unverified_byte_candidates": 0
     },
     {
@@ -426,8 +426,8 @@
     {
       "path": "crates/wenilla-rogue/src/game/kill_command.rs",
       "system_id": "custom-game-game-kill-command",
-      "verified_instruction_references": 33,
-      "candidate_native_owner_count": 12,
+      "verified_instruction_references": 34,
+      "candidate_native_owner_count": 13,
       "unverified_byte_candidates": 0
     },
     {
@@ -440,8 +440,8 @@
     {
       "path": "crates/wenilla-rogue/src/game/meterlog.rs",
       "system_id": "custom-game-game-meterlog",
-      "verified_instruction_references": 71,
-      "candidate_native_owner_count": 11,
+      "verified_instruction_references": 65,
+      "candidate_native_owner_count": 10,
       "unverified_byte_candidates": 0
     },
     {
@@ -454,8 +454,8 @@
     {
       "path": "crates/wenilla-rogue/src/game/party.rs",
       "system_id": "custom-game-game-party",
-      "verified_instruction_references": 60,
-      "candidate_native_owner_count": 27,
+      "verified_instruction_references": 61,
+      "candidate_native_owner_count": 28,
       "unverified_byte_candidates": 0
     },
     {
@@ -475,8 +475,8 @@
     {
       "path": "crates/wenilla-rogue/src/game/scripts/mod.rs",
       "system_id": "custom-game-game-scripts-mod",
-      "verified_instruction_references": 15,
-      "candidate_native_owner_count": 3,
+      "verified_instruction_references": 23,
+      "candidate_native_owner_count": 5,
       "unverified_byte_candidates": 0
     },
     {
@@ -505,6 +505,13 @@
       "system_id": "custom-game-gear",
       "verified_instruction_references": 18,
       "candidate_native_owner_count": 12,
+      "unverified_byte_candidates": 0
+    },
+    {
+      "path": "crates/wenilla-rogue/src/gear/t05.rs",
+      "system_id": "custom-game-gear-t05",
+      "verified_instruction_references": 1,
+      "candidate_native_owner_count": 1,
       "unverified_byte_candidates": 0
     },
     {
@@ -624,7 +631,7 @@
     },
     "source_mapping": {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "44bd4819dad0ad3fd345a4e706413bc8af7f489dcf59ce78b78b539a3c35c17e"
+      "sha256": "f9531a6cc69c5b8a398ee1c35feb8aa95fe1520112f6ac439b14072a0e8e0e9d"
     },
     "native_execution_sources": [
       {
@@ -638,7 +645,7 @@
         "git_commit": "054d7a8918f1f94dc48fca406b23888a97cea3bd"
       }
     ],
-    "native_fact_sha256": "f820b9172ca786267dd2470afb9d52b9010740aecc6ee174f3e75635c1342509",
+    "native_fact_sha256": "766062e4b14217bd363f05ce04f07655e7c697f145d0fdb8aec52f18fb210893",
     "scope": "Current system IDs/custom membership only; frozen native payload and original producer remain unchanged. No source or semantic proof is promoted."
   },
   "fresh_native_verification": {
@@ -650,7 +657,7 @@
       "decoder": "Capstone",
       "decoder_version": "5.0.7"
     },
-    "native_fact_sha256": "f820b9172ca786267dd2470afb9d52b9010740aecc6ee174f3e75635c1342509",
+    "native_fact_sha256": "766062e4b14217bd363f05ce04f07655e7c697f145d0fdb8aec52f18fb210893",
     "method": "fresh_decode_exact_native_fact_comparison"
   }
 }

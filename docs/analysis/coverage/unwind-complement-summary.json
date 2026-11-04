@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.140.0",
+    "version": "0.141.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
-    "size_bytes": 151521280
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
   },
   "generator": {
     "path": "scripts/inventory-unwind-complement.py",
@@ -15,51 +15,51 @@
     "parser_sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa",
     "pe_helper_sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
   },
-  "input_summary_sha256": "7563a7467d2bf35231c2988252f81b21e0d70696b9c31ac60adf0797cedb0890",
-  "input_inventory_sha256": "0314c6dbd04ee5ea4d46c701d03c8e97e3bedf35d4052252b123809e739297dc",
+  "input_summary_sha256": "783f8e6499ac6130b17abd764eb64da8bf8d9d635418837c246f0dbe6c227d2b",
+  "input_inventory_sha256": "90f53f4a3315cbf15295900bf2a61dc5ba0173d812a60e901506d4647df20e47",
   "inventory": {
-    "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/unwind-complement.sqlite",
-    "sha256": "3ba03889d5e0056ec4a4768d0561bcd3572e18de778a425c7166dca45b6315fc",
+    "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/unwind-complement.sqlite",
+    "sha256": "c3b122c3ac58757ed0021dc3f514b72b1d0db60840270df9821caf7f65351fcb",
     "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write"
   },
   "counts": {
-    "complement_regions": 351537,
-    "mapped_regions": 351537,
-    "executable_complement_bytes": 5378354,
-    "file_backed_bytes": 5378354,
+    "complement_regions": 351512,
+    "mapped_regions": 351512,
+    "executable_complement_bytes": 5376717,
+    "file_backed_bytes": 5376717,
     "virtual_zero_fill_bytes": 0,
-    "incoming_seed_leads": 409806,
-    "unique_seed_addresses": 2862,
+    "incoming_seed_leads": 409790,
+    "unique_seed_addresses": 2860,
     "seed_kinds": {
-      "call_direct": 393967,
-      "jump_direct": 15839
+      "call_direct": 393950,
+      "jump_direct": 15840
     },
-    "decoded_instruction_records": 78693,
-    "decoded_bytes_summed": 337687,
-    "decoded_bytes_union": 337687,
+    "decoded_instruction_records": 78661,
+    "decoded_bytes_summed": 337610,
+    "decoded_bytes_union": 337610,
     "overlapping_decode_bytes": 0,
     "reference_kinds": {
       "address": 1628,
       "call_direct": 18,
-      "jump_direct": 10372,
-      "jump_indirect": 666,
-      "memory": 1275
+      "jump_direct": 10360,
+      "jump_indirect": 665,
+      "memory": 1274
     },
     "stop_reasons": {
-      "jump_no_fallthrough": 2854,
+      "jump_no_fallthrough": 2850,
       "outside_file_backed_complement": 39,
-      "return": 3050,
+      "return": 3047,
       "trap_or_privileged_exit": 7
     },
     "imported_pointer_transfer_sites": 126,
     "imported_pointer_slots": 119
   },
   "residual_byte_partition": {
-    "decoded_candidate_bytes": 337687,
-    "mixed_or_other": 2350049,
-    "uniform_cc_candidate": 981804,
-    "uniform_nop_candidate": 11567,
-    "x86_padding_sequence_candidate": 1697247
+    "decoded_candidate_bytes": 337610,
+    "mixed_or_other": 2348349,
+    "uniform_cc_candidate": 981688,
+    "uniform_nop_candidate": 11544,
+    "x86_padding_sequence_candidate": 1697526
   },
   "byte_accounting_complete": true,
   "seeded_flow_pass_complete": true,

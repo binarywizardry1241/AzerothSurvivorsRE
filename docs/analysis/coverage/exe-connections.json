@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.140.0",
+    "version": "0.141.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
-    "size_bytes": 151521280
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
   },
   "generator": {
     "path": "scripts/audit-exe-connections.py",
@@ -23,89 +23,90 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "d02b8da3404d91ba57bf640150547c41db2ef1e467da0232f5991afa9059ea15"
+      "sha256": "f9531a6cc69c5b8a398ee1c35feb8aa95fe1520112f6ac439b14072a0e8e0e9d"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
-      "sha256": "dddd28dfee50a6fb82043d2ce167f393699f47b00ac1c0c474f8a5affe98ef36"
+      "sha256": "1989e52bfa7b23f05005c84e91edb5f61c72959443d4b14c3f27d3f93462d985"
     },
     {
       "path": "docs/analysis/coverage/historical-range-revalidation.json",
-      "sha256": "862facac5ddfdc55902accb4f2eb4dacbec5b373b5b2b33a581dabedcc73cded"
+      "sha256": "e8374aaf0ffb1994009c15933e33e890b9312b1aaa293415e106e325d251fe86"
     },
     {
-      "path": "docs/analysis/evidence/0.140.0/native-custom-coverage.json",
-      "sha256": "dff5b892164c7beebc7af5bb2e4e92abf7a3e79d8bab3423c9fd53d3fc440c90"
+      "path": "docs/analysis/evidence/0.141.0/native-custom-coverage.json",
+      "sha256": "d8bea97954eb41463f6926524f38d285cfb06480bbaf5aacf9a922633dc27ad9"
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "a33639ed7bee923115aac4e68247ea8c4632109a81c31a28f701ec7b2bce4ef2"
+      "sha256": "baa34387dd4a0909e659a6a8d0abf3bae27bf857c0d5f266011d65dcfc05dd40"
     },
     {
-      "path": "docs/analysis/coverage/full-image-selected-0.140.0.json",
-      "sha256": "70113c16856462f272d978f31d18a4c5a534b7ea636c349f63380a339ac10759"
+      "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
+      "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
     }
   ],
   "current_native_body_census": {
-    "path": "docs/analysis/coverage/full-image-selected-0.140.0.json",
-    "sha256": "70113c16856462f272d978f31d18a4c5a534b7ea636c349f63380a339ac10759"
+    "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
+    "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
   },
   "supporting_inputs": [
     {
       "path": "docs/analysis/coverage/native-ownership-classification.json",
-      "sha256": "0678c18eb4f8bbb50d5bd84131e0c6fc508d410b855b2face0f42ac5cb11f058",
+      "sha256": "060537ee5f48e3564b684e3c6c8687281146f778c0f197f614cb96433690fb07",
       "target": {
-        "version": "0.140.0",
+        "version": "0.141.0",
         "path": "installed-game/AzerothSurvivors.exe",
-        "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
-        "size_bytes": 151521280
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "size_bytes": 151493632
       },
       "role": "current_supporting_ownership"
     }
   ],
   "counts": {
-    "custom_system_rows": 82,
-    "with_registered_current_evidence": 82,
-    "without_registered_current_evidence": 0,
-    "with_registered_current_bounded_contract": 5,
-    "without_registered_current_bounded_contract": 77,
-    "without_source_correspondence": 13,
+    "custom_system_rows": 83,
+    "with_registered_current_evidence": 30,
+    "without_registered_current_evidence": 53,
+    "with_registered_current_bounded_contract": 30,
+    "without_registered_current_bounded_contract": 53,
+    "without_source_correspondence": 0,
     "ownerless_native_location_references": 67,
     "paths_with_ownerless_native_location_references": 15,
-    "retained_evidence_json_documents": 1819,
+    "retained_evidence_json_documents": 1846,
     "evidence_document_identity_roles": {
-      "current": 13,
-      "historical": 1714,
+      "current": 20,
+      "historical": 1734,
       "requires_owning_manifest_or_review": 92
     },
-    "directly_embedded_assets": 183,
+    "directly_embedded_assets": 193,
     "embedded_asset_provenance": {
-      "historical": 126,
-      "not_declared_in_asset": 57
+      "current": 1,
+      "historical": 132,
+      "not_declared_in_asset": 60
     },
-    "historical_range_commitments": 23337,
+    "historical_range_commitments": 23474,
     "historical_range_results": {
-      "ambiguous-exact-bytes-at-least-two-locations": 5262,
-      "canonical-preimage-bytes-hash-verified": 12715,
-      "canonical-preimage-bytes-unavailable": 10622,
+      "ambiguous-exact-bytes-at-least-two-locations": 5269,
+      "canonical-preimage-bytes-hash-verified": 12737,
+      "canonical-preimage-bytes-unavailable": 10737,
       "documents-admitted-by-exact-owning-manifest-hash": 4,
       "documents-with-ambiguous-owning-target-bindings": 1,
-      "documents-with-explicit-target-identity": 1727,
+      "documents-with-explicit-target-identity": 1753,
       "documents-without-explicit-target-or-exact-manifest-binding": 73,
-      "exact-bytes-not-found": 5986,
-      "historical-documents-with-range-commitments": 1005,
-      "historical-documents-without-supported-range-commitments": 713,
-      "historical-location-not-revalidated": 23328,
+      "exact-bytes-not-found": 6009,
+      "historical-documents-with-range-commitments": 1015,
+      "historical-documents-without-supported-range-commitments": 723,
+      "historical-location-not-revalidated": 23458,
       "preimage:assembly-byte-columns": 1840,
       "preimage:committed-native-range-artifact": 25,
       "preimage:contiguous-addressed-json-spans": 191,
-      "preimage:explicit-json-bytes": 94,
-      "preimage:explicit-json-bytes_hex": 1458,
+      "preimage:explicit-json-bytes": 92,
+      "preimage:explicit-json-bytes_hex": 1480,
       "preimage:explicit-json-hex": 5697,
       "preimage:explicit-json-native_record_hex": 132,
       "preimage:explicit-json-payload": 241,
       "preimage:explicit-json-raw_hex": 1652,
-      "preimage:literal-json-utf8": 1022,
+      "preimage:literal-json-utf8": 1024,
       "preimage:little-endian-enemy-u32-words": 7,
       "preimage:little-endian-i32-relative-entries": 2,
       "preimage:little-endian-notification-14Q": 1,
@@ -118,13 +119,13 @@
       "preimage:native-range-artifact-with-added-terminal-LF": 1,
       "preimage:ordered-verbatim-64-byte-effects": 295,
       "preimage:verbatim-notification-constant-bytes": 17,
-      "same-address-byte-match": 2,
-      "same-offset-byte-match": 7,
-      "selected-target-documents-excluded-from-historical-audit": 13,
-      "unique-exact-byte-range": 1467,
-      "unique-match:executable-without-complete-body-owner": 46,
-      "unique-match:non-executable-data-or-headers": 1319,
-      "unique-match:whole-native-body-range": 102
+      "same-address-byte-match": 5,
+      "same-offset-byte-match": 11,
+      "selected-target-documents-excluded-from-historical-audit": 19,
+      "unique-exact-byte-range": 1459,
+      "unique-match:executable-without-complete-body-owner": 42,
+      "unique-match:non-executable-data-or-headers": 1321,
+      "unique-match:whole-native-body-range": 96
     }
   },
   "systems": [
@@ -227,14 +228,14 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x14003c770"
+        "0x14003dba0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-lib]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -361,41 +362,46 @@
         290,
         291,
         297,
-        299
+        299,
+        314
       ],
       "location_reference_count": 33,
       "location_body_owners": [
-        "0x1402246d0",
-        "0x140234e50",
-        "0x140236600",
-        "0x140242af0",
-        "0x1402433c0",
-        "0x140246550",
-        "0x140247460",
-        "0x140379050",
-        "0x1403c99d0",
-        "0x1403cfc60",
-        "0x1403d35d0",
-        "0x1403d7b30",
-        "0x1403dd780",
-        "0x1403dec60",
-        "0x1403e06a0"
+        "0x1402ca3b0",
+        "0x1402db6d0",
+        "0x1402dce80",
+        "0x1402eace0",
+        "0x1402eb5b0",
+        "0x1402ee740",
+        "0x1402ef650",
+        "0x140332360",
+        "0x140382f90",
+        "0x1403892b0",
+        "0x14038cc60",
+        "0x1403911c0",
+        "0x140396e10",
+        "0x1403982f0",
+        "0x140399d30"
       ],
       "ownerless_location_sites": [
-        "0x1400edbb3",
-        "0x140245b6d",
-        "0x140245b80",
-        "0x140245b5a",
-        "0x140245b47"
+        "0x1401493a3",
+        "0x1402edd5d",
+        "0x1402edd70",
+        "0x1402edd4a",
+        "0x1402edd37"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-armory]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/scholomance-loot-0.141.0.md": "Both recovered rate label constructors present base piece odds independently of owned-item priority."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/scholomance-loot-0.141.0.md"
+      ]
     },
     {
       "id": "custom-app-screens-backdrop",
@@ -429,14 +435,14 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x1400f2070"
+        "0x14014d790"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-backdrop]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -506,12 +512,12 @@
       ],
       "location_reference_count": 24,
       "location_body_owners": [
-        "0x1401a28d0",
-        "0x1401ac340",
-        "0x1401b6620",
-        "0x1401b6e50",
-        "0x1401b7ee0",
-        "0x1401bb4f0"
+        "0x1401ac200",
+        "0x1401b5c70",
+        "0x1401c02f0",
+        "0x1401c0b20",
+        "0x1401c1bb0",
+        "0x1401c51c0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -519,9 +525,13 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-cards]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/amulet-enter-0.141.0.md": "Selected confirmation descriptor, captured Enter aliases, and release/typing admission."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/amulet-enter-0.141.0.md"
+      ]
     },
     {
       "id": "custom-app-screens-codex",
@@ -564,26 +574,26 @@
       ],
       "location_reference_count": 38,
       "location_body_owners": [
-        "0x140024c70",
-        "0x14006f7e0",
-        "0x14009c6b0",
-        "0x1400a1870",
-        "0x14014c6a0",
-        "0x14015ba50",
-        "0x14015bb90",
-        "0x140168cb0",
-        "0x14021b830",
-        "0x14021c4d0",
-        "0x14021da40",
-        "0x1402224e0",
-        "0x1403b8bb0"
+        "0x140025c70",
+        "0x1400741a0",
+        "0x140074990",
+        "0x140075630",
+        "0x1400764a0",
+        "0x14007a270",
+        "0x1400a87d0",
+        "0x1400ad350",
+        "0x1400e5590",
+        "0x1400e56d0",
+        "0x1400f1080",
+        "0x1402c8220",
+        "0x140371ee0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-codex]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -616,16 +626,16 @@
       ],
       "location_reference_count": 11,
       "location_body_owners": [
-        "0x140081590",
-        "0x140084090",
-        "0x14008bf80"
+        "0x140092b30",
+        "0x140095600",
+        "0x14009cf00"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-discord]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -714,20 +724,20 @@
       ],
       "location_reference_count": 22,
       "location_body_owners": [
-        "0x1401164f0",
-        "0x14011f890",
-        "0x140121210",
-        "0x140122190",
-        "0x140123570",
-        "0x140124c40",
-        "0x140127a80"
+        "0x14016fc40",
+        "0x140178fc0",
+        "0x14017a940",
+        "0x14017b8c0",
+        "0x14017cca0",
+        "0x14017e370",
+        "0x1401811b0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-hud]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -779,14 +789,14 @@
       ],
       "location_reference_count": 3,
       "location_body_owners": [
-        "0x1401bfb40"
+        "0x1401c9820"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-hudparts]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -868,14 +878,14 @@
       ],
       "location_reference_count": 3,
       "location_body_owners": [
-        "0x140183980"
+        "0x14010e1d0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-language]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -920,13 +930,13 @@
       ],
       "location_reference_count": 19,
       "location_body_owners": [
-        "0x14002aa20",
-        "0x1400744f0",
-        "0x140332c80",
-        "0x140333f90",
-        "0x140338170",
-        "0x140339100",
-        "0x1403398d0"
+        "0x14002b630",
+        "0x14007f8b0",
+        "0x14041e0e0",
+        "0x14041f3f0",
+        "0x140423780",
+        "0x1404246c0",
+        "0x140424e80"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -934,9 +944,13 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-meter]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/meter-scroll-0.141.0.md": "Named viewport and scrollbar target identity, Reset baseline fields and row rebuild."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/meter-scroll-0.141.0.md"
+      ]
     },
     {
       "id": "custom-app-screens-mod",
@@ -1003,23 +1017,23 @@
         128,
         300
       ],
-      "location_reference_count": 24,
+      "location_reference_count": 25,
       "location_body_owners": [
-        "0x1400435d0",
-        "0x14004c1a0",
-        "0x14004d600",
-        "0x14004de30",
-        "0x14004e670",
-        "0x14004f5e0",
-        "0x14004fcd0",
-        "0x1400535f0"
+        "0x140044ab0",
+        "0x14004e3d0",
+        "0x14004f830",
+        "0x140050060",
+        "0x1400508a0",
+        "0x1400518c0",
+        "0x140051fb0",
+        "0x1400558d0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-mod]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -1117,30 +1131,30 @@
       ],
       "location_reference_count": 26,
       "location_body_owners": [
-        "0x1401e5e00",
-        "0x1401e6320",
-        "0x1401e8080",
-        "0x1401e9280",
-        "0x1401f4360",
-        "0x1401f4aa0",
-        "0x1401f5b60"
+        "0x1401efc40",
+        "0x1401f0160",
+        "0x1401f1ec0",
+        "0x1401f30c0",
+        "0x1401fe140",
+        "0x1401fe880",
+        "0x1401ff940"
       ],
       "ownerless_location_sites": [
-        "0x1401e84dc",
-        "0x1401e84b0",
-        "0x1401e9041",
-        "0x1401f7d59",
-        "0x1401f7d9c",
-        "0x1401f855f",
-        "0x1401f7ddf",
-        "0x1401fd423",
-        "0x1401fd150"
+        "0x1401f231c",
+        "0x1401f22f0",
+        "0x1401f2e81",
+        "0x140201b39",
+        "0x140201b7c",
+        "0x14020233f",
+        "0x140201bbf",
+        "0x140207203",
+        "0x140206f30"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-options]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -1177,16 +1191,16 @@
       ],
       "location_reference_count": 3,
       "location_body_owners": [
-        "0x1400435d0",
-        "0x140056e90",
-        "0x140059210"
+        "0x140044ab0",
+        "0x140059250",
+        "0x14005b710"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-pad]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -1240,18 +1254,18 @@
       ],
       "location_reference_count": 15,
       "location_body_owners": [
-        "0x1400ea0d0",
-        "0x1400efe50",
-        "0x1403ea2a0",
-        "0x1403f2ed0",
-        "0x1403f4b40"
+        "0x140145830",
+        "0x14014b550",
+        "0x1403a3930",
+        "0x1403ac560",
+        "0x1403ae1d0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-picker]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -1351,18 +1365,18 @@
       ],
       "location_reference_count": 4,
       "location_body_owners": [
-        "0x140410180"
+        "0x1403c9810"
       ],
       "ownerless_location_sites": [
-        "0x1403016a0",
-        "0x1403016c5",
-        "0x1403016b6"
+        "0x1402b8a50",
+        "0x1402b8a75",
+        "0x1402b8a66"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-rewards]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -1464,14 +1478,14 @@
       ],
       "location_reference_count": 4,
       "location_body_owners": [
-        "0x140182550"
+        "0x14010cdb0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-runmods]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -1535,8 +1549,8 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x1402e3750",
-        "0x14041fa30"
+        "0x14029ac40",
+        "0x1403d90c0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -1544,9 +1558,13 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-talents]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/improved-mind-blast-0.141.0.md": "Current rank-dependent localized Improved Mind Blast total."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/improved-mind-blast-0.141.0.md"
+      ]
     },
     {
       "id": "custom-app-screens-talentview",
@@ -1585,6 +1603,7 @@
         12,
         22,
         23,
+        34,
         41,
         47,
         79,
@@ -1592,8 +1611,8 @@
       ],
       "location_reference_count": 6,
       "location_body_owners": [
-        "0x1400e87d0",
-        "0x1400e96e0"
+        "0x140143f20",
+        "0x140144e30"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -1601,9 +1620,13 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-talentview]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/improved-mind-blast-0.141.0.md": "Current rank-dependent localized Improved Mind Blast total in the talent presentation."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/improved-mind-blast-0.141.0.md"
+      ]
     },
     {
       "id": "custom-app-screens-touch",
@@ -1631,16 +1654,16 @@
       ],
       "location_reference_count": 5,
       "location_body_owners": [
-        "0x140223400",
-        "0x14022caa0",
-        "0x1402411f0"
+        "0x1402c8f90",
+        "0x1402d2e70",
+        "0x1402e93e0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-touch]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -1672,16 +1695,16 @@
       ],
       "location_reference_count": 12,
       "location_body_owners": [
-        "0x1401ee910",
-        "0x1401ef4e0",
-        "0x1401f0440"
+        "0x1401f86f0",
+        "0x1401f92c0",
+        "0x1401fa220"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-update]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -1713,14 +1736,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x1401f3170"
+        "0x1401fcf50"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-xinput]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -1764,15 +1787,15 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x14008a4e0",
-        "0x1400d7c80"
+        "0x140080280",
+        "0x140135470"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-update]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -1897,10 +1920,11 @@
         299,
         315
       ],
-      "location_reference_count": 3,
+      "location_reference_count": 4,
       "location_body_owners": [
-        "0x145e4c2f0",
-        "0x145e4c9d0"
+        "0x145e4cf40",
+        "0x145e4d620",
+        "0x145e5eb00"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -1908,9 +1932,13 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-achievements]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/party-achievement-settlement-0.141.0.md": "Selected co-op feat and cooperative clear-history producers."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/party-achievement-settlement-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-appearance",
@@ -1937,7 +1965,9 @@
         "scripts/check-armory-slots-0.112.0.py",
         "scripts/check-secondary-menu-layout-0.112.0.py",
         "crates/azeroth-survivors-re/src/menu.rs",
-        "scripts/check-menu-preview-publication-0.112.0.py"
+        "scripts/check-menu-preview-publication-0.112.0.py",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs",
+        "crates/azeroth-survivors-re/src/coop_profile.rs"
       ],
       "source_anchors": [
         {
@@ -1986,14 +2016,14 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145db5830"
+        "0x145e29260"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-appearance]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -2043,14 +2073,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145f07df0"
+        "0x145fed7c0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-bindings]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -2059,6 +2089,7 @@
       "id": "custom-game-content",
       "original_path": "crates/wenilla-rogue/src/content.rs",
       "source_refs": [
+        "crates/azeroth-survivors-re/src/zones/scholomance.rs",
         "crates/azeroth-survivors-re/src/catalog.rs",
         "crates/azeroth-survivors-re/src/enemies/catalog.rs",
         "crates/azeroth-survivors-re/src/bosses/catalog.rs",
@@ -2108,74 +2139,74 @@
         250,
         293,
         294,
-        295
+        295,
+        312
       ],
-      "location_reference_count": 64,
+      "location_reference_count": 63,
       "location_body_owners": [
-        "0x145da3370",
-        "0x145db9600",
-        "0x145dba2c0",
-        "0x145dea6d0",
-        "0x145df6300",
-        "0x145df64f0",
-        "0x145df6760",
-        "0x145e307a0",
-        "0x145edfca0",
-        "0x145ee4340",
-        "0x145ef5940",
-        "0x145f39070",
-        "0x145f3c590",
-        "0x145f3c6c0",
-        "0x145f3f700",
-        "0x145f42c70",
-        "0x145f4afc0",
-        "0x145f4c680",
-        "0x145f83480",
-        "0x145f89950",
-        "0x145f90c30",
-        "0x145f97a60",
-        "0x145f988f0",
-        "0x145f9a2b0",
-        "0x145faa440",
-        "0x145fae260",
-        "0x145fb5030",
-        "0x145fb5110",
-        "0x145fb56e0",
-        "0x145fb6830",
-        "0x145fb8960",
-        "0x145fc2760",
-        "0x145fcefb0",
-        "0x145fd0d00",
-        "0x145fdf570",
-        "0x145fe1fa0",
-        "0x145fe3880",
-        "0x145fe48e0",
-        "0x145ffe180",
-        "0x146046010",
-        "0x14604c120",
-        "0x14604dc30",
-        "0x146064c90",
-        "0x146069f20",
-        "0x14606a400"
+        "0x145da23f0",
+        "0x145db1c20",
+        "0x145dbb1c0",
+        "0x145e0b690",
+        "0x145e177f0",
+        "0x145e179e0",
+        "0x145e17c50",
+        "0x145e31310",
+        "0x145f119a0",
+        "0x145f14aa0",
+        "0x145f14bd0",
+        "0x145f17c10",
+        "0x145f1a850",
+        "0x145f229b0",
+        "0x145f239b0",
+        "0x145f58b70",
+        "0x145f5e950",
+        "0x145f6ad50",
+        "0x145f6bbe0",
+        "0x145f6d340",
+        "0x145f7cfb0",
+        "0x145f80dc0",
+        "0x145f879b0",
+        "0x145f87a90",
+        "0x145f87e20",
+        "0x145f88ee0",
+        "0x145f8a810",
+        "0x145f945f0",
+        "0x145fa0e20",
+        "0x145fa2b70",
+        "0x145fb0cb0",
+        "0x145fb36e0",
+        "0x145fb4fc0",
+        "0x145fb6020",
+        "0x145fcf6e0",
+        "0x145fd98a0",
+        "0x145fff860",
+        "0x145ffffb0",
+        "0x14603f6b0",
+        "0x146045a10",
+        "0x146047520",
+        "0x14605e460",
+        "0x1460636f0",
+        "0x146063bd0"
       ],
       "ownerless_location_sites": [
-        "0x145f2712e",
-        "0x145f27166",
-        "0x145f856d4",
-        "0x145fbbe74",
-        "0x145fec49e",
-        "0x145ff1f65",
-        "0x146066ba7",
-        "0x146066bde",
-        "0x146066c12",
-        "0x14606ef94",
-        "0x14606efc4"
+        "0x145effb0e",
+        "0x145effb46",
+        "0x145f5ac6b",
+        "0x145f8dd24",
+        "0x145fbdbde",
+        "0x145fc3562",
+        "0x146060377",
+        "0x1460603ae",
+        "0x1460603e2",
+        "0x146068764",
+        "0x146068794"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-content]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -2208,17 +2239,17 @@
       ],
       "location_reference_count": 8,
       "location_body_owners": [
-        "0x145de1bd0",
-        "0x145e84390",
-        "0x14604e260",
-        "0x146062200"
+        "0x145e02b90",
+        "0x145e7eb10",
+        "0x146047b50",
+        "0x14605b9d0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-dbc]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -2321,14 +2352,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145e1c590"
+        "0x145eee440"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-driver]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -2373,23 +2404,27 @@
       ],
       "location_reference_count": 16,
       "location_body_owners": [
-        "0x145dba8a0",
-        "0x145e45560",
-        "0x145e5ec80",
-        "0x145e5f4f0",
-        "0x145e630a0"
+        "0x145dd4d90",
+        "0x145dd6330",
+        "0x145dd6ba0",
+        "0x145dda7b0",
+        "0x145e958a0"
       ],
       "ownerless_location_sites": [
-        "0x145e61f1b"
+        "0x145dd961c"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-fonts]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/font-table-publication-0.141.0.md": "TrueType augmentation, scaler and maxp publication/fallback boundary."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/font-table-publication-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-game-abilities",
@@ -2462,6 +2497,7 @@
         136,
         157,
         163,
+        176,
         177,
         188,
         198,
@@ -2487,32 +2523,44 @@
         305,
         307,
         308,
-        309
+        309,
+        316,
+        319
       ],
       "location_reference_count": 20,
       "location_body_owners": [
-        "0x145f823c0",
-        "0x145f83aa0",
-        "0x145f8c810",
-        "0x146046430"
+        "0x145f57aa0",
+        "0x145f59190",
+        "0x145f61700",
+        "0x14603fad0"
       ],
       "ownerless_location_sites": [
-        "0x145dd451f",
-        "0x145dd4528",
-        "0x145dd4504",
-        "0x145dd4516",
-        "0x145dd450d",
-        "0x145f80643",
-        "0x145f7ef88"
+        "0x145e274df",
+        "0x145e274e8",
+        "0x145e274cd",
+        "0x145e274d6",
+        "0x145e274c4",
+        "0x145f55cee",
+        "0x145f54cc8"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-abilities]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/counterattack-0.141.0.md": "Counterattack owner and free Immolation Trap cast with upgrade pass-through.",
+        "docs/analysis/resonant-shocks-0.141.0.md": "Initial Shock and one-extra-target helper, including rank damage and target exclusion.",
+        "docs/analysis/soulfire-0.141.0.md": "Soulfire extra-target selector and apply path, with current rank-dependent tooltip input.",
+        "docs/analysis/tranquility-overheal-0.141.0.md": "Selected heal callback credits full healing plus overhealing while preserving the Tree of Life shield cap."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/counterattack-0.141.0.md",
+        "docs/analysis/resonant-shocks-0.141.0.md",
+        "docs/analysis/soulfire-0.141.0.md",
+        "docs/analysis/tranquility-overheal-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-game-addon",
@@ -2609,14 +2657,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x146060a00"
+        "0x14605a1d0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-addon]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -2691,14 +2739,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145f3c6c0"
+        "0x145f14bd0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-auras]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -2735,7 +2783,9 @@
         "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
         "crates/azeroth-survivors-re/src/gameplay/mod.rs",
         "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
-        "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs"
+        "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs",
+        "crates/azeroth-survivors-re/src/run_pickups.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs"
       ],
       "source_anchors": [
         {
@@ -2765,17 +2815,17 @@
       ],
       "location_reference_count": 18,
       "location_body_owners": [
-        "0x145fd2310",
-        "0x145fd2700",
-        "0x145fd2940",
-        "0x145fd3790"
+        "0x145fa4640",
+        "0x145fa4a30",
+        "0x145fa4c70",
+        "0x145fa5ac0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-companions]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -2873,26 +2923,26 @@
       ],
       "location_reference_count": 29,
       "location_body_owners": [
-        "0x145fb8960",
-        "0x145fc2760",
-        "0x145fdf570",
-        "0x145fe0d50",
-        "0x145fe1fa0",
-        "0x145fe22f0",
-        "0x145fe2c30",
-        "0x145fe3880",
-        "0x145fe48e0",
-        "0x145fe4d60",
-        "0x145fe4f70",
-        "0x145fe5160",
-        "0x146044980"
+        "0x145f8a810",
+        "0x145f945f0",
+        "0x145fb0cb0",
+        "0x145fb2490",
+        "0x145fb36e0",
+        "0x145fb3a30",
+        "0x145fb4370",
+        "0x145fb4fc0",
+        "0x145fb6020",
+        "0x145fb64a0",
+        "0x145fb66b0",
+        "0x145fb68a0",
+        "0x14603e020"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-demons]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -3053,34 +3103,34 @@
       ],
       "location_reference_count": 30,
       "location_body_owners": [
-        "0x145ee1150",
-        "0x145ee1720",
-        "0x145ee2f50",
-        "0x145f3fc90",
-        "0x145f42000",
-        "0x145f43210",
-        "0x145f4c680",
-        "0x145f56540",
-        "0x145f57850",
-        "0x145f57b90",
-        "0x145f593a0",
-        "0x146037260",
-        "0x146045230"
+        "0x145db4cd0",
+        "0x145db52a0",
+        "0x145dbb4a0",
+        "0x145f181a0",
+        "0x145f19be0",
+        "0x145f1adf0",
+        "0x145f239b0",
+        "0x145f2d630",
+        "0x145f2e940",
+        "0x145f2ec80",
+        "0x145f30490",
+        "0x1460305b0",
+        "0x14603e8d0"
       ],
       "ownerless_location_sites": [
-        "0x145f52c34",
-        "0x145f52ca1",
-        "0x145f52ae4",
-        "0x145f5d3a7",
-        "0x145f5d3b6",
-        "0x145f5d41a",
-        "0x145f5d40b"
+        "0x145f29d2b",
+        "0x145f29d98",
+        "0x145f29bdb",
+        "0x145f33f2b",
+        "0x145f33f3d",
+        "0x145f33fa1",
+        "0x145f33f92"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-enemy]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -3193,17 +3243,17 @@
       ],
       "location_reference_count": 14,
       "location_body_owners": [
-        "0x145fae260",
-        "0x145ff3d20",
-        "0x145ff5240",
-        "0x145ff5730"
+        "0x145f80dc0",
+        "0x145fc5280",
+        "0x145fc67a0",
+        "0x145fc6c90"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-guardians]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -3386,20 +3436,20 @@
       ],
       "location_reference_count": 16,
       "location_body_owners": [
-        "0x145f248f0",
-        "0x145f8a830",
-        "0x145f91220",
-        "0x145f930f0",
-        "0x145f988f0",
-        "0x145f9f0b0",
-        "0x145ffdda0"
+        "0x145efd2f0",
+        "0x145f5f830",
+        "0x145f65cb0",
+        "0x145f664b0",
+        "0x145f6bbe0",
+        "0x145f71f10",
+        "0x145fcf300"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-mod]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -3484,15 +3534,15 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145fd5db0",
-        "0x145fdc310"
+        "0x145fa77b0",
+        "0x145fada50"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-procs]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -3595,23 +3645,27 @@
       ],
       "location_reference_count": 17,
       "location_body_owners": [
-        "0x145f43210",
-        "0x145fb8960",
-        "0x145fc2100",
-        "0x145fc2760"
+        "0x145f1adf0",
+        "0x145f8a810",
+        "0x145f93f90",
+        "0x145f945f0"
       ],
       "ownerless_location_sites": [
-        "0x145fc0602",
-        "0x145fc0bb3"
+        "0x145f92491",
+        "0x145f92a43"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-talents]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/improved-mind-blast-0.141.0.md": "Current Improved Mind Blast rank, effect records and description template."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/improved-mind-blast-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-game-upgrades",
@@ -3679,20 +3733,20 @@
       ],
       "location_reference_count": 11,
       "location_body_owners": [
-        "0x145dda2b0",
-        "0x145fe59e0",
-        "0x145fed800",
-        "0x14604bb50",
-        "0x146060830"
+        "0x145ddc070",
+        "0x145fb7120",
+        "0x145fbef40",
+        "0x146045440",
+        "0x14605a000"
       ],
       "ownerless_location_sites": [
-        "0x145fec4bb"
+        "0x145fbdbfb"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-upgrades]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -3791,18 +3845,18 @@
       ],
       "location_reference_count": 18,
       "location_body_owners": [
-        "0x145e2a300",
-        "0x145e2a700",
-        "0x145e2bd70",
-        "0x145e2ca90",
-        "0x145ea1800",
-        "0x145ea4350",
-        "0x146029130",
-        "0x146037440",
-        "0x146061860",
-        "0x146062e50",
-        "0x1460630b0",
-        "0x146063310"
+        "0x145e2ad40",
+        "0x145e2b140",
+        "0x145e2cb70",
+        "0x145e2d890",
+        "0x145e9bb40",
+        "0x145e9e690",
+        "0x146022b60",
+        "0x146030790",
+        "0x14605b030",
+        "0x14605c620",
+        "0x14605c880",
+        "0x14605cae0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -3810,9 +3864,13 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-gear]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/scholomance-loot-0.141.0.md": "Tier 0.5 item group selection and owned-item preference in the boss reward path."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/scholomance-loot-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-i18n",
@@ -3917,13 +3975,13 @@
       ],
       "location_reference_count": 14,
       "location_body_owners": [
-        "0x145e7af10",
-        "0x145e7b0c0",
-        "0x145e7cc80",
-        "0x145e7d060",
-        "0x145e7df20",
-        "0x145e7ff90",
-        "0x14606a690"
+        "0x145e76b40",
+        "0x145e76cf0",
+        "0x145e788b0",
+        "0x145e78c90",
+        "0x145e79b50",
+        "0x145e7a9e0",
+        "0x146063e60"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -3931,9 +3989,13 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-i18n]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/scholomance-localization-0.141.0.md": "Scholomance keyed creature and warning text rewrites and localized row selection."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/scholomance-localization-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-jewelry",
@@ -4013,15 +4075,15 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145df4440",
-        "0x146064c90"
+        "0x145e158a0",
+        "0x14605e460"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-jewelry]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -4080,38 +4142,38 @@
       ],
       "location_reference_count": 68,
       "location_body_owners": [
-        "0x145da3370",
-        "0x145db1890",
-        "0x145db1c60",
-        "0x145db2220",
-        "0x145db2380",
-        "0x145db2b60",
-        "0x145db2f70",
-        "0x145db46b0",
-        "0x145db4890",
-        "0x145db4990",
-        "0x145db4f80",
-        "0x145dd1ba0",
-        "0x145edfca0",
-        "0x145f41770",
-        "0x145f42c70",
-        "0x145f5f370",
-        "0x145fae260",
-        "0x145fd0d00",
-        "0x1460253a0",
-        "0x146061580"
+        "0x145da23f0",
+        "0x145db1c20",
+        "0x145db2890",
+        "0x145db2c60",
+        "0x145db3220",
+        "0x145db3380",
+        "0x145db3b60",
+        "0x145db3f70",
+        "0x145db67c0",
+        "0x145db69a0",
+        "0x145db6aa0",
+        "0x145db7090",
+        "0x145f19350",
+        "0x145f1a850",
+        "0x145f35d20",
+        "0x145f80dc0",
+        "0x145fa2b70",
+        "0x146008310",
+        "0x14601e880",
+        "0x14605ad50"
       ],
       "ownerless_location_sites": [
-        "0x145f5d35f",
-        "0x145f5d371",
-        "0x145f5d383",
-        "0x145f5d395"
+        "0x145f33ee3",
+        "0x145f33ef5",
+        "0x145f33f07",
+        "0x145f33f19"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-nav]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -4167,7 +4229,9 @@
         "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs",
         "scripts/check-coop-item-text-0.115.0.py",
         "scripts/coop_item_text_native.py",
-        "scripts/check-guest-engine-admission-0.119.0.py"
+        "scripts/check-guest-engine-admission-0.119.0.py",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs",
+        "crates/azeroth-survivors-re/src/coop_profile.rs"
       ],
       "source_anchors": [
         {
@@ -4209,12 +4273,14 @@
         296,
         299,
         300,
-        306
+        306,
+        314,
+        315
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145dd6000",
-        "0x145dd8fc0"
+        "0x145ed01b0",
+        "0x145ed09e0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -4222,9 +4288,15 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-proto]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/coop-guest-spell-rows-0.141.0.md": "Wire 11 resource row sanitization, wire 12 finite scale rows and guest app publication. Friendly-aura recipient lineage remains open.",
+        "docs/analysis/scholomance-loot-0.141.0.md": "Selected party-recipient reward forwarding after the Tier 0.5 roll."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/coop-guest-spell-rows-0.141.0.md",
+        "docs/analysis/scholomance-loot-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-realmd",
@@ -4274,14 +4346,14 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145de1cb0"
+        "0x145e02c70"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-realmd]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -4444,16 +4516,16 @@
       ],
       "location_reference_count": 19,
       "location_body_owners": [
-        "0x145e03600",
-        "0x145e06550",
-        "0x145e07120",
-        "0x145e076d0",
-        "0x145e085c0",
-        "0x145e093b0",
-        "0x145e09a90",
-        "0x145e131e0",
-        "0x145e18a90",
-        "0x145e18fb0"
+        "0x145de04e0",
+        "0x145de3930",
+        "0x145de4580",
+        "0x145de4b30",
+        "0x145de5a20",
+        "0x145de6810",
+        "0x145de6ef0",
+        "0x145df0640",
+        "0x145df5ef0",
+        "0x145df6410"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -4461,9 +4533,13 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-save]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/party-achievement-settlement-0.141.0.md": "Final-save cooperative zone membership and one-shot history settlement."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/party-achievement-settlement-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-server",
@@ -4552,19 +4628,19 @@
       ],
       "location_reference_count": 12,
       "location_body_owners": [
-        "0x145ea8970",
-        "0x145ea8c00",
-        "0x145ebb450",
-        "0x145ec1c20",
-        "0x145ec8540",
-        "0x146044420"
+        "0x145ea3190",
+        "0x145ea3420",
+        "0x145eb5c40",
+        "0x145ebb4d0",
+        "0x145ec1a20",
+        "0x14603dac0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-server]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -4646,16 +4722,16 @@
       ],
       "location_reference_count": 5,
       "location_body_owners": [
-        "0x145ded470",
-        "0x145dee130",
-        "0x145def1a0"
+        "0x145e0e4c0",
+        "0x145e0f180",
+        "0x145e101f0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-talents]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -4728,23 +4804,23 @@
       ],
       "location_reference_count": 31,
       "location_body_owners": [
-        "0x145da3370",
-        "0x145dd15f0",
-        "0x145dd1ba0",
-        "0x145dd2330",
-        "0x145dd2bf0",
-        "0x145dd3fc0",
-        "0x145dd67f0",
-        "0x145dd6980",
-        "0x145dd8af0",
-        "0x145dd8ce0"
+        "0x145da23f0",
+        "0x146007b90",
+        "0x146008310",
+        "0x146008aa0",
+        "0x146009360",
+        "0x14600a730",
+        "0x14600b520",
+        "0x14600b6b0",
+        "0x14600d820",
+        "0x14600da10"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-terrain]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -4858,31 +4934,31 @@
       ],
       "location_reference_count": 21,
       "location_body_owners": [
-        "0x14002a660",
-        "0x14002d970",
-        "0x14002db10",
-        "0x14002f390",
-        "0x1400a9620",
-        "0x1400a9cd0",
-        "0x1400aa9b0",
-        "0x1400acdd0",
-        "0x1400b0d90",
-        "0x1400b2150",
-        "0x1400c06d0"
+        "0x14002b270",
+        "0x14002e5f0",
+        "0x14002e790",
+        "0x140030120",
+        "0x1400b8e80",
+        "0x1400b9530",
+        "0x1400ba210",
+        "0x1400bbe60",
+        "0x1400bfe20",
+        "0x1400c11e0",
+        "0x1400cf820"
       ],
       "ownerless_location_sites": [
-        "0x1400aecd2",
-        "0x1400bd92c",
-        "0x1400bd913",
-        "0x1400bd82a",
-        "0x1400bd848",
-        "0x1400bd87e"
+        "0x1400bdd62",
+        "0x1400cca7c",
+        "0x1400cca63",
+        "0x1400cc97a",
+        "0x1400cc998",
+        "0x1400cc9ce"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-markers]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -4905,14 +4981,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x140016c20"
+        "0x1400178f0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-legacy-config]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -5007,21 +5083,21 @@
       ],
       "location_reference_count": 47,
       "location_body_owners": [
-        "0x145f63e60",
-        "0x145f6d0c0",
-        "0x145f6e160",
-        "0x1460375f0"
+        "0x145f39b90",
+        "0x145f42df0",
+        "0x145f43e90",
+        "0x146030940"
       ],
       "ownerless_location_sites": [
-        "0x145f69779",
-        "0x145f69868",
-        "0x145f73e9c"
+        "0x145f3f4a9",
+        "0x145f3f598",
+        "0x145f49bcc"
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-hazards]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -5119,19 +5195,19 @@
         299,
         306
       ],
-      "location_reference_count": 8,
+      "location_reference_count": 11,
       "location_body_owners": [
-        "0x14015b160",
-        "0x140178fa0",
-        "0x14017f7e0",
-        "0x140180860"
+        "0x140103540",
+        "0x140106060",
+        "0x140109fa0",
+        "0x14010b0c0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-coop]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -5213,14 +5289,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145e95c70"
+        "0x145e90540"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-route]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -5284,14 +5360,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145e04670"
+        "0x145e266d0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-tcp]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -5453,33 +5529,33 @@
       ],
       "location_reference_count": 60,
       "location_body_owners": [
-        "0x145e72330",
-        "0x145f18620",
-        "0x145f18ba0",
-        "0x145f18f50",
-        "0x145f19520",
-        "0x145f199b0",
-        "0x145f19e70",
-        "0x145f1a370",
-        "0x145f1a710",
-        "0x145f1abb0",
-        "0x145f1b2c0",
-        "0x145f1c1b0",
-        "0x145f1c640",
-        "0x145f1cba0",
-        "0x145f1d1e0",
-        "0x145f1d760",
-        "0x145f1dc20",
-        "0x145f1e070",
-        "0x145f1e440",
-        "0x145f1e820",
-        "0x145f1f7f0",
-        "0x145f20090",
-        "0x145f20620",
-        "0x145f20a60",
-        "0x145f2e510",
-        "0x145f37f10",
-        "0x145f3b320"
+        "0x145e70af0",
+        "0x145ef1360",
+        "0x145ef18e0",
+        "0x145ef1c90",
+        "0x145ef2260",
+        "0x145ef26f0",
+        "0x145ef2bb0",
+        "0x145ef30b0",
+        "0x145ef3450",
+        "0x145ef38f0",
+        "0x145ef4000",
+        "0x145ef4ef0",
+        "0x145ef5380",
+        "0x145ef58e0",
+        "0x145ef5f20",
+        "0x145ef64a0",
+        "0x145ef6960",
+        "0x145ef6db0",
+        "0x145ef7180",
+        "0x145ef7560",
+        "0x145ef80b0",
+        "0x145ef8950",
+        "0x145ef8ee0",
+        "0x145ef9320",
+        "0x145f06ef0",
+        "0x145f10840",
+        "0x145f13990"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -5487,9 +5563,15 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-party]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/coop-incoming-0.141.0.md": "Host and selected guest recipient incoming damage scalar and seat routing.",
+        "docs/analysis/party-achievement-settlement-0.141.0.md": "Party run eligibility, lethal history and recipient settlement boundary."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/coop-incoming-0.141.0.md",
+        "docs/analysis/party-achievement-settlement-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-server-party",
@@ -5593,6 +5675,7 @@
         63,
         64,
         65,
+        75,
         95,
         101,
         118,
@@ -5611,6 +5694,7 @@
         188,
         192,
         193,
+        195,
         198,
         201,
         203,
@@ -5652,25 +5736,27 @@
         294,
         295,
         296,
+        299,
         306,
         312,
+        314,
         317
       ],
       "location_reference_count": 26,
       "location_body_owners": [
-        "0x145e6df70",
-        "0x145ea4350",
-        "0x145ea8c00",
-        "0x145ebb450",
-        "0x145ecda10",
-        "0x145ed0780",
-        "0x145ed0d50",
-        "0x145ed1f10",
-        "0x145ed22c0",
-        "0x145ed53b0",
-        "0x145f18f50",
-        "0x1460306d0",
-        "0x146044e20"
+        "0x145e6c650",
+        "0x145e9e690",
+        "0x145ea3420",
+        "0x145eb5c40",
+        "0x145ec7be0",
+        "0x145eca950",
+        "0x145ecaf20",
+        "0x145ecc0e0",
+        "0x145ecc490",
+        "0x145ecf570",
+        "0x145ef1c90",
+        "0x146029a60",
+        "0x14603e4c0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -5681,10 +5767,18 @@
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": true,
       "current_bounded_contract_scopes": {
-        "docs/analysis/coop-admission-0.140.0.md": "Host Join protocol/version comparison, outgoing constructor and serializer. Other packet and service paths retain separate applicability."
+        "docs/analysis/coop-admission-0.141.0.md": "Current Join version/protocol comparison and outgoing field serialization; other packet/service scopes remain separate.",
+        "docs/analysis/coop-inspection-0.141.0.md": "Wire 17 roster/profile producer and live publication.",
+        "docs/analysis/detailed-meter-0.141.0.md": "Recipient request and per-peer frame staging and delivery.",
+        "docs/analysis/party-achievement-settlement-0.141.0.md": "Admitted guest cache/regular poll and terminal settlement dispatch.",
+        "docs/analysis/scholomance-loot-0.141.0.md": "Per-recipient class bundle and ownership selection for the Scholomance reward."
       },
       "current_bounded_contract_refs": [
-        "docs/analysis/coop-admission-0.140.0.md"
+        "docs/analysis/coop-admission-0.141.0.md",
+        "docs/analysis/coop-inspection-0.141.0.md",
+        "docs/analysis/detailed-meter-0.141.0.md",
+        "docs/analysis/party-achievement-settlement-0.141.0.md",
+        "docs/analysis/scholomance-loot-0.141.0.md"
       ]
     },
     {
@@ -5705,14 +5799,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145e94bc0"
+        "0x145e8f490"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-banners]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -5747,14 +5841,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145e37da0"
+        "0x145e38950"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-trust]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -5858,15 +5952,15 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145e895c0",
-        "0x145e946c0"
+        "0x145e83b10",
+        "0x145e8ef90"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-relay]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -5951,14 +6045,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145e1a230"
+        "0x145df7400"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-heroic]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -6015,14 +6109,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145f593a0"
+        "0x145f30490"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-affixes]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -6103,15 +6197,15 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145e34820",
-        "0x145e34f70"
+        "0x145e35390",
+        "0x145e35ae0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-sets]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -6177,14 +6271,14 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145e88bb0"
+        "0x145e83100"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-pick]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -6223,14 +6317,14 @@
       ],
       "location_reference_count": 2,
       "location_body_owners": [
-        "0x145e28790"
+        "0x145e28500"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-smooth]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -6268,9 +6362,9 @@
       ],
       "location_reference_count": 4,
       "location_body_owners": [
-        "0x1400435d0",
-        "0x140054c70",
-        "0x140054e90"
+        "0x140044ab0",
+        "0x140056f50",
+        "0x140057170"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
@@ -6278,9 +6372,13 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-ime]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/native-ime-preedit-0.141.0.md": "Windows typed Commit consumer, dual stream input and caret boundary. Browser artifact and visible Windows preedit remain separate."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/native-ime-preedit-0.141.0.md"
+      ]
     },
     {
       "id": "custom-app-screens-ontop",
@@ -6349,16 +6447,16 @@
       ],
       "location_reference_count": 4,
       "location_body_owners": [
-        "0x140222900",
-        "0x1402230f0",
-        "0x14022c510"
+        "0x1402c8490",
+        "0x1402c8c80",
+        "0x1402d28e0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-ontop]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -6401,15 +6499,15 @@
       ],
       "location_reference_count": 5,
       "location_body_owners": [
-        "0x145efe960",
-        "0x145f03a40"
+        "0x145fe3fc0",
+        "0x145fe9120"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-smsg]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": true,
+      "registered_current_evidence_present": false,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -6417,7 +6515,10 @@
     {
       "id": "custom-app-screens-inspect",
       "original_path": "crates/wenilla-rogue-app/src/screens/inspect.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop_inspect.rs",
+        "crates/azeroth-survivors-re/src/coop_ui.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
@@ -6425,34 +6526,39 @@
       ],
       "location_reference_count": 19,
       "location_body_owners": [
-        "0x140029160",
-        "0x1401acaf0",
-        "0x1401af8d0",
-        "0x1401b0cf0",
-        "0x1401b2710",
-        "0x1401b4930",
-        "0x1401bcf10",
-        "0x1403fffb0",
-        "0x140400a00",
-        "0x140400f00",
-        "0x140404ea0",
-        "0x140406a10"
+        "0x140029d70",
+        "0x1401b6420",
+        "0x1401b9200",
+        "0x1401ba620",
+        "0x1401bc040",
+        "0x1401be600",
+        "0x1401c6bf0",
+        "0x1403b9640",
+        "0x1403ba090",
+        "0x1403ba590",
+        "0x1403be530",
+        "0x1403c00a0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Trace diagnostic owners through row action, member identity, inspect snapshot/change publication, gear/star/appearance/set totals, tree and achievement tabs and teardown; connect recovered fields to existing source.",
-        "Establish native/source assignment separately from current-target bounded-contract registration.",
-        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+        "Recover native detail-panel item-kind formatting, preview lighting and achievement scroll/selection under #299."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/coop-inspection-0.141.0.md": "Inspector lifecycle, native summary/sidebar rendering and selected model and roster payload consumer."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/coop-inspection-0.141.0.md"
+      ]
     },
     {
       "id": "custom-app-screens-localclock",
       "original_path": "crates/wenilla-rogue-app/src/screens/localclock.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/run_hud/local_clock.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
@@ -6460,53 +6566,65 @@
       ],
       "location_reference_count": 7,
       "location_body_owners": [
-        "0x1401a1c50",
-        "0x1401b49f0",
-        "0x1401b54e0"
+        "0x1401ab580",
+        "0x1401be6c0",
+        "0x1401bf1b0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Trace localclock.rs owners and host_controls::local_clock registration/producer, English versus other-locale formatting, minimap/scale/show gates and hudLocalClock propagation.",
-        "Establish native/source assignment separately from current-target bounded-contract registration.",
-        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+        "Map remaining VM and widget lifetimes outside the descriptor and callback."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": true,
       "current_bounded_contract_scopes": {
-        "docs/analysis/native-interface-correspondence-0.140.0.md": "Exact AZS_NativeLocalTime name/length/callback descriptor construction. Provider, VM and widget lifetime retain separate proof."
+        "docs/analysis/native-interface-correspondence-0.141.0.md": "Exact AZS_NativeLocalTime registration and callback reads of Windows local hour/minute, English format and noon boundary."
       },
       "current_bounded_contract_refs": [
-        "docs/analysis/native-interface-correspondence-0.140.0.md"
+        "docs/analysis/native-interface-correspondence-0.141.0.md"
       ]
     },
     {
       "id": "custom-app-screens-readycheck",
       "original_path": "crates/wenilla-rogue-app/src/screens/readycheck.rs",
-      "source_refs": [],
-      "source_anchors": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop_ready_ui.rs",
+        "crates/azeroth-survivors-re/src/coop_ui.rs"
+      ],
+      "source_anchors": [
+        {
+          "path": "crates/azeroth-survivors-re/src/coop_ready_ui.rs",
+          "symbol": "rebuild",
+          "line": 15
+        }
+      ],
       "gap_ids": [
         41,
         306
       ],
       "location_reference_count": 4,
       "location_body_owners": [
-        "0x1400e6c20"
+        "0x140142370"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Recover custom host enter request, authoritative ready state/30-second clock, answer/cancel/timeout branches, member changes and exactly-once zone admission; map both UI and server diagnostic modules.",
-        "Establish native/source assignment separately from current-target bounded-contract registration.",
-        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+        "Recover modal button routing and surrounding native layer ordering. The renderer uses layer 5800 while the rebuilt backdrop uses 6100 above lobby and inspection."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/native-interface-correspondence-0.141.0.md": "Current Ready Check backdrop, fullscreen dimensions and 460×400 canvas with 1.4 scale cap. Compare native layer 5800 with rebuilt 6100 in the shared lobby and inspection schedule."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/native-interface-correspondence-0.141.0.md"
+      ]
     },
     {
       "id": "custom-app-screens-recap",
       "original_path": "crates/wenilla-rogue-app/src/screens/recap.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/terminal_view/recap.rs",
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
@@ -6514,27 +6632,28 @@
       ],
       "location_reference_count": 3,
       "location_body_owners": [
-        "0x140181d70"
+        "0x14010c5d0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Trace recap.rs owners to per-player damage history, shield/health/overkill records, killing blow, grouping/source/avoidable ranking and end-screen open/close/Escape consumers.",
-        "Establish native/source assignment separately from current-target bounded-contract registration.",
-        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+        "Join the changed renderer and capture/aggregation to their source consumers."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": true,
       "current_bounded_contract_scopes": {
-        "docs/analysis/native-interface-correspondence-0.140.0.md": "Named recap renderer keys and nested recap/killer generation and open-state consumers. The capture/aggregation and UI admission paths are separate."
+        "docs/analysis/native-interface-correspondence-0.141.0.md": "Nested recap/killer fields, generation and open-state reads. Full renderer control flow differs and remains pending."
       },
       "current_bounded_contract_refs": [
-        "docs/analysis/native-interface-correspondence-0.140.0.md"
+        "docs/analysis/native-interface-correspondence-0.141.0.md"
       ]
     },
     {
       "id": "custom-game-game-enhancement",
       "original_path": "crates/wenilla-rogue/src/game/enhancement.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs",
+        "crates/azeroth-survivors-re/src/save/talents.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
@@ -6542,27 +6661,28 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145f8c810"
+        "0x145f61700"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Recover current enhancement.rs dispatch, proc origin/repeat suppression, targets/crit/cooldown/buff/debuff state, necklace replacements/scaling and talent migration. Resolve current 0.137 requirements rather than obsolete intermediate values.",
-        "Establish native/source assignment separately from current-target bounded-contract registration.",
-        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+        "Recover remaining rank, radius and ordering contracts beyond the selected Resonant Shocks paths. The prior Flurry trace retains its historical target."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": true,
       "current_bounded_contract_scopes": {
-        "docs/analysis/native-interface-correspondence-0.140.0.md": "Rockbiter/Stormstrike timed decrement and expiry crossing. Current tag/offset representation is changed and the 6% arithmetic is revalidated."
+        "docs/analysis/resonant-shocks-0.141.0.md": "Rank payload and first/repeat nearby target dispatch at 0x145f62dd9..0x145f6333b."
       },
       "current_bounded_contract_refs": [
-        "docs/analysis/native-interface-correspondence-0.140.0.md"
+        "docs/analysis/resonant-shocks-0.141.0.md"
       ]
     },
     {
       "id": "custom-game-game-meterfeed",
       "original_path": "crates/wenilla-rogue/src/game/meterfeed.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_feed.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
@@ -6573,61 +6693,76 @@
       ],
       "location_reference_count": 12,
       "location_body_owners": [
-        "0x145dfa020",
-        "0x145dfcac0",
-        "0x145ff5dd0",
-        "0x146041820",
-        "0x146068f40"
+        "0x145e1b4d0",
+        "0x145e1df70",
+        "0x145fc7330",
+        "0x14603aa50",
+        "0x146062710"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Trace meterfeed.rs/meterlog.rs constructors, transport/poll/request producers and Lua snapshot/query validation, descriptors/sourceKey/actor joins, recent windows/checkpoints and /reload lifetime. Keep damage-source attribution and rendering-facing anchor delivery separately scoped under #307.",
-        "Establish native/source assignment separately from current-target bounded-contract registration.",
-        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+        "Connect the native typed frame producer, counters, partitioner and replay admission under #75. The shipped Lua receiver is connected."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/detailed-meter-0.141.0.md": "Typed frame builder, bounded multipart producer and replay/whisper path. The rebuilt Lua receiver is connected."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/detailed-meter-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-game-meterlog",
       "original_path": "crates/wenilla-rogue/src/game/meterlog.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_meter.rs",
+        "crates/azeroth-survivors-re/src/run_effects/healing.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
         75,
         305,
+        307,
         314
       ],
       "location_reference_count": 37,
       "location_body_owners": [
-        "0x145daf8d0",
-        "0x145dc9b60",
-        "0x145deff10",
-        "0x145edc4a0",
-        "0x145eddcd0",
-        "0x1460051d0",
-        "0x1460074f0",
-        "0x14600d8f0",
-        "0x1460173d0"
+        "0x145daff80",
+        "0x145dcd480",
+        "0x145e10f60",
+        "0x145ed7140",
+        "0x145ed9460",
+        "0x145edf860",
+        "0x145ee9cb0",
+        "0x146003d50",
+        "0x146005580"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Trace meterfeed.rs/meterlog.rs constructors, transport/poll/request producers and Lua snapshot/query validation, descriptors/sourceKey/actor joins, recent windows/checkpoints and /reload lifetime. Keep damage-source attribution and rendering-facing anchor delivery separately scoped under #307.",
-        "Establish native/source assignment separately from current-target bounded-contract registration.",
-        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+        "Connect the native typed actor, damage/healing counters and history under #75. Legacy totals and ordinary attribution are separate source paths."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/combat-meter-attribution-0.141.0.md": "Shared source selector and ordinary hit-attribution label path. Typed publication remains under #75.",
+        "docs/analysis/detailed-meter-0.141.0.md": "Typed native reducer, one-based actor ID and run, encounter and retained counter scopes. Typed source publication remains open."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/combat-meter-attribution-0.141.0.md",
+        "docs/analysis/detailed-meter-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-server-party-readycheck",
       "original_path": "crates/wenilla-rogue/src/server/party/readycheck.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop/readycheck.rs",
+        "crates/azeroth-survivors-re/src/coop/session.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
@@ -6635,61 +6770,79 @@
       ],
       "location_reference_count": 1,
       "location_body_owners": [
-        "0x145ecc300"
+        "0x145ec57e0"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Recover custom host enter request, authoritative ready state/30-second clock, answer/cancel/timeout branches, member changes and exactly-once zone admission; map both UI and server diagnostic modules.",
-        "Establish native/source assignment separately from current-target bounded-contract registration.",
-        "Retain current native-frontier scope and its exact external boundaries/failure records; establish actual native/source assignment separately. No source implementation or runtime/parity follows from decompilation."
+        "Map initiating packet, raw input, timers, response publication and UI lifecycle independently."
       ],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": true,
       "current_bounded_contract_scopes": {
-        "docs/analysis/coop-admission-0.140.0.md": "First-answer-only host mutation, with current record offsets and independent local replay. Packet, timer, request, and UI routes remain separate."
+        "docs/analysis/native-interface-correspondence-0.141.0.md": "First valid unanswered peer response mutation, phase/identity/row gates and exact response byte write."
       },
       "current_bounded_contract_refs": [
-        "docs/analysis/coop-admission-0.140.0.md"
+        "docs/analysis/native-interface-correspondence-0.141.0.md"
       ]
     },
     {
       "id": "custom-game-game-attacks",
       "original_path": "crates/wenilla-rogue/src/game/attacks.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+        "crates/azeroth-survivors-re/src/bosses/scripted_attack_geometry.rs",
+        "crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
+        313,
         318
       ],
       "location_reference_count": 29,
       "location_body_owners": [
-        "0x145ee2a90",
-        "0x145ee4340",
-        "0x145f743e0",
-        "0x145fcd020",
-        "0x145fcefb0",
-        "0x146037070"
+        "0x145f4a110",
+        "0x145f9ee90",
+        "0x145fa0e20",
+        "0x145ffffb0",
+        "0x14600dcf0",
+        "0x1460303c0"
       ],
       "ownerless_location_sites": [
-        "0x145f78c01",
-        "0x145f78b0b",
-        "0x145f78af9",
-        "0x145f78bc2",
-        "0x145f78bef"
+        "0x145f4e931",
+        "0x145f4e83b",
+        "0x145f4e829",
+        "0x145f4e8f2",
+        "0x145f4e91f"
       ],
       "remaining_source_work": [
-        "Trace Location owners to Rogue cast and swing target admission and effective reach composition.",
-        "Establish source assignment and register only the independently recovered bounded contract."
+        "Establish current applicability of the Rogue reach and auto-attack selectors under #318. The shared encounter-attack scope is separately bounded."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/scholomance-kirtonos-0.141.0.md": "Kirtonos scripted push selection and shared attack admission."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/scholomance-kirtonos-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-game-kill-command",
       "original_path": "crates/wenilla-rogue/src/game/kill_command.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs",
+        "crates/azeroth-survivors-re/src/catalog.rs",
+        "crates/azeroth-survivors-re/src/sets.rs",
+        "crates/azeroth-survivors-re/src/run_effects.rs",
+        "crates/azeroth-survivors-re/src/run_effects/pets.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
@@ -6697,34 +6850,48 @@
       ],
       "location_reference_count": 32,
       "location_body_owners": [
-        "0x145daf1a0",
-        "0x145dc8e80",
-        "0x145edc2c0",
-        "0x145edd980",
-        "0x145f271e0",
-        "0x145fc2760",
-        "0x146004ff0",
-        "0x146007190",
-        "0x14600d6a0",
-        "0x146016e00"
+        "0x145daf850",
+        "0x145dcc7a0",
+        "0x145ed6f60",
+        "0x145ed9100",
+        "0x145edf610",
+        "0x145ee96e0",
+        "0x145effbc0",
+        "0x145f945f0",
+        "0x146003b70",
+        "0x146005230"
       ],
       "ownerless_location_sites": [
-        "0x145f807a9",
-        "0x145f8079a"
+        "0x145f55e57",
+        "0x145f55e48"
       ],
       "remaining_source_work": [
-        "Trace the pet-gated offer, per-pet dispatch and proc target/attribution producers to exact attack, damage and cooldown consumers.",
-        "Establish source assignment and register only the independently recovered bounded contract."
+        "Revalidate the wider offer, target and AI scheduling paths against the current target."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/pet-meter-0.141.0.md": "Pet-qualified commanded attacks, Shockwave completion, owner-bearing Raptor bleed and per-pet attribution."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/pet-meter-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-game-scripts-mod",
       "original_path": "crates/wenilla-rogue/src/game/scripts/mod.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/bosses/spawning.rs",
+        "crates/azeroth-survivors-re/src/bosses/placement.rs",
+        "crates/azeroth-survivors-re/src/bosses/raid_transforms.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs",
+        "crates/azeroth-survivors-re/src/bosses/scripted_attack_geometry.rs",
+        "crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/kirtonos.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/barov.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
@@ -6732,24 +6899,32 @@
       ],
       "location_reference_count": 15,
       "location_body_owners": [
-        "0x145eeb730",
-        "0x145f743e0",
-        "0x14605e250"
+        "0x145f4a110",
+        "0x1460135d0",
+        "0x146057a20"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Recover the zone/encounter discriminator and registration, per-fight state, phase transition and scheduler consumers.",
-        "Establish source assignment and register only the independently recovered bounded contract."
+        "Map the rest of the script registry and attack dispatch beyond the bounded Scholomance handlers."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/scholomance-barov-0.141.0.md": "Barov callback dispatcher and registered encounter transitions.",
+        "docs/analysis/scholomance-kirtonos-0.141.0.md": "Kirtonos dispatcher and final-phase precedence."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/scholomance-barov-0.141.0.md",
+        "docs/analysis/scholomance-kirtonos-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-game-scripts-krastinov",
       "original_path": "crates/wenilla-rogue/src/game/scripts/krastinov.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/krastinov.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
@@ -6757,25 +6932,31 @@
       ],
       "location_reference_count": 5,
       "location_body_owners": [
-        "0x145eebea0",
-        "0x145eedb80"
+        "0x146013d20",
+        "0x146015d10"
       ],
       "ownerless_location_sites": [
-        "0x145eeea0e"
+        "0x146016b87"
       ],
       "remaining_source_work": [
-        "Recover dash, dual cleave, Bladestorm, farthest-target hook and cast/warning lifetime from the verified Location parents.",
-        "Establish source assignment and register only the independently recovered bounded contract."
+        "Map the remaining script-wide helper applicability outside the recovered encounter phases."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/scholomance-krastinov-0.141.0.md": "Location-owned current event and movement phase handlers."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/scholomance-krastinov-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-game-scripts-ras",
       "original_path": "crates/wenilla-rogue/src/game/scripts/ras.rs",
-      "source_refs": [],
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/ras.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"
+      ],
       "source_anchors": [],
       "gap_ids": [
         41,
@@ -6783,19 +6964,63 @@
       ],
       "location_reference_count": 4,
       "location_body_owners": [
-        "0x145ee3900",
-        "0x145ee4fc0",
-        "0x145ee5f20"
+        "0x145dbc1c0",
+        "0x145dbcc10",
+        "0x145dbda10"
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Recover Frozen Checkmate phase timing, tile geometry, armor gate, rune positions and touch/vulnerability state.",
-        "Establish source assignment and register only the independently recovered bounded contract."
+        "Map remaining shared script and presentation dependencies outside the recovered shield/rune behavior."
       ],
       "registered_current_evidence_present": true,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/scholomance-ras-0.141.0.md": "Location-owned Chill Nova, targeting and vulnerability phases with shield and rune behavior."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/scholomance-ras-0.141.0.md"
+      ]
+    },
+    {
+      "id": "custom-game-gear-t05",
+      "original_path": "crates/wenilla-rogue/src/gear/t05.rs",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/tier05.rs",
+        "crates/azeroth-survivors-re/src/mob_loot.rs",
+        "crates/azeroth-survivors-re/src/armory.rs",
+        "crates/azeroth-survivors-re/src/coop_profile.rs"
+      ],
+      "source_anchors": [
+        {
+          "path": "crates/azeroth-survivors-re/src/mob_loot.rs",
+          "symbol": "roll_scholomance_rewards",
+          "line": 320
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/tier05.rs",
+          "symbol": "item_id",
+          "line": 52
+        }
+      ],
+      "gap_ids": [
+        314
+      ],
+      "location_reference_count": 1,
+      "location_body_owners": [
+        "0x145e44ab0"
+      ],
+      "ownerless_location_sites": [],
+      "remaining_source_work": [
+        "The wider per-class table and set effects retain their existing evidence provenance. Follow the Tier 0.5 catalog producers and consumers for wider applicability."
+      ],
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/scholomance-loot-0.141.0.md": "The diagnostic-owned roll at 0x145e44ab0 applies the 50% armor admission, missing-piece priority and 25% bundled weapon roll."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/scholomance-loot-0.141.0.md"
+      ]
     }
   ],
   "limits": [
@@ -6812,7 +7037,7 @@
   "whole_system_semantics_verified": false,
   "parity_verified": false,
   "inventory": {
-    "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/exe-connections.json",
-    "sha256": "d36c710b7b58d2c9d4e9fa47da62a272e63811f3fa9b2a7bf45c0a684daf5a18"
+    "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/exe-connections.json",
+    "sha256": "32b7da2f9e1d838c5e242a90f13c4933e80ccc7e25c1f45bec27d80e744f08cd"
   }
 }

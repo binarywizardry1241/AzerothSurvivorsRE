@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "predecessor_target": {
+    "version": "0.140.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+    "size_bytes": 151521280
+  },
+  "predecessor_record": {
+    "path": "docs/analysis/evidence/0.140.0/incremental-correspondence.json",
+    "sha256": "bfa7922e6bf44ec1427eb6d1f2751f2c199c665e69ab28cb346d55490855cc19"
+  },
+  "structural_delta": "docs/analysis/evidence/0.141.0/discovery-delta.json",
+  "modules": [
+    {
+      "id": "custom-app-screens-armory",
+      "finding_id": 123,
+      "evidence_ref": "docs/analysis/scholomance-loot-0.141.0.md",
+      "scope": "Both recovered rate label constructors present base piece odds independently of owned-item priority.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-app-screens-cards",
+      "finding_id": 124,
+      "evidence_ref": "docs/analysis/amulet-enter-0.141.0.md",
+      "scope": "Selected confirmation descriptor, captured Enter aliases, and release/typing admission.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-app-screens-ime",
+      "finding_id": 293,
+      "evidence_ref": "docs/analysis/native-ime-preedit-0.141.0.md",
+      "scope": "Windows typed Commit consumer, dual stream input and caret boundary. Browser artifact and visible Windows preedit remain separate.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-app-screens-inspect",
+      "finding_id": 299,
+      "evidence_ref": "docs/analysis/coop-inspection-0.141.0.md",
+      "scope": "Inspector lifecycle, native summary/sidebar rendering and selected model and roster payload consumer.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-app-screens-localclock",
+      "finding_id": 302,
+      "evidence_ref": "docs/analysis/native-interface-correspondence-0.141.0.md",
+      "scope": "Exact AZS_NativeLocalTime registration and callback reads of Windows local hour/minute, English format and noon boundary.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-app-screens-meter",
+      "finding_id": 75,
+      "evidence_ref": "docs/analysis/meter-scroll-0.141.0.md",
+      "scope": "Named viewport and scrollbar target identity, Reset baseline fields and row rebuild.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-app-screens-readycheck",
+      "finding_id": 306,
+      "evidence_ref": "docs/analysis/native-interface-correspondence-0.141.0.md",
+      "scope": "Current Ready Check backdrop, fullscreen dimensions and 460×400 canvas with 1.4 scale cap. Compare native layer 5800 with rebuilt 6100 in the shared lobby and inspection schedule.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-app-screens-recap",
+      "finding_id": 300,
+      "evidence_ref": "docs/analysis/native-interface-correspondence-0.141.0.md",
+      "scope": "Nested recap/killer fields, generation and open-state reads. Full renderer control flow differs and remains pending.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-app-screens-talents",
+      "finding_id": 78,
+      "evidence_ref": "docs/analysis/improved-mind-blast-0.141.0.md",
+      "scope": "Current rank-dependent localized Improved Mind Blast total.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-app-screens-talentview",
+      "finding_id": 79,
+      "evidence_ref": "docs/analysis/improved-mind-blast-0.141.0.md",
+      "scope": "Current rank-dependent localized Improved Mind Blast total in the talent presentation.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-achievements",
+      "finding_id": 82,
+      "evidence_ref": "docs/analysis/party-achievement-settlement-0.141.0.md",
+      "scope": "Selected co-op feat and cooperative clear-history producers.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-fonts",
+      "finding_id": 135,
+      "evidence_ref": "docs/analysis/font-table-publication-0.141.0.md",
+      "scope": "TrueType augmentation, scaler and maxp publication/fallback boundary.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-abilities",
+      "finding_id": 136,
+      "evidence_ref": "docs/analysis/counterattack-0.141.0.md",
+      "scope": "Counterattack owner and free Immolation Trap cast with upgrade pass-through.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-abilities",
+      "finding_id": 136,
+      "evidence_ref": "docs/analysis/resonant-shocks-0.141.0.md",
+      "scope": "Initial Shock and one-extra-target helper, including rank damage and target exclusion.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-abilities",
+      "finding_id": 136,
+      "evidence_ref": "docs/analysis/soulfire-0.141.0.md",
+      "scope": "Soulfire extra-target selector and apply path, with current rank-dependent tooltip input.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-abilities",
+      "finding_id": 136,
+      "evidence_ref": "docs/analysis/tranquility-overheal-0.141.0.md",
+      "scope": "Selected heal callback credits full healing plus overhealing while preserving the Tree of Life shield cap.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-attacks",
+      "finding_id": 318,
+      "evidence_ref": "docs/analysis/scholomance-kirtonos-0.141.0.md",
+      "scope": "Kirtonos scripted push selection and shared attack admission.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-enhancement",
+      "finding_id": 305,
+      "evidence_ref": "docs/analysis/resonant-shocks-0.141.0.md",
+      "scope": "Rank payload and first/repeat nearby target dispatch at 0x145f62dd9..0x145f6333b.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-kill-command",
+      "finding_id": 316,
+      "evidence_ref": "docs/analysis/pet-meter-0.141.0.md",
+      "scope": "Pet-qualified commanded attacks, Shockwave completion, owner-bearing Raptor bleed and per-pet attribution.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-meterfeed",
+      "finding_id": 75,
+      "evidence_ref": "docs/analysis/detailed-meter-0.141.0.md",
+      "scope": "Typed frame builder, bounded multipart producer and replay/whisper path. The rebuilt Lua receiver is connected.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-meterlog",
+      "finding_id": 75,
+      "evidence_ref": "docs/analysis/combat-meter-attribution-0.141.0.md",
+      "scope": "Shared source selector and ordinary hit-attribution label path. Typed publication remains under #75.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-meterlog",
+      "finding_id": 75,
+      "evidence_ref": "docs/analysis/detailed-meter-0.141.0.md",
+      "scope": "Typed native reducer, one-based actor ID and run, encounter and retained counter scopes. Typed source publication remains open.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-party",
+      "finding_id": 153,
+      "evidence_ref": "docs/analysis/coop-incoming-0.141.0.md",
+      "scope": "Host and selected guest recipient incoming damage scalar and seat routing.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-party",
+      "finding_id": 153,
+      "evidence_ref": "docs/analysis/party-achievement-settlement-0.141.0.md",
+      "scope": "Party run eligibility, lethal history and recipient settlement boundary.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-scripts-krastinov",
+      "finding_id": 313,
+      "evidence_ref": "docs/analysis/scholomance-krastinov-0.141.0.md",
+      "scope": "Location-owned current event and movement phase handlers.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-scripts-mod",
+      "finding_id": 313,
+      "evidence_ref": "docs/analysis/scholomance-barov-0.141.0.md",
+      "scope": "Barov callback dispatcher and registered encounter transitions.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-scripts-mod",
+      "finding_id": 313,
+      "evidence_ref": "docs/analysis/scholomance-kirtonos-0.141.0.md",
+      "scope": "Kirtonos dispatcher and final-phase precedence.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-scripts-ras",
+      "finding_id": 313,
+      "evidence_ref": "docs/analysis/scholomance-ras-0.141.0.md",
+      "scope": "Location-owned Chill Nova, targeting and vulnerability phases with shield and rune behavior.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-game-talents",
+      "finding_id": 141,
+      "evidence_ref": "docs/analysis/improved-mind-blast-0.141.0.md",
+      "scope": "Current Improved Mind Blast rank, effect records and description template.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-gear",
+      "finding_id": 92,
+      "evidence_ref": "docs/analysis/scholomance-loot-0.141.0.md",
+      "scope": "Tier 0.5 item group selection and owned-item preference in the boss reward path.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-gear-t05",
+      "finding_id": 314,
+      "evidence_ref": "docs/analysis/scholomance-loot-0.141.0.md",
+      "scope": "The diagnostic-owned roll at 0x145e44ab0 applies the 50% armor admission, missing-piece priority and 25% bundled weapon roll.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-i18n",
+      "finding_id": 142,
+      "evidence_ref": "docs/analysis/scholomance-localization-0.141.0.md",
+      "scope": "Scholomance keyed creature and warning text rewrites and localized row selection.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-proto",
+      "finding_id": 145,
+      "evidence_ref": "docs/analysis/coop-guest-spell-rows-0.141.0.md",
+      "scope": "Wire 11 resource row sanitization, wire 12 finite scale rows and guest app publication. Friendly-aura recipient lineage remains open.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-proto",
+      "finding_id": 145,
+      "evidence_ref": "docs/analysis/scholomance-loot-0.141.0.md",
+      "scope": "Selected party-recipient reward forwarding after the Tier 0.5 roll.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-save",
+      "finding_id": 146,
+      "evidence_ref": "docs/analysis/party-achievement-settlement-0.141.0.md",
+      "scope": "Final-save cooperative zone membership and one-shot history settlement.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-server-party",
+      "finding_id": 154,
+      "evidence_ref": "docs/analysis/coop-admission-0.141.0.md",
+      "scope": "Current Join version/protocol comparison and outgoing field serialization; other packet/service scopes remain separate.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-server-party",
+      "finding_id": 154,
+      "evidence_ref": "docs/analysis/coop-inspection-0.141.0.md",
+      "scope": "Wire 17 roster/profile producer and live publication.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-server-party",
+      "finding_id": 154,
+      "evidence_ref": "docs/analysis/detailed-meter-0.141.0.md",
+      "scope": "Recipient request and per-peer frame staging and delivery.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-server-party",
+      "finding_id": 154,
+      "evidence_ref": "docs/analysis/party-achievement-settlement-0.141.0.md",
+      "scope": "Admitted guest cache/regular poll and terminal settlement dispatch.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-server-party",
+      "finding_id": 154,
+      "evidence_ref": "docs/analysis/scholomance-loot-0.141.0.md",
+      "scope": "Per-recipient class bundle and ownership selection for the Scholomance reward.",
+      "disposition": "registered_current_bounded_scope"
+    },
+    {
+      "id": "custom-game-server-party-readycheck",
+      "finding_id": 306,
+      "evidence_ref": "docs/analysis/native-interface-correspondence-0.141.0.md",
+      "scope": "First valid unanswered peer response mutation, phase/identity/row gates and exact response byte write.",
+      "disposition": "registered_current_bounded_scope"
+    }
+  ],
+  "pending_current_bounded_contracts": [
+    "custom-app-legacy-config",
+    "custom-app-lib",
+    "custom-app-screens-backdrop",
+    "custom-app-screens-codex",
+    "custom-app-screens-coop",
+    "custom-app-screens-discord",
+    "custom-app-screens-hud",
+    "custom-app-screens-hudparts",
+    "custom-app-screens-language",
+    "custom-app-screens-markers",
+    "custom-app-screens-mod",
+    "custom-app-screens-ontop",
+    "custom-app-screens-options",
+    "custom-app-screens-pad",
+    "custom-app-screens-picker",
+    "custom-app-screens-rewards",
+    "custom-app-screens-runmods",
+    "custom-app-screens-touch",
+    "custom-app-screens-update",
+    "custom-app-screens-xinput",
+    "custom-app-update",
+    "custom-game-appearance",
+    "custom-game-banners",
+    "custom-game-bindings",
+    "custom-game-content",
+    "custom-game-coop-pick",
+    "custom-game-coop-relay",
+    "custom-game-coop-route",
+    "custom-game-coop-smooth",
+    "custom-game-coop-tcp",
+    "custom-game-coop-trust",
+    "custom-game-dbc",
+    "custom-game-driver",
+    "custom-game-game-addon",
+    "custom-game-game-affixes",
+    "custom-game-game-auras",
+    "custom-game-game-companions",
+    "custom-game-game-demons",
+    "custom-game-game-enemy",
+    "custom-game-game-guardians",
+    "custom-game-game-mod",
+    "custom-game-game-procs",
+    "custom-game-game-upgrades",
+    "custom-game-hazards",
+    "custom-game-heroic",
+    "custom-game-jewelry",
+    "custom-game-nav",
+    "custom-game-realmd",
+    "custom-game-server",
+    "custom-game-sets",
+    "custom-game-smsg",
+    "custom-game-talents",
+    "custom-game-terrain"
+  ],
+  "pending_current_source_assignment": [],
+  "limits": [
+    "Historical recovery and repairs retain their original target and limits.",
+    "New registrations are bounded by the owning report and do not establish complete module recovery or parity."
+  ]
+}

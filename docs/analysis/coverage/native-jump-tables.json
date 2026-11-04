@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.140.0",
+    "version": "0.141.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
-    "size_bytes": 151521280
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
   },
-  "census_summary": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-1/summary.json",
-  "census_summary_sha256": "36d4e0610808cd718daa82a2a7c2ce80026e81bce410ecd5e0a3eea79d908572",
+  "census_summary": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-1/summary.json",
+  "census_summary_sha256": "7ece476a23c0cf538d229986810fcc45c8d49ef4f426f2a3a2afef7a1767b330",
   "generator": {
     "path": "scripts/recover-native-jump-tables.py",
     "sha256": "111ad371f8548af040f08a386b5a892b1e5964241feb64dad5fb3a7ba4718594",
@@ -16,18 +16,18 @@
   "counts": {
     "bounded-table-has-non-executable-target": 1160,
     "guarded-fallthrough-has-empty-proved-domain": 2,
-    "guarded-relative-tables": 3943,
+    "guarded-relative-tables": 3936,
     "not-register-jump": 159,
-    "not-relative-add": 3945,
+    "not-relative-add": 3951,
     "not-signed-table-load": 15,
     "relative-table-without-proven-unsigned-bound": 1927,
-    "scalar-domain-has-unproved-or-conflicting-instruction-targets": 296,
+    "scalar-domain-has-unproved-or-conflicting-instruction-targets": 304,
     "short-context": 284,
-    "table-base-not-static": 593
+    "table-base-not-static": 592
   },
   "linear_boundary_input": {
-    "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals-linear-boundaries.json",
-    "sha256": "af786f036f5199ec3e6bc60809bd94642a9ba16a5f8b6cc9b8196f3eeac01403"
+    "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals-linear-boundaries.json",
+    "sha256": "de66cfa65b9c4e3840951f9ccaa766154164bb68782faf3a9bb81b5d433f9944"
   },
   "pe_parser_helpers": [
     {
@@ -43,11 +43,11 @@
   "declared_linear_input": {
     "summary": {
       "path": "docs/analysis/coverage/instruction-summary.json",
-      "sha256": "7563a7467d2bf35231c2988252f81b21e0d70696b9c31ac60adf0797cedb0890"
+      "sha256": "783f8e6499ac6130b17abd764eb64da8bf8d9d635418837c246f0dbe6c227d2b"
     },
     "inventory": {
-      "path": "runtime/analysis/inventories/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/native-instructions-49cf81bde16a2429.sqlite",
-      "sha256": "0314c6dbd04ee5ea4d46c701d03c8e97e3bedf35d4052252b123809e739297dc"
+      "path": "runtime/analysis/inventories/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/native-instructions-6d426134cd43f4eb.sqlite",
+      "sha256": "90f53f4a3315cbf15295900bf2a61dc5ba0173d812a60e901506d4647df20e47"
     },
     "decoder_contract": "22e53e8f4827fbf7cbfe1aa982077d79fc59e4b16668ea5f06f7701f4e05b20d",
     "decoder": {
@@ -101,21 +101,21 @@
     ]
   },
   "candidate_origin_counts": {
-    "ghidra_observed": 3826,
+    "ghidra_observed": 3819,
     "declared_linear_only": 117,
-    "observed_and_declared_linear": 2554,
-    "rejected_declared_linear_tables": 496
+    "observed_and_declared_linear": 2547,
+    "rejected_declared_linear_tables": 503
   },
-  "rejected_scalar_domain_tables": 296,
-  "rejected_candidate_tables": 792,
+  "rejected_scalar_domain_tables": 304,
+  "rejected_candidate_tables": 807,
   "selector_alias_helpers": {
     "path": "scripts/native_scalar_aliases.py",
     "sha256": "d262801367fbfd316920a73f051f744edc1cd5126913a591288c93c08abba335"
   },
   "alias_guard_tables": 179,
-  "case_entries": 76589,
-  "unique_target_addresses": 25209,
-  "edge_digest": "dc057c49cb5e9f32cbf3909051870f0f59063cca2de254d136dca61290ea5290",
+  "case_entries": 76491,
+  "unique_target_addresses": 25153,
+  "edge_digest": "c9e5a35cffef79f98e9f5cce13c81a000ffa1052ad7955050e5115b052caa233",
   "census_helpers": {
     "path": "scripts/summarize-native-image.py",
     "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
@@ -125,8 +125,8 @@
     "sha256": "5c6ec1b54808da1b09cf2ffa0a5d7b54456237869f3ff69d7e40d973d11ab265"
   },
   "inventory": {
-    "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-    "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
+    "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
+    "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
   },
   "gap_ids": [
     41
