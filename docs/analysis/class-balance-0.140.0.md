@@ -58,7 +58,28 @@ semantics from the old addresses.
 | `ee384828482e8aa6` Flametongue Fire Nova | Descriptor `0x1473da238` points to two tag 54 rows at `0x1473d9778`; neither stores the live scalar as a plain damage value. Resolve their rank consumers and proc attribution through #305 and compare the shared Fire Nova path. |
 | `13db93523900cc83` Eye of the Tempest damage | The later supplied line adds Guardians to the target conditions. Use `jewelry.rs` candidates `0x145df4440`, `0x145e131e0`, `0x146064c90` and the actual Stormstrike hit consumer to distinguish boss/elite/Guardian flags and test where the modifier enters scaling. |
 | `09b7d43f6452dba3` Consecration and Amulet of the Inferno | Descriptor `0x1473b9a10` stores spell 26573 and raw power 144. The checkout still stores 96 in `player_abilities/catalog.rs` and a separate +50% damage effect in `legendary:consecration`, beside area/duration/explosion effects. The literal `consecration` at `0x1473c4410` seeds [#143](../CURRENT-STATE.md#gap-143)'s current constructor check. Trace modifier deletion and retained effect lanes through the existing pulse and item-growth paths. |
-| `0009124e18be87bf` Mind Blast and Improved Mind Blast | Spell 8092 at `0x1473baaf0` stores 131.4285736, giving 184 after the retained ordinary ×1.4 scalar. The checkout stores 93 before that scalar. Talent `0x1473d7ae0` points to a pair of tag 73 keyed `mind_blast` rows at `0x1473d70e8`, with f32 0.06 and selector bytes 1 and 0. `assets/talents.json` has only the cooldown row. Follow current rank scaling into the composed damage, cooldown and tooltip paths, preserving [#34's ordinary-balance evidence](../verification-needed.md#gap-34) and [#148's talent applicability](../CURRENT-STATE.md#gap-148). |
+| `0009124e18be87bf` Mind Blast and Improved Mind Blast | [#34](../verification-needed.md#gap-34) connects spell 8092's current power and both keyed rank effects. |
+
+### Mind Blast power, cooldown and descriptions
+
+Spell 8092 at `0x1473baaf0` stores raw power bits `0x43036db7` and
+cooldown 4.0. The ordinary ×1.4 composition gives neutral base values
+of 184 damage and 5.6 seconds. Talent `0x1473d7ae0` retains the key
+`imp_mind_blast` and points to two tag-73 rows at `0x1473d70e8`. Both
+select `mind_blast` and have amount bits `0x3d75c28f`. Modifier bytes
+`+0x24` are 1 (cooldown) and 0 (power), respectively. The native record
+contains the per-rank wording at `0x1473d7168`.
+
+The talent catalog uses internal tag 31 for these keyed modifiers. It scales
+each lane by the purchased rank, then composes both with other equipped
+modifiers through `Equipped::spell_modifiers`. The same spell instance inputs
+reach the live damage and cooldown calculations and the run tooltip.
+The pre-run picker now displays 184 damage. The talent menu uses the current
+per-rank description with the original allocation key and maximum rank.
+
+A read-only PE and source comparison verified the two rows, neutral ability
+values, rank scaling at ranks 0–5 and both menu data sources. Compilation,
+gameplay and controlled original/rebuilt comparison remain unverified.
 
 ## Healing and defensive capacity
 

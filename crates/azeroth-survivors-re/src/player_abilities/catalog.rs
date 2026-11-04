@@ -878,7 +878,7 @@ pub static ABILITIES: &[AbilityDefinition] = &[
         icon: "Spell_Shadow_UnholyFrenzy",
         upgrade_types: &[0, 1, 2],
         spell_id: 8092,
-        base_power: f32::from_bits(0x42ba0000),
+        base_power: f32::from_bits(0x43036db7),
         base_cooldown: f32::from_bits(0x40800000),
         range: f32::from_bits(0x41e00000),
         radius: f32::from_bits(0x00000000),

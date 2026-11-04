@@ -75,6 +75,19 @@ impl Catalog {
             .trees.iter_mut().flat_map(|tree| tree.talents.iter_mut())
             .find(|talent| talent.key == "soul_link").unwrap().description =
             "Milestone. Permanently summons a Voidwalker that hits 2 enemies. Gains 3% damage per 1% Damage Reduction and 2% per 1% bonus max health.\nYour Voidwalkers shield you for {v}% of their damage, up to 10% of your max health.\nRules out Soul Devourer.".into();
+        // The selected 0.140.0 descriptor supplies a fixed per-rank explanation.
+        let improved_mind_blast = catalog
+            .classes
+            .iter_mut()
+            .find(|class| class.id == 5)
+            .and_then(|priest| {
+                priest.trees.iter_mut().flat_map(|tree| &mut tree.talents)
+                    .find(|talent| talent.key == "imp_mind_blast")
+            })
+            .expect("retained Priest talent");
+        improved_mind_blast.description =
+            "Mind Blast's cooldown is 6% shorter and its damage is 6% higher per rank.".into();
+        improved_mind_blast.numeric_values.clear();
         catalog
     }
     pub fn class(&self, id: u8) -> &TalentClass {
