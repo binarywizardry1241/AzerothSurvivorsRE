@@ -218,7 +218,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             let kind = pool
                 .iter()
                 .filter_map(|key| AbilityDefinition::by_key(key))
-                .chain(self.meter_definitions.iter().copied())
+                .chain(self.meter_abilities.iter().map(|row| row.0))
                 .chain(self.meter_racial)
                 .find(|definition| {
                     definition.spell_id == hit.spell_id || definition.pulse_spell_id == hit.spell_id

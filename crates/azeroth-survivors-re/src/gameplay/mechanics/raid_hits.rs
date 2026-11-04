@@ -92,10 +92,10 @@ impl Mechanics {
                 player_absorb: self.execution.vitals.absorb,
                 equipped: &self.effect_state.equipped,
                 meter_sources: &self.effect_state.meter_sources,
-                meter_definitions: self
+                meter_abilities: self
                     .abilities
                     .iter()
-                    .map(|instance| instance.definition)
+                    .map(|instance| (instance.definition, instance.rank))
                     .collect(),
                 meter_racial: self.racial.as_ref().map(|instance| instance.definition),
                 aura_provenance: &self.effect_state.display_provenance,
