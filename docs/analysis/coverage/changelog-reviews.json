@@ -35152,7 +35152,7 @@
         "custom-game-game-mod",
         "custom-game-game-meterlog"
       ],
-      "rationale": "The live damage, boss, co-op HUD and ordinary addon meter rows credit commanded attacks and Packlord effects to the native pet identities. Detailed snapshot publication remains under #75.",
+      "rationale": "The live ordinary and typed meter paths credit commanded attacks, Bleed, Shockwave and the capped Howl allocation to their companion actor and detailed attack key. Actual game and addon delivery remain unverified.",
       "native_contract": "Command mode supplies the companion descriptor and attack label. Effect tags 62 and 63 route Bleed and Shockwave. The hit owner subtracts the capped Howl share from the base credit and records it under Wolf. The native detailed keys are recovered.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
@@ -35181,10 +35181,14 @@
         "crates/azeroth-survivors-re/assets/locales/ru.json",
         "crates/azeroth-survivors-re/assets/locales/tr.json",
         "crates/azeroth-survivors-re/assets/locales/uk.json",
-        "crates/azeroth-survivors-re/assets/locales/zh.json"
+        "crates/azeroth-survivors-re/assets/locales/zh.json",
+        "crates/azeroth-survivors-re/src/gameplay/client/detailed_feed.rs",
+        "crates/azeroth-survivors-re/src/gameplay/detailed_meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_credit.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/pet-meter-0.141.0.md"
+        "docs/analysis/pet-meter-0.141.0.md",
+        "docs/analysis/detailed-meter-0.141.0.md"
       ],
       "static_checks": [
         {
@@ -35199,19 +35203,19 @@
       },
       "status": "static_checked",
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "4507236bbbbf944b8812a1eff12b0059145dfa62f5d4318f4ae6291a1421423d",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs": "d418b9337a57f408bd5a4a3e99aef96a05f7c52074fdbde171d395d3afa7dbfb",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "5911480f8ac26ce7682d2e6f7b0d9a3c40fb02087addc4bfc725b54f73bedf2f",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "7dbca3bf0405e3eaa5052ed8c84eea1c8b398f2c28b66989335ef270d6f09bc3",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "f9ce7a26a3bd105b82906151eb846af97a57bf2697a3ea59a00146576998c107",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "4c0856f7bb085416e5426f210371e3c7fceb16b05adfac329ade5e7a831b8227",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs": "fe2918603349ce1a1ffb98aebed9aa19654516b2c61a6770aa565c2399799a0e",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs": "a0f7cc92d5ae5c6e787dd4b3aefec3868e804d0025bf5038d103acb771add5d5",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "79e9b8a7226196dfb0ff3772cf9a6ab3e3e33e44a89cb6fd1276cc1a3552cd84",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs": "c7f562bcfdbd5feedd632179127121090d05a614c4c28602d1c8391b949c2a91",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "779b88ebe06536c88aff501f6d8ec4b0122652c77cba721064de6aa25561cced",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs": "af3c543ddd790d37bda2b656fdfb2e2e642ecf70e2be474159f04608248b8420",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "49e0c2dae7b7c273696f9e14d4877b50c68b528e3d695458326f8a1c06f4ba03",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "64cf80c3bfb0a4b9ad54ff2b6951b3b3ffb0ae2d91342c222da53e0f1ac2ac2d",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/pets.rs": "faa437a5797815b7c2e2eae375d857ae7d4e63ffcd06bafaf9b72329b5d116f7",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/wards.rs": "0495c808a714854c66d506b9b994be6192dda83485dbd269258ea33cf51bba52",
         "crates/azeroth-survivors-re/src/gameplay/client/events.rs": "e5c34e26ba625d6b18f5e1a0ad6f9fa6c2553a37857ef8c99d760e0990b7f4c1",
         "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "7f177ea3109b0888fe880cb21dc23c191d3848f7420a8e43e8cf78e9816cbac3",
-        "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs": "79241751af7c0a60d015466362ceec06f8ae135122dacfd6f34790d8db6f1661",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs": "24acf6e03ed3ca5f0254110d9ae949caecefc555d63a7f54d78519e898da769b",
         "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "7d64f4161b2151ad204c28c14e4f4ae29f4479c02ac667c78c72a75802721359",
-        "crates/azeroth-survivors-re/src/run_meter.rs": "f2ae81bef7ae97908ae721ab6603f0f5560331dc48da263b44ef97ca194a3282",
+        "crates/azeroth-survivors-re/src/run_meter.rs": "15b9b077b6bd253b6d258776e72e8991abf24019a548406d6a8cc43a4e4cc904",
         "crates/azeroth-survivors-re/assets/locales/cs.json": "248ef854d6408c10d82703dc91bb9fcf0261915d922a8d57c28461193e76aed8",
         "crates/azeroth-survivors-re/assets/locales/de.json": "b2186d7622fce483d960fb09a83e48249fc024523e3902294dce31ea7ac555af",
         "crates/azeroth-survivors-re/assets/locales/en.json": "67c088c6f3ed45533c6f3342baabaffb1fdaea550889c2a91811e5550fc3a6d4",
@@ -35226,7 +35230,11 @@
         "crates/azeroth-survivors-re/assets/locales/tr.json": "2cde355e42af21a2763518f608957ea8fefbb2c931aade96b99a9e6d0378d7e4",
         "crates/azeroth-survivors-re/assets/locales/uk.json": "84cb70e35ea2ef1cf91b88771328cedf86c421bf2135ae5232c9c1fe20b690d5",
         "crates/azeroth-survivors-re/assets/locales/zh.json": "a82b1ff4a9bf4877f00eb5a11c82d16a6ca516b9acbc277ec906e04ebd66c339",
-        "docs/analysis/pet-meter-0.141.0.md": "391fd1dd486c5fd9a29feeca2fc6d0fefe009dee75775260c76ddb93c74a1424"
+        "crates/azeroth-survivors-re/src/gameplay/client/detailed_feed.rs": "5c5df9b9c869e30f0e86b8439aa95099e0786197a6b8fae8ae3bcb80987e722a",
+        "crates/azeroth-survivors-re/src/gameplay/detailed_meter.rs": "6fc59c459d2af67c1fae39256b467d1664eb5ae08629ccd67fcf7e8af4e423c2",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_credit.rs": "f824f898df6e6eed74400e5a343fae00b9a325d9d4c7cc557be75fc575e94121",
+        "docs/analysis/pet-meter-0.141.0.md": "c32ea7498166edfe202f97b979fdfc0b799fb16dcc208a3186d05c0f867b79a2",
+        "docs/analysis/detailed-meter-0.141.0.md": "7507e31606729090116256a04882bde7e5ffd3b7bdaa8932fc7ca5069f3c171b"
       }
     },
     {
@@ -35355,19 +35363,31 @@
         "version": "0.141.0",
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Live position, the authoritative ordinary guest snapshot, and the detailed multipart Lua receiver are source-connected. Native detailed header, actor and source writers, shared-heal owner credits, encounter fences and per-recipient history replay are recovered in bounded scope. The rebuilt typed recorder, retained descriptors, loadouts and detailed replay are still open.",
+      "status": "source_connected",
+      "rationale": "The rebuilt authority records party/source/actor credit, live loadouts and history, and sends multipart full and delta frames to the retained receiver. Live reload, network delivery and original/rebuilt comparison remain open.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
-        "crates/azeroth-survivors-re/src/gameplay/client/coop_feed.rs"
+        "crates/azeroth-survivors-re/src/gameplay/client/coop_feed.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/detailed_feed.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_loadout.rs",
+        "crates/azeroth-survivors-re/src/gameplay/detailed_meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_credit.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs"
       ],
       "evidence_refs": [
         "docs/analysis/detailed-meter-0.141.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": "b629b66b1142b4f17207935ff8b9e6ea00f8a7077c7d628bbeec3f5807b7d11d",
-        "docs/analysis/detailed-meter-0.141.0.md": "2502e682f37e28feb954638d74110c2514d05674b84874df7c6a1219cff1fbbc",
-        "crates/azeroth-survivors-re/src/gameplay/client/coop_feed.rs": "5f96470ca47676251e436d8ad871564b3e9d04b71f5c36278c739dea427bd3f3"
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs": "48515179a4a2f746fe799ed4c2692551d5cbca1c7de8857e25ab711144b8cf2d",
+        "crates/azeroth-survivors-re/src/gameplay/client/coop_feed.rs": "5f96470ca47676251e436d8ad871564b3e9d04b71f5c36278c739dea427bd3f3",
+        "crates/azeroth-survivors-re/src/gameplay/client/detailed_feed.rs": "5c5df9b9c869e30f0e86b8439aa95099e0786197a6b8fae8ae3bcb80987e722a",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_loadout.rs": "f79a5c34268a637ecaee92eade9f21a8b49c2bfebe5ab9404095700435ce7373",
+        "crates/azeroth-survivors-re/src/gameplay/detailed_meter.rs": "6fc59c459d2af67c1fae39256b467d1664eb5ae08629ccd67fcf7e8af4e423c2",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_credit.rs": "f824f898df6e6eed74400e5a343fae00b9a325d9d4c7cc557be75fc575e94121",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs": "677bfa11b2022d7de417bca1fb32b9419685d67d356018d4aa19609a625b6341",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs": "af4ae235a62b0c0c5311dd3cfbc383e1267bcecbc0aac55f8617b94860165987",
+        "docs/analysis/detailed-meter-0.141.0.md": "7507e31606729090116256a04882bde7e5ffd3b7bdaa8932fc7ca5069f3c171b"
       },
       "systems": [
         "custom-game-game-meterfeed"
@@ -35382,21 +35402,29 @@
         "version": "0.141.0",
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Windfury's primary talent key, Tier 0.5 source keys and ordinary addon labels are connected. Detailed Windfury child ability and set allocations still need the AZSM producer. The current effect selector shares the primary descriptor with the packet suffix; the ordinary display label comes from the legacy meter owner.",
+      "status": "source_connected",
+      "rationale": "Windfury's primary talent and child ability, Tier 0.5 source keys and the separate Heroism allocation reach the typed recorder and the recipient feed. Legacy label and packet routes retain their bounded evidence. Live addon delivery and parity remain open.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
-        "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs"
+        "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/detailed_feed.rs",
+        "crates/azeroth-survivors-re/src/gameplay/detailed_meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_credit.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/combat-meter-attribution-0.141.0.md"
+        "docs/analysis/combat-meter-attribution-0.141.0.md",
+        "docs/analysis/detailed-meter-0.141.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "4507236bbbbf944b8812a1eff12b0059145dfa62f5d4318f4ae6291a1421423d",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "4c0856f7bb085416e5426f210371e3c7fceb16b05adfac329ade5e7a831b8227",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "79e9b8a7226196dfb0ff3772cf9a6ab3e3e33e44a89cb6fd1276cc1a3552cd84",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs": "64cf80c3bfb0a4b9ad54ff2b6951b3b3ffb0ae2d91342c222da53e0f1ac2ac2d",
         "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "7f177ea3109b0888fe880cb21dc23c191d3848f7420a8e43e8cf78e9816cbac3",
-        "docs/analysis/combat-meter-attribution-0.141.0.md": "9da9d9604703fd5e86dba494cdb1d410a3a230f840b2ee10d42c407b4feb5fee"
+        "crates/azeroth-survivors-re/src/gameplay/client/detailed_feed.rs": "5c5df9b9c869e30f0e86b8439aa95099e0786197a6b8fae8ae3bcb80987e722a",
+        "crates/azeroth-survivors-re/src/gameplay/detailed_meter.rs": "6fc59c459d2af67c1fae39256b467d1664eb5ae08629ccd67fcf7e8af4e423c2",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_credit.rs": "f824f898df6e6eed74400e5a343fae00b9a325d9d4c7cc557be75fc575e94121",
+        "docs/analysis/combat-meter-attribution-0.141.0.md": "5246955f28948e89283e5cd49fa1a2cf352013765747b8d2e22cf2310bd364ac",
+        "docs/analysis/detailed-meter-0.141.0.md": "7507e31606729090116256a04882bde7e5ffd3b7bdaa8932fc7ca5069f3c171b"
       },
       "systems": [
         "custom-game-game-meterfeed",

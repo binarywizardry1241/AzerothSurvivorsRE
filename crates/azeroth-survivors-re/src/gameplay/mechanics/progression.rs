@@ -98,6 +98,7 @@ impl Mechanics {
         if !self.dead && !self.completed {
             self.discard_choice_offers();
             self.abandoned = true;
+            self.mark_detailed_departure();
             self.dead = true;
             self.fall_epoch = self.clock;
             self.record_party_fall();

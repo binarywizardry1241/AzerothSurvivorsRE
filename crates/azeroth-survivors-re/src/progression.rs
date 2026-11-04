@@ -241,10 +241,10 @@ struct Perk {
     category: u8,
 }
 #[derive(Deserialize)]
-struct Tabard {
+pub(crate) struct Tabard {
     id: u32,
-    name: String,
-    icon: String,
+    pub(crate) name: String,
+    pub(crate) icon: String,
     zone: Option<String>,
     cost: u32,
     display_id: u32,
@@ -277,7 +277,7 @@ pub(crate) fn available_cosmetic_ids(save: &Save) -> BTreeSet<u32> {
         .collect()
 }
 
-fn tabard(id: u32) -> Option<&'static Tabard> {
+pub(crate) fn tabard(id: u32) -> Option<&'static Tabard> {
     static CATALOG: std::sync::OnceLock<Catalog> = std::sync::OnceLock::new();
     CATALOG
         .get_or_init(Catalog::embedded)

@@ -54,9 +54,15 @@ pub fn effective_auras(auras: &[Aura], now: f32) -> impl Iterator<Item = &Aura> 
 
 #[derive(Clone, Debug, Default, PartialEq)]
 pub struct AuraTick {
-    pub healing: Vec<(u32, f32)>,
+    pub healing: Vec<(AuraHealer, f32)>,
     pub expired: Vec<u32>,
     pub absorb_changed: bool,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct AuraHealer {
+    pub source_guid: u64,
+    pub spell_id: u32,
 }
 
 ///14549da10..14549dc3e. Healing uses delta/max(remaining duration,delta),
@@ -69,7 +75,10 @@ pub fn tick_auras(auras: &mut Vec<Aura>, now: f32, delta: f32,
         if aura.healing_power > 0.0 {
             let amount = (delta / (aura.expires_at - now).max(delta)).min(1.0) * aura.healing_power;
             aura.healing_power -= amount;
-            result.healing.push((aura.spell_id, amount));
+            result.healing.push((AuraHealer {
+                source_guid: aura.source_guid,
+                spell_id: aura.spell_id,
+            }, amount));
         }
         if now >= aura.expires_at { result.expired.push(aura.spell_id); }
     }

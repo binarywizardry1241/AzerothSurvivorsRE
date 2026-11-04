@@ -6,6 +6,62 @@ This is a bounded source/recovery result for [#75](../CURRENT-STATE.md#gap-75).
 The [earlier ledger report](party-healing-meter-0.139.2.md) retains its own
 received-heal, replay, and recorder evidence.
 
+## Authority details
+
+The damage recorder `0x145f70300` emits distinct companion credits when a
+secondary attack is present and its bonus is positive. It widens the bonus
+and computes `bonus / (1 + bonus)`, then records each share of the capped hit
+with its own source and fence stamp. A nonnull boss definition admits the hit
+to the encounter. The encounter owner at `0x145e0f010` deduplicates by full
+target GUID. Its credit fence is a wrapping 64-bit value. The reducer stores
+the first credit's ordinal in the counter row at `+0x48`.
+
+The incoming damage owner records effective Soul Link absorption after
+subtracting it from the live pool at `0x145f6db52`. The heal recorder's tag-0
+branch sets the absorb flag when the source descriptor is `0x147af0940`.
+That descriptor is `soul_link`, kind `effect`, attribution `known`, with
+the Soul Link label and `Spell_Shadow_GatherShadows` icon.
+
+The Restoration pickup and the level-up gain call the same effective heal
+owner at `0x145f6ffd0` with tag-0 descriptors `restoration` and `level_up`.
+The batched regeneration path uses `regen`. The Voidwalker killing-blow
+branch passes the companion GUID and descriptor as tag 4 and requests 2.5
+health. Its detailed source is `leech` with the retained companion as actor.
+
+The hero list writer at `0x14605a8d0` emits `H` records in hero-view order
+with the escaped ID, `present` or `departed`, and the one-based index. The
+phase table supplies `ready`, `playing`, `choosing`, `paused`, `dead` and
+`victory`. The builder widens the run and encounter clocks before formatting.
+The suppression gate skips an ordinary delta only when its records are empty
+and the composite of the common header and complete hero list is unchanged.
+Full replay bypasses this gate. The recipient sequence is 64 bits.
+
+The metadata revision visits hero descriptors, then each selected owner's
+actor and source descriptors, then the selected loadouts' source descriptors
+and current encounter boss actors. The builder deduplicates by the prefixed
+actor or source key, retaining insertion order. The revision hashes the
+concatenated `key=record_hash;` entries.
+
+| Original range | File offset | SHA-256 |
+| --- | --- | --- |
+| Companion split `0x145f706c3..0x145f707d1` | `0x5f6fac3` | `c3b25bdec049a5f88a4628f1751dd037025c5bfd78836cbefac32cabf50ccf43` |
+| Soul Link credit `0x145f6db1a..0x145f6dbb9` | `0x5f6cf1a` | `97a3c686b9c60e060d6335a1b5f8b2c8ea4cdd4dec0d9759724c5dd2216f2f34` |
+| Absorb flag `0x145f67130..0x145f67151` | `0x5f66530` | `ddd4dd71c11ca0aa0a364c6432810f51d6e354c47e9708e42ceef7eb576a77f1` |
+| Restoration heal `0x145f36ffe..0x145f37056` | `0x5f363fe` | `29ba901cdaeb9ba437a2f775e9b47ad9f09dd5c80749f3322fdaba180a35697a` |
+| Level-up heal `0x145f84c2e..0x145f84c87` | `0x5f8402e` | `c16df2d7abaf8055e3ec995e584584d46b1a41ed9a5a757aa87583605473b09c` |
+| Voidwalker heal `0x145fb1169..0x145fb11db` | `0x5fb0569` | `d7c0c852634e062fa39ef9fe54cd17648cbafab05eb99086324eada0cd8ce1c2` |
+| Hero list `0x14605a8d0..0x14605aa44` | `0x6059cd0` | `5768415a482cbaa81469e03e7495a37a5a7dff4351ea57773d9bfc0462c033cb` |
+| Phase table `0x147af2d88..0x147af2de8` | `0x7af1388` | `5413ceaefa2fee3cde013787fd9d2e70f7f05afefb68a9239ffa4467cd2539c7` |
+| Frame suppression `0x145fcac87..0x145fcad09` | `0x5fca087` | `6b6da838b20160853cb3cfb990c010230919e274a895f571449bb92de46809a1` |
+
+Ghidra result `ev_ec44ab65361055423ae7871ca301d02ed01b34715a16c812d62c4eaf4a72a71b`
+matches the damage recorder slice `0x145f70300..0x145f710ca` with SHA-256
+`986dbbdb2e6b65f5e7712b20a2daee3ea478868a48a40034a6b534d982224699`.
+The saved result matches journal digest
+`9c3878bb99efd3f831a02f29aa9b18b06a839ee5288fbbda50e8cffe8b1af43d`.
+Original PE operands resolve external constants and the Windows argument
+order used by the recorder.
+
 ## Lua receiver
 
 The complete [retained meter Lua](evidence/0.139.1/meter-api.lua) is
@@ -395,18 +451,31 @@ was recovered from the exported evidence after the response exceeded the
 tool's inline budget; its raw result equals the saved Program operation.
 Original PE operands bind the record formats and external calls.
 
-The rebuilt authority still needs typed credit at the effective hit and
-heal owners. The existing hit attribution projects one packet key, so
-the detailed path must also retain source origins, including Windfury's
-child ability, and split Heroism into its separately keyed allocation.
-Periodic healing needs its original caster GUID through the capped batch.
-The shared run encounter and fence must survive hero seating independently
-of each owner's counters and retained actor metadata. The replay writer
-then needs the live equipment, ability, talent and jewelry descriptor
-joins and the actor's retained portrait inputs. These values are lost
-when accounting is reduced to legacy display totals.
+## Rebuilt authority and replay
 
-The retained receiver with the source's admission and capability guards
-passed the Lua bootstrap suite for multipart assembly, typed queries,
-request replay and world reset using a stub host. Rebuilt-authority
-execution and original-client comparison remain unverified.
+[Effective credit producers](../../crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_credit.rs)
+record capped damage, healing and Soul Link absorption independently of
+legacy display aggregation. Windfury keeps its ability origin, Heroism
+and companion effects keep their separate allocations, and periodic
+effects preserve the hero or summon that applied them. Shared heals
+publish received and performed rows with the same credit stamp.
+
+The [ledger](../../crates/azeroth-survivors-re/src/gameplay/detailed_meter.rs)
+retains typed counters and history by owner while keeping a single run fence
+and encounter across hero seating. Actor descriptors survive despawns and
+departures. The [loadout projection](../../crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_loadout.rs)
+reads actual equipment, ability slots, talent ranks and run jewelry.
+
+The [publisher](../../crates/azeroth-survivors-re/src/gameplay/client/detailed_feed.rs)
+uses separate sequence, counter, metadata, loadout and history state for each
+recipient. It reads the local authority directly and uses the existing
+synchronized co-op engine channel for guest delivery. `full` refreshes both
+feeds, `party` requests a detailed replay with all party owners, and `lines`
+refreshes ordinary lines. The server's addon-language whisper remains bound
+to the recipient. Lua assembles the entire frame before applying it.
+
+The composed Lua bootstrap passed ten stub-host checks, including admission,
+out-of-order multipart assembly, typed queries, replay and world reset.
+Rustfmt parsed the changed Rust and the scoped Git whitespace check passed.
+Compilation, actual delivery, rebuilding after VM replacement and
+original/rebuilt comparison remain open in [verification #75](../verification-needed.md#gap-75).

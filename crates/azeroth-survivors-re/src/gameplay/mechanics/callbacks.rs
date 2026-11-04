@@ -48,7 +48,7 @@ pub(super) struct State {
     pub reduction_durations: std::collections::BTreeMap<u64, f32>,
     pub actor_weakening: std::collections::BTreeMap<u64, state::StrongestWindow>,
     pub demoralizing_amplification: std::collections::BTreeMap<u64, state::StrongestWindow>,
-    pub packlord_howl: std::collections::BTreeMap<u64, std::collections::BTreeMap<u8, (f32, f32)>>,
+    pub packlord_howl: std::collections::BTreeMap<u64, std::collections::BTreeMap<u8, Howl>>,
     darkmantle_targets: Vec<u64>,
     pub deathmist_brand: Option<super::deathmist::Brand>,
     pub appearance_overrides: std::collections::BTreeMap<u64, (u32, f32)>,
@@ -56,6 +56,13 @@ pub(super) struct State {
     pub consume_magic_ready_at: std::collections::BTreeMap<u64, f32>,
     /// Current Game110 vector: all Succubi share a5-second Seduction cooldown.
     pub succubus_seduction_ready_at: std::collections::BTreeMap<u64, f32>,
+}
+
+#[derive(Clone, Copy, Debug)]
+pub(super) struct Howl {
+    pub source: u64,
+    pub expires_at: f32,
+    pub scale: f32,
 }
 
 #[derive(Clone, Copy, Debug)]
@@ -77,11 +84,11 @@ pub(super) enum ActorAuraUpdate {
 }
 
 impl State {
-    pub(super) fn packlord_amplification(&self, guid: u64, owner: u8, now: f32) -> f32 {
+    pub(super) fn packlord_howl_at(&self, guid: u64, owner: u8, now: f32) -> Option<Howl> {
         self.packlord_howl.get(&guid)
             .and_then(|howls| howls.get(&owner))
-            .filter(|(expires_at, _)| now < *expires_at)
-            .map_or(0.0, |(_, amount)| *amount)
+            .filter(|howl| now < howl.expires_at)
+            .copied()
     }
 
     /// Current145c02620 consumes the dirty flag and publishes every positive,
@@ -265,7 +272,7 @@ impl State {
             });
         }
         if let Some(howls) = self.packlord_howl.get_mut(&actor.guid) {
-            howls.retain(|_, (expires_at, _)| now < *expires_at);
+            howls.retain(|_, howl| now < howl.expires_at);
             if howls.is_empty() {
                 self.packlord_howl.remove(&actor.guid);
                 events.push(ActorAuraUpdate::Remove { target: actor.guid, spell_id: 24_604 });
@@ -688,6 +695,8 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     azeroth_survivors_re::run_effects::healing::LEECH
                 };
                 self.core.generic.healing_meter.record(source, amount);
+                let meter_effect = self.core.detailed_effect_index();
+                self.core.record_detailed_self_heal(spell_id, source, amount, meter_effect);
                 self.core.events.push(RunEvent::Healing {
                     amount,
                     emit_log: false,
@@ -1438,6 +1447,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     }
                 }
                 9 => {
+                    let hero = Some(self.context.player_guid);
                     let rows = if let Some(actor) = self
                         .core
                         .actors
@@ -1459,15 +1469,14 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     let retained = rows
                         .iter()
                         .filter(|periodic| {
-                            periodic.owner_kind != 0
-                                && periodic.owner_guid == index as u64
+                            periodic.matches_source(1, index as u64, hero)
                                 && periodic.spell_id == spell_id
                         })
                         .fold(-0.0, |sum, periodic| {
                             sum + periodic.power_per_tick * periodic.ticks_remaining as f32
                         });
                     let duration = row.float(12);
-                    periodic::install_dot(
+                    periodic::install_dot_with_origin(
                         rows,
                         1,
                         index as u64,
@@ -1481,6 +1490,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                         self.context.now,
                         0.0,
                         1,
+                        periodic::PeriodicOrigin { effect_owner: hero, meter_actor: None },
                     );
                     self.core.actor_aura(victim_guid, spell_id, true);
                 }
@@ -1671,12 +1681,8 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                                     rows.iter().any(|existing| {
                                         existing.spell_id == periodic.spell_id
                                             && existing.ticks_remaining != 0
-                                            && if periodic.owner_kind == 0 {
-                                                existing.owner_kind == 0
-                                            } else {
-                                                existing.owner_kind == 1
-                                                    && existing.owner_guid == periodic.owner_guid
-                                            }
+                                            && existing.matches_source(periodic.owner_kind,
+                                                periodic.owner_guid, periodic.effect_owner)
                                     })
                                 })
                         })
@@ -1687,7 +1693,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                         let ticks = periodic.initial_ticks.max(1);
                         for guid in selected {
                             if let Some(rows) = self.core.periodic_rows_mut(guid) {
-                                periodic::install_dot(
+                                periodic::install_dot_with_origin(
                                     rows,
                                     periodic.owner_kind,
                                     periodic.owner_guid,
@@ -1701,6 +1707,10 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                                     self.context.now,
                                     periodic.leech_fraction,
                                     1,
+                                    periodic::PeriodicOrigin {
+                                        effect_owner: periodic.effect_owner,
+                                        meter_actor: periodic.meter_actor,
+                                    },
                                 );
                             }
                             self.core.cast_spell(SpellCast {
@@ -1752,6 +1762,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                         None,
                     );
                     self.core.generic.healing_meter.record(source, amount);
+                    self.core.record_detailed_self_heal(0, source, amount, Some(index));
                     self.core.events.push(RunEvent::Healing {
                         amount,
                         context: None,

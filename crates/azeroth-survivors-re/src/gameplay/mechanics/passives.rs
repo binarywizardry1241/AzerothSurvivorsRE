@@ -294,8 +294,8 @@ impl<W: RunWorld> CastPort for PassiveCombat<'_, '_, '_, W> {
     fn move_ground(&mut self, guid: u64, position: Position) {
         self.core.move_ground(guid, position);
     }
-    fn create_totem(&mut self, object: SummonedObject) {
-        self.core.create_totem(object);
+    fn create_totem(&mut self, definition: &AbilityDefinition, object: SummonedObject) {
+        self.core.create_totem(definition, object);
     }
     fn expire_totem(
         &mut self,
@@ -359,6 +359,9 @@ impl<W: RunWorld> PassivePort for PassiveCombat<'_, '_, '_, W> {
                     proc_source: self.core.generic.source,
                     suppress_damage_log: false,
                     effect_critical_procs: false,
+                    meter_periodic: false,
+                    meter_reflected: false,
+                    meter_actor: None,
                 },
                 target_guid: hit.target_guid,
                 source_guid: self.context.player_guid,

@@ -304,6 +304,7 @@ fn primary_hits_gain_bloodrage_while_periodic_ticks_keep_source_one_gate() {
         owner_kind: 0,
         owner_guid: 1,
         effect_owner: None,
+        meter_actor: None,
         spell_id: 772,
         power_per_tick: 1.0,
         interval: 1.0,

@@ -67,9 +67,10 @@ messages read those same rows. The
 [combat-text adapter](../../crates/azeroth-survivors-re/src/gameplay/client/events.rs)
 attaches the companion attribution to the corresponding commanded melee
 packet and uses the existing periodic and spell routes for Bleed and
-Shockwave. Howl remains a meter-only split. The broader
-`AZS_GetMeterSnapshot` detailed replay producer remains open under
-[#75](../CURRENT-STATE.md#gap-75) and [#307](../CURRENT-STATE.md#gap-307).
+Shockwave. Howl remains a meter-only split. The
+[detailed meter authority](detailed-meter-0.141.0.md#rebuilt-authority-and-replay)
+also records the companion actor and attack source before aggregation.
+Live replay and parity remain under [#75](../verification-needed.md#gap-75).
 
 ## Static evidence
 

@@ -59,6 +59,10 @@ pub use coop::{PartyBanner, PartyInput};
 mod party_achievements;
 #[path = "mechanics/shared_healing.rs"]
 mod shared_healing;
+#[path = "mechanics/detailed_credit.rs"]
+mod detailed_credit;
+#[path = "mechanics/detailed_loadout.rs"]
+mod detailed_loadout;
 #[cfg(test)]
 #[path = "mechanics/shared_healing_tests.rs"]
 mod shared_healing_tests;
@@ -479,6 +483,7 @@ struct PendingHealing {
     general_owner: bool,
     manual: bool,
     meter_source: Option<azeroth_survivors_re::run_effects::healing::MeterSource>,
+    meter_effect: Option<usize>,
 }
 impl PendingHealing {
     fn anonymous(requested: f32) -> Self {
@@ -488,6 +493,7 @@ impl PendingHealing {
             general_owner: true,
             manual: false,
             meter_source: Some(azeroth_survivors_re::run_effects::healing::LEECH),
+            meter_effect: None,
         }
     }
     fn leech(requested: f32) -> Self {
@@ -524,6 +530,7 @@ impl PendingHealing {
             general_owner: true,
             manual: false,
             meter_source: None,
+            meter_effect: None,
             context: (spell_id != 0).then_some(HealingContext {
                 source: 1,
                 target: 1,
@@ -552,10 +559,10 @@ fn leech_after_hit(
     pending: &mut Vec<PendingHealing>,
     meter: &mut azeroth_survivors_re::run_effects::healing::HealingMeter,
     events: &mut Vec<RunEvent>,
-) {
-    if !(fraction > 0.0) { return; }
+) -> Option<f32> {
+    if !(fraction > 0.0) { return None; }
     let healing = PendingHealing::leech(amount * fraction);
-    let Some(vitals) = vitals else { pending.push(healing); return; };
+    let Some(vitals) = vitals else { pending.push(healing); return None; };
     let result = healing.apply_manual(vitals, heroic_rank);
     meter.record(healing.meter_source.expect("Leech owns its healing meter"), result.actual);
     events.push(RunEvent::Healing {
@@ -564,6 +571,7 @@ fn leech_after_hit(
         emit_log: result.emit_log,
         fields: result.fields,
     });
+    Some(result.actual)
 }
 
 /// A recovered native level-choice card selected by the native pool/rarity
@@ -628,6 +636,7 @@ pub struct Mechanics {
     /// Actual world identity supplied by the native player bootstrap owner.
     pub player_guid: u64,
     pub(super) addon_run_id: String,
+    pub(super) detailed_meter: super::detailed_meter::Ledger,
     equipment_ids: [u32; 19],
     pub(super) coop: coop::CoopSimulation,
     pub zone: &'static ZoneDefinition,
@@ -774,6 +783,7 @@ impl Mechanics {
         Ok(Self {
             player_guid: 1,
             addon_run_id: String::new(),
+            detailed_meter: Default::default(),
             equipment_ids: [0; 19],
             coop: coop::CoopSimulation::default(),
             zone,
@@ -972,6 +982,7 @@ impl Mechanics {
                 icon: "Spell_Holy_HolyBolt",
                 talent: false,
             }),
+            meter_effect: None,
         });
     }
 
@@ -1086,7 +1097,12 @@ impl Mechanics {
             azeroth_survivors_re::run_effects::healing::REGENERATION,
             batch.regeneration,
         );
-        for (spell_id, actual) in batch.credits {
+        self.record_detailed_heal(
+            self.player_guid, 0, azeroth_survivors_re::run_effects::healing::REGENERATION,
+            batch.regeneration, false,
+        );
+        for (healer, actual) in batch.credits {
+            let spell_id = healer.spell_id;
             let source = azeroth_survivors_re::run_effects::healing::meter_source(
                 0,
                 [0; 4],
@@ -1096,6 +1112,7 @@ impl Mechanics {
                 spell_id,
                 self.meter_definition(spell_id),
             );
+            self.record_detailed_heal(healer.source_guid, spell_id, source, actual, true);
             self.effect_state
                 .generic
                 .healing_meter
@@ -1120,6 +1137,7 @@ impl Mechanics {
             self.effect_state.numeric.extra_cast - self.effect_state.equipped.sum(13);
         let cooperative_luck = self.active_cooperative_luck();
         let mut port = CombatAdapter {
+            detailed_meter: &mut self.detailed_meter,
             party_healing: self.coop.healing_port(),
             player_guid: self.player_guid,
             showcase: self.showcase.enabled,
@@ -1575,6 +1593,7 @@ impl Mechanics {
             self.effect_state.numeric.extra_cast - self.effect_state.equipped.sum(13);
         let cooperative_luck = self.active_cooperative_luck();
         let mut port = CombatAdapter {
+            detailed_meter: &mut self.detailed_meter,
             party_healing: self.coop.healing_port(),
             player_guid: self.player_guid,
             showcase: self.showcase.enabled,
@@ -1684,6 +1703,8 @@ impl Mechanics {
                                 hit.owner_guid as u32, (hit.owner_guid >> 32) as u32,
                             ],
                             suppress_damage_log: true,
+                            meter_periodic: true,
+                            meter_actor: hit.meter_actor,
                             ..Default::default()
                         },
                         target_guid: hit.target_guid,
@@ -1777,6 +1798,11 @@ impl Mechanics {
                 self.meter_definition(spell_id),
             )
         });
+        self.record_detailed_heal(
+            healing.context.map_or(self.player_guid, |context| context.source),
+            healing.context.map_or(0, |context| context.spell_id),
+            source, result.actual, false,
+        );
         self.effect_state
             .generic
             .healing_meter
@@ -1822,6 +1848,7 @@ impl Mechanics {
             self.effect_state.numeric.extra_cast - self.effect_state.equipped.sum(13);
         let cooperative_luck = self.active_cooperative_luck();
         let mut port = CombatAdapter {
+            detailed_meter: &mut self.detailed_meter,
             party_healing: self.coop.healing_port(),
             player_guid: self.player_guid,
             showcase: self.showcase.enabled,
@@ -2102,6 +2129,7 @@ impl<W: RunWorld> WavePort for SpawnAdapter<'_, W> {
 
 struct CombatAdapter<'a, W> {
     player_guid: u64,
+    detailed_meter: &'a mut super::detailed_meter::Ledger,
     party_healing: shared_healing::Port<'a>,
     showcase: bool,
     actors: &'a mut Vec<RunActor>,
@@ -2441,6 +2469,10 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         let source = healing.meter_source.unwrap_or_else(|| {
             self.healing_source(healing.context.map_or(0, |context| context.spell_id))
         });
+        self.record_detailed_self_heal(
+            healing.context.map_or(0, |context| context.spell_id), source, result.actual,
+            healing.meter_effect,
+        );
         self.generic.healing_meter.record(source, result.actual);
         self.events.push(RunEvent::Healing {
             amount: result.actual,
@@ -2474,7 +2506,8 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         {
             0.0
         } else {
-            self.generic.packlord_amplification(hit.target_guid, self.party_healing.source_slot, self.now)
+            self.generic.packlord_howl_at(hit.target_guid, self.party_healing.source_slot, self.now)
+                .map_or(0.0, |howl| howl.scale)
         };
         if self.bosses.iter().any(|row| row.guid == hit.target_guid) {
             return self.hit_boss(hit, rng, vitals, packlord, packlord_attack, share);
@@ -2486,15 +2519,17 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         let deathmist_kind = self.deathmist_ability_kind(hit.target_guid, hit.spell_id);
         let leech = self.current_leech();
         let secondary_source = (hit.effect.tag == 5).then(|| self.healing_source(hit.spell_id));
+        let secondary_effect = secondary_source.and_then(|_| self.detailed_effect_index());
         let (meter_source, meter_attribution, meter_attack) = self.hit_meter(&hit, packlord_attack);
         let effect_stats = self.effect_stats();
-        let Some(row) = self
+        let Some(index) = self
             .actors
-            .iter_mut()
-            .find(|row| row.guid == hit.target_guid)
+            .iter()
+            .position(|row| row.guid == hit.target_guid)
         else {
             return None;
         };
+        let row = &mut self.actors[index];
         if row.actor.dead {
             return None;
         }
@@ -2558,13 +2593,17 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             .map(|attack| attack.components(2, f64::from(result.effective)))
             .unwrap_or_default();
         let shares = Self::damage_shares(share, result.packlord_fraction, self.generic.white_devilsaur);
+        self.record_detailed_damage(
+            &hit, result.effective, meter_source, meter_attribution.as_ref().map(|row| row.1.as_str()),
+            meter_attack, shares, None,
+        );
         self.generic.damage_meters.record_with_shares(
             meter_source, hit.spell_id, result.effective, &breakdown, shares,
         );
         self.events.push(RunEvent::Damage {
             source: self.player_guid,
             causal_source: hit.source_guid,
-            target: row.guid,
+            target: hit.target_guid,
             spell_id: hit.spell_id,
             school: hit.school,
             raw_power: hit.damage,
@@ -2575,8 +2614,12 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             periodic: false,
             emit_log: hit.spell_id != 0 && !hit.context.suppress_damage_log,
         });
-        leech_after_hit(result.amount, leech, self.rules.heroic_rank, vitals,
-            self.healing, &mut self.generic.healing_meter, self.events);
+        if let Some(actual) = leech_after_hit(result.amount, leech, self.rules.heroic_rank, vitals,
+            self.healing, &mut self.generic.healing_meter, self.events)
+        {
+            self.record_detailed_self_heal(0, azeroth_survivors_re::run_effects::healing::LEECH, actual, None);
+        }
+        let row = &mut self.actors[index];
         let position = row.actor.movement.position_at(self.now);
         let summary = HitInput {
             victim_guid: row.guid,
@@ -2605,6 +2648,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         match hit.effect.tag {
             5 => self.healing.push(PendingHealing {
                 meter_source: secondary_source,
+                meter_effect: secondary_effect,
                 ..PendingHealing::secondary(hit.damage * hit.effect.value, hit.spell_id)
             }),
             6 => self.healing.push(PendingHealing::secondary(
@@ -2716,8 +2760,11 @@ impl<W: RunWorld> CastPort for CombatAdapter<'_, W> {
         self.hit(hit, rng, None);
     }
     fn heal(&mut self, spell: u32, amount: f32) {
+        let meter_source = Some(self.healing_source(spell));
+        let meter_effect = self.detailed_effect_index();
         self.healing.push(PendingHealing {
-            meter_source: Some(self.healing_source(spell)),
+            meter_source,
+            meter_effect,
             ..PendingHealing::spell(amount, spell)
         });
     }
@@ -2730,10 +2777,12 @@ impl<W: RunWorld> CastPort for CombatAdapter<'_, W> {
     fn move_ground(&mut self, target: u64, position: Position) {
         self.events.push(RunEvent::GroundMoved { target, position });
     }
-    fn create_totem(&mut self, object: SummonedObject) {
+    fn create_totem(&mut self, definition: &AbilityDefinition, object: SummonedObject) {
+        self.note_detailed_totem(object.guid, definition);
         self.events.push(RunEvent::Totem(object));
     }
     fn remove_object(&mut self, guid: u64) {
+        self.detailed_meter.despawn_actor(guid);
         self.events.push(RunEvent::RemoveObject(guid));
     }
     fn finish_buff(&mut self, spell: u32, actions: BuffActions) {
@@ -2769,6 +2818,9 @@ impl<W: RunWorld> PassivePort for CombatAdapter<'_, W> {
                     proc_source: self.generic.source,
                     suppress_damage_log: false,
                     effect_critical_procs: false,
+                    meter_periodic: false,
+                    meter_reflected: false,
+                    meter_actor: None,
                 },
                 target_guid: hit.target_guid,
                 source_guid: self.player_guid,
@@ -2791,20 +2843,18 @@ impl<W: RunWorld> PassivePort for CombatAdapter<'_, W> {
     fn emit_passive_started(&mut self, _: PassiveStarted) {}
     fn emit_healing(&mut self, action: HealingAction) {
         if action.record_in_meter {
-            let source = match action.source {
+            let effect = match action.source {
                 behavior::totem_passives::HealingSource::Talent { .. } => self
                     .equipped
                     .rows
                     .iter()
-                    .position(|row| row.tag() == 22)
-                    .and_then(|index| self.meter_sources.get(index))
-                    .copied()
-                    .unwrap_or(azeroth_survivors_re::run_effects::healing::LEECH),
-                behavior::totem_passives::HealingSource::Leech => {
-                    azeroth_survivors_re::run_effects::healing::LEECH
-                }
+                    .position(|row| row.tag() == 22),
+                behavior::totem_passives::HealingSource::Leech => None,
             };
+            let source = effect.and_then(|index| self.meter_sources.get(index)).copied()
+                .unwrap_or(azeroth_survivors_re::run_effects::healing::LEECH);
             self.generic.healing_meter.record(source, action.actual);
+            self.record_detailed_self_heal(0, source, action.actual, effect);
         }
         self.events.push(RunEvent::Healing {
             amount: action.actual,
@@ -3299,7 +3349,7 @@ mod rng_integration {
         game.actors[0].maximum_health = 1000.0;
         game.actors[0].actor.attack_delay = 100.0;
         game.actors[0].periodic.push(periodic::ActorPeriodic {
-            owner_kind: 0, owner_guid: game.player_guid, effect_owner: None, spell_id: 1449,
+            owner_kind: 0, owner_guid: game.player_guid, effect_owner: None, meter_actor: None, spell_id: 1449,
             power_per_tick: 200.0, interval: 2.0, next_tick_at: 0.0,
             ticks_remaining: 1, initial_ticks: 1, leech_fraction: 0.0, school: 6,
         });
@@ -3460,6 +3510,7 @@ mod rng_integration {
             owner_kind: 0,
             owner_guid: 1,
             effect_owner: None,
+            meter_actor: None,
             spell_id: 589,
             power_per_tick: 100.0,
             interval: 2.0,
@@ -5023,6 +5074,7 @@ mod rng_integration {
             owner_kind: 0,
             owner_guid: 1,
             effect_owner: None,
+            meter_actor: None,
             spell_id: 589,
             power_per_tick: 7.0,
             interval: 2.0,
@@ -5299,6 +5351,7 @@ mod rng_integration {
             owner_kind: 1,
             owner_guid: 77,
             effect_owner: None,
+            meter_actor: None,
             spell_id: 589,
             power_per_tick: 7.0,
             interval: 2.0,

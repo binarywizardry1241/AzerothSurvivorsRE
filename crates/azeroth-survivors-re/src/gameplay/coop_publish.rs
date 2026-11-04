@@ -53,6 +53,10 @@ pub(in crate::gameplay) fn publish(
     mut presentation: ResMut<LocalPresentationEvents>,
     world: Res<ZoneWorld>,
 ) {
+    let hosting = runtime.driver.as_ref().is_some_and(|driver| driver.is_hosting());
+    if !hosting {
+        state.addon_publishers.clear();
+    }
     if runtime.is_guest() {
         return;
     }
@@ -82,7 +86,7 @@ pub(in crate::gameplay) fn publish(
     };
     // Keep End delivery/cache cleanup above; an offline process identity or a
     // retained old profile does not make the local run a cooperative host.
-    if !runtime.driver.as_ref().is_some_and(|driver| driver.is_hosting()) {
+    if !hosting {
         return;
     }
     runtime.party = game.localized_party_snapshot(&locale);
@@ -112,6 +116,7 @@ pub(in crate::gameplay) fn publish(
     }
     members.sort_by_key(|row| row.0);
     let now = time.elapsed_secs_f64();
+    let mut detailed_owners = None;
     for (slot, client, hero) in members {
         if let Some(client) = client {
             let synced =
@@ -132,8 +137,11 @@ pub(in crate::gameplay) fn publish(
         };
         let addon_due = client.is_some_and(|client|
             state.addon_publishers.entry(client).or_default().due(identity, now));
+        if addon_due && detailed_owners.is_none() {
+            detailed_owners = Some(game.detailed_owners(&armory));
+        }
         let addon_pose = addon_due.then(|| game.addon_party_pose(slot)).flatten();
-        let Some((fields, native, learned, attack, inventory, equipment, boss_rewards, seen, addon)) = game
+        let Some((fields, native, learned, attack, inventory, equipment, boss_rewards, seen, addon, detailed)) = game
             .with_party_hero(slot, |game| {
                 let player = client::player_ui(
                     game,
@@ -185,6 +193,14 @@ pub(in crate::gameplay) fn publish(
                     client::recipient_addon_snapshot(game, &String::from_utf8_lossy(&hero.name),
                         started, addon_paused, (position, facing, target), &recipient_locale, &bridge)
                 });
+                let detailed = client.filter(|_| addon_due).map_or_else(Vec::new, |client| {
+                    state.addon_publishers.entry(client).or_default().detailed.publish(
+                        game,
+                        detailed_owners.as_deref().unwrap_or_default(),
+                        client::recipient_phase(game, started, addon_paused),
+                        &recipient_locale,
+                    )
+                });
                 (
                     fields,
                     game.native_state(),
@@ -195,6 +211,7 @@ pub(in crate::gameplay) fn publish(
                     boss_rewards,
                     seen,
                     addon,
+                    detailed,
                 )
             })
         else {
@@ -239,6 +256,14 @@ pub(in crate::gameplay) fn publish(
                 if let Ok(Some(packet)) = engine_packets::encode(&event, Some(hero.guid)) {
                     runtime.send(Some(client), packet.into_message());
                 }
+            }
+            if !detailed.into_iter().all(|event| {
+                engine_packets::encode(&event, Some(hero.guid))
+                    .ok()
+                    .flatten()
+                    .is_some_and(|packet| runtime.send(Some(client), packet.into_message()))
+            }) {
+                publisher.detailed.replay();
             }
         }
         for event in inventory {

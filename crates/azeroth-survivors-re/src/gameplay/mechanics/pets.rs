@@ -99,6 +99,9 @@ impl Mechanics {
                     self.stats.native_race,
                 ),
             }));
+            detailed_credit::note_companion(
+                &mut self.detailed_meter, self.player_guid, initial.guid, appearance,
+            );
             self.pet_state.rows.push(Pet {
                 guid: initial.guid,
                 allocation_order: initial.allocation_order,
@@ -501,7 +504,9 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                 for target in hits {
                     let guid = target.actor.guid;
                     self.core.generic.packlord_howl.entry(guid).or_default()
-                        .insert(self.core.party_healing.source_slot, (expires_at, scale));
+                        .insert(self.core.party_healing.source_slot, callbacks::Howl {
+                            source, expires_at, scale,
+                        });
                     self.core.actor_aura(guid, spell_id, true);
                 }
             }
@@ -518,6 +523,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                             owner_kind: 1,
                             owner_guid: effect_index,
                             effect_owner,
+                            meter_actor: Some(source),
                             spell_id,
                             power_per_tick,
                             interval,

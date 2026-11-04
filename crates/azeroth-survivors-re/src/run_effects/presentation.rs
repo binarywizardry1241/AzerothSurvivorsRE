@@ -49,7 +49,7 @@ impl AuraSlots {
 mod tests {
     use super::*;
     fn periodic(spell_id:u32,owner_kind:u64,ticks_remaining:u32)->ActorPeriodic {
-        ActorPeriodic { owner_kind,owner_guid:0,effect_owner:None,spell_id,power_per_tick:1.,interval:1.,
+        ActorPeriodic { owner_kind,owner_guid:0,effect_owner:None,meter_actor: None,spell_id,power_per_tick:1.,interval:1.,
             next_tick_at:0.,ticks_remaining,initial_ticks:1,leech_fraction:0.,school:0 }
     }
     #[test]

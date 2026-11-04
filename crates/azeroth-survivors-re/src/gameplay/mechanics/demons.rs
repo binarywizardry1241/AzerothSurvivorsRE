@@ -292,6 +292,7 @@ impl Mechanics {
             self.effect_state.numeric.extra_cast - self.effect_state.equipped.sum(13);
         let cooperative_luck = self.active_cooperative_luck();
         let mut port = CombatAdapter {
+            detailed_meter: &mut self.detailed_meter,
             party_healing: self.coop.healing_port(),
             player_guid: self.player_guid,
             showcase: self.showcase.enabled,
@@ -416,6 +417,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
         // Current expiry compacts before Gate/build clocks or Infernal pulses.
         state.rows.retain(|demon| {
             if demon.tick.expires_at.is_some_and(|end| now + 0.0001 >= end) {
+                self.core.detailed_meter.despawn_actor(demon.guid);
                 self.core.events.push(RunEvent::RemoveObject(demon.guid));
                 false
             } else { true }

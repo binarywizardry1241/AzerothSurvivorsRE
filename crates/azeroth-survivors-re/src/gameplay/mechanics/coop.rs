@@ -1811,6 +1811,7 @@ impl Mechanics {
             );
         }
         template.player_guid = guid;
+        self.detailed_meter.note_guid_actor(guid, template.detailed_hero(name.clone()));
         if let Some(options) = template.coop.raw_options.get(&guid).copied() {
             self.coop.raw_options.insert(guid, options);
         }
@@ -1856,6 +1857,40 @@ impl Mechanics {
     pub fn has_party(&self) -> bool {
         self.coop.enabled
     }
+
+    pub(in crate::gameplay) fn detailed_owners(
+        &self,
+        armory: &crate::armory::ArmoryCatalog,
+    ) -> Vec<crate::gameplay::detailed_meter::DetailedOwner> {
+        use super::detailed_loadout::LoadoutView;
+        use crate::gameplay::detailed_meter::{Actor, DetailedOwner};
+
+        let capture = |loadout: LoadoutView<'_>, active: bool, name: &str, sex: u8| {
+            let mut actor = self.detailed_meter.actor(loadout.guid).cloned().unwrap_or_else(|| {
+                Actor::hero(loadout.guid, name.to_owned(), loadout.class.key, loadout.race, sex)
+            });
+            actor.state = if active { "present" } else { "departed" };
+            DetailedOwner { guid: loadout.guid, active, actor, loadout: loadout.capture(armory) }
+        };
+        let mut owners = Vec::with_capacity(1 + self.coop.remotes.len());
+        owners.push(capture(LoadoutView {
+            guid: self.player_guid, race: self.stats.native_race, class: self.class,
+            equipment: &self.equipment_ids, learned: &self.abilities, racial: self.racial.as_ref(),
+            effects: &self.effect_state, treasure: &self.treasure_state,
+            credits: self.detailed_meter.owner(self.player_guid),
+        }, !self.abandoned, &self.coop.local_name, self.stats.packed_player_field.to_le_bytes()[2]));
+        for remote in &self.coop.remotes {
+            let state = &remote.state;
+            owners.push(capture(LoadoutView {
+                guid: state.player_guid, race: state.stats.native_race, class: state.class,
+                equipment: &state.equipment_ids, learned: &state.abilities, racial: state.racial.as_ref(),
+                effects: &state.effect_state, treasure: &state.treasure_state,
+                credits: self.detailed_meter.owner(state.player_guid),
+            }, !remote.departed, &remote.name, state.stats.packed_player_field.to_le_bytes()[2]));
+        }
+        owners
+    }
+
     /// 0.139.2 permanent peer removal retains the world row and its reward
     /// ownership. The singleton check counts departures independently of phase.
     pub fn leave_party_hero(&mut self, slot: u8) -> bool {
@@ -2075,6 +2110,11 @@ impl Mechanics {
         }
     }
     pub(super) fn party_slot_for_source(&self, guid: u64) -> u8 {
+        if let Some(slot) = self.detailed_meter.actor(guid).and_then(|actor| actor.owner)
+            .and_then(|owner| self.party_slot(owner))
+        {
+            return slot;
+        }
         if guid == self.player_guid
             || self.pet_state.rows.iter().any(|pet| pet.guid == guid)
             || self.demon_state.rows.iter().any(|demon| demon.guid == guid)

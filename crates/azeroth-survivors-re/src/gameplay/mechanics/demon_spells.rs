@@ -395,6 +395,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
         if demon.definition.special == 3 {
             if !alive {
                 let actual = demon_effects::voidwalker_kill_heal_for_rank(&mut execution.vitals, self.core.rules.heroic_rank);
+                self.core.record_detailed_voidwalker_heal(demon.guid, actual);
                 self.core.generic.healing_meter.record(
                     healing::MeterSource {
                         name: demon.definition.name,

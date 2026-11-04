@@ -184,6 +184,7 @@ impl Mechanics {
             azeroth_survivors_re::run_effects::healing::SOUL_LINK,
             applied.soul_link_absorbed,
         );
+        self.record_detailed_soul_link(applied.soul_link_absorbed);
         self.execution.vitals.health = health_before;
         let refresh = !applied.removed_auras.is_empty() || applied.completed_absorption.is_some();
         // Native aura removal refreshes stats before retaliation and lethal gates.
@@ -373,6 +374,7 @@ impl Mechanics {
             self.effect_state.numeric.extra_cast - self.effect_state.equipped.sum(13);
         let cooperative_luck = self.active_cooperative_luck();
         let mut port = CombatAdapter {
+            detailed_meter: &mut self.detailed_meter,
             party_healing: self.coop.healing_port(),
             player_guid: self.player_guid,
             showcase: self.showcase.enabled,
@@ -456,7 +458,10 @@ impl Mechanics {
         match action {
             IncomingAction::Hit(hit) => passive.hit_with_execution(
                 PendingHit {
-                    context: HitContext::default(),
+                    context: HitContext {
+                        meter_reflected: true,
+                        ..Default::default()
+                    },
                     target_guid: hit.target_guid,
                     source_guid: self.player_guid,
                     effect: player_abilities::StatusEffect {

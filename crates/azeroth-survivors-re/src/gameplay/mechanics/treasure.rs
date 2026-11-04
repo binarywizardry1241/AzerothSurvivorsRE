@@ -62,8 +62,8 @@ impl TreasureChoice {
 
 #[derive(Debug, Default)]
 pub(super) struct TreasureState {
-    jewelry: Vec<native::JewelryItem>,
-    amulet: Option<native::AmuletItem<&'static amulets::Definition>>,
+    pub(super) jewelry: Vec<native::JewelryItem>,
+    pub(super) amulet: Option<native::AmuletItem<&'static amulets::Definition>>,
     remaining_lives: u32,
     offers: Vec<TreasureChoice>,
     /// Native choice source2 has its own pending counter and rarity bonus.

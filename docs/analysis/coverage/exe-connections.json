@@ -23,7 +23,7 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "6cdc698922a613b01ffe15de4de74e1b24d7ffbcceb2db581bdd0045416e3548"
+      "sha256": "7c92f3c8c34b829336989e0654d8c6a224602cee7d6f5d3b96caa5620971a6e7"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
@@ -39,7 +39,7 @@
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "b48ade7158e13580d3be084602ebe81f0fb848523e585cd8384125482edb95e1"
+      "sha256": "d660897c03afc1c884ba0d346e1a8107ae8cbb676822b487af50656ab4bdf5d6"
     },
     {
       "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
@@ -72,9 +72,9 @@
     "without_source_correspondence": 0,
     "ownerless_native_location_references": 67,
     "paths_with_ownerless_native_location_references": 15,
-    "retained_evidence_json_documents": 1850,
+    "retained_evidence_json_documents": 1859,
     "evidence_document_identity_roles": {
-      "current": 24,
+      "current": 33,
       "historical": 1734,
       "requires_owning_manifest_or_review": 92
     },
@@ -5781,7 +5781,7 @@
       "current_bounded_contract_scopes": {
         "docs/analysis/coop-admission-0.141.0.md": "Current Join version/protocol comparison and outgoing field serialization; other packet/service scopes remain separate.",
         "docs/analysis/coop-inspection-0.141.0.md": "Wire 17 roster/profile producer and live publication.",
-        "docs/analysis/detailed-meter-0.141.0.md": "Recipient request, per-peer frame staging and authoritative ordinary addon snapshots from the seated hero.",
+        "docs/analysis/detailed-meter-0.141.0.md": "Admitted recipient requests, per-peer frame state, and ordinary and detailed addon-language delivery from the seated authority.",
         "docs/analysis/party-achievement-settlement-0.141.0.md": "Admitted guest cache/regular poll and terminal settlement dispatch.",
         "docs/analysis/scholomance-loot-0.141.0.md": "Per-recipient class bundle and ownership selection for the Scholomance reward."
       },
@@ -6690,7 +6690,9 @@
       "original_path": "crates/wenilla-rogue/src/game/meterfeed.rs",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/client/addon_feed.rs",
-        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs"
+        "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/detailed_feed.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_loadout.rs"
       ],
       "source_anchors": [],
       "gap_ids": [
@@ -6709,13 +6711,11 @@
         "0x146062710"
       ],
       "ownerless_location_sites": [],
-      "remaining_source_work": [
-        "Connect the authoritative typed frame and per-recipient replay under #75 using the recovered header, metadata, history cursor, partitioner and request flags. Ordinary recipient lines and the shipped Lua receiver are connected."
-      ],
+      "remaining_source_work": [],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": true,
       "current_bounded_contract_scopes": {
-        "docs/analysis/detailed-meter-0.141.0.md": "Typed header, actor/source record writers, history replay cursor, multipart producer and whisper path. The rebuilt Lua receiver is connected."
+        "docs/analysis/detailed-meter-0.141.0.md": "Typed header, actor/source and loadout rows, owner history cursors, multipart delta and full replay connected to the Lua receiver."
       },
       "current_bounded_contract_refs": [
         "docs/analysis/detailed-meter-0.141.0.md"
@@ -6728,7 +6728,11 @@
         "crates/azeroth-survivors-re/src/run_meter.rs",
         "crates/azeroth-survivors-re/src/run_effects/healing.rs",
         "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs"
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+        "crates/azeroth-survivors-re/src/gameplay/detailed_meter.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/detailed_credit.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs"
       ],
       "source_anchors": [],
       "gap_ids": [
@@ -6751,14 +6755,12 @@
         "0x146005580"
       ],
       "ownerless_location_sites": [],
-      "remaining_source_work": [
-        "Connect typed credit at the effective hit and heal owners under #75. Preserve periodic caster GUID, actor/source metadata, encounter fences and independent owner counters before ordinary aggregation."
-      ],
+      "remaining_source_work": [],
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": true,
       "current_bounded_contract_scopes": {
-        "docs/analysis/combat-meter-attribution-0.141.0.md": "Shared source selector and ordinary hit-attribution label path. Typed publication remains under #75.",
-        "docs/analysis/detailed-meter-0.141.0.md": "Typed reducer and one-based counter IDs, shared healing owner copies, and run, encounter and history scopes. Typed source publication remains open."
+        "docs/analysis/combat-meter-attribution-0.141.0.md": "Shared source selector, ordinary hit-attribution label path, and typed origin and separate effect credits.",
+        "docs/analysis/detailed-meter-0.141.0.md": "Effective damage and healing recorder, typed counters and origins, retained actors, shared encounter fence and per-owner history connected."
       },
       "current_bounded_contract_refs": [
         "docs/analysis/combat-meter-attribution-0.141.0.md",
@@ -7047,6 +7049,6 @@
   "parity_verified": false,
   "inventory": {
     "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/exe-connections.json",
-    "sha256": "07bd01a9293013318956e26950ba55d5213f22f3f138c355534e591d83260364"
+    "sha256": "8dace5e628a4bed4c50341ccd503d805ae7647a8c825fae58cbb56ce3fc95992"
   }
 }

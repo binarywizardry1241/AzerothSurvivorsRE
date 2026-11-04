@@ -42,7 +42,7 @@ impl Mechanics {
                 self.effect_state
                     .spell_display_talents
                     .iter()
-                    .any(|talent| talent.as_str() == *key)
+                    .any(|(talent, _)| talent.as_str() == *key)
             })
         {
             return false;

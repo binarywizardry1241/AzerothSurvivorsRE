@@ -111,6 +111,7 @@ impl Mechanics {
                 let source = healing::meter_source(
                     0, [0; 4], [0; 4], None, &[], healing.spell_id, definition,
                 );
+                self.record_detailed_heal(event.source_guid, healing.spell_id, source, result.actual, false);
                 self.effect_state.generic.healing_meter.record(source, result.actual);
                 if result.emit_log {
                     self.events.push(RunEvent::Healing {

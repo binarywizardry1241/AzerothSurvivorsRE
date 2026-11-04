@@ -197,6 +197,9 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             );
             self.core.special_demons = state.rows.len();
             for demon in created {
+                detailed_credit::note_companion(
+                    self.core.detailed_meter, self.context.player_guid, demon.guid, demon.definition,
+                );
                 if demon.definition.special != 6 {
                     continue;
                 }

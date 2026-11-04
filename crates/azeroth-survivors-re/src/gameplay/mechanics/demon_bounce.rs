@@ -64,19 +64,19 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     .map(|(i, row)| (i, row.clone()))
                 {
                     if let Some(periodic) = self.core.periodic_rows_mut(hit.target_guid) {
+                        let hero = Some(self.context.player_guid);
                         let spell = row.word(4);
                         let retained = periodic
                             .iter()
                             .filter(|dot| {
-                                dot.owner_kind != 0
-                                    && dot.owner_guid == index as u64
+                                dot.matches_source(1, index as u64, hero)
                                     && dot.spell_id == spell
                             })
                             .fold(-0.0, |sum, dot| {
                                 sum + dot.power_per_tick * dot.ticks_remaining as f32
                             });
                         let duration = row.float(12);
-                        periodic::install_dot(
+                        periodic::install_dot_with_origin(
                             periodic,
                             1,
                             index as u64,
@@ -90,6 +90,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                             self.context.now,
                             0.0,
                             1,
+                            periodic::PeriodicOrigin { effect_owner: hero, meter_actor: None },
                         );
                         self.core.actor_aura(hit.target_guid, spell, true);
                     }

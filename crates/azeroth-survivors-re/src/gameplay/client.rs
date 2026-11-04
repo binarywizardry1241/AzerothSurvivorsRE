@@ -4,6 +4,7 @@
 mod addon_bootstrap;
 pub(super) mod addon_banners;
 pub(super) mod addon_feed;
+mod detailed_feed;
 mod coop_feed;
 pub(super) use coop_feed::recipient_addon_snapshot;
 pub(super) mod raid_targets;
@@ -49,6 +50,14 @@ pub struct ClientBridgePlugin;
 /// Reuse the same current phase owner for custom presence and the addon feed.
 pub(super) fn presence_phase(session: &RunSession) -> &'static str {
     addon_scalars::phase(session)
+}
+
+pub(super) fn recipient_phase(
+    game: &super::mechanics::Mechanics,
+    started: bool,
+    paused: bool,
+) -> &'static str {
+    addon_scalars::phase_for(game, started, paused)
 }
 
 fn addon_messages(
@@ -208,12 +217,13 @@ fn sync_to_client(
         ResMut<LocalAddonRequests>,
     ),
 ) {
-    let mut requests = std::mem::take(&mut addon_requests.0).into_iter();
-    if requests.any(|request| {
-        request.distribution == benilla_ui::script::AddonDistribution::Party
-            && addon_feed::requests_lines(&request.text)
-    }) {
-        state.addon.replay_lines();
+    let guest = coop.as_ref().is_some_and(|coop| coop.is_guest());
+    for request in addon_requests.0.drain(..) {
+        if !guest && request.distribution == benilla_ui::script::AddonDistribution::Party {
+            if let Some(request) = addon_feed::MeterRequest::parse(&request.text) {
+                state.addon.request(request);
+            }
+        }
     }
     extension.combat_text_run = session.mechanics.as_ref().filter(|_| menu.in_run)
         .map(|_| session.identity);
@@ -223,7 +233,7 @@ fn sync_to_client(
         addon_bootstrap::meter_language(&mut extension, locale.code());
         state.stats_locale = Some(locale.code());
     }
-    if coop.as_ref().is_some_and(|coop|coop.is_guest()) {
+    if guest {
         let in_run = session.mechanics.is_some() && menu.in_run;
         extension.custom_game_menu = in_run;
         extension.script_update = talent_view::publication(in_run, in_run && session.talent_view_open);
@@ -370,6 +380,9 @@ fn sync_to_client(
             let snapshot = addon_messages(game, scalars, &locale, &catalog, party);
             packets.0.extend(state.addon.changed_from(snapshot,game.player_guid));
         }
+        let phase = addon_scalars::phase(&session);
+        let owners = game.detailed_owners(&armory);
+        packets.0.extend(state.addon.detailed.publish(game, &owners, phase, &locale));
     }
     loading.set_ready(world.ready);
     client.set_paused(loading.covering() || session.paused || game.is_paused_for_choice() || !session.playing() || !world.ready);

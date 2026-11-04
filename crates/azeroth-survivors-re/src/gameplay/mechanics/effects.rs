@@ -51,7 +51,7 @@ pub(super) struct EffectsState {
     pub set_generic_start: usize,
     pub set_generic_count: usize,
     /// Selected talent descriptors retain definition order for spell tooltips.
-    pub spell_display_talents: Vec<String>,
+    pub spell_display_talents: Vec<(String, u8)>,
     pub graduation_enhancement: bool,
     pub talent_provenance: Vec<&'static str>,
     pub provenance: Vec<&'static str>,
@@ -410,7 +410,7 @@ impl Mechanics {
         self.effect_state.spell_display_talents = allocation
             .iter()
             .filter(|(key, rank)| *rank != 0 && key != crate::save::talents::WHITE_DEVILSAUR)
-            .map(|(key, _)| key.clone())
+            .cloned()
             .collect();
         self.effect_state.talent_provenance.clear();
         self.effect_state.talent_meter_sources.clear();

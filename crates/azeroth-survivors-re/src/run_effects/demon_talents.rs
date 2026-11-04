@@ -129,12 +129,28 @@ pub(super) fn overlay(talents: &mut Vec<Talent>) {
         target_sha256: String,
         talents: Vec<Talent>,
     }
+    #[derive(serde::Deserialize)]
+    struct TreeCatalog { trees: Vec<Tree> }
+    #[derive(serde::Deserialize)]
+    struct Tree { talents: Vec<TreeEntry> }
+    #[derive(serde::Deserialize)]
+    struct TreeEntry { key: String }
     let current: Current = serde_json::from_str(include_str!(
         "../../assets/warlock-effects-0.112.0.json"
     )).expect("current Warlock effects");
     assert_eq!(current.target_sha256,
         "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a");
     *talents = current.talents;
+    let tree_catalog: TreeCatalog = serde_json::from_str(include_str!(
+        "../../assets/warlock-talents-0.112.0.json"
+    )).expect("current Warlock tree ownership");
+    for (index, tree) in tree_catalog.trees.into_iter().enumerate() {
+        for entry in tree.talents {
+            let talent = talents.iter_mut().find(|talent| talent.key == entry.key)
+                .expect("tree entry has a current Warlock effect descriptor");
+            talent.tree_index = index as u8;
+        }
+    }
     talents
         .iter_mut()
         .find(|talent| talent.key == PACT_KEY)

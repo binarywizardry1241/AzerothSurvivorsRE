@@ -229,8 +229,8 @@ pub(super) fn drain(
         let mut replies = Vec::new();
         match packet.opcode {
             opcode::CMSG_MESSAGECHAT => {
-                if requests_addon_lines(&packet.payload) {
-                    state.addon_publishers.entry(client).or_default().replay_lines();
+                if let Some(request) = meter_request(&packet.payload) {
+                    state.addon_publishers.entry(client).or_default().request(request);
                 }
             }
             opcode::CMSG_NAME_QUERY => {
@@ -350,15 +350,13 @@ pub(super) fn drain(
     }
 }
 
-fn requests_addon_lines(body: &[u8]) -> bool {
+fn meter_request(body: &[u8]) -> Option<client::addon_feed::MeterRequest> {
     use benilla_protocol::messages::{CHAT_TYPE_PARTY, LANGUAGE_ADDON};
-    u32_at(body, 0) == Some(CHAT_TYPE_PARTY)
-        && u32_at(body, 4) == Some(LANGUAGE_ADDON)
-        && body
-            .get(8..)
-            .and_then(|text| text.strip_suffix(&[0]))
-            .and_then(|text| std::str::from_utf8(text).ok())
-            .is_some_and(client::addon_feed::requests_lines)
+    if u32_at(body, 0) != Some(CHAT_TYPE_PARTY) || u32_at(body, 4) != Some(LANGUAGE_ADDON) {
+        return None;
+    }
+    let text = body.get(8..)?.strip_suffix(&[0])?;
+    client::addon_feed::MeterRequest::parse(std::str::from_utf8(text).ok()?)
 }
 
 #[cfg(test)]
@@ -368,11 +366,13 @@ mod tests {
     #[test]
     fn addon_replay_requires_the_addon_party_wire_body() {
         use benilla_protocol::messages::{CHAT_TYPE_PARTY, LANGUAGE_ADDON, messagechat};
+        use client::addon_feed::MeterRequest;
         let full = messagechat(CHAT_TYPE_PARTY, LANGUAGE_ADDON, "AZSMREQ\tfull");
-        assert!(requests_addon_lines(&full));
-        assert!(!requests_addon_lines(&full[..full.len() - 1]));
-        assert!(!requests_addon_lines(&messagechat(CHAT_TYPE_PARTY, 0, "AZSMREQ\tfull")));
-        assert!(!requests_addon_lines(&messagechat(CHAT_TYPE_PARTY, LANGUAGE_ADDON, "AZSMREQ\tparty")));
+        assert_eq!(meter_request(&full), Some(MeterRequest::Full));
+        assert_eq!(meter_request(&full[..full.len() - 1]), None);
+        assert_eq!(meter_request(&messagechat(CHAT_TYPE_PARTY, 0, "AZSMREQ\tfull")), None);
+        let party = messagechat(CHAT_TYPE_PARTY, LANGUAGE_ADDON, "AZSMREQ\tparty");
+        assert_eq!(meter_request(&party), Some(MeterRequest::Party));
     }
     #[test]
     fn template_queries_zero_fill_only_the_missing_entry_bytes() {

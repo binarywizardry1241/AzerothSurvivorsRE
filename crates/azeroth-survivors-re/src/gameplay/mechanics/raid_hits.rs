@@ -61,6 +61,7 @@ impl Mechanics {
                 self.effect_state.numeric.extra_cast - self.effect_state.equipped.sum(13);
             let cooperative_luck = self.active_cooperative_luck();
             let mut port = CombatAdapter {
+            detailed_meter: &mut self.detailed_meter,
             party_healing: self.coop.healing_port(),
             player_guid: self.player_guid,
                 showcase: self.showcase.enabled,

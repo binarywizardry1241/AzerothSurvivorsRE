@@ -250,14 +250,16 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             }
         }
         let secondary_source = (hit.effect.tag == 5).then(|| self.healing_source(hit.spell_id));
+        let secondary_effect = secondary_source.and_then(|_| self.detailed_effect_index());
         let (meter_source, meter_attribution, meter_attack) = self.hit_meter(&hit, packlord_attack);
         let effect_stats = self.effect_stats();
-        let row = self
+        let index = self
             .boss_state
             .wards
             .actors
-            .iter_mut()
-            .find(|row| row.guid == hit.target_guid)?;
+            .iter()
+            .position(|row| row.guid == hit.target_guid)?;
+        let row = &mut self.boss_state.wards.actors[index];
         if row.actor.dead {
             return None;
         }
@@ -312,13 +314,17 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             .map(|attack| attack.components(2, f64::from(result.effective)))
             .unwrap_or_default();
         let shares = Self::damage_shares(share, result.packlord_fraction, self.generic.white_devilsaur);
+        self.record_detailed_damage(
+            &hit, result.effective, meter_source, meter_attribution.as_ref().map(|row| row.1.as_str()),
+            meter_attack, shares, None,
+        );
         self.generic
             .damage_meters
             .record_with_shares(meter_source, hit.spell_id, result.effective, &breakdown, shares);
         self.events.push(RunEvent::Damage {
             source: self.player_guid,
             causal_source: hit.source_guid,
-            target: row.guid,
+            target: hit.target_guid,
             spell_id: hit.spell_id,
             school: hit.school,
             raw_power: hit.damage,
@@ -329,8 +335,12 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             periodic: false,
             emit_log: hit.spell_id != 0 && !hit.context.suppress_damage_log,
         });
-        leech_after_hit(result.amount, leech, self.rules.heroic_rank, vitals,
-            self.healing, &mut self.generic.healing_meter, self.events);
+        if let Some(actual) = leech_after_hit(result.amount, leech, self.rules.heroic_rank, vitals,
+            self.healing, &mut self.generic.healing_meter, self.events)
+        {
+            self.record_detailed_self_heal(0, azeroth_survivors_re::run_effects::healing::LEECH, actual, None);
+        }
+        let row = &mut self.boss_state.wards.actors[index];
         let position = row.actor.movement.position_at(self.now);
         let summary = HitInput {
             victim_guid: row.guid,
@@ -357,6 +367,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         match hit.effect.tag {
             5 => self.healing.push(PendingHealing {
                 meter_source: secondary_source,
+                meter_effect: secondary_effect,
                 ..PendingHealing::secondary(hit.damage * hit.effect.value, hit.spell_id)
             }),
             6 => self.healing.push(PendingHealing::secondary(
@@ -381,7 +392,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             *self.kills = self.kills.wrapping_add(1);
             if self.stats.heal_on_kill > 0. {
                 self.healing
-                    .push(PendingHealing::anonymous(self.stats.heal_on_kill));
+                    .push(PendingHealing::on_kill(self.stats.heal_on_kill));
             }
             self.events.push(RunEvent::EnemyDied { guid: row.guid });
         }

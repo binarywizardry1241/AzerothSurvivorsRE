@@ -581,7 +581,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                     damage::scaled_duration(instance) / definition.duration.max(0.01);
                 plan.total_power = duration_ratio * power * (1.0 + context.global_dot_tick_bonus);
                 if let Some(rows) = self.core.periodic_rows_mut(guid) {
-                    periodic::install_dot(
+                    periodic::install_dot_with_origin(
                         rows,
                         0,
                         0,
@@ -591,6 +591,10 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                         now,
                         0.0,
                         1 + context.global_dot_stack_bonus.min(3) as usize,
+                        periodic::PeriodicOrigin {
+                            effect_owner: None,
+                            meter_actor: Some(context.player_guid),
+                        },
                     );
                     let applications = self
                         .core

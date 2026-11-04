@@ -340,7 +340,7 @@ impl Mechanics {
             for hit in periodic_hits {
                 let slot = match hit.effect_owner {
                     Some(guid) => self.party_slot(guid),
-                    None => Some(self.party_slot_for_source(hit.owner_guid)),
+                    None => Some(self.party_slot_for_source(hit.meter_actor.unwrap_or(hit.owner_guid))),
                 };
                 if let Some(slot) = slot {
                     owned.entry(slot).or_default().push(hit);

@@ -255,11 +255,11 @@ pub struct HealingResult {
     pub fields: [(u16, u32); 2],
 }
 #[derive(Clone, Debug)]
-pub struct BatchHealingResult {
+pub struct BatchHealingResult<K = u32> {
     pub actual: f32,
     pub regeneration: f32,
-    /// Native8-byte input rows retain their order, including duplicate spells.
-    pub credits: Vec<(u32, f32)>,
+    /// Credits retain the input order and identity, including duplicate spells.
+    pub credits: Vec<(K, f32)>,
     pub fields: Option<[(u16, u32); 2]>,
 }
 
@@ -286,10 +286,10 @@ pub fn apply_batch(
 
 /// Current 0.121.0 scales regeneration and the accumulated HoT amount before
 /// their shared clamp. Per-spell credit retains each original queued amount.
-pub fn apply_batch_for_rank(
+pub fn apply_batch_for_rank<K: Copy>(
     vitals: &mut Vitals, rows: &[EffectRow], state: &mut HealingState,
-    regeneration: f32, queued: &[(u32, f32)], heroic_rank: u8,
-) -> BatchHealingResult {
+    regeneration: f32, queued: &[(K, f32)], heroic_rank: u8,
+) -> BatchHealingResult<K> {
     let multiplier = crate::heroic::healing_factor(heroic_rank);
     let regeneration = regeneration * multiplier;
     let total = queued.iter().fold(0.0, |sum, (_, amount)| sum + amount) * multiplier;
@@ -307,10 +307,10 @@ pub fn apply_batch_for_rank(
             total,
             native_max(0.0, (vitals.health - before) - regeneration),
         );
-        for &(spell_id, amount) in queued {
+        for &(identity, amount) in queued {
             let credited = (amount * effective) / total;
             if !(credited <= 0.0) {
-                credits.push((spell_id, credited));
+                credits.push((identity, credited));
             }
         }
         credit_healing(vitals, rows, state, effective, total - effective);

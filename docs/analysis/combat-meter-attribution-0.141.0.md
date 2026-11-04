@@ -92,8 +92,7 @@ Rustfmt parsed the changed Rust and the scoped diff whitespace check
 passed. The Deathmist regression exercises the real set builder and
 periodic adapter and awaits compilation.
 
-Detailed `AZS_GetMeterSnapshot` publication still needs the recorder,
-actor, encounter and replay integration under [#75](../CURRENT-STATE.md#gap-75),
-including Windfury's child ability, the Heroism allocation and the
-Feralheart and Deathmist source descriptors. The checks establish no
-game execution, co-op delivery or original/rebuilt parity.
+The [detailed meter authority](detailed-meter-0.141.0.md#rebuilt-authority-and-replay)
+records Windfury's child ability, the separate Heroism allocation, and
+the keyed Feralheart and Deathmist effects. Compilation, co-op delivery
+and original/rebuilt parity remain under [#75](../verification-needed.md#gap-75).

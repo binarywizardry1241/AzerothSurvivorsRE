@@ -188,7 +188,7 @@ mod tests {
             if retained_dot {
                 // Native Trauma checks vector length even after the last tick.
                 game.actors[0].periodic.push(periodic::ActorPeriodic {
-                    owner_kind: 1, owner_guid: 0, effect_owner: None, spell_id: 12834,
+                    owner_kind: 1, owner_guid: 0, effect_owner: None, meter_actor: None, spell_id: 12834,
                     power_per_tick: 1.0, interval: 1.0, next_tick_at: 1000.0,
                     ticks_remaining: 0, initial_ticks: 3, leech_fraction: 0.0, school: 0,
                 });
@@ -403,6 +403,7 @@ mod tests {
             owner_kind: 1,
             owner_guid: 0,
             effect_owner: None,
+            meter_actor: None,
             spell_id: 589,
             power_per_tick: 3.0,
             interval: 2.0,
@@ -457,6 +458,7 @@ mod tests {
             owner_kind: 1,
             owner_guid: effect_index as u64,
             effect_owner: None,
+            meter_actor: None,
             spell_id: 12654,
             power_per_tick: 3.0,
             interval: 1.0,

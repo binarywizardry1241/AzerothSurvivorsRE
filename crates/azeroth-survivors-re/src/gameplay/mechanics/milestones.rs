@@ -40,6 +40,9 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
                 proc_source: Some(index),
                 suppress_damage_log: false,
                 effect_critical_procs: false,
+                meter_periodic: false,
+                meter_reflected: false,
+                meter_actor: None,
             },
             ..self.core.current_context(self.cast_context, execution)
         };

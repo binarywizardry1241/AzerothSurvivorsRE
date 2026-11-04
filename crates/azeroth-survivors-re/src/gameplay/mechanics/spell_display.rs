@@ -152,7 +152,8 @@ impl Mechanics {
             .filter(|talent| {
                 self.effect_state
                     .spell_display_talents
-                    .contains(&talent.key)
+                    .iter()
+                    .any(|(key, _)| key == &talent.key)
                     && talent.spells.iter().any(|key| key == definition.key)
             })
             .map(|talent| locale.label(&talent.name).to_owned())

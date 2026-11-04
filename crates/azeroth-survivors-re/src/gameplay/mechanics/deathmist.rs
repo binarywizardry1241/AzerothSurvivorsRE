@@ -102,19 +102,20 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
 
         let Some(power) = burn_power else { return; };
         let now = self.now;
+        let hero = Some(self.player_guid);
         let Some(rows) = self.periodic_rows_mut(guid) else { return; };
         // 145ee0d10 sums unspent power for this effect index, removes
         // matching rows in order, and appends four one-second ticks.
         let owner = index as u64;
-        let retained = rows.iter().filter(|dot| dot.owner_kind != 0
-            && dot.owner_guid == owner && dot.spell_id == BURN_AURA)
+        let retained = rows.iter().filter(|dot| dot.matches_source(1, owner, hero)
+            && dot.spell_id == BURN_AURA)
             .fold(-0.0, |sum, dot| sum + dot.power_per_tick * dot.ticks_remaining as f32);
-        rows.retain(|dot| !(dot.owner_kind == 1 && dot.owner_guid == owner && dot.spell_id == BURN_AURA));
-        periodic::install_dot(rows, 1, owner, BURN_AURA, 2, periodic::DotPlan {
+        rows.retain(|dot| !(dot.matches_source(1, owner, hero) && dot.spell_id == BURN_AURA));
+        periodic::install_dot_with_origin(rows, 1, owner, BURN_AURA, 2, periodic::DotPlan {
             total_power: power + retained,
             duration: 4.0,
             ticks: 4,
-        }, now, 0.0, 1);
+        }, now, 0.0, 1, periodic::PeriodicOrigin { effect_owner: hero, meter_actor: None });
         self.actor_aura(guid, BURN_AURA, true);
     }
 }

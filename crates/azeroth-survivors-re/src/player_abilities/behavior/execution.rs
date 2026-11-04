@@ -98,6 +98,10 @@ pub struct HitContext {
     pub suppress_damage_log: bool,
     /// Native Game+0x2a4 admits only critical periodic procs for this effect hit.
     pub effect_critical_procs: bool,
+    /// Detailed meter flags carried by the actual damage producers.
+    pub meter_periodic: bool,
+    pub meter_reflected: bool,
+    pub meter_actor: Option<u64>,
 }
 
 /// Semantic fields of native80-byte pending hit (Game+0x4f8 vector).

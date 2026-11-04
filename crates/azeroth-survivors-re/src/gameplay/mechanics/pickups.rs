@@ -366,14 +366,13 @@ impl Mechanics {
             let actual =
                 run_pickups::direct_heal(&mut self.execution.vitals.health, maximum,
                     (maximum * 0.5) * azeroth_survivors_re::heroic::healing_factor(self.rules.heroic_rank));
-            self.effect_state.generic.healing_meter.record(
-                MeterSource {
-                    name: "Restoration",
-                    icon: "Spell_Holy_Heal",
-                    talent: false,
-                },
-                actual,
-            );
+            let source = MeterSource {
+                name: "Restoration",
+                icon: "Spell_Holy_Heal",
+                talent: false,
+            };
+            self.record_detailed_heal(self.player_guid, 0, source, actual, false);
+            self.effect_state.generic.healing_meter.record(source, actual);
             self.events.push(RunEvent::PlayerValues(vec![
                 (22, self.health().max(0.0).ceil() as u32),
                 (28, maximum.ceil() as u32),

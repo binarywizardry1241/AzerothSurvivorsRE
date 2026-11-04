@@ -1410,7 +1410,15 @@ fn bootstrap(
         state.motion.clear();
         state.sent_players.clear();
         state.sent_actions.clear();
-        state.addon_publishers.clear();
+        // A joined peer keeps its detailed party opt-in across runs. The
+        // publisher invalidates its run-specific caches at its next poll.
+        state.addon_publishers.retain(|client, _| {
+            runtime.driver.as_ref().is_some_and(|driver| {
+                driver.server.clients().iter().any(|row| {
+                    row.id == *client && row.joined && row.closing_since.is_none()
+                })
+            })
+        });
         state.sent_seen.clear();
         state.sent_state.clear();
         state.state_sent_at.clear();

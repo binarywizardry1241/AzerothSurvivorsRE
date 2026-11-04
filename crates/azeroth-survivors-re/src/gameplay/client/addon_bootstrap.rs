@@ -39,9 +39,8 @@ fn append_meter_api(source: &mut String) {
         r#"if ( arg1 == "AZSM" and arg3 == "UNKNOWN" and arg4 and arg4 == UnitName("player") ) then"#,
         1,
     );
-    // The reconstructed authority still publishes only legacy lines. Until
-    // the current VM assembles a detailed frame, advertise the independently
-    // connected player-position capability only.
+    // Advertise the detailed capabilities after the current VM assembles a
+    // whole frame. Position remains available during the initial replay.
     source.push_str(&meter.replacen(
         "features = AZS_MCopy(AZS_ML_FEATURES)",
         "features = AZS_ML.st and AZS_MCopy(AZS_ML_FEATURES) or { liveInstancePosition = true }",

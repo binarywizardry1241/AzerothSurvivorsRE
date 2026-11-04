@@ -99,6 +99,8 @@ pub struct ActorPeriodic {
     /// Effect-owned rows keep a hero-local effect index in the native owner words.
     /// The shared party queue carries that hero's identity separately.
     pub effect_owner: Option<u64>,
+    /// A companion or zero-GUID native source can carry a separate actor identity.
+    pub meter_actor: Option<u64>,
     pub spell_id: u32,
     pub power_per_tick: f32,
     pub interval: f32,
@@ -109,22 +111,45 @@ pub struct ActorPeriodic {
     pub school: u8,
 }
 
+impl ActorPeriodic {
+    pub fn matches_source(&self, owner_kind: u64, owner_guid: u64, effect_owner: Option<u64>) -> bool {
+        if owner_kind & 1 == 0 {
+            self.owner_kind == 0
+        } else {
+            self.owner_kind == 1 && self.owner_guid == owner_guid && self.effect_owner == effect_owner
+        }
+    }
+}
+
+#[derive(Clone, Copy, Debug, Default)]
+pub struct PeriodicOrigin {
+    pub effect_owner: Option<u64>,
+    pub meter_actor: Option<u64>,
+}
+
 ///14540d430: remove exhausted matching rows, evict the least remaining ticks
 /// when at cap, append a new row. Equal remaining counts retain the first
 /// eviction candidate. Zero cap is normalized to1 by the native helper.
 pub fn install_dot(rows: &mut Vec<ActorPeriodic>, owner_kind: u64, owner_guid: u64,
                    spell_id: u32, school: u8, plan: DotPlan, now: f32,
                    leech_fraction: f32, stack_cap: usize) {
+    install_dot_with_origin(rows, owner_kind, owner_guid, spell_id, school, plan, now,
+        leech_fraction, stack_cap, PeriodicOrigin::default());
+}
+
+pub fn install_dot_with_origin(rows: &mut Vec<ActorPeriodic>, owner_kind: u64, owner_guid: u64,
+                   spell_id: u32, school: u8, plan: DotPlan, now: f32,
+                   leech_fraction: f32, stack_cap: usize, origin: PeriodicOrigin) {
     let matches = |row: &ActorPeriodic| row.spell_id == spell_id
-        && if owner_kind & 1 == 0 { row.owner_kind == 0 }
-           else { row.owner_kind == 1 && row.owner_guid == owner_guid };
+        && row.matches_source(owner_kind, owner_guid, origin.effect_owner);
     rows.retain(|r| !(matches(r) && r.ticks_remaining == 0));
     while rows.iter().filter(|r| matches(r)).count() >= stack_cap.max(1) {
         let candidate = rows.iter().enumerate().filter(|(_, r)| matches(r))
             .min_by_key(|(index, r)| (r.ticks_remaining, *index)).map(|(i, _)| i);
         if let Some(index) = candidate { rows.remove(index); } else { break; }
     }
-    rows.push(ActorPeriodic { owner_kind, owner_guid, effect_owner: None, spell_id,
+    rows.push(ActorPeriodic { owner_kind, owner_guid, effect_owner: origin.effect_owner,
+        meter_actor: origin.meter_actor, spell_id,
         power_per_tick: plan.total_power / plan.ticks as f32,
         interval: plan.duration / plan.ticks as f32, next_tick_at: now,
         ticks_remaining: plan.ticks, initial_ticks: plan.ticks, leech_fraction, school });
@@ -135,6 +160,7 @@ pub struct PeriodicTick {
     pub owner_kind: u64,
     pub owner_guid: u64,
     pub effect_owner: Option<u64>,
+    pub meter_actor: Option<u64>,
     pub target_guid: u64,
     pub spell_id: u32,
     pub raw_power: f32,
@@ -153,7 +179,7 @@ pub fn take_actor_ticks(rows: &mut [ActorPeriodic], target_guid: u64, now: f32) 
         row.ticks_remaining -= 1;
         row.next_tick_at += row.interval;
         result.push(PeriodicTick { owner_kind: row.owner_kind, owner_guid: row.owner_guid,
-            effect_owner: row.effect_owner,
+            effect_owner: row.effect_owner, meter_actor: row.meter_actor,
             target_guid, spell_id: row.spell_id, raw_power: row.power_per_tick,
             leech_fraction: row.leech_fraction, school: row.school, first_player_tick });
     }

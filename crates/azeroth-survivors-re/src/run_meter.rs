@@ -146,19 +146,28 @@ pub struct DamageShares {
     pub howl: Option<DamageShare>,
 }
 
+impl DamageShares {
+    pub fn amounts(self, effective: f32) -> (f64, Option<f64>, f64) {
+        let effective = f64::from(effective);
+        // Native 145f1b866 separates Howl before applying the ordinary effect share.
+        let howl = self.howl.map_or(0.0, |share| effective * f64::from(share.fraction));
+        let base = effective - howl;
+        if let Some(share) = self.effect {
+            // 0.140.0 widens the fraction before splitting.
+            let fraction = f64::from(share.fraction);
+            (base * (1.0 - fraction), Some(base * fraction), howl)
+        } else {
+            (base, None, howl)
+        }
+    }
+}
+
 fn record_damage(meter: &mut HealingMeter, source: MeterSource, effective: f32,
     breakdown: &[MeterBreakdown], shares: DamageShares) {
-    let effective = f64::from(effective);
-    // Native 145f1b866 separates Howl before applying the ordinary effect share.
-    let howl_total = shares.howl.map_or(0.0, |share| effective * f64::from(share.fraction));
-    let base_total = effective - howl_total;
-    if let Some(share) = shares.effect {
-        // 0.140.0 145f43e1e..145f43ea4 widens the fraction before splitting.
-        let fraction = f64::from(share.fraction);
-        meter.record_total(source, base_total * (1.0 - fraction), breakdown);
-        meter.record_total(share.source, base_total * fraction, &[]);
-    } else {
-        meter.record_total(source, base_total, breakdown);
+    let (base, effect, howl_total) = shares.amounts(effective);
+    meter.record_total(source, base, breakdown);
+    if let Some((share, total)) = shares.effect.zip(effect) {
+        meter.record_total(share.source, total, &[]);
     }
     if let Some(share) = shares.howl.filter(|_| howl_total > 0.0) {
         meter.record_total(share.source, howl_total, &[MeterBreakdown {

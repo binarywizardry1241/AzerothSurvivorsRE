@@ -17,7 +17,7 @@ use super::{
 use crate::{
     bosses::abilities::{CastTarget, GroundObject, SpellCast, ground_object},
     enemies::{NativeRng, Position},
-    player_abilities::damage::{PowerContext, effective_power},
+    player_abilities::{AbilityDefinition, damage::{PowerContext, effective_power}},
 };
 
 #[derive(Clone, Copy, Debug)]
@@ -123,7 +123,7 @@ pub trait CastPort: ProjectilePort {
     /// Current145b387b0 queries the live generic rows, including worn set24.
     fn ground_follows(&self, _definition: &super::super::catalog::AbilityDefinition) -> bool { false }
     fn move_ground(&mut self, _guid: u64, _position: Position) {}
-    fn create_totem(&mut self, object: SummonedObject);
+    fn create_totem(&mut self, definition: &AbilityDefinition, object: SummonedObject);
     /// Selected0.105.0 cap removal invokes the same expiry callback as the
     /// normal deadline path before destroying the old object. The live
     /// passive port additionally binds learned Call of Flame/deadline state.
@@ -570,7 +570,7 @@ pub fn cast<'a>(
                 port.expire_totem(old, context, rng);
             }
             let totem = Totem::new(instance, context.now, guid_counter, position);
-            port.create_totem(totems::object(
+            port.create_totem(definition, totems::object(
                 &totem,
                 context.player_guid,
                 context.native_race,

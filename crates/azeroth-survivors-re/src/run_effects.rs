@@ -84,6 +84,8 @@ pub struct Talent {
     pub name: String,
     pub icon: String,
     pub description: String,
+    #[serde(skip)]
+    pub tree_index: u8,
     pub effects: Vec<Payload>,
 }
 #[derive(Debug, Deserialize)]
@@ -165,7 +167,13 @@ pub fn catalog() -> &'static Catalog {
                         }
                         let mut talents: Vec<_> = trees
                             .into_iter()
-                            .flat_map(|tree| tree.talents)
+                            .enumerate()
+                            .flat_map(|(index, tree)| {
+                                tree.talents.into_iter().map(move |mut talent| {
+                                    talent.tree_index = index as u8;
+                                    talent
+                                })
+                            })
                             .collect();
                         let class_replacements = if class.id == 1 {
                             let warrior: WarriorReplacements = serde_json::from_str(include_str!(
@@ -176,13 +184,14 @@ pub fn catalog() -> &'static Catalog {
                         } else {
                             replacements.classes.remove(&class.id).unwrap_or_default()
                         };
-                        for replacement in class_replacements.into_iter().chain(
+                        for mut replacement in class_replacements.into_iter().chain(
                             replacements_01410.classes.remove(&class.id).into_iter().flatten(),
                         ) {
                             let talent = talents
                                 .iter_mut()
                                 .find(|talent| talent.key == replacement.key)
                                 .expect("retained class talent save key");
+                            replacement.tree_index = talent.tree_index;
                             *talent = replacement;
                         }
                         if class.id == 9 {

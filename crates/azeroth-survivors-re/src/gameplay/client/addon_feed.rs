@@ -6,13 +6,26 @@ use std::collections::BTreeMap;
 
 use benilla_app::local_client::events::{ChatMessage, SessionEvent};
 
+use super::detailed_feed::Recipient;
+
 pub(super) use super::super::addon_meters::field;
 
-pub(in crate::gameplay) fn requests_lines(text: &str) -> bool {
-    matches!(
-        text.strip_prefix("AZSMREQ\t").map(str::trim),
-        Some("full" | "lines")
-    )
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub(in crate::gameplay) enum MeterRequest {
+    Full,
+    Party,
+    Lines,
+}
+
+impl MeterRequest {
+    pub fn parse(text: &str) -> Option<Self> {
+        match text.strip_prefix("AZSMREQ\t")?.trim() {
+            "full" => Some(Self::Full),
+            "party" => Some(Self::Party),
+            "lines" => Some(Self::Lines),
+            _ => None,
+        }
+    }
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
@@ -48,6 +61,7 @@ pub(in crate::gameplay) struct Publisher {
     identity: Option<u64>,
     polled_at: f64,
     cached: BTreeMap<&'static str, String>,
+    pub(in crate::gameplay) detailed: Recipient,
 }
 
 impl Publisher {
@@ -63,13 +77,20 @@ impl Publisher {
         if self.identity != key {
             self.identity = key;
             self.cached.clear();
+            self.detailed.reset_run();
         }
         self.poll_due(now)
     }
 
-    /// Replay ordinary lines at the next scheduled poll for this recipient.
-    pub fn replay_lines(&mut self) {
-        self.cached.clear();
+    pub fn request(&mut self, request: MeterRequest) {
+        match request {
+            MeterRequest::Full => {
+                self.cached.clear();
+                self.detailed.replay();
+            }
+            MeterRequest::Party => self.detailed.include_party(),
+            MeterRequest::Lines => self.cached.clear(),
+        }
     }
 
     fn poll_due(&mut self, now: f64) -> bool {
@@ -160,17 +181,18 @@ mod tests {
 
     #[test]
     fn lines_request_replays_a_recipient_without_resetting_the_poll_clock() {
-        for accepted in ["AZSMREQ\tfull", "AZSMREQ\t lines "] {
-            assert!(requests_lines(accepted));
-        }
-        for rejected in ["AZSMREQ\tparty", "AZSMREQ\tfuller", "OTHER\tfull"] {
-            assert!(!requests_lines(rejected));
-        }
+        assert_eq!(MeterRequest::parse("AZSMREQ\tfull"), Some(MeterRequest::Full));
+        assert_eq!(MeterRequest::parse("AZSMREQ\t party "), Some(MeterRequest::Party));
+        assert_eq!(MeterRequest::parse("AZSMREQ\tlines"), Some(MeterRequest::Lines));
+        assert_eq!(MeterRequest::parse("AZSMREQ\tfuller"), None);
+        assert_eq!(MeterRequest::parse("OTHER\tfull"), None);
         let mut publisher = Publisher::default();
         let snapshot = || vec![AddonMessage::new("AZSZONE", "run=1-1".into())];
         assert!(publisher.due(1, 1.0));
         assert_eq!(publisher.changed(snapshot()).len(), 1);
-        publisher.replay_lines();
+        publisher.request(MeterRequest::Party);
+        assert!(publisher.changed(snapshot()).is_empty());
+        publisher.request(MeterRequest::Lines);
         assert!(!publisher.due(1, 1.125));
         assert!(publisher.due(1, 1.25));
         assert_eq!(publisher.changed(snapshot()).len(), 1);

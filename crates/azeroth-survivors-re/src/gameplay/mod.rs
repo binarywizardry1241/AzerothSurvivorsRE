@@ -12,6 +12,7 @@ pub(crate) use notifications::Notifications as RunNotifications;
 mod raid_markers;
 mod meter;
 mod addon_meters;
+mod detailed_meter;
 mod discord;
 mod native_overlay_payload;
 mod native_overlays;
@@ -428,6 +429,7 @@ fn enter(
             game.set_spell_display_locale(&locale);
             game.recap_spells = bridge.spells.clone();
             game.player_guid = player_guid;
+            game.note_detailed_hero(pick.name.clone());
             session.showcase = std::env::var("WOW_ROGUE_SHOWCASE")
                 .is_ok_and(|value| value == "1");
             let definitions = crate::save::talents::Catalog::embedded();

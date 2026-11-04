@@ -12,12 +12,12 @@ pub(super) struct State {
 }
 
 /// Native145b7d10a/145c22000: a tied highest rank has no selected spell.
-pub(super) fn member(class: u8, abilities: &[RuntimeInstance<'_>], talents: &[String], active_set: u8) -> NativeFeatMember {
+pub(super) fn member(class: u8, abilities: &[RuntimeInstance<'_>], talents: &[(String, u8)], active_set: u8) -> NativeFeatMember {
     let highest = abilities.iter().map(|row| row.rank).max();
     let mut best = abilities.iter().filter(|row| Some(row.rank) == highest);
     let word = best.next().filter(|_| best.next().is_none())
         .map_or(0, |row| row.definition.spell_id);
-    let byte = u8::from(talents.iter().any(|key| key == "tranquility"))
-        | (u8::from(talents.iter().any(|key| key == "bladestorm")) << 1);
+    let byte = u8::from(talents.iter().any(|(key, _)| key == "tranquility"))
+        | (u8::from(talents.iter().any(|(key, _)| key == "bladestorm")) << 1);
     NativeFeatMember { class, word, byte, active_set }
 }
