@@ -279,14 +279,14 @@ pub(super) fn drain(
                 );
             }
             opcode::CMSG_CAST_SPELL => {
-                if let Some(spell_id) = u32_at(&packet.payload, 0) {
-                    replies.push(SessionEvent::CastResult {
-                        spell_id,
-                        success: false,
-                        reason: Some(0x17),
-                        arg: None,
-                    });
-                }
+                // The cast denial uses the same zero-filled prefix as a template query.
+                let spell_id = template_entry(&packet.payload);
+                replies.push(SessionEvent::CastResult {
+                    spell_id,
+                    success: false,
+                    reason: Some(0x17),
+                    arg: None,
+                });
             }
             opcode::CMSG_GAMEOBJ_USE => {
                 if let Some(object) = u64_at(&packet.payload, 0) {
@@ -313,12 +313,10 @@ pub(super) fn drain(
                 }
             }
             0x10a | 0x10b | 0x10c | 0x10d | 0x111 => {
-                if let Some(bytes) = packet.payload.get(..2) {
-                    if let Some(event) =
-                        client::inventory_requests::refused(packet.opcode, bytes[0], bytes[1])
-                    {
-                        replies.push(event);
-                    }
+                let first = packet.payload.first().copied().unwrap_or_default();
+                let second = packet.payload.get(1).copied().unwrap_or_default();
+                if let Some(event) = client::inventory_requests::refused(packet.opcode, first, second) {
+                    replies.push(event);
                 }
             }
             // Other opcodes retain their native default until their owner is connected.
