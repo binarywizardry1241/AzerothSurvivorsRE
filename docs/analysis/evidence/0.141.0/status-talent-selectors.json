@@ -1,0 +1,329 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "gap_ids": [
+    41,
+    136,
+    141,
+    315
+  ],
+  "ability": {
+    "owner": {
+      "start": "0x145f51870",
+      "end_exclusive": "0x145f55f05",
+      "file_offset": "0x5f50c70",
+      "sha256": "e7e447a728e13e40f814756356f2d2d2cc9e801017fd1144eb0767d7126e1a97"
+    },
+    "tables": [
+      {
+        "selector": "AS-context-table:0x145f53e53",
+        "start": "0x147af3210",
+        "end_exclusive": "0x147af323c",
+        "file_offset": "0x7af1810",
+        "sha256": "1ba73a382944813426268e65a5cb22a787b65f9ae3cf03846ea38e6cf73760b8",
+        "targets": [
+          "0x145f5484d",
+          "0x145f53e55",
+          "0x145f53e55",
+          "0x145f54826",
+          "0x145f54826",
+          "0x145f54826",
+          "0x145f53e55",
+          "0x145f53e55",
+          "0x145f53e55",
+          "0x145f53e55",
+          "0x145f54831"
+        ]
+      },
+      {
+        "selector": "AS-context-table:0x145f546c9",
+        "start": "0x147af3134",
+        "end_exclusive": "0x147af3160",
+        "file_offset": "0x7af1734",
+        "sha256": "0d8b220bd9eb15b9445157c89ceeb3ae2aa18bc89774d030be615c84828446dc",
+        "targets": [
+          "0x145f546cb",
+          "0x145f55657",
+          "0x145f556d4",
+          "0x145f555f4",
+          "0x145f555f4",
+          "0x145f555f4",
+          "0x145f556f4",
+          "0x145f55714",
+          "0x145f55634",
+          "0x145f5567a",
+          "0x145f5569d"
+        ]
+      }
+    ],
+    "descriptors": [
+      {
+        "spell_id": 1160,
+        "tag": 11,
+        "start": "0x1473a4330",
+        "end_exclusive": "0x1473a43a8",
+        "file_offset": "0x73a2930",
+        "sha256": "a1c74ea0338e1a8bfde6680bbd875943c034528e965b3707071d64b87c87fcb4"
+      },
+      {
+        "spell_id": 10,
+        "tag": 1,
+        "start": "0x1473a6310",
+        "end_exclusive": "0x1473a6388",
+        "file_offset": "0x73a4910",
+        "sha256": "88e7aaa3bb5e9b665281bfb22f8534f546af1e12d608593e84839dba6a165f76"
+      },
+      {
+        "spell_id": 6673,
+        "tag": 8,
+        "start": "0x1473a43a8",
+        "end_exclusive": "0x1473a4420",
+        "file_offset": "0x73a29a8",
+        "sha256": "ea90743a4952ed8ae61df2ef1433b7e5348b0965b414fa56352375c5bf06b112"
+      }
+    ],
+    "weakening_cap": {
+      "start": "0x1465541fc",
+      "end_exclusive": "0x146554200",
+      "file_offset": "0x65527fc",
+      "sha256": "d388666e2351caf97e32db79dd5efdff3de2d4073eff49ef61edc7d7fd6a6250"
+    },
+    "weakening_cap_bits": "0x3f666666",
+    "source_receipts": [
+      {
+        "path": "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+        "sha256": "2594ba1e9c382a79d9e7e4f4e8e6ec7ff8234874c987136a0a5d4c40856a31ed"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/state.rs",
+        "sha256": "40a737191ad16bf202be0d6528b7e2a8a15fa1968fd0cd5e1dd80f2cb0847f28"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+        "sha256": "3a7da2547ce0a6fb1fc50933c02bd800b9410772b1baa663a60deaea43998e4c"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs",
+        "sha256": "79241751af7c0a60d015466362ceec06f8ae135122dacfd6f34790d8db6f1661"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+        "sha256": "6a4e2fdd98aae47eebb4cd496aea4b6a0d2230bbf6a6a46ba090b57f88061ef0"
+      }
+    ],
+    "query": {
+      "procedure": "0x145f51870",
+      "slice_virtual_address": "0x145f51870",
+      "raw_input": {
+        "path": "runtime/coverage/fixgap-41-01410/status-talent/slices/picker-145f51870.bin",
+        "sha256": "e7e447a728e13e40f814756356f2d2d2cc9e801017fd1144eb0767d7126e1a97"
+      },
+      "plan": {
+        "path": "runtime/coverage/fixgap-41-01410/status-talent/pseudocode-145f51870.json",
+        "sha256": "0016a6aa4f976e3c6000f67e9bf9bf90a6675af04ed28dd4dd5ba2d0f5eb0ec0"
+      },
+      "journal": {
+        "path": "runtime/coverage/fixgap-41-01410/status-talent/rea-145f51870/journal.json",
+        "sha256": "41449edcaf5aaa63c40119751a4c281ab75541f10b11532be1d2d65de04e0d69"
+      },
+      "result": {
+        "path": "runtime/coverage/fixgap-41-01410/status-talent/rea-145f51870/results/f5383af1f1d931fc84312e5cd7407127cdf19981595f90e2b794e3079c5eda74-6c1b669f4115c45e.json",
+        "sha256": "ecd4a85de5f0e1b21b06961038c3e76bb36c14480110ab64c64844c3151d6c1d"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "c65b958b5a3bc678e53718c79cd4e33b96176aae5986ecfb434070afb228aa8f",
+      "evidence_id": "ev_ead4c197739e7a0c5a238e119d9a427dcf774ef6875aa8f13c544e90338bb647"
+    }
+  },
+  "talents": {
+    "owner": {
+      "start": "0x145f8e670",
+      "end_exclusive": "0x145f92a55",
+      "file_offset": "0x5f8da70",
+      "sha256": "ec10d6215f4f975b0eff0351c01d5dd5ab248ccb516b6745badf34dde1909cbb"
+    },
+    "tables": [
+      {
+        "selector": "AS-context-table:0x145f8ebbd",
+        "start": "0x147af37d0",
+        "end_exclusive": "0x147af37ec",
+        "file_offset": "0x7af1dd0",
+        "sha256": "88ca602b5f49df0ade3226a04c18c89a2b0051f898b7aeb1c41437c2c99a6a71",
+        "targets": [
+          "0x145f8ebbf",
+          "0x145f8f014",
+          "0x145f8f014",
+          "0x145f8efae",
+          "0x145f8f014",
+          "0x145f8efa3",
+          "0x145f8efc6"
+        ]
+      },
+      {
+        "selector": "AS-context-table:0x145f927b4",
+        "start": "0x147af3668",
+        "end_exclusive": "0x147af368c",
+        "file_offset": "0x7af1c68",
+        "sha256": "7988cb98bb64a61f29c339fddcfc1ff0a11e6ca447ee99200f2f861d60d7290d",
+        "targets": [
+          "0x145f927b6",
+          "0x145f92807",
+          "0x145f92966",
+          "0x145f9299b",
+          "0x145f929cf",
+          "0x145f8e6ee",
+          "0x145f927e2",
+          "0x145f9282c",
+          "0x145f92864"
+        ]
+      }
+    ],
+    "reset_outer_cell": {
+      "start": "0x147af36b4",
+      "end_exclusive": "0x147af36b8",
+      "file_offset": "0x7af1cb4",
+      "sha256": "d0570fd391a6ba9b781cb48d6e43372c80f068be623dc6464e0368a24128565c"
+    },
+    "reset_selector": {
+      "start": "0x145f8eb58",
+      "end_exclusive": "0x145f8ebbf",
+      "file_offset": "0x5f8df58",
+      "sha256": "5b29ef396cb7760abc496ffcbf3056adfe89f6b842273ae011d1bb0b16416075"
+    },
+    "reset_deadline_and_cooldown": {
+      "start": "0x145f919cc",
+      "end_exclusive": "0x145f91aaf",
+      "file_offset": "0x5f90dcc",
+      "sha256": "209c33fc18f327b6bb7848ed724fead760a9f6237284146ac8fd760a84f2c78e"
+    },
+    "prepared_class_selector": {
+      "start": "0x145f92722",
+      "end_exclusive": "0x145f927b6",
+      "file_offset": "0x5f91b22",
+      "sha256": "82ebc768bba702838d631f0c64eb3b9958f69580e83056ac4c289309d15b1003"
+    },
+    "prepared_case_region": {
+      "start": "0x145f927b6",
+      "end_exclusive": "0x145f92a43",
+      "file_offset": "0x5f91bb6",
+      "sha256": "ae20964b18b2eae2aa7fe30fe75921ef4fc5ff3705e8007cf9843bee1044f95d"
+    },
+    "source_receipts": [
+      {
+        "path": "crates/azeroth-survivors-re/src/run_effects/conditions.rs",
+        "sha256": "03e43f88b178540908af3e2498a604cee5fcdf8c6cd0d4ca81764c9c38901bc0"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+        "sha256": "7dbca3bf0405e3eaa5052ed8c84eea1c8b398f2c28b66989335ef270d6f09bc3"
+      },
+      {
+        "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/prepared.rs",
+        "sha256": "6f2e9e2ce2692c6d57e8416eff043ec2920787424060d05da50202ecb06d087a"
+      }
+    ],
+    "query": {
+      "procedure": "0x145f8e670",
+      "slice_virtual_address": "0x145f8e670",
+      "raw_input": {
+        "path": "runtime/coverage/fixgap-41-01410/status-talent/slices/picker-145f8e670.bin",
+        "sha256": "ec10d6215f4f975b0eff0351c01d5dd5ab248ccb516b6745badf34dde1909cbb"
+      },
+      "plan": {
+        "path": "runtime/coverage/fixgap-41-01410/status-talent/talent-info-plan.json",
+        "sha256": "990b5eda1d74cea5f3b36c6df659cba8ac309d06eaf8c6c1fd3f6516006e5f3a"
+      },
+      "journal": {
+        "path": "runtime/coverage/fixgap-41-01410/status-talent/talent-info/journal.json",
+        "sha256": "b5160fb653f34d50409df019e1f6276593e045ae520c3093f834f50d385f65f6"
+      },
+      "result": {
+        "path": "runtime/coverage/fixgap-41-01410/status-talent/talent-info/results/99e9ba619617e9dc1caef9eb91d934d9769fc317caa61eb4a4fa26e7c04ece3e-8d8f30615f9f618b.json",
+        "sha256": "3020a8afa26d0077a182474b1bbcdccb12995f4645a067b8821ff09b94a97b6f"
+      },
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "efb71e03ae893ef3acf0f4128b52311a5c67730869eca89642c671c4b0ea209a",
+      "evidence_id": "ev_5e9cb279a107f9f9625de48dd21137998e724c110ff2e2de9dcfcf92ad9310b8"
+    },
+    "keyed_reaper_producer": {
+      "constructor": {
+        "start": "0x145e0bae0",
+        "end_exclusive": "0x145e0df53",
+        "file_offset": "0x5e0aee0",
+        "sha256": "3bec210f1da9fad77023bed97534c9a6bee5739c02b79907df1c352ac87d129b"
+      },
+      "kind_table": {
+        "start": "0x14771b05c",
+        "end_exclusive": "0x14771b090",
+        "file_offset": "0x771965c",
+        "sha256": "2fff2cc0b78471109c3d1772627758b4142779143ee2348db0fba69e35162097"
+      },
+      "kind": 7,
+      "branch": {
+        "start": "0x145e0c4b9",
+        "end_exclusive": "0x145e0c5ec",
+        "file_offset": "0x5e0b8b9",
+        "sha256": "17ec81e4a78420f356836cafbb6f568c39c053c3ac71691b80a14c2deaf70163"
+      },
+      "descriptor_catalog": {
+        "records": 115,
+        "stride": 120,
+        "start": "0x1473a40d8",
+        "end_exclusive": "0x1473a76c0",
+        "file_offset": "0x73a26d8",
+        "sha256": "49e69f818cbdfa9877b49303f4c571b859b70264437c5a214245557cb45f8e31"
+      },
+      "emitted_selector": 1,
+      "emitted_raw_effect": 22,
+      "amount_bits": "0x3f000000",
+      "keyed_rows": [
+        {
+          "key": "execute",
+          "spell_id": 5308,
+          "start": "0x1473a42b8",
+          "end_exclusive": "0x1473a4330",
+          "file_offset": "0x73a28b8",
+          "sha256": "a7c1e7af69da161fbc95a3c9b9de06a81fed916f23dc1f9addce6d3107cd55c5"
+        },
+        {
+          "key": "eviscerate",
+          "spell_id": 2098,
+          "start": "0x1473a5140",
+          "end_exclusive": "0x1473a51b8",
+          "file_offset": "0x73a3740",
+          "sha256": "b9a5e7c1310c3e509264bfa53b2dcecf8189a37da3b6a60a265f02656597c4bf"
+        },
+        {
+          "key": "backstab",
+          "spell_id": 53,
+          "start": "0x1473a5488",
+          "end_exclusive": "0x1473a5500",
+          "file_offset": "0x73a3a88",
+          "sha256": "c92294506ec63eee5ae2b8fe6a99cb284db341febbf2dc017e1d72c361ec4e60"
+        }
+      ],
+      "source_catalog": {
+        "path": "crates/azeroth-survivors-re/assets/native-amulets-0.100.1.json",
+        "sha256": "c8f5a6c1d147f6097ac5017592cbe75999c93b5935a99d9ce6f7869736ad043d"
+      },
+      "scope": "The recovered ordinary ability catalog's kind-7 amulet constructor. Other possible sources of raw effect 22 remain separate."
+    }
+  },
+  "limits": [
+    "The raw Ghidra subjects omit the tables, globals and call targets. Exact original PE instructions and data establish those relationships.",
+    "The four table roles are bounded. Current authored cooldown selector use, complete call paths, runtime behavior and original/rebuilt parity remain separate."
+  ]
+}

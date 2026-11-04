@@ -143,16 +143,16 @@
       ],
       "ownership": "as_specific",
       "conclusion": "The terminal service branch submits Leave before closing each transport. The bounded result and the current PE callers leave the native AppExit-to-service handoff open.",
-      "next_action": "Use the AppExit type key at 0x1465bf4e0 and service command producers to check for a departure enqueue or close before teardown.",
+      "next_action": "The typed key and explicit command callers are mapped. Resolve deferred Last callbacks and aliased departure producers under #206.",
       "source_first": {
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
-            "sha256": "3175385a76c34faf29533ff449146da35e7a0e0877f19a215713a58e858d3dc3"
+            "sha256": "1193922b7422b5cf129e59238234e53558cb87b0671dd8cd79b0650224f53f12"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop.rs",
-            "sha256": "166d6104f61e0b2225bb8226e0123ff567455ee259383f7ffd45510665aa2400"
+            "sha256": "5f2cfb87b1e5f8dc37bc11e9e40cb732b645d95dae9efabaf3f51d1b14d5632f"
           }
         ],
         "conclusion": "The existing service close queues Leave in primary-then-secondary order. The rebuilt app has an ordered AppExit route."
@@ -187,12 +187,12 @@
       ],
       "ownership": "as_specific",
       "conclusion": "The bounded screen owner retires stale contents and queues construction. Its roster subject and presentation dependencies are separately bound in the current inspection report.",
-      "next_action": "Trace the item-kind detail branches, inspection floor lighting and achievement scroll and selection in their exact current owners.",
+      "next_action": "Verify the connected inspector lifecycle and presentation under #299.",
       "source_first": {
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/coop_inspect.rs",
-            "sha256": "ac57773de3e14156bfc51711906531d296a2fd80ee78faae55b2fe50b7690a51"
+            "sha256": "69198970dd842c692cbdd4aef7145fa43cc5b0b52f4d4c969e7c162d52dd7f7e"
           },
           {
             "path": "crates/azeroth-survivors-re/src/coop/server_party.rs",
@@ -222,6 +222,404 @@
         "path": "docs/analysis/evidence/0.141.0/bounded-native-frontier.json",
         "sha256": "377a1f9626555153b76958f4a09ba1e9ea924e5f0991fec74958306e70a324f8"
       }
+    },
+    {
+      "id": "retained-table-1403076a2",
+      "selector": "Q41-F01:correspondence:retained-table-1403076a2",
+      "finding_ids": [
+        17,
+        73
+      ],
+      "ownership": "as_specific",
+      "conclusion": "The admitted Hand of Justice row reaches the retained jewelry ceiling table and supplies 0.6 to Details. The separate finite-growth Seal row supplies 10 times its base, or 1.0.",
+      "next_action": "Keep broader Codex row families, localization, and rebuilt UI comparisons separate.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/codex.rs",
+            "sha256": "8e8b1dfb1b0ad8f77e709e7d8e0559e2a737fb6e1a5cba2971f28d16fa858297"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/loot_rewards.rs",
+            "sha256": "ccbe20713c6755be7b5e61afd056704f7317d51fff920720d9d3d9d2a1632187"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/loot_rewards/catalog_01120.rs",
+            "sha256": "d18c16eb16c36e15c1c70eeefcc8247f997a56ae6de1eafbeb77a823d92e43c6"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/loot_rewards/prose.rs",
+            "sha256": "3a0ab8726576a1a9bd7c69b2a4f05ff1cb375e65f50cfa9787c5d2223d51a421"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/assets/codex-locales-0.105.0.json",
+            "sha256": "2994aa975e89bd13a94adb5df94d76a23a8a34a85080ba4ade2e29d39fdd5ccc"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/assets/codex-locale-delta-0.109.0.json",
+            "sha256": "8823e96e2cbfbdb546579d27a6b429b5ffafbfb6d64f1d2ea7ecca56e214ce06"
+          }
+        ],
+        "conclusion": "Hand of Justice uses recovered locale text. The live Seal branch renders the shared reward cap through the current growth template."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.141.0/codex-growth-ceiling.json",
+        "sha256": "0827e79eb5aec2c6aed48e536f12906335b39da1f09c5a900514b29fe6838626"
+      },
+      "query": {
+        "selector": [
+          "query"
+        ],
+        "sha256": "0957292131ae12b6b1a64c0df254f61b175663f8da3b58b7717ea7e82bae7046"
+      },
+      "results": [
+        {
+          "path": "runtime/coverage/fixgap-41-01410/codex/pseudocode/results/1240e9b5b7d7baf02e2ba14d3f5b524f760624db8c97cd2b175957c979eb2110-af0e00dc47658e3f.json",
+          "sha256": "966bc5b142309f88baa91ee3dcbfed9b38a06e13f5ee0701646ab9a86922ee60"
+        }
+      ],
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "guarded-ability-status-145f53e53",
+      "selector": "AS-context-table:0x145f53e53",
+      "finding_ids": [
+        136
+      ],
+      "ownership": "as_specific",
+      "conclusion": "The ground cast publishes the scaled descriptor status in its 88-byte periodic row.",
+      "next_action": "Continue through tick and expiry consumers only where a current source discrepancy remains in question.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+            "sha256": "2594ba1e9c382a79d9e7e4f4e8e6ec7ff8234874c987136a0a5d4c40856a31ed"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/state.rs",
+            "sha256": "40a737191ad16bf202be0d6528b7e2a8a15fa1968fd0cd5e1dd80f2cb0847f28"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+            "sha256": "3a7da2547ce0a6fb1fc50933c02bd800b9410772b1baa663a60deaea43998e4c"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs",
+            "sha256": "79241751af7c0a60d015466362ceec06f8ae135122dacfd6f34790d8db6f1661"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "sha256": "6a4e2fdd98aae47eebb4cd496aea4b6a0d2230bbf6a6a46ba090b57f88061ef0"
+          }
+        ],
+        "conclusion": "GroundPeriodic::new uses the shared scaled_hit_effect through the existing kind-3 cast and object path."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.141.0/status-talent-selectors.json",
+        "sha256": "4eced23e6bd678bec33de0148a3babf9faaf39c5051f0f4638fe5a8d9c319b78"
+      },
+      "query": {
+        "selector": [
+          "ability",
+          "query"
+        ],
+        "sha256": "cdc4f681d3f8ca2f8b2a4b1efdfbe4a68107a20185a140bfa3395ddad892772c"
+      },
+      "results": [
+        {
+          "path": "runtime/coverage/fixgap-41-01410/status-talent/rea-145f51870/results/f5383af1f1d931fc84312e5cd7407127cdf19981595f90e2b794e3079c5eda74-6c1b669f4115c45e.json",
+          "sha256": "ecd4a85de5f0e1b21b06961038c3e76bb36c14480110ab64c64844c3151d6c1d"
+        }
+      ],
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "guarded-ability-status-145f546c9",
+      "selector": "AS-context-table:0x145f546c9",
+      "finding_ids": [
+        136
+      ],
+      "ownership": "as_specific",
+      "conclusion": "The self-cast publishes the scaled descriptor in a 32-byte aura row and forwards Battle Shout.",
+      "next_action": "Retain separately scoped recipient and party-source evidence.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+            "sha256": "2594ba1e9c382a79d9e7e4f4e8e6ec7ff8234874c987136a0a5d4c40856a31ed"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/state.rs",
+            "sha256": "40a737191ad16bf202be0d6528b7e2a8a15fa1968fd0cd5e1dd80f2cb0847f28"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+            "sha256": "3a7da2547ce0a6fb1fc50933c02bd800b9410772b1baa663a60deaea43998e4c"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/periodic.rs",
+            "sha256": "79241751af7c0a60d015466362ceec06f8ae135122dacfd6f34790d8db6f1661"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs",
+            "sha256": "6a4e2fdd98aae47eebb4cd496aea4b6a0d2230bbf6a6a46ba090b57f88061ef0"
+          }
+        ],
+        "conclusion": "apply_self_buff_with_party already scales and refreshes the self aura and forwards Battle Shout."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.141.0/status-talent-selectors.json",
+        "sha256": "4eced23e6bd678bec33de0148a3babf9faaf39c5051f0f4638fe5a8d9c319b78"
+      },
+      "query": {
+        "selector": [
+          "ability",
+          "query"
+        ],
+        "sha256": "cdc4f681d3f8ca2f8b2a4b1efdfbe4a68107a20185a140bfa3395ddad892772c"
+      },
+      "results": [
+        {
+          "path": "runtime/coverage/fixgap-41-01410/status-talent/rea-145f51870/results/f5383af1f1d931fc84312e5cd7407127cdf19981595f90e2b794e3079c5eda74-6c1b669f4115c45e.json",
+          "sha256": "ecd4a85de5f0e1b21b06961038c3e76bb36c14480110ab64c64844c3151d6c1d"
+        }
+      ],
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "guarded-runtime-talents-145f8ebbd",
+      "selector": "AS-context-table:0x145f8ebbd",
+      "finding_ids": [
+        141
+      ],
+      "ownership": "as_specific",
+      "conclusion": "Native raw effect 22 reads a kill selector and writes a per-row cooldown before clamping learned spell timers.",
+      "next_action": "The current Reaper producer emits the three existing keyed rows. Check independent producers for any wildcard, pet or active-record lookup dependency.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/run_effects/conditions.rs",
+            "sha256": "03e43f88b178540908af3e2498a604cee5fcdf8c6cd0d4ca81764c9c38901bc0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+            "sha256": "7dbca3bf0405e3eaa5052ed8c84eea1c8b398f2c28b66989335ef270d6f09bc3"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/prepared.rs",
+            "sha256": "6f2e9e2ce2692c6d57e8416eff043ec2920787424060d05da50202ecb06d087a"
+          }
+        ],
+        "conclusion": "The three retained keyed catalog rows use the existing generic_event_with_demons and matches_event route. Other native selector conditions are not established as live source requirements."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.141.0/status-talent-selectors.json",
+        "sha256": "4eced23e6bd678bec33de0148a3babf9faaf39c5051f0f4638fe5a8d9c319b78"
+      },
+      "query": {
+        "selector": [
+          "talents",
+          "query"
+        ],
+        "sha256": "a5da2a27d5c2101284af91e9be2701a29b59dd23c042384d470851c77f54e678"
+      },
+      "results": [
+        {
+          "path": "runtime/coverage/fixgap-41-01410/status-talent/talent-info/results/99e9ba619617e9dc1caef9eb91d934d9769fc317caa61eb4a4fa26e7c04ece3e-8d8f30615f9f618b.json",
+          "sha256": "3020a8afa26d0077a182474b1bbcdccb12995f4645a067b8821ff09b94a97b6f"
+        }
+      ],
+      "source_connection_state": "partial_interface_connected"
+    },
+    {
+      "id": "guarded-runtime-talents-145f927b4",
+      "selector": "AS-context-table:0x145f927b4",
+      "finding_ids": [
+        141,
+        315
+      ],
+      "ownership": "as_specific",
+      "conclusion": "The class index dispatches Prepared skill-use predicates and rechecks the loadout before marking use.",
+      "next_action": "Compare actual solo run and award behavior under #315. Keep the event-time loadout recheck separately scoped.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/run_effects/conditions.rs",
+            "sha256": "03e43f88b178540908af3e2498a604cee5fcdf8c6cd0d4ca81764c9c38901bc0"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+            "sha256": "7dbca3bf0405e3eaa5052ed8c84eea1c8b398f2c28b66989335ef270d6f09bc3"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/prepared.rs",
+            "sha256": "6f2e9e2ce2692c6d57e8416eff043ec2920787424060d05da50202ecb06d087a"
+          }
+        ],
+        "conclusion": "The source has matching class predicates with loadout checks at tick entry and award; no intervening ordinary solo loadout change was found."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.141.0/status-talent-selectors.json",
+        "sha256": "4eced23e6bd678bec33de0148a3babf9faaf39c5051f0f4638fe5a8d9c319b78"
+      },
+      "query": {
+        "selector": [
+          "talents",
+          "query"
+        ],
+        "sha256": "a5da2a27d5c2101284af91e9be2701a29b59dd23c042384d470851c77f54e678"
+      },
+      "results": [
+        {
+          "path": "runtime/coverage/fixgap-41-01410/status-talent/talent-info/results/99e9ba619617e9dc1caef9eb91d934d9769fc317caa61eb4a4fa26e7c04ece3e-8d8f30615f9f618b.json",
+          "sha256": "3020a8afa26d0077a182474b1bbcdccb12995f4645a067b8821ff09b94a97b6f"
+        }
+      ],
+      "source_connection_state": "partial_interface_connected"
+    },
+    {
+      "id": "guarded-lobby-14010628e",
+      "selector": "AS-context-table:0x14010628e",
+      "finding_ids": [
+        150
+      ],
+      "ownership": "as_specific",
+      "conclusion": "The event type length dispatch selects co-op, party, lobby, chat and Ready Check messages.",
+      "next_action": "Verify the existing app and service transitions under the #150 runtime record.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_ui.rs",
+            "sha256": "16c78a76c8354792c5f25c1b7e1c2f8cbc096dc5a5daf6ba74c95e08804aace2"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+            "sha256": "1193922b7422b5cf129e59238234e53558cb87b0671dd8cd79b0650224f53f12"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_runtime.rs",
+            "sha256": "2145fbbe8e7673e550b12c339fc2d5093a9371c87a9535ccdcf4b4e1d0794346"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/menu_state.rs",
+            "sha256": "2afa0768feeacf61d981ac4e670215c51479503f07f0458fb974696287cabfe0"
+          }
+        ],
+        "conclusion": "The typed UI, directory and co-op runtime routes include the current lobby event repair."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.141.0/lobby-switches.json",
+        "sha256": "bd70b1098483dc5e23bf7a1a79d529d37b9424f8dd737d7b43a8921e4d8dca22"
+      },
+      "query": {
+        "selector": [
+          "query"
+        ],
+        "sha256": "bab51163a8aa22affbcd7802ed8873d9c33caf69ae6b85e360d33bf5ab0f8ecc"
+      },
+      "results": [
+        {
+          "path": "runtime/fixgap-ready-lobby/rea-140106060/results/4d77c19788ecad7bfb8b17e5028e13a1d0cb86bfba4778c79fa776fdf1cc30f5-07b6f1cec37cb5f4.json",
+          "sha256": "171590c7cee8720a890ee6e04c377f76d239f6a7c27e5d17388b8f158c0296e3"
+        }
+      ],
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "guarded-lobby-140107bb3",
+      "selector": "AS-context-table:0x140107bb3",
+      "finding_ids": [
+        150
+      ],
+      "ownership": "as_specific",
+      "conclusion": "The co-op state dispatch clears roster and Ready Check state for five terminal statuses.",
+      "next_action": "Verify the existing app and service transitions under the #150 runtime record.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_ui.rs",
+            "sha256": "16c78a76c8354792c5f25c1b7e1c2f8cbc096dc5a5daf6ba74c95e08804aace2"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+            "sha256": "1193922b7422b5cf129e59238234e53558cb87b0671dd8cd79b0650224f53f12"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_runtime.rs",
+            "sha256": "2145fbbe8e7673e550b12c339fc2d5093a9371c87a9535ccdcf4b4e1d0794346"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/menu_state.rs",
+            "sha256": "2afa0768feeacf61d981ac4e670215c51479503f07f0458fb974696287cabfe0"
+          }
+        ],
+        "conclusion": "The typed UI, directory and co-op runtime routes include the current lobby event repair."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.141.0/lobby-switches.json",
+        "sha256": "bd70b1098483dc5e23bf7a1a79d529d37b9424f8dd737d7b43a8921e4d8dca22"
+      },
+      "query": {
+        "selector": [
+          "query"
+        ],
+        "sha256": "bab51163a8aa22affbcd7802ed8873d9c33caf69ae6b85e360d33bf5ab0f8ecc"
+      },
+      "results": [
+        {
+          "path": "runtime/fixgap-ready-lobby/rea-140106060/results/4d77c19788ecad7bfb8b17e5028e13a1d0cb86bfba4778c79fa776fdf1cc30f5-07b6f1cec37cb5f4.json",
+          "sha256": "171590c7cee8720a890ee6e04c377f76d239f6a7c27e5d17388b8f158c0296e3"
+        }
+      ],
+      "source_connection_state": "connected"
+    },
+    {
+      "id": "guarded-lobby-140107cef",
+      "selector": "AS-context-table:0x140107cef",
+      "finding_ids": [
+        150
+      ],
+      "ownership": "as_specific",
+      "conclusion": "The separate state dispatch resets chat on terminal or joining states and changed hosting, preserving it on repeated hosting.",
+      "next_action": "Verify the existing app and service transitions under the #150 runtime record.",
+      "source_first": {
+        "paths": [
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_ui.rs",
+            "sha256": "16c78a76c8354792c5f25c1b7e1c2f8cbc096dc5a5daf6ba74c95e08804aace2"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+            "sha256": "1193922b7422b5cf129e59238234e53558cb87b0671dd8cd79b0650224f53f12"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/coop_runtime.rs",
+            "sha256": "2145fbbe8e7673e550b12c339fc2d5093a9371c87a9535ccdcf4b4e1d0794346"
+          },
+          {
+            "path": "crates/azeroth-survivors-re/src/menu_state.rs",
+            "sha256": "2afa0768feeacf61d981ac4e670215c51479503f07f0458fb974696287cabfe0"
+          }
+        ],
+        "conclusion": "The typed UI, directory and co-op runtime routes include the current lobby event repair."
+      },
+      "evidence": {
+        "path": "docs/analysis/evidence/0.141.0/lobby-switches.json",
+        "sha256": "bd70b1098483dc5e23bf7a1a79d529d37b9424f8dd737d7b43a8921e4d8dca22"
+      },
+      "query": {
+        "selector": [
+          "query"
+        ],
+        "sha256": "bab51163a8aa22affbcd7802ed8873d9c33caf69ae6b85e360d33bf5ab0f8ecc"
+      },
+      "results": [
+        {
+          "path": "runtime/fixgap-ready-lobby/rea-140106060/results/4d77c19788ecad7bfb8b17e5028e13a1d0cb86bfba4778c79fa776fdf1cc30f5-07b6f1cec37cb5f4.json",
+          "sha256": "171590c7cee8720a890ee6e04c377f76d239f6a7c27e5d17388b8f158c0296e3"
+        }
+      ],
+      "source_connection_state": "connected"
     }
   ],
   "finding_bindings": [
@@ -281,36 +679,6 @@
     "scope": "0.140.0 graph, queue, query receipts and classifications retain their original target and stable identities."
   },
   "pending_correspondence_leads": [
-    {
-      "id": "retained-table-1403076a2",
-      "selector": "Q41-F01:correspondence:retained-table-1403076a2",
-      "finding_ids": [
-        17,
-        73
-      ],
-      "conclusion": "The retained Codex selector has one exact current geometry candidate. Producer and consumer applicability remain open.",
-      "next_action": "Trace the typed input and fields of 0x140374fd5 through the current Codex detail formatter and source consumer. Preserve the bounded historical growth-text contract.",
-      "evidence": {
-        "path": "docs/analysis/evidence/0.141.0/computed-correspondence-frontier.json",
-        "sha256": "35d62bf812ec2c0741b0b8401129d5f775079f1db68e9d3b4d9e058fe56e6733"
-      },
-      "proof": {
-        "selector": [
-          "leads",
-          "retained-table-1403076a2"
-        ],
-        "sha256": "853594eb4dc9f9bf05423ffef5512ef1173ea394658a5fdc23034197438f2ca9"
-      },
-      "source_first": {
-        "paths": [
-          {
-            "path": "crates/azeroth-survivors-re/src/codex.rs",
-            "sha256": "8e8b1dfb1b0ad8f77e709e7d8e0559e2a737fb6e1a5cba2971f28d16fa858297"
-          }
-        ],
-        "conclusion": "The existing Codex descriptor, detail assembly and localization interfaces supply the source candidates."
-      }
-    },
     {
       "id": "retained-table-145afa2a7",
       "selector": "Q41-F01:correspondence:retained-table-145afa2a7",
@@ -860,549 +1228,6 @@
   ],
   "pending_native_leads": [
     {
-      "id": "guarded-lobby-14010628e",
-      "selector": "AS-context-table:0x14010628e",
-      "finding_ids": [
-        150
-      ],
-      "conclusion": "Applied 7-cell dispatch in the screens/coop.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Recover the actual guard input and follow each selected destination to a lobby input, form, request or display consumer.",
-      "evidence": {
-        "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
-        "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
-      },
-      "proof": {
-        "selector": [
-          "complete_AS_context_reconciliation",
-          "current_AS_context_tables",
-          "0x14010628e",
-          "native_candidate"
-        ],
-        "sha256": "0eed3b247da010cbfcf660114375e5956084380b7f42b850883c172628431fde"
-      },
-      "inputs": [
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
-          "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "fb78571b1cfc760a2a22ccd606980d55cc068e21e7a7452e48edd2d2d63096a5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "be9f52764e6addef4e326e2621308ab0704e9af0a173a53380e8ed174d2f29c2"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/guarded-tables-input.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "a586def1184269f0abc9deab7404e129c6a31c8045e22f4021d8b0a2f84acc8b"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/instructions.tsv.gz",
-          "sha256": "f5532a6a2539380203fd603d4e772d4636fd87a738265b7689b14cc79866fe5f"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/bodies.tsv.gz",
-          "sha256": "caf60497363f6e42055ba99e9241c36a0044246b82786b2ab74f9c2cc43ce8a4"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/diagnostic-ownership.json",
-          "sha256": "752192ffd18c4aa84bac2c038bedb848424a79a9c19cc9dfd5f92b3ae3f335cf"
-        },
-        {
-          "path": "scripts/summarize-native-image.py",
-          "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
-        },
-        {
-          "path": "scripts/inventory-executable.py",
-          "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
-        },
-        {
-          "path": "scripts/coverage_common.py",
-          "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
-        },
-        {
-          "path": "scripts/shared_analysis.py",
-          "sha256": "33d0c298ead191b2560d848cc486c7681b5a80eef0b39cbf1ffee55bfdac4e01"
-        },
-        {
-          "path": "docs/analysis/evidence/0.140.0/computed-correspondence-frontier.json",
-          "sha256": "cf517e4b94532cec2b1fbdfb73ea7c404ca50007c791632c846288a4d5a6ddc1"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "7ccff0e9ce872ea3386d4fcfdec375bc35219da9af9080946cbdf729ada4dfe3"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "4376cbcb1bac25fc7aa09586dafe96acdbda8300317573f2336349a0a2f64f6a"
-        },
-        {
-          "path": "scripts/review-native-switch-frontier.py",
-          "sha256": "8be9107609ec760df3f6faf60a8d1b79d9b281fe3f0b6b622aae5078d7a62ca6"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json",
-          "sha256": "970ae1af4357eb1914698bca238b48ba1bf772656075c35c75f318494c323c53"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
-          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.1/computed-correspondence-frontier.json",
-          "sha256": "d3a2af4baf234a6b1edd3b423a031eb4d4e0eae32ae1e7cdcad859b48badd6fa"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
-          "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
-        },
-        {
-          "path": "docs/analysis/evidence/0.127.0/computed-correspondence-frontier.json",
-          "sha256": "e2bdd8dac1977cc8e3485e9447c863a9135989a514f94cfdf0b69866e01a7d45"
-        },
-        {
-          "path": "docs/analysis/evidence/0.123.0/computed-correspondence-frontier.json",
-          "sha256": "fef72fb455d29c5fdc3014dbeb106785e0350b6f5ba87b074cf19139db080655"
-        },
-        {
-          "path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
-          "sha256": "01836403f217662b6f6818e602e2411460969695f7202c18d08c505e44b15025"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.5/computed-correspondence-frontier.json",
-          "sha256": "161fd9e2d892d75e70b90d52e99f173dc04d885622aa520133814461467f75cf"
-        },
-        {
-          "path": "runtime/coverage/522e1c831b3b4627875a28a1030368ef9d2e7f98c5606c34cb30448d3b7d776e/native-final/guarded-proposals.json",
-          "sha256": "a4c98131c2ef9d7980f6993efb7421bc5d556046f944231f484eaf81d7385f24"
-        },
-        {
-          "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/review/guarded-proposals.json",
-          "sha256": "0e5aa1ecb0b1bb7997d8b4dc5dd931a3217884f0f4c22ab2d23b61c593ed9e88"
-        },
-        {
-          "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/native-final/guarded-proposals.json",
-          "sha256": "87e703d1a2e2c3c8080ee340b3f7348f30f3f82540090dda4b32aa8025a2b708"
-        },
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.140.0.json",
-          "sha256": "70113c16856462f272d978f31d18a4c5a534b7ea636c349f63380a339ac10759"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "f97f83fbd1bcd7c2633424667bf1d7fca603abc80ca646d561dc7ff48767b217"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/guarded-tables-input.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/bodies.tsv.gz",
-          "sha256": "eeb872fe8fa3023ad202cb0e6b5d1d8df2528f2aecb3ec27928b1fd35c133817"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/diagnostic-ownership.json",
-          "sha256": "bfc7c94d107f2fec75823017643a08027480530168c5057fe7a0277dc11eebd1"
-        }
-      ],
-      "source_first": {
-        "paths": [
-          {
-            "path": "crates/azeroth-survivors-re/src/coop_ui.rs",
-            "sha256": "5e1c09c85bcf0adf1984e08565952240a92aac09814f1c97ab881bb0d0fbc1d1"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/coop_forms.rs",
-            "sha256": "113621a58d86ec3dc2c1ae296e805cb7079b47d8484162dfcff93e4a3f590edc"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
-            "sha256": "3175385a76c34faf29533ff449146da35e7a0e0877f19a215713a58e858d3dc3"
-          }
-        ],
-        "conclusion": "Existing lobby input, form state and request routing supply candidate source boundaries."
-      }
-    },
-    {
-      "id": "guarded-lobby-140107bb3",
-      "selector": "AS-context-table:0x140107bb3",
-      "finding_ids": [
-        150
-      ],
-      "conclusion": "Applied 9-cell dispatch in the screens/coop.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Recover the actual guard input and follow each selected destination to a lobby input, form, request or display consumer.",
-      "evidence": {
-        "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
-        "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
-      },
-      "proof": {
-        "selector": [
-          "complete_AS_context_reconciliation",
-          "current_AS_context_tables",
-          "0x140107bb3",
-          "native_candidate"
-        ],
-        "sha256": "daa0472e2b092b3ab1e27e7fb85910946f3a2dabf4a48838434b8be23da06afb"
-      },
-      "inputs": [
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
-          "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "fb78571b1cfc760a2a22ccd606980d55cc068e21e7a7452e48edd2d2d63096a5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "be9f52764e6addef4e326e2621308ab0704e9af0a173a53380e8ed174d2f29c2"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/guarded-tables-input.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "a586def1184269f0abc9deab7404e129c6a31c8045e22f4021d8b0a2f84acc8b"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/instructions.tsv.gz",
-          "sha256": "f5532a6a2539380203fd603d4e772d4636fd87a738265b7689b14cc79866fe5f"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/bodies.tsv.gz",
-          "sha256": "caf60497363f6e42055ba99e9241c36a0044246b82786b2ab74f9c2cc43ce8a4"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/diagnostic-ownership.json",
-          "sha256": "752192ffd18c4aa84bac2c038bedb848424a79a9c19cc9dfd5f92b3ae3f335cf"
-        },
-        {
-          "path": "scripts/summarize-native-image.py",
-          "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
-        },
-        {
-          "path": "scripts/inventory-executable.py",
-          "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
-        },
-        {
-          "path": "scripts/coverage_common.py",
-          "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
-        },
-        {
-          "path": "scripts/shared_analysis.py",
-          "sha256": "33d0c298ead191b2560d848cc486c7681b5a80eef0b39cbf1ffee55bfdac4e01"
-        },
-        {
-          "path": "docs/analysis/evidence/0.140.0/computed-correspondence-frontier.json",
-          "sha256": "cf517e4b94532cec2b1fbdfb73ea7c404ca50007c791632c846288a4d5a6ddc1"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "7ccff0e9ce872ea3386d4fcfdec375bc35219da9af9080946cbdf729ada4dfe3"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "4376cbcb1bac25fc7aa09586dafe96acdbda8300317573f2336349a0a2f64f6a"
-        },
-        {
-          "path": "scripts/review-native-switch-frontier.py",
-          "sha256": "8be9107609ec760df3f6faf60a8d1b79d9b281fe3f0b6b622aae5078d7a62ca6"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json",
-          "sha256": "970ae1af4357eb1914698bca238b48ba1bf772656075c35c75f318494c323c53"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
-          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.1/computed-correspondence-frontier.json",
-          "sha256": "d3a2af4baf234a6b1edd3b423a031eb4d4e0eae32ae1e7cdcad859b48badd6fa"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
-          "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
-        },
-        {
-          "path": "docs/analysis/evidence/0.127.0/computed-correspondence-frontier.json",
-          "sha256": "e2bdd8dac1977cc8e3485e9447c863a9135989a514f94cfdf0b69866e01a7d45"
-        },
-        {
-          "path": "docs/analysis/evidence/0.123.0/computed-correspondence-frontier.json",
-          "sha256": "fef72fb455d29c5fdc3014dbeb106785e0350b6f5ba87b074cf19139db080655"
-        },
-        {
-          "path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
-          "sha256": "01836403f217662b6f6818e602e2411460969695f7202c18d08c505e44b15025"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.5/computed-correspondence-frontier.json",
-          "sha256": "161fd9e2d892d75e70b90d52e99f173dc04d885622aa520133814461467f75cf"
-        },
-        {
-          "path": "runtime/coverage/522e1c831b3b4627875a28a1030368ef9d2e7f98c5606c34cb30448d3b7d776e/native-final/guarded-proposals.json",
-          "sha256": "a4c98131c2ef9d7980f6993efb7421bc5d556046f944231f484eaf81d7385f24"
-        },
-        {
-          "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/review/guarded-proposals.json",
-          "sha256": "0e5aa1ecb0b1bb7997d8b4dc5dd931a3217884f0f4c22ab2d23b61c593ed9e88"
-        },
-        {
-          "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/native-final/guarded-proposals.json",
-          "sha256": "87e703d1a2e2c3c8080ee340b3f7348f30f3f82540090dda4b32aa8025a2b708"
-        },
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.140.0.json",
-          "sha256": "70113c16856462f272d978f31d18a4c5a534b7ea636c349f63380a339ac10759"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "f97f83fbd1bcd7c2633424667bf1d7fca603abc80ca646d561dc7ff48767b217"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/guarded-tables-input.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/bodies.tsv.gz",
-          "sha256": "eeb872fe8fa3023ad202cb0e6b5d1d8df2528f2aecb3ec27928b1fd35c133817"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/diagnostic-ownership.json",
-          "sha256": "bfc7c94d107f2fec75823017643a08027480530168c5057fe7a0277dc11eebd1"
-        }
-      ],
-      "source_first": {
-        "paths": [
-          {
-            "path": "crates/azeroth-survivors-re/src/coop_ui.rs",
-            "sha256": "5e1c09c85bcf0adf1984e08565952240a92aac09814f1c97ab881bb0d0fbc1d1"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/coop_forms.rs",
-            "sha256": "113621a58d86ec3dc2c1ae296e805cb7079b47d8484162dfcff93e4a3f590edc"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
-            "sha256": "3175385a76c34faf29533ff449146da35e7a0e0877f19a215713a58e858d3dc3"
-          }
-        ],
-        "conclusion": "Existing lobby input, form state and request routing supply candidate source boundaries."
-      }
-    },
-    {
-      "id": "guarded-lobby-140107cef",
-      "selector": "AS-context-table:0x140107cef",
-      "finding_ids": [
-        150
-      ],
-      "conclusion": "Applied 9-cell dispatch in the screens/coop.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Recover the actual guard input and follow each selected destination to a lobby input, form, request or display consumer.",
-      "evidence": {
-        "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
-        "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
-      },
-      "proof": {
-        "selector": [
-          "complete_AS_context_reconciliation",
-          "current_AS_context_tables",
-          "0x140107cef",
-          "native_candidate"
-        ],
-        "sha256": "b2cfd2b97ee82770149b2d679e83b69e65de97671d1d4d22538e32cb7a272dd8"
-      },
-      "inputs": [
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
-          "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "fb78571b1cfc760a2a22ccd606980d55cc068e21e7a7452e48edd2d2d63096a5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "be9f52764e6addef4e326e2621308ab0704e9af0a173a53380e8ed174d2f29c2"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/guarded-tables-input.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "a586def1184269f0abc9deab7404e129c6a31c8045e22f4021d8b0a2f84acc8b"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/instructions.tsv.gz",
-          "sha256": "f5532a6a2539380203fd603d4e772d4636fd87a738265b7689b14cc79866fe5f"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/bodies.tsv.gz",
-          "sha256": "caf60497363f6e42055ba99e9241c36a0044246b82786b2ab74f9c2cc43ce8a4"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/diagnostic-ownership.json",
-          "sha256": "752192ffd18c4aa84bac2c038bedb848424a79a9c19cc9dfd5f92b3ae3f335cf"
-        },
-        {
-          "path": "scripts/summarize-native-image.py",
-          "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
-        },
-        {
-          "path": "scripts/inventory-executable.py",
-          "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
-        },
-        {
-          "path": "scripts/coverage_common.py",
-          "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
-        },
-        {
-          "path": "scripts/shared_analysis.py",
-          "sha256": "33d0c298ead191b2560d848cc486c7681b5a80eef0b39cbf1ffee55bfdac4e01"
-        },
-        {
-          "path": "docs/analysis/evidence/0.140.0/computed-correspondence-frontier.json",
-          "sha256": "cf517e4b94532cec2b1fbdfb73ea7c404ca50007c791632c846288a4d5a6ddc1"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "7ccff0e9ce872ea3386d4fcfdec375bc35219da9af9080946cbdf729ada4dfe3"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "4376cbcb1bac25fc7aa09586dafe96acdbda8300317573f2336349a0a2f64f6a"
-        },
-        {
-          "path": "scripts/review-native-switch-frontier.py",
-          "sha256": "8be9107609ec760df3f6faf60a8d1b79d9b281fe3f0b6b622aae5078d7a62ca6"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json",
-          "sha256": "970ae1af4357eb1914698bca238b48ba1bf772656075c35c75f318494c323c53"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
-          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.1/computed-correspondence-frontier.json",
-          "sha256": "d3a2af4baf234a6b1edd3b423a031eb4d4e0eae32ae1e7cdcad859b48badd6fa"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
-          "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
-        },
-        {
-          "path": "docs/analysis/evidence/0.127.0/computed-correspondence-frontier.json",
-          "sha256": "e2bdd8dac1977cc8e3485e9447c863a9135989a514f94cfdf0b69866e01a7d45"
-        },
-        {
-          "path": "docs/analysis/evidence/0.123.0/computed-correspondence-frontier.json",
-          "sha256": "fef72fb455d29c5fdc3014dbeb106785e0350b6f5ba87b074cf19139db080655"
-        },
-        {
-          "path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
-          "sha256": "01836403f217662b6f6818e602e2411460969695f7202c18d08c505e44b15025"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.5/computed-correspondence-frontier.json",
-          "sha256": "161fd9e2d892d75e70b90d52e99f173dc04d885622aa520133814461467f75cf"
-        },
-        {
-          "path": "runtime/coverage/522e1c831b3b4627875a28a1030368ef9d2e7f98c5606c34cb30448d3b7d776e/native-final/guarded-proposals.json",
-          "sha256": "a4c98131c2ef9d7980f6993efb7421bc5d556046f944231f484eaf81d7385f24"
-        },
-        {
-          "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/review/guarded-proposals.json",
-          "sha256": "0e5aa1ecb0b1bb7997d8b4dc5dd931a3217884f0f4c22ab2d23b61c593ed9e88"
-        },
-        {
-          "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/native-final/guarded-proposals.json",
-          "sha256": "87e703d1a2e2c3c8080ee340b3f7348f30f3f82540090dda4b32aa8025a2b708"
-        },
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.140.0.json",
-          "sha256": "70113c16856462f272d978f31d18a4c5a534b7ea636c349f63380a339ac10759"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "f97f83fbd1bcd7c2633424667bf1d7fca603abc80ca646d561dc7ff48767b217"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/guarded-tables-input.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/bodies.tsv.gz",
-          "sha256": "eeb872fe8fa3023ad202cb0e6b5d1d8df2528f2aecb3ec27928b1fd35c133817"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/diagnostic-ownership.json",
-          "sha256": "bfc7c94d107f2fec75823017643a08027480530168c5057fe7a0277dc11eebd1"
-        }
-      ],
-      "source_first": {
-        "paths": [
-          {
-            "path": "crates/azeroth-survivors-re/src/coop_ui.rs",
-            "sha256": "5e1c09c85bcf0adf1984e08565952240a92aac09814f1c97ab881bb0d0fbc1d1"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/coop_forms.rs",
-            "sha256": "113621a58d86ec3dc2c1ae296e805cb7079b47d8484162dfcff93e4a3f590edc"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
-            "sha256": "3175385a76c34faf29533ff449146da35e7a0e0877f19a215713a58e858d3dc3"
-          }
-        ],
-        "conclusion": "Existing lobby input, form state and request routing supply candidate source boundaries."
-      }
-    },
-    {
       "id": "guarded-mixed-requests-145e9e71c",
       "selector": "AS-context-table:0x145e9e71c",
       "finding_ids": [
@@ -1412,8 +1237,8 @@
         65,
         92
       ],
-      "conclusion": "Applied 52-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The current original code dispatches the outer engine opcode; see the exact app/host ingress report.",
+      "next_action": "Trace the remaining opcode-specific producers and recipient consumers. Keep the resolved inventory/cast denial and target routes scoped.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -1573,7 +1398,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -1593,7 +1418,8 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145e9e761",
@@ -1605,8 +1431,8 @@
         65,
         92
       ],
-      "conclusion": "Applied 22-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The current original code dispatches the outer engine opcode; see the exact app/host ingress report.",
+      "next_action": "Trace the remaining opcode-specific producers and recipient consumers. Keep the resolved inventory/cast denial and target routes scoped.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -1766,7 +1592,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -1786,20 +1612,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145e9f009",
       "selector": "AS-context-table:0x145e9f009",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 115-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -1959,7 +1782,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -1979,20 +1802,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea0f9d",
       "selector": "AS-context-table:0x145ea0f9d",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 101-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -2152,7 +1972,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -2172,20 +1992,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea10fb",
       "selector": "AS-context-table:0x145ea10fb",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 95-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -2345,7 +2162,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -2365,20 +2182,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea112b",
       "selector": "AS-context-table:0x145ea112b",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 95-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -2538,7 +2352,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -2558,20 +2372,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea115e",
       "selector": "AS-context-table:0x145ea115e",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 12-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -2731,7 +2542,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -2751,20 +2562,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea1580",
       "selector": "AS-context-table:0x145ea1580",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 195-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -2924,7 +2732,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -2944,20 +2752,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea15a8",
       "selector": "AS-context-table:0x145ea15a8",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 95-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -3117,7 +2922,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -3137,20 +2942,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea15ec",
       "selector": "AS-context-table:0x145ea15ec",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 10-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -3310,7 +3112,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -3330,20 +3132,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea161f",
       "selector": "AS-context-table:0x145ea161f",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 5-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -3503,7 +3302,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -3523,20 +3322,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea19cc",
       "selector": "AS-context-table:0x145ea19cc",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 195-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -3696,7 +3492,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -3716,20 +3512,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea1ab2",
       "selector": "AS-context-table:0x145ea1ab2",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 89-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -3889,7 +3682,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -3909,20 +3702,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea1ade",
       "selector": "AS-context-table:0x145ea1ade",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 34-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -4082,7 +3872,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -4102,20 +3892,17 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-mixed-requests-145ea1b6f",
       "selector": "AS-context-table:0x145ea1b6f",
       "finding_ids": [
-        63,
-        154,
-        64,
-        65,
-        92
+        64
       ],
-      "conclusion": "Applied 6-cell dispatch in the gear.rs, server/party.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Map the outer opcode and the inner selector producer, then follow exact case destinations to the actual descriptor, serializer and recipient consumer.",
+      "conclusion": "The selected native site is an entry selector inside admitted CreatureQuery opcode 0x60.",
+      "next_action": "Recover remaining descriptor fields and their recipient query/cache correspondence under #64.",
       "evidence": {
         "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
         "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
@@ -4275,7 +4062,7 @@
         "paths": [
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
-            "sha256": "417ac0ee5ed979ca7a3779b86903f815b945a6a1bb64df10aa5e8e872c9f9f27"
+            "sha256": "488d2c35b93eb3a363ee59702568509da8331960a9682b1b314ad02e05127a44"
           },
           {
             "path": "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
@@ -4295,7 +4082,8 @@
           }
         ],
         "conclusion": "The rebuilt command handler and existing metadata paths separate the packet body, descriptor IDs and recipient output. The current meter request receipt bounds a different proved branch within the native owner."
-      }
+      },
+      "role_report": "docs/analysis/coop-command-ingress-0.141.0.md#nested-creaturequery-selectors"
     },
     {
       "id": "guarded-service-poller-145ea7797",
@@ -4478,724 +4266,27 @@
         ],
         "conclusion": "The existing directory and session paths supply service-event, peer phase and emitted packet boundaries."
       }
-    },
+    }
+  ],
+  "resolved_correspondence_questions": [
     {
-      "id": "guarded-ability-status-145f53e53",
-      "selector": "AS-context-table:0x145f53e53",
+      "id": "retained-table-1403076a2",
+      "selector": "Q41-F01:correspondence:retained-table-1403076a2",
+      "state": "classified_within_bounded_contract",
       "finding_ids": [
-        136,
-        316
+        17,
+        73
       ],
-      "conclusion": "Applied 11-cell dispatch in the game/abilities.rs, game/kill_command.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Recover the exact input tag and distinguish destination floats, actor updates and pet actions before transferring the retained status or Kill Command evidence.",
-      "evidence": {
-        "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
-        "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
+      "original_question_evidence": {
+        "path": "docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json",
+        "sha256": "efe8ce72029abd81eeac5f453c21785975b9ec7c632795de6a677511c6b3fe0b"
       },
-      "proof": {
-        "selector": [
-          "complete_AS_context_reconciliation",
-          "current_AS_context_tables",
-          "0x145f53e53",
-          "native_candidate"
-        ],
-        "sha256": "0f860a96e510ee23f00b78d4fac51e6b15a0bab251dabc12438ac4592fbd1afb"
+      "classification_evidence": {
+        "path": "docs/analysis/evidence/0.141.0/codex-growth-ceiling.json",
+        "sha256": "0827e79eb5aec2c6aed48e536f12906335b39da1f09c5a900514b29fe6838626"
       },
-      "inputs": [
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
-          "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "fb78571b1cfc760a2a22ccd606980d55cc068e21e7a7452e48edd2d2d63096a5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "be9f52764e6addef4e326e2621308ab0704e9af0a173a53380e8ed174d2f29c2"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/guarded-tables-input.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "a586def1184269f0abc9deab7404e129c6a31c8045e22f4021d8b0a2f84acc8b"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/instructions.tsv.gz",
-          "sha256": "f5532a6a2539380203fd603d4e772d4636fd87a738265b7689b14cc79866fe5f"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/bodies.tsv.gz",
-          "sha256": "caf60497363f6e42055ba99e9241c36a0044246b82786b2ab74f9c2cc43ce8a4"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/diagnostic-ownership.json",
-          "sha256": "752192ffd18c4aa84bac2c038bedb848424a79a9c19cc9dfd5f92b3ae3f335cf"
-        },
-        {
-          "path": "scripts/summarize-native-image.py",
-          "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
-        },
-        {
-          "path": "scripts/inventory-executable.py",
-          "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
-        },
-        {
-          "path": "scripts/coverage_common.py",
-          "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
-        },
-        {
-          "path": "scripts/shared_analysis.py",
-          "sha256": "33d0c298ead191b2560d848cc486c7681b5a80eef0b39cbf1ffee55bfdac4e01"
-        },
-        {
-          "path": "docs/analysis/evidence/0.140.0/computed-correspondence-frontier.json",
-          "sha256": "cf517e4b94532cec2b1fbdfb73ea7c404ca50007c791632c846288a4d5a6ddc1"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "7ccff0e9ce872ea3386d4fcfdec375bc35219da9af9080946cbdf729ada4dfe3"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "4376cbcb1bac25fc7aa09586dafe96acdbda8300317573f2336349a0a2f64f6a"
-        },
-        {
-          "path": "scripts/review-native-switch-frontier.py",
-          "sha256": "8be9107609ec760df3f6faf60a8d1b79d9b281fe3f0b6b622aae5078d7a62ca6"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json",
-          "sha256": "970ae1af4357eb1914698bca238b48ba1bf772656075c35c75f318494c323c53"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
-          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.1/computed-correspondence-frontier.json",
-          "sha256": "d3a2af4baf234a6b1edd3b423a031eb4d4e0eae32ae1e7cdcad859b48badd6fa"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
-          "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
-        },
-        {
-          "path": "docs/analysis/evidence/0.127.0/computed-correspondence-frontier.json",
-          "sha256": "e2bdd8dac1977cc8e3485e9447c863a9135989a514f94cfdf0b69866e01a7d45"
-        },
-        {
-          "path": "docs/analysis/evidence/0.123.0/computed-correspondence-frontier.json",
-          "sha256": "fef72fb455d29c5fdc3014dbeb106785e0350b6f5ba87b074cf19139db080655"
-        },
-        {
-          "path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
-          "sha256": "01836403f217662b6f6818e602e2411460969695f7202c18d08c505e44b15025"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.5/computed-correspondence-frontier.json",
-          "sha256": "161fd9e2d892d75e70b90d52e99f173dc04d885622aa520133814461467f75cf"
-        },
-        {
-          "path": "runtime/coverage/522e1c831b3b4627875a28a1030368ef9d2e7f98c5606c34cb30448d3b7d776e/native-final/guarded-proposals.json",
-          "sha256": "a4c98131c2ef9d7980f6993efb7421bc5d556046f944231f484eaf81d7385f24"
-        },
-        {
-          "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/review/guarded-proposals.json",
-          "sha256": "0e5aa1ecb0b1bb7997d8b4dc5dd931a3217884f0f4c22ab2d23b61c593ed9e88"
-        },
-        {
-          "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/native-final/guarded-proposals.json",
-          "sha256": "87e703d1a2e2c3c8080ee340b3f7348f30f3f82540090dda4b32aa8025a2b708"
-        },
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.140.0.json",
-          "sha256": "70113c16856462f272d978f31d18a4c5a534b7ea636c349f63380a339ac10759"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "f97f83fbd1bcd7c2633424667bf1d7fca603abc80ca646d561dc7ff48767b217"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/guarded-tables-input.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/bodies.tsv.gz",
-          "sha256": "eeb872fe8fa3023ad202cb0e6b5d1d8df2528f2aecb3ec27928b1fd35c133817"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/diagnostic-ownership.json",
-          "sha256": "bfc7c94d107f2fec75823017643a08027480530168c5057fe7a0277dc11eebd1"
-        }
-      ],
-      "source_first": {
-        "paths": [
-          {
-            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
-            "sha256": "3a7da2547ce0a6fb1fc50933c02bd800b9410772b1baa663a60deaea43998e4c"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/state.rs",
-            "sha256": "40a737191ad16bf202be0d6528b7e2a8a15fa1968fd0cd5e1dd80f2cb0847f28"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/run_effects/pets.rs",
-            "sha256": "861612137180bc40d3f04fd85993dac5fc026d10e67ef092cddbe36321f250b0"
-          }
-        ],
-        "conclusion": "The current cast and status source has separate scaling, ordinary impact and pet consumers. The Counterattack and pet attribution receipts cover their own branches."
-      }
-    },
-    {
-      "id": "guarded-ability-status-145f546c9",
-      "selector": "AS-context-table:0x145f546c9",
-      "finding_ids": [
-        136,
-        316
-      ],
-      "conclusion": "Applied 11-cell dispatch in the game/abilities.rs, game/kill_command.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Recover the exact input tag and distinguish destination floats, actor updates and pet actions before transferring the retained status or Kill Command evidence.",
-      "evidence": {
-        "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
-        "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
-      },
-      "proof": {
-        "selector": [
-          "complete_AS_context_reconciliation",
-          "current_AS_context_tables",
-          "0x145f546c9",
-          "native_candidate"
-        ],
-        "sha256": "3815b6b45fa0e6a3731a0e010801439b02f5d010ffbfe7151d010d9fdd7c742a"
-      },
-      "inputs": [
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
-          "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "fb78571b1cfc760a2a22ccd606980d55cc068e21e7a7452e48edd2d2d63096a5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "be9f52764e6addef4e326e2621308ab0704e9af0a173a53380e8ed174d2f29c2"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/guarded-tables-input.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "a586def1184269f0abc9deab7404e129c6a31c8045e22f4021d8b0a2f84acc8b"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/instructions.tsv.gz",
-          "sha256": "f5532a6a2539380203fd603d4e772d4636fd87a738265b7689b14cc79866fe5f"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/bodies.tsv.gz",
-          "sha256": "caf60497363f6e42055ba99e9241c36a0044246b82786b2ab74f9c2cc43ce8a4"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/diagnostic-ownership.json",
-          "sha256": "752192ffd18c4aa84bac2c038bedb848424a79a9c19cc9dfd5f92b3ae3f335cf"
-        },
-        {
-          "path": "scripts/summarize-native-image.py",
-          "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
-        },
-        {
-          "path": "scripts/inventory-executable.py",
-          "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
-        },
-        {
-          "path": "scripts/coverage_common.py",
-          "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
-        },
-        {
-          "path": "scripts/shared_analysis.py",
-          "sha256": "33d0c298ead191b2560d848cc486c7681b5a80eef0b39cbf1ffee55bfdac4e01"
-        },
-        {
-          "path": "docs/analysis/evidence/0.140.0/computed-correspondence-frontier.json",
-          "sha256": "cf517e4b94532cec2b1fbdfb73ea7c404ca50007c791632c846288a4d5a6ddc1"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "7ccff0e9ce872ea3386d4fcfdec375bc35219da9af9080946cbdf729ada4dfe3"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "4376cbcb1bac25fc7aa09586dafe96acdbda8300317573f2336349a0a2f64f6a"
-        },
-        {
-          "path": "scripts/review-native-switch-frontier.py",
-          "sha256": "8be9107609ec760df3f6faf60a8d1b79d9b281fe3f0b6b622aae5078d7a62ca6"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json",
-          "sha256": "970ae1af4357eb1914698bca238b48ba1bf772656075c35c75f318494c323c53"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
-          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.1/computed-correspondence-frontier.json",
-          "sha256": "d3a2af4baf234a6b1edd3b423a031eb4d4e0eae32ae1e7cdcad859b48badd6fa"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
-          "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
-        },
-        {
-          "path": "docs/analysis/evidence/0.127.0/computed-correspondence-frontier.json",
-          "sha256": "e2bdd8dac1977cc8e3485e9447c863a9135989a514f94cfdf0b69866e01a7d45"
-        },
-        {
-          "path": "docs/analysis/evidence/0.123.0/computed-correspondence-frontier.json",
-          "sha256": "fef72fb455d29c5fdc3014dbeb106785e0350b6f5ba87b074cf19139db080655"
-        },
-        {
-          "path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
-          "sha256": "01836403f217662b6f6818e602e2411460969695f7202c18d08c505e44b15025"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.5/computed-correspondence-frontier.json",
-          "sha256": "161fd9e2d892d75e70b90d52e99f173dc04d885622aa520133814461467f75cf"
-        },
-        {
-          "path": "runtime/coverage/522e1c831b3b4627875a28a1030368ef9d2e7f98c5606c34cb30448d3b7d776e/native-final/guarded-proposals.json",
-          "sha256": "a4c98131c2ef9d7980f6993efb7421bc5d556046f944231f484eaf81d7385f24"
-        },
-        {
-          "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/review/guarded-proposals.json",
-          "sha256": "0e5aa1ecb0b1bb7997d8b4dc5dd931a3217884f0f4c22ab2d23b61c593ed9e88"
-        },
-        {
-          "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/native-final/guarded-proposals.json",
-          "sha256": "87e703d1a2e2c3c8080ee340b3f7348f30f3f82540090dda4b32aa8025a2b708"
-        },
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.140.0.json",
-          "sha256": "70113c16856462f272d978f31d18a4c5a534b7ea636c349f63380a339ac10759"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "f97f83fbd1bcd7c2633424667bf1d7fca603abc80ca646d561dc7ff48767b217"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/guarded-tables-input.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/bodies.tsv.gz",
-          "sha256": "eeb872fe8fa3023ad202cb0e6b5d1d8df2528f2aecb3ec27928b1fd35c133817"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/diagnostic-ownership.json",
-          "sha256": "bfc7c94d107f2fec75823017643a08027480530168c5057fe7a0277dc11eebd1"
-        }
-      ],
-      "source_first": {
-        "paths": [
-          {
-            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
-            "sha256": "3a7da2547ce0a6fb1fc50933c02bd800b9410772b1baa663a60deaea43998e4c"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/player_abilities/behavior/state.rs",
-            "sha256": "40a737191ad16bf202be0d6528b7e2a8a15fa1968fd0cd5e1dd80f2cb0847f28"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/run_effects/pets.rs",
-            "sha256": "861612137180bc40d3f04fd85993dac5fc026d10e67ef092cddbe36321f250b0"
-          }
-        ],
-        "conclusion": "The current cast and status source has separate scaling, ordinary impact and pet consumers. The Counterattack and pet attribution receipts cover their own branches."
-      }
-    },
-    {
-      "id": "guarded-runtime-talents-145f8ebbd",
-      "selector": "AS-context-table:0x145f8ebbd",
-      "finding_ids": [
-        141
-      ],
-      "conclusion": "Applied 7-cell dispatch in the game/talents.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Recover the event/type or row tag that reaches this guard and check its destination fields and timing consumer.",
-      "evidence": {
-        "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
-        "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
-      },
-      "proof": {
-        "selector": [
-          "complete_AS_context_reconciliation",
-          "current_AS_context_tables",
-          "0x145f8ebbd",
-          "native_candidate"
-        ],
-        "sha256": "e9df5f015b76c1355c314efeae69af87da815105c80a7e1c9e75b559670368d8"
-      },
-      "inputs": [
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
-          "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "fb78571b1cfc760a2a22ccd606980d55cc068e21e7a7452e48edd2d2d63096a5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "be9f52764e6addef4e326e2621308ab0704e9af0a173a53380e8ed174d2f29c2"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/guarded-tables-input.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "a586def1184269f0abc9deab7404e129c6a31c8045e22f4021d8b0a2f84acc8b"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/instructions.tsv.gz",
-          "sha256": "f5532a6a2539380203fd603d4e772d4636fd87a738265b7689b14cc79866fe5f"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/bodies.tsv.gz",
-          "sha256": "caf60497363f6e42055ba99e9241c36a0044246b82786b2ab74f9c2cc43ce8a4"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/diagnostic-ownership.json",
-          "sha256": "752192ffd18c4aa84bac2c038bedb848424a79a9c19cc9dfd5f92b3ae3f335cf"
-        },
-        {
-          "path": "scripts/summarize-native-image.py",
-          "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
-        },
-        {
-          "path": "scripts/inventory-executable.py",
-          "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
-        },
-        {
-          "path": "scripts/coverage_common.py",
-          "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
-        },
-        {
-          "path": "scripts/shared_analysis.py",
-          "sha256": "33d0c298ead191b2560d848cc486c7681b5a80eef0b39cbf1ffee55bfdac4e01"
-        },
-        {
-          "path": "docs/analysis/evidence/0.140.0/computed-correspondence-frontier.json",
-          "sha256": "cf517e4b94532cec2b1fbdfb73ea7c404ca50007c791632c846288a4d5a6ddc1"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "7ccff0e9ce872ea3386d4fcfdec375bc35219da9af9080946cbdf729ada4dfe3"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "4376cbcb1bac25fc7aa09586dafe96acdbda8300317573f2336349a0a2f64f6a"
-        },
-        {
-          "path": "scripts/review-native-switch-frontier.py",
-          "sha256": "8be9107609ec760df3f6faf60a8d1b79d9b281fe3f0b6b622aae5078d7a62ca6"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json",
-          "sha256": "970ae1af4357eb1914698bca238b48ba1bf772656075c35c75f318494c323c53"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
-          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.1/computed-correspondence-frontier.json",
-          "sha256": "d3a2af4baf234a6b1edd3b423a031eb4d4e0eae32ae1e7cdcad859b48badd6fa"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
-          "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
-        },
-        {
-          "path": "docs/analysis/evidence/0.127.0/computed-correspondence-frontier.json",
-          "sha256": "e2bdd8dac1977cc8e3485e9447c863a9135989a514f94cfdf0b69866e01a7d45"
-        },
-        {
-          "path": "docs/analysis/evidence/0.123.0/computed-correspondence-frontier.json",
-          "sha256": "fef72fb455d29c5fdc3014dbeb106785e0350b6f5ba87b074cf19139db080655"
-        },
-        {
-          "path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
-          "sha256": "01836403f217662b6f6818e602e2411460969695f7202c18d08c505e44b15025"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.5/computed-correspondence-frontier.json",
-          "sha256": "161fd9e2d892d75e70b90d52e99f173dc04d885622aa520133814461467f75cf"
-        },
-        {
-          "path": "runtime/coverage/522e1c831b3b4627875a28a1030368ef9d2e7f98c5606c34cb30448d3b7d776e/native-final/guarded-proposals.json",
-          "sha256": "a4c98131c2ef9d7980f6993efb7421bc5d556046f944231f484eaf81d7385f24"
-        },
-        {
-          "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/review/guarded-proposals.json",
-          "sha256": "0e5aa1ecb0b1bb7997d8b4dc5dd931a3217884f0f4c22ab2d23b61c593ed9e88"
-        },
-        {
-          "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/native-final/guarded-proposals.json",
-          "sha256": "87e703d1a2e2c3c8080ee340b3f7348f30f3f82540090dda4b32aa8025a2b708"
-        },
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.140.0.json",
-          "sha256": "70113c16856462f272d978f31d18a4c5a534b7ea636c349f63380a339ac10759"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "f97f83fbd1bcd7c2633424667bf1d7fca603abc80ca646d561dc7ff48767b217"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/guarded-tables-input.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/bodies.tsv.gz",
-          "sha256": "eeb872fe8fa3023ad202cb0e6b5d1d8df2528f2aecb3ec27928b1fd35c133817"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/diagnostic-ownership.json",
-          "sha256": "bfc7c94d107f2fec75823017643a08027480530168c5057fe7a0277dc11eebd1"
-        }
-      ],
-      "source_first": {
-        "paths": [
-          {
-            "path": "crates/azeroth-survivors-re/src/run_effects/conditions.rs",
-            "sha256": "03e43f88b178540908af3e2498a604cee5fcdf8c6cd0d4ca81764c9c38901bc0"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/run_effects.rs",
-            "sha256": "73a056e56fd67626a54d768768404bc78a7afdff6ac00648d8236b8e98930eb4"
-          }
-        ],
-        "conclusion": "The current event and condition source keeps talent tags, actor state and per-row timers separate. The independently proved Counterattack tag-12 cell is outside the nine-cell candidate."
-      }
-    },
-    {
-      "id": "guarded-runtime-talents-145f927b4",
-      "selector": "AS-context-table:0x145f927b4",
-      "finding_ids": [
-        141
-      ],
-      "conclusion": "Applied 9-cell dispatch in the game/talents.rs context. No exact predecessor proposal geometry was retained for this site.",
-      "next_action": "Recover the event/type or row tag that reaches this guard and check its destination fields and timing consumer.",
-      "evidence": {
-        "path": "runtime/analysis/objects/58/58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2",
-        "sha256": "58b630f41d1104b5eb27c4b5c2599a383d8d4a5428e613dfb4cce1c9539422f2"
-      },
-      "proof": {
-        "selector": [
-          "complete_AS_context_reconciliation",
-          "current_AS_context_tables",
-          "0x145f927b4",
-          "native_candidate"
-        ],
-        "sha256": "4c5257ecd1887f727b868b3a9373d21b80d45f908b126388188d19f9f686ba19"
-      },
-      "inputs": [
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
-          "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "fb78571b1cfc760a2a22ccd606980d55cc068e21e7a7452e48edd2d2d63096a5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "be9f52764e6addef4e326e2621308ab0704e9af0a173a53380e8ed174d2f29c2"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/guarded-tables-input.json",
-          "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "a586def1184269f0abc9deab7404e129c6a31c8045e22f4021d8b0a2f84acc8b"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/instructions.tsv.gz",
-          "sha256": "f5532a6a2539380203fd603d4e772d4636fd87a738265b7689b14cc79866fe5f"
-        },
-        {
-          "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/bodies.tsv.gz",
-          "sha256": "caf60497363f6e42055ba99e9241c36a0044246b82786b2ab74f9c2cc43ce8a4"
-        },
-        {
-          "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/diagnostic-ownership.json",
-          "sha256": "752192ffd18c4aa84bac2c038bedb848424a79a9c19cc9dfd5f92b3ae3f335cf"
-        },
-        {
-          "path": "scripts/summarize-native-image.py",
-          "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
-        },
-        {
-          "path": "scripts/inventory-executable.py",
-          "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
-        },
-        {
-          "path": "scripts/coverage_common.py",
-          "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
-        },
-        {
-          "path": "scripts/shared_analysis.py",
-          "sha256": "33d0c298ead191b2560d848cc486c7681b5a80eef0b39cbf1ffee55bfdac4e01"
-        },
-        {
-          "path": "docs/analysis/evidence/0.140.0/computed-correspondence-frontier.json",
-          "sha256": "cf517e4b94532cec2b1fbdfb73ea7c404ca50007c791632c846288a4d5a6ddc1"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/guarded-proposals.json",
-          "sha256": "7ccff0e9ce872ea3386d4fcfdec375bc35219da9af9080946cbdf729ada4dfe3"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-3/jump-summary.json",
-          "sha256": "4376cbcb1bac25fc7aa09586dafe96acdbda8300317573f2336349a0a2f64f6a"
-        },
-        {
-          "path": "scripts/review-native-switch-frontier.py",
-          "sha256": "8be9107609ec760df3f6faf60a8d1b79d9b281fe3f0b6b622aae5078d7a62ca6"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json",
-          "sha256": "970ae1af4357eb1914698bca238b48ba1bf772656075c35c75f318494c323c53"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json",
-          "sha256": "1c2ca514113f092227138d2fa8096cde20000fc1ef20676c3154dac5c0b56459"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.1/computed-correspondence-frontier.json",
-          "sha256": "d3a2af4baf234a6b1edd3b423a031eb4d4e0eae32ae1e7cdcad859b48badd6fa"
-        },
-        {
-          "path": "docs/analysis/evidence/0.139.0/computed-correspondence-frontier.json",
-          "sha256": "b651d62bd5d0f55888576476e12100470b1c13dc387b059758692cf7e4a74743"
-        },
-        {
-          "path": "docs/analysis/evidence/0.127.0/computed-correspondence-frontier.json",
-          "sha256": "e2bdd8dac1977cc8e3485e9447c863a9135989a514f94cfdf0b69866e01a7d45"
-        },
-        {
-          "path": "docs/analysis/evidence/0.123.0/computed-correspondence-frontier.json",
-          "sha256": "fef72fb455d29c5fdc3014dbeb106785e0350b6f5ba87b074cf19139db080655"
-        },
-        {
-          "path": "docs/analysis/evidence/0.121.0/computed-correspondence-frontier.json",
-          "sha256": "01836403f217662b6f6818e602e2411460969695f7202c18d08c505e44b15025"
-        },
-        {
-          "path": "docs/analysis/evidence/0.120.5/computed-correspondence-frontier.json",
-          "sha256": "161fd9e2d892d75e70b90d52e99f173dc04d885622aa520133814461467f75cf"
-        },
-        {
-          "path": "runtime/coverage/522e1c831b3b4627875a28a1030368ef9d2e7f98c5606c34cb30448d3b7d776e/native-final/guarded-proposals.json",
-          "sha256": "a4c98131c2ef9d7980f6993efb7421bc5d556046f944231f484eaf81d7385f24"
-        },
-        {
-          "path": "runtime/coverage/3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb/pipeline/1cfe85a0d48b5149/review/guarded-proposals.json",
-          "sha256": "0e5aa1ecb0b1bb7997d8b4dc5dd931a3217884f0f4c22ab2d23b61c593ed9e88"
-        },
-        {
-          "path": "runtime/coverage/22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150/native-final/guarded-proposals.json",
-          "sha256": "87e703d1a2e2c3c8080ee340b3f7348f30f3f82540090dda4b32aa8025a2b708"
-        },
-        {
-          "path": "docs/analysis/coverage/full-image-selected-0.140.0.json",
-          "sha256": "70113c16856462f272d978f31d18a4c5a534b7ea636c349f63380a339ac10759"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/jump-summary.json",
-          "sha256": "f97f83fbd1bcd7c2633424667bf1d7fca603abc80ca646d561dc7ff48767b217"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/guarded-tables-input.json",
-          "sha256": "aee93fce5e59bbe4c0a7b865b9fd0049834175634c983b627265f335fe2ec413"
-        },
-        {
-          "path": "runtime/analysis/census/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/b35c10025b6977303bbf990d3057f9082e38433c14480710ea51b1f20ef19698/bodies.tsv.gz",
-          "sha256": "eeb872fe8fa3023ad202cb0e6b5d1d8df2528f2aecb3ec27928b1fd35c133817"
-        },
-        {
-          "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/diagnostic-ownership.json",
-          "sha256": "bfc7c94d107f2fec75823017643a08027480530168c5057fe7a0277dc11eebd1"
-        }
-      ],
-      "source_first": {
-        "paths": [
-          {
-            "path": "crates/azeroth-survivors-re/src/run_effects/conditions.rs",
-            "sha256": "03e43f88b178540908af3e2498a604cee5fcdf8c6cd0d4ca81764c9c38901bc0"
-          },
-          {
-            "path": "crates/azeroth-survivors-re/src/run_effects.rs",
-            "sha256": "73a056e56fd67626a54d768768404bc78a7afdff6ac00648d8236b8e98930eb4"
-          }
-        ],
-        "conclusion": "The current event and condition source keeps talent tags, actor state and per-row timers separate. The independently proved Counterattack tag-12 cell is outside the nine-cell candidate."
-      }
+      "review_id": "retained-table-1403076a2",
+      "completion_scope": "Current 0.141.0 indexed row, admitted ceiling, and existing Details source for Hand of Justice and Seal of the Damned. Other Codex families, locales, dynamic aliases, and parity remain separate."
     }
   ]
 }

@@ -1,0 +1,107 @@
+{
+  "scope": "admitted_growth_ceiling",
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "owner": {
+    "start": "0x140371ee0",
+    "end_exclusive": "0x1403752f2",
+    "sha256": "48fd5aee4d5e858d8f5d8621df88ec8ed31dd8fd7e7af82e360d5505cf62991b"
+  },
+  "jewelry_global": "0x148ac2ba8",
+  "jewelry_count": 23,
+  "row_producer": "0x14037371e",
+  "row_ready": "0x140373744",
+  "outer_dispatch": "0x14037486d",
+  "outer_table": "0x1465cb8e4",
+  "outer_default": "0x140374ee3",
+  "data_addresses": [
+    "0x1465cb928",
+    "0x1465cb978",
+    "0x146567c50",
+    "0x146554138",
+    "0x1465541e4"
+  ],
+  "cases": [
+    {
+      "key": "hoj",
+      "row": 12,
+      "kind": 9,
+      "base_bits": "0x3d75c28f",
+      "family": "0x140374f8b",
+      "ceiling_dispatch": "0x140374faa",
+      "formatter_call": "0x1403750cd",
+      "ceiling_bits": "0x3f19999a",
+      "template_address": "0x1465c8c09",
+      "template": "Picked again, it grows by nearly the pick's whole worth, up to {ceiling}."
+    },
+    {
+      "key": "seal_damned",
+      "row": 7,
+      "kind": 19,
+      "base_bits": "0x3dcccccd",
+      "family": "0x140374ee3",
+      "ceiling_dispatch": "0x140374f02",
+      "formatter_call": "0x140375046",
+      "ceiling_bits": "0x3f800000",
+      "template_address": "0x1465c8c52",
+      "template": "Picked again, it grows toward {ceiling}, each pick less as it nears it."
+    }
+  ],
+  "query": {
+    "procedure": "0x140371ee0",
+    "slice_virtual_address": "0x140371ee0",
+    "raw_input": {
+      "path": "runtime/coverage/fixgap-41-01410/codex/slices/picker-140371ee0.bin",
+      "sha256": "48fd5aee4d5e858d8f5d8621df88ec8ed31dd8fd7e7af82e360d5505cf62991b"
+    },
+    "plan": {
+      "path": "runtime/coverage/fixgap-41-01410/codex/pseudocode-plan.json",
+      "sha256": "33152e96500c546a7a27db1f0ef8327facaab4b3ff02c320ab1eaed8dc73cf65"
+    },
+    "journal": {
+      "path": "runtime/coverage/fixgap-41-01410/codex/pseudocode/journal.json",
+      "sha256": "79a088e45d5538ea51081061f60d52d50d5fd29de4e18518a97b555f4b846e21"
+    },
+    "result": {
+      "path": "runtime/coverage/fixgap-41-01410/codex/pseudocode/results/1240e9b5b7d7baf02e2ba14d3f5b524f760624db8c97cd2b175957c979eb2110-af0e00dc47658e3f.json",
+      "sha256": "966bc5b142309f88baa91ee3dcbfed9b38a06e13f5ee0701646ab9a86922ee60"
+    },
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile_digest": "1a9c802d94e7ee0baea8a8ecee5d77a5275a4abd6253dce01d9be35cc85b1c62",
+    "evidence_id": "ev_9e364ecdd8b02aba1326114af7a27274a633d00146950129b2812ef4ba331f28"
+  },
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/codex.rs",
+      "sha256": "8e8b1dfb1b0ad8f77e709e7d8e0559e2a737fb6e1a5cba2971f28d16fa858297"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/loot_rewards.rs",
+      "sha256": "ccbe20713c6755be7b5e61afd056704f7317d51fff920720d9d3d9d2a1632187"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/loot_rewards/catalog_01120.rs",
+      "sha256": "d18c16eb16c36e15c1c70eeefcc8247f997a56ae6de1eafbeb77a823d92e43c6"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/loot_rewards/prose.rs",
+      "sha256": "3a0ab8726576a1a9bd7c69b2a4f05ff1cb375e65f50cfa9787c5d2223d51a421"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/codex-locales-0.105.0.json",
+      "sha256": "2994aa975e89bd13a94adb5df94d76a23a8a34a85080ba4ade2e29d39fdd5ccc"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/assets/codex-locale-delta-0.109.0.json",
+      "sha256": "8823e96e2cbfbdb546579d27a6b429b5ffafbfb6d64f1d2ea7ecca56e214ce06"
+    }
+  ]
+}

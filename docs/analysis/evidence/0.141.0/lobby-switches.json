@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "gap_ids": [
+    41,
+    150
+  ],
+  "tables": [
+    {
+      "selector": "AS-context-table:0x14010628e",
+      "address": "0x14656d9a4",
+      "file_offset": "0x656bfa4",
+      "byte_count": 28,
+      "sha256": "2bfef437748ea76f6b1c5b5b4106a470f7869e6659cf791a0083ca596f7d64c7",
+      "targets": [
+        "0x140106290",
+        "0x140106338",
+        "0x140106200",
+        "0x1401061e2",
+        "0x1401063cc",
+        "0x140106200",
+        "0x140106444"
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x140107bb3",
+      "address": "0x14656d9c0",
+      "file_offset": "0x656bfc0",
+      "byte_count": 36,
+      "sha256": "a375346b0f0a6e5ac16f34e2af6d6d91ec5b5a7fe8bf10be11414d2dfad91b39",
+      "targets": [
+        "0x140107bb5",
+        "0x140107f10",
+        "0x140107bfd",
+        "0x140107bd9",
+        "0x140107c1e",
+        "0x140107f10",
+        "0x140107f10",
+        "0x140107f10",
+        "0x140107c42"
+      ]
+    },
+    {
+      "selector": "AS-context-table:0x140107cef",
+      "address": "0x14656d9e4",
+      "file_offset": "0x656bfe4",
+      "byte_count": 36,
+      "sha256": "e703eb659eea2c4447abf8c93d9f500b7b1107dccc70e6a408101869122e66b8",
+      "targets": [
+        "0x140107cf1",
+        "0x140107f10",
+        "0x140107d3c",
+        "0x140107d15",
+        "0x140107d60",
+        "0x140107f10",
+        "0x140107f10",
+        "0x140107f10",
+        "0x140107de9"
+      ]
+    }
+  ],
+  "source_receipts": [
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_ui.rs",
+      "sha256": "16c78a76c8354792c5f25c1b7e1c2f8cbc096dc5a5daf6ba74c95e08804aace2"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_directory.rs",
+      "sha256": "1193922b7422b5cf129e59238234e53558cb87b0671dd8cd79b0650224f53f12"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/coop_runtime.rs",
+      "sha256": "2145fbbe8e7673e550b12c339fc2d5093a9371c87a9535ccdcf4b4e1d0794346"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/menu_state.rs",
+      "sha256": "2afa0768feeacf61d981ac4e670215c51479503f07f0458fb974696287cabfe0"
+    }
+  ],
+  "query": {
+    "procedure": "0x140106060",
+    "slice_virtual_address": "0x140106060",
+    "raw_input": {
+      "path": "runtime/fixgap-ready-lobby/slices/picker-140106060.bin",
+      "sha256": "dd81fe5256346a0eeb86a2b74185831ca06dfc9e44e3e435e5648bfa257ef9a1"
+    },
+    "plan": {
+      "path": "runtime/fixgap-ready-lobby/slices/plan-140106060.json",
+      "sha256": "6728f6c4aa415268e606daef895ec64143edf19f5125f570cfc7e7e1149ae56d"
+    },
+    "journal": {
+      "path": "runtime/fixgap-ready-lobby/rea-140106060/journal.json",
+      "sha256": "d144ea7a1ff6a8e05f24a5f3db64680b409a6847a5c6271359d666e3e38c214b"
+    },
+    "result": {
+      "path": "runtime/fixgap-ready-lobby/rea-140106060/results/4d77c19788ecad7bfb8b17e5028e13a1d0cb86bfba4778c79fa776fdf1cc30f5-07b6f1cec37cb5f4.json",
+      "sha256": "171590c7cee8720a890ee6e04c377f76d239f6a7c27e5d17388b8f158c0296e3"
+    },
+    "evidence_id": "ev_988268b6ca7e39787456834d6875c9efa3450bc29cc7fb14644cb1f8b8ec6dea",
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "analysis_profile_digest": "38ee0871f4777aed848835e2921273ceb45464f2f7db6e954dd4f84ca2440864"
+  }
+}

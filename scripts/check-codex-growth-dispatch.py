@@ -16,9 +16,98 @@ from script_sources import load_script
 PROOF = ROOT / "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json"
 
 
+def check_growth_ceiling(proof):
+    """Replay admitted Codex branches up to the jewelry-description call."""
+    from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
+    from unicorn.x86_const import (
+        UC_X86_REG_RBP, UC_X86_REG_RCX, UC_X86_REG_RDX, UC_X86_REG_RIP, UC_X86_REG_XMM2,
+    )
+
+    target = latest_target(verify=True)
+    assert all(target[key] == proof["target"][key]
+               for key in ("version", "sha256", "size_bytes"))
+    image = target_bytes(target)
+    pe = load_script("codex_dispatch_pe", ROOT / "scripts/inventory-executable.py").PE(image)
+
+    def native(address, size):
+        offset = pe.rva_offset(address - pe.image_base)
+        return image[offset:offset + size]
+
+    owner = proof["owner"]
+    start = int(owner["start"], 16)
+    end = int(owner["end_exclusive"], 16)
+    assert hashlib.sha256(native(start, end - start)).hexdigest() == owner["sha256"]
+    global_address = int(proof["jewelry_global"], 16)
+    descriptor = struct.unpack("<Q", native(global_address, 8))[0]
+    rows, count = struct.unpack("<QQ", native(descriptor, 16))
+    assert count == proof["jewelry_count"]
+    outer = int(proof["outer_dispatch"], 16)
+    outer_table = int(proof["outer_table"], 16)
+    stack = 0x200000000
+    machine = Uc(UC_ARCH_X86, UC_MODE_64)
+    machine.mem_map(stack, 4096)
+    pages = set(range(start & ~4095, (end + 4095) & ~4095, 4096))
+    pages.update(address & ~4095 for address in (global_address, descriptor))
+    pages.update(int(address, 16) & ~4095 for address in proof["data_addresses"])
+    pages.update(range(rows & ~4095, (rows + count * 72 + 4095) & ~4095, 4096))
+    for page in sorted(pages):
+        machine.mem_map(page, 4096)
+        machine.mem_write(page, native(page, 4096))
+    machine.reg_write(UC_X86_REG_RBP, stack)
+
+    expected_stops = {int(case["formatter_call"], 16) for case in proof["cases"]}
+    reached = []
+
+    def stop_at_formatter(emulator, address, _size, _data):
+        if address in expected_stops:
+            reached.append(address)
+            emulator.emu_stop()
+
+    machine.hook_add(UC_HOOK_CODE, stop_at_formatter)
+    producer = int(proof["row_producer"], 16)
+    row_ready = int(proof["row_ready"], 16)
+    for case in proof["cases"]:
+        address = rows + case["row"] * 72
+        row = native(address, 72)
+        key, length = struct.unpack_from("<QQ", row)
+        assert native(key, length).decode() == case["key"]
+        assert row[68] == case["kind"]
+        assert struct.unpack_from("<I", row, 64)[0] == int(case["base_bits"], 16)
+        family = (outer_table + struct.unpack("<i", native(outer_table + 4 * row[68], 4))[0]
+                  if row[68] < 17 else int(proof["outer_default"], 16))
+        assert family == int(case["family"], 16)
+        machine.reg_write(UC_X86_REG_RCX, case["row"])
+        machine.emu_start(producer, row_ready, count=12)
+        assert machine.reg_read(UC_X86_REG_RIP) == row_ready
+        assert struct.unpack("<Q", machine.mem_read(stack + 0x660, 8))[0] == address
+        machine.emu_start(outer, family, count=12)
+        assert machine.reg_read(UC_X86_REG_RIP) == family
+        # Resume after the family-local translation call. The selector reloads
+        # the admitted row and computes the amount before the formatter call.
+        reached.clear()
+        machine.emu_start(int(case["ceiling_dispatch"], 16), 0, count=30)
+        assert reached == [int(case["formatter_call"], 16)]
+        assert machine.reg_read(UC_X86_REG_RDX) == address
+        assert machine.reg_read(UC_X86_REG_XMM2) & 0xffffffff == int(case["ceiling_bits"], 16)
+        template = case["template"].encode()
+        assert native(int(case["template_address"], 16), len(template)) == template
+
+    for record in proof["source_receipts"]:
+        assert file_sha256(ROOT / record["path"]) == record["sha256"], record["path"]
+    from discovery_native_subject import verify_native_query_subject
+
+    query = proof["query"]
+    result = json.loads((ROOT / query["result"]["path"]).read_text())["structuredContent"]
+    verify_native_query_subject(ROOT, result, query, target, image=image, pe=pe)
+    return dict(target=target["version"], jewelry_rows=count,
+                admitted_ceiling_cases=len(proof["cases"]), durable_queries=1, game_executed=False)
+
+
 def check_classification(proof_path):
     """Check a later bounded selector classification without reopening old proof."""
     proof = json.loads(proof_path.read_text())
+    if proof.get("scope") == "admitted_growth_ceiling":
+        return check_growth_ceiling(proof)
     target = latest_target(verify=True)
     assert all(target[key] == proof["target"][key]
                for key in ("version", "sha256", "size_bytes"))

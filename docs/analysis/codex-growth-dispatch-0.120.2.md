@@ -145,3 +145,39 @@ above. The full localization/formatter/widget lifecycle, arbitrary mutable
 aliases, compilation, gameplay/rendering and original/rebuilt parity remain
 separate. Current source/recovery status remains in
 [CURRENT-STATE](../CURRENT-STATE.md#gap-41).
+
+## Admitted growth ceilings in 0.141.0
+
+The [current proof](evidence/0.141.0/codex-growth-ceiling.json) binds
+`Q41-F01:correspondence:retained-table-1403076a2` to installed EXE SHA-256
+`6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
+The Details owner at `0x140371ee0` loads the jewelry slice through
+`0x148ac2ba8`. At `0x14037371e` it checks the selected index against
+the length of 23 and stores the selected 72-byte row at frame `+0x660`.
+The growth dispatcher reads the row's byte `+0x44` after five rarity rows.
+
+| Admitted row | Native growth path | Live source |
+| --- | --- | --- |
+| Hand of Justice, kind 9 | The outer case enters the repeat template at `0x140374f8b`. Inner table `0x1465cb928` selects literal f32 0.6 at `0x14037528d` and supplies it to the jewelry formatter at `0x1403750cd`. | `CodexText::embedded` supplies the recovered 60% growth sentence to the Details label. |
+| Seal of the Damned, kind 19 | The outer default reaches the finite-growth branch at `0x140374ee3`. Its separate inner table `0x1465cb978` selects ten times row `+0x40`, supplying f32 1.0 to the formatter at `0x140375046`. | `codex.rs::detail` renders the shared `JewelryDefinition::value_cap` through the live description and localized growth template. The historical English 40% value is bypassed by this branch. |
+
+Both paths substitute the `ceiling` value and join the Details text
+submission. The 12px store remains at `0x140375212`. The kind-19 cell in
+the Hand of Justice table also has the multiplier 10, but the actual Seal
+row enters the separate finite-growth family. This preserves the historical
+0.120.2 multiplier 4 as an observation of that build. The Seal's previously
+recovered reward and actor-targeted DoT policy remains under
+[#308](../verification-needed.md#gap-308).
+
+```sh
+PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs \
+  python3 -B scripts/check-codex-growth-dispatch.py \
+  --proof docs/analysis/evidence/0.141.0/codex-growth-ceiling.json
+```
+
+The check verifies one saved Ghidra pseudocode query and replays the original
+indexed row producer, outer selection and inner ceiling calculation for
+these two actual rows. The replay resumes after the template lookup and
+stops at the formatter call. It binds the English templates and reviewed
+source bytes. The bounded result leaves the broader Codex source contracts,
+full locale and UI behavior, and original/rebuilt comparisons open.
