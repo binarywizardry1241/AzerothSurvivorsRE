@@ -139,13 +139,16 @@ def expand_files(root, patterns):
     return {name: file_digest(root / name) for name in sorted(files)}
 
 
-def manifest_inputs(root, inputs):
+def manifest_inputs(root, inputs, sealed_outputs=None):
     """Bind retained payloads as well as their small manifest files.
 
     Historical producer script hashes are provenance, not expected current tool
     bytes. Native input manifests and gzip/SQLite payload commitments are inputs.
     """
     result, pending = dict(inputs), list(inputs)
+    def input_path(name):
+        return (sealed_outputs or {}).get(name) or local(root, name)
+
     def references(value):
         if isinstance(value, dict):
             name, sha = value.get("path"), value.get("sha256")
@@ -167,22 +170,22 @@ def manifest_inputs(root, inputs):
         if name in visited:
             continue
         visited.add(name)
-        path = local(root, name)
-        if path.suffix == ".sqlite":
+        path = input_path(name)
+        if name.endswith(".sqlite"):
             from shared_native_inventory import historical_file_sha256
             historical_file_sha256(path, root=root)
         # Large inventories are leaf payloads. Their exact bytes are still bound.
-        if path.suffix != ".json" or path.stat().st_size > 32 * 1024 * 1024:
+        if not name.endswith(".json") or path.stat().st_size > 32 * 1024 * 1024:
             continue
         for child, _expected in references(json.loads(path.read_bytes())):
             if child in result:
                 continue
-            child_path = local(root, child)
+            child_path = input_path(child)
             if not child_path.is_file():
                 result[child] = "missing-referenced-payload"
                 continue
             observed = file_digest(child_path)
-            if child_path.suffix == ".sqlite":
+            if child.endswith(".sqlite"):
                 from shared_native_inventory import historical_file_sha256
                 historical_file_sha256(child_path, root=root)
             # Bind available bytes/missing states without relabeling historical
@@ -384,19 +387,31 @@ class Pipeline:
         receipt = json.loads(path.read_bytes())
         if receipt.get("stage_key") != key:
             raise ValueError("Stage receipt key differs")
+        missing = {}
         for name, item in receipt["outputs"].items():
             path = local(self.root, name)
-            if not path.is_file() or file_digest(path) != item["sha256"]:
+            present = path.is_file()
+            if present:
+                if file_digest(path) != item["sha256"]:
+                    return None
+            elif path.exists() or path.is_symlink() or not shareable_stage_output(self.root, path):
                 return None
             sealed = self.store.object_path(item["sha256"])
-            if not sealed.is_file() or file_digest(sealed) != item["sha256"]:
+            if (not sealed.is_file() or sealed.is_symlink() or sealed.stat().st_size != item["bytes"]
+                    or file_digest(sealed) != item["sha256"]):
                 raise ValueError("Corrupt immutable stage output")
+            if not present:
+                missing[name] = sealed
         try:
-            current = manifest_inputs(self.root, {name: item["sha256"] for name, item in receipt["outputs"].items()})
+            current = manifest_inputs(self.root, {name: item["sha256"] for name, item in receipt["outputs"].items()}, missing)
         except (OSError, ValueError):
             return None
         if current != receipt.get("output_closure"):
             return None
+        for name, sealed in missing.items():
+            item = receipt["outputs"][name] | {"path": sealed.relative_to(self.root).as_posix(),
+                                               "kind": "execheck-stage-output"}
+            self.store.link_alias(name, item, {"stage_key": key})
         return receipt | {"seal_sha256": row[0]}
 
     def _seal_file(self, path, key):

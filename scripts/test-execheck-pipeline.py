@@ -11,7 +11,7 @@ import time
 import unittest
 from unittest.mock import patch
 
-from execheck_pipeline import Pipeline, AuditSession
+from execheck_pipeline import Pipeline, AuditSession, digest
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -65,6 +65,30 @@ class PipelineTests(unittest.TestCase):
         report = self.run_plan(stages)
         self.assertFalse(report["stages"]["left"]["cache_hit"])
         self.assertTrue(report["stages"]["right"]["cache_hit"])
+
+    def test_missing_shared_output_restores_only_with_intact_closure(self):
+        stage = self.stage("copy", "left.txt")
+        output = "runtime/coverage/inventory.json"
+        child = self.root / "runtime/child.bin"
+        child.parent.mkdir()
+        child.write_bytes(b"source")
+        stage["argv"][4] = output
+        stage["outputs"] = [output]
+        (self.root / "left.txt").write_text(json.dumps({"child": {
+            "path": "runtime/child.bin", "sha256": "a" * 64}}))
+        first = self.run_plan([stage])
+        self.assertFalse(first["errors"])
+        path = self.root / output
+        path.unlink()
+        replay = self.run_plan([stage])
+        self.assertTrue(replay["stages"]["copy"]["cache_hit"])
+        self.assertTrue(path.is_symlink())
+        self.assertEqual(replay["stages"]["copy"]["seal_sha256"], first["stages"]["copy"]["seal_sha256"])
+        path.unlink()
+        child.write_bytes(b"changed")
+        pipeline = Pipeline(self.root, self.identity, [stage], memory_mb=2, notify=self.messages.append)
+        self.assertIsNone(pipeline._cached(digest(pipeline._commitment(stage, {}))))
+        self.assertFalse(path.exists())
 
     def test_failed_producer_never_publishes_dependents_and_resumes(self):
         stage = self.stage("left", "left.txt")
