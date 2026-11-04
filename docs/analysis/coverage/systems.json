@@ -7122,6 +7122,17 @@
         "parity": "unverified",
         "remaining": "Actual MPQ icon/rendering, UI/input/persistence, live scheduler timing and original/rebuilt parity remain unverified; wider HUD/engine ownership retains #17/#41."
       },
+      "escape_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_ids": [59],
+        "evidence_refs": ["docs/analysis/escape-game-menu-2026-10-23.md#ordered-input-and-stock-menu-handoff-in-01392"],
+        "source_refs": ["crates/benilla-app/src/local_client.rs", "crates/benilla-app/src/ui_script/input.rs", "crates/benilla-app/src/ui_script/records.rs", "crates/azeroth-survivors-re/src/gameplay/run_hud/pause.rs"],
+        "recovery": "Bounded installed Escape producer, physical deny-list write and embedded stock adapter correspondence.",
+        "implementation": "The ordered input walk hands off a visible stock game menu before another button record can hit its Exit Game action. The independently captured Escape request retains the existing pause priority.",
+        "static_validation": "36 installed producer cases, exact embedded adapter and source connectivity pass. Rust syntax parsed.",
+        "runtime_validation": "unverified",
+        "parity": "unverified"
+      },
       "escape_0_112_5": {
         "target_sha256": "445e9de90f1a0e9be18d4e99e59eb170f4d253ac0440b970cdd0d0b3562dfd36",
         "gap_ids": [

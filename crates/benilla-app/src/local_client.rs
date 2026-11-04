@@ -712,6 +712,14 @@ fn capture_game_menu_input(
     reader.clear(&keyboard);
 }
 
+pub(crate) fn handoff_stock_game_menu(script: &UiScript) -> bool {
+    if let Err(error) = script.run("GameMenuFrame:Hide()") {
+        warn!("local custom game menu handoff failed: {error}");
+        return false;
+    }
+    true
+}
+
 fn capture_input(
     session: Res<LocalClientSession>,
     pointer: Res<crate::ui_script::PointerOverUi>,
@@ -804,13 +812,9 @@ fn capture_input(
             }
             input.game_menu_open = session.active && script.frame_visible("GameMenuFrame");
             if session.active { input.minimap_rect = script.named_frame_normalized_rect("Minimap"); }
-            if input.game_menu_open && extension.custom_game_menu {
-                if let Err(error) = script.run("GameMenuFrame:Hide()") {
-                    warn!("local custom game menu handoff failed: {error}");
-                } else {
-                    input.custom_game_menu_requested = true;
-                    input.game_menu_open = false;
-                }
+            if input.game_menu_open && extension.custom_game_menu && handoff_stock_game_menu(script) {
+                input.custom_game_menu_requested = true;
+                input.game_menu_open = false;
             }
             if session.active {
                 if let Some(name) = extension.talent_toggle_counter.as_deref() {

@@ -389,3 +389,54 @@ fn a_notch_runs_no_binding_while_the_dev_overlay_holds_the_pointer() {
     app.update();
     assert_eq!(log(&app), "zoom;", "and does once the overlay lets go");
 }
+
+#[test]
+fn a_stock_menu_opened_mid_batch_cannot_take_the_next_click_during_a_custom_run() {
+    use crate::local_client::{LocalClientExtension, LocalClientInput, LocalClientSession};
+
+    for custom_game_menu in [false, true] {
+        let mut app = client();
+        app.insert_resource(LocalClientSession {
+            active: true,
+            ..default()
+        });
+        app.init_resource::<LocalClientInput>();
+        app.insert_resource(LocalClientExtension {
+            custom_game_menu,
+            ..default()
+        });
+        app.world_mut()
+            .non_send_resource_mut::<UiScript>()
+            .run(
+                r#"local menu = CreateFrame("Frame", "GameMenuFrame")
+                menu:SetPoint("BOTTOMLEFT", 0, 0)
+                menu:SetWidth(512) menu:SetHeight(768)
+                menu:SetFrameStrata("DIALOG")
+                local exit = CreateFrame("Button", "GameMenuButtonQuit", menu)
+                exit:SetAllPoints(menu)
+                exit:EnableMouse(true)
+                exit:SetScript("OnClick", function() LOG = LOG .. "exit;" end)
+                menu:Hide()
+                RecordOrderButton:SetScript("OnClick", function()
+                    LOG = LOG .. "opened;"
+                    menu:Show()
+                end)"#,
+            )
+            .expect("stock menu fixture");
+        app.update();
+        for _ in 0..2 {
+            button(&mut app, ButtonState::Pressed);
+            button(&mut app, ButtonState::Released);
+        }
+        app.update();
+        let world = app.world();
+        let input = world.resource::<LocalClientInput>();
+        let script = world.non_send_resource::<UiScript>();
+        assert_eq!(input.custom_game_menu_requested, custom_game_menu);
+        assert_eq!(script.frame_visible("GameMenuFrame"), !custom_game_menu);
+        assert_eq!(
+            log(&app),
+            if custom_game_menu { "opened;" } else { "opened;exit;" }
+        );
+    }
+}

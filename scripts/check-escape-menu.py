@@ -11,7 +11,7 @@ from pathlib import Path
 import struct
 import sys
 
-from coverage_common import ROOT, latest_target, target_bytes
+from coverage_common import ROOT, installed_identity, latest_target, target_bytes
 from script_sources import load_script
 
 # Reuse the retained analysis dependency when no ordinary Unicorn install exists.
@@ -27,6 +27,9 @@ EVIDENCE = ROOT / "docs/analysis/evidence/0.112.5/escape-menu"
 MASK = (1 << 64) - 1
 ESCAPE = 0x73
 MODIFIERS = {value for value in range(63) if (0x7B18000000000000 >> value) & 1}
+CURRENT_SHA = "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908"
+CURRENT_PRODUCER = (0x14025D4D0, 0x14025E27A)
+CURRENT_PRODUCER_SHA = "d984de6969270949adeedd6024accf853f6f0d23d88c01bbed036637e276b710"
 
 
 class Native:
@@ -331,6 +334,14 @@ def source_checks():
     assert "LocalClientSet::OverlayCapture.before(crate::ui_script::UiInput)" in client
     assert "input.custom_game_menu_requested |= device.as_ref()" in client
     assert "capture_input\n                    .after(crate::ui_script::UiInput)" in client
+    records = (ROOT / "crates/benilla-app/src/ui_script/records.rs").read_text()
+    assert "ev.key_code == KeyCode::Escape && menu_escape" in records
+    assert "e.custom_game_menu" in records and "!c.typing" in records
+    ordered = (ROOT / "crates/benilla-app/src/ui_script/input.rs").read_text()
+    assert ordered.index('script.frame_visible("GameMenuFrame")') < ordered.index("script.mouse_button_to(")
+    assert "input.custom_game_menu_requested |= crate::local_client::handoff_stock_game_menu(script)" in ordered
+    assert "!stock_menu_click && admitted(script, at)" in ordered
+    assert 'script.run("GameMenuFrame:Hide()")' in client
     pause = (ROOT / "crates/azeroth-survivors-re/src/gameplay/run_hud/pause.rs").read_text()
     for contract in (
         "std::mem::take(&mut native.custom_game_menu_requested)", "!native.keyboard_captured",
@@ -347,11 +358,69 @@ def source_checks():
     assert '("picker.menu", "menu.back", "menu.escape_back")' in pause
 
 
+def check_installed_producer():
+    target = installed_identity()
+    assert target["version"] == "0.139.2" and target["sha256"] == CURRENT_SHA
+    image = target_bytes(target)
+    pe = load_script("escape_pe", ROOT / "scripts/inventory-executable.py").PE(image)
+    native = Native(image, pe)
+    assert hashlib.sha256(native.raw(*CURRENT_PRODUCER)).hexdigest() == CURRENT_PRODUCER_SHA
+    adapter = (ROOT / "crates/benilla-app/assets/ui/GameMenuAdapters.xml").read_bytes()
+    assert native.raw(0x1466E0293, 0x1466E0293 + len(adapter)) == adapter
+    first = 0x14025DC21
+    stop = {0x14025DE23, 0x14025DE86}
+    press, repeat, release = (ESCAPE, 0, 0), (ESCAPE, 0, 1), (ESCAPE, 1, 0)
+    ordinary = (0x12, 0, 0)
+    batches = ([], [ordinary], [press], [repeat], [release], [release, repeat],
+               [ordinary, press], [release, press], [press, press])
+    cases = 0
+    for typing in (False, True):
+        for binding_capture in (False, True):
+            for events in batches:
+                u = native.machine(*CURRENT_PRODUCER)
+                bp, queue = 0x200000800, 0x200002000
+                for index, (key, state, repeated) in enumerate(events):
+                    at = queue + index * 0x50
+                    u.mem_write(at + 0x40, struct.pack("<I", key))
+                    u.mem_write(at + 0x4C, bytes([state, repeated]))
+                u.mem_write(bp + 0x54, bytes([binding_capture]))
+                u.reg_write(UC_X86_REG_RBP, bp)
+                u.reg_write(UC_X86_REG_RBX, len(events))
+                u.reg_write(UC_X86_REG_R11, queue)
+                u.reg_write(UC_X86_REG_R13, not typing)
+                u.reg_write(UC_X86_REG_R14, 0)
+                result = {}
+
+                def hook(uc, address, size, context):
+                    if address == 0x14025DC5D:
+                        result["owns"] = bool(uc.reg_read(UC_X86_REG_R14) & 255)
+                    if address in stop:
+                        result["request"] = address == 0x14025DE86 and bool(uc.mem_read(bp + 0x40, 1)[0])
+                        uc.emu_stop()
+
+                u.hook_add(UC_HOOK_CODE, hook)
+                u.emu_start(first, 0, count=1000)
+                assert result == {
+                    "owns": not typing and any(key == ESCAPE for key, _, _ in events),
+                    "request": not typing and press in events,
+                }, (typing, binding_capture, events, result)
+                cases += 1
+    source_checks()
+    print(f"Passed {cases} installed 0.139.2 Escape producer branches, exact stock adapter and static source connectivity.")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", "--verify", action="store_true", help="Run read-only checks (the default).")
     parser.add_argument("--output", help="Optional ignored project-local runtime JSON report.")
+    parser.add_argument("--installed-producer", action="store_true",
+                        help="Check the bounded 0.139.2 producer and current source wiring.")
     args = parser.parse_args()
+    if args.installed_producer:
+        if args.output:
+            parser.error("--output is only supported for the historical check")
+        check_installed_producer()
+        return
     manifest = json.loads((EVIDENCE / "manifest.json").read_text())
     target = latest_target(verify=True)
     assert target["version"] == manifest["target_version"]

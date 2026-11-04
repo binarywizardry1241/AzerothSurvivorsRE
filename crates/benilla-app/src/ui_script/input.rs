@@ -214,6 +214,10 @@ pub(super) fn feed_ui_input(
     // Who sends the key-ups: the world frame's binding leg in the world, this feed on the glue
     // screens, which have none.
     state: Option<Res<State<crate::client_state::ClientState>>>,
+    local_menu: (
+        Option<Res<crate::local_client::LocalClientSession>>,
+        Option<ResMut<crate::local_client::LocalClientInput>>,
+    ),
     // The characters the active layout makes, which name a key for a keyboard frame.
     layout: Res<crate::bindings::LayoutNames>,
     // Lent to the VM for the pass, so a click's, a key's or a binding's script calls apply in the
@@ -239,6 +243,10 @@ pub(super) fn feed_ui_input(
     let egui_keyboard = pointer.egui_keyboard.0;
     let egui_pointer = pointer.egui_pointer.as_ref().is_some_and(|e| e.0);
     let embedding_pointer = pointer.embedding.as_ref().is_some_and(|e| e.pointer_over_ui);
+    let (local_session, mut local_input) = local_menu;
+    let custom_game_menu = in_world
+        && local_session.is_some_and(|s| s.active)
+        && pointer.embedding.as_ref().is_some_and(|e| e.custom_game_menu);
     let binding_capture = pointer.embedding.as_ref().is_some_and(|e| e.binding_capture);
     let touch = pointer.device.as_ref().and_then(|device| device.touch);
     let on_top_global = pointer.embedding.as_ref().and_then(|e| e.on_top_frames_global.clone());
@@ -365,9 +373,21 @@ pub(super) fn feed_ui_input(
             script.set_modifiers(mods.shift, mods.ctrl, mods.alt);
             script.set_alt_down(mods.alt);
             let raw_at = ui_point(r.at);
-            let pointer_blocked = binding_capture || (embedding_pointer
+            // A binding or a micro button can show the stock menu during this
+            // walk. Hand it off before the next button record can hit Exit Game.
+            let stock_menu_click = if let Some(input) = local_input.as_deref_mut().filter(|_| {
+                custom_game_menu
+                    && matches!(r.record, super::Record::Button { .. })
+                    && script.frame_visible("GameMenuFrame")
+            }) {
+                input.custom_game_menu_requested |= crate::local_client::handoff_stock_game_menu(script);
+                true
+            } else {
+                false
+            };
+            let pointer_blocked = stock_menu_click || binding_capture || (embedding_pointer
                 && !raw_at.is_some_and(|at| admitted(script, at)));
-            let at = raw_at.filter(|&at| admitted(script, at));
+            let at = raw_at.filter(|&at| !stock_menu_click && admitted(script, at));
             // The cursor an arm the record's walk or binding makes picks at: the last mouse event's
             // (`[frame+0xa0]+0x1118`, `0x481f1d`), the record's own.
             script.set_click_press(click_press(r, false));
