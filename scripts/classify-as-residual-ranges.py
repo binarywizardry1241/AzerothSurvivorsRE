@@ -18,11 +18,8 @@ import struct
 import sys
 
 
-TARGET_SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
-SUMMARY = "docs/analysis/coverage/full-image-execheck-0.121.0.json"
-RESIDUALS = "docs/analysis/evidence/0.121.0/native-residuals.json"
-DESTINATION = "docs/analysis/evidence/0.121.0/as-residual-ranges.json"
 PREFIXES = ("crates/wenilla-rogue/", "crates/wenilla-rogue-app/")
+HISTORICAL_VERSION = "0.121.0"
 
 
 def digest(raw):
@@ -33,6 +30,46 @@ def address(value):
     return int(value, 16)
 
 
+def join_reference_exports(receipt, artifacts, extents):
+    ranges = sorted((address(row["start"]), address(row["end_exclusive"]), row)
+                    for extent in extents for row in extent["ranges"])
+    starts = [first for first, _, _ in ranges]
+    counts = {}
+    with_static_entry = set()
+    for domain in ("static", "declared", "complement"):
+        name = domain + "-reference-roles.tsv.gz"
+        record = artifacts[name]
+        path = receipt(name, record)
+        rows_read = 0
+        kinds, entered = Counter(), set()
+        with gzip.open(path, "rt") as stream:
+            for row in csv.DictReader(stream, delimiter="\t"):
+                rows_read += 1
+                source, destination, kind = ((row["from"], row["to"], row["type"]) if domain == "static"
+                                             else (row["site"], row["target"], row["kind"]))
+                if not destination or ":" in destination:
+                    continue
+                site, target = address(source), address(destination)
+                index = bisect_right(starts, target) - 1
+                if index < 0:
+                    continue
+                first, last, selected = ranges[index]
+                if target >= last or first <= site < last:
+                    continue
+                kinds[kind] += 1
+                entered.add(first)
+                selected.setdefault("incoming_reference_exports", {}).setdefault(domain, []).append(row)
+                if kind in {"UNCONDITIONAL_CALL", "UNCONDITIONAL_JUMP", "CONDITIONAL_JUMP",
+                            "call_direct", "jump_direct"}:
+                    with_static_entry.add(first)
+        assert rows_read == record["rows"]
+        counts[domain] = dict(rows_read=rows_read, entered_ranges=len(entered), reference_kinds=dict(sorted(kinds.items())))
+    lacking = [hex(first) for first, _, row in ranges
+               if first not in with_static_entry and not row["direct_incoming_from_same_declared_extent"]
+               and not row["guarded_table_target_observations"]]
+    return dict(exports=counts, ranges_without_incoming_flow_evidence=lacking)
+
+
 def derive(root):
     sys.path.insert(0, str(root / "scripts"))
     import capstone
@@ -41,7 +78,10 @@ def derive(root):
     from script_sources import load_script
 
     target = latest_target(verify=True)
-    assert target["version"] == "0.121.0" and target["sha256"] == TARGET_SHA
+    version = target["version"]
+    historical = version == HISTORICAL_VERSION
+    evidence = f"docs/analysis/evidence/{version}"
+    summary_kind = "execheck" if historical else "selected"
     identity = {key: target[key] for key in ("version", "path", "sha256", "size_bytes")}
     image = target_bytes(target)
     pe = load_script("residual_range_pe", root / "scripts/inventory-executable.py").PE(image)
@@ -61,12 +101,13 @@ def derive(root):
         inputs[name] = {"path": name, "sha256": digest(raw)}
         return json.loads(raw)
 
-    summary, residuals = source(SUMMARY), source(RESIDUALS)
+    summary = source(f"docs/analysis/coverage/full-image-{summary_kind}-{version}.json")
+    residuals = source(f"{evidence}/native-residuals.json")
     assert summary["target"] == residuals["target"] == identity
     missing_path = receipt("missing-executable-ranges", summary["independent_instructions"]["executable_sections"]["range_inventory"])
     extent_path = receipt("declared-extent-roles", residuals["artifacts"]["declared-extent-roles.tsv.gz"])
     diagnostics_path = receipt("diagnostic-sites", residuals["artifacts"]["diagnostic-sites.jsonl.gz"])
-    proposal_review = source("docs/analysis/evidence/0.121.0/native-switch-proposal-review.json")
+    proposal_review = source(f"{evidence}/native-switch-proposal-review.json")
     assert proposal_review["target"] == identity
     proposal_input = next(row for row in proposal_review["inputs"] if row["path"].endswith("/guarded-proposals.json"))
     proposed = json.loads(receipt("guarded-proposals", proposal_input).read_text())
@@ -222,7 +263,8 @@ def derive(root):
                              wider_semantic_status="not_inferred_from_diagnostic_context")
             extent_row["ranges"].append(range_row)
         rows.append(extent_row)
-    return dict(schema_version=1, target=identity, gap_ids=[41], lead_id="Q41-U03:AS-Location-mixed-ranges",
+    proof = dict(schema_version=1, target=identity, gap_ids=[41],
+                lead_id=("Q41-U03:AS-Location-mixed-ranges" if historical else "Q41-U01:AS-Location-mixed-ranges"),
                 inputs=inputs,
                 generator={"path": "scripts/classify-as-residual-ranges.py", "sha256": digest(Path(__file__).read_bytes())},
                 selection="Every missing executable mixed-unclassified row wholly inside a declared extent containing at least one rust_location reference whose path begins crates/wenilla-rogue/ or crates/wenilla-rogue-app/. Literal tokens alone are excluded.",
@@ -242,6 +284,9 @@ def derive(root):
                 limits=["Whole-extent linear boundaries/encodings and direct branch targets are static observations; they do not prove reachability or function ownership.",
                         "Only genuine AS rust_location context selects ranges. Such context does not assign every instruction a source mechanic or prove source omission.",
                         "No census/body counts are changed, no native application is executed, and no compilation, game/server operation or parity check is performed."])
+    if not historical:
+        proof["reference_join"] = join_reference_exports(receipt, residuals["artifacts"], rows)
+    return proof
 
 
 def main():
@@ -251,11 +296,21 @@ def main():
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
     proof = derive(args.inputs_root.resolve())
+    target = proof["target"]
+    historical = target["version"] == HISTORICAL_VERSION
+    destination = checkout / "docs/analysis/evidence" / target["version"] / "as-residual-ranges.json"
+    if historical:
+        from script_sources import recorded_input_matches
+        prior_generator = json.loads(destination.read_text())["generator"]
+        assert recorded_input_matches(prior_generator["path"], prior_generator["sha256"], checkout)
+        proof["generator"] = prior_generator
     full_raw = (json.dumps(proof, ensure_ascii=False, separators=(",", ":")) + "\n").encode()
-    detail_path = Path("runtime/coverage") / TARGET_SHA / "as-residual-ranges/range-details.json"
+    detail_path = Path("runtime/coverage") / target["sha256"] / "as-residual-ranges/range-details.json"
     details = args.inputs_root.resolve() / detail_path
     compact = {key: value for key, value in proof.items() if key not in ("extents", "excluded_literal_only_ranges")}
-    compact["detailed_inventory"] = dict(path=detail_path.as_posix(), sha256=digest(full_raw), byte_count=len(full_raw))
+    compact["detailed_inventory"] = dict(sha256=digest(full_raw), byte_count=len(full_raw))
+    if historical:
+        compact["detailed_inventory"]["path"] = detail_path.as_posix()
     compact["range_columns"] = ["inventory_ordinal", "start", "end_exclusive", "byte_count", "sha256", "instruction_count", "local_control_shape", "direct_incoming_same_extent", "applied_guarded_target_records", "unapplied_guarded_target_records"]
     compact["extents"] = [dict(declared_start=row["declared_start"], declared_end_exclusive=row["declared_end_exclusive"],
                                extent_sha256=row["extent_sha256"], AS_location_context=row["AS_location_context"],
@@ -265,17 +320,16 @@ def main():
                                         sum(target["state"] == "unapplied_guarded_proposal" for target in item["guarded_table_target_observations"])]
                                        for item in row["ranges"]]) for row in proof["extents"]]
     compact["excluded_literal_only_range_ordinals"] = [row["inventory_ordinal"] for row in proof["excluded_literal_only_ranges"]]
-    destination = checkout / DESTINATION
     raw = json.dumps(compact, ensure_ascii=False, indent=2) + "\n"
     if args.write:
+        assert not historical, "Frozen historical evidence is read-only"
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(raw)
-        details.parent.mkdir(parents=True, exist_ok=True)
-        details.write_bytes(full_raw)
     else:
         assert json.loads(destination.read_text()) == compact, "Retained range classification differs"
-        assert details.read_bytes() == full_raw, "Retained detailed range inventory differs"
-    print(json.dumps(proof["counts"], indent=2))
+        if historical:
+            assert details.read_bytes() == full_raw, "Retained detailed range inventory differs"
+    print(json.dumps({"counts": proof["counts"], "reference_join": proof.get("reference_join")}, indent=2))
 
 
 if __name__ == "__main__":

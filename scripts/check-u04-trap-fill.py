@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Replay one bounded Q41-U04 classification; no Ghidra, build or game starts."""
+"""Replay Q41-U04 trap-fill or complement stop evidence without running the target."""
 from portable_paths import portable_json
 import argparse
+from bisect import bisect_right
+from collections import Counter, defaultdict
 import csv
 import gzip
 import hashlib
@@ -10,7 +12,9 @@ import sqlite3
 from pathlib import Path
 
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
+import capstone
 from coverage_common import ROOT, file_sha256, latest_target, target_bytes
+from script_sources import load_script, recorded_input_matches
 from shared_native_inventory import open_readonly_uri as open_native_inventory
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
@@ -39,7 +43,7 @@ def tsv(path):
         yield from csv.DictReader(stream, delimiter='\t')
 
 
-def derive():
+def derive(generator):
     target = latest_target(verify=True)
     assert target['version'] == '0.113.2' and target['sha256'] == SHA
     queue_path = ROOT / 'docs/analysis/evidence/0.113.2/unknown-recovery.json'
@@ -165,18 +169,198 @@ def derive():
                        'The adjacent fonts.rs correspondence does not establish ownership or a live AS font contract for these bytes.',
                        'Only this exact interval is classified. The parent selector, candidate categories and all residual counts remain unchanged.',
                        'No reconstructed source change, compilation, game execution or original/rebuilt parity claim.'],
-            'generator': commitment(Path(__file__).resolve())}
+            'generator': generator}
+
+
+def interval_lookup(rows):
+    starts = [row[0] for row in rows]
+    assert all(a[1] <= b[0] for a, b in zip(rows, rows[1:]))
+
+    def locate(site):
+        index = bisect_right(starts, site) - 1
+        return rows[index] if index >= 0 and site < rows[index][1] else None
+
+    return locate
+
+
+def complement_stops():
+    target = latest_target(verify=True)
+    identity = {key: target[key] for key in ('version', 'path', 'sha256', 'size_bytes')}
+    analysis = ROOT / 'docs/analysis'
+    version = identity['version']
+    evidence = analysis / 'evidence' / version
+    inputs = [commitment(path) for path in (
+        evidence / 'unknown-recovery.json', evidence / 'native-residuals.json',
+        analysis / 'coverage/unwind-complement-summary.json',
+        analysis / f'coverage/full-image-selected-{version}.json',
+    )]
+    queue, residual, summary, census = (load(committed(record)) for record in inputs)
+    assert all(record['target'] == identity for record in (queue, residual, summary, census))
+    selector = next(row for row in queue['sqlite_selectors'] if row['lead_id'] == 'Q41-U04')
+    assert selector['selector'] == 'SELECT * FROM stops ORDER BY site,reason'
+
+    def residual_artifact(name):
+        return committed(residual['artifacts'][name])
+
+    def census_artifact(name):
+        return committed({'path': f"{census['artifacts']['directory']}/{name}",
+                          'sha256': census['artifacts']['files'][name]['sha256']})
+
+    def json_rows(path):
+        with gzip.open(path, 'rt') as stream:
+            yield from map(json.loads, stream)
+
+    def spans(name):
+        return [(int(row['start'], 16), int(row['end_exclusive'], 16))
+                for row in tsv(residual_artifact(name))]
+
+    extent = interval_lookup(spans('declared-extent-roles.tsv.gz'))
+    region = interval_lookup(spans('complement-region-roles.tsv.gz'))
+    body = interval_lookup(sorted(
+        (int(row['start'], 16), int(row['end'], 16) + 1, int(row['entry'], 16))
+        for row in tsv(census_artifact('bodies.tsv.gz')) if row['external'] == 'false'))
+    context = defaultdict(set)
+    for row in json_rows(residual_artifact('diagnostic-sites.jsonl.gz')):
+        if row['actual_body_owner'] and row['path'].startswith(('crates/wenilla-rogue/', 'crates/wenilla-rogue-app/')):
+            context[int(row['actual_body_owner'], 16)].add(row['path'])
+
+    pe = load_script('u04_pe', 'scripts/inventory-executable.py').PE(target_bytes(target))
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    decoder.detail = True
+    native = load_script('u04_native', 'scripts/inventory-native-instructions.py')
+    slots = {int(dll['iat_start_address'], 16) + 8 * index
+             for dll in pe.imports() for index in range(len(dll['functions']))}
+    stops = list(json_rows(residual_artifact('complement-stops.jsonl.gz')))
+    inventory = committed(summary['inventory'])
+    with open_native_inventory(inventory.as_uri() + '?mode=ro', uri=True) as db:
+        assert [(int(row['site'], 16), row['reason']) for row in stops] == list(db.execute(selector['selector']))
+        preceding = {end: (site, raw, mnemonic, operands) for site, end, raw, mnemonic, operands
+                     in db.execute('SELECT site,end,bytes,mnemonic,operands FROM instructions ORDER BY site')}
+    assert len(stops) == selector['records']
+    reasons = Counter(row['reason'] for row in stops)
+    assert reasons == summary['counts']['stop_reasons']
+    assert set(reasons) <= {'outside_file_backed_complement', 'jump_no_fallthrough',
+                            'return', 'trap_or_privileged_exit'}
+
+    jumps = Counter()
+    starts, destinations = {}, set()
+    boundary, traps, as_context = [], {}, []
+    for row in stops:
+        site = int(row['site'], 16)
+        reason = row['reason']
+        owner = body(site)
+        assert owner and owner[2] == int(row['observed_body_owner'], 16)
+        if owner[2] in context:
+            as_context.append({'stop': hex(site), 'owner': hex(owner[2]), 'reason': reason,
+                               'diagnostic_paths': sorted(context[owner[2]])})
+        if reason == 'outside_file_backed_complement':
+            declared, complement = extent(site), region(site - 1)
+            assert declared and complement and declared[0] == complement[1] == site
+            assert row['bytes'] is None and not row['references'] and site in preceding
+            previous, previous_bytes, mnemonic, operands = preceding[site]
+            boundary.append({'site': hex(site), 'complement_start': hex(complement[0]),
+                             'declared_end_exclusive': hex(declared[1]),
+                             'predecessor': hex(previous), 'predecessor_bytes': previous_bytes,
+                             'predecessor_instruction': f'{mnemonic} {operands}'.rstrip()})
+            starts[site] = None
+            continue
+
+        raw = bytes.fromhex(row['bytes'])
+        offset = pe.rva_offset(site - pe.image_base)
+        assert pe.data[offset:offset + len(raw)] == raw
+        instruction = next(decoder.disasm(raw, site, count=1))
+        assert instruction.size == len(raw) == int(row['instruction_end'], 16) - site
+        assert (instruction.mnemonic, instruction.op_str) == (row['mnemonic'], row['operands'])
+        starts[site] = row['bytes']
+        refs = native.instruction_references(instruction, capstone)
+        assert Counter((kind, hex(address) if address is not None else None)
+                       for kind, address, _, _ in refs) == Counter(
+                           (r['kind'], r['target']) for r in row['references'])
+        if reason == 'jump_no_fallthrough':
+            assert instruction.id in (capstone.x86_const.X86_INS_JMP, capstone.x86_const.X86_INS_LJMP)
+            transfer = next((kind, address) for kind, address, _, _ in refs if kind.startswith('jump_'))
+            kind, destination = transfer
+            if kind == 'jump_direct':
+                destinations.add(destination)
+                target_body = body(destination)
+                assert target_body
+                declared = extent(destination)
+                if declared:
+                    jumps['direct_declared_entry' if destination == declared[0] else 'direct_declared_interior'] += 1
+                else:
+                    assert region(destination)
+                    jumps['direct_complement'] += 1
+                if target_body[2] in context:
+                    as_context.append({'stop': hex(site), 'destination': hex(destination),
+                                       'destination_owner': hex(target_body[2]),
+                                       'diagnostic_paths': sorted(context[target_body[2]])})
+            else:
+                slot = next((address for kind, address, _, _ in refs if kind == 'memory'), None)
+                jumps['indirect_dynamic_operand' if slot is None else
+                      'indirect_import_slot' if slot in slots else 'indirect_other_fixed_slot'] += 1
+        elif reason == 'return':
+            assert instruction.group(capstone.CS_GRP_RET) or instruction.group(capstone.CS_GRP_IRET)
+        else:
+            assert instruction.group(capstone.CS_GRP_INT) or instruction.mnemonic in (
+                'int1', 'ud0', 'ud1', 'ud2', 'hlt', 'sysret', 'sysretq', 'sysexit')
+            previous = preceding.get(site)
+            traps[site] = {'site': hex(site), 'owner': hex(owner[2]), 'bytes': row['bytes'],
+                           'instruction': f'{row["mnemonic"]} {row["operands"]}'.rstrip(),
+                           'predecessor': [hex(previous[0]), *previous[1:]] if previous else None,
+                           'incoming_references': []}
+
+    pending = starts.keys() | destinations
+    instruction_export = census_artifact('instructions.tsv.gz')
+    with gzip.open(instruction_export, 'rt') as stream:
+        assert next(stream).rstrip() == 'address\tlength\tbytes\tflow'
+        for line in stream:
+            address, rest = line.split('\t', 1)
+            site = int(address, 16)
+            if site in pending:
+                if starts.get(site) is not None:
+                    assert rest.split('\t', 2)[1] == starts[site]
+                pending.remove(site)
+                if not pending:
+                    break
+    assert not pending, 'Stop or direct destination missing from the selected Ghidra instructions'
+    reference_total = 0
+    for row in tsv(census_artifact('references.tsv.gz')):
+        reference_total += 1
+        if ':' not in row['to'] and (site := int(row['to'], 16)) in traps:
+            traps[site]['incoming_references'].append({'source': '0x' + row['from'], 'kind': row['type']})
+    assert reference_total == census['counts']['references']
+    return {'schema_version': 1, 'target': identity, 'lead_id': 'Q41-U04', 'gap_ids': [41],
+            'generator': commitment(Path(__file__).resolve()), 'inputs': inputs,
+            'decoder': {'name': 'Capstone', 'version': capstone.__version__}, 'selector': selector,
+            'stop_reasons': reasons, 'owned_observed_stop_starts': len(starts),
+            'encoded_jumps': jumps, 'distinct_observed_direct_destinations': len(destinations),
+            'boundary_stops': boundary, 'trap_stops': list(traps.values()),
+            'static_reference_records_examined': reference_total, 'AS_diagnostic_context': as_context,
+            'limits': ['The stops, boundaries and destinations are observations of the independent complement pass and selected saved Ghidra census.',
+                       'An import slot is an encoded operand. A fixed or computed destination does not establish runtime execution, reachability or gameplay behavior.',
+                       'Diagnostic context does not establish AS semantics. No coverage totals or source/runtime/parity statuses change.']}
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--write', action='store_true', help='Publish the reviewed compact classification proof')
+    parser.add_argument('--complement-stops', action='store_true',
+                        help='Print the current retained complement stop classification')
     args = parser.parse_args()
-    proof = derive()
+    if args.complement_stops:
+        if args.write:
+            parser.error('--complement-stops emits a reviewable proof on stdout')
+        print(portable_json(complement_stops(), indent=2))
+        return
     if args.write:
+        proof = derive(commitment(Path(__file__).resolve()))
         OUT.write_text(portable_json(proof, indent=2) + '\n')
     else:
-        assert proof == load(OUT), 'Classification proof drift; review inputs before publication'
+        retained = load(OUT)
+        generator = retained['generator']
+        assert recorded_input_matches(generator['path'], generator['sha256']), 'Missing retained producer'
+        proof = derive(generator)
+        assert proof == retained, 'Classification proof drift; review inputs before publication'
     print(json.dumps({'result': 'passed', 'lead': proof['classification_id'], 'selected_bytes': END - START,
                       'references_examined': proof['static_reference_records_examined'], 'REA_started': False,
                       'compilation_run': False, 'game_run': False}))

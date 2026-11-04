@@ -5,15 +5,16 @@ Default operation is read-only. --stage writes only ignored candidate evidence.
 U01/U02 and U04 are independent overlapping inventories, never additive totals.
 """
 import argparse
+from bisect import bisect_right
 import collections
 import csv
 import gzip
 import hashlib
 import json
-import sqlite3
+from pathlib import Path
 import sys
 
-from coverage_common import ROOT, latest_target, target_bytes, file_sha256
+from coverage_common import ROOT, latest_target, target_bytes, file_sha256, load_json, project_path
 from script_sources import load_script
 
 sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
@@ -30,9 +31,9 @@ def encoding(raw, address, decoder):
         return 'uniform-INT3-encoding', len(raw)
     if raw and raw == b'\x90' * len(raw):
         return 'uniform-NOP-encoding', len(raw)
-    instructions = list(decoder.disasm(raw, address))
-    if instructions and sum(i.size for i in instructions) == len(raw) and all(
-            i.mnemonic in ['nop', 'int3'] for i in instructions):
+    instructions = list(decoder.disasm_lite(raw, address))
+    if instructions and sum(row[1] for row in instructions) == len(raw) and all(
+            row[2] in ('nop', 'int3') for row in instructions):
         return 'NOP-INT3-instruction-sequence', len(instructions)
     return 'mixed-unclassified', None
 
@@ -61,10 +62,147 @@ def complement_residuals(db):
             yield pos, b, category
 
 
+def selected_census_frontier(census_path, *, details=False):
+    """Join every selected residual to the recorded static target populations."""
+    target = latest_target(verify=True)
+    identity = {key: target[key] for key in ('version', 'path', 'sha256', 'size_bytes')}
+    image = target_bytes(target)
+    native = load_script('range_encoding_pe', 'scripts/inventory-current-target.py')
+    pe = native.pe_parser(image)
+    decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_64)
+    inputs = {}
+
+    def checked(record):
+        path = project_path(record['path'])
+        assert file_sha256(path) == record['sha256'], path
+        inputs[record['path']] = record['sha256']
+        return path
+
+    def summary(path):
+        path = project_path(path)
+        value = load_json(checked({'path': path.relative_to(ROOT).as_posix(), 'sha256': file_sha256(path)}))
+        assert value['target'] == identity
+        return value
+
+    def rows(record):
+        with gzip.open(checked(record), 'rt') as stream:
+            yield from csv.DictReader(stream, delimiter='\t')
+
+    census = summary(census_path)
+    residual = summary(f"docs/analysis/evidence/{identity['version']}/native-residuals.json")
+    assert census['independent_instructions']['exact_source_bytes_verified']
+    inventory = census['independent_instructions']['executable_sections']
+    ranges, counts, sizes = [], collections.Counter(), collections.Counter()
+    for row in rows(inventory['range_inventory']):
+        start, end = int(row['start'], 16), int(row['end_exclusive'], 16)
+        offset = pe.rva_offset(start - pe.image_base)
+        assert pe.rva_offset(end - 1 - pe.image_base) == offset + end - start - 1
+        raw = image[offset:offset + end - start]
+        assert len(raw) == int(row['byte_count']) and hashlib.sha256(raw).hexdigest() == row['sha256']
+        role, _ = encoding(raw, start, decoder)
+        key = f"{row['location']}:{role}"
+        counts[key] += 1
+        sizes[key] += len(raw)
+        ranges.append((start, end, key))
+    ranges.sort()
+    assert all(a[1] <= b[0] for a, b in zip(ranges, ranges[1:]))
+    assert len(ranges) == inventory['unobserved_ranges'] and sum(sizes.values()) == inventory['unobserved_bytes']
+    starts = [row[0] for row in ranges]
+    hits = collections.defaultdict(list)
+
+    def incoming(domain, kind, source, value):
+        index = bisect_right(starts, value) - 1
+        if index >= 0 and value < ranges[index][1]:
+            hits[index].append((domain, kind, source, hex(value)))
+
+    reference_counts = {}
+    for domain, (source, dest, kind) in {
+            'static': ('from', 'to', 'type'),
+            'declared': ('site', 'target', 'kind'),
+            'complement': ('site', 'target', 'kind'),
+    }.items():
+        record = residual['artifacts'][f'{domain}-reference-roles.tsv.gz']
+        count = 0
+        for row in rows(record):
+            count += 1
+            if row['destination_domain'] == 'executable':
+                incoming(domain, row[kind], hex(int(row[source], 16)), int(row[dest], 16))
+        assert count == record['rows']
+        reference_counts[domain] = count
+
+    relocations, _ = native.relocations(pe)
+    for site, kind, target_va in relocations:
+        if kind == 10 and target_va is not None:
+            incoming('PE', 'DIR64', hex(pe.image_base + site), target_va)
+    unwind = load_json(checked(census['unwind_handler_input']))
+    guarded = load_json(checked(census['guarded_table_input']))
+    assert unwind['target'] == guarded['target'] == identity
+    for row in unwind['handlers']:
+        incoming('PE', 'unwind-handler', row['handler_rva_field_va'], int(row['entry'], 16))
+    for row in unwind['directory_entries']:
+        incoming('PE', row['role'], row['metadata']['va'], int(row['entry'], 16))
+    for table in guarded['tables']:
+        for value in table['case_targets']:
+            incoming('guarded', 'applied-case', table['site'], int(value, 16))
+
+    addressed_prefixes = []
+    for index, references in sorted(hits.items()):
+        start, end, key = ranges[index]
+        if not key.startswith('outside-declared:'):
+            continue
+        destinations = sorted({int(value, 16) for _, _, _, value in references})
+        for address, bound in zip(destinations, [*destinations[1:], end]):
+            offset = pe.rva_offset(address - pe.image_base)
+            raw = image[offset:offset + bound - address]
+            instructions = []
+            for site, size, mnemonic, operands in decoder.disasm_lite(raw, address):
+                instructions.append((site, size, mnemonic, operands))
+                if mnemonic in ('jmp', 'ret', 'int3', 'ud2'):
+                    break
+            length = sum(row[1] for row in instructions)
+            terminal = instructions[-1][2] if instructions else None
+            if terminal not in ('jmp', 'ret', 'int3', 'ud2'):
+                terminal = None
+            prefix = dict(address=hex(address), bytes=raw[:length].hex(), terminal=terminal,
+                          sources=sorted(row[2] for row in references if int(row[3], 16) == address))
+            if raw.startswith(b'\x48\x8b\x09\xe9') and length == 8:
+                prefix['role'] = 'dereference-rcx-and-tail-jump'
+                prefix['tail_target'] = instructions[-1][3]
+            addressed_prefixes.append(prefix)
+
+    by_kind = collections.Counter(f'{domain}:{kind}' for values in hits.values() for domain, kind, *_ in values)
+    hit_ranges = [dict(start=hex(ranges[index][0]), end_exclusive=hex(ranges[index][1]),
+                       encoding=ranges[index][2], references=sorted(hits[index])) for index in sorted(hits)]
+    hit_range_digest = hashlib.sha256(json.dumps(hit_ranges, separators=(',', ':')).encode()).hexdigest()
+    result = dict(target=identity, gap_ids=[41], lead_ids=['Q41-B01'],
+                generator=dict(path='scripts/check-q41-range-encodings.py', sha256=file_sha256(Path(__file__))),
+                readers={name: file_sha256(ROOT / name) for name in (
+                    'scripts/inventory-current-target.py', 'scripts/inventory-executable.py',
+                    'scripts/coverage_common.py')},
+                capstone_version=capstone.__version__, inputs=inputs, range_counts=dict(sorted(counts.items())),
+                byte_counts=dict(sorted(sizes.items())), reference_counts=reference_counts,
+                incoming_counts=dict(sorted(by_kind.items())), hit_range_count=len(hit_ranges),
+                hit_ranges_by_encoding=dict(sorted(collections.Counter(row['encoding'] for row in hit_ranges).items())),
+                hit_range_sha256=hit_range_digest, addressed_prefixes=addressed_prefixes,
+                dynamic_entry_complete=False, padding_proven=False, source_ownership_complete=False)
+    if details:
+        result['ranges_with_incoming'] = hit_ranges
+    return result
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--stage', action='store_true')
+    ap.add_argument('--census-summary', help='Print the selected-target executable residual and incoming-reference join')
+    ap.add_argument('--details', action='store_true', help='Include all incoming reference rows with --census-summary')
     args = ap.parse_args()
+    if args.census_summary:
+        if args.stage:
+            ap.error('--stage is only for the historical encoding contract')
+        print(json.dumps(selected_census_frontier(args.census_summary, details=args.details), indent=2))
+        return
+    if args.details:
+        ap.error('--details requires --census-summary')
     target = latest_target(verify=True)
     assert target['sha256'] == '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
     image = target_bytes(target)

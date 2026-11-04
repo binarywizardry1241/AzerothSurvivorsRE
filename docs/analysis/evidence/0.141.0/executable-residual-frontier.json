@@ -1,0 +1,959 @@
+{
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_ids": [
+    "Q41-B01"
+  ],
+  "generator": {
+    "path": "scripts/check-q41-range-encodings.py",
+    "sha256": "85911be1c53e170e7984f05407af63c4640ff989ae4b471355b54c22b6c4e94c"
+  },
+  "readers": {
+    "scripts/inventory-current-target.py": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5",
+    "scripts/inventory-executable.py": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa",
+    "scripts/coverage_common.py": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
+  },
+  "capstone_version": "5.0.7",
+  "inputs": {
+    "docs/analysis/coverage/full-image-selected-0.141.0.json": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac",
+    "docs/analysis/evidence/0.141.0/native-residuals.json": "0a8726853199aae94b84f7fe30b7631a145f5ea285005a60b767460adbe191aa",
+    "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/verify-622b348c7803c729/missing-executable-ranges.tsv.gz": "6fe796e1d2ccc7b8915cf949fc425c9dcee71fcb51261ffed6b30d006714f30e",
+    "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/static-reference-roles.tsv.gz": "72d53a278ac784262b67c7c29edd9d13c9b838b8129dd8dc138cc8e9213c12a2",
+    "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/declared-reference-roles.tsv.gz": "3a2449b0c281cff4c1c6f6961cc0919d7f8dc506a3a5f095e72636a296bb77d9",
+    "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/complement-reference-roles.tsv.gz": "897d183f55e9461a074f058163e59b1def6a3387e81acff7a2283fb16f9dfef0",
+    "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/census/unwind-handlers-input.json": "a552c5553456897b3be72121a6de190d04652716c4e3d00209facd1a95c0af37",
+    "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/guarded-tables-input.json": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
+  },
+  "range_counts": {
+    "declared:NOP-INT3-instruction-sequence": 46056,
+    "declared:mixed-unclassified": 8354,
+    "declared:uniform-INT3-encoding": 2,
+    "declared:uniform-NOP-encoding": 3950,
+    "outside-declared:NOP-INT3-instruction-sequence": 197793,
+    "outside-declared:mixed-unclassified": 397,
+    "outside-declared:uniform-INT3-encoding": 220195,
+    "outside-declared:uniform-NOP-encoding": 11559
+  },
+  "byte_counts": {
+    "declared:NOP-INT3-instruction-sequence": 393285,
+    "declared:mixed-unclassified": 4865908,
+    "declared:uniform-INT3-encoding": 2,
+    "declared:uniform-NOP-encoding": 4741,
+    "outside-declared:NOP-INT3-instruction-sequence": 1698295,
+    "outside-declared:mixed-unclassified": 51897,
+    "outside-declared:uniform-INT3-encoding": 1594340,
+    "outside-declared:uniform-NOP-encoding": 13131
+  },
+  "reference_counts": {
+    "static": 4218711,
+    "declared": 4073041,
+    "complement": 13945
+  },
+  "incoming_counts": {
+    "declared:address": 139,
+    "declared:jump_direct": 100610
+  },
+  "hit_range_count": 6268,
+  "hit_ranges_by_encoding": {
+    "declared:mixed-unclassified": 6194,
+    "outside-declared:mixed-unclassified": 74
+  },
+  "hit_range_sha256": "d9219ef6e8883299ef14251e879191dc77469a664e00f25db573685dca5633c1",
+  "addressed_prefixes": [
+    {
+      "address": "0x1407df4d0",
+      "bytes": "488b09e9687d3e05",
+      "terminal": "jmp",
+      "sources": [
+        "0x140e0513c"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x145bc7240"
+    },
+    {
+      "address": "0x1407f3b20",
+      "bytes": "4889d00fb609488d152b65e3054c8b04ca4c8d0d4065e305496314894c01ca4889c1e909b6b805",
+      "terminal": "jmp",
+      "sources": [
+        "0x140762f61"
+      ]
+    },
+    {
+      "address": "0x140823c40",
+      "bytes": "4889d00fb609488d153b64e0054c8b04ca4c8d0d7064e005496314894c01ca4889c1e9e9b4b505",
+      "terminal": "jmp",
+      "sources": [
+        "0x14070eac3"
+      ]
+    },
+    {
+      "address": "0x140ab89b0",
+      "bytes": "4889d00fb609488d15d34ebb054c8b04ca4c8d0df84ebb05496314894c01ca4889c1e979678c05",
+      "terminal": "jmp",
+      "sources": [
+        "0x140a71553"
+      ]
+    },
+    {
+      "address": "0x140e04fb0",
+      "bytes": "4889d00fb609488d1553278a054c8b04ca4c8d0d68278a05496314894c01ca4889c1e979a15705",
+      "terminal": "jmp",
+      "sources": [
+        "0x140d1eefb"
+      ]
+    },
+    {
+      "address": "0x1410fa5f0",
+      "bytes": "488b09e9081daf04",
+      "terminal": "jmp",
+      "sources": [
+        "0x140e0522b"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x145bec300"
+    },
+    {
+      "address": "0x141235200",
+      "bytes": "4889d00fb609c1e103488d15608250054c8b0411488d157d825005488b14114889c1e9299f1405",
+      "terminal": "jmp",
+      "sources": [
+        "0x14119ce26"
+      ]
+    },
+    {
+      "address": "0x1418b88a0",
+      "bytes": "488b09e928190704",
+      "terminal": "jmp",
+      "sources": [
+        "0x1418bd493"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x14592a1d0"
+    },
+    {
+      "address": "0x1418bd0a0",
+      "bytes": "488b09e908f4ffff",
+      "terminal": "jmp",
+      "sources": [
+        "0x1418d923c"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x1418bc4b0"
+    },
+    {
+      "address": "0x1426ea4f0",
+      "bytes": "488b09e928900103",
+      "terminal": "jmp",
+      "sources": [
+        "0x14270617d"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x145703520"
+    },
+    {
+      "address": "0x1430b8f40",
+      "bytes": "488b01488b08488b40084c8b4010488b402049ffc84983e0f04c01c14883c11048ffe0",
+      "terminal": "jmp",
+      "sources": [
+        "0x1430c7d14",
+        "0x145705068"
+      ]
+    },
+    {
+      "address": "0x1430b8f70",
+      "bytes": "488b01488b084883c110e901eb0000",
+      "terminal": "jmp",
+      "sources": [
+        "0x1430c7b4a",
+        "0x1430c7d54",
+        "0x1430c7e3c"
+      ]
+    },
+    {
+      "address": "0x143108d40",
+      "bytes": "410fb6c0c1e0180fb6d2c1e21009c20fb6c1c1e00809d04883c80fc3",
+      "terminal": "ret",
+      "sources": [
+        "0x14311ad45"
+      ]
+    },
+    {
+      "address": "0x143108d80",
+      "bytes": "410fb6c0c1e0180fb6d2c1e21009c20fb6c1c1e00809d04883c811c3",
+      "terminal": "ret",
+      "sources": [
+        "0x14311ad6f"
+      ]
+    },
+    {
+      "address": "0x143108da0",
+      "bytes": "410fb6c0c1e0180fb6d2c1e21009c20fb6c1c1e00809d04883c810c3",
+      "terminal": "ret",
+      "sources": [
+        "0x14311ad86"
+      ]
+    },
+    {
+      "address": "0x143108dc0",
+      "bytes": "410fb7c048c1e0200fb6d2c1e2104809c20fb6c1c1e0084801d04883c014c3",
+      "terminal": "ret",
+      "sources": [
+        "0x14311ad3e"
+      ]
+    },
+    {
+      "address": "0x143108e00",
+      "bytes": "410fb7c048c1e0200fb6d2c1e2104809c20fb6c1c1e0084801d04883c016c3",
+      "terminal": "ret",
+      "sources": [
+        "0x14311ad68"
+      ]
+    },
+    {
+      "address": "0x143108e20",
+      "bytes": "410fb7c048c1e0200fb6d2c1e2104809c20fb6c1c1e0084801d04883c015c3",
+      "terminal": "ret",
+      "sources": [
+        "0x14311ad7f"
+      ]
+    },
+    {
+      "address": "0x143108e40",
+      "bytes": "0fb7c248c1e020410fb6d0c1e2104809c20fb6c1c1e0084801d04883c018c3",
+      "terminal": "ret",
+      "sources": [
+        "0x14311ad37"
+      ]
+    },
+    {
+      "address": "0x143108e80",
+      "bytes": "0fb7c248c1e020410fb6d0c1e2104809c20fb6c1c1e0084801d04883c01ac3",
+      "terminal": "ret",
+      "sources": [
+        "0x14311ad61"
+      ]
+    },
+    {
+      "address": "0x143108ea0",
+      "bytes": "0fb7c248c1e020410fb6d0c1e2104809c20fb6c1c1e0084801d04883c019c3",
+      "terminal": "ret",
+      "sources": [
+        "0x14311ad78"
+      ]
+    },
+    {
+      "address": "0x1431f7880",
+      "bytes": "488b09e978431903",
+      "terminal": "jmp",
+      "sources": [
+        "0x1431ffcd1",
+        "0x1432001b5",
+        "0x144323212",
+        "0x1456e3616",
+        "0x1456e3669",
+        "0x1456e4594"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x14638bc00"
+    },
+    {
+      "address": "0x1431f7890",
+      "bytes": "488b09e948421903",
+      "terminal": "jmp",
+      "sources": [
+        "0x1431ffc9b",
+        "0x14320017f"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x14638bae0"
+    },
+    {
+      "address": "0x143504f60",
+      "bytes": "f30f104114b801000000c3",
+      "terminal": "ret",
+      "sources": [
+        "0x1434f0a2e"
+      ]
+    },
+    {
+      "address": "0x143504f70",
+      "bytes": "488b490831c080f90274120fb6d183fa01752348c1e920660f6ec1eb14",
+      "terminal": "jmp",
+      "sources": [
+        "0x1434f07c0"
+      ]
+    },
+    {
+      "address": "0x14370ab20",
+      "bytes": "488b09e9f81ee901",
+      "terminal": "jmp",
+      "sources": [
+        "0x143815be0"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x14559ca20"
+    },
+    {
+      "address": "0x143739070",
+      "bytes": "488b09e9f8c50e00",
+      "terminal": "jmp",
+      "sources": [
+        "0x143815b47"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x143825670"
+    },
+    {
+      "address": "0x143739080",
+      "bytes": "488b09e978b3fc01",
+      "terminal": "jmp",
+      "sources": [
+        "0x143815ba3",
+        "0x143815cb2"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x145704400"
+    },
+    {
+      "address": "0x143739090",
+      "bytes": "488b09e918bffc01",
+      "terminal": "jmp",
+      "sources": [
+        "0x143815c56"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x145704fb0"
+    },
+    {
+      "address": "0x1437390a0",
+      "bytes": "488b09e9483af301",
+      "terminal": "jmp",
+      "sources": [
+        "0x143815b0a"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x14566caf0"
+    },
+    {
+      "address": "0x1437390b0",
+      "bytes": "488b09e95879eb01",
+      "terminal": "jmp",
+      "sources": [
+        "0x143815a1b"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x1455f0a10"
+    },
+    {
+      "address": "0x143757030",
+      "bytes": "488b09e938d4fa01",
+      "terminal": "jmp",
+      "sources": [
+        "0x143815a58"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x145704470"
+    },
+    {
+      "address": "0x143815db0",
+      "bytes": "4889d08b09488d15249b33034c8b04ca4c8d0d819c3303496314894c01ca4889c1e97a93b602",
+      "terminal": "jmp",
+      "sources": [
+        "0x143800f79"
+      ]
+    },
+    {
+      "address": "0x14381e1a0",
+      "bytes": "488b09e9c82b0800",
+      "terminal": "jmp",
+      "sources": [
+        "0x143825736"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x1438a0d70"
+    },
+    {
+      "address": "0x143825660",
+      "bytes": "488b09e968b00700",
+      "terminal": "jmp",
+      "sources": [
+        "0x14382572a"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x1438a06d0"
+    },
+    {
+      "address": "0x1442e5a70",
+      "bytes": "89d14489c2e9669bfeff",
+      "terminal": "jmp",
+      "sources": [
+        "0x1442e7392"
+      ]
+    },
+    {
+      "address": "0x1442e5a80",
+      "bytes": "4489c2e9589efeff",
+      "terminal": "jmp",
+      "sources": [
+        "0x1442e7383"
+      ]
+    },
+    {
+      "address": "0x144326630",
+      "bytes": "488b09e9c8140000",
+      "terminal": "jmp",
+      "sources": [
+        "0x1443231d5",
+        "0x14432324e",
+        "0x144323361"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x144327b00"
+    },
+    {
+      "address": "0x1448eede0",
+      "bytes": "4989d0488d0d4a6d6902ba1b000000e98cc3a901",
+      "terminal": "jmp",
+      "sources": [
+        "0x144995576"
+      ]
+    },
+    {
+      "address": "0x144ae88b0",
+      "bytes": "4889d00fb609c1e103488d15c80c4e024c8b0411488d153d0d4e02488b14114889c1e979688901",
+      "terminal": "jmp",
+      "sources": [
+        "0x144ada999"
+      ]
+    },
+    {
+      "address": "0x144b2f720",
+      "bytes": "488b09e9c87c3800",
+      "terminal": "jmp",
+      "sources": [
+        "0x144b32b35",
+        "0x144b3427e"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x144eb73f0"
+    },
+    {
+      "address": "0x144b33c30",
+      "bytes": "488b094883c118e954003500",
+      "terminal": "jmp",
+      "sources": [
+        "0x144b3416e",
+        "0x144b3436d"
+      ]
+    },
+    {
+      "address": "0x144b5e510",
+      "bytes": "488b09e908000000",
+      "terminal": "jmp",
+      "sources": [
+        "0x144b340a8"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x144b5e520"
+    },
+    {
+      "address": "0x144b7c470",
+      "bytes": "488b09e918223200",
+      "terminal": "jmp",
+      "sources": [
+        "0x144b34225"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x144e9e690"
+    },
+    {
+      "address": "0x144c52960",
+      "bytes": "4889d0488b090fb609c1e103488d15ed3c3a024c8b0411488d15023d3a02488b14114889c1e9c6c77201",
+      "terminal": "jmp",
+      "sources": [
+        "0x144c52f09"
+      ]
+    },
+    {
+      "address": "0x144c72f30",
+      "bytes": "488b018b084989c84983f0074c8d0d35953802488d05279538024885c9490f45c14889d14889c2e9f4c17001",
+      "terminal": "jmp",
+      "sources": [
+        "0x144cb5e3f"
+      ]
+    },
+    {
+      "address": "0x144c72fa0",
+      "bytes": "4889d0488b098b09488d15c99c38024c8b04ca4c8d0d469d3802496314894c01ca4889c1e987c17001",
+      "terminal": "jmp",
+      "sources": [
+        "0x144c3912d"
+      ]
+    },
+    {
+      "address": "0x144c73280",
+      "bytes": "4889d0488b098b09488d15c19a38024c8b04ca4c8d0dde9a3802496314894c01ca4889c1e9a7be7001",
+      "terminal": "jmp",
+      "sources": [
+        "0x144c38bb1"
+      ]
+    },
+    {
+      "address": "0x144c966d0",
+      "bytes": "4889d00fb609488d156bd336024c8b04ca4c8d0d78d33602496314894c01ca4889c1e9598a6e01",
+      "terminal": "jmp",
+      "sources": [
+        "0x144c8a832",
+        "0x144c8bc40"
+      ]
+    },
+    {
+      "address": "0x144cb42a0",
+      "bytes": "488b01440fb600488b0a488b4208488b40184585c074164183f8017520488d15f266350241b80900000048ffe0",
+      "terminal": "jmp",
+      "sources": [
+        "0x144cb5e29"
+      ]
+    },
+    {
+      "address": "0x144cb4ee0",
+      "bytes": "488b09e9e8c9ffff",
+      "terminal": "jmp",
+      "sources": [
+        "0x144cb5144"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x144cb18d0"
+    },
+    {
+      "address": "0x144cc55d0",
+      "bytes": "488b09e958010000",
+      "terminal": "jmp",
+      "sources": [
+        "0x144cb522b"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x144cc5730"
+    },
+    {
+      "address": "0x144cc55e0",
+      "bytes": "488b09e9080c0000",
+      "terminal": "jmp",
+      "sources": [
+        "0x144c95908"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x144cc61f0"
+    },
+    {
+      "address": "0x144dd25e0",
+      "bytes": "4889d08b09488d15f4bc25024c8b04ca4c8d0d19bd2502496314894c01ca4889c1e94acb5a01",
+      "terminal": "jmp",
+      "sources": [
+        "0x144dc9e6b"
+      ]
+    },
+    {
+      "address": "0x144dd8340",
+      "bytes": "4989d0488b01488b4818488b5020e92d2e5b01",
+      "terminal": "jmp",
+      "sources": [
+        "0x144e01ba0",
+        "0x144e04542",
+        "0x144e20acd",
+        "0x144e21d3a"
+      ]
+    },
+    {
+      "address": "0x144e12c10",
+      "bytes": "4889d00fb609488d15536a22024c8b04ca4c8d0dc06c2202496314894c01ca4889c1e919c55601",
+      "terminal": "jmp",
+      "sources": [
+        "0x144dffeac"
+      ]
+    },
+    {
+      "address": "0x144e61ec0",
+      "bytes": "4889d0488b090fb609c1e103488d155dbc1f024c8b0411488d15e2bc1f02488b14114889c1e966d25101",
+      "terminal": "jmp",
+      "sources": [
+        "0x144eb7e15"
+      ]
+    },
+    {
+      "address": "0x144e9c7a0",
+      "bytes": "4883c118e9c7c9fcff",
+      "terminal": "jmp",
+      "sources": [
+        "0x144eb9c54"
+      ]
+    },
+    {
+      "address": "0x144e9cb30",
+      "bytes": "4889d0488b098039017515488d15c48f1d0241b8300000004889c1e900264e01",
+      "terminal": "jmp",
+      "sources": [
+        "0x1464d7aec"
+      ]
+    },
+    {
+      "address": "0x144eb5990",
+      "bytes": "4889d00fb609488d15bb711c024c8b04ca4c8d0dd8711c02496314894c01ca4889c1e999974c01",
+      "terminal": "jmp",
+      "sources": [
+        "0x144eb9267"
+      ]
+    },
+    {
+      "address": "0x144eb85e0",
+      "bytes": "4889d00fb609488d15db481c024c8b04ca4c8d0df0481c02496314894c01ca4889c1e9496b4c01",
+      "terminal": "jmp",
+      "sources": [
+        "0x144ea758f",
+        "0x144ea956d",
+        "0x144eab52f"
+      ]
+    },
+    {
+      "address": "0x144ec4900",
+      "bytes": "4889c8895104c6010cc3",
+      "terminal": "ret",
+      "sources": [
+        "0x144ecddfe"
+      ]
+    },
+    {
+      "address": "0x144ec4910",
+      "bytes": "4889c8895104c6010bc3",
+      "terminal": "ret",
+      "sources": [
+        "0x144ecddd1"
+      ]
+    },
+    {
+      "address": "0x144f47590",
+      "bytes": "488b09e998020000",
+      "terminal": "jmp",
+      "sources": [
+        "0x144e83e74"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x144f47830"
+    },
+    {
+      "address": "0x144f9e3a0",
+      "bytes": "488b09e9581a0000",
+      "terminal": "jmp",
+      "sources": [
+        "0x1464d5b6e"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x144f9fe00"
+    },
+    {
+      "address": "0x145564b90",
+      "bytes": "4889d0488b098039017515488d1598e6c50141b8310000004889c1e9a0a5e100",
+      "terminal": "jmp",
+      "sources": [
+        "0x1455f0b30"
+      ]
+    },
+    {
+      "address": "0x14561f670",
+      "bytes": "4889d0488b098b09488d15e9e4bc014c8b04ca4c8d0d46e6bc01496314894c01ca4889c1e9b7fad500",
+      "terminal": "jmp",
+      "sources": [
+        "0x1455f0adb"
+      ]
+    },
+    {
+      "address": "0x14561f6a0",
+      "bytes": "4889d0488b098b09488d15d9e6bc014c8b04ca4c8d0df6e6bc01496314894c01ca4889c1e987fad500",
+      "terminal": "jmp",
+      "sources": [
+        "0x1455f0a44"
+      ]
+    },
+    {
+      "address": "0x1456e1670",
+      "bytes": "488b01440fb600488b0a488b4208488b4018488d155b9bb3014e6304824901d041ffe0",
+      "terminal": "jmp",
+      "sources": [
+        "0x1456e42e1"
+      ]
+    },
+    {
+      "address": "0x1456e33f0",
+      "bytes": "488b09e928e3ffff",
+      "terminal": "jmp",
+      "sources": [
+        "0x1456e4774"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x1456e1720"
+    },
+    {
+      "address": "0x1456e34e0",
+      "bytes": "488b09e9980d0000",
+      "terminal": "jmp",
+      "sources": [
+        "0x1456e46db"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x1456e4280"
+    },
+    {
+      "address": "0x1457005a0",
+      "bytes": "488b09e9283d0000",
+      "terminal": "jmp",
+      "sources": [
+        "0x145702b4b",
+        "0x145702bc3"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x1457042d0"
+    },
+    {
+      "address": "0x14573bbd0",
+      "bytes": "488b01488b084883c110e921074b00",
+      "terminal": "jmp",
+      "sources": [
+        "0x1457053cf"
+      ]
+    },
+    {
+      "address": "0x14573c260",
+      "bytes": "488b094883c110e9e4ccc400",
+      "terminal": "jmp",
+      "sources": [
+        "0x1457cc265",
+        "0x1457d65e7"
+      ]
+    },
+    {
+      "address": "0x145801570",
+      "bytes": "4889d00fb609488d154bc6a3014c8b04ca4c8d0d58c6a301496314894c01ca4889c1e9b9dbb700",
+      "terminal": "jmp",
+      "sources": [
+        "0x1457fa21b",
+        "0x1457fbbbf"
+      ]
+    },
+    {
+      "address": "0x145958ad0",
+      "bytes": "4889d0488b09f30fbc09c1e103488d15d4f791014c8b0411488d1559f89101488b14114889c1e95566a200",
+      "terminal": "jmp",
+      "sources": [
+        "0x14594ba83"
+      ]
+    },
+    {
+      "address": "0x145ca9de0",
+      "bytes": "488b09e978e5ffff",
+      "terminal": "jmp",
+      "sources": [
+        "0x145d034a3"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x145ca8360"
+    },
+    {
+      "address": "0x1460985c0",
+      "bytes": "4889d0488b090fb609488d15085ba6014c8b04ca4c8d0d2d5ba601496314894c01ca4889c1e9666b2e00",
+      "terminal": "jmp",
+      "sources": [
+        "0x1460b2c62",
+        "0x1460b3436",
+        "0x1460b4786"
+      ]
+    },
+    {
+      "address": "0x1460e03e0",
+      "bytes": "4889c8488b0a488b52084c8b4a188038007410488d15fddba20141b81500000049ffe1",
+      "terminal": "jmp",
+      "sources": [
+        "0x140f55a8e",
+        "0x140f68b25"
+      ]
+    },
+    {
+      "address": "0x1460e0420",
+      "bytes": "488b0a488b4208488b4018488d15dadba20141b82700000048ffe0",
+      "terminal": "jmp",
+      "sources": [
+        "0x140f591af",
+        "0x140f69a93"
+      ]
+    },
+    {
+      "address": "0x146195d90",
+      "bytes": "488b09e948010000",
+      "terminal": "jmp",
+      "sources": [
+        "0x1461966ba"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x146195ee0"
+    },
+    {
+      "address": "0x146195da0",
+      "bytes": "488b09e9f8050000",
+      "terminal": "jmp",
+      "sources": [
+        "0x14619610b"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x1461963a0"
+    },
+    {
+      "address": "0x1462fe130",
+      "bytes": "4889d0488b090fb609c1e103488d15ad8b87014c8b0411488d15c28b8701488b14114889c1e9f60f0800",
+      "terminal": "jmp",
+      "sources": [
+        "0x1462fe388"
+      ]
+    },
+    {
+      "address": "0x1462febb0",
+      "bytes": "488b09e918090000",
+      "terminal": "jmp",
+      "sources": [
+        "0x1462ff284",
+        "0x1462ff2d3",
+        "0x1462ff30c"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x1462ff4d0"
+    },
+    {
+      "address": "0x146302260",
+      "bytes": "488b09e918830800",
+      "terminal": "jmp",
+      "sources": [
+        "0x146301331"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x14638a580"
+    },
+    {
+      "address": "0x146302270",
+      "bytes": "488b09e918700800",
+      "terminal": "jmp",
+      "sources": [
+        "0x146301264"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x146389290"
+    },
+    {
+      "address": "0x146302280",
+      "bytes": "4889d0488b090fb609c1e103488d157d6887014c8b0411488d154a688701488b14114889c1e9a6ce0700",
+      "terminal": "jmp",
+      "sources": [
+        "0x14630124e",
+        "0x14630131b",
+        "0x1463013de"
+      ]
+    },
+    {
+      "address": "0x146303330",
+      "bytes": "4889d0488b090fb609488d15e85c87014c8b04ca4c8d0d5d5d8701496314894c01ca4889c1e9f6bd0700",
+      "terminal": "jmp",
+      "sources": [
+        "0x1462ff513"
+      ]
+    },
+    {
+      "address": "0x146319930",
+      "bytes": "488b09e9d8f7ffff",
+      "terminal": "jmp",
+      "sources": [
+        "0x1463190db"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x146319110"
+    },
+    {
+      "address": "0x14631b280",
+      "bytes": "4889d0488b090fb609488d15980386014c8b04ca4c8d0d0d048601496314894c01ca4889c1e9a63e0600",
+      "terminal": "jmp",
+      "sources": [
+        "0x146319875"
+      ]
+    },
+    {
+      "address": "0x14631be70",
+      "bytes": "4889d0488b090fb609f30fbcc9488d1584fb85014c8b04ca4c8d0da1fb8501496314894c01ca4889c1e9b2320600",
+      "terminal": "jmp",
+      "sources": [
+        "0x146319451",
+        "0x1463195e9"
+      ]
+    },
+    {
+      "address": "0x14631bea0",
+      "bytes": "4889d0488b090fb609c1e103488d1595fb85014c8b0411488d15c2fb8501488b14114889c1e986320600",
+      "terminal": "jmp",
+      "sources": [
+        "0x146319217",
+        "0x14631934d",
+        "0x14631943b"
+      ]
+    },
+    {
+      "address": "0x14631d290",
+      "bytes": "488b09e948fcffff",
+      "terminal": "jmp",
+      "sources": [
+        "0x14631d32c"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x14631cee0"
+    },
+    {
+      "address": "0x14631d360",
+      "bytes": "4889d00fb609c1e103488d1508ed85014c8b0411488d1535ed8501488b14114889c1e9c91d0600",
+      "terminal": "jmp",
+      "sources": [
+        "0x14631cff8"
+      ]
+    },
+    {
+      "address": "0x14631d390",
+      "bytes": "4889d00fb609f30fbcc9488d1547ed85014c8b04ca4c8d0d64ed8501496314894c01ca4889c1e9951d0600",
+      "terminal": "jmp",
+      "sources": [
+        "0x14631cfe2"
+      ]
+    },
+    {
+      "address": "0x14631e940",
+      "bytes": "488b09e9d8fcffff",
+      "terminal": "jmp",
+      "sources": [
+        "0x146319173",
+        "0x1463191e6",
+        "0x146319269",
+        "0x1463192e4",
+        "0x14631937e",
+        "0x1463194a3",
+        "0x146319568",
+        "0x14631961a",
+        "0x1463196c6",
+        "0x14631972e"
+      ],
+      "role": "dereference-rcx-and-tail-jump",
+      "tail_target": "0x14631e620"
+    }
+  ],
+  "dynamic_entry_complete": false,
+  "padding_proven": false,
+  "source_ownership_complete": false
+}

@@ -54,8 +54,10 @@ relocations, PE entry and export records, and applied guarded tables identify
 no incoming destination within the span. This supports a bounded data and
 alignment classification at a generic crypto-library boundary. The exact
 crypto package and dynamic entry behavior remain outside the proof. The other
-396 rows still need role classification, and the larger complement region
-remains mixed because it also contains admitted handler instructions.
+396 rows are covered by the [executable residual review](executable-residual-roles-0.141.0.md#q41-b01-executable-section),
+which separates recorded address-taken prefixes, graphics helpers and
+remaining mixed roles. The larger complement region remains mixed because
+it also contains admitted handler instructions.
 
 ### Guarded tables and AS discovery
 

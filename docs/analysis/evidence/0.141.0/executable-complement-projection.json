@@ -1,0 +1,203 @@
+{
+  "counts": {
+    "both_absent": 3357651,
+    "byte_count": 5376717,
+    "independent_bytes": 337610,
+    "independent_instructions": 78661,
+    "regions": 351512,
+    "seed_records": 409790,
+    "selected_absent": 3357663,
+    "selected_observed": 2019054
+  },
+  "gap_ids": [
+    41
+  ],
+  "generator": {
+    "path": "scripts/classify-q41-residual-frontier.py",
+    "sha256": "ae9fd785f29170802ec488c0f50ba967bbd723c1cff9c32419fcfcaac0274795"
+  },
+  "independent_only_instruction_parts": [
+    [
+      5471364372,
+      5471364373,
+      "90"
+    ],
+    [
+      5471364373,
+      5471364374,
+      "90"
+    ],
+    [
+      5471364374,
+      5471364375,
+      "90"
+    ],
+    [
+      5471364375,
+      5471364376,
+      "90"
+    ],
+    [
+      5471364376,
+      5471364377,
+      "90"
+    ],
+    [
+      5471364377,
+      5471364378,
+      "90"
+    ],
+    [
+      5471364378,
+      5471364379,
+      "90"
+    ],
+    [
+      5471364379,
+      5471364380,
+      "90"
+    ],
+    [
+      5471364380,
+      5471364381,
+      "90"
+    ],
+    [
+      5471364381,
+      5471364382,
+      "90"
+    ],
+    [
+      5471364382,
+      5471364383,
+      "90"
+    ],
+    [
+      5471364383,
+      5471364384,
+      "90"
+    ]
+  ],
+  "inputs": [
+    {
+      "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
+      "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
+    },
+    {
+      "path": "docs/analysis/coverage/unwind-complement-summary.json",
+      "sha256": "7f3d8927d6590bb1728dbe4d624e542dfefc1e075e340907866315968418652d"
+    },
+    {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/unwind-complement.sqlite",
+      "regenerate": "python3 -B scripts/inventory-unwind-complement.py --write",
+      "sha256": "c3b122c3ac58757ed0021dc3f514b72b1d0db60840270df9821caf7f65351fcb"
+    },
+    {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/verify-622b348c7803c729/missing-executable-ranges.tsv.gz",
+      "sha256": "6fe796e1d2ccc7b8915cf949fc425c9dcee71fcb51261ffed6b30d006714f30e"
+    }
+  ],
+  "lead_ids": [
+    "Q41-U03"
+  ],
+  "limits": [
+    "The cross-pass byte union does not change either census or prove semantic ownership.",
+    "Original region categories are candidate encodings, not padding or reachability claims."
+  ],
+  "most_seeded_region": {
+    "end_exclusive": "0x140002210",
+    "entries": [
+      [
+        5368717760,
+        51696,
+        "e9dbc93406"
+      ],
+      [
+        5368717776,
+        152718,
+        "e92bca3406"
+      ],
+      [
+        5368717792,
+        620,
+        "e95bca3406"
+      ],
+      [
+        5368717808,
+        532,
+        "e9abcb3406"
+      ],
+      [
+        5368717824,
+        52490,
+        "c3"
+      ]
+    ],
+    "file_offset": "0x15b2",
+    "incoming_seed_records": 258056,
+    "sha256": "a21214a4feb74b05231b1772d7a659cc7a3dd2589dab90d141022fe1617e3f02",
+    "start": "0x1400021b2"
+  },
+  "projection_sha256": "88ffaaa19c2932b4bcdf36219f4a8314be07a7a7a8d2dd2480951c0dc831b778",
+  "regions_by_original_category": {
+    "mixed_or_other": {
+      "both_absent": 666893,
+      "byte_count": 2685959,
+      "independent_bytes": 337610,
+      "independent_instructions": 78661,
+      "regions": 20226,
+      "seed_records": 409790,
+      "selected_absent": 666905,
+      "selected_observed": 2019054
+    },
+    "uniform_cc_candidate": {
+      "both_absent": 981688,
+      "byte_count": 981688,
+      "independent_bytes": 0,
+      "independent_instructions": 0,
+      "regions": 122150,
+      "seed_records": 0,
+      "selected_absent": 981688,
+      "selected_observed": 0
+    },
+    "uniform_nop_candidate": {
+      "both_absent": 11544,
+      "byte_count": 11544,
+      "independent_bytes": 0,
+      "independent_instructions": 0,
+      "regions": 11446,
+      "seed_records": 0,
+      "selected_absent": 11544,
+      "selected_observed": 0
+    },
+    "x86_padding_sequence_candidate": {
+      "both_absent": 1697526,
+      "byte_count": 1697526,
+      "independent_bytes": 0,
+      "independent_instructions": 0,
+      "regions": 197690,
+      "seed_records": 0,
+      "selected_absent": 1697526,
+      "selected_observed": 0
+    }
+  },
+  "schema_version": 1,
+  "selected_full_without_seeded": [
+    [
+      "0x1463752bd",
+      "0x14637534a",
+      "f112f63b6d2c9c353b57819aec3c492710dc30856aafc07cf8350486be8a3e95"
+    ],
+    [
+      "0x146375449",
+      "0x14637545e",
+      "22d41d69a41f07cc4d287b306d403330a84a17266a0ff7d1090f58367e9883d3"
+    ]
+  ],
+  "target": {
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632,
+    "version": "0.141.0"
+  }
+}

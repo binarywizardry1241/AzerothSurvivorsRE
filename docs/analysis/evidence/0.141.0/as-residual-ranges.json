@@ -1,0 +1,3390 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "gap_ids": [
+    41
+  ],
+  "lead_id": "Q41-U01:AS-Location-mixed-ranges",
+  "inputs": {
+    "docs/analysis/coverage/full-image-selected-0.141.0.json": {
+      "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
+      "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
+    },
+    "docs/analysis/evidence/0.141.0/native-residuals.json": {
+      "path": "docs/analysis/evidence/0.141.0/native-residuals.json",
+      "sha256": "0a8726853199aae94b84f7fe30b7631a145f5ea285005a60b767460adbe191aa"
+    },
+    "missing-executable-ranges": {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/verify-622b348c7803c729/missing-executable-ranges.tsv.gz",
+      "sha256": "6fe796e1d2ccc7b8915cf949fc425c9dcee71fcb51261ffed6b30d006714f30e"
+    },
+    "declared-extent-roles": {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/declared-extent-roles.tsv.gz",
+      "sha256": "f1e40133f274e7be668af02106e33842ad74c40c7c5d04e94f0b4a900b519eeb"
+    },
+    "diagnostic-sites": {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/diagnostic-sites.jsonl.gz",
+      "sha256": "24a9e0bf2710d4bf0f1056a4f3d4fd347673e76c81a04f48cf4c6cd1cbdb17a5"
+    },
+    "docs/analysis/evidence/0.141.0/native-switch-proposal-review.json": {
+      "path": "docs/analysis/evidence/0.141.0/native-switch-proposal-review.json",
+      "sha256": "f17af308442fd7f383709d7c546bf235e1c848874d2f3a3258ebb840d26fdb85"
+    },
+    "guarded-proposals": {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
+      "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
+    },
+    "applied-guarded-tables": {
+      "path": "runtime/analysis/census/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/0b9526ec6ddb1a7837956542a4586f0a273ff97cd02905582f79467b3e2d2042/guarded-tables-input.json",
+      "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
+    },
+    "static-reference-roles.tsv.gz": {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/static-reference-roles.tsv.gz",
+      "sha256": "72d53a278ac784262b67c7c29edd9d13c9b838b8129dd8dc138cc8e9213c12a2"
+    },
+    "declared-reference-roles.tsv.gz": {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/declared-reference-roles.tsv.gz",
+      "sha256": "3a2449b0c281cff4c1c6f6961cc0919d7f8dc506a3a5f095e72636a296bb77d9"
+    },
+    "complement-reference-roles.tsv.gz": {
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/residuals/complement-reference-roles.tsv.gz",
+      "sha256": "897d183f55e9461a074f058163e59b1def6a3387e81acff7a2283fb16f9dfef0"
+    }
+  },
+  "generator": {
+    "path": "scripts/classify-as-residual-ranges.py",
+    "sha256": "58c94487c2fe87f5fad856e111fe64403c3c65d120b2f141c3c6088b87d73b60"
+  },
+  "selection": "Every missing executable mixed-unclassified row wholly inside a declared extent containing at least one rust_location reference whose path begins crates/wenilla-rogue/ or crates/wenilla-rogue-app/. Literal tokens alone are excluded.",
+  "decoder": {
+    "name": "Capstone",
+    "version": "5.0.7",
+    "architecture": "x86-64",
+    "mode": "linear whole-declared-extent original-byte decode"
+  },
+  "counts": {
+    "AS_location_extents": 404,
+    "selected_declared_extents": 49,
+    "selected_mixed_ranges": 193,
+    "selected_mixed_bytes": 127970,
+    "selected_mixed_instructions": 25820,
+    "all_context_range_categories": {
+      "NOP-CC-instruction-candidate": 1137,
+      "mixed-unclassified": 193,
+      "uniform-NOP-candidate": 70
+    },
+    "all_context_range_bytes": {
+      "NOP-CC-instruction-candidate": 9859,
+      "mixed-unclassified": 127970,
+      "uniform-NOP-candidate": 70
+    },
+    "local_control_shapes": {
+      "branching-sequence": 101,
+      "fallthrough-sequence": 84,
+      "returning-sequence": 2,
+      "terminal-trap-sequence": 6
+    },
+    "immediately_preceding_instructions": {
+      "jmp": 171,
+      "ret": 11,
+      "ud2": 11
+    },
+    "incoming_context": {
+      "range_with_direct_incoming_from_same_extent": 135
+    },
+    "literal_only_mixed_ranges": 11,
+    "partial_overlap_range_records": 0
+  },
+  "partial_overlap_ranges": [],
+  "limits": [
+    "Whole-extent linear boundaries/encodings and direct branch targets are static observations; they do not prove reachability or function ownership.",
+    "Only genuine AS rust_location context selects ranges. Such context does not assign every instruction a source mechanic or prove source omission.",
+    "No census/body counts are changed, no native application is executed, and no compilation, game/server operation or parity check is performed."
+  ],
+  "reference_join": {
+    "exports": {
+      "static": {
+        "rows_read": 4218711,
+        "entered_ranges": 0,
+        "reference_kinds": {}
+      },
+      "declared": {
+        "rows_read": 4073041,
+        "entered_ranges": 135,
+        "reference_kinds": {
+          "jump_direct": 555
+        }
+      },
+      "complement": {
+        "rows_read": 13945,
+        "entered_ranges": 0,
+        "reference_kinds": {}
+      }
+    },
+    "ranges_without_incoming_flow_evidence": [
+      "0x140093fb3",
+      "0x14009d833",
+      "0x14009d88d",
+      "0x1401488e7",
+      "0x14020051a",
+      "0x1402064d7",
+      "0x1402b8117",
+      "0x1402ed729",
+      "0x140372ed0",
+      "0x140385df9",
+      "0x1403894fc",
+      "0x140396fde",
+      "0x145dd7994",
+      "0x145dd8f0d",
+      "0x145dd9080",
+      "0x145e26778",
+      "0x145e269d2",
+      "0x145e27318",
+      "0x145ea0b2c",
+      "0x145ea0c3a",
+      "0x145ea0dc9",
+      "0x145ea0eec",
+      "0x145ea1e5b",
+      "0x145ea1f5c",
+      "0x145ea40d7",
+      "0x145eb6cd1",
+      "0x145eb7e1a",
+      "0x145ef89a7",
+      "0x145eff49a",
+      "0x145f1bcf6",
+      "0x145f1bd88",
+      "0x145f1df84",
+      "0x145f1e2c9",
+      "0x145f22bcd",
+      "0x145f25cd7",
+      "0x145f2dd7f",
+      "0x145f321ba",
+      "0x145f39f0f",
+      "0x145f3b4c4",
+      "0x145f3bb8b",
+      "0x145f3bdd8",
+      "0x145f476c3",
+      "0x145f48c5b",
+      "0x145f4d90f",
+      "0x145f5a250",
+      "0x145f6c05d",
+      "0x145f6cdf1",
+      "0x145f8d9c3",
+      "0x145f8e9c9",
+      "0x145fa16a3",
+      "0x145fa1a23",
+      "0x145fb3133",
+      "0x145fbc00c",
+      "0x145fbf3c7",
+      "0x145fbf449",
+      "0x145fbf475",
+      "0x14605e6f1",
+      "0x146065467"
+    ],
+    "immediate_predecessors": {
+      "0x140093fb3": {
+        "site": "0x140093fb1",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x14009d833": {
+        "site": "0x14009d831",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x14009d88d": {
+        "site": "0x14009d888",
+        "bytes": 5,
+        "mnemonic": "jmp",
+        "operands": "0x14009da23"
+      },
+      "0x1401488e7": {
+        "site": "0x1401488e5",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      },
+      "0x14020051a": {
+        "site": "0x140200518",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      },
+      "0x1402064d7": {
+        "site": "0x1402064d5",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x1402b8117": {
+        "site": "0x1402b8115",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      },
+      "0x1402ed729": {
+        "site": "0x1402ed727",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      },
+      "0x140372ed0": {
+        "site": "0x140372ece",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      },
+      "0x140385df9": {
+        "site": "0x140385df7",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x1403894fc": {
+        "site": "0x1403894fa",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x140396fde": {
+        "site": "0x140396fdc",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "0x140397057"
+      },
+      "0x145dd7994": {
+        "site": "0x145dd7992",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145dd8f0d": {
+        "site": "0x145dd8f0b",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145dd9080": {
+        "site": "0x145dd907b",
+        "bytes": 5,
+        "mnemonic": "jmp",
+        "operands": "0x145dd91e9"
+      },
+      "0x145e26778": {
+        "site": "0x145e26776",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145e269d2": {
+        "site": "0x145e269d0",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      },
+      "0x145e27318": {
+        "site": "0x145e27315",
+        "bytes": 3,
+        "mnemonic": "jmp",
+        "operands": "r9"
+      },
+      "0x145ea0b2c": {
+        "site": "0x145ea0b2a",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145ea0c3a": {
+        "site": "0x145ea0c38",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145ea0dc9": {
+        "site": "0x145ea0dc4",
+        "bytes": 5,
+        "mnemonic": "jmp",
+        "operands": "0x145e9edae"
+      },
+      "0x145ea0eec": {
+        "site": "0x145ea0ee7",
+        "bytes": 5,
+        "mnemonic": "jmp",
+        "operands": "0x145ea10a1"
+      },
+      "0x145ea1e5b": {
+        "site": "0x145ea1e59",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145ea1f5c": {
+        "site": "0x145ea1f57",
+        "bytes": 5,
+        "mnemonic": "jmp",
+        "operands": "0x145ea0f2f"
+      },
+      "0x145ea40d7": {
+        "site": "0x145ea40d5",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      },
+      "0x145eb6cd1": {
+        "site": "0x145eb6ccf",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145eb7e1a": {
+        "site": "0x145eb7e15",
+        "bytes": 5,
+        "mnemonic": "jmp",
+        "operands": "0x145eb6d5f"
+      },
+      "0x145ef89a7": {
+        "site": "0x145ef89a5",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145eff49a": {
+        "site": "0x145eff498",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f1bcf6": {
+        "site": "0x145f1bcf4",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rdx"
+      },
+      "0x145f1bd88": {
+        "site": "0x145f1bd83",
+        "bytes": 5,
+        "mnemonic": "jmp",
+        "operands": "0x145f1bf26"
+      },
+      "0x145f1df84": {
+        "site": "0x145f1df82",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      },
+      "0x145f1e2c9": {
+        "site": "0x145f1e2c4",
+        "bytes": 5,
+        "mnemonic": "jmp",
+        "operands": "0x145f1e363"
+      },
+      "0x145f22bcd": {
+        "site": "0x145f22bcb",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f25cd7": {
+        "site": "0x145f25cd5",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f2dd7f": {
+        "site": "0x145f2dd7d",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f321ba": {
+        "site": "0x145f321b8",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f39f0f": {
+        "site": "0x145f39f0d",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      },
+      "0x145f3b4c4": {
+        "site": "0x145f3b4c2",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f3bb8b": {
+        "site": "0x145f3bb89",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f3bdd8": {
+        "site": "0x145f3bdd6",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f476c3": {
+        "site": "0x145f476be",
+        "bytes": 5,
+        "mnemonic": "jmp",
+        "operands": "0x145f47e41"
+      },
+      "0x145f48c5b": {
+        "site": "0x145f48c59",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f4d90f": {
+        "site": "0x145f4d90a",
+        "bytes": 5,
+        "mnemonic": "jmp",
+        "operands": "0x145f4d649"
+      },
+      "0x145f5a250": {
+        "site": "0x145f5a24e",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f6c05d": {
+        "site": "0x145f6c05b",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f6cdf1": {
+        "site": "0x145f6cdee",
+        "bytes": 3,
+        "mnemonic": "jmp",
+        "operands": "r9"
+      },
+      "0x145f8d9c3": {
+        "site": "0x145f8d9c1",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145f8e9c9": {
+        "site": "0x145f8e9c7",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rdx"
+      },
+      "0x145fa16a3": {
+        "site": "0x145fa16a1",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "0x145fa16c0"
+      },
+      "0x145fa1a23": {
+        "site": "0x145fa1a21",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145fb3133": {
+        "site": "0x145fb3131",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145fbc00c": {
+        "site": "0x145fbc00a",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      },
+      "0x145fbf3c7": {
+        "site": "0x145fbf3c5",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x145fbf449": {
+        "site": "0x145fbf447",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "0x145fbf4c0"
+      },
+      "0x145fbf475": {
+        "site": "0x145fbf473",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "0x145fbf485"
+      },
+      "0x14605e6f1": {
+        "site": "0x14605e6ef",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rax"
+      },
+      "0x146065467": {
+        "site": "0x146065465",
+        "bytes": 2,
+        "mnemonic": "jmp",
+        "operands": "rcx"
+      }
+    }
+  },
+  "detailed_inventory": {
+    "sha256": "072c83ffd3e8116218097f68643f80bcdb53d10fc96a89bbcf7c7af412961efb",
+    "byte_count": 869243
+  },
+  "range_columns": [
+    "inventory_ordinal",
+    "start",
+    "end_exclusive",
+    "byte_count",
+    "sha256",
+    "instruction_count",
+    "local_control_shape",
+    "direct_incoming_same_extent",
+    "applied_guarded_target_records",
+    "unapplied_guarded_target_records"
+  ],
+  "extents": [
+    {
+      "declared_start": "0x140092b30",
+      "declared_end_exclusive": "0x1400943db",
+      "extent_sha256": "878d8dfdba14891aee8e8f74985a3dc80d73dd67fd299143bcece36e8f4cb9b3",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/discord.rs"
+      ],
+      "ranges": [
+        [
+          451,
+          "0x140093fb3",
+          "0x14009415c",
+          425,
+          "4b836aba90f9f678732ba3d5898d45dd7eabb4273ab71495a3d547f266f052cd",
+          76,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          452,
+          "0x14009431d",
+          "0x14009432f",
+          18,
+          "af9eed069f10e6d573c69cf1669aea13013132045dfd5b4bfe24b4ae2c3d70e8",
+          4,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x14009cf00",
+      "declared_end_exclusive": "0x14009da6d",
+      "extent_sha256": "23f38a4345a0fc45433838a85f6d685d3ce8073dcecdc415e85942c4467f9c92",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/discord.rs"
+      ],
+      "ranges": [
+        [
+          466,
+          "0x14009d833",
+          "0x14009d83f",
+          12,
+          "2cec1fbe81cb559dff4cb354cd1dccb36b7f9571b445a7ac2104c917ed807b00",
+          3,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          467,
+          "0x14009d88d",
+          "0x14009d910",
+          131,
+          "11c9f471a8e99f16ecbc729313e6f2b53cb153ca3970e16b1f571e85a6776ca1",
+          29,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          468,
+          "0x14009d94d",
+          "0x14009d9b2",
+          101,
+          "323b91456995616dec658e3c02eeb4cf93d45eea1374a7a6f7bdb3210ace4b2d",
+          23,
+          "fallthrough-sequence",
+          6,
+          0,
+          0
+        ],
+        [
+          469,
+          "0x14009da3e",
+          "0x14009da5b",
+          29,
+          "0d531c7296e77a7a4bbe4db506f4cf48149d4d5b5a78abc6e052260e63c5092a",
+          6,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x1400bc810",
+      "declared_end_exclusive": "0x1400be45f",
+      "extent_sha256": "4093d8f88bc118a84ddc7a9da61f8604140460ecbd62dc16f711767c5f57c75e",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/markers.rs"
+      ],
+      "ranges": [
+        [
+          690,
+          "0x1400bcad1",
+          "0x1400bdd62",
+          4753,
+          "5c7bd6ee7a1ca0e6f00a49b0f70213395f754f50f14e11bc0394feafc374535d",
+          830,
+          "fallthrough-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          691,
+          "0x1400bdd76",
+          "0x1400be1b4",
+          1086,
+          "f4f290b0c40c42e3f49bc81e1905e3056d32d4a45a55d2e8c74a82f6e1e29dcc",
+          164,
+          "fallthrough-sequence",
+          5,
+          0,
+          0
+        ],
+        [
+          692,
+          "0x1400be3c3",
+          "0x1400be45f",
+          156,
+          "36ea2beb586d40037c7f7e1c51ac9f74eb2b31e12fc2143ebf8c307ba5c23a64",
+          29,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x1400c7280",
+      "declared_end_exclusive": "0x1400ccbf6",
+      "extent_sha256": "a9225c4fb71094594a13fede3babaca05cc32f75e8df9235dbc980616f8170d1",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/markers.rs"
+      ],
+      "ranges": [
+        [
+          717,
+          "0x1400c7e65",
+          "0x1400c8709",
+          2212,
+          "4cbecfa5b5512d7f1261c332f4c75a626a2975521aed28c3234be1a7e65dc551",
+          440,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          718,
+          "0x1400c87d3",
+          "0x1400ca272",
+          6815,
+          "2cf777108a246692aaa3aab241f5d07d3dfbc849678e26957bebebedef76222b",
+          1419,
+          "fallthrough-sequence",
+          3,
+          0,
+          0
+        ],
+        [
+          722,
+          "0x1400caffe",
+          "0x1400cc381",
+          4995,
+          "b7fc14bcaf9c33a46a96396aba2aeee4ac428f24084d0b256d10ebbc317d2b9e",
+          1017,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          723,
+          "0x1400cc740",
+          "0x1400cc76e",
+          46,
+          "ad5cd2eaf03de23f7b7670e2dd070126f7ad86f1c063681a638203dac40826d2",
+          9,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          724,
+          "0x1400cc79c",
+          "0x1400cc7e4",
+          72,
+          "348d9ca262a8f7e5d994ef42d6b0f9d4e895fb0890eb4ac5bb38918b317775cd",
+          11,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          725,
+          "0x1400cc973",
+          "0x1400cc97a",
+          7,
+          "5139149e290f35f966615fa9203a5666be3c5394dc846650c1ece9c6aa7308ff",
+          1,
+          "fallthrough-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          726,
+          "0x1400cc991",
+          "0x1400cc998",
+          7,
+          "b1af20d3c0a9ff5683bb7cd41cb8ee88e7feddb1d9a210e829c278bf5a4240b4",
+          1,
+          "fallthrough-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          727,
+          "0x1400cc9af",
+          "0x1400cc9ce",
+          31,
+          "cdb45eb53cf3f405bbe0e5243f82e41ed60f896eefce8f89d164492477be2f13",
+          6,
+          "fallthrough-sequence",
+          4,
+          0,
+          0
+        ],
+        [
+          728,
+          "0x1400cc9e5",
+          "0x1400cc9f6",
+          17,
+          "7ee5df7b2e58d094467334ea7eb8941689cc4e5365882ae63d6c828ee1725fb6",
+          5,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          729,
+          "0x1400cca39",
+          "0x1400cca4e",
+          21,
+          "90b919b200ca451f79d97b94ab233eb5ed501beed10537cac8e0619f065f479c",
+          5,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          730,
+          "0x1400ccadc",
+          "0x1400ccb30",
+          84,
+          "6cbf8e08a0d4ae5803606f562081e12f77d72896052e231158b28440ff1c00fa",
+          20,
+          "branching-sequence",
+          4,
+          0,
+          0
+        ],
+        [
+          731,
+          "0x1400ccb81",
+          "0x1400ccbe6",
+          101,
+          "ba862eb44303355c21367d4c7bc144fe92f39493407f55095a37621285165338",
+          26,
+          "branching-sequence",
+          6,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x140148270",
+      "declared_end_exclusive": "0x1401493d7",
+      "extent_sha256": "3ab4a03c118e4d964f72951897f7b7984c7c84bfc7fcea1df7488307b3002396",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/armory.rs"
+      ],
+      "ranges": [
+        [
+          1124,
+          "0x1401488e7",
+          "0x140149157",
+          2160,
+          "4d24e8b42884b3cfe3e74f4b2627192def4af9ac0a4a351773aad6b9260f0044",
+          415,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          1125,
+          "0x140149393",
+          "0x1401493a3",
+          16,
+          "c3e1551810a74666f8e99505146a726913110ee2b985cd968619db652abfb754",
+          4,
+          "terminal-trap-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          1126,
+          "0x1401493b6",
+          "0x1401493d7",
+          33,
+          "6abb264ed600636029b3d90643c0a5a84f7ad35a32d5389bfa1bae4fecc10909",
+          6,
+          "terminal-trap-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x1401f1ec0",
+      "declared_end_exclusive": "0x1401f2428",
+      "extent_sha256": "7b4950a701125a1c46d8e0bf7c5dc966e68ec2fe1d27482482289818f698742d",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/options.rs"
+      ],
+      "ranges": [
+        [
+          1503,
+          "0x1401f1f29",
+          "0x1401f22f0",
+          967,
+          "30c3d264e86da2989014a92093b3f8464cfeef42d867cf05e15cf7077cedbbfc",
+          221,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          1504,
+          "0x1401f2302",
+          "0x1401f231c",
+          26,
+          "2685d482ac77426f1bfc9da2865a38c93d6e1d7567301f3eeb3921035856b961",
+          5,
+          "fallthrough-sequence",
+          5,
+          0,
+          0
+        ],
+        [
+          1505,
+          "0x1401f232f",
+          "0x1401f2412",
+          227,
+          "078c8039d7f01e0beffbdc5aeec33ddc27e52a97542537e6eeeb1476cf599c8e",
+          66,
+          "returning-sequence",
+          7,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x1401f2b50",
+      "declared_end_exclusive": "0x1401f2f9b",
+      "extent_sha256": "1fba5d8ed088704b0d890fdc7c5c5ecad5600b972d8e95cb9881a23fe962985e",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/options.rs"
+      ],
+      "ranges": [
+        [
+          1506,
+          "0x1401f2b99",
+          "0x1401f2e81",
+          744,
+          "5e7be4a92f1b5f0e7da79624f910cb767f5f69360198c0ed6617bb049564bd88",
+          172,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          1507,
+          "0x1401f2e92",
+          "0x1401f2f9b",
+          265,
+          "f0357b3d6af010d09157f900a49f0c1fde63b0524cd29b6e49b88a2e4cb16314",
+          72,
+          "branching-sequence",
+          5,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x1401ff940",
+      "declared_end_exclusive": "0x14020248c",
+      "extent_sha256": "580ca07d7e11ad991f482fb2ee578e1c25015279b579fb26af681c6763499487",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/options.rs"
+      ],
+      "ranges": [
+        [
+          1555,
+          "0x14020051a",
+          "0x14020194c",
+          5170,
+          "c6222c78044818e50916ad37998ed189e831a99f721d487938d69c3b186a4ab7",
+          1035,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          1556,
+          "0x140201b08",
+          "0x140201b39",
+          49,
+          "6b6223174a3efb9963a0044b0feb6e9c3c91365f4550c6586106e79b932a7908",
+          7,
+          "fallthrough-sequence",
+          5,
+          0,
+          0
+        ],
+        [
+          1557,
+          "0x140201b52",
+          "0x140201b7c",
+          42,
+          "ebc59c1526a3196750a7e8fe4eb92dba175db8d1dff35ebbfd7fa002d220ead4",
+          6,
+          "fallthrough-sequence",
+          5,
+          0,
+          0
+        ],
+        [
+          1558,
+          "0x140201b95",
+          "0x140201bbf",
+          42,
+          "f9791e615e5f94ccf7d07d0a9d4ad6b88d3f68637173e8f561fac7401eac7c0e",
+          6,
+          "fallthrough-sequence",
+          5,
+          0,
+          0
+        ],
+        [
+          1559,
+          "0x140201bd8",
+          "0x140201bf3",
+          27,
+          "db772dab333bb179a66ad41606dacae9903117eb283ef95c92c9b9422b37eb6a",
+          6,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          1564,
+          "0x14020231c",
+          "0x14020233f",
+          35,
+          "206db556f1cd46d2407f697ee0cc9392930d088f9d563e798d86087843971601",
+          5,
+          "fallthrough-sequence",
+          5,
+          0,
+          0
+        ],
+        [
+          1565,
+          "0x140202358",
+          "0x140202374",
+          28,
+          "5f6b2d7c65d3489062d45f6a51a1782d66879393e329e91418e06cb462b89601",
+          6,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          1566,
+          "0x140202409",
+          "0x140202422",
+          25,
+          "6ccc9933caf1070f687ee6354f1851c653554ced865c09fc6a23e3ae33dc881e",
+          6,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          1567,
+          "0x14020245c",
+          "0x14020246d",
+          17,
+          "6a7a0351415cc657c02e8085d18eea215cfccc040ed036d5fc93c402698e73b5",
+          3,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x140205c20",
+      "declared_end_exclusive": "0x14020723e",
+      "extent_sha256": "8782714522e4c48705e49c4b69d2eec4da6597123a427507f8798ff9d5391103",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/options.rs"
+      ],
+      "ranges": [
+        [
+          1587,
+          "0x1402064d7",
+          "0x140206d66",
+          2191,
+          "3f575314254732e21803bfa3fb3d228f98787a706cd2da21d26fa828aaaf255e",
+          438,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          1588,
+          "0x140206d78",
+          "0x140206f30",
+          440,
+          "e15aa4a5ee47f4845af8036eb91c9def477b31b39afa2a4cabae267454eccc42",
+          90,
+          "fallthrough-sequence",
+          8,
+          0,
+          0
+        ],
+        [
+          1589,
+          "0x140206f41",
+          "0x1402071db",
+          666,
+          "2c8bc09dddfcf95bfb4fb1ced3c914dc3cd68461be26e180b362fc35b58c870f",
+          125,
+          "branching-sequence",
+          12,
+          0,
+          0
+        ],
+        [
+          1590,
+          "0x1402071f6",
+          "0x140207203",
+          13,
+          "4e43b9697e32e57c987d1988c619531f4d31b75eda5861dce6032577ccfcdf01",
+          4,
+          "terminal-trap-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          1591,
+          "0x140207219",
+          "0x14020723e",
+          37,
+          "536880bf4d6eb88bd5e78923403ce87cd1063bd56ca05e26bcec5f3aa1c548ca",
+          9,
+          "terminal-trap-sequence",
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x1402b7cc0",
+      "declared_end_exclusive": "0x1402b8a8b",
+      "extent_sha256": "4e0779c12bb5ad707816e4b731af9a7f0d7961c530b6c67d5c38b5f4e8bcda5d",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/rewards.rs"
+      ],
+      "ranges": [
+        [
+          1761,
+          "0x1402b8117",
+          "0x1402b81a1",
+          138,
+          "ed2f700f0e243b2c47f26f6782ffb62e0af5ca052c594fa63366496fe7727e38",
+          29,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          1762,
+          "0x1402b81fd",
+          "0x1402b89d3",
+          2006,
+          "32c0a755fb5a9f176b1e7889ba9a7b24a607257eec675ad64e83773509882ab3",
+          375,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          1763,
+          "0x1402b89ee",
+          "0x1402b8a50",
+          98,
+          "a14ea8ba1b453aedba0fbf7c75576da42ea9989c6922e6fb076d1600179e9350",
+          16,
+          "fallthrough-sequence",
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x1402ed120",
+      "declared_end_exclusive": "0x1402edd84",
+      "extent_sha256": "ed6c4164721c51d4d5b7ea66d9362a31d57cd0fc113ad11df385d9131cc6a425",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/armory.rs"
+      ],
+      "ranges": [
+        [
+          1835,
+          "0x1402ed264",
+          "0x1402ed3b2",
+          334,
+          "6cc72ae7ffe66b2e3555ada6a06f13ed47fc67205cd2422647b56433523e3a91",
+          61,
+          "fallthrough-sequence",
+          12,
+          0,
+          0
+        ],
+        [
+          1845,
+          "0x1402ed729",
+          "0x1402edd23",
+          1530,
+          "5e17bcff6678c3b39a1bca7687d610303c534a5cbd3e965855d1fa1c0970fcd9",
+          307,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x140371ee0",
+      "declared_end_exclusive": "0x1403752f2",
+      "extent_sha256": "48fd5aee4d5e858d8f5d8621df88ec8ed31dd8fd7e7af82e360d5505cf62991b",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/codex.rs"
+      ],
+      "ranges": [
+        [
+          1953,
+          "0x140372ed0",
+          "0x140372ede",
+          14,
+          "4e7baa31844b87ea62170fda67ccc563011caf705b9761fc6163677e3657cdcc",
+          2,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          1954,
+          "0x1403730ac",
+          "0x1403730fa",
+          78,
+          "57b39b834a76c5029147ca5eac5cf63e9e75cd55fa0d714f93dd9af3f0190d3d",
+          14,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x140382f90",
+      "declared_end_exclusive": "0x140386a25",
+      "extent_sha256": "e925901fc098f52b9d19f39f017ee6c3cc60824b875e235bf5d0048823ae242e",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/armory.rs"
+      ],
+      "ranges": [
+        [
+          1975,
+          "0x140385df9",
+          "0x140385e44",
+          75,
+          "af1b2d0afbd768f03b43c9b325d3424fbca27d21065a5c22385495df8a473039",
+          13,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x1403892b0",
+      "declared_end_exclusive": "0x14038a041",
+      "extent_sha256": "9929d2ae4434f02802b974020e96a4469f2e71b55e95e89dad7a2d557e16cdd4",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/armory.rs"
+      ],
+      "ranges": [
+        [
+          1976,
+          "0x1403894fc",
+          "0x140389550",
+          84,
+          "095ba883288ab8445897074e632b69db28637d3f1a0f592fbc6bcb27bc4f18fd",
+          14,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x140396e10",
+      "declared_end_exclusive": "0x14039821a",
+      "extent_sha256": "c00b74e7bc832df895e0087d5844d1cceb68ea8df02650a0262c0a39d1dea2fd",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/armory.rs"
+      ],
+      "ranges": [
+        [
+          1998,
+          "0x140396f17",
+          "0x140396f36",
+          31,
+          "1d9a505f60c1bc6dd8a063fdbae3cbb0af84b606ae0d4b1bfab8c55057ac3f27",
+          4,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          1999,
+          "0x140396fde",
+          "0x140397037",
+          89,
+          "c881eedbcdcb879721cd10de379f3ceaf248d8a9716bbc47e32458217bca1035",
+          14,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x1403ae1d0",
+      "declared_end_exclusive": "0x1403ae958",
+      "extent_sha256": "47bc496a3f8f56888e387300bad8ceee6ad9bb9f60223f45556b177b96adc4a8",
+      "AS_location_context": [
+        "crates/wenilla-rogue-app/src/screens/picker.rs"
+      ],
+      "ranges": [
+        [
+          2027,
+          "0x1403ae405",
+          "0x1403ae41b",
+          22,
+          "518c4efc3cbd47f0a18c37ada8cf3306a4b3009ceb8a4b93a5714190927fc9f2",
+          3,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          2028,
+          "0x1403ae4b8",
+          "0x1403ae502",
+          74,
+          "5b2fbaf9eade27041a93f7b915a3df21ef1cfa920af3d4ffd246d534d1b9677a",
+          13,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145dd6ba0",
+      "declared_end_exclusive": "0x145dd9659",
+      "extent_sha256": "ce90d4aedde08fa245ddb797386b7cf50856b1bd9beec33c02c8c3d319dbe28f",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/fonts.rs"
+      ],
+      "ranges": [
+        [
+          51478,
+          "0x145dd7994",
+          "0x145dd7f6b",
+          1495,
+          "3217e721e84b4ec8c6e355be051adae21e4cf127ce073ee8081e8337625f6d12",
+          303,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          51479,
+          "0x145dd8e92",
+          "0x145dd8ea0",
+          14,
+          "ef3e19d268868787f02d399a0e85775c3330699d4bfdc75080fbc842b5985448",
+          4,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          51480,
+          "0x145dd8f0d",
+          "0x145dd9057",
+          330,
+          "f4953e8fa675cc0f2e3077254d9f3a503f02f5ba51ce39429044b59cb518e0d5",
+          62,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          51481,
+          "0x145dd9080",
+          "0x145dd9158",
+          216,
+          "7268c462361fef7e8f9d240e86fa412a662175a3150ca3136d72c316a3ecc47e",
+          42,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          51482,
+          "0x145dd9421",
+          "0x145dd948c",
+          107,
+          "7bac76ea190fc416443725aab352b4087f9fb4890b6c671d7dc14052ebded7fc",
+          19,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          51483,
+          "0x145dd9603",
+          "0x145dd961c",
+          25,
+          "1ee2b0105aa084aa7b2a9be8450c4575a766d045474050056c3c4d160968f5c3",
+          6,
+          "fallthrough-sequence",
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145e266d0",
+      "declared_end_exclusive": "0x145e26c0e",
+      "extent_sha256": "c50e8d4a8a258653dac1106cdac4d1a0423b739ff6939b6ecdbad1d0c7fd3dd4",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/coop/tcp.rs"
+      ],
+      "ranges": [
+        [
+          51872,
+          "0x145e26778",
+          "0x145e26790",
+          24,
+          "93a0abf1e62a91d46fa11d6e9a7e140218b2197dc7f6a5a4ead731e95148151a",
+          5,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          51873,
+          "0x145e267d7",
+          "0x145e268d7",
+          256,
+          "3eeedac8d4dc254bc81d05585ad72f1b64d808ae007fd09eb45184871695eff6",
+          63,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          51874,
+          "0x145e2691d",
+          "0x145e26990",
+          115,
+          "5553ca3a365fdb4c9b78833ca81590136edd1c47afa31cd853a7eb4c50b30b27",
+          26,
+          "fallthrough-sequence",
+          8,
+          0,
+          0
+        ],
+        [
+          51875,
+          "0x145e269d2",
+          "0x145e269f0",
+          30,
+          "8c04614d7670aebdedcef5f7fff6b40215ad9062864fbed8c46611747ed2b7fb",
+          5,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          51876,
+          "0x145e26a2f",
+          "0x145e26b33",
+          260,
+          "355fea727af03d28efe73197861eceddd52993821d3e92331c9226b8ead7b7e8",
+          64,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          51877,
+          "0x145e26b39",
+          "0x145e26ba5",
+          108,
+          "4f76237f9944a0fe07704eef09ce40439b45bff6823952fb9a5c325d0f1bd29c",
+          26,
+          "fallthrough-sequence",
+          8,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145e27300",
+      "declared_end_exclusive": "0x145e27501",
+      "extent_sha256": "56fab00d07bd0fe36ebf5d8fd5fdc58df6b338a61dbcb28bc7a4d36e520950c4",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/abilities.rs"
+      ],
+      "ranges": [
+        [
+          51878,
+          "0x145e27318",
+          "0x145e274c4",
+          428,
+          "18ea377f18613c9f5f8fecf15f72f22f385d2834d4eb107a3e7c491f95d3c0a9",
+          89,
+          "returning-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145e9e690",
+      "declared_end_exclusive": "0x145ea2004",
+      "extent_sha256": "ac64bb527d54f19058a76a4de5493ed1738f366ddec5c6d49a41b4c70ad21daa",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/gear.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "ranges": [
+        [
+          52293,
+          "0x145ea0b2c",
+          "0x145ea0b38",
+          12,
+          "03e1052adb0a2979c78bf4860f710868d5647179583b2c3fbfd9a57281f49c7b",
+          2,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52294,
+          "0x145ea0c3a",
+          "0x145ea0c54",
+          26,
+          "7fbdfd3bbf00087bef0d1da6d82c8a80a74cd6bdba83886f6964737de1f9614d",
+          4,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52295,
+          "0x145ea0dc9",
+          "0x145ea0ebe",
+          245,
+          "3f53c4f7141fe61c1720fdf9feb4f0822dfe061e3c880886a20c6ced813d2df9",
+          39,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52296,
+          "0x145ea0eec",
+          "0x145ea0f2f",
+          67,
+          "7ea5228093881cb7e623f84b77125ab4fe97d2df11af00b375c2cd59ee9a71a1",
+          11,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52297,
+          "0x145ea0fab",
+          "0x145ea108a",
+          223,
+          "239318ce693997c5f5720a78768ba5315665f0e840e6bf5c654c6db7c6fef59c",
+          52,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          52298,
+          "0x145ea1e5b",
+          "0x145ea1e67",
+          12,
+          "e609e3749e8defd3b346f87e6bb0355355d8f6eaf328cee86a22c7df0c14b9cf",
+          2,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52299,
+          "0x145ea1f5c",
+          "0x145ea2004",
+          168,
+          "3e1c451799113ba588c0623a52ae0320dae6a4fd1b3fb4ead5a22453a51cddae",
+          28,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145ea3420",
+      "declared_end_exclusive": "0x145ead071",
+      "extent_sha256": "6d3fe23bd5b101096f0343322ea410be01dca9f7e9054551af1742a4192583f5",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/server.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "ranges": [
+        [
+          52306,
+          "0x145ea40d7",
+          "0x145ea4994",
+          2237,
+          "26e12ecd1f3057863bd55b4f2ee54da73855c087c8061d87f452ec650e41b4fe",
+          411,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52307,
+          "0x145ea4bab",
+          "0x145ea4be3",
+          56,
+          "82f60d8681a07479d449e6b185479f5b31a7de809e1748eb5f2d1bb178518292",
+          12,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145eb5c40",
+      "declared_end_exclusive": "0x145eb99b8",
+      "extent_sha256": "f03bb97b1172d9920b544abac0ebef098e0a04246371a4670dd8098ccd3b5afc",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/server.rs",
+        "crates/wenilla-rogue/src/server/party.rs"
+      ],
+      "ranges": [
+        [
+          52349,
+          "0x145eb6cd1",
+          "0x145eb6cd9",
+          8,
+          "f5c055d43b7c38c4710c3de28bbc91263c099f5bb5a0cf58659ae84e2e27c4c4",
+          2,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52352,
+          "0x145eb7e1a",
+          "0x145eb7e42",
+          40,
+          "467a746ad4a5781b3d13c0f4cc552effe256396d9afaed0cda312436947df908",
+          10,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145ef8950",
+      "declared_end_exclusive": "0x145ef8e32",
+      "extent_sha256": "252861fd1a913d434e7a78699549994a27b4fa0562892770416d3274e65bab88",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/party.rs"
+      ],
+      "ranges": [
+        [
+          52569,
+          "0x145ef89a7",
+          "0x145ef89cd",
+          38,
+          "c019e4d47555c0a7f1e8e6a1e54f0c0db2058b5c21a246f68c227e070ac83b74",
+          9,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52570,
+          "0x145ef8c69",
+          "0x145ef8e05",
+          412,
+          "cf90832b3a057d294c3e8fe5b2df1b2405136fbb06312becf6a1b788d7c23020",
+          94,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145eff450",
+      "declared_end_exclusive": "0x145effb5b",
+      "extent_sha256": "38b682f252ca503395dedcca5f4e818b6bbd40d06883347c2fd86255cdbdd2c0",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs"
+      ],
+      "ranges": [
+        [
+          52613,
+          "0x145eff49a",
+          "0x145effb0e",
+          1652,
+          "a1eb7e20317769d8cfcfc0dda9407f0c6586fbbd814c05bd0a2eb62d9c65f6c5",
+          350,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52614,
+          "0x145effb23",
+          "0x145effb46",
+          35,
+          "d08c3793fe82350d349e837e05fdf39db24fb4918c35756ccb7884009fe1a9da",
+          5,
+          "fallthrough-sequence",
+          4,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f1adf0",
+      "declared_end_exclusive": "0x145f1fd2b",
+      "extent_sha256": "cb0097e01dce6c69b958f241fda2304a412e6af3ed761b0b7043ac724dd0cf29",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/enemy.rs",
+        "crates/wenilla-rogue/src/game/talents.rs"
+      ],
+      "ranges": [
+        [
+          52710,
+          "0x145f1bcf6",
+          "0x145f1bd53",
+          93,
+          "346582de4c00a8dc483e9bc905cb345e2e3fd30326f2c92f1a9f7af1ff60b8a6",
+          18,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52711,
+          "0x145f1bd88",
+          "0x145f1bdc1",
+          57,
+          "a4ace318342566858c9e297400682c34fb9673b94bed3b05daceee163a8a7de8",
+          14,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52712,
+          "0x145f1df84",
+          "0x145f1df8f",
+          11,
+          "1f151cfca2f0fd86b0d0fd8d84baa860e7c021eca5a74f6413dd599484d73a85",
+          3,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52714,
+          "0x145f1e2c9",
+          "0x145f1e2d1",
+          8,
+          "2fcac5c3e6105570126b4ebf374e095f29304738050ac562c0a42ca2f73123a0",
+          2,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f229b0",
+      "declared_end_exclusive": "0x145f2368e",
+      "extent_sha256": "ff2265769593186bec9df1279a6a48e11264da5fff2ab9c9b468db2fc2668422",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs"
+      ],
+      "ranges": [
+        [
+          52717,
+          "0x145f22bcd",
+          "0x145f23084",
+          1207,
+          "6970d2f6ab855891935f5e779ffe12359feb9dd99a9bcbd5ab324cbcc1b4c945",
+          275,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52718,
+          "0x145f2310e",
+          "0x145f23680",
+          1394,
+          "b95822c85ff1fefa70e1720531a236a18a29bcca8645dde51c9a61a87c2eabf6",
+          309,
+          "branching-sequence",
+          3,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f239b0",
+      "declared_end_exclusive": "0x145f29daa",
+      "extent_sha256": "bc9f60ef612c1173416c5d92f37c1e0647ac8cf3d9f98e2802fafea7b738af01",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs",
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ],
+      "ranges": [
+        [
+          52727,
+          "0x145f25cd7",
+          "0x145f26412",
+          1851,
+          "86341e593bfe34bd904a5da39a47d89c26379d4ab80dee6d4e40b2b40515f756",
+          316,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52728,
+          "0x145f26551",
+          "0x145f268da",
+          905,
+          "4ba8be243a931c62c6d0a9ddd1731e0082e7b17b28bc9543d1b321b16ab2af6f",
+          176,
+          "branching-sequence",
+          6,
+          0,
+          0
+        ],
+        [
+          52751,
+          "0x145f29b80",
+          "0x145f29bdb",
+          91,
+          "338f6dd91de99f9b4cfe72ce5701666def6aec8a04f76f6e0bea273e839af0e9",
+          13,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          52752,
+          "0x145f29cd0",
+          "0x145f29d2b",
+          91,
+          "338f6dd91de99f9b4cfe72ce5701666def6aec8a04f76f6e0bea273e839af0e9",
+          13,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          52753,
+          "0x145f29d3d",
+          "0x145f29d98",
+          91,
+          "338f6dd91de99f9b4cfe72ce5701666def6aec8a04f76f6e0bea273e839af0e9",
+          13,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f2d630",
+      "declared_end_exclusive": "0x145f2e2af",
+      "extent_sha256": "655773f5c57a01882b1c60b7239edc564331ed665560e74d67248bd8bdad3b7f",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/enemy.rs"
+      ],
+      "ranges": [
+        [
+          52758,
+          "0x145f2dd7f",
+          "0x145f2e094",
+          789,
+          "d3f2afcc832c0e84a9143799213ba84078308229561905fa9a3c04d0ebe4946e",
+          167,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52759,
+          "0x145f2e0ea",
+          "0x145f2e1b9",
+          207,
+          "e2c18562c19cda00adfc6407034a2d32cfca74b000c2921034c1c1260f130d88",
+          47,
+          "branching-sequence",
+          6,
+          0,
+          0
+        ],
+        [
+          52760,
+          "0x145f2e1ca",
+          "0x145f2e1de",
+          20,
+          "007f33579b616f10ac9d30b0a5cafeb593b8bbb82a073559cc9c44a23d7eae61",
+          6,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          52761,
+          "0x145f2e27d",
+          "0x145f2e29f",
+          34,
+          "2bd48845929cc7b295ee756a6b094619b2a5e7ac4bd2c87f4340a01557257403",
+          9,
+          "fallthrough-sequence",
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f30490",
+      "declared_end_exclusive": "0x145f33fb7",
+      "extent_sha256": "f9b365f800459eeb6b688d35482d535970011899022aa5da04664dcff5a6333a",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/affixes.rs",
+        "crates/wenilla-rogue/src/game/enemy.rs",
+        "crates/wenilla-rogue/src/nav.rs"
+      ],
+      "ranges": [
+        [
+          52772,
+          "0x145f321ba",
+          "0x145f3361f",
+          5221,
+          "3bd90598a8e4b36abcbb181052a135e822877a6df0457bd0e6e4edfd1038ff56",
+          1118,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f39b90",
+      "declared_end_exclusive": "0x145f3f7fc",
+      "extent_sha256": "8580b6986389a213b332da71d41a7c967c3d6c6540092aea35c38e2cafc8a5d1",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/hazards.rs"
+      ],
+      "ranges": [
+        [
+          52782,
+          "0x145f39f0f",
+          "0x145f3a778",
+          2153,
+          "c815d54a4ec0d8bdf743edd24d675cde11da1c49efba2b665954eb9c02edc112",
+          393,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52786,
+          "0x145f3b4c4",
+          "0x145f3b75f",
+          667,
+          "39385a7f67de9f27c0db4a8579bc75d359d4878b80b462bc6848697c60faa20a",
+          125,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52787,
+          "0x145f3bb8b",
+          "0x145f3bd6a",
+          479,
+          "c0296b6e7bacb6c8203ae996e72e7e20fec1be9cbb45b166ce1c0ccf0ab6e003",
+          101,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52788,
+          "0x145f3bdd8",
+          "0x145f3cf9f",
+          4551,
+          "6f33e586915b6b63902a68d2c586e3c2d7809802e437f2777fb64d5644ffb3ab",
+          821,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52790,
+          "0x145f3d5dd",
+          "0x145f3d5f6",
+          25,
+          "6c9ed57eb64ce82aa8268197ebfefaab8ab447340b82ab1cf739ff7e0cec4751",
+          6,
+          "branching-sequence",
+          7,
+          0,
+          0
+        ],
+        [
+          52791,
+          "0x145f3d651",
+          "0x145f3d815",
+          452,
+          "26412909e899b48f1568c3bccee4bada5813844719482ffd0f4774695918fc32",
+          90,
+          "fallthrough-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          52792,
+          "0x145f3da66",
+          "0x145f3daae",
+          72,
+          "94ab5c51bc855fe1787e50d4c2b901b31797855fbde670849730e20c279d17f2",
+          13,
+          "fallthrough-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          52793,
+          "0x145f3dc7d",
+          "0x145f3ddf1",
+          372,
+          "97d962cc61c1d2d0f485e23493792cf6aca68c22ddd08fdd3a173693c4da5fd9",
+          73,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          52794,
+          "0x145f3de6e",
+          "0x145f3e1ce",
+          864,
+          "027022b70496e2a8e9fe45302539463029b9c31e7b352b7f63c949e45a9ee5a1",
+          167,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          52795,
+          "0x145f3e20a",
+          "0x145f3e23b",
+          49,
+          "29e44fa45965b699405c62948ab65c882d94fbb0e75a17968f845303db7bbb86",
+          9,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          52800,
+          "0x145f3f4a2",
+          "0x145f3f4a9",
+          7,
+          "176b6ffa152135553c777f9d9cad0855cb4e5bdd7f3c09e670f9bf4f714f7ab2",
+          1,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f43e90",
+      "declared_end_exclusive": "0x145f49c9b",
+      "extent_sha256": "82b4194c35ef34a07373dfe67361c45e9cde717fc2e52ed6dea5034db02d0986",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/hazards.rs"
+      ],
+      "ranges": [
+        [
+          52804,
+          "0x145f476c3",
+          "0x145f477ac",
+          233,
+          "f638be72ed55d31f2019a3b49c0cbcabb0046a721b99ddc524f5d9f1b7d03f89",
+          42,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52808,
+          "0x145f48c5b",
+          "0x145f48c67",
+          12,
+          "dddf6861fd218b089be5ee31fa63b7cf6f3c2f4cd203e40333fb4b7481155b8a",
+          2,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52809,
+          "0x145f4919c",
+          "0x145f49227",
+          139,
+          "7cb8f73a8d8a3866ea386e9accbbe83f8418b2ba72cb345193bcd446ffefb666",
+          30,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f4a110",
+      "declared_end_exclusive": "0x145f4e9f0",
+      "extent_sha256": "d0355c4aa7b422ed328501efb5f3aaef88d28792be1afaff30e76589fefa19f1",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/attacks.rs",
+        "crates/wenilla-rogue/src/game/scripts/mod.rs"
+      ],
+      "ranges": [
+        [
+          52839,
+          "0x145f4c097",
+          "0x145f4c10c",
+          117,
+          "342059ecd6b6cb53c91846ca1411aa3c4e45c6a3749001a3d90958573bc1dfd3",
+          23,
+          "branching-sequence",
+          3,
+          0,
+          0
+        ],
+        [
+          52840,
+          "0x145f4c1cb",
+          "0x145f4c3c0",
+          501,
+          "495bb4a006b17dc8031e305c66b36fbfba25f807342e5f53d754730f756534af",
+          131,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          52841,
+          "0x145f4c44c",
+          "0x145f4c76c",
+          800,
+          "90bfb7b72ad8a0abf367249f083e8e8486735163a8a4771cf2c9568e9ef347d1",
+          138,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          52842,
+          "0x145f4cd0b",
+          "0x145f4ce04",
+          249,
+          "d4a21a8e66ce322b893a141c12108ded17176d3e22d951a093a6f6d8e1eed8ee",
+          48,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          52843,
+          "0x145f4ce70",
+          "0x145f4d0c4",
+          596,
+          "afd6090d856d2a323f7f842ee84c7753286d3b0e63d3471e230b4319667a6955",
+          110,
+          "branching-sequence",
+          9,
+          0,
+          0
+        ],
+        [
+          52848,
+          "0x145f4d75e",
+          "0x145f4d780",
+          34,
+          "d72d8e65e86301297d60a007b7bdf5e98aa98364ab2c1ac707b6aa2b3c678708",
+          7,
+          "fallthrough-sequence",
+          3,
+          0,
+          0
+        ],
+        [
+          52849,
+          "0x145f4d90f",
+          "0x145f4d950",
+          65,
+          "f89f916f2d30665db86fa2f7c39759c6546630aea56a63698e50c10bc534e309",
+          13,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52856,
+          "0x145f4e61a",
+          "0x145f4e65a",
+          64,
+          "0d568c0d515614f1005d84c0438f09c58e37fc6fd82220910b72a8694fe8781b",
+          20,
+          "branching-sequence",
+          8,
+          0,
+          0
+        ],
+        [
+          52857,
+          "0x145f4e826",
+          "0x145f4e829",
+          3,
+          "f8ed09c4f525cbc388e9c647b30b534af7204847e85ac3f6e6866e3eaefcf916",
+          1,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f51870",
+      "declared_end_exclusive": "0x145f55f05",
+      "extent_sha256": "e7e447a728e13e40f814756356f2d2d2cc9e801017fd1144eb0767d7126e1a97",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/abilities.rs",
+        "crates/wenilla-rogue/src/game/kill_command.rs"
+      ],
+      "ranges": [
+        [
+          52860,
+          "0x145f51c56",
+          "0x145f53e53",
+          8701,
+          "333607db199704275a0679e3b2420c2555a429a963e5a4d297fd70540393b77a",
+          1763,
+          "fallthrough-sequence",
+          13,
+          0,
+          0
+        ],
+        [
+          52862,
+          "0x145f54520",
+          "0x145f546c9",
+          425,
+          "b12ff47c0b2ca2827672b018add1d980d1449387d5a51f658455e12aaee0893d",
+          80,
+          "fallthrough-sequence",
+          5,
+          0,
+          0
+        ],
+        [
+          52863,
+          "0x145f546fd",
+          "0x145f54826",
+          297,
+          "ad8daa58d996e694e388250b017c64e58562312683ad60955424e8943f2b0bf2",
+          62,
+          "branching-sequence",
+          7,
+          0,
+          0
+        ],
+        [
+          52864,
+          "0x145f54858",
+          "0x145f54980",
+          296,
+          "5b5317d9a8a529c94dfb8dfb9436aac853025ea95d0176dbb1d98898c25f350b",
+          63,
+          "fallthrough-sequence",
+          4,
+          0,
+          0
+        ],
+        [
+          52865,
+          "0x145f54b50",
+          "0x145f54cc8",
+          376,
+          "4c20d6bf393d929030a094ae2cc1504387fd9b2712bc0650fa0f29031008ef7b",
+          97,
+          "branching-sequence",
+          4,
+          0,
+          0
+        ],
+        [
+          52866,
+          "0x145f54cfb",
+          "0x145f54d0b",
+          16,
+          "894cbb884d36b9b45938dee8259d6990e72017d48a50553b5b57839b6cb57023",
+          3,
+          "fallthrough-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          52867,
+          "0x145f55120",
+          "0x145f5558b",
+          1131,
+          "38ab54d00ac31c19a47d3ebcc880daea368a4721e19101db3a13df6fc78be27c",
+          225,
+          "fallthrough-sequence",
+          8,
+          0,
+          0
+        ],
+        [
+          52869,
+          "0x145f55846",
+          "0x145f559fa",
+          436,
+          "f624c3957d60d7ff32e862d66004fcf7f3d15fab50e6869735af9d808a2db37d",
+          83,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          52870,
+          "0x145f55a39",
+          "0x145f55cee",
+          693,
+          "ad86ab2cfb2f9e7bc6cc461cf0607e6a6489f26f6aebb6b219d76d8d507a5100",
+          132,
+          "fallthrough-sequence",
+          6,
+          0,
+          0
+        ],
+        [
+          52871,
+          "0x145f55d21",
+          "0x145f55e48",
+          295,
+          "e48001f5487bf8e7f27e37cb9405f458681740ef9f19330bdb7233a7db20372b",
+          58,
+          "branching-sequence",
+          6,
+          0,
+          0
+        ],
+        [
+          52872,
+          "0x145f55e66",
+          "0x145f55f05",
+          159,
+          "da09b7034bdb0027d8f191427f64f6e7eecfb6efaf6d4fe5d4cfd11e3a582641",
+          33,
+          "branching-sequence",
+          4,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f5a1f0",
+      "declared_end_exclusive": "0x145f5ac7d",
+      "extent_sha256": "e31eef80f986e1436e296fc78d88d1cff7a2589b59dc9d1377b0ba70e667143a",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs"
+      ],
+      "ranges": [
+        [
+          52890,
+          "0x145f5a250",
+          "0x145f5ac6b",
+          2587,
+          "0d324b4a6ec6efebf268d04a3256ffa3b792bb72c19a1fbdc24ff12bff71c179",
+          563,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f5e950",
+      "declared_end_exclusive": "0x145f5f82d",
+      "extent_sha256": "7f03dd65ae1ddc1e2094d5a974f94c289fabd0551174250733aeebd6d91b07cf",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs"
+      ],
+      "ranges": [
+        [
+          52902,
+          "0x145f5eb65",
+          "0x145f5eb8d",
+          40,
+          "09017ac059853d1c3ae46c6a4624b0ca3f8c21158ea08c99699264f9b9398428",
+          6,
+          "branching-sequence",
+          12,
+          0,
+          0
+        ],
+        [
+          52903,
+          "0x145f5eb9a",
+          "0x145f5ec9f",
+          261,
+          "e3735d5f28c6a8522b0380c6101170bcd2971ec64b92ecb1bb659031a4f37022",
+          49,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f6bbe0",
+      "declared_end_exclusive": "0x145f6d09b",
+      "extent_sha256": "f695f5df8bd17f933d6b4d828bef5b49fde7529d8c585aa5e88d9a9ae24bceeb",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs",
+        "crates/wenilla-rogue/src/game/mod.rs"
+      ],
+      "ranges": [
+        [
+          52975,
+          "0x145f6c034",
+          "0x145f6c04d",
+          25,
+          "816c9bd59fe0cad3562d675be52eab563189935b450ca043ccfaaceb6fc789b5",
+          6,
+          "branching-sequence",
+          11,
+          0,
+          0
+        ],
+        [
+          52976,
+          "0x145f6c05d",
+          "0x145f6c0a9",
+          76,
+          "f8fbd0a4e6807f040d19d5d3ff35659527ae7cd0ab08feacd943d09d2bbaed0b",
+          23,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          52983,
+          "0x145f6cbda",
+          "0x145f6cdad",
+          467,
+          "298f2a4201f8aeb30bc8aecc52b734669eeeda0b2b86e08a4dc902e30bdd36f9",
+          95,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          52984,
+          "0x145f6cdf1",
+          "0x145f6d09b",
+          682,
+          "5160b02b05a16fc0c4778afcb16fd96c6ae6a585ff39d45380470ee1f32dbc8a",
+          157,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f8d840",
+      "declared_end_exclusive": "0x145f8dd37",
+      "extent_sha256": "8adf1725a6637a5285cd189be00d52019daa45ad1bd52d32adc72260bb80ee6e",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs"
+      ],
+      "ranges": [
+        [
+          53084,
+          "0x145f8d981",
+          "0x145f8d99b",
+          26,
+          "4d7bbf05b81f7ca7ebe7017401faae320be08e9b95792c0177fb696e0e14846f",
+          3,
+          "fallthrough-sequence",
+          8,
+          0,
+          0
+        ],
+        [
+          53085,
+          "0x145f8d9c3",
+          "0x145f8dcd1",
+          782,
+          "c557dc9cb6cbe6660b1b759d9ed3eb5d96c8ab87f6fc6dcbe84a501ebceb2ce6",
+          166,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          53086,
+          "0x145f8dd07",
+          "0x145f8dd24",
+          29,
+          "dcf9630cac035230595a2c5cca83679f0915e600532c4c491d6e2026128efab0",
+          5,
+          "fallthrough-sequence",
+          4,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145f8e670",
+      "declared_end_exclusive": "0x145f92a55",
+      "extent_sha256": "ec10d6215f4f975b0eff0351c01d5dd5ab248ccb516b6745badf34dde1909cbb",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/talents.rs"
+      ],
+      "ranges": [
+        [
+          53096,
+          "0x145f8e9c9",
+          "0x145f8ebbd",
+          500,
+          "676ab90be7a18d28213c54e7ec250cb85c68dd381a462e0f7c0a3753ac900e90",
+          88,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          53097,
+          "0x145f8ebcc",
+          "0x145f8efa3",
+          983,
+          "63c6087f0d2a4492897f233b2431ff1c4a27a38537563654d816ebdf43c2bfdd",
+          201,
+          "branching-sequence",
+          3,
+          0,
+          0
+        ],
+        [
+          53098,
+          "0x145f8f051",
+          "0x145f919cc",
+          10619,
+          "222362941794bdae21d20ad00bec831775a4e264b58efb9c6fa60669e9903e9b",
+          2125,
+          "branching-sequence",
+          19,
+          0,
+          0
+        ],
+        [
+          53099,
+          "0x145f91aaf",
+          "0x145f92491",
+          2530,
+          "bc4bc090468e98c51f3f149cc97b0c67966a676e8c6da7f5113a0e10fbf7ab71",
+          552,
+          "branching-sequence",
+          28,
+          0,
+          0
+        ],
+        [
+          53100,
+          "0x145f92513",
+          "0x145f9269d",
+          394,
+          "a70c85c0486001a0915784d3bfcaa20dd5c5c568773b8eb2845cd045abb575e9",
+          89,
+          "branching-sequence",
+          6,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145fa0e20",
+      "declared_end_exclusive": "0x145fa20cc",
+      "extent_sha256": "8388b7642f34fc409f32d824b5856e2128677a34854f02bc442ba8cc287a42c5",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs",
+        "crates/wenilla-rogue/src/game/attacks.rs"
+      ],
+      "ranges": [
+        [
+          53143,
+          "0x145fa16a3",
+          "0x145fa16c0",
+          29,
+          "d6666fff6aab50993f99b1297196e01ae22d381236f7e227d104a79dd99cc94b",
+          7,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          53146,
+          "0x145fa1a23",
+          "0x145fa1f8f",
+          1388,
+          "8b82d55a72eab5ad3910b8268ab3067cfc2af5be282216a14f1b0a27c304653d",
+          286,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145fb2490",
+      "declared_end_exclusive": "0x145fb36d8",
+      "extent_sha256": "0a66e7bc9e0635284aa87991818b121b4c1304b90c20d5d7865f8a924dc04e25",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/demons.rs"
+      ],
+      "ranges": [
+        [
+          53222,
+          "0x145fb2ca9",
+          "0x145fb2cc0",
+          23,
+          "e6f9e01b8f551d8f8afc5c75e6fe1c24d4eaf1863d75fc9a4d9302154aa1dd6e",
+          4,
+          "fallthrough-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          53228,
+          "0x145fb3133",
+          "0x145fb316f",
+          60,
+          "e6362d336729c30e7c77f6368e62c7a7d7b0f0ff6a9f9e37f00e9336e5d7d970",
+          10,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          53229,
+          "0x145fb319e",
+          "0x145fb33fc",
+          606,
+          "c443763a3f37a0f945b39fc465e05eaa85434ca05683095767148603a6b7210d",
+          136,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145fbbf50",
+      "declared_end_exclusive": "0x145fbdc1c",
+      "extent_sha256": "e38a5a0ec8f59d7c81186672a18ce27166763e3b8ef987afb6c4fc690005ceb6",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs",
+        "crates/wenilla-rogue/src/game/upgrades.rs"
+      ],
+      "ranges": [
+        [
+          53291,
+          "0x145fbc00c",
+          "0x145fbc47a",
+          1134,
+          "469149eb77aa32cb5f0c64071fb07af96bee8f4654822379f1ea0b49046a26b4",
+          192,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          53292,
+          "0x145fbc57d",
+          "0x145fbc9cd",
+          1104,
+          "56498c36dba8866b053f79ee198687fdd0825b9e2bcab95c5331de7270462fe0",
+          220,
+          "fallthrough-sequence",
+          3,
+          0,
+          0
+        ],
+        [
+          53293,
+          "0x145fbcb10",
+          "0x145fbcdea",
+          730,
+          "a69b0f4c3b04e23c3104cd7430da131baa5cf7ca2e181e1a28290aaf039f70e3",
+          157,
+          "branching-sequence",
+          6,
+          0,
+          0
+        ],
+        [
+          53294,
+          "0x145fbce7f",
+          "0x145fbd007",
+          392,
+          "4606c6f1ca7b5aaa1b6b38fb6eec357586e7e1e0f840461a9f3f62803fc31009",
+          82,
+          "branching-sequence",
+          5,
+          0,
+          0
+        ],
+        [
+          53295,
+          "0x145fbd1a5",
+          "0x145fbd4cc",
+          807,
+          "68013a29f9ad89bdca32169bd27799eedb23259d1691c7be0f0e21ac28b5f1a2",
+          152,
+          "branching-sequence",
+          6,
+          0,
+          0
+        ],
+        [
+          53296,
+          "0x145fbd5f4",
+          "0x145fbdb25",
+          1329,
+          "459590867d997ccf0635e5567e1762d26a5e9e255b9a11ea0c62b857514e90fd",
+          252,
+          "fallthrough-sequence",
+          7,
+          0,
+          0
+        ],
+        [
+          53297,
+          "0x145fbdb66",
+          "0x145fbdbde",
+          120,
+          "76107f7dfb07b93d09e7640a1ecdd5b42d83b8790d13a2bfb72617f97f7c7166",
+          24,
+          "fallthrough-sequence",
+          4,
+          0,
+          0
+        ],
+        [
+          53298,
+          "0x145fbdbf4",
+          "0x145fbdbfb",
+          7,
+          "8e7da3d70cc9ed2c06d0d2fd755538495ec5b026b8a7d480f3f8f23e47385dce",
+          1,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          53299,
+          "0x145fbdc0a",
+          "0x145fbdc1a",
+          16,
+          "91a5dab5f6cd109081626751b2730475327362bf4f2bb1ee37d53e56afa73dff",
+          4,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145fbef40",
+      "declared_end_exclusive": "0x145fc03d9",
+      "extent_sha256": "38b0d67f8e43081b907de24902273df6277f11e18acb59af0a5511d3f3d3a2c1",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/upgrades.rs"
+      ],
+      "ranges": [
+        [
+          53303,
+          "0x145fbf3c7",
+          "0x145fbf3e0",
+          25,
+          "ac7b199b4598997450c6cb1ee3539d8ca091733028cb2b804781e87bff1f9978",
+          4,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          53304,
+          "0x145fbf449",
+          "0x145fbf453",
+          10,
+          "ddfe56b459cabe34351dcf4e5e1f3e28c6dcc3b1cdea455b811f9bd672ff0e54",
+          3,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          53305,
+          "0x145fbf475",
+          "0x145fbf485",
+          16,
+          "3b4aca48c6a796a615fd51093f5d6571e940ecbc01922c90b633b1793cd95e7e",
+          3,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x145fc1500",
+      "declared_end_exclusive": "0x145fc358a",
+      "extent_sha256": "9c01ef5b4bb3573959dcfe873dba59ab74ab25b44026f07ad9cca06287e80c42",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs"
+      ],
+      "ranges": [
+        [
+          53315,
+          "0x145fc15cc",
+          "0x145fc2100",
+          2868,
+          "7f20e01f314ae307292fc49057a75487a4d4c12cc35ee914b10b193b1129587e",
+          561,
+          "fallthrough-sequence",
+          3,
+          0,
+          0
+        ],
+        [
+          53324,
+          "0x145fc340e",
+          "0x145fc3534",
+          294,
+          "654d5d1973a490c7d392952785eac9e999d76accd28e8d4dc3b27ec1fa18d1e4",
+          57,
+          "terminal-trap-sequence",
+          5,
+          0,
+          0
+        ],
+        [
+          53325,
+          "0x145fc3546",
+          "0x145fc3562",
+          28,
+          "806b13884288d0a6014c50d0f3bed72307de2a1dc5756922ac2af9fb111267e0",
+          4,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          53326,
+          "0x145fc3578",
+          "0x145fc3588",
+          16,
+          "e3c1f7f46523658fee033ad097c8a1e4c0bdcba22df8851048d3f76c835279b9",
+          4,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x146015d10",
+      "declared_end_exclusive": "0x146016b99",
+      "extent_sha256": "77f0ff54fe1290027999ccf276aff6569e2f4f20793a2a5afdab37f9c1bba281",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/game/scripts/krastinov.rs"
+      ],
+      "ranges": [
+        [
+          53623,
+          "0x146015fbe",
+          "0x14601617b",
+          445,
+          "0f43388f40c2b30521216dd7101d402024079dcd0b98fc1701847c6660fe0fe9",
+          95,
+          "fallthrough-sequence",
+          5,
+          0,
+          0
+        ],
+        [
+          53627,
+          "0x14601663e",
+          "0x146016652",
+          20,
+          "1792d2228aa9a691f91ff7ec8ec3a1a3abb6fab38e58240e01e67bf00b0c0c60",
+          6,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          53628,
+          "0x14601691c",
+          "0x1460169e8",
+          204,
+          "2d1f4ca176d582856e250e962569250007e24fc9d3201d4a9e9037c09e116fbe",
+          53,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          53629,
+          "0x146016b2e",
+          "0x146016b3f",
+          17,
+          "2b67d368ed72d2d4ba86a9dda0586205a6c4e3af1cff9e7402b9a2c92140269d",
+          4,
+          "terminal-trap-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x14605c620",
+      "declared_end_exclusive": "0x14605c83b",
+      "extent_sha256": "2fc4146e6e03928c3523fd7d81a4bd8be69cdee0888b301d80a7d1fab5677072",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/gear.rs"
+      ],
+      "ranges": [
+        [
+          54160,
+          "0x14605c68e",
+          "0x14605c6b7",
+          41,
+          "88b4a128afea76641b73a152c586762a9a4e90915fff50e613590d1838f8d8a3",
+          11,
+          "branching-sequence",
+          14,
+          0,
+          0
+        ],
+        [
+          54161,
+          "0x14605c6e5",
+          "0x14605c80b",
+          294,
+          "49705fa8459c202b2463a9df04d6bc2d6dfc50024638f7dfc6f67189ff944cab",
+          71,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x14605c880",
+      "declared_end_exclusive": "0x14605ca9b",
+      "extent_sha256": "3b2b857ff49a615f81ef0f337c8f6f87d5525d4fe3125b6651b3f51aaa685960",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/gear.rs"
+      ],
+      "ranges": [
+        [
+          54162,
+          "0x14605c8ee",
+          "0x14605c917",
+          41,
+          "88b4a128afea76641b73a152c586762a9a4e90915fff50e613590d1838f8d8a3",
+          11,
+          "branching-sequence",
+          14,
+          0,
+          0
+        ],
+        [
+          54163,
+          "0x14605c945",
+          "0x14605ca6b",
+          294,
+          "1d9f8d7f0eb84b76fa9a14474831f19378cf43164a0280bc30a229662bd20048",
+          71,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x14605cae0",
+      "declared_end_exclusive": "0x14605ccfb",
+      "extent_sha256": "d82f4d8f113aa780e4a0b49f6b812ee6ab8a28d33a7d8e8d1bc2ffc9701f8036",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/gear.rs"
+      ],
+      "ranges": [
+        [
+          54164,
+          "0x14605cb4e",
+          "0x14605cb77",
+          41,
+          "88b4a128afea76641b73a152c586762a9a4e90915fff50e613590d1838f8d8a3",
+          11,
+          "branching-sequence",
+          14,
+          0,
+          0
+        ],
+        [
+          54165,
+          "0x14605cba5",
+          "0x14605cccb",
+          294,
+          "e4aed2f092c2aa8f788f568bbfe99daf5f9cb28b372b2f28e2ddbaab6573a9e5",
+          71,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x14605e460",
+      "declared_end_exclusive": "0x14606042c",
+      "extent_sha256": "09afa5fedabb0a07c38a057d3a6835034c33d2371301c427870605529b11c0a1",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs",
+        "crates/wenilla-rogue/src/jewelry.rs"
+      ],
+      "ranges": [
+        [
+          54188,
+          "0x14605e6f1",
+          "0x14605e710",
+          31,
+          "ebe8f057c3292e93e937cd74a7c8ad8ccfed1f92e5440cf8adb9d0ecfd0feb63",
+          4,
+          "fallthrough-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          54191,
+          "0x14605e87a",
+          "0x14605ea40",
+          454,
+          "d5c87645a3930870fc4f0c451f1a46eca3bc8173eff832bcd1001a436dcf92e5",
+          97,
+          "branching-sequence",
+          2,
+          0,
+          0
+        ],
+        [
+          54192,
+          "0x14605ea78",
+          "0x14605fb45",
+          4301,
+          "3205ce08fa38758a3df4e7e88b43146027ad5d6a1585c256fd909c0ed9abec9a",
+          943,
+          "fallthrough-sequence",
+          19,
+          0,
+          0
+        ],
+        [
+          54193,
+          "0x14605fb55",
+          "0x1460602b4",
+          1887,
+          "849fa928fb4bdee90cc2a73c658bf2adefb4f860d6c6691b1d918dba31a803f2",
+          407,
+          "branching-sequence",
+          29,
+          0,
+          0
+        ],
+        [
+          54194,
+          "0x146060356",
+          "0x146060377",
+          33,
+          "1c1a9fe0f3dec8ffd4cd0d4cd155a9432ca348327c46f967e48eef5edd777191",
+          6,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          54195,
+          "0x14606038d",
+          "0x1460603ae",
+          33,
+          "aad767276995c6ffa169218afd002478351f2f8bd94df575c947864526ed5ce6",
+          6,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          54196,
+          "0x1460603c1",
+          "0x1460603e2",
+          33,
+          "1b2bd4b176e20d4b5e28b38567cfb59cd26a04862fb9f1c660eaa6e4a09b1907",
+          6,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "declared_start": "0x1460653e0",
+      "declared_end_exclusive": "0x1460687a7",
+      "extent_sha256": "8d17151aa42cd18babe38efc1b74fee93e29e6d48bb1216416dac998631249ec",
+      "AS_location_context": [
+        "crates/wenilla-rogue/src/content.rs"
+      ],
+      "ranges": [
+        [
+          54224,
+          "0x146065467",
+          "0x1460655c6",
+          351,
+          "3712300ecb9da4b9c52db47f1fe4dba844d5ba44d6db527bdab4f1b1040f59e2",
+          73,
+          "branching-sequence",
+          0,
+          0,
+          0
+        ],
+        [
+          54225,
+          "0x146065741",
+          "0x146066066",
+          2341,
+          "571ad1fbb8058a16b397e623edb6ec82953273372bc2b7d13d9b5021ed29f6b1",
+          499,
+          "branching-sequence",
+          8,
+          0,
+          0
+        ],
+        [
+          54226,
+          "0x146067d4a",
+          "0x146067f96",
+          588,
+          "de190b7536e20bbf9d86a9c8be18569c8ebc7bde01940935b0d70773b8dc5565",
+          126,
+          "branching-sequence",
+          3,
+          0,
+          0
+        ],
+        [
+          54227,
+          "0x146068338",
+          "0x146068410",
+          216,
+          "9cc23a835dcbd1846714ebfc2c2964a02a137490cb91153261a66f46507399a8",
+          45,
+          "branching-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          54228,
+          "0x146068747",
+          "0x146068764",
+          29,
+          "5ae2ba6ffbcc3971fdb2f975cb97c81459701e7ed571c4c79477a28b4e989a4f",
+          5,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ],
+        [
+          54229,
+          "0x146068777",
+          "0x146068794",
+          29,
+          "f1c9aa202d89d25fea0db5eb9062e7ec41621217e56c06e3f086b4ea7e38b54e",
+          5,
+          "fallthrough-sequence",
+          1,
+          0,
+          0
+        ]
+      ]
+    }
+  ],
+  "excluded_literal_only_range_ordinals": [
+    1957,
+    2253,
+    2258,
+    2259,
+    2260,
+    2261,
+    2262,
+    54172,
+    54173,
+    54174,
+    54175
+  ]
+}

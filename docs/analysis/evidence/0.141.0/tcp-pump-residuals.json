@@ -1,0 +1,174 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "gap_ids": [
+    41,
+    63
+  ],
+  "lead_id": "Q41-U01",
+  "selector": {
+    "path": "docs/analysis/evidence/0.141.0/as-residual-ranges.json",
+    "extent_start": "0x145e266d0"
+  },
+  "native_owner": {
+    "start": "0x145e266d0",
+    "end_exclusive": "0x145e26c0e",
+    "file_offset": "0x5e25ad0",
+    "byte_count": 1342,
+    "sha256": "c50e8d4a8a258653dac1106cdac4d1a0423b739ff6939b6ecdbad1d0c7fd3dd4"
+  },
+  "ghidra_query": {
+    "operation": "procedure_pseudo_code",
+    "procedure": "0x145e266d0",
+    "mapping": {
+      "provider_id": "ghidra",
+      "format": "raw-binary",
+      "architecture": "x86_64",
+      "entry_point": "0x145e266d0"
+    },
+    "raw_subject_sha256": "c50e8d4a8a258653dac1106cdac4d1a0423b739ff6939b6ecdbad1d0c7fd3dd4",
+    "journal_identity_sha256": "4898cc752ce96fca006071d009bd420a932257f55123451688eafe1820a965c7",
+    "completed_operation_id": "807b2be23d3c680411d2a44d1035b65eb76ee5db5953d1fee4542dc469ccd843",
+    "result_sha256": "f53ba00ddbeea410972a4c89abe47b25e89c1074d510f5eb9513f35aacaeceb2",
+    "evidence_id": "ev_40a222706f8a180418998a6227904898f5add0efdc91e8cbef84e02b884090e6",
+    "limitation": "The raw slice excludes the four external tables. Installed PE bytes establish their targets."
+  },
+  "residual_ranges": [
+    {
+      "inventory_ordinal": 51872,
+      "start": "0x145e26778",
+      "end_exclusive": "0x145e26790",
+      "byte_count": 24,
+      "sha256": "93a0abf1e62a91d46fa11d6e9a7e140218b2197dc7f6a5a4ead731e95148151a",
+      "role": "read tagged error kind 13 selection"
+    },
+    {
+      "inventory_ordinal": 51873,
+      "start": "0x145e267d7",
+      "end_exclusive": "0x145e268d7",
+      "byte_count": 256,
+      "sha256": "3eeedac8d4dc254bc81d05585ad72f1b64d808ae007fd09eb45184871695eff6",
+      "role": "read four-representation kind 13/35 decoding and retry"
+    },
+    {
+      "inventory_ordinal": 51874,
+      "start": "0x145e2691d",
+      "end_exclusive": "0x145e26990",
+      "byte_count": 115,
+      "sha256": "5553ca3a365fdb4c9b78833ca81590136edd1c47afa31cd853a7eb4c50b30b27",
+      "role": "read stage exit and owned error cleanup"
+    },
+    {
+      "inventory_ordinal": 51875,
+      "start": "0x145e269d2",
+      "end_exclusive": "0x145e269f0",
+      "byte_count": 30,
+      "sha256": "8c04614d7670aebdedcef5f7fff6b40215ad9062864fbed8c46611747ed2b7fb",
+      "role": "write tagged error kind 13 selection"
+    },
+    {
+      "inventory_ordinal": 51876,
+      "start": "0x145e26a2f",
+      "end_exclusive": "0x145e26b33",
+      "byte_count": 260,
+      "sha256": "355fea727af03d28efe73197861eceddd52993821d3e92331c9226b8ead7b7e8",
+      "role": "write four-representation kind 13/35 decoding and retry"
+    },
+    {
+      "inventory_ordinal": 51877,
+      "start": "0x145e26b39",
+      "end_exclusive": "0x145e26ba5",
+      "byte_count": 108,
+      "sha256": "4f76237f9944a0fe07704eef09ce40439b45bff6823952fb9a5c325d0f1bd29c",
+      "role": "write stage exit and owned error cleanup"
+    }
+  ],
+  "signed_relative_tables": [
+    {
+      "role": "read stage exit",
+      "site": "0x145e26776",
+      "mask_site": "0x145e26764",
+      "table_start": "0x1477244f8",
+      "byte_count": 16,
+      "sha256": "ab19b26ad4616d9d5a9c70925a7cea2e86820fb47168167940a818fd33378f56",
+      "destinations": [
+        "0x145e26778",
+        "0x145e2681d",
+        "0x145e267d7",
+        "0x145e2680d"
+      ]
+    },
+    {
+      "role": "read retry",
+      "site": "0x145e26831",
+      "mask_site": "0x145e26764",
+      "table_start": "0x147724508",
+      "byte_count": 16,
+      "sha256": "3b91d0744b8616962bcd109a109f921ee805934592db5710ee6682a20c8ce85e",
+      "destinations": [
+        "0x145e26833",
+        "0x145e26887",
+        "0x145e26841",
+        "0x145e26877"
+      ]
+    },
+    {
+      "role": "write stage exit",
+      "site": "0x145e269d0",
+      "mask_site": "0x145e269b7",
+      "table_start": "0x147724518",
+      "byte_count": 16,
+      "sha256": "6f2ce089df14076dbcb640fb84a3119a9b01f2462dcefb35f50c08df180fe50a",
+      "destinations": [
+        "0x145e269d2",
+        "0x145e26a75",
+        "0x145e26a2f",
+        "0x145e26a65"
+      ]
+    },
+    {
+      "role": "write retry",
+      "site": "0x145e26a8f",
+      "mask_site": "0x145e269b7",
+      "table_start": "0x147724528",
+      "byte_count": 16,
+      "sha256": "89a43c4430350d796560d7b5ec7e0fa0656ed48974aeaf4c298ea01439e74933",
+      "destinations": [
+        "0x145e26a91",
+        "0x145e26ae4",
+        "0x145e26a9e",
+        "0x145e26ad4"
+      ]
+    }
+  ],
+  "pump_callers": [
+    {
+      "role": "receive",
+      "site": "0x145e3e614"
+    },
+    {
+      "role": "send",
+      "site": "0x145e3e7b0"
+    },
+    {
+      "role": "close",
+      "site": "0x145e3e838"
+    }
+  ],
+  "source": {
+    "path": "crates/azeroth-survivors-re/src/coop/tcp.rs",
+    "sha256": "791750b577dd42c6a81cc6caeb243a0893aeb1fd65480f6ec9899d07a89b8a90",
+    "owner": "TcpConnection::pump",
+    "historical_contract": "docs/analysis/coop-transport-0.115.0.md"
+  },
+  "limits": [
+    "Classification covers the six selected original ranges. The whole-image census stays unchanged.",
+    "The PE establishes the represented kinds and stage outcomes. Runtime error-backend substitution and actual socket execution were not verified.",
+    "No build, game, server or original/rebuilt comparison ran."
+  ]
+}

@@ -1,0 +1,535 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "lead_id": "Q41-U04",
+  "gap_ids": [
+    41
+  ],
+  "generator": {
+    "path": "scripts/check-u04-trap-fill.py",
+    "sha256": "e638fb7a2998e33e72a4866f22ad70e15ba33722316a856faad6227fde2e76ae"
+  },
+  "inputs": [
+    {
+      "path": "docs/analysis/evidence/0.141.0/unknown-recovery.json",
+      "sha256": "496bf40b284452aa547da5e95d7b71428c13ac42d944eca9c60059d9d4858578"
+    },
+    {
+      "path": "docs/analysis/evidence/0.141.0/native-residuals.json",
+      "sha256": "0a8726853199aae94b84f7fe30b7631a145f5ea285005a60b767460adbe191aa"
+    },
+    {
+      "path": "docs/analysis/coverage/unwind-complement-summary.json",
+      "sha256": "7f3d8927d6590bb1728dbe4d624e542dfefc1e075e340907866315968418652d"
+    },
+    {
+      "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
+      "sha256": "8fe206ec5130bd9dcdd34269407614cd443d27197054af09b25083a0eea461ac"
+    }
+  ],
+  "decoder": {
+    "name": "Capstone",
+    "version": "5.0.7"
+  },
+  "selector": {
+    "lead_id": "Q41-U04",
+    "input": "unwind-complement-summary",
+    "selector": "SELECT * FROM stops ORDER BY site,reason",
+    "records": 5943,
+    "semantic_status": "unknown",
+    "question": "Resolve decoding/flow stop boundaries; retain unobserved successors and unknown code/data roles."
+  },
+  "stop_reasons": {
+    "jump_no_fallthrough": 2850,
+    "return": 3047,
+    "trap_or_privileged_exit": 7,
+    "outside_file_backed_complement": 39
+  },
+  "owned_observed_stop_starts": 5943,
+  "encoded_jumps": {
+    "direct_declared_entry": 803,
+    "direct_complement": 1382,
+    "indirect_dynamic_operand": 539,
+    "indirect_import_slot": 126
+  },
+  "distinct_observed_direct_destinations": 1116,
+  "boundary_stops": [
+    {
+      "site": "0x1461d248d",
+      "complement_start": "0x1461d244d",
+      "declared_end_exclusive": "0x1461d2599",
+      "predecessor": "0x1461d248a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461d2d8d",
+      "complement_start": "0x1461d2599",
+      "declared_end_exclusive": "0x1461d2efe",
+      "predecessor": "0x1461d2d8a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461d38cd",
+      "complement_start": "0x1461d2efe",
+      "declared_end_exclusive": "0x1461d39c7",
+      "predecessor": "0x1461d38ca",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461d41cd",
+      "complement_start": "0x1461d39c7",
+      "declared_end_exclusive": "0x1461d4340",
+      "predecessor": "0x1461d41ca",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461d75ed",
+      "complement_start": "0x1461d725c",
+      "declared_end_exclusive": "0x1461d7e4a",
+      "predecessor": "0x1461d75ea",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461d960d",
+      "complement_start": "0x1461d95e0",
+      "declared_end_exclusive": "0x1461d98c5",
+      "predecessor": "0x1461d960a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461d98dd",
+      "complement_start": "0x1461d98c5",
+      "declared_end_exclusive": "0x1461d9e61",
+      "predecessor": "0x1461d98da",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461d9e8d",
+      "complement_start": "0x1461d9e61",
+      "declared_end_exclusive": "0x1461da0ef",
+      "predecessor": "0x1461d9e8a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461da10d",
+      "complement_start": "0x1461da0ef",
+      "declared_end_exclusive": "0x1461da686",
+      "predecessor": "0x1461da10a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461dbf4d",
+      "complement_start": "0x1461dbf07",
+      "declared_end_exclusive": "0x1461dc309",
+      "predecessor": "0x1461dbf4a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461dc32d",
+      "complement_start": "0x1461dc309",
+      "declared_end_exclusive": "0x1461dcde0",
+      "predecessor": "0x1461dc32a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461dcded",
+      "complement_start": "0x1461dcde0",
+      "declared_end_exclusive": "0x1461dd9d9",
+      "predecessor": "0x1461dcdea",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461de24d",
+      "complement_start": "0x1461dd9d9",
+      "declared_end_exclusive": "0x1461de317",
+      "predecessor": "0x1461de24a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461de32d",
+      "complement_start": "0x1461de317",
+      "declared_end_exclusive": "0x1461de4ac",
+      "predecessor": "0x1461de32a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461ec44d",
+      "complement_start": "0x1461ec3fe",
+      "declared_end_exclusive": "0x1461ed5e5",
+      "predecessor": "0x1461ec44a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461ed60d",
+      "complement_start": "0x1461ed5e5",
+      "declared_end_exclusive": "0x1461ed991",
+      "predecessor": "0x1461ed60a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461ed9cd",
+      "complement_start": "0x1461ed991",
+      "declared_end_exclusive": "0x1461ee8e2",
+      "predecessor": "0x1461ed9ca",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461ee90d",
+      "complement_start": "0x1461ee8e2",
+      "declared_end_exclusive": "0x1461ef84d",
+      "predecessor": "0x1461ee90a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461efa0d",
+      "complement_start": "0x1461ef84d",
+      "declared_end_exclusive": "0x1461f0c11",
+      "predecessor": "0x1461efa0a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f0c4d",
+      "complement_start": "0x1461f0c11",
+      "declared_end_exclusive": "0x1461f1e5c",
+      "predecessor": "0x1461f0c4a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f1fcd",
+      "complement_start": "0x1461f1e5c",
+      "declared_end_exclusive": "0x1461f2056",
+      "predecessor": "0x1461f1fca",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f206d",
+      "complement_start": "0x1461f2056",
+      "declared_end_exclusive": "0x1461f23ab",
+      "predecessor": "0x1461f206a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f23cd",
+      "complement_start": "0x1461f23ab",
+      "declared_end_exclusive": "0x1461f26a5",
+      "predecessor": "0x1461f23ca",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f26cd",
+      "complement_start": "0x1461f26a5",
+      "declared_end_exclusive": "0x1461f2a85",
+      "predecessor": "0x1461f26ca",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f2aad",
+      "complement_start": "0x1461f2a85",
+      "declared_end_exclusive": "0x1461f2db4",
+      "predecessor": "0x1461f2aaa",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f2dcd",
+      "complement_start": "0x1461f2db4",
+      "declared_end_exclusive": "0x1461f2e27",
+      "predecessor": "0x1461f2dca",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f308d",
+      "complement_start": "0x1461f2e27",
+      "declared_end_exclusive": "0x1461f30de",
+      "predecessor": "0x1461f308a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f328d",
+      "complement_start": "0x1461f30de",
+      "declared_end_exclusive": "0x1461f32eb",
+      "predecessor": "0x1461f328a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f356d",
+      "complement_start": "0x1461f32eb",
+      "declared_end_exclusive": "0x1461f35c2",
+      "predecessor": "0x1461f356a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f37a8",
+      "complement_start": "0x1461f35c2",
+      "declared_end_exclusive": "0x1461f38ef",
+      "predecessor": "0x1461f37a0",
+      "predecessor_bytes": "488d842478ffffff",
+      "predecessor_instruction": "lea rax, [rsp - 0x88]"
+    },
+    {
+      "site": "0x1461f3908",
+      "complement_start": "0x1461f38ef",
+      "declared_end_exclusive": "0x1461f3a25",
+      "predecessor": "0x1461f3900",
+      "predecessor_bytes": "488d842478ffffff",
+      "predecessor_instruction": "lea rax, [rsp - 0x88]"
+    },
+    {
+      "site": "0x1461f3a4e",
+      "complement_start": "0x1461f3a25",
+      "declared_end_exclusive": "0x1461f3b88",
+      "predecessor": "0x1461f3a4b",
+      "predecessor_bytes": "4989e3",
+      "predecessor_instruction": "mov r11, rsp"
+    },
+    {
+      "site": "0x1461f3bae",
+      "complement_start": "0x1461f3b88",
+      "declared_end_exclusive": "0x1461f3d0a",
+      "predecessor": "0x1461f3ba6",
+      "predecessor_bytes": "488d842478ffffff",
+      "predecessor_instruction": "lea rax, [rsp - 0x88]"
+    },
+    {
+      "site": "0x1461f3e8d",
+      "complement_start": "0x1461f3d0a",
+      "declared_end_exclusive": "0x1461f419a",
+      "predecessor": "0x1461f3e8a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f41ad",
+      "complement_start": "0x1461f419a",
+      "declared_end_exclusive": "0x1461f4916",
+      "predecessor": "0x1461f41aa",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f492d",
+      "complement_start": "0x1461f4916",
+      "declared_end_exclusive": "0x1461f4e9c",
+      "predecessor": "0x1461f492a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f502d",
+      "complement_start": "0x1461f4e9c",
+      "declared_end_exclusive": "0x1461f533e",
+      "predecessor": "0x1461f502a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f534d",
+      "complement_start": "0x1461f533e",
+      "declared_end_exclusive": "0x1461f5ab5",
+      "predecessor": "0x1461f534a",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    },
+    {
+      "site": "0x1461f5acd",
+      "complement_start": "0x1461f5ab5",
+      "declared_end_exclusive": "0x1461f6035",
+      "predecessor": "0x1461f5aca",
+      "predecessor_bytes": "4889e0",
+      "predecessor_instruction": "mov rax, rsp"
+    }
+  ],
+  "trap_stops": [
+    {
+      "site": "0x140a42c5f",
+      "owner": "0x140a42bf0",
+      "bytes": "0f0b",
+      "instruction": "ud2",
+      "predecessor": [
+        "0x140a42c5e",
+        "c3",
+        "ret",
+        ""
+      ],
+      "incoming_references": [
+        {
+          "source": "0x140a42c20",
+          "kind": "CONDITIONAL_JUMP"
+        },
+        {
+          "source": "0x140a42c30",
+          "kind": "CONDITIONAL_JUMP"
+        }
+      ]
+    },
+    {
+      "site": "0x14467b740",
+      "owner": "0x14467b720",
+      "bytes": "cd29",
+      "instruction": "int 0x29",
+      "predecessor": [
+        "0x14467b73b",
+        "b907000000",
+        "mov",
+        "ecx, 7"
+      ],
+      "incoming_references": []
+    },
+    {
+      "site": "0x14467b757",
+      "owner": "0x14467b720",
+      "bytes": "cd29",
+      "instruction": "int 0x29",
+      "predecessor": [
+        "0x14467b752",
+        "b907000000",
+        "mov",
+        "ecx, 7"
+      ],
+      "incoming_references": []
+    },
+    {
+      "site": "0x14467b76c",
+      "owner": "0x14467b720",
+      "bytes": "cd29",
+      "instruction": "int 0x29",
+      "predecessor": [
+        "0x14467b767",
+        "b907000000",
+        "mov",
+        "ecx, 7"
+      ],
+      "incoming_references": []
+    },
+    {
+      "site": "0x1449b4542",
+      "owner": "0x1449b44d0",
+      "bytes": "0f0b",
+      "instruction": "ud2",
+      "predecessor": [
+        "0x1449b4540",
+        "ebb1",
+        "jmp",
+        "0x1449b44f3"
+      ],
+      "incoming_references": [
+        {
+          "source": "0x1449b44d7",
+          "kind": "CONDITIONAL_JUMP"
+        }
+      ]
+    },
+    {
+      "site": "0x1463628c4",
+      "owner": "0x146362890",
+      "bytes": "0f0b",
+      "instruction": "ud2",
+      "predecessor": [
+        "0x1463628bf",
+        "e96ca31e00",
+        "jmp",
+        "0x14654cc30"
+      ],
+      "incoming_references": [
+        {
+          "source": "0x1463628b5",
+          "kind": "CONDITIONAL_JUMP"
+        }
+      ]
+    },
+    {
+      "site": "0x1465079f5",
+      "owner": "0x1465079f0",
+      "bytes": "cd29",
+      "instruction": "int 0x29",
+      "predecessor": [
+        "0x1465079f0",
+        "b907000000",
+        "mov",
+        "ecx, 7"
+      ],
+      "incoming_references": []
+    }
+  ],
+  "static_reference_records_examined": 4218711,
+  "AS_diagnostic_context": [
+    {
+      "stop": "0x14074cee6",
+      "owner": "0x140051da0",
+      "reason": "return",
+      "diagnostic_paths": [
+        "crates/wenilla-rogue-app/src/screens/mod.rs"
+      ]
+    },
+    {
+      "stop": "0x1408b1180",
+      "owner": "0x140051fb0",
+      "reason": "jump_no_fallthrough",
+      "diagnostic_paths": [
+        "crates/wenilla-rogue-app/src/screens/mod.rs"
+      ]
+    },
+    {
+      "stop": "0x145e957b4",
+      "destination": "0x145ef38f0",
+      "destination_owner": "0x145ef38f0",
+      "diagnostic_paths": [
+        "crates/wenilla-rogue/src/game/party.rs"
+      ]
+    },
+    {
+      "stop": "0x145fb9cd1",
+      "destination": "0x145fb7120",
+      "destination_owner": "0x145fb7120",
+      "diagnostic_paths": [
+        "crates/wenilla-rogue/src/game/upgrades.rs"
+      ]
+    },
+    {
+      "stop": "0x145fc10bb",
+      "destination": "0x145fb7120",
+      "destination_owner": "0x145fb7120",
+      "diagnostic_paths": [
+        "crates/wenilla-rogue/src/game/upgrades.rs"
+      ]
+    }
+  ],
+  "limits": [
+    "The stops, boundaries and destinations are observations of the independent complement pass and selected saved Ghidra census.",
+    "An import slot is an encoded operand. A fixed or computed destination does not establish runtime execution, reachability or gameplay behavior.",
+    "Diagnostic context does not establish AS semantics. No coverage totals or source/runtime/parity statuses change."
+  ]
+}

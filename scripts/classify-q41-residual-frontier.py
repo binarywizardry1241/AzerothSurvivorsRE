@@ -7,6 +7,7 @@ is launched. Diagnostic context and encoded flow do not establish semantics.
 import argparse
 from bisect import bisect_right
 from collections import Counter, defaultdict
+from contextlib import closing
 import csv
 import gzip
 import hashlib
@@ -14,6 +15,7 @@ import json
 
 from coverage_common import ROOT, file_sha256, latest_target, project_path, target_bytes
 from script_sources import load_script
+from shared_native_inventory import open_readonly_uri
 
 TARGET_SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
 OUTPUT = "docs/analysis/evidence/0.121.0/residual-frontier.json"
@@ -49,6 +51,118 @@ def tsv_rows(record):
 
 def encode(value):
     return (json.dumps(value, indent=2, sort_keys=True) + "\n").encode()
+
+
+def complement_projection(census_path):
+    target = latest_target(verify=True)
+    identity = {key: target[key] for key in ("version", "path", "sha256", "size_bytes")}
+    inventory_path = "docs/analysis/coverage/unwind-complement-summary.json"
+    inputs = [receipt(census_path), receipt(inventory_path)]
+    census, summary = [json.loads(checked(item).read_text()) for item in inputs]
+    independent = census["independent_instructions"]
+    executable = independent["executable_sections"]
+    if (summary["target"] != identity or census["target"] != identity
+            or not independent["exact_source_bytes_verified"]):
+        raise ValueError("Complement projection requires the current verified selected pass")
+    inventory, gaps = summary["inventory"], executable["range_inventory"]
+    inputs.extend((inventory, gaps))
+    missing = sorted((int(row["start"], 16), int(row["end_exclusive"], 16))
+                     for row in tsv_rows(gaps))
+    if (not all(start < end for start, end in missing)
+            or not all(left[1] <= right[0] for left, right in zip(missing, missing[1:]))
+            or len(missing) != executable["unobserved_ranges"]
+            or sum(end - start for start, end in missing) != executable["unobserved_bytes"]):
+        raise ValueError("Selected unobserved executable ranges differ from their accounting")
+
+    image = target_bytes(target)
+    pe = load_script("complement_projection_pe", "scripts/inventory-executable.py").PE(image)
+    missing_ends = [end for _, end in missing]
+    region_counts = defaultdict(Counter)
+    projection = hashlib.sha256()
+    independent_only = []
+    selected_full_without_seeded = []
+    most_seeded_region = None
+    with closing(open_readonly_uri(checked(inventory).as_uri() + "?mode=ro", uri=True)) as db:
+        if json.loads(db.execute("SELECT value FROM metadata").fetchone()[0])["target"] != identity:
+            raise ValueError("Complement database target differs")
+        seed_counts = Counter(address for (address,) in db.execute("SELECT target FROM seeds"))
+        instruction_rows = iter(db.execute("SELECT site,end,bytes FROM instructions ORDER BY site"))
+        instruction = next(instruction_rows, None)
+        sorted_seeds = iter(sorted(seed_counts))
+        seed = next(sorted_seeds, None)
+        previous_end = 0
+        for start, end, offset, sha, category in db.execute("SELECT * FROM regions ORDER BY start"):
+            if start < previous_end or start >= end:
+                raise ValueError("Invalid complement region bounds")
+            previous_end = end
+            raw = image[offset:offset + end - start] if offset is not None else b""
+            if (offset is None or pe.rva_offset(start - pe.image_base) != offset
+                    or pe.rva_offset(end - 1 - pe.image_base) != offset + end - start - 1
+                    or digest(raw) != sha):
+                raise ValueError("Complement region differs from current PE mapping")
+            index = bisect_right(missing_ends, start)
+            holes = []
+            while index < len(missing) and missing[index][0] < end:
+                lo, hi = missing[index]
+                holes.append((max(lo, start), min(hi, end)))
+                index += 1
+            absent = sum(hi - lo for lo, hi in holes)
+            observed = end - start - absent
+            previous_instruction_end = start
+            decoded = {}
+            both_absent = absent
+            while instruction is not None and instruction[0] < end:
+                site, instruction_end, encoded = instruction
+                if (not previous_instruction_end <= site < instruction_end <= end
+                        or raw[site - start:instruction_end - start].hex() != encoded):
+                    raise ValueError("Complement instruction differs from current PE bytes")
+                for lo, hi in holes:
+                    left, right = max(lo, site), min(hi, instruction_end)
+                    if left < right:
+                        both_absent -= right - left
+                        independent_only.append([left, right, raw[left - start:right - start].hex()])
+                decoded[site] = encoded
+                previous_instruction_end = instruction_end
+                instruction = next(instruction_rows, None)
+            seeded_bytes = sum(len(encoded) // 2 for encoded in decoded.values())
+            entries = []
+            while seed is not None and seed < end:
+                if seed < start:
+                    raise ValueError("Complement seed lies outside all regions")
+                entries.append([seed, seed_counts[seed], decoded.get(seed)])
+                seed = next(sorted_seeds, None)
+            lead_count = sum(row[1] for row in entries)
+            if observed == end - start and not decoded:
+                selected_full_without_seeded.append([hex(start), hex(end), sha])
+            if most_seeded_region is None or lead_count > most_seeded_region["incoming_seed_records"]:
+                most_seeded_region = dict(start=hex(start), end_exclusive=hex(end), file_offset=hex(offset),
+                                          sha256=sha, incoming_seed_records=lead_count, entries=entries)
+            fields = [start, end, offset, sha, category, len(decoded), seeded_bytes, lead_count, observed, both_absent]
+            projection.update((json.dumps(fields, separators=(",", ":")) + "\n").encode())
+            region_counts[category].update(regions=1, byte_count=end - start, seed_records=lead_count,
+                                           independent_instructions=len(decoded), independent_bytes=seeded_bytes,
+                                           selected_observed=observed, selected_absent=absent, both_absent=both_absent)
+        if instruction is not None or seed is not None:
+            raise ValueError("Complement rows leave unjoined seeds or instructions")
+
+    totals = sum(region_counts.values(), Counter())
+    counts = summary["counts"]
+    if (totals["regions"] != counts["mapped_regions"]
+            or totals["byte_count"] != counts["executable_complement_bytes"]
+            or totals["seed_records"] != counts["incoming_seed_leads"]
+            or len(seed_counts) != counts["unique_seed_addresses"]
+            or totals["independent_instructions"] != counts["decoded_instruction_records"]
+            or totals["independent_bytes"] != counts["decoded_bytes_union"]
+            or totals["selected_absent"] != executable["unobserved_outside_declared_bytes"]):
+        raise ValueError("Complement projection does not reconcile both pass totals")
+    return dict(schema_version=1, target=identity, gap_ids=[41], lead_ids=["Q41-U03"],
+                generator=receipt("scripts/classify-q41-residual-frontier.py"),
+                inputs=inputs, projection_sha256=projection.hexdigest(),
+                counts=totals, regions_by_original_category=dict(sorted(region_counts.items())),
+                independent_only_instruction_parts=independent_only,
+                selected_full_without_seeded=selected_full_without_seeded, most_seeded_region=most_seeded_region,
+                limits=["The cross-pass byte union does not change either census or prove semantic ownership.",
+                        "Original region categories are candidate encodings, not padding or reachability claims."])
 
 
 def derive():
@@ -312,7 +426,14 @@ def derive():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--complement-projection", metavar="CENSUS_SUMMARY",
+                        help="Project current complement regions against a selected census without writing files")
     args = parser.parse_args()
+    if args.complement_projection:
+        if args.write:
+            parser.error("--complement-projection is read-only")
+        print(encode(complement_projection(args.complement_projection)).decode(), end="")
+        return
     result, detail = derive()
     for name, value in ((DETAIL, detail), (OUTPUT, result)):
         path = project_path(name)

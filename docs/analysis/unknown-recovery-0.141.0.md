@@ -10,7 +10,11 @@ earlier selectors and their evidence.
 
 | Selector or finding | Next static action |
 | --- | --- |
-| `Q41-B01`, `Q41-U01`–`Q41-U04` | Join remaining unobserved ranges and stops to incoming references and adjacent data. The [CRYPTOGAMS span](native-census-0.141.0.md#embedded-identifier-outside-declared-extents) has a bounded data and alignment classification. Keep the other candidate padding and unknown code separate. |
+| `Q41-B01` | The [complete executable-residual join](executable-residual-roles-0.141.0.md#q41-b01-executable-section) separates candidate encodings, direct branches and address-taken leaf prefixes. Resolve remaining mixed roles and actual address consumers. The exact selected instruction-union complement remains 8,621,599 bytes. |
+| `Q41-U01` | The [declared-extents review](executable-residual-roles-0.141.0.md#q41-u01-declared-extents) follows the 193 AS Location mixed ranges and identifies the TCP, Soulfire, font and amplification lanes. Continue the remaining entry and ownership questions from its exact selector. |
+| `Q41-U02` | The current declared-linear undecoded suffix selector is empty. Preserve it separately from selected-pass omissions. |
+| `Q41-U03` | The [complement projection](executable-residual-roles-0.141.0.md#q41-u03-executable-complement) accounts for all 351,512 regions and classifies bounded alignment, shared heap and formatting entries. Resolve the remaining mixed regions and candidate encodings from the distinct pass selectors. |
+| `Q41-U04` | The [seeded stop proof](executable-residual-roles-0.141.0.md#q41-u04-seeded-traversal-stops) classifies all 5,943 boundaries and verifies every direct destination. Follow the 539 remaining runtime operands in `Q41-F02`. |
 | `Q41-F01`, `Q41-F02` | Trace the source of each unresolved computed target, index guard and pointer-slot write in the saved Ghidra Program. Keep initial encodings, guarded static destinations and runtime aliases separate. |
 | `Q41-A01`, `Q41-A02` | Examine actual caller and body associations. Separate failure blocks, generic engine boundaries and potential AS state or dispatch owners before naming the region. |
 | `Q41-I01` | The [embedded source frontier](source-frontier-0.141.0.md#q41-i01-embedded-lua-bindings-and-persistence) classifies all 949 binding-identifier, seven textual-ID and six save/configuration rows by role or container. Follow unresolved native loader, type and producer/consumer connections from the retained [2,901-row inventory](evidence/0.141.0/data-classification/manifest.json) and the owning findings. |
