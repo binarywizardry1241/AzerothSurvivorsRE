@@ -29239,7 +29239,7 @@
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_id": 137,
         "source_status": "connected",
-        "scope": "Live player position, native mover readiness, one stable sample across the rebuilt Lua frame, authoritative run space for chest/lair rows and per-recipient reload replay.",
+        "scope": "Live player position, native mover readiness, post-input sampling with stable reads during OnUpdate, authoritative run space for chest/lair rows and per-recipient reload replay.",
         "source_refs": [
           "crates/benilla-app/src/ui_script/player_position.rs",
           "crates/benilla-app/src/ui_script/mod.rs",
@@ -29253,7 +29253,7 @@
           "docs/analysis/addon-player-position-0.139.2.md",
           "docs/analysis/addon-run-space-0.139.2.md"
         ],
-        "static_validation": "mapped_native_provider_and_mover_writers_lua_contract_and_rust_syntax_pass",
+        "static_validation": "mapped_native_provider_mover_writers_scheduler_lua_contract_and_rust_syntax_pass",
         "runtime_validation": "not_run",
         "parity": "unverified"
       },

@@ -627,8 +627,13 @@ impl Plugin for UiScriptPlugin {
             )
             .add_systems(
                 Update,
-                // The same hero snapshot serves OnUpdate and the later paint callbacks.
-                player_position::sample_frame.in_set(UiFeed),
+                // 0.139.2 samples after the movement step. OnUpdate reads the last
+                // completed pose while the paint callbacks can read the new one.
+                player_position::sample_frame
+                    .in_set(UiPaint)
+                    .after(WorldStage::Input)
+                    .after(UiInput)
+                    .before(extract::paint_script),
             )
             .add_systems(
                 Update,

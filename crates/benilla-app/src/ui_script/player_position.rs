@@ -93,14 +93,13 @@ mod tests {
     use super::*;
 
     #[test]
-    fn one_sample_serves_the_update_and_paint_callbacks() {
+    fn the_pose_sample_follows_on_update_and_precedes_paint() {
         let mut app = crate::game_plugins::schedule_tests::headless_client();
         assert!(crate::test_support::runs_before(
             &mut app,
-            crate::net::apply_net_updates,
+            super::super::extract::tick_script,
             sample_frame,
         ));
-        assert!(super::super::tick_runs_after(&mut app, sample_frame));
         assert!(crate::test_support::runs_before(
             &mut app,
             sample_frame,

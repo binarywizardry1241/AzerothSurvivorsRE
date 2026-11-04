@@ -32,17 +32,33 @@ key, destination packets and reload request separately.
   snapshot and returns one status string on failure, or seven values
   `ok, map, x, y, z, facing, frame` on success.
 
+## Frame order
+
+The position system builder at `0x140a3e3e0` uses vtable
+`0x146613fa0`, whose system callback reaches the frame producer at
+`0x140ad86bd`. The builder adds two `After` dependencies through
+`0x140cec3d0`. At `0x140a3e45f` it supplies tag 1 for the enum
+whose formatter `0x140dadfa0` resolves tags 0–3 as
+`Net`, `Input`, `Stream` and `Present`. At `0x140a3e4c2` it
+supplies the set whose formatter `0x1411bd660` writes `UiInput`.
+Separately, the UI schedule at `0x141194bd9..0x141194c29` adds
+`UiTick.before(WorldStage::Input)` through the `Before` builder
+`0x140cec4d0`. Thus ordinary `OnUpdate` reads the last completed
+sample, before the next position is taken after the movement step.
+The relative order of the native sampler and other post-input systems
+is outside these recovered edges.
+
 ## Source connection
 
 The FrameXML embedding installs the sample function on each in-game VM.
 `ui_script/player_position.rs` samples the real local controller in the
-UI feed after packet application. The sample stays fixed through the
-`OnUpdate` walk and the later paint callbacks. The original scheduler's
-relative ordering remains unverified. The sample uses the shared coordinate
-transform and checks the existing mover lock. The rebuild also gates its
-own opaque cover, pending map transfer and frame hold so a transition
-does not expose the old map's retained pose. The update system owns the
-frame counter, and a replacement VM starts without a sample.
+UI paint phase after the input and controller stages and before the
+embedding's paint callback. The sample stays fixed throughout the
+`OnUpdate` walk. The sample uses the shared coordinate transform and
+checks the existing mover lock. The rebuild also gates its opaque cover,
+pending map transfer and frame hold so a transition does not expose the
+old map's retained pose. The update system owns the frame counter, and
+a replacement VM starts without a sample.
 
 The bootstrap reuses the 0.139.1 Lua position helpers and wrapper, whose
 position and space sections are byte-identical in the installed 0.139.2
@@ -74,6 +90,12 @@ are in bytes.
 | Embodiment resource binding | `0x140c7391c` | 27 | `7032a7bff0ed8fc1805b083f0bcbdc45049115c129e9bc6df4c3c5afd66d2fb7` |
 | Embodiment dispatch | `0x140c7413f` | 5 | `89805300a62f535dca6b7d17b469580e0a0803fc360ed65aa06f1443e28b462c` |
 | Mover selection and reseat | `0x140c2b610` | 2345 | `f084225f2244809ff5587887ea825e17f03025e57510f415fd9ecce55ad1fce4` |
+| Position schedule dependencies | `0x140a3e43e` | 237 | `36158ca68724da9320dde4ea1005fdd33f70e77c689f865df63476d6dab55dd8` |
+| WorldStage formatter | `0x140dadfa0` | 39 | `92d17788beb0366decc3b319c13a230fc64c4761179e493fb31c99d2274c94c4` |
+| WorldStage name tables | `0x146646f38` | 48 | `d0109c83c1c5fdd2d0bee653009ae06ac6014f1b368ce7a4085481276b3fea46` |
+| UiInput formatter | `0x1411bd660` | 21 | `a059399457ce0cc8a317d437aa20b9821f6f8e31dcc27b71e436935751dba194` |
+| UiTick formatter | `0x14118c820` | 21 | `4484d33e6abacadd6add3dd8781caae2e23952ce370a21ff707b8be5261d473c` |
+| UiTick before WorldStage::Input | `0x141194bd9` | 85 | `1da33eae3a2cb9edf4e0f17b785665a69164124fafb097d4aff7d073b6da2f4f` |
 
 The corresponding Ghidra pseudocode IDs are
 `ev_928df937e930abe777d1660439b106190c5d5ea41b3d4e3bf8327ac867fd4c9f`,
