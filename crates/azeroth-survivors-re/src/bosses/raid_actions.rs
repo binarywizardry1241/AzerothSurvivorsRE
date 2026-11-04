@@ -1,4 +1,4 @@
-//! Current 0.109.0 warned cones and following knockback circles (native8/19).
+//! Warned cones, following knockback circles and rooting circles.
 //! Included beneath raid_areas so every effect shares its hazard ID/vector.
 
 use super::{ground, Area, Pending};
@@ -9,6 +9,24 @@ use crate::enemies::ai::Math;
 enum Action {
     Cone { spell: u32, range: f32, degrees: f32, windup: f32, factor: f32 },
     Knockback { spell: u32, radius: f32, factor: f32, speed: f32 },
+    Root { spell: u32, radius: f32, windup: f32, duration: f32, factor: f32 },
+}
+
+pub(crate) const SCHOL_RAID_ACTION: u32 = 19;
+const SCHOL_KNOCKBACK_WINDUP: f32 = 1.2;
+
+// 0.140.0 records 0x1473be7c8, 0x1473be800 and 0x1473be838.
+const SCHOL_ACTIONS: &[Action] = &[
+    Action::Cone { spell: 15284, range: 9.5, degrees: 90., windup: 0.96, factor: 1.5 },
+    Action::Knockback { spell: 20549, radius: 7., factor: 1.3, speed: 12. },
+    Action::Root { spell: 745, radius: 5., windup: 1.2, duration: 2., factor: 0.4 },
+];
+
+pub(in crate::bosses) fn schol_aim_windup(record: &RawBossAbility) -> Option<f32> {
+    match SCHOL_ACTIONS.get(record.words[1] as usize)? {
+        Action::Cone { windup, .. } | Action::Root { windup, .. } => Some(*windup),
+        Action::Knockback { .. } => None,
+    }
 }
 
 // Semantic10 carries an index, independently of the current native enum.
@@ -166,13 +184,23 @@ impl Pending {
 
     pub(super) fn dispatch_actions(&mut self, record: &RawBossAbility, context: CombatContext,
         port: &mut impl CombatPort, math: &impl Math) -> bool {
-        if record.words[0] != 10 { return false; }
-        match ACTIONS[record.words[1] as usize] {
+        let actions = match record.words[0] {
+            10 => ACTIONS,
+            SCHOL_RAID_ACTION => SCHOL_ACTIONS,
+            _ => return false,
+        };
+        match actions[record.words[1] as usize] {
             Action::Cone { spell, range, degrees, windup, factor } => {
                 let angle = (context.player.y-context.source.y).atan2(context.player.x-context.source.x);
-                // Dispatch prefix145957afa..b29 samples the PLAYER's primary
-                // height once; its fallback is playerZ, not the cone's groundZ.
-                let visual_z = port.primary_height([context.player.x, context.player.y])
+                // The visual samples the hero's XY. The 0.140.0 dispatcher
+                // tries the secondary floor before falling back to player Z.
+                let xy = [context.player.x, context.player.y];
+                let visual_z = port.primary_height(xy)
+                    .or_else(|| if record.words[0] == SCHOL_RAID_ACTION {
+                        port.secondary_height(xy)
+                    } else {
+                        None
+                    })
                     .unwrap_or(context.player.z);
                 port.raid_block(context.source_guid, windup);
                 port.raid_hold_facing(context.source_guid, windup + f32::from_bits(0x3e99999a), angle);
@@ -194,7 +222,11 @@ impl Pending {
                 }
             }
             Action::Knockback { spell, radius, factor, speed } => {
-                let windup = f32::from_bits(0x3fa66666);
+                let windup = if record.words[0] == SCHOL_RAID_ACTION {
+                    SCHOL_KNOCKBACK_WINDUP
+                } else {
+                    f32::from_bits(0x3fa66666)
+                };
                 port.raid_block(context.source_guid, windup);
                 port.raid_hold(context.source_guid, windup);
                 port.raid_cast(context.source_guid, spell, windup);
@@ -203,6 +235,17 @@ impl Pending {
                 row.impact_spell = spell;
                 row.follow = true;
                 row.knockback = speed;
+                self.push(row);
+            }
+            Action::Root { spell, radius, windup, duration, factor } => {
+                port.raid_block(context.source_guid, windup);
+                port.raid_cast(context.source_guid, spell, windup);
+                let mut row = Area::danger(
+                    context, ground(port, context.player), radius, windup,
+                    context.effective_damage * factor, port.heroic_rank(),
+                );
+                row.impact_spell = spell;
+                row.extra = Some(super::extra::Extra::Root { duration });
                 self.push(row);
             }
         }

@@ -287,6 +287,7 @@ impl Mechanics {
         world: &mut impl RunWorld,
     ) {
         // Defense metadata has the same lifetime as its real source actor.
+        self.expire_raid_root();
         let actors = &self.actors;
         let bosses = &self.bosses;
         let wards = &self.boss_state.wards;
@@ -322,7 +323,7 @@ impl Mechanics {
             events: &mut self.events,
             movement_counter: &mut self.movement_counter,
             incoming: &mut incoming,
-            damage_event_boundary: None, knockback: None, bomb_bursts: Vec::new(), post_actions: Vec::new(),
+            damage_event_boundary: None, knockback: None, root: None, bomb_bursts: Vec::new(), post_actions: Vec::new(),
         };
         self.boss_state.effects.resolve_due_with_rng(self.clock, elapsed, &mut port,
             &mut self.rng, &mut self.counter);
@@ -332,6 +333,7 @@ impl Mechanics {
         let post_actions = std::mem::take(&mut port.post_actions);
         let player = port.player;
         let facing = port.player_override.as_ref().map_or(facing, |(_, angle)| *angle);
+        let root = port.root;
         // Native aggregate victim damage precedes its phase-gated launch and
         // the separate delayed-visual queue. Preserve that order through the
         // adapter's deferred damage calls.
@@ -343,6 +345,9 @@ impl Mechanics {
             if let Some((angle, speed)) = knockback {
                 let event = self.player_mover.knockback(angle, speed);
                 self.events.push(RunEvent::PlayerMover(event));
+        if let Some((source, spell, duration)) = root {
+            self.apply_raid_root(source, spell, duration);
+        }
             }
         }
         self.apply_raid_bomb_hits(bomb_bursts, player, facing, world);
@@ -433,7 +438,7 @@ impl Mechanics {
             endless_enabled: self.boss_state.completion.endless_enabled, world, rules: self.rules,
             zone: self.zone, now: self.clock, player, events: &mut self.events,
             movement_counter: &mut self.movement_counter, incoming: &mut incoming,
-            damage_event_boundary: None, knockback: None, bomb_bursts: Vec::new(), post_actions: Vec::new(),
+            damage_event_boundary: None, knockback: None, root: None, bomb_bursts: Vec::new(), post_actions: Vec::new(),
         };
         for (actor_index, ability) in requests {
             use native::abilities::CombatPort;
@@ -606,6 +611,7 @@ enum RaidPostAction {
     Expose { source: u64, until: f32 },
     Heal { source: u64, fraction: f32, spell: u32 },
 }
+    root: Option<(u64, u32, f32)>,
 
 impl<W: RunWorld> native::abilities::CombatPort for BossCombat<'_, W> {
     fn heroic_rank(&self) -> u8 { self.rules.heroic_rank }
@@ -974,6 +980,10 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         else {
             return None;
         };
+    fn raid_root(&mut self, source: u64, spell: u32, duration: f32) {
+        self.damage_event_boundary.get_or_insert(self.events.len());
+        self.root = Some((source, spell, duration));
+    }
         let row = &mut self.bosses[index];
         if let Some(plan) = hit.dot_plan() {
             periodic::install_dot(

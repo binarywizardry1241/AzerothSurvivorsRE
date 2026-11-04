@@ -31,8 +31,62 @@ pub struct Signature {
 }
 
 pub fn signature(enemy_id: u32) -> Option<&'static Signature> {
-    super::signature_catalog::SIGNATURES.iter().find(|row| row.enemy_id == enemy_id)
+    super::signature_catalog::SIGNATURES.iter()
+        .chain(SCHOL_SIGNATURES)
+        .find(|row| row.enemy_id == enemy_id)
 }
+
+const fn schol_move(tag: u8, cooldown: f32, words: [u32; 6]) -> Move {
+    Move {
+        native_tag: tag,
+        cooldown,
+        ability: Some(RawBossAbility {
+            words: [words[0], words[1], words[2], words[3], words[4], words[5], cooldown.to_bits()],
+        }),
+    }
+}
+
+const SHADOW_BOLT_CIRCLE: Move = schol_move(
+    3, 6., [5, 0, 686, 3.5_f32.to_bits(), 1.4_f32.to_bits(), 1.3_f32.to_bits()],
+);
+const SCHOL_ACTION: u32 = crate::bosses::raid_areas::SCHOL_RAID_ACTION;
+
+// 0.140.0 signature headers at 0x1473bf490..0x1473bf570 select these
+// ordered move pairs with no alternative lists or health phases.
+const SCHOL_SIGNATURES: &[Signature] = &[
+    Signature {
+        enemy_id: 10488,
+        variants: &[&[
+            schol_move(8, 6., [SCHOL_ACTION, 0, 0, 0, 0, 0]),
+            schol_move(19, 10., [SCHOL_ACTION, 1, 0, 0, 0, 0]),
+        ]],
+        phases: &[],
+    },
+    Signature {
+        enemy_id: 11551,
+        variants: &[&[
+            schol_move(35, 12., [SCHOL_ACTION, 2, 0, 0, 0, 0]),
+            schol_move(3, 6., [5, 0, 6917, 5.5_f32.to_bits(), 1.25_f32.to_bits(), 1.3_f32.to_bits()]),
+        ]],
+        phases: &[],
+    },
+    Signature {
+        enemy_id: 10498,
+        variants: &[&[
+            SHADOW_BOLT_CIRCLE,
+            schol_move(6, 10., [6, 16583, 8_f32.to_bits(), 1.4_f32.to_bits(), 0, 0]),
+        ]],
+        phases: &[],
+    },
+    Signature {
+        enemy_id: 11582,
+        variants: &[&[
+            SHADOW_BOLT_CIRCLE,
+            schol_move(5, 16., [2, 3, 0, 0, 0, 0]),
+        ]],
+        phases: &[],
+    },
+];
 
 /// Draw at the native guardian constructor, before another lair can spawn.
 /// Both historical and current RNG wrappers expose the same four owning words.

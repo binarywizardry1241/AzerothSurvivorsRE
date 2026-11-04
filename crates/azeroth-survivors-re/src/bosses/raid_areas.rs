@@ -19,6 +19,8 @@ mod shapes;
 mod lines;
 #[path = "raid_actions.rs"]
 mod actions;
+pub(crate) use actions::SCHOL_RAID_ACTION;
+pub(super) use actions::schol_aim_windup;
 #[path = "raid_pools.rs"]
 mod pools;
 #[path = "raid_bombs.rs"]
@@ -196,6 +198,7 @@ impl Pending {
         let mut total = 0.0f32;
         let mut last_source = (0, 0);
         let mut knockback = None;
+        let mut root = None;
         let mut occupied = Vec::new();
         let mut enemy_bursts = Vec::new();
         let mut spawns = Vec::new();
@@ -280,6 +283,11 @@ impl Pending {
                 if row.damage_contains(player, projected) {
                     total += row.damage;
                     last_source = (row.source, row.impact_spell);
+                    if let Some(extra::Extra::Root { duration }) = &row.extra {
+                        if *duration > 0. {
+                            root = Some((row.source, row.impact_spell, *duration));
+                        }
+                    }
                     if row.knockback > 0. {
                         let angle = if !(distance < 0.5) {
                             (player.y - row.center.y).atan2(player.x - row.center.x)
@@ -345,6 +353,9 @@ impl Pending {
         if total > 0. {
             let (source, spell) = last_source;
             port.damage_player(total * port.raid_damage_multiplier(), source, spell);
+        }
+        if let Some((source, spell, duration)) = root {
+            port.raid_root(source, spell, duration);
         }
         if let Some((angle, speed)) = knockback { port.raid_knockback(angle, speed); }
         for (center,radius,damage,spell) in enemy_bursts { port.raid_bomb_damage(center,radius,damage,spell); }
@@ -426,7 +437,7 @@ impl Area {
                 }
                 Extra::Tether{active,expires,..} => { if *active { value["kind"]=json!("live"); } value["t1"]=json!(expires); }
                 Extra::Gaze{..}|Extra::Crystal{..} => value["kind"]=json!("tower"),
-                Extra::Spawn{..} => {},
+                Extra::Spawn{..}|Extra::Root{..} => {},
             }
         }
         if let Some(inner) = self.inner_radius {

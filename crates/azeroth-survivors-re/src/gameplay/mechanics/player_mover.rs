@@ -27,6 +27,9 @@ pub(super) struct PlayerMover {
     sequence: u32,
     run_speed: f32,
     ready: bool,
+    raid_root_until: f32,
+    raid_root_count: usize,
+    raid_root_reopens_at: f32,
 }
 
 impl Default for PlayerMover {
@@ -36,11 +39,30 @@ impl Default for PlayerMover {
             sequence: 1,
             run_speed: 7.0,
             ready: false,
+            raid_root_until: 0.0,
+            raid_root_count: 0,
+            raid_root_reopens_at: 0.0,
         }
     }
 }
 
 impl PlayerMover {
+    fn raid_root_scale(&mut self, now: f32) -> Option<f32> {
+        if self.raid_root_reopens_at > now {
+            return None;
+        }
+        const SCALES: [f32; 5] = [1.0, 0.8, 0.6, 0.4, 0.2];
+        let Some(&scale) = SCALES.get(self.raid_root_count) else {
+            // The sixth request starts the cooldown. Expiry alone never
+            // replenishes the five admitted applications.
+            self.raid_root_count = 0;
+            self.raid_root_reopens_at = now + 8.0;
+            return None;
+        };
+        self.raid_root_count += 1;
+        Some(scale)
+    }
+
     pub(super) fn knockback(&mut self, angle: f32, speed: f32) -> PlayerMoverEvent {
         PlayerMoverEvent::Knockback { counter: self.next(), angle, speed }
     }
@@ -142,6 +164,36 @@ impl Mechanics {
         self.events.push(RunEvent::PlayerMover(event));
     }
 
+    pub(super) fn expire_raid_root(&mut self) {
+        let until = self.player_mover.raid_root_until;
+        if until > 0.0 && self.clock >= until {
+            self.player_mover.raid_root_until = 0.0;
+            self.root_player(false);
+        }
+    }
+
+    pub(super) fn apply_raid_root(&mut self, source: u64, spell: u32, duration: f32) {
+        use azeroth_survivors_re::bosses::abilities::{CastTarget, SpellCast};
+
+        if !self.active_run_state() {
+            return;
+        }
+        let Some(scale) = self.player_mover.raid_root_scale(self.clock) else {
+            return;
+        };
+        self.events.push(RunEvent::Spell(SpellCast {
+            source_guid: source,
+            spell_id: spell,
+            target: CastTarget::Unit(self.player_guid),
+            hit_targets: vec![self.player_guid],
+        }));
+        let until = self.player_mover.raid_root_until;
+        if !(until > 0.0) {
+            self.root_player(true);
+        }
+        self.player_mover.raid_root_until = until.max(duration * scale + self.clock);
+    }
+
     /// The terminal UI may resume between regular packet-dispatch frames.
     /// Drain only mover packets before its notice; preserve all other run events.
     pub(crate) fn drain_player_mover(&mut self) -> Vec<PlayerMoverEvent> {
@@ -161,6 +213,40 @@ impl Mechanics {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn raid_root_publishes_target_then_root_and_diminishes_until_the_sixth_request() {
+        use azeroth_survivors_re::bosses::abilities::CastTarget;
+
+        let mut game = super::super::tests::class_run("warrior", 1);
+        for (index, scale) in [1.0, 0.8, 0.6, 0.4, 0.2].into_iter().enumerate() {
+            game.clock = index as f32 * 3.0 + 1.0;
+            game.expire_raid_root();
+            game.events.clear();
+            game.apply_raid_root(88, 745, 2.0);
+            assert_eq!(game.player_mover.raid_root_until, game.clock + 2.0 * scale);
+            assert!(matches!(&game.events[..], [
+                RunEvent::Spell(cast),
+                RunEvent::PlayerMover(PlayerMoverEvent::Root { apply: true, .. }),
+            ] if cast.source_guid == 88 && cast.spell_id == 745
+                && cast.target == CastTarget::Unit(game.player_guid)
+                && cast.hit_targets == [game.player_guid]));
+        }
+        game.clock = game.player_mover.raid_root_until;
+        game.events.clear();
+        game.expire_raid_root();
+        assert!(matches!(&game.events[..], [
+            RunEvent::PlayerMover(PlayerMoverEvent::Root { apply: false, .. }),
+        ]));
+        game.events.clear();
+        game.apply_raid_root(88, 745, 2.0);
+        game.clock += 7.0;
+        game.apply_raid_root(88, 745, 2.0);
+        assert!(game.events.is_empty());
+        game.clock += 1.0;
+        game.apply_raid_root(88, 745, 2.0);
+        assert_eq!(game.player_mover.raid_root_until, game.clock + 2.0);
+    }
 
     #[test]
     fn again_clears_old_aura_fields_and_unconditionally_restores_fresh_run_speed() {

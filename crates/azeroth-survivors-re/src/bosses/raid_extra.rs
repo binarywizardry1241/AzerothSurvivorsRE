@@ -46,6 +46,9 @@ pub(super) enum Extra {
         kind: u32,
         index: u32,
     },
+    Root {
+        duration: f32,
+    },
 }
 
 impl Pending {
@@ -535,6 +538,10 @@ impl Area {
         let mut expose = None;
         let mut spawn = None;
         match &mut state {
+            Extra::Root { .. } => {
+                self.extra = Some(state);
+                return None;
+            }
             Extra::Periodic {
                 expires,
                 interval,

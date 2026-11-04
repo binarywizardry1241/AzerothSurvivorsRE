@@ -193,6 +193,7 @@ pub trait CombatPort {
         self.raid_hold(source, seconds);
     }
     fn raid_knockback(&mut self, _angle: f32, _speed: f32) {}
+    fn raid_root(&mut self, _source: u64, _spell: u32, _duration: f32) {}
     /// Native23's actor+1cc deadline, distinct from player absorb/armor.
     fn raid_protect(&mut self, _source: u64, _until: f32) {}
     /// Existing shared actor slots own duplicate/full/add/remove publication.

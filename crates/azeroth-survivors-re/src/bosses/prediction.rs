@@ -121,6 +121,7 @@ pub fn windup(record: &RawBossAbility, context: CombatContext) -> Option<f32> {
         1 => Some(missile_travel_delay(w[1], context.source, context.player)),
         5 => Some(f32::from_bits(w[4])),
         9 => Some(1.0),
+        super::raid_areas::SCHOL_RAID_ACTION => super::raid_areas::schol_aim_windup(record),
         10 | 17 => {
             let action = if w[0] == 17 { ACTIONS.get(w[1] as usize) }
                 else { ACTIONS.iter().find(|row| row.ability.words[..6] == w[..6]) }?;
