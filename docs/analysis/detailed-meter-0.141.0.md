@@ -142,7 +142,8 @@ lines through the authenticated engine packet path. This keeps meter
 rates and shares on their fractional authority inputs and supplies
 world-anchor units, debuffs, timers, pets and terminal rows from actual
 game state. The native HUD keeps using its HUD JSON. The guest target
-row still depends on the host's admitted selection state.
+row now uses the [admitted guest selection](coop-command-ingress-0.141.0.md)
+through the same target formatter.
 
 The retained 0.140.0 Lua stream consumers, byte-identical in 0.141.0,
 passed the existing stub-host bootstrap checks. Rustfmt parsed the
@@ -208,6 +209,20 @@ origin indices at `+0x08/+0x10`, row ID at `+0x6c`, ordinal at
 `+0x7a/+0x7b`. Bits 0, 2 and 4 of `+0x7c` mark periodic,
 reflection and absorb, respectively.
 
+The `R` writer's packed format at `0x14771a918` emits one-based
+counter IDs. Metric 0 emits `d`, metric 1 emits `h`. The credit
+kind is `d`, `h` or `a` for damage, healing or absorb. The owner
+states `k/u/x` distinguish known, unowned and unknown for each side
+of a credit. Known owners carry their escaped IDs. School kind 0
+writes `k` and the mask, 1 writes `u`, and 2 writes `n` without
+a mask. Periodic and reflected bits use `p` and `r`. Their clear
+values are `n`. Source origins are resolved from the interned
+indices and joined with `~`. The three counter amounts serialize
+non-finite values as zero. The text writer at `0x145e19f90` escapes
+ASCII control bytes, DEL, and `% , : ; = | ~` while retaining other
+Unicode scalars. Its mask `0x2c00102000000000` covers the five
+characters up to `=`.
+
 The heal owner at `0x145f66e30` obtains the credit ordinal and
 qualifying encounter ID through `0x145e0f010`. It records the current
 recipient's row at `0x145f69415` and queues copied 0x310-byte records
@@ -225,6 +240,131 @@ packet keys cannot reconstruct those independent owner contributions.
 Ghidra actor receipt
 `ev_97ea07d429cbcf043de5ea273d60a2286eef870769b979289aa8c861ede6c85d`
 matches the original actor-constructor slice.
+
+Ghidra counter-writer result
+`ev_6723fa7e85a72aa4ea45065cb80fb1b3a1712a66d748033a64c3b39a1a1815f3`
+matches the hash-bound serializer slice. Original PE operands resolve
+the format and label bytes omitted by that slice.
+
+### Effective shared healing
+
+The direct shared heal clamps recipient HP and submits the effective
+gain with tag 2, spell and caster GUID before the 1-HP combat-log
+gate. The periodic batch submits tag 1 after distributing the
+effective gain. Each periodic input carries the caster GUID, spell
+ID and base `f32` amount. Both routes submit metric 1 with separate
+source and recipient ownership. The reducer admits finite positive
+credit. A distinct known caster in the party receives a copied
+contribution with the original ordinal, encounter ID and clock,
+in addition to the recipient's immediate entry. Lua filters received
+and performed rows by their respective owner columns. An unresolved
+distinct direct caster uses unknown ownership. The periodic actor
+lookup falls back to the recipient when the GUID is zero, self,
+or absent.
+
+The ordinary label resolves separately in the seated recipient's
+learned, racial and static spell owners at `0x145f65967..0x145f65a1c`.
+All five spells that reach the shared kind-14 dispatch have unique
+primary IDs with no pulse aliases in the current catalog. The
+reconstructed periodic path already uses the recipient resolver.
+Its aura tick and batch credit flatten the causal input to spell and
+amount. The detailed path still needs to carry the caster GUID and
+credit both owners before ordinary aggregation.
+
+| Original range | File offset | SHA-256 |
+| --- | --- | --- |
+| Direct gain and log gate `0x145f11cfa..0x145f11d6f` | `0x5f110fa` | `c096761d430bb46616d8fee0cb382d8cdcae1f0cefdc1f95fceee63735300543` |
+| Periodic credit and tag `0x145f61ed0..0x145f61f10` | `0x5f612d0` | `1f093214807b8e346161ab31c4d23369d2bf58e9a3f334c581d547170e08430d` |
+| Credit stamp and duplicate owner route `0x145f68f5b..0x145f6941b` | `0x5f6835b` | `5f21a8907db76ca4b0bdb19b45b8774387da520b3bac765781511ac12e046bb1` |
+| Distinct owner drain `0x145f09de8..0x145f0a041` | `0x5f091e8` | `1b572a1e4973e99f6433281d5cb5d92f546f754f4b881ae3c4de3896825bcd6b` |
+| Typed field escaping `0x145e19f90..0x145e1a294` | `0x5e19390` | `fe6d337c1893419a7749edb95a4d6570648debf025ebfe00070f14da84f5b50d` |
+
+## Frame header, encounter and history replay
+
+The header `F` formats the escaped run ID and `<run>.host`
+authority, epoch `e1`, run clock and seated phase, recipient
+language and `l.<language>`, the wrapping credit fence, and the
+metadata revision. That revision is lowercase hexadecimal FNV-1a
+over the ordered escaped actor/source key and record-hash entries.
+The header uses the selected hero view's actor ID. It uses `solo`
+without a party, or `active` if another view has bit 0 clear in
+its status byte, otherwise `ended`. Party ID is `party:<run>`.
+The recipient's `party` request persists across full replay and
+enables every owner view in index order while in party mode.
+Otherwise the frame includes only the selected owner. A changed
+run resets the sequence and recipient caches and keeps party opt-in.
+
+The shared fence advances on admitted credits even outside an
+encounter. The qualifying damage caller passes the boss definition
+and full target GUID. This starts an encounter or adds a distinct
+boss in admission order. The start fence precedes the first credited
+hit. Effective healing can join an active encounter without creating
+one. The death owner checks for surviving qualifying boss rows.
+When none remain it latches the clock and current fence. The header
+carries the ID, active/completed state, start and optional end clocks
+and fences, and joined `E<decimal low32 GUID>` boss IDs. The legacy
+boss timer cannot reconstruct these separate shared fields.
+
+The per-recipient history cursor starts at negative infinity for
+each owner and clears on full replay. The writer emits chronological
+`K` buckets strictly newer than the cursor, then remembers the last
+clock for the owner. Each bucket's internal zero-based counter index
+resolves to the published one-based ID. Entries use
+`id:through:at:qthrough:qat`, with non-finite totals serialized
+as zero. The header's history floor is the maximum oldest retained
+clock among selected owners whose history was truncated, or zero
+if none were truncated. The reducer marks truncation after pruning
+past 120 seconds and keeps at least one bucket.
+
+| Original range | File offset | SHA-256 |
+| --- | --- | --- |
+| Header formats `0x147af2950..0x147af29be` | `0x7af0f50` | `33f5fb8f00c5daaf6a4aed4e79b01ed7531a20184c686d9b4391b701bacd9f6e` |
+| Encounter and fence owner `0x145e0f010..0x145e0f180` | `0x5e0e410` | `6f83865149fd1719f7a5217e8d0ae010a51a9239a63f26ad659e45f29ff32ed9` |
+| Boss ID join `0x14603cb40..0x14603cd2a` | `0x603bf40` | `cb2b925583af9e708b6182339c48d0d0378387a54bfc88f7f59389eca3073856` |
+| Encounter completion `0x145f1d8ca..0x145f1d922` | `0x5f1ccca` | `88b02bc1d5e477c8f033a6a750b544513bf7a470b756977954c2e1b73402cf44` |
+| History floor `0x145fc9e7a..0x145fc9f21` | `0x5fc927a` | `b102beb7f8f6b2378c2991c84e272161f5b06af9dc73f4196c6fcd781353719b` |
+| Knot writer `0x145e1ece0..0x145e1ef06` | `0x5e1e0e0` | `daa52cb293daba6ea41803374aa79ae42e81e60d2a4ab47737cf959e56cfd15a` |
+| Knot entries `0x146062710..0x146062b6d` | `0x6061b10` | `334dd556fec8aa3d9f8bc9fcfbc4459b68c620c02f765fb326a076be44a14e36` |
+
+## Actor and source metadata
+
+The source writer `0x145e1a630` uses the packed `S` record
+at `0x14771a7e3`. It emits the source key, kind, attribution,
+localized label and locale, icon status and value, spell ID and
+the optional localization, ability, talent, item, variant and
+rank fields. The source record leaves the two relation columns
+empty. Per-credit origins are carried by the `R` writer. An
+empty icon lookup uses `not_applicable` for the `system` and
+`generic` kinds, and `not_available` for other kinds. A
+successful lookup at `0x145e0a6b0` adds the `Interface\Icons\`
+prefix to bare names and retains paths that already contain a
+backslash.
+
+The actor writer `0x145e1f000` uses the packed `A` record at
+`0x14771aa06`. The actor and owner columns come from the
+retained actor descriptor. The writer separately maps portrait
+metadata by kind. Its hero branch at `0x145e1f94e` uses race
+and sex to build the `pt:hero:` key and character portrait
+path. Creature branches use the portrait path stem and append
+`-Pet` or `-Monster`. The temporary-character portrait
+and unavailable cases use separate branches. The constructors
+must preserve which actor and portrait inputs were captured
+before a summon or party member disappeared.
+
+| Original range | File offset | SHA-256 |
+| --- | --- | --- |
+| Source writer `0x145e1a630..0x145e1aff8` | `0x5e19a30` | `03a127513dd7cec708932f6386c582f3fe0ffeb0d5e6b6160623a302a124fac1` |
+| Source icon `0x145e0a6b0..0x145e0a7c8` | `0x5e09ab0` | `30ed7d30f273467e46c48c642fdcda73808fe45c52e3d3d4c99047a74ec1f3ad` |
+| Actor writer `0x145e1f000..0x145e1fb96` | `0x5e1e400` | `4bed32487b14158745ba578fec3e43e972679dbafbcf5d7ad9d293aa5c8317de` |
+
+Ghidra results
+`ev_7e2dd6c88892e6aafd3ea6ddb12e57d5143b982691c259fd1634d269d3811348`
+and
+`ev_625262dd6a2e25d43943afec6aebf8a9f7a65e7cab0ef347df77b34669323c5c`
+match those exact writer slices and their result journals. Original
+PE operands supply the external format bytes and actor jump targets.
+The raw imports alone do not establish actor retention or every
+source constructor's input.
 
 ## Loadout records and refresh
 
@@ -255,7 +395,18 @@ was recovered from the exported evidence after the response exceeded the
 tool's inline budget; its raw result equals the saved Program operation.
 Original PE operands bind the record formats and external calls.
 
-The rebuilt authority still needs the actual per-owner typed contributions,
-retained actor transitions, encounter and history inputs, and loadout
-descriptor joins before publishing this feed. A frame derived solely from
-the rebuilt legacy meter would misrepresent those queries.
+The rebuilt authority still needs typed credit at the effective hit and
+heal owners. The existing hit attribution projects one packet key, so
+the detailed path must also retain source origins, including Windfury's
+child ability, and split Heroism into its separately keyed allocation.
+Periodic healing needs its original caster GUID through the capped batch.
+The shared run encounter and fence must survive hero seating independently
+of each owner's counters and retained actor metadata. The replay writer
+then needs the live equipment, ability, talent and jewelry descriptor
+joins and the actor's retained portrait inputs. These values are lost
+when accounting is reduced to legacy display totals.
+
+The retained receiver with the source's admission and capability guards
+passed the Lua bootstrap suite for multipart assembly, typed queries,
+request replay and world reset using a stub host. Rebuilt-authority
+execution and original-client comparison remain unverified.

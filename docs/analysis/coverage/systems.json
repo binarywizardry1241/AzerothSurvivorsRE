@@ -66297,7 +66297,7 @@
         "summary": "No controlled original/rebuilt comparison."
       },
       "remaining_source_work": [
-        "Connect the native typed frame producer, counters, partitioner and replay admission under #75. The shipped Lua receiver is connected."
+        "Connect the authoritative typed frame and per-recipient replay under #75 using the recovered header, metadata, history cursor, partitioner and request flags. Ordinary recipient lines and the shipped Lua receiver are connected."
       ],
       "native_evidence_validity": "current_exact_diagnostic_path",
       "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
@@ -66435,7 +66435,7 @@
         "summary": "No controlled original/rebuilt comparison."
       },
       "remaining_source_work": [
-        "Connect the native typed actor, damage/healing counters and history under #75. Legacy totals and ordinary attribution are separate source paths."
+        "Connect typed credit at the effective hit and heal owners under #75. Preserve periodic caster GUID, actor/source metadata, encounter fences and independent owner counters before ordinary aggregation."
       ],
       "native_evidence_validity": "current_exact_diagnostic_path",
       "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
@@ -77050,8 +77050,8 @@
         "custom-game-server-party"
       ],
       "bounded_contract_owner_scopes": {
-        "custom-game-game-meterfeed": "Typed frame builder, bounded multipart producer and replay/whisper path. The rebuilt Lua receiver is connected.",
-        "custom-game-game-meterlog": "Typed native reducer, one-based actor ID and run, encounter and retained counter scopes. Typed source publication remains open.",
+        "custom-game-game-meterfeed": "Typed header, actor/source record writers, history replay cursor, multipart producer and whisper path. The rebuilt Lua receiver is connected.",
+        "custom-game-game-meterlog": "Typed reducer and one-based counter IDs, shared healing owner copies, and run, encounter and history scopes. Typed source publication remains open.",
         "custom-game-server-party": "Recipient request, per-peer frame staging and authoritative ordinary addon snapshots from the seated hero."
       }
     },
