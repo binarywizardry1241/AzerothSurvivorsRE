@@ -651,7 +651,14 @@ fn hero(
                     2.,
                     12.,
                 ),
-                ImageNode::new(preview.image.clone()),
+                ImageNode {
+                    color: if matches!(state.dialog, Some(crate::menu_state::Dialog::CoopInspect(_))) {
+                        Color::NONE
+                    } else {
+                        Color::WHITE
+                    },
+                    ..ImageNode::new(preview.image.clone())
+                },
                 BackgroundColor(Color::BLACK),
                 BorderColor::all(EDGE),
                 PreviewInteraction,

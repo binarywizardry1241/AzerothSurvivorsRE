@@ -137,7 +137,7 @@ pub(crate) fn set_name(catalog: &MenuCatalog, class: u8, tier: usize) -> String 
 pub(crate) fn set_four_bonus(labels: &MenuCatalog, class: u8, tier: u8) -> String {
     if tier == azeroth_survivors_re::sets::TIER_HALF {
         return azeroth_survivors_re::sets::tier_half_four_piece(class)
-            .map_or_else(String::new, |bonus| labels.label(&bonus.description));
+            .map_or_else(String::new, |bonus| labels.label(&bonus.description).to_owned());
     }
     azeroth_survivors_re::sets::four_piece_effects(tier).iter()
         .map(|&(tag, value)| localized_bonus(labels, u32::from(tag), value))
@@ -1528,7 +1528,7 @@ pub fn build_header_row(
     });
 }
 /// Native03b3f0: auto dimensions,14×6 padding,1px border and5px radius.
-fn header_button<A: Component>(
+pub(crate) fn header_button<A: Component>(
     ui: &mut ChildSpawnerCommands,
     art: &MenuArt,
     text: &str,
@@ -1614,6 +1614,15 @@ pub fn equipment_summary(
     menu_catalog: &MenuCatalog,
 ) -> Option<String> {
     let gear = GearSave::read(save);
+    equipment_summary_for(&gear, class, catalog, menu_catalog)
+}
+
+pub(crate) fn equipment_summary_for(
+    gear: &GearSave,
+    class: u8,
+    catalog: &ArmoryCatalog,
+    menu_catalog: &MenuCatalog,
+) -> Option<String> {
     let mut sum = BTreeMap::<u32, f32>::new();
     for (tag, value) in gear.effects(catalog, class) {
         *sum.entry(u32::from(tag)).or_default() += value;
@@ -1935,7 +1944,7 @@ fn left(
         }
     });
 }
-fn image_control<A: Component>(
+pub(crate) fn image_control<A: Bundle>(
     ui: &mut ChildSpawnerCommands,
     art: &MenuArt,
     key: &str,
@@ -2215,7 +2224,7 @@ pub(super) struct SetTip {
 /// Current1401a3810 filters the captured nineteen equipped IDs and their
 /// parallel stars by tier and compact armor slot. Ownership is not this
 /// iterator's input; the outfit getter has already admitted the worn IDs.
-fn worn_set_progress(catalog: &ArmoryCatalog, gear: &GearSave, class: u8, tier: usize)
+pub(crate) fn worn_set_progress(catalog: &ArmoryCatalog, gear: &GearSave, class: u8, tier: usize)
     -> (usize, usize, bool)
 {
     let ranks = (0..19).filter_map(|slot| gear.equipped.get(&(class, slot)))

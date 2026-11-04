@@ -711,7 +711,7 @@ fn reset_available(owned: &Progress) -> bool {
 }
 
 #[derive(Resource, Default)]
-struct Art {
+pub(crate) struct Art {
     icons: BTreeMap<String, Handle<Image>>,
     dragon: Handle<Image>,
     glow_star: Handle<Image>,
@@ -1186,6 +1186,42 @@ fn earned_date(seconds: u64, labels: &MenuCatalog) -> String {
         ],
     )
 }
+
+pub(crate) fn draw_inspection_achievements(
+    ui: &mut ChildSpawnerCommands,
+    art: &MenuArt,
+    images: &Art,
+    labels: &MenuCatalog,
+    earned: &[(u16, u32)],
+) {
+    static CATALOG: std::sync::OnceLock<Catalog> = std::sync::OnceLock::new();
+    let catalog = CATALOG.get_or_init(Catalog::embedded);
+    let keys = crate::coop_profile::achievement_keys();
+    let mut account = Progress::default();
+    for &(id, timestamp) in earned {
+        if let Some(key) = keys.get(usize::from(id)) {
+            account.earned.insert(key.clone());
+            if timestamp != 0 {
+                account.dates.entry(key.clone()).or_insert(u64::from(timestamp));
+            }
+        }
+    }
+    crate::scrollbar::kept_list(ui, "coop-inspect-achievements", 10., |list| {
+        for (category, key) in CATEGORIES.into_iter().enumerate() {
+            let entries: Vec<_> = catalog.achievements.iter()
+                .filter(|entry| entry.category == category && account.earned.contains(&entry.key))
+                .collect();
+            if !entries.is_empty() {
+                crate::codex::section_heading(list, art, labels.label(key));
+                list.spawn(grid()).with_children(|group| {
+                    for entry in entries {
+                        achievement_card(group, art, images, labels, entry, &account, None, None);
+                    }
+                });
+            }
+        }
+    });
+}
 fn bar_flow(ui: &mut ChildSpawnerCommands, images: &Art, height: f32, fraction: f32) {
     let fraction = fraction.clamp(0., 1.);
     ui.spawn((
@@ -1254,7 +1290,7 @@ fn achievement_card(
     entry: &Achievement,
     account: &Progress,
     partial: Option<(u64, u64)>,
-    save: &Save,
+    save: Option<&Save>,
 ) {
     let earned = account.earned.contains(&entry.key);
     let partial = partial.filter(|(_, total)| !earned && *total >= 2);
@@ -1404,7 +1440,7 @@ fn achievement_card(
                         MUTED,
                     );
                 });
-                if entry.key == "heroic:all3" {
+                if entry.key == "heroic:all3" && let Some(save) = save {
                     let zones = achievement_inputs(save).missing_heroic_zones(3)
                         .map(|zone| labels.label(&format!("zone.{}.name", zone.key)).to_owned())
                         .collect::<Vec<_>>();
@@ -1715,7 +1751,7 @@ fn draw_achievements(
                                             entry,
                                             account,
                                             progress(entry, account, save, gear, armory),
-                                            save,
+                                            Some(save),
                                         );
                                     }
                                 });
@@ -1771,7 +1807,7 @@ fn draw_achievements(
                 } else {
                     right.spawn(grid()).with_children(|ui| {
                         for entry in recent.iter().take(4) {
-                            achievement_card(ui, art, images, labels, entry, account, None, save);
+                            achievement_card(ui, art, images, labels, entry, account, None, Some(save));
                         }
                     });
                 }
@@ -1869,7 +1905,7 @@ fn draw_achievements(
                     small_heading(right, art, labels.label("ALMOST THERE"));
                     right.spawn(grid()).with_children(|ui| {
                         for (entry, value) in partial.iter().take(4) {
-                            achievement_card(ui, art, images, labels, entry, account, Some(*value), save);
+                            achievement_card(ui, art, images, labels, entry, account, Some(*value), Some(save));
                         }
                     });
                 }

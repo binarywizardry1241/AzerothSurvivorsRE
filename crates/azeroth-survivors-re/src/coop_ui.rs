@@ -27,6 +27,8 @@ mod chat;
 mod staff;
 #[path = "coop_ready_ui.rs"]
 mod ready;
+#[path = "coop_inspect.rs"]
+mod inspect;
 
 #[derive(Clone, Copy, Default, PartialEq, Eq)]
 pub(crate) enum Tab {
@@ -51,6 +53,7 @@ enum Click {
     Submit,
     Send,
     Kick(u64),
+    Inspect(u64),
     Lobby(usize),
     Leave,
     Refresh,
@@ -101,6 +104,7 @@ pub(crate) struct HeroRow {
     pub host: bool,
     pub me: bool,
     pub staff_title: String,
+    pub inspection: Option<azeroth_survivors_re::coop::server_party::NativeInspection>,
 }
 #[derive(Clone, PartialEq, Eq)]
 pub(crate) struct LobbyView {
@@ -162,6 +166,15 @@ impl Default for CoopUi {
     }
 }
 impl CoopUi {
+    pub(crate) fn inspection_target(&self, identity: u64) -> Option<&HeroRow> {
+        if identity == 0 || !self.party_active() {
+            return None;
+        }
+        self.lobby.as_ref()?.heroes.iter().find(|hero| {
+            hero.hero_identity == identity && hero.inspection.is_some()
+        })
+    }
+
     /// Current1402df1f0 updates the picker badge independently of modal entities.
     fn badge_caption(&self, locale: &Localization) -> String {
         if self.role.is_empty() { return label(locale, "Play with friends"); }
@@ -405,13 +418,15 @@ pub(crate) fn roster_capacity(raw: u8) -> usize {
 pub(crate) struct CoopUiPlugin;
 impl Plugin for CoopUiPlugin {
     fn build(&self, app: &mut App) {
-        app.init_resource::<CoopUi>().add_systems(
+        app.init_resource::<CoopUi>().init_resource::<inspect::View>().add_systems(
             Update,
             (
                 input.run_if(crate::update_ui::menu_input_enabled),
+                inspect::input.run_if(crate::update_ui::menu_input_enabled),
                 localize_picker,
                 rebuild,
                 ready::rebuild,
+                inspect::rebuild,
                 chat::synchronize,
                 staff::animate,
             )
@@ -700,7 +715,7 @@ fn input(
     time: Res<Time>,
     mut runtime: ResMut<crate::coop_runtime::CoopRuntime>,
 ) {
-    let chat_open = !state.in_run && matches!(state.dialog, Some(Dialog::Coop))
+    let chat_open = !state.in_run && matches!(state.dialog, Some(Dialog::Coop | Dialog::CoopInspect(_)))
         && view.party_active();
     view.bypass_change_detection().chat.set_open(chat_open);
     if state.in_run || state.entering || options.open {
@@ -722,6 +737,10 @@ fn input(
                 }
             }
         }
+        keyboard.clear();
+        return;
+    }
+    if matches!(state.dialog, Some(Dialog::CoopInspect(_))) {
         keyboard.clear();
         return;
     }
@@ -770,6 +789,11 @@ fn input(
             Click::Kick(hero_identity) if matches!(state.dialog, Some(Dialog::Coop)) => {
                 view.kick_member(*hero_identity);
             }
+            Click::Inspect(identity) if matches!(state.dialog, Some(Dialog::Coop))
+                && view.inspection_target(*identity).is_some() => {
+                state.dialog = Some(Dialog::CoopInspect(*identity));
+                state.dirty = true;
+            }
             Click::Lobby(index) if matches!(state.dialog, Some(Dialog::Coop)) => {
                 view.select_lobby(*index)
             }
@@ -786,7 +810,7 @@ fn input(
         }
     }
     let party = view.party_active();
-    let open = !state.in_run && matches!(state.dialog, Some(Dialog::Coop)) && party;
+    let open = !state.in_run && matches!(state.dialog, Some(Dialog::Coop | Dialog::CoopInspect(_))) && party;
     view.bypass_change_detection().chat.set_open(open);
     let field = if party { Field::Chat } else { view.forms.focus };
     if !matches!(state.dialog, Some(Dialog::Coop)) || field == Field::None {
@@ -818,7 +842,7 @@ fn rebuild(
     panes: Query<Entity, With<chat::Pane>>,
     mut previous_pick: Local<Option<(u8, String, usize, u8, u8)>>,
 ) {
-    let open = !state.in_run && matches!(state.dialog, Some(Dialog::Coop));
+    let open = !state.in_run && matches!(state.dialog, Some(Dialog::Coop | Dialog::CoopInspect(_)));
     if !open {
         *previous_pick = None;
         for root in &roots {
@@ -904,7 +928,7 @@ fn rebuild(
                         Some(_) => EDGE,
                         None => Color::srgb(0.169, 0.129, 0.071),
                     };
-                    ui.spawn((
+                    let mut row = ui.spawn((
                         Node {
                             height: Val::Px(54.),
                             flex_shrink: 0.,
@@ -917,8 +941,11 @@ fn rebuild(
                         },
                         BorderColor::all(border),
                         BackgroundColor(if hero.is_some() { Color::srgba(0., 0., 0., 0.32) } else { Color::NONE }),
-                    ))
-                    .with_children(|ui| {
+                    ));
+                    if let Some(hero) = hero.filter(|hero| hero.hero_identity != 0 && hero.inspection.is_some()) {
+                        row.insert((Button, Click::Inspect(hero.hero_identity)));
+                    }
+                    row.with_children(|ui| {
                         if let Some(hero) = lobby.heroes.get(index) {
                             if let Some(icon) = art.icons.get(azeroth_survivors_re::coop::game_party::class_key(hero.class_id)) {
                                 ui.spawn((ImageNode::new(icon.clone()), Node { width: Val::Px(38.),
@@ -961,6 +988,9 @@ fn rebuild(
                                 text(ui, &art, caption, 13., color);
                             }
                             if !hero.country.is_empty() { text(ui, &art, &hero.country, 13., MUTED); }
+                            if hero.hero_identity != 0 && hero.inspection.is_some() {
+                                text(ui, &art, label(&locale, "Inspect ›"), 12., GOLD);
+                            }
                             if view.role == "host" && !hero.host {
                                 control_sized(ui, &art, label(&locale, "Kick"),
                                     Click::Kick(hero.hero_identity), false, false, false, 13.);

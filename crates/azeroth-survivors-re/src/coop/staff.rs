@@ -75,7 +75,7 @@ mod tests {
         profile.bytes_48 = signing.sign(&message(&profile)).to_bytes().to_vec();
         (NativeRosterEntry { hero_identity: 42, name: profile.bytes_18.clone(),
             class: 8, race: 1, profile: Some(profile), achievement_points: 0,
-            eligible: true, ping_ms: None, country: Vec::new() }, signing.verifying_key())
+            eligible: true, ping_ms: None, country: Vec::new(), inspection: None }, signing.verifying_key())
     }
 
     #[test]

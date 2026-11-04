@@ -430,6 +430,13 @@ fn action_button(
     });
 }
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub(crate) enum TreeMode {
+    Edit,
+    Run,
+    Inspect,
+}
+
 pub(crate) fn draw_tree(
     ui: &mut ChildSpawnerCommands,
     art: &MenuArt,
@@ -440,9 +447,10 @@ pub(crate) fn draw_tree(
     allocation: &Allocation,
     earned: u32,
     selected: Option<&str>,
-    read_only: bool,
+    mode: TreeMode,
     white_enabled: Option<bool>,
 ) {
+    let read_only = mode != TreeMode::Edit;
     // Current14010a2f0: content-sized cards stretch in the shared Armory body row.
     menu::native_panel(
         ui,
@@ -622,6 +630,19 @@ pub(crate) fn draw_tree(
                     } else {
                         cell.insert(Action::Learn(talent.key.clone()));
                     }
+                    if mode == TreeMode::Inspect {
+                        cell.insert((
+                            crate::tooltip::InspectionTooltip,
+                            crate::tooltip::NativeTooltip {
+                                title: catalog.label(&talent.name).to_owned(),
+                                subtitle: translated(catalog, "Rank {rank}/{ranks}", &[
+                                    ("rank", value.to_string()),
+                                    ("ranks", talent.max_rank.to_string()),
+                                ]),
+                                body: talent.description(value, catalog),
+                            },
+                        ));
+                    }
                     cell.with_children(|cell| {
                         cell.spawn((
                             // Current14026b440: intrinsic badge, anchored outside
@@ -657,7 +678,7 @@ pub(crate) fn draw_tree(
                 }
                 if let Some(enabled) = white_enabled {
                     draw_white_devilsaur_cell(grid, art, images, catalog, allocation, selected,
-                        enabled, read_only);
+                        enabled, mode);
                 }
             });
             // Current tree footer140107820: rows grow for wrapped translated labels.
@@ -735,6 +756,8 @@ pub(crate) fn draw_tree(
     );
 }
 
+const DEVILSAUR_DESCRIPTION: &str = "The wolf Tame Beast brings and the raptor Bestial Wrath adds each take the look of a White Devilsaur: two bodies, biting exactly as the wolf and the raptor do. Only the look changes. Tame Beast and Bestial Wrath still need their points.";
+
 fn draw_white_devilsaur_cell(
     grid: &mut ChildSpawnerCommands,
     art: &MenuArt,
@@ -743,7 +766,7 @@ fn draw_white_devilsaur_cell(
     allocation: &Allocation,
     selected: Option<&str>,
     enabled: bool,
-    read_only: bool,
+    mode: TreeMode,
 ) {
     let on = white_devilsaur(allocation);
     let chosen = selected == Some(WHITE_DEVILSAUR);
@@ -771,10 +794,20 @@ fn draw_white_devilsaur_cell(
         image.color = Color::srgb(brightness, brightness, brightness);
         cell.insert(image);
     }
-    if read_only {
+    if mode != TreeMode::Edit {
         cell.insert(ReadOnlyCell);
     } else if enabled {
         cell.insert(Action::WhiteDevilsaur);
+    }
+    if mode == TreeMode::Inspect {
+        cell.insert((
+            crate::tooltip::InspectionTooltip,
+            crate::tooltip::NativeTooltip {
+                title: catalog.label("White Devilsaur").to_owned(),
+                subtitle: catalog.label(if on { "On · no talent point" } else { "Off · no talent point" }).to_owned(),
+                body: catalog.label(DEVILSAUR_DESCRIPTION).to_owned(),
+            },
+        ));
     }
     cell.with_children(|cell| {
         cell.spawn((
@@ -826,7 +859,7 @@ fn draw_white_devilsaur_details(
             &[("name", catalog.label("Jurassic Pack").into())]), 13.,
             Color::srgb(1., 0.353, 0.235));
     }
-    text(body, art, catalog.label("The wolf Tame Beast brings and the raptor Bestial Wrath adds each take the look of a White Devilsaur: two bodies, biting exactly as the wolf and the raptor do. Only the look changes. Tame Beast and Bestial Wrath still need their points."), 14., PAPER);
+    text(body, art, catalog.label(DEVILSAUR_DESCRIPTION), 14., PAPER);
     if !read_only {
         action_button(body, art, catalog.label(if on { "Turn off" } else { "Turn on" }),
             Action::WhiteDevilsaur, enabled);
@@ -1336,7 +1369,7 @@ fn rebuild(
                                     &allocation,
                                     earned,
                                     view.selected.as_deref(),
-                                    false,
+                                    TreeMode::Edit,
                                     (class.id == 3 && index == 0).then(|| menu.save
                                         .earned_achievements().contains(WHITE_DEVILSAUR_ACHIEVEMENT)),
                                 );

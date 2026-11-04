@@ -385,6 +385,7 @@ fn poll(
                         eligible: row.eligible,
                         ping_ms: row.ping_ms,
                         country: String::from_utf8_lossy(&row.country).into_owned(),
+                        inspection: row.inspection.clone(),
                         host: index == 0,
                         me: chat_identity == Some(row.hero_identity),
                         staff_title: azeroth_survivors_re::coop::staff::title(

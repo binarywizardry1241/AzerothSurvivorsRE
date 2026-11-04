@@ -65619,6 +65619,21 @@
     },
     {
       "id": "custom-app-screens-inspect",
+      "inspection_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 299,
+        "report_ref": "docs/analysis/coop-inspection-0.141.0.md",
+        "source_status": "bounded_roster_and_read_only_screen_connected",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/coop/server_party.rs",
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "crates/azeroth-survivors-re/src/coop_ui.rs",
+          "crates/azeroth-survivors-re/src/coop_inspect.rs"
+        ],
+        "scope": "Wire 17 inspection fields, live subject refresh and read-only equipment, talent and achievement consumers. Exact remaining presentation is owned by #299.",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "title": "screens/inspect.rs",
       "original_path": "crates/wenilla-rogue-app/src/screens/inspect.rs",
       "native_path_evidence": [

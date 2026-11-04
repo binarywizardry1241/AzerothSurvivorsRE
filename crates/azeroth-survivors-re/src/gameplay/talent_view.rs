@@ -269,7 +269,7 @@ fn rebuild(
                                     &session.talent_allocation,
                                     earned,
                                     session.talent_view_selected.as_deref(),
-                                    true,
+                                    talents::TreeMode::Run,
                                     (class.id == 3 && index == 0).then(|| menu.backend_save
                                         .earned_achievements().contains(crate::save::talents::WHITE_DEVILSAUR_ACHIEVEMENT)),
                                 );

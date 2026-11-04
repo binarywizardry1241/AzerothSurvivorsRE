@@ -1109,6 +1109,16 @@ fn roster_row(hero: &NativeHero, eligible: bool) -> NativeRosterEntry {
         eligible,
         ping_ms: None,
         country: Vec::new(),
+        inspection: Some(azeroth_survivors_re::coop::server_party::NativeInspection {
+            sex: hero.sex,
+            features: hero.features,
+            equipped: hero.words_188,
+            looks: hero.optional_words_b8,
+            stars: hero.equipment_stars,
+            weapon_glow: hero.weapon_glow,
+            talents: String::from_utf8_lossy(&hero.bytes_18).into_owned(),
+            achievements: hero.achievements.clone(),
+        }),
     }
 }
 

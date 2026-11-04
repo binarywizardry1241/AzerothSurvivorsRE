@@ -13,6 +13,8 @@ pub struct NativeTooltip {
     pub subtitle: String,
     pub body: String,
 }
+#[derive(Component)]
+pub(crate) struct InspectionTooltip;
 pub struct NativeTooltipPlugin;
 impl Plugin for NativeTooltipPlugin {
     fn build(&self, app: &mut App) {
@@ -70,7 +72,9 @@ fn rebuild(
     menu_state: Res<MenuState>,
     options: Res<OptionsState>,
     windows: Query<&Window, With<PrimaryWindow>>,
-    sources: Query<(Entity, &Interaction, &NativeTooltip)>,
+    sources: Query<(Entity, &Interaction, &NativeTooltip, Option<&InspectionTooltip>)>,
+    coop: Option<Res<crate::coop_ui::CoopUi>>,
+    time: Res<Time>,
     mut roots: Query<(Entity, &mut Node), With<Root>>,
     mut previous: Local<Option<(Entity, NativeTooltip)>>,
 ) {
@@ -78,13 +82,18 @@ fn rebuild(
         return;
     };
     let cursor = window.cursor_position();
-    let active = if options.open || menu_state.dialog.is_some() || cursor.is_none() {
+    let inspection = matches!(menu_state.dialog, Some(crate::menu_state::Dialog::CoopInspect(_)));
+    let active = if options.open || cursor.is_none()
+        || (menu_state.dialog.is_some() && !inspection)
+        || (inspection && coop.is_some_and(|view| view.ready_modal_visible(time.elapsed_secs())))
+    {
         None
     } else {
         sources
             .iter()
-            .find(|(_, interaction, _)| **interaction != Interaction::None)
-            .map(|(entity, _, text)| (entity, text.clone()))
+            .find(|(_, interaction, _, inspect)| inspect.is_some() == inspection
+                && **interaction != Interaction::None)
+            .map(|(entity, _, text, _)| (entity, text.clone()))
     };
     if active == *previous && !art.is_changed() {
         if let Some(cursor) = cursor {
@@ -106,7 +115,7 @@ fn rebuild(
         return;
     };
     let node = frame(cursor, Vec2::new(window.width(), window.height()));
-    let root = spawn_frame(&mut commands, node, 5100);
+    let root = spawn_frame(&mut commands, node, if inspection { 6090 } else { 5100 });
     commands.entity(root).insert(Root)
         .with_children(|ui| {
             for (value, size, color) in [

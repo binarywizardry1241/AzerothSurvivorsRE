@@ -16,7 +16,7 @@ use azeroth_survivors_re::{
 };
 use std::sync::OnceLock;
 
-fn achievement_keys() -> &'static [String] {
+pub(crate) fn achievement_keys() -> &'static [String] {
     #[derive(serde::Deserialize)]
     struct Catalog {
         keys: Vec<String>,

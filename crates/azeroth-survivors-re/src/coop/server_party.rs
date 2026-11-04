@@ -130,7 +130,20 @@ pub struct NativeRosterProfile {
     pub bytes_48: Vec<u8>,
 }
 
-/// Current0.127 producer has0xb8-byte roster rows, independently of UI DTOs.
+/// Read-only hero display data in the 0.141.0 tag17 appendix.
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct NativeInspection {
+    pub sex: u8,
+    pub features: [u8; 5],
+    pub equipped: [u32; 19],
+    pub looks: [Option<u32>; 19],
+    pub stars: [u8; 19],
+    pub weapon_glow: u32,
+    pub talents: String,
+    pub achievements: Vec<(u16, u32)>,
+}
+
+/// The 0.141.0 producer uses 0x1f0-byte roster rows, independently of UI DTOs.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct NativeRosterEntry {
     pub hero_identity: u64,
@@ -145,6 +158,7 @@ pub struct NativeRosterEntry {
     pub ping_ms: Option<u16>,
     /// Country strings form an optional parallel suffix after zone/rank.
     pub country: Vec<u8>,
+    pub inspection: Option<NativeInspection>,
 }
 
 /// Current tag17 snapshot includes the host selection after its ordered rows.
@@ -309,6 +323,15 @@ pub fn encode_lifecycle(packet: &LifecyclePacket) -> Result<Vec<u8>, PacketError
         }
         Ok(())
     }
+    fn achievements(out: &mut Vec<u8>, rows: &[(u16, u32)]) -> Result<(), PacketError> {
+        let count = u32::try_from(rows.len()).map_err(|_| PacketError::LengthOverflow)?;
+        out.extend_from_slice(&count.to_le_bytes());
+        for &(id, earned_at) in rows {
+            out.extend_from_slice(&id.to_le_bytes());
+            out.extend_from_slice(&earned_at.to_le_bytes());
+        }
+        Ok(())
+    }
     let mut out = Vec::new();
     match packet {
         LifecyclePacket::Join(request) => {
@@ -394,13 +417,7 @@ pub fn encode_lifecycle(packet: &LifecyclePacket) -> Result<Vec<u8>, PacketError
             out.extend_from_slice(&hero.achievement_points.to_le_bytes());
             out.push(hero.byte_1e3);
             bytes(&mut out, &hero.bytes_30)?;
-            let count = u32::try_from(hero.achievements.len())
-                .map_err(|_| PacketError::LengthOverflow)?;
-            out.extend_from_slice(&count.to_le_bytes());
-            for &(id, earned_at) in &hero.achievements {
-                out.extend_from_slice(&id.to_le_bytes());
-                out.extend_from_slice(&earned_at.to_le_bytes());
-            }
+            achievements(&mut out, &hero.achievements)?;
         }
         LifecyclePacket::Roster(roster) => {
             let entries = &roster.entries;
@@ -419,6 +436,23 @@ pub fn encode_lifecycle(packet: &LifecyclePacket) -> Result<Vec<u8>, PacketError
             bytes(&mut out, roster.zone.as_bytes())?;
             out.push(roster.heroic_rank);
             for entry in entries { bytes(&mut out, &entry.country)?; }
+            for entry in entries {
+                out.push(u8::from(entry.inspection.is_some()));
+                if let Some(inspection) = &entry.inspection {
+                    out.push(inspection.sex);
+                    out.extend_from_slice(&inspection.features);
+                    for id in inspection.equipped {
+                        out.extend_from_slice(&id.to_le_bytes());
+                    }
+                    for id in inspection.looks {
+                        out.extend_from_slice(&id.unwrap_or(u32::MAX).to_le_bytes());
+                    }
+                    out.extend_from_slice(&inspection.stars);
+                    out.extend_from_slice(&inspection.weapon_glow.to_le_bytes());
+                    bytes(&mut out, inspection.talents.as_bytes())?;
+                    achievements(&mut out, &inspection.achievements)?;
+                }
+            }
         }
     }
     Ok(out)
@@ -459,6 +493,40 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
             let length = self.u32()? as usize;
             Ok(self.take(length)?.to_vec())
         }
+        fn achievements(&mut self) -> Result<Vec<(u16, u32)>, PacketError> {
+            let count = self.u32()? as usize;
+            if count > self.bytes.len().saturating_sub(self.cursor) / 6 {
+                return Err(PacketError::Truncated);
+            }
+            (0..count).map(|_| Ok((self.u16()?, self.u32()?))).collect()
+        }
+        fn inspection(&mut self) -> Result<Option<NativeInspection>, PacketError> {
+            if self.u8()? == 0 {
+                return Ok(None);
+            }
+            let sex = u8::from(self.u8()? != 0);
+            let features = self.take(5)?.try_into().expect("five appearance bytes");
+            let mut equipped = [0; 19];
+            for id in &mut equipped {
+                *id = self.u32()?;
+            }
+            let mut looks = [None; 19];
+            for id in &mut looks {
+                let value = self.u32()?;
+                *id = (value != u32::MAX).then_some(value);
+            }
+            let stars: [u8; 19] = self.take(19)?.try_into().expect("nineteen star bytes");
+            Ok(Some(NativeInspection {
+                sex,
+                features,
+                equipped,
+                looks,
+                stars: stars.map(|rank| rank.min(5)),
+                weapon_glow: self.u32()?,
+                talents: String::from_utf8_lossy(&self.bytes()?).into_owned(),
+                achievements: self.achievements()?,
+            }))
+        }
     }
     let mut reader = Reader { bytes: input, cursor: 0 };
     let packet = match reader.u8()? {
@@ -496,7 +564,7 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
             for _ in 0..count { owned_tier05.push(reader.u32()?); }
             let heroic_unlocks = reader.bytes()?;
             let weapon_glow = reader.u32()?;
-            let mut hero = NativeHero {
+            let hero = NativeHero {
                 guid, name, class, race, sex, features, words_188, optional_words_b8,
                 equipment_stars, pity, owned_tier05, heroic_unlocks, weapon_glow,
                 bytes_18: reader.bytes()?, words_170: [reader.u32()?, reader.u32()?],
@@ -508,16 +576,8 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
                 bytes_1d8: [reader.u8()?, reader.u8()?, reader.u8()?],
                 profile: reader.profile()?, achievement_points: reader.u32()?,
                 byte_1e3: reader.u8()?, bytes_30: reader.bytes()?,
-                achievements: Vec::new(),
+                achievements: reader.achievements()?,
             };
-            let count = reader.u32()? as usize;
-            if count > reader.bytes.len().saturating_sub(reader.cursor) / 6 {
-                return Err(PacketError::Truncated);
-            }
-            hero.achievements.reserve(count);
-            for _ in 0..count {
-                hero.achievements.push((reader.u16()?, reader.u32()?));
-            }
             LifecyclePacket::Hero(Box::new(hero))
         }
         6 => LifecyclePacket::Synchronize,
@@ -568,6 +628,7 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
                     hero_identity, name, class, race, profile,
                     achievement_points, eligible,
                     ping_ms: (ping_ms != u16::MAX).then_some(ping_ms), country: Vec::new(),
+                    inspection: None,
                 });
             }
             let zone = String::from_utf8_lossy(&reader.bytes()?).into_owned();
@@ -575,6 +636,11 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
             for entry in &mut entries {
                 if reader.cursor < reader.bytes.len() {
                     entry.country = normalize_lobby_country(&reader.bytes()?);
+                }
+            }
+            for entry in &mut entries {
+                if reader.cursor < reader.bytes.len() {
+                    entry.inspection = reader.inspection()?;
                 }
             }
             LifecyclePacket::Roster(NativeRoster {
@@ -899,14 +965,57 @@ mod tests {
     fn native_roster_without_optional_profile() {
         let row = NativeRosterEntry { hero_identity: 1, name: b"A".to_vec(), class: 8,
             race: 1, profile: None, achievement_points: 50, eligible: true,
-            ping_ms: None, country: Vec::new() };
+            ping_ms: None, country: Vec::new(), inspection: None };
         let expected = [17, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
             b'A', 8, 1, 0, 50, 0, 0, 0, 1, 255, 255, 2, 0, 0, 0, b's', b'm', 3,
-            0, 0, 0, 0];
+            0, 0, 0, 0, 0];
         let roster = NativeRoster { entries: vec![row], zone: "sm".into(), heroic_rank: 3 };
         assert_eq!(encode_lifecycle(&LifecyclePacket::Roster(roster.clone())).unwrap(), expected);
         assert_eq!(decode_lifecycle(&expected).unwrap(), (LifecyclePacket::Roster(roster), expected.len()));
         assert_eq!(decode_lifecycle(&[17, 255, 255, 255, 255]), Err(PacketError::Truncated));
+    }
+
+    #[test]
+    fn roster_inspection_is_a_separate_ordered_suffix() {
+        let row = NativeRosterEntry { hero_identity: 1, name: b"A".to_vec(), class: 8,
+            race: 1, profile: None, achievement_points: 50, eligible: true,
+            ping_ms: None, country: b"GB".to_vec(), inspection: None };
+        let mut peer = row.clone();
+        peer.hero_identity = 2;
+        peer.country = b"JP".to_vec();
+        let packet = LifecyclePacket::Roster(NativeRoster {
+            entries: vec![row, peer], zone: "sm".into(), heroic_rank: 3,
+        });
+        let empty = encode_lifecycle(&packet).unwrap();
+        let mut wire = empty[..empty.len() - 1].to_vec();
+        wire.extend_from_slice(&[1, 2, 3, 4, 5, 6, 7]);
+        wire.extend_from_slice(&42u32.to_le_bytes());
+        wire.extend_from_slice(&[0; 18 * 4]);
+        wire.extend_from_slice(&[0; 4]);
+        wire.extend_from_slice(&[255; 18 * 4]);
+        wire.push(9);
+        wire.extend_from_slice(&[0; 18]);
+        wire.extend_from_slice(&[0x6a, 7, 0, 0, 1, 0, 0, 0, b'A', 1, 0, 0, 0, 3, 0, 1, 2, 3, 4]);
+
+        let (LifecyclePacket::Roster(mut roster), consumed) = decode_lifecycle(&wire).unwrap() else {
+            panic!("expected a roster");
+        };
+        assert_eq!(consumed, wire.len());
+        assert!(roster.entries[0].inspection.is_none());
+        let inspection = roster.entries[1].inspection.as_ref().unwrap();
+        assert_eq!(inspection.sex, 1);
+        assert_eq!(inspection.features, [3, 4, 5, 6, 7]);
+        assert_eq!(inspection.equipped[0], 42);
+        assert_eq!(inspection.looks[..2], [Some(0), None]);
+        assert_eq!(inspection.stars[0], 5);
+        assert_eq!(inspection.weapon_glow, 1898);
+        assert_eq!(inspection.talents, "A");
+        assert_eq!(inspection.achievements, [(3, 0x0403_0201)]);
+        assert_eq!(decode_lifecycle(&wire[..wire.len() - 1]), Err(PacketError::Truncated));
+
+        wire[empty.len()] = 1;
+        wire[empty.len() + 6 + 2 * 19 * 4] = 5;
+        assert_eq!(encode_lifecycle(&LifecyclePacket::Roster(roster)).unwrap(), wire);
     }
 
     #[test]
@@ -938,7 +1047,7 @@ mod tests {
         let mut hero = hero_fixture(); hero.profile = Some(profile.clone());
         let row = NativeRosterEntry { hero_identity: 1, name: b"A".to_vec(), class: 8,
             race: 1, profile: Some(profile), achievement_points: 0, eligible: true,
-            ping_ms: None, country: Vec::new() };
+            ping_ms: None, country: Vec::new(), inspection: None };
         for packet in [LifecyclePacket::Hero(Box::new(hero)), LifecyclePacket::Roster(
             NativeRoster { entries: vec![row], zone: "elwynn".into(), heroic_rank: 0 })] {
             let wire = encode_message(&NativeMessage::Lifecycle(packet)).unwrap();
@@ -957,13 +1066,13 @@ mod tests {
     fn roster_country_suffix_can_end_between_rows_but_rtt_is_mandatory() {
         let row = NativeRosterEntry { hero_identity: 1, name: b"A".to_vec(), class: 8,
             race: 1, profile: None, achievement_points: 50, eligible: true,
-            ping_ms: Some(42), country: b"GB".to_vec() };
+            ping_ms: Some(42), country: b"GB".to_vec(), inspection: None };
         let mut second = row.clone();
         second.hero_identity = 2;
         second.country = b"JP".to_vec();
         let roster = NativeRoster { entries: vec![row, second], zone: "sm".into(), heroic_rank: 0 };
         let wire = encode_lifecycle(&LifecyclePacket::Roster(roster.clone())).unwrap();
-        let last_country = wire.len() - 6;
+        let last_country = wire.len() - 2 - 6;
         let mut partial = roster.clone();
         partial.entries[1].country.clear();
         assert_eq!(decode_lifecycle(&wire[..last_country]).unwrap(),

@@ -128,6 +128,8 @@ struct Root;
 #[derive(Component)]
 pub struct PreviewInteraction;
 #[derive(Component)]
+pub(crate) struct InspectPreview;
+#[derive(Component)]
 pub struct PreviewTurnRate(pub f32);
 #[derive(Resource, Default)]
 struct CanvasSize(Vec2);
@@ -184,11 +186,10 @@ fn input(
         keyboard.clear();
         return;
     }
-    if matches!(state.dialog, Some(Dialog::Coop)) {
+    if matches!(state.dialog, Some(Dialog::Coop | Dialog::CoopInspect(_))) {
         if keys.just_pressed(KeyCode::Escape)
             || device.as_ref().is_some_and(|device| device.menu_requested) {
-            state.dialog = None;
-            state.dirty = true;
+            state.close_dialog();
         }
         keyboard.clear();
         return;
@@ -369,22 +370,40 @@ fn rotate_preview(
     mut preview: ResMut<HeroPreview>,
     state: Res<MenuState>,
     options: Res<OptionsState>,
-    panes: Query<&Interaction, With<PreviewInteraction>>,
-    arrows: Query<(&Interaction, &PreviewTurnRate)>,
+    panes: Query<(&Interaction, Option<&InspectPreview>), With<PreviewInteraction>>,
+    arrows: Query<(&Interaction, &PreviewTurnRate, Option<&InspectPreview>)>,
     windows: Query<&Window, With<PrimaryWindow>>,
     time: Res<Time>,
     mut previous_x: Local<Option<f32>>,
+    mut previous_inspect: Local<Option<(u64, f32)>>,
 ) {
-    let enabled = state.page == Page::Character && !state.entering && !options.open;
+    let inspected = match state.dialog {
+        Some(Dialog::CoopInspect(identity)) => Some(identity),
+        _ => None,
+    };
+    if inspected != previous_inspect.as_ref().map(|(identity, _)| *identity) {
+        if let Some((_, yaw)) = previous_inspect.take() {
+            preview.yaw = yaw;
+        }
+        if let Some(identity) = inspected {
+            *previous_inspect = Some((identity, preview.yaw));
+            preview.yaw = crate::preview::CHARACTER_YAW;
+        }
+        *previous_x = None;
+    }
+    let is_inspection = inspected.is_some();
+    let enabled = (is_inspection || state.page == Page::Character)
+        && !state.in_run && !state.entering && !options.open;
     if enabled {
-        for (interaction, rate) in &arrows {
-            if *interaction == Interaction::Pressed {
+        for (interaction, rate, inspect) in &arrows {
+            if *interaction == Interaction::Pressed && inspect.is_some() == is_inspection {
                 preview.yaw += rate.0 * time.delta_secs();
             }
         }
     }
     let cursor = windows.single().ok().and_then(Window::cursor_position);
-    if !enabled || !panes.iter().any(|interaction| *interaction == Interaction::Pressed) || cursor.is_none() {
+    if !enabled || !panes.iter().any(|(interaction, inspect)|
+        *interaction == Interaction::Pressed && inspect.is_some() == is_inspection) || cursor.is_none() {
         *previous_x = None;
         return;
     }
@@ -397,9 +416,10 @@ fn rotate_preview(
 }
 pub(crate) fn sync_preview(
     state: Res<MenuState>,
+    coop: Option<Res<crate::coop_ui::CoopUi>>,
     mut preview: ResMut<HeroPreview>,
     windows: Query<&Window, With<PrimaryWindow>>,
-    panes: Query<(&ComputedNode, &bevy::ui::UiGlobalTransform), With<PreviewInteraction>>,
+    panes: Query<(&ComputedNode, &bevy::ui::UiGlobalTransform, Option<&InspectPreview>), With<PreviewInteraction>>,
 ) {
     // Current1408757e0 updates the shared GX aspect from live logical window
     // dimensions. Keep its last/default value while the window has zero height.
@@ -411,31 +431,40 @@ pub(crate) fn sync_preview(
             }
         }
     }
-    let look = HeroLook {
-        class: state.class_id(),
-        race: state.race,
-        sex: state.sex,
-        skin: state.features[0],
-        face: state.features[1],
-        hair_style: state.features[2],
-        hair_color: state.features[3],
-        facial_hair: state.features[4],
+    let is_inspection = matches!(state.dialog, Some(Dialog::CoopInspect(_)));
+    let subject = match state.dialog {
+        Some(Dialog::CoopInspect(identity)) => coop.as_ref().and_then(|view| view.inspection_target(identity)),
+        _ => None,
     };
+    let class = subject.map_or(state.class_id(), |hero| hero.class_id);
+    let race = subject.map_or(state.race, |hero| hero.race);
+    let inspect = subject.and_then(|hero| hero.inspection.as_ref());
+    let sex = inspect.map_or_else(|| if is_inspection { 0 } else { state.sex }, |profile| profile.sex);
+    let [skin, face, hair_style, hair_color, facial_hair] =
+        inspect.map_or_else(|| if is_inspection { [0; 5] } else { state.features }, |profile| profile.features);
+    let look = HeroLook { class, race, sex, skin, face, hair_style, hair_color, facial_hair };
     if preview.look != look {
         preview.look = look;
     }
-    let gear = crate::armory::GearSave::read_for(&state.save, state.class_id(), state.race);
+    let gear = if let Some(profile) = inspect {
+        crate::armory::coop_gear(class, race, &profile.equipped, &profile.looks, &profile.stars)
+    } else if is_inspection {
+        crate::armory::GearSave::default()
+    } else {
+        crate::armory::GearSave::read_for(&state.save, class, race)
+    };
     static OUTFITS: std::sync::OnceLock<crate::armory::ArmoryCatalog> = std::sync::OnceLock::new();
     let outfits = OUTFITS.get_or_init(crate::armory::ArmoryCatalog::embedded);
-    let resolved = gear.menu_outfit(outfits, state.class_id(), state.race);
-    let stars = gear.equipment_stars(state.class_id());
-    let selected_glow = state.save.weapon_glow(state.class_id());
+    let resolved = gear.menu_outfit(outfits, class, race);
+    let stars = gear.equipment_stars(class);
+    let selected_glow = if is_inspection { inspect.map_or(0, |profile| profile.weapon_glow) }
+        else { state.save.weapon_glow(class) };
     preview.weapon_enchants = std::array::from_fn(|index| {
         let slot = 15 + index;
         crate::armory::cosmetics::weapon_glow(selected_glow, slot as u8, resolved[slot], stars[slot])
     });
     let equipment = resolved.map(|id| {
-        let item = outfits.appearance(id, state.race);
+        let item = outfits.appearance(id, race);
         Some(crate::preview::HeroGearItem {
             display_id: item.map_or(0, |item| item.display_id),
             inv_type: item.map_or(0, |item| item.inventory_type),
@@ -444,10 +473,10 @@ pub(crate) fn sync_preview(
     if preview.equipment != equipment {
         preview.equipment = equipment;
     }
-    let visible = !state.in_run && matches!(state.page, Page::Picker | Page::Character) && !state.entering;
-    if let Some((size, logical_aspect)) = panes
+    let pane = panes
         .iter()
-        .map(|(node, transform)| {
+        .filter(|(_, _, inspection)| inspection.is_some() == is_inspection)
+        .map(|(node, transform, _)| {
             let scale = Vec2::new(
                 // Current1400fc450 uses the affine decomposition's signed X
                 // scale; mirrored panes therefore fail its nonzero size gate.
@@ -460,8 +489,13 @@ pub(crate) fn sync_preview(
                 .min(UVec2::splat(2048));
             (physical, node.size().x / node.size().y.max(1.0))
         })
-        .next()
-    {
+        .next();
+    let visible = !state.in_run && !state.entering && if is_inspection {
+        inspect.is_some() && pane.is_some()
+    } else {
+        matches!(state.page, Page::Picker | Page::Character)
+    };
+    if let Some((size, logical_aspect)) = pane {
         if preview.size != size {
             preview.size = size;
         }
@@ -474,7 +508,7 @@ pub(crate) fn sync_preview(
     } else if visible && preview.size != UVec2::ZERO {
         preview.size = UVec2::ZERO;
     }
-    let fixed_yaw = state.page == Page::Picker;
+    let fixed_yaw = !is_inspection && state.page == Page::Picker;
     if preview.fixed_yaw != fixed_yaw { preview.fixed_yaw = fixed_yaw; }
     if preview.visible != visible {
         preview.visible = visible;
@@ -1022,7 +1056,7 @@ fn recovery_page(ui: &mut ChildSpawnerCommands, art: &MenuArt, state: &MenuState
 fn dialog_ui(ui: &mut ChildSpawnerCommands, art: &MenuArt, dialog: &Dialog) {
     if matches!(
         dialog,
-        Dialog::Coop | Dialog::CoopDifficulty | Dialog::RunOptions | Dialog::Menu | Dialog::RewardsChanges(_)
+        Dialog::Coop | Dialog::CoopDifficulty | Dialog::CoopInspect(_) | Dialog::RunOptions | Dialog::Menu | Dialog::RewardsChanges(_)
     ) {
         return;
     }
@@ -1032,7 +1066,7 @@ fn dialog_ui(ui: &mut ChildSpawnerCommands, art: &MenuArt, dialog: &Dialog) {
         GlobalZIndex(100),
     ))
     .with_children(|shade| match dialog {
-        Dialog::Coop => {}
+        Dialog::Coop | Dialog::CoopInspect(_) => {}
         Dialog::Menu => {}
         Dialog::RunOptions | Dialog::CoopDifficulty => {}
         Dialog::Language => {}

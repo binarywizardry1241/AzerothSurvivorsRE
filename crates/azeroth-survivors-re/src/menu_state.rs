@@ -41,6 +41,7 @@ pub enum Dialog {
     Coop,
     /// The native Difficulty resource is open over a retained co-op window.
     CoopDifficulty,
+    CoopInspect(u64),
     Menu,
     RunOptions,
     Language,
@@ -99,7 +100,7 @@ impl Default for MenuState {
 
 impl MenuState {
     pub(crate) fn close_dialog(&mut self) {
-        self.dialog = if matches!(self.dialog, Some(Dialog::CoopDifficulty)) {
+        self.dialog = if matches!(self.dialog, Some(Dialog::CoopDifficulty | Dialog::CoopInspect(_))) {
             Some(Dialog::Coop)
         } else {
             None
