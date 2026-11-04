@@ -57,3 +57,61 @@ and four bounded Ghidra results were checked. Two broader function queries
 exceeded the inline response boundary. Their raw instruction observations
 do not establish whole-function ownership. Compilation, rebuilt gameplay
 and original/rebuilt comparison remain open.
+
+## Proc origins and repeat limits
+
+The timed-cast owner `0x145ee37d0` selects Rockbiter and Stormstrike by
+exact key. Before invoking the normal cast at `0x145f3d010` it arms hit
+capture and clears the critical latch at Game `+0x142/+0x143`. A successful
+cast with a nonempty hit list reaches `0x145ec82f0` with the base key,
+the cast's critical latch, permission to roll Windfury and the repeat bit
+clear. The Rockbiter path checks Heart of the Earthbreaker using the first
+captured hit before joining the same proc entry. Windfury uses the normal
+cast directly, bypassing the outer Heart branch.
+
+The driver handles Flurry first, then Flametongue for Rockbiter and Windfury
+for either base spell. Stormstrike continues through Frostbrand, Ancestral
+Fortitude and Eye of the Tempest. The dispatcher at `0x145ec8e20` constructs
+the effective spell using `0x145f58030` and temporarily sets effect attribution
+at Game `+0x40/+0x48` and proc depth at `+0x224` around the normal cast.
+
+| Effect | Trigger and payload |
+| --- | --- |
+| Windfury Weapon (42/4) | Rockbiter or Stormstrike rolls 10%, 18% or 25% by rank. Success rolls again against `0.0001` and selects five extra casts below that threshold, or two otherwise. |
+| Flametongue Weapon (42/5) | Rockbiter rolls `rank * 5 / 100` and casts Fire Nova with `rank * 10 / 100` added to its effective damage multiplier. |
+| Frostbrand Weapon (42/7) | Stormstrike rolls `rank * 10 / 100` and casts Frost Shock with one extra target slot on top of its effective count. |
+| Ancestral Fortitude (42/9) | Stormstrike increments the counter at Game `+0x138`. The thresholds by rank are eight, six and four. At the threshold it clears the counter and casts Healing Wave with a 0.5 multiplier. |
+| Eye of the Tempest (44 and 45) | Stormstrike finds the first chance and multiplier records and requires both. On success it casts Chain Lightning with that multiplier applied to its effective damage. The proc is attributed to the chance record. |
+
+Stormbound Echoes (42/11) rolls 5% after each primary proc in the table
+when the incoming repeat bit is clear. Success calls the dispatcher with
+the same payload and the repeat bit set. A repeated Windfury therefore
+reuses the queued count. Each Windfury strike rebuilds its effective spell
+and targets and captures its own hits and crit. Failure or an empty hit
+list ends the remaining strikes. Successful strikes call the driver at
+`0x145ec9303` with Windfury disabled and the inherited repeat bit. A primary
+Windfury strike may produce secondary procs and roll their repeats. The
+strikes from a repeated Windfury can still produce secondary procs, with
+the repeat check skipped before any Stormbound random draw.
+
+## Necklace records and equipped scaling
+
+The necklace constructor branches bind the item names to these effects.
+
+| Necklace | Base effect records |
+| --- | --- |
+| Heart of the Earthbreaker | Raw 48 adds 0.30 to Rockbiter damage. Raw 43 holds 0.40 of the first captured hit and radius 6.0. |
+| Cinderheart Pendant | Raw 48 adds 0.60 to Fire Nova area and 0.30 to its damage. Raw 46 holds a 0.40 Flame Shock remainder fraction. |
+| Eye of the Tempest | Raw 44 holds 0.20 proc chance and raw 45 holds a 1.0 Chain Lightning multiplier. |
+
+The equipped-effect path at `0x146004ecb` calls the scalar at `0x145decb90`.
+Its indexed leaves multiply Heart's raw 43 damage fraction while copying
+its radius unchanged, multiply Eye's raw 44 chance with a 1.0 cap, and
+multiply the raw 45 and 46 values. The keyed raw 48 records use the ordinary
+keyed effect scale.
+
+These bounded observations resolve the proc driver, dispatcher and base
+necklace records. Full item growth, the Cinderheart consumer and the live
+source integration require separate evidence. The dispatcher result uses a
+raw function slice. Its jump table and Windows x64 call arguments were
+resolved against the original PE bytes.
