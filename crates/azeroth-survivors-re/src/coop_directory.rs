@@ -586,6 +586,11 @@ fn poll(
                             old.submit(ClientMessage::Leave);
                             drop(old);
                         }
+                        azeroth_survivors_re::coop::session::service_party_reset(
+                            &service.relay_protocol,
+                            &service.guest_flags,
+                            false,
+                        );
                         service.secondary_lifetime = None;
                         service.secondary_config = None;
                         if let Ok(worker) = Worker::open(url.clone()) {

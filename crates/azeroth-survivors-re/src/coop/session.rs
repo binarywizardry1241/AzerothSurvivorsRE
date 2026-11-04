@@ -84,9 +84,9 @@ impl GuestFlags {
 
 pub type SharedGuestFlags = Arc<Mutex<GuestFlags>>;
 
-/// Current Hosted/Joined service cases reset inner sequencing and unread guest
-/// payloads before publishing admission. Hosted retains the active guest byte;
-/// Joined sets it. Host endpoints/listener backlog have separate lifetimes.
+/// Hosted, Joined and secondary selection reset inner sequencing and unread
+/// guest payloads. Joined sets the active guest byte; the other cases preserve
+/// it. Host endpoints and the listener backlog have separate lifetimes.
 pub fn service_party_reset(protocol: &RelayProtocol, flags: &SharedGuestFlags, joined: bool) {
     let mut guest = flags.lock().unwrap();
     if joined {

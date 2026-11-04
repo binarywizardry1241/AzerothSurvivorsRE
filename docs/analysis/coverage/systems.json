@@ -63708,6 +63708,19 @@
     },
     {
       "id": "custom-game-coop-relay",
+      "gap_63_secondary_selection_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 63,
+        "scope": "Service wire 30 retires the selected secondary, resets inner peer sequencing and unread guest input and clears guest failure/reconnect flags before opening the selected relay. The active guest byte and outer host endpoints survive.",
+        "source_status": "connected",
+        "evidence_ref": "docs/analysis/coop-relay-selection-0.141.0.md",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/coop_directory.rs",
+          "crates/azeroth-survivors-re/src/coop/session.rs"
+        ],
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "gap_206_desktop_exit_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 206,
