@@ -1,0 +1,183 @@
+# Computed transfer classification in 0.141.0
+
+The installed EXE is 151,493,632 bytes with SHA-256
+`6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
+This classifies [Q41-F01 and Q41-F02](unknown-recovery-0.141.0.md)
+under [#41](../CURRENT-STATE.md#gap-41). The
+[residual manifest](evidence/0.141.0/native-residuals.json) binds the independent
+instruction databases, selected Ghidra instruction and reference exports,
+diagnostic owners, and both exact indirect-site lists.
+
+## Exact populations
+
+The selectors are `sqlite_selectors[lead_id=Q41-F01]` and
+`sqlite_selectors[lead_id=Q41-F02]` in the
+[queue inventory](evidence/0.141.0/unknown-recovery.json). The operand pass
+matched each selected site and transfer kind to the residual list and checked
+its decoded instruction bytes against the installed PE. It used Capstone and
+the existing [operand decoder](../../scripts/classify-independent-indirects.py).
+Fixed RIP-relative slots were joined to the PE import directory and DIR64
+relocations. Jumps were joined by site to the applied and candidate lists
+in the [guarded switch proof](evidence/0.141.0/native-switch-proposal-review.json)
+under the `guarded-2/guarded-proposals.json` input.
+
+| Structural class | F01 calls | F01 jumps | F02 jumps |
+| --- | ---: | ---: | ---: |
+| Declared import slot | 1,404 | 50 | 126 |
+| Fixed slot with an initial relocated pointer | 3 | 1 | 0 |
+| Fixed slot without a declared binding | 8 | 0 | 0 |
+| Applied guarded table | 0 | 2,664 | 341 |
+| Unapplied table candidate | 0 | 503 | 23 |
+| Other register operand | 26,508 | 7,346 | 137 |
+| Register-relative memory | 46,430 | 81 | 37 |
+| Indexed memory | 23 | 0 | 1 |
+| **Total** | **74,376** | **10,645** | **665** |
+
+F02 contains zero indirect calls. The 3,005 applied sites in these two
+selectors are an intersection with the 3,936-site Ghidra population. The
+independent and Ghidra counts describe different views of the same PE.
+The candidate rows retain their unproved guards or incoming conditions.
+
+The four relocated F01 transfers use one `.rdata` slot at `0x14654fe90`,
+initially `0x1463a5790`. The eight other fixed transfers use six zero-initialized
+`.data` slots at `0x148a79dc0`, `0x148a79dd0`, `0x148a822a0`,
+`0x148a822a8`, `0x148a90e20` and `0x148ac30a8`. The selected Ghidra reference
+export records reads at those six addresses. It supplies no direct writes to
+these seven slots. Indirect writers, runtime pointer values and AS ownership
+of these fixed sites remain unestablished.
+
+## Q41-F01 declared-range AS context
+
+Joining the residual site's `source_owner` to `actual_body_owner` for
+`crates/wenilla-rogue/` and `crates/wenilla-rogue-app/` diagnostics gives
+194 same-body contexts across the 435 diagnostic-bearing body owners. The
+194 comprise eight declared imports, 45 applied guarded jumps, three unapplied
+table candidates, 54 other register jumps, 46 register calls and 38 calls
+through register-relative memory. This join is a way to prioritize sites.
+Separate extent, caller and typed-input evidence can also establish AS
+connections, as the co-op app dispatcher below demonstrates.
+
+### Three additional CreatureQuery tables
+
+The [host ingress trace](coop-command-ingress-0.141.0.md#nested-creaturequery-selectors)
+identifies thirteen applied tables inside opcode `0x60`. Three additional
+tables in the same owner are present in the independent F01 list. The
+zero-filled entry reaches `r14d` at `0x145e9efeb`. The special-template
+lookup at `0x145ea057c` sends its null branch to the first two guards.
+The third guard follows the higher entry-family checks at
+`0x145ea1e26`. Each table uses signed dword offsets from its table base.
+
+| Jump | Entry interval and guard | Table VA / file offset | Cells / destinations | Table SHA-256 |
+| --- | --- | --- | ---: | --- |
+| `0x145ea0c38` | 600–693, subtract 600 and take `jbe` at `0x145ea0af8` | `0x147aec824` / `0x7aeae24` | 94 / 17 | `f6b6a01787e7f7a33058af82def73138b19aa6709b04d46002921c04fe32e4b9` |
+| `0x145ea0b2a` | 9510–9532, subtract 9510 and reject above 22 at `0x145ea0b08` | `0x147aec99c` / `0x7aeaf9c` | 23 / 17 | `06a0a1d52f044228f529567fc2711f60a364a23220859e9d375698b04444d564` |
+| `0x145ea1e59` | 1406–1494, subtract 1406 and reject above 88 at `0x145ea1e3e` | `0x147aed888` / `0x7aebe88` | 89 / 16 | `6d825c71337363c4cdbb341091eb59622720a89536d5205872aa618e9b74dca6` |
+
+All 206 cells land on exact instruction starts in the original ingress
+extent. Following the case blocks yields 16 catalog rows in the first family
+and 15 in the third. The ordinary name/zone-name consumer at `0x145ea0f2f`
+reads display/type/rank from descriptor offsets `+0x24/+0x2c/+0x4c`.
+The boss consumer at `0x145ea0ebe` reads display/type at `+0x44/+0x4c`
+and supplies rank 3. The companion consumer at `0x145ea1030` reads the
+name pair and display at `+0x24`, and supplies `Companion`, type 1 and
+rank 0. Sixteen companion rows match, including `9532` Devilsaur Matriarch
+with display 5238. Entry 9513 and entries 9524–9529 go to the fallback
+instead of reading a companion descriptor. All three hit paths reach
+`0x145ea06ac`, which calls the response builder at `0x145ea06d2` and
+joins the existing recipient writer at `0x145ea10ba`.
+
+The 47 selected rows agree with the raw name, display, creature type
+and rank in the [shared catalog](../../crates/azeroth-survivors-re/src/guardians/catalog.rs)
+and [query-specific source](../../crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs).
+The 600 and companion selectors continue `retained-table-145afb3fb` and
+`retained-table-145afb49a` from the
+[0.120.2 proof](creature-query-tables-0.120.2.md#thirteen-stable-table-questions).
+The 1406–1494 table covers the high part of the earlier 1000–1494 family.
+Exact current fallback paths, other descriptors, localized values and
+recipient cache behavior stay under [#64](../CURRENT-STATE.md#gap-64) and
+[#65](../CURRENT-STATE.md#gap-65).
+
+The journaled raw Ghidra query used the hash-verified
+`0x145e9e690..0x145ea2004` slice, SHA-256
+`ac64bb527d54f19058a76a4de5493ed1738f366ddec5c6d49a41b4c70ad21daa`.
+Its exported evidence retained record
+`ev_2985ec9d16f306e6a2d3a582c99725bdd4c2fd3aa3b74c861f943944a917245a`
+when the inline response exceeded the transport limit. The shared
+pseudocode object has SHA-256
+`ab2a3b5781a8a6bf86af904e8ec1f32bf4ba6f209059faa4f56075cefb615ec8`.
+The exact PE reads supplied the tables outside that slice and the dispatch
+blocks absent from its Ghidra body.
+
+### Co-op form and app action dispatch
+
+The [local poller trace](coop-relay-selection-0.141.0.md#local-poller-commands)
+accounts for all eight destinations at `0x145ea7797`. The app-side jump
+at `0x1401046a7` supplies an additional typed action selector that has no
+same-body diagnostic in the join above. The pressed check at `0x14010467e`
+admits zero and the load at `0x14010468e` reads the action byte from `[r9]`.
+All 18 observed signed dword cells at `0x14656d95c..0x14656d9a4` land on
+instruction starts in `0x140104120..0x14010590a`. The cell range starts
+at file offset `0x656bf5c` and has SHA-256
+`5cef3e7c3699e2de550449c22ab283954b2a11dc262680d0f74a3bf308697a00`.
+The jump itself supplies no numerical bound on the action byte.
+
+Case 5 selects `0x140104a34` and sends Leave tag 25 at `0x140104a46`.
+Case 8 selects `0x140104d58`, bounds the member index against the roster
+length and reads the Hero GUID at `+0x1b8` of its `0x1d0`-byte row before
+sending Kick tag 26. These cases agree with the existing form queue and
+peer admission path. Other action constructors retain their own proofs.
+
+The Chat destination `0x145ea7df2` calls the normalizer at `0x145e385a0`.
+It filters control characters and Unicode White_Space, joins nonempty
+spans with a single ASCII space and caps the result at 160 UTF-8 scalars.
+The 246-byte normalizer at file offset `0x5e379a0) has SHA-256
+`866ffe7446296ffbe322c22fdae47680d68bbcff8d0d9756e00044b0eed9b7d0`.
+Its journaled Ghidra result digest is
+`2899301f9b2c80805a2a82ee88b0ad308cb2f6fb1785008c2e1811078dfce1d9`.
+This matches the [existing chat normalizer](../../crates/azeroth-survivors-re/src/coop/server_party.rs)
+and its [admitted host and guest consumers](../../crates/azeroth-survivors-re/src/gameplay/coop.rs).
+
+## Q41-F02 outside declared ranges
+
+All 665 sites have a saved spatial body owner. None shares a body with
+an AS Rust Location in the diagnostic join. The 126 IAT jumps use 119
+declared slots. The 341 applied guarded sites account for 7,807 cells,
+whose signed offsets and hashes match the original image. There are
+198 other sites beyond the import and applied-table partitions.
+
+To find AS caller context, walk backward from each F02 site through the
+complement inventory's decoded fallthrough and direct jumps, stopping at
+terminal edges. Join `seeds(target,source)` for the visited starts to
+`(site,target)` in `declared-reference-roles.tsv.gz`, then join
+`source_owner` to `actual_body_owner` for AS diagnostics. This finds
+34 distinct F02 sites with an encoded AS caller context. The compact
+JSON-lines projection of each hexadecimal site and its sorted
+`[source, source_owner, path, seed]` tuples has SHA-256
+`7b39a57edadad50eb0fe1bdd04e081746dd0eabb6b7a76f9e5bed2105022ba18`.
+Twenty-one
+reach declared imports, eight match applied tables, and five require
+separate treatment. The five comprise one locally guarded Codex table,
+two tables that rely on a typed domain and two receiver-slot tail calls.
+This is an encoded path join. It leaves indirect callers and arbitrary
+runtime receiver aliases open.
+
+The Codex table at `0x145e06796` reads the tag at `+0x44` and limits
+it to 19. Its table at `0x14771ae3c` has SHA-256
+`fb3ee46c549859e5c87cd63cb9712ef17fe6ae59a01c75957c4726584794c6a5`.
+The `0x145e90ab6` owner-only packet switch is reached by the poller
+call at `0x145eaab4f`. It agrees with the existing opcode classifier's
+fixed list and its three payload-length-dependent branches.
+
+The applied table at `0x14604a075` has a current AS producer and
+consumer in the [guest Gossip option path](coop-command-ingress-0.141.0.md#guest-gossip-option-ingress).
+The meter style switch at `0x140439d90` compares two matching dword tags.
+The observed caller at `0x1404244e2` supplies tag zero. The other tag
+domains and the separate Codex text switch at `0x1400f2a92` still need
+their typed constructors. The tail edges at `0x146347d96` and
+`0x14638ac23` load through receiver table slots 0 and `+0x18`,
+respectively. Their actual receivers and writers remain open.
+
+Further work under #41 is to establish typed domains and owners for the
+remaining AS-context register and receiver-slot transfers. The broader
+unowned and generic populations retain their exact selectors. Runtime
+dispatch and original/rebuilt parity remain separate.
