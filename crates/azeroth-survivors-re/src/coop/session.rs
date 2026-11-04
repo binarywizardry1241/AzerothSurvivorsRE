@@ -2218,6 +2218,7 @@ mod reconnection_tests {
             optional_words_b8: [None; 19],
             equipment_stars: [0; 19],
             pity: Vec::new(),
+            owned_tier05: Vec::new(),
             heroic_unlocks: Vec::new(),
             weapon_glow: 0,
             bytes_18: Vec::new(),

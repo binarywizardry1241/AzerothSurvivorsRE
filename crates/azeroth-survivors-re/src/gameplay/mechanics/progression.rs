@@ -9,6 +9,7 @@ pub(super) struct EquipmentDrops {
     pending: Vec<EquipmentGrant>,
     history: Vec<u32>,
     pity: std::collections::BTreeMap<u32, u8>,
+    owned: std::collections::BTreeSet<u32>,
     pending_misses: Vec<u32>,
     pending_marks: f32,
     marks_total: f32,
@@ -24,13 +25,14 @@ impl EquipmentDrops {
     {
         if roll.extra_pickup_mode { return; }
         let reward = azeroth_survivors_re::mob_loot::roll_boss_rewards(class, zone, boss,
-            roll, heroic_rank, endless_bosses, &mut self.pity, rng);
+            roll, heroic_rank, endless_bosses, &mut self.pity, &self.owned, rng);
         self.pending_marks += reward.marks;
         self.marks_total += reward.marks;
         self.max_boss_marks = self.max_boss_marks.max(reward.marks);
         self.boss_serial = self.boss_serial.wrapping_add(1);
         self.pending_misses.extend(reward.missed_ids);
         for id in reward.items {
+            self.owned.insert(id);
             self.pending.push(EquipmentGrant { item_id: id, boss_key: self.boss_serial,
                 boss_marks_bits: reward.marks.to_bits() });
             self.history.push(id);
@@ -53,6 +55,10 @@ impl Mechanics {
     /// recipient's run. Successful rolls clear this copy before any save tick.
     pub fn set_equipment_pity(&mut self, pity: &[(u32, u8)]) {
         self.boss_state.equipment.pity = pity.iter().copied().collect();
+    }
+
+    pub fn set_equipment_ownership(&mut self, owned: impl IntoIterator<Item = u32>) {
+        self.boss_state.equipment.owned = owned.into_iter().collect();
     }
 
     /// This queue is independent of successful equipment and retains miss order.

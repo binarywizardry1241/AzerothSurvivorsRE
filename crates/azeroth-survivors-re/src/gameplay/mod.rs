@@ -446,6 +446,7 @@ fn enter(
                 pick.hero.class, pick.hero.race, menu.heroic_restart_rank);
             game.configure_armor_set(session.starting_gear, session.starting_stars);
             game.set_equipment_pity(&session.starting_pity);
+            game.set_equipment_ownership(entry_owned.iter().copied());
             game.set_racial_progression_components(
                 defaults.damage_multiplier,
                 race.damage_bonus,

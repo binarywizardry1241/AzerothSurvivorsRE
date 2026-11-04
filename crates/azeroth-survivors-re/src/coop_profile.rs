@@ -44,6 +44,12 @@ fn language(value: &[u8]) -> Vec<u8> {
     }
 }
 
+fn is_class_tier05_item(id: u32, class: u8) -> bool {
+    save::gear::decode(id).is_some_and(|piece| {
+        piece.class == class && piece.rarity_digit == azeroth_survivors_re::sets::TIER_HALF
+    })
+}
+
 /// The world GUID comes from native_world_identity(startup_seed), independently
 /// of the saved roster GUID. The caller supplies the three current option bytes
 /// and any actual cached profile;145893fc0 overlays these on145816520's account.
@@ -95,6 +101,8 @@ pub(crate) fn build(
         pity: records.pity.into_iter().filter(|(id, _)| {
             save::gear::decode(*id).is_some_and(|piece| piece.class == pick.hero.class)
         }).collect(),
+        owned_tier05: records.owned.into_iter()
+            .filter(|&id| is_class_tier05_item(id, pick.hero.class)).collect(),
         heroic_unlocks: azeroth_survivors_re::guardians::catalog::ZONES.iter()
             .map(|zone| save.max_heroic_rank(pick.hero.class, zone.key)).collect(),
         weapon_glow: save.weapon_glow(pick.hero.class),
@@ -161,6 +169,8 @@ pub(crate) fn sanitize(mut hero: NativeHero) -> Result<NativeHero, HeroIdentityE
     hero.pity = hero.pity.into_iter().filter(|(id, _)| {
         save::gear::decode(*id).is_some_and(|piece| piece.class == hero.class)
     }).take(64).map(|(id, count)| (id, count.min(40))).collect();
+    hero.owned_tier05.retain(|&id| is_class_tier05_item(id, hero.class));
+    hero.owned_tier05.truncate(64);
     hero.heroic_unlocks.resize(azeroth_survivors_re::zones::COUNT, 0);
     for rank in &mut hero.heroic_unlocks { *rank = (*rank).min(5); }
     let keys = achievement_keys();
@@ -218,6 +228,7 @@ pub(crate) fn configure(game: &mut Mechanics, hero: &NativeHero, catalog: &Armor
     );
     game.configure_armor_set(hero.words_188, hero.equipment_stars);
     game.set_equipment_pity(&hero.pity);
+    game.set_equipment_ownership(hero.owned_tier05.iter().copied());
     game.configure_effects(&allocation, &gear.effects(catalog, hero.class));
     game.set_account_grants(AccountGrants {
         free_rerolls: 3 + hero.words_170[0],

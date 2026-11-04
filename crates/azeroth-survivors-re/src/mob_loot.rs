@@ -267,6 +267,7 @@ pub fn roll_boss_rewards(
     heroic_rank: u8,
     endless_bosses: Option<u32>,
     pity: &mut std::collections::BTreeMap<u32, u8>,
+    owned: &std::collections::BTreeSet<u32>,
     rng: &mut NativeRng,
 ) -> BossGearReward {
     if roll.extra_pickup_mode {
@@ -276,7 +277,7 @@ pub fn roll_boss_rewards(
         return BossGearReward::default();
     };
     if current.key == crate::zones::scholomance::KEY {
-        return roll_scholomance_rewards(class, zone, boss, heroic_rank, endless_bosses, rng);
+        return roll_scholomance_rewards(class, zone, boss, heroic_rank, endless_bosses, owned, rng);
     }
     // The live run uses current zone order; the legacy loot pools retain their
     // own ordinals. Scholomance never enters those per-item rolls.
@@ -314,14 +315,15 @@ fn boss_marks(zone: usize, final_boss: bool, heroic_rank: u8, endless_bosses: Op
     (base * multiplier) * crate::heroic::marks_multiplier(heroic_rank)
 }
 
-/// Native 0.140.0 145f3fea0 uses the same draw for admission and group
-/// selection. Each accepted group is granted in full, without item pity.
+/// The 0.141.0 reward owner uses one draw for admission and selection.
+/// Armor prefers missing pieces. Gandling still grants the full weapon group.
 fn roll_scholomance_rewards(
     class: u8,
     zone: usize,
     boss: usize,
     heroic_rank: u8,
     endless_bosses: Option<u32>,
+    owned: &std::collections::BTreeSet<u32>,
     rng: &mut NativeRng,
 ) -> BossGearReward {
     use crate::tier05;
@@ -333,12 +335,19 @@ fn roll_scholomance_rewards(
     let marks = boss_marks(zone, final_boss, heroic_rank, endless_bosses);
     let draw = unit24(rng);
     let mut reward = BossGearReward { marks, ..BossGearReward::default() };
-    if draw < 0.25 && tier05::class(class).is_some() {
-        if final_boss {
+    if tier05::class(class).is_some() {
+        let piece_chance = tier05::BOSS_PIECE_CHANCE;
+        if final_boss && draw < piece_chance {
             reward.items.extend(tier05::weapon_ids(class));
-        } else {
-            let slot = tier05::ARMOR_DROP_SLOTS[boss][(draw * 8.0) as usize];
-            reward.items.push(tier05::item_id(class, slot));
+        } else if !final_boss && draw < 2.0 * piece_chance {
+            let [first, second] = tier05::ARMOR_DROP_SLOTS[boss].map(|slot| tier05::item_id(class, slot));
+            let item = match (owned.contains(&first), owned.contains(&second)) {
+                (true, false) => second,
+                (false, true) => first,
+                _ if draw < piece_chance => first,
+                _ => second,
+            };
+            reward.items.push(item);
         }
     }
     reward
@@ -347,7 +356,7 @@ fn roll_scholomance_rewards(
 #[cfg(test)]
 mod current_gear_tests {
     use super::*;
-    use std::collections::BTreeMap;
+    use std::collections::{BTreeMap, BTreeSet};
 
     #[test]
     fn current_boss_marks_and_pity_are_independent_of_run_options() {
@@ -355,14 +364,14 @@ mod current_gear_tests {
         let mut rng = NativeRng::from_words([1, 2, 3, 4]);
         let roll = EquipmentRoll { extra_pickup_mode: false, additive_chance: f32::NEG_INFINITY,
             run_options: [500, 500, 300, 150] };
-        let reward = roll_boss_rewards(1, 0, 0, roll, 0, None, &mut pity, &mut rng);
+        let reward = roll_boss_rewards(1, 0, 0, roll, 0, None, &mut pity, &BTreeSet::new(), &mut rng);
         assert_eq!(reward.marks, 0.5);
         assert!(reward.items.is_empty());
         assert_eq!(reward.missed_ids, [101000]);
         assert_eq!(pity[&101000], 255);
-        let reward = roll_boss_rewards(1, 0, 4, roll, 5, None, &mut pity, &mut rng);
+        let reward = roll_boss_rewards(1, 0, 4, roll, 5, None, &mut pity, &BTreeSet::new(), &mut rng);
         assert_eq!(reward.marks, 7.5);
-        let reward = roll_boss_rewards(1, 0, 4, roll, 5, Some(3), &mut pity, &mut rng);
+        let reward = roll_boss_rewards(1, 0, 4, roll, 5, Some(3), &mut pity, &BTreeSet::new(), &mut rng);
         assert_eq!(reward.marks, 7.5);
     }
 
@@ -375,17 +384,22 @@ mod current_gear_tests {
             run_options: [500, 500, 300, 150],
         };
         let mut pity = BTreeMap::from([(104_070, 255)]);
-        for (boss, high_bits, expected) in [
-            (0, 0x1f_ffff_u64, vec![104_070]),
-            (0, 0x20_0000, vec![104_170]),
-            (4, 0x3f_ffff, vec![104_870, 104_970]),
-            (4, 0x40_0000, vec![]),
+        for (boss, high_bits, owned, expected) in [
+            (0, 0x3f_ffff_u64, vec![], vec![104_070]),
+            (0, 0x40_0000, vec![], vec![104_170]),
+            (0, 0x7f_ffff, vec![104_170], vec![104_070]),
+            (0, 0x00_0000, vec![104_070], vec![104_170]),
+            (0, 0x40_0000, vec![104_070, 104_170], vec![104_170]),
+            (0, 0x80_0000, vec![104_070], vec![]),
+            (4, 0x3f_ffff, vec![104_870], vec![104_870, 104_970]),
+            (4, 0x40_0000, vec![], vec![]),
         ] {
             let input = [0, 1, 2, (high_bits << 40).rotate_right(23)];
             let mut rng = NativeRng::from_words(input);
             let mut next = NativeRng::from_words(input);
             next.next_u64();
-            let reward = roll_boss_rewards(4, zone, boss, roll, 5, None, &mut pity, &mut rng);
+            let reward = roll_boss_rewards(4, zone, boss, roll, 5, None, &mut pity,
+                &owned.into_iter().collect(), &mut rng);
             assert_eq!(reward.items, expected);
             assert!(reward.missed_ids.is_empty());
             assert_eq!(pity[&104_070], 255);

@@ -417,17 +417,6 @@ pub struct DropZone {
     pub drop_percent: u32,
     pub bosses: Vec<DropBoss>,
 }
-impl DropZone {
-    fn piece_drop_percent(&self, boss: usize) -> f32 {
-        // 0.140.0 145e29f14 publishes the chance of one group.
-        let groups = if self.tier == usize::from(TIER_HALF) && !self.bosses[boss].final_boss {
-            2.0
-        } else {
-            1.0
-        };
-        self.drop_percent as f32 / groups
-    }
-}
 #[derive(Clone, Deserialize)]
 pub struct DropBoss {
     pub name: String,
@@ -482,7 +471,7 @@ impl ArmoryCatalog {
             key: scholomance::KEY.to_owned(),
             name: scholomance::NAME.to_owned(),
             tier: usize::from(TIER_HALF),
-            drop_percent: 25,
+            drop_percent: (tier05::BOSS_PIECE_CHANCE * 100.0) as u32,
             bosses: scholomance::BOSSES.iter().enumerate().map(|(index, boss)| DropBoss {
                 name: boss.name.to_owned(),
                 minute: boss.time_minutes,
@@ -2489,7 +2478,7 @@ fn collection(
                             border_radius: BorderRadius::all(Val::Px(3.)), ..default() })
                             .insert(BorderColor::all(EDGE.with_alpha(0.5)))
                             .with_children(|ui| flow_text(ui, art,
-                                format!("{}%", native_decimal(catalog.zones[z].piece_drop_percent(b))), 11., PAPER, false));
+                                format!("{}%", catalog.zones[z].drop_percent), 11., PAPER, false));
                     });
                 }
             });
@@ -2878,7 +2867,7 @@ fn details(
                         format!(
                             "{}  {}%",
                             boss_label(menu_catalog, zone, b),
-                            native_decimal(zone.piece_drop_percent(b))
+                            zone.drop_percent
                         ),
                         15.,
                         Color::srgb(0.9, 0.55, 0.4),

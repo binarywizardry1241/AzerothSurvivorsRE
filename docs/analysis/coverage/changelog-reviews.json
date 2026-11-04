@@ -34966,6 +34966,124 @@
         "crates/azeroth-survivors-re/assets/locales/zh.json": "c0fa7fd4188a2a6c0eb36f74fd50823e8f19b3508c160ec1f7be3726c407cb55",
         "docs/analysis/pet-meter-0.141.0.md": "391fd1dd486c5fd9a29feeca2fc6d0fefe009dee75775260c76ddb93c74a1424"
       }
+    },
+    {
+      "claim_id": "changelog:0.141.0:f9668c51059bacce",
+      "gap_ids": [
+        314
+      ],
+      "systems": [
+        "custom-game-gear",
+        "custom-app-screens-armory",
+        "custom-game-server-party",
+        "custom-game-proto"
+      ],
+      "rationale": "The two reconstructed Armory displays use the native catalog rate. Solo, host and guest reward state carry the selected collection through successive rolls.",
+      "native_contract": "One top-24-bit draw below 0.50 admits one armor item. The native filter prefers the unowned slot, and a new award immediately enters the recipient collection. Tag 4 carries a counted u32 list after pity. Native Armory rows carry the base 0.25 per item.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/mob_loot.rs",
+        "crates/azeroth-survivors-re/src/tier05.rs",
+        "crates/azeroth-survivors-re/src/armory.rs",
+        "crates/azeroth-survivors-re/src/coop_profile.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/scholomance-loot-0.141.0.md"
+      ],
+      "static_checks": [
+        {
+          "command": "Hash-bound original-instruction reward, Armory and Hero field replay",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/scholomance-loot-0.141.0.md"
+        }
+      ],
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/mob_loot.rs": "d442bd4be8f9a8b24cff0e73a85a93f25eaca89187acd9a54671a9dd813562c5",
+        "crates/azeroth-survivors-re/src/tier05.rs": "1bfdb8b4d7dcef1f6ab8714c5ebb977462db250f48d23ee564f9ad37a199bcea",
+        "crates/azeroth-survivors-re/src/armory.rs": "f691359112b96d54d4a3ef3127e571f48c29802ed18b17a7a55b8e5a665cbe2a",
+        "crates/azeroth-survivors-re/src/coop_profile.rs": "1f992148369c857a076ed46fde7012373d5395743e3636a329f6b2deeeb43266",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs": "bfdcdc105ecc150e2e620d521a1300b820dac3cdbb3538420c7da1d51c8863c2",
+        "docs/analysis/scholomance-loot-0.141.0.md": "ee7ff0acb53db1aa76aa18544aa952c94557be9982c4d465d0074e0ecf491dac"
+      }
+    },
+    {
+      "claim_id": "changelog:0.141.0:2b181b04dadea0dc",
+      "gap_ids": [
+        314
+      ],
+      "systems": [
+        "custom-game-gear",
+        "custom-app-screens-armory"
+      ],
+      "rationale": "The exact Gandling branch is the control for the armor change.",
+      "native_contract": "The gate is 0.25 and returns the full class weapon vector regardless of existing ownership. Rogue and Shaman each receive both weapons together.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/mob_loot.rs",
+        "crates/azeroth-survivors-re/src/tier05.rs",
+        "crates/azeroth-survivors-re/src/armory.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/scholomance-loot-0.141.0.md"
+      ],
+      "static_checks": [
+        {
+          "command": "Hash-bound original-instruction reward, Armory and Hero field replay",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/scholomance-loot-0.141.0.md"
+        }
+      ],
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/mob_loot.rs": "d442bd4be8f9a8b24cff0e73a85a93f25eaca89187acd9a54671a9dd813562c5",
+        "crates/azeroth-survivors-re/src/tier05.rs": "1bfdb8b4d7dcef1f6ab8714c5ebb977462db250f48d23ee564f9ad37a199bcea",
+        "crates/azeroth-survivors-re/src/armory.rs": "f691359112b96d54d4a3ef3127e571f48c29802ed18b17a7a55b8e5a665cbe2a",
+        "docs/analysis/scholomance-loot-0.141.0.md": "ee7ff0acb53db1aa76aa18544aa952c94557be9982c4d465d0074e0ecf491dac"
+      }
+    },
+    {
+      "claim_id": "changelog:0.141.0:1d25a9296037f7e2",
+      "gap_ids": [
+        314
+      ],
+      "systems": [
+        "custom-game-gear",
+        "custom-app-screens-armory"
+      ],
+      "rationale": "This assessment covers the Scholomance loot portion. The pet attribution and Tranquility portions retain their own reviews at changelog:0.141.0:6caaee7fb93fce4a and changelog:0.141.0:8fdf49158695cf60.",
+      "native_contract": "The first four bosses use a single 50% armor draw with missing-piece priority.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/mob_loot.rs",
+        "crates/azeroth-survivors-re/src/armory.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/scholomance-loot-0.141.0.md"
+      ],
+      "static_checks": [
+        {
+          "command": "Hash-bound original-instruction reward, Armory and Hero field replay",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/scholomance-loot-0.141.0.md"
+        }
+      ],
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/mob_loot.rs": "d442bd4be8f9a8b24cff0e73a85a93f25eaca89187acd9a54671a9dd813562c5",
+        "crates/azeroth-survivors-re/src/armory.rs": "f691359112b96d54d4a3ef3127e571f48c29802ed18b17a7a55b8e5a665cbe2a",
+        "docs/analysis/scholomance-loot-0.141.0.md": "ee7ff0acb53db1aa76aa18544aa952c94557be9982c4d465d0074e0ecf491dac"
+      }
     }
   ]
 }

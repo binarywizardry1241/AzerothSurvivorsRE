@@ -3,6 +3,8 @@
 use serde::Deserialize;
 use std::sync::OnceLock;
 
+pub const BOSS_PIECE_CHANCE: f32 = 0.25;
+
 pub const ARMOR_DROP_SLOTS: [[u8; 2]; 4] = [[0, 1], [2, 3], [4, 5], [6, 7]];
 
 #[derive(Deserialize)]

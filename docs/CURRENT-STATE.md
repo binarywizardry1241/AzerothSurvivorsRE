@@ -74,7 +74,6 @@ permanent owners in the [release review](analysis/release-review-0.140.0.md).
 
 | Lead group | Releases and claim IDs | Next source/recovery question | Existing finding | Category and tags |
 | --- | --- | --- | --- | --- |
-| Scholomance armor drops and Armory odds | [0.141.0](CHANGELOG.md#01410)<br>`changelog:0.141.0:f9668c51059bacce`<br>Unchanged weapon-drop context: `changelog:0.141.0:2b181b04dadea0dc`<br>Release summary: `changelog:0.141.0:1d25a9296037f7e2` | Trace how the first four bosses produce at most one drop per kill with a 50% overall chance, and how the slot is chosen with neither, one or both pieces owned. Find which ownership state the Armory uses for its displayed odds. Use Gandling's unchanged 25% full class weapon group as a control in the same reward trace. | [#314](verification-needed.md#gap-314) | Loot, gear & upgrades · Scholomance, Armory |
 | Ras Frostwhisper shield and rising rune towers | [0.141.0](CHANGELOG.md#01410)<br>`changelog:0.141.0:26f30cd823bea0f6` | Recover where the 75% reduction applies, how the two Sapphiron-style towers rise over the shield lifetime, and how touching either tower removes the shield and applies vulnerability. | [#313](#gap-313) | Bosses & guardians · Scholomance |
 
 ## Gap register

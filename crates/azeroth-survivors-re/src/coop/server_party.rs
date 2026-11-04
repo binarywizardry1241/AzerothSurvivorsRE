@@ -196,6 +196,8 @@ pub struct NativeHero {
     /// 0.121.0: private account inputs carried after appearance overrides.
     pub equipment_stars: [u8; 19],
     pub pity: Vec<(u32, u8)>,
+    /// Protocol 13 carries the selected class's owned Tier 0.5 item IDs.
+    pub owned_tier05: Vec<u32>,
     pub heroic_unlocks: Vec<u8>,
     pub weapon_glow: u32,
     pub bytes_18: Vec<u8>,
@@ -370,6 +372,11 @@ pub fn encode_lifecycle(packet: &LifecyclePacket) -> Result<Vec<u8>, PacketError
                 out.extend_from_slice(&id.to_le_bytes());
                 out.push(misses);
             }
+            out.extend_from_slice(&u32::try_from(hero.owned_tier05.len())
+                .map_err(|_| PacketError::LengthOverflow)?.to_le_bytes());
+            for &id in &hero.owned_tier05 {
+                out.extend_from_slice(&id.to_le_bytes());
+            }
             bytes(&mut out, &hero.heroic_unlocks)?;
             out.extend_from_slice(&hero.weapon_glow.to_le_bytes());
             bytes(&mut out, &hero.bytes_18)?;
@@ -481,11 +488,17 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
             }
             let mut pity = Vec::with_capacity(count);
             for _ in 0..count { pity.push((reader.u32()?, reader.u8()?)); }
+            let count = reader.u32()? as usize;
+            if count > reader.bytes.len().saturating_sub(reader.cursor) / 4 {
+                return Err(PacketError::Truncated);
+            }
+            let mut owned_tier05 = Vec::with_capacity(count);
+            for _ in 0..count { owned_tier05.push(reader.u32()?); }
             let heroic_unlocks = reader.bytes()?;
             let weapon_glow = reader.u32()?;
             let mut hero = NativeHero {
                 guid, name, class, race, sex, features, words_188, optional_words_b8,
-                equipment_stars, pity, heroic_unlocks, weapon_glow,
+                equipment_stars, pity, owned_tier05, heroic_unlocks, weapon_glow,
                 bytes_18: reader.bytes()?, words_170: [reader.u32()?, reader.u32()?],
                 bytes_17e: [reader.u8()?, reader.u8()?], float_178_bits: reader.u32()?,
                 key_150: reader.bytes()?, rank_158: reader.u8()?,
@@ -770,7 +783,8 @@ mod tests {
         NativeHero {
             guid: 0x800000, name: b"A".to_vec(), class: 8, race: 1, sex: 0,
             features: [0; 5], words_188: [0; 19], optional_words_b8: [None; 19],
-            equipment_stars: [0; 19], pity: Vec::new(), heroic_unlocks: vec![0; 12],
+            equipment_stars: [0; 19], pity: Vec::new(), owned_tier05: Vec::new(),
+            heroic_unlocks: vec![0; 12],
             weapon_glow: 1894,
             bytes_18: Vec::new(), words_170: [0; 2], bytes_17e: [0; 2],
             float_178_bits: 0, key_150: Vec::new(), rank_158: 0,
@@ -812,6 +826,7 @@ mod tests {
                 });
                 hero.equipment_stars = std::array::from_fn(|n| n as u8);
                 hero.pity = vec![(1001, 255), (1002, 40), (1001, 0)];
+                hero.owned_tier05 = vec![108_070, 108_170];
                 hero.heroic_unlocks = vec![0,1,2,3,4,5,255,5,4,3,2,1];
                 hero.weapon_glow = 1900;
                 hero.bytes_18 = b"x,y".to_vec();
@@ -819,7 +834,13 @@ mod tests {
             let expected = proof["wire_fixtures"][usize::from(rich)]["wire_hex"].as_str().unwrap();
             let mut expected = expected.as_bytes().chunks_exact(2).map(|pair|
                 u8::from_str_radix(std::str::from_utf8(pair).unwrap(), 16).unwrap()).collect::<Vec<_>>();
-            // Preserve the original 0.121.0 prefix and append the current native suffix.
+            // The historical fixture has no Tier 0.5 list. Insert the 0.141.0
+            // count and rows immediately after its empty or three-row pity list.
+            if rich {
+                expected.splice(212..212, [2, 0, 0, 0, 0x26, 0xa6, 1, 0, 0x8a, 0xa6, 1, 0]);
+            } else {
+                expected.splice(197..197, [0; 4]);
+            }
             expected.extend_from_slice(&0u32.to_le_bytes());
             let packet = LifecyclePacket::Hero(Box::new(hero));
             assert_eq!(encode_lifecycle(&packet).unwrap(), expected);
