@@ -784,8 +784,12 @@ mod tests {
         }
         for row in fixture["amulets"].as_array().unwrap() {
             let definition = amulets::catalog().by_key(row["key"].as_str().unwrap()).unwrap();
+            let mut expected = lines(row);
+            if definition.key == "legendary:consecration" {
+                expected.remove(2); // 0.140.0 omits Inferno's damage line.
+            }
             assert_eq!(amulet_lines(&labels, definition, row["rarity"].as_u64().unwrap() as usize,
-                row["picks"].as_u64().unwrap() as u32), lines(row), "{}", definition.key);
+                row["picks"].as_u64().unwrap() as u32), expected, "{}", definition.key);
         }
     }
 }

@@ -218,6 +218,15 @@ pub fn catalog() -> &'static Catalog {
         // preserve the historical descriptor asset and unchanged collection key.
         catalog.generated.iter_mut().find(|row| row.key == "legendary:soul_fire")
             .expect("current Soulfire amulet").name = "Charm of the Fated Hour: Soulfire".into();
+        // 0.140.0 constructor skips Inferno's keyed power lane before appending
+        // the on-kill explosion. Keep the retained catalogue bytes historical.
+        catalog
+            .generated
+            .iter_mut()
+            .find(|row| row.key == "legendary:consecration")
+            .expect("current Inferno amulet")
+            .effects
+            .retain(|row| !matches!(&row.effect, Effect::Spell { modifier: 0, .. }));
         catalog
     })
 }

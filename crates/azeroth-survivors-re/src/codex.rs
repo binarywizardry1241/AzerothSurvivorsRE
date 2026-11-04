@@ -104,6 +104,14 @@ impl CodexText {
         for (code, rows) in JewelryDelta::embedded().locales {
             text.0.entry(code).or_default().extend(rows);
         }
+        // In 0.140.0 the Inferno constructor skips its third effect, the
+        // damage bonus. The other three localized descriptions still match.
+        for rows in text.0.values_mut() {
+            rows.get_mut("legendary:consecration")
+                .expect("native Inferno Codex text")
+                .descriptions
+                .remove(2);
+        }
         text
     }
     fn language(&self, code: &str) -> &BTreeMap<String, EntryText> {

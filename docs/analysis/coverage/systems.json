@@ -43427,7 +43427,8 @@
         "docs/analysis/evidence/0.139.0/source-frontier.json",
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
-        "docs/analysis/native-census-0.139.1.md"
+        "docs/analysis/native-census-0.139.1.md",
+        "docs/analysis/consecration-0.140.0.md"
       ],
       "gap_ids": [
         1,
@@ -44309,6 +44310,27 @@
         "static_validation": "144 original modal input cases, four optional-record cases and 42 locale values pass; Rust syntax parses, authored regressions uncompiled/unrun.",
         "runtime_validation": "not_run",
         "parity_verified": false
+      },
+      "gap_143_source_review_0_140_0": {
+        "target_sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
+        "gap_id": 143,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/consecration-0.140.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Consecration uses current raw power 144. The Inferno amulet keeps ranked area, duration and on-kill explosions. Worn item, Codex and picker displays use the corresponding current effect and spell values.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+          "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+          "crates/azeroth-survivors-re/src/codex.rs",
+          "crates/azeroth-survivors-re/assets/ability-tooltips.json"
+        ]
       }
     },
     {
@@ -77580,7 +77602,7 @@
     "crates/benilla-formats/src/install.rs": "a3656080d4282194a6ec9b85a6e77bcba2ab9ef88925e10e5cd9fde2558cdce7",
     "scripts/check-data-directory-0.115.0.py": "145bb96c8093866b1979a95de47cc0ab2ba6496b2a54713e8c181a5152763ef0",
     "crates/azeroth-survivors-re/src/localization/amulet_names.rs": "b2f7158c5d236d7411b8c5bfa826a4fb7e6bc72015d71ed6b79529312ea1671c",
-    "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs": "f55d4c0d1249d347411b119ed698fe16132d6146e13c0c40566da59c6fd5ab99",
+    "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs": "74a6801f3344357dde5ec6cf943be359ef6867e1e00db3f7c64a4337c2d20720",
     "crates/azeroth-survivors-re/src/gameplay/native_overlay_payload.rs": "2f3442d3010d3b58025bdfca2c3dc935fedff7acaa904cb7a72628bbda2f1be4",
     "crates/azeroth-survivors-re/src/gameplay/addon_meters.rs": "ecd828caac2a595074c514b15c9314244d5f106ea39ee9c36af0f31f6c6eaf8b",
     "scripts/check-amulet-names-0.115.0.py": "edd39b69727906eacaea1399aadc52445acdea058eb6df2c40956acc8ac0607f",
@@ -77713,7 +77735,7 @@
     "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs": "9e917f1b1daaf0e7b1138978d8e2ac231783ab1bb773c40332a33082fb36ccf8",
     "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "9fcd39ed91cab681f5947e72ca8818c4b8c936dc2c411add7b8259e9c365cf44",
     "crates/azeroth-survivors-re/src/player_abilities/behavior/incoming.rs": "5fcef7fc36b64762f5922fdc5d1df805279442a76f2c59323999d507b6928a54",
-    "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "6d06d5554be6a35367ead18c4bfd3d5f49cd84d0896705b65c4557abfd6e0fc3",
+    "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "8bf88e1bfe1cdac7bbcc9df132cd1e9234bb3acfa8308412727f158c0d55ca6a",
     "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "2889a1c49f533209f16b3bddc4bbbd7ff9aa43bef354708cc8079de8a46b2b8f",
     "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing.rs": "daff564b87f459ae1c11179637bb9494ea1390b7bc03f2dd137f7466f14d91ca",
     "crates/azeroth-survivors-re/src/gameplay/mechanics/shared_healing_tests.rs": "0e59fd484b90b98899418590d7f823934675502698ea155bc6a8047a060f8112",
@@ -77741,7 +77763,7 @@
     "crates/azeroth-survivors-re/src/gameplay/coop_reconnection.rs": "7cb50555c26d07c2f3e9735fdfe3dffc633ff3ca882a5c1c3b95bdf685166b16",
     "scripts/check-service-peer-flags-0.120.2.py": "275d2d1a6302a75beee91d4920f3e4700324239ff18ad8f531eb36eec96e6c02",
     "scripts/check-service-reconnection-presentation-0.120.2.py": "40280c5bc52f0e56a692c33782ba4262ea95147472a6d10d0fcde63e91613906",
-    "crates/azeroth-survivors-re/src/codex.rs": "159f37324f1a79bf99479b65df1b96f38bb9163dbbf4bde1e0400ea58bdd9043",
+    "crates/azeroth-survivors-re/src/codex.rs": "8e8b1dfb1b0ad8f77e709e7d8e0559e2a737fb6e1a5cba2971f28d16fa858297",
     "scripts/check-codex-growth-dispatch-0.120.2.py": "83cf0532f2b3c2ac35a29a81c9ccf0bb6f693f184fd2a169cc19bb9dbacf55b4",
     "scripts/check-creature-query-tables-0.120.2.py": "d72891ad60a4c31297b7e49edc804633644b1916ace7ca3bdc005b1c94076015",
     "scripts/creature_query_native_0_120_2.py": "108e0ae481b1cd1b4c4864848af31dd2f20dd326d39f0eeea19248da7245c044",

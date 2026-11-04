@@ -248,7 +248,7 @@ pub static ABILITIES: &[AbilityDefinition] = &[
         icon: "Spell_Holy_InnerFire",
         upgrade_types: &[0, 1, 3, 4],
         spell_id: 26573,
-        base_power: f32::from_bits(0x42c00000),
+        base_power: f32::from_bits(0x43100000),
         base_cooldown: f32::from_bits(0x41000000),
         range: f32::from_bits(0x00000000),
         radius: f32::from_bits(0x41000000),

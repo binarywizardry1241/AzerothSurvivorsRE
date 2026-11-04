@@ -33054,17 +33054,29 @@
         "version": "0.140.0",
         "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Trace the current 144 raw Consecration power and removal of Inferno’s damage lane while retaining its other three effects.",
+      "status": "source_connected",
+      "rationale": "Consecration uses current raw power 144. The Inferno amulet keeps ranked area, duration and on-kill explosions. Worn item, Codex and picker displays use the corresponding current effect and spell values.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs"
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+        "crates/azeroth-survivors-re/src/codex.rs",
+        "crates/azeroth-survivors-re/assets/ability-tooltips.json"
       ],
       "evidence_refs": [
-        "docs/analysis/class-balance-0.140.0.md"
+        "docs/analysis/consecration-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "6d06d5554be6a35367ead18c4bfd3d5f49cd84d0896705b65c4557abfd6e0fc3",
-        "docs/analysis/class-balance-0.140.0.md": "7441b87a69a6b47ad228eb90ae6e8bed3da1e0a21f811ed8d0d43fa64256173a"
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "8bf88e1bfe1cdac7bbcc9df132cd1e9234bb3acfa8308412727f158c0d55ca6a",
+        "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "082d3af60e74ce8424c1e3ada1a7ce401cd142fe35257c513dbd0c2dea09c077",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "2ff1e7a127f06bec47319b03fb6cd167a08c59cccdc122fc8b78357cf0975dd2",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "bad50ba80c39e2e780117bee123cc99ce6acc1052b89edf7704dc3a5ba467cf0",
+        "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs": "74a6801f3344357dde5ec6cf943be359ef6867e1e00db3f7c64a4337c2d20720",
+        "crates/azeroth-survivors-re/src/codex.rs": "8e8b1dfb1b0ad8f77e709e7d8e0559e2a737fb6e1a5cba2971f28d16fa858297",
+        "crates/azeroth-survivors-re/assets/ability-tooltips.json": "f73e015c6083f810f0c24f2b7adffa2bb871dae3dac5620c99ec2fde288cd231",
+        "docs/analysis/consecration-0.140.0.md": "2b8d564ed0f0064d847ad1ef5e923ed65c4c7d979db80bff0affe7ef18cb4c7f"
       },
       "systems": [
         "custom-game-jewelry"
@@ -33088,7 +33100,7 @@
         "docs/analysis/class-balance-0.140.0.md"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "6d06d5554be6a35367ead18c4bfd3d5f49cd84d0896705b65c4557abfd6e0fc3",
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "8bf88e1bfe1cdac7bbcc9df132cd1e9234bb3acfa8308412727f158c0d55ca6a",
         "docs/analysis/class-balance-0.140.0.md": "7441b87a69a6b47ad228eb90ae6e8bed3da1e0a21f811ed8d0d43fa64256173a"
       },
       "systems": [
@@ -33243,10 +33255,10 @@
         "docs/analysis/class-balance-0.140.0.md#mind-blast-power-cooldown-and-descriptions"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "6d06d5554be6a35367ead18c4bfd3d5f49cd84d0896705b65c4557abfd6e0fc3",
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "8bf88e1bfe1cdac7bbcc9df132cd1e9234bb3acfa8308412727f158c0d55ca6a",
         "docs/analysis/class-balance-0.140.0.md": "7441b87a69a6b47ad228eb90ae6e8bed3da1e0a21f811ed8d0d43fa64256173a",
         "crates/azeroth-survivors-re/assets/talents.json": "1dd3338c86565c58102b159a7f528ff82fd041f1b327205d31c7b82ed1aa40ab",
-        "crates/azeroth-survivors-re/assets/ability-tooltips.json": "a4567b6071b02d26080a0191160864f4dd298ce3f1557b1b840df9f5f3bdfd2b",
+        "crates/azeroth-survivors-re/assets/ability-tooltips.json": "f73e015c6083f810f0c24f2b7adffa2bb871dae3dac5620c99ec2fde288cd231",
         "crates/azeroth-survivors-re/src/save/talents.rs": "7d5117891b9a39c5e786f63e137995bdd14390e1067120f3d2c4cb41b5e3d14a",
         "crates/azeroth-survivors-re/src/run_effects.rs": "cae3301137d72b84b9cdc31a175ab2981473c4db0d4745c48086be2eda1e9f41",
         "crates/azeroth-survivors-re/src/player_abilities/damage.rs": "082d3af60e74ce8424c1e3ada1a7ce401cd142fe35257c513dbd0c2dea09c077"
@@ -33511,7 +33523,7 @@
         "docs/analysis/enhancement-0.139.2.md#rockbiter-and-the-picker-in-01400"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "6d06d5554be6a35367ead18c4bfd3d5f49cd84d0896705b65c4557abfd6e0fc3",
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "8bf88e1bfe1cdac7bbcc9df132cd1e9234bb3acfa8308412727f158c0d55ca6a",
         "docs/analysis/class-balance-0.140.0.md": "4c7951771575183256a439b7909b9010c65eccc9035fd145aab3e967a7d74e53",
         "crates/azeroth-survivors-re/src/catalog.rs": "f2b06ec8fc8d74f7d761c2a04efad4dd797fced3930cf256c4510ef86660404b",
         "crates/azeroth-survivors-re/assets/rockbiter-tooltip-0.140.0.json": "a82e28fc3dd0acfad9572772df64a70a25994cdc9d93cfd30357e029e842ab53",
@@ -33828,10 +33840,10 @@
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/run_effects/weapon.rs": "02f491f7f56cf3b573e1f97bc0403d32a3a9420264946399c85b37475ae83c4e",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs": "22737b8e7f7b4dfe2c51b784883bababb4031d67599fe6714b17a35233e8f37b",
-        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "6d06d5554be6a35367ead18c4bfd3d5f49cd84d0896705b65c4557abfd6e0fc3",
+        "crates/azeroth-survivors-re/src/player_abilities/catalog.rs": "8bf88e1bfe1cdac7bbcc9df132cd1e9234bb3acfa8308412727f158c0d55ca6a",
         "crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs": "2ff1e7a127f06bec47319b03fb6cd167a08c59cccdc122fc8b78357cf0975dd2",
         "docs/analysis/rogue-reach-0.140.0.md": "ac5230dfe428b08319f4f971cb005d7d7afc0ffb8624b6192d30aa8677c79112",
-        "crates/azeroth-survivors-re/assets/ability-tooltips.json": "a4567b6071b02d26080a0191160864f4dd298ce3f1557b1b840df9f5f3bdfd2b"
+        "crates/azeroth-survivors-re/assets/ability-tooltips.json": "f73e015c6083f810f0c24f2b7adffa2bb871dae3dac5620c99ec2fde288cd231"
       },
       "systems": [
         "custom-game-game-attacks"
