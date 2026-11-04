@@ -42483,6 +42483,17 @@
     },
     {
       "id": "custom-game-i18n",
+      "scholomance_text_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_ids": [142],
+        "evidence_refs": ["docs/analysis/scholomance-localization-0.141.0.md"],
+        "source_refs": ["crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs", "crates/azeroth-survivors-re/src/gameplay/mod.rs"],
+        "recovery": "Fourteen locale descriptors and current creature, warning, gear and progress format inputs.",
+        "implementation": "The ordinary creature-query path localizes the Risen Guard. The Prepared progress producer wraps the completed localized notice in the native green chat markup.",
+        "static_validation": "2,324 exact catalog values, journaled native getter, checked PE ranges and Rust syntax parsing.",
+        "runtime_validation": "unverified",
+        "parity": "unverified"
+      },
       "title": "Localization data loading and lookup",
       "original_path": "crates/wenilla-rogue/src/i18n.rs",
       "native_path_evidence": [
@@ -42503,17 +42514,6 @@
         "crates/azeroth-survivors-re/src/localization.rs",
         "crates/azeroth-survivors-re/src/catalog.rs",
         "crates/azeroth-survivors-re/src/menu_fonts.rs",
-      "scholomance_text_0_141_0": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "gap_ids": [142],
-        "evidence_refs": ["docs/analysis/scholomance-localization-0.141.0.md"],
-        "source_refs": ["crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs", "crates/azeroth-survivors-re/src/gameplay/mod.rs"],
-        "recovery": "Fourteen locale descriptors and current creature, warning, gear and progress format inputs.",
-        "implementation": "The ordinary creature-query path localizes the Risen Guard. The Prepared progress producer wraps the completed localized notice in the native green chat markup.",
-        "static_validation": "2,324 exact catalog values, journaled native getter, checked PE ranges and Rust syntax parsing.",
-        "runtime_validation": "unverified",
-        "parity": "unverified"
-      },
         "scripts/recover-localization-0.107.0.py",
         "crates/azeroth-survivors-re/assets/locales/cs.json",
         "crates/azeroth-survivors-re/assets/locales/de.json",
@@ -65046,6 +65046,26 @@
     },
     {
       "id": "custom-app-screens-ime",
+      "browser_input_0_141_0": {
+        "wasm_sha256": "c1b2c99d39f5809215079951e5df46f091c2d57669ffd9e96edcea61169a17c0",
+        "gap_ids": [293],
+        "evidence_refs": ["docs/analysis/browser-ime-0.141.0.md"],
+        "recovery": "The deployed WASM calls the DOM bridge with focus and caret coordinates. DOM composition ends in the normal Winit key and text path.",
+        "static_validation": "WABT validation and eight exact function-range checks.",
+        "remaining_source_work": "Connect focus and DOM input once a rebuilt browser app/data bootstrap provides the canvas and event loop.",
+        "runtime_validation": "unverified",
+        "parity": "unverified"
+      },
+      "native_preedit_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_ids": [293],
+        "evidence_refs": ["docs/analysis/native-ime-preedit-0.141.0.md"],
+        "source_refs": ["crates/azeroth-survivors-re/src/ime.rs"],
+        "recovery": "Windows caret and preedit event production, nine typed IME identity references, and the existing two-stream Commit consumer. No separate AS renderer within the selected typed references.",
+        "static_validation": "Hash-bound PE decode, retained forwarder comparison and journaled Ghidra analysis.",
+        "runtime_validation": "unverified",
+        "parity": "unverified"
+      },
       "input_bridge_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_ids": [
@@ -65125,26 +65145,6 @@
         "docs/analysis/ime-bridge-0.127.0.md",
         "docs/analysis/evidence/0.127.0/ime-bridge/manifest.json",
         "scripts/check-picker-name.py",
-      "native_preedit_0_141_0": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "gap_ids": [293],
-        "evidence_refs": ["docs/analysis/native-ime-preedit-0.141.0.md"],
-        "source_refs": ["crates/azeroth-survivors-re/src/ime.rs"],
-        "recovery": "Windows caret and preedit event production, nine typed IME identity references, and the existing two-stream Commit consumer. No separate AS renderer within the selected typed references.",
-        "static_validation": "Hash-bound PE decode, retained forwarder comparison and journaled Ghidra analysis.",
-        "runtime_validation": "unverified",
-        "parity": "unverified"
-      },
-      "browser_input_0_141_0": {
-        "wasm_sha256": "c1b2c99d39f5809215079951e5df46f091c2d57669ffd9e96edcea61169a17c0",
-        "gap_ids": [293],
-        "evidence_refs": ["docs/analysis/browser-ime-0.141.0.md"],
-        "recovery": "The deployed WASM calls the DOM bridge with focus and caret coordinates. DOM composition ends in the normal Winit key and text path.",
-        "static_validation": "WABT validation and eight exact function-range checks.",
-        "remaining_source_work": "Connect focus and DOM input once a rebuilt browser app/data bootstrap provides the canvas and event loop.",
-        "runtime_validation": "unverified",
-        "parity": "unverified"
-      },
         "docs/analysis/evidence/0.139.0/discovery-delta.json",
         "docs/analysis/source-frontier-0.139.0.md",
         "docs/analysis/evidence/0.139.0/source-frontier.json",
