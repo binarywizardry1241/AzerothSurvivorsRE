@@ -644,7 +644,7 @@ fn receive(
                     &String::from_utf8_lossy(&chat.text));
                 if text.is_empty() { continue; }
                 let Some(driver) = runtime.driver.as_mut() else { continue; };
-                if driver.admit_lobby_chat(client, time.elapsed_secs_f64()) {
+                if driver.admit_peer_chat(client, profile_now) {
                     // Sender metadata comes from the admitted Hero, never the
                     // untrusted chat frame's supplied identity/name/class.
                     driver.publish_lobby_chat(azeroth_survivors_re::coop::server_party::NativeLobbyChat {
@@ -924,7 +924,7 @@ fn receive(
         if !state.commands.is_empty() {
             commands::drain(
                 &mut state, &mut runtime, &mut run, &world, &mut terrain,
-                &locale, &mut presentation, &armory, &mut item_texts,
+                &locale, &mut presentation, &armory, &mut item_texts, profile_now,
             );
         }
     }

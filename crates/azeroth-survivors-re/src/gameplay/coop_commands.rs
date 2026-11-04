@@ -4,7 +4,7 @@ use azeroth_survivors_re::{
     coop::replication::EnginePacket,
     floor_recovery::{Admission, Recovery, Report},
 };
-use benilla_protocol::messages::{opcode, parse_movement_info};
+use benilla_protocol::messages::{ChatMessage, opcode, parse_movement_info};
 
 pub(super) enum Input {
     Engine(EnginePacket),
@@ -105,10 +105,11 @@ fn apply(
     mut presentation: ResMut<LocalPresentationEvents>,
     armory: Res<crate::armory::ArmoryCatalog>,
     mut item_texts: ResMut<benilla_app::local_client::LocalItemDescriptions>,
+    time: Res<Time>,
 ) {
     drain(
         &mut state, &mut runtime, &mut run, &world, &mut terrain,
-        &locale, &mut presentation, &armory, &mut item_texts,
+        &locale, &mut presentation, &armory, &mut item_texts, time.elapsed_secs_f64(),
     );
 }
 
@@ -122,6 +123,7 @@ pub(super) fn drain(
     presentation: &mut LocalPresentationEvents,
     armory: &crate::armory::ArmoryCatalog,
     item_texts: &mut benilla_app::local_client::LocalItemDescriptions,
+    now: f64,
 ) {
     if runtime.is_guest() {
         return;
@@ -137,7 +139,8 @@ pub(super) fn drain(
             if matches!(packet.opcode, opcode::CMSG_NAME_QUERY | opcode::CMSG_PING));
         let teleport_ack = matches!(queued, Input::Engine(packet)
             if packet.opcode == opcode::MSG_MOVE_TELEPORT_ACK);
-        if matches!(queued, Input::Engine(_)) && !reply_without_world && !teleport_ack
+        let chat = matches!(queued, Input::Engine(packet) if packet.opcode == opcode::CMSG_MESSAGECHAT);
+        if matches!(queued, Input::Engine(_)) && !reply_without_world && !teleport_ack && !chat
             && (world_inputs.is_none() || floor.is_none())
         {
             // A command waiting on the world keeps its place in receive order.
@@ -196,6 +199,19 @@ pub(super) fn drain(
         if teleport_ack {
             if let Some(motion) = state.motion.get_mut(&client) {
                 motion.recovery.acknowledge_teleport(teleport_ack_counter(&packet.payload));
+            }
+            continue;
+        }
+        if chat {
+            if let Some(request) = meter_request(&packet.payload) {
+                state.addon_publishers.entry(client).or_default().request(request);
+            } else if game.has_party()
+                && let Some(event) = party_chat(&packet.payload, guid)
+                && runtime.driver.as_mut().is_some_and(|driver| driver.admit_peer_chat(client, now))
+                && let Ok(Some(packet)) = engine_packets::encode(&event, None)
+                && runtime.route_engine(slot, packet)
+            {
+                presentation.0.push(event);
             }
             continue;
         }
@@ -290,11 +306,6 @@ pub(super) fn drain(
         let member_locale = locale.for_code(&language);
         let mut replies = Vec::new();
         match packet.opcode {
-            opcode::CMSG_MESSAGECHAT => {
-                if let Some(request) = meter_request(&packet.payload) {
-                    state.addon_publishers.entry(client).or_default().request(request);
-                }
-            }
             opcode::CMSG_QUERY_TIME => {
                 if let Some(reply) = client::clock_queries::query_time() {
                     replies.push(reply);
@@ -409,6 +420,41 @@ fn meter_request(body: &[u8]) -> Option<client::addon_feed::MeterRequest> {
     client::addon_feed::MeterRequest::parse(std::str::from_utf8(text).ok()?)
 }
 
+fn party_chat(body: &[u8], sender_guid: u64) -> Option<SessionEvent> {
+    use benilla_protocol::messages::LANGUAGE_ADDON;
+    let chat_type = template_entry(body);
+    let language = template_entry(body.get(4..).unwrap_or_default());
+    if !matches!(chat_type, 0 | 1 | 5 | 8) || language == LANGUAGE_ADDON {
+        return None;
+    }
+    let bytes = body.get(8..).unwrap_or_default();
+    let message = bytes.split(|byte| *byte == 0).next().unwrap_or_default();
+    let mut text = String::new();
+    for character in String::from_utf8_lossy(message)
+        .chars()
+        .filter(|character| !character.is_control())
+        .take(255)
+    {
+        text.push(character);
+        if character == '|' {
+            text.push('|');
+        }
+    }
+    if text.trim().is_empty() {
+        return None;
+    }
+    Some(SessionEvent::Chat(ChatMessage {
+        chat_type: chat_type as u8,
+        language: 0,
+        sender_guid,
+        target_guid: if chat_type == 8 { 0 } else { sender_guid },
+        sender_name: None,
+        channel: None,
+        text,
+        chat_tag: 0,
+    }))
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -423,6 +469,24 @@ mod tests {
         assert_eq!(meter_request(&messagechat(CHAT_TYPE_PARTY, 0, "AZSMREQ\tfull")), None);
         let party = messagechat(CHAT_TYPE_PARTY, LANGUAGE_ADDON, "AZSMREQ\tparty");
         assert_eq!(meter_request(&party), Some(MeterRequest::Party));
+    }
+
+    #[test]
+    fn ordinary_party_chat_uses_the_assigned_guid_and_escapes_each_pipe_once() {
+        use benilla_protocol::messages::{CHAT_TYPE_PARTY, LANGUAGE_ADDON, messagechat};
+        let guid = 0xfedcba9876543210;
+        let body = messagechat(CHAT_TYPE_PARTY, 7, " \tHey|界\u{7f} ");
+        let event = party_chat(&body, guid).unwrap();
+        let SessionEvent::Chat(chat) = &event else { panic!("party chat") };
+        assert_eq!(chat.text, " Hey||界 ");
+        assert_eq!((chat.language, chat.sender_guid, chat.target_guid), (0, guid, guid));
+        let packet = engine_packets::encode(&event, None).unwrap().unwrap();
+        assert_eq!(packet.opcode, opcode::SMSG_MESSAGECHAT);
+        assert_eq!(azeroth_survivors_re::coop::trust::guest_engine_payload(
+            packet.opcode, packet.payload.clone()), packet.payload);
+        assert!(party_chat(&messagechat(CHAT_TYPE_PARTY, LANGUAGE_ADDON, "hello"), guid).is_none());
+        assert!(party_chat(&messagechat(CHAT_TYPE_PARTY, 0, "\u{2003}\t"), guid).is_none());
+        assert!(party_chat(&messagechat(2, 0, "hello"), guid).is_none());
     }
     #[test]
     fn template_queries_zero_fill_only_the_missing_entry_bytes() {

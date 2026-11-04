@@ -737,6 +737,117 @@ def host_ping():
     print(f'PASS: {requests} Ping requests and {len(encodes)} Pong queues over {replay.instructions:,} original steps')
 
 
+def host_chat():
+    replay = host_action_replay()
+    cpu, reg = replay.machine, replay.registers
+    core, peers, times = replay.app, replay.app + 0x4000, replay.app + 0x6000
+    body, utf8, clean, wire = (replay.app + offset for offset in (0x7000, 0x8000, 0x9000, 0xa000))
+    sender = 0xfedcba9876543210
+    clock = 10.
+
+    def shim(address):
+        rcx, rdx, r8 = (cpu.reg_read(register) for register in
+                         (reg.UC_X86_REG_RCX, reg.UC_X86_REG_RDX, reg.UC_X86_REG_R8))
+        if address == 0x146375c90:
+            # Native wrapper uses replacement text for malformed UTF-8.
+            raw = bytes(cpu.mem_read(rdx, r8)) if r8 else b''
+            decoded = raw.decode(errors='replace').encode()
+            pointer, cap = (rdx, -1) if decoded == raw else (utf8, 4096)
+            if cap > 0:
+                cpu.mem_write(pointer, decoded)
+            replay.put(rcx, '<qQQ', cap, pointer, len(decoded))
+        elif address in (0x1463a71c0, 0x14654d840):
+            _, pointer, length = replay.get(rcx, '<QQQ')
+            assert pointer in (1, wire)
+            replay.put(rcx, '<QQQ', 4096, clean if pointer == 1 else wire, length)
+        elif address == 0x1400021c0:
+            assert (rcx, rdx) == (0x20, 1)
+            cpu.reg_write(reg.UC_X86_REG_RAX, wire)
+        elif address == 0x1400e57c0:
+            replay.put(rcx, '<I4xQQ', 0, 4096, utf8)
+        elif address == 0x1463a5541:
+            cpu.mem_write(rcx, bytes(cpu.mem_read(rdx, r8)))
+        elif address == 0x145ef30b0:
+            assert (rcx, rdx) == (core + 0x10, 1)
+            cpu.reg_write(reg.UC_X86_REG_RAX, sender)
+        elif address == 0x145ecac30:
+            _, pointer, length, opcode = replay.get(r8, '<QQQH')
+            assert rcx == core
+            recipients.append((rdx, opcode, bytes(cpu.mem_read(pointer, length))))
+        elif address not in (0x140002200, 0x1400021d0):
+            return False
+        replay.return_seam()
+        return True
+
+    replay.seam = shim
+    examples = [
+        (b' \tHello |world| \x7f \n', ' Hello ||world||  '),
+        ('\u2003 \t\u3000'.encode(), ''),
+        (b'\xff|ok\x00ignored', '\ufffd||ok'),
+        (('你' * 80 + 'a' * 174 + '|extra').encode(), '你' * 80 + 'a' * 174 + '||'),
+        (' \u2028word\u0085s '.encode(), ' \u2028words '),
+        (b'', ''),
+    ]
+    cases = 0
+    for kind, (message, expected), history in itertools.product(
+        range(10), examples, ((), (6., 7., 8., 9.), (5., 7., 8., 9.))
+    ):
+        payload = struct.pack('<II', kind, 7) + message
+        recipients = []
+        replay.reset('host ordinary chat', [(0x145e9e690, 0x145ea2004), (0x145e3bdf0, 0x145e3c0b0),
+                     (0x1400d6de0, 0x1400d7059), (0x146019260, 0x146019332),
+                     (0x145fdd7e0, 0x145fddaab)], [0x145ea10bf])
+        cpu.mem_write(body, payload)
+        replay.put(core + 0xd00, '<Q', 2)
+        replay.put(core + 0x10f3, '<B', 1)
+        replay.put(core + 0x1100, '<I', 3)
+        replay.put(core + 0x1138, '<QQ', peers, 2)
+        replay.put(core + 0x11d8, '<d', clock)
+        replay.put(peers + 0x8a0, '<I4xQ', 1, 1)
+        replay.put(peers + 0x8a0 + 0x378, '<QQQ', 8, times, len(history))
+        replay.put(times, f'<{len(history)}d', *history)
+        for register, value in ((reg.UC_X86_REG_RAX, 0x95), (reg.UC_X86_REG_RSI, core),
+                                (reg.UC_X86_REG_RBX, 1), (reg.UC_X86_REG_R12, 1),
+                                (reg.UC_X86_REG_R13, len(payload)), (reg.UC_X86_REG_R15, body)):
+            cpu.reg_write(register, value)
+        cpu.emu_start(0x145e9e8b6, 0, count=20_000)
+        assert cpu.reg_read(reg.UC_X86_REG_RIP) == 0x145ea10bf
+        kept = history
+        if kind in (0, 1, 5, 8) and expected:
+            kept = tuple(stamp for stamp in history if clock - stamp < 5.)
+            if len(kept) < 4:
+                kept += (clock,)
+                text = expected.encode()
+                expected_body = struct.pack('<BIQ', kind, 0, sender)
+                if kind != 8:
+                    expected_body += struct.pack('<Q', sender)
+                expected_body += struct.pack('<I', len(text) + 1) + text + b'\x00\x00'
+                assert recipients == [(slot, 0x96, expected_body) for slot in range(3)]
+            else:
+                assert not recipients
+        else:
+            assert not recipients
+        assert replay.get(peers + 0x8a0 + 0x388, '<Q') == (len(kept),)
+        assert replay.get(times, f'<{len(kept)}d') == kept
+        cases += 1
+
+    gameplay, drain = ordered_source()
+    ingress = drain.split('if chat {', 1)[1].split('let (Some(((streamer, tiles), zone))', 1)[0]
+    order = [ingress.index(token) for token in ('meter_request(&packet.payload)', 'game.has_party()',
+             'party_chat(&packet.payload, guid)', 'driver.admit_peer_chat(client, now)',
+             'engine_packets::encode(&event, None)', 'runtime.route_engine(slot, packet)',
+             'presentation.0.push(event)')]
+    assert order == sorted(order)
+    assert 'driver.admit_peer_chat(client, profile_now)' in (gameplay / 'coop.rs').read_text()
+    root = gameplay.parent
+    session = (root / 'coop/session.rs').read_text().split('pub fn admit_peer_chat(', 1)[1].split('pub fn publish_lobby_chat(', 1)[0]
+    assert 'times.retain(|then| now - *then < 5.);' in session and 'times.len() > 3' in session
+    route = (root / 'coop_runtime.rs').read_text().split('fn route_clients(', 1)[1].split('pub(crate) fn flush_engine_events(', 1)[0]
+    assert 'row.id == *client && row.synchronized && row.closing_since.is_none()' in route
+    assert '!private || *slot == source' in route
+    print(f'PASS: {cases} in-run chat sanitizer, limiter and publication cases over {replay.instructions:,} original steps, plus source guards')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
@@ -744,6 +855,7 @@ def main():
     parser.add_argument("--host-name-query", action="store_true")
     parser.add_argument("--host-controls", action="store_true")
     parser.add_argument("--host-ping", action="store_true")
+    parser.add_argument("--host-chat", action="store_true")
     args = parser.parse_args()
     if args.host_name_query:
         return host_name_query()
@@ -751,6 +863,8 @@ def main():
         return host_controls()
     if args.host_ping:
         return host_ping()
+    if args.host_chat:
+        return host_chat()
     if args.ordered_input:
         return ordered_world_input()
     target = latest_target(verify=True)

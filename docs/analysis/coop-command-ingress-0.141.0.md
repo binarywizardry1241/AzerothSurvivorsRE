@@ -363,3 +363,63 @@ cases over 2,338 original instruction steps. The replay uses synthetic
 allocation, codec and cleanup calls while the native prefix and queue
 instructions execute. Rust syntax parsing passed. Compilation, socket
 delivery and original/rebuilt comparison remain open.
+
+## Ordinary guest chat in a cooperative run
+
+The `0x95` request owner reads up to four little-endian bytes each for
+the type and language. The ordinary branch at `0x145ea0796` requires
+a host-assigned actor, a populated Game and cooperative mode. Its mask
+at `0x145ea0839` admits types 0, 1, 5 and 8. The locale-independent table
+at `0x147aec308` maps those four types to themselves. The addon-language
+path retains its own request handler.
+
+The reader takes text through the first NUL or the input end. The UTF-8
+adapter `0x146375c90` replaces malformed units with U+FFFD. The sanitizer
+`0x145e3bdf0` drops C0/C1 controls, doubles each pipe and keeps the first
+255 surviving Unicode scalars, counting a doubled pipe once. The trim at
+`0x145ea0c9b` rejects whitespace-only output. The serializer receives the
+original sanitized pointer and length, preserving surrounding whitespace
+in accepted text.
+
+The indexed peer's rate history at row `+0x378` is the same vector the
+lobby chat receiver accesses at `0x145ecc255`. The in-run prune at
+`0x146019260` discards elapsed values of five seconds or more and the
+caller admits up to four messages in the remaining window. A blank or
+disallowed request reaches no rate update. The actor wrapper at
+`0x145ef32ab` seats the actual assigned hero and reads the world GUID from
+Game `+0x5c8`. The serializer at `0x145fdd7e0` writes Engine opcode `0x96`,
+universal language, that GUID as both sender and target for types 0, 1 and
+5, or just the sender for type 8, then the terminated text and zero chat tag.
+The loop at `0x145ea0d78` starts at actor slot 0 and includes the sender.
+Slot 0 goes to the current local engine port. Other slots require an
+assigned peer and the synchronization byte at peer `+0x89d`.
+
+The [host receive queue](../../crates/azeroth-survivors-re/src/gameplay/coop_commands.rs)
+now routes ordinary guest text through the existing `ChatMessage` encoder,
+local presentation events and synchronized party broadcast. The same
+[peer history](../../crates/azeroth-survivors-re/src/coop/session.rs) limits
+lobby and in-run guest input. Addon meter requests keep their distinct
+handler. The guest trust adapter preserves already escaped pipe pairs.
+
+| Selected PE range | File offset | SHA-256 |
+| --- | ---: | --- |
+| Admission `0x145ea0796..0x145ea0883` | `0x5e9fb96` | `49cca146f8b1a770a9da4b586a6ab4ed485ea431d13ac4c7cde2136f4c65ba4b` |
+| Normalize, rate and emit `0x145ea0c57..0x145ea0dc0` | `0x5ea0057` | `12723530558e59f5894ce225e09357349d6d8d6fe16c1b25bf86860d4800aac8` |
+| UTF-8 repair `0x146375c90..0x146375eba` | `0x6375090` | `53fb51227266f0e4a34b4b9acbfe7b910c632142c70ae67d90bc28db96c95429` |
+| Control removal and escaping `0x145e3bdf0..0x145e3c0b0` | `0x5e3b1f0` | `a686dcfa80906567f7eab4d6ab1a95d13cdd1f3c197cd3034fd51c5772cfaf0b` |
+| Shared lobby history `0x145ecc1c5..0x145ecc28d` | `0x5ecb5c5` | `99decced5c0b59e7ead43a4ac067c3f79b0f2690b4ffefbd31e3b4ddcad1150a` |
+| Wire serializer `0x145fdd7e0..0x145fddaab` | `0x5fdcbe0` | `0c3f68865fb0c378581c7f5975ce522a2cacd0ac8638458e7f7bcd463b739386` |
+| Actor recipient admission `0x145ecac52..0x145ecacba` | `0x5eca052` | `722a59e9a5ab7e40d2e682a4e11e4cea91779e07fa7e97b037d293196074ff81` |
+
+```sh
+PYTHONPATH=runtime/armory-recovery/python-libs \
+  python3 -B scripts/check-coop-party-frames.py --host-chat
+```
+
+The checker passed 180 input, sanitization, rate and publication cases over
+211,170 original instruction steps. UTF-8 conversion, allocation, actor
+lookup and the final per-recipient queue are explicit seams. The normalizer,
+whitespace check, rate prune, wire fields and recipient loop run their
+original instructions. The changed Rust modules syntax-parse. Compilation,
+the authored trust round-trip regression, live chat delivery and parity
+remain open.

@@ -1270,15 +1270,15 @@ impl Session {
         std::mem::take(&mut self.events)
     }
 
-    /// 145bd7620: a remote lobby sender gets four accepted messages in five
-    /// seconds. The caller first resolves its actual normalized Hero and text.
-    pub fn admit_lobby_chat(&mut self, client: ClientId, now: f64) -> bool {
+    /// Lobby and in-run chat share one four-message, five-second peer window.
+    /// The caller resolves the actual hero and nonblank text first.
+    pub fn admit_peer_chat(&mut self, client: ClientId, now: f64) -> bool {
         if !self.server.clients().iter().any(|row| row.id == client
             && row.joined && row.closing_since.is_none()) {
             return false;
         }
         let times = self.chat_times.entry(client).or_default();
-        times.retain(|then| !(now - *then >= 5.));
+        times.retain(|then| now - *then < 5.);
         if times.len() > 3 { return false; }
         times.push_back(now);
         true
