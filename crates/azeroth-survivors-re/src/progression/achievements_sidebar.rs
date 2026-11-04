@@ -12,6 +12,7 @@ pub(super) fn draw(
     total: usize,
     counts: &[(usize, usize, u32, u32)],
     category: Option<usize>,
+    inspection: bool,
 ) {
     crate::codex::section_heading(ui, art, labels.label("Achievements"));
     ui.spawn(Node {
@@ -123,7 +124,7 @@ pub(super) fn draw(
         images,
         labels.label("Summary"),
         "INV_Misc_Note_01",
-        None,
+        AchievementCategory { category: None, inspection },
         None,
         category.is_none(),
     );
@@ -134,7 +135,7 @@ pub(super) fn draw(
             images,
             labels.label(CATEGORIES[index]),
             CATEGORY_ICONS[index],
-            Some(index),
+            AchievementCategory { category: Some(index), inspection },
             Some((have, all)),
             category == Some(index),
         );
@@ -159,7 +160,7 @@ fn control(
     images: &Art,
     value: &str,
     icon: &str,
-    category: Option<usize>,
+    control: AchievementCategory,
     counts: Option<(usize, usize)>,
     selected: bool,
 ) {
@@ -181,7 +182,7 @@ fn control(
     };
     ui.spawn((
         Button,
-        Action::Category(category),
+        control,
         Node {
             padding: UiRect::axes(Val::Px(8.), Val::Px(6.)),
             border: UiRect::all(Val::Px(1.)),

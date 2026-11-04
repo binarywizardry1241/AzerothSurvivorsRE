@@ -13,7 +13,6 @@ use crate::{
     preview::HeroPreviewOutput,
     progression,
     talents::{self, TalentArt, TalentCatalog, TreeMode},
-    tooltip::NativeTooltip,
 };
 
 use super::{CoopUi, HeroRow};
@@ -36,7 +35,14 @@ enum Click {
 struct Root;
 
 #[derive(Component)]
-struct EquipmentHover(NativeTooltip);
+struct EquipmentHover {
+    title: String,
+    subtitle: String,
+    stars: Option<String>,
+    body: String,
+    palette: ItemPalette,
+    icon: Option<Handle<Image>>,
+}
 
 #[derive(Component)]
 struct EquipmentSummary;
@@ -58,19 +64,21 @@ struct Subject {
     race: u8,
     data: Option<NativeInspection>,
     achievement_points: u32,
+    achievement_category: Option<usize>,
     host: bool,
     me: bool,
     tab: Tab,
 }
 
 impl Subject {
-    fn matches(&self, hero: &HeroRow, tab: Tab) -> bool {
+    fn matches(&self, hero: &HeroRow, tab: Tab, achievement_category: Option<usize>) -> bool {
         self.identity == hero.hero_identity
             && self.name == hero.name
             && self.class == hero.class_id
             && self.race == hero.race
             && self.data == hero.inspection
             && self.tab == tab
+            && self.achievement_category == achievement_category
             && self.achievement_points == hero.achievement_points
             && self.host == hero.host
             && self.me == hero.me
@@ -142,12 +150,50 @@ pub(super) fn update_sidebar(
 
     let mut panel = commands.entity(panel);
     panel.despawn_children();
-    if let Some((_, _, EquipmentHover(text))) = hovered {
+    if let Some((_, _, text)) = hovered {
         summary.display = Display::None;
         detail.display = Display::Flex;
         panel.with_children(|ui| {
-            crate::codex::section_heading(ui, &art, &text.title);
-            super::text(ui, &art, &text.subtitle, 14., MUTED);
+            ui.spawn((
+                Node {
+                    align_items: AlignItems::Center,
+                    column_gap: Val::Px(12.),
+                    padding: UiRect::all(Val::Px(9.)),
+                    border: UiRect::all(Val::Px(1.)),
+                    border_radius: BorderRadius::all(Val::Px(8.)),
+                    ..default()
+                },
+                BackgroundColor(text.palette.fill),
+                BorderColor::all(text.palette.edge),
+            ))
+            .with_children(|row| {
+                if let Some(icon) = &text.icon {
+                    row.spawn((
+                        ImageNode::new(icon.clone()),
+                        Node {
+                            width: Val::Px(58.),
+                            height: Val::Px(58.),
+                            flex_shrink: 0.,
+                            border: UiRect::all(Val::Px(2.)),
+                            border_radius: BorderRadius::all(Val::Px(6.)),
+                            ..default()
+                        },
+                        BorderColor::all(text.palette.label),
+                    ));
+                }
+                row.spawn(Node {
+                    min_width: Val::Px(0.),
+                    flex_direction: FlexDirection::Column,
+                    ..default()
+                })
+                .with_children(|labels| {
+                    super::text(labels, &art, &text.title, 17., text.palette.label);
+                    super::text(labels, &art, &text.subtitle, 12., MUTED);
+                    if let Some(stars) = &text.stars {
+                        super::text(labels, &art, stars, 13., GOLD);
+                    }
+                });
+            });
             if !text.body.is_empty() {
                 super::text(ui, &art, &text.body, 14., PAPER);
             }
@@ -170,6 +216,7 @@ pub(super) fn rebuild(
     definitions: Res<TalentCatalog>,
     images: Res<TalentArt>,
     achievement_art: Res<progression::Art>,
+    progression: Res<progression::ProgressionState>,
     roots: Query<Entity, With<Root>>,
     mut drawn: Local<Option<Subject>>,
 ) {
@@ -199,9 +246,14 @@ pub(super) fn rebuild(
         view.tab = Tab::default();
     }
     let tab = view.tab;
+    let achievement_category = if tab == Tab::Achievements {
+        progression.achievement_category()
+    } else {
+        None
+    };
     if drawn
         .as_ref()
-        .is_some_and(|previous| previous.matches(hero, tab))
+        .is_some_and(|previous| previous.matches(hero, tab, achievement_category))
         && !labels.is_changed()
         && !art.is_changed()
         && !preview.is_changed()
@@ -221,6 +273,7 @@ pub(super) fn rebuild(
         data: hero.inspection.clone(),
         tab,
         achievement_points: hero.achievement_points,
+        achievement_category,
         host: hero.host,
         me: hero.me,
     });
@@ -407,6 +460,7 @@ pub(super) fn rebuild(
                                 &achievement_art,
                                 &labels,
                                 &data.achievements,
+                                &progression,
                             ),
                         }
                     },
@@ -473,18 +527,16 @@ fn equipment(
             ..default()
         })
         .with_children(|center| {
-            center.spawn((
-                ImageNode::new(preview.image.clone()),
-                menu::InspectPreview,
-                menu::PreviewInteraction,
-                Interaction::None,
-                Node {
-                    width: Val::Px(440.),
-                    height: Val::Px(560.),
-                    flex_shrink: 0.,
-                    ..default()
-                },
-            ));
+            let class_key = azeroth_survivors_re::coop::game_party::class_key(hero.class_id);
+            let class_color = labels
+                .classes
+                .iter()
+                .find(|class| class.key == class_key)
+                .map_or(GOLD, |class| {
+                    let [r, g, b] = class.color;
+                    Color::srgb(r, g, b)
+                });
+            model_stage(center, preview, class_color);
             center
                 .spawn(Node {
                     align_items: AlignItems::Center,
@@ -535,20 +587,162 @@ fn equipment(
     });
 }
 
-fn item_name(catalog: &ArmoryCatalog, labels: &MenuCatalog, id: u32, race: u8) -> Option<String> {
-    catalog
-        .piece(id)
-        .map(|piece| armory::piece_name(labels, piece, race))
-        .or_else(|| {
-            catalog
-                .starter_items
-                .iter()
-                .find(|item| item.id == id)
-                .map(|item| armory::starter_name(labels, item).into())
-        })
-        .or_else(|| {
-            armory::cosmetics::get(id).map(|entry| armory::cosmetic_name(labels, entry).into())
-        })
+fn model_stage(ui: &mut ChildSpawnerCommands, preview: &HeroPreviewOutput, class_color: Color) {
+    // Native 0x1403be530 draws the floor and the class glow in UI space.
+    ui.spawn((
+        Node {
+            width: Val::Px(440.),
+            height: Val::Px(560.),
+            flex_shrink: 0.,
+            ..default()
+        },
+        BackgroundGradient::from(RadialGradient {
+            position: UiPosition::CENTER,
+            shape: RadialGradientShape::FarthestCorner,
+            stops: vec![
+                ColorStop::new(
+                    Color::LinearRgba(class_color.with_alpha(0.16).to_linear()),
+                    Val::Percent(0.),
+                ),
+                ColorStop::new(Color::NONE, Val::Percent(70.)),
+            ],
+            ..default()
+        }),
+    ))
+    .with_children(|stage| {
+        stage.spawn((
+            Node {
+                position_type: PositionType::Absolute,
+                left: Val::Px(105.),
+                width: Val::Px(230.),
+                height: Val::Px(44.),
+                ..default()
+            },
+            BackgroundGradient::from(RadialGradient {
+                position: UiPosition::CENTER,
+                shape: RadialGradientShape::ClosestCorner,
+                stops: vec![
+                    ColorStop::new(
+                        Color::LinearRgba(Color::srgba(1., 0.72, 0.30, 0.55).to_linear()),
+                        Val::Percent(0.),
+                    ),
+                    ColorStop::new(
+                        Color::LinearRgba(Color::srgba(0.55, 0.30, 0.08, 0.24).to_linear()),
+                        Val::Percent(50.),
+                    ),
+                    ColorStop::new(Color::NONE, Val::Percent(100.)),
+                ],
+                ..default()
+            }),
+        ));
+        stage.spawn((
+            ImageNode::new(preview.image.clone()),
+            menu::InspectPreview,
+            menu::PreviewInteraction,
+            Interaction::None,
+            Node {
+                position_type: PositionType::Absolute,
+                width: Val::Percent(100.),
+                height: Val::Percent(100.),
+                ..default()
+            },
+        ));
+    });
+}
+
+struct ItemLabel {
+    name: String,
+    tier: usize,
+    class: u32,
+    subclass: u32,
+}
+
+#[derive(Clone, Copy)]
+struct ItemPalette {
+    label: Color,
+    edge: Color,
+    fill: Color,
+}
+
+impl ItemLabel {
+    fn palette(&self) -> ItemPalette {
+        // Native descriptor +0x30 selects quality, with a weapon-only tier four.
+        let (label, edge, fill) = match self.tier {
+            1 => ([0.118, 1., 0.], [0.075, 0.541, 0.], [0.067, 0.161, 0.047]),
+            2 => ([0.231, 0.612, 1.], [0.039, 0.31, 0.612], [0.047, 0.11, 0.2]),
+            4 if self.class == 2 => ([1., 0.604, 0.165], [0.698, 0.329, 0.], [0.227, 0.114, 0.02]),
+            3 | 4 | 5 | 7 => (
+                [0.761, 0.486, 1.],
+                [0.42, 0.122, 0.659],
+                [0.133, 0.063, 0.227],
+            ),
+            _ => (
+                [0.91, 0.91, 0.91],
+                [0.541, 0.541, 0.541],
+                [0.165, 0.161, 0.145],
+            ),
+        };
+        ItemPalette {
+            label: Color::srgb(label[0], label[1], label[2]),
+            edge: Color::srgb(edge[0], edge[1], edge[2]),
+            fill: Color::srgba(fill[0], fill[1], fill[2], 0.8),
+        }
+    }
+
+    fn subtitle(&self, labels: &MenuCatalog, slot: &str) -> String {
+        let quality = match self.tier {
+            4 if self.class == 2 => 4,
+            4 | 5 | 7 => 3,
+            tier => tier,
+        };
+        let rarity = format!("rarity.{quality}");
+        let kind = format!("kind.{}.{}", self.class, self.subclass);
+        format!("{} {} · {slot}", labels.label(&rarity), labels.label(&kind))
+    }
+}
+
+fn item_label(
+    catalog: &ArmoryCatalog,
+    labels: &MenuCatalog,
+    id: u32,
+    race: u8,
+) -> Option<ItemLabel> {
+    if let Some(piece) = catalog.piece(id) {
+        return Some(ItemLabel {
+            name: armory::piece_name(labels, piece, race),
+            tier: if piece.rarity == 6 { 5 } else { piece.rarity },
+            class: piece.item_class,
+            subclass: piece.item_subclass,
+        });
+    }
+    if let Some(item) = catalog.starter_items.iter().find(|item| item.id == id) {
+        return Some(ItemLabel {
+            name: armory::starter_name(labels, item).into(),
+            tier: 0,
+            class: item.item_class,
+            subclass: item.item_subclass,
+        });
+    }
+    if let Some(entry) = armory::cosmetics::get(id) {
+        return Some(ItemLabel {
+            name: armory::cosmetic_name(labels, entry).into(),
+            tier: 1,
+            class: 4,
+            subclass: 0,
+        });
+    }
+    let name = progression::tabard_name(labels, id)?;
+    let tier = if matches!(id, 90_001..=90_006 | 90_016 | 90_025) {
+        2
+    } else {
+        1
+    };
+    Some(ItemLabel {
+        name,
+        tier,
+        class: 4,
+        subclass: 0,
+    })
 }
 
 fn equipment_slot(
@@ -574,20 +768,26 @@ fn equipment_slot(
     } else {
         labels.label(&slot_key)
     };
-    let worn_name = item_name(catalog, labels, id, race);
-    let show_details = worn_name.is_some();
-    let name = worn_name
-        .or_else(|| item_name(catalog, labels, appearance, race))
-        .unwrap_or_else(|| slot_name.into());
-    let subtitle = if piece.is_some() {
+    let worn = item_label(catalog, labels, id, race);
+    let palette = worn.as_ref().map(ItemLabel::palette);
+    let shown = worn
+        .as_ref()
+        .zip(palette)
+        .map(|(item, palette)| (item.name.clone(), palette.label))
+        .or_else(|| {
+            item_label(catalog, labels, appearance, race).map(|item| {
+                let color = item.palette().label;
+                (item.name, color)
+            })
+        });
+    let (name, color) = shown.unwrap_or_else(|| (slot_name.into(), PAPER));
+    let rank = piece.map(|_| {
         crate::localization::format(
             labels,
             "armory.stars",
             &[("n", stars.to_string()), ("of", "5".into())],
         )
-    } else {
-        slot_name.to_owned()
-    };
+    });
     let mut body = Vec::new();
     if let Some(piece) = piece {
         body.push(labels.label("armory.card_bonuses").into());
@@ -622,12 +822,17 @@ fn equipment_slot(
     if let Some(shown) = data.looks[slot] {
         body.push(if shown == 0 {
             labels.label("Hidden: the hero shows nothing here.").into()
-        } else if let Some(look) = item_name(catalog, labels, shown, race) {
-            labels.label("Shown as {name}").replace("{name}", &look)
+        } else if let Some(look) = item_label(catalog, labels, shown, race) {
+            labels
+                .label("Shown as {name}")
+                .replace("{name}", &look.name)
         } else {
             labels.label("Shown as another piece.").into()
         });
     }
+    let icon = catalog
+        .appearance(if id != 0 { id } else { appearance }, race)
+        .and_then(|item| art.icons.get(&format!("gear.{}", item.display_id)));
     let mut cell = ui.spawn((
         Button,
         Node {
@@ -640,35 +845,66 @@ fn equipment_slot(
         BackgroundColor(DARK),
         BorderColor::all(EDGE),
     ));
-    if show_details {
-        cell.insert(EquipmentHover(NativeTooltip {
-            title: name.clone(),
-            subtitle: subtitle.clone(),
+    if let Some((item, palette)) = worn.zip(palette) {
+        let subtitle = item.subtitle(labels, slot_name);
+        cell.insert(EquipmentHover {
+            title: item.name,
+            subtitle,
+            stars: rank.clone(),
             body: body.join("\n"),
-        }));
+            palette,
+            icon: icon.cloned(),
+        });
     }
     cell.with_children(|cell| {
-        if let Some(icon) = catalog
-            .appearance(if id != 0 { id } else { appearance }, race)
-            .and_then(|item| art.icons.get(&format!("gear.{}", item.display_id)))
-        {
-            cell.spawn((
+        if let Some(icon) = icon {
+            let side_palette = palette.filter(|_| !(15..=17).contains(&slot));
+            let mut icon = cell.spawn((
                 ImageNode::new(icon.clone()),
                 Node {
                     width: Val::Px(50.),
                     height: Val::Px(50.),
                     flex_shrink: 0.,
+                    border: UiRect::all(Val::Px(if side_palette.is_some() { 1. } else { 0. })),
                     ..default()
                 },
             ));
+            if let Some(palette) = side_palette {
+                icon.insert((
+                    BorderColor::all(palette.edge),
+                    BoxShadow::new(
+                        palette.label.with_alpha(0.3),
+                        Val::Px(0.),
+                        Val::Px(0.),
+                        Val::Px(0.),
+                        Val::Px(8.),
+                    ),
+                ));
+            }
         }
         cell.spawn(Node {
             flex_direction: FlexDirection::Column,
             ..default()
         })
         .with_children(|labels| {
-            super::text(labels, art, name, 14., PAPER);
-            super::text(labels, art, subtitle, 12., MUTED);
+            super::text(
+                labels,
+                art,
+                name,
+                14.,
+                if (15..=17).contains(&slot) {
+                    color
+                } else {
+                    PAPER
+                },
+            );
+            super::text(
+                labels,
+                art,
+                rank.as_deref().unwrap_or(slot_name),
+                12.,
+                MUTED,
+            );
         });
     });
 }

@@ -53,7 +53,11 @@ impl Plugin for ProgressionPlugin {
             .add_systems(Startup, load_art)
             .add_systems(
                 Update,
-                (input.run_if(crate::update_ui::menu_input_enabled), rebuild)
+                (
+                    input.run_if(crate::update_ui::menu_input_enabled),
+                    achievement_input.run_if(crate::update_ui::menu_input_enabled),
+                    rebuild,
+                )
                     .chain()
                     .in_set(crate::menu_state::AccountInput)
                     .after(OptionsSet::Input),
@@ -273,14 +277,20 @@ pub(crate) fn available_cosmetic_ids(save: &Save) -> BTreeSet<u32> {
         .collect()
 }
 
-pub fn tabard_display_id(id: u32) -> Option<u32> {
+fn tabard(id: u32) -> Option<&'static Tabard> {
     static CATALOG: std::sync::OnceLock<Catalog> = std::sync::OnceLock::new();
     CATALOG
         .get_or_init(Catalog::embedded)
         .tabards
         .iter()
         .find(|tabard| tabard.id == id)
-        .map(|tabard| tabard.display_id)
+}
+pub fn tabard_display_id(id: u32) -> Option<u32> {
+    tabard(id).map(|tabard| tabard.display_id)
+}
+pub(crate) fn tabard_name(labels: &MenuCatalog, id: u32) -> Option<String> {
+    let tabard = tabard(id)?;
+    Some(labels.labels.get(&format!("tabard.{id}")).unwrap_or(&tabard.name).clone())
 }
 pub(crate) use azeroth_survivors_re::account_progression::is_purchasable_tabard;
 /// Current145b35460: earned points minus purchased perks, tabards and races.
@@ -780,12 +790,17 @@ pub struct ProgressionState {
     plan: Option<Progress>,
     reset_armed: bool,
     scroll: f32,
+    inspection_scroll: f32,
     signature: String,
     previous_page: Option<Page>,
     baseline: Option<Progress>,
 }
 
 impl ProgressionState {
+    pub(crate) fn achievement_category(&self) -> Option<usize> {
+        self.category
+    }
+
     /// Current14013ead0 retains the Rewards destination until Confirm/Discard.
     pub(crate) fn request_page(&mut self, menu: &mut MenuState, destination: Page) {
         let owned = Progress::read_with_menu(&menu.save, None);
@@ -805,10 +820,11 @@ impl ProgressionState {
 #[derive(Component)]
 struct Root;
 #[derive(Component)]
-struct Viewport;
+struct Viewport { inspection: bool }
+#[derive(Component)]
+struct AchievementCategory { category: Option<usize>, inspection: bool }
 #[derive(Component, Clone)]
 enum Action {
-    Category(Option<usize>),
     RewardsTab(u8),
     CompanionTab(CompanionTab),
     Rank(String, i8),
@@ -826,6 +842,81 @@ enum Action {
     KeepEditing,
 }
 
+fn achievement_input(
+    mut view: ResMut<ProgressionState>,
+    menu: Res<MenuState>,
+    options: Res<OptionsState>,
+    coop: Res<crate::coop_ui::CoopUi>,
+    time: Res<Time>,
+    categories: Query<(&Interaction, &AchievementCategory), Changed<Interaction>>,
+    mut viewport: Query<(&Viewport, &ComputedNode, &mut ScrollPosition)>,
+    mut wheel: MessageReader<MouseWheel>,
+    mut previous_subject: Local<Option<u64>>,
+) {
+    let subject = match menu.dialog {
+        Some(Dialog::CoopInspect(identity)) => Some(identity),
+        _ => None,
+    };
+    if *previous_subject != subject {
+        *previous_subject = subject;
+        view.inspection_scroll = 0.;
+    }
+    let inspection = subject.is_some();
+    let active = if inspection {
+        !menu.in_run && !menu.entering && !coop.ready_modal_visible(time.elapsed_secs())
+    } else {
+        menu.page == Page::Achievements && menu.dialog.is_none()
+    };
+    if !active || options.open {
+        wheel.clear();
+        return;
+    }
+
+    // The shared AchList consumes wheel movement across the active screen.
+    let delta = wheel
+        .read()
+        .map(|event| {
+            event.y
+                * match event.unit {
+                    bevy::input::mouse::MouseScrollUnit::Line => 40.,
+                    bevy::input::mouse::MouseScrollUnit::Pixel => 1.,
+                }
+        })
+        .sum::<f32>();
+    let selected = categories.iter().find_map(|(interaction, control)| {
+        (*interaction == Interaction::Pressed && control.inspection == inspection)
+            .then_some(control.category)
+    });
+    let view = &mut *view;
+    if let Some(category) = selected {
+        view.category = category;
+    }
+    let scroll = if inspection {
+        &mut view.inspection_scroll
+    } else {
+        &mut view.scroll
+    };
+    for (list, node, mut position) in &mut viewport {
+        if list.inspection != inspection {
+            continue;
+        }
+        let maximum = ((node.content_size.y - node.size.y) * node.inverse_scale_factor).max(0.);
+        let current = if position.is_added() { *scroll } else { position.0.y };
+        let next = if selected.is_some() {
+            0.
+        } else {
+            (current - delta).clamp(0., maximum)
+        };
+        if position.0.y != next {
+            position.0.y = next;
+        }
+        *scroll = next;
+    }
+    if selected.is_some() {
+        *scroll = 0.;
+    }
+}
+
 fn input(
     mut view: ResMut<ProgressionState>,
     mut menu: ResMut<MenuState>,
@@ -835,11 +926,8 @@ fn input(
     mut armory: ResMut<crate::armory::ArmoryState>,
     native: Res<ArmoryCatalog>,
     actions: Query<(&Interaction, &Action), Changed<Interaction>>,
-    mut viewport: Query<(&ComputedNode, &mut ScrollPosition), With<Viewport>>,
-    mut wheel: MessageReader<MouseWheel>,
 ) {
     if !matches!(menu.page, Page::Achievements | Page::Rewards) {
-        wheel.clear();
         return;
     }
     let mut owned = Progress::read(&menu.save, &labels);
@@ -868,34 +956,7 @@ fn input(
     }
     let leaving = matches!(menu.dialog, Some(Dialog::RewardsChanges(_)));
     if options.open || (menu.dialog.is_some() && !leaving) {
-        wheel.clear();
         return;
-    }
-    // Native14018a920 consumes wheel events for every AchList, without a cursor test.
-    let delta = wheel
-        .read()
-        .map(|event| {
-            event.y
-                * match event.unit {
-                    bevy::input::mouse::MouseScrollUnit::Line => 40.,
-                    bevy::input::mouse::MouseScrollUnit::Pixel => 1.,
-                }
-        })
-        .sum::<f32>();
-    for (node, mut position) in &mut viewport {
-        let maximum = ((node.content_size.y - node.size.y) * node.inverse_scale_factor).max(0.);
-        let current = if position.is_added() {
-            view.scroll
-        } else {
-            position.0.y
-        };
-        let next = (current - delta).clamp(0., maximum);
-        if position.0.y != next {
-            position.0.y = next;
-        }
-        if view.scroll != next {
-            view.scroll = next;
-        }
     }
     for (interaction, action) in &actions {
         if *interaction != Interaction::Pressed {
@@ -914,10 +975,6 @@ fn input(
         }
         let mut changed = false;
         match action {
-            Action::Category(category) => {
-                view.category = *category;
-                view.scroll = 0.;
-            }
             Action::RewardsTab(tab) => {
                 view.rewards_tab = *tab;
                 view.scroll = 0.;
@@ -1193,6 +1250,7 @@ pub(crate) fn draw_inspection_achievements(
     images: &Art,
     labels: &MenuCatalog,
     earned: &[(u16, u32)],
+    view: &ProgressionState,
 ) {
     static CATALOG: std::sync::OnceLock<Catalog> = std::sync::OnceLock::new();
     let catalog = CATALOG.get_or_init(Catalog::embedded);
@@ -1206,20 +1264,15 @@ pub(crate) fn draw_inspection_achievements(
             }
         }
     }
-    crate::scrollbar::kept_list(ui, "coop-inspect-achievements", 10., |list| {
-        for (category, key) in CATEGORIES.into_iter().enumerate() {
-            let entries: Vec<_> = catalog.achievements.iter()
-                .filter(|entry| entry.category == category && account.earned.contains(&entry.key))
-                .collect();
-            if !entries.is_empty() {
-                crate::codex::section_heading(list, art, labels.label(key));
-                list.spawn(grid()).with_children(|group| {
-                    for entry in entries {
-                        achievement_card(group, art, images, labels, entry, &account, None, None);
-                    }
-                });
-            }
-        }
+    ui.spawn(Node {
+        min_height: Val::Px(0.),
+        ..crate::armory::body_node()
+    })
+    .with_children(|body| {
+        draw_achievements(
+            body, art, images, labels, catalog, &account, view.category,
+            view.inspection_scroll, None,
+        );
     });
 }
 fn bar_flow(ui: &mut ChildSpawnerCommands, images: &Art, height: f32, fraction: f32) {
@@ -1611,11 +1664,11 @@ fn draw_achievements(
     labels: &MenuCatalog,
     catalog: &Catalog,
     account: &Progress,
-    save: &Save,
-    view: &ProgressionState,
-    gear: &GearSave,
-    armory: &ArmoryCatalog,
+    category: Option<usize>,
+    scroll: f32,
+    local: Option<(&Save, &GearSave, &ArmoryCatalog)>,
 ) {
+    let inspection = local.is_none();
     let earned = catalog
         .achievements
         .iter()
@@ -1656,7 +1709,7 @@ fn draw_achievements(
         padding: UiRect::axes(Val::Px(16.), Val::Px(12.)),
         row_gap: Val::Px(8.), ..default()
     }, |left| achievements_sidebar::draw(left, art, images, labels, points, total_points,
-        earned, total_achievements, &counts, view.category));
+        earned, total_achievements, &counts, category, inspection));
     menu::native_panel(
         ui,
         Node {
@@ -1674,12 +1727,12 @@ fn draw_achievements(
                 right,
                 art,
                 labels.label(
-                    view.category
+                    category
                         .map(|category| CATEGORIES[category])
                         .unwrap_or("Summary"),
                 ),
             );
-            if let Some(category) = view.category {
+            if let Some(category) = category {
                 let (have, all, points, total) = counts[category];
                 // Native1401c2810: summary text followed by a flexible eight-pixel bar.
                 right
@@ -1729,8 +1782,8 @@ fn draw_achievements(
                                     overflow: Overflow::scroll_y(),
                                     ..default()
                                 },
-                                Viewport,
-                                ScrollPosition(Vec2::new(0., view.scroll)),
+                                Viewport { inspection },
+                                ScrollPosition(Vec2::new(0., scroll)),
                             ))
                             .with_children(|ui| {
                                 ui.spawn(Node {
@@ -1750,8 +1803,8 @@ fn draw_achievements(
                                             labels,
                                             entry,
                                             account,
-                                            progress(entry, account, save, gear, armory),
-                                            Some(save),
+                                            local.and_then(|(save, gear, armory)| progress(entry, account, save, gear, armory)),
+                                            local.map(|(save, _, _)| save),
                                         );
                                     }
                                 });
@@ -1807,7 +1860,8 @@ fn draw_achievements(
                 } else {
                     right.spawn(grid()).with_children(|ui| {
                         for entry in recent.iter().take(4) {
-                            achievement_card(ui, art, images, labels, entry, account, None, Some(save));
+                            achievement_card(ui, art, images, labels, entry, account, None,
+                                local.map(|(save, _, _)| save));
                         }
                     });
                 }
@@ -1822,7 +1876,7 @@ fn draw_achievements(
                         for (category, (have, all, pts, total)) in counts.iter().enumerate() {
                             ui.spawn((
                                 Interaction::None,
-                                Action::Category(Some(category)),
+                                AchievementCategory { category: Some(category), inspection },
                                 Node {
                                     align_items: AlignItems::Center,
                                     column_gap: Val::Px(10.),
@@ -1888,6 +1942,9 @@ fn draw_achievements(
                             });
                         }
                     });
+                let Some((save, gear, armory)) = local else {
+                    return;
+                };
                 let mut partial = catalog
                     .achievements
                     .iter()
@@ -2226,8 +2283,8 @@ fn rebuild(
                     crate::armory::build_header_row(shell, &art, &labels, &menu);
                     shell.spawn(crate::armory::body_node()).with_children(|body| {
                         draw_achievements(
-                            body, &art, &images, &labels, &catalog, &account, &menu.save, &view,
-                            &gear, &armory,
+                            body, &art, &images, &labels, &catalog, &account, view.category,
+                            view.scroll, Some((&menu.save, &gear, &armory)),
                         );
                     });
                 });
