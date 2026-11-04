@@ -86,6 +86,9 @@ number in either document; never renumber or reuse a moved/completed ID. Use the
 existing `coverage_common.finding_register` / `finding_reference` helpers for
 machine ownership and navigation. Source-repair choices come from CURRENT-STATE;
 consult the verification register for retained evidence, not new repair choices.
+Use the [shared categories](gap-categories.md) when adding or revising source
+findings, connected changelog groups and intake rows. Categorize the remaining
+action and use tags for cross-cutting topics.
 
 ## Efficient current-target work
 

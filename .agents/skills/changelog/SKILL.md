@@ -27,6 +27,10 @@ ambiguous, request only that input.
    Group related claims by behavior or plausible shared dependency across the
    supplied releases. Use one row per group with a descriptive choice name,
    release links, each exact claim ID and the next source/recovery question.
+   Assign each group one [primary category](../shared/gap-categories.md) and
+   optional tags in the intake table. Split unrelated work into separate choices
+   even when it appears in the same release or category. Keep mixed claims
+   traceable by their original IDs and name the relevant aspect in each group.
    Link an existing permanent finding where it owns the same issue. Keep
    claims without an established owner selectable by group name or claim ID.
    Release summaries, acknowledgements and superseded aspects remain traceable
@@ -39,5 +43,7 @@ Intake is documentation work independent of the installed game. Keep the
 target-bound audit ledger and its reviewed EXE/Data baseline separate. Review
 and commit the changelog and queue updates together. Push the commit to
 `origin/main` and verify delivery under the [commit delivery rules](../../../AGENTS.md#commit-delivery).
-Report the new `$fixgap` choices, their release links and the delivered commit.
+Report the new `$fixgap` choices by category with their release links, exact
+claim IDs and the delivered commit. Highlight a concrete shared trace as
+**Good to pair** when the intake or existing evidence supports it.
 With no new items, report that result without making a commit.

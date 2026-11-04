@@ -281,24 +281,28 @@ them, inventing missing behavior or treating static checks as gameplay proof.
    its earlier mapping. Do not overwrite another session's active source work.
    For an exact repair outside #41, inspect its owning records and dependencies;
    do not read unrelated recovery queues or start a coverage audit as preparation.
-2. Give a concise summary of the current target and list every eligible open
-   finding in the snapshot's **Gap register**, in ascending permanent-number
-   order. Apply the eligibility rules above using current descriptions/statuses
-   and the owning reports; status alone does not establish remaining source work.
+2. Give a concise summary of the current target and show every eligible open
+   finding in the snapshot's **Gap register** under its
+   [primary category](../shared/gap-categories.md). Order numbered choices by
+   permanent ID within each category. Show useful tags and omit empty headings.
+   Apply eligibility first using current descriptions, statuses and owning
+   reports. Status alone does not establish remaining source work.
    Label each choice **Source-only**, **Needs REA** or **Mixed** using the routing
    rules above, so quick source fixes are visible alongside recovery tasks.
    Honor CURRENT-STATE's **Connected changelog groups**: apply eligibility to
    each member, then offer each group once with all eligible permanent IDs and
-   its concrete remaining work. Sort a group by its lowest eligible ID; show
-   ungrouped eligible findings normally. Keep every member's evidence and status
-   separate; grouping does not reopen completed/proof-only/runtime-only work.
+   its concrete remaining work under the group's category. Sort a group by its
+   lowest eligible ID and show ungrouped eligible findings normally. Keep every
+   member's evidence and status separate. Grouping does not reopen completed,
+   proof-only or runtime-only work. Mark **Good to pair** only where two choices
+   can reuse specific work. Name the IDs and what they would reuse.
    Selecting the named group covers its eligible members; selecting exact `#N`
    IDs retains that explicit scope and does not silently select their siblings.
    Apply the proof-only exclusion before listing rows. Also read CURRENT-STATE's
    **Unreviewed release leads** from [`$changelog`](../changelog/SKILL.md). Offer
-   them in the same menu as **Release lead — review first** choices, by group
-   name and with stable claim IDs. Attach them to an eligible existing finding
-   when it owns the same work so the choice appears once. Use
+   them under their categories in the same menu as **Release lead — review first**
+   choices, by group name and with stable claim IDs. Attach them to an eligible
+   existing finding when it owns the same work so the choice appears once. Use
    `python3 -B scripts/index-current-changelog.py --claims-only <version> ...`
    to resolve their exact text without an audit. Selecting a release group
    covers its actionable claims. An exact claim ID selects that claim and its
@@ -330,8 +334,9 @@ them, inventing missing behavior or treating static checks as gameplay proof.
    choices; it does not authorize choosing a gap on their behalf.
 4. Before that answer, keep the work read-only. Do not launch REA/Ghidra jobs,
    builds, tests or applications, change source/docs, switch branches or make
-   commits just to prepare the choices. If the user selects only a broad area,
-   ask which concrete gap within it they mean before starting its repair.
+   commits just to prepare the choices. A category or class request filters the
+   menu. Show the matching choices and ask for the concrete gap or named group
+   before starting a repair.
 
 If the invocation already selects an exact eligible task, learn the current state
 and proceed without asking for the same selection again. For a mixed gap, state
@@ -382,9 +387,11 @@ new selection only for work outside that authorization or an explicit user limit
   historical provenance and do not use old addresses unverified.
 - Submit native work through the [shared query queue](../shared/autonomy.md#durable-native-queries).
   Its worker limit and compatible-Program leases cover all chats and delegates;
-  leave queued work waiting and continue independent source work. Batch related
-  known queries in one plan, search retained results first, and never create a
-  duplicate Program/variant or increase timeouts just to bypass contention.
+  leave queued work waiting and continue independent source work. Search retained
+  results first and batch related known queries for the selected work in one plan.
+  Reuse the shared result where applicable and record each gap's separate proof.
+  Never create a duplicate Program/variant or increase timeouts to bypass
+  contention.
   A producer update requires a new output receipt; it does not require another
   import or invalidate the original evidence. Fresh whole-image autoanalysis
   requires the explicit plan option documented in `docs/REA.md`.
