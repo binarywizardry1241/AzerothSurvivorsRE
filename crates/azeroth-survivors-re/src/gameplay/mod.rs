@@ -385,7 +385,7 @@ fn enter(
         else { Some(run_seeds.player_guid()) }
     }) else { return };
     let class = &catalog.classes[crate::save::CLASS_IDS.iter().position(|id| *id == pick.hero.class).expect("backend Pick class")];
-    let seed = run_seeds.next();
+    let (seed_input, seed) = run_seeds.next_with_input();
     // 145b231ce forces the transient Tester's Game to Normal. Later host
     // metadata has its own minimum; the requested Pick stays unchanged.
     let heroic_rank = menu.heroic_restart_rank.unwrap_or_else(|| {
@@ -415,6 +415,7 @@ fn enter(
     let stats = entry_player_stats(class, &pick.hero, &entry);
     match Mechanics::new(&zone.key, &class.key, rules, stats, seed) {
         Ok(mut game) => {
+            game.seat_addon_run_id(seed_input);
             game.configure_heroic_affixes(heroic_rank, menu.heroic_week);
             game.set_spell_display_locale(&locale);
             game.recap_spells = bridge.spells.clone();

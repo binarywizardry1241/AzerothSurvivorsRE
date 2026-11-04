@@ -71,6 +71,8 @@ pub struct LocalClientExtension {
     pub world_frame_callback: Option<&'static str>,
     /// Seat the embedding's addon hit stream on each in-game VM.
     pub combat_text_anchors: bool,
+    /// Publish the local player's world-frame pose to the embedding's Lua API.
+    pub player_position_samples: bool,
     /// Authoritative run identity, including a new run on the same world and VM.
     pub combat_text_run: Option<u64>,
     /// Installed before FrameXML/addons, including after ReloadUI.
@@ -136,6 +138,11 @@ pub(crate) fn seed(world: &mut World, script: &mut UiScript) {
     if let Some(initialize) = extension.script_initializer {
         if let Err(error) = initialize(world, script) {
             error!("local client native script initialization failed: {error}");
+        }
+    }
+    if extension.player_position_samples {
+        if let Err(error) = crate::ui_script::player_position::install_lua(script) {
+            error!("local client position initialization failed: {error}");
         }
     }
     if extension.combat_text_anchors {

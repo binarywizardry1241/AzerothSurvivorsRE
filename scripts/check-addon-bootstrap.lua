@@ -297,3 +297,47 @@ groups, count = AZS_GetSummonGroups();
 assert(count == 0 and table.getn(groups) == 0 and AZS_PETS_UPDATED == now);
 print("Passed summon API: stream, filtering, order, grouping, lifetime, pause, empty clears and copied projections; stub host only");
 end
+if type(AZS_GetPlayerPosition) == "function" then
+    -- Standalone Lua uses a global arg here in place of the 5.0 vararg local.
+    local function position(n)
+        arg = { n = n or 0 };
+        return AZS_GetPlayerPosition();
+    end
+    local function line(prefix, payload)
+        event, arg1, arg2 = "CHAT_MSG_ADDON", prefix, payload;
+        AZSApiFrame.handler();
+    end
+    local function expect_error(code, nargs)
+        local sample, err = position(nargs);
+        assert(sample == nil and err.code == code);
+    end
+
+    expect_error("INVALID_ARGUMENT", 1);
+    expect_error("NOT_READY");
+    for _, status in ipairs({ "NO_WORLD", "NO_PLAYER", "NOT_READY" }) do
+        AZS_NativePlayerSample = function() return status; end;
+        expect_error(status);
+    end
+    AZS_NativePlayerSample = function() return "ok", 533, 5, 6, 7, 8, 9; end;
+    line("AZSZONE", "run=abcd-1;map=533");
+    line("AZSCHESTS", "1,2,3,4,0.5,0.6");
+    line("AZSLAIRS", "1,awake,Guardian,42,-1,1,2,3,0.4,0.5,1");
+    local sample, err = position();
+    assert(err == nil and sample.apiVersion == 1 and sample.mapId == 533);
+    assert(sample.x == 5 and sample.y == 6 and sample.z == 7 and sample.facing == 8);
+    assert(sample.sampleId == "f9" and sample.runId == "abcd-1" and sample ~= position());
+    assert(sample.spaceId == "m533:abcd-1");
+    assert(AZS_CHESTS[1].spaceId == sample.spaceId and AZS_LAIRS[1].spaceId == sample.spaceId);
+    line("AZSZONE", "run=abcd-1;map=533");
+    assert(AZS_CHESTS[1] and AZS_LAIRS[1]);
+    line("AZSZONE", "run=abcd-2;map=533");
+    assert(not next(AZS_CHESTS) and not next(AZS_LAIRS) and position().runId == "abcd-2");
+    line("AZSCHESTS", "1,2,3,4,0.5,0.6");
+    line("AZSZONE", "run=abcd-2;map=1");
+    assert(not next(AZS_CHESTS));
+    sample = position();
+    assert(sample.runId == nil and sample.spaceId == "m533:none");
+    AZS_NativePlayerSample = function() return "ok", 533, 1 / 0, 6, 7, 8, 10; end;
+    expect_error("INTERNAL_ERROR");
+    print("Passed player-position API: arity, readiness, coordinate space, cache invalidation and finite samples; stub host only");
+end

@@ -29214,6 +29214,25 @@
     },
     {
       "id": "custom-game-game-addon",
+      "gap_75_position_review_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 75,
+        "source_status": "partial",
+        "scope": "Rendered player sample, run key and cache/guardian space connected. Exact native readiness and frame order remain open in #137. The enclosing audit retains its 0.139.1 identity.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/addon_scalars.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/addon_scalars.rs",
+          "crates/benilla-app/src/ui_script/player_position.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/addon-player-position-0.139.2.md",
+          "docs/analysis/addon-run-space-0.139.2.md"
+        ],
+        "static_validation": "bounded_native_and_lua_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "gap_307_source_review_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
         "gap_id": 307,

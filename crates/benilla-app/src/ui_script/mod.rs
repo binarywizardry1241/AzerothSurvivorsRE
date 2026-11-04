@@ -41,6 +41,7 @@ pub(crate) use records::{collect_input_records, InputRecord, InputRecords, Recor
 pub(crate) mod layer_tests;
 mod load_log;
 mod manifest;
+pub(crate) mod player_position;
 
 /// The stock FrameXML this client runs off the player's own patch chain; its header is the rule.
 mod reference_ui;
@@ -619,6 +620,13 @@ impl Plugin for UiScriptPlugin {
             .add_systems(
                 Update,
                 crate::combat_text::anchors::sample_frame
+                    .in_set(UiPaint)
+                    .after(crate::vplates::VPlateSet)
+                    .before(extract::paint_script),
+            )
+            .add_systems(
+                Update,
+                player_position::sample_frame
                     .in_set(UiPaint)
                     .after(crate::vplates::VPlateSet)
                     .before(extract::paint_script),

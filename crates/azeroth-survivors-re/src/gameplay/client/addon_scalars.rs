@@ -129,8 +129,8 @@ fn next_boss_seconds(scheduled: Option<f32>, endless: bool, endless_deadline: f3
     if remaining > 0.0 { remaining } else { -1.0 }
 }
 
-/// Retained 0.125.0 zone publisher: actual run rank/vector, English affix
-/// keys in stored order, and selected-hero identity in the recipient's locale.
+/// Actual run rank/vector, English affix keys in stored order, and selected
+/// hero identity in the recipient's locale. The run ID belongs to the game.
 pub(super) fn zone_snapshot(game: &Mechanics, name: &str, locale: &Localization) -> Option<String> {
     let zone = super::addon_lists::zone_record(game.zone.key)?;
     let final_at = zone.bosses.iter().find(|boss| boss.raw_final)
@@ -156,6 +156,7 @@ pub(super) fn zone_snapshot(game: &Mechanics, name: &str, locale: &Localization)
         ("gender", gender.to_string()),
         ("map", zone.map_id.to_string()),
         ("heroic", game.rules.heroic_rank.to_string()),
+        ("run", game.addon_run_id.clone()),
         ("affixes", game.active_affix_ids().iter().map(|id| match id {
             0 => "bolstering", 1 => "sanguine", 2 => "explosive",
             _ => unreachable!("source-owned Heroic affix ID"),

@@ -40,9 +40,13 @@ impl RunSeeds {
     /// Enter and Again advance the same server state exactly once, regardless
     /// of how much randomness the preceding Game consumed.
     pub(crate) fn next(&mut self) -> [u64; 4] {
+        self.next_with_input().1
+    }
+
+    pub(crate) fn next_with_input(&mut self) -> (u64, [u64; 4]) {
         self.state = self.state.wrapping_mul(MULTIPLIER)
             .wrapping_add(0x1405_7b7e_f767_814f);
-        expand(self.state)
+        (self.state, expand(self.state))
     }
 }
 

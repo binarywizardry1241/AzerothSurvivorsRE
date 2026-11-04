@@ -12,6 +12,16 @@ pub struct AddonProgress {
 }
 
 impl Mechanics {
+    /// Native 0.139.2 Game construction publishes the unexpanded run seed
+    /// XORed with a fixed mask, and a one-based process-global ordinal.
+    pub(in crate::gameplay) fn seat_addon_run_id(&mut self, seed: u64) {
+        use std::sync::atomic::{AtomicU64, Ordering};
+
+        static RUNS: AtomicU64 = AtomicU64::new(0);
+        let ordinal = RUNS.fetch_add(1, Ordering::Relaxed).wrapping_add(1);
+        self.addon_run_id = format!("{:x}-{ordinal}", seed ^ 0x9e37_79b9_7f4a_7c15);
+    }
+
     pub fn addon_progress(&self) -> AddonProgress {
         AddonProgress {
             bosses_spawned: self.boss_state.scheduler.next_primary,

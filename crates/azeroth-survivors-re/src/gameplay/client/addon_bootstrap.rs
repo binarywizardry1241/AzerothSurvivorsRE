@@ -1,7 +1,7 @@
 //! Recovered addon API, installed in each real client VM.
 //!
-//! The exact 0.127.0 API, including the recovered affix/totem and screen-frame accessors.
-//! The ordinary core-file load installs it in WorldStateFrame.lua before addons.
+//! The retained 0.127.0 base plus recovered later interfaces, installed by
+//! the ordinary core-file load in WorldStateFrame.lua before addons.
 
 use benilla_app::local_client::LocalClientExtension;
 
@@ -9,8 +9,10 @@ mod creature_sound;
 
 const SOURCE: &str =
     include_str!("../../../../../docs/analysis/evidence/0.127.0/embedded-api.lua");
-const LOCAL_CLOCK_API: &str =
+const LATER_API: &str =
     include_str!("../../../../../docs/analysis/evidence/0.139.1/embedded-api.lua");
+const METER_API: &str =
+    include_str!("../../../../../docs/analysis/evidence/0.139.1/meter-api.lua");
 const COMBAT_TEXT_FRAME_HANDLERS: &str =
     include_str!("../../../../../docs/analysis/evidence/0.139.2/combat-text/frame-handlers.lua");
 const COMBAT_TEXT_API: &str =
@@ -18,6 +20,28 @@ const COMBAT_TEXT_API: &str =
 const STATS_PARSER: &str = include_str!(
     "../../../../../docs/analysis/evidence/0.105.0/addon-bridge/native-stats-parser.lua"
 );
+
+fn section<'a>(source: &'a str, first: &str, next: &str) -> &'a str {
+    let start = source.find(first).expect("retained Lua section start");
+    source[start..].split_once(next).expect("retained Lua section end").0
+}
+
+fn append_position_api(source: &mut String) {
+    source.push_str(section(LATER_API, "function AZS_SpaceOf", "-- The lair the minimap"));
+    // Position is independently connected. The remaining ledger capabilities
+    // need their own native producers before their Lua interfaces can load.
+    source.push_str("AZS_ML_FEATURES = { liveInstancePosition = true };\n");
+    source.push_str(section(METER_API, "AZS_ML_ERRS = ", "-- Every feature"));
+    for (first, next) in [
+        ("function AZS_MErr", "-- ── text and numbers"),
+        ("function AZS_MIsInt", "function AZS_MIsId"),
+        ("function AZS_MPosition", "-- ── the API"),
+        ("function AZS_MCall", "function AZS_GetMeterCapabilities"),
+        ("function AZS_GetPlayerPosition", "function AZS_GetMeterSnapshot"),
+    ] {
+        source.push_str(section(METER_API, first, next));
+    }
+}
 
 pub(super) fn extension() -> LocalClientExtension {
     let cvar_defaults = [
@@ -36,13 +60,17 @@ pub(super) fn extension() -> LocalClientExtension {
         .map(|(part, name)| format!("{part} = '{name}'"))
         .collect::<Vec<_>>()
         .join(", ");
-    let clock_start = LOCAL_CLOCK_API.find("function AZS_GetLocalTime()").unwrap();
-    let clock = &LOCAL_CLOCK_API[clock_start..];
-    let (clock, _) = clock.split_once("-- Outgoing combat text").unwrap();
     assert_eq!(SOURCE.matches("HUD_CVARS_LUA").count(), 1);
     let mut source = SOURCE.replace("HUD_CVARS_LUA", &parts);
+    for (first, next) in [
+        (r#"elseif ( arg1 == "AZSZONE""#, r#"elseif ( arg1 == "AZSBOSSES""#),
+        (r#"elseif ( arg1 == "AZSCHESTS""#, r#"elseif ( arg1 == "AZSTAKEN""#),
+    ] {
+        source = source.replacen(section(SOURCE, first, next), section(LATER_API, first, next), 1);
+    }
     source.push('\n');
-    source.push_str(clock);
+    source.push_str(section(LATER_API, "function AZS_GetLocalTime()", "-- Outgoing combat text"));
+    append_position_api(&mut source);
     source.push_str(COMBAT_TEXT_API);
     source.push_str(COMBAT_TEXT_FRAME_HANDLERS);
     LocalClientExtension {
@@ -55,6 +83,7 @@ pub(super) fn extension() -> LocalClientExtension {
         script_initializer: Some(super::super::run_hud::local_clock::install_lua),
         world_frame_callback: Some("AZS_CombatTextFrame"),
         combat_text_anchors: true,
+        player_position_samples: true,
         script_postlude: super::run_stats::source(None),
         // The character-pane owns this parser. Keep it available before the
         // WorldStateFrame API registers its CHAT_MSG_ADDON handler.
