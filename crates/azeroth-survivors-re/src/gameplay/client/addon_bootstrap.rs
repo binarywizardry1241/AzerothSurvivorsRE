@@ -11,6 +11,8 @@ const SOURCE: &str =
     include_str!("../../../../../docs/analysis/evidence/0.127.0/embedded-api.lua");
 const LATER_API: &str =
     include_str!("../../../../../docs/analysis/evidence/0.139.1/embedded-api.lua");
+const CURRENT_API: &str =
+    include_str!("../../../../../docs/analysis/evidence/0.140.0/embedded-api.lua");
 const METER_API: &str =
     include_str!("../../../../../docs/analysis/evidence/0.139.1/meter-api.lua");
 const COMBAT_TEXT_FRAME_HANDLERS: &str =
@@ -73,18 +75,24 @@ pub(super) fn extension() -> LocalClientExtension {
         .join(", ");
     assert_eq!(SOURCE.matches("HUD_CVARS_LUA").count(), 1);
     let mut source = SOURCE.replace("HUD_CVARS_LUA", &parts);
+    source = source.replacen("AZS_CHESTS = {};", section(CURRENT_API,
+        "AZS_DOWNED = {};", "AZS_LAIRS = {};"), 1);
     for (first, next) in [
         (r#"elseif ( arg1 == "AZSZONE""#, r#"elseif ( arg1 == "AZSBOSSES""#),
-        (r#"elseif ( arg1 == "AZSCHESTS""#, r#"elseif ( arg1 == "AZSTAKEN""#),
+        (r#"elseif ( arg1 == "AZSUNITS""#, r#"elseif ( arg1 == "AZSDEBUFFS""#),
+        (r#"elseif ( arg1 == "AZSPARTY""#, r#"elseif ( arg1 == "AZSTAKEN""#),
     ] {
-        source = source.replacen(section(SOURCE, first, next), section(LATER_API, first, next), 1);
+        source = source.replacen(section(SOURCE, first, next), section(CURRENT_API, first, next), 1);
     }
+    source = source.replacen(section(SOURCE, "function AZS_GetBosses()", "-- The bosses still to come"),
+        section(CURRENT_API, "function AZS_GetBosses()", "-- The bosses still to come"), 1);
     source.push('\n');
     source.push_str(section(LATER_API, "function AZS_GetLocalTime()", "-- Outgoing combat text"));
     append_position_api(&mut source);
     append_meter_replay_request(&mut source);
     source.push_str(COMBAT_TEXT_API);
     source.push_str(COMBAT_TEXT_FRAME_HANDLERS);
+    source.push_str(section(CURRENT_API, "function AZS_GetWorldAnchorCapabilities(", "-- Show or hide one of the run's screens"));
     LocalClientExtension {
         creature_sound_data_patch: Some(creature_sound::patch),
         on_top_frames_global: Some("AZS_ON_TOP_FRAMES".into()),
@@ -94,6 +102,7 @@ pub(super) fn extension() -> LocalClientExtension {
         binding_defaults: crate::native_bindings::defaults(),
         script_initializer: Some(super::super::run_hud::local_clock::install_lua),
         world_frame_callback: Some("AZS_CombatTextFrame"),
+        world_anchor_frame_callback: Some("AZS_WorldAnchorFrame"),
         combat_text_anchors: true,
         player_position_samples: true,
         script_postlude: super::run_stats::source(None),

@@ -73,6 +73,8 @@ pub struct LocalClientExtension {
     /// Optional embedding-owned Lua callback invoked after the world camera
     /// moves, before FrameXML layout and paint consume the new anchors.
     pub world_frame_callback: Option<&'static str>,
+    /// The world catalog's separate post-camera callback and native Lua bindings.
+    pub world_anchor_frame_callback: Option<&'static str>,
     /// Seat the embedding's addon hit stream on each in-game VM.
     pub combat_text_anchors: bool,
     /// Publish the local player's world-frame pose to the embedding's Lua API.
@@ -153,6 +155,13 @@ pub(crate) fn seed(world: &mut World, script: &mut UiScript) {
         if let Some(anchors) = world.get_resource::<crate::combat_text::anchors::CombatTextAnchors>() {
             if let Err(error) = anchors.install_lua(script) {
                 error!("local client combat text initialization failed: {error}");
+            }
+        }
+    }
+    if extension.world_anchor_frame_callback.is_some() {
+        if let Some(catalog) = world.get_resource::<crate::combat_text::world_anchors::WorldAnchors>() {
+            if let Err(error) = catalog.install_lua(world, script) {
+                error!("local client world anchor initialization failed: {error}");
             }
         }
     }

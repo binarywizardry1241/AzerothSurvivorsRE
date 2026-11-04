@@ -3,15 +3,14 @@
 The installed EXE is 0.140.0, 151,521,280 bytes, SHA-256
 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`.
 The [0.139.2 release](../CHANGELOG.md#01392) introduced three individually
-tracked addon claims. The embedded Lua below verifies their current Lua
-boundary. Native state, scheduler, producer and consumer correspondence
-remains open where identified below.
+tracked addon claims. The bounded native owners and connected source below
+separate catalog state, camera projection, combat distance and party publication.
 
 | Claim | Finding | Current assessment |
 | --- | --- | --- |
-| `changelog:0.139.2:c456a516752982b8` | [#63](../CURRENT-STATE.md#gap-63), with [legacy revive API #11](../verification-needed.md#gap-11) | The embedded getter and `AZSDOWNED` receive branch are present. The rebuilt revive feed supplies progress, and still needs the authoritative party location producer, delivery and getter. |
-| `changelog:0.139.2:a6b9bed3be9c9ffa` | [#317](../CURRENT-STATE.md#gap-317) | The embedded catalog and projection wrappers, callback list and native binding names are present. The rebuilt combat anchors have reusable camera and hit-life inputs. The general catalog and its native source connections are missing. |
-| `changelog:0.139.2:20d7218da9c188d5` | [#307](../CURRENT-STATE.md#gap-307) and [#317](../CURRENT-STATE.md#gap-317) | The combat projection wrapper matches the retained bytes and rebuilt combat projection already returns hero-relative distance. Current native combat distance correspondence and general world projection require separate proof. |
+| `changelog:0.139.2:c456a516752982b8` | [#63](../CURRENT-STATE.md#gap-63), with [legacy revive API #11](../verification-needed.md#gap-11) | The [authoritative party producer](coop-downed-0.140.0.md) supplies the exact embedded getter through the normal addon stream. |
+| `changelog:0.139.2:a6b9bed3be9c9ffa` | [#317](../CURRENT-STATE.md#gap-317) | The live catalog, projection and post-camera callback are source-connected. Exact native scheduler and edge ordering remain open below. |
+| `changelog:0.139.2:20d7218da9c188d5` | [#307](../CURRENT-STATE.md#gap-307) and [#317](../CURRENT-STATE.md#gap-317) | The world and combat projectors have separately recovered distance inputs. The world projector samples the selected unshifted attachment and the combat projector samples unshifted feet. |
 
 The release summary `changelog:0.139.2:abd40bd242005cfd` provides context for
 these claims.
@@ -38,15 +37,11 @@ progress line. The [addon bootstrap](../../crates/azeroth-survivors-re/src/gamep
 already installs player position and space helpers, including the shared
 [current-run and replay source](addon-run-space-0.139.2.md).
 
-Follow the packed `AZSDOWNED` producer name at VA `0x1477339fe` back through
-the addon publication selector to the host's authoritative revive position,
-fall epoch, stable member ID, removal and terminal writers. Recover delivery
-and empty/replay ordering per recipient, including host and guest state,
-departure, map change, fresh VM and paused/chooser cases. The Lua branch
-establishes its received fields. It leaves the producer, event lifetime and
-where the revive point is captured to be recovered. The
-[supplied API reference](../addon-api/reference-supplied-0.139.2.md#azs_getdownedpartymembers--list-nil-or-nil-err)
-describes additional expected behavior and supplies those follow-up cases.
+The [producer recovery](coop-downed-0.140.0.md) connects the host and
+recipient writers, timestamps, stable world unit GUIDs and departure states.
+The FrameXML bootstrap installs the exact receiver, map/run reset and public
+getter. The Lua getter projects fresh tables and delegates catalog activation
+and handle annotation to the same native sync seam used for other destinations.
 
 ## Catalog, projection and combat distance
 
@@ -54,8 +49,9 @@ describes additional expected behavior and supplies those follow-up cases.
 `position` and `overhead` attachments, world offsets, frame projection and
 handler support, and player distance metrics. The advertised page and batch
 limit is 256, living and fallen capacities are 4,096 each, and fallen retention
-is 60 seconds. These values come from the Lua return table. Native enforcement
-and expiration remain open.
+is 60 seconds. The query and projector cap their input/output at 256. The
+unit life frame scan checks both 4,096-entry ceilings, and the adjacent native
+double at `0x146641458` is `60.0`.
 
 `AZS_WASync` sends run, map, unit, cache, lair and downed rows to the native
 catalog. It activates on demand, marks dirty on addon line updates and
@@ -63,9 +59,9 @@ resynchronizes when its native stream identity changes. The query delegates
 query, cursor, limit and `GetTime()`. Projection delegates the request table,
 `GetTime()` and the existing combat WorldFrame seat. The world frame callback
 copies the handler list before calling each function through `pcall`. This
-allows handlers to unregister during traversal. The Lua path identifies the
-callback. Its call position relative to camera and paint requires native
-scheduler correspondence.
+allows handlers to unregister during traversal. The shipped wrapper identifies
+the post-camera and pre-paint seam. The rebuilt callback runs at that seam,
+with its own `frameCurrent` scope and error handling.
 
 The whole-image scan identifies the distinct
 `benilla_app::host_controls::world_anchors::WorldAnchorsPlugin` name at
@@ -74,25 +70,44 @@ VAs `0x146648c56`, `0x146648cb8` and `0x14664be16`. The diagnostic scan
 supplies no verified Location-derived owner for those path occurrences. The
 packed registration names give additional inputs for resolving the sync,
 query, project, unit and stream callables and the separate frame callback.
-The source has no corresponding plugin or catalog registration. Its
-[combat anchors](../../crates/benilla-app/src/combat_text/anchors.rs) and
-[frame callback consumer](../../crates/benilla-app/src/ui_script/extract/mod.rs)
-provide existing inputs for camera projection, VM lifetime, and the
-combat-specific hit stream. The rebuilt combat projection already returns
-`playerDistance` from the sampled hero to the selected anchor's feet.
+At `0x140045616` the screen compositor passes the six name slices to
+`0x14010a760`. The Lua bridge wrappers reach catalog query `0x1409a4ae0`
+and projection `0x1409a0070` through `0x140bb9cf6` and `0x140bb7c88`.
+The sync body at `0x14099c440` reads `map`, `run`, `units`, `chests`, `lairs`
+and `downed`. Its downed reconciliation at `0x140918600` retires the fall's
+handle as the state or presence changes. The world sample at `0x1409cab50`
+filters type 3, the registered faction template and an available UNIT health
+field before maintaining the living and fallen rows. It marks the sample
+complete at `0x1409cc2f8`.
 
-Follow the plugin descriptor and the individual packed registration name
-addresses to their callable slots, then connect world objects and unit
-health/removal events to catalog insertion, death freezing, expiry and reset.
-Verify the native query and projection limits, catalog versus stream cursor
-invalidation, request order, attachment offsets and the unshifted
-`playerDistance` input for world projection. The native strings
-`playerDistance` at VA `0x146647b1a` and `CATALOG_CHANGED` at VA
-`0x1466480bc` are additional operand search seeds. The [0.139.2 combat
-recovery](combat-text-0.139.2.md) proved the hero-relative calculation in that
-image. The same combat Lua bytes are present in 0.140.0. Verify the current
-native combat projection, point selection and sample producer separately
-from the general world projection owner.
+The query reads an optional kind and state filter, then hashes the query
+parts with 32-bit FNV-1a and a zero separator. A page cursor has the `k`
+prefix followed by stream, catalog revision, query hash and offset. The
+response distinguishes a stream mismatch, an obsolete catalog and a changed
+query. Projection reads `w`-prefixed anchor handles and resolves each request
+in input order. It adds XYZ offsets before the camera call at `0x1409a1f2a`.
+The independent hero-distance branch at `0x1409a210e` uses the unshifted
+attachment, requires a valid hero sample and computes the f32 norm. The
+combat projector's separate `0x1409980ec..0x140998155` branch computes distance
+to unshifted feet. Impact and follow choose their positions before that branch.
+
+The [catalog source](../../crates/benilla-app/src/combat_text/world_anchors.rs)
+reads live UNIT descriptors and actual pose/overhead anchors, reconciles the
+addon rows, freezes observed deaths, and exposes the five native functions
+through the regular VM seed. The
+[existing projector](../../crates/benilla-app/src/combat_text/anchors.rs)
+supplies the frame camera and WorldFrame conversion. The world distance uses
+the same settled local hero sample as `AZS_GetPlayerPosition`. The
+[paint pass](../../crates/benilla-app/src/ui_script/extract/mod.rs) runs the
+exact Lua frame callback after sampling and ahead of widget extraction.
+
+The remaining native questions are the relative order of the erased
+combat/world frame callbacks, same-map run invalidation ahead of an incoming
+zone line, tied entity admission at the living cap, and the exact retirement
+reason lifetime after an anchor leaves the catalog. The rebuilt catalog uses
+the published run-space transition and the existing world's entity query.
+It retains retirement reasons for the stream. The exact native handling of
+those edges remains under the same finding.
 
 ## Exact evidence
 
@@ -115,5 +130,31 @@ inputs. The Lua ranges establish the wrapper behavior above.
 | [Combat event and projection Lua](evidence/0.139.2/combat-text/event-projection-api.lua) | `0x7aea1ac` | `0x147aeb1ac` | 1,810 | `d9fd81b72da25e2d89c5b590885794c483a4d21fe5de6d66456fedd220612982` |
 | [Combat frame-handler Lua](evidence/0.139.2/combat-text/frame-handlers.lua) | `0x7aea8be` | `0x147aeb8be` | 830 | `85c566b495b1968d89d8265d284eb3aae73e2ce94b638185f35708561629fd55` |
 
-Compilation, in-world addon behavior, co-op execution and original/rebuilt
-comparison remain unverified.
+## Native owners
+
+| Owner | Preferred VA range | File offset | Bytes | SHA-256 |
+| --- | --- | --- | ---: | --- |
+| Screen name carrier | `0x14010a760..0x14010a85f` | `0x109b60` | 255 | `281abe7c38008073b7b27db3f2b9b680236a384ef7adddb7dbc594753433f513` |
+| World catalog sync | `0x14099c440..0x14099eba6` | `0x99b840` | 10,086 | `597c213227142a7f4343d4b7f916ada17bcdf5bc615f2d24c40ea2336ee7637e` |
+| World catalog query | `0x1409a4ae0..0x1409a8594` | `0x9a3ee0` | 15,028 | `77f6e2723c76c0531d459f761980766d81d4a781235408e4eed74135a8f9c19c` |
+| World projection | `0x1409a0070..0x1409a2a9e` | `0x99f470` | 10,798 | `5de5a7d218a98b5eee415a90fb70febed0cb799cb51f54a43c4f6e92cd89c9b1` |
+| Unit life frame scan | `0x1409cab50..0x1409cc3f3` | `0x9c9f50` | 6,307 | `290e4cebeadfd1db170ebd24b79e36ae2df9612faf5d521ac05ef4e6f3caa55c` |
+| Downed row expiry reconciliation | `0x140918600..0x1409189b5` | `0x917a00` | 949 | `b3950d96c0276a6f3da8a1242ee3c424931e7636588532f898353b03d65f92d2` |
+| Combat sample and unshifted feet distance | `0x1409980ec..0x140998155` | `0x9974ec` | 105 | `2529042af531dd241aa74d7e7df30a0a1628d569cef5c76e0984d62681942f7d` |
+| World offset projector and distance | `0x1409a1eec..0x1409a21b7` | `0x9a12ec` | 715 | `b4b191881d8fbc63d0388a0a32cc9bd099d8b8b6fe5bb6a559d284f2293793b4` |
+| Kind string pointer/length rows | `0x14664f6a0..0x14664f720` | `0x664e6a0` | 128 | `1385ced2cb59ff2f75d2ea92947cc1775cea801de63ab692f8028e4f85ce6388` |
+| Cursor literal formatter | `0x1466480a5..0x1466480b2` | `0x66470a5` | 13 | `8e176a1294cdd52c654ba5e85869c1def64cd8eb5234b65f587be6f52d09cfef` |
+
+The query, projection, sync and unit-life results have respective Ghidra
+receipts `ev_8aa0ce3df7220bdb40669dc4a831ce959a54415bdfd170f8d1c4d18c92fa8684`,
+`ev_7480a7f8383d48f05ad0450825eac39d6335fa590fcf11acf537d5dba99c2534`,
+`ev_0ab16f5ea55df34bcc75d9d95940c3b64694fb333a389f6dc782dcff226145b5`, and
+`ev_2f9226b82bcad566c834863d95097a4f98622cd494d2a890d7a3b39889849ffe`.
+Each uses an original-VA slice with its own digest. The PE operand traces
+identify out-of-slice literals, global data and direct calls.
+
+The embedded Lua and assembled bootstrap pass `scripts/check-addon-bootstrap.lua`,
+including the downed getter, world capabilities and callback list mutation.
+The Rust source syntax-parses. The two catalog regressions are authored and
+unrun. Compilation, in-world addon behavior, co-op execution and
+original/rebuilt comparison remain unverified.

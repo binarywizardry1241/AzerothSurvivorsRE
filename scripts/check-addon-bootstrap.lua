@@ -361,3 +361,63 @@ if type(AZS_GetPlayerPosition) == "function" then
     expect_error("INTERNAL_ERROR");
     print("Passed player-position API: arity, readiness, coordinate space, cache invalidation and finite samples; stub host only");
 end
+if type(AZS_GetDownedPartyMembers) == "function" then
+    local function line(prefix, payload)
+        event, arg1, arg2 = "CHAT_MSG_ADDON", prefix, payload;
+        AZSApiFrame.handler();
+    end
+    local function downed(n)
+        arg = { n = n or 0 };
+        return AZS_GetDownedPartyMembers();
+    end
+    local position = AZS_GetPlayerPosition;
+    AZS_GetPlayerPosition = function() return nil, { code = "NO_PLAYER" }; end;
+    local list, err = downed(1);
+    assert(not list and err.code == "INVALID_ARGUMENT");
+    list, err = downed();
+    assert(not list and err.code == "NO_PLAYER");
+    AZS_GetPlayerPosition = function() return { mapId = 533, runId = "one", spaceId = "m533:one" }; end;
+    line("AZSZONE", "run=one;map=1");
+    list, err = downed();
+    assert(not list and err.code == "NOT_READY");
+    line("AZSZONE", "run=one;map=533");
+    line("AZSDOWNED", "u7,Friend,0,2,3,9,down;u8,Departed,1,2,3,9,left;u9,Ended,1,2,3,9,ended");
+    list, err = downed();
+    assert(err == nil and #list == 1 and list[1].id == "u7" and list[1].name == "Friend");
+    assert(list[1].positionAvailable and list[1].x == 0 and list[1].y == 2 and list[1].z == 3);
+    assert(list[1].mapId == 533 and list[1].runId == "one" and list[1].spaceId == "m533:one");
+    assert(list[1].anchorStatus == "notReady" and list[1].anchorId == nil);
+    list[1].x = 100;
+    assert(downed()[1].x == 0);
+    AZS_DOWNED[1].spaceId = "m533:old";
+    assert(not downed()[1].positionAvailable and downed()[1].x == nil);
+    line("AZSDOWNED", "u7,Friend,0,2,3,9,down");
+    line("AZSZONE", "run=two;map=533");
+    assert(#downed() == 0 and not next(AZS_DOWNED));
+    line("AZSDOWNED", "u7,Friend,0,2,3,9,down");
+    line("AZSDOWNED", "");
+    assert(#downed() == 0);
+    AZS_GetPlayerPosition = position;
+    print("Passed downed-party API: readiness, arity, recipient rows, zero coordinates, fresh tables, old space and clears; stub host only");
+end
+if type(AZS_GetWorldAnchorCapabilities) == "function" then
+    arg = { n = 0 };
+    local capabilities = AZS_GetWorldAnchorCapabilities();
+    assert(capabilities.apiVersion == 1 and #capabilities.kinds == 8);
+    assert(capabilities.maxEntriesPerCall == 256 and capabilities.maxProjectionsPerCall == 256);
+    assert(capabilities.fallenRetentionSeconds == 60 and capabilities.fallenCapacity == 4096);
+    local first, second, calls = nil, nil, {};
+    first = function()
+        table.insert(calls, "first");
+        AZS_UnregisterWorldAnchorFrameHandler(first);
+    end;
+    second = function() table.insert(calls, "second"); end;
+    assert(AZS_RegisterWorldAnchorFrameHandler(first));
+    assert(AZS_RegisterWorldAnchorFrameHandler(first));
+    assert(AZS_RegisterWorldAnchorFrameHandler(second));
+    AZS_WorldAnchorFrame();
+    AZS_WorldAnchorFrame();
+    assert(table.concat(calls, ",") == "first,second,second");
+    AZS_UnregisterWorldAnchorFrameHandler(second);
+    print("Passed world-anchor Lua capabilities and handler mutation checks; stub host only");
+end

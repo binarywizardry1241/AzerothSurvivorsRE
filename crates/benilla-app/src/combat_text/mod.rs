@@ -57,6 +57,7 @@ pub(crate) use law::{
 use bevy::prelude::*;
 
 pub(crate) mod anchors;
+pub(crate) mod world_anchors;
 
 use benilla_ui::script::{JustifyH, JustifyV, Outline};
 
@@ -486,6 +487,7 @@ impl Plugin for CombatTextPlugin {
         // The Update append window ([`UiQuadAppend`]), after the camera controller.
         app.init_resource::<WorldTexts>()
             .init_resource::<anchors::CombatTextAnchors>()
+            .init_resource::<world_anchors::WorldAnchors>()
             .init_resource::<DamageTextFont>()
             .init_resource::<DamageTextGates>()
             .add_message::<CombatTextSpawn>()

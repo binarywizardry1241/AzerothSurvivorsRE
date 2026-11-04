@@ -633,6 +633,7 @@ impl Plugin for UiScriptPlugin {
                     .in_set(UiPaint)
                     .after(WorldStage::Input)
                     .after(UiInput)
+                    .before(crate::combat_text::anchors::sample_frame)
                     .before(extract::paint_script),
             )
             .add_systems(

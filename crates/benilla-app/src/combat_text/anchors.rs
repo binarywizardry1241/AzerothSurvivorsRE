@@ -106,12 +106,13 @@ struct TargetLife {
 }
 
 #[derive(Clone, Copy)]
-struct Spot {
-    feet: Vec3,
-    overhead: Vec3,
+pub(super) struct Spot {
+    pub(super) feet: Vec3,
+    pub(super) overhead: Vec3,
 }
 
-struct View {
+#[derive(Clone)]
+pub(super) struct View {
     clip_from_world: Mat4,
     position: Vec3,
     right: Vec3,
@@ -498,28 +499,41 @@ fn project_entry(
             TargetState::Unavailable => "unavailable",
         },
     )?;
-    let (Some(view), Some(seat)) = (&state.camera, seat) else {
+    let spot = if follow { anchor.follow } else { anchor.impact };
+    let distance = (!follow || anchor.state != TargetState::Unavailable)
+        .then(|| state.hero.map(|hero| hero.distance(spot.feet)))
+        .flatten();
+    project_point(&state.camera, entry, spot.overhead, seat, distance)
+}
+
+pub(super) fn project_point(
+    view: &Option<View>,
+    entry: &Table,
+    point: Vec3,
+    seat: Option<&Table>,
+    player_distance: Option<f32>,
+) -> mlua::Result<()> {
+    let (Some(view), Some(seat)) = (view, seat) else {
         return entry.set("state", "notReady");
     };
     let (Ok(scale), Ok(left), Ok(bottom)) = (
-        seat.get::<f32>("scale"),
-        seat.get::<f32>("left"),
-        seat.get::<f32>("bottom"),
+        seat.raw_get::<f32>("scale"),
+        seat.raw_get::<f32>("left"),
+        seat.raw_get::<f32>("bottom"),
     ) else {
         return entry.set("state", "notReady");
     };
     if !scale.is_finite() || scale <= 0.0 || !left.is_finite() || !bottom.is_finite() {
         return entry.set("state", "notReady");
     }
-    let spot = if follow { anchor.follow } else { anchor.impact };
-    let depth = view.forward.dot(spot.overhead - view.position);
+    let depth = view.forward.dot(point - view.position);
     if depth <= 0.0 {
         return entry.set("state", "behindCamera");
     }
     if depth < view.near || depth > view.far {
         return entry.set("state", "clipped");
     }
-    let clip = view.clip_from_world * spot.overhead.extend(1.0);
+    let clip = view.clip_from_world * point.extend(1.0);
     let ndc = clip.truncate() / clip.w;
     if !ndc.is_finite() || ndc.x.abs() > 1.0 || ndc.y.abs() > 1.0 {
         return entry.set("state", "offscreen");
@@ -528,19 +542,14 @@ fn project_entry(
     entry.set("state", "onScreen")?;
     entry.set("x", (ndc.x + 1.0) * 0.5 * unit_view.x - left)?;
     entry.set("y", (ndc.y + 1.0) * 0.5 * unit_view.y - bottom)?;
-    entry.set("cameraDistance", spot.overhead.distance(view.position))?;
+    entry.set("cameraDistance", point.distance(view.position))?;
     entry.set("cameraDepth", depth)?;
-    let across = view.clip_from_world * (spot.overhead + view.right).extend(1.0);
+    let across = view.clip_from_world * (point + view.right).extend(1.0);
     entry.set(
         "uiUnitsPerYard",
         (across.x / across.w - ndc.x).abs() * 0.5 * unit_view.x,
     )?;
-    if !follow || anchor.state != TargetState::Unavailable {
-        entry.set(
-            "playerDistance",
-            state.hero.map(|hero| hero.distance(spot.feet)),
-        )?;
-    }
+    entry.set("playerDistance", player_distance)?;
     Ok(())
 }
 
@@ -572,7 +581,7 @@ fn held_entity(world: &World, guid: u64) -> Option<Entity> {
     world.get_resource::<GuidIndex>()?.0.get(&guid).copied()
 }
 
-fn spot(world: &World, entity: Entity) -> Option<Spot> {
+pub(super) fn spot(world: &World, entity: Entity) -> Option<Spot> {
     let tf = world.get::<Transform>(entity)?;
     Some(Spot {
         feet: tf.translation,
@@ -1116,4 +1125,5 @@ pub(crate) fn sample_frame(world: &mut World) {
             anchor.state = TargetState::Dead;
         }
     }
+    super::world_anchors::sample_frame(world, state.camera.clone(), now);
 }

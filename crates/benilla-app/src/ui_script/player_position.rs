@@ -2,7 +2,7 @@
 
 use std::cell::Cell;
 
-use benilla_assets::coords::bevy_to_wow;
+use benilla_assets::coords::{bevy_to_wow, wow_to_bevy};
 use benilla_ui::{mlua, script::UiScript};
 use benilla_world::world_map::CurrentMap;
 use bevy::prelude::*;
@@ -25,6 +25,14 @@ enum Sample {
         facing: f32,
         frame: u64,
     },
+}
+
+pub(crate) fn world_position(script: &UiScript) -> Option<Vec3> {
+    let sample = script.lua().app_data_ref::<Cell<Sample>>()?;
+    match sample.get() {
+        Sample::Ready { position, .. } => Some(wow_to_bevy(position)),
+        _ => None,
+    }
 }
 
 pub(crate) fn install_lua(script: &UiScript) -> mlua::Result<()> {
