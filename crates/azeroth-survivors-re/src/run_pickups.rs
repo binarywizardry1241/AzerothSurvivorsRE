@@ -3,6 +3,9 @@
 
 use crate::treasure_chests::NativeRng;
 
+/// Fixed proximity threshold shared by hero pickup and Rune-hound selection.
+pub const RUNE_PICKUP_RADIUS: f32 = 3.0;
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u32)]
 pub enum Rune {

@@ -155,6 +155,8 @@ Ghidra queries used unmodified slices with their original virtual addresses and
 verified journal digests. The selector's PE unwind extent is
 `0x145fd3790..0x145fd3d9d`, file offset `0x5fd2b90`, SHA-256
 `16bd584c7cbb9c610fd7be0594ee3a18e61c71319b4304e3ba4ef5fb57277d46`.
+Its shared catalog decompilation result has SHA-256
+`02fd046b42ba9a899444fab649bd53029174c62b498f5d49c01ccdbb0134d13d`.
 Original x64 instructions confirm the Windows ABI, shared callers and constants.
 Isolated replay passed 1,125 selector cases across all four instincts, seven
 kind codes, both sides of the radius and reach edges, reservation and flight

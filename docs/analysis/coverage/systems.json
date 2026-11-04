@@ -31219,7 +31219,9 @@
         "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
         "crates/azeroth-survivors-re/src/gameplay/mod.rs",
         "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
-        "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs"
+        "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs",
+        "crates/azeroth-survivors-re/src/run_pickups.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs"
       ],
       "evidence_refs": [
         "docs/analysis/companion-actors-0.105.0.md",
@@ -31263,7 +31265,8 @@
         "docs/analysis/evidence/0.139.0/source-frontier.json",
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
-        "docs/analysis/native-census-0.139.1.md"
+        "docs/analysis/native-census-0.139.1.md",
+        "docs/analysis/class-balance-0.140.0.md"
       ],
       "gap_ids": [
         14,
@@ -31285,7 +31288,7 @@
       },
       "implementation": {
         "status": "partial",
-        "summary": "Retained reconstructed source and completed repairs remain supplied. Pending current applicability is not missing implementation."
+        "summary": "Retained reconstructed source and completed repairs remain supplied. Pending current applicability is not missing implementation. The 0.140.0 Rune-hound fixed-radius selection and shared rune removal are connected for #14."
       },
       "static_validation": {
         "status": "bounded",
@@ -77614,8 +77617,8 @@
     "scripts/check-party-rewards-0.117.0.py": "3af51fac410fc9508fd12116bb13d00c17b6c02b5de8c9f4be7a00f6a8efdeea",
     "crates/azeroth-survivors-re/src/armory_cosmetics.rs": "7e04aa7de101c38625d309659439bb9993816b539a785462c3e6ece91ae770c7",
     "crates/azeroth-survivors-re/src/progression/rewards.rs": "6e954a1269575633f0895c52d9048d1f3fd47759e73c3eb7a78dc7e6abfb2b0d",
-    "crates/azeroth-survivors-re/src/run_effects/loot_companions.rs": "19d877419ee682b5ba2cee1e114f47b5db214be5543ddec522177843e145f6a3",
-    "crates/azeroth-survivors-re/src/gameplay/mechanics/loot_companions.rs": "bcba66e5434ca087c145dfcc23e97883fcd3ddd9bf08fc0998c15ddb3d6e5607",
+    "crates/azeroth-survivors-re/src/run_effects/loot_companions.rs": "924a5d7c778458cce68ea5d389a1d698442f9787ac997698aebcfea194e73bf0",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/loot_companions.rs": "cba0c5546ea2580138ed0f82318c77601d500774c738ffa023288d752c24b61a",
     "crates/azeroth-survivors-re/src/save/talents.rs": "7d5117891b9a39c5e786f63e137995bdd14390e1067120f3d2c4cb41b5e3d14a",
     "crates/azeroth-survivors-re/src/talents.rs": "b51db12ac83b406a72d935b546fdcd4ea2ec28eb72b08cbac5fb71928d063451",
     "crates/azeroth-survivors-re/src/run_effects/pets.rs": "99aa2fd51714180cad27040559df9613a5e66c64849b94d5fb2864d95cc6085a",
@@ -77657,7 +77660,7 @@
     "crates/azeroth-survivors-re/src/gameplay/mechanics/passives.rs": "84bc4e073a16f89aff1aff971cd918069327ec1cfa4b05f8413a40555eb52feb",
     "crates/azeroth-survivors-re/src/gameplay/mechanics/kill_feats.rs": "e6368d423e5c312ab2a5f2a2b9f1a91ce9cb8560ed306849658b92ec2ce2dda2",
     "crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs": "f0558cdba9f303494659d1247520b530902686c516043a575fe0f5832a87798f",
-    "crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs": "c5dc0b55310b4cdf6342069a07a331126eff9578d1fd7e14f6fcf4a9cfeb0d8b",
+    "crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs": "9eae853aeffa7c41fcca158b631371fc99f85e4f6ea65b0d2ade67390ff94166",
     "crates/azeroth-survivors-re/src/gameplay/mechanics/completion.rs": "8b4b93431685bc42b8ff6645e888fca09bdbf973a9501a975ba62cd151a438e8",
     "crates/azeroth-survivors-re/src/run_effects/healing.rs": "a5352a7c783cc15f13b145a2f29e644af8455accc84bfa2be70d5563a5c744d5",
     "crates/azeroth-survivors-re/tests/rejuvenation_0_119.rs": "9099d6f99f118cf176e84410617ac312c0f22bc51396d5a036adb75dde5e4f02",

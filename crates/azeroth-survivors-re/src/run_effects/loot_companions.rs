@@ -3,6 +3,7 @@
 //! Current co-op descriptors: party-rewards-0.117.0.md; existing actor contracts
 //! retain their historical provenance.
 use super::pet_tick::PetMotion;
+use crate::run_pickups::RUNE_PICKUP_RADIUS;
 use serde::Deserialize;
 use std::sync::OnceLock;
 
@@ -168,7 +169,11 @@ pub fn select(
         .filter(|row| row.idle && !reserved.contains(&row.guid))
         .filter(|row| {
             let d = distance(row.position, hero);
-            radius < d && d <= reach(radius, leash)
+            let hero_radius = match row.kind {
+                3..=5 => RUNE_PICKUP_RADIUS,
+                _ => radius,
+            };
+            hero_radius < d && d <= reach(radius, leash)
         })
         .filter_map(|row| priority(row.kind, instinct).map(|p| (row, p)))
         .min_by(|(a, pa), (b, pb)| {

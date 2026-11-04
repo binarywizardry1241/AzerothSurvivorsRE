@@ -160,15 +160,7 @@ impl<W: RunWorld> native::World for Port<'_, W> {
             .iter()
             .position(|row| row.id == guid && row.flight.is_none())?;
         let result = reward(self.game.pickups[index].drop)?;
-        let pickup = self.game.pickups.remove(index);
-        self.game.events.push(RunEvent::RemoveObject(guid));
-        self.game.events.extend(
-            pickup
-                .auxiliary
-                .into_iter()
-                .flatten()
-                .map(RunEvent::RemoveObject),
-        );
+        self.game.remove_pickup_at(index);
         Some(result)
     }
     fn deliver(&mut self, reward: native::Reward, instinct: u8) {
@@ -257,6 +249,71 @@ mod tests {
             game.loot_companion_names().collect::<Vec<_>>(),
             vec![(object.guid, "Sapphiron")]
         );
+    }
+
+    #[test]
+    fn rune_hound_fetches_within_pickup_stat_and_either_owner_collects_once() {
+        use azeroth_survivors_re::run_pickups::Rune;
+
+        for hero_reaches_rune in [false, true] {
+            let mut game = class_run("mage", 0);
+            game.set_loot_companions(native::saved_config(
+                ["squirrel"; 2],
+                |key| u8::from(matches!(key, "companion" | "instinct_runes")),
+                |_| true,
+            ));
+            let mut world = TerrainFixture;
+            let player: Position = game.zone.center.into();
+            game.begin_loot_companions(player, 0., &mut world);
+            game.pickups.push(RunPickup {
+                id: 7,
+                created_at: 0.,
+                drop: PickupDrop::Rune {
+                    rune: Rune::Speed,
+                    position: treasure_chests::Position::new(player.x + 5., player.y, player.z),
+                },
+                flight: None,
+                facing: 0.,
+                auxiliary: [None; 2],
+            });
+
+            game.clock = 1.;
+            game.tick_pickup_collection(player);
+            game.tick_loot_companions(player, 0., &mut world);
+            assert!(game.companion_reserved(7));
+
+            let player = if hero_reaches_rune {
+                Position {
+                    x: player.x + 2.,
+                    ..player
+                }
+            } else {
+                player
+            };
+            game.clock = 2.;
+            game.tick_pickup_collection(player);
+            game.tick_loot_companions(player, 0., &mut world);
+            assert!(game.pickups.is_empty());
+            assert_eq!(
+                game.loot_companion_state.actors[0].inventory.len(),
+                usize::from(!hero_reaches_rune)
+            );
+
+            for time in [3., 4., 5.] {
+                game.clock = time;
+                game.tick_pickup_collection(player);
+                game.tick_loot_companions(player, 0., &mut world);
+            }
+            let removals = game
+                .events
+                .iter()
+                .filter(|event| matches!(event, RunEvent::RemoveObject(7)));
+            assert_eq!(removals.count(), 1);
+            let grants = game.events.iter().filter(|event| {
+                matches!(event, RunEvent::Spell(cast) if cast.spell_id == Rune::Speed.spell())
+            });
+            assert_eq!(grants.count(), 1);
+        }
     }
 
     #[test]

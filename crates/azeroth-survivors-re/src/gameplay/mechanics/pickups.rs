@@ -3,7 +3,7 @@ use super::*;
 use azeroth_survivors_re::{
     loot_rewards::prose::Text,
     player_abilities::behavior::passive_tick::{LightwellSpawn, lightwell_object},
-    run_pickups::{self, MAGNET_OBJECTS, Rune},
+    run_pickups::{self, MAGNET_OBJECTS, RUNE_PICKUP_RADIUS, Rune},
 };
 
 #[derive(Debug, Default)]
@@ -415,7 +415,7 @@ impl Mechanics {
             text: Text::Concat(vec![name, Text::Literal("!".into())]) });
     }
 
-    // Current14594d9e0 stably removes the row, then publishes its primary
+    // Native 0x145f57850 (0.140.0) stably removes the row, then publishes its primary
     // object and auxiliary objects in order before the caller applies rewards.
     pub(super) fn remove_pickup_at(&mut self, index: usize) -> RunPickup {
         let pickup = self.pickups.remove(index);
@@ -518,7 +518,7 @@ impl Mechanics {
                 planar(pickup.position(), player) <= self.stats.pickup_radius
             }
             PickupDrop::Rune { .. } | PickupDrop::Magnet { .. } => {
-                planar(pickup.position(), player) <= 3.0
+                planar(pickup.position(), player) <= RUNE_PICKUP_RADIUS
             }
             _ => false,
         };
