@@ -171,9 +171,12 @@ def main():
     modes = parser.add_mutually_exclusive_group(required=True)
     modes.add_argument("--previous-summary")
     modes.add_argument("--supplemental-scripts", help="Project-local target-bound script selections/receipt")
+    parser.add_argument("--canonical-api", help="Reuse an existing project-local Lua extract with identical bytes")
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
     if args.supplemental_scripts:
+        if args.canonical_api:
+            parser.error("--canonical-api requires --previous-summary")
         output = project_path(args.supplemental_scripts)
         report, extracts = supplemental_scripts(output)
         if args.write:
@@ -188,10 +191,16 @@ def main():
     report, api = review(project_path(args.previous_summary))
     directory = ROOT / f"docs/analysis/evidence/{report['target']['version']}"
     output, extract = directory / "discovery-delta.json", directory / "embedded-api.lua"
+    if args.canonical_api:
+        extract = project_path(args.canonical_api)
+        if extract.suffix != ".lua" or extract.read_bytes() != api:
+            raise ValueError("Canonical Lua extract differs from the selected EXE range")
+        report["embedded_api"]["canonical_extract"] = extract.relative_to(ROOT).as_posix()
     if args.write:
         directory.mkdir(parents=True, exist_ok=True)
         output.write_text(json_text(report))
-        extract.write_bytes(api)
+        if not args.canonical_api:
+            extract.write_bytes(api)
     elif load_json(output) != report or extract.read_bytes() != api:
         raise ValueError("Current discovery review changed; inspect before --write")
     print(json_text({"target": report["target"], "new_custom_paths": report["custom_paths_added"],

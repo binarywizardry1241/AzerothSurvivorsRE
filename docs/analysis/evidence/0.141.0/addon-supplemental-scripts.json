@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "generator": {
+    "path": "scripts/review-target-refresh.py",
+    "sha256": "17d7290fc1367856a6c001ae214b5c8c2e5a874d4dd67d350e0f0c83c71ffe25"
+  },
+  "selections": [
+    {
+      "id": "meter-api-v1",
+      "start_marker": "\n\n-- Azeroth Survivors: the version 1 meter API (README \"For addon authors\"). Lua 5.0: no `#`, no\n",
+      "end_marker": "\t\tAZS_ML.texMeta = getmetatable(tx);\n\tend\nend\n",
+      "canonical_extract": "docs/analysis/evidence/0.139.1/meter-api.lua",
+      "boundary": "Unique meter API comment through its final Texture-metatable initialization. The adjacent mapped pointer/length descriptor independently matches the complete selected script; neighboring NULs, descriptor and next script excluded.",
+      "descriptor_file_offset": "0x76ec4c8",
+      "expected_range": {
+        "file_offset": "0x76dfef4",
+        "byte_count": 50637,
+        "sha256": "2871135e74cc78964c4997e12d3c9360a80adfa57ca166ddde3f4d4af1295588"
+      }
+    },
+    {
+      "id": "paperdoll-run-stats",
+      "start_marker": "\n\n-- Azeroth Survivors: the run's numbers on the character pane, off the server's addon line.\n",
+      "end_marker": "\tAZS_StockOnEvent(event, unit);\nend\n",
+      "canonical_extract": "docs/analysis/evidence/0.139.1/paperdoll-run-stats.lua",
+      "boundary": "Unique run-stat comment through the final PaperDollFrame_OnEvent hook closure; adjacent packed tooltip/localization literals excluded. Native template substitution, injection and runtime syntax remain unverified.",
+      "expected_range": {
+        "file_offset": "0x76ef063",
+        "byte_count": 9167,
+        "sha256": "7a582d603d7d11c4df4a4ffad889ccee4e125427b064a433808fdbe2cd4d2ec3"
+      }
+    }
+  ],
+  "scripts": [
+    {
+      "id": "meter-api-v1",
+      "file_offset": "0x76dfef4",
+      "virtual_address": "0x1476e18f4",
+      "byte_count": 50637,
+      "sha256": "2871135e74cc78964c4997e12d3c9360a80adfa57ca166ddde3f4d4af1295588",
+      "canonical_extract": "docs/analysis/evidence/0.139.1/meter-api.lua",
+      "boundary": "Unique meter API comment through its final Texture-metatable initialization. The adjacent mapped pointer/length descriptor independently matches the complete selected script; neighboring NULs, descriptor and next script excluded.",
+      "native_dependencies_revalidated": false,
+      "descriptor": {
+        "file_offset": "0x76ec4c8",
+        "byte_count": 16,
+        "sha256": "edface968dcf9658af3a0483b14063b39712f0cc493fae0241003bece996bfb1",
+        "meaning": "Static preferred-VA pointer and exact byte length; load/dispatch unproved."
+      }
+    },
+    {
+      "id": "paperdoll-run-stats",
+      "file_offset": "0x76ef063",
+      "virtual_address": "0x1476f0a63",
+      "byte_count": 9167,
+      "sha256": "7a582d603d7d11c4df4a4ffad889ccee4e125427b064a433808fdbe2cd4d2ec3",
+      "canonical_extract": "docs/analysis/evidence/0.139.1/paperdoll-run-stats.lua",
+      "boundary": "Unique run-stat comment through the final PaperDollFrame_OnEvent hook closure; adjacent packed tooltip/localization literals excluded. Native template substitution, injection and runtime syntax remain unverified.",
+      "native_dependencies_revalidated": false
+    }
+  ],
+  "limits": "Exact bounded embedded Lua bytes only. Native producers, loaders, dependencies, execution, source equivalence and parity are not certified."
+}

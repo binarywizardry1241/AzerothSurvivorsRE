@@ -1,7 +1,7 @@
 # AzerothSurvivorsRE
 
-Source reconstruction targeting **Azeroth Survivors 0.140.0**, using the Rust/Bevy
-benilla engine. The [installed identity](docs/analysis/target-refresh-0.140.0.json)
+Source reconstruction targeting **Azeroth Survivors 0.141.0**, using the Rust/Bevy
+benilla engine. The [installed identity](docs/analysis/target-refresh-0.141.0.json)
 binds the reference EXE and twelve MPQ archives. The
 [current state](docs/CURRENT-STATE.md) tracks release claims and their source and
 recovery findings.
