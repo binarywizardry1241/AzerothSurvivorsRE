@@ -187,6 +187,8 @@ fn sync_to_client(
         Option<Res<crate::coop_runtime::CoopRuntime>>,
     ),
 ) {
+    extension.combat_text_run = session.mechanics.as_ref().filter(|_| menu.in_run)
+        .map(|_| session.identity);
     if coop.as_ref().is_some_and(|coop|coop.is_guest()) {
         coop_feed::publish(&session,&menu,&world,&input,&locale,&mut state,&mut extension,&mut packets);
         return;

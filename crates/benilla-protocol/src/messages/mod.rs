@@ -109,6 +109,7 @@ pub use client::{
     played_time, query_time, random_roll, teleport_ack, text_emote,
 };
 pub use combat_log::{
+    CombatTextAttribution,
     DamageShield, DispelFailed, EnchantmentLog, EnvironmentalDamageLog, ExecuteLog, PartyKillLog,
     PeriodicAuraLog, PeriodicTick, SpellDamageLog, SpellDispelLog, SpellEnergizeLog, SpellHealLog,
     SpellInstaKillLog, SpellLogExecute, SpellLogMiss, SpellOutcomeLog,

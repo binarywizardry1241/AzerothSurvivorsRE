@@ -66,6 +66,10 @@ pub struct LocalClientExtension {
     /// Optional embedding-owned Lua callback invoked after the world camera
     /// moves, before FrameXML layout and paint consume the new anchors.
     pub world_frame_callback: Option<&'static str>,
+    /// Seat the embedding's addon hit stream on each in-game VM.
+    pub combat_text_anchors: bool,
+    /// Authoritative run identity, including a new run on the same world and VM.
+    pub combat_text_run: Option<u64>,
     /// Installed before FrameXML/addons, including after ReloadUI.
     pub script_prelude: String,
     /// Lua appended to named core FrameXML files before their normal chunk load.
@@ -129,6 +133,13 @@ pub(crate) fn seed(world: &mut World, script: &mut UiScript) {
     if let Some(initialize) = extension.script_initializer {
         if let Err(error) = initialize(world, script) {
             error!("local client native script initialization failed: {error}");
+        }
+    }
+    if extension.combat_text_anchors {
+        if let Some(anchors) = world.get_resource::<crate::combat_text::anchors::CombatTextAnchors>() {
+            if let Err(error) = anchors.install_lua(script) {
+                error!("local client combat text initialization failed: {error}");
+            }
         }
     }
     if !extension.script_prelude.is_empty() {

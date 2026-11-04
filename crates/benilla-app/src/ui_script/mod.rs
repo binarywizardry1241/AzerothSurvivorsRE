@@ -618,6 +618,13 @@ impl Plugin for UiScriptPlugin {
             )
             .add_systems(
                 Update,
+                crate::combat_text::anchors::sample_frame
+                    .in_set(UiPaint)
+                    .after(crate::vplates::VPlateSet)
+                    .before(extract::paint_script),
+            )
+            .add_systems(
+                Update,
                 extract::paint_script
                     .in_set(UiPaint)
                     .after(crate::vplates::VPlateSet)

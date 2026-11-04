@@ -13,6 +13,8 @@ const LOCAL_CLOCK_API: &str =
     include_str!("../../../../../docs/analysis/evidence/0.139.1/embedded-api.lua");
 const COMBAT_TEXT_FRAME_HANDLERS: &str =
     include_str!("../../../../../docs/analysis/evidence/0.139.2/combat-text/frame-handlers.lua");
+const COMBAT_TEXT_API: &str =
+    include_str!("../../../../../docs/analysis/evidence/0.139.2/combat-text/event-projection-api.lua");
 const STATS_PARSER: &str = include_str!(
     "../../../../../docs/analysis/evidence/0.105.0/addon-bridge/native-stats-parser.lua"
 );
@@ -41,6 +43,7 @@ pub(super) fn extension() -> LocalClientExtension {
     let mut source = SOURCE.replace("HUD_CVARS_LUA", &parts);
     source.push('\n');
     source.push_str(clock);
+    source.push_str(COMBAT_TEXT_API);
     source.push_str(COMBAT_TEXT_FRAME_HANDLERS);
     LocalClientExtension {
         creature_sound_data_patch: Some(creature_sound::patch),
@@ -50,6 +53,7 @@ pub(super) fn extension() -> LocalClientExtension {
         binding_defaults: crate::native_bindings::defaults(),
         script_initializer: Some(super::super::run_hud::local_clock::install_lua),
         world_frame_callback: Some("AZS_CombatTextFrame"),
+        combat_text_anchors: true,
         script_postlude: super::run_stats::source(None),
         // The character-pane owns this parser. Keep it available before the
         // WorldStateFrame API registers its CHAT_MSG_ADDON handler.

@@ -3,7 +3,7 @@
 use crate::messages::{
     ActionButton, AttackSwingError, AttackerState, AuctionBidderNotification, AuctionCommandTail,
     AuctionListEntry, AuctionOwnerNotification, ChannelNoticeTail, Character, CreateSpline,
-    DamageShield, DispelFailed, EnchantmentLog, EnvironmentalDamageLog, ExplorationXp, FriendEntry,
+    CombatTextAttribution, DamageShield, DispelFailed, EnchantmentLog, EnvironmentalDamageLog, ExplorationXp, FriendEntry,
     FriendStatusUpdate, GmTicket, GossipOption, GroupLootInfo, GroupMemberEntry,
     GuildCommandResult, GuildEventNotice, GuildInfo, GuildQueryResponse, GuildRoster,
     InspectHonorStats, ItemInfo, ItemPushResult, JumpInfo, LevelUpInfo, LfgResults, LootAllPassed,
@@ -814,6 +814,12 @@ pub enum SessionEvent {
     PlaySpellVisual { unit: u64, kit_id: u32 },
     /// Spell damage dealt (`SMSG_SPELLNONMELEEDAMAGELOG`).
     SpellDamageLog(SpellDamageLog),
+    /// Pair the optional Azeroth Survivors suffix with exactly one typed hit.
+    /// The embedding's normal packet dispatch still delivers the inner event.
+    AttributedCombatHit {
+        hit: Box<SessionEvent>,
+        attribution: CombatTextAttribution,
+    },
     /// Periodic aura ticks: DoT, HoT, regen (`SMSG_PERIODICAURALOG`).
     PeriodicAuraLog(PeriodicAuraLog),
     /// A direct heal (`SMSG_SPELLHEALLOG`).

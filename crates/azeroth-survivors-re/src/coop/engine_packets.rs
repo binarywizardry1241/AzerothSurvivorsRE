@@ -290,6 +290,14 @@ pub fn encode(
     event: &SessionEvent,
     self_guid: Option<u64>,
 ) -> Result<Option<EnginePacket>, EncodeError> {
+    if let SessionEvent::AttributedCombatHit { hit, attribution } = event {
+        let mut packet = encode(hit, self_guid)?.ok_or(EncodeError::InvalidValue)?;
+        if !benilla_protocol::messages::CombatTextAttribution::supports(packet.opcode) {
+            return Err(EncodeError::InvalidValue);
+        }
+        attribution.append_to(&mut packet.payload);
+        return Ok(Some(packet));
+    }
     let mut b = Vec::new();
     let opcode = match event {
         SessionEvent::ObjectValues {

@@ -163,6 +163,7 @@ fn on_attacker_state(
     mut pending: ResMut<PendingImpacts>,
     mut sinks: ImpactSinks,
     mut play_seq: ResMut<PlaySeq>,
+    combat_text: Option<Res<crate::combat_text::anchors::CombatTextAnchors>>,
     stop: (
         Res<crate::net::NetCommands>,
         ResMut<super::AttackStopInFlight>,
@@ -179,6 +180,10 @@ fn on_attacker_state(
 ) {
     if let SessionEvent::AttackerState(s) = ev {
         let attacker = s.attacker;
+        let seq = play_seq.next();
+        if let Some(combat_text) = combat_text {
+            combat_text.bind_melee(seq);
+        }
         attacker_state(
             tutorials.as_deref(),
             acquires.map(|a| a.into_inner()),
@@ -190,7 +195,7 @@ fn on_attacker_state(
             refusal.map(|r| r.into_inner()),
             &mut pending,
             &mut sinks,
-            play_seq.next(),
+            seq,
             stop,
         );
         // A held attacker's auto-move other than mode 2, the facing turn, ends (`0x625a03`-

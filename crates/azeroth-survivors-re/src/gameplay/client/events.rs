@@ -8,7 +8,7 @@ use std::collections::HashSet;
 use azeroth_survivors_re::{bosses::abilities::{CastTarget, SpellCast}, enemies::Position};
 use benilla_app::local_client::events::{
     EntityKind, JumpInfo, LocalPresentationEvents, MonsterMoveFacing, ObjectFields, ObjectType, SessionEvent,
-    AttackerState,ChatMessage,PeriodicAuraLog, PeriodicTick, SpellDamageLog, SpellHealLog,
+    AttackerState,ChatMessage,CombatTextAttribution,PeriodicAuraLog, PeriodicTick, SpellDamageLog, SpellHealLog,
 };
 use bevy::prelude::*;
 
@@ -470,11 +470,28 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
             },
             RunEvent::Magnet(_)=>None, // Recovered pickup flight is rendered from the live collection.
             RunEvent::MissingPassiveBinding { owner,.. }=>Some(owner),
-            RunEvent::Damage { source,target,spell_id,school,amount,critical,periodic,emit_log,.. }=>{
+            RunEvent::Damage { source,target,spell_id,school,amount,critical,periodic,emit_log,meter_attribution,.. }=>{
+                let attribution = meter_attribution.map(|(descriptor, source_key)| CombatTextAttribution {
+                    source_name: super::super::addon_meters::source_name(descriptor, locale),
+                    source_key,
+                });
                 if emit_log {
                     packets.0.push(SessionEvent::SpellDamageLog(SpellDamageLog { target,attacker:source,
                         spell_id:logged_spell(spell_id),damage:amount as u32,school,absorb:0,resist:0,
                         periodic,blocked:0,hit_info:if critical {2} else {0} }));
+                }
+                if let Some(attribution) = attribution {
+                    let matches = |packet: &SessionEvent| match packet {
+                        SessionEvent::SpellDamageLog(hit) => emit_log && hit.attacker == source && hit.target == target,
+                        SessionEvent::AttackerState(hit) => spell_id == 0 && hit.attacker == source && hit.victim == target,
+                        SessionEvent::PeriodicAuraLog(hit) => !emit_log && hit.spell_id == spell_id
+                            && hit.caster == source && hit.target == target,
+                        _ => false,
+                    };
+                    if packets.0.last().is_some_and(matches) {
+                        let hit = Box::new(packets.0.pop().expect("matched latest hit"));
+                        packets.0.push(SessionEvent::AttributedCombatHit { hit, attribution });
+                    }
                 }
                 None
             },

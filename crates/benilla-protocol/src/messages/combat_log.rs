@@ -7,6 +7,90 @@ use crate::wire::{
     capacity_hint, read_f32_le, read_i32_le, read_packed_guid, read_u32_le, read_u64_le, read_u8,
 };
 
+/// Azeroth Survivors' optional localized meter attribution after a stock hit body.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct CombatTextAttribution {
+    pub source_name: String,
+    pub source_key: String,
+}
+
+impl CombatTextAttribution {
+    pub fn supports(opcode: u16) -> bool {
+        use super::opcode::*;
+        matches!(opcode, SMSG_ATTACKERSTATEUPDATE | SMSG_PERIODICAURALOG | SMSG_SPELLNONMELEEDAMAGELOG)
+    }
+
+    /// 0.139.2 `0x140988210`: parse only the bytes left by the ordinary parser.
+    pub fn from_tail(opcode: u16, tail: &[u8]) -> Option<Self> {
+        if !Self::supports(opcode) {
+            return None;
+        }
+        let mut fields = tail.splitn(3, |&b| b == 0);
+        Some(Self {
+            source_name: Self::field(std::str::from_utf8(fields.next()?).ok()?)?,
+            source_key: Self::field(std::str::from_utf8(fields.next()?).ok()?)?,
+        })
+    }
+
+    /// Apply the receive-side filter to a hit delivered without a wire round trip.
+    pub fn sanitized(&self) -> Option<Self> {
+        Some(Self {
+            source_name: Self::field(&self.source_name)?,
+            source_key: Self::field(&self.source_key)?,
+        })
+    }
+
+    fn field(raw: &str) -> Option<String> {
+        let text: String = raw.chars()
+            .filter(|&c| c != '|' && !c.is_control())
+            .take(96)
+            .collect();
+        (!text.is_empty()).then_some(text)
+    }
+
+    /// 0.139.2 `0x145d9ecd0`: append two NUL-terminated UTF-8 strings.
+    pub fn append_to(&self, body: &mut Vec<u8>) {
+        body.extend_from_slice(self.source_name.as_bytes());
+        body.push(0);
+        body.extend_from_slice(self.source_key.as_bytes());
+        body.push(0);
+    }
+}
+
+#[cfg(test)]
+mod attribution_tests {
+    use super::{super::opcode::SMSG_SPELLNONMELEEDAMAGELOG, CombatTextAttribution};
+
+    #[test]
+    fn suffix_round_trips_without_changing_the_stock_body() {
+        let pair = CombatTextAttribution {
+            source_name: "Éclair".into(),
+            source_key: "ability:lightning_bolt:r2".into(),
+        };
+        let mut body = vec![1, 2, 3];
+        pair.append_to(&mut body);
+        assert_eq!(&body[..3], &[1, 2, 3]);
+        assert_eq!(&body[3..], "Éclair\0ability:lightning_bolt:r2\0".as_bytes());
+        assert_eq!(
+            CombatTextAttribution::from_tail(SMSG_SPELLNONMELEEDAMAGELOG, &body[3..]),
+            Some(pair),
+        );
+    }
+
+    #[test]
+    fn suffix_requires_two_nonempty_utf8_fields_after_filtering() {
+        let parse = |bytes| CombatTextAttribution::from_tail(SMSG_SPELLNONMELEEDAMAGELOG, bytes);
+        let tail = format!("|\u{85}{}\0a\u{1f}|b", "É".repeat(97));
+        let pair = parse(tail.as_bytes()).expect("unterminated second field is accepted");
+        assert_eq!(pair.source_name, "É".repeat(96));
+        assert_eq!(pair.source_key, "ab");
+        assert!(parse(b"name").is_none());
+        assert!(parse(b"name\0|\x1f\0").is_none());
+        assert!(parse(b"name\0\xff\0").is_none());
+        assert!(CombatTextAttribution::from_tail(0, b"name\0key\0").is_none());
+    }
+}
+
 /// `SMSG_SPELLNONMELEEDAMAGELOG`, spell damage dealt (`Server/Packets/Spell.cpp:124-140`);
 /// `hit_info` bit `0x2` is a crit (`SpellDefines.h:179`).
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

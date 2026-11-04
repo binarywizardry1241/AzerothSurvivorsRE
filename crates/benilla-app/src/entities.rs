@@ -188,25 +188,33 @@ pub(crate) fn overhead_anchor<F: bevy::ecs::query::QueryFilter>(
     globals: &Query<&GlobalTransform, F>,
     mounts: &Query<(), With<mount::MountChild>>,
 ) -> Vec3 {
-    anchors
-        .get(entity)
-        .ok()
-        .and_then(|a| {
-            let &(bone, offset) = a.points.get(&overhead_slot(a, mounts.contains(entity))?)?;
-            let pose = poses.get(entity).ok()?;
-            let own;
-            let root = if pose.joints_root == entity {
-                own = GlobalTransform::from(*tf);
-                &own
-            } else {
-                globals.get(pose.joints_root).ok()?
-            };
-            pose.posed_point(root, bone, offset)
-        })
-        .unwrap_or_else(|| {
-            let bbox_z = fallbacks.get(entity).map_or(0.0, |f| f.0);
-            tf.translation + Vec3::Y * (tf.scale.y * bbox_z * OVERHEAD_FALLBACK_FACTOR)
-        })
+    overhead_point(entity, tf, anchors.get(entity).ok(), poses.get(entity).ok(),
+        fallbacks.get(entity).ok(), mounts.contains(entity), |entity| globals.get(entity).ok())
+}
+
+/// The same engine-owned overhead point during an exclusive packet/frame pass.
+pub(crate) fn overhead_anchor_in(world: &World, entity: Entity, tf: &Transform) -> Vec3 {
+    overhead_point(entity, tf, world.get::<BoneAttach>(entity),
+        world.get::<benilla_world::rig_anim::RigPose>(entity), world.get::<OverheadFallback>(entity),
+        world.get::<mount::MountChild>(entity).is_some(), |entity| world.get::<GlobalTransform>(entity))
+}
+
+fn overhead_point<'a>(entity: Entity, tf: &Transform, attach: Option<&BoneAttach>,
+    pose: Option<&benilla_world::rig_anim::RigPose>, fallback: Option<&OverheadFallback>,
+    mounted: bool, global: impl FnOnce(Entity) -> Option<&'a GlobalTransform>) -> Vec3 {
+    let posed = attach.and_then(|attach| {
+        let &(bone, offset) = attach.points.get(&overhead_slot(attach, mounted)?)?;
+        let pose = pose?;
+        if pose.joints_root == entity {
+            pose.posed_point(&GlobalTransform::from(*tf), bone, offset)
+        } else {
+            pose.posed_point(global(pose.joints_root)?, bone, offset)
+        }
+    });
+    posed.unwrap_or_else(|| {
+        let bbox_z = fallback.map_or(0.0, |fallback| fallback.0);
+        tf.translation + Vec3::Y * (tf.scale.y * bbox_z * OVERHEAD_FALLBACK_FACTOR)
+    })
 }
 
 /// Marks the cube spawned for an entity whose display named no loadable model, so

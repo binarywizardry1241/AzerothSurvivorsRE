@@ -964,6 +964,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         let leech = self.current_leech();
         let secondary_source = (hit.effect.tag == 5).then(|| self.healing_source(hit.spell_id));
         let meter_source = self.damage_source(&hit);
+        let meter_attribution = self.damage_attribution(&hit, meter_source);
         let meter_attack = hit.context.meter_attack.or(self.generic.meter_attack);
         let effect_stats = self.effect_stats();
         let Some(index) = self
@@ -1050,6 +1051,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             amount: result.amount,
             critical: hit.critical,
             source_kind: self.attribution.source_kind,
+            meter_attribution,
             periodic: false,
             emit_log: hit.spell_id != 0 && !hit.context.suppress_damage_log,
         });

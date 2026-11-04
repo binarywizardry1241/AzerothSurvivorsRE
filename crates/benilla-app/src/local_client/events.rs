@@ -7,7 +7,7 @@
 use bevy::prelude::*;
 
 pub use benilla_protocol::messages::{
-    AttackerState, ChatMessage, GossipPoi, MoveMode, ObjectType, PeriodicAuraLog, PeriodicTick, SpeedKind,
+    AttackerState, ChatMessage, CombatTextAttribution, GossipPoi, MoveMode, ObjectType, PeriodicAuraLog, PeriodicTick, SpeedKind,
     SpellDamageLog, SpellHealLog,
 };
 pub use benilla_protocol::{EntityKind, JumpInfo, MonsterMoveFacing, MoveSpeeds, ObjectFields, SessionEvent};
@@ -43,6 +43,7 @@ impl Plugin for LocalPresentationPlugin {
 }
 
 fn dispatch(world: &mut World) {
+    crate::combat_text::anchors::seat_stream(world);
     let packets = world.get_resource_mut::<LocalWireEvents>().map_or_else(Vec::new, |mut events| std::mem::take(&mut events.0));
     let local = std::mem::take(&mut world.resource_mut::<LocalPresentationEvents>().0);
     if !world.resource::<LocalClientSession>().active {
@@ -50,8 +51,17 @@ fn dispatch(world: &mut World) {
     }
     let mut events = Vec::new();
     for (opcode, payload) in packets {
-        match benilla_protocol::messages::parse_server(opcode, &payload) {
-            Ok(packet) => events.extend(benilla_protocol::decode(packet)),
+        match benilla_protocol::messages::parse_server_with_tail(opcode, &payload) {
+            Ok((packet, tail)) => {
+                let mut decoded = benilla_protocol::decode(packet);
+                if decoded.len() == 1 && CombatTextAttribution::supports(opcode) {
+                    if let Some(attribution) = CombatTextAttribution::from_tail(opcode, &payload[payload.len() - tail..]) {
+                        let hit = Box::new(decoded.pop().expect("one typed hit"));
+                        events.push(SessionEvent::AttributedCombatHit { hit, attribution });
+                    }
+                }
+                events.extend(decoded);
+            }
             Err(error) => warn!("embedding packet {opcode:#x} rejected: {error}"),
         }
     }

@@ -218,9 +218,15 @@ pub(crate) fn dispatch(world: &mut World, events: Vec<SessionEvent>) {
     }
     crate::lanes::at_packets(|| {
         for ev in events {
+            let (ev, attribution) = match ev {
+                SessionEvent::AttributedCombatHit { hit, attribution } => (*hit, Some(attribution)),
+                ev => (ev, None),
+            };
+            crate::combat_text::anchors::capture_hit(world, &ev, attribution);
             let last = ends_its_packet(&ev);
             let at = (!ends.0.is_empty()).then(crate::lanes::stamp);
             handlers.run(world, ev);
+            crate::combat_text::anchors::capture_melee_impacts(world);
             if let Some(at) = at {
                 for end in &ends.0 {
                     end(world, at);

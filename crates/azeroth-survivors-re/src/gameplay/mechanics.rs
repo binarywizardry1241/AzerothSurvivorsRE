@@ -278,6 +278,7 @@ pub enum RunEvent {
         amount: f32,
         critical: bool,
         source_kind: u8,
+        meter_attribution: Option<(azeroth_survivors_re::run_effects::healing::MeterSource, String)>,
         /// Native14545f6d0 receives a literal false from actor-hit.
         periodic: bool,
         emit_log: bool,
@@ -1110,8 +1111,8 @@ impl Mechanics {
             player_absorb: self.execution.vitals.absorb,
             equipped: &self.effect_state.equipped,
             meter_sources: &self.effect_state.meter_sources,
-            meter_definitions: self.abilities.iter().map(|instance| instance.definition).collect(),
-            meter_racial: self.racial.as_ref().map(|instance| instance.definition),
+            meter_abilities: self.abilities.iter().map(|row| (row.definition, row.rank)).collect(),
+            meter_racial: self.racial.map(|row| row.definition),
             aura_provenance: &self.effect_state.display_provenance,
             rescue_ready_at: self.effect_state.incoming.lethal_talent_ready_at,
             soul_link_absorb: &mut self.effect_state.incoming.soul_link_absorb,
@@ -1557,8 +1558,8 @@ impl Mechanics {
             player_absorb: self.execution.vitals.absorb,
             equipped: &self.effect_state.equipped,
             meter_sources: &self.effect_state.meter_sources,
-            meter_definitions: self.abilities.iter().map(|instance| instance.definition).collect(),
-            meter_racial: self.racial.as_ref().map(|instance| instance.definition),
+            meter_abilities: self.abilities.iter().map(|row| (row.definition, row.rank)).collect(),
+            meter_racial: self.racial.map(|row| row.definition),
             aura_provenance: &self.effect_state.display_provenance,
             rescue_ready_at: self.effect_state.incoming.lethal_talent_ready_at,
             soul_link_absorb: &mut self.effect_state.incoming.soul_link_absorb,
@@ -1801,8 +1802,8 @@ impl Mechanics {
             player_absorb: self.execution.vitals.absorb,
             equipped: &self.effect_state.equipped,
             meter_sources: &self.effect_state.meter_sources,
-            meter_definitions: self.abilities.iter().map(|instance| instance.definition).collect(),
-            meter_racial: self.racial.as_ref().map(|instance| instance.definition),
+            meter_abilities: self.abilities.iter().map(|row| (row.definition, row.rank)).collect(),
+            meter_racial: self.racial.map(|row| row.definition),
             aura_provenance: &self.effect_state.display_provenance,
             rescue_ready_at: self.effect_state.incoming.lethal_talent_ready_at,
             soul_link_absorb: &mut self.effect_state.incoming.soul_link_absorb,
@@ -2074,7 +2075,7 @@ struct CombatAdapter<'a, W> {
     player_absorb: f32,
     equipped: &'a azeroth_survivors_re::run_effects::Effects,
     meter_sources: &'a [azeroth_survivors_re::run_effects::healing::MeterSource],
-    meter_definitions: Vec<&'static AbilityDefinition>,
+    meter_abilities: Vec<(&'static AbilityDefinition, u32)>,
     meter_racial: Option<&'static AbilityDefinition>,
     aura_provenance: &'a [String],
     rescue_ready_at: f32,
@@ -2169,7 +2170,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             self.meter_sources,
             spell_id,
             azeroth_survivors_re::run_meter::source_definition(
-                spell_id, self.meter_definitions.iter().copied(), self.meter_racial,
+                spell_id, self.meter_abilities.iter().map(|row| row.0), self.meter_racial,
             ),
         )
     }
@@ -2194,6 +2195,35 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             }
         }
         self.healing_source(hit.spell_id)
+    }
+    /// The recovered ordinary ability/weapon descriptor arms of 0.139.2.
+    fn damage_attribution(
+        &self, hit: &PendingHit, source: azeroth_survivors_re::run_effects::healing::MeterSource,
+    ) -> Option<(azeroth_survivors_re::run_effects::healing::MeterSource, String)> {
+        let spell = hit.spell_id;
+        if spell == 0 {
+            return (self.attribution.source_kind == 0 && source.name == "Melee")
+                .then(|| (source, "melee".into()));
+        }
+        if source.talent || self.attribution.source_kind > 1 {
+            return None;
+        }
+        let definition = azeroth_survivors_re::run_meter::source_definition(
+            spell, self.meter_abilities.iter().map(|row| row.0), self.meter_racial,
+        )?;
+        if (source.name, source.icon) != (definition.name, definition.icon) {
+            return None;
+        }
+        let mut key = format!("ability:{}", definition.key);
+        if let Some((_, rank)) = self.meter_abilities.iter()
+            .find(|(learned, _)| std::ptr::eq(*learned, definition))
+        {
+            key.push_str(&format!(":r{rank}"));
+        }
+        if definition.spell_id != spell {
+            key.push_str(":pulse");
+        }
+        Some((source, key))
     }
     fn apply_queued_healing(&mut self, vitals: &mut Vitals, healing: PendingHealing) {
         let spell_id = if healing.general_owner {
@@ -2240,6 +2270,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         let leech = self.current_leech();
         let secondary_source = (hit.effect.tag == 5).then(|| self.healing_source(hit.spell_id));
         let meter_source = self.damage_source(&hit);
+        let meter_attribution = self.damage_attribution(&hit, meter_source);
         let meter_attack = hit.context.meter_attack.or(self.generic.meter_attack);
         let effect_stats = self.effect_stats();
         let Some(row) = self
@@ -2328,6 +2359,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             amount: result.amount,
             critical: hit.critical,
             source_kind: self.attribution.source_kind,
+            meter_attribution,
             periodic: false,
             emit_log: hit.spell_id != 0 && !hit.context.suppress_damage_log,
         });

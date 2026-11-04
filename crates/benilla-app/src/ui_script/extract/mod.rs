@@ -725,6 +725,7 @@ pub(super) fn paint_script(
     pass: Res<super::UiPassState>,
     embedding: Option<Res<crate::local_client::LocalClientExtension>>,
     movies: Option<Res<super::movie::MovieScreen>>,
+    combat_text: Option<Res<crate::combat_text::anchors::CombatTextAnchors>>,
 ) {
     let no_movies = super::movie::MovieScreen::default();
     let movies = movies.as_deref().unwrap_or(&no_movies);
@@ -748,12 +749,16 @@ pub(super) fn paint_script(
         if let Some(callback) = callback {
             use benilla_ui::mlua::Function;
 
+            let combat_text = combat_text.as_ref()
+                .filter(|_| embedding.as_ref().is_some_and(|extension| extension.combat_text_anchors));
+            if let Some(combat_text) = combat_text { combat_text.frame_current(true); }
             let globals = script.lua().globals();
             if let Err(error) = globals.get::<Option<Function>>(callback).and_then(|handler| {
                 handler.map_or(Ok(()), |handler| handler.call::<()>(()))
             }) {
                 warn!("world frame callback {callback} failed: {error}");
             }
+            if let Some(combat_text) = combat_text { combat_text.frame_current(false); }
         }
         let prev = prev.get(script);
         let screen = super::UiScreen::of_window(window, widescreen.as_ref());
