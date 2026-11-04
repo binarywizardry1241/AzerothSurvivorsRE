@@ -134,7 +134,11 @@ pub(crate) fn set_name(catalog: &MenuCatalog, class: u8, tier: usize) -> String 
     }
 }
 
-pub(crate) fn set_four_bonus(labels: &MenuCatalog, tier: u8) -> String {
+pub(crate) fn set_four_bonus(labels: &MenuCatalog, class: u8, tier: u8) -> String {
+    if tier == azeroth_survivors_re::sets::TIER_HALF {
+        return azeroth_survivors_re::sets::tier_half_four_piece(class)
+            .map_or_else(String::new, |bonus| labels.label(&bonus.description));
+    }
     azeroth_survivors_re::sets::four_piece_effects(tier).iter()
         .map(|&(tag, value)| localized_bonus(labels, u32::from(tag), value))
         .collect::<Vec<_>>().join(", ")
@@ -2248,7 +2252,7 @@ fn set_bonus_rows(
     for (required, qualified_count, stars) in [(4, one, 1), (8, three, 3)] {
         let active = qualified_count >= usize::from(required);
         if active_only && !active { continue; }
-        let Some(body) = (if required == 4 { Some(set_four_bonus(labels, tier as u8)) }
+        let Some(body) = (if required == 4 { Some(set_four_bonus(labels, state.class_id(), tier as u8)) }
             else { set_eight_bonus(labels, state.class_id(), tier as u8, empowered) }) else { continue; };
         if body.is_empty() { continue; }
         let color = if required == 8 && empowered { PAPER } else if active { GREEN } else { MUTED };

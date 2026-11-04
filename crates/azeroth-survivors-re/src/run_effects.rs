@@ -193,7 +193,7 @@ impl EffectRow {
     pub fn armor_set(payload: &'static crate::sets::NativeEffect) -> Self {
         let mut bytes = payload.bytes();
         match bytes[0] {
-            0..=23 | 70 => {}
+            0..=23 | 65 | 70 | 71 => {}
             24 => {
                 bytes[0] = 253;
                 bytes[63] = 36;
@@ -387,6 +387,12 @@ impl Effects {
         result.cooldown = (1.0 - cooldown).max(0.4);
         result.targets = targets.round() as u32;
         result
+    }
+    /// 0.140.0 145df20ef keeps the largest matching selector 8.
+    pub fn execute_threshold(&self, definition: &AbilityDefinition) -> f32 {
+        self.spell_rows.iter()
+            .filter(|row| row.bytes[36] == 8 && row.matches(8, definition))
+            .fold(0.3, |threshold, row| threshold.max(row.float(32)))
     }
     pub fn passive_effects(&self) -> Vec<TalentEffect<'static>> {
         self.rows

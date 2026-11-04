@@ -9,6 +9,7 @@ use behavior::targeting;
 mod milestones;
 
 pub(super) const FROST_SHOCK_AURA: u32 = 8056;
+const DARKMANTLE_AURA: u32 = 8647;
 
 #[derive(Debug, Default)]
 pub(super) struct State {
@@ -43,6 +44,7 @@ pub(super) struct State {
     pub actor_weakening: std::collections::BTreeMap<u64, state::StrongestWindow>,
     pub demoralizing_amplification: std::collections::BTreeMap<u64, state::StrongestWindow>,
     pub packlord_howl: std::collections::BTreeMap<u64, std::collections::BTreeMap<u8, (f32, f32)>>,
+    darkmantle_targets: Vec<u64>,
     pub appearance_overrides: std::collections::BTreeMap<u64, (u32, f32)>,
     /// Current Game128 vector: all Felhunters share a3-second victim cooldown.
     pub consume_magic_ready_at: std::collections::BTreeMap<u64, f32>,
@@ -298,6 +300,56 @@ struct VictimSnapshot {
 }
 
 impl<W: RunWorld> CombatAdapter<'_, W> {
+    pub(super) fn darkmantle_bonus(&self, guid: u64) -> f32 {
+        if !self.generic.darkmantle_targets.contains(&guid) {
+            return 0.0;
+        }
+        self.equipped.rows.iter().find(|row| row.tag() == 65)
+            .map_or(0.0, |row| row.float(4))
+    }
+
+    /// 0.140.0 145fbed14..145fc067e retains living marks, then
+    /// chooses the first lower-priority replacement when the list is full.
+    fn mark_darkmantle(&mut self, guid: u64, cap: usize) {
+        let actors = &self.actors;
+        let bosses = &self.bosses;
+        let guardians = &self.guardian_state;
+        let priority = |target| {
+            if bosses.iter().any(|row| row.guid == target && !row.actor.dead) {
+                return Some(3);
+            }
+            actors.iter().find(|row| row.guid == target && !row.actor.dead)
+                .map(|row| u8::from(guardians.contains(target) || row.definition.flag_4c != 0))
+        };
+        let marked = &mut self.generic.darkmantle_targets;
+        marked.retain(|&target| priority(target).is_some());
+        let Some(candidate) = priority(guid).filter(|&rank| rank != 0) else { return; };
+        let mut retired = None;
+        if !marked.contains(&guid) {
+            if marked.len() >= cap {
+                let Some(index) = marked.iter().position(|&target|
+                    priority(target).is_some_and(|rank| rank < candidate))
+                else { return; };
+                retired = Some(marked.remove(index));
+            }
+            marked.push(guid);
+        }
+        if let Some(target) = retired {
+            self.publish_darkmantle_aura(target, false);
+        }
+        self.publish_darkmantle_aura(guid, true);
+    }
+
+    fn publish_darkmantle_aura(&mut self, guid: u64, present: bool) {
+        let periodic = self.actors.iter().find(|row| row.guid == guid).map(|row| &row.periodic)
+            .or_else(|| self.bosses.iter().find(|row| row.guid == guid).map(|row| &row.periodic));
+        if let Some(periodic) = periodic {
+            // The mark lives independently of the control and periodic rows.
+            // Gouge/Kidney cleanup leaves its aura slot in place.
+            self.events.extend(self.generic.aura_event(guid, DARKMANTLE_AURA, present, periodic));
+        }
+    }
+
     pub(super) fn actor_aura(&mut self, target: u64, spell_id: u32, present: bool) {
         let Some(periodic) = self.periodic_rows(target).cloned() else {
             return;
@@ -849,7 +901,7 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
         self.core.generic.source = hit.context.proc_source;
         self.core.attribution.source_words = hit.context.source_words;
         self.core.attribution.cast_words = hit.context.cast_words;
-        if let Some(input) = self.resolve_hit(hit, rng, Some(&mut execution.vitals)) {
+        if let Some(input) = self.resolve_hit(hit, rng, Some(&mut execution.vitals), Some(&execution.auras)) {
             // Class-special callbacks may have recursively dealt damage. Their
             // leech also precedes this hit's health-conditioned generic rows.
             self.core.flush_leech(&mut execution.vitals);
@@ -992,6 +1044,15 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             // Current native tag 21 with condition 2 is the periodic-on-critical
             // lane used by Blood Frenzy and The Eye of Hakkar.
             if event.source_kind == 3 && (row.tag() != 9 || row.word(16) != 2) {
+                continue;
+            }
+            if row.tag() == 65 {
+                if (event.kind == 0 || event.first_periodic) && event.source_kind != 2
+                    && definition.is_some_and(|spell|
+                        azeroth_survivors_re::sets::DARKMANTLE_SPELLS.contains(&spell.key))
+                {
+                    self.core.mark_darkmantle(victim_guid, row.word(8) as usize);
+                }
                 continue;
             }
             // Semantic marker keeps current army effects in their original order.

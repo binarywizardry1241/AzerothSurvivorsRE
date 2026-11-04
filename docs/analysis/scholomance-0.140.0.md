@@ -143,6 +143,36 @@ above, and marks the result empowered at rank 5. The source includes
 tier 7 in both checks. The independently recovered class effect
 constructors and combat consumers retain separate verification below.
 
+### Heroism and Darkmantle
+
+The class constructor at `0x145e30990` uses modes 0, 1 and 2 for
+four-piece, eight-piece and empowered payloads. Heroism's eight-piece
+branches at `0x145e309c1` emit Shield Slam selectors 0 and 5. The spell
+power path applies the 20% or 30% modifier to the base power, adds 4.5%
+or 6% of the hero's maximum health, then applies the outgoing power
+multiplier. The resulting spell resolves one damage hit. Raw effect 71
+identifies the maximum-health share for meter attribution. At
+`0x145f43cf0..0x145f43ea4` the owner divides the health power by current
+uncapped, uncritical spell power, clamps the fraction and widens it to
+f64. The ordinary and set rows receive their shares of the already
+applied amount in both damage meters. The run total, hit and combat log
+retain the original single damage result.
+
+Darkmantle's four-piece and empowered rows use selector 8. The reader
+at `0x145df20ef` takes the largest matching threshold, starting at 30%.
+`0x145f7ceae` compares the victim's current health fraction strictly
+below that threshold for Backstab and Eviscerate. The set raises it to
+40% at four pieces and 45% at eight five-star pieces. Its raw 65 callback
+at `0x145fbed14` retains live marks, refreshes an existing mark and
+replaces the first lower-priority target when full. The normal and
+empowered rows allow one and two marks, with 35% and 40% additive damage
+respectively. `0x145fbc250..0x145fbc312` applies the mark before the
+independent victim damage-taken field. Aura 8647 stays in its own actor
+slot, which the native Gouge and Kidney Shot cleanup paths at
+`0x145f4dbe5` and `0x145f52644` preserve. The source tracks each hero's
+marks independently of control and periodic effects.
+[Set data](../../crates/azeroth-survivors-re/src/sets.rs), [mark consumer](../../crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs).
+
 `python3 -B scripts/recover-gear-effects.py --scholomance` verifies all
 72 armor and 11 weapon records against the installed hash, including
 both stat slices and the metadata fields. Compilation, runtime
@@ -152,8 +182,8 @@ delivery, rendered output and original/rebuilt parity remain open.
 | --- | --- |
 | `changelog:0.140.0:3e24ce3552cb9657` | #314 rewards. The one-roll gate, exact armor groups, paired weapon receipts and pity bypass are connected through the retained recipient delivery path. |
 | `changelog:0.140.0:3af814319808b3f0` | #314 catalog and sets. The 83 items, star arithmetic, wear thresholds and item publication are connected. The class effect constructor at `0x145e30990` branches by class through `0x1473f70e0` with distinct four-, eight- and five-star modes. Its remaining unconnected payloads and their gameplay consumers need separate proof. |
-| `changelog:0.140.0:4a2e1ed28b7af869` | #314 Heroism. Follow the 8-piece and five-star descriptors into Shield Slam resolution. Establish multiplier and maximum-health ordering and the fate of the prior extra-hit branch. |
-| `changelog:0.140.0:cf7efae2d63eba41` | #314 Darkmantle. `Marked for Death` appears at `0x1473eb3ef`. Recover the mark's aura key, lifetime and projection through Gouge and Kidney Shot, retaining separate state and display checks. |
+| `changelog:0.140.0:4a2e1ed28b7af869` | #314 Heroism. Shield Slam uses the eight-piece and empowered modifiers in the existing hit, with its maximum-health share attributed to the set in damage meters. The separate four-piece effect needs a source consumer. |
+| `changelog:0.140.0:cf7efae2d63eba41` | #314 Darkmantle. Execute thresholds, ordered per-hero marks, additive amplification and the protected aura are connected. Runtime display and parity remain open. |
 
 ## Achievements, progression and glow
 

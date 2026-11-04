@@ -35,10 +35,10 @@ impl<W: RunWorld> PassiveCombat<'_, '_, '_, W> {
     /// The shared prefix completes primary damage, death, loot and guardian
     /// rewards before the class-special tail observes its captured hit input.
     pub(super) fn hit(&mut self, hit: PendingHit, rng: &mut NativeRng) {
-        self.resolve_hit(hit, rng, None);
+        self.resolve_hit(hit, rng, None, None);
     }
     pub(super) fn resolve_hit(&mut self, hit: PendingHit, rng: &mut NativeRng,
-        vitals: Option<&mut Vitals>) -> Option<HitInput> {
+        vitals: Option<&mut Vitals>, auras: Option<&[buffs::Aura]>) -> Option<HitInput> {
         let original = self.core.attribution;
         let original_pet_entry = self.core.generic.meter_pet_entry;
         let original_attack = self.core.generic.meter_attack;
@@ -51,7 +51,8 @@ impl<W: RunWorld> PassiveCombat<'_, '_, '_, W> {
         }
         self.core.attribution.source_words = hit.context.source_words;
         self.core.attribution.cast_words = hit.context.cast_words;
-        let input = self.core.hit(hit, rng, vitals);
+        let share = self.damage_share(hit.spell_id, vitals.as_deref(), auras);
+        let input = self.core.hit(hit, rng, vitals, share);
         if let Some(input) = input {
             hit_passives::after_damage(input, rng, self);
         }
@@ -59,6 +60,41 @@ impl<W: RunWorld> PassiveCombat<'_, '_, '_, W> {
         self.core.generic.meter_pet_entry = original_pet_entry;
         self.core.generic.meter_attack = original_attack;
         input
+    }
+
+    fn damage_share(&self, spell_id: u32, vitals: Option<&Vitals>,
+        auras: Option<&[buffs::Aura]>) -> Option<DamageShare> {
+        if spell_id == 0 || self.core.attribution.source_kind != 0 {
+            return None;
+        }
+        // 0.140.0 145f43cf0..145f43e16 uses the first raw71 and the
+        // uncritical, current ability power, including the keyed fallback.
+        let effects = self.core.equipped;
+        let (index, row) = effects.rows.iter().enumerate().find(|(_, row)| row.tag() == 71)?;
+        let instance = azeroth_survivors_re::run_effects::actions::free_instance(
+            row.key(8)?, self.learned, effects,
+        )?;
+        if instance.definition.spell_id != spell_id {
+            return None;
+        }
+        let mut power = self.cast_context.power;
+        if let Some(vitals) = vitals {
+            power.maximum_health = vitals.maximum_health;
+        }
+        if let Some(auras) = auras {
+            power.damage_multiplier = aura_damage(
+                self.core.numeric.damage, auras, self.core.now, self.core.numeric.buff_bonus,
+            );
+        }
+        let full_power = damage::effective_power(&instance, &power);
+        if full_power <= 0.0 || full_power.is_nan() {
+            return None;
+        }
+        let health_power = (row.float(24) * power.maximum_health) * power.damage_multiplier;
+        Some(DamageShare {
+            source: *self.core.meter_sources.get(index)?,
+            fraction: (health_power / full_power).clamp(0.0, 1.0),
+        })
     }
 
     fn actor(&self, guid: u64) -> Option<&Actor> {
@@ -194,6 +230,9 @@ impl<W: RunWorld> CastPort for PassiveCombat<'_, '_, '_, W> {
     }
     fn direct_power(&self, instance: &RuntimeInstance<'_>, power: f32, context: HitContext) -> f32 {
         enhancement::sweeping_storm_power(self.core.equipped, instance, power, context.proc_source)
+    }
+    fn execute_threshold(&self, definition: &AbilityDefinition) -> f32 {
+        self.core.equipped.execute_threshold(definition)
     }
     fn record_direct_hit(
         &mut self,

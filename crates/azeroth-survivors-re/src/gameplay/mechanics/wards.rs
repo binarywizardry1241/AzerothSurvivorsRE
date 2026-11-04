@@ -200,7 +200,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
     /// Shared145971490 applies actor damage and common kill side effects; an
     /// absent EnemyDefinition suppresses the later ordinary XP/gold/drop lane.
     pub(super) fn hit_ward(&mut self, hit: PendingHit, _rng: &mut NativeRng,
-        vitals: Option<&mut Vitals>, packlord: f32) -> Option<HitInput> {
+        vitals: Option<&mut Vitals>, packlord: f32, share: Option<DamageShare>) -> Option<HitInput> {
         let leech = self.current_leech();
         let orb = self
             .boss_state
@@ -310,7 +310,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             .unwrap_or_default();
         self.generic
             .damage_meters
-            .record(meter_source, hit.spell_id, result.effective, &breakdown);
+            .record_with_share(meter_source, hit.spell_id, result.effective, &breakdown, share);
         self.events.push(RunEvent::Damage {
             source: self.player_guid,
             causal_source: hit.source_guid,

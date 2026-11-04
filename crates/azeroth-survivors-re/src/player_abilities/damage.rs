@@ -179,6 +179,10 @@ fn talent_sum(effects: &[(u8, f32)], tag: u8) -> f32 {
 /// Current0x14593ed6c..0x14593f188, in instruction order. Stat21 is
 /// Trauma's victim-periodic lane; guardian metadata only selects raid defense.
 pub fn victim_multiplier(victim: &Victim, context: &VictimContext<'_>) -> f32 {
+    victim_multiplier_with_mark(victim, context, 0.0)
+}
+
+fn victim_multiplier_with_mark(victim: &Victim, context: &VictimContext<'_>, mark: f32) -> f32 {
     let mut multiplier = 1.0;
     if victim.stun_until > context.now || victim.slow_until > context.now || victim.forced_escape_until > context.now {
         multiplier = talent_sum(context.talent_effects, 18) + 1.0;
@@ -194,6 +198,7 @@ pub fn victim_multiplier(victim: &Victim, context: &VictimContext<'_>) -> f32 {
     if victim.vulnerability_until > context.now { multiplier += victim.vulnerability; }
     multiplier += victim.demoralizing_amplification;
     if context.player_absorb > 0.0 { multiplier += talent_sum(context.talent_effects, 28); }
+    if mark != 0.0 { multiplier += mark; }
     multiplier += victim.additional_damage_taken;
     // 0.140.0 145f432a4..145f43372 adds these three lanes in order.
     multiplier += context.spell_amplification;
@@ -262,14 +267,26 @@ pub fn apply_hit_with_raid_multiplier(victim: &mut Victim, power: f32,
     apply_hit_with_cap(victim, power, context, raid_multiplier, None)
 }
 
+/// Current 145fbc250..145fbc312 adds the recipient's mark before the
+/// independent victim damage-taken field.
+pub fn apply_hit_with_darkmantle(victim: &mut Victim, power: f32,
+    context: &VictimContext<'_>, raid_multiplier: f32, mark: f32) -> Option<HitDamage> {
+    apply_hit_inner(victim, power, context, raid_multiplier, None, mark)
+}
+
 ///0.121.0 actor-hit145c15f50..145c1613e: parentless kind3 ward damage
 /// is capped after victim/raid modifiers, before the common minimum-one rule.
 /// A zero capped request is rejected at the new gate before that minimum.
 pub fn apply_hit_with_cap(victim: &mut Victim, power: f32,
     context: &VictimContext<'_>, raid_multiplier: f32, cap: Option<f32>) -> Option<HitDamage> {
+    apply_hit_inner(victim, power, context, raid_multiplier, cap, 0.0)
+}
+
+fn apply_hit_inner(victim: &mut Victim, power: f32, context: &VictimContext<'_>,
+    raid_multiplier: f32, cap: Option<f32>, mark: f32) -> Option<HitDamage> {
     if context.run_state != 1 || victim.dead { return None; }
     let factor = if victim.primary_boss || victim.guardian { raid_multiplier } else { 1.0 };
-    let requested = (victim_multiplier(victim, context) * power) * factor;
+    let requested = (victim_multiplier_with_mark(victim, context, mark) * power) * factor;
     let requested = if let Some(cap) = cap {
         let amount = if cap.is_nan() || requested < cap { requested } else { cap };
         if amount == 0.0 { return None; }

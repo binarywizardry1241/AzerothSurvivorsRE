@@ -225,13 +225,130 @@ fn catalog() -> &'static Catalog {
 /// class/tier values return None, matching the constructor's empty variant.
 pub fn descriptor(class_id: u8, tier: u8, empowered: bool) -> Option<&'static Descriptor> {
     match (class_id, tier) {
+        (1, TIER_HALF) => Some(heroism(empowered)),
         (3, 2) => Some(giantstalker(empowered)),
         (3, TIER_HALF) => Some(beastmaster(empowered)),
+        (4, TIER_HALF) => Some(darkmantle(empowered)),
         (11, TIER_HALF) => Some(tier_half_druid(empowered)),
         _ => catalog().entries.iter().find(|entry| {
             entry.class_id == class_id && entry.tier == tier && entry.empowered == empowered
         }),
     }
+}
+
+pub const DARKMANTLE_SPELLS: [&str; 2] = ["backstab", "eviscerate"];
+
+fn darkmantle_execute(threshold: f32) -> NativeEffect {
+    let mut bytes = [0; 64];
+    bytes[0] = 73;
+    bytes[8] = 2;
+    bytes[32..36].copy_from_slice(&threshold.to_le_bytes());
+    bytes[36] = 8;
+    NativeEffect {
+        raw_hex: bytes.iter().map(|byte| format!("{byte:02x}")).collect(),
+        strings: Vec::new(),
+        lists: vec![NativeKeyList {
+            offset: 16,
+            values: DARKMANTLE_SPELLS.map(str::to_owned).into(),
+        }],
+    }
+}
+
+/// 0.140.0 145e30c6e. The non-empowered four-piece modifier survives
+/// independently of the active eight-piece selection.
+pub fn tier_half_four_piece(class: u8) -> Option<&'static Descriptor> {
+    if class != 4 {
+        return None;
+    }
+    static DARKMANTLE: OnceLock<Descriptor> = OnceLock::new();
+    Some(DARKMANTLE.get_or_init(|| Descriptor {
+        class_id: 4,
+        tier: TIER_HALF,
+        empowered: false,
+        spell_key: "backstab".to_owned(),
+        description: "Backstab and Eviscerate deal double damage below 40% enemy health instead of 30%.".to_owned(),
+        display_values: [0.0; 2],
+        effects: vec![darkmantle_execute(0.40)],
+    }))
+}
+
+fn darkmantle(empowered: bool) -> &'static Descriptor {
+    static DESCRIPTORS: OnceLock<[Descriptor; 2]> = OnceLock::new();
+    &DESCRIPTORS.get_or_init(|| {
+        [
+            (false, 0.35_f32, 1_u32,
+                "Backstab and Eviscerate mark bosses and elites for death; marked targets take 35% more damage from you. One target maximum."),
+            (true, 0.40_f32, 2_u32,
+                "Marked for Death increases to 40% damage and two targets. The double-damage threshold rises to 45% health."),
+        ].map(|(empowered, amount, cap, description)| {
+            let mut mark = [0; 64];
+            mark[0] = 65;
+            mark[4..8].copy_from_slice(&amount.to_le_bytes());
+            mark[8..12].copy_from_slice(&cap.to_le_bytes());
+            let mut effects = vec![NativeEffect {
+                raw_hex: mark.iter().map(|byte| format!("{byte:02x}")).collect(),
+                strings: Vec::new(),
+                lists: Vec::new(),
+            }];
+            if empowered {
+                effects.push(darkmantle_execute(0.45));
+            }
+            Descriptor {
+                class_id: 4,
+                tier: TIER_HALF,
+                empowered,
+                spell_key: "backstab".to_owned(),
+                description: description.to_owned(),
+                display_values: [0.0; 2],
+                effects,
+            }
+        })
+    })[usize::from(empowered)]
+}
+
+/// 0.140.0 145e309c1..145e30a78. The two raw 73 modifiers change
+/// the existing Shield Slam cast. Raw 71 identifies its max-HP meter share.
+fn heroism(empowered: bool) -> &'static Descriptor {
+    use crate::loot_rewards::amulets::EffectString;
+
+    static DESCRIPTORS: OnceLock<[Descriptor; 2]> = OnceLock::new();
+    &DESCRIPTORS.get_or_init(|| {
+        [
+            (false, 0.20_f32, 0.045_f32,
+                "Shield Slam deals 20% more damage and additional Physical damage equal to 4.5% of your maximum health."),
+            (true, 0.30_f32, 0.06_f32,
+                "Shield Slam deals 30% more damage and additional Physical damage equal to 6% of your maximum health."),
+        ].map(|(empowered, power, health, description)| {
+            let modifier = |selector, amount: f32| {
+                let mut bytes = [0; 64];
+                bytes[0] = 73;
+                bytes[8] = 1;
+                bytes[32..36].copy_from_slice(&amount.to_le_bytes());
+                bytes[36] = selector;
+                NativeEffect {
+                    raw_hex: bytes.iter().map(|byte| format!("{byte:02x}")).collect(),
+                    strings: vec![EffectString { offset: 16, value: "shield_slam".to_owned() }],
+                    lists: Vec::new(),
+                }
+            };
+            let mut meter = [0; 64];
+            meter[0] = 71;
+            meter[24..28].copy_from_slice(&health.to_le_bytes());
+            Descriptor {
+                class_id: 1,
+                tier: TIER_HALF,
+                empowered,
+                spell_key: "shield_slam".to_owned(),
+                description: description.to_owned(),
+                display_values: [0.0; 2],
+                effects: vec![modifier(0, power), modifier(5, health), NativeEffect {
+                    raw_hex: meter.iter().map(|byte| format!("{byte:02x}")).collect(),
+                    strings: vec![EffectString { offset: 8, value: "shield_slam".to_owned() }],
+                    lists: Vec::new(),
+                }],
+            }
+        })
+    })[usize::from(empowered)]
 }
 
 /// Native 0.140.0 145e30baa..145e30c18, with values at 1473ea130.

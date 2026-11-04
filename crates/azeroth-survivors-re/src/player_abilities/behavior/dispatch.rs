@@ -77,6 +77,9 @@ pub trait CastPort: ProjectilePort {
     fn direct_power(&self, _instance: &RuntimeInstance<'_>, power: f32, _context: HitContext) -> f32 {
         power
     }
+    fn execute_threshold(&self, _definition: &super::super::catalog::AbilityDefinition) -> f32 {
+        0.3
+    }
     fn record_direct_hit(
         &mut self,
         _spell_id: u32,
@@ -459,7 +462,7 @@ pub fn cast<'a>(
                 let execute_bonus = definition.kind == 7
                     && port
                         .target_health(target.actor.guid)
-                        .is_some_and(|(health, maximum)| health / maximum < 0.3);
+                        .is_some_and(|(health, maximum)| health / maximum < port.execute_threshold(definition));
                 let raw = if execute_bonus { power + power } else { power };
                 direct(
                     instance,

@@ -130,6 +130,25 @@ pub struct DamageMeters {
     pub spell_totals: BTreeMap<u32, f64>,
 }
 
+#[derive(Clone, Copy)]
+pub struct DamageShare {
+    pub source: MeterSource,
+    pub fraction: f32,
+}
+
+fn record_damage(meter: &mut HealingMeter, source: MeterSource, effective: f32,
+    breakdown: &[MeterBreakdown], share: Option<DamageShare>) {
+    let effective = f64::from(effective);
+    if let Some(share) = share {
+        // 0.140.0 145f43e1e..145f43ea4 widens the fraction before splitting.
+        let fraction = f64::from(share.fraction);
+        meter.record_total(source, effective * (1.0 - fraction), breakdown);
+        meter.record_total(share.source, effective * fraction, &[]);
+    } else {
+        meter.record_total(source, effective, breakdown);
+    }
+}
+
 impl DamageMeters {
     /// Current145971b66..145971b98 caps and widens the hit for the run total.
     /// The per-spell map shares that effective value; log suppression does not
@@ -141,10 +160,14 @@ impl DamageMeters {
         effective: f32,
         breakdown: &[MeterBreakdown],
     ) {
+        self.record_with_share(source, spell_id, effective, breakdown, None);
+    }
+
+    pub fn record_with_share(&mut self, source: MeterSource, spell_id: u32, effective: f32,
+        breakdown: &[MeterBreakdown], share: Option<DamageShare>) {
         self.total += f64::from(effective);
         *self.spell_totals.entry(spell_id).or_default() += f64::from(effective);
-        self.damage
-            .record_total(source, f64::from(effective), breakdown);
+        record_damage(&mut self.damage, source, effective, breakdown, share);
     }
 
     /// Only the shared hit owner's primary-boss arm starts a segment. A hit
@@ -157,14 +180,18 @@ impl DamageMeters {
         effective: f32,
         breakdown: &[MeterBreakdown],
     ) {
+        self.record_boss_with_share(death, now, source, effective, breakdown, None);
+    }
+
+    pub fn record_boss_with_share(&mut self, death: &mut BossDeathState, now: f32,
+        source: MeterSource, effective: f32, breakdown: &[MeterBreakdown], share: Option<DamageShare>) {
         death::begin_boss_meter(
             &mut death.clear_marker,
             &mut self.started_at,
             &mut self.boss.entries,
             now,
         );
-        self.boss
-            .record_total(source, f64::from(effective), breakdown);
+        record_damage(&mut self.boss, source, effective, breakdown, share);
     }
 
     pub fn boss_timing(&self, death: &BossDeathState, now: f32) -> Option<BossMeterTiming> {
@@ -174,6 +201,29 @@ impl DamageMeters {
             death.clear_marked_at,
             now,
         )
+    }
+}
+
+#[cfg(test)]
+#[test]
+fn shield_slam_health_share_splits_the_capped_amount_in_both_meters() {
+    let spell = MeterSource { name: "Shield Slam", icon: "", talent: false };
+    let set = MeterSource { name: "Heroism", icon: "", talent: true };
+    let fraction = 0.045_f32;
+    let share = Some(DamageShare { source: set, fraction });
+    let mut meters = DamageMeters::default();
+    let mut death = BossDeathState::default();
+    meters.record_with_share(spell, 23922, 7.25, &[], share);
+    meters.record_boss_with_share(&mut death, 4.0, spell, 7.25, &[], share);
+
+    assert_eq!(meters.total, 7.25);
+    assert_eq!(meters.spell_totals[&23922], 7.25);
+    for rows in [&meters.damage.entries, &meters.boss.entries] {
+        assert_eq!(rows.len(), 2);
+        assert_eq!(rows[0].source, spell);
+        assert_eq!(rows[0].total, 7.25 * (1.0 - f64::from(fraction)));
+        assert_eq!(rows[1].source, set);
+        assert_eq!(rows[1].total, 7.25 * f64::from(fraction));
     }
 }
 

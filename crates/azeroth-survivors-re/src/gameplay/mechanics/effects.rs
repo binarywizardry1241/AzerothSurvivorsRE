@@ -29,6 +29,7 @@ pub(super) struct EffectsState {
     /// Native per-hero entry snapshot, parallel to the nineteen equipment IDs.
     pub equipment_stars: [u8; 19],
     pub set_descriptor: Option<&'static azeroth_survivors_re::sets::Descriptor>,
+    pub tier_half_four_piece: Option<&'static azeroth_survivors_re::sets::Descriptor>,
     pub set_meter_name: &'static str,
     pub set_generic_start: usize,
     pub set_generic_count: usize,
@@ -66,6 +67,7 @@ impl EffectsState {
             equipped: Effects::default(),
             equipment_stars: [0; 19],
             set_descriptor: None,
+            tier_half_four_piece: None,
             set_meter_name: "",
             set_generic_start: 0,
             set_generic_count: 0,
@@ -177,17 +179,22 @@ impl Mechanics {
     /// Current145c4f090 builds talents first, then the worn armor-set descriptor
     /// from the same class/equipment/star snapshot. No ownership-only item enters.
     pub fn configure_armor_set(&mut self, gear: [u32; 19], stars: [u8; 19]) {
+        use azeroth_survivors_re::sets;
+
         self.set_equipment_ids(gear);
         self.effect_state.equipment_stars = stars;
-        self.effect_state.set_descriptor = azeroth_survivors_re::sets::equipped_descriptor(
-            self.class.class_id, &gear, &stars, |id| {
-                crate::save::gear::decode(id).map(|piece| azeroth_survivors_re::sets::Piece {
-                    class_id: piece.class,
-                    slot: usize::from(piece.slot),
-                    tier: usize::from(if piece.rarity_digit == 6 { 5 } else { piece.rarity_digit }),
-                })
-            },
+        let lookup = |id| {
+            crate::save::gear::decode(id).map(|piece| sets::Piece {
+                class_id: piece.class,
+                slot: usize::from(piece.slot),
+                tier: usize::from(piece.set_tier()),
+            })
+        };
+        self.effect_state.set_descriptor = sets::equipped_descriptor(
+            self.class.class_id, &gear, &stars, lookup,
         );
+        self.effect_state.tier_half_four_piece = sets::tier_half_four_piece(self.class.class_id)
+            .filter(|_| sets::four_piece_tiers(&gear, &stars, lookup).contains(&sets::TIER_HALF));
         self.effect_state.set_meter_name = self.effect_state.set_descriptor
             .and_then(|descriptor| crate::armory::set_name_base(
                 self.class.class_id, usize::from(descriptor.tier)))
@@ -369,6 +376,9 @@ impl Mechanics {
         }
         self.effect_state.set_generic_start = self.effect_state.talent_provenance.len();
         self.effect_state.set_generic_count = 0;
+        if let Some(descriptor) = self.effect_state.tier_half_four_piece {
+            self.effect_state.equipped.talents.extend(descriptor.effects.iter().map(EffectRow::armor_set));
+        }
         if let Some(descriptor) = self.effect_state.set_descriptor {
             let icon = AbilityDefinition::by_key(&descriptor.spell_key)
                 .expect("current set descriptor has an ability icon").icon;

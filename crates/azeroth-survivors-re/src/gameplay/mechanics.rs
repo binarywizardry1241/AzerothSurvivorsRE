@@ -37,6 +37,7 @@ use azeroth_survivors_re::{
         damage::{self, PowerContext, Victim, VictimContext},
         upgrades::{self, UpgradeKind},
     },
+    run_meter::DamageShare,
     run_progression::RUN_LEVEL_CAP,
     treasure_chests,
 };
@@ -2345,7 +2346,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
     }
 
     fn hit(&mut self, hit: PendingHit, rng: &mut NativeRng,
-        vitals: Option<&mut Vitals>) -> Option<HitInput> {
+        vitals: Option<&mut Vitals>, share: Option<DamageShare>) -> Option<HitInput> {
         // 0.140.0 0x145f4333b..0x145f434c4 skips pet hits, pet-origin
         // effects and Packlord bleed before looking up the active hero's Howl.
         let words = hit.context.source_words;
@@ -2360,11 +2361,12 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             self.generic.packlord_amplification(hit.target_guid, self.party_healing.source_slot, self.now)
         };
         if self.bosses.iter().any(|row| row.guid == hit.target_guid) {
-            return self.hit_boss(hit, rng, vitals, packlord);
+            return self.hit_boss(hit, rng, vitals, packlord, share);
         }
         if self.boss_state.wards.actors.iter().any(|row| row.guid == hit.target_guid) {
-            return self.hit_ward(hit, rng, vitals, packlord);
+            return self.hit_ward(hit, rng, vitals, packlord, share);
         }
+        let darkmantle = self.darkmantle_bonus(hit.target_guid);
         let leech = self.current_leech();
         let secondary_source = (hit.effect.tag == 5).then(|| self.healing_source(hit.spell_id));
         let meter_source = self.damage_source(&hit);
@@ -2427,7 +2429,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             self.boss_state.defenses.get(&row.guid).copied().unwrap_or_default()
                 .multiplier_with_ward(self.now, self.boss_state.wards.protects(row.guid))
         } else { 1.0 };
-        let Some(result) = damage::apply_hit_with_raid_multiplier(
+        let Some(result) = damage::apply_hit_with_darkmantle(
             &mut victim,
             hit.damage,
             &VictimContext {
@@ -2443,6 +2445,7 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
                 packlord_amplification: packlord,
             },
             raid_multiplier,
+            darkmantle,
         ) else {
             return None;
         };
@@ -2450,8 +2453,8 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
         let breakdown = meter_attack.map(|attack| attack.components(
             self.attribution.source_kind, f64::from(result.effective),
         )).unwrap_or_default();
-        self.generic.damage_meters.record(
-            meter_source, hit.spell_id, result.effective, &breakdown,
+        self.generic.damage_meters.record_with_share(
+            meter_source, hit.spell_id, result.effective, &breakdown, share,
         );
         self.events.push(RunEvent::Damage {
             source: self.player_guid,
@@ -2557,6 +2560,9 @@ impl<W: RunWorld> ProjectilePort for CombatAdapter<'_, W> {
 }
 
 impl<W: RunWorld> CastPort for CombatAdapter<'_, W> {
+    fn execute_threshold(&self, definition: &AbilityDefinition) -> f32 {
+        self.equipped.execute_threshold(definition)
+    }
     fn party_needs_healing(&self) -> bool {
         self.party_healing.needs_healing(self.player)
     }

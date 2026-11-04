@@ -325,7 +325,7 @@ fn item_sets(catalog: &ArmoryCatalog, labels: &MenuCatalog)
                         Some(crate::armory::piece_name(labels, piece, 1))))
                 }).collect::<Option<Vec<_>>>();
                 let Some(members) = members else { continue; };
-                let four = crate::armory::set_four_bonus(labels, tier as u8);
+                let four = crate::armory::set_four_bonus(labels, class.id, tier as u8);
                 let mut bonuses = Vec::new();
                 if !four.is_empty() {
                     bonuses.push((4, labels.label("{bonus} (pieces at {stars}+ stars)")
