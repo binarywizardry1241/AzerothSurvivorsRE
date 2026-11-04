@@ -4142,7 +4142,7 @@ mod rng_integration {
         game.tick(0.5, player, [0.0; 2], 0.0, &mut TerrainFixture);
         assert_eq!(game.abilities.len(), 1);
         assert_eq!(game.racial.as_ref().unwrap().definition.key, "stoneform");
-        assert!((game.execution.vitals.absorb - 42.0).abs() < 0.0001);
+        assert!((game.execution.vitals.absorb - 63.0).abs() < 0.0001);
         assert!(
             game.execution
                 .auras
@@ -4153,10 +4153,10 @@ mod rng_integration {
             game.racial_cooldown,
             Some(RunCooldown {
                 started_at: 0.5,
-                duration: 63.0
+                duration: 42.0
             })
         );
-        assert_eq!(game.racial.as_ref().unwrap().remaining, 63.0);
+        assert_eq!(game.racial.as_ref().unwrap().remaining, 42.0);
     }
 
     #[test]

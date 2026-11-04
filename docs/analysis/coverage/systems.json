@@ -12990,6 +12990,25 @@
         },
         {
           "file_offset": "0x650f918",
+      "gap_188_source_review_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 188,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/racial-balance-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/racial-balance.json"
+        ],
+        "static_validation": "bounded_data_consumer_locale_and_rust_syntax_checks_pass",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "English fallback and fourteen native locale catalogs carry the current race descriptions.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/assets/menu.json",
+          "crates/azeroth-survivors-re/assets/locales/en.json",
+          "crates/azeroth-survivors-re/src/picker.rs",
+          "crates/azeroth-survivors-re/src/localization.rs"
+        ]
+      },
           "virtual_address": "0x146510b18",
           "byte_count": 46,
           "sha256": "79fdc4dc3176bb3e1d2869878543151c4ea0a4e8341f4d78357d6e3f37c678ee"
@@ -27760,6 +27779,24 @@
           "crates/azeroth-survivors-re/src/gameplay/mechanics/choices.rs"
         ],
         "evidence_refs": [
+      "gap_188_source_review_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 188,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/racial-balance-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/racial-balance.json"
+        ],
+        "static_validation": "bounded_data_consumer_locale_and_rust_syntax_checks_pass",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "Stoneform 30s base cooldown and 45% shield coefficient reach the existing racial schedule and absorb reservation.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/player_abilities/catalog.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+          "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs"
+        ]
+      },
           "docs/analysis/enhancement-0.139.2.md",
           "docs/analysis/evidence/0.139.2/enhancement.json"
         ],
@@ -35843,6 +35880,24 @@
         }
       ],
       "source_refs": [
+      "gap_188_source_review_0_139_2": {
+        "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
+        "gap_id": 188,
+        "source_status": "connected",
+        "evidence_refs": [
+          "docs/analysis/racial-balance-0.139.2.md",
+          "docs/analysis/evidence/0.139.2/racial-balance.json"
+        ],
+        "static_validation": "bounded_data_consumer_locale_and_rust_syntax_checks_pass",
+        "runtime_validation": "not_run",
+        "parity": "unverified",
+        "scope": "The Human Spirit adds 0.20 to the base XP multiplier before the party factor and rounding.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/assets/run-entry-0.100.1.json",
+          "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs"
+        ]
+      },
         "crates/azeroth-survivors-re/src/gameplay/mod.rs",
         "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",

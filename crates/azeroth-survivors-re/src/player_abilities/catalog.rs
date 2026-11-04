@@ -1953,7 +1953,7 @@ pub static ABILITIES: &[AbilityDefinition] = &[
         upgrade_types: &[0, 1],
         spell_id: 20594,
         base_power: f32::from_bits(0x00000000),
-        base_cooldown: f32::from_bits(0x42340000),
+        base_cooldown: f32::from_bits(0x41f00000),
         range: f32::from_bits(0x00000000),
         radius: f32::from_bits(0x00000000),
         targets: 0,
@@ -1961,7 +1961,7 @@ pub static ABILITIES: &[AbilityDefinition] = &[
         ticks: 0,
         projectile_speed: f32::from_bits(0x00000000),
         pulse_spell_id: 0,
-        effect: StatusEffect { tag: 7, value: f32::from_bits(0x3e99999a), duration: f32::from_bits(0x00000000) },
+        effect: StatusEffect { tag: 7, value: f32::from_bits(0x3ee66666), duration: f32::from_bits(0x00000000) },
         school: 0, kind: 9,
     },
     AbilityDefinition {
