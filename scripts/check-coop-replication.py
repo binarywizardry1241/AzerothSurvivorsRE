@@ -2,6 +2,7 @@
 """Check current co-op wire/state source evidence without compiling or execution."""
 import argparse
 import hashlib
+from itertools import product
 import json
 import math
 import struct
@@ -13,14 +14,15 @@ from script_sources import load_script
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 MANIFEST = ROOT / 'docs/analysis/evidence/0.115.0/coop-replication/manifest.json'
 GUEST_SPELL_ROWS = ROOT / 'docs/analysis/evidence/0.141.0/coop-guest-spell-rows.json'
+PROTOCOL_13 = ROOT / 'docs/analysis/evidence/0.141.0/coop-replication.json'
 
 
 def digest(raw):
     return hashlib.sha256(raw).hexdigest()
 
 
-def check_guest_spell_rows():
-    proof = json.loads(GUEST_SPELL_ROWS.read_text())
+def installed_ranges(path):
+    proof = json.loads(path.read_text())
     target = installed_identity()
     assert target == proof['target']
     data = target_bytes(target)
@@ -32,6 +34,11 @@ def check_guest_spell_rows():
         assert offset == int(row['file_offset'], 16)
         assert digest(data[offset:offset + end - start]) == row['sha256'], row['role']
         ranges[row['role']] = (start, end)
+    return proof, data, pe, ranges
+
+
+def check_guest_spell_rows():
+    proof, data, pe, ranges = installed_ranges(GUEST_SPELL_ROWS)
     replay = NativeReplay(data, pe)
     reg = replay.registers
     cpu = replay.machine
@@ -102,11 +109,141 @@ def check_guest_spell_rows():
           f'{replay.instructions} native steps and source publication guards')
 
 
+def replay_state_cadence(replay, proof, ranges):
+    first, send = ranges['state_cadence']
+    skip = int(proof['cadence_skip'], 16)
+    reg = replay.registers
+    cpu = replay.machine
+    phase = replay.app + 0x1000
+    peer = replay.app + 0x3000
+    game = replay.app + 0x5000
+    period = struct.unpack('<d', replay.raw(ranges['state_period_literal'][0], 8))[0]
+    assert period == 1.0
+
+    def float_bits(value):
+        return struct.unpack('<Q', struct.pack('<d', value))[0]
+
+    cases = 0
+    times = ((0., 0.), (4., 4.99), (4., 5.), (4., 5.01), (4., 7.), (4., 3.), (4., math.nan))
+    for start in (first, int(proof['cadence_second_path'], 16)):
+        for last, now in times:
+            for mode, value in product((0, 1), range(256)):
+                replay.reset('state cadence', [ranges['state_cadence']], [send, skip])
+                replay.put(peer + 0x368, '<d', last)
+                replay.put(replay.bp + 0x1290, '<Q', phase)
+                replay.put(phase + 0x10f3, '<B', mode)
+                replay.put(phase + 0x10f9 + mode, '<B', value)
+                replay.put(phase + 0x10f9 + (1 - mode), '<B', 1 if value & 6 == 4 else 4)
+                cpu.reg_write(reg.UC_X86_REG_RAX, peer)
+                cpu.reg_write(reg.UC_X86_REG_RCX, peer)
+                cpu.reg_write(reg.UC_X86_REG_R12, game)
+                cpu.reg_write(reg.UC_X86_REG_XMM6, float_bits(now))
+                cpu.reg_write(reg.UC_X86_REG_XMM9, float_bits(period))
+                stop = replay.run(start)
+                periodic = now - last >= period
+                assert (stop == send) == (periodic or value & 6 == 4)
+                assert replay.get(peer + 0x368, '<d') == (now if periodic else last,)
+                cases += 1
+    return cases
+
+
+def replay_controls(replay, proof, ranges):
+    reg = replay.registers
+    cpu = replay.machine
+    packet = replay.app + 0x1000
+    reader = replay.bp + 0x618
+    decoded = int(proof['control_reader_done'], 16)
+    reject = int(proof['control_reader_reject'], 16)
+    encoded = int(proof['control_writer_done'], 16)
+    readers = [ranges[role] for role in ('control_read_dispatch', 'control_read_bool',
+               'control_read_fields', 'control_read_u8', 'control_read_u32')]
+    writers = [ranges[role] for role in ('control_write_dispatch', 'control_write_cases')]
+    widths = {ranges['control_write_u8'][0]: 1, ranges['control_write_u32'][0]: 4}
+    output = bytearray()
+
+    def write_primitive(address):
+        width = widths.get(address)
+        if width is None:
+            return False
+        value = cpu.reg_read(reg.UC_X86_REG_RDX) & ((1 << (8 * width)) - 1)
+        output.extend(value.to_bytes(width, 'little'))
+        cpu.reg_write(reg.UC_X86_REG_RAX, cpu.reg_read(reg.UC_X86_REG_RCX))
+        replay.return_seam()
+        return True
+
+    cases = 0
+    offer = 0x11223344
+    for kind in range(11):
+        tail = struct.pack('<I', offer) if kind in (0, 3) else b''
+        for argument in range(256):
+            output.clear()
+            replay.seam = write_primitive
+            replay.reset('control encode', writers, [encoded])
+            replay.put(packet + 8, '<BBHI', kind, argument, 0, offer)
+            cpu.reg_write(reg.UC_X86_REG_RDI, packet)
+            replay.run(writers[0][0])
+            raw = argument if kind in (0, 2) else (argument & 1 if 7 <= kind <= 9 else 0)
+            assert output == bytes((8, kind, raw)) + tail
+
+            replay.seam = None
+            replay.reset('control decode', readers, [decoded, reject])
+            body = bytes((kind, argument)) + tail
+            cpu.mem_write(packet, body + b'\xcc')
+            replay.put(reader, '<QQQB', packet, len(body) + 1, 0, 1)
+            cpu.reg_write(reg.UC_X86_REG_RSI, reader)
+            assert replay.run(readers[0][0]) == decoded
+            value = argument if kind in (0, 2) else int(7 <= kind <= 9 and argument != 0)
+            assert cpu.reg_read(reg.UC_X86_REG_RAX) == (int.from_bytes(tail, 'little') << 24) | value
+            assert replay.get(reader + 16, '<Q') == (len(body),)
+            cases += 2
+
+    for kind in range(11, 256):
+        replay.reset('control reject', readers, [decoded, reject])
+        cpu.mem_write(packet, bytes((kind, 0xff)))
+        replay.put(reader, '<QQQB', packet, 2, 0, 1)
+        cpu.reg_write(reg.UC_X86_REG_RSI, reader)
+        assert replay.run(readers[0][0]) == reject
+        cases += 1
+    return cases
+
+
+def check_protocol_13():
+    proof, data, pe, ranges = installed_ranges(PROTOCOL_13)
+    replay = NativeReplay(data, pe)
+    cadence = replay_state_cadence(replay, proof, ranges)
+    controls = replay_controls(replay, proof, ranges)
+
+    base = ROOT / 'crates/azeroth-survivors-re/src'
+    publish = (base / 'gameplay/coop_publish.rs').read_text().split('fn publish_recipient_state(', 1)[1].split('pub(in crate::gameplay) fn publish(', 1)[0]
+    publish = ' '.join(publish.split())
+    assert 'let periodic = now - state.state_sent_at.get(&client).copied().unwrap_or(0.) >= 1.0;' in publish
+    assert publish.count('state.state_sent_at.insert(client, now);') == 1
+    assert 'if periodic { state.state_sent_at.insert(client, now); }' in publish
+    assert 'if (periodic || native.flag_8c) && runtime.send(Some(client), NativeMessage::State(' in publish
+
+    wire = (base / 'coop/replication.rs').read_text()
+    writer = wire.split('fn encode_control_argument(', 1)[1].split('pub fn encode_message(', 1)[0]
+    assert '7..=9 => argument & 1,' in writer
+    assert 'encode_control_argument(*kind, *argument)' in wire
+    reader = wire.split('        8 => {', 1)[1].split('        10 =>', 1)[0]
+    assert '7..=9 => u8::from(argument != 0),' in reader
+    assert '0 | 2 => argument,' in reader
+    assert 'if matches!(kind, 0 | 3) { reader.word()? } else { 0 }' in reader
+    print(f'PASS: {cadence} State15 cadence cases, {controls} Control8 cases, '
+          f'{replay.instructions} native steps and source route checks')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--guest-spell-rows', action='store_true',
                         help='check current guest tag 11 and tag 12 admission')
-    if parser.parse_args().guest_spell_rows:
+    parser.add_argument('--protocol-13', action='store_true',
+                        help='check 0.141.0 State15 cadence and Control8 wire')
+    args = parser.parse_args()
+    if args.protocol_13:
+        check_protocol_13()
+        return
+    if args.guest_spell_rows:
         check_guest_spell_rows()
         return
     target = latest_target(verify=True)

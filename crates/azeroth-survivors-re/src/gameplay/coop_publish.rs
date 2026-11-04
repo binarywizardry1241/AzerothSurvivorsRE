@@ -33,12 +33,12 @@ fn publish_recipient_state(
     runtime: &mut CoopRuntime, state: &mut CoopGame, client: ClientId,
     native: NativeState, now: f64,
 ) {
-    let terminal = native.byte_8f & 6 == 4;
-    if (now - state.state_sent_at.get(&client).copied().unwrap_or(0.) >= 1.0 || terminal)
-        && runtime.send(Some(client), NativeMessage::State(native.clone()))
-    {
-        state.sent_state.insert(client, native);
+    let periodic = now - state.state_sent_at.get(&client).copied().unwrap_or(0.) >= 1.0;
+    if periodic {
         state.state_sent_at.insert(client, now);
+    }
+    if (periodic || native.flag_8c) && runtime.send(Some(client), NativeMessage::State(native.clone())) {
+        state.sent_state.insert(client, native);
     }
 }
 

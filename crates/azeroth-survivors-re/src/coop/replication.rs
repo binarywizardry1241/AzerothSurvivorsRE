@@ -229,7 +229,7 @@ fn push_state_rows(out: &mut Vec<u8>, rows: &[StateRow]) -> Result<(), WireError
     Ok(())
 }
 
-fn control_argument(kind: u8, argument: u8) -> u8 {
+fn encode_control_argument(kind: u8, argument: u8) -> u8 {
     match kind {
         0 | 2 => argument,
         7..=9 => argument & 1,
@@ -249,7 +249,7 @@ pub fn encode_message(message: &NativeMessage) -> Result<Vec<u8>, WireError> {
             if *kind > 10 {
                 return Err(WireError::InvalidControl);
             }
-            out.extend_from_slice(&[8, *kind, control_argument(*kind, *argument)]);
+            out.extend_from_slice(&[8, *kind, encode_control_argument(*kind, *argument)]);
             if matches!(*kind, 0 | 3) {
                 out.extend_from_slice(&offer.to_le_bytes());
             }
@@ -525,7 +525,12 @@ pub fn decode_message(bytes: &[u8]) -> Result<(NativeMessage, usize), WireError>
             }
             NativeMessage::Control {
                 kind,
-                argument: control_argument(kind, argument),
+                argument: match kind {
+                    0 | 2 => argument,
+                    // The native reader treats every nonzero wire byte as true.
+                    7..=9 => u8::from(argument != 0),
+                    _ => 0,
+                },
                 offer: if matches!(kind, 0 | 3) { reader.word()? } else { 0 },
             }
         }
@@ -1023,6 +1028,11 @@ mod tests {
                 assert_eq!(decode_message(&expected).unwrap(), (
                     NativeMessage::Control { kind, argument: expected_argument, offer: 0 }, 3,
                 ));
+                if matches!(kind, 7..=9) {
+                    assert_eq!(decode_message(&[8, kind, argument]).unwrap(), (
+                        NativeMessage::Control { kind, argument: u8::from(argument != 0), offer: 0 }, 3,
+                    ));
+                }
             }
         }
     }
