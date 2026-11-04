@@ -75,7 +75,7 @@ impl Catalog {
             .trees.iter_mut().flat_map(|tree| tree.talents.iter_mut())
             .find(|talent| talent.key == "soul_link").unwrap().description =
             "Milestone. Permanently summons a Voidwalker that hits 2 enemies. Gains 3% damage per 1% Damage Reduction and 2% per 1% bonus max health.\nYour Voidwalkers shield you for {v}% of their damage, up to 10% of your max health.\nRules out Soul Devourer.".into();
-        // The selected 0.140.0 descriptor supplies a fixed per-rank explanation.
+        // 0.141.0 uses the same accumulated percentage for both substitutions.
         let improved_mind_blast = catalog
             .classes
             .iter_mut()
@@ -86,8 +86,19 @@ impl Catalog {
             })
             .expect("retained Priest talent");
         improved_mind_blast.description =
-            "Mind Blast's cooldown is 6% shorter and its damage is 6% higher per rank.".into();
-        improved_mind_blast.numeric_values.clear();
+            "Mind Blast's cooldown is {v}% shorter and its damage is {v}% higher.".into();
+        let mind_blast_effect = run_effects::catalog()
+            .classes
+            .iter()
+            .find(|class| class.id == 5)
+            .and_then(|class| class.talents.iter().find(|talent| talent.key == improved_mind_blast.key))
+            .expect("native Improved Mind Blast effects");
+        improved_mind_blast.numeric_values = (1..=improved_mind_blast.max_rank)
+            .map(|rank| {
+                let effect = run_effects::EffectRow::talent(&mind_blast_effect.effects[0], rank);
+                Some(format!("{:.0}", effect.float(32) * 100.0))
+            })
+            .collect();
         // Current Hunter descriptions share the live effect catalog; keep the
         // historical menu asset's point, tree and allocation data intact.
         let effects = run_effects::catalog().classes.iter()

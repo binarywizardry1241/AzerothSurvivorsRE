@@ -34552,7 +34552,7 @@
         "crates/azeroth-survivors-re/src/gameplay/mechanics/incoming.rs": "7f5edafe2cd2c7e865ceb7b92cafc8714b78ee996eede5f3d667de7e417feae3",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/spell_display.rs": "2341761f99b130b3d328305bd96b204c334b8a3aff7f5902ab60171e0c3c8bbe",
         "crates/azeroth-survivors-re/src/run_effects.rs": "fcb794810e48f672e4b160d39494ff29f8ac3f56122a32187b37c6faa6aba6db",
-        "crates/azeroth-survivors-re/src/save/talents.rs": "dcadbb7578bd3be059e3a9f234a330c313dd13ab5c990e241ff07c07d0996b82",
+        "crates/azeroth-survivors-re/src/save/talents.rs": "2baf3c8f9d55fcda43cd9d2bd6a1ae45593e341a321cd17ff8a8b88b673654e0",
         "crates/azeroth-survivors-re/assets/talent-replacements-0.141.0.json": "c642a8ab7944f40aaa947db8c1d5344347e786b3c991aa941072a855bbfa92fb",
         "docs/analysis/counterattack-0.141.0.md": "c923a3f94d6893265893fa9a441683bc57790628d577e654fafcf8206f210424"
       }
@@ -34593,9 +34593,78 @@
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs": "f963ec73e21e452dd30023423c6b0852b04bd558d46cf7cbb6e17c8fe2ebf6b3",
         "crates/azeroth-survivors-re/src/run_effects.rs": "fcb794810e48f672e4b160d39494ff29f8ac3f56122a32187b37c6faa6aba6db",
-        "crates/azeroth-survivors-re/src/save/talents.rs": "dcadbb7578bd3be059e3a9f234a330c313dd13ab5c990e241ff07c07d0996b82",
+        "crates/azeroth-survivors-re/src/save/talents.rs": "2baf3c8f9d55fcda43cd9d2bd6a1ae45593e341a321cd17ff8a8b88b673654e0",
         "crates/azeroth-survivors-re/assets/talent-replacements-0.141.0.json": "c642a8ab7944f40aaa947db8c1d5344347e786b3c991aa941072a855bbfa92fb",
         "docs/analysis/resonant-shocks-0.141.0.md": "84a1f51199c116ae8ebed0c791827e68b276bbb96efbe25ecf57600c1aa8ea3c"
+      }
+    },
+    {
+      "claim_id": "changelog:0.141.0:30f289e99809b166",
+      "gap_ids": [
+        34
+      ],
+      "systems": [
+        "custom-app-screens-talents",
+        "custom-app-screens-talentview",
+        "custom-game-game-talents"
+      ],
+      "rationale": "The shared talent catalog supplies the accumulated cooldown and damage percentage to the menu and the in-run read-only talent view, with fourteen native translations.",
+      "native_contract": "The 0.141.0 five-rank descriptor has two occurrences of the same substitution. Its cooldown and damage effects both scale the retained 6% modifier per rank.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/save/talents.rs",
+        "crates/azeroth-survivors-re/src/talents.rs",
+        "crates/azeroth-survivors-re/src/gameplay/talent_view.rs",
+        "crates/azeroth-survivors-re/assets/talent-replacements-0.140.0.json",
+        "crates/azeroth-survivors-re/assets/locales/cs.json",
+        "crates/azeroth-survivors-re/assets/locales/de.json",
+        "crates/azeroth-survivors-re/assets/locales/en.json",
+        "crates/azeroth-survivors-re/assets/locales/es.json",
+        "crates/azeroth-survivors-re/assets/locales/fr.json",
+        "crates/azeroth-survivors-re/assets/locales/ja.json",
+        "crates/azeroth-survivors-re/assets/locales/ko.json",
+        "crates/azeroth-survivors-re/assets/locales/pl.json",
+        "crates/azeroth-survivors-re/assets/locales/pt.json",
+        "crates/azeroth-survivors-re/assets/locales/ro.json",
+        "crates/azeroth-survivors-re/assets/locales/ru.json",
+        "crates/azeroth-survivors-re/assets/locales/tr.json",
+        "crates/azeroth-survivors-re/assets/locales/uk.json",
+        "crates/azeroth-survivors-re/assets/locales/zh.json"
+      ],
+      "evidence_refs": [
+        "docs/analysis/improved-mind-blast-0.141.0.md"
+      ],
+      "static_checks": [
+        {
+          "command": "Read-only installed PE descriptor, effect, rank and locale comparison",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/improved-mind-blast-0.141.0.md"
+        }
+      ],
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "static_checked",
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/save/talents.rs": "2baf3c8f9d55fcda43cd9d2bd6a1ae45593e341a321cd17ff8a8b88b673654e0",
+        "crates/azeroth-survivors-re/src/talents.rs": "9102e7f13a94a3e8e1751cdf4ae4644e4475709cbac110fd240e1083ed7fd1a0",
+        "crates/azeroth-survivors-re/src/gameplay/talent_view.rs": "f34644ab1ce10e637ad1db602726bda0eeb47b992e6197c4676187600a29a195",
+        "crates/azeroth-survivors-re/assets/talent-replacements-0.140.0.json": "a91080b3660d37dbf2e822771e850580526393fa652a404d4cc1f6baf0b45e90",
+        "crates/azeroth-survivors-re/assets/locales/cs.json": "fd3d0b75e47e50b3d83e57f0b59e7d7146f0eda49c5315ec4da588034ad8c754",
+        "crates/azeroth-survivors-re/assets/locales/de.json": "4ab97a8b18c94aaaa6863414dc9835bc54ab3b209a7c5d95af1e9b05660558a5",
+        "crates/azeroth-survivors-re/assets/locales/en.json": "1fcee728daa02be3a3878c3c6d3c6fda05486f9327966daa87f247a50b0505aa",
+        "crates/azeroth-survivors-re/assets/locales/es.json": "be527b8fa51d1427f4395de38d3a96c8b5c512206a8b2abab771403bb58f44a7",
+        "crates/azeroth-survivors-re/assets/locales/fr.json": "0dd5cc8d9db9b5cb79e543095e7233a4d919dc4c4a2d2450afe03ea8dddb890f",
+        "crates/azeroth-survivors-re/assets/locales/ja.json": "34a719b3c6db9de6094313b8da019caf48edb421b59f8b1c8394a9177bc2f795",
+        "crates/azeroth-survivors-re/assets/locales/ko.json": "94165236dc3434c00bb66c448d68b7b3fb0ef9528cdc53448c3802ddb8503251",
+        "crates/azeroth-survivors-re/assets/locales/pl.json": "2c83336302af899a9b14e6ee2c249a178e10cf67ff21413ff00c1ab71a9b53df",
+        "crates/azeroth-survivors-re/assets/locales/pt.json": "13bc5b84c48ba280ecee05007deb4d57d71990dc56021c42d109d9347b6d6847",
+        "crates/azeroth-survivors-re/assets/locales/ro.json": "2d757c991f61468291502692e9197e3df2321bbc64897484ff7da259c655f3fa",
+        "crates/azeroth-survivors-re/assets/locales/ru.json": "ef5eea767e8be7621a76a5267797586d242d3820708b5dcd2bd0f64e9d4a6c74",
+        "crates/azeroth-survivors-re/assets/locales/tr.json": "b0509fdf6bd2c13c737ddb3c53d3d043505033a2871a59c434ad4c57a04eed44",
+        "crates/azeroth-survivors-re/assets/locales/uk.json": "61c2ce29a33427e7e88792ffa49898b444634f036a2b9d1ffd6070494d2985e7",
+        "crates/azeroth-survivors-re/assets/locales/zh.json": "0cc03c945d6ffdbafbb1753ddaebfabb132fb510bcb31a03fd4b9d5e3f232a18",
+        "docs/analysis/improved-mind-blast-0.141.0.md": "5b35c69a559e66d861be9d6e308d29d119414f20cbaba26ecaf32be1ea5b54cb"
       }
     }
   ]
