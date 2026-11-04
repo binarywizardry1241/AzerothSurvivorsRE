@@ -2,7 +2,7 @@
 //! Current Effect64 numeric tags are translated into the compositor's retained
 //! internal tags; special army contracts remain separately owned.
 //! Source: evidence/0.112.0/warlock-talents/definitions.json.
-use super::Talent;
+use super::{Payload, Talent};
 
 /// Current 0.112.0 localized description, separately verified by its formatter.
 pub const EMPOWERMENT_DESCRIPTION: &str = "Your demons deal {d}% more damage for {dur} sec. Cast once enemies are within 30 yd and a demon fights for you.";
@@ -127,35 +127,51 @@ pub(super) fn overlay(talents: &mut Vec<Talent>) {
     #[derive(serde::Deserialize)]
     struct Current {
         target_sha256: String,
-        talents: Vec<Talent>,
+        talents: Vec<EffectDescriptor>,
+    }
+    #[derive(serde::Deserialize)]
+    struct EffectDescriptor {
+        key: String,
+        name: String,
+        icon: String,
+        effects: Vec<Payload>,
     }
     #[derive(serde::Deserialize)]
     struct TreeCatalog { trees: Vec<Tree> }
     #[derive(serde::Deserialize)]
     struct Tree { talents: Vec<TreeEntry> }
     #[derive(serde::Deserialize)]
-    struct TreeEntry { key: String }
+    struct TreeEntry {
+        key: String,
+        description: String,
+    }
     let current: Current = serde_json::from_str(include_str!(
         "../../assets/warlock-effects-0.112.0.json"
     )).expect("current Warlock effects");
     assert_eq!(current.target_sha256,
         "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a");
-    *talents = current.talents;
     let tree_catalog: TreeCatalog = serde_json::from_str(include_str!(
         "../../assets/warlock-talents-0.112.0.json"
     )).expect("current Warlock tree ownership");
-    for (index, tree) in tree_catalog.trees.into_iter().enumerate() {
-        for entry in tree.talents {
-            let talent = talents.iter_mut().find(|talent| talent.key == entry.key)
-                .expect("tree entry has a current Warlock effect descriptor");
-            talent.tree_index = index as u8;
+    *talents = current.talents.into_iter().map(|talent| {
+        let (index, entry) = tree_catalog.trees.iter().enumerate().find_map(|(index, tree)| {
+            tree.talents.iter().find(|entry| entry.key == talent.key)
+                .map(|entry| (index, entry))
+        }).expect("Warlock effect descriptor has a current tree entry");
+        let (name, description) = if talent.key == PACT_KEY {
+            (PACT_NAME.into(), PACT_DESCRIPTION.into())
+        } else {
+            (talent.name, entry.description.clone())
+        };
+        Talent {
+            key: talent.key,
+            name,
+            icon: talent.icon,
+            description,
+            tree_index: index as u8,
+            effects: talent.effects,
         }
-    }
-    talents
-        .iter_mut()
-        .find(|talent| talent.key == PACT_KEY)
-        .expect("retained Nathrezim save key")
-        .name = PACT_NAME.into();
+    }).collect();
 }
 
 /// Current 145925d75..145925da8 uses the ordinary Battle Shout aura
