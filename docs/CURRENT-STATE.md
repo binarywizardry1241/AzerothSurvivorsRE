@@ -94,6 +94,10 @@ and informational history in verification-needed. A mixed finding keeps its sour
 work here and a reciprocally linked verification record under the same number.
 Moving a row does not close its verification or change a claim's evidence level.
 
+Historical links to <a id="gap-74"></a>[#74 Discord activity](verification-needed.md#gap-74)
+and <a id="gap-130"></a>[#130 Companion Rewards](verification-needed.md#gap-130)
+lead to their verification records.
+
 Current applicability/contract registration questions remain static recovery work,
 not proof of missing implementation. They remain excluded from ordinary fixgap
 choices unless an independent concrete source defect or required contract exists.
