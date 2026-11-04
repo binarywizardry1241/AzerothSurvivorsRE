@@ -33,7 +33,13 @@ pub(super) fn payload(id: u32, kind: &str, boss: bool, name: &str, text: &str) -
     )
 }
 
-pub(in crate::gameplay) fn packet(kind: &str, boss: bool, name: &str, text: &str) -> SessionEvent {
+pub(in crate::gameplay) fn packet(
+    player_guid: u64,
+    kind: &str,
+    boss: bool,
+    name: &str,
+    text: &str,
+) -> SessionEvent {
     AddonMessage::new(
         "AZSBANNER",
         payload(
@@ -44,7 +50,7 @@ pub(in crate::gameplay) fn packet(kind: &str, boss: bool, name: &str, text: &str
             text,
         ),
     )
-    .packet()
+    .packet_from(player_guid)
 }
 
 #[cfg(test)]
@@ -65,8 +71,9 @@ mod tests {
 
     #[test]
     fn repeated_banners_are_distinct_immediate_chat_packets() {
-        let first = packet("magnet", false, "", "Same");
-        let second = packet("magnet", false, "", "Same");
+        let player_guid = 0x0080_0042;
+        let first = packet(player_guid, "magnet", false, "", "Same");
+        let second = packet(player_guid, "magnet", false, "", "Same");
         let SessionEvent::Chat(first) = first else {
             panic!("addon packet")
         };
@@ -75,8 +82,9 @@ mod tests {
         };
         assert_eq!(
             (first.chat_type, first.language, first.sender_guid),
-            (6, u32::MAX, 1)
+            (6, u32::MAX, player_guid)
         );
+        assert_eq!(second.sender_guid, player_guid);
         assert!(first.text.starts_with("AZSBANNER\tid="));
         assert_ne!(first.text, second.text);
     }

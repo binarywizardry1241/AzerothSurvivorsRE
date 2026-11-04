@@ -1682,7 +1682,7 @@ fn native_requests(
                 world.request = None;
                 let mut final_messages = guest_messages.unwrap_or_else(|| session.mechanics.as_mut().map_or_else(Vec::new, |game| {
                     if game.is_party_replica() {
-                        client::guest_account_messages(&mut game.events, &catalog, locale.as_deref(),
+                        client::guest_account_messages(&mut game.events, Some(game.player_guid), &catalog, locale.as_deref(),
                             &mut notifications, time.elapsed_secs())
                     } else {
                         client::terminal_talent_messages(game, &catalog, locale.as_deref())

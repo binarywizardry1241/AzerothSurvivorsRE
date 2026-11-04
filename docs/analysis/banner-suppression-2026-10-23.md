@@ -5,6 +5,59 @@ sustained duplicate native/addon displays. The **0.140.0** presentation repair
 below addresses a stale-frame route in the rebuilt host. The 0.115.0 and
 0.113.2 sections retain their original evidence and scope.
 
+## 0.141.0 banner whisper identity
+
+Installed SHA-256 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
+The Game publisher `0x145f85860` increments the process counter at
+`0x148ac3098`. It passes the same ID to the JSON and compact addon
+formatters, then sends the nine-byte `AZSBANNER` prefix through
+`0x145fdf630` using the active hero GUID from Game `+0x5c8`.
+The server publisher `0x145e9e350` takes the same route with its
+guest-local GUID at Server `+0x2078`. The serializer writes chat
+type 6 and language `0xffffffff`. The host packet classifier
+selects kind 6 at `0x145e90b2f..0x145e90b36` and the private branch
+at `0x145eaab4f..0x145eaab6a` sends to the originating actor only.
+
+The rebuilt immediate publisher used sender GUID 1 even when the
+actual player had a different world identity. The chat feed resolves
+the sender's name before calling the Lua receiver, so a wrong GUID
+could delay delivery or reach its unresolved-name fallback. The
+[banner publisher](../../crates/azeroth-survivors-re/src/gameplay/client/addon_banners.rs)
+now uses the existing GUID-aware packet constructor. The run event
+collector supplies the emitting hero's GUID, the co-op JSON adapter
+supplies the local process world GUID, and guest settlement retains the
+admitted hero identity through the last account notices. Pre-world
+account notices without a selected hero still deliver their system
+message, sound and toast.
+
+| Original range | File offset | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| Game publisher `0x145f85860..0x145f859c5` | `0x5f84c60` | 357 | `9404495085f37711df44f5987baeb41d8795b8bd4bea87a97fdb640731c5eff0` |
+| Server publisher `0x145e9e350..0x145e9e4c5` | `0x5e9d750` | 373 | `15c01227dd48af8d6c97f1464cf4d7dbe6eeaae2d8cbb0341be95b018a9975f3` |
+| JSON formatter `0x145e81f30..0x145e82139` | `0x5e81330` | 521 | `142825c8ee62a03b8d8b4a0d56c527d7a0948b5d4f003afa0f16ee2f8d953c78` |
+| Whisper serializer `0x145fdf630..0x145fdf8dd` | `0x5fdea30` | 685 | `6dd9da7d7f3ca1d70c6dee95a9121f7f5f74d156ecf7fa662c3fec50132526e8` |
+| Private chat check `0x145e90b24..0x145e90b3a` | `0x5e8ff24` | 22 | `a600c0c8b4b6c4d96f3a8337ebcbb4a02ad56abc63e6f99f777765ccde82c01d` |
+| Private recipient dispatch `0x145eaab4f..0x145eaab6f` | `0x5ea9f4f` | 32 | `cd73131c3d2791c9936844e9fe62e6ef6921c2b78bfc4c67b0226b8900a5f480` |
+
+Ghidra result `ev_537e4b4ef90be7bea3b5a8792018e4e71a33340ef5797dc86fc7af2973d819be`
+uses the exact Game publisher slice at its original VA. The result
+digest was checked against the operation journal. Original PE
+instructions supply the external call, field and literal joins.
+Six banner and HUD Lua bodies and their dispatch branch match the
+bootstrap's base source and the retained current extract. The shared
+Lua suite passes both extracts with host stubs. The Rust regression
+checks the real non-solo sender GUID and distinct IDs for repeated
+banners and awaits compilation.
+
+The guest wire-9 arm at `0x145ecd54a` admits the event and invokes
+its frontend callback at `0x145ecd5ce`. The selected helper
+`0x145e83100` handles the choices and resume inputs. The frontend
+callback's full banner behavior and potential overlap with the
+separate whisper still need evidence. The source fix addresses sender
+identity. The reported sustained takeover duplication still needs
+correlated callbacks, hooks, CVar readback and visible roots in the
+actual VM. No application, client or game server ran.
+
 ## 0.140.0 presentation reads the applied CVar
 
 Installed SHA-256 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`.

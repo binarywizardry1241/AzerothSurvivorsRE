@@ -103,12 +103,13 @@ pub(super) fn terminal_talent_messages(
 
 pub(super) fn guest_account_messages(
     events: &mut Vec<super::mechanics::RunEvent>,
+    player_guid: Option<u64>,
     catalog: &crate::catalog::MenuCatalog,
     locale: Option<&crate::localization::Localization>,
     notifications: &mut super::notifications::Notifications,
     now: f32,
 ) -> Vec<benilla_app::local_client::events::SessionEvent> {
-    events::guest_account_messages(events, catalog, locale, notifications, now)
+    events::guest_account_messages(events, player_guid, catalog, locale, notifications, now)
 }
 
 impl Plugin for ClientBridgePlugin {

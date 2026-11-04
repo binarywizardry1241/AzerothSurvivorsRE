@@ -29,11 +29,7 @@ impl AddonMessage {
     /// Native1458c35d0 sends chat type6, LANG_ADDON, the actual player GUID,
     /// and prefix + TAB + payload. The client resolves channel/sender and
     /// invokes the API frame before later addon registrations.
-    pub fn packet(self) -> SessionEvent {
-        self.packet_from(1)
-    }
-
-    fn packet_from(self, player_guid: u64) -> SessionEvent {
+    pub(super) fn packet_from(self, player_guid: u64) -> SessionEvent {
         SessionEvent::Chat(ChatMessage {
             chat_type: 6,
             language: u32::MAX,
@@ -232,7 +228,7 @@ mod tests {
 
     #[test]
     fn native_addon_packet_preserves_delimiters_and_empty_lists() {
-        let SessionEvent::Chat(packet) = AddonMessage::new("AZSUNITS", String::new()).packet()
+        let SessionEvent::Chat(packet) = AddonMessage::new("AZSUNITS", String::new()).packet_from(1)
         else {
             panic!("addon chat")
         };

@@ -344,7 +344,8 @@ impl CoopGame {
             persist_run_at(game, menu, entry.roster_guid, run.starting_gear,
                 run.showcase, run.started, now, true);
             return if closing {
-                client::guest_account_messages(&mut game.events, catalog, locale, notifications, ui_time)
+                client::guest_account_messages(&mut game.events, Some(game.player_guid), catalog, locale,
+                    notifications, ui_time)
             } else { Vec::new() };
         }
         let snapshot = guest_settlement::Snapshot::from_cached(self.state.as_ref().unwrap(), entry,
@@ -361,7 +362,9 @@ impl CoopGame {
         self.checkpoints.acknowledge_account(&snapshot, entry.roster_guid);
         self.pending_events.extend(events);
         if closing {
-            client::guest_account_messages(&mut self.pending_events, catalog, locale, notifications, ui_time)
+            let player_guid = self.local.as_ref().map(|hero| hero.guid);
+            client::guest_account_messages(&mut self.pending_events, player_guid, catalog, locale,
+                notifications, ui_time)
         } else { Vec::new() }
     }
 }

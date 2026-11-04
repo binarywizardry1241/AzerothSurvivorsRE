@@ -88,28 +88,30 @@ fn talent_message(gain:u32,before:u32,total:u32,class_key:&str,parts:[i64;7],
 
 pub(super) fn terminal_talent_messages(game:&mut super::super::mechanics::Mechanics,
     catalog:&crate::catalog::MenuCatalog,locale:Option<&Localization>)->Vec<SessionEvent> {
-    settlement_messages(&mut game.events, catalog, locale, None, 0.)
+    settlement_messages(&mut game.events, None, catalog, locale, None, 0.)
 }
 
 /// Current0.119.0 145b13d30 publishes newly earned achievements before the
 /// guest connection is replaced. The same formatter serves ordinary delivery.
-pub(super) fn guest_account_messages(events:&mut Vec<RunEvent>,
+pub(super) fn guest_account_messages(events:&mut Vec<RunEvent>, player_guid: Option<u64>,
     catalog:&crate::catalog::MenuCatalog,locale:Option<&Localization>,
     notifications:&mut super::super::notifications::Notifications,now:f32)->Vec<SessionEvent> {
-    settlement_messages(events, catalog, locale, Some(notifications), now)
+    settlement_messages(events, player_guid, catalog, locale, Some(notifications), now)
 }
 
-fn achievement_messages(key:&str,catalog:&crate::catalog::MenuCatalog,
+fn achievement_messages(key:&str, player_guid: Option<u64>, catalog:&crate::catalog::MenuCatalog,
     label:&impl Fn(&str)->String)->Option<(Vec<SessionEvent>,String)> {
     let event=crate::progression::achievement_notification(key,catalog)?;
     let text=label("Achievement earned: {name} (+{n})")
         .replace("{name}",&event.name).replace("{n}",&event.points.to_string());
-    let messages=vec![system_message(event.system_line),SessionEvent::PlaySound {sound_id:888},
-        super::addon_banners::packet("achievement",false,&event.name,&text)];
+    let mut messages=vec![system_message(event.system_line),SessionEvent::PlaySound {sound_id:888}];
+    if let Some(guid) = player_guid {
+        messages.push(super::addon_banners::packet(guid, "achievement", false, &event.name, &text));
+    }
     Some((messages,text))
 }
 
-fn settlement_messages(events:&mut Vec<RunEvent>,catalog:&crate::catalog::MenuCatalog,
+fn settlement_messages(events:&mut Vec<RunEvent>, player_guid: Option<u64>, catalog:&crate::catalog::MenuCatalog,
     locale:Option<&Localization>,mut notifications:Option<&mut super::super::notifications::Notifications>,
     now:f32)->Vec<SessionEvent> {
     let mut messages=Vec::new();
@@ -123,7 +125,7 @@ fn settlement_messages(events:&mut Vec<RunEvent>,catalog:&crate::catalog::MenuCa
                 class,zone_key,rank,open,catalog,&label)));
         } else if let RunEvent::Achievement(key)=&event {
             if let Some(notifications)=notifications.as_deref_mut() {
-                if let Some((packets,text))=achievement_messages(key,catalog,&label) {
+                if let Some((packets,text))=achievement_messages(key,player_guid,catalog,&label) {
                     messages.extend(packets);
                     notifications.account_toast(text,now);
                 }
@@ -156,8 +158,8 @@ fn receive_coop(mut coop: Option<ResMut<crate::coop_runtime::CoopRuntime>>,
                     "bossdown" | "guardian" => notifications.named(kind,name,time.elapsed_secs(),&locale),
                     _ => None,
                 };
-                if let Some(text) = text {
-                    packets.0.push(super::addon_banners::packet(kind,true,name,&text));
+                if let (Some(text), Some(guid)) = (text, coop.world_guid) {
+                    packets.0.push(super::addon_banners::packet(guid, kind, true, name, &text));
                 }
             }
             _ => {}
@@ -456,7 +458,7 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
                 packets.0.push(stationary_facing(source,position,serial,target));None
             },
             RunEvent::Achievement(key)=>{
-                if let Some((messages,text))=achievement_messages(&key,catalog,&|key|locale.label(key).to_owned()) {
+                if let Some((messages,text))=achievement_messages(&key,Some(player_guid),catalog,&|key|locale.label(key).to_owned()) {
                     packets.0.extend(messages);
                     notifications.toast(text,now);
                 }
@@ -517,7 +519,7 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
                 if let Some(text)=notifications.named(kind,&name,now,&locale) {
                     if let Some(coop)=coop.as_mut() { coop.send_value_from(source_slot,&serde_json::json!({
                         "type":"banner","kind":kind,"name":name,"text":text})); }
-                    packets.0.push(super::addon_banners::packet(kind,true,&name,&text));
+                    packets.0.push(super::addon_banners::packet(player_guid,kind,true,&name,&text));
                 }
                 None
             },
@@ -527,12 +529,12 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
                     else { ("boss","{name} approaches!") };
                 if let Some(coop)=coop.as_mut() { coop.send_value_from(source_slot,&serde_json::json!({
                     "type":"banner","kind":kind,"name":name})); }
-                packets.0.push(super::addon_banners::packet(kind,true,&name,
+                packets.0.push(super::addon_banners::packet(player_guid,kind,true,&name,
                     &locale.label(key).replace("{name}",&name)));None
             },
             RunEvent::ZoneUnlocked {key,name}=>{
                 let name=super::addon_scalars::localized(&locale,key,&name);
-                packets.0.push(super::addon_banners::packet("unlocked",false,&name,
+                packets.0.push(super::addon_banners::packet(player_guid,"unlocked",false,&name,
                     &locale.label("{zone} is now open!").replace("{zone}",&name)));None
             },
             RunEvent::Magnet(_)=>None, // Recovered pickup flight is rendered from the live collection.
@@ -619,13 +621,13 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
                 if matches!(message,ChestMessage::NeedsGold {..}) {
                     packets.0.push(SessionEvent::Notification {text:text.clone()});
                 }
-                packets.0.push(super::addon_banners::packet("cache",false,"",&text));
+                packets.0.push(super::addon_banners::packet(player_guid,"cache",false,"",&text));
                 notifications.toast(text,now);None
             },
             RunEvent::Toast {kind,name,text}=>{
                 let label=|key:&str|locale.label(key).to_owned();
                 let text=text.render(&label);
-                packets.0.push(super::addon_banners::packet(kind,false,&name.render(&label),&text));
+                packets.0.push(super::addon_banners::packet(player_guid,kind,false,&name.render(&label),&text));
                 notifications.toast(text,now);None
             },
             RunEvent::PlaySound(sound_id)=>{packets.0.push(SessionEvent::PlaySound {sound_id});None},
