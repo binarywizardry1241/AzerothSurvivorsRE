@@ -14,11 +14,16 @@ key, destination packets and reload request separately.
   Lua VM is present. It records `NO_WORLD` when the world state is absent or
   its discriminant differs from 2, `NO_PLAYER` when the Player active byte at
   `+0x10c` is clear, and `NOT_READY` when the map is absent or the frame's
-  readiness resource blocks the sample. The readiness reads at
-  `0x140aa4f0e..0x140aa4f17` check byte `+0x11` for 1 and byte `+0`
-  for nonzero. The resource registration is reached at `0x140ad8015`
-  through descriptor `0x146635738`. Its exact native type and constituent
-  field names remain unresolved.
+  mover state blocks the sample. The reads at `0x140aa4f0e..0x140aa4f17`
+  reject a pending reseat at byte `+0x11` or a foreign mover at the
+  `+0` option discriminant. The player plugin initializes descriptor
+  `0x146635738` with a zero discriminant and zero bytes `+0x10/+0x11`.
+  The embodiment system uses the same descriptor. At `0x140c2b66e` and
+  `0x140c2b6a1` it reads the mover's discriminant and GUID. At
+  `0x140c2b8a2` it marks the reseat after a new body is selected, and
+  at `0x140c2b8c8` it uses the separate `+0x10` control-lost flag
+  to gate steering. The existing `MoverLock` and its embodiment
+  consumer own those same fields in the rebuild.
 - The success path at `0x140aa53dd..0x140aa545b` reads the current map
   and converts Player position floats `+0x88/+0x8c/+0x90` to WoW
   `(-z, -x, y)` with sign mask `0x1464f7320`. It reduces facing at
@@ -31,13 +36,13 @@ key, destination packets and reload request separately.
 
 The FrameXML embedding installs the sample function on each in-game VM.
 `ui_script/player_position.rs` samples the real local controller in the
-world paint phase before the embedding's frame callback and converts the
-position with the shared coordinate transform. The rebuilt readiness gate
-uses the client's loading cover, pending map transfer and frame hold. The
-exact correspondence of those three source conditions to the two native
-readiness bytes and the original scheduler's relative ordering remains
-unverified. The frame counter is owned by the update system while the sample
-itself lives on the current VM. A replacement VM starts without a sample.
+UI feed after packet application. The sample stays fixed through the
+`OnUpdate` walk and the later paint callbacks. The original scheduler's
+relative ordering remains unverified. The sample uses the shared coordinate
+transform and checks the existing mover lock. The rebuild also gates its
+own opaque cover, pending map transfer and frame hold so a transition
+does not expose the old map's retained pose. The update system owns the
+frame counter, and a replacement VM starts without a sample.
 
 The bootstrap reuses the 0.139.1 Lua position helpers and wrapper, whose
 position and space sections are byte-identical in the installed 0.139.2
@@ -65,13 +70,22 @@ are in bytes.
 | Lua snapshot getter | `0x140b84690` | 2854 | `56b86363d7b39aa0d64c88c9cb652d1b64686cf8249a2370c55c0330f7d4aaf0` |
 | Sign mask | `0x1464f7320` | 16 | `df141773470ba96aff5d6e9264a0bd638c9c6f3bb7ad30881cf4db943b5dd021` |
 | Facing modulus | `0x14650885c` | 4 | `12d85026b5109a3119231704608d5991a63d8d397d2867a9fc522305810ddb76` |
+| Mover lock initialization | `0x140db37bd` | 206 | `5168f0d94309fbcf1eacb366bdf9fe4570c590fb8255adb235a4b4602fef74d8` |
+| Embodiment resource binding | `0x140c7391c` | 27 | `7032a7bff0ed8fc1805b083f0bcbdc45049115c129e9bc6df4c3c5afd66d2fb7` |
+| Embodiment dispatch | `0x140c7413f` | 5 | `89805300a62f535dca6b7d17b469580e0a0803fc360ed65aa06f1443e28b462c` |
+| Mover selection and reseat | `0x140c2b610` | 2345 | `f084225f2244809ff5587887ea825e17f03025e57510f415fd9ecce55ad1fce4` |
 
 The corresponding Ghidra pseudocode IDs are
 `ev_928df937e930abe777d1660439b106190c5d5ea41b3d4e3bf8327ac867fd4c9f`,
 `ev_d2caa7a5caedb6a17be8d86cdce4d62db6229f26889b44d326ad8dda9d5fb4be`
 and `ev_76e037742527538e2ba622f92145ea6ca6c2270be46106b14419432761ca658e`.
+The embodiment query returned
+`ev_3a8792f8940a1abbf8ce35fc71e6fb316e221ad7a5eff220421122da3a7225d1`
+(result SHA-256 `3e8aca925e862ce1745a33b8af6438a2406955519bd012652408b3d2d800cb47`).
 The standalone Lua bootstrap check exercised readiness, argument arity,
 numeric validity, matching and changed map/run space, fresh return tables,
-and destination cache invalidation. The nine Rust files passed parse-only
-formatting checks. Compilation, original/rebuilt position comparisons and
-live client or server execution remain open.
+and destination cache invalidation. Rust parse checks and static checks
+of the sample's schedule and mover gate passed. The Rust regressions for
+schedule ordering and mover status remain uncompiled. Compilation,
+original/rebuilt position comparisons and live client or server execution
+remain open.

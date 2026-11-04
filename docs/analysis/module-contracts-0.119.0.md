@@ -36,7 +36,7 @@ Each selector below means `exe-connections.json:systems[id=...]`. Inspect the na
 | `custom-game-driver` | [#134](../verification-needed.md#gap-134) | `crates/azeroth-survivors-re/src/gameplay/mod.rs` | Pending current input/dispatch/state/consumer contract review. |
 | `custom-game-fonts` | [#135](../verification-needed.md#gap-135) | `crates/azeroth-survivors-re/src/menu_fonts.rs` | Pending current input/dispatch/state/consumer contract review. |
 | `custom-game-game-abilities` | [#136](../verification-needed.md#gap-136) | `crates/azeroth-survivors-re/src/player_abilities/mod.rs` | Spell774 self/remote refresh identity,32B aura tick and current self-cast consumer; complete ability system remains unrecovered |
-| `custom-game-game-addon` | [#137](../CURRENT-STATE.md#gap-137) | `crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs` | Pending current input/dispatch/state/consumer contract review. |
+| `custom-game-game-addon` | [#137](../verification-needed.md#gap-137) | `crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs` | Pending current input/dispatch/state/consumer contract review. |
 | `custom-game-game-auras` | [#87](../CURRENT-STATE.md#gap-87) | `crates/azeroth-survivors-re/src/run_effects/player_auras.rs` | Pending current input/dispatch/state/consumer contract review. |
 | `custom-game-game-companions` | [#88](../CURRENT-STATE.md#gap-88) | `crates/azeroth-survivors-re/src/run_effects/loot_companions.rs` | Pending current input/dispatch/state/consumer contract review. |
 | `custom-game-game-demons` | [#138](../CURRENT-STATE.md#gap-138) | `crates/azeroth-survivors-re/src/run_effects/demons.rs` | Pending current input/dispatch/state/consumer contract review. |

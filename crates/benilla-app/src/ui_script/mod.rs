@@ -627,10 +627,8 @@ impl Plugin for UiScriptPlugin {
             )
             .add_systems(
                 Update,
-                player_position::sample_frame
-                    .in_set(UiPaint)
-                    .after(crate::vplates::VPlateSet)
-                    .before(extract::paint_script),
+                // The same hero snapshot serves OnUpdate and the later paint callbacks.
+                player_position::sample_frame.in_set(UiFeed),
             )
             .add_systems(
                 Update,

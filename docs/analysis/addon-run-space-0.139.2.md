@@ -71,6 +71,10 @@ shared world pickups and lairs, with the recipient's guardian flag selection
 and localization. The recipient's changed-byte publisher sends the zone
 before both destination lines on the ordinary addon packet lane. The guest
 does not synthesize these lines from its local replica.
+On VM load or world entry, the [replay source](party-healing-meter-0.139.2.md)
+requests current lines through the existing addon chat lane. The solo or host
+publisher clears the relevant recipient cache before its next scheduled poll.
+
 
 ## Static evidence
 
