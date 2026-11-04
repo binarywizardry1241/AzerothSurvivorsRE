@@ -29247,7 +29247,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/gameplay/mod.rs": "a610f1dc29a1b82880f8cc00258c48f6abf101e419ecab0067765d53c1f7c44b",
-        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "bd7dee43557f4661ce805b21a15fdc96033294a4bd878c07bcc20c1de238057c",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "5f2cfb87b1e5f8dc37bc11e9e40cb732b645d95dae9efabaf3f51d1b14d5632f",
         "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs": "d51d4bffe5bfe5f4ecf5623924da74159f1ec5ce5601beef9f67d095183b86a9",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "f9ce7a26a3bd105b82906151eb846af97a57bf2697a3ea59a00146576998c107",
         "crates/azeroth-survivors-re/src/account_progression.rs": "0d1390850cf422ee4b87aeec0204d813b2c15d0d89032929fcacd1c61381c914",
@@ -34634,7 +34634,7 @@
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
       },
       "status": "pending_claim_recovery",
-      "rationale": "The native Win32 close and pause Quit paths publish typed AppExit, and the app runner reads it. The detached co-op worker retains shared state through app return. The native path from AppExit to terminal service departure remains unresolved. The reconstructed AppExit path already runs ordered role and service cleanup.",
+      "rationale": "Native window close and pause Quit reach typed AppExit, while explicit form and guest departure commands reach the ordered terminal writer. The exact AppExit key references and request callers narrow the remaining join to deferred callbacks or aliased departure producers. The reconstructed AppExit path already runs ordered role and service cleanup.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/coop_directory.rs",
         "crates/azeroth-survivors-re/src/coop/session.rs"
@@ -34651,7 +34651,7 @@
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/coop_directory.rs": "1193922b7422b5cf129e59238234e53558cb87b0671dd8cd79b0650224f53f12",
         "crates/azeroth-survivors-re/src/coop/session.rs": "f8e84c771b6ecf8fafaf95b8d7cee1888b50a3b1e1c1f7612141cb8a690f698f",
-        "docs/analysis/coop-desktop-exit-0.141.0.md": "3e76792146fbbc3ca9ff370ce84ca02e71cfeca71e279f9c3919d6ce8a4ecd1e"
+        "docs/analysis/coop-desktop-exit-0.141.0.md": "2921dc2f593cfc4eaec49a565fd6be79a4a35af71554b0c2532ab2b780957059"
       }
     },
     {
@@ -34832,7 +34832,7 @@
         299
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "bd7dee43557f4661ce805b21a15fdc96033294a4bd878c07bcc20c1de238057c",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "5f2cfb87b1e5f8dc37bc11e9e40cb732b645d95dae9efabaf3f51d1b14d5632f",
         "crates/azeroth-survivors-re/src/coop_runtime.rs": "2145fbbe8e7673e550b12c339fc2d5093a9371c87a9535ccdcf4b4e1d0794346",
         "crates/azeroth-survivors-re/src/coop_ui.rs": "16c78a76c8354792c5f25c1b7e1c2f8cbc096dc5a5daf6ba74c95e08804aace2",
         "crates/azeroth-survivors-re/src/coop_inspect.rs": "69198970dd842c692cbdd4aef7145fa43cc5b0b52f4d4c969e7c162d52dd7f7e",

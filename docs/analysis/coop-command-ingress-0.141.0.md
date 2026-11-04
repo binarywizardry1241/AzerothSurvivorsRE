@@ -52,6 +52,37 @@ prefix/slot/reason cases. The replay checked 152 instruction sites across
 source syntax-parsed. These checks leave compilation, client and server
 execution, network delivery and original/rebuilt parity open.
 
+## Nested CreatureQuery selectors
+
+Starting at the concrete opcode destinations and following the internal
+branches and verified table cells puts all thirteen later current-only
+selectors under CreatureQuery `0x60`. The first reads the entry from
+`r14d` for `9500..=9614`. The remaining sites derive their index from
+that same entry. The five inventory requests, cast, selection, logout,
+name query, item query and object query use their own branches.
+
+| Nested site | Guarded entry range |
+| --- | --- |
+| `0x145e9f009` | 9500–9614 |
+| `0x145ea0f9d` | 694–794 |
+| `0x145ea10fb` | 1200–1294 |
+| `0x145ea112b` | 100–194 |
+| `0x145ea115e` | 1500–1511 |
+| `0x145ea1580` | 800–994 |
+| `0x145ea15a8` | 1300–1394 |
+| `0x145ea15ec` | 300–309 |
+| `0x145ea161f` | 1590–1594 |
+| `0x145ea19cc` | 1000–1194 |
+| `0x145ea1ab2` | 306–394 |
+| `0x145ea1ade` | 10475–10508 |
+| `0x145ea1b6f` | 1400–1405 |
+
+Ranges describe the guarded table domains. Individual cells can select
+a miss, repeat a descriptor, or lead to another guarded family. The live
+Creature query consumes the existing ordinary enemy, boss and special
+catalogs. Exact current row-field correspondence for the remaining
+descriptor entries stays under [#64](../CURRENT-STATE.md#gap-64).
+
 ## Guest target selection and addon publication
 
 Opcode `0x13d` enters `0x145e9ea59`. Its bounded reader assembles up to
@@ -84,3 +115,20 @@ Bounded replay checked 11,265 original prefix cases, 91 instruction sites
 and 798,769 steps, stopping before peer mutation. Current original-byte
 stores and calls establish the producer and consumer separately. Rust
 syntax checks leave socket ordering, actual addon display and parity open.
+
+The separate self-selection follow-up seats the requested hero through
+the shared swap at `0x145f375e0`. For the local actor path,
+`0x145ef9363..0x145ef9384` dispatches Game phase 2 to the choice publisher
+and phases 4/5 to the result publisher. The same helper is called after
+manual-cast refusal at `0x145e9f508`. Both publishers check the per-hero
+capability at Game `+0x10d2`; the hero swap exchanges that byte with
+remote row `+0xc0e`. The selected strings include
+`You left the run.` and `A guardian falls!`. These are the
+[historically recovered alternate Gossip publishers](local-requests-0.100.1.md#post-rejection-dispatch-and-desktop-capability).
+The 827-byte current follow-up slice has SHA-256
+`d52a6ded9328d67dcded18306292b1fe7e3056fe948d852c0e36834a40d314e0`,
+and its verified Ghidra result digest is
+`2c17f124d7c5673a22568526af6b093b811179012088cad816207220a04265f4`.
+Current initialization of the capability for each desktop recipient
+remains open. The reconstructed desktop already presents the custom choice
+and result views through their ordinary state owners.

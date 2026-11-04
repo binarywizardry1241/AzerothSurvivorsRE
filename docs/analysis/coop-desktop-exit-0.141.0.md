@@ -60,3 +60,42 @@ The retained socket source guards pass. The rebuilt `AppExit` already
 joins pause Quit and desktop close to ordered co-op output, role leave
 and terminal service close in `Last`. The native exit-to-service handoff
 and actual socket delivery remain unverified.
+
+## AppExit type and local departure boundaries
+
+The 16-byte AppExit key at `0x1465bf4e0` is
+`e162ca515eee33576c9b32a0374892d6`. The same bytes occur at
+`0x1465bff80`, `0x14668d1d8`, `0x146a45d90`, `0x1471205b8`,
+`0x1473479c8` and `0x147347c20` in .rdata. The retained exact operand
+inventory supplies the typed lookup and registration sites for all seven.
+For example, `0x1402e1bf0` looks up and registers that key, with no call
+to the form sender or terminal socket writer in its body. Its 807-byte
+slice at file offset `0x2e0ff0` has SHA-256
+`042e7b99b2d1cfe6a8886e478dc5e022e2cb0d9096107aaa0be7ec4fc4ca3bb6`;
+the verified Ghidra result digest is
+`844cb8fb9d897d8c22951564f03ca9af43c6fa6e9b6752feddf1d0d302f4c9bc`.
+
+The retained current census lists four direct callers of the Last
+exit-set registration `0x1411efb20` and 39 direct callers of the app
+request sender `0x140040100`. The nearby pause-related sender at
+`0x14017f066` submits local command 32. The admitted guest's first
+command consumer at `0x145ec9a90` maps that request to control subtype 6
+through `0x145ec9c21`. This is the existing spend-stored-levels route.
+The Quit message writer and window-event path do not use that call site.
+
+The guest terminal aliases at local commands 6, 9 and 10 reach
+`0x145ec9afe` through table `0x147aedb14` when its role and sync gates
+pass. They submit game Disconnect variant 16, take the service before
+terminal Leave at `0x145ec9bb0`, then publish `you left the run`. Form
+Leave command 25 enters the poller's separate local table at
+`0x145ea7be1` and reaches the same terminal writer at `0x145ea7c46`.
+The first-consumer slice and its verified result digests are
+`f34e55bd9acbb7c89cd41e199b5ab5e16447aa15e7bfdaf92874a9c06cfc86a7`
+and `0541314bd839341069c36b9823d64680d9a946fe2c6db989825ef1150b038118`.
+The original table bytes supply the aliases beyond the raw-slice analysis.
+
+This narrows the remaining join to the actual deferred Last callbacks and
+any aliased producer of those departure commands. The static calls and
+typed key references above leave that join unresolved. The existing
+reconstructed exit system continues to flush pending traffic and then
+close the role and service.
