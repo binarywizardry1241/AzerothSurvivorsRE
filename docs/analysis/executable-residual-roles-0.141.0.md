@@ -55,9 +55,32 @@ The remaining site at `0x14270617d` materializes adapter
 `0x1426ea4f0` and stores it at `[rbp+0x4e8]`. The first call at
 `0x142706242` supplies a separate record in RDX from `[rbp+0x470]`.
 On normal return the SIMD store at `0x14270626e` replaces the entire
-callback field. Any alias or unwind consumer of the earlier value
-remains open. The other 59 address-taken prefixes and the mixed spans
-without these address operands retain their distinct selectors.
+callback field. The [unwind map proof](evidence/0.141.0/addressed-formatters.json)
+now binds the containing PE entry at `0x1427053d0` to
+`VCRUNTIME140.dll!__CxxFrameHandler3` and its FuncInfo at `0x1480d5984`.
+The call is in state 16 with no catch table. All 13 cleanup funclets on its
+state chain rebuild the parent frame from `RDX+0x80`. None directly accesses
+the eight bytes at parent `RBP+0x4e8`. The first cleanup uses the flag at
+`+0x7ff` and the allocation pair at `+0x5f0/+0x5f8`. On normal return, the
+first later exposure of the record base is the `R9` argument at
+`0x142706281`, after the overwrite. This closes the direct cleanup access
+question. An indirect alias passed to a callee remains outside this check.
+
+The same checker verifies the initial instructions and terminal operands
+for all 59 other address-taken prefixes:
+
+| Initial prefix | Count | Immediate role |
+| --- | ---: | --- |
+| Tail to `0x14637f150` | 32 | Supplies text pointer and length to the shared formatter. The sink loads the formatter vtable's `+0x18` method and forwards both arguments. |
+| Tail to `0x14638b180` | 2 | Reorders formatter, text and length before forwarding to `0x14637ec80`. One adapter supplies the 27-byte closed-channel message. |
+| Indirect tail | 5 | Four have identified format or error text, including the sampler filter names, compression type names and SRP errors. The remaining adapter at `0x1430b8f40` derives an aligned receiver and takes a method from its metadata at `+0x20`. |
+| Return | 12 | Nine pack input bytes or words into tagged values, two write a small tagged result into the caller buffer, and one returns a scalar read at receiver `+0x14`. |
+| Other direct tail | 8 | Seven forward an adjusted receiver or arguments. The remaining branch at `0x143504f70` resolves a tagged scalar, including a multiply-by-input case, before returning. |
+
+The unchecked roles are now limited to the concrete consumers of the packed
+values, receiver identities at the forwarding adapters, and the mixed spans
+outside these operands. None of these observations establishes an additional
+Survivors source change.
 
 Three other outside-declared mixed spans are code at a graphics formatting
 boundary. The original bytes in `0x144e32ae0..0x144e330a4`,
@@ -67,6 +90,16 @@ and tail-transfers to `0x14637f150`. The 219 adapters that set the length
 locally read Vulkan format or structure labels, including `D32_SFLOAT` and
 `PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES`. Seven preserve the incoming length.
 Their selector and actual callers remain separate from the leaf role.
+The [complete-range text projection](evidence/0.141.0/addressed-formatters.json)
+extends this group to 70 outside-declared mixed ranges covering 9,283 bytes.
+All 407 adapters establish the shared formatter argument order. Of these,
+402 tail to `0x14637f150` and five tail to `0x14637ec80`. The 391 adapters
+that write a length have valid printable text of that exact length.
+The other sixteen preserve the incoming length. The projection includes the
+three earlier Vulkan ranges as well as JSON kind names, GPU setup diagnostics,
+GPU command-buffer errors and memory-allocation errors. It classifies the
+immediate code and text in these ranges while retaining incoming reachability
+and surrounding mixed code as separate questions.
 The mixed spans `0x14612b66b..0x14612bb81` and
 `0x14612bbb5..0x14612c310` implement opposing TLS cipher identifier
 conversions. The branch at `0x14612b108` indexes 256 signed offsets at
@@ -361,6 +394,7 @@ selected transfers without establishing a missing gameplay behavior.
 export PYTHONPATH=runtime/tests/query-python-deps
 python3 -B scripts/check-q41-range-encodings.py --census-summary docs/analysis/coverage/full-image-selected-0.141.0.json
 python3 -B scripts/check-q41-range-encodings.py --addressed-formatters
+python3 -B scripts/check-q41-range-encodings.py --mixed-formatters docs/analysis/coverage/full-image-selected-0.141.0.json
 python3 -B scripts/classify-as-residual-ranges.py
 python3 -B scripts/classify-as-residual-ranges.py --dispatch-frontier
 python3 -B scripts/classify-as-residual-ranges.py --entry-frontier

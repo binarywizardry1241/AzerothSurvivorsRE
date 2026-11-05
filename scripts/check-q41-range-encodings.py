@@ -12,6 +12,7 @@ import gzip
 import hashlib
 import json
 from pathlib import Path
+import struct
 import sys
 
 from coverage_common import ROOT, latest_target, target_bytes, file_sha256, load_json, project_path
@@ -305,8 +306,141 @@ def addressed_formatter_frontier():
     assert counts == selection['formatter_source_sites']
     assert len(reviewed) == selection['formatter_adapters'] and len(overwritten) == 1
     assert not reviewed & overwritten
+
+    tails = collections.Counter()
+    for prefix in proof['addressed_prefixes']:
+        if prefix.get('role') == 'dereference-rcx-and-tail-jump':
+            continue
+        entry = int(prefix['address'], 16)
+        raw = bytes.fromhex(prefix['bytes'])
+        assert read(entry, len(raw)) == raw
+        decoded = list(decoder.disasm(raw, entry))
+        assert sum(insn.size for insn in decoded) == len(raw)
+        last = decoded[-1]
+        assert last.mnemonic == prefix['terminal']
+        key = last.op_str if last.mnemonic == 'jmp' else last.mnemonic
+        tails[key] += 1
+    assert tails == selection['other_prefix_terminals']
+
+    unwind = selection['overwritten_unwind']
+    start, end, unwind_rva = map(lambda value: int(value, 16), unwind['runtime_function'])
+    base = pe.image_base
+    assert (start - base, end - base, unwind_rva) in pe.functions()
+    header = read(base + unwind_rva, 4)
+    assert header[0] == 0x19
+    handler_rva, info_rva = struct.unpack('<II', read(base + unwind_rva + 4 + (header[2] + 1) // 2 * 4, 8))
+    handler = next(decoder.disasm(read(base + handler_rva, 6), base + handler_rva))
+    assert handler.mnemonic == 'jmp' and handler.operands[0].mem.base == X86_REG_RIP
+    slot = handler.address + handler.size + handler.operands[0].mem.disp
+    assert any(slot == int(row['iat_start_address'], 16) + 8 * index
+               and row['library'].casefold() == 'vcruntime140.dll' and name == '__CxxFrameHandler3'
+               for row in pe.imports() for index, name in enumerate(row['functions']))
+    magic, states, state_map, try_count, _, ip_count, ip_map = struct.unpack('<7I', read(base + info_rva, 28))
+    assert magic == 0x19930522 and try_count == 0
+    ip_states = list(struct.iter_unpack('<Ii', read(base + ip_map, 8 * ip_count)))
+    state_rows = list(struct.iter_unpack('<iI', read(base + state_map, 8 * states)))
+    call = int(selection['overwritten']['first_call'], 16)
+    call_state = ip_states[bisect_right([rva for rva, _ in ip_states], call - base) - 1][1]
+    assert call_state == unwind['call_state']
+    state, chain = call_state, []
+    slot_start = selection['overwritten']['slot'][1]
+    while state >= 0:
+        previous, action = state_rows[state]
+        assert previous < state and action
+        action += base
+        chain.append([state, hex(action)])
+        body = instructions(action)
+        assert any(insn.mnemonic == 'lea' and insn.op_str == 'rbp, [rdx + 0x80]' for insn in body.values())
+        for insn in body.values():
+            for operand in insn.operands:
+                if operand.type == X86_OP_MEM and insn.reg_name(operand.mem.base) == 'rbp':
+                    assert not operand.mem.index
+                    assert operand.mem.disp + max(operand.size, 1) <= slot_start or operand.mem.disp >= slot_start + 8
+        state = previous
+    assert chain == unwind['cleanup_chain']
     return dict(formatter_source_sites=dict(counts), formatter_adapters=len(reviewed),
-                overwritten_on_normal_return=list(map(hex, sorted(overwritten))))
+                overwritten_on_normal_return=list(map(hex, sorted(overwritten))),
+                other_prefix_terminals=dict(tails), unwind_cleanup_funclets=len(chain))
+
+
+def mixed_formatter_ranges(census_path, selection):
+    """Select complete mixed ranges made of immediate text adapters."""
+    target = latest_target(verify=True)
+    census = load_json(project_path(census_path))
+    assert census['target'] == {key: target[key] for key in census['target']}
+    inventory = census['independent_instructions']['executable_sections']['range_inventory']
+    assert inventory['sha256'] == selection['range_inventory_sha256']
+    path = project_path(inventory['path'])
+    assert file_sha256(path) == inventory['sha256']
+    pe = load_script('mixed_formatter_pe', 'scripts/inventory-executable.py').PE(target_bytes(target))
+    decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_64)
+    decoder.detail = True
+
+    def read(address, count):
+        offset = pe.rva_offset(address - pe.image_base)
+        assert pe.rva_offset(address + count - 1 - pe.image_base) == offset + count - 1
+        return pe.data[offset:offset + count]
+
+    def adapter(segment):
+        from capstone.x86_const import X86_OP_IMM, X86_OP_MEM, X86_OP_REG, X86_REG_RIP
+        tail = segment[-1]
+        if tail.op_str not in ('0x14637f150', '0x14637ec80'):
+            return None
+        first, *moves = segment[:-1] if len(segment) > 1 else (tail,)
+        if first.mnemonic != 'lea' or first.operands[1].type != X86_OP_MEM:
+            return None
+        source = first.operands[1].mem
+        if source.base != X86_REG_RIP:
+            return None
+        length = None
+        if (moves and moves[0].mnemonic == 'mov' and moves[0].operands[0].type == X86_OP_REG
+                and moves[0].reg_name(moves[0].operands[0].reg) == 'r8d'
+                and moves[0].operands[1].type == X86_OP_IMM):
+            length = moves.pop(0).operands[1].imm
+        dest = first.reg_name(first.operands[0].reg)
+        expected = {
+            'rax': [('mov', 'rcx, rdx'), ('mov', 'rdx, rax')],
+            'rdx': [('mov', 'rcx, rax')],
+        }
+        if [(insn.mnemonic, insn.op_str) for insn in moves] != expected.get(dest):
+            return None
+        address = first.address + first.size + source.disp
+        if length is not None and (not 0 < length <= 300
+                                   or not all(32 <= byte < 127 for byte in read(address, length))):
+            return None
+        return [hex(first.address), hex(address), length, tail.op_str]
+
+    matches = []
+    with gzip.open(path, 'rt') as stream:
+        for row in csv.DictReader(stream, delimiter='\t'):
+            if row['location'] != 'outside-declared' or int(row['byte_count']) < 14:
+                continue
+            start, end = (int(row[key], 16) for key in ('start', 'end_exclusive'))
+            raw = read(start, end - start)
+            decoded = list(decoder.disasm(raw, start))
+            if sum(insn.size for insn in decoded) != len(raw):
+                continue
+            adapters, segment = [], []
+            for insn in decoded:
+                if not segment and insn.mnemonic in ('nop', 'int3'):
+                    continue
+                segment.append(insn)
+                if insn.mnemonic == 'jmp':
+                    value = adapter(segment)
+                    if value is None:
+                        break
+                    adapters.append(value)
+                    segment.clear()
+            else:
+                if adapters and not segment:
+                    assert hashlib.sha256(raw).hexdigest() == row['sha256']
+                    matches.append([row['start'], row['end_exclusive'], adapters])
+    result = dict(ranges=len(matches),
+                  bytes=sum(int(end, 16) - int(start, 16) for start, end, _ in matches),
+                  adapters=sum(len(adapters) for _, _, adapters in matches),
+                  projection_sha256=hashlib.sha256(json.dumps(matches, separators=(',', ':')).encode()).hexdigest())
+    assert result == selection['projection'], result
+    return result
 
 
 def main():
@@ -316,8 +450,17 @@ def main():
     current.add_argument('--census-summary', help='Print the selected-target executable residual and incoming-reference join')
     current.add_argument('--addressed-formatters', action='store_true',
                          help='Check the address-taken callback stores at the formatter boundary')
+    current.add_argument('--mixed-formatters', metavar='CENSUS',
+                         help='Check mixed ranges containing shared text adapters')
     ap.add_argument('--details', action='store_true', help='Include all incoming reference rows with --census-summary')
     args = ap.parse_args()
+    if args.mixed_formatters:
+        if args.stage or args.details:
+            ap.error('--mixed-formatters only checks retained evidence')
+        target = latest_target(verify=True)
+        proof = load_json(ROOT / 'docs/analysis/evidence' / target['version'] / 'addressed-formatters.json')
+        print(json.dumps(mixed_formatter_ranges(args.mixed_formatters, proof['mixed_formatter_ranges']), indent=2))
+        return
     if args.addressed_formatters:
         if args.stage or args.details:
             ap.error('--addressed-formatters only checks retained evidence')

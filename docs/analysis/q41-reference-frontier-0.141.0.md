@@ -80,8 +80,29 @@ previous row before copying the new value. Its prefix through
 `0x145c00b87` (file `0x5bffef0`) has SHA-256
 `a2a0c799ff2a9485c608a4746b9fd3d5411765798686eb0e21139fa81fe08e74`.
 These stores classify the callback result's immediate consumer as shared
-component storage. The concrete component types and registration owners
-remain open.
+component storage. The pair of storage paths and the captured function pointer
+and component ID correspond to Bevy ECS 0.18.1's
+`RequiredComponentConstructor::new` and
+`BundleInfo::initialize_required_component` in the pinned dependency.
+The former captures a `fn() -> C` and component ID. The latter writes the
+constructed value through the table column or sparse-set branch.
+
+Three of the twelve constructor values identify their component types:
+
+| Registering call to adapter | Constructor | Component default evidence |
+| --- | --- | --- |
+| `0x143c66b9a → 0x14452dc50` | `0x14452df90..0x14452dfc1` | `SpotLight`. White, 1,000,000 intensity, range 20, bias 0.02/1.8, near plane 0.1, and outer angle π/4. |
+| `0x143c68eba → 0x144550fa0` | `0x144547930..0x144547963` | `PointLight`. White, 1,000,000 intensity, range 20, bias 0.08/0.6, and near plane 0.1. |
+| `0x143c6a0da`, `0x143c6a6d7 → 0x14457b3a0` | `0x144571fc0..0x144571fef` | `DirectionalLight`. White, 10,000 illuminance and bias 0.02/1.8. |
+
+Each adapter passes the constructor in `R8`, loads the other registration
+arguments through the incoming descriptor in `RDX`, then tail-transfers
+to the registration implementation. These constants and the corresponding
+`#[require]` declarations in the pinned Bevy light components identify
+ordinary required-component registration. The selected leaves do not prove
+which application code instantiated each component. The other nine adapters
+retain the same shared storage boundary. Their concrete type IDs and
+registration sites remain open where a Survivors dependency can be established.
 
 The other LEA, `0x1463a5014 → 0x1463a5024`, passes a filter
 checking C++ exception code `0xe06d7363` and its parameter magic to
