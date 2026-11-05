@@ -175,6 +175,30 @@ The [MPQ override trace](mpq-mount-0.141.0.md#registered-resource-overrides)
 also connects Q41-I01 resource selectors 63 and 227 to the exact native
 binding and CreatureSoundData file producers and ordinary readers.
 
+#### UI tuple metadata
+
+Namespace ordinals `9..245` are 237 interior substrings of packed Bevy
+bundle names. The complete contiguous span at file
+`0x65b11bb..0x65bba22` has SHA-256
+`658a24f6983fbd2b624a94ea1fe1f0db93e4d14acf554bd79dcbe02705713bf7`.
+Balanced top-level tuple boundaries select 230 names, including the
+engine-only tuple names between the selected AS substrings.
+
+Query the declared instruction inventory's `refs.target` at the preferred
+VA of each tuple start. Each of the 230 starts has one encoded reference.
+Replay of every site verifies the `LEA RDX` name pointer, the exact `R8D`
+byte length, and the first direct call to the same bundle helper
+`0x145bff950`. The projection of `(LEA VA, tuple VA, length, CALL VA)` as
+little-endian `u64` rows in ascending tuple VA has SHA-256
+`f56e1dc6f77822d276bdaf4a7c1d4661056c1a3205b348d179dfba2b3fdee602`.
+The first row is `(0x1402606fa, 0x1465b2bbb, 228, 0x14026070f)` and the
+last is `(0x14028baf0, 0x1465bd340, 226, 0x14028bb04)`.
+
+The helper's saved Ghidra result and duplicate-component diagnostic above
+establish the shared Bevy `BundleInfo` boundary. The 237 lexical leads now
+have a bounded name consumer. Screen state, event ordering, and individual
+widget behavior are owned by the corresponding AS screen traces.
+
 ### Builtin glue and FrameXML resource selectors
 
 The ten 40-byte file descriptors at file offsets `0x6712628..0x67127b8`
