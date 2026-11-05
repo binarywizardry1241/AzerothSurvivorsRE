@@ -321,6 +321,52 @@ instruction records. The full Ghidra projection separately reproduces all
 11,205 distinct unowned executable destinations from 15,305 saved references.
 No function ownership was added.
 
+### Attack geometry and ability payload continuations
+
+The 285-instruction selector at `0x145f4c76c..0x145f4cd0b` is the
+scripted attack geometry update. The switch decodes the high-bit shape
+tag at `[rbp+0x1a0]`, rejects tags above five at `0x145f4c754`, and
+uses the six signed cells at `0x147af30c0..0x147af30d8` (SHA-256
+`0c8497c56770408d21c15e8fb497a4ea5c6bb1b7131fc408a513265b44d92865`).
+Tags 0 and 1 require update mode 1 at `[rbp+0x1e8]`. Tags 2–5 require
+mode 2, with the direction calculation at `0x145f4c8ed` and endpoint
+clipping calls at `0x145f4c881`, `0x145f4ca0b` and `0x145f4cb7d`.
+All accepted variants repack the updated geometry at `0x145f4cc32`.
+The companion 22-instruction selector at `0x145f4ce04..0x145f4ce70`
+handles the replaced owned payload, copies the new fields into the live
+part and marks the row dirty at `0x145f4ce5c`. The selected branches
+belong to the existing [tracking and lock producer](../../crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs)
+and [arena clip](../../crates/azeroth-survivors-re/src/gameplay/mechanics/scripted_arena.rs).
+Exact producer-to-shape admission across all scripts remains separate.
+
+Four ownerless dispatch sites in the 850-instruction ability selector
+read the native descriptor status tag at `+0x68`, normalize tags 1–11
+and fall back outside that domain. The tables are separate consumers of
+one typed payload.
+
+| Site | Table VA / SHA-256 | Selected consumer |
+| --- | --- | --- |
+| `0x145f53e53` | `0x147af3210` / `1ba73a382944813426268e65a5cb22a787b65f9ae3cf03846ea38e6cf73760b8` | Ground periodic queue. |
+| `0x145f5402e` | `0x147af323c` / `52e7b90641b3c14c4f3f4df70d1c9d4575db8c97c5d85ccff06745afad9ceb25` | Status triplet passed to `0x145f5a1f0` after the ordinary immediate damage call. |
+| `0x145f546c9` | `0x147af3134` / `0d8b220bd9eb15b9445157c89ceeb3ae2aa18bc89774d030be615c84828446dc` | Self aura and Battle Shout publication. |
+| `0x145f5499b` | `0x147af318c` / `75715b5af92e31be4de1c858bac115cf2ba56c02bd5324bfb7e37928204d52bd` | Alternate cast status packer leading to `0x145f5d990`. |
+
+The [typed ground and self-aura proof](status-weakening-0.139.2.md#ground-periodic-and-self-aura-payloads-in-01410)
+already accounts for the first and third tables and their current
+descriptor values. After the immediate status call, the 169-instruction
+range beginning at `0x145f54240` re-finds the living hit victim. It follows
+the exact `fire_nova` key check and equipped effect tag 58. In a party it
+counts live Flame Shock 8050 rows with the unassigned owner sentinel or
+the active party slot. It sums remaining ticks times per-tick power and
+hands the Cinderheart hit to the common damage owner without removing
+those rows. This is the existing [Cinderheart consumer](../../crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs).
+The selected totem continuation starting at `0x145f54d0b` is the
+replacement object-field and event publication after the [proved stable
+removal](unknown-recovery-0.141.0.md#q41-d01-immediate-consumers).
+These checks assign roles to the exact continuations. Additional
+descriptor variants, arbitrary effect aliases, and all presentation and
+timing validation remain open.
+
 ## Remaining questions and checks
 
 Use the exact extents, runs, terminal subranges and incoming selectors in

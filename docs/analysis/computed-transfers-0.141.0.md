@@ -299,7 +299,83 @@ receiver's `+0x18` slot. The declared reference projection records 621 and
 nine complement jumps to the first entry. These are shared dispatch leaves.
 The AS caller join alone does not identify a concrete receiver or writer.
 
-Further work under #41 is to establish typed domains and owners for the
-remaining AS-context register and receiver-slot transfers. The broader
-unowned and generic populations retain their exact selectors. Runtime
-dispatch and original/rebuilt parity remain separate.
+## F01 local commands and hit packet keys
+
+The declared direct-reference projection has one caller of
+`0x145ef8950`, at `0x145ec9a83`. Its wrapper requires party discriminant
+3, an in-range peer with tag 1, and an available Game. The assigned slot
+comes from the peer's `+8` field. Positive assigned slots within the
+Game roster enter the separately recovered seated locale wrapper at
+`0x145ef8baa`. The direct arm takes the same typed command, including
+the host slot. The [wire admission](coop-replication-0.141.0.md#engine7-and-control8)
+limits Control8 to subtypes 0–10. The other wrapper caller at
+`0x145e9fd97` uses the [Gossip option translation](coop-command-ingress-0.141.0.md#guest-gossip-option-ingress)
+and excludes the `0xff` sentinel first.
+
+The eleven entries at `0x147af2de8` select Pick, Reroll, Banish, Skip,
+ordinary flush, Abandon, Spend Levels, cache-click option, Store Levels,
+guardian tracking and republish, in that order. Pick and Skip compare
+the nonzero offer generation at command `+4` against Game `+0x1054`
+and take the same republish on mismatch. The native option stores are
+`+0x10d7`, `+0x10d8` and `+0x10d0`. The source routes these through
+[party control](../../crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs)
+and its [generation handling](../../crates/azeroth-survivors-re/src/gameplay/coop_commands.rs).
+The Ghidra query at `0x145ef8950` returned Evidence
+`ev_0b27250de7f254d6e377d86e3360fb2a1c8ef8d45958178ca8dd3c447fd886b4`,
+result SHA-256 `e3bc080d6c5aa1d11afa24ccaca37ba8d98089ac2e82a0cbf96187a5dc5c5889`.
+Its 1,250-byte raw subject matches file `0x5ef7d50..0x5ef8232`, SHA-256
+`252861fd1a913d434e7a78699549994a27b4fa0562892770416d3274e65bab88`.
+The original PE table supplies the case destinations outside that slice.
+The existing host-control checker passed 336 bounded seated cases.
+
+The hit packet switch's first four cells at `0x147af2ec8..0x147af2ed8`
+have SHA-256 `7af9c9b0d06a62163d3321b8683b995160bdefb8068b3af7ca6c0d22bf714ec2`.
+The apparent fifth cell is the start of the adjacent table selected at
+`0x145f1df72`. The command-strike producer at `0x145f95506` sets
+`+0x2a5/+0x2a6` to `1/2`. The periodic bleed writes source kind 1 at
+`0x145f28505`, and the Matriarch area completion writes source kind 3 at
+`0x145effe28`. These writers retain their separate effect and mode checks.
+Kind 1 with meter mode 2, owned effect `+0x30/+0x38` and equipped tag 62
+chooses `Bleed`; kind 3 with mode 2, owned effect `+0x20/+0x28` and tag 63
+chooses `Shockwave`. Kind 2 can use the captured attack label from
+`+0x238/+0x240`. All three feed the same attack-key formatter
+`0x145e19b40`. Other admitted branches go to the ordinary source selector
+`0x145fa3b10`. The [pet producer report](pet-meter-0.141.0.md#source-and-attack-identity)
+and [rebuilt hit adapter](../../crates/azeroth-survivors-re/src/gameplay/mechanics.rs)
+retain the exact named source, original hit owner and separate meter share.
+This accounts for the selected packet-key dispatch and its typed producers.
+Wider dynamic source-word writers retain their own proof limits.
+
+## F02 shared failure cleanup
+
+The declared-reference projection joined against all 435 AS diagnostic
+body owners finds six direct AS-context calls to the slot-zero entry and
+sixteen to the slot-`+0x18` entry. They are callers of the shared leaves
+and do not identify a single concrete receiver type.
+
+The slot-`+0x18` call at `0x145eeec50` has a Kill Command diagnostic in
+the same extent. Its actual producer resolves an optional staff-key path
+through `WOW_ROGUE_STAFF_KEY`, `APPDATA` and `XDG_DATA_HOME`. The file read
+at `0x145eeebb5` returns the `-1` error sentinel. The caller sets the empty
+output, filters the error pointer's low bits to tag 1, removes the tag
+and passes the owned error to the shared cleanup leaf. The reconstructed
+[staff key reader](../../crates/azeroth-survivors-re/src/coop_directory.rs)
+uses the existing filesystem result and the same empty fallback. The
+selected branch supplies no Kill Command mechanic.
+
+The terrain call at `0x146009430` passes the receiver from the reader's
+`-1` result at `[rbp+0x30]` through the slot-zero leaf. It keeps the
+failure sentinel in the output while disposing of the temporary input.
+This classifies the selected call's error cleanup boundary. The terrain
+payload and concrete error allocation retain separate ownership.
+
+| Preferred VA range | SHA-256 |
+| --- | --- |
+| Staff-key read and failure `0x145eeebad..0x145eeec55` | `75a76dbf3c8882e74bf2d9d7e0347161dd8cdaf19ac0207758dcc5a21a631191` |
+| Terrain reader failure `0x1460093ee..0x146009436` | `93462aee2f53db1b2dbf1559512d9e8caeb49b9f998ee584b4c00c34967887e6` |
+| Slot-`+0x18` entry `0x14638ac20..0x14638ac27` | `8cbc0a542f5641e293d6cd9000bf03935dc3f901b09ae90e646366af6a2bc396` |
+| Slot-zero entry `0x146347d90..0x146347d99` | `2a3c53712037a9d42bacd07d0803c4777e37dfeaa7a1d3e13309402b16a7f265` |
+
+Other AS-context register and receiver-slot transfers still need concrete
+typed owners. The broader unowned and generic populations retain their
+exact selectors. Runtime dispatch and original/rebuilt parity remain separate.
