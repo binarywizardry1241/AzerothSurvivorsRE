@@ -29,10 +29,11 @@ use bevy::input::mouse::MouseScrollUnit;
 use bevy::input::ButtonState;
 use bevy::prelude::*;
 
-use benilla_ui::script::keybind::KeybindRequest;
+use benilla_ui::script::keybind::{KeyBinding, KeybindRequest};
 use benilla_ui::script::{KeyUp, KeyWalk, PointerTarget, UiScript};
 
 use crate::client_state::InWorldGated;
+use crate::local_client::LocalClientExtension;
 use crate::textinput::keymap::Mods;
 #[cfg(test)]
 use crate::ui_script::{PlayerUiHover, UiKeyboardCapture};
@@ -327,11 +328,18 @@ impl Plugin for BindingsPlugin {
 /// read first because the stored sets are diffs against them ([`store`]'s deviation), and nothing
 /// reads set 0 before `LoadBindings(0)`.
 pub(crate) fn seed_bindings_for_vm(world: &World, script: &mut UiScript) {
+    script.set_default_bindings(default_binding_pairs(
+        world.get_resource::<LocalClientExtension>(),
+    ));
+}
+
+/// The default file's pairs followed by the embedding's overrides, in loader order.
+pub(crate) fn default_binding_pairs(extension: Option<&LocalClientExtension>) -> Vec<KeyBinding> {
     let mut defaults = crate::ui_script::default_bindings();
-    if let Some(extension) = world.get_resource::<crate::local_client::LocalClientExtension>() {
+    if let Some(extension) = extension {
         defaults.extend(extension.binding_defaults.iter().cloned());
     }
-    script.set_default_bindings(defaults);
+    defaults
 }
 
 /// The reader's registration (`0x4b6240` through `0x5afe50` at `0x4b62ef` and `0x4b6300`), which

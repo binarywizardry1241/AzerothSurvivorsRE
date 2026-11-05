@@ -50,13 +50,61 @@
     "Interface\\CharacterFrame\\TemporaryPortrait-Pet.blp",
     "Tileset\\Elwynn\\ElwynnGrassBase_s.blp"
   ],
+  "runtime_overrides": {
+    "writer": "0x146244270",
+    "writer_call_sites": [
+      "0x145dd50b1", "0x145dd6add", "0x145dda6f0", "0x145ddb206",
+      "0x145ddb6be", "0x145ddbbee", "0x145e5fe3c", "0x145fda6d3",
+      "0x145fee154"
+    ],
+    "call_edges": [
+      ["0x145e80f16", "0x145fedfc0"],
+      ["0x145fee07b", "0x145e7fee0"],
+      ["0x140e8ce0d", "0x140a8c950"],
+      ["0x140e8d6ba", "0x140a8c950"],
+      ["0x140e8e09d", "0x140a8c950"],
+      ["0x140a8cc39", "0x14623e170"],
+      ["0x14623e1a5", "0x146243a60"],
+      ["0x14623e1cb", "0x14623c640"],
+      ["0x146243aeb", "0x146243ed0"],
+      ["0x1462442e7", "0x146243ed0"],
+      ["0x145e80f20", "0x145e5fd70"],
+      ["0x145e5fe0f", "0x145e5fc30"]
+    ],
+    "binding_paths": [
+      ["Interface\\FrameXML\\Bindings.xml", "0x147af4970", "0x1466aea4a", "c440a1b703676858df3c037b852d40fff0305b1bcf059a23600e93f6df327be2"],
+      ["WTF\\DefaultBindings.wtf", "0x147af498f", "0x1466ae532", "c52f45c375da15ddd9ba9fd5847a1900e9efe1079c2e6cbcf5caf8a5f9e14eb7"]
+    ],
+    "binding_operands": {
+      "command": "0x147af4874",
+      "key": "0x147af494c",
+      "default_format": "0x147af4960"
+    },
+    "queries": [
+      ["0x145fedfc0", "ev_e79b93f4301f2bf63dc10a2587d345a67d5d4b70dad2dd80fe604e7552bf9ccc", "b53ae03d4f961cd26eff3cfbddc496c6fe18ad3051892af9b1e5be6e58672df4"],
+      ["0x145fed7c0", "ev_6e664bede99465c23e469b3448ea05a58a3238780489669bf0324a9369bcf40b", "c6bc1e332f6841a71fd338df9d5cc71646d59acf52e4cb971a466ac253ebe93a"],
+      ["0x145feddc0", "ev_4cad15615241c34e5e9fe62e4d070b6cd14264cc9198287ef54eba9366dcc67f", "b0e3076fb470c09179abbd9877710302c73bd248346a7740e5015429ed6b131f"],
+      ["0x146243a60", "ev_f28a08abf7a16ff9f8aab714ca8a9c27567f725f019afee216d4e506fcc127e3", "674220fb36e3d26a868783b915d8064ef5fabe1c0563f791ecec96366e256d95"],
+      ["0x146244270", "ev_a65e63117e3e69184e678ee506885aebed4b250c6f580e2f03cfa731198ad492", "c21212465385d180fbd86ae9dd2284513f8726b8d5ab79f5298aa87c154ddbb3"],
+      ["0x145e5fc30", "ev_36c7aba9a6b3d2060aa5fb14c7f58d6afdd25f8dd7453c60c8a383ece7efd45e", "81dd715cb94c852b8914f6776070ac46caccd755d99afa6e350bf508b4d1f34f"]
+    ]
+  },
   "native_spans": [
     ["0x1405ecc60", "0x1405ecf3a", "afd413b35423bc8fbb068d0861e974599f6d789a2b682c9ad0b5819dbe748538"],
     ["0x14623e170", "0x14623e22f", "b647d07e7407817f2708c7a217beeac4dd845a4a84d1b5d38a8cc74e84cf0682"],
     ["0x1462e21a0", "0x1462e2590", "17e5169877d9ddae25f1e31a836e5a70ba25223c5419bacbb4616e60125fb476"],
     ["0x146224bf0", "0x146224cc7", "1f95c02d1eab52e24328cfe06056b343230b6a21957974cedf473894febee77e"],
     ["0x146224cd0", "0x146224da3", "e33b9d36c7943e0cc81e9d8facb00ffe6f2d9b84d316ff5fe24ec210580a90c6"],
-    ["0x140637548", "0x140637a1d", "74e95b77b423134bed0b0ed965e84204dc222a90560f3436bd46298c8b8ec5a7"]
+    ["0x140637548", "0x140637a1d", "74e95b77b423134bed0b0ed965e84204dc222a90560f3436bd46298c8b8ec5a7"],
+    ["0x140a8c950", "0x140a8cdc6", "809feb0b54705af6ed2481c63d6446a3c657f54db9f24bfda4e4f11916f1f751"],
+    ["0x140e8cde0", "0x140e8cf68", "47ebe3f292791acad9b12981ce68a2238b8fb18ba7d427fd881d765ee3621e76"],
+    ["0x145e5fc30", "0x145e5fd67", "70a63d3c3172c2f0c1d0228bc9330ecbad74f1b79d9c106e1da1973c1aabdeac"],
+    ["0x145e5fd70", "0x145e5fe8d", "4598d1122a1ef7afc97edc3af7876befd94efe1bf753389e7209d26d627db204"],
+    ["0x145fed7c0", "0x145fedd6b", "d8e6d78f1a66390b2915763d3af3f93dcbf3e809f436c52b65043a69f15f140d"],
+    ["0x145feddc0", "0x145fedf2d", "7eb0610d7516b74fc0d5626482326167298dc52cb87dbff90a9b9b887a51ad4c"],
+    ["0x145fedfc0", "0x145fee18a", "95609282a29425e65c152c64aa3c7a1a9be8e2f05590f9de1b83551e8f15de07"],
+    ["0x146243a60", "0x146243d98", "e994b285131c992f7c4e388074ac5929abbecf9a3c91ed9f540a6dbfcd1e6c4d"],
+    ["0x146244270", "0x1462443d1", "5ecc0aff1169b881cde69bfadaaa2a48022ff7622eedbe16376cc53e530772d5"]
   ],
   "loading_art": [
     [0, 4, "Interface\\Glues\\LoadingScreens\\LoadScreenEasternKingdom.blp"],

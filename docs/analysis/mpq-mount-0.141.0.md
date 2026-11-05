@@ -208,6 +208,51 @@ for the table parser. The raw slice SHA-256 and native VA intervals are
 in the same resource proof. Original PE instructions establish the Win64
 argument carriers independently of the raw-slice decompiler's inferred ABI.
 
+## Registered resource overrides
+
+The selected-census references to the writer at 0x146244270 contain
+nine direct call sites. The [override proof](evidence/0.141.0/resource-consumers.json)
+binds the exact calls, native ranges, and Ghidra results to this EXE.
+The writer calls 0x146243ed0 at 0x1462442e7 and uses the shared map at
+0x148ac3210. The reader at 0x146243a60 calls the same key helper at
+0x146243aeb and reads that map behind the same lock at 0x148ac3208.
+The ordinary member reader calls the override lookup at 0x14623e1a5
+and takes the archive fallback at 0x14623e1cb on the missing result.
+This classifies the selected data state under Q41-B02 and its immediate
+read/write paths under Q41-R01.
+
+| Writer call | Native producer |
+| --- | --- |
+| 0x145dd50b1, 0x145ddb206, 0x145ddb6be, 0x145ddbbee | StaticPopup, ReputationFrame, WorldStateFrame, and [PaperDoll](source-frontier-0.141.0.md#paperdoll-core-file-and-localized-gear-prefix) core-file appends. |
+| 0x145dd6add, 0x145dda6f0 | [Locale-dependent font replacement and provider rows](font-table-publication-0.141.0.md). |
+| 0x145fda6d3 | The [GlueStrings transform](q41-glue-strings-0.115.0.md) republishes its result under the existing 33-byte path. The exact current producer is 0x145fda5e0. |
+| 0x145e5fe3c | Startup at 0x145e80f20 invokes the CreatureSoundData producer at 0x145e5fd70. It reads the 35-byte key at 0x14772a8b4 and calls 0x145e5fc30. The current transform checks the WDBC header, stride and record extent, clones the bytes, and replaces field six only when it equals 8449. The installed input has one matching row, 2068. The existing [voice-cache transform](creature-death-sound-0.119.0.md) supplies this behavior under [#182](../verification-needed.md#gap-182). The adjacent spell label in Q41-I01 resource selector 227 is outside the key. |
+| 0x145fee154 | Startup at 0x145e80f16 invokes the binding file publisher at 0x145fedfc0. Two 24-byte local descriptors carry path pointer, length and transform pointer. The successful read branch calls the selected transform at 0x145fee11c and publishes under the same path. The read-failure branch logs and advances without writing an override. |
+
+The binding descriptors select the 31-byte Interface\FrameXML\Bindings.xml
+at 0x147af4970 and 23-byte WTF\DefaultBindings.wtf at 0x147af498f. Their
+transforms are 0x145fed7c0 and 0x145feddc0. The first supplies the
+AZS_OPENLEVELS, AZS header, and AZS_OpenStoredLevels() XML insertion. The
+second trims the input tail and appends the formatted CRLF default Y binding.
+The ordinary native readers use separate copies of the same keys. The default
+reader at 0x140e8ce0d reaches 0x140a8c950 and its archive route at 0x140a8cc39
+calls the override-aware member reader. The two XML readers at 0x140e8d6ba and
+0x140e8e09d use that same interface. Both installed source files are in
+patch.MPQ and lack the AS command before the patch.
+
+The rebuilt [VM loader](../../crates/benilla-app/src/bindings.rs) already
+applied the extension's default Y. The [account-data layer](../../crates/benilla-app/src/account_data/mod.rs)
+used the stock file alone when converting a downloaded full table to the
+local binding diff and when expanding legacy diffs for upload. That omitted
+an explicit unbind for a nonempty downloaded table without AZS_OPENLEVELS,
+causing Y to reappear when the VM resolved the diff. It could also omit Y
+from legacy-diff uploads. Account data now seeds its default table at startup
+from the same stock and extension pair sequence as the VM. The existing key
+table resolves collisions in file order and the account reset preserves that
+table. The regression covers the upload, an explicit unbind on download and
+the subsequent diff resolution. The historical binding scope is retained under
+[#21](../verification-needed.md#gap-21).
+
 ## Checks and remaining scope
 
 `python3 -B scripts/inventory-current-mpq-members.py` reproduces the
@@ -226,3 +271,8 @@ and the [zone loading artwork](zone-entry-loading-progress-0.141.0.md#desktop-zo
 Dynamic aliases outside these exact joins remain under [#41](../CURRENT-STATE.md#gap-41).
 Actual loading, rendering and original/rebuilt comparison remain open.
 No archive or asset was exported.
+
+The expanded resource check validates nine exact override call sites, the
+binding member digests and the CreatureSoundData input in place. Rust syntax
+and the source call paths were checked. The authored binding regression,
+network delivery and live binding interaction remain unverified.

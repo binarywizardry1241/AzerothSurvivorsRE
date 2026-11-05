@@ -516,3 +516,41 @@ fn a_downloaded_section_is_kept_as_the_server_sent_it() {
         "nothing changed on either side"
     );
 }
+
+#[test]
+fn embedded_defaults_apply_to_binding_sections_in_both_directions() {
+    let home = Home::new("embedded-defaults");
+    let mut app = App::new();
+    app.init_resource::<AccountData>()
+        .insert_resource(LocalClientExtension {
+            binding_defaults: vec![("Y".into(), "AZS_OPENLEVELS".into())],
+            ..Default::default()
+        })
+        .add_systems(Startup, seed_binding_defaults);
+    app.update();
+
+    let mut script = benilla_ui::script::UiScript::new().unwrap();
+    crate::bindings::seed_bindings_for_vm(app.world(), &mut script);
+    let mut state = app.world().resource::<AccountData>().lock();
+    state.reset();
+    assert_eq!(state.defaults(), script.default_bindings().as_slice());
+
+    home.put("bindings/account.txt", b"bind JUMP F\n");
+    let wire = sections::read(2, None, state.defaults()).unwrap();
+    assert!(String::from_utf8(wire)
+        .unwrap()
+        .contains("bind Y AZS_OPENLEVELS\r\n"));
+
+    let download_without_y = b"bind F JUMP\r\n";
+    state.arrive(&download(2, download_without_y));
+    let diff = String::from_utf8(home.get("bindings/account.txt").unwrap()).unwrap();
+    assert!(diff.lines().any(|line| line == "bind AZS_OPENLEVELS"));
+    assert_eq!(
+        store::resolve(&store::from_diff(&diff), state.defaults()),
+        vec![("F".to_owned(), "JUMP".to_owned())]
+    );
+    assert_eq!(
+        sections::read(2, None, state.defaults()).unwrap().as_slice(),
+        download_without_y
+    );
+}

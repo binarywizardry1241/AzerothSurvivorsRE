@@ -36,6 +36,8 @@ use benilla_protocol::messages::{AccountDataDigest, UpdateAccountData, ACCOUNT_D
 use benilla_protocol::{SessionEvent, SessionEventKind};
 use benilla_ui::script::keybind::KeyBinding;
 
+use crate::bindings::{default_binding_pairs, store};
+use crate::local_client::LocalClientExtension;
 use crate::net::{ClientCommand, NetCommands, NetHandlerApp};
 
 mod check;
@@ -228,9 +230,8 @@ impl Default for State {
 impl State {
     /// The default bindings, `WTF\DefaultBindings.wtf` as the loader takes it.
     fn defaults(&mut self) -> &[KeyBinding] {
-        self.defaults.get_or_insert_with(|| {
-            crate::bindings::store::key_table(crate::ui_script::default_bindings())
-        })
+        self.defaults
+            .get_or_insert_with(|| store::key_table(default_binding_pairs(None)))
     }
 
     /// Whether section `s` has a file here: a per-character one needs the character.
@@ -377,6 +378,17 @@ fn write_cache(cache: &[AccountDataDigest; ACCOUNT_DATA_SECTIONS]) {
     }
 }
 
+/// Seed the embedding's defaults before account-data events can expand or convert a set.
+fn seed_binding_defaults(data: Res<AccountData>, extension: Option<Res<LocalClientExtension>>) {
+    let Some(extension) = extension
+        .as_deref()
+        .filter(|extension| !extension.binding_defaults.is_empty())
+    else {
+        return;
+    };
+    data.lock().defaults = Some(store::key_table(default_binding_pairs(Some(extension))));
+}
+
 /// The server's digests: the check of every section.
 fn on_digests(
     In(ev): In<SessionEvent>,
@@ -422,6 +434,10 @@ pub(crate) struct AccountDataPlugin;
 impl Plugin for AccountDataPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<AccountData>()
+            .add_systems(
+                Startup,
+                seed_binding_defaults.after(benilla_assets::AssetSet::Open),
+            )
             .net_handler(SessionEventKind::AccountDataMd5, on_digests)
             .net_handler(SessionEventKind::UpdateAccountData, on_section)
             .add_systems(

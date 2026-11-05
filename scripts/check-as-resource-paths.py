@@ -123,6 +123,37 @@ def current_consumers():
         start, end = int(start, 16), int(end, 16)
         assert hashlib.sha256(raw(start, end - start)).hexdigest() == digest
 
+    overrides = proof.get('runtime_overrides')
+    if overrides:
+        def check_call(site, target):
+            site = int(site, 16)
+            ins = next(decoder.disasm(raw(site, 5), site))
+            assert ins.mnemonic == 'call' and ins.operands[0].type == CS_OP_IMM, hex(site)
+            assert ins.operands[0].imm == int(target, 16), hex(site)
+
+        for site, target in overrides['call_edges']:
+            check_call(site, target)
+        for site in overrides['writer_call_sites']:
+            check_call(site, overrides['writer'])
+        for path, producer, reader, digest in overrides['binding_paths']:
+            for address in (producer, reader):
+                assert raw(int(address, 16), len(path)) == path.encode(), path
+            data = member(path)
+            assert hashlib.sha256(data).hexdigest() == digest, path
+            assert b'AZS_OPENLEVELS' not in data, path
+
+        operands = overrides['binding_operands']
+        for name, expected in (('command', b'AZS_OPENLEVELS'), ('key', b'Y'),
+                               ('default_format', b'\x07\r\nbind \xc0\x01 \xc0\x02\r\n\0')):
+            assert raw(int(operands[name], 16), len(expected)) == expected
+
+        voices, rows, fields, stride = dbc('CreatureSoundData')
+        assert fields >= 7 and stride >= fields * 4
+        assert [struct.unpack_from('<I', voices, 20 + i * stride)[0] for i in range(rows)
+                if struct.unpack_from('<I', voices, 20 + i * stride + 24)[0] == 8449] == [2068]
+        print(f"Verified {len(overrides['writer_call_sites'])} resource override writer sites, "
+              f"{len(overrides['binding_paths'])} binding members and the creature voice input")
+
     maps, map_count, fields, stride = dbc('Map')
     assert fields > 38 and stride == fields * 4
     loading_id = {
