@@ -123,14 +123,14 @@ def current_consumers():
         start, end = int(start, 16), int(end, 16)
         assert hashlib.sha256(raw(start, end - start)).hexdigest() == digest
 
+    def check_call(site, target):
+        site = int(site, 16)
+        ins = next(decoder.disasm(raw(site, 5), site))
+        assert ins.mnemonic == 'call' and ins.operands[0].type == CS_OP_IMM, hex(site)
+        assert ins.operands[0].imm == int(target, 16), hex(site)
+
     overrides = proof.get('runtime_overrides')
     if overrides:
-        def check_call(site, target):
-            site = int(site, 16)
-            ins = next(decoder.disasm(raw(site, 5), site))
-            assert ins.mnemonic == 'call' and ins.operands[0].type == CS_OP_IMM, hex(site)
-            assert ins.operands[0].imm == int(target, 16), hex(site)
-
         for site, target in overrides['call_edges']:
             check_call(site, target)
         for site in overrides['writer_call_sites']:
@@ -182,8 +182,26 @@ def current_consumers():
     for path in proof['dynamic_art_examples']:
         assert member(path)[:4] == b'BLP2'
 
+    for art in proof.get('progression_art', []):
+        path = art['path']
+        uri = ('mpq://' + path.lower().replace('\\', '/')).encode()
+        assert raw(int(art['uri_va'], 16), len(uri)) == uri
+        assert member(path)[:4] == b'BLP2'
+        check_call(art['load_call'], proof['progression_image_loader'])
+        check_call(art['publish_call'], art['publish_target'])
+
+    for path, descriptor, site in proof.get('creature_dbc_diagnostics', []):
+        descriptor, site = int(descriptor, 16), int(site, 16)
+        pointer, length = struct.unpack('<QQ', raw(descriptor, 16))
+        assert raw(pointer, length) == path.encode()
+        ins = next(decoder.disasm(raw(site, 7), site))
+        assert ins.mnemonic == 'lea' and ins.operands[1].mem.base == X86_REG_RIP
+        assert ins.address + ins.size + ins.operands[1].mem.disp == descriptor
+
     print(f"Verified {len(proof['dbc_readers'])} DBC member readers, {len(proof['builtin_ui'])} "
-          f"builtin UI payloads and {len(proof['loading_art'])} loading-art joins")
+          f"builtin UI payloads, {len(proof['loading_art'])} loading-art joins, "
+          f"{len(proof.get('progression_art', []))} progression-art consumers and "
+          f"{len(proof.get('creature_dbc_diagnostics', []))} creature DBC diagnostics")
 
 
 def legacy_consumers(args):

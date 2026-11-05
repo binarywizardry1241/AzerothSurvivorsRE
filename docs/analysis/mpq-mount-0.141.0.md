@@ -276,3 +276,39 @@ The expanded resource check validates nine exact override call sites, the
 binding member digests and the CreatureSoundData input in place. Rust syntax
 and the source call paths were checked. The authored binding regression,
 network delivery and live binding interaction remain unverified.
+
+## Progression images and creature table diagnostics
+
+`Q41-I01:resource_path:0` and `:4` begin four bytes into the original
+`mpq://` URI. The 0.141.0 instructions copy the complete 62-byte progression
+bar key and 56-byte dragon key into the same typed image loader at
+`0x1400d65b0`. Both BLP2 members resolve in `patch.MPQ`.
+
+| Image | Native loader and consumer | Connected source |
+| --- | --- | --- |
+| Progression bar | `0x1402cc4e5` returns the handle into `[rbp+0x1b8]`. The following block moves it into the image node, tests the fill fraction against `1.0`, selects green `(0.55, 1.0, 0.45)` or gold `(1.0, 0.78, 0.30)`, and submits the bundle at `0x1402cc5b6`. | [`progression::load_art` and `bar_flow`](../../crates/azeroth-survivors-re/src/progression.rs) use the same image and full/partial colors. [#103](../verification-needed.md#gap-103). |
+| Achievement dragon | A two-entry false/true loop calls `0x140344cf0`, copies the handle into the bundle, and submits at `0x140344e9b`. The native image fields use alternate horizontal flip, alpha `0.85`, alternate side inset `18`, top `30`, and dimensions `84 × 84`. | [`progression::load_art`](../../crates/azeroth-survivors-re/src/progression.rs) supplies the handle used by [`achievements_sidebar::draw`](../../crates/azeroth-survivors-re/src/progression/achievements_sidebar.rs), with the same loop, image fields, and placement. [#104](../verification-needed.md#gap-104). |
+
+`Q41-I01:resource_path:285..288` belong to the shared creature catalog.
+Their four relocated pointer/length pairs at `0x147b6ebf8`, `0x147b6ec30`,
+`0x147b6ec68`, and `0x147b6eca8` go to the failed-read diagnostic paths.
+For CreatureSoundData, the successful read at `0x146236bb9` uses a separate
+copy of the key at `0x147b707ec`. The `-1` sentinel branches at
+`0x146236bcb` to a `reading` formatter that takes the descriptor and its
+slice-display callback. The successful branch supplies the schema and
+parse label to `0x1462e21a0` at `0x146236c20`. The shared
+[`creatures.rs`](../../crates/benilla-formats/src/creatures.rs) loader uses
+this table for row-ID validation, separate from the AS death-sound
+override and playback path under [#182](../verification-needed.md#gap-182).
+
+Three Ghidra raw-slice receipts corroborate the original PE operand and
+call-site checks. The [resource proof](evidence/0.141.0/resource-consumers.json)
+binds their spans to the installed image and records the URI, publication
+edges, and diagnostic descriptor uses. The existing resource checker
+replays these bindings and checks both image members in place.
+
+| Slice entry | Evidence ID | Result SHA-256 |
+| --- | --- | --- |
+| `0x1402cbf70` | `ev_45e28ad6619250f89dae5da2b9e03e3bc3266aa181cf41f068ff510c0c50b868` | `4347a4883ebcdcc820fe491069777403b2fac62764f7c6ad9d3e6516aede9720` |
+| `0x1403449e0` | `ev_d453e274977ab9d7e571b7eb12ab1b8d75c870ca9a919d412da5c38a675bb963` | `c0e8caca029619255922bc07d436bf1dbfb19925495d195aa0635181e26e37f0` |
+| `0x146235580` | `ev_43c4c83fd6652f773f53faa3cbb76ce85d375f81409f8028e3d177caa0596d6e` | `dd91e7bc1f69eebccd9752d78d881b15262b5beef943ed70c72f65407e034d6e` |
