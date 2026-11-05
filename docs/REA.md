@@ -395,6 +395,12 @@ assigns unwind extents as bodies or treats code-only destinations as functions.
 The legacy launcher hook remains inert outside its explicitly selected profiles;
 historical executions retain their original tooling and limits.
 
+To replay an expanded census after a fresh scan has updated the current
+complement inventory, pass `--complement-inventory <retained-inventory>` to
+`scripts/summarize-native-image.py`. The verifier requires the original
+inventory digest from the frozen plan. Keep the current inventory available to
+other readers while verifying the saved census against its own seed input.
+
 ```sh
 python3 -B scripts/repair-rea-reference-input.py --apply
 python3 -B scripts/repair-rea-native-census.py --apply

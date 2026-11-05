@@ -111,7 +111,15 @@ def verify_pointer_seeds(plan,target,pe,module,selection,expected_seeds,declared
     return {value for value in expected_seeds if value in declared or not owned(value)}|pointer_starts
 
 
-def summarize(directory,target,check_instructions=True,*,publish=False,artifact_directory=None):
+def complement_seed_targets(commitment, alternate=None):
+    database = project_path(alternate or commitment['path'])
+    if file_sha256(database) != commitment['sha256']:
+        raise ValueError('Complement seed inventory differs')
+    with open_native_inventory(database.as_uri() + '?mode=ro', uri=True) as connection:
+        return {row[0] for row in connection.execute('select distinct target from seeds')}
+
+
+def summarize(directory,target,check_instructions=True,*,publish=False,artifact_directory=None,complement_inventory=None):
     artifact_directory=project_path(artifact_directory) if artifact_directory else directory
     if not artifact_directory.is_relative_to(ROOT/'runtime'):raise ValueError('Census derivatives must stay inside runtime/')
     plan=load_json(directory/'plan.json');progress=load_json(directory/'progress.json')
@@ -135,10 +143,9 @@ def summarize(directory,target,check_instructions=True,*,publish=False,artifact_
     scope=plan.get('seed_scope','declared')
     expected_seeds=expected.copy() if scope not in ('complement','pointers') else set()
     if scope in ('all','complement'):
-        complement=plan['complement_inventory'];database=project_path(complement['path'])
-        if file_sha256(database)!=complement['sha256']:raise ValueError('Complement seed inventory differs')
-        with open_native_inventory(f'file:{database}?mode=ro',uri=True) as connection:
-            expected_seeds.update(row[0] for row in connection.execute('select distinct target from seeds'))
+        expected_seeds.update(complement_seed_targets(plan['complement_inventory'], complement_inventory))
+    elif complement_inventory is not None:
+        raise ValueError('Census plan has no complement seed inventory')
     if scope in ('all','pointers'):
         selection_spec=importlib.util.spec_from_file_location('census_pointer_selection',ROOT/'scripts/census-native-image.py')
         selection=importlib.util.module_from_spec(selection_spec);selection_spec.loader.exec_module(selection)
@@ -370,10 +377,12 @@ def summarize(directory,target,check_instructions=True,*,publish=False,artifact_
 
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--input');parser.add_argument('--write',action='store_true');parser.add_argument('--skip-instruction-check',action='store_true');parser.add_argument('--summary-output');parser.add_argument('--artifact-directory',help='Fresh runtime directory for verifier derivatives; preserves the native census bundle');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--input');parser.add_argument('--write',action='store_true');parser.add_argument('--skip-instruction-check',action='store_true');parser.add_argument('--summary-output');parser.add_argument('--artifact-directory',help='Fresh runtime directory for verifier derivatives; preserves the native census bundle')
+    parser.add_argument('--complement-inventory', help='Alternate inventory path with the exact complement digest in the frozen plan')
+    args=parser.parse_args()
     target=latest_target();directory=project_path(args.input or f"runtime/coverage/{target['sha256']}/ghidra/full-image-durable")
     if args.write and args.skip_instruction_check:raise ValueError('Curated evidence requires all independent instruction checks')
-    report=summarize(directory,target,not args.skip_instruction_check,publish=args.write,artifact_directory=args.artifact_directory)
+    report=summarize(directory,target,not args.skip_instruction_check,publish=args.write,artifact_directory=args.artifact_directory,complement_inventory=args.complement_inventory)
     if args.write:
         name='full-image-census.json' if report['seed_scope']=='declared' else 'full-image-integrated.json' if report['seed_scope']=='all' else f"full-image-{report['seed_scope']}.json"
         output=artifact_path(args.summary_output or 'docs/analysis/coverage/'+name)

@@ -6,8 +6,10 @@ import unittest
 import hashlib
 import gzip
 import json
+import sqlite3
 import tempfile
 from types import SimpleNamespace
+from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 def module(name,path):
     spec=importlib.util.spec_from_file_location(name,ROOT/path)
@@ -63,13 +65,33 @@ class BulkCensus(unittest.TestCase):
             with self.assertRaises((ValueError,KeyError)):
                 summary.verify_pointer_seeds(plan,target,pe,helper,selection,{0x100},{0x100})
     def test_input_snapshot_rejects_changed_proof_before_seed_selection(self):
-        writes=[];destination=SimpleNamespace(write_bytes=writes.append)
+        destination=object()
         source=SimpleNamespace(read_bytes=lambda:b'changed proof')
-        with self.assertRaisesRegex(ValueError,'changed before immutable snapshot'):
-            selection.snapshot_input(source,destination,hashlib.sha256(b'original proof').hexdigest())
-        self.assertEqual(writes,[])
-        expected=hashlib.sha256(b'changed proof').hexdigest()
-        self.assertIs(selection.snapshot_input(source,destination,expected),destination);self.assertEqual(writes,[b'changed proof'])
+        with patch.object(selection, 'snapshot_bytes', return_value=destination) as snapshot:
+            with self.assertRaisesRegex(ValueError,'changed before immutable snapshot'):
+                selection.snapshot_input(source,destination,hashlib.sha256(b'original proof').hexdigest())
+            snapshot.assert_not_called()
+            expected=hashlib.sha256(b'changed proof').hexdigest()
+            self.assertIs(selection.snapshot_input(source,destination,expected),destination)
+            snapshot.assert_called_once_with(b'changed proof',destination)
+    def test_complement_replay_accepts_only_the_frozen_inventory_bytes(self):
+        with tempfile.TemporaryDirectory(dir=ROOT/'runtime',prefix='complement-census-fixture-') as name:
+            directory = Path(name)
+            original = directory / 'frozen.sqlite'
+            database = sqlite3.connect(original)
+            with database:
+                database.execute('create table seeds (target integer)')
+                database.executemany('insert into seeds values (?)', [(0x110,), (0x110,), (0x120,)])
+            database.close()
+            current = directory / 'current.sqlite'
+            current.write_bytes(original.read_bytes())
+            commitment = {'path': str(current), 'sha256': hashlib.sha256(original.read_bytes()).hexdigest()}
+            self.assertEqual(summary.complement_seed_targets(commitment), {0x110, 0x120})
+            current.write_bytes(b'fresh inventory')
+            with self.assertRaisesRegex(ValueError, 'Complement seed inventory differs'):
+                summary.complement_seed_targets(commitment)
+            self.assertEqual(summary.complement_seed_targets(commitment, original), {0x110, 0x120})
+            self.assertEqual(current.read_bytes(), b'fresh inventory')
     def test_body_ranges_are_inclusive_and_gaps_never_acquire_unwind_owners(self):
         owner=summary.owner_lookup([(0x100,0x10f,0x100),(0x120,0x12f,0x100),(0x150,0x151,0x150)])
         for site,expected in [(None,None),(0xff,None),(0x100,0x100),(0x10f,0x100),(0x110,None),(0x120,0x100),(0x12f,0x100),(0x150,0x150),(0x151,0x150),(0x152,None)]:
