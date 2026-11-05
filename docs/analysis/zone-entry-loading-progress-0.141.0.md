@@ -74,5 +74,54 @@ for the path helper and
 `728c4e31a041a78521932e44189bd7f054e3559a9f3ff4bf2bdebef104702141`
 for the cache/texture consumer. Their raw slice digests and current
 drive span are in the resource proof. The static resource checker reads
-the EXE and installed members in place. Native route selection, other
-hold interactions and rendered/runtime comparison remain open under #61.
+the EXE and installed members in place.
+
+## Cover wait and transport route
+
+The Windows raise helper at `0x1405f50b0` stores its fourth argument in
+the wait byte at `+0x115` and zeros the ready-frame counter and displayed
+fraction. World entry and transfer pending pass 1. A transport leg
+notification and an unannounced worldport pass 0. The cleared transfer arm
+at `0x140636554`, the active-screen worldport continuation at `0x140636950`,
+and the teleport notification at `0x140636b89` clear the wait. While it
+remains set, the fill path at `0x140637a1d` reuses the stored fraction.
+These branches correspond to `raise`, `snap_landed` and `far_snap` in the
+[cover driver](../../crates/benilla-app/src/loading_screen.rs).
+
+The transfer arm at `0x140636560` checks the optional transport fields,
+including a nonzero entry and a source map other than `u32::MAX`. It
+requests the leaving-map leg through `0x1406371db`. A successful route
+omits the art map. A failed route uses the destination map and clears the
+route. An ordinary transfer uses the destination map and skips updating
+the route slot. The leg notification calls the same constructor at
+`0x1406367ea` with the index selector and preserves the prior art map on
+failure. The source reaches `RouteLeg::Leaving` and `RouteLeg::Index`
+through these separate [route paths](../../crates/benilla-app/src/loading_screen/route.rs).
+
+The dismiss gate requires a nonempty world total, completed work at least
+equal to that total, scene readiness and three empty backlog fields.
+`0x140637cf7` checks the snap wait, the optional player settle flag,
+pipeline readiness and absence of pending entry UI. A failed readiness
+check resets the frame count at `0x140636fa3`. The successful branch calls
+the dismiss helper at `0x140637d5e` on the third consecutive ready frame.
+The rebuilt driver has the same frame gate and uses
+[`WorldLoadProgress`](../../crates/benilla-world/src/terrain_stream.rs) for
+world readiness. Offline admission also checks its active local-entry owner.
+
+| Native branch | File range (exclusive end) | SHA-256 of range |
+| --- | --- | --- |
+| Raise state writes | `0x5f44b0..0x5f4526` | `04f4b35dc32ad05cf38b8b5d851858a6665d49e4bc8c92c8f13030427133289c` |
+| Transfer selection and raise | `0x635919..0x635a9b` | `c2a25a93455207163f0a824fc838374867101a37e13370b8878aa027ca00d554` |
+| Leaving-map route result | `0x6365ad..0x6365f8` | `10fd23e713c393bf4319c39202d465e2b8987c16ab0d03b56ddcf21429a43620` |
+| Indexed route notification | `0x635b7b..0x635cab` | `5d3e5533c1c98a2d2d488362cce8584f4d0ebe5c5dfe38021e6488e1dae5b108` |
+| Worldport wait | `0x635d50..0x635f1d` | `e4becff457229128e21b0256b59c30365720baa90bca6de159da7562a7b03e83` |
+| Teleport wait | `0x635f1d..0x635f90` | `972e50de520dae146b2d50a52ccde831d1493d3c9390d1307e6eab16bdee2295` |
+| World readiness | `0x636347..0x6363ad` | `8cc9bfbece4934505a9a23dfee40eb4a71015049963495d0aefd4a447f074996` |
+| Readiness hold and dismiss | `0x6370f7..0x637163` | `9b76b4fd464cc04226f075a5cde64a4fd968bedc1e5ac719e73548e80b3ceaef` |
+
+Ghidra 12.1.4 examined the drive slice at file `0x635520..0x637318`,
+SHA-256 `061f74b22ead7e8016b107d62423b4532fd1f259332ce401f5a776d9c84e758b`.
+The evidence export carried the result after the inline response exceeded
+the transport limit. The original PE instructions establish the argument,
+state and branch boundaries above. Same-map frozen-frame presentation,
+live entry timing and rendered comparison remain under [#61](../verification-needed.md#gap-61).
