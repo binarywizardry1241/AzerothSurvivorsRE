@@ -13,6 +13,7 @@ mod addon_scalars;
 mod addon_summons;
 mod addon_timers;
 mod events;
+pub(super) use events::system_message;
 pub(super) mod creature_queries;
 mod framexml_hud;
 mod glue_strings;

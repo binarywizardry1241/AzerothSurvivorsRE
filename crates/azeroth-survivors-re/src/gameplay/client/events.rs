@@ -28,7 +28,7 @@ pub(super) fn install(app: &mut App) {
 
 fn position(value: Position) -> [f32;3] { [value.x,value.y,value.z] }
 
-fn system_message(text:String)->SessionEvent {
+pub(in crate::gameplay) fn system_message(text:String)->SessionEvent {
     SessionEvent::Chat(ChatMessage {chat_type:0x0a,language:0,
         sender_guid:0,target_guid:0,sender_name:None,channel:None,text,chat_tag:0})
 }

@@ -700,7 +700,7 @@ fn receive(
             NativeMessage::Lifecycle(LifecyclePacket::Synchronize) if !guest => {
                 if let Some(client) = client {
                     synchronize(client, &mut state, &mut runtime, &mut run, &bridge,
-                        &armory, &locale, &board, &units, local.active, &mut presentation);
+                        &armory, &locale, &catalog, &board, &units, local.active, &mut presentation);
                 }
             }
             message @ (NativeMessage::Lifecycle(LifecyclePacket::EngineCommand { .. })
@@ -1607,6 +1607,42 @@ fn bootstrap(
     }
 }
 
+fn guest_entry_notices(
+    hero: &NativeHero,
+    class: &str,
+    zone: &str,
+    catalog: &MenuCatalog,
+    locale: &crate::localization::Localization,
+) -> Vec<SessionEvent> {
+    use azeroth_survivors_re::loot_rewards::prose::Text;
+
+    let Some(race) = catalog
+        .races
+        .iter()
+        .find(|race| crate::menu::race_id_for(&race.key) == hero.race)
+    else {
+        return Vec::new();
+    };
+    let label = |key: &str| locale.label_for_language(key, &hero.bytes_30).to_owned();
+    let join = Text::Template {
+        key: "{hero} the {race} {class} joins the party in {zone}.".into(),
+        values: vec![
+            ("race".into(), Text::Literal(label(&format!("race.{}.name", race.key)))),
+            ("class".into(), Text::Literal(label(&format!("class.{class}.name")))),
+            ("zone".into(), Text::Literal(label(&format!("zone.{zone}.name")))),
+            ("hero".into(), Text::Literal(String::from_utf8_lossy(&hero.name).into_owned())),
+        ],
+    };
+    let mut notices = vec![client::system_message(join.render(&label))];
+    // The native Orc and Tauren descriptors carry two lines; the others carry three.
+    let bonus_count = if matches!(hero.race, 2 | 6) { 2 } else { 3 };
+    for index in 1..=bonus_count {
+        let text = label(&format!("race.{}.line{index}", race.key));
+        notices.push(client::system_message(format!("|cffffd100- {text}|r")));
+    }
+    notices
+}
+
 fn synchronize(
     client: ClientId,
     state: &mut CoopGame,
@@ -1615,6 +1651,7 @@ fn synchronize(
     bridge: &client::BridgeCatalog,
     armory: &crate::armory::ArmoryCatalog,
     locale: &crate::localization::Localization,
+    catalog: &MenuCatalog,
     board: &client::raid_targets::RaidTargets,
     units: &Query<(
         &LocalUnitVisual,
@@ -1624,7 +1661,7 @@ fn synchronize(
     local_active: bool,
     presentation: &mut LocalPresentationEvents,
 ) {
-    //145c2eaa7 rejects a repeat only after earlier application edges have run.
+    // Repeated Sync does not rebuild the initial stream or publish its notices.
     if !runtime.driver.as_ref().is_some_and(|driver| {
         driver
             .server
@@ -1645,7 +1682,7 @@ fn synchronize(
         return;
     };
     let zone = azeroth_survivors_re::coop::bootstrap::zone_environment(game.zone.key);
-    let result = (|| -> Result<Vec<EnginePacket>, String> {
+    let result = (|| -> Result<(Vec<EnginePacket>, Vec<EnginePacket>), String> {
         let guid = *state
             .admitted
             .get(&client)
@@ -1659,7 +1696,7 @@ fn synchronize(
         let display = creation
             .body_display(hero.race, hero.sex)
             .ok_or("MPQ body unavailable")?;
-        let (player, speed, known, learned, attack, inventory, fields) = game
+        let (player, speed, known, learned, attack, inventory, fields, notices) = game
             .with_party_hero(slot, |game| {
                 let player = client::player_ui(
                     game,
@@ -1694,6 +1731,7 @@ fn synchronize(
                     attack,
                     inventory,
                     fields,
+                    guest_entry_notices(&hero, game.class.key, game.zone.key, catalog, locale),
                 )
             })
             .ok_or("world hero missing")?;
@@ -1809,20 +1847,30 @@ fn synchronize(
         {
             packets.push(packet);
         }
-        packets.push(azeroth_survivors_re::coop::bootstrap::action_buttons(
+        let mut entry_packets = vec![azeroth_survivors_re::coop::bootstrap::action_buttons(
             &learned, attack,
-        ));
-        Ok(packets)
+        )];
+        for notice in notices {
+            if let Some(packet) = engine_packets::encode(&notice, Some(guid))
+                .map_err(|error| format!("entry notice: {error:?}"))?
+            {
+                entry_packets.push(packet);
+            }
+        }
+        Ok((packets, entry_packets))
     })();
 
     match result {
-        Ok(packets) => {
+        Ok((packets, entry_packets)) => {
             if runtime
                 .driver
                 .as_mut()
                 .is_some_and(|driver| driver.synchronize(client, packets))
             {
                 party_frames::fanout(runtime, game, local_active, presentation);
+                for packet in entry_packets {
+                    runtime.send(Some(client), packet.into_message());
+                }
             }
         }
         Err(error) => warn!("Co-op snapshot unavailable: {error}"),

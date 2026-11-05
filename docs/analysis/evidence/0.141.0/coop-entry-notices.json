@@ -1,0 +1,175 @@
+{
+  "target": {
+    "version": "0.141.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "size_bytes": 151493632
+  },
+  "ranges": [
+    {
+      "role": "sync_dispatch",
+      "start": "0x145ec7ded",
+      "end_exclusive": "0x145ec7e1b",
+      "file_offset": "0x5ec71ed",
+      "sha256": "a53ac620341852820d0d6d82d2703f66216273807027080d29d515d2279f546e"
+    },
+    {
+      "role": "sync_latch",
+      "start": "0x145ec803e",
+      "end_exclusive": "0x145ec8055",
+      "file_offset": "0x5ec743e",
+      "sha256": "60e5bcf16026ab83beea92948bc161909831225ed6f3bc5a65a5750066ef545e"
+    },
+    {
+      "role": "seated_notice_dispatch",
+      "start": "0x145ef7c5f",
+      "end_exclusive": "0x145ef7cc7",
+      "file_offset": "0x5ef705f",
+      "sha256": "46044e469a2632d5678767a05e9a0b4a00d2dc5eea9d107f6d6d0c744c337966"
+    },
+    {
+      "role": "notice_builder",
+      "start": "0x145e72810",
+      "end_exclusive": "0x145e73360",
+      "file_offset": "0x5e71c10",
+      "sha256": "a0210b48bc2e1255e6da1544fc3628878df22b322426bb87cacb463ae854d79a"
+    },
+    {
+      "role": "bonus_translation",
+      "start": "0x14605aae0",
+      "end_exclusive": "0x14605acbc",
+      "file_offset": "0x6059ee0",
+      "sha256": "84f72a6c204f58a913923e3c31fcacc94fc302e703cd4dacb2071bcfeab711a6"
+    },
+    {
+      "role": "system_chat_writer",
+      "start": "0x145fe1290",
+      "end_exclusive": "0x145fe1310",
+      "file_offset": "0x5fe0690",
+      "sha256": "8d97c3f220f642f4dad49d04b65b31ceaabc14900b1b48d7e911243efc7513f6"
+    },
+    {
+      "role": "owner_only_classifier",
+      "start": "0x145e90a80",
+      "end_exclusive": "0x145e90b49",
+      "file_offset": "0x5e8fe80",
+      "sha256": "067a5956858bf20ad6c1a756913bfd6554acbaf04edd2698229b03e7a9669bf7"
+    },
+    {
+      "role": "native_join_key",
+      "start": "0x147aeeb55",
+      "end_exclusive": "0x147aeeb89",
+      "file_offset": "0x7aed155",
+      "sha256": "e47017157fa905f1e4fc4aeb8832153bc698369b330120fb4bc793189d4e9245"
+    },
+    {
+      "role": "native_bonus_key",
+      "start": "0x147af9e00",
+      "end_exclusive": "0x147af9e0f",
+      "file_offset": "0x7af8400",
+      "sha256": "455155ae440acc9f46338f3f9bbb677066db78d5f000ebd27589f3ac299d65e7"
+    },
+    {
+      "role": "race_table",
+      "start": "0x147af2cb0",
+      "end_exclusive": "0x147af2ce8",
+      "file_offset": "0x7af12b0",
+      "sha256": "374c5319d55df2a4d973cb1c20611fe1b35a1964a38eaf318d23d1a07e32a6f8"
+    }
+  ],
+  "anchors": [
+    {
+      "site": "0x145ec7dfe",
+      "mnemonic": "call",
+      "operands": "0x145ef7560"
+    },
+    {
+      "site": "0x145ec7e16",
+      "mnemonic": "call",
+      "operands": "0x145fdf3e0"
+    },
+    {
+      "site": "0x145ec8050",
+      "mnemonic": "call",
+      "operands": "0x145ec8500"
+    },
+    {
+      "site": "0x145ef7c69",
+      "mnemonic": "call",
+      "operands": "0x145f375e0"
+    },
+    {
+      "site": "0x145ef7c83",
+      "mnemonic": "mov",
+      "operands": "rdx, qword ptr [rsi + 0x408]"
+    },
+    {
+      "site": "0x145ef7c94",
+      "mnemonic": "call",
+      "operands": "0x145e72810"
+    },
+    {
+      "site": "0x145ef7ca4",
+      "mnemonic": "call",
+      "operands": "0x145f13830"
+    },
+    {
+      "site": "0x145e72957",
+      "mnemonic": "call",
+      "operands": "0x145fc0e60"
+    },
+    {
+      "site": "0x145e730c4",
+      "mnemonic": "call",
+      "operands": "0x145fe1290"
+    },
+    {
+      "site": "0x145e73143",
+      "mnemonic": "call",
+      "operands": "0x145db6370"
+    },
+    {
+      "site": "0x145e73208",
+      "mnemonic": "call",
+      "operands": "0x145fe1290"
+    },
+    {
+      "site": "0x14605ac6e",
+      "mnemonic": "call",
+      "operands": "0x145e788b0"
+    },
+    {
+      "site": "0x145fe12d5",
+      "mnemonic": "mov",
+      "operands": "byte ptr [rax], 0xa"
+    },
+    {
+      "site": "0x145fe12e4",
+      "mnemonic": "mov",
+      "operands": "word ptr [rbp - 0x38], 0x96"
+    },
+    {
+      "site": "0x145e90b34",
+      "mnemonic": "test",
+      "operands": "al, 0xfb"
+    }
+  ],
+  "query": {
+    "role": "notice_builder",
+    "evidence_id": "ev_609b20936acdf5e091bdba7e95b1282daffd7d4669f376bfa2d8a7b00506ba64",
+    "result_sha256": "76bc88bb775059abd8919d54f2f2c2ee717e29dd2dd97d7f3f4556af4417cdf3"
+  },
+  "human_descriptor": "0x1473a1960",
+  "race_keys": [
+    "human",
+    "orc",
+    "dwarf",
+    "nightelf",
+    "scourge",
+    "tauren",
+    "gnome",
+    "troll"
+  ],
+  "compiled": false,
+  "target_executed": false
+}

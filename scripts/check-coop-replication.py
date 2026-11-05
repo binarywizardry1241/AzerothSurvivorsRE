@@ -15,6 +15,7 @@ SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 MANIFEST = ROOT / 'docs/analysis/evidence/0.115.0/coop-replication/manifest.json'
 GUEST_SPELL_ROWS = ROOT / 'docs/analysis/evidence/0.141.0/coop-guest-spell-rows.json'
 PROTOCOL_13 = ROOT / 'docs/analysis/evidence/0.141.0/coop-replication.json'
+ENTRY_NOTICES = ROOT / 'docs/analysis/evidence/0.141.0/coop-entry-notices.json'
 SETTLEMENT = ROOT / 'docs/analysis/evidence/0.141.0/party-achievement-settlement.json'
 
 
@@ -591,13 +592,74 @@ def check_protocol_13():
           f'{replay.instructions} native steps and source route checks')
 
 
+def check_entry_notices():
+    from capstone import Cs, CS_ARCH_X86, CS_MODE_64
+
+    proof, data, pe, ranges = installed_ranges(ENTRY_NOTICES)
+    replay = NativeReplay(data, pe)
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    for row in proof['anchors']:
+        site = int(row['site'], 16)
+        instruction, = decoder.disasm(replay.raw(site, 15), site, count=1)
+        assert (instruction.mnemonic, instruction.op_str) == (row['mnemonic'], row['operands'])
+
+    join = replay.raw(ranges['native_join_key'][0], 52).decode()
+    assert join == '{hero} the {race} {class} joins the party in {zone}.'
+    assert replay.raw(ranges['native_bonus_key'][0], 15) == b'\x05race.\xc0\x05.line\xc0\x00'
+    table = replay.get(ranges['race_table'][0], '<7Q')
+    catalogs = [json.loads(path.read_text()) for path in sorted(
+        (ROOT / 'crates/azeroth-survivors-re/assets/locales').glob('*.json'))]
+    english = json.loads((ROOT / 'crates/azeroth-survivors-re/assets/locales/en.json').read_text())
+    bonus_count = 0
+    for key, descriptor in zip(proof['race_keys'], (int(proof['human_descriptor'], 16), *table), strict=True):
+        token, token_length, rows, count = struct.unpack('<4Q', replay.raw(descriptor + 0x10, 16) +
+                                                        replay.raw(descriptor + 0x40, 16))
+        assert replay.raw(token, token_length).decode().lower() == key
+        assert count == (2 if key in {'orc', 'tauren'} else 3)
+        for index in range(count):
+            start, length = struct.unpack('<2Q', replay.raw(rows + index * 16, 16))
+            label = f'race.{key}.line{index + 1}'
+            assert replay.raw(start, length).decode() == '- ' + english[label]
+            assert all(label in catalog and join in catalog for catalog in catalogs)
+        bonus_count += count
+
+    classifier = ranges['owner_only_classifier']
+    for kind in [None, *range(256)]:
+        replay.reset('entry-notice-recipient', [classifier], [replay.done])
+        payload = replay.app + 0x100
+        replay.put(replay.app + 8, '<QQH', payload, int(kind is not None), 0x96)
+        if kind is not None:
+            replay.put(payload, '<B', kind)
+        replay.machine.reg_write(replay.registers.UC_X86_REG_RCX, replay.app)
+        replay.run(classifier[0])
+        assert replay.machine.reg_read(replay.registers.UC_X86_REG_RAX) & 0xff == (kind in (6, 10))
+
+    game = (ROOT / 'crates/azeroth-survivors-re/src/gameplay/coop.rs').read_text()
+    builder = game.split('fn guest_entry_notices(', 1)[1].split('fn synchronize(', 1)[0]
+    assert join in builder and 'locale.label_for_language(key, &hero.bytes_30)' in builder
+    assert 'matches!(hero.race, 2 | 6)' in builder and '|cffffd100- {text}|r' in builder
+    sync = game.split('fn synchronize(', 1)[1].split('fn unit_create(', 1)[0]
+    assert 'guest_entry_notices(&hero, game.class.key, game.zone.key, catalog, locale)' in sync
+    assert sync.index('bootstrap::action_buttons(') < sync.index('for notice in notices')
+    assert sync.index('driver.synchronize(client, packets)') < sync.index('party_frames::fanout(')
+    assert sync.index('party_frames::fanout(') < sync.index('runtime.send(Some(client), packet.into_message())')
+    print(f'PASS: {len(ranges)} PE ranges, {len(proof["anchors"])} instruction anchors, '
+          f'{bonus_count} native racial lines and 257 private-chat cases across '
+          f'{replay.instructions} instruction steps, plus source route checks')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--guest-spell-rows', action='store_true',
                         help='check current guest tag 11 and tag 12 admission')
     parser.add_argument('--protocol-13', action='store_true',
                         help='check 0.141.0 State15 cadence and Control8 wire')
+    parser.add_argument('--entry-notices', action='store_true',
+                        help='check 0.141.0 localized guest entry messages')
     args = parser.parse_args()
+    if args.entry_notices:
+        check_entry_notices()
+        return
     if args.protocol_13:
         check_protocol_13()
         return

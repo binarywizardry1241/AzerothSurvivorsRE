@@ -174,6 +174,40 @@ The local stock login bridge,
 world and body startup, initial engine packet delivery, and rapid
 restart remain to be verified in execution.
 
+### Localized guest entry notices
+
+The host's Sync callback at `0x145ec7dfe` calls `0x145ef7560` with
+the assigned actor index before appending the raid targets to the immediate
+snapshot. The positive actor branch seats that hero at `0x145ef7c69` and
+passes the seated language bytes at Game `+0x400/+0x408` to
+`0x145e72810`. That builder queues the action buttons first, sets a scoped
+locale for its text, and formats the join sentence from the admitted hero
+name and the localized race, class and zone names. The following lines
+come from the race descriptor's 16-byte string rows at `+0x40/+0x48`.
+The 22 shipped lines use `race.<key>.line<N>` and the format
+`|cffffd100- <line>|r`. Orc and Tauren carry two lines each. The other
+six races carry three.
+
+The writer at `0x145fe1290` emits opcode `0x96` with system type
+`0x0a`, universal language and a zero sender. The seated helper drains
+the entries with the actor index at `0x145ef7ca4`. The host poll applies
+the owner-only rule at `0x145eaab4f` before the delivery call. The
+snapshot's Engine7 append and synchronization latch precede party metadata
+refresh and the later seated-queue drain.
+
+The [rebuilt synchronization](../../crates/azeroth-survivors-re/src/gameplay/coop.rs)
+now sends the admitted guest the action buttons followed by the join and
+racial lines after the initial snapshot and party frames. It uses the
+guest's language through the existing locale catalogs and the shared
+system-chat encoder. The existing synchronization gate suppresses the
+publication on repeated or refused requests.
+
+The [proof](evidence/0.141.0/coop-entry-notices.json) binds the bounded
+Ghidra query to the 2,896-byte installed PE slice and checks 10 ranges,
+15 instruction anchors, all 22 native race lines and 257 recipient
+classifier cases. Rust syntax parsing passed. Packet delivery and the
+FrameXML chat display remain in [#203 verification](../verification-needed.md#gap-203).
+
 ## HUD10 host cadence
 
 The host loads the f64 0.2-second period at `0x145ea8cd5`. It compares
