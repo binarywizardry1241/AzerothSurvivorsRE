@@ -845,6 +845,11 @@ fn number_string(value: f32) -> String {
     if text == "-0" { "0".into() } else { text.into() }
 }
 
+fn checkbox_enabled(value: Option<&str>) -> bool {
+    // Native click and draw compare the cached string with the single byte '0'.
+    value.is_some_and(|value| !value.is_empty() && value != "0")
+}
+
 fn slider_string(row: &Definition, displayed: f32) -> String {
     let value = number_string(displayed);
     if row.storage == 3 {
@@ -1107,11 +1112,7 @@ fn input(
             }
             Action::Toggle(index) => {
                 let row = &defs.rows[index];
-                let enabled = state
-                    .value(row)
-                    .and_then(|v| v.parse::<f32>().ok())
-                    .unwrap_or(0.0)
-                    != 0.0;
+                let enabled = checkbox_enabled(state.value(row));
                 state.set(row, if enabled { "0" } else { "1" }.into());
             }
             Action::Choice(index, choice) => state.set(
@@ -2124,11 +2125,8 @@ fn rebuild(
                                                 let value = state.value(row);
                                                 match row.control {
                                                     5 => {
-                                                        let checked = (value
-                                                            .and_then(|v| v.parse::<f32>().ok())
-                                                            .unwrap_or(0.0)
-                                                            != 0.0)
-                                                            ^ row.inverted;
+                                                        let checked =
+                                                            checkbox_enabled(value) ^ row.inverted;
                                                         line.spawn((
                                                             Button,
                                                             Action::Toggle(index),
@@ -2461,6 +2459,16 @@ fn save_on_exit(mut state: ResMut<OptionsState>, mut exits: MessageReader<AppExi
 #[cfg(test)]
 mod persistence_tests {
     use super::*;
+
+    #[test]
+    fn checkbox_checks_the_cached_string_without_numeric_normalization() {
+        for value in [None, Some(""), Some("0")] {
+            assert!(!checkbox_enabled(value), "{value:?}");
+        }
+        for value in ["1", "0.0", "-0", "0e0", " 0 ", "value"] {
+            assert!(checkbox_enabled(Some(value)), "{value:?}");
+        }
+    }
 
     fn isolated_options() -> OptionsState {
         let defs = Definitions::embedded();
