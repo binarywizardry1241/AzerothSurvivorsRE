@@ -18,7 +18,7 @@
     "parity_certified_systems": 0,
     "custom_paths_with_partial_source_mapping": 83,
     "custom_paths_without_reviewed_native_source_mapping": 0,
-    "custom_paths_with_registered_current_bounded_contract": 30
+    "custom_paths_with_registered_current_bounded_contract": 38
   },
   "review_basis": "0.141.0 whole-file PE, diagnostic, linear, complement and installed Data inventories. Independently verified declared, expanded and guarded Ghidra passes. Current bounded registrations, pending correspondence and earlier source recovery keep distinct evidence.",
   "status_rules": {
@@ -13055,6 +13055,24 @@
     },
     {
       "id": "custom-app-screens-picker",
+      "gap_323_source_review_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 323,
+        "source_status": "connected",
+        "scope": "Zone card flex and clipping, localized enemy and boss previews, loading art and Enter footer highlight.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/picker.rs",
+          "crates/azeroth-survivors-re/src/menu.rs",
+          "crates/azeroth-survivors-re/src/catalog.rs",
+          "crates/azeroth-survivors-re/src/localization.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/native-interface-correspondence-0.141.0.md"
+        ],
+        "static_validation": "verified_native_card_layout_preview_fields_and_sweep_with_rust_2021_syntax",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "gap_321_source_review_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 321,
@@ -13201,7 +13219,8 @@
         "docs/analysis/evidence/0.139.1/source-frontier.json",
         "docs/analysis/native-census-0.139.1.md",
         "docs/analysis/evidence/0.139.1/switch-context-source-review.json",
-        "docs/analysis/switch-context-source-review-0.139.1.md"
+        "docs/analysis/switch-context-source-review-0.139.1.md",
+        "docs/analysis/native-interface-correspondence-0.141.0.md"
       ],
       "gap_ids": [
         1,
@@ -13223,7 +13242,8 @@
         294,
         295,
         305,
-        321
+        321,
+        323
       ],
       "recovery": {
         "status": "partial",
@@ -77890,6 +77910,7 @@
       "validity": "current_bounded_selected_native_interface_contract",
       "system_ids": [
         "custom-app-screens-coop",
+        "custom-app-screens-picker",
         "custom-app-screens-localclock",
         "custom-app-screens-recap",
         "custom-game-server-party-readycheck",
@@ -77897,6 +77918,7 @@
       ],
       "bounded_contract_system_ids": [
         "custom-app-screens-coop",
+        "custom-app-screens-picker",
         "custom-app-screens-localclock",
         "custom-app-screens-recap",
         "custom-game-server-party-readycheck",
@@ -77904,6 +77926,7 @@
       ],
       "bounded_contract_owner_scopes": {
         "custom-app-screens-coop": "Picker footer control and pre-party Lobbies, Host and Join by code layout, directory card projection and visibility selection. Compilation and visual/input parity remain unverified.",
+        "custom-app-screens-picker": "Zone card flex and clipping, ordered enemy preview, timed boss chips, solo footer caption and clipped Enter highlight from the 0.141.0 picker constructors. Rendering and interaction remain unverified.",
         "custom-app-screens-localclock": "Exact AZS_NativeLocalTime registration and callback reads of Windows local hour/minute, English format and noon boundary.",
         "custom-app-screens-recap": "Nested recap/killer fields, generation and open-state reads. All 1,279 renderer boundaries and address-normalized bytes match the 0.140.0 extent; selected list and avoidable-percentage gates reach live source.",
         "custom-game-server-party-readycheck": "First valid unanswered peer response mutation, phase/identity/row gates and exact response byte write.",

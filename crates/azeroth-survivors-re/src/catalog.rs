@@ -137,10 +137,6 @@ pub struct ZoneDef {
     /// Original loading-screen basename from the zone definition.
     pub icon: String,
     pub blurb: String,
-    pub enemies: Vec<String>,
-    /// Native enemy entity IDs bound to the embedded locale keys.
-    #[serde(default)]
-    pub enemy_keys: Vec<String>,
     pub bosses: Vec<ZoneBoss>,
 }
 

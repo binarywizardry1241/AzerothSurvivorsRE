@@ -14,6 +14,9 @@ pub(crate) struct ZoneList;
 #[derive(Component)]
 pub(crate) struct ChosenZone;
 
+#[derive(Component)]
+pub(crate) struct EnterSweep;
+
 /// Native content invalidation excludes name-only edits from rebuilding
 /// the picker and requesting selected-zone visibility. Other Pick fields,
 /// entering and the Save change tick retain their structural invalidation.
@@ -1069,6 +1072,25 @@ fn zone_dots(ui: &mut ChildSpawnerCommands, index: usize, count: usize) {
         }
     });
 }
+
+fn zone_enemies(catalog: &MenuCatalog, key: &str) -> String {
+    use azeroth_survivors_re::enemies::catalog::ZoneDefinition;
+
+    // 0.141.0 140026ac0 skips flag-1 enemies when building the picker preview.
+    ZoneDefinition::by_key(key)
+        .into_iter()
+        .flat_map(|zone| zone.enemies)
+        .filter(|enemy| enemy.flag_4c != 1)
+        .map(|enemy| {
+            catalog
+                .labels
+                .get(&format!("enemy.{}", enemy.id))
+                .map_or(enemy.name, String::as_str)
+        })
+        .collect::<Vec<_>>()
+        .join(", ")
+}
+
 fn zones(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, state: &MenuState) {
     section(ui, art, catalog.label("picker.zone"));
     // 0.97.2 24bddf: bounded row, then a Kept ZoneList and shared scrollbar.
@@ -1105,6 +1127,8 @@ fn zones(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, st
                             Node {
                                 width: Val::Percent(100.),
                                 min_height: Val::Px(if selected { 0. } else { 38. }),
+                                // 0.141.0 1403aa82d: the scroll viewport owns height overflow.
+                                flex_shrink: 0.,
                                 overflow: Overflow::hidden(),
                                 ..column(0.)
                             },
@@ -1203,7 +1227,14 @@ fn zones(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, st
                                         false,
                                     );
                                     text(content, art, &zone.blurb, 13., PAPER, false);
-                                    text(content, art, zone.enemies.join(", "), 12., MUTED, false);
+                                    text(
+                                        content,
+                                        art,
+                                        zone_enemies(catalog, &zone.key),
+                                        12.,
+                                        MUTED,
+                                        false,
+                                    );
                                     // 20f910: wrapping boss row with top margin3, gaps5/4;
                                     // each native chip has padding7/1, border1 and radius10.
                                     content
@@ -1215,8 +1246,8 @@ fn zones(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, st
                                             ..default()
                                         })
                                         .with_children(|bosses| {
-                                            for boss in &zone.bosses {
-                                                let final_boss = boss.name == zone.boss;
+                                            for (index, boss) in zone.bosses.iter().enumerate() {
+                                                let final_boss = index + 1 == zone.bosses.len();
                                                 let border_color = if final_boss {
                                                     Color::srgb(1., 0.604, 0.165)
                                                 } else {
@@ -1324,6 +1355,22 @@ fn zones(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, st
         crate::scrollbar::spawn(scroll_row, list, 1., crate::scrollbar::InputScope::Picker);
     });
 }
+
+// 0.141.0 140148070 updates the strip from the elapsed menu clock.
+pub(crate) fn animate_enter_sweep(time: Res<Time>, mut sweeps: Query<&mut Node, With<EnterSweep>>) {
+    let phase = (time.elapsed_secs() / 3.2).fract();
+    let left = Val::Px(if phase < 0.55 {
+        -200.
+    } else {
+        ((phase - 0.55) / 0.45) * 900. - 200.
+    });
+    for mut sweep in &mut sweeps {
+        if sweep.left != left {
+            sweep.left = left;
+        }
+    }
+}
+
 fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, state: &MenuState,
     waiting_for_players: bool) {
     let zone = &catalog.zones[state.zone];
@@ -1400,6 +1447,7 @@ fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, s
                             bottom: Val::Px(9.),
                         },
                         align_items: AlignItems::Center,
+                        overflow: Overflow::hidden(),
                         ..column(0.)
                     },
                     2.,
@@ -1409,6 +1457,27 @@ fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, s
                 true,
                 waiting_for_players,
                 |button| {
+                    // 0.141.0 1403a7c1a–1403a7f37: a clipped gradient child behind the text.
+                    button.spawn((
+                        EnterSweep,
+                        Node {
+                            position_type: PositionType::Absolute,
+                            left: Val::Px(-200.),
+                            top: Val::Px(0.),
+                            bottom: Val::Px(0.),
+                            width: Val::Px(120.),
+                            ..default()
+                        },
+                        BackgroundGradient::from(LinearGradient {
+                            angle: std::f32::consts::FRAC_PI_2,
+                            stops: vec![
+                                Color::NONE.into(),
+                                Color::linear_rgba(1., 0.9, 0.63, 0.3).into(),
+                                Color::NONE.into(),
+                            ],
+                            ..default()
+                        }),
+                    ));
                     text(
                         button,
                         art,

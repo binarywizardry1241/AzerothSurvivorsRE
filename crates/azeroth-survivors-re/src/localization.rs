@@ -223,11 +223,6 @@ impl Localization {
             zone.name = self.label(&format!("zone.{}.name", zone.key)).into();
             zone.subtitle = self.label(&format!("zone.{}.subtitle", zone.key)).into();
             zone.blurb = self.label(&format!("zone.{}.blurb", zone.key)).into();
-            for (enemy, key) in zone.enemies.iter_mut().zip(&zone.enemy_keys) {
-                if let Some(value) = self.lookup(key) {
-                    *enemy = value.to_owned();
-                }
-            }
             for boss in &mut zone.bosses {
                 if let Some(value) = self.lookup(&boss.key) {
                     boss.name = value.to_owned();

@@ -172,6 +172,65 @@ instruction boundaries, LLVM disassembly of the constructor ranges, and Rust
 syntax parsing and source tracing. Compilation and original/rebuilt rendering,
 input, scrollbar behavior and network operation remain unverified.
 
+## Zone cards and Enter highlight
+
+[Finding #323](../verification-needed.md#gap-323) binds the picker presentation
+to the installed 0.141.0 EXE, SHA-256
+`6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
+The [picker](../../crates/azeroth-survivors-re/src/picker.rs) already built the
+localized zone description, boss chips and loading art, but allowed each card
+to shrink inside the scroll viewport. The collapsed cards' 38px minimum leaves
+the expanded card, which has a 0px minimum, absorbing the shortage. Its hidden
+overflow can then cut off the description and schedule. Native
+`0x1403aa74a..0x1403aa8ad` writes the card Node at stack base `rbp+0x3b0`.
+The overflow store at `0x1403aa74a` is Hidden on both axes, while the store at
+`0x1403aa82d` sets `Node+352` (flex shrink) to zero for both branches. RE now
+keeps each card at its laid-out height and lets the outer viewport scroll.
+
+The selected-card constructor `0x1403b32e0` passes the ordered 80-byte enemy
+records to `0x140026ac0`, whose branches at `0x140026b00` and
+`0x140026b80` skip records with byte `+0x4c` equal to 1. RE now selects from the
+shared enemy definitions and looks up the same localized names by ID. The
+boss loop advances by 104 bytes, reads the time at `+0x50` and selects final
+colors from the flag at `+0x64`. All 13 current zone rows at `0x1473a06b8`
+agree with the source descriptions, art basenames, 158 enemy IDs and flags,
+and 65 boss names and times. Each final flag belongs to the last row, so RE
+uses position for the final chip independently of the translated name. The
+solo footer uses the localized subtitle and final boss with `picker.awaits`
+at `0x1403a84dd..0x1403a84f5`. This produces Edwin VanCleef at 16:00 for
+Elwynn Forest and Hakkar the Soulflayer at 18:00 for Gurubashi Arena.
+
+The native card image crop constants are at `0x1465c4f14..0x1465c4f24`.
+All 13 loading-screen members resolve to 512×512 BLP2 images in the verified
+[patch chain](mpq-mount-0.141.0.md). For Enter, the three vertical red stops at
+`0x1465c4eb0..0x1465c4ee0` match RE's existing gradient. The extra layer is a
+120px-wide absolute child with top and bottom zero, starting at left −200px.
+Its horizontal gradient has transparent edges and the middle stop
+`(1, .9, .63, .3)`. The native constructor clips it inside the button and
+spawns it before the text at `0x1403a7f37`. The updater at `0x140148070`
+uses the fractional part of elapsed seconds divided by 3.2. Before phase
+0.55 it places the strip at −200px, then uses
+`((phase - .55) / .45) * 900 - 200`. The rebuilt picker schedules the same
+update on its own gradient child.
+
+The five journaled Ghidra results below were checked against the original PE
+instructions and constants. Raw slices provide bounded bodies and omit
+external code and data. SHA-256 values identify the unmodified slices and
+their sealed results in the shared analysis store.
+
+| Owner (preferred VA) | File offset | Slice SHA-256 | Result SHA-256 |
+| --- | --- | --- | --- |
+| Footer `0x1403a7350` | `0x3a6750` | `e25919328f6719330c1f926086d51cae652bfaeade574c1da345643db031d564` | `3e627794b521ce700b75131a0b0ca8cc520445618de5e9b4d2651cf186b1ba5e` |
+| Zone list `0x1403a9df0` | `0x3a91f0` | `5fa24c621bc44dd75bc0e4093b9e4c46e94f75553a737f7dee176e43436cd404` | `88f7ebc35254b7b9eea8a75c2c9508ed0a692707849e094720f5bd90cccf0f25` |
+| Selected card `0x1403b32e0` | `0x3b26e0` | `3ed2371b49d4748118fea81e7444484ceb9b1ca5e0bd162ef5413a9f253b60ea` | `9f5d56a1c95fba325cfb89c3667be565c510ff83c6c7eb08c0fb5fdb6e489c8d` |
+| Enemy filter `0x140026ac0` | `0x25ec0` | `61938c119e46b1b865a738c385f82c81a8226e900f294932797a4786e20b403a` | `517c3da75d3a40d22d707b5fd6646d471d181ef1afdb8c4680ebb3519dfac8c4` |
+| Highlight updater `0x140148070` | `0x147470` | `5e1a781c1bb30df69e691a0d4d0de2cae4fbd00ff5378d1d7bdc36c5102522ff` | `6915ce9e4fde1271c0c00352a16cfc227ab61f23deea4e454502078130adea3c` |
+
+Static checks covered the registered Data chain and Rust 2021 syntax. Verify
+expanded and collapsed cards through the scroll viewport, wrapping of localized
+descriptions and boss chips, loaded art, and the footer subtitle and animated
+highlight at the same window size. Compilation and rendered comparison are open.
+
 ## Ready Check visibility and answer routing
 
 The modal owner calls `0x1400e49c0` with the current clock and the f32

@@ -103,6 +103,7 @@ impl Plugin for MenuPlugin {
                     rotate_preview.run_if(crate::update_ui::menu_input_enabled),
                     sync_preview,
                     rebuild,
+                    crate::picker::animate_enter_sweep,
                     paint,
                 )
                     .chain()

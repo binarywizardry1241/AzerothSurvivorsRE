@@ -23,7 +23,7 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "7d1fb76dac2e7d8f778ae97301800d0b4c30b292082487dd862bbcc20670ba91"
+      "sha256": "03e0dfc74b6064930d3786c7dad0fbbd38b482db49e81f6cd01e62cb14816088"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
@@ -39,7 +39,7 @@
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "f82ebb85bf21b5453ac3482f34783eba2173e6a0a6d7e38cf6bd48fcc776bd55"
+      "sha256": "a08284871352abb8725055cd5a79645044c1bf9f11804e7a2afd00d1c4eaddb6"
     },
     {
       "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
@@ -53,7 +53,7 @@
   "supporting_inputs": [
     {
       "path": "docs/analysis/coverage/native-ownership-classification.json",
-      "sha256": "5e392d64103c014e2a0ad114af1945f40d4aeb0787abf9a5de7c4ce6368f8745",
+      "sha256": "defc356ad350f10d8fbd1d6a8bd7f6ab881e0438d897b099698f6367f08fd265",
       "target": {
         "path": "installed-game/AzerothSurvivors.exe",
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
@@ -65,10 +65,10 @@
   ],
   "counts": {
     "custom_system_rows": 83,
-    "with_registered_current_evidence": 37,
-    "without_registered_current_evidence": 46,
-    "with_registered_current_bounded_contract": 37,
-    "without_registered_current_bounded_contract": 46,
+    "with_registered_current_evidence": 38,
+    "without_registered_current_evidence": 45,
+    "with_registered_current_bounded_contract": 38,
+    "without_registered_current_bounded_contract": 45,
     "without_source_correspondence": 0,
     "ownerless_native_location_references": 67,
     "paths_with_ownerless_native_location_references": 15,
@@ -1261,7 +1261,8 @@
         294,
         295,
         305,
-        321
+        321,
+        323
       ],
       "location_reference_count": 15,
       "location_body_owners": [
@@ -1276,10 +1277,14 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-picker]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": false,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/native-interface-correspondence-0.141.0.md": "Zone card flex and clipping, ordered enemy preview, timed boss chips, solo footer caption and clipped Enter highlight from the 0.141.0 picker constructors. Rendering and interaction remain unverified."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/native-interface-correspondence-0.141.0.md"
+      ]
     },
     {
       "id": "custom-app-screens-rewards",
@@ -7086,6 +7091,6 @@
   "parity_verified": false,
   "inventory": {
     "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/exe-connections.json",
-    "sha256": "ab76420a1e0aa2a85c55fabdc09321616e61b1beed200ec95c3c44403c600da0"
+    "sha256": "7db0d4b5b3d76115d7be5180ed335db25a5caca1388913a45791578fc30c6b39"
   }
 }
