@@ -1,5 +1,5 @@
 //! Scripted encounter marker rows and their independent warning clock.
-//! The current client decoder at 1400b29a0 shares the hzt clock, but keeps
+//! The 0.141.0 client decoder at 1400c1a30 shares the hzt clock, but keeps
 //! each scripted part separate from the older marker IDs.
 use azeroth_survivors_re::bosses::scripted_attack_geometry::Grid;
 use azeroth_survivors_re::raid_markers::{self as native, smooth};
@@ -32,12 +32,24 @@ pub(super) enum Shape {
         width: f32,
         span: [f32; 2],
     },
+    Rotor {
+        length: f32,
+        width: f32,
+        angles: [f32; 2],
+    },
+    Polygon(Vec<[f32; 2]>),
     Grid(Grid),
     Field {
         polygon: Vec<[f32; 2]>,
         square: [f32; 4],
         z_range: [f32; 2],
     },
+}
+
+pub(super) enum MovingFill {
+    Preview(f32),
+    Lead(f32),
+    Active(f32),
 }
 
 #[derive(Clone, Debug)]
@@ -114,6 +126,19 @@ impl Part {
                 width: number(&value["w"]),
                 span: [number(&value["dx"]), number(&value["dy"])],
             },
+            "rotor" => Shape::Rotor {
+                length: number(&value["len"]),
+                width: number(&value["w"]),
+                angles: [number(&value["a0"]), number(&value["a1"])],
+            },
+            "poly" => Shape::Polygon(
+                value["v"]
+                    .as_array()
+                    .map_or(&[][..], Vec::as_slice)
+                    .chunks_exact(2)
+                    .map(|point| [number(&point[0]), number(&point[1])])
+                    .collect(),
+            ),
             "grid" => {
                 let rows = u8::try_from(value["rows"].as_u64()?).ok()?;
                 let columns = u8::try_from(value["cols"].as_u64()?).ok()?;
@@ -247,6 +272,10 @@ impl Part {
         self.progress
     }
 
+    pub fn is_safe(&self) -> bool {
+        self.safe
+    }
+
     pub fn rectangle_marker(&self, length: f32, width: f32) -> native::Marker {
         self.marker(native::Shape::Line { length, width })
     }
@@ -278,8 +307,26 @@ impl Part {
             .then(|| self.marker(native::Shape::Circle { radius }))
     }
 
-    pub fn active_progress(&self, clock: f32) -> f32 {
-        ((clock - self.impact) / (self.end - self.impact).max(0.05)).clamp(0., 1.)
+    pub fn moving_fill(&self, clock: f32) -> Option<MovingFill> {
+        if self.safe || self.is_fading() {
+            return None;
+        }
+        if clock >= self.impact {
+            return (clock < self.end).then(|| {
+                let progress = (clock - self.impact) / (self.end - self.impact).max(0.05);
+                MovingFill::Active(progress.clamp(0., 1.))
+            });
+        }
+        if clock < self.fill_start {
+            return None;
+        }
+        let lead = ((self.impact - self.fill_start) * 0.5).min(1.);
+        let remaining = self.impact - clock;
+        Some(if remaining > lead {
+            MovingFill::Preview(((clock - self.fill_start) / 0.9).fract())
+        } else {
+            MovingFill::Lead(1. - remaining / lead)
+        })
     }
 
     /// Field paint remaps UV around the authored safe center as the danger
@@ -343,6 +390,8 @@ impl Part {
             5 => (0.25, 0.35, 0.),
             6 => (0.25, 0.6 * self.progress, 0.),
             7 => (0., 0.74, 0.),
+            8 => (0.35, 0.3, 0.15),
+            9 => (0.4, 0.8, 0.4),
             _ => (0., 0., 0.),
         };
         let rgb = self
@@ -455,5 +504,40 @@ impl Markers {
         self.parts
             .retain(|row| row.fade_end.is_none_or(|end| end > now));
         clock
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use serde_json::json;
+
+    #[test]
+    fn atk_decodes_polygon_pairs_and_rotor_warning_phases() {
+        let mut markers = Markers::default();
+        assert!(markers.receive(
+            &json!({
+                "type": "atk", "id": 1, "parts": [
+                    { "i": 0, "s": "poly", "v": [1, 2, 3, 4, 5, 6, 7] },
+                    { "i": 1, "s": "rotor", "len": 10, "w": 2,
+                      "a0": -1, "a1": 1, "f0": 2, "t1": 6, "t2": 8 },
+                ],
+            }),
+            0.,
+        ));
+        assert!(matches!(&markers.parts[0].shape, Shape::Polygon(points)
+            if points == &[[1., 2.], [3., 4.], [5., 6.]]));
+        let rotor = &mut markers.parts[1];
+        assert!(
+            matches!(&rotor.shape, Shape::Rotor { length, width, angles }
+                if *length == 10. && *width == 2. && *angles == [-1., 1.])
+        );
+        assert!(rotor.moving_fill(1.9).is_none());
+        assert!(matches!(rotor.moving_fill(2.), Some(MovingFill::Preview(p)) if p == 0.));
+        assert!(matches!(rotor.moving_fill(5.5), Some(MovingFill::Lead(p)) if p == 0.5));
+        assert!(matches!(rotor.moving_fill(7.), Some(MovingFill::Active(p)) if p == 0.5));
+        assert!(rotor.moving_fill(8.).is_none());
+        rotor.finish(8.25, true);
+        assert!(rotor.moving_fill(7.).is_none());
     }
 }

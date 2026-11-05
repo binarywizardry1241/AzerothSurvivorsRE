@@ -306,6 +306,90 @@ impl Builder<'_, '_, '_> {
             );
         }
     }
+
+    fn polygon(&mut self, points: &[Vec2], height: f32, style: u8, mask: usize) {
+        if points.len() < 3 {
+            return;
+        }
+        let min = points
+            .iter()
+            .copied()
+            .fold(Vec2::splat(f32::MAX), Vec2::min);
+        let max = points
+            .iter()
+            .copied()
+            .fold(Vec2::splat(f32::MIN), Vec2::max);
+        let center = (min + max) * 0.5;
+        let half = ((max - min) * 0.5).max_element();
+        let planes: Vec<_> = points
+            .iter()
+            .zip(points.iter().cycle().skip(1))
+            .map(|(&a, &b)| {
+                let edge = (b - a).normalize_or_zero();
+                let inward = Vec2::new(-edge.y, edge.x);
+                [inward.x, inward.y, inward.dot(a - center)]
+            })
+            .collect();
+        let origin = [center.x, center.y, height];
+        self.project(
+            frame(origin, 0., [-half, half, -half, half], half * 0.25 + 4.),
+            origin,
+            &planes,
+            style,
+            mask,
+        );
+    }
+
+    fn polygon_outline(&mut self, points: &[Vec2], height: f32, thickness: f32) {
+        for (&start, &end) in points.iter().zip(points.iter().cycle().skip(1)) {
+            let offset = end - start;
+            let length = offset.length();
+            let origin = [start.x, start.y, height];
+            self.project(
+                frame(
+                    origin,
+                    offset.y.atan2(offset.x),
+                    [0., length, -thickness, thickness],
+                    length * 0.25 + 4.,
+                ),
+                origin,
+                &[],
+                1,
+                4,
+            );
+        }
+    }
+}
+
+fn rectangle_points(start: Vec2, facing: f32, length: f32, width: f32) -> [Vec2; 4] {
+    let direction = Vec2::from_angle(facing);
+    let side = direction.perp() * (width * 0.5);
+    let end = start + direction * length;
+    [start - side, end - side, end + side, start + side]
+}
+
+fn swept_hull(start: [Vec2; 4], span: Vec2) -> Vec<Vec2> {
+    fn half(points: impl Iterator<Item = Vec2>) -> Vec<Vec2> {
+        let mut hull: Vec<Vec2> = Vec::with_capacity(8);
+        for point in points {
+            while let [.., a, b] = hull.as_slice() {
+                if (*b - *a).perp_dot(point - *a) > 0.001 {
+                    break;
+                }
+                hull.pop();
+            }
+            hull.push(point);
+        }
+        hull.pop();
+        hull
+    }
+
+    let mut points: [Vec2; 8] =
+        std::array::from_fn(|i| if i < 4 { start[i] } else { start[i - 4] + span });
+    points.sort_by(|a, b| a.x.total_cmp(&b.x).then_with(|| a.y.total_cmp(&b.y)));
+    let mut hull = half(points.iter().copied());
+    hull.extend(half(points.iter().rev().copied()));
+    hull
 }
 
 pub(super) fn outline(ground: &WorldDecal, row: &Marker) -> Vec<Group> {
@@ -523,6 +607,21 @@ mod tests {
         assert!((side.sin - 1.).abs() < 0.000001);
         assert!(side.cos.abs() < 0.000001);
     }
+
+    #[test]
+    fn surgical_rush_hull_includes_the_translated_segment() {
+        let start = rectangle_points(Vec2::ZERO, 0., 1., 4.);
+        let hull = swept_hull(start, Vec2::new(17., 0.));
+        assert_eq!(
+            hull,
+            [
+                Vec2::new(0., -2.),
+                Vec2::new(18., -2.),
+                Vec2::new(18., 2.),
+                Vec2::new(0., 2.),
+            ]
+        );
+    }
 }
 
 /// 0.140.0 shape 9 triangulates the arena contour, then clips the projected
@@ -727,10 +826,55 @@ pub(super) fn scripted_body(
             capsule(&mut builder, row, *length, *width, 0, scale);
             builder.groups
         }
-        Shape::Sweep { length, width, .. } => {
-            let marker = row.rectangle_marker(*length, *width);
-            builder.rectangle(&marker, *length, *width, length * 0.25 + 4.0, 0, 2);
-            builder.line_outline(&marker, *length, *width, scale);
+        Shape::Sweep {
+            length,
+            width,
+            span,
+        } => {
+            let start = rectangle_points(
+                Vec2::new(row.position[0], row.position[1]),
+                row.angle,
+                *length,
+                *width,
+            );
+            let hull = swept_hull(start, Vec2::from_array(*span));
+            let height = row.position[2];
+            let thickness = (width * 0.3).min(0.9) * scale;
+            builder.polygon(&hull, height, 0, 2);
+            builder.polygon_outline(&hull, height, thickness);
+            if length >= width {
+                builder.polygon_outline(&start, height, thickness * 0.6);
+            }
+            builder.groups
+        }
+        Shape::Rotor {
+            length,
+            width,
+            angles: [start, end],
+        } => {
+            let margin = (width * 0.5 / length.max(0.1)).atan();
+            let first = start.min(*end) - margin;
+            let last = start.max(*end) + margin;
+            let mut cone = row.marker(ShapeLegacy::Cone {
+                radius: *length,
+                arc: last - first,
+            });
+            cone.facing = (first + last) * 0.5;
+            builder.groups = outline(ground, &cone);
+            let base = rectangle_points(
+                Vec2::new(row.position[0], row.position[1]),
+                *start,
+                *length,
+                *width,
+            );
+            builder.polygon_outline(&base, row.position[2], (width * 0.3).min(0.9) * scale * 0.6);
+            builder.groups
+        }
+        Shape::Polygon(points) => {
+            let points: Vec<_> = points.iter().copied().map(Vec2::from_array).collect();
+            let height = row.position[2];
+            builder.polygon(&points, height, 0, 2);
+            builder.polygon_outline(&points, height, 0.9 * scale);
             builder.groups
         }
     }
@@ -741,13 +885,13 @@ pub(super) fn scripted_fill(
     row: &super::scripted::Part,
     clock: f32,
 ) -> Vec<Group> {
-    use super::scripted::Shape;
+    use super::scripted::{MovingFill, Shape};
     let mut builder = Builder {
         ground,
         groups: Vec::new(),
     };
     let progress = row.progress();
-    if progress <= 0.01 {
+    if progress <= 0.01 && !matches!(row.shape, Shape::Sweep { .. } | Shape::Rotor { .. }) {
         return builder.groups;
     }
     match &row.shape {
@@ -813,12 +957,71 @@ pub(super) fn scripted_fill(
             width,
             span,
         } => {
-            let offset = row.active_progress(clock);
-            let mut marker = row.rectangle_marker(*length, *width);
-            marker.position[0] += span[0] * offset;
-            marker.position[1] += span[1] * offset;
-            builder.rectangle(&marker, *length, *width, length * 0.25 + 4.0, 2, 3);
+            if let Some(phase) = row.moving_fill(clock) {
+                let (offset, style) = match phase {
+                    MovingFill::Preview(offset) => (offset, 8),
+                    MovingFill::Active(offset) => (offset, 9),
+                    MovingFill::Lead(offset) => {
+                        let start = rectangle_points(
+                            Vec2::new(row.position[0], row.position[1]),
+                            row.angle,
+                            *length,
+                            *width,
+                        );
+                        let hull = swept_hull(start, Vec2::from_array(*span) * offset);
+                        builder.polygon(&hull, row.position[2], 6, 3);
+                        return builder.groups;
+                    }
+                };
+                let mut marker = row.rectangle_marker(*length, *width);
+                marker.position[0] += span[0] * offset;
+                marker.position[1] += span[1] * offset;
+                builder.rectangle(&marker, *length, *width, length * 0.25 + 4.0, style, 3);
+            }
         }
+        Shape::Rotor {
+            length,
+            width,
+            angles: [start, end],
+        } => {
+            if let Some(phase) = row.moving_fill(clock) {
+                let (offset, style) = match phase {
+                    MovingFill::Preview(offset) => (offset, 8),
+                    MovingFill::Lead(offset) if offset > 0.01 => (offset, 6),
+                    MovingFill::Lead(_) => return builder.groups,
+                    MovingFill::Active(offset) => (offset, 9),
+                };
+                let angle = start + (end - start) * offset;
+                if style == 6 {
+                    builder.disc(
+                        row.position,
+                        *length,
+                        *length,
+                        6,
+                        1,
+                        Some(((start + angle) * 0.5, (angle - start).abs())),
+                    );
+                }
+                let mut marker = row.rectangle_marker(*length, *width);
+                marker.facing = angle;
+                builder.rectangle(&marker, *length, *width, length * 0.25 + 4.0, style, 3);
+            }
+        }
+        Shape::Polygon(points) if points.len() >= 3 && !row.is_safe() => {
+            let count = points.len() as f32;
+            let center = points
+                .iter()
+                .copied()
+                .map(Vec2::from_array)
+                .fold(Vec2::ZERO, |center, point| center + point / count);
+            let scaled: Vec<_> = points
+                .iter()
+                .copied()
+                .map(|point| (Vec2::from_array(point) - center) * progress + center)
+                .collect();
+            builder.polygon(&scaled, row.position[2], 2, 3);
+        }
+        Shape::Polygon(_) => {}
     }
     builder.groups
 }

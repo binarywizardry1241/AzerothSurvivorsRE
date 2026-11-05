@@ -70,12 +70,57 @@ four bytes of `poly` and the call from `0x145f9b242` supplies the
 `v` field. Case 6 instead publishes `rotor` from `0x145f9a977`.
 These are distinct part serialization lanes.
 
-The [rebuilt marker renderer](../../crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs)
-has the same selected arc-width expression and separate scripted fill
-and body passes. The current `Field` and `Grid` use separate source
-paths. Follow the live attack constructors and typed receiver from the
-`poly` and `rotor` serialization sites before assigning either to an
-encounter. Other local branches retain their separate state questions.
+The `atk` receiver at `0x1400c1a30` identifies `poly` at `0x1400c2b3c`
+and `rotor` at `0x1400c29af`. It reads `poly.v` as a flat numeric array,
+converts its entries to f32 and groups complete XY pairs. The rotor reader
+loads `len`, `w`, `a0` and `a1` into the four inline fields. Position updates
+keep the shape payload and change length only for tags 2 and 4. The shared
+clock fields are `f0` at `+0x6c`, `t2` at `+0x70`, attack `t0` at `+0xd0`
+and `t1` at `+0xd4`.
+
+The body table at `0x1465677f0` selects Sweep at `0x1400c7e65`, Rotor at
+`0x1400c8438`, and Polygon at `0x1400c8266`. Sweep builds the four starting
+corners and four translated corners, then `0x1400bfe20` removes turns at or
+below 0.001 in the two sorted hull passes. The ground projection uses the
+resulting hull and outlines its edges. The starting rectangle gets an extra
+0.6-thickness outline when length is at least width. This restores the live
+[Surgical Rush](scholomance-krastinov-0.141.0.md) warning across its full
+18-yard route when the arena permits the full ray. Rotor's body covers the
+angles from `min(a0, a1) - margin` through `max(a0, a1) + margin`, with
+`margin = atan((width / 2) / max(length, 0.1))`, and outlines the starting
+rectangle. Polygon uses its authored contour and 0.9-scaled edges. The
+shared polygon helper centers the bounding square, takes the inward edge
+planes from `0x140030120`, and projects with depth `half_extent * 0.25 + 4`.
+
+Sweep and Rotor share the moving fill branches. During active time, style 9
+projects the rectangle at the linear position or angle. During windup the
+early preview cycles at 0.9 seconds with style 8. The last
+`min((t1 - f0) * 0.5, 1)` seconds use style 6 and progressively fill the
+swept hull or the rotor sector and current rectangle. Safe and fading parts
+skip these moving fills. The paint dispatcher at `0x1400b2ca0` mixes styles
+8 and 9 toward white by 0.35 and 0.4, with alpha/additive pairs
+`(0.3, 0.15)` and `(0.8, 0.4)`. Polygon keeps its separate centroid fill.
+
+The [rebuilt receiver](../../crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs)
+and [terrain projection](../../crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs)
+connect the wire and presentation branches above. The serializer runs both
+on initial publication at `0x145f9e8a2` and on retained 224-byte attack rows
+at `0x1460396ad`. A live server-side constructor selecting tag 6 or 7 remains
+unidentified. Neither variant is assigned to an encounter by the client
+repair. Compilation, the two authored Rust regressions, gameplay and rendered
+comparison remain open under [#313](../verification-needed.md#gap-313).
+
+The static check compared both five-cell geometry tables, paint entries
+8 and 9, 11 wire keys, 14 calls, nine style/mask operands, eight f32
+constants, and the four Ghidra result digests. Pinned rustfmt parsed both
+changed Rust files.
+
+| Exact PE entry | Slice SHA-256 | Ghidra result SHA-256 |
+| --- | --- | --- |
+| `0x1400c1a30` | `7d5b3768a7a1ae256730a4f94a5c9570e55d384c3eb43059001c978da9e727d1` | `e25c1c5d5340d1244021d35f142a25752587dd3e536efa6a9cab8bf21081c783` |
+| `0x1400bbe60` | `7aed140b4c7e1c0a206cca041ff1a62027b5aca36d0486bb0bfbef27e20d1d2b` | `da4cffb852e60f236013a8e5962e69337d294092ec6dff9ab90795297ac91355` |
+| `0x1400bc810` | `4093d8f88bc118a84ddc7a9da61f8604140460ecbd62dc16f711767c5f57c75e` | `2508a0bc35e04c117abad67e6a60c12980c6b42555e054bbc76810794aa25db9` |
+| `0x1400b9530` | `9c37dd2f6b31072c086802bee9936ed37a00c79113f9e4acc8a959390f257d56` | `6704d321a5527f784f25df3b78979461f8d2c113df0ccb4bb44cf300d542e6e2` |
 
 Ghidra Evidence
 `ev_7abe0626246bc1e32c32f2165d142d90a4450377fed91854c04851ae01817669`
