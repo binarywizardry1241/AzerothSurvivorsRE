@@ -196,11 +196,61 @@ at file offset `0x656bf5c` and has SHA-256
 `5cef3e7c3699e2de550449c22ab283954b2a11dc262680d0f74a3bf308697a00`.
 The jump itself supplies no numerical bound on the action byte.
 
-Case 5 selects `0x140104a34` and sends Leave tag 25 at `0x140104a46`.
-Case 8 selects `0x140104d58`, bounds the member index against the roster
-length and reads the Hero GUID at `+0x1b8` of its `0x1d0`-byte row before
-sending Kick tag 26. These cases agree with the existing form queue and
-peer admission path. Other action constructors retain their own proofs.
+The original instructions distinguish the actions within this table.
+
+| Action byte | Destination | State change or request |
+| ---: | --- | --- |
+| 0 | `0x1401046a9` | Select the tab at payload byte 1. Lobbies clears field focus and shares the refresh path, Host selects field 1, and Code selects field 4. |
+| 1 | `0x14010497c` | Sample the refresh clock and queue tag 22 at `0x140104f5d`. |
+| 2 | `0x140104844` | Bound the original directory row index against the retained `0x128`-byte rows. Check the row's eligibility and password flags. The password branch selects Code and password focus. The other admitted branch sets `joining` and queues the Pick and Join records. |
+| 3, 4 | `0x14010492b`, `0x140104789` | Pass form discriminants 1 and 2 to `0x1400eb9a0`. That helper sends Pick tag 12 first, then Host tag 23 or Join tag 24. |
+| 5 | `0x140104a34` | Queue Leave tag 25 before clearing local party and chat presentation. |
+| 6, 7 | `0x140104d18`, `0x14010495a` | Clear the co-op open latch or set the field focus from payload byte 1. |
+| 8, 9 | `0x140104d58`, `0x1401047df` | Bound the member index and read the Hero GUID at `+0x1b8` of its `0x1d0`-byte row. Queue Kick tag 26 or populate the inspection state. |
+| 10–12 | `0x140104d36`, `0x14010429d`, `0x1401047b8` | Store the capacity byte or toggle the two directory filter bytes. |
+| 13, 14 | `0x140104b8e`, `0x140104707` | Cycle the retained zone or difficulty selection from the complete directory rows. |
+| 15, 16 | `0x140104907`, `0x1401046e9` | Set the private flag to the complement of the visibility action byte, or open the separate Difficulty state. |
+| 17 | `0x14010499e` | Take the chat draft, clear the draft slot and queue tag 27 only when the trimmed span is nonempty. |
+
+### Local lobby Leave
+
+Case 5 sends tag 25 at `0x140104a46`. It then zeros the party role
+length at UI `+0x50`, sets status to `off`, drops the `0x1d0`-byte
+member rows and zeros the code length at `+0x68`. The badge branch at
+`0x140103bee` reads that same role length. A zero value selects
+`Play with friends` before the badge reads the member count or code.
+The Leave branch drops the same 64-byte chat rows and clears the same
+draft and unread fields as the independent status consumer at
+`0x140107e1a`. Both advance the two chat change counters through the
+same vector subtraction pattern.
+
+The rebuilt [lobby input](../../crates/azeroth-survivors-re/src/coop_ui.rs)
+now queues Leave and runs the existing local departure and chat reset
+inside the click handler. The picker caption, lobby rebuild and chat
+presentation read cleared state in the same update. Previously the
+role and chat remained populated until the directory and runtime poll
+in the next `First` schedule. The network request still reaches its
+existing drain. A source regression covers the local state and ensures
+the next status poll does not advance the chat epoch again.
+
+| Preferred PE VA range | File offset | SHA-256 |
+| --- | --- | --- |
+| Lobby input owner `0x140104120..0x14010590a` | `0x103520` | `c4f3002400f9cf0fb7509a103f5ea236841eb88c3270838a044b104199f1424a` |
+| Leave status, role, roster and code `0x140104a34..0x140104b8e` | `0x103e34` | `5d01bf67385e70b5761f6ed7e5fc0718015db6442c3b1c998255b6a831c87e05` |
+| Leave draft, unread and counters `0x140104d9d..0x140104dd5` | `0x10419d` | `498f97193951049de42851c8a6d07ba5b018cafe35e4d58eda5d1d58656fcfd5` |
+| Matching status consumer `0x140107e1a..0x140107ea8` | `0x10721a` | `701ba4fa462e74e02833ce0ecb41b9d92741fd26e9e170f66f478e719e1973fa` |
+| Badge role gate `0x140103bee..0x140103cce` | `0x102fee` | `f34870f8226bee9381c0bb8e9e8d4f4741a83edd81f4c4681b55a48e6a84c252` |
+
+Ghidra Evidence `ev_e20db60c9f2ea7869f7059552e46fe9ace9860bae2bf2e098f66c516fecb7462`
+uses the 6,122-byte lobby owner slice above. The completed operation and
+result digests are respectively
+`87179636b27c2fa47fc6b9ff5d0978d86fee928b83dd2e9a4afb37ca403f1fd1` and
+`117f548323448c45d1b87df24c4166ca6c15d29e2337e6dab2fc6d387dd2915f`.
+Exact PE bytes supply the external action table and badge/status routines.
+Compilation, live lobby updates, and original/rebuilt parity remain under
+[#150](../verification-needed.md#gap-150).
+
+### Chat submission
 
 The Chat destination `0x145ea7df2` calls the normalizer at `0x145e385a0`.
 It filters control characters and Unicode White_Space, joins nonempty

@@ -276,7 +276,12 @@ impl CoopUi {
     }
 
     pub(crate) fn sync_chat_status(&mut self) {
-        if self.chat_status == self.status { return; }
+        if self.chat_status != self.status {
+            self.apply_chat_status();
+        }
+    }
+
+    fn apply_chat_status(&mut self) {
         let reset_roster = matches!(
             self.status.as_str(),
             "off" | "closed" | "ended" | "refused" | "unavailable"
@@ -306,6 +311,12 @@ impl CoopUi {
 
     pub(crate) fn request_leave_run(&mut self) {
         self.requests.push_back(FormRequest::LeaveRun);
+    }
+
+    fn leave_lobby(&mut self) {
+        self.requests.push_back(FormRequest::Leave);
+        crate::coop_directory::publish_local_departure(self, false);
+        self.apply_chat_status();
     }
 
     fn select_tab(&mut self, tab: Tab) {
@@ -880,10 +891,7 @@ fn input(
                 view.select_lobby(*index)
             }
             Click::Leave if matches!(state.dialog, Some(Dialog::Coop)) => {
-                view.requests.push_back(FormRequest::Leave);
-                view.status = "off".into();
-                view.code = None;
-                view.lobby = None;
+                view.leave_lobby();
             }
             Click::Refresh if matches!(state.dialog, Some(Dialog::Coop)) => {
                 view.requests.push_back(FormRequest::Refresh);
@@ -1450,6 +1458,48 @@ mod tests {
         assert_eq!(view.take_requests(), vec![FormRequest::Refresh]);
         assert_eq!(view.forms.name, " raw host ");
         assert_eq!(view.forms.focus, Field::None);
+    }
+
+    #[test]
+    fn lobby_leave_clears_local_party_and_chat_before_the_next_poll() {
+        let mut view = CoopUi {
+            status: "joined".into(),
+            role: "guest".into(),
+            code: Some("K7QF2".into()),
+            lobby: Some(LobbyView {
+                name: "Party".into(),
+                capacity: 5,
+                heroes: Vec::new(),
+                zone: "elwynn".into(),
+                heroic_rank: 0,
+            }),
+            ..CoopUi::default()
+        };
+        view.forms.chat = "draft".into();
+        view.chat.push(chat::Line {
+            sequence: 0,
+            hero_identity: 1,
+            name: "Host".into(),
+            class: 1,
+            text: "Hello".into(),
+            me: false,
+            system: false,
+        });
+        assert_eq!(view.chat.unread, 1);
+
+        view.leave_lobby();
+
+        assert_eq!(view.take_requests(), vec![FormRequest::Leave]);
+        assert_eq!(view.status, "off");
+        assert!(view.role.is_empty());
+        assert!(view.code.is_none());
+        assert!(view.lobby.is_none());
+        assert!(view.forms.chat.is_empty());
+        assert!(view.chat.lines.is_empty());
+        assert_eq!(view.chat.unread, 0);
+        assert_eq!(view.chat.epoch, 1);
+        view.sync_chat_status();
+        assert_eq!(view.chat.epoch, 1);
     }
 
     #[test]
