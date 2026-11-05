@@ -51,20 +51,33 @@ pointer to the interpreter. These are shared formatting interfaces.
 Individual format programs, invocation and caller semantics remain
 separate.
 
-The remaining site at `0x14270617d` materializes adapter
-`0x1426ea4f0` and stores it at `[rbp+0x4e8]`. The first call at
-`0x142706242` supplies a separate record in RDX from `[rbp+0x470]`.
-On normal return the SIMD store at `0x14270626e` replaces the entire
-callback field. The [unwind map proof](evidence/0.141.0/addressed-formatters.json)
-now binds the containing PE entry at `0x1427053d0` to
+The remaining site at `0x14270617d` materializes adapter `0x1426ea4f0`
+and stores it at `[rbp+0x4e8]`. The first call at `0x142706242` takes
+`RDX = RBP+0x470`, which carries the row indirectly. `0x1427060d5`
+sets RBX to `RBP+0x4e0`. Stores at `0x1427061df` and `0x1427061e6`
+pair the `adt … layer array … KiB` format program with that row base
+at `RBP+0x740`. The descriptor at `RBP+0x720` holds this pair and the
+`tracing_core::field::Value` vtable at `0x1469cda20`. The event's
+`+8` slot at `RBP+0x478` points to that descriptor.
+
+The dispatch body at `0x145a047d0` offers the event to the selected
+subscriber's `+0x50` method and calls its `+0x58` method on acceptance.
+The `Value` method at `0x145a06150` passes the argument pair and the
+Debug vtable `0x1472f3350` to the visitor's `+0x60` method. The Debug
+method at `0x1463898b0` forwards the format program and the original
+row base to `0x14637fd90`. This is the pre-overwrite formatting path
+for the ADT loader's existing [layer-array debug log](../../crates/benilla-assets/src/adt.rs).
+The active subscriber and visitor determine whether they format the record.
+
+On normal return the SIMD store at `0x14270626e` replaces the callback
+field before the direct `R9` argument at `0x142706281`. The
+[unwind map proof](evidence/0.141.0/addressed-formatters.json) binds
+the containing PE entry at `0x1427053d0` to
 `VCRUNTIME140.dll!__CxxFrameHandler3` and its FuncInfo at `0x1480d5984`.
 The call is in state 16 with no catch table. All 13 cleanup funclets on its
 state chain rebuild the parent frame from `RDX+0x80`. None directly accesses
 the eight bytes at parent `RBP+0x4e8`. The first cleanup uses the flag at
-`+0x7ff` and the allocation pair at `+0x5f0/+0x5f8`. On normal return, the
-first later exposure of the record base is the `R9` argument at
-`0x142706281`, after the overwrite. This closes the direct cleanup access
-question. An indirect alias passed to a callee remains outside this check.
+`+0x7ff` and the allocation pair at `+0x5f0/+0x5f8`.
 
 The same checker verifies the initial instructions and terminal operands
 for all 59 other address-taken prefixes:
@@ -73,14 +86,50 @@ for all 59 other address-taken prefixes:
 | --- | ---: | --- |
 | Tail to `0x14637f150` | 32 | Supplies text pointer and length to the shared formatter. The sink loads the formatter vtable's `+0x18` method and forwards both arguments. |
 | Tail to `0x14638b180` | 2 | Reorders formatter, text and length before forwarding to `0x14637ec80`. One adapter supplies the 27-byte closed-channel message. |
-| Indirect tail | 5 | Four have identified format or error text, including the sampler filter names, compression type names and SRP errors. The remaining adapter at `0x1430b8f40` derives an aligned receiver and takes a method from its metadata at `+0x20`. |
-| Return | 12 | Nine pack input bytes or words into tagged values, two write a small tagged result into the caller buffer, and one returns a scalar read at receiver `+0x14`. |
+| Indirect tail | 5 | Four have identified format or error text, including sampler filter names, compression type names and SRP errors. The adapter at `0x1430b8f40` formats two erased error payloads. |
+| Return | 12 | Nine construct Lua arithmetic opcodes, two construct WGSL increment or decrement statements, and one supplies a Taffy grid-track size estimate. |
 | Other direct tail | 8 | Seven forward an adjusted receiver or arguments. The remaining branch at `0x143504f70` resolves a tagged scalar, including a multiply-by-input case, before returning. |
 
-The unchecked roles are now limited to the concrete consumers of the packed
-values, receiver identities at the forwarding adapters, and the mixed spans
-outside these operands. None of these observations establishes an additional
-Survivors source change.
+Both references to `0x1430b8f40` pass a format-argument row to
+`0x14637fd90`. The Lua formatter's tag 10 cell at `0x146a31adc`
+selects `0x1430c7d01`, which passes the error payload at enum `+8`
+to the single-placeholder program at `0x146a31a63`. This corresponds
+to [`Error::ExternalError`](../../crates/benilla-mlua/src/error.rs).
+The Bevy asset formatter's tag 14 cell at `0x147225684` selects
+`0x145705058`, where the program at `0x147223f30` supplies the
+`add_async` error text and formats the payload at enum `+8`. This
+matches `AssetLoadError::AddAsyncError` in pinned `bevy_asset` 0.18.1.
+The shared adapter advances the allocation pointer by the aligned
+16-byte `Arc` header and calls the concrete error's `Display` slot
+at vtable `+0x20`. The payload type is selected by each instance.
+
+The nine Lua arithmetic leaves are the Add, Sub and Mul variants for
+register/register, register/constant and constant/register operands.
+The table at `0x146a379d0` and the `0xff` split at `0x14311ad8d`
+select the leaf. The selected result passes through `0x14311aed6`
+to the code vector store at `0x14311a1a4`, corresponding to
+[`Parser::codearith` and `code_raw`](../../crates/benilla-lua/src/compile.rs).
+The Naga WGSL token cells 4 and 5 at `0x147080640` select the two
+statement constructors. They supply tags `0x0b` and `0x0c` at
+`0x144ecde0c`, then the parser appends the 64-byte statement at
+`0x144ecde2b..0x144ecde5c`. The Taffy grid body installs
+`0x143504f60` at `0x1434f0a2e` and passes it to the track-sizing call
+at `0x1434f0ab3`. The leaf returns `Some(track.base_size)`, matching
+the pinned Taffy 0.9.2 grid sizing callback.
+
+| Preferred VA range | SHA-256 |
+| --- | --- |
+| ADT alias and overwrite `0x1427060d5..0x142706295` | `e8b8872f122dfc1ed6e01488c9b5afa9d1bb707344aa1a9c081600969368ba2d` |
+| ADT format program `0x1469cd9f8..0x1469cda1d` | `cca579c40125e8853384ab20c70fed0288f2f8c885ccc7184ab4f1c3ec190789` |
+| Erased error adapter `0x1430b8f40..0x1430b8f63` | `91e96657191db9f17de8e21ca87af27777d27ae1a753332c59650ee5172cf7d7` |
+| Lua formatter `0x1430c7a80..0x1430c7e6a` | `0a09fe475aa768ff9e312edd929af2719978e063e4ea0699038fa2fcb4589be7` |
+| Bevy asset formatter `0x145704fb0..0x14570549f` | `101d7174a785b0489930a59eccecff3e61039af6aecb02d21b11432610aa8401` |
+| Lua arithmetic emitter `0x14311ab20..0x14311af9d` | `baca74034f4333989028a4589b39b52f31951aaa6250ae7036d6bd9a05e80e36` |
+| WGSL assignment parser `0x144ecdb90..0x144ecdf5c` | `2ae4c9f81a3486f085ee8c1ce2c606d2a4e74e0e1f9c9bf72b61a8eaa9ee896b` |
+| Taffy grid sizing caller `0x1434f0a2e..0x1434f0ab8` | `c1e99f253391228e7acfe3045268bc8244f612be0b24eaf86821cda9ca205dd8` |
+
+These paths correspond to shared source interfaces. Other forwarding
+receivers and mixed spans outside these operands remain open.
 
 Three other outside-declared mixed spans are code at a graphics formatting
 boundary. The original bytes in `0x144e32ae0..0x144e330a4`,
