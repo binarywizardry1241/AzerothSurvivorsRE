@@ -53,18 +53,19 @@ these queue-order tests, not substitutes for their full recovered semantics.
 
 The live source already connects these stages:
 
-- `gameplay/coop.rs::bootstrap` constructs the accepted guest replica, calls the
-  existing `LocalClientSession::begin` port and sends Sync when that actual
-  session is active. `begin` publishes both the player and active state;
-  `follow_session` maps them to the real local client's InWorld lifecycle.
-  This occurs independently of `ZoneWorld.ready` and its loading cover.
+- `gameplay/coop.rs::bootstrap` calls the existing `LocalClientSession::begin`
+  port for the accepted Zone5 and sends Sync when that session is active.
+  `begin` publishes both the player and active state. `follow_session` maps
+  them to the real local client's InWorld lifecycle independently of
+  `ZoneWorld.ready` and the loading cover. The [0.141.0 repair](coop-replication-0.141.0.md#guest-login-and-synchronized-recipients)
+  admits ranked replica construction on the later State15.
 - `Session::next_host_event` admits Sync only for a joined, assigned,
   unsynchronized client. `gameplay/coop.rs::synchronize` requires the real run,
   admitted hero, MPQ creation metadata and actual world objects to construct the
   stream. `Session::synchronize` queues every packet before committing the
   `PartyServer` synchronized flag; failed queue admission does not set it.
 - Successful synchronization calls the existing party-frame fanout afterwards.
-  The early unsynchronized guard in `coop_publish.rs` precedes the operations
+  The synchronized-recipient gate in `coop_publish.rs` precedes the operations
   that drain recipient-owned engine data. Ordinary post-sync engine routing
   retains its synchronized recipient gate.
 

@@ -61374,6 +61374,23 @@
     },
     {
       "id": "custom-game-server-party",
+      "gap_63_guest_login_and_replication_gate_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 63,
+        "scope": "PlayerLogin uses accepted Zone5 to queue Sync6 before the guest receives State15. State15 and HUD10 use assigned synchronized recipient rows. End18 settles from Zone and State and can log out earlier.",
+        "source_status": "connected",
+        "evidence_ref": "docs/analysis/coop-replication-0.141.0.md#guest-login-and-synchronized-recipients",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/client.rs",
+          "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+          "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs",
+          "crates/azeroth-survivors-re/src/coop/session.rs",
+          "scripts/check-coop-replication.py"
+        ],
+        "native_cases": 263,
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "gap_63_hud10_host_cadence_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 63,

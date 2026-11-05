@@ -317,8 +317,11 @@ def check_current(path, proof, stage=False):
 def source_guards(proof):
     source = (ROOT/'crates/azeroth-survivors-re/src/gameplay/coop.rs').read_text()
     bootstrap = source[source.index('fn bootstrap('):source.index('fn synchronize(')]
-    assert bootstrap.index('local.begin(player)') < bootstrap.index('if !state.sync_sent && local.active')
-    send = bootstrap[bootstrap.index('if !state.sync_sent && local.active'):bootstrap.index('loading.set_ready(world.ready)')]
+    login = bootstrap.index('local.begin(client::player_identity(')
+    synchronize = bootstrap.index('if !state.sync_sent && local.active')
+    snapshot = bootstrap.index('let Some(snapshot) = state.state.as_ref()')
+    assert login < synchronize < snapshot
+    send = bootstrap[synchronize:bootstrap.index('if !state.sync_sent {', synchronize)]
     assert 'LifecyclePacket::Synchronize' in send and 'world.ready' not in send
     local = (ROOT/'crates/benilla-app/src/local_client.rs').read_text()
     begin = local[local.index('pub fn begin('):local.index('pub fn end(')]
@@ -331,7 +334,7 @@ def source_guards(proof):
                   'if !self.send_message(Some(client), packet.into_message())','return false;']:
         assert token in sync
     publish=(ROOT/'crates/azeroth-survivors-re/src/gameplay/coop_publish.rs').read_text()
-    assert publish.index('if !synced {') < publish.index('let Some((fields, native, learned, attack, inventory, equipment')
+    assert publish.index('let state_due = synced &&') < publish.index('let Some((fields, native, learned, attack, inventory, equipment')
     callback=source[source.index('fn synchronize('):source.index('fn unit_create(')]
     for token in ['.admitted','InitialWorld {','.packets()','units','action_buttons(','driver.synchronize(client, packets)','party_frames::fanout']:
         assert token in callback,token

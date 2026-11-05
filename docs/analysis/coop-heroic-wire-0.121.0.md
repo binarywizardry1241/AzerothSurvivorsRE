@@ -62,10 +62,10 @@ The guest waits for an accepted State15 before constructing its passive replica,
 so initial rank-dependent XP, rerolls, chest prices and feat inputs do not begin
 at Normal and receive a late rank assignment. Native publication block
 `145b18840..145b189d4` sends this metadata to the admitted world recipient on its
-periodic/terminal gate, independently of engine synchronization. The source now
-publishes this metadata before Sync6 while retaining synchronization gates for
-world/private queues; otherwise waiting for the authoritative rank would
-prevent the guest from ever reaching Sync6. The host's remote templates reuse
+periodic/terminal gate. The earlier source sent State15 before Sync6 to
+avoid a bootstrap wait. The [0.141.0 trace](coop-replication-0.141.0.md#guest-login-and-synchronized-recipients)
+connects the guest's Zone5-driven login and gates host State15 publication
+on the synchronized recipient. The host's remote templates reuse
 its captured run week. The guest does not construct a fresh UTC-selected affix
 runtime: native guest summary uses its accepted cache, and orb/pool/marker
 simulation and effects remain host-owned packets. No week field was added to

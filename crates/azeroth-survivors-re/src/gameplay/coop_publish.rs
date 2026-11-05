@@ -113,15 +113,15 @@ pub(in crate::gameplay) fn publish(
                 })
             })
         });
-        let state_due = client.is_some_and(|client| {
+        let state_due = synced && client.is_some_and(|client| {
             recipient_state_due(&mut state, client, game.native_state_terminal(), now)
         });
         let display = bridge.creation.as_ref()
             .filter(|_| world.ready && synced)
             .and_then(|creation| creation.body_display(hero.race, hero.sex));
         let Some(display) = display else {
-            // State15 uses the admitted hero and shared run phase. Engine
-            // presentation and the Sync6 latch have their own admission.
+            // A synchronized hero still receives State15 during local
+            // streaming or without character-creation display data.
             if let Some(client) = client.filter(|_| state_due) {
                 if let Some(native) = game.with_party_hero(slot, |game| game.native_state()) {
                     runtime.send(Some(client), NativeMessage::State(native));

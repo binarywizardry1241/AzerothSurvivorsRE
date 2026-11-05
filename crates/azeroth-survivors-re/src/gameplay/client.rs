@@ -512,11 +512,32 @@ pub(super) fn player_ui(game:&super::mechanics::Mechanics,hero:&crate::save::Her
     name:&str,display_id:u32,equipment:Vec<(u8,u32)>)->LocalPlayerUi {
     let resource=game.class_resource();
     let [(_,health),(_,max_health)]=game.player_vital_fields();
-LocalPlayerUi {
-        guid: game.player_guid,
+    LocalPlayerUi {
+        class: game.class.class_id,
+        health,
+        max_health,
+        power_type: resource.map_or(0, |bar| bar.field.saturating_sub(23) as u8),
+        power: resource.map_or(0, |bar| bar.value),
+        // Bloodrage's recovered pool caps at100 and publishes tenths; Seal Fate/Soul Fire
+        // publish five points*20, and Lightwell publishes its clamped percentage.
+        max_power: resource.map_or(0, |bar| if bar.field == 24 { 1000 } else { 100 }),
+        level: game.level,
+        xp: game.xp,
+        xp_max: game.xp_required(),
+        // Current1454e56e1 publishes native gold units as copper in field1176.
+        gold: azeroth_survivors_re::treasure_chests::coinage(game.gold),
+        ..player_identity(game.player_guid, hero, name, display_id, equipment)
+    }
+}
+
+pub(super) fn player_identity(
+    guid: u64, hero: &crate::save::Hero, name: &str, display_id: u32, equipment: Vec<(u8, u32)>,
+) -> LocalPlayerUi {
+    LocalPlayerUi {
+        guid,
         name: name.to_owned(),
         race: hero.race,
-        class: game.class.class_id,
+        class: hero.class,
         sex: hero.sex,
         display_id,
         // Currentplayerdescriptor145491140/145491906..929, table1469acab8.
@@ -539,21 +560,8 @@ LocalPlayerUi {
             facial_hair: hero.features[4],
             equipment,
         },
-        health,
-        max_health,
-        power_type: resource.map_or(0, |bar| bar.field.saturating_sub(23) as u8),
-        power: resource.map_or(0, |bar| bar.value),
-        // Bloodrage's recovered pool caps at100 and publishes tenths; Seal Fate/Soul Fire
-        // publish five points*20, and Lightwell publishes its clamped percentage.
-        max_power: resource.map_or(0, |bar| if bar.field == 24 { 1000 } else { 100 }),
-        level: game.level,
-        xp: game.xp,
-        xp_max: game.xp_required(),
-        // Current1454e56e1 publishes native gold units as copper in field1176.
-        gold: azeroth_survivors_re::treasure_chests::coinage(game.gold),
         rest_state: 2,
-        rested_xp: 0,
-        resting: false,
+        ..Default::default()
     }
 }
 

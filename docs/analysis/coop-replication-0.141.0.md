@@ -40,11 +40,11 @@ member list. These packet fields retain their earlier
 The poll checks the host role, indexed peer and live Game at
 `0x145ea9163..0x145ea924c`. It constructs the snapshot only after cadence
 admission and reaches the peer's outgoing queue at `0x145ea9354`. The
-rebuilt host now makes that decision before building the recipient snapshot.
-It uses the same seated snapshot and State15 codec before Sync6, when
-character-creation display data is unavailable and during a streaming focus
-change that clears `ZoneWorld::ready` for an already admitted hero. The
-presentation branch retains its own world-ready, Sync6 and display gates.
+rebuilt host now makes that decision before building the synchronized
+recipient's snapshot. It can still use the seated snapshot and State15 codec
+when character-creation display data is unavailable or a streaming focus
+change clears `ZoneWorld::ready`. The presentation branch retains its own
+world-ready and display gates.
 
 The builder and writer join the following histories in source order.
 
@@ -124,6 +124,55 @@ cases spanning the boundary and larger synthetic lengths. It stops before
 presentation or serialization. Rust syntax parsing and source guards
 passed. Live delivery and original/rebuilt comparison remain open.
 [Guest receiver](../../crates/azeroth-survivors-re/src/gameplay/coop.rs).
+
+## Guest login and synchronized recipients
+
+The host poll calls the shared State15 and HUD10 recipient iterator at
+`0x145ea8ca3`. The iterator at `0x14602aad0` emits the peer index and
+assigned actor only when the row has an assignment and `+0x89d` equals 1.
+The host's initial Engine7 queue loop completes before it sets that byte at
+`0x145ec803e` and refreshes party metadata at `0x145ec8050`.
+
+The guest's PlayerLogin opcode `0x3d` reaches `0x145eb5e9f` through
+`0x147aeda78`. Roles 0 and 1 require a nonzero accepted Zone5 pointer
+at `+0x1578`. The producer sets the Sync request bit at `0x145eb5ec6`,
+flushes earlier Engine7 traffic at `0x145eb5ee2`, and serializes Sync6
+before calling the upstream send port at `0x145eb5f30`. It reads no
+State15 data on this path.
+
+The rebuilt guest opens the embedded local client from its admitted Hero
+after Zone5. The active local-client edge queues Sync6 before the ranked
+replica needs State15. The engine bridge samples the initial packet fields
+on receipt. The leading login verification packet runs its world reset
+before the body registers. The self-create packet supplies the actual
+mover speed for the stock body request, and the bridge dispatches the
+remaining Engine7 bytes in their original order after registration.
+The first validated State15 supplies the replica rank for initial XP,
+chest costs and rerolls. The rebuilt host gates State15 on actual
+synchronization while keeping it independent of local streaming.
+This supersedes the pre-Sync State15 source workaround described in the
+[historical Heroic wire report](coop-heroic-wire-0.121.0.md).
+
+The current initial-world builder calls the login verification encoder at
+`0x145e62072`, which writes opcode `0x236` at `0x145fe475d`. It copies the
+record to entry zero at `0x145e6211f..0x145e62132`. It later calls the player
+create builder with its self argument at `0x145e62204..0x145e6220c`. The
+builder reads the seated mover multiplier at `0x145f71e2a`, scales it by
+7 and supplies the resulting movement descriptor to `0x145ec63f0`.
+
+End18 at `0x145ecd1dd` settles only with both Zone5 and State15, but its
+logout call at `0x145ecd258` depends on the Sync request bit. It then
+clears the guest's zone and state caches. The Hero4 refresh helper at
+`0x145eca010` requires an accepted guest with no active Zone5. The rebuilt
+guest likewise retires an in-progress login when End arrives before the
+first State15.
+
+The checker passed 216 recipient-list cases, 16 PlayerLogin cases, three
+last-queue-entry cases, 16 End18 cases and 12 Hero4 refresh cases. It
+replays bounded original instructions with declared call seams.
+The local stock login bridge,
+world and body startup, initial engine packet delivery, and rapid
+restart remain to be verified in execution.
 
 ## HUD10 host cadence
 

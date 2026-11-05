@@ -57,7 +57,10 @@ pub(crate) struct CoopGame {
     commands: VecDeque<(ClientId, commands::Input)>,
     zone: Option<String>,
     zone_started: f64,
+    guest_login_started: bool,
     sync_sent: bool,
+    guest_entry_run_speed: Option<f32>,
+    pending_guest_wire: Vec<(u16, Vec<u8>)>,
     fields: Option<benilla_protocol::ObjectFields>,
     state: Option<NativeState>,
     pub(super) hud: Option<serde_json::Value>,
@@ -203,7 +206,10 @@ impl CoopGame {
         self.pick.clear();
         self.commands.clear();
         self.hero_updates.clear();
+        self.guest_login_started = false;
         self.sync_sent = false;
+        self.guest_entry_run_speed = None;
+        self.pending_guest_wire.clear();
         self.resources.clear();
         self.timers.clear();
         self.cooldowns.clear();
@@ -471,7 +477,7 @@ fn receive(
     armory: Res<crate::armory::ArmoryCatalog>,
     mut commands: Commands,
     mut world: ResMut<ZoneWorld>,
-    (input, bridge, hud_settings, catalog, stock, mut notifications, mut board, units, mut terrain, mut coop_view): (
+    (input, bridge, hud_settings, catalog, stock, mut notifications, mut board, units, mut terrain, mut coop_view, mut loading, mut spawn): (
         Res<benilla_app::local_client::LocalClientInput>,
         Res<client::BridgeCatalog>,
         Res<run_hud::HudSettings>,
@@ -482,6 +488,8 @@ fn receive(
         Query<(&LocalUnitVisual, &Transform, Option<&benilla_app::local_client::LocalUnitPath>)>,
         commands::CommandTerrain,
         ResMut<crate::coop_ui::CoopUi>,
+        ResMut<benilla_app::local_client::LocalLoadingScreen>,
+        ResMut<LocalPlayerSpawn>,
     ),
 ) {
     let now = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH)
@@ -547,7 +555,10 @@ fn receive(
     ];
     let profile =
         crate::coop_profile::build(&menu.backend_save, &pick, guid, locale.code(), flags, runtime.roster_profile.clone());
-    if state.local.as_ref() != Some(&profile) && run.mechanics.is_none() {
+    if state.local.as_ref() != Some(&profile)
+        && run.mechanics.is_none()
+        && (!guest || state.zone.is_none())
+    {
         state.local = Some(profile.clone());
         if guest
             && runtime
@@ -672,7 +683,7 @@ fn receive(
                 }
                 coop_view.receive_ready_check(snapshot, guid, time.elapsed_secs(), &locale);
             }
-            NativeMessage::Lifecycle(LifecyclePacket::Accepted(_)) if guest => {
+            NativeMessage::Lifecycle(LifecyclePacket::Accepted(_)) if guest && state.zone.is_none() => {
                 if let Some(hero) = &state.local {
                     runtime.send(
                         None,
@@ -758,7 +769,17 @@ fn receive(
                             );
                         }
                     }
-                    inbound.0.push((packet.opcode, packet.payload));
+                    // The first LoginVerifyWorld clears the old object index.
+                    // Dispatch it before registering the new local body.
+                    let starts_world = state.pending_guest_wire.is_empty()
+                        && packet.opcode == benilla_protocol::messages::opcode::SMSG_LOGIN_VERIFY_WORLD;
+                    let body_requested = spawn.request.is_some_and(|request| request.identity == run.identity);
+                    let wire = if starts_world || body_requested {
+                        &mut inbound.0
+                    } else {
+                        &mut state.pending_guest_wire
+                    };
+                    wire.push((packet.opcode, packet.payload));
                 }
             }
             NativeMessage::Time(milliseconds) if guest => {
@@ -774,6 +795,9 @@ fn receive(
                 // including a restart in the same zone. Native reset does not
                 // settle the previous run here.
                 state.leave();
+                spawn.request = None;
+                world.request = None;
+                world.ready = false;
                 run.mechanics = None;
                 run.started = false;
                 run.paused = false;
@@ -893,30 +917,45 @@ fn receive(
                     menu.commit_account();
                 }
             }
-            NativeMessage::End if guest && state.zone.is_some() && state.state.is_some() => {
-                let final_messages = state.settle(&mut run, &mut menu, &catalog,
-                    Some(&locale), &mut notifications, now, time.elapsed_secs(), true);
+            NativeMessage::End if guest => {
+                let final_messages = if state.zone.is_some() && state.state.is_some() {
+                    state.settle(&mut run, &mut menu, &catalog, Some(&locale),
+                        &mut notifications, now, time.elapsed_secs(), true)
+                } else {
+                    Vec::new()
+                };
+                let logout = state.sync_sent && local.active;
+                if state.guest_login_started && !logout {
+                    local.end();
+                }
+                if state.zone.is_some() {
+                    loading.cancel();
+                }
                 state.leave();
+                spawn.request = None;
                 world.request = None;
+                world.ready = false;
                 run.mechanics = None;
                 run.started = false;
                 run.paused = false;
                 if local.active || menu.in_run { menu.return_from_run(); }
                 queue_delivery(&mut commands, &mut inbound, &mut presentation,
-                    final_messages, local.active.then_some(benilla_protocol::SessionEnd::LoggedOut));
-                let hero = crate::coop_profile::build(
-                    &menu.backend_save,
-                    &pick,
-                    guid,
-                    locale.code(),
-                    flags,
-                    runtime.roster_profile.clone(),
-                );
-                state.local = Some(hero.clone());
-                runtime.send(
-                    None,
-                    NativeMessage::Lifecycle(LifecyclePacket::Hero(Box::new(hero))),
-                );
+                    final_messages, logout.then_some(benilla_protocol::SessionEnd::LoggedOut));
+                if runtime.driver.as_ref().is_some_and(|driver| driver.accepted().is_some()) {
+                    let hero = crate::coop_profile::build(
+                        &menu.backend_save,
+                        &pick,
+                        guid,
+                        locale.code(),
+                        flags,
+                        runtime.roster_profile.clone(),
+                    );
+                    state.local = Some(hero.clone());
+                    runtime.send(
+                        None,
+                        NativeMessage::Lifecycle(LifecyclePacket::Hero(Box::new(hero))),
+                    );
+                }
             }
             _ => {}
         }
@@ -1140,8 +1179,12 @@ fn observe(
     now: f64,
 ) {
     match event {
-        SessionEvent::ObjectCreate { guid, fields, .. } if *guid == self_guid => {
-            state.fields = Some(fields.clone())
+        SessionEvent::ObjectCreate { guid, kind, fields, speeds, .. } if *guid == self_guid => {
+            state.fields = Some(fields.clone());
+            if state.guest_entry_run_speed.is_none() && *kind == benilla_protocol::EntityKind::Player {
+                state.guest_entry_run_speed = speeds.map(|speeds| speeds.run)
+                    .filter(|speed| speed.is_finite() && *speed > 0.0);
+            }
         }
         SessionEvent::ObjectValues { guid, fields } if *guid == self_guid => {
             if let Some(previous) = state.fields.as_mut() {
@@ -1268,16 +1311,66 @@ fn bootstrap(
         let Some(zone) = state.zone.clone() else {
             return;
         };
-        // The current host publishes State15 independently of world Sync6.
-        // Initialize rank-dependent entry values before constructing the replica.
-        let Some(snapshot) = state.state.as_ref() else { return; };
-        let heroic_rank = snapshot.heroic_rank;
+        let zone_entry = azeroth_survivors_re::coop::bootstrap::zone_environment(&zone);
+        if !state.guest_login_started {
+            let Some(display) = creation.body_display(profile.race, profile.sex) else {
+                return;
+            };
+            local.begin(client::player_identity(
+                profile.guid,
+                &appearance(&profile),
+                &String::from_utf8_lossy(&profile.name),
+                display,
+                crate::coop_profile::outfit(&profile, &armory),
+            ));
+            local.set_paused(true);
+            let (rows, traits, _) =
+                client::outfit(&menu.backend_save, profile.race, profile.class, &armory);
+            equipment.rows = rows;
+            equipment_metadata.rows = traits;
+            run.identity = run.identity.wrapping_add(1);
+            run.accepted_position = Some(zone_entry.position);
+            world.request = Some(ZoneWorldRequest {
+                identity: run.identity,
+                map_id: zone_entry.map_id,
+                spawn_wow: zone_entry.position,
+                spawn_facing: zone_entry.facing,
+                camera_offset: entry.player.camera_offset,
+                camera_target_height: entry.player.camera_target_height,
+            });
+            world.ready = false;
+            loading.begin(zone_entry.map_id);
+            state.guest_login_started = true;
+        }
+        // The local client login requests the initial stream before the host
+        // can publish State15. Only the mechanics replica needs its rank.
+        if !state.sync_sent && local.active {
+            state.sync_sent =
+                runtime.send(None, NativeMessage::Lifecycle(LifecyclePacket::Synchronize));
+        }
+        if !state.sync_sent {
+            return;
+        }
+        if let Some(run_speed) = state.guest_entry_run_speed.filter(|_| spawn.request.is_none()) {
+            spawn.request = Some(LocalPlayerRequest {
+                identity: run.identity,
+                map_id: zone_entry.map_id,
+                position_wow: zone_entry.position,
+                facing: zone_entry.facing,
+                run_speed,
+                camera_distance: Vec3::from_array(entry.player.camera_offset).length(),
+                camera_pitch: None,
+            });
+            // The stock body registers before the initial wire batch dispatches.
+            wire.0.append(&mut state.pending_guest_wire);
+        }
         if run
             .mechanics
             .as_ref()
             .is_none_or(|game| game.zone.key != zone)
         {
-            let zone_entry = azeroth_survivors_re::coop::bootstrap::zone_environment(&zone);
+            let Some(snapshot) = state.state.as_ref() else { return; };
+            let heroic_rank = snapshot.heroic_rank;
             let Ok(mut game) = template(
                 &profile,
                 &zone,
@@ -1302,31 +1395,24 @@ fn bootstrap(
             if let Some(entry) = state.entry { grants.veteran_bonus = entry.veteran_bonus; }
             game.set_account_grants(grants);
             state.checkpoints.apply_to_game(&mut game);
-            // The host can send State15/Hud10 before MPQ world loading has
-            // created the local replica. Consume the accepted cache now too.
-            if let Some(value) = state.state.as_ref() {
-                game.apply_replica_native(value);
-            }
+            game.apply_replica_native(snapshot);
             if let Some(value) = state.hud.as_ref() {
                 game.apply_replica_hud(value);
             }
-            let Some(display) = creation.body_display(profile.race, profile.sex) else {
-                return;
-            };
             let hero = appearance(&profile);
-            let player = client::player_ui(
-                &game,
-                &hero,
-                &String::from_utf8_lossy(&profile.name),
-                display,
-                crate::coop_profile::outfit(&profile, &armory),
-            );
-            let (rows, traits, _) =
-                client::outfit(&menu.backend_save, profile.race, profile.class, &armory);
-            equipment.rows = rows;
-            equipment_metadata.rows = traits;
-            local.begin(player);
-            run.identity = run.identity.wrapping_add(1);
+            if let Some(player) = local.player.as_mut() {
+                if state.fields.is_some() {
+                    game.apply_replica_vitals(player.health, player.max_health, player.xp, player.gold);
+                } else {
+                    *player = client::player_ui(
+                        &game,
+                        &hero,
+                        &player.name,
+                        player.display_id,
+                        player.appearance.equipment.clone(),
+                    );
+                }
+            }
             run.name = String::from_utf8_lossy(&profile.name).into_owned();
             run.entry_hero = Some(hero);
             let projection = state.state.as_ref().map(RunProjection::read);
@@ -1353,38 +1439,14 @@ fn bootstrap(
             game.set_duplicate_marks(state.duplicate_marks.clone());
             game.events.extend(std::mem::take(&mut state.pending_events));
             run.mechanics = Some(game);
-            run.accepted_position = Some(zone_entry.position);
-            world.request = Some(ZoneWorldRequest {
-                identity: run.identity,
-                map_id: zone_entry.map_id,
-                spawn_wow: zone_entry.position,
-                spawn_facing: zone_entry.facing,
-                camera_offset: entry.player.camera_offset,
-                camera_target_height: entry.player.camera_target_height,
-            });
-            world.ready = false;
-            spawn.request = Some(LocalPlayerRequest {
-                identity: run.identity,
-                map_id: zone_entry.map_id,
-                position_wow: zone_entry.position,
-                facing: zone_entry.facing,
-                run_speed: run.mechanics.as_ref().unwrap().player_run_speed(),
-                camera_distance: Vec3::from_array(entry.player.camera_offset).length(),
-                camera_pitch: None,
-            });
-            loading.begin(zone_entry.map_id);
             menu.in_run = true;
             menu.entering = false;
             menu.mark_dirty();
         }
-        if !state.sync_sent && local.active {
-            state.sync_sent =
-                runtime.send(None, NativeMessage::Lifecycle(LifecyclePacket::Synchronize));
-        }
         if let Some(game) = run.mechanics.as_mut() {
             game.set_guest_notice_ready(state.sync_sent && local.active);
         }
-        loading.set_ready(world.ready);
+        loading.set_ready(world.ready && run.mechanics.is_some());
         return;
     }
     let identity = run.identity;
@@ -2032,6 +2094,7 @@ mod guest_engine_tests {
     fn guest_delivery_requires_sync_and_an_active_port_and_resets_on_leave() {
         let mut state = CoopGame::default();
         assert!(state.guest_engine_packet(0x58, vec![7], true).is_none());
+        state.guest_login_started = true;
         state.sync_sent = true;
         assert!(state.guest_engine_packet(0x58, vec![7], false).is_none());
         let packet = state.guest_engine_packet(0x58, vec![7, 0, 255], true).unwrap();
@@ -2039,7 +2102,21 @@ mod guest_engine_tests {
         assert_eq!(packet.payload, [7, 0, 255]);
         assert!(state.guest_engine_packet(0x3d, vec![7], true).is_none());
         assert!(state.guest_engine_packet(0x58, vec![0; 0xfffe], true).is_none());
+        let player = LocalPlayerUi { guid: 42, ..Default::default() };
+        let mut local = LocalClientSession::default();
+        local.begin(player.clone());
+        for (speed, expected) in [
+            (f32::NAN, None), (f32::INFINITY, None), (-1.0, None), (0.0, None),
+            (9.0, Some(9.0)), (10.0, Some(9.0)),
+        ] {
+            let event = player_create(&player, [0.0; 3], 0.0, speed, Default::default());
+            observe(&mut state, &mut local, &event, player.guid, 0.0);
+            assert_eq!(state.guest_entry_run_speed, expected);
+        }
+        state.pending_guest_wire.push((packet.opcode, packet.payload));
         state.leave();
+        assert!(!state.guest_login_started);
+        assert!(state.guest_entry_run_speed.is_none() && state.pending_guest_wire.is_empty());
         assert!(state.guest_engine_packet(0x58, vec![7], true).is_none());
     }
 

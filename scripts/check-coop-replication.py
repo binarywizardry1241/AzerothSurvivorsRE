@@ -319,6 +319,199 @@ def replay_hud_cadence(replay, ranges):
     return cases
 
 
+def replay_replication_recipients(replay, ranges):
+    cpu, reg = replay.machine, replay.registers
+    iterator = ranges['host_replication_recipient_iterator']
+    caller = ranges['host_replication_recipient_iterator_call']
+    assert caller[1] + struct.unpack('<i', replay.raw(caller[1] - 4, 4))[0] == iterator[0]
+    result, cursor = replay.app, replay.app + 0x40
+    rows, allocated = replay.app + 0x1000, replay.app + 0x4000
+
+    def seam(address):
+        if address == 0x1400021c0:
+            assert cpu.reg_read(reg.UC_X86_REG_RCX) == 64
+            assert cpu.reg_read(reg.UC_X86_REG_RDX) == 8
+            cpu.reg_write(reg.UC_X86_REG_RAX, allocated)
+        elif address != 0x140002200:
+            return False
+        replay.return_seam()
+        return True
+
+    replay.seam = seam
+    cases = 0
+    statuses = tuple(product((0, 1), (0, 1, 2)))
+    for states in product(statuses, repeat=3):
+        replay.reset('host State15/HUD10 recipients', [iterator], [replay.done])
+        replay.put(cursor, '<QQQ', rows, rows + len(states) * 0x8a0, 0)
+        for index, (assigned, synchronized) in enumerate(states):
+            row = rows + index * 0x8a0
+            replay.put(row, '<B', assigned)
+            replay.put(row + 8, '<Q', 100 + index)
+            replay.put(row + 0x89d, '<B', synchronized)
+        cpu.reg_write(reg.UC_X86_REG_RCX, result)
+        cpu.reg_write(reg.UC_X86_REG_RDX, cursor)
+        replay.run(iterator[0])
+        _, pointer, count = replay.get(result, '<QQQ')
+        expected = [(index, 100 + index) for index, status in enumerate(states) if status == (1, 1)]
+        assert count == len(expected)
+        if count:
+            assert pointer == allocated
+            assert [replay.get(pointer + index * 16, '<QQ') for index in range(count)] == expected
+        cases += 1
+    replay.seam = None
+    return cases
+
+
+def replay_player_login_sync(replay, ranges):
+    cpu, reg = replay.machine, replay.registers
+    opcode = ranges['guest_player_login_opcode_gate']
+    cell = ranges['guest_player_login_opcode_cell'][0]
+    handler = ranges['guest_player_login_sync']
+    variant = ranges['guest_player_login_sync_variant'][0]
+    assert 0x147aeda5c + struct.unpack('<i', replay.raw(cell, 4))[0] == handler[0]
+    assert struct.unpack('<Q', replay.raw(variant, 8))[0] == (1 << 63) + 5
+    app, flushed, serialized, denied = replay.app, 0x145e66130, 0x14604fa80, 0x145eb5fb4
+    after_serializer = 0x145eb5f08
+    cases = 0
+    for role, zone, requested in product((0, 1, 2, 0xffffffff), (False, True), (0, 1)):
+        replay.reset('guest PlayerLogin to Sync6', [opcode, handler], [after_serializer, denied])
+        replay.put(app + 0x1578, '<Q', app + 0x3000 if zone else 0)
+        replay.put(app + 0x15a5, '<B', requested)
+        cpu.reg_write(reg.UC_X86_REG_RAX, role)
+        cpu.reg_write(reg.UC_X86_REG_RDX, 0x3d)
+        cpu.reg_write(reg.UC_X86_REG_RSI, app)
+        observed = []
+
+        def seam(address):
+            if address not in (flushed, serialized):
+                return False
+            observed.append(address)
+            assert replay.get(app + 0x15a5, '<B') == (1,)
+            if address == serialized:
+                assert cpu.reg_read(reg.UC_X86_REG_RDX) == variant
+            replay.return_seam()
+            return True
+
+        replay.seam = seam
+        allowed = role <= 1 and zone
+        assert replay.run(opcode[0]) == (after_serializer if allowed else denied)
+        assert observed == ([flushed, serialized] if allowed else [])
+        assert replay.get(app + 0x15a5, '<B') == (1 if allowed else requested,)
+        cases += 1
+    replay.seam = None
+    return cases
+
+
+def replay_host_sync_queue_tail(replay, ranges):
+    cpu, reg = replay.machine, replay.registers
+    start, end = ranges['host_sync_initial_queue_tail']
+    app, peer, queue = replay.app, replay.app + 0x2000, replay.app + 0x4000
+    tail = (0x101, 0x202, 0x303)
+    cases = 0
+    for queued in (0, 1, 3):
+        replay.reset('host last initial Engine7 before Sync latch', [(start, end)], [end])
+        replay.put(app + 0x1100, '<I', 3)
+        replay.put(app + 0x1138, '<QQ', peer, 1)
+        replay.put(replay.bp + 0x230, '<QQQ', *tail)
+        replay.put(replay.bp + 0x2d8, '<Q', app)
+        replay.put(replay.bp + 0x2f8, '<Q', 1)
+        for register, value in [(reg.UC_X86_REG_RAX, queue), (reg.UC_X86_REG_RCX, queued * 3),
+                                (reg.UC_X86_REG_RDI, peer), (reg.UC_X86_REG_R12, queued),
+                                (reg.UC_X86_REG_R15, 1)]:
+            cpu.reg_write(register, value)
+        observed = []
+
+        def seam(address):
+            if address not in (0x145e99f20, 0x145ec8500):
+                return False
+            observed.append(address)
+            assert replay.get(peer + 0x3a0, '<Q') == (queued + 1,)
+            assert replay.get(queue + queued * 24, '<QQQ') == tail
+            assert replay.get(peer + 0x89d, '<B') == (int(address == 0x145ec8500),)
+            replay.return_seam()
+            return True
+
+        replay.seam = seam
+        replay.run(start)
+        assert observed == [0x145e99f20, 0x145ec8500]
+        cases += 1
+    replay.seam = None
+    return cases
+
+
+def replay_guest_end_run(replay, ranges):
+    cpu, reg = replay.machine, replay.registers
+    body = ranges['guest_end_run_settlement_and_logout']
+    app, stop = replay.app, 0x145ecd299
+    settle, recap, logout, drop = 0x145ebb750, 0x145ec30b0, 0x145eca550, 0x145e24fb0
+    absent = (1 << 64) - 1
+    cases = 0
+    for guest, zone, state, sync in product((False, True), repeat=4):
+        replay.reset('guest End18', [body], [stop])
+        replay.put(app + 0x1100, '<Q', 0 if guest else 3)
+        replay.put(app + 0x1578, '<Q', 9 if zone else 0)
+        replay.put(app + 0x1460, '<Q', 1 if state else absent)
+        replay.put(app + 0x15a5, '<B', int(sync))
+        cpu.reg_write(reg.UC_X86_REG_R12, app)
+        observed = []
+
+        def seam(address):
+            if address not in (settle, recap, logout, drop):
+                return False
+            observed.append(address)
+            replay.return_seam()
+            return True
+
+        replay.seam = seam
+        replay.run(body[0])
+        expected = []
+        if guest:
+            if zone and state:
+                expected.extend((settle, recap))
+            if sync:
+                expected.append(logout)
+            if state:
+                expected.append(drop)
+        assert observed == expected
+        assert replay.get(app + 0x1578, '<Q') == (9 if zone and not guest else 0,)
+        assert replay.get(app + 0x1460, '<Q') == (1 if state and not guest else absent,)
+        cases += 1
+    replay.seam = None
+    return cases
+
+
+def replay_guest_hero_refresh(replay, ranges):
+    cpu, reg = replay.machine, replay.registers
+    body = ranges['guest_lobby_hero_refresh']
+    app = replay.app
+    cases = 0
+    for role, accepted, zone in product((0, 1, 2), (0, 1), (0, 1)):
+        replay.reset('guest lobby Hero4 refresh', [body], [0x145eca064, 0x145eca176])
+        replay.put(app + 0x1100, '<I', role)
+        replay.put(app + 0x15a4, '<B', accepted)
+        replay.put(app + 0x1578, '<Q', zone)
+        cpu.reg_write(reg.UC_X86_REG_RSI, app)
+        allowed = role <= 1 and accepted and not zone
+        assert replay.run(0x145eca03c) == (0x145eca064 if allowed else 0x145eca176)
+        cases += 1
+    return cases
+
+
+def check_initial_world_splice(replay, ranges):
+    _, login_call_end = ranges['host_initial_login_builder_call']
+    login_opcode, login_opcode_end = ranges['host_initial_login_opcode']
+    login_entry, login_entry_end = ranges['host_initial_login_first_entry']
+    self_call, self_call_end = ranges['host_initial_self_create_call']
+    speed_scale = ranges['host_initial_self_speed_scale'][0]
+    assert login_call_end + struct.unpack('<i', replay.raw(login_call_end - 4, 4))[0] == 0x145fe4700
+    assert replay.raw(login_opcode, login_opcode_end - login_opcode) == bytes.fromhex('66c745c03602')
+    assert replay.raw(login_entry_end - 3, 3) == bytes.fromhex('0f1101')
+    assert login_entry < self_call and replay.raw(self_call_end - 8, 3) == bytes.fromhex('41b001')
+    assert self_call_end + struct.unpack('<i', replay.raw(self_call_end - 4, 4))[0] == 0x145f71dc0
+    assert 0x145f71e3a + struct.unpack('<i', replay.raw(0x145f71e36, 4))[0] == speed_scale
+    assert struct.unpack('<f', replay.raw(speed_scale, 4))[0] == 7.0
+
+
 def check_protocol_13():
     proof, data, pe, ranges = installed_ranges(PROTOCOL_13)
     replay = NativeReplay(data, pe)
@@ -327,6 +520,12 @@ def check_protocol_13():
     party_context = replay_state_party_context(replay, proof['target'])
     hud = replay_hud_bound(replay, ranges)
     hud_cadence = replay_hud_cadence(replay, ranges)
+    recipients = replay_replication_recipients(replay, ranges)
+    guest_login = replay_player_login_sync(replay, ranges)
+    host_sync = replay_host_sync_queue_tail(replay, ranges)
+    guest_end = replay_guest_end_run(replay, ranges)
+    hero_refresh = replay_guest_hero_refresh(replay, ranges)
+    check_initial_world_splice(replay, ranges)
 
     base = ROOT / 'crates/azeroth-survivors-re/src'
     publish = ' '.join((base / 'gameplay/coop_publish.rs').read_text().split())
@@ -334,6 +533,7 @@ def check_protocol_13():
     assert 'let periodic = now - state.state_sent_at.get(&client).copied().unwrap_or(0.) >= 1.0;' in cadence_source
     assert 'if periodic { state.state_sent_at.insert(client, now); } periodic || terminal' in cadence_source
     assert publish.count('state.state_sent_at.insert(client, now);') == 1
+    assert 'let state_due = synced && client.is_some_and(|client|' in publish
     assert 'recipient_state_due(&mut state, client, game.native_state_terminal(), now)' in publish
     publisher = publish.split('fn publish(', 1)[1].split('fn retire_inventory(', 1)[0]
     assert 'if !world.ready' not in publisher
@@ -363,6 +563,18 @@ def check_protocol_13():
     assert 'if matches!(kind, 0 | 3) { reader.word()? } else { 0 }' in reader
     assert '10 => NativeMessage::HudJson(reader.text()?),' in wire
     guest = (base / 'gameplay/coop.rs').read_text()
+    engine_arm = guest.split('} else if guest {\n                    let Some(packet) = state.guest_engine_packet(', 1)[1]
+    engine_arm = engine_arm.split('NativeMessage::Time(milliseconds)', 1)[0]
+    assert engine_arm.index('packet.decode_server()') < engine_arm.index('observe(') < engine_arm.index('SMSG_LOGIN_VERIFY_WORLD')
+    assert '&mut state.pending_guest_wire' in engine_arm
+    entry = guest.split('if !state.guest_login_started {', 1)[1].split('let identity = run.identity;', 1)[0]
+    assert entry.index('local.begin(') < entry.index('world.request = Some(') < entry.index('LifecyclePacket::Synchronize')
+    assert entry.index('state.guest_entry_run_speed') < entry.index('spawn.request = Some(') \
+        < entry.index('wire.0.append(&mut state.pending_guest_wire)') < entry.index('let Some(snapshot) = state.state.as_ref()')
+    end = guest.split('NativeMessage::End if guest => {', 1)[1].split('\n            _ => {}', 1)[0]
+    assert end.index('state.zone.is_some() && state.state.is_some()') < end.index('state.settle(') \
+        < end.index('state.sync_sent && local.active') < end.index('state.leave()')
+    assert end.index('driver.accepted().is_some()') < end.index('LifecyclePacket::Hero(')
     hud_arm = guest.split('NativeMessage::HudJson(text) if guest && text.len() <= 65_536 => {', 1)[1]
     hud_arm = hud_arm.split('NativeMessage::Resources(', 1)[0]
     assert 'serde_json::from_str(&text)' in hud_arm and 'state.pick.receive_hud(&text,' in hud_arm
@@ -374,7 +586,9 @@ def check_protocol_13():
     assert 'runtime.send(Some(client), NativeMessage::HudJson(hud.to_string()));' in hud_send
     assert 'cache.hud.get(' not in overlay
     print(f'PASS: {cadence} State15 cadence cases, {party_context} party context cases, {controls} Control8 cases, {hud} HUD cases, '
-          f'{hud_cadence} HUD cadence cases, {replay.instructions} native steps and source route checks')
+          f'{hud_cadence} HUD cadence cases, {recipients} host recipient cases, {guest_login} guest login cases, '
+          f'{host_sync} host Sync queue cases, {guest_end} guest End cases, {hero_refresh} Hero refresh cases, '
+          f'{replay.instructions} native steps and source route checks')
 
 
 def main():
