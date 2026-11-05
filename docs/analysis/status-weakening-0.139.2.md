@@ -59,5 +59,71 @@ Insect Swarm. Raw tag 10 belongs only to kind-9 Demonic Empowerment, whose
 rebuilt self-buff path uses its separate uncapped effect producer. This
 explains why the reconstructed tag-10 weakening clamp does not cap that buff.
 The [scaled status and cast consumers](../../crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs)
-already supply these two typed paths. Full recipient/timer correspondence and
-original/rebuilt behavior remain open.
+already supply these two typed paths.
+
+### Immediate weakening recipient in 0.141.0
+
+The recipient dispatch at `0x145f5a24e` takes raw tag 11 to `0x145f5a8fb`.
+It searches the 552-byte actor rows for the victim GUID, skips the row when
+its phase discriminator is 1, and passes the scaled magnitude, `now + duration`
+and `now` to `0x145db7490`. It writes the displayed duration at actor `+0x1e4`
+only when the selected active magnitude and deadline equal the incoming pair.
+A changed nonzero spell ID replaces the old aura and removes the previous
+nonzero spell first. The [rebuilt status owner](../../crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs)
+uses the same active-pair check and separate aura replacement gate.
+
+The timer helper range `0x145db7490..0x145db762b` has SHA-256
+`f82ad3229c0d96861c4135e2f0aeb1ef03b7826e3f4a9083a134838d25373f67`.
+Isolated instruction replay matched all 244 steps of the [retained timer
+sequences](evidence/0.127.0/shouts/native-cases.json) and 600 finite boundary
+cases against the [source timer](../../crates/azeroth-survivors-re/src/player_abilities/behavior/state.rs).
+The added cases cross four initial active/fallback states with five clocks,
+five incoming magnitudes and six deadlines. They cover expiration, ties,
+stronger and weaker arrivals, and the two retained value/deadline pairs.
+
+The Ghidra query for the dispatcher used the mapped PE span
+`0x145f5a1f0..0x145f5ac7d`, SHA-256
+`e31eef80f986e1436e296fc78d88d1cff7a2589b59dc9d1377b0ba70e667143a`.
+Evidence `ev_1d97965370b76f1aeea0d95541b6075c5dc96be34a296ff14207b101d9786af8`
+has result SHA-256
+`e707de292afc2e7fce28c1f864abb534f9550901a1d931d024cc1244bcad97ac`.
+The original PE supplies the signed table cells and tag-11 branch absent
+from the raw-slice pseudocode.
+
+### Periodic projectile recipient in 0.141.0
+
+The projectile builder `0x145f5d990` writes the 16-byte periodic plan at
+`+0x10` of the 144-byte pending row and the separate status triplet at
+`+0x70`. The pending owner `0x145f5aed0` reads both from the detached row.
+For a live matching actor, it calls the periodic installer `0x145db52a0`
+at `0x145f5b831`. It then emits aura and impact metadata through
+`0x145f35690` and `0x145f35ff0`. The dispatch at `0x145f5b87e` forwards the
+stored triplet, victim GUID, spell ID and power to the shared status handler
+`0x145f5a1f0`. Raw tag 5 supplies the periodic leech fraction and skips this
+last dispatch. Raw tag 0 enters the shared handler's no-op case.
+
+Of the 12 ordinary kind-6 definitions, nine carry raw tag 0 and Devouring
+Plague and Drain Life carry raw tag 5. Insect Swarm, spell 5570, is the only
+kind-6 definition carrying raw tag 11. Its row at `0x1473a6e50` has authored
+magnitude bits `0x3e19999a` and duration bits `0x41400000`, representing
+0.15 and 12 seconds. The rebuilt dispatch already scales and carries its
+weakening as internal tag 10. The [pending-hit callback](../../crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs#L1016)
+now passes that payload to the shared status owner after the periodic hit
+path attempts installation. The native dispatch also runs after a dead or
+missing victim declines installation. The status handler independently
+requires a matching live row for raw tag 11, as does the rebuilt recipient.
+The explosive-orb cast-kind mask `0x0d0c` admits kind 6. The connected status
+applies weakening without an additional direct damage event.
+
+| Preferred VA range | SHA-256 |
+| --- | --- |
+| `0x145f5df0f..0x145f5df97` | `efa24ef1ed8d884b062455226cdb28ce6ebd5a150a885d08a68ae4b1d8e24d14` |
+| `0x145f5b134..0x145f5b1a4` | `cd304186721c622717ff26501db3ca2742392641bf9204ecc7a846aaf1582b6f` |
+| `0x145f5b76d..0x145f5b884` | `a888b2619a65c7a354dcfe2416ece26325844c0e8b5c6bd6e993f24858ddc27f` |
+
+Isolated replay of the third original instruction range exercised all 12
+definitions with a live matching actor, a dead matching actor and an
+unmatched actor. The 36 cases checked periodic admission, leech bits,
+publication order and the exact status triplet at the call boundary. Pinned
+rustfmt parsed the callback. Compilation, aura delivery, timing and
+original/rebuilt comparison remain open.

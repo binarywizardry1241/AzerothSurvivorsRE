@@ -1030,6 +1030,17 @@ impl<W: RunWorld> passives::PassiveCombat<'_, '_, '_, W> {
             );
         } else {
             self.hit_with_execution(hit, rng, execution, counter);
+            // The periodic installer consumes tag 5 as its leech fraction.
+            // Other authored statuses enter the shared callback after installation.
+            if hit.dot_plan().is_some() && !matches!(hit.effect.tag, 0 | 5) {
+                self.apply_effect_status(
+                    hit.target_guid,
+                    hit.effect,
+                    hit.spell_id,
+                    hit.damage,
+                    execution,
+                );
+            }
         }
     }
 
