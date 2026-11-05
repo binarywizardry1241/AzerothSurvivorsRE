@@ -190,12 +190,139 @@ def selected_census_frontier(census_path, *, details=False):
     return result
 
 
+def addressed_formatter_frontier():
+    """Check exact local callback operands at the selected formatter boundary."""
+    from capstone.x86_const import X86_OP_IMM, X86_OP_MEM, X86_OP_REG, X86_REG_RIP
+
+    target = latest_target(verify=True)
+    evidence = ROOT / 'docs/analysis/evidence' / target['version']
+    selection = load_json(evidence / 'addressed-formatters.json')
+    source = evidence / 'executable-residual-frontier.json'
+    assert file_sha256(source) == selection['residual_proof_sha256']
+    proof = load_json(source)
+    assert proof['target'] == {key: target[key] for key in proof['target']}
+    pe = load_script('address_formatter_pe', 'scripts/inventory-executable.py').PE(target_bytes(target))
+    canonical = load_script('address_formatter_regs', 'scripts/classify-native-ownership.py').canonical_register
+    project = load_script('address_formatter_projection', 'scripts/check-owned-custom-diagnostics.py').pointer_projection
+    decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_64)
+    decoder.detail = True
+    extents = {pe.image_base + a: pe.image_base + b for a, b, _ in pe.functions()}
+    starts = sorted(extents)
+    code = {}
+
+    def read(va, count):
+        offset = pe.rva_offset(va - pe.image_base)
+        assert pe.rva_offset(va + count - 1 - pe.image_base) == offset + count - 1
+        return pe.data[offset:offset + count]
+
+    def instructions(start):
+        if start not in code:
+            raw = read(start, extents[start] - start)
+            code[start] = {insn.address: insn for insn in decoder.disasm(raw, start)}
+            assert sum(insn.size for insn in code[start].values()) == len(raw)
+        return code[start]
+
+    def address_of(flow, register):
+        for insn in reversed(flow):
+            if register not in {canonical(insn.reg_name(r)) for r in insn.regs_access()[1]}:
+                continue
+            assert insn.operands[0].type == X86_OP_REG
+            source = insn.operands[1]
+            if insn.mnemonic == 'mov' and source.type == X86_OP_REG and source.size == 8:
+                register = insn.reg_name(source.reg)
+                continue
+            assert insn.mnemonic == 'lea' and source.type == X86_OP_MEM and not source.mem.index
+            base = insn.reg_name(source.mem.base)
+            return base, source.mem.disp if base != 'rip' else insn.address + insn.size + source.mem.disp
+        raise AssertionError(f'No verified base for {register}')
+
+    for site_hex, mnemonic, operands in selection['interface_instructions']:
+        site = int(site_hex, 16)
+        insn = next(decoder.disasm(read(site, 15), site))
+        assert (insn.mnemonic, insn.op_str) == (mnemonic, operands)
+    debug = selection['debug_field']
+    vtable = int(debug['vtable'], 16)
+    assert int.from_bytes(read(vtable + debug['method_slot'], 8), 'little') == int(debug['method'], 16)
+
+    reviewed, overwritten, counts = set(), set(), collections.Counter()
+    for prefix in proof['addressed_prefixes']:
+        if prefix.get('role') != 'dereference-rcx-and-tail-jump':
+            continue
+        entry = int(prefix['address'], 16)
+        assert read(entry, 8).hex() == prefix['bytes']
+        for source in prefix['sources']:
+            site = int(source, 16)
+            owner = starts[bisect_right(starts, site) - 1]
+            decoded = instructions(owner)
+            first = decoded[site]
+            operand = first.operands[1]
+            assert first.mnemonic == 'lea' and operand.type == X86_OP_MEM and operand.mem.base == X86_REG_RIP
+            assert site + first.size + operand.mem.disp == entry
+            flow, seen = [], set()
+            while site not in seen and len(flow) < 32:
+                insn = decoded[site]
+                flow.append(insn)
+                seen.add(site)
+                if insn.group(capstone.CS_GRP_CALL):
+                    break
+                assert not insn.group(capstone.CS_GRP_RET) and insn.mnemonic not in ('ud2', 'int3')
+                if insn.group(capstone.CS_GRP_JUMP):
+                    assert insn.mnemonic == 'jmp' and insn.operands[0].type == X86_OP_IMM
+                    site = insn.operands[0].imm
+                else:
+                    site += insn.size
+            call = flow[-1]
+            assert call.mnemonic == 'call' and call.operands[0].type == X86_OP_IMM
+            destination = hex(call.operands[0].imm)
+            pointer = project(flow, canonical, capstone)
+            assert not pointer['opaque_pointer_use'] and not pointer['unresolved_memory_alias']
+            slots = {(row['base'], row['displacement']) for row in pointer['live_local_pointer_locations']}
+            stale = selection['overwritten']
+            if destination == stale['callee']:
+                assert (hex(entry), hex(first.address), hex(call.address)) == (
+                    stale['entry'], stale['source'], stale['first_call'])
+                assert slots == {tuple(stale['slot'])}
+                assert address_of(flow[:-1], 'rdx') == tuple(stale['rdx'])
+                erase = decoded[int(stale['overwrite'], 16)]
+                memory = erase.operands[0]
+                assert memory.type == X86_OP_MEM and memory.access & capstone.CS_AC_WRITE
+                assert erase.reg_name(memory.mem.base) == stale['slot'][0] and not memory.mem.index
+                assert memory.mem.disp <= stale['slot'][1] <= memory.mem.disp + memory.size - 8
+                overwritten.add(entry)
+                continue
+            base, offset = address_of(flow[:-1], selection['format_arguments'][destination])
+            if destination == debug['entry']:
+                assert address_of(flow[:-1], 'r8') == ('rip', vtable)
+                store, = [insn for insn in flow if insn.mnemonic == 'mov' and
+                          insn.operands[0].type == X86_OP_MEM and
+                          insn.reg_name(insn.operands[0].mem.base) == base and
+                          insn.operands[0].mem.disp == offset + debug['descriptor_field']]
+                base, offset = address_of(flow[:flow.index(store)], store.reg_name(store.operands[1].reg))
+            assert slots and all(slot_base == base and displacement >= offset + 8 and
+                                 (displacement - offset) % 16 == 8 for slot_base, displacement in slots)
+            counts[destination] += 1
+            reviewed.add(entry)
+    assert counts == selection['formatter_source_sites']
+    assert len(reviewed) == selection['formatter_adapters'] and len(overwritten) == 1
+    assert not reviewed & overwritten
+    return dict(formatter_source_sites=dict(counts), formatter_adapters=len(reviewed),
+                overwritten_on_normal_return=list(map(hex, sorted(overwritten))))
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--stage', action='store_true')
-    ap.add_argument('--census-summary', help='Print the selected-target executable residual and incoming-reference join')
+    current = ap.add_mutually_exclusive_group()
+    current.add_argument('--census-summary', help='Print the selected-target executable residual and incoming-reference join')
+    current.add_argument('--addressed-formatters', action='store_true',
+                         help='Check the address-taken callback stores at the formatter boundary')
     ap.add_argument('--details', action='store_true', help='Include all incoming reference rows with --census-summary')
     args = ap.parse_args()
+    if args.addressed_formatters:
+        if args.stage or args.details:
+            ap.error('--addressed-formatters only checks retained evidence')
+        print(json.dumps(addressed_formatter_frontier(), indent=2))
+        return
     if args.census_summary:
         if args.stage:
             ap.error('--stage is only for the historical encoding contract')

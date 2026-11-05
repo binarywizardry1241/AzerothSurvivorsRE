@@ -1,0 +1,37 @@
+{
+  "lead_id": "Q41-B01",
+  "residual_proof_sha256": "47233ad2c8097d98b2ce38c3733ba8081fddc6c93d749ea0347dc21e86266138",
+  "format_arguments": {
+    "0x14637fd90": "r9",
+    "0x146378290": "r8",
+    "0x14637bc40": "rdx"
+  },
+  "debug_field": {
+    "entry": "0x14637bc40",
+    "vtable": "0x146a58848",
+    "method": "0x1463898b0",
+    "method_slot": 24,
+    "descriptor_field": 8
+  },
+  "interface_instructions": [
+    ["0x14637feed", "call", "qword ptr [rsi + rax + 8]"],
+    ["0x1463782a9", "mov", "rdi, r8"],
+    ["0x1463783c5", "mov", "r9, rdi"],
+    ["0x1463783c8", "call", "0x14637fd90"],
+    ["0x14637bcc4", "call", "qword ptr [r15 + 0x18]"],
+    ["0x14637bd3a", "call", "qword ptr [r8 + 0x18]"],
+    ["0x1463898ba", "mov", "r9, qword ptr [rcx + 8]"],
+    ["0x1463898c1", "jmp", "0x14637fd90"]
+  ],
+  "overwritten": {
+    "entry": "0x1426ea4f0",
+    "source": "0x14270617d",
+    "first_call": "0x142706242",
+    "callee": "0x145a047d0",
+    "slot": ["rbp", 1256],
+    "rdx": ["rbp", 1136],
+    "overwrite": "0x14270626e"
+  },
+  "formatter_source_sites": {"0x14637fd90": 51, "0x146378290": 3, "0x14637bc40": 4},
+  "formatter_adapters": 36
+}

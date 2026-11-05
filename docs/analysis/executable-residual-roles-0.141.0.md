@@ -38,6 +38,27 @@ That address dereferences the receiver and tail-transfers to `0x145ca8360`.
 This establishes the adapter's role at this use. Other address records do
 not by themselves establish a caller, argument type or runtime admission.
 
+The [formatter operand proof](evidence/0.141.0/addressed-formatters.json)
+follows all 59 address materializations for the 37 dereference-tail
+adapters in that selector. Fifty-eight materializations for 36 adapters
+write a callback field at `+8` in a live 16-byte format-argument row.
+Fifty-one pass the row base in R9 to the interpreter at `0x14637fd90`.
+Three pass it in R8 to the owned String formatter at `0x146378290`,
+which forwards it to the same interpreter. Four pass a Debug field
+record to `0x14637bc40`. The record points to the row at `+8` and the
+exact vtable at `0x146a58848` selects `0x1463898b0`, which forwards that
+pointer to the interpreter. These are shared formatting interfaces.
+Individual format programs, invocation and caller semantics remain
+separate.
+
+The remaining site at `0x14270617d` materializes adapter
+`0x1426ea4f0` and stores it at `[rbp+0x4e8]`. The first call at
+`0x142706242` supplies a separate record in RDX from `[rbp+0x470]`.
+On normal return the SIMD store at `0x14270626e` replaces the entire
+callback field. Any alias or unwind consumer of the earlier value
+remains open. The other 59 address-taken prefixes and the mixed spans
+without these address operands retain their distinct selectors.
+
 Three other outside-declared mixed spans are code at a graphics formatting
 boundary. The original bytes in `0x144e32ae0..0x144e330a4`,
 `0x144e332fc..0x144e33d34` and `0x144e39506..0x144e39a10` decode completely into
@@ -325,6 +346,7 @@ selected transfers without establishing a missing gameplay behavior.
 ```sh
 export PYTHONPATH=runtime/tests/query-python-deps
 python3 -B scripts/check-q41-range-encodings.py --census-summary docs/analysis/coverage/full-image-selected-0.141.0.json
+python3 -B scripts/check-q41-range-encodings.py --addressed-formatters
 python3 -B scripts/classify-as-residual-ranges.py
 python3 -B scripts/classify-as-residual-ranges.py --dispatch-frontier
 python3 -B scripts/classify-as-residual-ranges.py --entry-frontier
