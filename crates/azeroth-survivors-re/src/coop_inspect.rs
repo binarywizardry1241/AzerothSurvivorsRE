@@ -667,23 +667,15 @@ struct ItemPalette {
 impl ItemLabel {
     fn palette(&self) -> ItemPalette {
         // Native descriptor +0x30 selects quality, with a weapon-only tier four.
-        let (label, edge, fill) = match self.tier {
-            1 => ([0.118, 1., 0.], [0.075, 0.541, 0.], [0.067, 0.161, 0.047]),
-            2 => ([0.231, 0.612, 1.], [0.039, 0.31, 0.612], [0.047, 0.11, 0.2]),
-            4 if self.class == 2 => ([1., 0.604, 0.165], [0.698, 0.329, 0.], [0.227, 0.114, 0.02]),
-            3 | 4 | 5 | 7 => (
-                [0.761, 0.486, 1.],
-                [0.42, 0.122, 0.659],
-                [0.133, 0.063, 0.227],
-            ),
-            _ => (
-                [0.91, 0.91, 0.91],
-                [0.541, 0.541, 0.541],
-                [0.165, 0.161, 0.145],
-            ),
+        let (edge, fill) = match self.tier {
+            1 => ([0.075, 0.541, 0.], [0.067, 0.161, 0.047]),
+            2 => ([0.039, 0.31, 0.612], [0.047, 0.11, 0.2]),
+            4 if self.class == 2 => ([0.698, 0.329, 0.], [0.227, 0.114, 0.02]),
+            3 | 4 | 5 | 7 => ([0.42, 0.122, 0.659], [0.133, 0.063, 0.227]),
+            _ => ([0.541, 0.541, 0.541], [0.165, 0.161, 0.145]),
         };
         ItemPalette {
-            label: Color::srgb(label[0], label[1], label[2]),
+            label: armory::item_quality_color(self.tier, self.class),
             edge: Color::srgb(edge[0], edge[1], edge[2]),
             fill: Color::srgba(fill[0], fill[1], fill[2], 0.8),
         }

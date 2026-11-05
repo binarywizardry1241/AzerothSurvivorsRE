@@ -298,6 +298,16 @@ const QUALITY: [Color; 8] = [
     Color::srgb(0.761, 0.486, 1.),
 ];
 
+pub(crate) fn item_quality_color(tier: usize, item_class: u32) -> Color {
+    match tier {
+        1 => Color::srgb(0.118, 1., 0.),
+        2 => Color::srgb(0.231, 0.612, 1.),
+        4 if item_class == 2 => Color::srgb(1., 0.604, 0.165),
+        3 | 4 | 5 | 7 => Color::srgb(0.761, 0.486, 1.),
+        _ => Color::srgb(0.91, 0.91, 0.91),
+    }
+}
+
 #[derive(Resource, Clone, Deserialize)]
 pub struct ArmoryCatalog {
     pub version: String,
@@ -1676,9 +1686,26 @@ fn flow_text(
         menu::native_text_shadow(),
     ));
 }
-fn flow_icon(ui: &mut ChildSpawnerCommands, art: &MenuArt, key: &str, size: f32, dim: bool) {
+fn flow_icon(
+    ui: &mut ChildSpawnerCommands,
+    art: &MenuArt,
+    key: &str,
+    size: f32,
+    dim: bool,
+    border: Option<Color>,
+) {
     if let Some(image) = art.icons.get(key) {
-        ui.spawn((
+        let mut node = Node {
+            width: Val::Px(size),
+            height: Val::Px(size),
+            flex_shrink: 0.,
+            ..default()
+        };
+        if border.is_some() {
+            node.border = UiRect::all(Val::Px(1.));
+            node.border_radius = BorderRadius::all(Val::Px(4.));
+        }
+        let mut icon = ui.spawn((
             ImageNode {
                 color: if dim {
                     Color::srgb(0.35, 0.35, 0.35)
@@ -1687,13 +1714,11 @@ fn flow_icon(ui: &mut ChildSpawnerCommands, art: &MenuArt, key: &str, size: f32,
                 },
                 ..ImageNode::new(image.clone())
             },
-            Node {
-                width: Val::Px(size),
-                height: Val::Px(size),
-                flex_shrink: 0.,
-                ..default()
-            },
+            node,
         ));
+        if let Some(color) = border {
+            icon.insert(BorderColor::all(color));
+        }
     }
 }
 /// Keep the existing per-control palette pending its own hover/bundle dossier.
@@ -1837,6 +1862,7 @@ fn left(
             let worn = gear
                 .worn(state.class_id(), slot)
                 .and_then(|id| catalog.piece(id));
+            let quality = worn.map(|p| item_quality_color(p.rarity, p.item_class));
             flow_control(
                 ui,
                 ArmoryAction::Slot(slot),
@@ -1855,7 +1881,7 @@ fn left(
                     let key = worn
                         .map(|p| format!("gear.{}", p.display_id(state.race)))
                         .unwrap_or_else(|| format!("slot.{}", slot_art(state.class_id(), slot)));
-                    flow_icon(ui, art, &key, 32., worn.is_none());
+                    flow_icon(ui, art, &key, 32., false, Some(quality.unwrap_or(Color::BLACK)));
                     ui.spawn(Node {
                         flex_direction: FlexDirection::Column,
                         flex_grow: 1.,
@@ -1877,8 +1903,7 @@ fn left(
                             worn.map(|p| piece_name(menu_catalog, p, state.race))
                                 .unwrap_or_else(|| menu_catalog.label("armory.empty").into()),
                             14.,
-                            worn.map(|p| QUALITY[p.rarity])
-                                .unwrap_or(Color::srgb(0.42, 0.39, 0.33)),
+                            quality.unwrap_or(Color::srgb(0.42, 0.39, 0.33)),
                             false,
                         );
                     });
@@ -2767,6 +2792,7 @@ fn details(
                     &format!("gear.{}", p.display_id(state.race)),
                     60.,
                     !gear.owned.contains(&p.id),
+                    None,
                 );
                 ui.spawn(Node {
                     flex_direction: FlexDirection::Column,
