@@ -37,5 +37,42 @@ already express this calculation and yield boundary.
 The WASM projection retained the original function indices and selected
 body bytes for instruction decoding. Capstone decoded the Windows ranges
 directly from the verified PE. The trace covers the progress calculation
-and the native yield boundary. Hold, route, artwork selection and
-visual/runtime comparison remain open under #61.
+and the native yield boundary.
+
+## Desktop zone artwork
+
+The current drive at `0x140637548..0x140637a1d` skips the artwork
+lookup when the screen is inactive, blacked out or already resolved.
+`0x140637617` passes the selected map from `+0xcc` to `0x146224bf0`.
+On a hit that helper returns the row's 32-bit loading-screen ID in
+`edx` at `0x146224cb0` and a present flag in `eax`. The next call
+at `0x140637633` passes that same ID to `0x146224cd0`. Its matching
+row returns the path pointer and length in `rax:rdx` at
+`0x146224d8b..0x146224d93`. `0x1406376e1` sends the copied
+path to the cache and texture consumer. That consumer compares the
+complete path on a cache hit and passes archive mode zero to the
+asset reader on a miss. A failed resolution clears the optional
+map key at `0x1406379dd`. The successful branch sets the resolved
+byte at `0x1406378e9`.
+
+The [existing source](../../crates/benilla-app/src/loading_screen.rs)
+reads the [map loading-screen ID](../../crates/benilla-formats/src/maps.rs),
+then the [path catalog](../../crates/benilla-formats/src/loading_screen.rs)
+and uses the same archive-only read, path cache and one-shot miss behavior.
+The [current resource proof](evidence/0.141.0/resource-consumers.json)
+joins all 13 entry zones to eight distinct map IDs and eight exact BLP2
+members through the installed Map column 38 and LoadingScreens column 2.
+Open-world zones reuse their continent art. Scholomance map 289 uses
+loading screen 102. The source's picker thumbnail basenames do not
+feed this cover.
+
+The journaled Ghidra 12.1.4 result SHA-256 values are
+`da68f6c7d3599914a88feb9b066f281fe28df7870a88ac87b646da47c8c8fba0`
+for the map helper,
+`83b2c6b92191ef3eba58d64b9912944be33b96c388693446fa21e5fbb949ed37`
+for the path helper and
+`728c4e31a041a78521932e44189bd7f054e3559a9f3ff4bf2bdebef104702141`
+for the cache/texture consumer. Their raw slice digests and current
+drive span are in the resource proof. The static resource checker reads
+the EXE and installed members in place. Native route selection, other
+hold interactions and rendered/runtime comparison remain open under #61.

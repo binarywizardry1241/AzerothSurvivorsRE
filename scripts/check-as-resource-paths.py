@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
-"""Classify six AS resource candidates and paired arrows; no binary export/build."""
+"""Check bounded AS resource and builtin UI joins without exporting assets."""
 import argparse
 import hashlib
 import json
+import re
 import struct
 
-from coverage_common import ROOT,latest_target,file_sha256,verify_resources
-from creature_query_native import D,PE
+from coverage_common import ROOT, latest_target, file_sha256, target_bytes, verify_resources
 from script_sources import load_script
-from resource_uri_native import UriProbe,SPANS
 
 WORK=ROOT/'runtime/q41-all-0.113.2'
 KEEP=ROOT/'docs/analysis/evidence/0.113.2/as-resource-paths.json'
@@ -20,10 +19,146 @@ PATHS={
 }
 
 
-def main():
-    ap=argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('--stage',action='store_true')
-    args=ap.parse_args()
+def current_consumers():
+    from capstone import Cs, CS_ARCH_X86, CS_MODE_64, CS_OP_IMM, CS_OP_MEM, CS_OP_REG
+    from capstone.x86_const import X86_REG_RIP, X86_REG_R8, X86_REG_R9D, X86_REG_RAX, X86_REG_RSP
+
+    target = latest_target(verify=True)
+    proof = json.loads((ROOT / 'docs/analysis/evidence' / target['version']
+                        / 'resource-consumers.json').read_text())
+    assert proof['schema_version'] == 1 and target['sha256'] == proof['target_sha256']
+    verify_resources(target)
+    image = target_bytes(target)
+    pe = load_script('resource_consumer_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+    mpq = load_script('resource_consumer_mpq', ROOT / 'scripts/check-minimap-lifecycle.py')
+    inventory = load_script('resource_consumer_inventory', ROOT / 'scripts/inventory-current-mpq-members.py')
+    archives = [mpq.Archive(row['path']) for row in inventory.supported_source_order(target)]
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    decoder.detail = True
+
+    def raw(address, length):
+        offset = pe.rva_offset(address - pe.image_base)
+        return image[offset:offset + length]
+
+    def member(path):
+        hits = [(archive, archive.lookup(path)) for archive in archives]
+        matches = [(archive, entry) for archive, entry in hits if entry is not None]
+        assert len(matches) == 1, path
+        archive, entry = matches[0]
+        assert archive.reference == 'installed-game/Data/patch.MPQ', path
+        return archive.read(entry)
+
+    def dbc(name):
+        data = member(f'DBFilesClient\\{name}.dbc')
+        assert data[:4] == b'WDBC', name
+        count, fields, stride, strings = struct.unpack_from('<4I', data, 4)
+        assert count and fields and stride and 20 + count * stride + strings == len(data), name
+        return data, count, fields, stride
+
+    def check_slice(site, value, reader, destination):
+        instructions = list(decoder.disasm(raw(site, 65), site))
+        first = instructions[0]
+        reg, mem = first.operands
+        assert first.mnemonic == 'lea' and reg.type == CS_OP_REG and reg.reg == destination
+        assert mem.type == CS_OP_MEM and mem.mem.base == X86_REG_RIP
+        length = None
+        for ins in instructions[1:]:
+            operands = ins.operands
+            if ins.mnemonic == 'call':
+                assert operands[0].type == CS_OP_IMM and operands[0].imm == reader
+                break
+            if ins.mnemonic != 'mov' or operands[1].type != CS_OP_IMM:
+                continue
+            dst, src = operands
+            if (destination == X86_REG_R8 and dst.type == CS_OP_REG and dst.reg == X86_REG_R9D
+                    or destination == X86_REG_RAX and dst.type == CS_OP_MEM
+                    and dst.mem.base == X86_REG_RSP and dst.mem.disp == 0x28):
+                length = src.imm
+        else:
+            raise AssertionError(f'No direct call after {site:#x}')
+        assert length == len(value), (hex(site), value)
+        assert raw(first.address + first.size + mem.mem.disp, length) == value
+
+    for name, read_site, parse_site, label in proof['dbc_readers']:
+        check_slice(int(read_site, 16), f'DBFilesClient\\{name}.dbc'.encode(),
+                    int(proof['member_reader'], 16), X86_REG_R8)
+        if parse_site:
+            check_slice(int(parse_site, 16), label.encode(),
+                        int(proof['table_parser'], 16), X86_REG_RAX)
+        dbc(name)
+
+    for offset, text, source in proof['dbc_diagnostics']:
+        offset = int(offset, 16)
+        expected = text.encode()
+        assert image[offset] == len(expected)
+        assert image[offset + 1:offset + 1 + len(expected)] == expected
+        assert text in (ROOT / source).read_text()
+
+    def comment_free_xml(raw_xml):
+        raw_xml = re.sub(rb'<!--.*?-->', b'', raw_xml, flags=re.S)
+        return [line for line in raw_xml.splitlines()
+                if line.strip() and not line.lstrip().startswith(b'--')]
+
+    ui = ROOT / 'crates/benilla-app/assets/ui'
+    for name, descriptor, digest in proof['builtin_ui']:
+        path, path_length, content, content_length = struct.unpack_from(
+            '<4Q', image, int(descriptor, 16))
+        assert raw(path, path_length) == name.encode()
+        payload = raw(content, content_length)
+        assert hashlib.sha256(payload).hexdigest() == digest
+        source = (ui / name).read_bytes()
+        if name.endswith('.xml'):
+            assert comment_free_xml(payload) == comment_free_xml(source), name
+        else:
+            assert payload == source, name
+
+    stdlib_offset, stdlib_sha = proof['stdlib']
+    source = (ROOT / 'crates/benilla-ui/src/script/stdlib.rs').read_bytes()
+    chunk = source.split(b'const WOW_STDLIB: &str = r#"')[1].split(b'"#;', 1)[0]
+    assert hashlib.sha256(chunk).hexdigest() == stdlib_sha
+    at = int(stdlib_offset, 16)
+    assert image[at:at + len(chunk)] == chunk
+
+    for start, end, digest in proof['native_spans']:
+        start, end = int(start, 16), int(end, 16)
+        assert hashlib.sha256(raw(start, end - start)).hexdigest() == digest
+
+    maps, map_count, fields, stride = dbc('Map')
+    assert fields > 38 and stride == fields * 4
+    loading_id = {
+        struct.unpack_from('<I', maps, 20 + i * stride)[0]:
+        struct.unpack_from('<I', maps, 20 + i * stride + 38 * 4)[0]
+        for i in range(map_count)
+    }
+    screens, count, fields, stride = dbc('LoadingScreens')
+    assert (fields, stride) == (3, 12)
+    paths = dict((key, path) for key, _, path in
+                 struct.iter_unpack('<3I', screens[20:20 + count * stride]))
+    strings = screens[20 + count * stride:]
+    survivors = ROOT / 'crates/azeroth-survivors-re'
+    zones = json.loads((survivors / 'assets/run-entry-0.100.1.json').read_text())['zones']
+    school = (survivors / 'src/zones/scholomance.rs').read_text()
+    school_map = re.search(r'pub const MAP: u32 = (\d+);', school)
+    assert school_map and len(zones) == 12
+    assert {row[0] for row in proof['loading_art']} == (
+        {zone['map_id'] for zone in zones} | {int(school_map[1])})
+    for map_id, screen_id, path in proof['loading_art']:
+        assert loading_id[map_id] == screen_id
+        at = paths[screen_id]
+        assert strings[at:strings.index(b'\0', at)].decode() == path
+        assert member(path)[:4] == b'BLP2'
+
+    for path in proof['dynamic_art_examples']:
+        assert member(path)[:4] == b'BLP2'
+
+    print(f"Verified {len(proof['dbc_readers'])} DBC member readers, {len(proof['builtin_ui'])} "
+          f"builtin UI payloads and {len(proof['loading_art'])} loading-art joins")
+
+
+def legacy_consumers(args):
+    from creature_query_native import D, PE
+    from resource_uri_native import UriProbe, SPANS
+
     target=latest_target(verify=True)
     assert target['sha256']=='58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
     proof_path=ROOT/'docs/analysis/evidence/0.113.2/mpq-member-coverage.json'
@@ -115,4 +250,17 @@ def main():
     print(json.dumps(dict(selected_candidates=6,available_members=8,native_cases=len(cases),source_defect_found=False)))
 
 
-if __name__=='__main__':main()
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--stage', action='store_true')
+    mode.add_argument('--current-consumers', action='store_true')
+    args = parser.parse_args()
+    if args.current_consumers:
+        current_consumers()
+    else:
+        legacy_consumers(args)
+
+
+if __name__ == '__main__':
+    main()

@@ -157,12 +157,56 @@ The other 36 raw unmatched rows have these reproducible groups:
 
 | Resource-path ordinals | Lexical context and next action |
 | --- | --- |
-| `68`, `70`, `76`, `81`, `90`, `129`, `148`, `162`, `170`, `173`, `175`, `177..181`, `219` | Builtin glue and FrameXML files or the VM's `compat.lua` chunk. Match through the builtin script provider when tracing a specific callback. |
-| `36`, `37`, `41`, `62`, `202`, `301..304`, `307`, `315..318`, `320`, `321`, `323`, `324` | DBC filename fragments or packed strings. Read the exact pointer and length at the retained incoming sites before assigning individual paths or consumers. |
+| `68`, `70`, `76`, `81`, `90`, `129`, `148`, `162`, `170`, `173`, `175`, `177..181`, `219` | [Builtin glue, FrameXML payloads and lexical comments](source-frontier-0.141.0.md#builtin-glue-and-framexml-resource-selectors). |
+| `36`, `37`, `41`, `62`, `202`, `301..304`, `307`, `315..318`, `320`, `321`, `323`, `324` | [Exact DBC readers and diagnostics](#packed-dbc-readers). |
 | `305` | [Archive descriptor table](#native-directory-admission). |
 
-A missing raw match across these 44 candidates is a lexical result. Dynamic
-path construction and actual loading are separate.
+The dynamic format programs at file offsets `0x66ab9f8`, `0x69cbe98`
+and `0x7b71b50..0x7b71b70`, `0x7b71b70..0x7b71b95` and
+`0x7b71b95..0x7b71bba` carry the literals for selectors `61`, `213` and
+`309..311`. The existing [portrait builder](../../crates/benilla-app/src/portrait/mod.rs),
+[terrain layer reader](../../crates/benilla-assets/src/adt.rs) and
+[tabard compositor](../../crates/benilla-formats/src/characters/sections.rs)
+own those path families. The in-place check reads the pet fallback and the
+Elwynn grass specular BLP. The selected listfiles carry no `GuildEmblems`
+members, and the format literals establish no AS producer for guild state.
+
+### Packed DBC readers
+
+The [resource proof](evidence/0.141.0/resource-consumers.json) lists the
+exact PE instruction sites for 21 readers. Each loads a slice into
+`r8:r9` before calling the member read interface at `0x14623e170`.
+That interface checks `0x146243a60` for a registered override before
+falling back to the chain at `0x14623c640`. The separately selected
+short labels passed on the stack to `0x1462e21a0` name tables in the
+parse and error context. The shared source counterpart uses
+[`Chain::read_file`](../../crates/benilla-formats/src/chain.rs) and
+[`dbc::parse`](../../crates/benilla-formats/src/dbc.rs). The local
+[PaperDoll trace](source-frontier-0.141.0.md#paperdoll-core-file-and-localized-gear-prefix)
+identifies a separate live override writer.
+
+| Ordinals | Native input boundary and rebuilt source |
+| --- | --- |
+| `36`, `37`, `41` | In `0x140a5eca0`, these are length-prefixed warning templates. The first bytes `5`, `.` and `C` encode 53, 46 and 67, respectively. The calls at `0x140a60967`, `0x140a6083f` and `0x140a60d7e` reach the real CreatureSpellData, Resistances and NameGen readers before the failure branch. [Entity startup](../../crates/benilla-app/src/entities.rs). |
+| `62`, `202` | Warning prefixes of lengths 54 and 55. `0x140ec3428` and `0x141cf4745` reach CreatureType and Light readers. [Target scan](../../crates/benilla-app/src/target/scan.rs), [world lighting](../../crates/benilla-world/src/lighting/resolve.rs). |
+| `301`, `318`, `320` | The repeated Package, MailTemplate and Stationery names are error/read labels and parser labels. [Mail data setup](../../crates/benilla-app/src/ui_mail/mod.rs). |
+| `302..303` | The leading nine-byte `Interface` slice in row 302 reaches a separate path helper from `0x14621da1b`. The remaining pieces select the three separate Languages, LanguageWords and ChrRaces member reads and short parse labels. [Language tables](../../crates/benilla-formats/src/languages.rs), [race table](../../crates/benilla-formats/src/chr_races.rs). |
+| `304`, `307` | SpellShapeshiftForm and SkillLineCategory each have separate member, schema and parser labels. [Form table](../../crates/benilla-formats/src/spells/forms.rs), [skill tables](../../crates/benilla-formats/src/skill_lines/mod.rs). |
+| `315..316` | DurabilityCosts, DurabilityQuality, ChrClasses, Resistances and Lock are separate reads. The durability parser labels omit `.dbc`. [Repair data](../../crates/benilla-formats/src/durability.rs), [class data](../../crates/benilla-formats/src/chr_classes.rs), [resistances](../../crates/benilla-formats/src/resistances.rs), [locks](../../crates/benilla-formats/src/lock.rs). |
+| `317`, `321`, `323`, `324` | SpellRange, SpellDuration, SpellIcon and SpellChainEffects resolve separately. These are the shared typed readers. The custom AS spell metadata cache still has its [separate evidence and source](custom-dbc-0.105.0.md). [Ranges](../../crates/benilla-formats/src/spells/ranges.rs), [durations](../../crates/benilla-formats/src/spells/duration.rs), [icons](../../crates/benilla-formats/src/dbc.rs), [chain effects](../../crates/benilla-formats/src/spell_visual/chain_effects.rs). |
+
+All 21 concrete member names resolve uniquely to `patch.MPQ`. Each
+payload has a complete WDBC record and string extent. This resolves the
+packed names and the selected read and parser boundaries. Individual field
+consumers and competing-locale precedence remain separate.
+
+The Ghidra 12.1.4 result digests are
+`640f45d580e0a9a082e2cb30caf899c2b99e2c79899de8c45a67f494265927b2`
+for the member read and
+`289d183bf071f9d587694a353348c35814a2b15c5e5f4e1ebc0ff2d6a9135093`
+for the table parser. The raw slice SHA-256 and native VA intervals are
+in the same resource proof. Original PE instructions establish the Win64
+argument carriers independently of the raw-slice decompiler's inferred ABI.
 
 ## Checks and remaining scope
 
@@ -174,7 +218,11 @@ The new Rust mount-order regression covers patch-only, partial-base and empty
 directories and remains uncompiled.
 
 The raw lexical inventory remains 85 exact names, 196 basename candidates
-and 44 unmatched strings across 325 selector rows. The other resource
-consumers and dynamic aliases remain open under [#41](../CURRENT-STATE.md#gap-41).
+and 44 unmatched strings across 325 selector rows. The scoped
+`check-as-resource-paths.py --current-consumers` check verifies the 21
+member readers, the associated native diagnostics and current payloads,
+the [builtin UI joins](source-frontier-0.141.0.md#builtin-glue-and-framexml-resource-selectors)
+and the [zone loading artwork](zone-entry-loading-progress-0.141.0.md#desktop-zone-artwork).
+Dynamic aliases outside these exact joins remain under [#41](../CURRENT-STATE.md#gap-41).
 Actual loading, rendering and original/rebuilt comparison remain open.
 No archive or asset was exported.

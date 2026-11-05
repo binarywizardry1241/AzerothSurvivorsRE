@@ -131,6 +131,38 @@ The full inventory remains intact. Unresolved type layouts,
 registration lifetimes, resource joins and dynamic consumers remain under
 their individual findings and #41.
 
+### Builtin glue and FrameXML resource selectors
+
+The ten 40-byte file descriptors at file offsets `0x6712628..0x67127b8`
+carry separate path and payload pointers with their exact lengths. The
+[resource proof](evidence/0.141.0/resource-consumers.json) binds each
+descriptor and payload. The source counterpart is
+[`include_dir` and `content::read`](../../crates/benilla-app/src/ui_script/content.rs).
+The [glue layer](../../crates/benilla-app/src/ui_script/glue.rs) loads
+`AccountLoginRealmlist.xml` after GlueXML. The
+[in-game layer](../../crates/benilla-app/src/ui_script/manifest.rs)
+uses `layer.toc` after stock FrameXML and before third-party addons.
+
+- `resource_path:{68,70,76,81,90,148,162,170}` are the filenames directly
+  preceding eight descriptor payloads. ScrollTemplates, KeyBindingsPage and
+  GameMenuAdapters are byte-identical to their source assets. The other five
+  differ only in comments.
+- `resource_path:{173,175,177..181}` are lines in the same embedded
+  `layer.toc`, which is byte-identical to source. Ordinals 129 and 146 occur
+  in OptionsFrame comments and 152 in a ScriptLogFrame Lua comment.
+  These are references to the named scripts within explanatory comments.
+  OptionsFrame differs only in comments.
+- `resource_path:219` is the `compat.lua` reference within the comment
+  in the 2,654-byte embedded `WOW_STDLIB` chunk at file `0x69fde9e`.
+  The complete chunk equals the current
+  [Lua standard-library adapter](../../crates/benilla-ui/src/script/stdlib.rs).
+  The [VM's compatibility chunk](../../crates/benilla-lua/src/lib.rs)
+  is a separate startup input.
+
+These selected spans account for the lexical builtin and comment rows
+reported as unmatched MPQ resources. They do not establish an additional
+AS registration or load-order change.
+
 ### PaperDoll core file and localized gear prefix
 
 Resource selector `Q41-I01:resource_path:224` reaches the selected
