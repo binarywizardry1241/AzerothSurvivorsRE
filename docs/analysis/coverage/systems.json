@@ -1411,7 +1411,8 @@
         "docs/analysis/native-census-0.139.1.md",
         "docs/analysis/evidence/0.139.1/switch-context-source-review.json",
         "docs/analysis/switch-context-source-review-0.139.1.md",
-        "docs/analysis/scholomance-loot-0.141.0.md"
+        "docs/analysis/scholomance-loot-0.141.0.md",
+        "docs/analysis/armory-equipment-palette-0.141.0.md"
       ],
       "gap_ids": [
         4,
@@ -11256,7 +11257,8 @@
         "docs/analysis/evidence/0.139.0/source-frontier.json",
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
-        "docs/analysis/native-census-0.139.1.md"
+        "docs/analysis/native-census-0.139.1.md",
+        "docs/analysis/options-checkbox-0.141.0.md"
       ],
       "gap_ids": [
         17,
@@ -28357,7 +28359,9 @@
         "docs/analysis/resonant-shocks-0.141.0.md",
         "docs/analysis/counterattack-0.141.0.md",
         "docs/analysis/soulfire-0.141.0.md",
-        "docs/analysis/tranquility-overheal-0.141.0.md"
+        "docs/analysis/tranquility-overheal-0.141.0.md",
+        "docs/analysis/status-weakening-0.139.2.md",
+        "docs/analysis/projectile-timing-0.141.0.md"
       ],
       "gap_ids": [
         1,
@@ -28402,7 +28406,8 @@
         308,
         309,
         316,
-        319
+        319,
+        322
       ],
       "recovery": {
         "status": "partial",
@@ -55183,7 +55188,8 @@
         "docs/analysis/evidence/0.139.0/source-frontier.json",
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
-        "docs/analysis/native-census-0.139.1.md"
+        "docs/analysis/native-census-0.139.1.md",
+        "docs/analysis/q41-reference-frontier-0.141.0.md"
       ],
       "gap_ids": [
         1,
@@ -64205,7 +64211,8 @@
         "docs/analysis/evidence/0.139.1/source-frontier.json",
         "docs/analysis/native-census-0.139.1.md",
         "docs/analysis/evidence/0.139.1/switch-context-source-review.json",
-        "docs/analysis/switch-context-source-review-0.139.1.md"
+        "docs/analysis/switch-context-source-review-0.139.1.md",
+        "docs/analysis/coop-relay-selection-0.141.0.md"
       ],
       "gap_ids": [
         41,
@@ -67506,6 +67513,96 @@
   ],
   "reviewed_pending_source_hashes": {},
   "evidence_target_bindings": {
+    "docs/analysis/status-weakening-0.139.2.md": {
+      "path": "docs/analysis/status-weakening-0.139.2.md",
+      "target_version": "0.141.0",
+      "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-game-game-abilities"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-game-game-abilities"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-game-game-abilities": "0.141.0 selected descriptor status consumers. Earlier sections keep their stated targets."
+      }
+    },
+    "docs/analysis/projectile-timing-0.141.0.md": {
+      "path": "docs/analysis/projectile-timing-0.141.0.md",
+      "target_version": "0.141.0",
+      "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-game-game-abilities"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-game-game-abilities"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-game-game-abilities": "Kind-1 ordinary projectile stagger and the shared pending-hit deadline arithmetic."
+      }
+    },
+    "docs/analysis/armory-equipment-palette-0.141.0.md": {
+      "path": "docs/analysis/armory-equipment-palette-0.141.0.md",
+      "target_version": "0.141.0",
+      "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-app-screens-armory"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-app-screens-armory"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-app-screens-armory": "Ordinary equipment row tier/item-class selection, occupied name and icon border colors, and empty-slot treatment."
+      }
+    },
+    "docs/analysis/options-checkbox-0.141.0.md": {
+      "path": "docs/analysis/options-checkbox-0.141.0.md",
+      "target_version": "0.141.0",
+      "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-app-screens-options"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-app-screens-options"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-app-screens-options": "Kind-5 checkbox cached-string admission, pending value write, and inverted draw state."
+      }
+    },
+    "docs/analysis/q41-reference-frontier-0.141.0.md": {
+      "path": "docs/analysis/q41-reference-frontier-0.141.0.md",
+      "target_version": "0.141.0",
+      "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-app-screens-markers"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-app-screens-markers"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-app-screens-markers": "Scripted marker client decoding and Sweep, Polygon and Rotor body and fill presentation. Server constructor admission remains separate."
+      }
+    },
+    "docs/analysis/coop-relay-selection-0.141.0.md": {
+      "path": "docs/analysis/coop-relay-selection-0.141.0.md",
+      "target_version": "0.141.0",
+      "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-game-coop-relay"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-game-coop-relay"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-game-coop-relay": "Shared pending Host/Join password lifetime and take-on-role-response across selected relay form producers and consumers."
+      }
+    },
     "docs/analysis/computed-transfers-0.141.0.md": {
       "path": "docs/analysis/computed-transfers-0.141.0.md",
       "target_version": "0.141.0",
@@ -79416,7 +79513,7 @@
     "crates/azeroth-survivors-re/src/scrollbar.rs": "c108065b35e3528873e97bc8406506e02e9676604e4ef7e2d7373442bf778ae7",
     "crates/azeroth-survivors-re/assets/coop-locales.json": "05e414c0ec7473e0e6013a8bfd5c3df6f1c1d6721844958b6ee3c035236d01b8",
     "scripts/check-coop-ui.py": "b914aef2b58d471d1f673ed4ffcc718e9990c32d6db0940ceebc9c8f58dbec8e",
-    "crates/azeroth-survivors-re/src/options.rs": "a6842f1527bc7aaabc267342f39a1ff1eb2c23ca4d0e4ff6ba8497749c1a7dcf",
+    "crates/azeroth-survivors-re/src/options.rs": "dd3338c8ca2dd7d569f8eacda99ec598f4add44482f5be84302a905175de9c51",
     "crates/azeroth-survivors-re/src/localization.rs": "943031248d26ca0d483d803e5cc563f99fd603b974cc797723a451f9616bfae8",
     "crates/azeroth-survivors-re/src/localization/catalogs.rs": "3681e0985c8fe6d54f452264c5d7086edfc7a96fef5cd89a9b88cde39f0c656c",
     "scripts/recover-locale-catalogs-0.113.2.py": "663938484b0ada4b11c9bbbff350fe61054f1a5aa75fdcf1e4efd86db6e440e8",
@@ -79551,7 +79648,7 @@
     "crates/azeroth-survivors-re/src/coop/service.rs": "420f6d3bf28e5c72a319965bdbb969d08f1bdc72b0604c6adf613cfa1be8b5d5",
     "scripts/check-coop-service-codec-0.115.0.py": "866db4521e10262386c017923606a3a057c02a8454d63c3281db2492dac3dcec",
     "crates/azeroth-survivors-re/src/coop_forms.rs": "168dc0d72f833faaed82a52614291f5348abd9d2c4b891ff154caf2f95372ccc",
-    "crates/azeroth-survivors-re/src/coop_directory.rs": "ffb5c43a7fd41e23101e4ac5d1373630d60fc218877e8fe5e46872db58830374",
+    "crates/azeroth-survivors-re/src/coop_directory.rs": "898187c50d214f9ef96b21bebc55d03148d1bdb49ef7ff665e1cc0f75cf1531e",
     "scripts/check-coop-forms-0.115.0.py": "16df0c8c8ea5d475e843deca9e6e4148f715f392182d097cc52fbf48318c086e",
     "scripts/check-coop-form-fields-0.115.0.py": "2200bc446538461497f2cb8fd4f817e94aa37cce82a476fc78b925829d7b3a57",
     "scripts/check-coop-service-integration-0.115.0.py": "95eef426eba0a68736eb952e1edac2dce0545bf16744a8dfa1b061350bf8bec6",
@@ -79575,7 +79672,7 @@
     "scripts/check-q41-dispatch-contracts-0.115.0.py": "b816eb3fda2611ef0c7705d3d2720080c6ffa99beb6726d42b4a489be176946f",
     "scripts/check-q41-embedded-containers-0.115.0.py": "fda8d7241826fef3f2f7567905d9a8ab2f5cd6ab5d07e34b4cbad68d3596c722",
     "crates/azeroth-survivors-re/assets/locales/en.json": "f683eefccb62321555a068593429df7824ef1ac2d37f00bfcb2c5af65ce3eaeb",
-    "crates/azeroth-survivors-re/src/armory.rs": "73be0e391044a3ae8073baa219ba45fea0447d25af72fb91da8d0fc3954384df",
+    "crates/azeroth-survivors-re/src/armory.rs": "cee4155001b558a59ca7c07763f54ddf6dff562fdf2f04f4a3fa0e1ef56995d1",
     "scripts/check-armory-looks-0.117.0.py": "d2c7591d6ddca41418d8bfdbc5063a55f90dfb633d3ea46f62e2dcc18cf0183a",
     "crates/azeroth-survivors-re/src/save.rs": "b1c9e74cf57881980eee8f5201676895b0d1eae49445a0bd3b3fec3250ec06d4",
     "crates/azeroth-survivors-re/src/save/coop_history.rs": "5e21f9a03825c08a06561d5b96fe8076d8206e3d2405d99f6f0ecfd17383a3fd",

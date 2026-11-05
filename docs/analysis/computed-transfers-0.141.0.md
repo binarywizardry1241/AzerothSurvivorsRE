@@ -41,10 +41,47 @@ The candidate rows retain their unproved guards or incoming conditions.
 The four relocated F01 transfers use one `.rdata` slot at `0x14654fe90`,
 initially `0x1463a5790`. The eight other fixed transfers use six zero-initialized
 `.data` slots at `0x148a79dc0`, `0x148a79dd0`, `0x148a822a0`,
-`0x148a822a8`, `0x148a90e20` and `0x148ac30a8`. The selected Ghidra reference
-export records reads at those six addresses. It supplies no direct writes to
-these seven slots. Indirect writers, runtime pointer values and AS ownership
-of these fixed sites remain unestablished.
+`0x148a822a8`, `0x148a90e20` and `0x148ac30a8`. The fixed-slot roles and
+indirect stores are traced below.
+
+### Fixed transfer slots and initialization
+
+The PE load-configuration directory at `0x147b95d50` points to
+`0x14654fe90` at offset `+0x78`. The slot's relocated initial pointer
+reaches `jmp rax` at `0x1463a5790`. At `0x1463a48ea`, `0x1463a50aa`
+and `0x1463a50e6`, the caller supplies RAX from the selected runtime
+callback entry. `0x1463a57b0` forwards to the same guard-dispatch slot.
+These four transfers belong to the PE runtime dispatch interface.
+
+The independent declared-reference inventory adds address-taking sites
+that the Ghidra read-only projection misses. Four setter wrappers check a
+Once state at slot `+8`, then pass the slot address and the caller's
+function pointer to its initializer. The closure at `0x140e2ac60` takes
+the pointer and writes it through the saved destination at `0x140e2ac89`.
+The other two closure copies have the same sequence and write at
+`0x14292c819` and `0x1460ab7e9`. These indirect stores explain the lack
+of a direct write reference to each fixed slot.
+
+| Slot | Producer and consumer | Classification |
+| --- | --- | --- |
+| `0x148a79dc0` | Startup `0x140044b0e` registers `0x145e13560` through setter `0x14074cea0`. Read at `0x141442b78`. The resolver checks the `0xf00000` base and uses the synthetic description index. | AS tooltip text override, connected through [LocalItemDescriptions](../../crates/benilla-app/src/local_client/item_descriptions.rs). |
+| `0x148a79dd0` | Startup `0x140044b1a` registers `0x14006e8c0` through setter `0x14074ce70`. Read at `0x141442420`. The callback reaches set descriptor builder `0x145e32390` and its `0xa000` set family. | AS item-set override, connected through the [local set publication](../../crates/azeroth-survivors-re/src/gameplay/client/inventory.rs) and [tooltip resolver](../../crates/benilla-app/src/ui_items/sets.rs). |
+| `0x148a90e20` | Startup `0x140044b26` registers `0x145e35ee0` through `0x14074cf10` and setter `0x142a2f4d0`. Read at `0x142a2f561`. The callback joins an equipment ID vector to star bytes and calls `0x145e35390` for set-bonus activity. | AS bonus-activity override, connected through the existing `set_bonus_active` source. The native helper also admits tier 7 at `0x145e35654`. |
+| `0x148ac30a8` | At `0x14143e644`, the three-byte `out` flag gates registration of `0x140784670` through setter `0x1460906c0`. The successful outbound World send calls it at `0x14608ea0b` with opcode, payload pointer and length. | Shared opt-in packet tracing. The registered callback formats the diagnostic row. |
+| `0x148a822a0`, `0x148a822a8` | The Once record at `0x148a82290` uses closure `0x1418ec480`. The factory at `0x1418f07f0` resolves four `ntdll.dll` symbols through the `GetProcAddress` import at `0x14654f940`. The writes at `0x1418f0865` and `0x1418f0869` supply `NtDeviceIoControlFile` and `RtlNtStatusToDosError` to aggregate offsets `+0x10/+0x18`. The closure copies both in one 16-byte write at `0x1418ec4f9`. | Shared Windows networking and error conversion. The factory requires all four addresses before publishing the success record. |
+
+| Preferred VA range | SHA-256 |
+| --- | --- |
+| PE load configuration `0x147b95d50..0x147b95e90` | `61f2c9b5ca6b7b76a6f5662f45064eeb7eb9a7ecf069b71da109829efc700d34` |
+| Three AS registrations `0x140044b0e..0x140044b32` | `858594f7add6801a0ea580145bbf8686fa67a4dc627ccd08589e2e6996913b90` |
+| Shared Once closure `0x140e2ac60..0x140e2ac91` | `b9fe7b48ce211fca40d95c3fa2c821e7e70d35069fd2ab2cc75276c1c477162d` |
+| Windows initializer `0x1418ec480..0x1418ec50b` | `285e6b6542d9a6f02d51e1140f8998bf1a9fc7565336d2729e74c8e95f8ca4f9` |
+| Windows symbol resolution `0x1418f07f0..0x1418f08c0` | `e511281be5ff7dcb639441f35c5f1d028bf4d4d2299d2712b053589f1a8ad81d` |
+| Outbound trace gate `0x14143e644..0x14143e665` | `8c3f7876f4641fb8b93c7e09d9e55c8770b6035811f19a5e39a410cbd864d491` |
+
+This assigns the selected fixed transfers to their native producers and
+consumers. Live Windows loader pointers, dynamically executed callback
+order and UI/runtime parity remain separate.
 
 ## Q41-F01 declared-range AS context
 
@@ -290,10 +327,29 @@ and [directory pump](../../crates/azeroth-survivors-re/src/coop_directory.rs)
 use separate source arms for these wire types. The native peer and payload
 arms operate in the transport pump before its local status consumer. The
 reconstruction keeps that ordering in the selected send and reset paths
-already traced in the relay report. The present table classifies the
-immediate event roles and supplies concrete producer boundaries. The
-complete local state gates and surviving transport aliases remain under
-[#63](../CURRENT-STATE.md#gap-63).
+already traced in the relay report. The [form credential repair](coop-relay-selection-0.141.0.md#host-and-join-form-credential-lifetime)
+connects both request producers and both role consumers through the same
+take-on-reply password slot. The constructors at `0x145ec7000` and
+`0x145ec7250` test both local game `+0x10` and party role `+0x1100` for
+Off independently of password ownership. For wire 29, `0x145ea4303`
+tests the directory slot and the admitted branch moves the profile into
+`+0x1ee0` through `+0x1f48`. The absent-directory branch reaches the
+existing [guarded Hero4 refresh](coop-replication-0.141.0.md#guest-login-and-synchronized-recipients)
+at `0x145eca010` and drops the new profile. On the native pump's ordinary
+path the same directory slot is required before collecting the event vector.
+
+The transport collection writes each source bit into its 32-byte row.
+At `0x145e83efe..0x145e83f9f` the bit and the current secondary's presence
+gate the secondary handshake state. A valid non-refusal marks it admitted
+and clears the retry deadline. Refusal closes it, forwards the first
+refusal before admission and consumes refusal after admission. The existing
+`SecondaryLifetime::admit` connects those state distinctions. The original
+profile path and secondary-admission slices hash to
+`5b1159536b2d70e1d6f417ad779e3d9285720894fadc6762bd8d0ec4040f0337`
+for `0x145ea42ac..0x145ea4459` and
+`3bb586706f25f8fb474ab37b8b8812d285c24bbf745121b7a2687c8c4576b66f`
+for `0x145e83efe..0x145e83f9f`. External relay behavior remains under
+[#63](../CURRENT-STATE.md#gap-63) and [#206](../CURRENT-STATE.md#gap-206).
 
 ## Q41-F02 outside declared ranges
 
@@ -439,7 +495,45 @@ path. The scoped Howl write at `0x145f1bb48` sets mode/kind to 2/2 and
 passes spell 24604 to the recorder at `0x145f1bba8`. It restores the
 saved pair and label before the packet dispatch. Those two writers
 correspond to the existing [ordinary pet and separate Howl paths](pet-meter-0.141.0.md).
-Wider dynamic source-word writers and their runtime admission remain open.
+
+### Hit source writers and death qualification
+
+Both switches read the same Game source-kind byte `+0x2a6`. The second
+switch at `0x145f1df82` has four signed dword cells at `0x147af2ed8`.
+The raw bytes are `b9b042feacb042fef1b342feb7b042fe`, SHA-256
+`34fc004f3f336c9e3b7746581ed392b4327ba3f659644880a3af6afca05f0bf0`.
+The ordered remaining-HP comparison skips the selector for a surviving
+or unordered victim. On death, kind 0 uses the ordinary-source predicate
+from `+0x40/+0x284/+0xc7c`. Kind 1 enters `0x145f1df84` and tests
+`!Game+0x30`. Kind 2 enters `0x145f1e2c9` and admits the death. Kind 3
+enters `0x145f1df8f` and clears that admission. Both boolean consumers
+at `0x145f1eda6` and `0x145f1ee02` call `0x145fad2b0`, which checks the
+exact `soul_fire` learned key, the shard cap and the credit deadline before
+the existing [Soulfire launcher](soulfire-0.141.0.md). The adjacent
+Redemption path consumes the same qualified death. The [source gates](../../crates/azeroth-survivors-re/src/player_abilities/behavior/hit_passives.rs)
+already encode these four cases, including the ordered HP boundary.
+
+The two packet-name rows and two death-admission rows answer
+`Q41-U01` entries 52710–52712 and 52714. The bounded writer audit confirms
+the periodic Bleed and named pet producers above. The demon writers at
+`0x145f5c05f`, `0x145fb0eb3`, `0x145fb16d3`, `0x145fb4070` and
+`0x145fb582a` install kind 2 for captured demon hits. The explicit label
+stores identify Conflagrate, Consume Magic and Inferno. They restore the
+saved source byte and captured descriptor after the nested hit. The
+[demon impact](../../crates/azeroth-survivors-re/src/gameplay/mechanics/demon_bounce.rs),
+[Consume Magic](../../crates/azeroth-survivors-re/src/gameplay/mechanics/demon_post_hit.rs)
+and [demon cast](../../crates/azeroth-survivors-re/src/gameplay/mechanics/demon_spells.rs)
+source paths already carry the scoped attribution. The hit owner's
+recursive effect writers install and restore kind 3, distinct from
+the ordinary kind 0 route and the temporary meter-only Heroism/Howl writes.
+
+The completed Ghidra query `ev_a1bf545acb74d615e2d63128bb08b32843b7d548162060e49f3caa2dbf213783`
+binds the exact `0x145f1adf0..0x145f1fd2b` slice at file offset `0x5f1a1f0`,
+SHA-256 `cb0097e01dce6c69b958f241fda2304a412e6af3ed761b0b7043ac724dd0cf29`.
+Its shared result hashes to `5e719c6d75e3841f85f3989aade6e57b1c86837d99fc6bfc2070bd76966647de`.
+The original PE cells supply the external targets missing from the raw
+pseudocode. Whole-image aliases, unrelated proc formulas and executed
+hit ordering retain their separate proof boundaries.
 
 ## F02 shared failure cleanup
 
@@ -454,8 +548,8 @@ admit tag 1, subtract one and place the pointer in an owned stack slot
 before calling `0x14638ac20`. The leaf dereferences that slot into RCX
 and jumps through `[rcx+0x18]`. The retained staff-key case has a Kill
 Command diagnostic in the same extent. Its producer resolves
-`WOW_ROGUE_STAFF_KEY`, `APPDATA` and `XDG_DATA_HOME`; the error from
-`0x145eeebb5` uses this cleanup and the empty fallback in the
+`WOW_ROGUE_STAFF_KEY`, `APPDATA` and `XDG_DATA_HOME`. The read call at
+`0x145eeebb5` has the tagged cleanup gate and empty fallback in the
 [staff key reader](../../crates/azeroth-survivors-re/src/coop_directory.rs).
 
 | Diagnostic body | Exact call sites |
@@ -489,10 +583,38 @@ error payloads and callback assignments remain separate.
 | Slot-`+0x18` entry `0x14638ac20..0x14638ac27` | `8cbc0a542f5641e293d6cd9000bf03935dc3f901b09ae90e646366af6a2bc396` |
 | Slot-zero entry `0x146347d90..0x146347d99` | `2a3c53712037a9d42bacd07d0803c4777e37dfeaa7a1d3e13309402b16a7f265` |
 
-This classifies the immediate receivers at all 22 selected direct AS-context
-calls. It establishes shared error handling for these inputs. Further
-receiver work starts with AS-specific register transfers and the remaining
-typed-domain tables, with concrete assignments required before claiming
-an effect on game state. The broader unowned and generic populations retain
-their exact selectors. Runtime dispatch and original/rebuilt parity remain
-separate.
+The slot-zero receiver is concrete on the selected M2 read and parse failures
+and the WMO read failure. The three branches call `0x1465346e0` from
+`0x1462a645d`, `0x1462a64d1` and `0x1462a69c3`, then store the returned
+owned pointer beside the `-1` result sentinel. The helper allocates `0x58`
+bytes and writes table `0x147b6d5b0` in its first word. Table slot zero is
+`0x146207fd0`, which drops the contained context and owned error and frees
+the `0x58`-byte allocation. These are shared asset-error destruction routes.
+The helper span `0x1465346e0..0x14653478c` hashes to
+`d6be1b03370b4df813aefa3fbccc4987d422d0062ad83f08758e046917d7ba4a` and
+the destructor `0x146207fd0..0x14620803b` to
+`5c8c3bfd0c938d8265c72d958a87b1cd795aaaa1ef5a2378fce758225087400d`.
+
+The shared text-I/O error constructor at `0x146348f40` calls
+`0x1463781f0`, which allocates 0x28 bytes and writes destructor
+`0x1463758c0` at receiver `+0x18`. The wrapper at `0x14637b900` publishes
+pointer+1. Its destructor drops the contained data through `0x146389e50`
+before freeing the allocation. An invalid create/truncate request reaches
+this producer from `0x146353cf1`. The staff-key reader at `0x1463686d0`
+passes read-only flags. Its ordinary open and read failures have tag 2
+and allocation failure has tag 3. Invalid UTF-8 returns aligned static
+error `0x147b877d8`. These admitted failures bypass the tag-1 callback.
+
+| Preferred VA range | SHA-256 |
+| --- | --- |
+| Custom error object `0x1463781f0..0x14637826b` | `32e9405282d534585d45c340deff874dfecf7b620e6bf3c365d348d363d61d17` |
+| Custom error destructor `0x1463758c0..0x1463758f5` | `59ed25076aa68555bc7923cb9752e86e06b5a8028e42f38d8e42970501e8139f` |
+| Staff-key reader `0x1463686d0..0x1463688aa` | `648cb1f361885d019a02aef189fe8f3661683b2ff9c0afd77c5cf7e86e6c9244` |
+
+The selected caller paths establish shared failure cleanup. The remaining
+runtime receiver question is a concrete AS use of another typed assignment,
+if found through an incoming producer. The 539 non-IAT stops under
+`Q41-U04` are the same runtime-operand jumps in the F02 partition, including
+the 341 applied guarded tables. The other 198 retain the exact F02 selector
+for unresolved ownership or assignment. Runtime dispatch and original/rebuilt
+parity remain separate.

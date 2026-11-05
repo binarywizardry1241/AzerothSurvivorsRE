@@ -190,10 +190,38 @@ Each adapter passes the constructor in `R8`, loads the other registration
 arguments through the incoming descriptor in `RDX`, then tail-transfers
 to the registration implementation. These constants and the corresponding
 `#[require]` declarations in the pinned Bevy light components identify
-ordinary required-component registration. The selected leaves do not prove
-which application code instantiated each component. The other nine adapters
-retain the same shared storage boundary. Their concrete type IDs and
-registration sites remain open where a Survivors dependency can be established.
+ordinary required-component registration.
+
+The other nine adapters also use the shared registration interface. The
+saved Ghidra and independent declared reference streams agree on all 32
+direct calls into them. The following selector covers those callsites.
+
+| Adapter | Direct calls | One exact callsite |
+| --- | ---: | --- |
+| `0x142524980` | 2 | `0x14230f9c7` |
+| `0x1425249a0` | 2 | `0x14230f3c7` |
+| `0x143334cb0` | 2 | `0x1401bd078` |
+| `0x144483960` | 1 | `0x14397c31a` |
+| `0x144565fc0` | 2 | `0x143bc5948` |
+| `0x1445921a0` | 1 | `0x143c6b2da` |
+| `0x1451d3540` | 6 | `0x14044822a` |
+| `0x145334bd0` | 1 | `0x14043f85f` |
+| `0x145557c50` | 15 | `0x140aad37b` |
+
+The callsites belong to 32 registrar bodies. Following incoming
+references into those bodies adds 234 direct calls, matched against the
+original PE branch bytes. All 32 additional DATA references are the
+first field of original 12-byte PE unwind records. No immediate or
+second-hop caller joins an AS Location. The selected caller boundary is
+shared Bevy context. A concrete AS producer would need an independent
+typed registration or dynamic receiver edge.
+
+The sorted `[reference kind, source VA, target VA]` rows, serialized as
+compact JSON, hash to
+`1b32eb59d692137d1621da8c9c733098663fdd1522404577cc8a1a95346d2c91`
+for the adapter calls and
+`55d659b7538ab894f625252266cb7b48bc8c94e85ac23523cc1a253676e42a71`
+for the incoming registrar references.
 
 The other LEA, `0x1463a5014 → 0x1463a5024`, passes a filter
 checking C++ exception code `0xe06d7363` and its parameter magic to

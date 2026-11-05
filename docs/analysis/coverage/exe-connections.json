@@ -23,11 +23,11 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "7e2d96e4eebe756b233078ea00ce6244cbf147b58bf263d00452f990071e8701"
+      "sha256": "7d1fb76dac2e7d8f778ae97301800d0b4c30b292082487dd862bbcc20670ba91"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
-      "sha256": "1989e52bfa7b23f05005c84e91edb5f61c72959443d4b14c3f27d3f93462d985"
+      "sha256": "e64e221a6c1029177ad74a74495268fc956821085f217e2ee6cb1ede6d8a69dc"
     },
     {
       "path": "docs/analysis/coverage/historical-range-revalidation.json",
@@ -35,11 +35,11 @@
     },
     {
       "path": "docs/analysis/evidence/0.141.0/native-custom-coverage.json",
-      "sha256": "28122021ffb5f75f963e8b518a289df1147921ac07d252d466fac89f2390a65b"
+      "sha256": "0486e669ccd532dafdfaf0852457adec7af4d8e9e07097cee8be583690bd03b7"
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "9878d4f55f3e881839499da30a7037f85a34ce20b251966e0a79e67d11705f0e"
+      "sha256": "ad3013e82f0cff32bba9500026669be2a65dce921240c65f74c8c5e1bf250a11"
     },
     {
       "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
@@ -53,7 +53,7 @@
   "supporting_inputs": [
     {
       "path": "docs/analysis/coverage/native-ownership-classification.json",
-      "sha256": "47ca7ac8706c683117d3de2ba40c46f7bea3beb3f4c75c1b611882a44a8c8977",
+      "sha256": "5e392d64103c014e2a0ad114af1945f40d4aeb0787abf9a5de7c4ce6368f8745",
       "target": {
         "path": "installed-game/AzerothSurvivors.exe",
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
@@ -65,10 +65,10 @@
   ],
   "counts": {
     "custom_system_rows": 83,
-    "with_registered_current_evidence": 34,
-    "without_registered_current_evidence": 49,
-    "with_registered_current_bounded_contract": 34,
-    "without_registered_current_bounded_contract": 49,
+    "with_registered_current_evidence": 37,
+    "without_registered_current_evidence": 46,
+    "with_registered_current_bounded_contract": 37,
+    "without_registered_current_bounded_contract": 46,
     "without_source_correspondence": 0,
     "ownerless_native_location_references": 67,
     "paths_with_ownerless_native_location_references": 15,
@@ -397,9 +397,11 @@
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": true,
       "current_bounded_contract_scopes": {
+        "docs/analysis/armory-equipment-palette-0.141.0.md": "Ordinary equipment row tier/item-class selection, occupied name and icon border colors, and empty-slot treatment.",
         "docs/analysis/scholomance-loot-0.141.0.md": "Both recovered rate label constructors present base piece odds independently of owned-item priority."
       },
       "current_bounded_contract_refs": [
+        "docs/analysis/armory-equipment-palette-0.141.0.md",
         "docs/analysis/scholomance-loot-0.141.0.md"
       ]
     },
@@ -1158,10 +1160,14 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-options]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": false,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/options-checkbox-0.141.0.md": "Kind-5 checkbox cached-string admission, pending value write, and inverted draw state."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/options-checkbox-0.141.0.md"
+      ]
     },
     {
       "id": "custom-app-screens-pad",
@@ -2531,7 +2537,8 @@
         308,
         309,
         316,
-        319
+        319,
+        322
       ],
       "location_reference_count": 20,
       "location_body_owners": [
@@ -2558,15 +2565,19 @@
       "current_bounded_contract_scopes": {
         "docs/analysis/counterattack-0.141.0.md": "Counterattack owner and free Immolation Trap cast with upgrade pass-through.",
         "docs/analysis/evidence/0.141.0/status-talent-selectors.json": "Ground-periodic and self-aura descriptor status construction, scaling and publication.",
+        "docs/analysis/projectile-timing-0.141.0.md": "Kind-1 ordinary projectile stagger and the shared pending-hit deadline arithmetic.",
         "docs/analysis/resonant-shocks-0.141.0.md": "Initial Shock and one-extra-target helper, including rank damage and target exclusion.",
         "docs/analysis/soulfire-0.141.0.md": "Soulfire extra-target selector and apply path, with current rank-dependent tooltip input.",
+        "docs/analysis/status-weakening-0.139.2.md": "0.141.0 selected descriptor status consumers. Earlier sections keep their stated targets.",
         "docs/analysis/tranquility-overheal-0.141.0.md": "Selected heal callback credits full healing plus overhealing while preserving the Tree of Life shield cap."
       },
       "current_bounded_contract_refs": [
         "docs/analysis/counterattack-0.141.0.md",
         "docs/analysis/evidence/0.141.0/status-talent-selectors.json",
+        "docs/analysis/projectile-timing-0.141.0.md",
         "docs/analysis/resonant-shocks-0.141.0.md",
         "docs/analysis/soulfire-0.141.0.md",
+        "docs/analysis/status-weakening-0.139.2.md",
         "docs/analysis/tranquility-overheal-0.141.0.md"
       ]
     },
@@ -4981,10 +4992,14 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-markers]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": false,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/q41-reference-frontier-0.141.0.md": "Scripted marker client decoding and Sweep, Polygon and Rotor body and fill presentation. Server constructor admission remains separate."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/q41-reference-frontier-0.141.0.md"
+      ]
     },
     {
       "id": "custom-app-legacy-config",
@@ -5991,10 +6006,14 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-relay]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": false,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/coop-relay-selection-0.141.0.md": "Shared pending Host/Join password lifetime and take-on-role-response across selected relay form producers and consumers."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/coop-relay-selection-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-heroic",
@@ -7067,6 +7086,6 @@
   "parity_verified": false,
   "inventory": {
     "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/exe-connections.json",
-    "sha256": "ce8ec3aa3e24ad9216251aa1669fe05a060301c5ede3593943f9bbb08049c841"
+    "sha256": "20490a4f6848f6aafc69dd902e6c807ab2e05847a7b3f32d22b5048bab158535"
   }
 }

@@ -453,8 +453,26 @@ Some exact cells also have reviewed producers:
   `ev_da92baf7e4e3725b5a2b62d490093aaf182758e186b1a2543a761d69f715ced1`,
   result SHA-256 `6b97e93466ea6e9acaff67bda8609f55e7ff80b28cc21877bad3bb6bdc5af4fb`.
   The signed dispatch cells and external calls come from the original PE.
-  No mode-4 writer appears in the selected publisher calls. A wider write
-  or alias to the live part vector would need its own admission proof.
+  The live scripted update at `0x145f4a110` writes only `+0x00..+0x47`
+  when replacing geometry at `0x145f4ce31..0x145f4ce58`. This preserves the
+  impact mode and duration. Its apparent tag-6 and tag-7 constructions
+  at `0x145f4c67f` and `0x145f4cf41` are copies of existing geometry,
+  selected by the part's own tag at `0x145f4c41c..0x145f4c44a`.
+  The mode is independent of those geometry tags.
+  An additional writer is [Krastinov's movement callback](scholomance-krastinov-0.141.0.md)
+  at `0x146015d10..0x146016b99` (SHA-256
+  `77f0ff54fe1290027999ccf276aff6569e2f4f20793a2a5afdab37f9c1bba281`).
+  It requires a matching actor, a distinct due attack and first-part
+  Sweep tag 5. It writes mode 2, direction, four-yard distance, and
+  origin at `0x146015e48..0x146015e64`. The other direct impact entry
+  at `0x145e71fc0` only selects thread-local locale state around the
+  same hit owner. The vector handoff at `0x145e48dcc..0x145e48dda`
+  copies an initially empty attack vector from the constructor at
+  `0x145f7db82..0x145f7db95`.
+  The projection covered 45 unique publishing and selected live-vector
+  owner extents. It found no fresh tag-6/7 part or mode-4 write. A live
+  mode-4 producer still requires an indirect constructor caller or a
+  proved alias that writes part `+0x68` before the hit dispatcher.
 - **Imp target row 53228.** The table at `0x147af38a8` indexes the
   companion's special kind byte. Index 1 scans 56-byte periodic rows at
   `0x145fb3133..0x145fb316a` for spell 348 at row `+0x18`. Exhaustion of
@@ -485,12 +503,12 @@ instructions and data supply the exact case and row bindings.
 | 451, 466, 467 | The adjacent six-cell vectors at `0x146565b10` and `0x146565b28` clone JSON values inside the Discord paths. Cases 1 at `0x140093fb3` and `0x14009d833` copy the boolean payload byte. Case 4 at `0x14009d88d` clones the 32-byte array rows through `0x140034e20`. Row 451 follows the worker's event-error data log. Rows 466 and 467 reach the same publisher continuation at `0x14012f740`. The [Discord source](../../crates/azeroth-survivors-re/src/discord.rs) clones the activity value for its worker. |
 | 1124 | The Picker class grid takes the class ID from descriptor `+0x8c` at `0x14039f7a0`, writes it after action tag 0, and passes the action to the 60-pixel class icon builder at `0x14039f813`. The builder reads the action pointer at `0x140138f43` and passes the descriptor to `0x1403a2e20` at `0x140138fb2`. The consumer reads the class byte at `0x1401488e7`, upserts the previous class's eight-byte selection row through `0x145de50b0`, and queues Pick command 12 at `0x140148a15`. The [Picker grid](../../crates/azeroth-survivors-re/src/picker.rs) produces `Action::Class`, and the [menu input path](../../crates/azeroth-survivors-re/src/menu.rs) dispatches it into `choose_class`. |
 | 1555, 1587 | The [Options checkbox repair](options-checkbox-0.141.0.md) joins the kind-5 click to the queued 56-byte update, storage setter at `0x1401f1ec0`, and inverted draw path. The [binding-header removal](q41-diagnostic-consumers-0.141.0.md#returning-removals) is a separate case in the same function. |
-| 1761 | The Rewards action takes a signed delta from record `+1`, a key pointer and length from `+8/+0x10`, and the current rank from `0x145e46460`. `0x145e5f500` returns the named descriptor. `0x1402b87e7..0x1402b8818` clamps the new rank between zero and its limit and updates the draft through `0x145e47880`. The UI admits decreases at `0x1403d21f8..0x1403d2245` using the dependent-perk and owned-rank gates and increases at `0x1403d2257..0x1403d22c1` using the catalog and point budget. The [Rewards editor](../../crates/azeroth-survivors-re/src/progression.rs) validates its candidate at input as well. Whether a stale or simultaneous event reaches the native draft remains open. |
-| 1845 | The Armory header loads `options.done` at `0x14039352b`, writes dword action 2 at `0x14039353f`, and passes its pointer to button builder `0x1402dd410` at `0x14039356a`. The handler enters `0x1402ed729` and requests destination `0xff` through `0x1402cb5a0`. The shared helper chooses Picker and checks for an edited Rewards draft. The button caller supplies `0x41800000` at `0x140393558`. The builder copies that float into the text style at `0x1402ddb61..0x1402ddbba`, giving the 16-pixel label now used by the [Armory header](../../crates/azeroth-survivors-re/src/armory.rs). The [rebuilt page request](../../crates/azeroth-survivors-re/src/progression.rs) owns the leave guard. |
+| 1761 | The Rewards action takes a signed delta from record `+1`, a key pointer and length from `+8/+0x10`, and the current rank from `0x145e46460`. `0x145e5f500` returns the named descriptor. `0x1402b87e7..0x1402b8818` clamps the new rank between zero and its limit and updates the draft through `0x145e47880`. The UI admits decreases at `0x1403d21f8..0x1403d2245` using the dependent-perk and owned-rank gates and increases at `0x1403d2257..0x1403d22c1` using the catalog and point budget. The [Rewards editor](../../crates/azeroth-survivors-re/src/progression.rs) validates its candidate at input as well. The builder only inserts the action into the deferred bundle when enabled. The consumer accepts each fresh Pressed row and clamps its rank before updating the draft. It reads no budget or dependency gate at this point. Whether stale or simultaneous presses reach these controls remains open. |
+| 1845 | The Armory header loads `options.done` at `0x14039352b`, writes dword action 2 at `0x14039353f`, and passes its pointer to button builder `0x1402dd410` at `0x14039356a`. The handler enters `0x1402ed729` and requests destination `0xff` through `0x1402cb5a0`. The shared helper chooses Picker and checks for an edited Rewards draft. The button caller supplies `0x41800000` at `0x140393558`. The builder copies that float into the text style at `0x1402ddb61..0x1402ddbba`, giving the 16-pixel label now used by the [Armory header](../../crates/azeroth-survivors-re/src/armory.rs). The [rebuilt page request](../../crates/azeroth-survivors-re/src/progression.rs) owns the leave guard. The adjacent lookup `0x145df0470` copies the 232-byte Armory class row keyed by its byte at `+0xe4`, with a default when absent. |
 | 1999 | The [ordinary equipment palette repair](armory-equipment-palette-0.141.0.md) connects this tier and item-class selector to the native icon border and text consumers and reuses the same palette in the rebuilt inspector. |
 | 52710, 52711, 52712, 52714 | The [computed transfer review](computed-transfers-0.141.0.md) owns the hit-source dispatch and the distinct source-kind predicate that qualifies death consumers. |
-| 52782 | The hazard loop matches source identity at `+0x110`, rejects the flagged actor, and sends action tags below `0x24` to index zero. The case copies the action payload and forwards it to the recovered raid-action owner at `0x145f43e90`. The [live hazard dispatcher](../../crates/azeroth-survivors-re/src/bosses/raid_areas.rs) uses the existing action handlers. The outer producer of the selected actor and wider action domain remain separate. |
-| 52786, 52787, 52788 | These branches read shape at row `+0x30`, radius at `+0x34` and planar center at `+0x40`. The leaf at `0x1463a557d` imports `_hypotf`. Shape zero is the inclusive circle test. Row 52788 additionally tests the projected point against the same radius. The [live hazard geometry](../../crates/azeroth-survivors-re/src/bosses/raid_areas.rs) has the separate single- and two-position predicates. Producer admission for the remaining shape variants stays open. |
+| 52782 | Raw action 18 enters `0x145f45b6a` through cell 15 of `0x147af2fd8`. It runs the first child at `0x145f45bb0` and queues the later children at `0x145f45c02..0x145f45c67`. Each 64-byte row in the Game `+0x7b0` vector carries the original actor GUID, deadline `now + index × spacing`, and the child action. The consumer at `0x145f39d37..0x145f39f72` admits due rows, checks co-op target slot at actor `+0x118`, removes the row in insertion order, then matches the living actor by `+0x110` and bit 0 at `+0xd0`. Tags below `0x24` reach the shared dispatcher at `0x145f43e90`. The [sequence producer](../../crates/azeroth-survivors-re/src/bosses/raid_sequences.rs), [delayed queue](../../crates/azeroth-survivors-re/src/bosses/raid_lines.rs), and [live actor context](../../crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs) implement these steps. |
+| 52786, 52787, 52788 | Shared constructor `0x145f433a0` writes the producer's shape triple at `+0x30/+0x34/+0x38` in the 136-byte Game `+0x798` hazard vector. The 14 direct calls in raid-action dispatcher `0x145f43e90` supply circle 0, donut 1, line 2 or cone 3. At call `0x145f48cd7`, raw action 13 selects circle for a nonpositive or unordered inner radius and donut otherwise. The dispatcher's 20 inline appends use the same tags, with 13 circles, one donut and six lines. The four-cell consumers at `0x147af2f8c`, `0x147af2f9c`, and `0x147af2fac` read that shape and the planar center at `+0x40`. The first admits active kind 4 rows, the second checks kinds 1, 4 or 5 and flag `+0x82`, and the third checks a zero byte at `+0x81` and an elapsed end time. The [live hazard geometry](../../crates/azeroth-survivors-re/src/bosses/raid_areas.rs) distinguishes the four shapes and uses separate single- and two-position predicates. |
 | 52984 | The caller copies the Game stat vector from `+0xb40` with count at `+0xb48`. Eight-byte rows carry a byte tag and a float at `+4`. The zero case adds the float to the accumulator at `0x145f6cdf1` and joins the common loop. The [stat fold](../../crates/azeroth-survivors-re/src/run_effects.rs) already consumes numeric additions during [effect refresh](../../crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs). |
 | 54188, 54224 | Both content paths resolve the modifier key through the same 115-record ability vector of 120-byte rows at `0x1473a40d8`. The first follows the `+8` payload kind into the damage sentence at `0x14605eb50`. The second uses the descriptor selector at `+0x24` and reaches absorb/healing and additional-target templates. The [reward prose](../../crates/azeroth-survivors-re/src/loot_rewards/prose.rs) and [inventory sentence renderer](../../crates/azeroth-survivors-re/src/gameplay/client/inventory.rs) supply the corresponding presentations. |
 
@@ -501,6 +519,18 @@ The ability vector has SHA-256
 The mode-4 writer question for row 53143 remains under the scripted
 attack review. The remaining UI producer questions require the typed
 component writer or downstream action consumer before a source change.
+
+The Rewards button builder at `0x1402954b0` tests enabled at
+`0x14029570e` before copying the key and delta. The receiver at
+`0x1402b7cc0` checks interaction change ticks at `0x1402b7ee9` and
+`0x1402b8032` and admits interaction byte zero at `0x1402b805f`.
+Bevy focus owner `0x1433e5bb0..0x1433e715f` has SHA-256
+`4e1c29a19d98fa30daa41328be10476fe83a5708e2542953aa5e5dcd9f03b307`.
+It sets Pressed=0 on a new press at `0x1433e6ea7` and advances through the
+hit stack only with nonzero policy at `0x1433e6f1b..0x1433e6f39`. The
+missing-policy default byte at `0x146a90e28` is zero. The exact installed
+policy for these buttons and any other source of fresh Pressed rows remain
+unproved. The rebuilt input rechecks budget and dependencies per action.
 
 ## Q41-U03 executable complement
 

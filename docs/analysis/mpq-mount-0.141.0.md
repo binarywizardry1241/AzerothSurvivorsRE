@@ -174,7 +174,8 @@ members, and the format literals establish no AS producer for guild state.
 ### Packed DBC readers
 
 The [resource proof](evidence/0.141.0/resource-consumers.json) lists the
-exact PE instruction sites for 21 readers. Each loads a slice into
+exact PE instruction sites for 22 readers. The separate CreatureSoundData
+catalog read is described below. Each loads a slice into
 `r8:r9` before calling the member read interface at `0x14623e170`.
 That interface checks `0x146243a60` for a registered override before
 falling back to the chain at `0x14623c640`. The separately selected
@@ -264,7 +265,7 @@ directories and remains uncompiled.
 
 The raw lexical inventory remains 85 exact names, 196 basename candidates
 and 44 unmatched strings across 325 selector rows. The scoped
-`check-as-resource-paths.py --current-consumers` check verifies the 21
+`check-as-resource-paths.py --current-consumers` check verifies the 22
 member readers, the associated native diagnostics and current payloads,
 the [builtin UI joins](source-frontier-0.141.0.md#builtin-glue-and-framexml-resource-selectors)
 and the [zone loading artwork](zone-entry-loading-progress-0.141.0.md#desktop-zone-artwork).

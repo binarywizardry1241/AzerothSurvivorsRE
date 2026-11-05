@@ -42,7 +42,11 @@ the retained instruction, byte, body, reference and guarded-edge commitments.
 The fresh PE inventory matched every retained observation outside the producer
 digest. All 213 non-metadata chunks of the fresh complement inventory matched
 the frozen input. The selected pass therefore continues to reference its
-original immutable seed evidence.
+original immutable seed evidence. The census profile keeps a shared-storage
+descriptor under `retained-inputs/` named
+`unwind-complement-c3b122c3ac58757ed0021dc3f514b72b1d0db60840270df9821caf7f65351fcb.sqlite`.
+Use that descriptor with `--complement-inventory` when replaying this plan
+after the current complement path changes.
 
 ### Embedded identifier outside declared extents
 
