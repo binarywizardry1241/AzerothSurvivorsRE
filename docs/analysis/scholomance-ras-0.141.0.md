@@ -15,8 +15,21 @@ deadline is at or before their own scaled warning plus a quarter second.
 | Action | Native path and source connection |
 | --- | --- |
 | Frostbolt Volley | `0x145dbcc10` chooses the nearest eligible hero with the lower GUID winning ties. The part builder at `0x14605b6a0` starts six violet capsules at that angle in 60° steps. Each clips a 20-yard ray to the room, is 2.5 yards wide and uses 2.3 times effective boss damage. The windup is 1.5 seconds before rank scaling. |
-| Chill Nova | `0x145dbc1c0` uses the live boss position, a radius of 11, 2.6 times effective boss damage, and a 2.25-second windup before rank scaling. |
+| Chill Nova | `0x145dbc1c0` uses the live boss position, a radius of 11, 2.6 times effective boss damage, and a 2.25-second windup before rank scaling. A hit attempts a six-yard push away from that position. |
 | Frozen Checkmate | `0x145dbde00` passes the top bit of the shared RNG draw to the six-yard grid builder. The source uses the two [previously emulated Scholomance masks](evidence/0.140.0/scholomance-encounters.json) at (96, 138), a 1.75-second base windup, and a 0.3-second tail. Grid sampling checks the danger bit and nearby tile edges with the recipient radius; the client projects the intersection of the valid and danger masks onto the arena. |
+
+Chill Nova writes spell `0x46b3` at `0x145dbc45c` and copies the
+168-byte part from `[rbp+0x48]` at `0x145dbc5a5`. The write at
+`0x145dbc56b` sets part `+0x68` to impact mode 1. The load at
+`0x145dbc575` takes `6.0` from `0x1465541a4`, and the packed write at
+`0x145dbc580` stores distance, zero fallback heading and the same boss
+XY used for the circle at `0x145dbc512`. The shared hit stage applies
+damage before the mode-1 branch at `0x145fa1a23`, which computes the
+recipient's direction away from the stored center and submits the
+destination to `0x145f99870`. The [shared hit sampler](../../crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs)
+now queues the same push for Chill Nova through the existing clipped
+movement and recipient packet path. This connection is static. The
+in-game movement and original/rebuilt comparison remain unverified.
 
 Frost Armor starts on the 60% phase and publishes spell 18100 and two
 radius-1.5 tower parts. At `0x145dbd1f2` the producer writes multiplier 0.25

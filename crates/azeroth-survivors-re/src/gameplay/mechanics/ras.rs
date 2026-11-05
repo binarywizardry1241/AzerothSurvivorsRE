@@ -12,7 +12,7 @@ use std::f32::consts::{PI, TAU};
 
 pub(super) const ENTRY: u32 = 10508;
 const VOLLEY: u32 = 0x20ce;
-const CHILL_NOVA: u32 = 0x46b3;
+pub(super) const CHILL_NOVA: u32 = 0x46b3;
 const FROST_ARMOR: u32 = 0x46b4;
 const SHIELD_SECONDS: f32 = 8.0;
 const SHIELD_REPEAT: f32 = 35.0;

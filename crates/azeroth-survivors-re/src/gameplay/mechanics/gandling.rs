@@ -1028,6 +1028,13 @@ impl<W: RunWorld> BossCombat<'_, W> {
                                         distance: 4.0,
                                     })
                                 }
+                                (super::ras::CHILL_NOVA, Shape::Circle { center, .. }) => {
+                                    Some(Motion::Push {
+                                        origin: center,
+                                        fallback: 0.0,
+                                        distance: 6.0,
+                                    })
+                                }
                                 (super::krastinov::RUSH, Shape::Sweep { start, end, .. }) => {
                                     Some(Motion::Rush {
                                         origin: start,
