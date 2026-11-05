@@ -182,6 +182,10 @@ def main(arguments=None):
         gh(arguments, env, capture=False)
     elif mode == "pre-commit":
         check_pending_identity(config)
+        from coverage_refresh import refresh
+        updated = refresh(staged=True)
+        if updated:
+            print(f"Refreshed and staged {len(updated)} source coverage records.")
     elif mode == "pre-push":
         if len(arguments) != 2:
             raise ValueError("Missing push destination")

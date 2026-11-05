@@ -7,6 +7,7 @@ them to every registered custom system and its permanent gameplay gaps.
 """
 import argparse
 from collections import Counter
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -15,6 +16,7 @@ import re
 from coverage_common import ROOT, file_sha256, json_text, latest_target, load_json, project_path, target_bytes
 
 OUTPUT = "docs/analysis/coverage/exe-connections.json"
+LITERAL_INCLUDE = re.compile(r'include_(?:str|bytes)!\s*\(\s*"([^"\n]+)"\s*\)', re.S)
 INPUTS = (
     "docs/analysis/coverage/systems.json",
     "docs/analysis/coverage/native-summary.json",
@@ -181,9 +183,8 @@ def evidence_documents(target):
 def embedded_assets(target):
     """Record source inclusion, without treating historical forensic words as live pointers."""
     paths = set()
-    pattern = re.compile(r'include_(?:str|bytes)!\s*\(\s*"([^"\n]+)"\s*\)', re.S)
     for path in (ROOT / "crates/azeroth-survivors-re/src").rglob("*.rs"):
-        for match in pattern.finditer(path.read_text()):
+        for match in LITERAL_INCLUDE.finditer(path.read_text()):
             included = project_path(path.parent / match[1])
             if not included.is_file():
                 raise ValueError("Missing source include: " + str(included.relative_to(ROOT)))
@@ -205,12 +206,20 @@ def embedded_assets(target):
     return rows
 
 
-def audit(census_summary=None):
-    target = latest_target()
-    # Read/hash the entire installed EXE even if every derivative is unchanged.
-    target_bytes(target)
+def connection_records(target, census_summary=None, replacements=None):
+    """Project connection records from a selected audit and current source inputs."""
+    replacements = replacements or {}
+
+    def read(name):
+        return json.loads(replacements[name]) if name in replacements else load_json(project_path(name))
+
+    def receipt(name):
+        if name in replacements:
+            return {"path": name, "sha256": hashlib.sha256(replacements[name]).hexdigest()}
+        return commitment(name)
+
     names = [name.format(version=target["version"]) for name in INPUTS]
-    records = {name: load_json(project_path(name)) for name in names}
+    records = {name: read(name) for name in names}
     for record in records.values():
         same_target(record, target)
     historical = records[names[2]]
@@ -241,10 +250,10 @@ def audit(census_summary=None):
         "historical_range_results": historical["counts"],
     }
     supporting = []
-    classification_path = project_path("docs/analysis/coverage/native-ownership-classification.json")
-    if classification_path.is_file():
-        classification = load_json(classification_path)
-        supporting.append({**commitment(classification_path), "target": classification["target"],
+    classification_path = "docs/analysis/coverage/native-ownership-classification.json"
+    if project_path(classification_path).is_file():
+        classification = read(classification_path)
+        supporting.append({**receipt(classification_path), "target": classification["target"],
                            "role": "current_supporting_ownership" if classification["target"]["sha256"] == target["sha256"]
                            else "historical_supporting_ownership"})
     output = {
@@ -252,7 +261,7 @@ def audit(census_summary=None):
         "target": {key: target[key] for key in ("version", "path", "sha256", "size_bytes")},
         "generator": commitment("scripts/audit-exe-connections.py"),
         "generator_dependencies": [commitment("scripts/coverage_common.py"), commitment("scripts/revalidate-historical-native-ranges.py")],
-        "inputs": [commitment(name) for name in [*names, census_name]],
+        "inputs": [receipt(name) for name in [*names, census_name]],
         "current_native_body_census": commitment(census_name),
         "supporting_inputs": supporting,
         "counts": counts,
@@ -274,11 +283,9 @@ def audit(census_summary=None):
         "parity_verified": False,
     }
     # The complete file/source inventory is disposable; maintain a compact crosswalk.
-    inventory_path = ROOT / "runtime/coverage" / target["sha256"] / "exe-connections.json"
-    payload = json_text(output)
-    inventory_path.parent.mkdir(parents=True, exist_ok=True)
-    inventory_path.write_text(payload)
-    output["inventory"] = commitment(inventory_path)
+    inventory_path = f"runtime/coverage/{target['sha256']}/exe-connections.json"
+    payload = json_text(output).encode()
+    output["inventory"] = {"path": inventory_path, "sha256": hashlib.sha256(payload).hexdigest()}
     del output["evidence_documents"]
     del output["embedded_assets"]
     output["systems"] = [{
@@ -291,6 +298,15 @@ def audit(census_summary=None):
         )
     } | {"current_bounded_contract_refs": row["evidence_links"]["current_bounded_contracts"]}
         for row in rows]
+    return output, payload
+
+
+def audit(census_summary=None):
+    target = latest_target()
+    target_bytes(target)
+    output, inventory = connection_records(target, census_summary)
+    from instruction_facts import derived_bytes
+    derived_bytes(ROOT / output["inventory"]["path"], inventory, publish=True)
     return output
 
 

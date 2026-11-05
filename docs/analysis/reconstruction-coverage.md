@@ -408,6 +408,21 @@ python3 -B scripts/check-reconstruction-coverage.py --json
 python3 -B scripts/check-reconstruction-coverage.py --delivery
 ```
 
+The configured project pre-commit hook refreshes the changelog index when a
+staged change touches the release notes, crosswalk, review store or any file
+named by a review. A staged system map change also refreshes the diagnostic
+and source ownership records. The hook includes the generated records in
+the same commit. Stage inputs explicitly with `git add` before committing.
+The hook stops if it would have to read unstaged coverage inputs.
+
+This refresh uses the selected audit's retained inventories. It updates
+source correspondence and marks changed claim reviews for reassessment.
+The original native observations and review hashes remain bound to their
+recorded inputs. New target registrations and census changes use the full
+audit workflow. After importing commits that bypass the configured hook,
+run `python3 -B scripts/check-reconstruction-coverage.py --refresh-source-records`
+to refresh the current checkout before running the read-only coverage check.
+
 Update system/path membership, actual source/report owners and permanent gaps.
 New findings append after the highest number across both registers. Move
 source-complete rows to verification-needed, retain closed/history identities

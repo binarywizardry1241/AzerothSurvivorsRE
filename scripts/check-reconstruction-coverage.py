@@ -292,11 +292,24 @@ def validate_instruction_summary(record, target, pe_counts, findings, root=ROOT)
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--check", action="store_true", help="read-only check (the default)")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--check", action="store_true", help="read-only check (the default)")
+    mode.add_argument("--refresh-source-records", action="store_true",
+                      help="regenerate source records from the retained selected audit")
     parser.add_argument("--json", action="store_true", help="print the complete report as JSON")
     parser.add_argument("--delivery", action="store_true", help="also require durable source/evidence references in Git's index")
     parser.add_argument("--output", type=project_path, help="optionally save report under ignored runtime/")
     args = parser.parse_args()
+    if args.refresh_source_records:
+        if args.output or args.json or args.delivery:
+            parser.error("--refresh-source-records cannot be combined with check output options")
+        from coverage_refresh import refresh
+        try:
+            updated = refresh()
+        except (KeyError, OSError, ValueError, subprocess.CalledProcessError) as error:
+            parser.exit(1, f"Source coverage refresh failed: {error}\n")
+        print(f"Refreshed {len(updated)} source coverage records.")
+        return 0
     if args.output and not args.output.is_relative_to(ROOT / "runtime"):
         parser.error("Saved checker output must be inside runtime/")
     findings = Findings()
