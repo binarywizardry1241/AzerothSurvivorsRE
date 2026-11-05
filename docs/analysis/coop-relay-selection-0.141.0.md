@@ -83,6 +83,42 @@ The table classification establishes these action identities and the
 bounded consumer edges. The full payload, frame scheduling and delivery
 contracts retain their own evidence.
 
+## Host and Join form credential lifetime
+
+The admitted Host and Join requests replace the same owned string at poller
+state `+0x1e48/+0x1e50/+0x1e58` before submitting the service request. The
+second form therefore supplies the retained password if two forms precede
+the first role reply. The Hosted and Joined event handlers move that string
+out and replace it with `(capacity=0, pointer=1, length=0)` before calling
+`0x145ec7000` or `0x145ec7250`. Both constructors separately require the
+local game slot and party role to be Off. The password is already consumed
+when a constructor refuses that transition. The terminal primary-failure path
+at `0x145ea54ed..0x145ea54f7` replaces the slot with the absent sentinel and
+then drops its old value.
+
+| Native action | Preferred VA range (end exclusive) | File offset | SHA-256 |
+| --- | --- | --- | --- |
+| Join form store | `0x145ea7b52..0x145ea7b6e` | `0x5ea6f52` | `c165cb86cd80b029a324013e80f5e54d14a81305ecbbdbaa2815615782164f5f` |
+| Host form store | `0x145ea863d..0x145ea8659` | `0x5ea7a3d` | `c165cb86cd80b029a324013e80f5e54d14a81305ecbbdbaa2815615782164f5f` |
+| Joined reply take | `0x145ea4252..0x145ea4296` | `0x5ea3652` | `29785c335abfef987c39f98300db018b318f383a48ae48b484491b138c67722b` |
+| Hosted reply take | `0x145ea44eb..0x145ea452f` | `0x5ea38eb` | `dca53cd85cf1830783022b192faed49c84b98efa38ece4929bac46dacb116df1` |
+
+The rebuilt [directory poller](../../crates/azeroth-survivors-re/src/coop_directory.rs)
+now uses one pending password for both form producers and consumes it on
+either reply. This supplies the host's Join admission and the guest's initial
+Join message through their existing constructors. Host capacity retains its
+separate pending field. Terminal directory close clears both pending fields.
+The previous independent password values could outlive their reply or a
+closed directory and supplied an earlier form's password after mixed form
+submissions.
+
+`check-coop-directory-transport.py --form-credentials` replays 16 bounded
+native sequences, including both mixed request orders, either first reply,
+an empty last password and a repeated reply. It checks the live source
+producers, consumer ordering and terminal clearing. The installed game and
+service were not executed. Compilation, actual socket ordering and parity
+remain under [#63](../verification-needed.md#gap-63).
+
 ## Host terminal transport failure
 
 The active host branch at `0x145ea4b50..0x145ea4c26` reads the selected

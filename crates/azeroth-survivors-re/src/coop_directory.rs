@@ -153,7 +153,7 @@ pub(crate) struct Service {
     last_refresh: f32,
     last_command: f64,
     last_heartbeat: Option<Instant>,
-    pending_host: Option<(String, u8)>,
+    pending_host_capacity: Option<u8>,
     pending_password: String,
     hosting: bool,
     profile: Option<LobbyProfile>,
@@ -268,6 +268,8 @@ impl Service {
         if let Some(primary) = self.worker.take() {
             primary.submit(ClientMessage::Leave);
         }
+        self.pending_password = String::new();
+        self.pending_host_capacity = None;
         self.close_secondary();
     }
 
@@ -453,10 +455,11 @@ fn poll(
                         );
                         view.code = Some(text);
                         view.status = "hosting".into();
+                        let password = std::mem::take(&mut service.pending_password);
                         if menu.in_run || runtime.driver.is_some() {
                             continue;
                         }
-                        let Some((password, capacity)) = service.pending_host.clone() else {
+                        let Some(capacity) = service.pending_host_capacity else {
                             continue;
                         };
                         if !initialize_identity(&mut runtime) {
@@ -485,6 +488,7 @@ fn poll(
                             true,
                         );
                         view.code = Some(text);
+                        let password = std::mem::take(&mut service.pending_password);
                         if menu.in_run || runtime.driver.is_some() {
                             continue;
                         }
@@ -499,7 +503,7 @@ fn poll(
                             .unwrap()
                             .select_transport(service.relay_worker_state());
                         let mut driver = Session::service_join_with_flags(
-                            service.pending_password.as_bytes().to_vec(),
+                            password.into_bytes(),
                             service.relay_protocol.clone(),
                             service.guest_flags.clone(),
                         );
@@ -771,7 +775,8 @@ fn poll(
                 }
                 if service.ensure(&mut view, time.elapsed_secs_f64()) {
                     let value = profile(&menu, &runtime, capacity);
-                    service.pending_host = Some((password.clone(), capacity));
+                    service.pending_host_capacity = Some(capacity);
+                    service.pending_password.clone_from(&password);
                     service.profile = Some(value.clone());
                     service.send(ClientMessage::Host {
                         name,

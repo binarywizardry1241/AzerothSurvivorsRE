@@ -445,6 +445,63 @@ def check_host_terminal_failure(target, data, pe):
         native_cases=cases, compilation=False, network_or_game_executed=False, parity_verified=False)))
 
 
+def check_form_credentials(target, data, pe):
+    from native_terminal import NativeReplay
+
+    assert target["sha256"] == "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+    replay = NativeReplay(data, pe)
+    join = (0x145ea7b52, 0x145ea7b6e)
+    host = (0x145ea863d, 0x145ea8659)
+    joined = (0x145ea4252, 0x145ea4296)
+    hosted = (0x145ea44eb, 0x145ea452f)
+    for (start, end), expected in (
+        (join, "c165cb86cd80b029a324013e80f5e54d14a81305ecbbdbaa2815615782164f5f"),
+        (host, "c165cb86cd80b029a324013e80f5e54d14a81305ecbbdbaa2815615782164f5f"),
+        (joined, "29785c335abfef987c39f98300db018b318f383a48ae48b484491b138c67722b"),
+        (hosted, "dca53cd85cf1830783022b192faed49c84b98efa38ece4929bac46dacb116df1"),
+    ):
+        assert digest(replay.raw(start, end - start)) == expected
+    slot = replay.app + 0x1e48
+    reg = replay.registers
+    requests = (join, host)
+    replies = ((joined, 0x1218, 0x1138), (hosted, 0x1180, 0x1170))
+    empty = (0, 1, 0)
+    cases = 0
+    for first, last, (reply, pointer, length), clear in product(requests, requests, replies, (False, True)):
+        windows = (first, last, reply)
+        replay.reset("shared form credential", windows, [end for _, end in windows])
+        replay.put(replay.bp + 0x1208, "<Q", slot)
+        replay.put(replay.bp + 0x1290, "<Q", replay.app)
+        replay.put(slot, "<QQQ", *empty)
+        final = empty if clear else (7, replay.mem + 0x2000, 7)
+        for request, value in ((first, (4, replay.mem + 0x100, 4)), (last, final)):
+            replay.put(replay.bp + 0x320, "<QQQ", *value)
+            replay.run(request[0])
+            assert replay.get(slot, "<QQQ") == value
+        for expected in (final, empty):
+            replay.machine.reg_write(reg.UC_X86_REG_RAX, replay.app)
+            replay.run(reply[0])
+            assert replay.machine.reg_read(reg.UC_X86_REG_R13) == expected[0]
+            assert replay.get(replay.bp + pointer, "<Q") == (expected[1],)
+            assert replay.get(replay.bp + length, "<Q") == (expected[2],)
+            assert replay.get(slot, "<QQQ") == empty
+        cases += 1
+
+    source = path("crates/azeroth-survivors-re/src/coop_directory.rs").read_text()
+    assert "pending_host_capacity: Option<u8>" in source
+    for marker in ("FormRequest::Host {", "FormRequest::Join {"):
+        form = block_after(source.split(marker, 1)[1], "=>")
+        assert form.index("service.pending_password.clone_from(&password)") < form.index("service.send(")
+    for tag in (21, 22):
+        marker = f"DirectoryResponse::Text {{ tag: {tag}, text }} =>"
+        event = block_after(source, marker)
+        assert event.index("std::mem::take(&mut service.pending_password)") < event.index("if menu.in_run")
+        assert "password.into_bytes()" in event
+    close = block_after(source, "fn close(&mut self)")
+    assert "self.pending_password = String::new()" in close and "self.pending_host_capacity = None" in close
+    print(f"PASS: {cases} original credential sequences, four native spans and live form/reply source guards")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
@@ -452,12 +509,13 @@ def main():
     mode.add_argument("--current-rtt", action="store_true", help="Check the canonical 0.127.0 raw service RTT proof and source")
     mode.add_argument("--current-close", action="store_true", help="Check the 0.139.2 explicit cooperative close proof and source")
     mode.add_argument("--host-terminal-failure", action="store_true", help="Check 0.141.0 host failure departure order and source")
+    mode.add_argument("--form-credentials", action="store_true", help="Check 0.141.0 shared Host/Join password lifetime and source")
     args = parser.parse_args()
     if args.source_only:
         check_source()
         print("PASS: retained socket source guards; native evidence not revalidated; no compilation or execution")
         return
-    target = installed_identity() if args.current_close or args.host_terminal_failure else latest_target(verify=True)
+    target = installed_identity() if args.current_close or args.host_terminal_failure or args.form_credentials else latest_target(verify=True)
     data = target_bytes(target)
     pe = load_script("coop_directory_transport_pe", ROOT / "scripts/inventory-executable.py").PE(data)
     if args.current_rtt:
@@ -466,6 +524,8 @@ def main():
         return check_current_close(target, data, pe)
     if args.host_terminal_failure:
         return check_host_terminal_failure(target, data, pe)
+    if args.form_credentials:
+        return check_form_credentials(target, data, pe)
     owners, tables, literals, certificates, local_results = check_manifest(target, data, pe)
     check_source()
     print(f"PASS: {owners} current native transport ranges/extracts, {tables} tables, "
