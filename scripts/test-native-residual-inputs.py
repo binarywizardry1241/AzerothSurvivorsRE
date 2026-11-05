@@ -136,6 +136,14 @@ class ClassificationInputs(unittest.TestCase):
         self.write_json(name, current)
         with patch('native_residual_inputs.diagnostic_predecessor', return_value=previous):
             self.assertTrue(self.run_record()['explicit_ownerless_site_inventory_available'])
+            current['fresh_native_verification'] = dict(
+                method='fresh_decode_exact_native_fact_comparison', native_fact_sha256='b'*64)
+            self.write_json(name, current)
+            with self.assertRaisesRegex(ValueError, 'artifact changed'):
+                self.run_record()
+            current['fresh_native_verification']['native_fact_sha256'] = 'a'*64
+            self.write_json(name, current)
+            self.assertTrue(self.run_record()['explicit_ownerless_site_inventory_available'])
             current['counts']['reference_kinds']['jump_indirect'] += 1
             self.write_json(name, current)
             with self.assertRaisesRegex(ValueError, 'artifact changed'):

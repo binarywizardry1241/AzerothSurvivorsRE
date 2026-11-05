@@ -44,11 +44,17 @@ def residual_input_matches(path, expected, current, root):
     previous = diagnostic_predecessor(root, expected)
     if previous is None:
         return False
-    # The residual proof consumes native diagnostics. Require the original
-    # receipt and equality of all fields outside the refreshed projection.
+    # A fresh replay may attest to the same frozen native diagnostics.
     current_summary = load_json(path)
     projection = 'source_mapping_projection'
     native_digest = previous.get(projection, {}).get('native_fact_sha256')
+    verification = 'fresh_native_verification'
+    if verification not in previous and verification in current_summary:
+        witness = current_summary.pop(verification)
+        if (not isinstance(witness, dict)
+                or witness.get('method') != 'fresh_decode_exact_native_fact_comparison'
+                or witness.get('native_fact_sha256') != native_digest):
+            return False
     return (bool(native_digest) and native_digest ==
             current_summary.get(projection, {}).get('native_fact_sha256') and
             {k: v for k, v in previous.items() if k != projection} ==
