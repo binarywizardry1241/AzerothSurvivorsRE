@@ -285,6 +285,40 @@ def replay_hud_bound(replay, ranges):
     return 2 * len(lengths)
 
 
+def replay_hud_cadence(replay, ranges):
+    cpu, reg = replay.machine, replay.registers
+    load = ranges['host_hud_period_load']
+    period = ranges['host_hud_period'][0]
+    clock = ranges['host_hud_clock']
+    due = ranges['host_hud_due']
+    assert load[1] + struct.unpack('<i', replay.raw(load[1] - 4, 4))[0] == period
+    assert struct.unpack('<d', replay.raw(period, 8))[0] == 0.2
+    assert due[1] + struct.unpack('<i', replay.raw(due[1] - 4, 4))[0] == ranges['host_hud_builder'][0]
+    peer_rows = replay.app + 0x1000
+    skip_clock = 0x145ea91f0
+    build = ranges['host_hud_builder'][0]
+    times = (0.0, math.nextafter(0.2, 0.0), 0.2, math.nextafter(0.2, 1.0), 0.5, math.inf, math.nan)
+    cases = 0
+    for peer, now, last in product(range(2), times, (0.0, 0.1, math.inf, math.nan)):
+        replay.reset('host HUD peer cadence', [load, clock, due],
+                     [load[1], clock[1], skip_clock, due[1], build])
+        replay.put(peer_rows + 0x360, '<d', last if peer == 0 else 19.0)
+        replay.put(peer_rows + 0x8a0 + 0x360, '<d', last if peer == 1 else 19.0)
+        row_offset = peer * 0x8a0
+        cpu.reg_write(reg.UC_X86_REG_RAX, peer_rows + row_offset)
+        cpu.reg_write(reg.UC_X86_REG_RBX, row_offset)
+        cpu.reg_write(reg.UC_X86_REG_RCX, peer_rows)
+        cpu.reg_write(reg.UC_X86_REG_XMM6, struct.unpack('<Q', struct.pack('<d', now))[0])
+        expected = now - last >= 0.2
+        assert replay.run(load[0]) == load[1]
+        assert replay.run(clock[0]) == (clock[1] if expected else skip_clock)
+        assert replay.run(due[0]) == (build if expected else due[1])
+        assert cpu.mem_read(peer_rows + row_offset + 0x360, 8) == struct.pack('<d', now if expected else last)
+        assert replay.get(peer_rows + (1 - peer) * 0x8a0 + 0x360, '<d') == (19.0,)
+        cases += 1
+    return cases
+
+
 def check_protocol_13():
     proof, data, pe, ranges = installed_ranges(PROTOCOL_13)
     replay = NativeReplay(data, pe)
@@ -292,6 +326,7 @@ def check_protocol_13():
     controls = replay_controls(replay, proof, ranges)
     party_context = replay_state_party_context(replay, proof['target'])
     hud = replay_hud_bound(replay, ranges)
+    hud_cadence = replay_hud_cadence(replay, ranges)
 
     base = ROOT / 'crates/azeroth-survivors-re/src'
     publish = ' '.join((base / 'gameplay/coop_publish.rs').read_text().split())
@@ -331,8 +366,15 @@ def check_protocol_13():
     hud_arm = guest.split('NativeMessage::HudJson(text) if guest && text.len() <= 65_536 => {', 1)[1]
     hud_arm = hud_arm.split('NativeMessage::Resources(', 1)[0]
     assert 'serde_json::from_str(&text)' in hud_arm and 'state.pick.receive_hud(&text,' in hud_arm
+    overlay = (base / 'gameplay/coop_overlay.rs').read_text()
+    hud_producer = overlay.split('synchronized.then(|| {', 1)[1].split('if let Some(resources)', 1)[0]
+    assert 'now - cache.hud_sent_at.get(&client).copied().unwrap_or(0.0) >= 0.2' in hud_producer
+    assert hud_producer.index('cache.hud_sent_at.insert(client, now)') < hud_producer.index('game.coop_hud(')
+    hud_send = hud_producer.split('if let Some(hud) = hud {', 1)[1]
+    assert 'runtime.send(Some(client), NativeMessage::HudJson(hud.to_string()));' in hud_send
+    assert 'cache.hud.get(' not in overlay
     print(f'PASS: {cadence} State15 cadence cases, {party_context} party context cases, {controls} Control8 cases, {hud} HUD cases, '
-          f'{replay.instructions} native steps and source route checks')
+          f'{hud_cadence} HUD cadence cases, {replay.instructions} native steps and source route checks')
 
 
 def main():

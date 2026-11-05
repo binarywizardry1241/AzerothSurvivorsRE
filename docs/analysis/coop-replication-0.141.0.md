@@ -125,6 +125,26 @@ presentation or serialization. Rust syntax parsing and source guards
 passed. Live delivery and original/rebuilt comparison remain open.
 [Guest receiver](../../crates/azeroth-survivors-re/src/gameplay/coop.rs).
 
+## HUD10 host cadence
+
+The host loads the f64 0.2-second period at `0x145ea8cd5`. It compares
+elapsed time against that period at `0x145ea9199..0x145ea91b7` and
+updates the recipient row's clock at `+0x360` only when due. This is the
+other half of the zeroed clock pair described under State15. The comparison
+at `0x145ea93a9` uses the same elapsed time to enter the seated HUD
+builder at `0x145ea9498`. The output goes through serialization at
+`0x145ea95d4` and into the peer's outgoing list at `0x145ea961e`.
+The producer does not compare the JSON with its previous output.
+
+The rebuilt [host overlay publisher](../../crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs)
+tracks the HUD clock per synchronized recipient and submits each due
+snapshot, including identical JSON. This gives a guest waiting for a
+missing choice offer fresh HUD messages even when the displayed data
+is steady. The checker passed 56 replay cases across two peer rows,
+including the exact 0.2-second boundary and nonfinite elapsed times.
+It verifies clock writes and the branch into the builder. Live HUD
+delivery and choice retry remain unverified.
+
 ## Engine7 and Control8
 
 Engine7 writes a little-endian u16 opcode and length-prefixed body. Its reader

@@ -18,7 +18,7 @@ struct Published {
     choices: HashMap<ClientId, (u64, String)>,
     resumes: HashMap<ClientId, u64>,
     recaps: HashMap<ClientId, recap::Published>,
-    hud: HashMap<ClientId, Value>,
+    hud_sent_at: HashMap<ClientId, f64>,
     resources: HashMap<ClientId, Vec<ResourceRow>>,
     timers: HashMap<ClientId, Vec<TimerRow>>,
     locales: HashMap<String, crate::localization::Localization>,
@@ -541,6 +541,7 @@ fn publish(
         cache.at = now;
     }
     cache.recaps.retain(|client, _| state.admitted.contains_key(client));
+    cache.hud_sent_at.retain(|client, _| state.admitted.contains_key(client));
     let members = state
         .admitted
         .iter()
@@ -573,13 +574,20 @@ fn publish(
                 cache.recaps.entry(client).or_default().publish(
                     &mut runtime, client, &hero, game, member_locale,
                 );
-                synchronized.then(|| (
-                    format!("{}:{}", game.choice_offer(), offer_signature(game)),
-                    choice_payload(game, &art, member_locale),
-                    due.then(|| game.coop_hud(member_locale)),
-                    due.then(|| spell_resources(game, member_locale)),
-                    due.then(|| spell_intervals(game)),
-                ))
+                synchronized.then(|| {
+                    let hud_due =
+                        now - cache.hud_sent_at.get(&client).copied().unwrap_or(0.0) >= 0.2;
+                    if hud_due {
+                        cache.hud_sent_at.insert(client, now);
+                    }
+                    (
+                        format!("{}:{}", game.choice_offer(), offer_signature(game)),
+                        choice_payload(game, &art, member_locale),
+                        hud_due.then(|| game.coop_hud(member_locale)),
+                        due.then(|| spell_resources(game, member_locale)),
+                        due.then(|| spell_intervals(game)),
+                    )
+                })
             })
         else {
             continue;
@@ -605,11 +613,8 @@ fn publish(
             }
         }
         if let Some(hud) = hud {
-            if cache.hud.get(&client) != Some(&hud) {
-                if runtime.send(Some(client), NativeMessage::HudJson(hud.to_string())) {
-                    cache.hud.insert(client, hud);
-                }
-            }
+            // The guest's missing-card retry clock observes each accepted HUD.
+            runtime.send(Some(client), NativeMessage::HudJson(hud.to_string()));
         }
         if let Some(resources) = resources {
             if cache.resources.get(&client) != Some(&resources) {
