@@ -250,8 +250,22 @@ Some exact cells also have reviewed producers:
   already supply those inputs and the same deadline arithmetic.
 - **Scripted impact row 53146.** Index 1 at `0x145fa1a21` enters the
   existing [Kirtonos impact-mode 1 path](scholomance-kirtonos-0.141.0.md).
-  Index 4 of that same table reaches row 53143 and calls `0x145f49e90`.
-  The mode-4 producer and complete recipient behavior remain open.
+- **Scripted root row 53143.** Index 4 of that same table reaches
+  `0x145fa16a3`. The call at `0x145fa16b3` passes the seated Game, source
+  GUID, spell and duration to `0x145f49e90`. The helper requires run phase
+  1 and rejects requests during the seated hero's cooldown. Its first
+  five accepted roots use the f32 factors `1.0`, `0.8`, `0.6`, `0.4` and
+  `0.2` at `0x147aef4f0`. The sixth request clears the count and sets an
+  eight-second cooldown using the constant at `0x1465541f4`. An accepted
+  request sends a single-target spell to the seated hero, emits force-root
+  when the old deadline is zero or negative, and keeps the later deadline.
+  The hazard batch call at `0x145f3ec26` reaches the same helper. These
+  finite-duration rules correspond to the existing
+  [player mover](../../crates/azeroth-survivors-re/src/gameplay/mechanics/player_mover.rs)
+  and [hazard batch](../../crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs).
+  The original helper span `0x145f49e90..0x145f4a069` has SHA-256
+  `55fa41066323ec44330c411f649f2609c9087b9831f685c6a8a77bbc5f270531`.
+  The mode-4 descriptor writer and full scripted admission remain open.
 - **Choice row 53291.** The
   [five-case constructor proof](q41-reference-frontier-0.141.0.md#choice-card-variants)
   already supplies the admitted payload tags and the live card producer.

@@ -35094,6 +35094,16 @@
     },
     {
       "id": "custom-game-game-guardians",
+      "wake_and_leash_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 89,
+        "scope": "Awake guardian retarget admission, four wake and leash decisions, and deferred reset movement, aura and health publication.",
+        "source_status": "connected",
+        "evidence_ref": "docs/analysis/computed-transfers-0.141.0.md#guardian-wake-and-leash",
+        "native_cases": 26,
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "title": "Guardian lairs and actors",
       "original_path": "crates/wenilla-rogue/src/game/guardians.rs",
       "native_path_evidence": [
@@ -35184,6 +35194,7 @@
         "crates/azeroth-survivors-re/src/guardians/scaling.rs"
       ],
       "evidence_refs": [
+        "docs/analysis/computed-transfers-0.141.0.md",
         "docs/analysis/scholomance-guardians-0.140.0.md",
         "docs/analysis/guardians-0.97.2.md",
         "docs/analysis/addon-bridge-0.105.0.md",
@@ -35360,10 +35371,10 @@
         "summary": "Current original/rebuilt behavior and presentation remain unverified."
       },
       "remaining_source_work": [
-        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Map remaining guardian producer and consumer correspondence beyond the selected wake and leash path.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-guardians]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "native_evidence_validity": "current_exact_diagnostic_path",
+      "native_evidence_validity": "current_bounded_selected_native_interface_contract",
       "source_review_anchors": [
         {
           "path": "crates/azeroth-survivors-re/src/guardians/mod.rs",
@@ -36390,7 +36401,7 @@
       },
       "current_applicability": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
+        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
         "assessment": "docs/analysis/module-contracts-0.141.0.md"
       },
       "current_contract_finding": 89,
@@ -61374,6 +61385,16 @@
     },
     {
       "id": "custom-game-server-party",
+      "gap_203_guest_entry_notices_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "gap_id": 203,
+        "scope": "Synchronized guest action buttons, localized join and race lines, and the private system-chat recipient.",
+        "source_status": "connected",
+        "evidence_ref": "docs/analysis/coop-replication-0.141.0.md#localized-guest-entry-notices",
+        "native_cases": 257,
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "gap_63_guest_login_and_replication_gate_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
         "gap_id": 63,
@@ -61710,6 +61731,7 @@
         "crates/azeroth-survivors-re/src/coop/websocket.rs"
       ],
       "evidence_refs": [
+        "docs/analysis/evidence/0.141.0/coop-entry-notices.json",
         "docs/analysis/target-0.113.0.md",
         "docs/analysis/coverage/diagnostic-ownership.json",
         "docs/analysis/target-0.113.2.md",
@@ -67480,6 +67502,36 @@
   ],
   "reviewed_pending_source_hashes": {},
   "evidence_target_bindings": {
+    "docs/analysis/computed-transfers-0.141.0.md": {
+      "path": "docs/analysis/computed-transfers-0.141.0.md",
+      "target_version": "0.141.0",
+      "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-game-game-guardians"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-game-game-guardians"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-game-game-guardians": "Awake guardian retarget admission, four wake and leash decisions, and deferred reset movement, aura and health publication."
+      }
+    },
+    "docs/analysis/evidence/0.141.0/coop-entry-notices.json": {
+      "path": "docs/analysis/evidence/0.141.0/coop-entry-notices.json",
+      "target_version": "0.141.0",
+      "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-game-server-party"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-game-server-party"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-game-server-party": "Synchronized guest action buttons, localized join and race lines, and the private system-chat recipient."
+      }
+    },
     "docs/analysis/evidence/0.141.0/choice-card-variants.json": {
       "path": "docs/analysis/evidence/0.141.0/choice-card-variants.json",
       "target_version": "0.141.0",

@@ -23,7 +23,7 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "2ab29b2122682404c55f0e8d503e3aa2dd3dedeabf4d42005c8d93ae3f1600cf"
+      "sha256": "ac6c143a22f69def2ff05dd2e9f91d500f2533cd2b64be1eccb098d30c474187"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
@@ -31,15 +31,15 @@
     },
     {
       "path": "docs/analysis/coverage/historical-range-revalidation.json",
-      "sha256": "78a5bcf71b8386aac6412a3709536d2124d3494378ec3e822a08ea6ef6abe865"
+      "sha256": "d7594c5a9bd1327c5151d117b605023c33d77cc54e0947dfd0ab6d918911385e"
     },
     {
       "path": "docs/analysis/evidence/0.141.0/native-custom-coverage.json",
-      "sha256": "7ee8570536fbb7066eeb3a1eba8f618a7be97200b9b08b5185cd08a60ee022df"
+      "sha256": "28122021ffb5f75f963e8b518a289df1147921ac07d252d466fac89f2390a65b"
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "b114de4a462e2a11a1db91c02cb601fe4515b677bbd85391abadbc12356e6e9c"
+      "sha256": "ac58f4dccd869639e49a13912c3a26403600ff6da8d21e37a1e257266b99fd19"
     },
     {
       "path": "docs/analysis/coverage/full-image-selected-0.141.0.json",
@@ -53,7 +53,7 @@
   "supporting_inputs": [
     {
       "path": "docs/analysis/coverage/native-ownership-classification.json",
-      "sha256": "6fe236c4462754bd7fb96a240cf46ee828f26c78c6244866f11cf9c64962d0a3",
+      "sha256": "acd2c1d3f32474e8b6dc59cd4372354aff8624938eef60d6fc322178e883d276",
       "target": {
         "path": "installed-game/AzerothSurvivors.exe",
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
@@ -65,10 +65,10 @@
   ],
   "counts": {
     "custom_system_rows": 83,
-    "with_registered_current_evidence": 33,
-    "without_registered_current_evidence": 50,
-    "with_registered_current_bounded_contract": 33,
-    "without_registered_current_bounded_contract": 50,
+    "with_registered_current_evidence": 34,
+    "without_registered_current_evidence": 49,
+    "with_registered_current_bounded_contract": 34,
+    "without_registered_current_bounded_contract": 49,
     "without_source_correspondence": 0,
     "ownerless_native_location_references": 67,
     "paths_with_ownerless_native_location_references": 15,
@@ -91,8 +91,8 @@
       "canonical-preimage-bytes-unavailable": 10723,
       "documents-admitted-by-exact-owning-manifest-hash": 4,
       "documents-with-ambiguous-owning-target-bindings": 1,
-      "documents-with-explicit-target-identity": 1771,
-      "documents-without-explicit-target-or-exact-manifest-binding": 73,
+      "documents-with-explicit-target-identity": 1777,
+      "documents-without-explicit-target-or-exact-manifest-binding": 74,
       "exact-bytes-not-found": 6011,
       "historical-documents-with-range-commitments": 1015,
       "historical-documents-without-supported-range-commitments": 723,
@@ -121,7 +121,7 @@
       "preimage:verbatim-notification-constant-bytes": 17,
       "same-address-byte-match": 5,
       "same-offset-byte-match": 11,
-      "selected-target-documents-excluded-from-historical-audit": 37,
+      "selected-target-documents-excluded-from-historical-audit": 43,
       "unique-exact-byte-range": 1471,
       "unique-match:executable-without-complete-body-owner": 54,
       "unique-match:non-executable-data-or-headers": 1321,
@@ -3257,13 +3257,17 @@
       ],
       "ownerless_location_sites": [],
       "remaining_source_work": [
-        "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
+        "Map remaining guardian producer and consumer correspondence beyond the selected wake and leash path.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-guardians]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": false,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/computed-transfers-0.141.0.md": "Awake guardian retarget admission, four wake and leash decisions, and deferred reset movement, aura and health publication."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/computed-transfers-0.141.0.md"
+      ]
     },
     {
       "id": "custom-game-game-mod",
@@ -5794,6 +5798,7 @@
         "docs/analysis/coop-admission-0.141.0.md": "Current Join version/protocol comparison and outgoing field serialization; other packet/service scopes remain separate.",
         "docs/analysis/coop-inspection-0.141.0.md": "Wire 17 roster/profile producer and live publication.",
         "docs/analysis/detailed-meter-0.141.0.md": "Admitted recipient requests, per-peer frame state, and ordinary and detailed addon-language delivery from the seated authority.",
+        "docs/analysis/evidence/0.141.0/coop-entry-notices.json": "Synchronized guest action buttons, localized join and race lines, and the private system-chat recipient.",
         "docs/analysis/party-achievement-settlement-0.141.0.md": "Admitted guest cache/regular poll and terminal settlement dispatch.",
         "docs/analysis/scholomance-loot-0.141.0.md": "Per-recipient class bundle and ownership selection for the Scholomance reward."
       },
@@ -5801,6 +5806,7 @@
         "docs/analysis/coop-admission-0.141.0.md",
         "docs/analysis/coop-inspection-0.141.0.md",
         "docs/analysis/detailed-meter-0.141.0.md",
+        "docs/analysis/evidence/0.141.0/coop-entry-notices.json",
         "docs/analysis/party-achievement-settlement-0.141.0.md",
         "docs/analysis/scholomance-loot-0.141.0.md"
       ]
@@ -7059,6 +7065,6 @@
   "parity_verified": false,
   "inventory": {
     "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/exe-connections.json",
-    "sha256": "ae21d72198983c7b6769f3730705de1e8213cc7d8a6310090ab1404a771e117c"
+    "sha256": "737d87574167e660c4c5ff1774768c3bb27904da624cad20f8f1fa9248536e89"
   }
 }

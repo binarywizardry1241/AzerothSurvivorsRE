@@ -34,3 +34,9 @@ were unchanged. The 0.141.0 Tranquility check replayed 576 bounded cases. The
 earlier two-player achievement claim also retained its 0.141.0 correspondence
 after replaying 516 recipient and history cases. Its scoped proof remains
 under [#195](../verification-needed.md#gap-195).
+
+The #41 recheck compared the six changed claim paths with their exact reviewed
+source. The current [claim records](coverage/changelog-reviews.json) retain the
+individual scope and rationale for loot, Tranquility, pet attribution,
+Soulfire, Ras and meter scrolling. The current Tranquility and choice-preview
+replays passed. The remaining checks follow the linked verification entries.

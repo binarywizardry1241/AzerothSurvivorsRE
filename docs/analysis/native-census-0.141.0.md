@@ -35,6 +35,15 @@ Of those, 5,263,936 bytes are inside declared extents and 3,357,663 outside.
 The [unknown queue](unknown-recovery-0.141.0.md) retains exact residual
 selectors, candidate padding, dynamic edges and unresolved source questions.
 
+The same-target #41 audit reopened the saved expanded and selected Ghidra
+checkpoints and independently replayed every exported instruction in the
+declared, initial expanded and selected passes. Both expanded replays matched
+the retained instruction, byte, body, reference and guarded-edge commitments.
+The fresh PE inventory matched every retained observation outside the producer
+digest. All 213 non-metadata chunks of the fresh complement inventory matched
+the frozen input. The selected pass therefore continues to reference its
+original immutable seed evidence.
+
 ### Embedded identifier outside declared extents
 
 For `Q41-B01` and `Q41-U03`, the selected census's

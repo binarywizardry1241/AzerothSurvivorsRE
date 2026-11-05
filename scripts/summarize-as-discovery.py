@@ -143,6 +143,17 @@ for role in ("unknown_selector_input", "current_native_body_census"):
     assert len(selected_inputs) == 1, "Profile must admit exactly one " + role
     r[role] = selected_inputs[0]
 r["counts"] = counts
+module_nodes = [n for n in graph["nodes"] if n["kind"] == "registered_module_context"]
+ledger = json.loads((ROOT / r["connection_ledger_input"]["path"]).read_text())
+module_counts = ledger["counts"]
+registered_contracts = sum(n["registered_contract"] for n in module_nodes)
+assert len(module_nodes) == module_counts["custom_system_rows"]
+assert registered_contracts == module_counts["with_registered_current_bounded_contract"]
+r["current_module_dimensions"].update(
+    custom_system_rows=len(module_nodes),
+    with_partial_reconstructed_source=len(module_nodes) - module_counts["without_source_correspondence"],
+    with_registered_current_bounded_contract=registered_contracts,
+)
 r["reviews"] = [
     {
         k: v[k]
