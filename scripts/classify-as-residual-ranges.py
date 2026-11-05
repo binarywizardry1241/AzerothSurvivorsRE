@@ -255,6 +255,88 @@ def review_dispatch_frontier(root):
                         "other stat, gear and conditional contribution paths."])
 
 
+def check_entry_frontier(root):
+    """Check exact encoded cells for the remainder of the AS Location selector."""
+    import capstone
+    from capstone.x86 import X86_OP_MEM, X86_OP_REG, X86_REG_RIP
+    from coverage_common import latest_target, target_bytes
+    from script_sources import load_script
+
+    target = latest_target(verify=True)
+    evidence = root / "docs/analysis/evidence" / target["version"]
+    selection = json.loads((evidence / "as-residual-entry-frontier.json").read_text())
+    assert selection["target"] == {key: target[key] for key in selection["target"]}
+    records = {}
+    for name, expected in selection["inputs"].items():
+        raw = (evidence / name).read_bytes()
+        assert digest(raw) == expected, name
+        records[name] = json.loads(raw)
+        assert records[name]["target"] == selection["target"], name
+    pending = set(records["as-residual-dispatch.json"]["still_without_reviewed_entry"])
+    ranges = records["as-residual-ranges.json"]["extents"]
+    image = target_bytes(target)
+    pe = load_script("residual_entry_pe", root / "scripts/inventory-executable.py").PE(image)
+    canonical_register = load_script("entry_registers", root / "scripts/classify-native-ownership.py").canonical_register
+    decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_64)
+    decoder.detail = True
+
+    def read(start, count):
+        offset = pe.rva_offset(start - pe.image_base)
+        assert pe.rva_offset(start + count - 1 - pe.image_base) == offset + count - 1
+        return image[offset:offset + count]
+
+    entries = {}
+    for ordinal, site_hex, load_hex, cell in selection["encoded_entries"]:
+        assert ordinal not in entries and cell >= 0
+        entries[ordinal] = address(site_hex), address(load_hex), cell
+    checked = set()
+    for extent in ranges:
+        selected = [row for row in extent["ranges"] if row[1] in pending]
+        if not selected:
+            continue
+        start, end = (address(extent[key]) for key in ("declared_start", "declared_end_exclusive"))
+        raw = read(start, end - start)
+        assert digest(raw) == extent["extent_sha256"]
+        decoded = {insn.address: insn for insn in decoder.disasm(raw, start)}
+        assert sum(insn.size for insn in decoded.values()) == len(raw)
+        for ordinal, first_hex, last_hex, size, expected, *_ in selected:
+            site, load_site, cell = entries[ordinal]
+            first, last = address(first_hex), address(last_hex)
+            assert last - first == size and digest(read(first, size)) == expected
+            assert not first <= site < last
+            load, jump = decoded[load_site], decoded[site]
+            assert load.mnemonic == "lea" and jump.mnemonic == "jmp"
+            assert jump.operands[0].type == X86_OP_REG
+            assert load.operands[1].type == X86_OP_MEM and load.operands[1].mem.base == X86_REG_RIP
+            base_reg, jump_reg = load.operands[0].reg, jump.operands[0].reg
+            assert base_reg != jump_reg
+            table = load.address + load.size + load.operands[1].mem.disp
+            transfer = [insn for pc, insn in decoded.items() if load_site < pc < site]
+            cell_load, = [insn for insn in transfer if insn.mnemonic == "movsxd"
+                          and insn.operands[0].reg == jump_reg and insn.operands[1].type == X86_OP_MEM]
+            cell_operand = cell_load.operands[1].mem
+            assert (cell_operand.base, cell_operand.scale, cell_operand.disp) == (base_reg, 4, 0)
+            assert cell_operand.index
+            addition = decoded[cell_load.address + cell_load.size]
+            assert addition.mnemonic == "add"
+            assert tuple(operand.reg for operand in addition.operands) == (jump_reg, base_reg)
+            for insn in transfer:
+                assert not any(insn.group(group) for group in
+                               (capstone.CS_GRP_CALL, capstone.CS_GRP_JUMP, capstone.CS_GRP_RET))
+                if insn.address not in {cell_load.address, addition.address}:
+                    writes = {canonical_register(insn.reg_name(reg)) for reg in insn.regs_access()[1]}
+                    if insn.address < addition.address:
+                        assert insn.reg_name(base_reg) not in writes, hex(insn.address)
+                    if insn.address > cell_load.address:
+                        assert insn.reg_name(jump_reg) not in writes, hex(insn.address)
+            delta, = struct.unpack("<i", read(table + cell * 4, 4))
+            destination = table + delta
+            assert first <= destination < last and destination in decoded, hex(site)
+            checked.add(ordinal)
+    assert checked == entries.keys() and len(checked) == len(pending)
+    return {"verified_encoded_entries": len(checked), "runtime_index_admission_inferred": False}
+
+
 def join_reference_exports(receipt, artifacts, extents):
     ranges = sorted((address(row["start"]), address(row["end_exclusive"]), row)
                     for extent in extents for row in extent["ranges"])
@@ -522,16 +604,29 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--inputs-root", type=Path, default=checkout)
     parser.add_argument("--write", action="store_true")
-    parser.add_argument("--dispatch-frontier", action="store_true",
-                        help="Check the 0.141.0 reviewed dispatch and residual-range joins")
+    frontier = parser.add_mutually_exclusive_group()
+    frontier.add_argument("--dispatch-frontier", action="store_true",
+                          help="Check the 0.141.0 reviewed dispatch and residual-range joins")
+    frontier.add_argument("--entry-frontier", action="store_true",
+                          help="Check the exact encoded entries into the remaining AS residual ranges")
     args = parser.parse_args()
+    if args.entry_frontier:
+        if args.write:
+            parser.error("--entry-frontier verifies retained inputs and does not write output")
+        print(json.dumps(check_entry_frontier(args.inputs_root.resolve())))
+        return
     if args.dispatch_frontier:
         result = review_dispatch_frontier(args.inputs_root.resolve())
         destination = checkout / "docs/analysis/evidence" / DISPATCH_VERSION / "as-residual-dispatch.json"
         if args.write:
             destination.write_text(json.dumps(result, indent=2) + "\n")
         else:
-            assert json.loads(destination.read_text()) == result, "Retained dispatch frontier differs"
+            from script_sources import recorded_input_matches
+            retained = json.loads(destination.read_text())
+            generator = retained["generator"]
+            assert recorded_input_matches(generator["path"], generator["sha256"], checkout)
+            result["generator"] = generator
+            assert retained == result, "Retained dispatch frontier differs"
         print(json.dumps({"dispatches": len(result["dispatches"]),
                           "guarded_joins": len(result["guarded_dispatch_joined"]),
                           "typed_descriptor_joins": len(result["typed_descriptor_joined"]),

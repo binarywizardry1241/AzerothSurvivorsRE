@@ -169,10 +169,93 @@ vector, with wider stat and gear contributions retaining their own scope.
 | `0x145f6bbe0..0x145f6d09b` | `f695f5df8bd17f933d6b4d828bef5b49fde7529d8c585aa5e88d9a9ae24bceeb` | `393fa6e5babfaa39f1b594cb5c4ffd1bc76e0a808615ceb112f46cebc91afe84` |
 | `0x145fbef40..0x145fc03d9` | `38b0d67f8e43081b907de24902273df6277f11e18acb59af0a5511d3f3d3a2c1` | `513576a1dc0b0577c1ca8b47908d4f864960bf9b560da194d4dad8ea270fbf23` |
 
-The exact 36-row remainder preserves dispatches with unproved index
-producers and direct-preceded ranges without an admitted case or caller.
-Follow their operand, descriptor or local branch writers, and keep the
-entry classification separate from complete source behavior.
+### Incoming cells for the remaining 36 ranges
+
+The [entry-frontier proof](evidence/0.141.0/as-residual-entry-frontier.json)
+finds an exact incoming signed-relative cell for every row left by the
+preceding join. For each row it verifies the original range and containing
+extent hashes, RIP-relative base load, signed dword lookup, base addition
+and register jump. Every cell lands on an instruction boundary inside its
+selected residual. Seven ranges begin after a direct jump, and the
+reviewed incoming cell for each comes from a separate register dispatch.
+The old 58-row selector and the 36-row remainder of its original join
+stay reproducible. The full-image census and instruction union retain
+their recorded counts.
+
+Some exact cells also have reviewed producers:
+
+- **Armory row 1999.** The descriptor at `[rbx+0x30]` is decremented at
+  `0x140396ef2`; `0x140396ef9` rejects unsigned indices greater than six.
+  Index 3 enters `0x140396fde` and checks the dword at `[rbx+0x58]` for
+  value 2 before loading the visual constants. The descriptor's
+  construction and final Armory presentation remain separate.
+- **Font row 51478.** The loop at `0x145dd7815` reads 41 fixed 16-byte
+  accent descriptors at `0x1473aad40`, with SHA-256
+  `511f015aee27f04a3267e8cae2fa097ba352d380fa86b78293b9dc3cd519c256`.
+  The byte at `+0xc` selects modes 0 through 4 with counts 29, 4, 2,
+  4 and 2. All 41 records match
+  [the live composite table](../../crates/azeroth-survivors-re/src/font_patch.rs).
+  Mode 0 enters the residual and centers the mark over the base while
+  placing it above the base's top plus the em-scaled margin. The current
+  composite function already uses this placement.
+- **Party command row 52569.** Index zero at `0x145ef89a5` reaches the
+  generation check at `0x145ef89a7` and applies the selected card. The
+  [seated ingress and republish trace](coop-replication-0.141.0.md)
+  supplies the live Game and hero. The
+  [choice owner](q41-reference-frontier-0.141.0.md#choice-completion-and-republish)
+  supplies the generation and index conditions, with the remaining
+  aliases of the wider dispatcher still under
+  [`Q41-F01`](computed-transfers-0.141.0.md#q41-f01-declared-range-as-context).
+- **Co-op actor row 52727.** The four returns of the producer at
+  `0x145e5ff00` account for the four cells at `0x147af2f04`. Its zero
+  return enters `0x145f25cd7`. The [actor input trace](computed-transfers-0.141.0.md#q41-f01-declared-range-as-context)
+  establishes the live actor and two frame records.
+- **Guardian hazard row 52804.** The raw action tag 35 normalizes to
+  index 32 at `0x145f44194`. The unsigned guard sends it through
+  `0x145f44277` to extend the active actor deadlines. The two continuations
+  at `0x145f441c2` and `0x145f44311` share the same table. Its index 32
+  reaches `0x145f476c3`. The current helper at `0x145db5b69` reads the
+  windup at row `+8`; the deadline addition is windup, now, then 0.4
+  seconds. The case passes the spell and windup to `0x145f435d0`, calls
+  the hazard constructor, then stores the duration from row `+0xc` to
+  hazard `+0x7c`. The current 56-byte move at `0x1473a9428`
+  (SHA-256 `d38df8afe244aa8cdd38f1b79e8f1d21b99994560d0202056c74b643d66a4f53`)
+  supplies spell 745, radius 5, windup 1.2, root duration 2 and factor 0.4.
+  The two-move descriptor at `0x1473aa0b8` points to that row and carries
+  enemy 11551 at `+0x30`. The live
+  [Guardian signature](../../crates/azeroth-survivors-re/src/guardians/signatures.rs),
+  [root action](../../crates/azeroth-survivors-re/src/bosses/raid_actions.rs)
+  and [cast block](../../crates/azeroth-survivors-re/src/bosses/cast_presentation.rs)
+  already supply those inputs and the same deadline arithmetic.
+- **Scripted impact row 53146.** Index 1 at `0x145fa1a21` enters the
+  existing [Kirtonos impact-mode 1 path](scholomance-kirtonos-0.141.0.md).
+  Index 4 of that same table reaches row 53143 and calls `0x145f49e90`.
+  The mode-4 producer and complete recipient behavior remain open.
+- **Choice row 53291.** The
+  [five-case constructor proof](q41-reference-frontier-0.141.0.md#choice-card-variants)
+  already supplies the admitted payload tags and the live card producer.
+  The same table's index zero enters `0x145fbc00c`.
+
+The Guardian query used the original `0x145f43e90..0x145f49c9b`
+Ghidra slice with SHA-256
+`82b4194c35ef34a07373dfe67361c45e9cde717fc2e52ed6dea5034db02d0986`.
+The completed operation
+`a328a8efb1600470f5dd2428a96113905603fbed4970e0786b57c092c6224cb0`
+returned evidence
+`ev_0c5b730c4287108ee4d34c56469f354317703892abb1f5ebc9561cac925aaf42`
+with shared result SHA-256
+`9123bd6ccc75b39bdfbdc08caacec617944ccdad1ddfdeca595110e888dcdb28`.
+The raw slice omits its external tables and callers. The original PE
+instructions and data supply the exact case and row bindings.
+
+Remaining work starts from the exact operand at each reviewed transfer.
+Follow async state writers for 451/466/467, UI action and variant
+constructors for 1124/1555/1587/1761/1845/1999, actor/attack/talent
+fields for 52613, 52710–52717, 52758/52772, 52849/52890, 53096,
+53143 and 53228, and shape or content-row producers for 52782,
+52786–52788, 52808, 52984 and 54188/54224. The encoded cells
+establish a local incoming path for each row. Admission, adjacent table
+ends, full semantics and source correspondence keep their own evidence.
 
 ## Q41-U03 executable complement
 
@@ -244,6 +327,7 @@ export PYTHONPATH=runtime/tests/query-python-deps
 python3 -B scripts/check-q41-range-encodings.py --census-summary docs/analysis/coverage/full-image-selected-0.141.0.json
 python3 -B scripts/classify-as-residual-ranges.py
 python3 -B scripts/classify-as-residual-ranges.py --dispatch-frontier
+python3 -B scripts/classify-as-residual-ranges.py --entry-frontier
 python3 -B scripts/classify-q41-residual-frontier.py --complement-projection docs/analysis/coverage/full-image-selected-0.141.0.json
 python3 -B scripts/check-u04-trap-fill.py --complement-stops
 ```
