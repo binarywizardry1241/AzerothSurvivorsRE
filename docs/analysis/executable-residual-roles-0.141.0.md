@@ -88,7 +88,7 @@ for all 59 other address-taken prefixes:
 | Tail to `0x14638b180` | 2 | Reorders formatter, text and length before forwarding to `0x14637ec80`. One adapter supplies the 27-byte closed-channel message. |
 | Indirect tail | 5 | Four have identified format or error text, including sampler filter names, compression type names and SRP errors. The adapter at `0x1430b8f40` formats two erased error payloads. |
 | Return | 12 | Nine construct Lua arithmetic opcodes, two construct WGSL increment or decrement statements, and one supplies a Taffy grid-track size estimate. |
-| Other direct tail | 8 | Seven forward an adjusted receiver or arguments. The remaining branch at `0x143504f70` resolves a tagged scalar, including a multiply-by-input case, before returning. |
+| Other direct tail | 8 | Forwards Lua, Naga and Bevy error payloads, installs two Harfrust Unicode callbacks, or resolves a Taffy track-size estimate. |
 
 Both references to `0x1430b8f40` pass a format-argument row to
 `0x14637fd90`. The Lua formatter's tag 10 cell at `0x146a31adc`
@@ -128,8 +128,23 @@ the pinned Taffy 0.9.2 grid sizing callback.
 | WGSL assignment parser `0x144ecdb90..0x144ecdf5c` | `2ae4c9f81a3486f085ee8c1ce2c606d2a4e74e0e1f9c9bf72b61a8eaa9ee896b` |
 | Taffy grid sizing caller `0x1434f0a2e..0x1434f0ab8` | `c1e99f253391228e7acfe3045268bc8244f612be0b24eaf86821cda9ca205dd8` |
 
-These paths correspond to shared source interfaces. Other forwarding
-receivers and mixed spans outside these operands remain open.
+The remaining eight direct tails match the saved address and source-site
+selectors in the [executable residual proof](evidence/0.141.0/executable-residual-frontier.json).
+The Taffy range continues through its local jump to the final return.
+
+| Preferred VA range and saved references | Checked shared boundary | Range SHA-256 |
+| --- | --- | --- |
+| `0x1430b8f70..0x1430b8f7f` from `0x1430c7b4a`, `0x1430c7d54`, `0x1430c7e3c` | Advances past the 16-byte `Arc` header and tail-calls the concrete Lua error formatter at `0x1430c7a80`. The caller uses it for nested Lua causes in the existing [`Error::fmt`](../../crates/benilla-mlua/src/error.rs). | `c80fee279eb6fdef8825a2495f5a41b20f462471a42fac8102faab763c560cdb` |
+| `0x143504f70..0x143504fa7` from `0x1434f07c0` | The inline-axis call at `0x1434f0861` supplies the callback to `0x143507de0`. It returns a fixed length, a percentage scaled by an available basis, or `None`, matching the pinned Taffy column estimate in `compute/grid/mod.rs`. | `22526015c2197940ddc6e0b4d90197949161f90dc588f853f1c1269d3b6fc0fa` |
+| `0x1442e5a70..0x1442e5a7a` from `0x1442e7392` | Installs the Harfrust default Unicode composition callback at `RSP+0xb0`, with a shaper override from `+0x30`. The leaf forwards both codepoints to `0x1442cf5e0`. | `67986a20024a3d28cd140e36003e01e08d3b248d3e46793679470de95386d011` |
+| `0x1442e5a80..0x1442e5a88` from `0x1442e7383` | Installs the companion Unicode decomposition callback at `RSP+0xa8`, with a shaper override from `+0x28`. The leaf forwards the output pointer and codepoint to `0x1442cf8e0`. Both match pinned Harfrust `hb/ot_shape_normalize.rs`. | `dea65c176055f75cd92ac1d5b3a1655c3ac853c3e7a5a7c4586130b8505a8230` |
+| `0x144b33c30..0x144b33c3c` from `0x144b3416e`, `0x144b3436d` | Forwards the validation error at `+0x18` to `0x144e83c90`. The two format calls at `0x144b3418d` and `0x144b3438c` match `HeaderValidationError` and `ShaderValidationError` in pinned Naga Oil `compose/error.rs`. | `b3d596e4e5720cee0bf573d6d2f57f103827490f5cdc043a664226c71b601804` |
+| `0x144e9c7a0..0x144e9c7a9` from `0x144eb9c54` | Forwards the `FunctionError` at `+0x18` to `0x144e69170` for the derivative-uniformity diagnostic. The native record names `naga::valid::analyzer` and line 883, matching the pinned analyzer's error log. | `bdf870569b12313e99d31daae4aa07544171bde9bf7e4a14049393c939b05927` |
+| `0x14573bbd0..0x14573bbdf` from `0x1457053cf` | Advances past the 16-byte `Arc` header and tail-calls `0x145bec300` for the `AssetLoaderError` format program. The pinned Bevy asset server defines this payload as `Arc<BevyError>`. | `931bcadeda3ce9101ab02dd3f2c65264f04b37b5801451f0c2b5ce9868e18bbb` |
+| `0x14573c260..0x14573c26c` from `0x1457cc265`, `0x1457d65e7` | Advances past the 16-byte `Arc` header and tail-calls `0x146388f50` for the two asset processor I/O diagnostics. Both branches correspond to `AssetReaderError::Io(Arc<std::io::Error>)` in pinned Bevy. | `70f04aa33caaef5c0e0de43d962c3fb114c1b4f5b94fe4e0941ee46757b6fabc` |
+
+The immediate shared boundary is classified for all 59 selected prefixes.
+Wider dynamic admission and other mixed spans remain open.
 
 Three other outside-declared mixed spans are code at a graphics formatting
 boundary. The original bytes in `0x144e32ae0..0x144e330a4`,
@@ -465,14 +480,27 @@ with shared result SHA-256
 The raw slice omits its external tables and callers. The original PE
 instructions and data supply the exact case and row bindings.
 
-Remaining work starts from the exact operand at each reviewed transfer.
-Follow async state writers for 451/466/467, UI action and variant
-constructors for 1124/1555/1587/1761/1845/1999, actor/attack/talent
-fields for 52710–52714, any additional
-mode-4 part writer for 53143, and shape or content-row producers for 52782,
-52786–52788, 52984 and 54188/54224. The encoded cells
-establish a local incoming path for each row. Admission, adjacent table
-ends, full semantics and source correspondence keep their own evidence.
+| Rows | Selected native role and source boundary |
+| --- | --- |
+| 451, 466, 467 | The adjacent six-cell vectors at `0x146565b10` and `0x146565b28` clone JSON values inside the Discord paths. Cases 1 at `0x140093fb3` and `0x14009d833` copy the boolean payload byte. Case 4 at `0x14009d88d` clones the array through `0x140034e20`, the same helper the first switch uses for case 4. The switches preserve the tag before returning to the shared publication path. [Discord publication](../../crates/azeroth-survivors-re/src/discord.rs) clones its activity value for the worker. |
+| 1124 | The Armory action copies a payload byte, writes its selected index, and calls `0x145de50b0` at `0x14014890e`. This helper upserts the selected eight-byte entry keyed by its first byte in a save vector at `+0x168/+0x170/+0x178`. The exact ECS producer and the mapping of this packed entry to the frontend/backend source command remain open. |
+| 1555, 1587 | The Options branch at `0x14020051a` invokes the Options helper `0x1401f1ec0`. A separate switch at `0x1402064d7` admits an index below 108 and type 5 in a 152-byte descriptor table at `0x1465a0f70`. Type-5 keys include `deselectOnClick`, `cacheOnClick` and `hudBanners`, establishing the checkbox path separately from the [binding-header removal](q41-diagnostic-consumers-0.141.0.md#returning-removals) in the same function. The constructor and outer action context for row 1555 remain open. |
+| 1761 | The Rewards action takes a signed delta from record `+1`, a key pointer and length from `+8/+0x10`, and the current rank from `0x145e46460`. The rank lookup compares full keys in 32-byte rows. `0x145e5f500` returns the named perk descriptor. The path at `0x1402b87e7..0x1402b8818` clamps the changed rank to zero and the perk limit before updating the candidate through `0x145e47880`. The [Rewards editor](../../crates/azeroth-survivors-re/src/progression.rs) uses the existing signed rank action and validates the candidate against the perk catalog. |
+| 1845 | The Armory gear action takes two current selection bytes from its descriptor at `0x1402ed6ed..0x1402ed705`. `0x145df0470` searches 232-byte class rows by the byte at `+0xe4` and copies the selected row, with a default when absent. The outer action with dword value 2 selects `0x1402ed729`. Its exact trigger and the consumer of the written selection remain open. |
+| 1999 | The [ordinary equipment palette repair](armory-equipment-palette-0.141.0.md) connects this tier and item-class selector to the native icon border and text consumers and reuses the same palette in the rebuilt inspector. |
+| 52710, 52711, 52712, 52714 | The [computed transfer review](computed-transfers-0.141.0.md) owns the hit-source dispatch and the distinct source-kind predicate that qualifies death consumers. |
+| 52782 | The hazard loop matches source identity at `+0x110`, rejects the flagged actor, and sends action tags below `0x24` to index zero. The case copies the action payload and forwards it to the recovered raid-action owner at `0x145f43e90`. The [live hazard dispatcher](../../crates/azeroth-survivors-re/src/bosses/raid_areas.rs) uses the existing action handlers. The outer producer of the selected actor and wider action domain remain separate. |
+| 52786, 52787, 52788 | These branches read shape at row `+0x30`, radius at `+0x34` and planar center at `+0x40`. The leaf at `0x1463a557d` imports `_hypotf`. Shape zero is the inclusive circle test. Row 52788 additionally tests the projected point against the same radius. The [live hazard geometry](../../crates/azeroth-survivors-re/src/bosses/raid_areas.rs) has the separate single- and two-position predicates. Producer admission for the remaining shape variants stays open. |
+| 52984 | The caller copies the Game stat vector from `+0xb40` with count at `+0xb48`. Eight-byte rows carry a byte tag and a float at `+4`. The zero case adds the float to the accumulator at `0x145f6cdf1` and joins the common loop. The [stat fold](../../crates/azeroth-survivors-re/src/run_effects.rs) already consumes numeric additions during [effect refresh](../../crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs). |
+| 54188, 54224 | Both content paths resolve the modifier key through the same 115-record ability vector of 120-byte rows at `0x1473a40d8`. The first follows the `+8` payload kind into the damage sentence at `0x14605eb50`. The second uses the descriptor selector at `+0x24` and reaches absorb/healing and additional-target templates. The [reward prose](../../crates/azeroth-survivors-re/src/loot_rewards/prose.rs) and [inventory sentence renderer](../../crates/azeroth-survivors-re/src/gameplay/client/inventory.rs) supply the corresponding presentations. |
+
+The Discord vector pair at `0x146565b10..0x146565b40` has SHA-256
+`71567518af8317c09b72509d29e09b3940227bd63321e9b34aa30d5f668b17d7`.
+The ability vector has SHA-256
+`49e69f818cbdfa9877b49303f4c571b859b70264437c5a214245557cb45f8e31`.
+The mode-4 writer question for row 53143 remains under the scripted
+attack review. The remaining UI producer questions require the typed
+component writer or downstream action consumer before a source change.
 
 ## Q41-U03 executable complement
 
@@ -509,6 +537,24 @@ observed entries resolve `Empty`, `InvalidDigit`, `PosOverflow`, `NegOverflow`,
 `Zero` and `NotAPowerOfTwo`. The leaf uses the formatter sink and has no
 local bound for that discriminator. Two other adapters pass dereferenced
 inputs to `0x1463753e2` and `0x14637534a`. Their entry producers remain open.
+
+Two more mixed spans contain shared graphics conversions. The leaf at
+`0x144e5f090` indexes 79 signed cells from `0x14705e744` into 78 instruction
+starts. Nonempty cases return shader builtin names such as
+`pack4xI8Clamp` and `unpack4xI8` as pointer and length. The adjacent
+exact Location identifies `naga-27.0.3/src/proc/mod.rs:490`. The dispatcher
+at `0x144d60080` indexes 77 cells from `0x147022ccc` into 64 instruction
+starts. Its leaves return absence or set EAX to one and return the numeric
+DXGI format in EDX. The wrapper at `0x144d60050` unwraps the result with
+Location `wgpu-hal/src/auxil/dxgi/conv.rs:106`. These ranges total 1,654
+bytes of graphics context.
+
+| Original range, end exclusive | SHA-256 |
+| --- | --- |
+| WGSL builtin names `0x144e5f0a8..0x144e5f460` | `eeec8c433fe15ce07dbbf95ca3044b22f3d21d3564878589085c30e7b589b371` |
+| WGSL cells `0x14705e744..0x14705e880` | `8c93f3b307a0fdcc8f4629187647e72c510ab42c2f384e9f7e194ea1c4628d96` |
+| DXGI format cases `0x144d60092..0x144d60350` | `0a99f95c2f26b9667a7209042d326144f5a6b7c2bf0a216bedf9aab9862784b6` |
+| DXGI cells `0x147022ccc..0x147022e00` | `f17b6387bb26a9bea7cb77c140a5c626a146b4b8c229abb53f6dfc04d343c623` |
 
 ## Q41-U04 seeded traversal stops
 
