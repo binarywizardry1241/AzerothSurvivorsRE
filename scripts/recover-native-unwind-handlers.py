@@ -6,6 +6,8 @@ import hashlib
 import importlib.util
 import struct
 from coverage_common import ROOT,latest_target,target_bytes,load_json,json_text,file_sha256,project_path
+from instruction_facts import artifact_path, derived_bytes
+from shared_analysis import SharedAnalysis
 GENERATOR_SHA256=file_sha256(ROOT/'scripts/recover-native-unwind-handlers.py')
 
 def module(name,path):
@@ -118,10 +120,15 @@ def main():
         'counts':{'distinct_unwind_records':sum(v for k,v in counts.items() if k.startswith('version-')),'handler_metadata_records':len(handlers),'chain_records':len(chains),'distinct_handler_entries':len({r['entry'] for r in handlers}),'distinct_directory_and_handler_entries':len(entries),'entries_without_actual_native_owner':sum(owner(a) is None for a in entries)},
         'entries':[{'entry':hex(a),'actual_native_owner':hex(owner(a)) if owner(a) is not None else None} for a in entries],
         'limits':['Explicit AMD64 version-1 handler RVAs establish callable native entries; language-specific handler-data layouts and runtime exception behavior remain unverified.','Chained records are followed as metadata without turning unwind extents into function bodies.']}
-    output=project_path(args.inventory_output) if args.inventory_output else directory/'unwind-handlers.json';compact={k:v for k,v in payload.items() if k not in ('handlers','chains','directory_entries')}
+    output=artifact_path(args.inventory_output) if args.inventory_output else directory/'unwind-handlers.json';compact={k:v for k,v in payload.items() if k not in ('handlers','chains','directory_entries')}
     if file_sha256(ROOT/'scripts/recover-native-unwind-handlers.py')!=GENERATOR_SHA256:raise ValueError('Unwind helper changed during recovery')
     if args.write:
-        output.write_text(json_text(payload));compact['inventory']={'path':output.relative_to(ROOT).as_posix(),'sha256':file_sha256(output)}
-        project_path(args.summary_output).write_text(json_text(compact))
+        serialized = json_text(payload).encode()
+        if output.is_relative_to(ROOT / 'runtime'):
+            SharedAnalysis(ROOT).publish_output(output, serialized)
+        else:
+            derived_bytes(output, serialized, publish=True)
+        compact['inventory'] = {'path': output.relative_to(ROOT).as_posix(), 'sha256': file_sha256(output)}
+        derived_bytes(args.summary_output, json_text(compact).encode(), publish=True)
     print(json_text(compact))
 if __name__=='__main__':main()

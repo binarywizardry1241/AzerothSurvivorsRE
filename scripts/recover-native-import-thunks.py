@@ -5,6 +5,8 @@ import importlib.util
 import json
 import sqlite3
 from coverage_common import ROOT,latest_target,target_bytes,load_json,json_text,file_sha256,project_path
+from instruction_facts import artifact_path, derived_bytes
+from shared_analysis import SharedAnalysis
 from shared_native_inventory import open_readonly_uri as open_native_inventory, selected_inventory
 
 GENERATOR_SHA256=file_sha256(ROOT/'scripts/recover-native-import-thunks.py')
@@ -86,11 +88,16 @@ def main():
         'candidates':verified,'counts':{'exact_source_instructions':len(verified),'distinct_import_thunk_entries':len(entries),'entries_without_actual_native_owner':len(unowned)},
         'function_source_semantics_or_runtime_binding_established':False}
     verify_inventory(payload,target,pe,capstone)
-    output=project_path(args.inventory_output) if args.inventory_output else directory/'lea-import-thunks.json'
+    output=artifact_path(args.inventory_output) if args.inventory_output else directory/'lea-import-thunks.json'
     compact={key:value for key,value in payload.items() if key!='candidates'}
     if file_sha256(ROOT/'scripts/recover-native-import-thunks.py')!=GENERATOR_SHA256:raise ValueError('Thunk generator changed during audit')
     if args.write:
-        output.write_text(json_text(payload));compact['inventory']={'path':output.relative_to(ROOT).as_posix(),'sha256':file_sha256(output)}
-        project_path(args.summary_output).write_text(json_text(compact))
+        serialized = json_text(payload).encode()
+        if output.is_relative_to(ROOT / 'runtime'):
+            SharedAnalysis(ROOT).publish_output(output, serialized)
+        else:
+            derived_bytes(output, serialized, publish=True)
+        compact['inventory'] = {'path': output.relative_to(ROOT).as_posix(), 'sha256': file_sha256(output)}
+        derived_bytes(args.summary_output, json_text(compact).encode(), publish=True)
     print(json_text(compact))
 if __name__=='__main__':main()
