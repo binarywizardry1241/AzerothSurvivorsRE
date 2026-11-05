@@ -154,10 +154,10 @@ impl Recovery {
     /// Bind the counter of the actual outgoing teleport to its pending pose.
     /// A pose already admitted by movement has no correction left to bind.
     pub fn bind_teleport_counter(&mut self, position: [f32; 3], counter: u32) {
-        if let Some(pending) = &mut self.pending
-            && pending.position == position
-        {
-            pending.teleport_counter = Some(counter);
+        if let Some(pending) = &mut self.pending {
+            if pending.position == position {
+                pending.teleport_counter = Some(counter);
+            }
         }
     }
 
