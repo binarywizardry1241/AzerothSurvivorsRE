@@ -133,6 +133,14 @@ class DurableCensusResume(unittest.TestCase):
         with self.assertRaises((ValueError, OSError)):
             self.validate()
 
+    def test_frozen_seed_producer_uses_exact_git_source(self):
+        name = "scripts/recover-native-import-thunks.py"
+        expected = "2bb46245920ff80006e9581d83c66f646e60e5ee3d9ef807ea2d20b046775213"
+        self.assertNotEqual(digest(ROOT / name), expected)
+        self.assertIsNone(census.committed_tool_path(name, expected))
+        with self.assertRaisesRegex(ValueError, "Resume tool/input digest differs"):
+            census.committed_tool_path(name, "0" * 64)
+
     def test_output_seed_and_database_paths_must_remain_under_project_runtime(self):
         source = self.root / "docs"
         source.mkdir()

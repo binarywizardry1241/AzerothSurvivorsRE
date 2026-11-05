@@ -22,6 +22,7 @@ from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes, load_json, json_text, file_sha256, artifact_path
 from shared_native_inventory import open_readonly as open_native_inventory
 from shared_analysis import SharedAnalysis
+from script_sources import historical_matches
 
 # These exact predecessors differ only in storage/launch coordination. Their
 # archived bytes remain verifiable inputs; the collector itself is executed from
@@ -50,6 +51,11 @@ GIT_STORAGE_PREDECESSORS = {
     'scripts/rea-native-census.mjs': '9733aa2c5cfd7ec9934a1ad060eba0b8fcaf591bb404333ce6842c4100da5cdb',
 }
 
+GIT_SEED_PRODUCERS = frozenset({
+    'scripts/recover-native-import-thunks.py',
+    'scripts/recover-native-unwind-handlers.py',
+})
+
 def committed_tool_path(name, expected, root=ROOT):
     path=(Path(root)/name).resolve()
     if not path.is_relative_to(Path(root).resolve()):raise ValueError('Resume tool/input path escapes project')
@@ -57,6 +63,8 @@ def committed_tool_path(name, expected, root=ROOT):
     if GIT_STORAGE_PREDECESSORS.get(name)==expected:
         original=subprocess.check_output(['git','cat-file','blob','0bbcb5f5:'+name],cwd=root)
         if hashlib.sha256(original).hexdigest()==expected:return None
+    if name in GIT_SEED_PRODUCERS and historical_matches(name, expected, Path(root)):
+        return None  # The frozen plan uses the seed payload, not this producer.
     retained=Path(root)/'runtime/analysis/tools'/expected/Path(name).name
     if (STORAGE_PREDECESSORS.get(name)==expected or expected in RETAINED_PREDECESSORS.get(name,set())) and retained.is_file() and hashlib.sha256(retained.read_bytes()).hexdigest()==expected:return retained
     raise ValueError('Resume tool/input digest differs: '+name)

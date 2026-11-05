@@ -27,12 +27,19 @@ const RETAINED_PREDECESSORS={
 const GIT_STORAGE_PREDECESSORS={
  'scripts/census-native-image.py':'96e45cfd9ade2d479e3fe27ad0a483620f8e2ae0c75425e608994ed2ce1b2c37',
  'scripts/rea-native-census.mjs':'9733aa2c5cfd7ec9934a1ad060eba0b8fcaf591bb404333ce6842c4100da5cdb'};
+const GIT_SEED_PRODUCERS=new Set([
+ 'scripts/recover-native-import-thunks.py',
+ 'scripts/recover-native-unwind-handlers.py']);
 async function committedTool(name,expected){
  const current=await realConfined(resolve(root,name));if(await sha256(current)===expected)return current;
  if(GIT_STORAGE_PREDECESSORS[name]===expected){
   const {stdout}=await executeFile('git',['cat-file','blob','0bbcb5f5:'+name],{cwd:root,encoding:'buffer'});
   if(createHash('sha256').update(stdout).digest('hex')!==expected)throw Error('Committed storage predecessor differs: '+name);
   return null; // Verified Git source for provenance only. The collector is never substituted.
+ }
+ if(GIT_SEED_PRODUCERS.has(name)){
+  await executeFile('python3',['-B',resolve(root,'scripts/script_sources.py'),'--show',name,'--sha256',expected],{cwd:root});
+  return null;
  }
  if(STORAGE_PREDECESSORS[name]!==expected&&!RETAINED_PREDECESSORS[name]?.includes(expected))throw Error('Census tool digest differs: '+name);
  const archived=await realConfined(resolve(root,'runtime/analysis/tools',expected,basename(name)));await verifyHash(archived,expected,'Retained predecessor '+name);return archived;
@@ -117,7 +124,8 @@ async function main() {
  const retainedTools={},adaptations=[];for(const [name,expected]of Object.entries(plan.tooling??{})){
   const path=await committedTool(name,expected);retainedTools[name]=path;
   if(path!==resolve(root,name))adaptations.push({source:name,requested_sha256:expected,
-   ...(path?{retained_path:relative(root,path)}:{retained_commit:'0bbcb5f5'}),current_sha256:await sha256(resolve(root,name))});
+   ...(path?{retained_path:relative(root,path)}:GIT_SEED_PRODUCERS.has(name)
+    ?{retained_source_index:'docs/analysis/script-provenance.json'}:{retained_commit:'0bbcb5f5'}),current_sha256:await sha256(resolve(root,name))});
  }
  const programStore=await directory(resolve(root,'runtime/analysis/programs'));
  if(persistence.shared_workspace){
