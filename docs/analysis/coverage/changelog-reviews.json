@@ -35725,6 +35725,36 @@
       "gap_ids": [
         141
       ]
+    },
+    {
+      "claim_id": "changelog:0.122.0:523bdcdd8b6a6b18",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "The selected desktop client exposes relay sender admission and loss recovery. The installed EXE and live client source leave the externally updated multi-party scheduler, capacity, and cross-version behavior unresolved. An authoritative deployed scheduler artifact or deployment contract is required.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop/relay.rs",
+        "crates/azeroth-survivors-re/src/coop_directory.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/coop-relay-selection-0.141.0.md",
+        "docs/analysis/relay-load-0.123.0.md"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/coop/relay.rs": "81c09c970085f42d563000c1d33e748fc594e450493fe2ad0bf7a471326e6e2c",
+        "crates/azeroth-survivors-re/src/coop_directory.rs": "601be64f99dbdb43996e28dc6ee3be92b0850157cb599d6563e3d5ff57cb7cd4",
+        "docs/analysis/coop-relay-selection-0.141.0.md": "1bcd20fa1588a6530b7fb0fe2487b32c388d4daac99ca27941f4ff3977bd3ded",
+        "docs/analysis/relay-load-0.123.0.md": "1be23b86d4d921195920cf09692ce68404251e29494865bce466e638350b4b40"
+      },
+      "systems": [
+        "custom-game-coop-relay",
+        "custom-game-server-party"
+      ],
+      "gap_ids": [
+        257
+      ]
     }
   ]
 }

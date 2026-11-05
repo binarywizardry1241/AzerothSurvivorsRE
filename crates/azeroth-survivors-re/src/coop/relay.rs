@@ -3,6 +3,10 @@
 //! and its socket ownership remain in their existing modules.
 
 use std::collections::{BTreeMap, HashMap, VecDeque};
+use std::sync::{
+    atomic::{AtomicU8, Ordering},
+    Arc,
+};
 use std::time::{Duration, Instant};
 
 const SEND_RATE: f64 = 1_572_864.0;
@@ -114,8 +118,13 @@ pub struct Relay {
     credit: f64,
     credit_clock: Instant,
     ack_clock: Instant,
-    connected: bool,
+    send_gate: SendGate,
     outgoing: Vec<(u32, Vec<u8>)>,
+}
+
+enum SendGate {
+    Fixed(bool),
+    Worker(Arc<AtomicU8>),
 }
 
 impl Default for Relay {
@@ -162,7 +171,7 @@ impl Relay {
             credit: SEND_RATE,
             credit_clock: now,
             ack_clock: now,
-            connected: true,
+            send_gate: SendGate::Fixed(true),
             outgoing: Vec::new(),
         }
     }
@@ -286,12 +295,27 @@ impl Relay {
     }
 
     pub fn set_connected(&mut self, connected: bool) {
-        self.connected = connected;
+        self.send_gate = SendGate::Fixed(connected);
+    }
+
+    pub fn select_transport(&mut self, state: Option<Arc<AtomicU8>>) {
+        self.send_gate = state.map_or(SendGate::Fixed(false), SendGate::Worker);
+    }
+
+    fn connected(&self) -> bool {
+        match &self.send_gate {
+            SendGate::Fixed(connected) => *connected,
+            SendGate::Worker(state) => state.load(Ordering::Acquire) == 1,
+        }
     }
 
     pub fn poll(&mut self, connected: bool, now: Instant) {
-        self.connected = connected;
-        if connected {
+        self.set_connected(connected);
+        self.poll_selected(now);
+    }
+
+    pub fn poll_selected(&mut self, now: Instant) {
+        if self.connected() {
             let ack_due = seconds_f32(now.saturating_duration_since(self.ack_clock)) >= 1.0;
             for (&id, peer) in &mut self.peers {
                 if peer.control_pending && peer.control_clock.is_none_or(|clock| {
@@ -331,7 +355,7 @@ impl Relay {
     }
 
     fn send_pending(&mut self, now: Instant) {
-        if !self.connected {
+        if !self.connected() {
             return;
         }
         let elapsed = now.saturating_duration_since(self.credit_clock);
@@ -361,7 +385,7 @@ impl Relay {
     }
 
     pub(super) fn lost(&mut self) {
-        self.connected = false;
+        self.set_connected(false);
         self.peers.clear();
         self.outgoing.clear();
     }
@@ -382,7 +406,7 @@ mod tests {
         relay.fresh_party();
         assert!(relay.peers.is_empty());
         assert!(relay.take_outgoing().is_empty());
-        assert!(!relay.connected);
+        assert!(!relay.connected());
         assert_eq!(relay.credit, 3.0);
         assert_eq!(relay.credit_clock, now);
         assert_eq!(relay.ack_clock, now);
@@ -403,6 +427,34 @@ mod tests {
         assert!(relay.take_outgoing().is_empty());
         relay.poll(true, now);
         assert_eq!(relay.take_outgoing(), vec![(7, data(1, b"handshake"))]);
+    }
+
+    #[test]
+    fn queued_payloads_use_live_selected_worker_state() {
+        let now = Instant::now();
+        let mut relay = Relay::new(now);
+        let worker = Arc::new(AtomicU8::new(1));
+        relay.select_transport(Some(worker.clone()));
+        relay.poll_selected(now);
+
+        worker.store(2, Ordering::Release);
+        assert!(relay.queue(7, b"queued after close", now));
+        assert_eq!(relay.peers[&7].sent, 0);
+        assert!(relay.take_outgoing().is_empty());
+
+        let replacement = Arc::new(AtomicU8::new(0));
+        relay.select_transport(Some(replacement.clone()));
+        assert!(relay.queue(7, b"queued while connecting", now));
+        assert!(relay.take_outgoing().is_empty());
+        replacement.store(1, Ordering::Release);
+        relay.poll_selected(now);
+        assert_eq!(
+            relay.take_outgoing(),
+            vec![
+                (7, data(1, b"queued after close")),
+                (7, data(2, b"queued while connecting")),
+            ],
+        );
     }
 
     fn sorted_outgoing(relay: &mut Relay) -> Vec<(u32, Vec<u8>)> {
@@ -763,7 +815,7 @@ mod tests {
         assert_eq!(relay.take_outgoing(), vec![(6, data(1, b"new"))]);
         relay.reset_transport(now);
         relay.lost();
-        assert!(!relay.connected);
+        assert!(!relay.connected());
         assert!(relay.peers.is_empty());
         assert!(relay.take_outgoing().is_empty());
     }

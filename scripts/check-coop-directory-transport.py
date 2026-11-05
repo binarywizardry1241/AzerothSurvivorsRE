@@ -240,11 +240,19 @@ def check_source():
     assert closed.index("drain_service_relay(") < closed.index("service.close_secondary()") \
         < closed.index("service_party_ended(")
     joined = block_after(worker, "DirectoryResponse::Text{tag:22,text}=>")
-    assert joined.index("set_connected(service.relay_connected())") \
+    select_worker = "select_transport(service.relay_worker_state())"
+    assert joined.index(select_worker) \
         < joined.index("Session::service_join_with_flags(")
     peer_close = block_after(worker, "RelayCommand::Close{id}=>")
-    assert peer_close.index("set_connected(service.relay_connected())") \
+    assert peer_close.index(select_worker) \
         < peer_close.index("protocol.close_peer(")
+    assert f"{select_worker};protocol.poll_selected(Instant::now());" in worker
+    assert "self.relay_worker().map(|worker|worker.state.clone())" in worker
+    relay = path("crates/azeroth-survivors-re/src/coop/relay.rs").read_text()
+    connected = block_after(relay, "fn connected(&self)")
+    assert "SendGate::Worker(state) => state.load(Ordering::Acquire) == 1" in connected
+    pending = block_after(relay, "fn send_pending(")
+    assert pending.index("if !self.connected()") < pending.index("peer.sent += 1")
 
 
 def check_current_rtt(target, data, pe):
@@ -423,7 +431,7 @@ def check_host_terminal_failure(target, data, pe):
     session = path("crates/azeroth-survivors-re/src/coop/session.rs").read_text()
     closed = block_after(directory, "fn transport_closed(")
     assert closed.index("!service.secondary_failed()") < closed.index("return;") < closed.index("driver.leave(")
-    assert closed.index("runtime.driver.take_if(") < closed.index("set_connected(service.relay_connected())") \
+    assert closed.index("runtime.driver.take_if(") < closed.index("select_transport(service.relay_worker_state())") \
         < closed.index("driver.leave(") < closed.index("service.close()") < closed.index("runtime.transport_lost = true")
     failed = block_after(block_after(directory, "fn poll_secondary("), "Action::Failed =>")
     assert failed.index("transport_closed(") < failed.index("worker.stop()")

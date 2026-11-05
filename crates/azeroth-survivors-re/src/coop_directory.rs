@@ -197,14 +197,26 @@ fn profile(
 
 impl Service {
     fn ping_worker(&self) -> Option<&Worker> {
+        self.relay_worker().filter(|worker| worker.connected())
+    }
+
+    fn relay_worker(&self) -> Option<&Worker> {
         // The dynamic transport's presence selects it even while unready;
         // readiness never falls back to the initial directory connection.
         if let Some(worker) = &self.secondary {
-            (worker.connected() && self.secondary_lifetime.as_ref()
-                .is_none_or(|state| state.can_send(true))).then_some(worker)
+            self.secondary_lifetime
+                .as_ref()
+                .is_none_or(|state| state.can_send(true))
+                .then_some(worker)
         } else {
-            self.worker.as_ref().filter(|worker| worker.connected())
+            self.worker.as_ref()
         }
+    }
+
+    fn relay_worker_state(&self) -> Option<Arc<AtomicU8>> {
+        // Queueing also occurs after this service poll. Keep the worker state
+        // live so send admission can observe transitions between those calls.
+        self.relay_worker().map(|worker| worker.state.clone())
     }
 
     fn share_rtt_sources(&self) {
@@ -235,6 +247,10 @@ impl Service {
         self.secondary_lifetime = None;
         self.secondary_config = None;
         self.worker = Some(worker);
+        self.relay_protocol
+            .lock()
+            .unwrap()
+            .select_transport(self.relay_worker_state());
         self.last_command = now;
         self.last_heartbeat = Some(Instant::now());
         view.status = "connecting".into();
@@ -261,6 +277,10 @@ impl Service {
         }
         self.secondary_lifetime = None;
         self.secondary_config = None;
+        self.relay_protocol
+            .lock()
+            .unwrap()
+            .select_transport(self.relay_worker_state());
     }
 
     fn leave_guest_run(&mut self, mut driver: Session, now: f64) {
@@ -285,18 +305,6 @@ impl Service {
                 || self.secondary.as_ref().is_some_and(Worker::closed),
                 |state| state.failed(),
             )
-    }
-
-    fn relay_connected(&self) -> bool {
-        if let Some(worker) = &self.secondary {
-            worker.connected()
-                && self
-                    .secondary_lifetime
-                    .as_ref()
-                    .is_none_or(|state| state.can_send(true))
-        } else {
-            self.worker.as_ref().is_some_and(Worker::connected)
-        }
     }
 }
 
@@ -487,7 +495,7 @@ fn poll(
                             .relay_protocol
                             .lock()
                             .unwrap()
-                            .set_connected(service.relay_connected());
+                            .select_transport(service.relay_worker_state());
                         let mut driver = Session::service_join_with_flags(
                             service.pending_password.as_bytes().to_vec(),
                             service.relay_protocol.clone(),
@@ -673,12 +681,11 @@ fn poll(
             time.elapsed_secs_f64(),
         );
     }
-    let selected_connected = service.relay_connected();
-    service
-        .relay_protocol
-        .lock()
-        .unwrap()
-        .poll(selected_connected, Instant::now());
+    {
+        let mut protocol = service.relay_protocol.lock().unwrap();
+        protocol.select_transport(service.relay_worker_state());
+        protocol.poll_selected(Instant::now());
+    }
     let now = Instant::now();
     if service.worker.is_some() {
         match service.last_heartbeat {
@@ -970,7 +977,7 @@ fn transport_closed(
                 .relay_protocol
                 .lock()
                 .unwrap()
-                .set_connected(service.relay_connected());
+                .select_transport(service.relay_worker_state());
             driver.leave(now, |command| send_relay(service, command));
             service.close();
         } else {
@@ -978,6 +985,7 @@ fn transport_closed(
             service.secondary = None;
             service.secondary_lifetime = None;
             service.secondary_config = None;
+            service.relay_protocol.lock().unwrap().select_transport(None);
             if let Some(driver) = &mut runtime.driver {
                 driver.service_lost();
             }
@@ -1040,7 +1048,7 @@ fn send_relay(service: &mut Service, command: azeroth_survivors_re::coop::sessio
             let secondary = service.secondary.is_some();
             let outgoing = {
                 let mut protocol = service.relay_protocol.lock().unwrap();
-                protocol.set_connected(service.relay_connected());
+                protocol.select_transport(service.relay_worker_state());
                 protocol.close_peer(id, secondary, Instant::now())
             };
             for (peer, payload) in outgoing {
@@ -1060,6 +1068,11 @@ fn send_relay(service: &mut Service, command: azeroth_survivors_re::coop::sessio
             service.secondary = None;
             service.secondary_lifetime = None;
             service.secondary_config = None;
+            service
+                .relay_protocol
+                .lock()
+                .unwrap()
+                .select_transport(service.relay_worker_state());
         }
     }
 }
@@ -1489,7 +1502,7 @@ mod tests {
         let mut state = SecondaryLifetime::new(Instant::now());
         state.admit(true);
         service.secondary_lifetime = Some(state);
-        assert!(service.relay_connected());
+        assert!(service.ping_worker().is_some());
     }
 
     #[test]
@@ -1509,7 +1522,7 @@ mod tests {
         transport_closed(&mut service, &mut runtime, &mut CoopUi::default(), false, 0.0);
         assert!(runtime.driver.as_ref().unwrap().connected());
         assert!(!service.secondary_failed());
-        assert!(!service.relay_connected());
+        assert!(service.ping_worker().is_none());
     }
 
     #[test]

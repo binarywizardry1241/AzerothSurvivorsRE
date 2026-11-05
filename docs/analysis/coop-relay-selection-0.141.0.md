@@ -179,16 +179,20 @@ the primary only when no secondary exists. Queue submission calls this gate at
 `0x145e8b696`. Host peer close also calls it at `0x145e920d8`, between the
 primary Kick and selected-secondary Kick.
 
-The rebuilt directory takes that readiness sample before the Join constructor
-queues its first frame and before draining a closing peer. In particular, a
-wire-30 replacement earlier in the collected event batch cannot leave the
-Join on a readiness snapshot taken from the retired worker. The retained
-pending queue and ordinary relay poll release the frame once the selected
-transport is ready.
+The rebuilt directory binds the eligible selected worker's atomic state to the
+pending sender. The sender reads it at queue admission, including when gameplay
+flushes after the directory poll or [a guest departs](coop-desktop-exit-0.141.0.md#synchronized-guest-departures).
+A readiness sample taken earlier in the frame could otherwise advance the
+send cursor after that worker closed. Join and peer-close retain their immediate
+selection updates. A connecting, retrying, or failed secondary keeps the
+pending queue gated. The primary is eligible when no secondary is selected.
+The ordinary relay poll releases queued frames in order when admitted again.
 
 The original-instruction gate passed 128 combinations of selected worker,
 failure, retry and transport state. The replay substitutes the transport's
 state method and stops at sender admission.
+The live-state wiring passed the socket source guards. The Rust regression for
+state changes between polls remains uncompiled.
 
 | Selected PE range | File offset | SHA-256 |
 | --- | --- | --- |
