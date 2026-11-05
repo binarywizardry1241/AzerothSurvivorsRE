@@ -1,6 +1,6 @@
 # Zone-entry loading progress in 0.141.0
 
-[#61](../CURRENT-STATE.md#gap-61) tracks zone-entry correspondence. The
+[#61](../verification-needed.md#gap-61) tracks zone-entry correspondence. The
 [0.113.2 recovery](zone-entry-loading-screen-2026-10-23.md) retains the
 original staged-loader and cover implementation evidence.
 
@@ -123,5 +123,36 @@ Ghidra 12.1.4 examined the drive slice at file `0x635520..0x637318`,
 SHA-256 `061f74b22ead7e8016b107d62423b4532fd1f259332ce401f5a776d9c84e758b`.
 The evidence export carried the result after the inline response exceeded
 the transport limit. The original PE instructions establish the argument,
-state and branch boundaries above. Same-map frozen-frame presentation,
-live entry timing and rendered comparison remain under [#61](../verification-needed.md#gap-61).
+state and branch boundaries above.
+
+## Same-map frozen frame
+
+The teleport branch in the player update at `0x1407621bf` stores the new
+pose and checks the detached flag at player `+0x115`. The followed body
+compares the squared three-axis displacement against f32 `900.0` from
+`0x14656dd78`. Only a strictly greater result sets the reload byte at
+`+0x119`, increments the reload count and sets its deadline. The same
+teleport path sets the settle byte at `+0x117` regardless of distance.
+The adjacent packed `teleport: snapped to …, acked` log anchors the packet
+consumer. The rebuilt [`snap_near_teleport` and `mark_world_reload`](../../crates/benilla-app/src/player/wire_in.rs)
+connect those writes to the controller and streaming focus.
+
+The frame hold at `0x140d89c10` requires the player pointer and all three
+bytes at `+0x10c`, `+0x117` and `+0x119` before publishing the held state.
+Its paired held/resumed log identifies the existing [`decide_present_hold`](../../crates/benilla-app/src/loading_screen/hold.rs)
+consumer. The settle update at `0x14125a320` compares six world counters,
+checks scene and outstanding work, and clears settle and reload together
+on readiness or timeout. A far reload uses its fixed deadline at `+0xcc`.
+The stall path extends `+0xc0` by f32 `6.0` at `0x14125a553` when world
+state is stale or the counters progress. The [rebuilt release](../../crates/benilla-app/src/player/world_focus.rs)
+keeps those two deadlines separate and passes the clear to `Player::end_settle`.
+
+| Native branch | File range (exclusive end) | SHA-256 of range |
+| --- | --- | --- |
+| Teleport distance and hold producer | `0x761562..0x7616b8` | `53f82e0c6cebc7085b60ffa6ae138844739f07727a68c6c76b149d2dfb5f5bbc` |
+| Frame hold consumer | `0xd89010..0xd89229` | `3f7c26696d3f773b6c0b97659ddc390d2d92fdfc98d22024ac7e1f2945943a63` |
+| Settle release | `0x1259720..0x1259aec` | `fde1863a07db843f96c7b51561860918721539d8643d69383c1684e84af87454` |
+
+The source paths agree on the recovered admission and release branches.
+Live entry timing, frozen-frame and input behavior, and rendered comparison
+remain under [#61](../verification-needed.md#gap-61).
