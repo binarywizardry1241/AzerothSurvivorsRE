@@ -262,6 +262,39 @@ Its journaled Ghidra result digest is
 This matches the [existing chat normalizer](../../crates/azeroth-survivors-re/src/coop/server_party.rs)
 and its [admitted host and guest consumers](../../crates/azeroth-survivors-re/src/gameplay/coop.rs).
 
+### Relay event rows after the transport pump
+
+The locked wrapper at `0x145e8da50` runs the
+[outer pump](coop-relay-selection-0.141.0.md), drains its retained event
+vector and clears the original length at `0x145e8dab4`. The poller loop
+advances by 120 bytes at `0x145ea3fcc`. A first word of `-1` terminates the
+iteration. It normalizes the negative first word by XOR with the sign bit,
+uses an out-of-table value 10 for a nonnegative first word and admits
+indices 0–9 at `0x145ea40af`. The 40-byte signed table at
+`0x147aed9ec` hashes to
+`1320b0464ccb7445225ba2e218b27f8d9193c3dd5b24b381d6d545d83d353f8c`.
+
+| Row index | Wire response | Local destination and immediate effect |
+| ---: | ---: | --- |
+| 0 | 20 | `0x145ea40d7` calls the directory row formatter at `0x145da3dc0` and publishes the resulting `lobbies` record. |
+| 1 | 21 | `0x145ea4459` takes the Hosted text, checks the retained local state, constructs the host role and publishes `hosting`. |
+| 2 | 22 | `0x145ea41c0` takes the Joined text and reaches the distinct guest role constructor. |
+| 3 | 23 | `0x145ea4545` forwards the reason to the status publisher with `denied`. |
+| 4–6 | 24–26 | `0x145ea3fa6` drops the row if it reaches the local poller. The outer pump already owns peer creation, departure and received bytes. |
+| 7 | 27 | `0x145ea456c` retires retained state and reaches the `closed` publication at `0x145ea46dd`. |
+| 8 | 28 | `0x145ea3fa6` drops the unit row. |
+| 9 | 29 | `0x145ea42ac` transfers the structured profile payload and replaces the retained profile on the admitted path. |
+
+The [wire decoder](../../crates/azeroth-survivors-re/src/coop/directory_wire.rs)
+and [directory pump](../../crates/azeroth-survivors-re/src/coop_directory.rs)
+use separate source arms for these wire types. The native peer and payload
+arms operate in the transport pump before its local status consumer. The
+reconstruction keeps that ordering in the selected send and reset paths
+already traced in the relay report. The present table classifies the
+immediate event roles and supplies concrete producer boundaries. The
+complete local state gates and surviving transport aliases remain under
+[#63](../CURRENT-STATE.md#gap-63).
+
 ## Q41-F02 outside declared ranges
 
 All 665 sites have a saved spatial body owner. None shares a body with
@@ -394,7 +427,19 @@ chooses `Shockwave`. Kind 2 can use the captured attack label from
 and [rebuilt hit adapter](../../crates/azeroth-survivors-re/src/gameplay/mechanics.rs)
 retain the exact named source, original hit owner and separate meter share.
 This accounts for the selected packet-key dispatch and its typed producers.
-Wider dynamic source-word writers retain their own proof limits.
+
+The four destinations are respectively the fallback at `0x145f1bdc1`,
+Bleed at `0x145f1bcf6`, captured label at `0x145f1bd3f` and Shockwave at
+`0x145f1bd88`. The captured branch uses the installed descriptor at
+`+0x268` unless `+0x261` is 2. The common path at `0x145f1bd53` also
+admits kind 2 with `+0x261` unequal to 2. The ordinary pet producer
+`0x145f97ee5` installs kind 2 before calling the hit owner and restores it
+afterward. It supplies a dedicated Bite descriptor only on the Matriarch
+path. The scoped Howl write at `0x145f1bb48` sets mode/kind to 2/2 and
+passes spell 24604 to the recorder at `0x145f1bba8`. It restores the
+saved pair and label before the packet dispatch. Those two writers
+correspond to the existing [ordinary pet and separate Howl paths](pet-meter-0.141.0.md).
+Wider dynamic source-word writers and their runtime admission remain open.
 
 ## F02 shared failure cleanup
 
@@ -403,21 +448,39 @@ body owners finds six direct AS-context calls to the slot-zero entry and
 sixteen to the slot-`+0x18` entry. They are callers of the shared leaves
 and do not identify a single concrete receiver type.
 
-The slot-`+0x18` call at `0x145eeec50` has a Kill Command diagnostic in
-the same extent. Its actual producer resolves an optional staff-key path
-through `WOW_ROGUE_STAFF_KEY`, `APPDATA` and `XDG_DATA_HOME`. The file read
-at `0x145eeebb5` returns the `-1` error sentinel. The caller sets the empty
-output, filters the error pointer's low bits to tag 1, removes the tag
-and passes the owned error to the shared cleanup leaf. The reconstructed
-[staff key reader](../../crates/azeroth-survivors-re/src/coop_directory.rs)
-uses the existing filesystem result and the same empty fallback. The
-selected branch supplies no Kill Command mechanic.
+All sixteen direct slot-`+0x18` callers with an AS diagnostic body share
+the same tagged-error cleanup interface. They test the low two bits,
+admit tag 1, subtract one and place the pointer in an owned stack slot
+before calling `0x14638ac20`. The leaf dereferences that slot into RCX
+and jumps through `[rcx+0x18]`. The retained staff-key case has a Kill
+Command diagnostic in the same extent. Its producer resolves
+`WOW_ROGUE_STAFF_KEY`, `APPDATA` and `XDG_DATA_HOME`; the error from
+`0x145eeebb5` uses this cleanup and the empty fallback in the
+[staff key reader](../../crates/azeroth-survivors-re/src/coop_directory.rs).
 
-The terrain call at `0x146009430` passes the receiver from the reader's
-`-1` result at `[rbp+0x30]` through the slot-zero leaf. It keeps the
-failure sentinel in the output while disposing of the temporary input.
-This classifies the selected call's error cleanup boundary. The terrain
-payload and concrete error allocation retain separate ownership.
+| Diagnostic body | Exact call sites |
+| --- | --- |
+| Legacy config | `0x140017c3a`, `0x140017d84`, `0x14001820b`, `0x14001838d`, `0x140018eb9` |
+| Discord | `0x140093287`, `0x1400934c0`, `0x14009354c`, `0x1400941bb` |
+| Ready Check-associated bodies | `0x14012d14e`, `0x14012d305`, `0x14012d482`, `0x1401e5150`, `0x1401e5299` |
+| Options | `0x140201adc` |
+| Staff-key reader | `0x145eeec50` |
+
+The six direct slot-zero callers are content/navigation/terrain reader
+failures. Their guards compare an output record's first word with `-1`,
+then pass its adjacent error receiver to `0x146347d90`. The leaf loads
+the receiver's table and jumps through its first slot. This binds the
+selected cleanup paths to failed read/parse results, while the actual
+error payloads and callback assignments remain separate.
+
+| Exact call | Result storage | Producer or branch |
+| --- | --- | --- |
+| `0x145da2d2d` | `[rbp+0x20]/[rbp+0x28]` | `0x1462a6180` failure; retain the sentinel. |
+| `0x145da3158` | `[rbp+0x168]/[rbp+0x170]` | `0x1462a66a0` failure. |
+| `0x146009430` | `[rbp+0x30]/[rbp+0x38]` | `0x14623cf50` failure; retain the sentinel. |
+| `0x1460094fd` | `[rbp+0x30]/[rbp+0x38]` | `0x146264f70` failure; initialize an empty result. |
+| `0x146009a4c` | `[rbp+0x190]/[rbp+0x198]` | `0x1462a66a0` failure. |
+| `0x14600bad6` | `[rbp-0x48]/[rbp-0x40]` | `0x1462a66a0` failure. |
 
 | Preferred VA range | SHA-256 |
 | --- | --- |
@@ -426,6 +489,10 @@ payload and concrete error allocation retain separate ownership.
 | Slot-`+0x18` entry `0x14638ac20..0x14638ac27` | `8cbc0a542f5641e293d6cd9000bf03935dc3f901b09ae90e646366af6a2bc396` |
 | Slot-zero entry `0x146347d90..0x146347d99` | `2a3c53712037a9d42bacd07d0803c4777e37dfeaa7a1d3e13309402b16a7f265` |
 
-Other AS-context register and receiver-slot transfers still need concrete
-typed owners. The broader unowned and generic populations retain their
-exact selectors. Runtime dispatch and original/rebuilt parity remain separate.
+This classifies the immediate receivers at all 22 selected direct AS-context
+calls. It establishes shared error handling for these inputs. Further
+receiver work starts with AS-specific register transfers and the remaining
+typed-domain tables, with concrete assignments required before claiming
+an effect on game state. The broader unowned and generic populations retain
+their exact selectors. Runtime dispatch and original/rebuilt parity remain
+separate.
