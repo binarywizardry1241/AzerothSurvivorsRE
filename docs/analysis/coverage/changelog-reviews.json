@@ -34638,7 +34638,7 @@
         "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
       },
       "status": "pending_claim_recovery",
-      "rationale": "Window close and pause Quit reach typed AppExit, and the four recovered Last callbacks persist local state or tear down addon UI. Explicit synchronized guest departures share the ordered terminal service close. The worker drains queued binary output before WebSocket Close and flush. The relay signal and server classification on desktop process exit remain unresolved.",
+      "rationale": "The current desktop trace reaches AppExit and identifies the detached worker and Last callbacks. Synchronized guest departure closes the transport before settlement. Hosted world exit flushes each assigned peer before standalone End18 and retains the lobby. The deployed relay signal and server classification on desktop exit remain unresolved.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/coop_directory.rs",
         "crates/azeroth-survivors-re/src/coop/websocket.rs",
@@ -34646,7 +34646,9 @@
         "crates/azeroth-survivors-re/src/gameplay/coop.rs",
         "crates/azeroth-survivors-re/src/gameplay/mod.rs",
         "crates/azeroth-survivors-re/src/gameplay/run_hud/pause.rs",
-        "crates/azeroth-survivors-re/src/gameplay/terminal.rs"
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
+        "crates/azeroth-survivors-re/src/coop_runtime.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs"
       ],
       "evidence_refs": [
         "docs/analysis/coop-desktop-exit-0.141.0.md"
@@ -34658,14 +34660,16 @@
         206
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/coop_directory.rs": "91dfff341d168d9dd3177ed73c4438bf740f96f7a12e07c144ee4477825c48ea",
+        "crates/azeroth-survivors-re/src/coop_directory.rs": "7960cf9912ff7ada23dfe4e2092f2ff85c70984523106efb895c5ef7f5dec8ee",
         "crates/azeroth-survivors-re/src/coop/websocket.rs": "cc3fb280452e2ff6bb071e00a4f1cafc173bf128f91ecb35b946e8637074d5f1",
-        "crates/azeroth-survivors-re/src/coop/session.rs": "9e21dbfc59aee497459b00ac4649422adfb910b2f8a70f4d0fb9bc7e8cecc0ab",
-        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "51cdc6944fc7e33236008218d240d0ef553c1129f33ce4290b3c5101620a2b1a",
-        "crates/azeroth-survivors-re/src/gameplay/mod.rs": "95b2ff4b469c2b363511af4c688d5dcb20e78df3bfa24d43b95987ec2abb6f35",
+        "crates/azeroth-survivors-re/src/coop/session.rs": "a253756134186eed107d97336a8a96f1acc546db4f8bb8e41217842b90e158eb",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "d66b3687c8b022e680f7a586edc43e00376fb895ec83fc8323eb3565143fec54",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs": "539b3e82ab2b9dd713ca2acd001523edf53fb1c525f925cc063e4a07f352f39e",
         "crates/azeroth-survivors-re/src/gameplay/run_hud/pause.rs": "54d7dea7b38a7d0068f7c5be517fa31be7d2f842b8c87de3531e7aa5c2325220",
-        "crates/azeroth-survivors-re/src/gameplay/terminal.rs": "dc5cda931dc6f7fd5c76f21e150bc1c3679c9b6a74451178c34157e25ff3dfaf",
-        "docs/analysis/coop-desktop-exit-0.141.0.md": "9598a7f4a9e7a3ff20a390840a37b510b1dd81f04467614a519f5a0214e005bc"
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs": "dd76fb7b107a7ca2d56465ded0a0f9f032eb64bd1b71f97a9fe6715f131e3ba3",
+        "crates/azeroth-survivors-re/src/coop_runtime.rs": "dcf82242b43d0c9b874741468d69ed37673bdf145cab72eb2e817847ccf2497f",
+        "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs": "bd821309dd3c93685bc55c2515de7d55340a584081d20eac61f23ec83ff64a2b",
+        "docs/analysis/coop-desktop-exit-0.141.0.md": "a925de6103e336808a2bb80201ebe01ca69b11179ca433025c182b14d28b892c"
       }
     },
     {
@@ -35744,7 +35748,7 @@
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/coop/relay.rs": "81c09c970085f42d563000c1d33e748fc594e450493fe2ad0bf7a471326e6e2c",
-        "crates/azeroth-survivors-re/src/coop_directory.rs": "601be64f99dbdb43996e28dc6ee3be92b0850157cb599d6563e3d5ff57cb7cd4",
+        "crates/azeroth-survivors-re/src/coop_directory.rs": "7960cf9912ff7ada23dfe4e2092f2ff85c70984523106efb895c5ef7f5dec8ee",
         "docs/analysis/coop-relay-selection-0.141.0.md": "1bcd20fa1588a6530b7fb0fe2487b32c388d4daac99ca27941f4ff3977bd3ded",
         "docs/analysis/relay-load-0.123.0.md": "1be23b86d4d921195920cf09692ce68404251e29494865bce466e638350b4b40"
       },

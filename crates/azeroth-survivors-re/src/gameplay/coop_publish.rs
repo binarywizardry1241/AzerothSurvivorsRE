@@ -59,12 +59,7 @@ pub(in crate::gameplay) fn publish(
     let addon_paused = run.paused || run.talent_view_open;
     let identity = run.identity;
     let Some(game) = run.mechanics.as_mut() else {
-        for client in state.admitted.keys().copied().collect::<Vec<_>>() {
-            runtime.send(Some(client), NativeMessage::End);
-            if let Some(driver) = runtime.driver.as_mut() {
-                driver.server.world_hero_removed(client);
-            }
-        }
+        runtime.finish_host_world(time.elapsed_secs_f64());
         state.admitted.clear();
         state.profiles.clear();
         state.world_profiles.clear();

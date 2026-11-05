@@ -141,7 +141,7 @@ struct SecondaryConfig {
 }
 
 #[derive(Resource, Default)]
-struct Service {
+pub(crate) struct Service {
     relay_protocol: azeroth_survivors_re::coop::session::RelayProtocol,
     relay_peers: azeroth_survivors_re::coop::session::RelayPeers,
     guest_flags: azeroth_survivors_re::coop::session::SharedGuestFlags,
@@ -283,12 +283,14 @@ impl Service {
             .select_transport(self.relay_worker_state());
     }
 
-    fn leave_guest_run(&mut self, mut driver: Session, now: f64) {
+    pub(crate) fn leave_guest_run(&mut self, mut driver: Session, now: f64) {
         driver.leave_guest_run(now);
         for command in driver.take_service_commands() {
             send_relay(self, command);
         }
         self.close();
+        self.hosting = false;
+        self.profile_identity = None;
     }
 
     fn heartbeat(&self) {
@@ -1086,7 +1088,7 @@ fn drain_service_relay(service: &mut Service) {
     }
 }
 
-fn publish_local_departure(view: &mut CoopUi, end_run: bool) {
+pub(crate) fn publish_local_departure(view: &mut CoopUi, end_run: bool) {
     view.role.clear();
     view.code = None;
     view.lobby = None;
@@ -1099,13 +1101,34 @@ fn publish_local_departure(view: &mut CoopUi, end_run: bool) {
 pub(crate) fn finish_guest_departure(world: &mut World, mut driver: Session, now: f64) {
     if let Some(mut service) = world.get_resource_mut::<Service>() {
         service.leave_guest_run(driver, now);
-        service.hosting = false;
-        service.profile_identity = None;
     } else {
         driver.leave_guest_run(now);
     }
-    if let Some(mut view) = world.get_resource_mut::<CoopUi>() {
-        publish_local_departure(&mut view, true);
+}
+
+pub(crate) fn finish_host_world(world: &mut World) {
+    if !world.get_resource::<CoopRuntime>().is_some_and(|runtime| {
+        runtime.driver.as_ref().is_some_and(Session::is_hosting)
+    }) {
+        return;
+    }
+    let now = world.resource::<Time>().elapsed_secs_f64();
+    let has_service = world.contains_resource::<Service>();
+    let outgoing = {
+        let mut runtime = world.resource_mut::<CoopRuntime>();
+        runtime.finish_host_world(now);
+        if !has_service {
+            return;
+        }
+        let mut outgoing = std::mem::take(&mut runtime.service_commands);
+        if let Some(driver) = &mut runtime.driver {
+            outgoing.extend(driver.take_service_commands());
+        }
+        outgoing
+    };
+    let mut service = world.resource_mut::<Service>();
+    for command in outgoing {
+        send_relay(&mut service, command);
     }
 }
 

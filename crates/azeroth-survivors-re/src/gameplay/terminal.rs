@@ -326,11 +326,13 @@ pub(super) fn input(
     mut commands: Commands,
     locale: Option<Res<crate::localization::Localization>>,
     stock: Option<Res<benilla_app::local_client::LocalStockFrontend>>,
-    (mut coop,mut guest,mut inbound,mut notifications):(
+    (mut coop,mut guest,mut inbound,mut notifications,mut service,mut coop_view):(
         Option<ResMut<crate::coop_runtime::CoopRuntime>>,
         Option<ResMut<super::coop::CoopGame>>,
         ResMut<benilla_app::local_client::events::LocalWireEvents>,
         ResMut<super::notifications::Notifications>,
+        Option<ResMut<crate::coop_directory::Service>>,
+        Option<ResMut<crate::coop_ui::CoopUi>>,
     ),
 ) {
     extension.pointer_over_ui |= menu.in_run && state.summary.is_some();
@@ -363,11 +365,13 @@ pub(super) fn input(
                 TerminalAction::Again|TerminalAction::Menu=>{
                     // Native guest run commands6/9 close the admitted cache;
                     // they do not require the raw engine Logout client gate.
-                    let Some(driver) = runtime.driver.take() else { continue };
+                    let Some(mut driver) = runtime.driver.take() else { continue };
                     let depart_at = time.elapsed_secs_f64();
-                    commands.queue(move |world: &mut World| {
-                        crate::coop_directory::finish_guest_departure(world, driver, depart_at);
-                    });
+                    if let Some(service) = service.as_deref_mut() {
+                        service.leave_guest_run(driver, depart_at);
+                    } else {
+                        driver.leave_guest_run(depart_at);
+                    }
                     let now=std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH)
                         .map_or(0,|duration|duration.as_secs());
                     let messages=guest.settle(&mut session,&mut menu,&catalog,locale.as_deref(),
@@ -379,6 +383,9 @@ pub(super) fn input(
                     world.request=None;session.mechanics=None;session.started=false;session.paused=false;
                     session.ended_by_player=false;*pause=Pause::default();
                     if active_client || menu.in_run { menu.return_from_run(); }
+                    if let Some(view) = coop_view.as_deref_mut() {
+                        crate::coop_directory::publish_local_departure(view, true);
+                    }
                     super::coop::queue_delivery(&mut commands,&mut inbound,&mut packets,messages,
                         active_client.then_some(benilla_protocol::SessionEnd::LoggedOut));
                     active_client=false;
@@ -403,6 +410,14 @@ pub(super) fn input(
         if action == TerminalAction::Again && session.mechanics.is_none() {
             continue;
         }
+        // Current cooperative command 6 joins the same logout owner as Menu.
+        let action = if action == TerminalAction::Again
+            && session.mechanics.as_ref().is_some_and(Mechanics::has_party)
+        {
+            TerminalAction::Menu
+        } else {
+            action
+        };
         // Current1458b8300 searches active connections before persisting or taking
         // the Game. A second Menu in this batch sees the first logout immediately.
         if action == TerminalAction::Menu && !active_client {
@@ -466,8 +481,7 @@ pub(super) fn input(
             continue;
         }
         let stock = stock.is_some();
-        session.solo_again = action == TerminalAction::Again
-            && session.mechanics.as_ref().is_some_and(|game| !game.has_party());
+        session.solo_again = action == TerminalAction::Again;
         let heroic_rank = session.mechanics.as_ref().map(|game| game.rules.heroic_rank);
         let selected = session.selected_roster_guid;
         let gear = session.starting_gear;
@@ -521,7 +535,6 @@ pub(super) fn input(
             action == TerminalAction::Menu,
             action == TerminalAction::Again,
             retiring,
-            None,
         );
         if action == TerminalAction::Menu {
             active_client = false;

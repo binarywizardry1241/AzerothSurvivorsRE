@@ -4,7 +4,7 @@
 //! owners. Unsupported frames remain explicit inputs, rather than being
 //! decoded using a replacement protocol or a fabricated party snapshot.
 
-use super::replication::{EnginePacket, NativeMessage, decode_frame, encode_batch};
+use super::replication::{EnginePacket, NativeMessage, decode_frame, encode_batch, encode_message};
 use super::route;
 use super::server_party::{
     ClientId, HostConfig, JoinAccepted, JoinRequest, LifecyclePacket, MAX_MESSAGES_PER_CLIENT_TICK,
@@ -1153,6 +1153,25 @@ impl Session {
         }
     }
 
+    /// Retire the hosted world in connection order while keeping the lobby.
+    /// End is a separate frame after each assigned peer's pending output.
+    pub fn finish_host_world(&mut self, now: f64) {
+        if !self.is_hosting() {
+            return;
+        }
+        let end = encode_message(&NativeMessage::End).expect("fixed native End packet");
+        for peer in &mut self.peers {
+            if self.server.clients().iter().any(|row| {
+                row.id == peer.id && row.world_hero.is_some()
+            }) {
+                peer.flush(now);
+                peer.connection.send(&end);
+                self.server.world_hero_removed(peer.id);
+            }
+        }
+        self.server.set_run_under_way(false);
+    }
+
     /// Flush the joined peer and send its locked reason before starting the
     /// ordinary rejection drain on that connection.
     pub fn reject_hero(&mut self, client: ClientId, reason: Vec<u8>, now: f64) {
@@ -1557,6 +1576,44 @@ mod relay_protocol_tests {
             }
             assert!(!guest.connected());
         }
+    }
+
+    #[test]
+    fn host_world_end_flushes_assigned_peers_without_retiring_the_lobby() {
+        let mut host = Session::service_host(HostConfig {
+            password: Vec::new(),
+            capacity: 5,
+        });
+        let first = host.service_peer_open(73).unwrap();
+        let second = host.service_peer_open(12).unwrap();
+        let lobby_only = host.service_peer_open(99).unwrap();
+        for client in [first, second, lobby_only] {
+            assert!(host.server.admit(client, &JoinRequest::current(Vec::new()), 2.)
+                .unwrap().is_ok());
+        }
+        assert!(host.server.world_hero_added(first, 10));
+        assert!(host.server.world_synchronization_completed(first));
+        assert!(host.server.world_hero_added(second, 20));
+        host.server.set_run_under_way(true);
+        host.take_service_commands();
+        assert!(host.send_message(Some(first), NativeMessage::Time(77)));
+        host.last_host_flush = 2.;
+
+        host.finish_host_world(2.001);
+        let payloads = host.take_service_commands().into_iter().map(|command| {
+            let RelayCommand::Send { id, payload } = command else {
+                panic!("world end should retain the service and its peers");
+            };
+            (id, payload[9..].to_vec())
+        }).collect::<Vec<_>>();
+        assert_eq!(payloads, vec![(73, vec![21, 77, 0, 0, 0]), (73, vec![18]), (12, vec![18])]);
+        assert!(host.is_hosting());
+        assert!(!host.server.run_under_way());
+        assert!(host.server.clients().iter().all(|row| {
+            row.joined && row.world_hero.is_none() && !row.synchronized
+        }));
+        host.finish_host_world(2.002);
+        assert!(host.take_service_commands().is_empty());
     }
 
     #[test]

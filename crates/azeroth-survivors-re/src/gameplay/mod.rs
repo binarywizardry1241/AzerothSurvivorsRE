@@ -1559,7 +1559,6 @@ fn finish_client_delivery(
     logged_out: bool,
     restarting: bool,
     retiring: Option<mechanics::Retirement>,
-    guest_departure: Option<(azeroth_survivors_re::coop::session::Session, f64)>,
 ) {
     commands.queue(move |world: &mut World| {
         use benilla_app::local_client::{
@@ -1608,25 +1607,11 @@ fn finish_client_delivery(
             }
             flush_events(world);
         }
-        if let Some((driver, now)) = guest_departure {
-            // The native engine sends the instant response before command 9.
-            crate::coop_directory::finish_guest_departure(world, driver, now);
+        if logged_out || restarting {
+            crate::coop_directory::finish_host_world(world);
         }
         if logged_out {
-            if has_presentation {
-                // Flush already admitted messages before the real inbound logout
-                // handler tears down the player and its sender cache.
-                world
-                    .resource_mut::<LocalPresentationEvents>()
-                    .0
-                    .push(benilla_app::local_client::events::SessionEvent::LoggedOut);
-                flush_events(world);
-            }
-            // Current Screens poll140192886 clears the retained ready entry on
-            // Logout only. Again can temporarily have no Game and keeps it.
-            if let Some(mut presence) = world.get_resource_mut::<crate::discord::RunSnapshot>() {
-                *presence = crate::discord::RunSnapshot::default();
-            }
+            publish_client_logout(world);
         }
         let mut session = world.resource_mut::<LocalClientSession>();
         if restarting {
@@ -1639,6 +1624,98 @@ fn finish_client_delivery(
             session.end();
         }
     });
+}
+
+fn publish_client_logout(world: &mut World) {
+    use benilla_app::local_client::events::{LocalPresentationEvents, SessionEvent, flush_events};
+    if let Some(mut events) = world.get_resource_mut::<LocalPresentationEvents>() {
+        // Admitted packets have been delivered before the real inbound logout
+        // handler tears down the player and its sender cache.
+        events.0.push(SessionEvent::LoggedOut);
+        flush_events(world);
+    }
+    // Current Screens clears the retained ready entry on Logout.
+    if let Some(mut presence) = world.get_resource_mut::<crate::discord::RunSnapshot>() {
+        *presence = crate::discord::RunSnapshot::default();
+    }
+}
+
+fn finish_guest_engine_logout(
+    world: &mut World,
+    driver: azeroth_survivors_re::coop::session::Session,
+    now: f64,
+    ui_time: f32,
+    quit: bool,
+) {
+    use bevy::ecs::system::RunSystemOnce;
+    use benilla_app::local_client::{
+        LocalClientSession,
+        events::{LocalPresentationEvents, SessionEvent, flush_events},
+    };
+    if world.contains_resource::<LocalPresentationEvents>() {
+        flush_events(world);
+        world
+            .resource_mut::<LocalPresentationEvents>()
+            .0
+            .push(SessionEvent::LogoutResponse {
+                reason: 0,
+                instant: true,
+            });
+        flush_events(world);
+    }
+    // The native instant response precedes command 9, which closes the
+    // transport before settling the cached guest summary and account.
+    crate::coop_directory::finish_guest_departure(world, driver, now);
+    let messages = world
+        .run_system_once(
+            move |mut replica: ResMut<coop::CoopGame>,
+                  mut session: ResMut<RunSession>,
+                  mut menu: ResMut<MenuState>,
+                  mut zone_world: ResMut<ZoneWorld>,
+                  catalog: Res<MenuCatalog>,
+                  locale: Option<Res<crate::localization::Localization>>,
+                  mut notifications: ResMut<notifications::Notifications>,
+                  mut runtime: ResMut<crate::coop_runtime::CoopRuntime>| {
+                let saved_at = std::time::SystemTime::now()
+                    .duration_since(std::time::UNIX_EPOCH)
+                    .map_or(0, |duration| duration.as_secs());
+                let messages = replica.settle(
+                    &mut session,
+                    &mut menu,
+                    &catalog,
+                    locale.as_deref(),
+                    &mut notifications,
+                    saved_at,
+                    ui_time,
+                    true,
+                );
+                runtime.party.clear();
+                runtime.actor_clients.clear();
+                replica.leave();
+                menu.persist_selection(&catalog);
+                zone_world.request = None;
+                session.mechanics = None;
+                session.paused = false;
+                session.talent_allocation.clear();
+                session.talent_view_open = false;
+                session.talent_view_selected = None;
+                menu.return_from_run();
+                messages
+            },
+        )
+        .expect("synchronized guest logout resources");
+    if let Some(mut view) = world.get_resource_mut::<crate::coop_ui::CoopUi>() {
+        crate::coop_directory::publish_local_departure(&mut view, true);
+    }
+    if let Some(mut events) = world.get_resource_mut::<LocalPresentationEvents>() {
+        events.0.extend(messages);
+        flush_events(world);
+    }
+    publish_client_logout(world);
+    world.resource_mut::<LocalClientSession>().logout();
+    if quit {
+        world.write_message(AppExit::Success);
+    }
 }
 
 fn native_requests(
@@ -1689,6 +1766,17 @@ fn native_requests(
                 let guest = coop.as_deref().is_some_and(|runtime| runtime.is_guest());
                 let synchronized_guest = guest
                     && replica.as_deref().is_some_and(coop::CoopGame::guest_synchronized);
+                if synchronized_guest
+                    && let Some(driver) = coop.as_deref_mut().and_then(|runtime| runtime.driver.take())
+                {
+                    let now = time.elapsed_secs_f64();
+                    let ui_time = time.elapsed_secs();
+                    let quit = request == SessionRequest::Quit;
+                    commands.queue(move |world: &mut World| {
+                        finish_guest_engine_logout(world, driver, now, ui_time, quit);
+                    });
+                    continue;
+                }
                 let mut guest_messages = None;
                 if guest {
                     if let Some(replica) = replica.as_deref_mut() {
@@ -1700,17 +1788,14 @@ fn native_requests(
                 } else if let Some(game) = session.mechanics.as_mut().filter(|_| started) {
                     persist_run(game, &mut menu, selected_roster_guid, starting_gear, showcase, started, true);
                 }
-                let departing_driver = coop.as_deref_mut().filter(|runtime| runtime.is_guest())
-                    .and_then(|runtime| {
-                        // The unsynchronized engine fallback only retires the local world.
-                        let driver = if synchronized_guest { runtime.driver.take() } else { None };
-                        runtime.party.clear();
-                        runtime.actor_clients.clear();
-                        if let Some(replica) = replica.as_deref_mut() {
-                            replica.leave();
-                        }
-                        driver
-                    });
+                if let Some(runtime) = coop.as_deref_mut().filter(|runtime| runtime.is_guest()) {
+                    // The unsynchronized engine fallback only retires the local world.
+                    runtime.party.clear();
+                    runtime.actor_clients.clear();
+                    if let Some(replica) = replica.as_deref_mut() {
+                        replica.leave();
+                    }
+                }
                 menu.persist_selection(&catalog);
                 world.request = None;
                 let mut final_messages = guest_messages.unwrap_or_else(|| session.mechanics.as_mut().map_or_else(Vec::new, |game| {
@@ -1737,7 +1822,6 @@ fn native_requests(
                     true,
                     false,
                     None,
-                    departing_driver.map(|driver| (driver, time.elapsed_secs_f64())),
                 );
                 if request == SessionRequest::Quit {
                     // The client exits on logout-complete. This deferred command
@@ -2047,7 +2131,7 @@ mod tests {
         client.begin(LocalPlayerUi { guid: 1, name: "Stock".into(), ..Default::default() });
         world.insert_resource(client);
         world.run_system_once(|mut commands: Commands| {
-            finish_client_delivery(&mut commands, Vec::new(), false, true, None, None);
+            finish_client_delivery(&mut commands, Vec::new(), false, true, None);
         }).unwrap();
         let client = world.resource::<LocalClientSession>();
         assert!(client.active && client.paused);

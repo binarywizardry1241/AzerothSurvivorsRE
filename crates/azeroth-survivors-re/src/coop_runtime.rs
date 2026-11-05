@@ -168,6 +168,17 @@ impl CoopRuntime {
             self.send_value_localized_from(source, &value, localized);
         }
     }
+
+    pub(crate) fn finish_host_world(&mut self, now: f64) {
+        if !self.driver.as_ref().is_some_and(Session::is_hosting) {
+            return;
+        }
+        self.flush_engine_events();
+        if let Some(driver) = &mut self.driver {
+            driver.finish_host_world(now);
+        }
+        self.shared_running = false;
+    }
     pub(crate) fn send_value(&mut self, value: &serde_json::Value) {
         self.send_value_from(0, value);
     }

@@ -151,8 +151,84 @@ def guest_end_run():
     print('PASS: 50 native singleton, phase and Disconnect admission cases; live source routes')
 
 
+def current_world_departure():
+    from capstone import Cs, CS_ARCH_X86, CS_MODE_64
+
+    target = installed_identity()
+    assert target['version'] == '0.141.0'
+    assert target['sha256'] == '6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa'
+    data = target_bytes(target)
+    pe = load_script('coop_logout_pe', ROOT / 'scripts/inventory-executable.py').PE(data)
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    ranges = [
+        (0x145e9e780, 0x145e9e7f0, '5a4cfc3b56836692c86cc822d3f2e8d92eaf09f598005315a428ffa8c02cc75c'),
+        (0x145ebb4d0, 0x145ebb5a6, '5f48506eee98b8302b5ee56888a4340ea49c3e1fdb0b2cee8332852c20b7e677'),
+        (0x145ebd97e, 0x145ebd9a3, '4a5a00a03521250b47ccf6b38363b0d651a0111bd42f42490844c297945f2a10'),
+        (0x145ebdaae, 0x145ebdabc, '0b834dca9633fbd1c95219869423da7bb291e6b2d4ebf79b70ab05ff42b43afe'),
+        (0x145ebf960, 0x145ebfeb6, '442e61451a04184c02e0cef6febb65ee92d92f698876e3d962fdb3f28f276a21'),
+        (0x145ec85f0, 0x145ec86f3, '9c854c220cda8aec782d9cf7408caea92cf58372200e1f9f7ff20f90708d39a8'),
+        (0x145ec9afe, 0x145ec9bd9, 'c403a0d9aabff3dc2438a0ee5795162e4110b5c638ab66a9f0357dd4044e7f48'),
+        (0x146050cc8, 0x146050cd9, 'a39b7b5c7b41fec853def103339189adc976590057bac064a71d8f6bac0bfa18'),
+    ]
+    instructions = {}
+    for start, end, expected in ranges:
+        offset = pe.rva_offset(start - pe.image_base)
+        raw = data[offset:offset + end - start]
+        assert hashlib.sha256(raw).hexdigest() == expected
+        instructions.update((ins.address, (ins.mnemonic, ins.op_str)) for ins in decoder.disasm(raw, start))
+    calls = {
+        0x145e9e7c0: '0x145eca7e0', 0x145e9e7e9: '0x145ec9a90',
+        0x145ebb531: '0x145ebf960', 0x145ebb5a1: '0x145ea3190',
+        0x145ebd998: '0x145ebb4d0', 0x145ebdab1: '0x145ebb4d0',
+        0x145ebfa8e: '0x145e66130', 0x145ebfade: 'qword ptr [rdi + 0x18]',
+        0x145ec8640: '0x145ebb750', 0x145ec8648: '0x145ec30b0', 0x145ec86a4: '0x145eca550',
+        0x145ec9b13: '0x145e66130', 0x145ec9b58: 'qword ptr [rbx + 0x18]',
+        0x145ec9bb0: '0x145e8dc70', 0x145ec9bcf: '0x145ec85f0',
+        0x146050cce: '0x146203d20',
+    }
+    for site, operand in calls.items():
+        assert instructions[site] == ('call', operand)
+    assert instructions[0x145ebfb06] == ('mov', 'byte ptr [r13 + 0x89d], 0')
+    assert instructions[0x146050ccc] == ('mov', 'dl, 0x12')
+    table = 0x147aeda94
+    cells = pe.rva_offset(table + 16 - pe.image_base)
+    assert hashlib.sha256(data[cells:cells + 16]).hexdigest() == \
+        '996c7bf8e2793d25cfc46ed127334a234c72b16826fb0e73ade730ce69d908e5'
+    assert table + struct.unpack_from('<i', data, cells)[0] == 0x145ebd97e
+    assert table + struct.unpack_from('<i', data, cells + 12)[0] == 0x145ebdaae
+
+    source = ROOT / 'crates/azeroth-survivors-re/src'
+    block_after = load_script('coop_directory_checks', ROOT / 'scripts/check-coop-directory-transport.py').block_after
+
+    def ordered(file, marker, *tokens):
+        body = block_after((source / file).read_text(), marker)
+        cursor = 0
+        for token in tokens:
+            cursor = body.index(token, cursor) + len(token)
+
+    ordered('gameplay/terminal.rs', 'TerminalAction::Again|TerminalAction::Menu=>',
+            'service.leave_guest_run(', 'guest.settle(', 'publish_local_departure(', 'queue_delivery(')
+    ordered('gameplay/terminal.rs', 'fn input(', 'let action = if action == TerminalAction::Again',
+            'is_some_and(Mechanics::has_party)', 'TerminalAction::Menu', 'if action == TerminalAction::Menu && !active_client')
+    ordered('gameplay/mod.rs', 'fn finish_guest_engine_logout(',
+            'SessionEvent::LogoutResponse', 'flush_events(world)', 'finish_guest_departure(',
+            'replica.settle(', 'publish_local_departure(', 'publish_client_logout(', 'AppExit::Success')
+    ordered('coop/session.rs', 'pub fn finish_host_world(', 'world_hero.is_some()',
+            'peer.flush(now)', 'peer.connection.send(&end)', 'world_hero_removed(')
+    ordered('coop_runtime.rs', 'fn finish_host_world(', 'flush_engine_events()', 'driver.finish_host_world(')
+    ordered('coop_directory.rs', 'pub(crate) fn finish_host_world(', 'runtime.finish_host_world(',
+            'take_service_commands()', 'send_relay(')
+    ordered('gameplay/mod.rs', 'fn finish_client_delivery(', 'finish_host_world(world)', 'publish_client_logout(world)')
+    for file in ['gameplay/coop.rs', 'gameplay/coop_publish.rs']:
+        text = (source / file).read_text()
+        assert 'runtime.finish_host_world(' in text and 'runtime.send(Some(client), NativeMessage::End)' not in text
+    print('PASS: eight current PE spans, 18 instruction anchors, two dispatch cells and guest/host departure source guards')
+
+
 if __name__ == '__main__':
     if sys.argv[1:] == ['--end-run']:
         guest_end_run()
+    elif sys.argv[1:] == ['--current-world-departure']:
+        current_world_departure()
     else:
         main()

@@ -146,11 +146,16 @@ Character Select, terminal Again and Menu, and ordinary synchronized guest
 Logout. The previous terminal and engine branches took the driver down
 without submitting its queued GuestLeave. The connected path drains the
 guest's pending data and separate Disconnect, then submits Leave and closes
-the primary and selected secondary in order. Engine Logout flushes the
-instant response before terminal network close and publishes local LoggedOut
-afterward. The unsynchronized engine fallback retires the local world and
-retains the guest's service role. The pause and terminal app commands wait
-for the existing guest synchronization latch.
+the primary and selected secondary in order. At `0x145ec9bb0` the original
+submits terminal close before calling finalizer `0x145ec85f0` at `0x145ec9bcf`.
+With an admitted zone and state, the finalizer calls the summary owner at
+`0x145ec8640` and the account owner at `0x145ec8648`. It then clears the role
+and performs local logout when the sync flag is set. The rebuilt terminal
+Again/Menu and synchronized engine Logout follow that order. Engine Logout
+flushes the instant response before close, then delivers settlement notices
+and local LoggedOut. The unsynchronized engine fallback retires the local
+world and retains the guest's service role. The pause and terminal app
+commands wait for the existing guest synchronization latch.
 
 Twenty-eight exact PE boundary checks, six source wiring and order guards,
 the retained socket source checks and syntax parsing of five Rust modules
@@ -168,6 +173,35 @@ execution and live service delivery remain unverified.
 | `0x141287200` | `8a4af7160237f0ba9b0748c777a51547e66b0c3938db1c644bea565b5b06ca37` | `1708e4cd2792d41c8ab9a271723ee191f372a2ccf8e46053cd3a8c987fa0f2f8` |
 | `0x1407c3bf0` | `33206031aa2cacf931a459fd090c132109fbd957b29af68606d3298242504bb0` | `412e99c94999d5665d821fa8f5fc229172397f01387d3f4b6594ebeddec2487d` |
 | `0x1402eace0` | `8647fe075ef8d7a534eda31cad2377b108eb58336ccf40c67d6d8475ebbc9a19` | `846fd6a5e0509ea72281eb444719e77e4f878ea6b33036e545fd7d68803b64b7` |
+
+## Host world retirement
+
+In the local request table at `0x147aeda94`, command 6 reaches
+`0x145ebd97e`. A present Game with a nonzero co-op mode takes the same
+`0x145ebb4d0` logout owner as command 9. The ordinary solo Again branch uses
+the separate restart owner. The local logout owner calls `0x145ebf960` at
+`0x145ebb531` before sending LogoutComplete at `0x145ebb5a1`.
+
+The host world-end owner walks the peer rows in connection order and tests
+their actor assignments. For an assigned row it flushes the old packet list
+at `0x145ebfa8e`, submits a separate End at `0x145ebfade`, and clears the
+Sync latch at `0x145ebfb06`. The writer at `0x146050ccc` supplies the single
+wire byte `0x12`. The party retains its admitted lobby connections.
+
+The rebuilt host uses the same assigned-peer transaction for ordinary
+Logout, co-op Again/Menu, and world replacement or teardown. It drains
+queued relay output before local LogoutComplete. The co-op mode gate routes
+Again to the existing logout branch. Solo Again continues through the restart
+path. Repeated world cleanup sees cleared assignments and emits no second End.
+
+The current departure checker verifies eight original PE spans, 18
+instruction anchors, both command table cells, and the source order. Pinned
+Rust syntax parsing passed. The queue-order regression remains uncompiled.
+Live socket delivery, game and save behavior, and parity remain unverified.
+
+```sh
+PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/check-coop-logout.py --current-world-departure
+```
 
 ## Terminal WebSocket queue drain
 

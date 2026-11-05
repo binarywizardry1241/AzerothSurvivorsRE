@@ -1457,12 +1457,7 @@ fn bootstrap(
     game.set_equipment_ids(profile.words_188);
     game.set_party_local_name(String::from_utf8_lossy(&profile.name).into_owned());
     if state.host_identity != Some(identity) {
-        for client in state.admitted.keys().copied().collect::<Vec<_>>() {
-            runtime.send(Some(client), NativeMessage::End);
-            if let Some(driver) = runtime.driver.as_mut() {
-                driver.server.world_hero_removed(client);
-            }
-        }
+        runtime.finish_host_world(time.elapsed_secs_f64());
         if state.host_identity.is_some() {
             state.profiles.clear();
             state.hero_updates.clear();
