@@ -147,7 +147,7 @@ pub(super) fn drain(
             break;
         }
         let (client, input) = state.commands.pop_front().unwrap();
-        if let Input::Engine(packet) = &input && reply_without_world {
+        if let (true, Input::Engine(packet)) = (reply_without_world, &input) {
             let reply = match packet.opcode {
                 opcode::CMSG_PING => Some(EnginePacket {
                     opcode: opcode::SMSG_PONG,
@@ -209,13 +209,19 @@ pub(super) fn drain(
         if chat {
             if let Some(request) = meter_request(&packet.payload) {
                 state.addon_publishers.entry(client).or_default().request(request);
-            } else if game.has_party()
-                && let Some(event) = party_chat(&packet.payload, guid)
-                && runtime.driver.as_mut().is_some_and(|driver| driver.admit_peer_chat(client, now))
-                && let Ok(Some(packet)) = engine_packets::encode(&event, None)
-                && runtime.route_engine(slot, packet)
-            {
-                presentation.0.push(event);
+            } else if game.has_party() {
+                let Some(event) = party_chat(&packet.payload, guid) else {
+                    continue;
+                };
+                if !runtime.driver.as_mut().is_some_and(|driver| driver.admit_peer_chat(client, now)) {
+                    continue;
+                }
+                let Ok(Some(packet)) = engine_packets::encode(&event, None) else {
+                    continue;
+                };
+                if runtime.route_engine(slot, packet) {
+                    presentation.0.push(event);
+                }
             }
             continue;
         }

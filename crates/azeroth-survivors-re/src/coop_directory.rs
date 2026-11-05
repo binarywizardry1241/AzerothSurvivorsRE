@@ -977,7 +977,7 @@ fn transport_closed(
             driver.service_peer_closed(0);
         }
     } else {
-        if host && let Some(mut driver) = runtime.driver.take_if(|driver| driver.is_service()) {
+        if let Some(mut driver) = runtime.driver.take_if(|driver| host && driver.is_service()) {
             // Native host failure retires the role while the service handles
             // are still available to submit peer closes and terminal Leave.
             service

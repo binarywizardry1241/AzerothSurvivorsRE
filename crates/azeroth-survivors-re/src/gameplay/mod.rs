@@ -1766,16 +1766,16 @@ fn native_requests(
                 let guest = coop.as_deref().is_some_and(|runtime| runtime.is_guest());
                 let synchronized_guest = guest
                     && replica.as_deref().is_some_and(coop::CoopGame::guest_synchronized);
-                if synchronized_guest
-                    && let Some(driver) = coop.as_deref_mut().and_then(|runtime| runtime.driver.take())
-                {
-                    let now = time.elapsed_secs_f64();
-                    let ui_time = time.elapsed_secs();
-                    let quit = request == SessionRequest::Quit;
-                    commands.queue(move |world: &mut World| {
-                        finish_guest_engine_logout(world, driver, now, ui_time, quit);
-                    });
-                    continue;
+                if synchronized_guest {
+                    if let Some(driver) = coop.as_deref_mut().and_then(|runtime| runtime.driver.take()) {
+                        let now = time.elapsed_secs_f64();
+                        let ui_time = time.elapsed_secs();
+                        let quit = request == SessionRequest::Quit;
+                        commands.queue(move |world: &mut World| {
+                            finish_guest_engine_logout(world, driver, now, ui_time, quit);
+                        });
+                        continue;
+                    }
                 }
                 let mut guest_messages = None;
                 if guest {
@@ -1931,10 +1931,10 @@ fn resolved_requests(
                 ) else {
                     continue;
                 };
-                if let Some(runtime) = runtime.as_deref_mut()
-                    && let Ok(Some(packet)) = azeroth_survivors_re::coop::engine_packets::encode(&event, None)
-                {
-                    runtime.route_engine(0, packet);
+                if let Some(runtime) = runtime.as_deref_mut() {
+                    if let Ok(Some(packet)) = azeroth_survivors_re::coop::engine_packets::encode(&event, None) {
+                        runtime.route_engine(0, packet);
+                    }
                 }
                 presentation.0.push(event);
             }
