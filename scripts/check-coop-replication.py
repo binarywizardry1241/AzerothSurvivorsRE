@@ -249,12 +249,49 @@ def replay_state_party_context(replay, target):
     return cases
 
 
+def replay_hud_bound(replay, ranges):
+    cpu, reg = replay.machine, replay.registers
+    receive = ranges['guest_hud_admission']
+    submit = ranges['host_hud_submission']
+    cell = ranges['guest_hud_dispatch_cell'][0]
+    assert 0x147aedcfc + struct.unpack('<i', replay.raw(cell, 4))[0] == receive[0]
+    publish, reject, serialize = 0x145eccd34, 0x145ece288, 0x14604fa80
+    record, core = replay.app, replay.app + 0x2000
+    pointer = replay.app + 0x4000
+    lengths = (0, 1, 65_535, 65_536, 65_537, 0x100000, 0xffffffff, 0xffffffffffffffff)
+    for length in lengths:
+        replay.reset('guest HUD admission', [receive], [publish, reject])
+        replay.put(replay.bp + 0x8d0, '<Q', record)
+        replay.put(record + 0x10, '<QQ', pointer, length)
+        replay.put(core + 0x1fa8, '<QQ', pointer, pointer)
+        cpu.reg_write(reg.UC_X86_REG_R12, core)
+        stop = replay.run(receive[0])
+        assert stop == (publish if length <= 65_536 else reject)
+        if stop == publish:
+            assert cpu.reg_read(reg.UC_X86_REG_RDX) == pointer
+            assert cpu.reg_read(reg.UC_X86_REG_R8) == length
+
+        replay.reset('host HUD submission', [submit], [serialize])
+        replay.put(replay.bp + 0x1290, '<Q', core)
+        replay.put(core + 0x1100, '<I', 3)
+        replay.put(core + 0x1140, '<Q', 1)
+        replay.put(replay.bp + 0xf40, '<Q', pointer)
+        cpu.reg_write(reg.UC_X86_REG_RSI, length)
+        cpu.reg_write(reg.UC_X86_REG_RDI, replay.bp + 0x320)
+        replay.run(submit[0])
+        packet = cpu.reg_read(reg.UC_X86_REG_RDX)
+        kind, _, text, size = replay.get(packet, '<QQQQ')
+        assert (kind, text, size) == (0x8000000000000009, pointer, length)
+    return 2 * len(lengths)
+
+
 def check_protocol_13():
     proof, data, pe, ranges = installed_ranges(PROTOCOL_13)
     replay = NativeReplay(data, pe)
     cadence = replay_state_cadence(replay, proof, ranges)
     controls = replay_controls(replay, proof, ranges)
     party_context = replay_state_party_context(replay, proof['target'])
+    hud = replay_hud_bound(replay, ranges)
 
     base = ROOT / 'crates/azeroth-survivors-re/src'
     publish = ' '.join((base / 'gameplay/coop_publish.rs').read_text().split())
@@ -289,7 +326,12 @@ def check_protocol_13():
     assert '7..=9 => u8::from(argument != 0),' in reader
     assert '0 | 2 => argument,' in reader
     assert 'if matches!(kind, 0 | 3) { reader.word()? } else { 0 }' in reader
-    print(f'PASS: {cadence} State15 cadence cases, {party_context} party context cases, {controls} Control8 cases, '
+    assert '10 => NativeMessage::HudJson(reader.text()?),' in wire
+    guest = (base / 'gameplay/coop.rs').read_text()
+    hud_arm = guest.split('NativeMessage::HudJson(text) if guest && text.len() <= 65_536 => {', 1)[1]
+    hud_arm = hud_arm.split('NativeMessage::Resources(', 1)[0]
+    assert 'serde_json::from_str(&text)' in hud_arm and 'state.pick.receive_hud(&text,' in hud_arm
+    print(f'PASS: {cadence} State15 cadence cases, {party_context} party context cases, {controls} Control8 cases, {hud} HUD cases, '
           f'{replay.instructions} native steps and source route checks')
 
 

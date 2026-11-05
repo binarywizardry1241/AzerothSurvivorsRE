@@ -111,8 +111,8 @@ def source_guards():
     assert "cache.resumes.get(&client) != Some(&generation)" in overlay
     assert "state.pick.selected(time.elapsed_secs_f64());" in overlay
     receive = (root / "gameplay/coop.rs").read_text()
-    hud = receive.split("NativeMessage::HudJson(text) if guest =>", 1)[1].split("NativeMessage::Resources", 1)[0]
-    assert "state.pick.retry(time.elapsed_secs_f64());" in hud
+    hud = receive.split("NativeMessage::HudJson(text) if guest", 1)[1].split("NativeMessage::Resources", 1)[0]
+    assert "state.pick.receive_hud(&text, time.elapsed_secs_f64())" in hud
     assert "state.pick.retry(" not in overlay
     command = (root / "gameplay/coop_commands.rs").read_text()
     assert "argument, offer, |xy|" in command and "|| stale" in command
@@ -250,7 +250,7 @@ def check_current():
     assert 'self.retained = None;' in pick.split('pub fn receive_hud', 1)[1]
     assert 'now - since < 3.0' in pick and 'now - at < 3.0' in pick
     receive = (root / 'gameplay/coop.rs').read_text()
-    hud = receive.split('NativeMessage::HudJson(text) if guest =>', 1)[1].split('NativeMessage::Resources', 1)[0]
+    hud = receive.split('NativeMessage::HudJson(text) if guest', 1)[1].split('NativeMessage::Resources', 1)[0]
     assert 'state.pick.receive_hud(&text, time.elapsed_secs_f64())' in hud
     assert 'kind: 10, argument: 0, offer: 0' in hud
     command = (root / 'gameplay/coop_commands.rs').read_text()

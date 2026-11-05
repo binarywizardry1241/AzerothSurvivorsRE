@@ -849,7 +849,7 @@ fn receive(
                     recap::receive(&mut state.terminal_recap, &bytes);
                 }
             }
-            NativeMessage::HudJson(text) if guest => {
+            NativeMessage::HudJson(text) if guest && text.len() <= 65_536 => {
                 if let Ok(value) = serde_json::from_str(&text) {
                     state.hud = Some(value);
                 }

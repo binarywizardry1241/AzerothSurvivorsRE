@@ -107,6 +107,24 @@ The snapshot-builder Ghidra result
 has result SHA-256 `b20b5df6f2172d2cf391a5c2fe95b0092d4c7f76f62b13784d8bc3907e611eea`
 and matches the manifest's `state_game_snapshot` PE slice.
 
+## HUD10 guest admission
+
+The guest table cell at `0x147aedd1c` selects `0x145ecccec` for HUD10.
+The reader produces a lossy UTF-8 string through `0x146206820`. The guest
+then compares the decoded byte length against `0x10000` and rejects larger
+strings before the presentation call at `0x145eccd34` and the choice
+retry-clock call at `0x145eccd69`. The decoded limit is inclusive. The
+host recipient submission at `0x145ea9561` and tag-10 serializer at
+`0x14604fc94` pass the produced length directly. The byte limit belongs
+to guest admission.
+
+The rebuilt guest checks the length before JSON parsing or updating the
+missing-card request timer. The native replay passed sixteen guest and host
+cases spanning the boundary and larger synthetic lengths. It stops before
+presentation or serialization. Rust syntax parsing and source guards
+passed. Live delivery and original/rebuilt comparison remain open.
+[Guest receiver](../../crates/azeroth-survivors-re/src/gameplay/coop.rs).
+
 ## Engine7 and Control8
 
 Engine7 writes a little-endian u16 opcode and length-prefixed body. Its reader
