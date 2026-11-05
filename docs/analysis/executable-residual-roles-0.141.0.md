@@ -260,10 +260,39 @@ Some exact cells also have reviewed producers:
   supplies the generation and index conditions, with the remaining
   aliases of the wider dispatcher still under
   [`Q41-F01`](computed-transfers-0.141.0.md#q41-f01-declared-range-as-context).
+- **Windfury row 52613.** The low dword of the command passed to
+  `0x145eff450` selects index zero at `0x145eff498`. The command's high
+  dword is the strike count. The entry scans 64-byte effect rows for raw
+  tag 54 and subtype 4, saves the first matching index, and restores the
+  previous attribution after casting. The loop at `0x145eff79a` resolves
+  the original spell key for each strike and calls the ordinary cast at
+  `0x145eff86f`. The [historical Enhancement contract](enhancement-0.139.2.md)
+  and [live proc path](../../crates/azeroth-survivors-re/src/gameplay/mechanics/enhancement.rs)
+  already supply the separate strike count, attribution and cast reuse.
+- **Experience pickup row 52717.** Index zero at `0x145f22bcb` enters the
+  XP creation path. The stationary XP count at `0x145f22c63` has a threshold
+  of 45. At or above it, the selected 72-byte pickup-row scan compares
+  planar squared distances and keeps the earlier row on a tie. The write
+  at `0x145f2367a` adds the incoming amount to its `+0x24` field with
+  native u32 wrapping. The creation fallback emits unit entry 9001 and
+  selects display and scale at amount thresholds 4 and 20. The
+  [live pickup creator](../../crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs)
+  already connects that coalescing and spawn contract.
 - **Co-op actor row 52727.** The four returns of the producer at
   `0x145e5ff00` account for the four cells at `0x147af2f04`. Its zero
   return enters `0x145f25cd7`. The [actor input trace](computed-transfers-0.141.0.md#q41-f01-declared-range-as-context)
   establishes the live actor and two frame records.
+- **Rune pickup row 52758.** The cells for tags 3–5 at `0x145f2dd7d`
+  pass the collected kind to `0x145f36f10` after the shared removal call.
+  Kind 3 refreshes spell 23451 for 10 seconds and kind 4 refreshes spell
+  23505 for 15. Kind 5 passes half maximum health to the heal helper
+  and publishes spell 23493. The existing [rune consumer](../../crates/azeroth-survivors-re/src/gameplay/mechanics/pickups.rs)
+  already supplies the same spells and separate heal/refresh paths.
+- **Swarm row 52772.** Index zero at `0x145f321b8` uses the two original
+  f32 constants 2.5 and 12.0 at `0x145f321ba..0x145f321ca` before
+  multiplying by the density scale, truncating to an unsigned count,
+  and applying the minimum of one. The [live wave count](../../crates/azeroth-survivors-re/src/enemies/waves.rs)
+  uses the same operation order for `Pattern::Swarm`.
 - **Guardian hazard row 52804.** The raw action tag 35 normalizes to
   index 32 at `0x145f44194`. The unsigned guard sends it through
   `0x145f44277` to extend the active actor deadlines. The two continuations
@@ -281,11 +310,59 @@ Some exact cells also have reviewed producers:
   [root action](../../crates/azeroth-survivors-re/src/bosses/raid_actions.rs)
   and [cast block](../../crates/azeroth-survivors-re/src/bosses/cast_presentation.rs)
   already supply those inputs and the same deadline arithmetic.
+- **Ward warning row 52808.** Main action tag 22 enters `0x145f4792a`.
+  The producer reads the first payload byte at `0x145f47949`, spawns the
+  wards, then uses that byte at `0x145f48c45` to select one of five warnings.
+  The 20-byte table at `0x147af305c` has SHA-256
+  `5381138f0ec42c1aa1d09d940f4009f059d39a0a6a63f1955ea88efd46e883aa`.
+  The index-zero entry loads the 31-byte egg warning at `0x147aefe88`.
+  All five paths reach the localization call at `0x145f491e9` and the
+  localized speaker/body constructor at `0x145f4921f`.
+  A schedule walk from the 13 zone records at `0x1473a06b0` and 41 guardian
+  records at `0x1473a9948` reaches 501 unique action descriptors through
+  moves, phases, alternates and nested action lists. Its fourteen tag-22
+  rows are byte-identical as a multiset to the retained
+  [ward payloads](evidence/0.109.0/raid-wards/manifest.json). Three have
+  kind 0 (eggs), five have kind 1 (healing), and six have kind 2 (shielding).
+  The [live ward producer](../../crates/azeroth-survivors-re/src/bosses/raid_wards.rs)
+  supplies those three warnings. The additional kind-3 and kind-4
+  warning cells have no producer in the selected authored ward rows.
+- **Scripted callback row 52849.** The dispatch at `0x145f4d75c` selects
+  the part with the matching hit ID and chooses how to read its anchor.
+  Index 8 takes the inline XY at part `+0x30/+0x34` through `0x145f4d92c`.
+  The adjoining vector cases at `0x145f4d90f` use the first point if present,
+  or zero XY if empty. The join stores the selected XY at `+0x20` of the
+  56-byte callback record at `0x145f4d80d`. The selected callback
+  publication is identified. Other authored part geometry variants and
+  their callbacks retain separate evidence.
+- **Status row 52890.** Index zero at `0x145f5a24e` reaches the immediate
+  return at `0x145f5a250`. The dispatcher reads the tag from the triplet
+  passed in R8, including the [kind-2 direct status route](status-weakening-0.139.2.md#ground-periodic-and-self-aura-payloads-in-01410).
+  The zero tag supplies no secondary effect in the rebuilt status path.
+- **Milestone conversion row 53096.** Raw effect tag 17 normalizes to
+  index 5 at `0x145f8e9c7`. After the condition call at `0x145f8ea02`,
+  the selected path finds a live victim by GUID and multiplies the
+  effect fraction copied from row `+0x28` by victim maximum health at
+  `0x145f9036c`. It publishes damage with the original spell and restores
+  the prior source-kind byte after the call at `0x145f903a2`. The current
+  authored effect vectors contain raw-17 rows for Titan at `0x1476fe730`,
+  Hammer of the Righteous at `0x147700e90`, and Shadow Weaving at
+  `0x14770af48`. Their f32 coefficients are 0.02, 0.015, and 0.005.
+  The rebuilt [milestone callback](../../crates/azeroth-survivors-re/src/gameplay/mechanics/milestones.rs)
+  supplies the translated tag-5 conversion. This selected consumer does
+  not establish every dynamically generated raw-17 producer.
 - **Scripted impact row 53146.** Index 1 at `0x145fa1a21` enters the
-  existing [Kirtonos impact-mode 1 path](scholomance-kirtonos-0.141.0.md).
+  shared radial push. Its [Kirtonos consumers](scholomance-kirtonos-0.141.0.md)
+  and [Ras Chill Nova producer](scholomance-ras-0.141.0.md)
+  reach the same post-damage movement path.
 - **Scripted root row 53143.** Index 4 of that same table reaches
-  `0x145fa16a3`. The call at `0x145fa16b3` passes the seated Game, source
-  GUID, spell and duration to `0x145f49e90`. The helper requires run phase
+  `0x145fa16a3`. The 20-byte table at `0x147af3864` has SHA-256
+  `d98cf07ef787236927f9e15c53e917445d1f0df099aa9d8c7665d86d54157401`.
+  The hit stage reads mode and duration at `+0x68/+0x6c` of the 168-byte
+  part at `0x145fa17b4..0x145fa17c0`, calls the common damage helper at
+  `0x145fa1a06`, then dispatches. The call at `0x145fa16b3` passes the
+  seated Game, source GUID, spell and duration to `0x145f49e90`.
+  The helper requires run phase
   1 and rejects requests during the seated hero's cooldown. Its first
   five accepted roots use the f32 factors `1.0`, `0.8`, `0.6`, `0.4` and
   `0.2` at `0x147aef4f0`. The sixth request clears the count and sets an
@@ -298,7 +375,30 @@ Some exact cells also have reviewed producers:
   and [hazard batch](../../crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs).
   The original helper span `0x145f49e90..0x145f4a069` has SHA-256
   `55fa41066323ec44330c411f649f2609c9087b9831f685c6a8a77bbc5f270531`.
-  The mode-4 descriptor writer and full scripted admission remain open.
+  The declared and Ghidra reference inventories agree on 25 direct calls to
+  the attack publisher `0x145f9e450`; the extra Ghidra reference at
+  `0x148ed8408` is the PE runtime-function record. The publisher's part
+  loop writes timing fields at `+0x8c/+0x98/+0x9c`. The selected direct
+  callers and their part constructors supply modes 0–3 or an empty part
+  vector. The nonzero writes are Ras's mode 1 at `0x145dbc56b`, Kirtonos's
+  at `0x146011faf` and `0x146013c3f`, and Krastinov's mode 2/3 at
+  `0x146015040` and `0x146014894`. The bounded Ghidra query for
+  `0x145fa0e20..0x145fa20cc` used the exact raw input SHA-256
+  `8388b7642f34fc409f32d824b5856e2128677a34854f02bc442ba8cc287a42c5`
+  and returned evidence
+  `ev_da92baf7e4e3725b5a2b62d490093aaf182758e186b1a2543a761d69f715ced1`,
+  result SHA-256 `6b97e93466ea6e9acaff67bda8609f55e7ff80b28cc21877bad3bb6bdc5af4fb`.
+  The signed dispatch cells and external calls come from the original PE.
+  No mode-4 writer appears in the selected publisher calls. A wider write
+  or alias to the live part vector would need its own admission proof.
+- **Imp target row 53228.** The table at `0x147af38a8` indexes the
+  companion's special kind byte. Index 1 scans 56-byte periodic rows at
+  `0x145fb3133..0x145fb316a` for spell 348 at row `+0x18`. Exhaustion of
+  that scan adds f32 `0.8` from `0x146554134` at `0x145fb3364`.
+  A matching row bypasses the bonus regardless of its remaining ticks.
+  The [target scorer](../../crates/azeroth-survivors-re/src/run_effects/demons.rs)
+  and [live periodic projection](../../crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs)
+  already supply this Imp preference.
 - **Choice row 53291.** The
   [five-case constructor proof](q41-reference-frontier-0.141.0.md#choice-card-variants)
   already supplies the admitted payload tags and the live card producer.
@@ -319,9 +419,9 @@ instructions and data supply the exact case and row bindings.
 Remaining work starts from the exact operand at each reviewed transfer.
 Follow async state writers for 451/466/467, UI action and variant
 constructors for 1124/1555/1587/1761/1845/1999, actor/attack/talent
-fields for 52613, 52710–52717, 52758/52772, 52849/52890, 53096,
-53143 and 53228, and shape or content-row producers for 52782,
-52786–52788, 52808, 52984 and 54188/54224. The encoded cells
+fields for 52710–52714, any additional
+mode-4 part writer for 53143, and shape or content-row producers for 52782,
+52786–52788, 52984 and 54188/54224. The encoded cells
 establish a local incoming path for each row. Admission, adjacent table
 ends, full semantics and source correspondence keep their own evidence.
 

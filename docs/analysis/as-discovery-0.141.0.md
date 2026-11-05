@@ -15,8 +15,12 @@ guarded-table accounting.
 | Unassigned code and data | The [residual manifest](evidence/0.141.0/native-residuals.json) and [queue](unknown-recovery-0.141.0.md) preserve exact ranges, ownerless sites and computed destinations. The [declared-extents review](executable-residual-roles-0.141.0.md#incoming-cells-for-the-remaining-36-ranges) identifies incoming signed-relative cells for all 36 rows left by the earlier direct and guarded dispatch joins. The [reference review](q41-reference-frontier-0.141.0.md) preserves remaining typed caller and source questions. |
 | Source and contract reconciliation | The [connection ledger](coverage/exe-connections.json) covers 83 diagnostic modules. Thirty-four have registered current bounded contracts, including the Guardian leash and reset path. The [module register](module-contracts-0.141.0.md) separates partial source, exact contracts, and outstanding correspondence. The [release review](release-review-0.141.0.md) retains all eleven 0.141.0 assessments. |
 
-The [graph registry](coverage/as-discovery.json) records 11,633 nodes,
-66,007 edges, 3,355 pending entries and ten retained scopes with source drift.
+The [graph registry](coverage/as-discovery.json) records 11,637 nodes,
+66,013 edges, 3,355 pending entries and ten retained scopes with source drift.
+It attributes the selected binding and creature voice resource rows to
+[#21](../verification-needed.md#gap-21) and [#182](../verification-needed.md#gap-182).
+The [override trace](mpq-mount-0.141.0.md#registered-resource-overrides)
+owns the resolved consumers and their source limits.
 
 Each semantic stage retains an open frontier. The
 [incremental record](evidence/0.141.0/incremental-correspondence.json) preserves

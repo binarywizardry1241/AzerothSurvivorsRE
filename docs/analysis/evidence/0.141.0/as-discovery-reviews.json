@@ -624,6 +624,50 @@
   ],
   "finding_bindings": [
     {
+      "id": "stored-level-binding-override",
+      "selectors": [
+        "Q41-I01:resource_path:63"
+      ],
+      "finding_ids": [
+        21
+      ],
+      "conclusion": "The exact XML key joins the startup binding override and ordinary reader. The corresponding default member is shared by the VM and account-data conversion.",
+      "evidence": {
+        "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/inventory.json",
+        "sha256": "ce00895479bdd89872b3bf6523e439a205622b832f9daf1371ba3ccb6fe956ba"
+      },
+      "proof": {
+        "selector": [
+          "embedded_candidates",
+          "resource_path",
+          63
+        ],
+        "sha256": "0f58dae3d206d3b0ee935e33de83eda8c0efafa4616062d3107b708f33b6b725"
+      }
+    },
+    {
+      "id": "creature-voice-override",
+      "selectors": [
+        "Q41-I01:resource_path:227"
+      ],
+      "finding_ids": [
+        182
+      ],
+      "conclusion": "Only the length-bound CreatureSoundData key within the packed resource row reaches the native creature voice override. The preceding spell label has a separate role.",
+      "evidence": {
+        "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/inventory.json",
+        "sha256": "ce00895479bdd89872b3bf6523e439a205622b832f9daf1371ba3ccb6fe956ba"
+      },
+      "proof": {
+        "selector": [
+          "embedded_candidates",
+          "resource_path",
+          227
+        ],
+        "sha256": "edc9e44fd3dfd3888a525e98cd82a569062bf14d47784bc40804c7f7bb956d9f"
+      }
+    },
+    {
       "id": "current-paperdoll-core-resource",
       "selectors": [
         "Q41-I01:resource_path:224"

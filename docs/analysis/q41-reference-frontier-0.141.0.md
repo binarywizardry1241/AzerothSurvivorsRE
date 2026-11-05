@@ -40,6 +40,52 @@ source. The wider [enemy constructor finding](../CURRENT-STATE.md#gap-139)
 retains its own applicability limits. The other three operands do not
 establish a missing Survivors mechanic or a source defect.
 
+### Marker geometry and local continuations
+
+The 2,752 local branch records span 46 AS-Location-associated PE extents.
+The 285 branches in `0x1400c7280..0x1400ccbf6` are the largest
+marker-associated group. Two early targets separate geometry from vector
+storage. The branch at `0x1400c7f90` skips freeing an empty allocation
+before `0x1400c7fa8` calculates the edge width as
+`min(0.3 * input, 0.9) * scale` and passes it to the arc geometry path.
+The branch at `0x1400c800c` skips vector growth when capacity already
+covers the append. Both paths lead to the same next geometry operation.
+
+The guarded dispatch at `0x1400ca5b9` subtracts five from the original
+tag and admits normalized indices 0 through 4. The five signed cells at
+`0x146567804` hash to
+`e7cb397c8acf4c87c51e737e2039331a58a7a4e052f6326b40ee209ced33afdf`.
+Raw tags 5 and 6 read inline floats at row `+0xb0..+0xbc`. Raw tag 7
+uses a point vector at `+0x38` with a count at `+0x40`. It requires
+more than two points and ordered progress above 0.01 before generating
+filled vertices. It divides each XY by the count before adding to the
+centroid. The vector and scalar loops at `0x1400cc709` and
+`0x1400cc7e4` then apply `(point - centroid) * progress + centroid`.
+Raw tags 8 and 9 share the empty fill route at `0x1400caf4b`.
+
+The native part serializer's dispatch at `0x145f9a1a8` sends case 7 to
+`0x145f9a5ee`, which builds the vector payload and joins at
+`0x145f9b121`. The string reference at `0x145f9b16c` passes exactly
+four bytes of `poly` and the call from `0x145f9b242` supplies the
+`v` field. Case 6 instead publishes `rotor` from `0x145f9a977`.
+These are distinct part serialization lanes.
+
+The [rebuilt marker renderer](../../crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs)
+has the same selected arc-width expression and separate scripted fill
+and body passes. The current `Field` and `Grid` use separate source
+paths. Follow the live attack constructors and typed receiver from the
+`poly` and `rotor` serialization sites before assigning either to an
+encounter. Other local branches retain their separate state questions.
+
+Ghidra Evidence
+`ev_7abe0626246bc1e32c32f2165d142d90a4450377fed91854c04851ae01817669`
+is bound to the exact 22,902-byte owner slice at file offset `0xc6680`,
+SHA-256 `a9225c4fb71094594a13fede3babaca05cc32f75e8df9235dbc980616f8170d1`.
+The result SHA-256 is
+`d44bab9924a6c18a6396d82a37fe9a9c409c42d2e72d9f506b852d3ebc61e2ae`.
+The PE table and continuation instructions supply the indirect cases
+outside the raw-slice pseudocode.
+
 ## Q41-A02: complement references and imports
 
 All 13,280 non-indirect complement records have a saved source-body owner:

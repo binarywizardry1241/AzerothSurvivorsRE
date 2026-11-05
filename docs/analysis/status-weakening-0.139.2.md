@@ -41,10 +41,23 @@ Battle Shout at `0x1473a43a8` supplies spell 6673 and tag 8.
 | Dispatch | Selected consumer |
 | --- | --- |
 | `0x145f53e53` | After the position-bearing object call at `0x145f53e10`, the selected tag, magnitude and duration are written at `+0x20/+0x24/+0x28` of an 88-byte record in the ground queue at Game `+0x6e8`. Tag 1 scales duration. Tag 11 scales both lanes and clamps magnitude at the original f32 0.9. The rebuilt kind-3 cast passes `scaled_hit_effect` to `GroundPeriodic::new` through the existing object path. |
+| `0x145f5402e` | Cast kind 2 enters `0x145f525fd`. After the immediate hit at `0x145f5400f`, the selected status triplet at frame `+0x40` reaches `0x145f5a1f0` with the same victim, spell ID and power argument at `0x145f54184`. The rebuilt radius cast supplies the scaled status to the direct hit path. |
 | `0x145f546c9` | The selected triplet at frame `+0xf0` is stored at `+8` of a 32-byte aura row, with zero source, spell ID and expiry at `0x145f557b0..0x145f557e2`. The spell-specific continuation checks `battle_shout` and passes this triplet to `0x145f0f8b0`. The rebuilt kind-9 cast uses `apply_self_buff_with_party`, refreshes its self aura, and hands Battle Shout's payload to its party consumer. |
+| `0x145f5499b` | Cast kind 6 enters `0x145f52847`. At `0x145f54b16` the target loop passes the triplet from frame `+0x118` and an independent four-word periodic record from frame `+0x40` to the projectile builder `0x145f5d990`. The periodic record carries variant 1, total power, duration and tick count. The rebuilt kind-6 cast puts `DotPlan::words` and `scaled_hit_effect` into the corresponding separate projectile fields. |
 
-The shared cap is at `0x1465541fc` and both tag-11 arms use it. This
-classifies the two payload routes independently of the nearby Kill Command
-Locations. The scope is limited to the typed construction and publication
-boundaries. It leaves full recipient/timer correspondence and original/rebuilt
-behavior open.
+The immediate and projectile tables at `0x147af323c` and `0x147af318c`
+each have eleven signed cells and nine distinct destinations. A byte replay
+of the two guards, all 22 cells and the merge calls establishes the shared
+policy. Raw tag 1 scales duration, tags 2, 3 and 7–10 scale magnitude, and
+tag 11 scales duration and clamps scaled magnitude against the f32 0.9 at
+`0x1465541fc`. Raw tags 4–6 and tags outside 1–11 forward the original
+triplet. The 115 consecutive 120-byte ordinary ability definitions at
+`0x1473a40d8..0x1473a76c0` have SHA-256
+`49e69f818cbdfa9877b49303f4c571b859b70264437c5a214245557cb45f8e31`.
+Within this table, raw tag 11 belongs to kind-2 Demoralizing Shout and kind-6
+Insect Swarm. Raw tag 10 belongs only to kind-9 Demonic Empowerment, whose
+rebuilt self-buff path uses its separate uncapped effect producer. This
+explains why the reconstructed tag-10 weakening clamp does not cap that buff.
+The [scaled status and cast consumers](../../crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs)
+already supply these two typed paths. Full recipient/timer correspondence and
+original/rebuilt behavior remain open.

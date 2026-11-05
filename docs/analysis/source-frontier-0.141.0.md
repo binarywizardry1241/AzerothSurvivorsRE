@@ -131,6 +131,50 @@ The full inventory remains intact. Unresolved type layouts,
 registration lifetimes, resource joins and dynamic consumers remain under
 their individual findings and #41.
 
+### Packed UI bundle names
+
+The nine encoded references inside Q41-I01 module namespace selector 8
+each pass a separate name pointer in RDX and byte length in R8D to
+0x145bff950. The slices cover the complete 401-byte packed row. The
+representative caller at 0x14025e810 checks a 16-byte type key, returns the
+existing index on a match, and otherwise appends the helper's 40-byte result.
+All nine callers use the same output stride. The helper's duplicate-component
+diagnostic at 0x145bffe80 and source location at 0x14735c080 identify
+Bevy 0.18.1 bundle metadata. The pinned Bevy BundleInfo constructor uses
+the name in that diagnostic and builds the explicit and required component
+lists. The nine names therefore identify bundle registrations.
+
+| Name suffix | LEA | Name bytes |
+| --- | --- | ---: |
+| screens::hud::Confirm | 0x14025e948 | 40 |
+| screens::coop::StaffName | 0x14025ec38 | 43 |
+| screens::picker::ChosenZone | 0x14025ef28 | 46 |
+| screens::picker::Action | 0x14025f218 | 42 |
+| screens::update::CheckButton | 0x14025f508 | 47 |
+| screens::options::TipText | 0x14025f7f8 | 44 |
+| screens::talents::TalentAct | 0x14025fad8 | 46 |
+| screens::scrollbar::ToEnd | 0x14025fdc8 | 44 |
+| bevy_render::view::window::screenshot::Screenshot | 0x1402600b8 | 49 |
+
+The separate 19 relocated pointer/length uses in namespace selectors
+1, 4, 6, and 7 select the Discord, Picker, XInput and Options module names,
+the seven-byte message field and the Options Rust source path. The Picker
+instruction at 0x14014dc5d passes that exact message field as a seven-byte
+entry to 0x14637e8b0. The packed suffixes have separate consumers.
+These checks establish the selected metadata boundaries. UI action timing
+and system scheduling remain with the individual screen findings.
+
+The two Ghidra 12.1.4 results use exact original PE unwind slices.
+
+| Start VA / bytes | Slice SHA-256 | Shared result SHA-256 |
+| --- | --- | --- |
+| 0x14025e810 / 702 | 6c8e4d2cef9edbde4718f74ebfdcdaa3c405e3121136a125222343e6f7b226c5 | 6e7bf8d89cd62ad3c9afd43be34697928f491453e90a320100c9ee806a4725ac |
+| 0x145bff950 / 1,837 | 5889690028dfb6798c68429d0d741afb6ab99a1472454ded708246bb01b7f17c | 77ddb2e3e15b45398a561f8292a039a4ea6abd8ef098c1d991725993d6bdd99e |
+
+The [MPQ override trace](mpq-mount-0.141.0.md#registered-resource-overrides)
+also connects Q41-I01 resource selectors 63 and 227 to the exact native
+binding and CreatureSoundData file producers and ordinary readers.
+
 ### Builtin glue and FrameXML resource selectors
 
 The ten 40-byte file descriptors at file offsets `0x6712628..0x67127b8`
