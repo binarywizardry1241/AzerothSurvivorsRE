@@ -67,7 +67,70 @@ actual instruction boundaries. The exact producers narrow their next actions.
 | --- | --- |
 | `0x145ef89a5` | Prefix `0x145ef8993..0x145ef89a7` reads the command byte at `[r8]`. The first eleven signed cells at `0x147af2de8..0x147af2e14` all enter the local party command extent `0x145ef8950..0x145ef8e32`. Their SHA-256 is `a0e63d7be81906edae734b07acbe193d898bc3cb5ef0090021da341693541bf9`. Cell 11 of the broad candidate leaves that extent and lands inside an instruction. The known selection, Skip and refresh cases retain their [existing source owners](coop-command-ingress-0.141.0.md#guest-gossip-option-ingress) and [party control handler](../../crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs). Follow actual command constructors for any remaining alias. |
 | `0x145f1bcf4` | Prefix `0x145f1bccd..0x145f1bcf6` loads Game bytes `+0x2a5` and `+0x2a6`. Zero `+0x2a5` takes a separate path. The other path uses `+0x2a6` as the index into `0x147af2ec8` and carries `+0x2a5` into the destinations. This lies in the [hit source and combat-packet owner](combat-meter-attribution-0.141.0.md#source-selection). Follow the scoped writes to both fields before treating any finite prefix as the full domain. |
-| `0x145f25cd5` | Prefix `0x145f25caa..0x145f25cd7` supplies a live actor and two frame records to `0x145e5ff00` and uses its returned AL. The selected producer has concrete 0, 1, 2 and 3 return paths. The first four signed cells at `0x147af2f04..0x147af2f14` all enter the same [party actor owner](coop-incoming-0.141.0.md#shared-inputs-and-recipient-state). Their SHA-256 is `06a6fc45ae1c64a441d32b5da67be675ad45a384200eedce585f9215b13f2ecf`. Follow the position/state fields and these four branch consumers to establish their specific source behaviors. |
+| `0x145f25cd5` | [Guardian wake and leash](#guardian-wake-and-leash) resolves all four return tags of `0x145e5ff00`, their caller records, and their source consumers. |
+
+### Guardian wake and leash
+
+The [party actor owner](coop-incoming-0.141.0.md#shared-inputs-and-recipient-state)
+loads the lair position at `0x145f25b63` or substitutes the sampled actor
+position for an invalid lair index. At `0x145f25cbe` it passes the actor,
+home, selected player position and clock to `0x145e5ff00`. The four signed
+cells at `0x147af2f04..0x147af2f14` have SHA-256
+`06a6fc45ae1c64a441d32b5da67be675ad45a384200eedce585f9215b13f2ecf`.
+
+| AL | Destination | State and consumer |
+| ---: | --- | --- |
+| 0 | `0x145f25cd7` | Sleeping. Wait for any positive-duration spline to finish and queue a home trip only if the XY distance exceeds two. Keep the existing movement refresh deadline. |
+| 1 | `0x145f25e88` | Newly awake. Damage wakes the guardian from any distance. Otherwise it wakes within three XY units of home and twenty XY units of the player. Queue its GUID for the later engagement consumer and fall through to ordinary combat. |
+| 2 | `0x145f261da` | Outside the awake leash. Restore current health to maximum, clear the selected state and rebuild recurring timers from half their repeat values. Queue movement home even for a zero or short trip, set the refresh deadline to arrival and clear the cast state. A second queue carries the reset GUID. |
+| 3 | `0x145f25f23` | Continue the admitted combat path. An awake guardian within the inclusive 97.5 XY leash returns this tag. |
+
+The cooperative branch at `0x145f25b94` searches other hero records only
+when the awake guardian's selected hero is outside the leash. The helper
+`0x145efd4c0` admits phase-one heroes within 97.5 XY units of the lair and
+chooses the nearest by squared XY distance, preserving the first equal row.
+The caller changes actor slot `+0x118`, sets movement refresh `+0x1d4` to
+the clock and copies the alternative position to the leash decision record.
+The ordinary combat continuation still reads the original active hero's
+position at `[rbp+0x70]` and the original active Game lane. The rebuilt
+[guardian adapter](../../crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs)
+uses the alternative for the leash check, and the
+[actor frame](../../crates/azeroth-survivors-re/src/gameplay/mechanics/actor_frame.rs)
+applies the new slot after it drains already collected actions.
+
+The reset GUID consumer at `0x145f29603` re-finds the actor after the
+engagement queue. It takes the 16 aura IDs from actor `+0x158`, removes
+the nonzero IDs in order except Darkmantle 8647, and sends field 22 with
+the ceiling of maximum health. The common aura writer skips a dead actor
+at `0x145f356fa`. The rebuilt guardian reset now runs both publications
+through the existing aura and unit-field routes. The separate idle and
+reset movement paths reuse the active slow and whirlwind speed calculation.
+
+| Preferred PE VA range | SHA-256 |
+| --- | --- |
+| Guardian selector `0x145e5ff00..0x145e602b6` | `1ca8f2c20dd809e276cb88dac94d8c00f39e60bf160c36c83174fec6422c4b6f` |
+| Cooperative target selector `0x145efd4c0..0x145efd635` | `02ea4214353080a25bd02271e0a33b506290659d5036143131400445ba11498b` |
+| Cooperative admission `0x145f25b94..0x145f25c35` | `3b0f0e1250b99963306821d9ef0abb362c61db577df63b531efa69f267071547` |
+| Sleeping return `0x145f25cd7..0x145f25e88` | `26e4da00a0c5ac3e1642a98fbe16810182ea340ac6a4e716aa37642811b6582d` |
+| Reset queues `0x145f261da..0x145f26406` | `c99a6bc89e83034aaa798566ea061ec00b3c02b72f6f2f9c75f608724f920f06` |
+| Reset publication prefix `0x145f29603..0x145f29785` | `3ad1a75b0424efd6f930ce079eea7b4e56988d7ba66d6fe4441a11aa8c45846d` |
+
+The saved Ghidra query at `0x145e5ff00` returned Evidence
+`ev_37344173f0ab6a0008ee539bb8e18f4172cc174d5d74f67a438540222d3f98c2`,
+result SHA-256 `b6f938dfe6b879a7b9d69933899c33ece4f627842afbd9bab8fe9935ae0d175e`.
+The query journal's 950-byte raw subject matches the selected EXE at file
+offset `0x5e5f300`. The code/data replay follows the caller and table outside
+that slice and supplies allocator, ceiling and packet-builder seams.
+
+```sh
+PYTHONPATH=runtime/tests/query-python-deps \
+  python3 -B scripts/check-raid-guardian-lifecycle.py --leash
+```
+
+The checker passed 26 bounded cases with 476 distinct instruction
+observations across the four replay families. Compilation, terrain and
+rendered movement, health and aura packets, and original/rebuilt co-op
+actor-pass ordering remain in [#89 verification](../verification-needed.md#gap-89).
 
 ### Three additional CreatureQuery tables
 

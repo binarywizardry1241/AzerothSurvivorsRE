@@ -265,6 +265,7 @@ impl Mechanics {
         frame: &mut actor_frame::ActorFrame,
     ) {
         let mut due = Vec::new();
+        let cooperative = self.has_party();
         {
             let row = &mut self.actors[index];
             let Some(guardian) = self.guardian_state.actors.get_mut(&row.guid) else {
@@ -294,17 +295,30 @@ impl Mechanics {
                         ai::CombatModifiers::default(), guardian.raid.hold_until, |_, _| {}));
                 return;
             }
+            let home = guardian.home;
+            let leash_target = if cooperative && guardian.ai.awake
+                && native::ai::distance_xy(home, gpos(player)) > native::ai::LEASH_RADIUS
+            {
+                self.coop.snapshot.guardian_leash_target([home.x, home.y, home.z])
+            } else {
+                None
+            };
+            let leash_player = if let Some(hero) = leash_target {
+                frame.guardian_retargets.push((row.guid, hero.slot as u8));
+                row.actor.next_movement_at = self.clock;
+                Position::from(hero.position)
+            } else {
+                player
+            };
             match guardian.ai.evaluate(
                 gpos(position),
-                guardian.home,
-                gpos(player),
+                home,
+                gpos(leash_player),
                 row.health,
                 row.maximum_health,
             ) {
                 GuardianDecision::Idle => {
-                    if self.clock >= row.actor.movement.started_at + row.actor.movement.duration {
-                        return_home(row, guardian.home, self.clock, frame);
-                    }
+                    return_home(row, home, self.clock, false, frame);
                     return;
                 }
                 GuardianDecision::Reset { restored_health } => {
@@ -316,7 +330,8 @@ impl Mechanics {
                     row.periodic.clear();
                     row.actor.slow = ai::TimedReduction::default();
                     row.actor.casting = false;
-                    return_home(row, guardian.home, self.clock, frame);
+                    return_home(row, home, self.clock, true, frame);
+                    frame.guardian_resets.push(row.guid);
                     return;
                 }
                 GuardianDecision::Engage => {
@@ -377,6 +392,27 @@ impl Mechanics {
         }
     }
 
+    pub(super) fn resolve_guardian_resets(&mut self, guids: Vec<u64>) {
+        let effects = &mut self.effect_state.generic;
+        for guid in guids {
+            let Some(row) = self.actors.iter().find(|row| row.guid == guid) else {
+                continue;
+            };
+            if !row.actor.dead {
+                let spells = effects.aura_slots.get(&guid).map_or([0; 16], |slots| slots.spells);
+                for spell_id in spells {
+                    if spell_id != 0 && spell_id != callbacks::DARKMANTLE_AURA {
+                        self.events.extend(effects.aura_event(guid, spell_id, false, &row.periodic));
+                    }
+                }
+            }
+            self.events.push(RunEvent::ActorFields {
+                target: guid,
+                fields: vec![(22, row.maximum_health.ceil() as u32)],
+            });
+        }
+    }
+
     pub(super) fn drain_guardian_strength(&mut self) {
         let mut strength = std::mem::take(&mut self.guardian_state.pending_strength);
         let mut jewelry = std::mem::take(&mut self.guardian_state.pending_jewelry);
@@ -415,23 +451,28 @@ impl StrengthPort for Mechanics {
     }
 }
 
-fn return_home(row: &mut RunActor, home: native::Position, now: f32,
+fn return_home(row: &mut RunActor, home: native::Position, now: f32, reset: bool,
     frame: &mut actor_frame::ActorFrame) {
-    let current = row.actor.movement.position_at(now);
+    let movement = row.actor.movement;
+    let current = movement.position_at(now);
     let dx = home.x - current.x;
     let dy = home.y - current.y;
     let distance = (dx * dx + dy * dy).sqrt();
-    if distance <= 2.0 {
+    if !reset && (!(distance > 2.0)
+        || (movement.duration > 0.0 && now < movement.started_at + movement.duration))
+    {
         return;
     }
-    let duration = distance / row.actor.slow.apply(row.actor.movement_speed, now).max(0.5);
+    let duration = distance / row.actor.movement_speed_at(now).max(0.5);
     row.actor.movement = ai::Movement {
         from: current,
         to: epos(home),
         started_at: now,
         duration,
     };
-    row.actor.next_movement_at = now + duration;
+    if reset {
+        row.actor.next_movement_at = now + duration;
+    }
     frame.collect(row.guid, vec![ai::Action::Move(row.actor.movement)]);
 }
 

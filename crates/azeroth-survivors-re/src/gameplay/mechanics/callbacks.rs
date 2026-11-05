@@ -10,7 +10,7 @@ use behavior::targeting;
 mod milestones;
 
 pub(super) const FROST_SHOCK_AURA: u32 = 8056;
-const DARKMANTLE_AURA: u32 = 8647;
+pub(super) const DARKMANTLE_AURA: u32 = 8647;
 
 #[derive(Debug, Default)]
 pub(super) struct State {

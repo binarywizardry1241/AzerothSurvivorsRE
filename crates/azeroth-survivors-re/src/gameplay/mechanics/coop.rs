@@ -1056,7 +1056,7 @@ pub(super) struct CoopSimulation {
     local_name: String,
     local_input: Option<PartyInput>,
     pub(super) active_slot: u8,
-    snapshot: Party,
+    pub(super) snapshot: Party,
     meter: HashMap<
         u64,
         (

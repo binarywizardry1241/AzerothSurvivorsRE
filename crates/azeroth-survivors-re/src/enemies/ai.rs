@@ -402,6 +402,10 @@ impl Actor {
         actions
     }
 
+    pub fn movement_speed_at(&self, now: f32) -> f32 {
+        self.raid_movement(self.slow.apply(self.movement_speed, now), now)
+    }
+
     fn raid_movement(&self, speed: f32, now: f32) -> f32 {
         if now < self.whirlwind_until { speed * f32::from_bits(0x3faccccd) } else { speed }
     }

@@ -98,7 +98,9 @@ impl Default for GuardianAiState {
     }
 }
 
-fn distance_xy(a: Position, b: Position) -> f32 {
+pub const LEASH_RADIUS: f32 = 97.5;
+
+pub fn distance_xy(a: Position, b: Position) -> f32 {
     let dx = a.x - b.x;
     let dy = a.y - b.y;
     // The EXE uses these scalar multiplies, add and sqrt, not hypotf.
@@ -119,7 +121,7 @@ impl GuardianAiState {
         if self.awake {
             // Leash is the player's distance from home, rather than the
             // guardian's distance from home or from the player.
-            if distance_xy(home, player) > 97.5 {
+            if distance_xy(home, player) > LEASH_RADIUS {
                 self.awake = false;
                 return GuardianDecision::Reset {
                     restored_health: max_health,

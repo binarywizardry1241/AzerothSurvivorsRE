@@ -7,7 +7,7 @@ or game process. --stage writes unique ignored candidate evidence.
 from script_sources import load_script
 import argparse,hashlib,importlib.util,json,math,re,struct,sys
 from pathlib import Path
-from coverage_common import ROOT,target_bytes
+from coverage_common import ROOT,latest_target,target_bytes
 sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE,UC_HOOK_MEM_UNMAPPED
@@ -40,7 +40,7 @@ def current_owners(mod,target,raw,span):
  return dict(PE_exception_owners=[span(a,b-a)for a,b in expected],direct_calls=edges)
 
 class Machine:
- def __init__(self,raw):
+ def __init__(self,raw,ranges=RANGES):
   self.raw=raw;self.u=Uc(UC_ARCH_X86,UC_MODE_64);self.md=Cs(CS_ARCH_X86,CS_MODE_64);self.base=0x70000000;self.u.mem_map(self.base,0x200000);self.mapped=set()
   self.game=self.base;self.actor=self.base+0x10000;self.frame=self.base+0x20000;self.lairs=self.base+0x30000;self.world=self.base+0x40000;self.heap=self.base+0x80000;self.stack=self.base+0x1e0008;self.stop=self.base+0x1ff000
   self.seams={};self.observers={};self.ends=set();self.family='';self.visited={};self.heap_cursor=self.heap
@@ -53,9 +53,9 @@ class Machine:
    if a in self.ends:self.u.emu_stop();return
    if a in self.seams:self.seams[a]();self.ret();return
    if a in self.observers:self.observers[a]()
-   assert any(lo<=a<hi for lo,hi in RANGES.values()),('unexpected code',hex(a))
+   assert any(lo<=a<hi for lo,hi in ranges.values()),('unexpected code',hex(a))
    i=next(self.md.disasm(bytes(uc.mem_read(a,n)),a))
-   if i.mnemonic=='call':assert i.op_str.startswith('0x')and(int(i.op_str,16)in self.seams or int(i.op_str,16)in[a for a,b in RANGES.values()]),('unlisted call',hex(a),i.op_str)
+   if i.mnemonic=='call':assert i.op_str.startswith('0x')and(int(i.op_str,16)in self.seams or int(i.op_str,16)in[a for a,b in ranges.values()]),('unlisted call',hex(a),i.op_str)
    self.visited.setdefault(self.family,{})[a]=raw(a,n)
   self.u.hook_add(UC_HOOK_CODE,hook)
  def put(self,a,fmt,*v):self.u.mem_write(a,struct.pack('<'+fmt,*v))
@@ -403,7 +403,7 @@ def source_checks():
  base=ROOT/'crates/azeroth-survivors-re/src';checks={
   'guardians/mod.rs':['RESPAWN_SECONDS: f32 = 180.0','INITIAL_SPAWN_SECONDS: f32 = 20.0','clock_seconds >= self.respawn_at','enemy.flag_4c == 1 && enemy.raw_48.is_finite()','candidates[slot % candidates.len()]','guardian_health_with_powf','guardian_damage_with_powf','definition.scale * 1.35','signatures::choose_variant','input.clock_seconds > 21.0','self.guardian_kills.wrapping_add(1)'],
   'guardians/placement.rs':['for fraction in [0.7_f32, 0.62, 0.54, 0.46, 0.38]','(-2..=2)','(z - center_z).abs() < 30.0','let fallback_radius = 0.5 * radius','point.index == slot'],
-  'guardians/ai.rs':['(dy * dy + dx * dx).sqrt()','distance_xy(home, player) > 97.5','distance_xy(current, home) <= 3.0','distance_xy(current, player) <= 20.0','health < max_health'],
+  'guardians/ai.rs':['(dy * dy + dx * dx).sqrt()','distance_xy(home, player) > LEASH_RADIUS','distance_xy(current, home) <= 3.0','distance_xy(current, player) <= 20.0','health < max_health'],
   'guardians/rewards.rs':['port.play_sound(GUARDIAN_DEATH_SOUND_ID)','kills_after_increment.wrapping_mul(5).wrapping_add(25)','let count = std::mem::take(pending_strength)','level_and_experience()','generation_parameter: 0.25','mode: 2','pause: true','if deadline > now','if draw_unit_24() >= 0.5','deadlines.remove_first()'],
   'gameplay/mechanics/guardians.rs':['if self.is_showcase()','spawn_due_with_signatures(','self.rng.words = rng.state','native_level: native_actor_level(self.level, 1)','guardian.ai.evaluate(','frame.engaged.push(row.guid)','system.guardian_died(','self.rewards.push(GuardianRewardEvent::Sound(id))','self.events.push(RunEvent::PlaySound(id))','RunEvent::Account','fn queue_strength_award('],
   'gameplay/mechanics.rs':['self.guardian_death(guid, position, rng)','self.spawn_due_guardians(world)','self.drain_guardian_strength()','run_level.wrapping_add(3 * u32::from(elite)).min(63)'],
@@ -423,8 +423,227 @@ def source_checks():
  return dict(files=len(checks),guards=sum(map(len,checks.values()))+4)
 
 
+def leash_retarget(machine):
+    machine.family = 'leash-retarget'
+    at = machine.frame + 0x800
+    cases = [
+        (1, 1, 100.0, [(90.0, 1), (10.0, 2), (80.0, 1)], 2),
+        (1, 1, 100.0, [(50.0, 1), (-50.0, 1)], 0),
+        (1, 1, 100.0, [(97.5, 1), (98.0, 1)], 0),
+        (1, 1, 100.0, [(fb(bits(97.5) + 1), 1), (10.0, 4)], None),
+        (1, 1, 100.0, [], None),
+        (1, 1, 97.5, [(1.0, 1)], None),
+        (0, 1, 100.0, [(1.0, 1)], None),
+        (1, 0, 100.0, [(1.0, 1)], None),
+    ]
+    for mode, awake, player, heroes, selected in cases:
+        machine.reset()
+        frame, actor = machine.frame, machine.actor
+        machine.put(frame + 0x388, 'B', mode)
+        machine.put(frame + 0x70, 'ff', player, 0.0)
+        machine.put(frame + 0xc8, 'fff', player, 0.0, 3.0)
+        machine.put(frame + 0x2f0, 'fff', 0.0, 0.0, 50.0)
+        machine.put(frame + 0x100, 'Q', at)
+        machine.put(frame + 0x60, 'Q', at + len(heroes) * 16)
+        machine.put(actor + 0xc8, 'B', awake)
+        machine.put(actor + 0x118, 'Q', 9)
+        machine.put(actor + 0x1d4, 'f', 33.0)
+        for index, (x, phase) in enumerate(heroes):
+            machine.put(at + index * 16, 'fffB', x, 0.0, 200.0 + index, phase)
+        machine.u.reg_write(r.UC_X86_REG_R14, actor)
+        machine.sx(r.UC_X86_REG_XMM6, 10.0)
+        machine.run(0x145f25b94, [0x145f25c35])
+        if selected is None:
+            assert machine.get(actor + 0x118, 'Q') == (9,)
+            assert machine.get(actor + 0x1d4, 'f') == (33.0,)
+            assert machine.get(frame + 0xc8, 'fff') == (player, 0.0, 3.0)
+        else:
+            assert machine.get(actor + 0x118, 'Q') == (selected,)
+            assert machine.get(actor + 0x1d4, 'f') == (10.0,)
+            assert machine.get(frame + 0xc8, 'fff') == (heroes[selected][0], 0.0, 200.0 + selected)
+        assert machine.get(frame + 0x70, 'ff') == (player, 0.0)
+    return len(cases)
+
+
+def leash_decisions(machine):
+    machine.family = 'leash-decisions'
+    cases = [
+        (0, 0.0, 20.0, 100.0, 1),
+        (0, 0.0, fb(bits(20.0) + 1), 100.0, 0),
+        (0, 3.0, 20.0, 100.0, 1),
+        (0, fb(bits(3.0) + 1), 1.0, 100.0, 0),
+        (0, 40.0, 200.0, 99.0, 1),
+        (1, 0.0, 97.5, 72.0, 3),
+        (1, 0.0, fb(bits(97.5) + 1), 72.0, 2),
+    ]
+    for awake, x, player, health, result in cases:
+        machine.reset()
+        actor, frame = machine.actor, machine.frame
+        rows = machine.allocate(3 * 56)
+        for index, timer in enumerate((3.0, 8.0, 11.0)):
+            machine.put(rows + index * 56 + 48, 'f', timer)
+        machine.put(actor + 0x90, 'QQ', rows, 3)
+        machine.put(actor + 0xc8, 'B', awake)
+        machine.put(actor + 0x198, 'ff', health, 100.0)
+        machine.put(actor + 0x1c0, 'ff', x, 0.0)
+        machine.put(frame, 'ff', 0.0, 0.0)
+        machine.put(frame + 16, 'ff', player, 0.0)
+        machine.u.reg_write(r.UC_X86_REG_RCX, actor)
+        machine.u.reg_write(r.UC_X86_REG_RDX, frame)
+        machine.u.reg_write(r.UC_X86_REG_R8, frame + 16)
+        machine.run(0x145e5ff00)
+        assert machine.u.reg_read(r.UC_X86_REG_AL) == result
+        assert machine.get(actor + 0xc8, 'B') == (int(result in (1, 3)),)
+        assert machine.get(actor + 0x198, 'f') == (100.0 if result == 2 else health,)
+        if result == 2:
+            capacity, pointer, count = machine.get(actor + 0x78, 'QQQ')
+            assert capacity == count == 3
+            assert machine.get(pointer, 'fff') == (1.5, 4.0, 5.5)
+    return len(cases)
+
+
+def leash_return_movement(machine):
+    machine.family = 'leash-movement'
+    cases = [
+        (False, 2.0, 0.0, False, False),
+        (False, fb(bits(2.0) + 1), 0.0, False, True),
+        (False, 4.0, 2.0, False, False),
+        (False, 4.0, 1.0, True, True),
+        (True, 0.0, 2.0, False, True),
+        (True, 2.0, 2.0, False, True),
+        (True, 3.0, 2.0, True, True),
+    ]
+    for reset, distance, old_duration, whirlwind, queued in cases:
+        machine.reset()
+        actor, frame = machine.actor, machine.frame
+        row = machine.allocate(40)
+        resets = machine.allocate(8)
+        machine.put(frame + 0x3d0, 'Q', actor)
+        machine.put(frame + 0x390, 'fff', distance, 0.0, 7.0)
+        machine.put(frame + 0x2f0, 'fff', 0.0, 0.0, 3.0)
+        machine.put(frame + 0x2d8, 'QQQ', 1, row, 0)
+        machine.put(frame + 0x138, 'QQQ', 1, resets, 0)
+        machine.put(actor + 0x110, 'Q', 123)
+        machine.put(actor + 0xd8, 'I', 1)
+        machine.put(actor + 0x1a4, 'f', 2.0)
+        machine.put(actor + 0x1cc, 'fff', 9.0, old_duration, 50.0)
+        machine.put(actor + 0x214, 'f', 15.0 if whirlwind else 0.0)
+        machine.sx(r.UC_X86_REG_XMM6, 10.0)
+        machine.sx(r.UC_X86_REG_XMM9, distance)
+        end = machine.run(0x145f261da if reset else 0x145f25cd7,
+                          [0x145f24de9, 0x145f252cc, 0x145f26406])
+        assert (end != 0x145f24de9) == queued
+        assert machine.get(frame + 0x2e8, 'Q') == (int(queued),)
+        assert machine.get(frame + 0x148, 'Q') == (int(reset),)
+        assert machine.get(resets, 'Q') == (123 if reset else 0,)
+        if queued:
+            speed = f(2.0 * f(1.35)) if whirlwind else 2.0
+            duration = f(distance / speed)
+            assert machine.get(actor + 0x1cc, 'fff') == (
+                10.0, duration, f(10.0 + duration) if reset else 50.0,
+            )
+            assert machine.get(row, 'Qffffff') == (123, distance, 0.0, 7.0, 0.0, 0.0, 3.0)
+            assert machine.get(row + 0x20, 'f') == (duration,)
+        assert machine.get(actor + 0xd8, 'I') == (0 if reset else 1,)
+    return len(cases)
+
+
+def leash_reset_publication(machine):
+    machine.family = 'leash-reset-publication'
+    cases = [
+        (123, 72.5, [0, 8647, 8056, 100, 0], [8056, 100], 73),
+        (123, 100.0, [8647], [], 100),
+        (123, 0.0, list(range(1, 17)), list(range(1, 17)), 0),
+        (321, 72.5, [8056], [], None),
+    ]
+    for guid, maximum, spells, removals, health in cases:
+        machine.reset()
+        actor, frame, game = machine.actor, machine.frame, machine.game
+        resets = machine.allocate(8)
+        machine.put(resets, 'Q', guid)
+        machine.put(frame + 0x138, 'QQQ', 1, resets, 1)
+        machine.put(frame + 0x3e0, 'Q', game)
+        machine.put(game + 0x6d8, 'QQ', actor, 1)
+        machine.put(actor + 0x110, 'Q', 123)
+        machine.put(actor + 0x158, 'I' * len(spells), *spells)
+        machine.put(actor + 0x198, 'ff', 12.0, maximum)
+        calls = []
+        def aura():
+            assert machine.u.reg_read(r.UC_X86_REG_RDX) == guid
+            assert machine.u.reg_read(r.UC_X86_REG_R9D) == 0
+            calls.append(('aura', machine.u.reg_read(r.UC_X86_REG_R8D)))
+        def fields():
+            assert machine.u.reg_read(r.UC_X86_REG_DX) == 22
+            calls.append(('fields', machine.u.reg_read(r.UC_X86_REG_R8D)))
+        machine.seams[0x145f35690] = aura
+        machine.seams[0x145fd87d0] = fields
+        machine.seams[0x1463a558f] = lambda: machine.sx(r.UC_X86_REG_XMM0, math.ceil(machine.xf(r.UC_X86_REG_XMM0)))
+        machine.sx(r.UC_X86_REG_XMM11, fb(0x4f7fffff))
+        machine.run(0x145f29603, [0x145f29785, 0x145f298cf])
+        expected = [('aura', spell) for spell in removals]
+        if health is not None:
+            expected.append(('fields', health))
+        assert calls == expected
+    return len(cases)
+
+
+def check_leash():
+    target = latest_target(verify=False)
+    assert target['sha256'] == '6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa'
+    image = target_bytes(target)
+    pe = importlib.import_module('inventory-executable').PE(image)
+
+    def raw(address, length):
+        offset = pe.rva_offset(address - pe.image_base)
+        return image[offset:offset + length]
+
+    ranges = {
+        'retarget': (0x145efd4c0, 0x145efd635),
+        'speed': (0x145f06ca0, 0x145f06d1c),
+        'awake': (0x145e5ff00, 0x145e602b6),
+        'retarget-admission': (0x145f25b94, 0x145f25c35),
+        'sleeping-return': (0x145f25cd7, 0x145f25e88),
+        'leash-return': (0x145f261da, 0x145f26406),
+        'enqueue': (0x145f26541, 0x145f26551),
+        'increment': (0x145f252c2, 0x145f252cc),
+        'reset-publication': (0x145f29603, 0x145f29785),
+    }
+    table = 0x147af2f04
+    assert [table + cell for cell in struct.unpack('<iiii', raw(table, 16))] == [
+        0x145f25cd7, 0x145f25e88, 0x145f261da, 0x145f25f23,
+    ]
+    machine = Machine(raw, ranges)
+    counts = {
+        'retarget': leash_retarget(machine),
+        'decisions': leash_decisions(machine),
+        'movement': leash_return_movement(machine),
+        'reset_publication': leash_reset_publication(machine),
+    }
+    base = ROOT / 'crates/azeroth-survivors-re/src'
+    guardian = (base / 'gameplay/mechanics/guardians.rs').read_text()
+    reset = guardian[guardian.index('GuardianDecision::Reset { restored_health }'):]
+    assert reset.index('row.actor.slow =') < reset.index('return_home(row, home, self.clock, true, frame)')
+    assert 'guardian_leash_target([home.x, home.y, home.z])' in guardian
+    assert 'gpos(leash_player)' in guardian and 'return_home(row, home, self.clock, false, frame)' in guardian
+    assert 'callbacks::DARKMANTLE_AURA' in guardian
+    assert 'fields: vec![(22, row.maximum_health.ceil() as u32)]' in guardian
+    actor_frame = (base / 'gameplay/mechanics/actor_frame.rs').read_text()
+    assert actor_frame.index('in frame.melee') < actor_frame.index('self.coop.targets.extend(frame.guardian_retargets)')
+    assert actor_frame.index('self.resolve_guardian_engagements') < actor_frame.index('self.resolve_guardian_resets')
+    print(json.dumps({
+        'cases': counts,
+        'instructions': sum(len(rows) for rows in machine.visited.values()),
+        'range_sha256': {key: hashlib.sha256(raw(start, end - start)).hexdigest()
+                         for key, (start, end) in ranges.items()},
+    }, indent=2))
+
+
 def main():
- ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--stage',action='store_true');args=ap.parse_args();mod=load();target,raw,span,graph,headers=mod.recover();mod.check_graph(graph,headers);owners_record=current_owners(mod,target,raw,span)
+ ap=argparse.ArgumentParser(description=__doc__);modes=ap.add_mutually_exclusive_group();modes.add_argument('--stage',action='store_true');modes.add_argument('--leash',action='store_true');args=ap.parse_args()
+ if args.leash:
+  check_leash()
+  return
+ mod=load();target,raw,span,graph,headers=mod.recover();mod.check_graph(graph,headers);owners_record=current_owners(mod,target,raw,span)
  zones=catalog(raw,span);assert{zone['enemies'][ei]['id']for zone in zones for ei in zone['selected_indices']}=={row['enemy_id']for row in graph['guardians']}
  machine=Machine(raw);counts={}
  for name,arguments in [('arithmetic',(zones,)),('placement',(zones,raw)),('awake',()),('due_and_death',()),('constructor',(zones,raw,graph)),('rewards',(raw,)),('magnet',()),('candidate_boundaries',()),('stage_order',()),('presentation_boundaries',()),('initial_suppression',())]:

@@ -22,6 +22,8 @@ pub(super) struct ActorFrame {
     pub(super) yells: Vec<RunAnnouncement>,
     pub(super) emotes: Vec<RunAnnouncement>,
     pub(super) engaged: Vec<u64>,
+    pub(super) guardian_resets: Vec<u64>,
+    pub(super) guardian_retargets: Vec<(u64, u8)>,
 }
 
 impl ActorFrame {
@@ -371,5 +373,9 @@ impl Mechanics {
                 self.with_party_hero(slot, |game| game.resolve_guardian_engagements(vec![guid]));
             }
         } else { self.resolve_guardian_engagements(frame.engaged); }
+        self.resolve_guardian_resets(frame.guardian_resets);
+        // Keep the already collected actions with the hero whose actor pass
+        // produced them. The new guardian target is for subsequent passes.
+        self.coop.targets.extend(frame.guardian_retargets);
     }
 }

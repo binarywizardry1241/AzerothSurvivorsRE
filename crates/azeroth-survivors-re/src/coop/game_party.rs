@@ -191,6 +191,16 @@ impl Party {
         }
     }
 
+    /// Awake guardians reassign to the nearest phase-one hero inside their lair leash.
+    pub fn guardian_leash_target(&self, home: [f32; 3]) -> Option<&PartyHero> {
+        self.heroes.iter()
+            .filter(|hero| hero.state == 1)
+            .map(|hero| (hero, distance_squared(home, hero.position)))
+            .filter(|(_, distance)| distance.sqrt() <= crate::guardians::ai::LEASH_RADIUS)
+            .min_by(|(_, left), (_, right)| left.total_cmp(right))
+            .map(|(hero, _)| hero)
+    }
+
     /// 1458f48a0/1459e5520: native seven-column party meter wire payload.
     /// Damage stays f64 until serialization; run time has native f32 precision.
     pub fn meter_payload(&self, clock: f32) -> String {
