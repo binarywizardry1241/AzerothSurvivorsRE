@@ -1533,7 +1533,7 @@ pub fn build_header_row(
             menu_catalog.label("options.done"),
             Action::Picker,
             true,
-            18.,
+            16.,
         );
     });
 }
