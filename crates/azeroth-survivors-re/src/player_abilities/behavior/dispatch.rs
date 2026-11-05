@@ -275,7 +275,7 @@ pub fn cast<'a>(
                 selected.truncate(count as usize);
             }
             port.record_cast_targets(definition.spell_id, &selected, context.hit_context);
-            for target in selected {
+            for (index, target) in selected.into_iter().enumerate() {
                 execution::launch_projectile(
                     instance,
                     &target.actor,
@@ -283,7 +283,11 @@ pub fn cast<'a>(
                         source_guid: context.player_guid,
                         source: context.player,
                         now: context.now,
-                        extra_delay: 0.0,
+                        extra_delay: if definition.kind == 1 {
+                            index as f32 * 0.12
+                        } else {
+                            0.0
+                        },
                         raw_power: power,
                         critical: port.critical(),
                         context: context.hit_context,

@@ -219,7 +219,7 @@ pub fn launch_projectile(
         target_guid: target.guid,
         source_guid: request.source_guid,
         effect: request.effect,
-        resolves_at: (travel + request.extra_delay) + request.now,
+        resolves_at: travel + (request.extra_delay + request.now),
         spell_id: definition.spell_id,
         damage,
         critical,
