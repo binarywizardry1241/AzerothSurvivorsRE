@@ -32,9 +32,11 @@ spell ordinals, mismatched first damage/use-spell projections and excess blocks
 are refused. Ground path offsets round to quarter yards and reject nonfinite or
 out-of-range packed offsets instead of wrapping.
 
-There are explicit representation limits. `SessionEvent` omits ammunition
-inventory type, so ammo-bearing SpellStart/SpellGo return `IncompleteAmmo` rather
-than emitting a guessed type. Object-create movement with transport, jump or
+At 0.115.0 the representation omitted ammunition inventory type, so the
+bridge rejected ammo-bearing SpellStart and SpellGo. The [0.141.1 rifle
+repair](ahn-qiraj-rifle-0.141.1.md) preserves and forwards both SpellGo ammo
+words. Ammo-bearing SpellStart still requires a complete representation.
+Object-create movement with transport, jump or
 spline data omitted by the event is refused; existing AS producers supply the
 supported forms. Semantic notify/end markers return no independent packet,
 because their owner is the surrounding UPDATE_OBJECT record. Other unsupported

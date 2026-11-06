@@ -514,6 +514,7 @@ fn a_close_owed_ahead_of_a_response_takes_only_the_window_before_it() {
             source: None,
             dest: None,
             ammo_display_id: None,
+            ammo_inventory_type: None,
             item_caster: None,
             unit_caster: ME,
         }

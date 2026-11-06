@@ -712,6 +712,7 @@ mod tests {
             source: None,
             dest: None,
             ammo_display_id: None,
+            ammo_inventory_type: None,
             item_caster: None,
             unit_caster: MOB,
         };
@@ -755,6 +756,7 @@ mod tests {
             source: None,
             dest: None,
             ammo_display_id: None,
+            ammo_inventory_type: None,
             item_caster: (item || (second != 0 && first != second)).then_some(first),
             unit_caster: second,
         };

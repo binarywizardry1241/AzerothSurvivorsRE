@@ -1003,6 +1003,7 @@ mod tests {
 hero_state! {
     player_guid: u64, class: &'static player_abilities::ClassAbilities,
     equipment_ids: [u32; 19],
+    ranged_gun: bool,
     addon_flag: Option<usize>, world_flag: addon_lists::WorldFlag,
     stats: RunPlayerStats, abilities: Vec<RuntimeInstance<'static>>,
     racial: Option<RuntimeInstance<'static>>, racial_cooldown: Option<RunCooldown>,
@@ -1225,6 +1226,15 @@ impl Mechanics {
     pub fn set_equipment_ids(&mut self, ids: [u32; 19]) {
         self.equipment_ids = ids;
     }
+
+    pub(in crate::gameplay) fn uses_ranged_gun(&self, guid: u64) -> bool {
+        if guid == self.player_guid {
+            return self.ranged_gun;
+        }
+        self.coop.remotes.iter().find(|hero| hero.state.player_guid == guid)
+            .is_some_and(|hero| hero.state.ranged_gun)
+    }
+
     pub fn configure_party_options(&mut self, flags: [u8; 3]) {
         self.set_cache_on_click(flags[0] != 0);
         self.set_store_levels(flags[1] != 0);

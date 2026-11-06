@@ -35828,6 +35828,56 @@
       "gap_ids": [
         324
       ]
+    },
+    {
+      "claim_id": "changelog:0.141.1:737de64a7a82f25e",
+      "target": {
+        "version": "0.141.1",
+        "sha256": "47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6"
+      },
+      "status": "static_checked",
+      "rationale": "The live rifle and appearance projection select the native gun display and label. The per-hero ranged appearance selects the original shot ammo payload through local and co-op publication. Damage and timing code retain their existing inputs.",
+      "native_contract": "Hunter item 103830 resolves display 34484 with weapon class 2, subclass 3 and inventory type 26. The visible run-entry slot 17 selects bullet 5998 for class 2/subclass 3, otherwise arrow 5996, on spells 75, 2643 and 19434. SpellGo sets flag 0x20 and writes both ammo words including inventory type 24.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/armory.rs",
+        "crates/azeroth-survivors-re/src/save/gear.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/coop_profile.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/coop/engine_packets.rs",
+        "crates/benilla-protocol/src/messages/spells.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/ahn-qiraj-rifle-0.141.1.md",
+        "docs/analysis/evidence/0.141.1/ahn-qiraj-rifle.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/armory.rs": "78edcae54d4b5708b7e51ee606d8cfd6ac98af3efef9db479a08072c53e7c24e",
+        "crates/azeroth-survivors-re/src/save/gear.rs": "f1d99074b738062aa056992a7ff26e79380e5b6eb11cb0c6a476f23b1c0fd99d",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs": "1e847ac4a367059b057d4555accd9503ee70d137e6b26dfe251d01fe221a4db6",
+        "crates/azeroth-survivors-re/src/coop_profile.rs": "638e247500a316fdc454e9a13f6773e36bfa27ceb7f5ca48bdc0747d04c8dcdd",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "4734e4d33fcf2c17e54e5b84567b23281a79584fff35668c2ad88b34a7fae779",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs": "a530029b920c7e875c5eae804943b52cdd72b46da2e9fc474ab2295b7b4fc1fe",
+        "crates/azeroth-survivors-re/src/coop/engine_packets.rs": "c5341936f79cd2424b4f20863a8e92d2acfe36a3b6fca8ba33aead97bd815001",
+        "crates/benilla-protocol/src/messages/spells.rs": "90c2bc89592ee3ba38be9f712e2b90a04ecf4185c8e58b3c14af4d847cbbb680",
+        "docs/analysis/ahn-qiraj-rifle-0.141.1.md": "047a8aeda50e9d2d060c4e543b33c3db957bf40014b5e72fe0eb771794c7951b",
+        "docs/analysis/evidence/0.141.1/ahn-qiraj-rifle.json": "508a2b2bfa2a04578f4e439685e5a93e0bb07edff96bffe410e6f0457309b512"
+      },
+      "static_checks": [
+        {
+          "command": "python3 -B (bounded Unicorn replay using the existing EquipmentProbe)",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/evidence/0.141.1/ahn-qiraj-rifle.json"
+        }
+      ],
+      "systems": [
+        "custom-game-gear",
+        "custom-app-screens-armory"
+      ],
+      "gap_ids": [
+        6
+      ]
     }
   ]
 }

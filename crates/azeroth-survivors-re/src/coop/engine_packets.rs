@@ -545,15 +545,18 @@ pub fn encode(
             target,
             dest,
             ammo_display_id,
+            ammo_inventory_type,
             go_target,
             item_caster,
             misses,
             source,
             target_mask,
         } => {
-            if *cast_flags & 0x20 != 0 || ammo_display_id.is_some() {
-                return Err(EncodeError::IncompleteAmmo);
-            }
+            let ammo = match (*cast_flags & 0x20 != 0, ammo_display_id, ammo_inventory_type) {
+                (true, Some(display), Some(kind)) => Some((*display, *kind)),
+                (false, None, None) => None,
+                _ => return Err(EncodeError::IncompleteAmmo),
+            };
             if source.is_some() || *target_mask != spell_target_mask(*target, *go_target, *dest)
                 || target.is_some() && go_target.is_some()
                 || (*unit_caster != 0 && *unit_caster != *caster)
@@ -581,6 +584,10 @@ pub fn encode(
                 }
             }
             targets(&mut b, *target, *go_target, *dest);
+            if let Some((display, kind)) = ammo {
+                u32v(&mut b, display);
+                u32v(&mut b, kind);
+            }
             op::SMSG_SPELL_GO
         }
         SessionEvent::CastResult {
@@ -1063,6 +1070,7 @@ mod tests {
             target: None,
             dest: Some([1., 2., 3.]),
             ammo_display_id: None,
+            ammo_inventory_type: None,
             item_caster: None,
             go_target: None,
             misses: vec![],
@@ -1448,7 +1456,7 @@ mod tests {
             ammo_display_id: Some(5996),
         };
         assert_eq!(encode(&event, None), Err(EncodeError::IncompleteAmmo));
-        let event = SessionEvent::SpellGo {
+        let mut event = SessionEvent::SpellGo {
             caster: 1,
             unit_caster: 1,
             item_caster: None,
@@ -1462,8 +1470,17 @@ mod tests {
             go_target: None,
             dest: None,
             ammo_display_id: Some(5996),
+            ammo_inventory_type: None,
         };
         assert_eq!(encode(&event, None), Err(EncodeError::IncompleteAmmo));
+        if let SessionEvent::SpellGo { ammo_inventory_type, .. } = &mut event {
+            *ammo_inventory_type = Some(24);
+        }
+        let packet = encode(&event, None).unwrap().unwrap();
+        assert!(packet.payload.ends_with(&[0x6c, 0x17, 0, 0, 24, 0, 0, 0]));
+        assert!(matches!(packet.decode_server().unwrap().as_slice(),
+            [SessionEvent::SpellGo { cast_flags: 0x120, ammo_display_id: Some(5996),
+                ammo_inventory_type: Some(24), .. }]));
     }
 
     #[test]
@@ -1559,6 +1576,7 @@ mod tests {
                 go_target: Some(id),
                 dest: Some([1., 2., 3.]),
                 ammo_display_id: None,
+                ammo_inventory_type: None,
             },
             SessionEvent::AttackerState(AttackerState {
                 attacker: 1,

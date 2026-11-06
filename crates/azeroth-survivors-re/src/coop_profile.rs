@@ -227,6 +227,7 @@ pub(crate) fn configure(game: &mut Mechanics, hero: &NativeHero, catalog: &Armor
         &hero.equipment_stars,
     );
     game.configure_armor_set(hero.words_188, hero.equipment_stars);
+    game.set_ranged_appearance(catalog, gear.outfit(catalog, hero.class, hero.race)[17]);
     game.set_equipment_pity(&hero.pity);
     game.set_equipment_ownership(hero.owned_tier05.iter().copied());
     game.configure_effects(&allocation, &gear.effects(catalog, hero.class));

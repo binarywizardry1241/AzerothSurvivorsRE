@@ -1,7 +1,7 @@
 //! Recovered run packet intents enter the real offline client presentation.
 //! Native owners145466ab0 (spell-go),14545f6d0 (direct damage),
 //!145464140 (periodic damage) and the existing recovered object field rows.
-//! No cast targeting, damage calculation or replacement effect is authored here.
+//! SpellGo also carries the original projectile display for the three ammo-bearing shots.
 
 use std::collections::HashSet;
 
@@ -313,17 +313,23 @@ fn logged_spell(spell_id:u32)->u32 {
     match spell_id { 16038=>8349,14186=>2098,5308=>20647,_=>spell_id }
 }
 
-/// Native145466ab0 writes the source twice, ordinary flags0x100, all supplied
-/// hit GUIDs in order, no misses, then the actual unit/ground/empty target.
-fn spell_go(cast: SpellCast) -> SessionEvent {
+/// 0.141.1 projectile publication reads the resolved ranged appearance's weapon kind.
+fn shot_ammo(spell_id: u32, ranged_gun: bool) -> Option<u32> {
+    matches!(spell_id, 75 | 2643 | 19434).then_some(if ranged_gun { 5998 } else { 5996 })
+}
+
+/// Native 0.141.1 145f16880 writes the source twice, then the hit list, target and optional ammo.
+fn spell_go(cast: SpellCast, ammo_display_id: Option<u32>) -> SessionEvent {
     let (target,dest)=match cast.target {
         CastTarget::None=>(None,None),
         CastTarget::Unit(guid)=>(Some(guid),None),
         CastTarget::Ground(point)=>(None,Some(position(point))),
     };
     SessionEvent::SpellGo { caster:cast.source_guid,unit_caster:cast.source_guid,spell_id:cast.spell_id,
-        cast_flags:0x100,hits:cast.hit_targets.into_iter().take(255).collect(),
-        misses:Vec::new(),target,go_target:None,dest,ammo_display_id:None,item_caster:None,
+        cast_flags:0x100 | if ammo_display_id.is_some() { 0x20 } else { 0 },
+        hits:cast.hit_targets.into_iter().take(255).collect(),
+        misses:Vec::new(),target,go_target:None,dest,ammo_display_id,
+        ammo_inventory_type:ammo_display_id.map(|_| 24),item_caster:None,
         target_mask: azeroth_survivors_re::coop::engine_packets::spell_target_mask(target, None, dest), source: None }
 }
 
@@ -408,7 +414,7 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
     let player_guid=game.player_guid;
     let remote=game.take_party_events();
     let mut local=LocalPresentationEvents::default();
-    project(events,player_guid,0,&mut local,&mut unsupported,&mut notifications,&mut loot,&mut markers,
+    project(events,player_guid,game.uses_ranged_gun(player_guid),0,&mut local,&mut unsupported,&mut notifications,&mut loot,&mut markers,
         time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),Some(&mut terminal),None,party.as_deref(),
         floor.as_deref().and_then(|floor| floor.terrain_ref()));
     for event in local.0 {
@@ -427,7 +433,7 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
         let client = coop.as_deref().and_then(|runtime| runtime.actor_clients.get(&slot)).copied();
         let language = client.and_then(|client| party.as_deref()?.member_language(client));
         let mut projected=LocalPresentationEvents::default();
-        project(events,guid,slot,&mut projected,&mut unsupported,&mut Default::default(),&mut Default::default(),
+        project(events,guid,game.uses_ranged_gun(guid),slot,&mut projected,&mut unsupported,&mut Default::default(),&mut Default::default(),
             &mut Default::default(),time.elapsed_secs(),&locale,&catalog,coop.as_deref_mut(),None,language,party.as_deref(),None);
         for event in projected.0 {
             if let (Some(client), Some(party), SessionEvent::Teleport { position, counter, .. }) =
@@ -444,7 +450,7 @@ fn collect(mut session:ResMut<RunSession>,menu:Res<MenuState>,
     }
 }
 
-fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut LocalPresentationEvents,
+fn project(events:Vec<RunEvent>,player_guid:u64,ranged_gun:bool,source_slot:u8,packets:&mut LocalPresentationEvents,
     unsupported:&mut HashSet<&'static str>,notifications:&mut super::super::notifications::Notifications,
     loot:&mut super::super::run_hud::LootNotices,markers:&mut super::super::raid_markers::MarkerInbox,
     now:f32,locale:&Localization,catalog:&crate::catalog::MenuCatalog,
@@ -497,14 +503,14 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
                     packets.0.push(SessionEvent::SpellStart {caster:source,spell_id,cast_flags:2,
                         cast_time_ms,target:None,ammo_display_id:None});
                     let mut packet = spell_go(SpellCast {source_guid:source,spell_id,
-                        target:CastTarget::None,hit_targets:Vec::new()});
+                        target:CastTarget::None,hit_targets:Vec::new()},None);
                     if let SessionEvent::SpellGo {cast_flags,..} = &mut packet { *cast_flags = 8; }
                     packets.0.push(packet);
                 }
                 None
             },
             RunEvent::RaidSpellGo(cast)=>{
-                let mut packet=spell_go(cast);
+                let mut packet=spell_go(cast,None);
                 if let SessionEvent::SpellGo {cast_flags,..}=&mut packet { *cast_flags=8; }
                 packets.0.push(packet);None
             },
@@ -553,7 +559,15 @@ fn project(events:Vec<RunEvent>,player_guid:u64,source_slot:u8,packets:&mut Loca
                 }
                 None
             },
-            RunEvent::Spell(cast)=>{ packets.0.push(spell_go(cast));None },
+            RunEvent::Spell(cast)=>{
+                let ammo = if cast.source_guid == player_guid {
+                    shot_ammo(cast.spell_id, ranged_gun)
+                } else {
+                    None
+                };
+                packets.0.push(spell_go(cast,ammo));
+                None
+            },
             RunEvent::Ground(row)=>{ packets.0.push(object(row.guid,EntityKind::DynamicObject,
                 row.position,0.,&row.fields));None },
             RunEvent::ScriptedUnit(row) => {
@@ -829,12 +843,39 @@ mod tests {
         let SessionEvent::SpellGo { caster,unit_caster,spell_id,cast_flags,hits,target,dest,.. }=spell_go(SpellCast {
             source_guid:17,spell_id:133,target:CastTarget::Ground(Position{x:1.,y:2.,z:3.}),
             hit_targets:(1000..1300).collect(),
-        }) else { panic!("spell go") };
+        },None) else { panic!("spell go") };
         assert_eq!((caster,spell_id,cast_flags),(17,133,0x100));
         assert_eq!(unit_caster,caster);
         assert_eq!(hits,(1000..1255).collect::<Vec<_>>());
         assert_eq!(target,None);assert_eq!(dest,Some([1.,2.,3.]));
     }
+    #[test]
+    fn native_hunter_shots_carry_the_equipped_weapon_ammo() {
+        for (spell_id, ranged_gun, expected) in [
+            (75, true, Some(5998)),
+            (2643, true, Some(5998)),
+            (19434, true, Some(5998)),
+            (75, false, Some(5996)),
+            (2643, false, Some(5996)),
+            (19434, false, Some(5996)),
+            (3044, true, None),
+            (1978, true, None),
+        ] {
+            let cast = SpellCast {
+                source_guid: 1,
+                spell_id,
+                target: CastTarget::Unit(2),
+                hit_targets: vec![2],
+            };
+            let SessionEvent::SpellGo { cast_flags, ammo_display_id, ammo_inventory_type, .. } =
+                spell_go(cast, shot_ammo(spell_id, ranged_gun))
+            else { panic!("spell go") };
+            assert_eq!(ammo_display_id, expected);
+            assert_eq!(ammo_inventory_type, expected.map(|_| 24));
+            assert_eq!(cast_flags, if expected.is_some() { 0x120 } else { 0x100 });
+        }
+    }
+
     #[test]
     fn recovered_dynamic_object_rows_reach_the_normal_descriptor_without_filling_key_five() {
         let mut serial=0u32;
@@ -886,6 +927,7 @@ mod tests {
                     },
                 ],
                 1,
+                false,
                 0,
                 &mut packets,
                 &mut HashSet::new(),

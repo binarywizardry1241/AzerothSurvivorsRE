@@ -115,11 +115,11 @@ fn read_spell_cast_targets(r: &mut impl Read) -> io::Result<SpellCastTargets> {
 /// vmangos `Spell.h:53`: set on START and GO for every ranged spell; gates the ammo block.
 const CAST_FLAG_AMMO: u16 = 0x0020;
 
-/// Read the ammo block (`Spell.cpp:4540-4606`): `u32 displayId`, `u32 inventoryType` (dropped).
-fn read_ammo(r: &mut impl Read) -> io::Result<u32> {
+/// Read the ammo block (`Spell.cpp:4540-4606`): `u32 displayId`, `u32 inventoryType`.
+fn read_ammo(r: &mut impl Read) -> io::Result<(u32, u32)> {
     let display_id = read_u32_le(r)?;
-    let _inventory_type = read_u32_le(r)?;
-    Ok(display_id)
+    let inventory_type = read_u32_le(r)?;
+    Ok((display_id, inventory_type))
 }
 
 /// `SMSG_SPELL_START` (vmangos `Spell.cpp:4468-4503`): a non-triggered cast began, instants
@@ -145,7 +145,7 @@ pub(super) fn read_spell_start(r: &mut impl Read) -> io::Result<SpellStart> {
     let cast_time_ms = read_u32_le(r)?;
     let targets = read_spell_cast_targets(r)?;
     let ammo_display_id = if cast_flags & CAST_FLAG_AMMO != 0 {
-        Some(read_ammo(r)?)
+        Some(read_ammo(r)?.0)
     } else {
         None
     };
@@ -178,6 +178,7 @@ pub struct SpellGo {
     pub misses: Vec<SpellGoMiss>,
     pub targets: SpellCastTargets,
     pub ammo_display_id: Option<u32>,
+    pub ammo_inventory_type: Option<u32>,
 }
 
 /// One `SMSG_SPELL_GO` miss entry: the target and its `SpellMissInfo`, and for a reflect (11) the
@@ -220,10 +221,11 @@ pub(super) fn read_spell_go(r: &mut impl Read) -> io::Result<SpellGo> {
     }
 
     let targets = read_spell_cast_targets(r)?;
-    let ammo_display_id = if cast_flags & CAST_FLAG_AMMO != 0 {
-        Some(read_ammo(r)?)
+    let (ammo_display_id, ammo_inventory_type) = if cast_flags & CAST_FLAG_AMMO != 0 {
+        let (display_id, inventory_type) = read_ammo(r)?;
+        (Some(display_id), Some(inventory_type))
     } else {
-        None
+        (None, None)
     };
     Ok(SpellGo {
         item_or_caster,
@@ -234,6 +236,7 @@ pub(super) fn read_spell_go(r: &mut impl Read) -> io::Result<SpellGo> {
         misses,
         targets,
         ammo_display_id,
+        ammo_inventory_type,
     })
 }
 

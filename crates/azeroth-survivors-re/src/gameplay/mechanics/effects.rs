@@ -250,6 +250,13 @@ impl EffectsState {
 }
 
 impl Mechanics {
+    pub(crate) fn set_ranged_appearance(&mut self, catalog: &crate::armory::ArmoryCatalog, id: u32) {
+        let kind = catalog.piece(id).map(|piece| (piece.item_class, piece.item_subclass))
+            .or_else(|| catalog.starter_items.iter().find(|piece| piece.id == id)
+                .map(|piece| (piece.item_class, piece.item_subclass)));
+        self.ranged_gun = kind == Some((2, 3));
+    }
+
     /// Current145c4f090 builds talents first, then the worn armor-set descriptor
     /// from the same class/equipment/star snapshot. No ownership-only item enters.
     pub fn configure_armor_set(&mut self, gear: [u32; 19], stars: [u8; 19]) {

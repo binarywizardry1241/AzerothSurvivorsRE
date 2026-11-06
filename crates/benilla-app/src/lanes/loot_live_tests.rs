@@ -669,6 +669,7 @@ fn a_go_closes_our_loot_inside_its_packet() {
             source: None,
             dest: None,
             ammo_display_id: None,
+            ammo_inventory_type: None,
             item_caster: None,
             unit_caster: ME,
         },
@@ -822,6 +823,7 @@ fn a_go_on_the_chest_we_loot_keeps_the_latch_it_arms() {
         source: None,
         dest: None,
         ammo_display_id: None,
+        ammo_inventory_type: None,
         item_caster: None,
         unit_caster: ME,
     }]]);
@@ -910,6 +912,7 @@ fn our_go(spell_id: u32, hits: Vec<u64>) -> SessionEvent {
         source: None,
         dest: None,
         ammo_display_id: None,
+        ammo_inventory_type: None,
         item_caster: None,
         unit_caster: ME,
     }

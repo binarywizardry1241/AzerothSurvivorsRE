@@ -343,6 +343,7 @@ fn a_game_objects_go_plays_its_instant_impacts_and_nothing_of_a_caster() {
         source: None,
         dest: Some([1.0, 2.0, 3.0]),
         ammo_display_id: None,
+        ammo_inventory_type: None,
         item_caster: None,
         unit_caster,
     };

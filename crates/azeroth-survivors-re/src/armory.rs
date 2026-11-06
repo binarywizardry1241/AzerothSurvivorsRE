@@ -16,7 +16,10 @@ use crate::{
     menu::{self, Action, Face, DARK, EDGE, GOLD, MUTED, PAPER},
     menu_state::{MenuState, Page},
     preview::HeroPreviewOutput,
-    save::Save,
+    save::{
+        gear::{AHN_QIRAJ_RIFLE_APPEARANCE, AHN_QIRAJ_RIFLE_ID},
+        Save,
+    },
 };
 use bevy::{
     asset::RenderAssetUsages,
@@ -546,6 +549,11 @@ impl ArmoryCatalog {
                 if let Some(display) = patch.display_id {
                     piece.display_id = display;
                 }
+            }
+            if piece.id == AHN_QIRAJ_RIFLE_ID {
+                piece.display_id = AHN_QIRAJ_RIFLE_APPEARANCE.display_id;
+                piece.inventory_type = u32::from(AHN_QIRAJ_RIFLE_APPEARANCE.inventory_type);
+                piece.item_subclass = 3;
             }
         }
         // Selected descriptor145b86350 appends half the former armor echo;
@@ -3768,6 +3776,9 @@ mod tests {
     #[test]
     fn every_preview_descriptor_uses_current_display_fallback() {
         let catalog = ArmoryCatalog::embedded();
+        let rifle = catalog.piece(AHN_QIRAJ_RIFLE_ID).unwrap();
+        assert_eq!((rifle.display_id, rifle.item_class, rifle.item_subclass, rifle.inventory_type),
+            (34_484, 2, 3, 26));
         for piece in catalog.classes.iter().flat_map(|class| &class.items)
             .chain(&catalog.pvp_variants)
         {

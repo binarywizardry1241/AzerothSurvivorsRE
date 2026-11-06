@@ -456,7 +456,7 @@ fn spell_visual_wire_golden() {
         "0200",     // SpellCastTargets mask: TARGET_FLAG_UNIT
         "01ee",     // unit target pguid: guid 0xEE
         "6c170000", // ammo displayId 5996
-        "12000000", // ammo inventoryType 18 (dropped)
+        "12000000", // ammo inventoryType 18
     ));
     let packet = messages::parse_server(messages::opcode::SMSG_SPELL_GO, &body).unwrap();
     match &packet {
@@ -478,6 +478,7 @@ fn spell_visual_wire_golden() {
                         dest: None,
                     },
                     ammo_display_id: Some(5996),
+                    ammo_inventory_type: Some(18),
                 }
             );
         }
@@ -496,6 +497,7 @@ fn spell_visual_wire_golden() {
             source,
             dest,
             ammo_display_id,
+            ammo_inventory_type,
             item_caster,
             unit_caster,
         } => {
@@ -510,6 +512,7 @@ fn spell_visual_wire_golden() {
             assert_eq!(go_target, None); // a unit-targeted cast leaves the GO target empty
             assert_eq!(dest, None); // …and the ground point empty (mask 0x2, no 0x40)
             assert_eq!(ammo_display_id, Some(5996));
+            assert_eq!(ammo_inventory_type, Some(18));
             // A first guid that differs from the caster marks an item cast.
             assert_eq!(item_caster, Some(1));
         }
@@ -538,12 +541,15 @@ fn spell_visual_wire_golden() {
             misses,
             target,
             dest,
+            ammo_display_id,
+            ammo_inventory_type,
             item_caster,
             ..
         } => {
             assert_eq!((caster, spell_id), (0x1a, 10));
             assert!(hits.is_empty() && misses.is_empty());
             assert_eq!(target, None);
+            assert_eq!((ammo_display_id, ammo_inventory_type), (None, None));
             assert_eq!(
                 dest,
                 Some([

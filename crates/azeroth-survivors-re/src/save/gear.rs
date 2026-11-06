@@ -35,6 +35,13 @@ pub struct GearAppearance {
     pub inventory_type: u8,
 }
 
+pub(crate) const AHN_QIRAJ_RIFLE_ID: u32 = 103_830;
+// 0.141.1 uses the gun visual variant of the same rifle model.
+pub(crate) const AHN_QIRAJ_RIFLE_APPEARANCE: GearAppearance = GearAppearance {
+    display_id: 34_484,
+    inventory_type: 26,
+};
+
 #[derive(Deserialize)]
 struct PreviewItem {
     id: u32,
@@ -100,6 +107,9 @@ pub(crate) fn faction_item(id: u32, race: u8) -> u32 {
 }
 
 pub fn preview_item(id: u32, race: u8) -> Option<GearAppearance> {
+    if id == AHN_QIRAJ_RIFLE_ID {
+        return Some(AHN_QIRAJ_RIFLE_APPEARANCE);
+    }
     if let Some(entry) = azeroth_survivors_re::armory_cosmetics::get(id) {
         return Some(GearAppearance { display_id: entry.display_id, inventory_type: entry.inventory_type });
     }

@@ -1,0 +1,183 @@
+{
+  "target": {
+    "version": "0.141.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "size_bytes": 151534080,
+    "sha256": "47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6"
+  },
+  "query_slices": {
+    "item_resolver": {
+      "start": "0x145e33ea0",
+      "end_exclusive": "0x145e351f8",
+      "file_offset": "0x5e332a0",
+      "sha256": "2f68fd089ca1f51107b8b5c6d2f3382d8c1d094d5ed13ad991d2dd279817783e",
+      "ghidra_result_sha256": "1486652901918d70a10a877a172fa70b28e385985c30ee0a7b6abcd8528ca61b",
+      "ghidra_evidence_id": "ev_06452d74bb9a6d483dc96fae430149daff01bc5029ecf393d70335db882a9b9b"
+    },
+    "projectile": {
+      "start": "0x145f97180",
+      "end_exclusive": "0x145f977c0",
+      "file_offset": "0x5f96580",
+      "sha256": "5242dbe2b2c21bff91a9c759b4005c7c086c9a425d1d6ab28438cf7913e9fb40",
+      "ghidra_result_sha256": "51d86df5a7912bf1a08af15a4bdef188e4563fe5afa1f5f88ee774fb8fcce14c",
+      "ghidra_evidence_id": "ev_0fe19bf508f47a867011eae7ccbc67ffb763f6a6a83202e02b2a7a85f370cc0c"
+    }
+  },
+  "spans": {
+    "hunter_descriptor": {
+      "start": "0x147728918",
+      "end_exclusive": "0x1477289a8",
+      "file_offset": "0x7726f18",
+      "sha256": "7988efa34354616b406ed212d8fe2d64ec8c33187c81db992862c1c07d13599d"
+    },
+    "metadata_selection": {
+      "start": "0x145e34dd4",
+      "end_exclusive": "0x145e34e9b",
+      "file_offset": "0x5e341d4",
+      "sha256": "d9f624df16a7256d92a38273466092e66f82eeef6606cef3aeaff2f0900b9d12"
+    },
+    "slot_selection": {
+      "start": "0x145e33cf3",
+      "end_exclusive": "0x145e33d11",
+      "file_offset": "0x5e330f3",
+      "sha256": "39c2306f564753620b44499e70468e067bb1f816a21d8cdb0c970e21c1f1e7ff"
+    },
+    "slot_install": {
+      "start": "0x145fb735f",
+      "end_exclusive": "0x145fb73a5",
+      "file_offset": "0x5fb675f",
+      "sha256": "7cbece439f1d812148109d85927d485e5b0c2537032ff4ce29d7f355ce3658d1"
+    },
+    "ammo_selection": {
+      "start": "0x145f9726d",
+      "end_exclusive": "0x145f9741f",
+      "file_offset": "0x5f9666d",
+      "sha256": "b3bb9ccac332edff2c566e9956e57ada90a7bbdf5e4c1a49ed95d8f6fef2503b"
+    },
+    "ammo_missing_descriptor": {
+      "start": "0x145f975dc",
+      "end_exclusive": "0x145f975f4",
+      "file_offset": "0x5f969dc",
+      "sha256": "8b680c5247ed08146f23a6a5d0aa4d6d05e641aed8080f89d3b8137792e8228d"
+    },
+    "spell_go_writer": {
+      "start": "0x145f16880",
+      "end_exclusive": "0x145f16e04",
+      "file_offset": "0x5f15c80",
+      "sha256": "b545b73e9f19a0f6601ec34c66520b4fa96897c3fdf40693a31d1afeb6f84883"
+    }
+  },
+  "metadata_columns": [
+    "item_id",
+    "display_id",
+    "item_class",
+    "subclass",
+    "inventory_type",
+    "sheath",
+    "slot"
+  ],
+  "metadata_cases": [
+    [103800, 2786, 2, 2, 15, 0, 17],
+    [103810, 30927, 2, 2, 15, 0, 17],
+    [103820, 35254, 2, 2, 15, 0, 17],
+    [103830, 34484, 2, 3, 26, 0, 17],
+    [103840, 31338, 2, 2, 15, 0, 17]
+  ],
+  "slot_columns": [
+    "starter",
+    "worn",
+    "look",
+    "resolved"
+  ],
+  "slot_cases": [
+    [2508, 0, null, 2508],
+    [2508, 103830, null, 103830],
+    [2508, 103830, 0, 0],
+    [2508, 103830, 103820, 103820],
+    [2508, 103820, 103830, 103830]
+  ],
+  "ammo_columns": [
+    "spell_id",
+    "item_class_and_subclass",
+    "display_id_and_inventory_type"
+  ],
+  "ammo_cases": [
+    [75, [2, 3], [5998, 24]],
+    [75, [2, 2], [5996, 24]],
+    [75, [4, 3], [5996, 24]],
+    [75, null, [5996, 24]],
+    [2643, [2, 3], [5998, 24]],
+    [2643, [2, 2], [5996, 24]],
+    [2643, [4, 3], [5996, 24]],
+    [2643, null, [5996, 24]],
+    [19434, [2, 3], [5998, 24]],
+    [19434, [2, 2], [5996, 24]],
+    [19434, [4, 3], [5996, 24]],
+    [19434, null, [5996, 24]],
+    [3044, [2, 3], null],
+    [3044, [2, 2], null],
+    [3044, [4, 3], null],
+    [3044, null, null],
+    [1978, [2, 3], null],
+    [1978, [2, 2], null],
+    [1978, [4, 3], null],
+    [1978, null, null],
+    [5116, [2, 3], null],
+    [5116, [2, 2], null],
+    [5116, [4, 3], null],
+    [5116, null, null],
+    [1510, [2, 3], null],
+    [1510, [2, 2], null],
+    [1510, [4, 3], null],
+    [1510, null, null]
+  ],
+  "resource_checks": {
+    "archive": {
+      "path": "installed-game/Data/patch.MPQ",
+      "sha256": "49473c3cd0f47cd949e579240ea694c793aab813549920f1073ef73017364adf"
+    },
+    "item_display_dbc": {
+      "sha256": "6f37ca862dc632a11aaf86e0ba7b183aa7abaebb052549e6120aa9fa69dd9dee",
+      "old_rifle_display": [
+        33826,
+        0
+      ],
+      "new_rifle_display": [
+        34484,
+        224
+      ],
+      "new_rifle_row_sha256": "14d6474911d87f5e672d024d9f4c355e4310aadfa25f9243fa6aa3513b0dfec8"
+    },
+    "spell_visual": {
+      "id": 224,
+      "precast_kit": 161,
+      "cast_kit": 167,
+      "missile_gate": 0,
+      "missile_model": 0,
+      "row_sha256": "56e7c80998980445bdd2224d72c4987dab0a6082155f8b4606810e1aea5d001c"
+    },
+    "spell_visual_kit": {
+      "sha256": "c154ea8ab675f5b01a6d69deab825e3844f2cce468aa3f1f780356cbafd18f13",
+      "animations": [
+        [
+          161,
+          106
+        ],
+        [
+          167,
+          49
+        ]
+      ]
+    },
+    "rifle_model": {
+      "sha256": "40283afe30dbac8bf492328be5f46e84e711b59ff357864fef0f0d93ab071249",
+      "release_animation": 161,
+      "particle_emitters": 5
+    },
+    "bullet_model": {
+      "display_id": 5998,
+      "sha256": "4ea4f17831519c9c5ea32e265a524f8ff02faa448c461963b0d76b5f6910cc3b"
+    }
+  },
+  "replay_limits": "Bounded original instruction spans on Unicorn using supplied rarity and outfit operands. Projectile resolver seam supplies descriptor class/subclass or no descriptor. Ghidra queries are raw-slice analyses with external code absent. No Rust, game or live co-op executed."
+}

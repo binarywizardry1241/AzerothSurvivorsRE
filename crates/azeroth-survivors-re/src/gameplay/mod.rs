@@ -158,6 +158,7 @@ pub struct RunSession {
     selected_roster_guid: Option<u64>,
     /// Native snapshot reads all19 entry equipment words, including unused paperdoll slots.
     starting_gear: [u32; 19],
+    starting_ranged_appearance: u32,
     starting_stars: [u8; 19],
     starting_pity: Vec<(u32, u8)>,
     starting_gear_effects: Vec<(u8, f32)>,
@@ -189,6 +190,7 @@ impl RunSession {
             self.starting_gear = std::array::from_fn(|slot| {
                 gear.equipped.get(&(class, slot)).copied().unwrap_or(0)
             });
+            self.starting_ranged_appearance = gear.outfit(armory, class, race)[17];
             self.starting_stars = self.starting_gear.map(|id| gear.stars(id));
             self.starting_weapon_glow = save.weapon_glow(class);
             self.starting_gear_effects = gear.effects(armory, class);
@@ -464,6 +466,7 @@ fn enter(
             let entry_owned = session.prepare_entry_loadout(&armory, &menu.backend_save,
                 pick.hero.class, pick.hero.race, menu.heroic_restart_rank);
             game.configure_armor_set(session.starting_gear, session.starting_stars);
+            game.set_ranged_appearance(&armory, session.starting_ranged_appearance);
             game.set_equipment_pity(&session.starting_pity);
             game.set_equipment_ownership(entry_owned.iter().copied());
             game.set_racial_progression_components(

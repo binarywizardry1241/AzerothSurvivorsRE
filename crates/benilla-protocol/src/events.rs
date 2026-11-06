@@ -750,6 +750,8 @@ pub enum SessionEvent {
         /// DynamicObject.
         dest: Option<[f32; 3]>,
         ammo_display_id: Option<u32>,
+        /// The second word of the `CAST_FLAG_AMMO` tail, preserved for packet forwarding.
+        ammo_inventory_type: Option<u32>,
         /// The cast item when the first guid is not the caster; the item cooldown keys on it.
         item_caster: Option<u64>,
         /// The packet's second guid as written, the caster unit (`m_casterUnit`): 0 for a
