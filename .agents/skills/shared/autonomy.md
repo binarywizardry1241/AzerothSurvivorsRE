@@ -142,8 +142,9 @@ pipeline activity, presentation and bounded timing questions.
 
 - Search the owning authorized checkout's
   `runtime/original-vulkan-cache/cache/traces/` for `tracker-*.tsv`. Include
-  nested session directories with `gameplay.log` and `session.json`. If the launch
-  used a `TRACKER_DIR` override, check its authorized location. The legacy
+  nested session directories with `gameplay.log`. Use `session.json` when it is
+  present. If the launch used a `TRACKER_DIR` override, check its authorized
+  location. The legacy
   `runtime/original-vulkan-cache/cache/tracker.tsv` can provide historical leads.
 - Verify which executable produced the capture using independent launch or
   build evidence. Bind an original capture to its EXE hash and a rebuilt

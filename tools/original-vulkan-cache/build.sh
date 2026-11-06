@@ -12,9 +12,11 @@ header_version=1.4.321
 header_sha=7c1874f9186d9e7d5245e279cdccaa77a66ed8f52871b428630aeb771dc7623c
 manifest=VK_LAYER_AZS_pipeline_cache.json
 library=libAzsVulkanCache.dylib
+bootstrap=libAzsWineTracker.dylib
+mode=${1:-}
 
-if [ "$#" -gt 0 ] && { [ "$#" -ne 2 ] || [ "$1" != --smoke ]; }; then
-    printf 'Usage: %s [--smoke /path/to/WoWSilicon.app/Contents/Resources/Wine]\n' "$0" >&2
+if [ "$#" -gt 0 ] && { [ "$#" -ne 2 ] || { [ "$mode" != --smoke ] && [ "$mode" != --smoke-wine ]; }; }; then
+    printf 'Usage: %s [--smoke|--smoke-wine /path/to/WoWSilicon.app/Contents/Resources/Wine]\n' "$0" >&2
     exit 2
 fi
 
@@ -55,9 +57,12 @@ python3 -B "$source_dir/gen-tracker.py" "$registry" "$scratch/tracker-generated.
     -Wl,-install_name,@rpath/"$library" \
     "$source_dir/layer.c" "$source_dir/cache_store.c" \
     "$source_dir/tracker.c" "$source_dir/tracker_details.c" -o "$scratch/$library"
+"$compiler" -arch x86_64 -std=c17 -O2 -dynamiclib -fvisibility=hidden \
+    -Wall -Wextra -Wpedantic -Werror -Wl,-install_name,@rpath/"$bootstrap" \
+    "$source_dir/wine-tracker-bootstrap.c" -o "$scratch/$bootstrap"
 cp -- "$source_dir/$manifest" "$scratch/$manifest"
 
-if [ "$#" -eq 2 ]; then
+if [ -n "$mode" ]; then
     wine_dir=$2
     loader="$wine_dir/lib/external/libvulkan.1.dylib"
     icd="$wine_dir/lib/vulkan/icd.d/MoltenVK_icd.json"
@@ -130,10 +135,13 @@ if [ "$#" -eq 2 ]; then
         "$scratch/tracker-stream-smoke" "$scratch/test-traces"
     printf 'Vulkan tracker verified disabled, unique across sessions, and readable while idle.\n'
 fi
+if [ "$mode" = --smoke-wine ]; then
+    /bin/sh "$source_dir/wine-tracker-smoke.sh" "$wine_dir" "$scratch/$bootstrap" "$scratch"
+fi
 
 mkdir -p -- "$output_dir"
 if [ ! -d "$output_dir/cache" ]; then
     mkdir -m 700 -- "$output_dir/cache"
 fi
-mv -f -- "$scratch/$library" "$scratch/$manifest" "$output_dir/"
-printf '%s\n' "$output_dir/$library" "$output_dir/$manifest"
+mv -f -- "$scratch/$library" "$scratch/$manifest" "$scratch/$bootstrap" "$output_dir/"
+printf '%s\n' "$output_dir/$library" "$output_dir/$manifest" "$output_dir/$bootstrap"

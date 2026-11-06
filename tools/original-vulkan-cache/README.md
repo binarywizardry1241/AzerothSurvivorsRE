@@ -30,10 +30,10 @@ than EXE-specific offsets. [Registered EXE identity](../../docs/analysis/target-
 ## Build
 
 Run `tools/original-vulkan-cache/build.sh` from the checkout. This produces the
-layer, its loader manifest and a private cache directory in
-`runtime/original-vulkan-cache/`. The script downloads and verifies the pinned
-Vulkan-Headers archive in scratch and generates the trace wrappers from its
-Vulkan registry. For an offline build, set `AZS_VULKAN_HEADERS` to the matching
+Vulkan layer, its loader manifest, the Wine startup library and a private cache
+directory in `runtime/original-vulkan-cache/`. The script downloads and verifies
+the pinned Vulkan-Headers archive in scratch and generates the trace wrappers
+from its Vulkan registry. For an offline build, set `AZS_VULKAN_HEADERS` to the matching
 include directory and `AZS_VULKAN_REGISTRY` to its `registry/vk.xml` if it sits
 outside the headers checkout.
 
@@ -54,6 +54,10 @@ The test also checks that `TRACKER=0` creates no trace and that `TRACKER=1`
 preserves separate files for two launches. It checks shader and pipeline
 creation, a render pass and draw, compute dispatch, barriers, queue submission,
 and a heartbeat flush while the process is still running without presenting.
+
+To also test the Wine startup library, use `--smoke-wine` with the same Wine
+runtime path. This starts Wine's command interpreter in a disposable prefix
+and checks that it can write to the Windows trace path prepared at launch.
 
 With WoWSilicon 3.2.2's bundled MoltenVK, the cold run published 1,054 bytes
 before teardown and the warm run loaded them. An earlier run with MoltenVK
@@ -85,12 +89,16 @@ snapshot results to standard error.
 
 ## Frame tracker
 
-Add `TRACKER=1` to the WoWSilicon profile's environment before launching. Set
-`TRACKER=0` to turn it off. Each traced launch creates a private
-`tracker-*.tsv` in `runtime/original-vulkan-cache/cache/traces/` with the profile
-above. The general default is `$AZS_VK_CACHE_DIR/traces/`. An absolute
-`TRACKER_DIR` inside the checkout overrides the directory. The parent of a
-legacy absolute `TRACKER_PATH` is used if `TRACKER_DIR` is unset.
+Set `TRACKER=1` in the WoWSilicon profile's environment and press **Play**.
+Set `TRACKER=0` for the next launch to turn off tracking and keep using the
+pipeline cache.
+
+With the Wine startup library configured below, each captured launch writes
+`tracker-*.tsv` and `gameplay.log` in one private session directory. With the
+Vulkan layer alone, the frame log goes directly in `$AZS_VK_CACHE_DIR/traces/`.
+In that mode, an absolute `TRACKER_DIR` inside the checkout overrides the
+directory. The parent of a legacy absolute `TRACKER_PATH` is used if
+`TRACKER_DIR` is unset.
 
 The tracker appends and flushes a heartbeat every 60 seconds, including at
 idle, outside the selected frame range, and after reaching the event size
@@ -128,24 +136,28 @@ Full buffer, texture and pixel contents require separate evidence.
 
 ## Gameplay and frame captures
 
-The [tracked launcher](launch-tracked.py) uses WoWSilicon's bundled Wine and the
-registered original EXE. It directs the game's native Benilla trace and the
-Vulkan layer into the same session directory under
-`runtime/original-vulkan-cache/cache/traces/`. Each launch starts with a fresh
-workspace save and configuration. The Wine prefix is reused. The EXE and its
-Data remain in their registered locations. `session.json` records the verified
-EXE version and hash, Wine runtime and requested capture settings.
+Add the following entries to the same Azeroth Survivors profile under
+**Options → Environment**. Keep the Vulkan layer and cache settings above.
+Use the absolute macOS path to the built startup library and the original EXE
+that the profile already launches.
 
-From the checkout with the layer built, verify the launch plan with the first
-command. The second command starts a fresh isolated game session.
-
-```sh
-TRACKER=1 python3 -B tools/original-vulkan-cache/launch-tracked.py
-TRACKER=1 python3 -B tools/original-vulkan-cache/launch-tracked.py --launch
+```text
+DYLD_INSERT_LIBRARIES=/path/to/checkout/runtime/original-vulkan-cache/libAzsWineTracker.dylib
+AZS_TRACKER_EXE=/path/to/AzerothSurvivors/AzerothSurvivors.exe
+TRACKER=1
 ```
 
-The normal WoWSilicon Play button uses the frame tracker described above. Use
-the isolated launcher when the session also needs gameplay events.
+If the profile already sets `DYLD_INSERT_LIBRARIES`, append the library path to
+its colon-separated list. Press **Play** to start the selected game with its
+usual configuration and save. The startup library checks the selected original
+EXE and uses the Wine bottle's existing `Z:` mapping to set the game's trace
+path before Wine starts it.
+
+Each tracked launch creates a private `session-*` directory under
+`$AZS_VK_CACHE_DIR/traces/`. The game's `gameplay.log` and the layer's
+`tracker-*.tsv` belong to that session. Set `TRACKER=0` before pressing **Play**
+to skip creating capture files. If the startup library cannot prepare a capture,
+it prints a diagnostic to standard error and allows the game to start.
 
 The game's `WOW_MOVE_TRACE` writer emits timestamped records as events occur.
 The allowlist includes the Azeroth Survivors addon feed, combat damage and
@@ -165,5 +177,6 @@ The 0.141.0 EXE contains the trace controls and the Azeroth Survivors
 addon feed. The local packet route and trace tag behavior are described by
 the [addon bridge recovery](../../docs/analysis/addon-bridge-0.109.0.md),
 the [supplied API reference](../../docs/addon-api/reference-supplied-0.139.2.md#raw-addon-messages),
-and the [Benilla trace writer](../../crates/benilla-assets/src/trace.rs). The
-native gameplay capture path requires a live check on the selected EXE.
+and the [Benilla trace writer](../../crates/benilla-assets/src/trace.rs). A
+Wine smoke test establishes the environment handoff and file path. A capture
+from an original-game session establishes which events the EXE emits in play.
