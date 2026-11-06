@@ -513,6 +513,22 @@ impl Progress {
     fn rank(&self, key: &str) -> u8 {
         self.perks.get(key).copied().unwrap_or(0)
     }
+    fn active_instincts(&self) -> usize {
+        INSTINCT_PERKS.iter().filter(|key| self.rank(key) > 0).count()
+    }
+    fn instinct_slots(&self) -> usize {
+        usize::from(self.rank("companion") > 0) + usize::from(self.rank("second") > 0)
+    }
+    fn edit_rank(&mut self, catalog: &Catalog, key: &str, delta: i8) {
+        let limit = catalog.perk(key).map_or(0, |perk| perk.costs.len());
+        let rank = (self.rank(key).wrapping_add_signed(delta) as i8).max(0) as u8;
+        let rank = usize::from(rank).min(limit) as u8;
+        if rank == 0 {
+            self.perks.remove(key);
+        } else {
+            self.perks.insert(key.into(), rank);
+        }
+    }
     fn pet(&self, slot: usize) -> &str {
         self.companions
             .get(slot)
@@ -681,6 +697,30 @@ fn progress(
         .map(|(have, total)| (have.min(total), total))
 }
 
+const INSTINCT_PERKS: [&str; 3] = ["instinct_gold", "instinct_wisps", "instinct_runes"];
+
+fn perk_rank_controls(
+    perk: &Perk,
+    plan: &Progress,
+    owned: &Progress,
+    catalog: &Catalog,
+    remaining: u32,
+) -> (bool, bool) {
+    let rank = plan.rank(&perk.key);
+    let keeps_dependents = rank != 1
+        || (!catalog.perks.iter().any(|dependent| {
+            dependent.prerequisite.as_deref() == Some(perk.key.as_str())
+                && plan.rank(&dependent.key) > 0
+        }) && (perk.key != "second" || plan.active_instincts() < 2));
+    let can_decrease = rank > owned.rank(&perk.key) && keeps_dependents;
+    let can_increase = perk.costs.get(usize::from(rank)).is_some_and(|&cost| cost <= remaining)
+        && owned.earned.contains(&perk.achievement)
+        && perk.prerequisite.as_ref().is_none_or(|key| plan.rank(key) > 0)
+        && (!INSTINCT_PERKS.contains(&perk.key.as_str())
+            || plan.active_instincts() < plan.instinct_slots());
+    (can_decrease, can_increase)
+}
+
 fn valid_plan(plan: &Progress, owned: &Progress, catalog: &Catalog) -> bool {
     if owned.perks.iter().any(|(key, rank)| plan.rank(key) < *rank)
         || !owned.tabards.is_subset(&plan.tabards)
@@ -709,11 +749,7 @@ fn valid_plan(plan: &Progress, owned: &Progress, catalog: &Catalog) -> bool {
             return false;
         }
     }
-    let instincts = ["instinct_gold", "instinct_wisps", "instinct_runes"]
-        .iter()
-        .filter(|key| plan.rank(key) > 0)
-        .count();
-    if instincts > usize::from(plan.rank("companion") + plan.rank("second")) {
+    if plan.active_instincts() > plan.instinct_slots() {
         return false;
     }
     plan.tabards.iter().all(|id| {
@@ -991,17 +1027,11 @@ fn input(
             }
             Action::CompanionTab(tab) => view.companion_tab = *tab,
             Action::Rank(key, delta) => {
-                let mut candidate = view.plan.clone().unwrap_or_else(|| owned.clone());
-                let old = candidate.rank(key);
-                let rank = old.saturating_add_signed(*delta);
-                if rank == 0 {
-                    candidate.perks.remove(key);
-                } else {
-                    candidate.perks.insert(key.clone(), rank);
-                }
-                if valid_plan(&candidate, &owned, &catalog) {
-                    view.plan = Some(candidate);
-                }
+                // The button admits the action from the displayed draft. Confirm
+                // validates the whole draft after all admitted rank edits.
+                view.plan
+                    .get_or_insert_with(|| owned.clone())
+                    .edit_rank(&catalog, key, *delta);
                 view.reset_armed = false;
             }
             Action::Confirm => {
@@ -1995,6 +2025,7 @@ fn perk_card(
     perk: &Perk,
     owned: &Progress,
     plan: &Progress,
+    remaining: u32,
 ) {
     let rank = usize::from(plan.rank(&perk.key)).min(perk.costs.len());
     let unlocked = owned.rank(&perk.key) > 0 || owned.earned.contains(&perk.achievement);
@@ -2002,15 +2033,7 @@ fn perk_card(
         .prerequisite
         .as_ref()
         .is_none_or(|key| plan.rank(key) > 0);
-    let mut increased = plan.clone();
-    increased.perks.insert(perk.key.clone(), rank as u8 + 1);
-    let mut decreased = plan.clone();
-    decreased
-        .perks
-        .insert(perk.key.clone(), rank.saturating_sub(1) as u8);
-    let can_increase = rank < perk.costs.len() && valid_plan(&increased, owned, catalog);
-    let can_decrease =
-        rank > usize::from(owned.rank(&perk.key)) && valid_plan(&decreased, owned, catalog);
+    let (can_decrease, can_increase) = perk_rank_controls(perk, plan, owned, catalog, remaining);
     // Native 140188ab0 wrapper and 1402220b0 children use intrinsic text layout.
     ui.spawn((
         Node {
@@ -2432,6 +2455,42 @@ mod tests {
             Some(Dialog::RewardsChanges(Page::Picker))
         ));
     }
+    #[test]
+    fn rewards_confirm_rejects_a_conflict_between_previously_admitted_rank_edits() {
+        let catalog = Catalog::embedded();
+        let mut owned = Progress::default();
+        owned
+            .earned
+            .extend(catalog.achievements.iter().map(|entry| entry.key.clone()));
+        let companion = catalog.perk("companion").unwrap();
+        let paws = catalog.perk("paws").unwrap();
+        let mut displayed = owned.clone();
+        displayed.edit_rank(&catalog, &companion.key, 1);
+        let remaining = owned.earned_points(&catalog) - displayed.spent(&catalog);
+        assert!(perk_rank_controls(companion, &displayed, &owned, &catalog, remaining).0);
+        assert!(perk_rank_controls(paws, &displayed, &owned, &catalog, remaining).1);
+
+        for actions in [
+            [(&companion.key, -1), (&paws.key, 1)],
+            [(&paws.key, 1), (&companion.key, -1)],
+        ] {
+            let mut draft = displayed.clone();
+            for (key, delta) in actions {
+                draft.edit_rank(&catalog, key, delta);
+            }
+            assert_eq!(draft.rank(&companion.key), 0);
+            assert_eq!(draft.rank(&paws.key), 1);
+            assert!(!valid_plan(&draft, &owned, &catalog));
+            assert_eq!(
+                perk_rank_controls(paws, &draft, &owned, &catalog, remaining),
+                (true, false)
+            );
+
+            draft.edit_rank(&catalog, &paws.key, -1);
+            assert!(valid_plan(&draft, &owned, &catalog));
+        }
+    }
+
     #[test]
     fn plan_needs_achievement_points_and_prerequisites() {
         let catalog = Catalog::embedded();

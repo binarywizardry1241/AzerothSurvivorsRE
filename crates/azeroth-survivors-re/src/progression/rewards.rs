@@ -744,6 +744,7 @@ pub(super) fn draw(
             menu::native_panel(body, pane(Val::Px(300.), 0.), |left| sidebar(left, art, labels, catalog, owned, plan, view));
             menu::native_panel(body, pane(Val::Auto, 1.), |right| {
                 let perks = |ui: &mut ChildSpawnerCommands| {
+                    let remaining = owned.earned_points(catalog).saturating_sub(plan.spent(catalog));
                     ui.spawn(Node {
                         display: Display::Grid,
                         grid_template_columns: RepeatedGridTrack::flex(2, 1.),
@@ -752,7 +753,7 @@ pub(super) fn draw(
                         ..default()
                     }).with_children(|grid| {
                         for perk in catalog.perks.iter().filter(|perk| perk.category == view.rewards_tab) {
-                            perk_card(grid, art, images, labels, catalog, perk, owned, plan);
+                            perk_card(grid, art, images, labels, catalog, perk, owned, plan, remaining);
                         }
                     });
                 };
