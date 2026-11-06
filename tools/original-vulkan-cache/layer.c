@@ -1,10 +1,13 @@
 #define _POSIX_C_SOURCE 200809L
 #define VK_NO_PROTOTYPES
+#include <vulkan/vulkan.h>
 #include <vulkan/vk_layer.h>
 
 #include "cache_store.h"
+#include "tracker.h"
 
 #include <errno.h>
+#include <inttypes.h>
 #include <pthread.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -25,6 +28,7 @@ typedef struct InstanceState {
 
 typedef struct DeviceState {
     VkDevice device;
+    void *dispatch_key;
     PFN_vkGetDeviceProcAddr gdpa;
     PFN_vkDestroyDevice destroy;
     PFN_vkCreateGraphicsPipelines graphics;
@@ -91,6 +95,31 @@ static DeviceState *device_state(VkDevice device, bool remove) {
     return state;
 }
 
+static PFN_vkVoidFunction azs_track_device_next(const void *handle, const char *name) {
+    if (!handle) {
+        return NULL;
+    }
+    void *key = dispatch_key(handle);
+    pthread_mutex_lock(&state_lock);
+    DeviceState *state = devices;
+    while (state && state->dispatch_key != key) {
+        state = state->next;
+    }
+    pthread_mutex_unlock(&state_lock);
+    return state ? state->gdpa(state->device, name) : NULL;
+}
+
+static PFN_vkVoidFunction azs_track_instance_next(const void *handle, const char *name) {
+    InstanceState *state = instance_state(handle, false);
+    if (!state) {
+        return NULL;
+    }
+    PFN_vkVoidFunction proc = state->gipa(state->instance, name);
+    return proc || !state->phys_gpa ? proc : state->phys_gpa(state->instance, name);
+}
+
+#include "tracker-generated.inc"
+
 static VKAPI_ATTR VkResult VKAPI_CALL layer_create_instance(
     const VkInstanceCreateInfo *info, const VkAllocationCallbacks *allocator, VkInstance *instance
 ) {
@@ -116,7 +145,15 @@ static VKAPI_ATTR VkResult VKAPI_CALL layer_create_instance(
         state->gipa = link->pfnNextGetInstanceProcAddr;
         state->phys_gpa = link->pfnNextGetPhysicalDeviceProcAddr;
         chain->u.pLayerInfo = link->pNext;
+        AzsTrackEvent event;
+        azs_track_begin(&event, "vkCreateInstance", true);
+        azs_track_describe(&event, "pCreateInfo", "VkInstanceCreateInfo", info, 1);
         VkResult result = create(info, allocator, instance);
+        azs_trackf(&event, "\tresult=%d", result);
+        if (result == VK_SUCCESS) {
+            azs_trackf(&event, "\tpInstance=0x%" PRIxPTR, (uintptr_t)*instance);
+        }
+        azs_track_end(&event, false);
         if (result != VK_SUCCESS) {
             free(state);
             return result;
@@ -138,7 +175,11 @@ static VKAPI_ATTR void VKAPI_CALL layer_destroy_instance(
 ) {
     InstanceState *state = instance_state(instance, true);
     if (state) {
+        AzsTrackEvent event;
+        azs_track_begin(&event, "vkDestroyInstance", true);
+        azs_trackf(&event, "\tinstance=0x%" PRIxPTR, (uintptr_t)instance);
         state->destroy(instance, allocator);
+        azs_track_end(&event, false);
         free(state);
     }
 }
@@ -182,13 +223,23 @@ static VKAPI_ATTR VkResult VKAPI_CALL layer_create_device(
     }
     state->gdpa = link->pfnNextGetDeviceProcAddr;
     chain->u.pLayerInfo = link->pNext;
+    AzsTrackEvent event;
+    azs_track_begin(&event, "vkCreateDevice", true);
+    azs_trackf(&event, "\tphysicalDevice=0x%" PRIxPTR, (uintptr_t)physical_device);
+    azs_track_describe(&event, "pCreateInfo", "VkDeviceCreateInfo", info, 1);
     VkResult result = create(physical_device, info, allocator, device);
+    azs_trackf(&event, "\tresult=%d", result);
+    if (result == VK_SUCCESS) {
+        azs_trackf(&event, "\tpDevice=0x%" PRIxPTR, (uintptr_t)*device);
+    }
+    azs_track_end(&event, false);
     if (result != VK_SUCCESS) {
         free(state);
         return result;
     }
 
     state->device = *device;
+    state->dispatch_key = dispatch_key(*device);
     state->destroy = (PFN_vkDestroyDevice)state->gdpa(*device, "vkDestroyDevice");
     state->graphics = (PFN_vkCreateGraphicsPipelines)state->gdpa(*device, "vkCreateGraphicsPipelines");
     state->compute = (PFN_vkCreateComputePipelines)state->gdpa(*device, "vkCreateComputePipelines");
@@ -402,8 +453,26 @@ static VKAPI_ATTR void VKAPI_CALL layer_destroy_device(
     if (state->cache_lock_ready) {
         pthread_mutex_destroy(&state->cache_lock);
     }
+    AzsTrackEvent event;
+    azs_track_begin(&event, "vkDestroyDevice", true);
+    azs_trackf(&event, "\tdevice=0x%" PRIxPTR, (uintptr_t)device);
     state->destroy(device, allocator);
+    azs_track_end(&event, false);
     free(state);
+}
+
+static void track_pipeline_result(AzsTrackEvent *event, VkResult result, uint32_t count,
+                                  const VkPipeline *pipelines) {
+    azs_trackf(event, "\tresult=%d", result);
+    if (event->active && result == VK_SUCCESS) {
+        for (uint32_t i = 0; i < count && i < 32; ++i) {
+            azs_trackf(event, "\tpPipelines[%u]=0x%" PRIxPTR, i, (uintptr_t)pipelines[i]);
+        }
+        if (count > 32) {
+            event->truncated = true;
+        }
+    }
+    azs_track_end(event, false);
 }
 
 static VKAPI_ATTR VkResult VKAPI_CALL layer_create_graphics_pipelines(
@@ -414,11 +483,17 @@ static VKAPI_ATTR VkResult VKAPI_CALL layer_create_graphics_pipelines(
     if (!state) {
         return VK_ERROR_INITIALIZATION_FAILED;
     }
+    AzsTrackEvent event;
+    azs_track_begin(&event, "vkCreateGraphicsPipelines", true);
+    azs_trackf(&event, "\tdevice=0x%" PRIxPTR "\tpipelineCache=0x%" PRIxPTR "\tcreateInfoCount=%u",
+               (uintptr_t)device, (uintptr_t)cache, count);
+    azs_track_describe(&event, "pCreateInfos", "VkGraphicsPipelineCreateInfo", info, count);
     bool borrowed = borrow_cache(state, &cache);
     VkResult result = state->graphics(device, cache, count, info, allocator, pipelines);
     if (borrowed) {
         release_cache(state);
     }
+    track_pipeline_result(&event, result, count, pipelines);
     return result;
 }
 
@@ -430,11 +505,17 @@ static VKAPI_ATTR VkResult VKAPI_CALL layer_create_compute_pipelines(
     if (!state) {
         return VK_ERROR_INITIALIZATION_FAILED;
     }
+    AzsTrackEvent event;
+    azs_track_begin(&event, "vkCreateComputePipelines", true);
+    azs_trackf(&event, "\tdevice=0x%" PRIxPTR "\tpipelineCache=0x%" PRIxPTR "\tcreateInfoCount=%u",
+               (uintptr_t)device, (uintptr_t)cache, count);
+    azs_track_describe(&event, "pCreateInfos", "VkComputePipelineCreateInfo", info, count);
     bool borrowed = borrow_cache(state, &cache);
     VkResult result = state->compute(device, cache, count, info, allocator, pipelines);
     if (borrowed) {
         release_cache(state);
     }
+    track_pipeline_result(&event, result, count, pipelines);
     return result;
 }
 
@@ -457,7 +538,14 @@ static VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL layer_get_device_proc_addr(
         return (PFN_vkVoidFunction)layer_create_compute_pipelines;
     }
     DeviceState *state = device_state(device, false);
-    return state ? state->gdpa(device, name) : NULL;
+    PFN_vkVoidFunction next = state ? state->gdpa(device, name) : NULL;
+    if (next && azs_tracker_enabled()) {
+        PFN_vkVoidFunction tracked = azs_track_lookup(name, true);
+        if (tracked) {
+            return tracked;
+        }
+    }
+    return next;
 }
 
 static VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL layer_get_instance_proc_addr(
@@ -494,7 +582,17 @@ static VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL layer_get_instance_proc_addr(
         return (PFN_vkVoidFunction)layer_create_compute_pipelines;
     }
     InstanceState *state = instance_state(instance, false);
-    return state ? state->gipa(instance, name) : NULL;
+    PFN_vkVoidFunction next = state ? state->gipa(instance, name) : NULL;
+    if (next && azs_tracker_enabled()) {
+        PFN_vkVoidFunction tracked = azs_track_lookup(name, false);
+        if (!tracked) {
+            tracked = azs_track_lookup(name, true);
+        }
+        if (tracked) {
+            return tracked;
+        }
+    }
+    return next;
 }
 
 static VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL layer_get_physical_device_proc_addr(
@@ -504,7 +602,14 @@ static VKAPI_ATTR PFN_vkVoidFunction VKAPI_CALL layer_get_physical_device_proc_a
         return NULL;
     }
     InstanceState *state = instance_state(instance, false);
-    return state && state->phys_gpa ? state->phys_gpa(instance, name) : NULL;
+    PFN_vkVoidFunction next = state && state->phys_gpa ? state->phys_gpa(instance, name) : NULL;
+    if (next && azs_tracker_enabled()) {
+        PFN_vkVoidFunction tracked = azs_track_lookup(name, false);
+        if (tracked) {
+            return tracked;
+        }
+    }
+    return next;
 }
 
 __attribute__((visibility("default")))

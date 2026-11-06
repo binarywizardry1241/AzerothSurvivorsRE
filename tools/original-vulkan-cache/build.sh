@@ -7,6 +7,7 @@ runtime_dir="$project_root/runtime"
 output_dir="$runtime_dir/original-vulkan-cache"
 compiler=${AZS_VK_CLANG:-clang}
 headers=${AZS_VULKAN_HEADERS:-}
+registry=${AZS_VULKAN_REGISTRY:-}
 header_version=1.4.321
 header_sha=7c1874f9186d9e7d5245e279cdccaa77a66ed8f52871b428630aeb771dc7623c
 manifest=VK_LAYER_AZS_pipeline_cache.json
@@ -32,18 +33,28 @@ if [ -z "$headers" ]; then
         "https://codeload.github.com/KhronosGroup/Vulkan-Headers/tar.gz/refs/tags/v$header_version" \
         --output "$archive"
     printf '%s  %s\n' "$header_sha" "$archive" | shasum -a 256 -c -
-    tar -xf "$archive" -C "$scratch" "Vulkan-Headers-$header_version/include"
+    tar -xf "$archive" -C "$scratch" "Vulkan-Headers-$header_version/include" \
+        "Vulkan-Headers-$header_version/registry/vk.xml"
     headers="$scratch/Vulkan-Headers-$header_version/include"
 fi
 if [ ! -f "$headers/vulkan/vk_layer.h" ]; then
     printf 'Set AZS_VULKAN_HEADERS to the Vulkan-Headers include directory.\n' >&2
     exit 1
 fi
+if [ -z "$registry" ]; then
+    registry="$headers/../registry/vk.xml"
+fi
+if [ ! -f "$registry" ]; then
+    printf 'Set AZS_VULKAN_REGISTRY to the matching Vulkan-Headers registry/vk.xml.\n' >&2
+    exit 1
+fi
+python3 -B "$source_dir/gen-tracker.py" "$registry" "$scratch/tracker-generated.inc"
 
-"$compiler" -arch x86_64 -std=c17 -O2 -dynamiclib -fvisibility=hidden \
-    -Wall -Wextra -Wpedantic -Werror -I "$headers" \
+"$compiler" -arch x86_64 -std=c17 -O2 -dynamiclib -fvisibility=hidden -DVK_USE_PLATFORM_METAL_EXT \
+    -Wall -Wextra -Wpedantic -Werror -I "$headers" -I "$scratch" \
     -Wl,-install_name,@rpath/"$library" \
-    "$source_dir/layer.c" "$source_dir/cache_store.c" -o "$scratch/$library"
+    "$source_dir/layer.c" "$source_dir/cache_store.c" \
+    "$source_dir/tracker.c" "$source_dir/tracker_details.c" -o "$scratch/$library"
 cp -- "$source_dir/$manifest" "$scratch/$manifest"
 
 if [ "$#" -eq 2 ]; then
@@ -55,12 +66,16 @@ if [ "$#" -eq 2 ]; then
         -I "$headers" "$source_dir/smoke.c" -o "$scratch/smoke"
     mkdir -m 700 -- "$scratch/test-cache"
     run_smoke() {
+        tracker=$1
+        shift
         VK_DRIVER_FILES="$icd" VK_ADD_LAYER_PATH="$scratch" \
             VK_INSTANCE_LAYERS=VK_LAYER_AZS_pipeline_cache \
             AZS_VK_CACHE_DIR="$scratch/test-cache" AZS_VK_CACHE_TRACE=1 \
+            TRACKER="$tracker" TRACKER_PATH="$scratch/tracker.tsv" \
+            TRACKER_START_FRAME=0 TRACKER_FRAMES=0 TRACKER_MAX_MIB=64 \
             "$scratch/smoke" "$loader" "$@"
     }
-    if ! cold=$(run_smoke --checkpoint "$scratch/test-cache" 2>&1); then
+    if ! cold=$(run_smoke 0 --checkpoint "$scratch/test-cache" 2>&1); then
         printf '%s\n' "$cold" >&2
         exit 1
     fi
@@ -70,7 +85,8 @@ if [ "$#" -eq 2 ]; then
         printf 'Cold smoke unexpectedly used normal device teardown.\n' >&2
         exit 1
     fi
-    if ! warm=$(run_smoke 2>&1); then
+    test ! -e "$scratch/tracker.tsv"
+    if ! warm=$(run_smoke 1 2>&1); then
         printf '%s\n' "$warm" >&2
         exit 1
     fi
@@ -78,6 +94,18 @@ if [ "$#" -eq 2 ]; then
     printf '%s\n' "$warm" | grep -Eq 'loaded [1-9][0-9]* bytes'
     printf '%s\n' "$warm" | grep -Eq 'created cache with [1-9][0-9]* bytes of initial data'
     printf '%s\n' "$warm" | grep -Fq '2 null-cache calls redirected'
+    for call in vkCreateShaderModule vkCreateGraphicsPipelines vkCreateComputePipelines \
+        vkAllocateCommandBuffers vkBeginCommandBuffer vkCmdBindPipeline vkCmdDispatch \
+        vkCmdPipelineBarrier vkCmdBeginRenderPass vkCmdDraw vkCmdEndRenderPass \
+        vkEndCommandBuffer vkQueueSubmit vkQueueWaitIdle; do
+        if ! grep -Fq "call=$call" "$scratch/tracker.tsv"; then
+            printf 'Trace is missing %s.\n' "$call" >&2
+            exit 1
+        fi
+    done
+    grep -Eq 'call=vkCreateShaderModule.*code_fnv1a=0x[0-9a-f]+' "$scratch/tracker.tsv"
+    grep -Eq 'call=vkQueueSubmit.*pSubmits\.command\[0\]=0x[0-9a-f]+' "$scratch/tracker.tsv"
+    printf 'Vulkan tracker verified disabled and active.\n'
 fi
 
 mkdir -p -- "$output_dir"

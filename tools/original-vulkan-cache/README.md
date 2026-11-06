@@ -32,8 +32,10 @@ than EXE-specific offsets. [Registered EXE identity](../../docs/analysis/target-
 Run `tools/original-vulkan-cache/build.sh` from the checkout. This produces the
 layer, its loader manifest and a private cache directory in
 `runtime/original-vulkan-cache/`. The script downloads and verifies the pinned
-Vulkan-Headers archive in scratch. Set `AZS_VULKAN_HEADERS` to an existing
-Vulkan-Headers include directory to build offline.
+Vulkan-Headers archive in scratch and generates the trace wrappers from its
+Vulkan registry. For an offline build, set `AZS_VULKAN_HEADERS` to the matching
+include directory and `AZS_VULKAN_REGISTRY` to its `registry/vk.xml` if it sits
+outside the headers checkout.
 
 To test the build against the bundled MoltenVK and Vulkan loader without
 starting Wine or the game, run
@@ -48,6 +50,9 @@ waits for a published file while the Vulkan device is alive, exits without
 destroying the device, and checks that a second process loads the file. The
 second process checks that the layer redirects only the two null-cache calls.
 Its temporary cache is removed when the script finishes.
+The test also checks that `TRACKER=0` creates no trace and that `TRACKER=1`
+records shader and pipeline creation, a render pass and draw, compute dispatch,
+barriers, and queue submission.
 
 With WoWSilicon 3.2.2's bundled MoltenVK, the cold run published 1,054 bytes
 before teardown and the warm run loaded them. An earlier run with MoltenVK
@@ -76,3 +81,41 @@ Shader compilation and pipeline creation stutters are the intended target.
 In-game frame times need an original-game comparison to quantify the effect.
 For diagnostics, `AZS_VK_CACHE_TRACE=1` prints device cache availability and
 snapshot results to standard error.
+
+## Frame tracker
+
+Add `TRACKER=1` to the WoWSilicon profile's environment before launching. Set
+`TRACKER=0` to turn it off. The layer writes a tab-separated trace to
+`tracker.tsv` in `AZS_VK_CACHE_DIR` unless `TRACKER_PATH` supplies an absolute
+path. Each traced launch replaces the previous trace at that path. A second
+process cannot write to a trace file in use.
+
+| Optional setting | Effect |
+| --- | --- |
+| `TRACKER_START_FRAME` | First frame to include, starting at `0`. |
+| `TRACKER_FRAMES` | Number of frames to include. `0` records until the size limit. |
+| `TRACKER_MAX_MIB` | File limit from 1 to 1,024 MiB. Defaults to 64 MiB. |
+
+Frame numbers advance after successful presentation. Object creation and other
+metadata can appear outside a selected frame range to identify objects used
+inside it. Trace rows contain a sequence number, frame number, monotonic start
+time, observed call duration, thread, command, and recorded fields. Handles
+connect object creation, command recording and submission within a run.
+Observed durations include tracing and CPU call time.
+
+The wrappers cover registry commands in the supported host Vulkan dispatch
+chain, including graphics and compute pipelines, render passes, bindings, draws,
+dispatches, resource operations, barriers, queue submission and presentation.
+The detailed fields include shader fingerprints and entry points, attachment
+formats and sizes, blend/depth/raster state, viewport and scissor state, and
+submission handles. The trace preserves scalar arguments and selected handle
+arrays for other commands. Arrays and event lines have bounds, so a large call
+can have omitted fields. Loader-global calls and platform interfaces outside
+the host coverage remain outside the trace.
+
+For a menu comparison, follow `vkCmdBeginRenderPass` or `vkCmdBeginRendering`
+through pipeline binds, draws, queue submission and `vkQueuePresentKHR`. Use
+the same options and scene in both builds. The tracker observes Vulkan calls
+through Wine and MoltenVK. RE's direct Metal backend needs its own capture.
+Trace rows describe GPU commands and their setup, while game logic and full
+buffer, texture and pixel contents require separate evidence.

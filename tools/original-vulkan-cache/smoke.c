@@ -137,16 +137,23 @@ static bool find_graphics_compute_queue(PFN_vkEnumeratePhysicalDevices enumerate
 
 #define LOAD_DEVICE(name) PFN_##name name = (PFN_##name)get_device_proc_addr(device, #name)
 
+static bool smoke_submission(VkDevice device, PFN_vkGetDeviceProcAddr get_device_proc_addr,
+                             uint32_t queue_family, VkPipeline pipeline,
+                             const VkRenderPassBeginInfo *render_pass);
+
 static bool smoke_graphics_pipeline(VkDevice device, PFN_vkGetDeviceProcAddr get_device_proc_addr,
-                                    VkPipelineLayout layout) {
+                                    uint32_t queue_family, VkPipelineLayout layout) {
     LOAD_DEVICE(vkCreateShaderModule);
     LOAD_DEVICE(vkDestroyShaderModule);
     LOAD_DEVICE(vkCreateRenderPass);
     LOAD_DEVICE(vkDestroyRenderPass);
+    LOAD_DEVICE(vkCreateFramebuffer);
+    LOAD_DEVICE(vkDestroyFramebuffer);
     LOAD_DEVICE(vkCreateGraphicsPipelines);
     LOAD_DEVICE(vkDestroyPipeline);
     if (!vkCreateShaderModule || !vkDestroyShaderModule || !vkCreateRenderPass ||
-        !vkDestroyRenderPass || !vkCreateGraphicsPipelines || !vkDestroyPipeline) {
+        !vkDestroyRenderPass || !vkCreateFramebuffer || !vkDestroyFramebuffer ||
+        !vkCreateGraphicsPipelines || !vkDestroyPipeline) {
         fputs("Vulkan device lacks the graphics pipeline smoke-test functions\n", stderr);
         return false;
     }
@@ -189,6 +196,7 @@ static bool smoke_graphics_pipeline(VkDevice device, PFN_vkGetDeviceProcAddr get
 
     VkShaderModule shader = VK_NULL_HANDLE;
     VkRenderPass render_pass = VK_NULL_HANDLE;
+    VkFramebuffer framebuffer = VK_NULL_HANDLE;
     VkPipeline pipeline = VK_NULL_HANDLE;
     bool success = false;
 
@@ -242,11 +250,31 @@ static bool smoke_graphics_pipeline(VkDevice device, PFN_vkGetDeviceProcAddr get
         .layout = layout,
         .renderPass = render_pass,
     };
-    success = check(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipeline_info, NULL,
-                                             &pipeline),
-                    "create graphics pipeline with a null cache");
+    const VkFramebufferCreateInfo framebuffer_info = {
+        .sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO,
+        .renderPass = render_pass,
+        .width = 1,
+        .height = 1,
+        .layers = 1,
+    };
+    if (!check(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipeline_info, NULL, &pipeline),
+               "create graphics pipeline with a null cache") ||
+        !check(vkCreateFramebuffer(device, &framebuffer_info, NULL, &framebuffer),
+               "create attachmentless framebuffer")) {
+        goto cleanup;
+    }
+    const VkRenderPassBeginInfo begin_info = {
+        .sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO,
+        .renderPass = render_pass,
+        .framebuffer = framebuffer,
+        .renderArea = scissor,
+    };
+    success = smoke_submission(device, get_device_proc_addr, queue_family, pipeline, &begin_info);
 
 cleanup:
+    if (framebuffer) {
+        vkDestroyFramebuffer(device, framebuffer, NULL);
+    }
     if (pipeline) {
         vkDestroyPipeline(device, pipeline, NULL);
     }
@@ -259,7 +287,112 @@ cleanup:
     return success;
 }
 
-static bool smoke_device(VkDevice device, PFN_vkGetDeviceProcAddr get_device_proc_addr) {
+static bool smoke_submission(VkDevice device, PFN_vkGetDeviceProcAddr get_device_proc_addr,
+                             uint32_t queue_family, VkPipeline pipeline,
+                             const VkRenderPassBeginInfo *render_pass) {
+    LOAD_DEVICE(vkGetDeviceQueue);
+    LOAD_DEVICE(vkCreateCommandPool);
+    LOAD_DEVICE(vkDestroyCommandPool);
+    LOAD_DEVICE(vkAllocateCommandBuffers);
+    LOAD_DEVICE(vkFreeCommandBuffers);
+    LOAD_DEVICE(vkBeginCommandBuffer);
+    LOAD_DEVICE(vkEndCommandBuffer);
+    LOAD_DEVICE(vkCmdBindPipeline);
+    LOAD_DEVICE(vkCmdDispatch);
+    LOAD_DEVICE(vkCmdPipelineBarrier);
+    LOAD_DEVICE(vkCmdBeginRenderPass);
+    LOAD_DEVICE(vkCmdDraw);
+    LOAD_DEVICE(vkCmdEndRenderPass);
+    LOAD_DEVICE(vkQueueSubmit);
+    LOAD_DEVICE(vkQueueWaitIdle);
+    if (!vkGetDeviceQueue || !vkCreateCommandPool || !vkDestroyCommandPool ||
+        !vkAllocateCommandBuffers || !vkFreeCommandBuffers || !vkBeginCommandBuffer ||
+        !vkEndCommandBuffer || !vkCmdBindPipeline || !vkCmdDispatch || !vkCmdPipelineBarrier ||
+        !vkCmdBeginRenderPass || !vkCmdDraw || !vkCmdEndRenderPass ||
+        !vkQueueSubmit || !vkQueueWaitIdle) {
+        fputs("Vulkan device lacks the command submission smoke-test functions\n", stderr);
+        return false;
+    }
+
+    VkQueue queue = VK_NULL_HANDLE;
+    vkGetDeviceQueue(device, queue_family, 0, &queue);
+    if (!queue) {
+        fputs("cannot obtain the Vulkan graphics and compute queue\n", stderr);
+        return false;
+    }
+
+    const VkCommandPoolCreateInfo pool_info = {
+        .sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO,
+        .queueFamilyIndex = queue_family,
+    };
+    VkCommandPool pool = VK_NULL_HANDLE;
+    if (!check(vkCreateCommandPool(device, &pool_info, NULL, &pool), "create command pool")) {
+        return false;
+    }
+
+    const VkCommandBufferAllocateInfo allocate_info = {
+        .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO,
+        .commandPool = pool,
+        .level = VK_COMMAND_BUFFER_LEVEL_PRIMARY,
+        .commandBufferCount = 1,
+    };
+    VkCommandBuffer buffer = VK_NULL_HANDLE;
+    bool success = false;
+    if (!check(vkAllocateCommandBuffers(device, &allocate_info, &buffer), "allocate command buffer")) {
+        goto cleanup;
+    }
+    const VkCommandBufferBeginInfo begin_info = {
+        .sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_BEGIN_INFO,
+        .flags = VK_COMMAND_BUFFER_USAGE_ONE_TIME_SUBMIT_BIT,
+    };
+    if (!check(vkBeginCommandBuffer(buffer, &begin_info), "begin command buffer")) {
+        goto cleanup;
+    }
+    if (render_pass) {
+        vkCmdBeginRenderPass(buffer, render_pass, VK_SUBPASS_CONTENTS_INLINE);
+        vkCmdBindPipeline(buffer, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
+        vkCmdDraw(buffer, 3, 1, 0, 0);
+        vkCmdEndRenderPass(buffer);
+    } else {
+        vkCmdBindPipeline(buffer, VK_PIPELINE_BIND_POINT_COMPUTE, pipeline);
+        vkCmdDispatch(buffer, 1, 1, 1);
+        const VkMemoryBarrier barrier = {
+            .sType = VK_STRUCTURE_TYPE_MEMORY_BARRIER,
+            .srcAccessMask = VK_ACCESS_SHADER_WRITE_BIT,
+            .dstAccessMask = VK_ACCESS_SHADER_READ_BIT,
+        };
+        vkCmdPipelineBarrier(buffer, VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT,
+                             VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT, 0, 1, &barrier, 0, NULL, 0, NULL);
+    }
+    if (!check(vkEndCommandBuffer(buffer), "end command buffer")) {
+        goto cleanup;
+    }
+
+    const VkSubmitInfo submit_info = {
+        .sType = VK_STRUCTURE_TYPE_SUBMIT_INFO,
+        .commandBufferCount = 1,
+        .pCommandBuffers = &buffer,
+    };
+    if (!check(vkQueueSubmit(queue, 1, &submit_info, VK_NULL_HANDLE), "submit commands")) {
+        goto cleanup;
+    }
+    if (!check(vkQueueWaitIdle(queue), "wait for submitted commands")) {
+        /* A failed wait may leave work pending. Exit the isolated smoke process. */
+        fflush(stderr);
+        _Exit(EXIT_FAILURE);
+    }
+    success = true;
+
+cleanup:
+    if (buffer) {
+        vkFreeCommandBuffers(device, pool, 1, &buffer);
+    }
+    vkDestroyCommandPool(device, pool, NULL);
+    return success;
+}
+
+static bool smoke_device(VkDevice device, PFN_vkGetDeviceProcAddr get_device_proc_addr,
+                         uint32_t queue_family) {
     LOAD_DEVICE(vkCreateShaderModule);
     LOAD_DEVICE(vkDestroyShaderModule);
     LOAD_DEVICE(vkCreatePipelineLayout);
@@ -332,7 +465,8 @@ static bool smoke_device(VkDevice device, PFN_vkGetDeviceProcAddr get_device_pro
                "create compute pipeline with an application cache")) {
         goto cleanup;
     }
-    success = smoke_graphics_pipeline(device, get_device_proc_addr, layout);
+    success = smoke_graphics_pipeline(device, get_device_proc_addr, queue_family, layout) &&
+              smoke_submission(device, get_device_proc_addr, queue_family, uncached, NULL);
 
 cleanup:
     if (cached) {
@@ -463,7 +597,7 @@ static bool smoke_instance(VkInstance instance, PFN_vkGetInstanceProcAddr get_in
     if (!check(vkCreateDevice(physical, &create_info, NULL, &device), "create compute device")) {
         return false;
     }
-    const bool success = smoke_device(device, vkGetDeviceProcAddr);
+    const bool success = smoke_device(device, vkGetDeviceProcAddr, queue_family);
     if (success && checkpoint_directory) {
         const bool checkpointed = wait_for_checkpoint(checkpoint_directory);
         if (checkpointed) {
@@ -521,6 +655,7 @@ int main(int argc, char **argv) {
     if (success) {
         puts("Vulkan graphics and compute pipelines created with null caches "
              "and compute with an application-owned cache");
+        puts("Vulkan graphics and compute commands submitted, completed and freed");
     }
     return success ? EXIT_SUCCESS : EXIT_FAILURE;
 }
