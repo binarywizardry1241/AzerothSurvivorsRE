@@ -6,6 +6,9 @@ evidence needed to assess each finding. Actual source/recovery issues are owned 
 [CURRENT-STATE](CURRENT-STATE.md); mixed findings link back under the same permanent ID.
 Source context in the retained records is not another source-fix queue.
 
+The [gameplay tracker evidence](analysis/gameplay-log-evidence.md) maps retained
+capture windows to findings and records the expected addon output for comparison.
+
 Every original finding, evidence link, target/hash boundary and recorded result is
 retained. Completed source work does not establish execution or parity. Informational
 and resolved static records are kept separately below without inventing a gameplay
