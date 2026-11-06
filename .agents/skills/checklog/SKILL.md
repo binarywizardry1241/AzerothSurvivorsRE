@@ -1,6 +1,6 @@
 ---
 name: checklog
-description: Review and record existing Azeroth Survivors gameplay logs. Report only new actionable findings and link them to their gap IDs in CURRENT-STATE for $fixgap. Use for $checklog or requests to inspect a gameplay capture.
+description: Review new and appended Azeroth Survivors gameplay logs across all sessions. Report only new actionable findings and link them to their gap IDs in CURRENT-STATE for $fixgap. Use for $checklog or requests to inspect a gameplay capture.
 ---
 
 # Check Gameplay Logs
@@ -12,22 +12,28 @@ Follow `AGENTS.md` and the
 Builds, launches, server operation, REA jobs, repairs and pushes require their
 own authorization.
 
-## Select and identify the capture
+## Select and identify captures
 
-- Use the requested capture, run or time window. For a bare invocation or
-  "latest," find the newest gameplay session in the owning checkout's
-  `runtime/original-vulkan-cache/cache/traces/session-*/gameplay.log` or its
-  authorized configured cache location. Use the `# t0=` header to distinguish
-  sessions. Check the [retained evidence](../../../docs/analysis/gameplay-log-evidence.md)
-  first. Verify the recorded prefix digest before resuming an appended log.
-  If it differs, resolve capture identity before trusting the saved cutoff.
+- By default, enumerate every `session-*/gameplay.log` under the owning
+  checkout's `runtime/original-vulkan-cache/cache/traces/` or its authorized
+  configured cache location. Review all new or extended captures, including
+  older sessions. Narrow the scan when the user explicitly selects a capture,
+  run or time window.
+- Match each capture's `# t0=` header to the
+  [retained evidence](../../../docs/analysis/gameplay-log-evidence.md) and verify
+  its saved prefix digest. Skip a matching capture with no complete lines
+  beyond its cutoff. For a matching extended capture, review only the complete
+  lines after that cutoff, using earlier lines as context where needed. Start
+  an unrecorded capture at the beginning. Resolve a truncated or mismatched
+  prefix before using its cutoff, and continue checking the other captures.
 - Check session metadata and retained launch/build evidence where available.
   Bind an original capture to its launched EXE hash and a rebuilt capture to
   its revision/build identity. The installed EXE can be inspected read-only
   with `python3 -B scripts/register-target.py --inspect-installed`. A current
   installed hash alone leaves launch provenance unconfirmed.
-- For a growing log, read through a fixed last complete line and record the
-  cutoff. A missing end marker in that prefix leaves the outcome unknown.
+- For each growing log, read through a fixed last complete line and record the
+  cutoff. Leave partial lines and later appends for the next invocation.
+  A missing end marker in that prefix leaves the outcome unknown.
   Keep the `AZSRUN` clock distinct from elapsed trace time. Use `# t0=` plus
   the row's `t=` offset for wall-clock alignment.
 
