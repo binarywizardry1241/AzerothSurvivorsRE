@@ -65,16 +65,17 @@ if [ "$#" -eq 2 ]; then
     "$compiler" -arch x86_64 -std=c17 -O2 -Wall -Wextra -Wpedantic -Werror \
         -I "$headers" "$source_dir/smoke.c" -o "$scratch/smoke"
     mkdir -m 700 -- "$scratch/test-cache"
-    run_smoke() {
+    run_smoke() (
         tracker=$1
         shift
+        unset TRACKER_DIR TRACKER_PATH
         VK_DRIVER_FILES="$icd" VK_ADD_LAYER_PATH="$scratch" \
             VK_INSTANCE_LAYERS=VK_LAYER_AZS_pipeline_cache \
             AZS_VK_CACHE_DIR="$scratch/test-cache" AZS_VK_CACHE_TRACE=1 \
-            TRACKER="$tracker" TRACKER_PATH="$scratch/tracker.tsv" \
+            TRACKER="$tracker" \
             TRACKER_START_FRAME=0 TRACKER_FRAMES=0 TRACKER_MAX_MIB=64 \
             "$scratch/smoke" "$loader" "$@"
-    }
+    )
     if ! cold=$(run_smoke 0 --checkpoint "$scratch/test-cache" 2>&1); then
         printf '%s\n' "$cold" >&2
         exit 1
@@ -85,27 +86,49 @@ if [ "$#" -eq 2 ]; then
         printf 'Cold smoke unexpectedly used normal device teardown.\n' >&2
         exit 1
     fi
-    test ! -e "$scratch/tracker.tsv"
-    if ! warm=$(run_smoke 1 2>&1); then
-        printf '%s\n' "$warm" >&2
-        exit 1
-    fi
-    printf '%s\n' "$warm"
-    printf '%s\n' "$warm" | grep -Eq 'loaded [1-9][0-9]* bytes'
-    printf '%s\n' "$warm" | grep -Eq 'created cache with [1-9][0-9]* bytes of initial data'
-    printf '%s\n' "$warm" | grep -Fq '2 null-cache calls redirected'
-    for call in vkCreateShaderModule vkCreateGraphicsPipelines vkCreateComputePipelines \
-        vkAllocateCommandBuffers vkBeginCommandBuffer vkCmdBindPipeline vkCmdDispatch \
-        vkCmdPipelineBarrier vkCmdBeginRenderPass vkCmdDraw vkCmdEndRenderPass \
-        vkEndCommandBuffer vkQueueSubmit vkQueueWaitIdle; do
-        if ! grep -Fq "call=$call" "$scratch/tracker.tsv"; then
-            printf 'Trace is missing %s.\n' "$call" >&2
-            exit 1
+    trace_dir="$scratch/test-cache/traces"
+    test ! -e "$trace_dir"
+    run_warm_smoke() {
+        if ! warm=$(run_smoke 1 2>&1); then
+            printf '%s\n' "$warm" >&2
+            return 1
         fi
+        printf '%s\n' "$warm"
+        printf '%s\n' "$warm" | grep -Eq 'loaded [1-9][0-9]* bytes'
+        printf '%s\n' "$warm" | grep -Eq 'created cache with [1-9][0-9]* bytes of initial data'
+        printf '%s\n' "$warm" | grep -Fq '2 null-cache calls redirected'
+    }
+    run_warm_smoke
+    set -- "$trace_dir"/tracker-*.tsv
+    test "$#" -eq 1
+    test -s "$1"
+    first_trace=$1
+    first_hash=$(shasum -a 256 < "$first_trace")
+    run_warm_smoke
+    set -- "$trace_dir"/tracker-*.tsv
+    test "$#" -eq 2
+    test "$first_hash" = "$(shasum -a 256 < "$first_trace")"
+    for trace do
+        for call in vkCreateShaderModule vkCreateGraphicsPipelines vkCreateComputePipelines \
+            vkAllocateCommandBuffers vkBeginCommandBuffer vkCmdBindPipeline vkCmdDispatch \
+            vkCmdPipelineBarrier vkCmdBeginRenderPass vkCmdDraw vkCmdEndRenderPass \
+            vkEndCommandBuffer vkQueueSubmit vkQueueWaitIdle; do
+            if ! grep -Fq "call=$call" "$trace"; then
+                printf 'Trace is missing %s in %s.\n' "$call" "$trace" >&2
+                exit 1
+            fi
+        done
+        grep -Eq 'call=vkCreateShaderModule.*code_fnv1a=0x[0-9a-f]+' "$trace"
+        grep -Eq 'call=vkQueueSubmit.*pSubmits\.command\[0\]=0x[0-9a-f]+' "$trace"
     done
-    grep -Eq 'call=vkCreateShaderModule.*code_fnv1a=0x[0-9a-f]+' "$scratch/tracker.tsv"
-    grep -Eq 'call=vkQueueSubmit.*pSubmits\.command\[0\]=0x[0-9a-f]+' "$scratch/tracker.tsv"
-    printf 'Vulkan tracker verified disabled and active.\n'
+
+    "$compiler" -arch x86_64 -std=c17 -O2 -Wall -Wextra -Wpedantic -Werror \
+        -DAZS_TRACKER_HEARTBEAT_SECONDS=1 "$source_dir/tracker.c" \
+        "$source_dir/tracker-stream-smoke.c" -o "$scratch/tracker-stream-smoke"
+    TRACKER=1 TRACKER_DIR="$scratch/test-traces" \
+        TRACKER_START_FRAME=0 TRACKER_FRAMES=0 TRACKER_MAX_MIB=64 \
+        "$scratch/tracker-stream-smoke" "$scratch/test-traces"
+    printf 'Vulkan tracker verified disabled, unique across sessions, and readable while idle.\n'
 fi
 
 mkdir -p -- "$output_dir"

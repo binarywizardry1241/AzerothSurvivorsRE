@@ -51,8 +51,9 @@ destroying the device, and checks that a second process loads the file. The
 second process checks that the layer redirects only the two null-cache calls.
 Its temporary cache is removed when the script finishes.
 The test also checks that `TRACKER=0` creates no trace and that `TRACKER=1`
-records shader and pipeline creation, a render pass and draw, compute dispatch,
-barriers, and queue submission.
+preserves separate files for two launches. It checks shader and pipeline
+creation, a render pass and draw, compute dispatch, barriers, queue submission,
+and a heartbeat flush while the process is still running without presenting.
 
 With WoWSilicon 3.2.2's bundled MoltenVK, the cold run published 1,054 bytes
 before teardown and the warm run loaded them. An earlier run with MoltenVK
@@ -85,23 +86,29 @@ snapshot results to standard error.
 ## Frame tracker
 
 Add `TRACKER=1` to the WoWSilicon profile's environment before launching. Set
-`TRACKER=0` to turn it off. The layer writes a tab-separated trace to
-`tracker.tsv` in `AZS_VK_CACHE_DIR` unless `TRACKER_PATH` supplies an absolute
-path. Each traced launch replaces the previous trace at that path. A second
-process cannot write to a trace file in use.
+`TRACKER=0` to turn it off. Each traced launch creates a private
+`tracker-*.tsv` in `runtime/original-vulkan-cache/cache/traces/` with the profile
+above. The general default is `$AZS_VK_CACHE_DIR/traces/`. An absolute
+`TRACKER_DIR` inside the checkout overrides the directory. The parent of a
+legacy absolute `TRACKER_PATH` is used if `TRACKER_DIR` is unset.
+
+The tracker appends and flushes a heartbeat every 60 seconds, including at
+idle, outside the selected frame range, and after reaching the event size
+limit. Successful presentations and normal shutdown also flush buffered rows.
 
 | Optional setting | Effect |
 | --- | --- |
 | `TRACKER_START_FRAME` | First frame to include, starting at `0`. |
 | `TRACKER_FRAMES` | Number of frames to include. `0` records until the size limit. |
-| `TRACKER_MAX_MIB` | File limit from 1 to 1,024 MiB. Defaults to 64 MiB. |
+| `TRACKER_MAX_MIB` | Event data limit from 1 to 1,024 MiB. Defaults to 64 MiB. Heartbeats continue after the limit. |
 
 Frame numbers advance after successful presentation. Object creation and other
 metadata can appear outside a selected frame range to identify objects used
 inside it. Trace rows contain a sequence number, frame number, monotonic start
 time, observed call duration, thread, command, and recorded fields. Handles
 connect object creation, command recording and submission within a run.
-Observed durations include tracing and CPU call time.
+Observed durations include tracing and CPU call time. The header pairs a Unix
+timestamp with the monotonic nanosecond clock used by `t_ns`.
 
 The wrappers cover registry commands in the supported host Vulkan dispatch
 chain, including graphics and compute pipelines, render passes, bindings, draws,
@@ -117,5 +124,46 @@ For a menu comparison, follow `vkCmdBeginRenderPass` or `vkCmdBeginRendering`
 through pipeline binds, draws, queue submission and `vkQueuePresentKHR`. Use
 the same options and scene in both builds. The tracker observes Vulkan calls
 through Wine and MoltenVK. RE's direct Metal backend needs its own capture.
-Trace rows describe GPU commands and their setup, while game logic and full
-buffer, texture and pixel contents require separate evidence.
+Full buffer, texture and pixel contents require separate evidence.
+
+## Gameplay and frame captures
+
+The [tracked launcher](launch-tracked.py) uses WoWSilicon's bundled Wine and the
+registered original EXE. It directs the game's native Benilla trace and the
+Vulkan layer into the same session directory under
+`runtime/original-vulkan-cache/cache/traces/`. Each launch starts with a fresh
+workspace save and configuration. The Wine prefix is reused. The EXE and its
+Data remain in their registered locations. `session.json` records the verified
+EXE version and hash, Wine runtime and requested capture settings.
+
+From the checkout with the layer built, verify the launch plan with the first
+command. The second command starts a fresh isolated game session.
+
+```sh
+TRACKER=1 python3 -B tools/original-vulkan-cache/launch-tracked.py
+TRACKER=1 python3 -B tools/original-vulkan-cache/launch-tracked.py --launch
+```
+
+The normal WoWSilicon Play button uses the frame tracker described above. Use
+the isolated launcher when the session also needs gameplay events.
+
+The game's `WOW_MOVE_TRACE` writer emits timestamped records as events occur.
+The allowlist includes the Azeroth Survivors addon feed, combat damage and
+periodic ticks, spell cooldowns, interaction and movement. The feed exposes
+observable run phases, levels, boss and guardian updates, buffs, summons,
+chests, banners, and run results when the game publishes them. Ordinary chat
+and raw packet trace tags are excluded. Addon messages can contain player names
+or other player data. Keep raw captures in the ignored workspace directory.
+
+Use the gameplay trace's `# t0=` Unix timestamp plus each row's `t=` offset
+to align it with the Vulkan header's `unix_time` plus the difference between
+the row's `t_ns` and the header's `monotonic_ns`. This aligns observations by
+time. Internal rules, intermediate decisions, and state that the EXE does
+not publish still require separate recovery.
+
+The 0.141.0 EXE contains the trace controls and the Azeroth Survivors
+addon feed. The local packet route and trace tag behavior are described by
+the [addon bridge recovery](../../docs/analysis/addon-bridge-0.109.0.md),
+the [supplied API reference](../../docs/addon-api/reference-supplied-0.139.2.md#raw-addon-messages),
+and the [Benilla trace writer](../../crates/benilla-assets/src/trace.rs). The
+native gameplay capture path requires a live check on the selected EXE.
