@@ -1,12 +1,13 @@
 ---
 name: checklog
-description: Review new and appended Azeroth Survivors gameplay logs across all sessions. Report only new actionable findings and link them to their gap IDs in CURRENT-STATE for $fixgap. Use for $checklog or requests to inspect a gameplay capture.
+description: Review new and appended Azeroth Survivors gameplay logs, link actionable findings to their gap IDs in CURRENT-STATE, and remove reviewed logs older than seven days. Use for $checklog or requests to inspect a gameplay capture.
 ---
 
 # Check Gameplay Logs
 
 Review existing captures, record the reviewed window and surface only findings
-that give `$fixgap` new work. Invocation authorizes these documentation updates.
+that give `$fixgap` new work. Invocation authorizes these documentation updates
+and the scoped log cleanup below.
 Follow `AGENTS.md` and the
 [shared capture rules](../shared/autonomy.md#reuse-gameplay-tracker-logs).
 Builds, launches, server operation, REA jobs, repairs and pushes require their
@@ -14,6 +15,10 @@ own authorization.
 
 ## Select and identify captures
 
+- Read [CURRENT-STATE](../../../docs/CURRENT-STATE.md), the
+  [verification register](../../../docs/verification-needed.md) and the
+  [retained evidence](../../../docs/analysis/gameplay-log-evidence.md) before
+  reviewing captures. Use the owning reports for the findings they touch.
 - By default, enumerate every `session-*/gameplay.log` under the owning
   checkout's `runtime/original-vulkan-cache/cache/traces/` or its authorized
   configured cache location. Review all new or extended captures, including
@@ -57,7 +62,7 @@ own authorization.
   original/rebuilt parity require their own evidence. Keep raw logs in ignored
   storage and omit personal identifiers from summaries.
 
-## Record the review and report only new findings
+## Record the review
 
 Update the [gameplay tracker evidence](../../../docs/analysis/gameplay-log-evidence.md)
 with the capture header, reviewed line range and prefix digest, producer
@@ -72,6 +77,32 @@ the permanent ID even when its prior work is in the verification register. Apply
 the project register rules if a genuinely distinct issue needs a new ID.
 Preserve unrelated statuses and keep runtime-only comparisons in the verification
 register. Commit the focused documentation changes locally.
+
+## Remove old logs after recording
+
+After checking the docs, reviewing the selected logs and committing any needed
+evidence or gap updates, check the last-write time of each selected
+`gameplay.log`. Consider fully recorded logs here even when their review was
+skipped. If a current finding still needs a raw window, save the relevant
+evidence before considering that log for deletion. Delete a log only when all
+of the following hold.
+
+- Its last modification is more than seven days (168 hours) before the cleanup
+  check.
+- Its saved cutoff covers the last complete line, and the evidence report
+  retains the observations and excerpts needed for follow-up. If an inactive
+  log ends with a partial line, inspect the fragment for useful evidence and
+  record that limit before deleting it.
+- It is a regular file within the authorized trace directory with no active
+  writer or remaining raw-file dependency. Recheck its identity, size and
+  last-write time immediately before removal. Defer a changed, active or
+  unverified file to a later run.
+
+Remove only the exact eligible files and verify their absence. Preserve the
+saved capture records, neighboring files and other sessions. If removal of an
+eligible file fails, report its path and the reason.
+
+## Report only new findings
 
 If the review is recorded and there are no actionable new findings, reply only
 `It’s all recorded. Nothing new found.` Otherwise report only each gap ID, what
