@@ -26,7 +26,6 @@ use crate::{
 enum WorkerEvent {
     Connected,
     Binary(Vec<u8>),
-    Closed,
 }
 struct Worker {
     send: mpsc::Sender<Vec<u8>>,
@@ -50,7 +49,6 @@ impl Worker {
             .spawn(move || {
                 let Ok(mut socket) = DirectorySocket::connect_with_rtt(&url, thread_rtt) else {
                     thread_state.store(2, Ordering::Release);
-                    let _ = events.send(WorkerEvent::Closed);
                     return;
                 };
                 thread_state.store(1, Ordering::Release);
@@ -75,7 +73,6 @@ impl Worker {
                             }
                             SocketEvent::Closed => {
                                 thread_state.store(2, Ordering::Release);
-                                let _ = events.send(WorkerEvent::Closed);
                                 return;
                             }
                             SocketEvent::Text(_) => {} // Native service ignores Text.
@@ -87,7 +84,6 @@ impl Worker {
                     }
                 }
                 thread_state.store(2, Ordering::Release);
-                let _ = events.send(WorkerEvent::Closed);
             })?;
         Ok(Self {
             send,
@@ -152,6 +148,7 @@ pub(crate) struct Service {
     directory: azeroth_survivors_re::coop::directory::LobbyDirectory,
     last_refresh: f32,
     last_command: f64,
+    primary_started: f64,
     last_heartbeat: Option<Instant>,
     pending_host_capacity: Option<u8>,
     pending_password: String,
@@ -252,6 +249,7 @@ impl Service {
             .unwrap()
             .select_transport(self.relay_worker_state());
         self.last_command = now;
+        self.primary_started = now;
         self.last_heartbeat = Some(Instant::now());
         view.status = "connecting".into();
         true
@@ -310,6 +308,13 @@ impl Service {
                 |state| state.failed(),
             )
     }
+
+    fn preserves_party_on_primary_failure(&self, runtime: &CoopRuntime) -> bool {
+        runtime.driver.as_ref().is_some_and(|driver| {
+            driver.is_service() && (driver.is_hosting() || runtime.is_guest())
+        }) && self.secondary.is_some()
+            && !self.secondary_failed()
+    }
 }
 
 fn poll(
@@ -341,21 +346,17 @@ fn poll(
     ),
 ) {
     use azeroth_survivors_re::coop::{
+        directory_lifetime,
         directory_wire::{self, DirectoryResponse},
         server_party::HostConfig,
     };
+    let now = time.elapsed_secs_f64();
     let off = !runtime.is_guest()
         && !runtime
             .driver
             .as_ref()
             .is_some_and(|driver| driver.is_hosting());
-    if service.worker.is_some()
-        && azeroth_survivors_re::coop::directory_lifetime::idle_due(
-            off,
-            time.elapsed_secs_f64(),
-            service.last_command,
-        )
-    {
+    if service.worker.is_some() && directory_lifetime::idle_due(off, now, service.last_command) {
         service.close();
         service.profile_identity = None;
         service.profile = None;
@@ -363,6 +364,15 @@ fn poll(
         // Native idle teardown publishes no phase/reason change and retains
         // the last directory/filter presentation snapshot.
     }
+    // Sample the primary first, then evaluate its failure against the role and
+    // relay selection left by this poll's events.
+    let primary_failed = service.worker.as_ref().is_some_and(|worker| {
+        directory_lifetime::primary_failed(
+            worker.state.load(Ordering::Acquire),
+            now,
+            service.primary_started,
+        )
+    });
     let mut received = service
         .worker
         .as_ref()
@@ -387,19 +397,6 @@ fn poll(
             WorkerEvent::Connected => {
                 if !from_secondary && view.role.is_empty() {
                     view.status = "online".into();
-                }
-            }
-            WorkerEvent::Closed => {
-                // A secondary's closed socket first enters its native retry
-                // state machine; only permanent failure tears down the party.
-                if !from_secondary {
-                    transport_closed(
-                        &mut service,
-                        &mut runtime,
-                        &mut view,
-                        false,
-                        time.elapsed_secs_f64(),
-                    );
                 }
             }
             WorkerEvent::Binary(bytes) => {
@@ -672,7 +669,7 @@ fn poll(
         );
     }
     // Native host liveness checks the retained selected secondary even when
-    // its Closed event was observed while the Game was still Off.
+    // it failed while the Game was still Off.
     if runtime
         .driver
         .as_ref()
@@ -686,6 +683,71 @@ fn poll(
             true,
             time.elapsed_secs_f64(),
         );
+    }
+    let mut settle_departing_guest = |guest: &mut crate::gameplay::GuestRun,
+                                      run: &mut crate::gameplay::RunSession,
+                                      menu: &mut crate::menu_state::MenuState| {
+        let now = std::time::SystemTime::now()
+            .duration_since(std::time::UNIX_EPOCH)
+            .map_or(0, |duration| duration.as_secs());
+        guest.settle(
+            run,
+            menu,
+            &catalog,
+            Some(&locale),
+            &mut notifications,
+            now,
+            time.elapsed_secs(),
+            true,
+        )
+    };
+    let mut retire_departing_guest = |guest: &mut crate::gameplay::GuestRun,
+                                      run: &mut crate::gameplay::RunSession,
+                                      menu: &mut crate::menu_state::MenuState,
+                                      world: &mut crate::gameplay::world::ZoneWorld,
+                                      messages,
+                                      logout: bool| {
+        guest.leave();
+        world.request = None;
+        run.mechanics = None;
+        run.started = false;
+        run.paused = false;
+        if local.active || menu.in_run {
+            menu.return_from_run();
+        }
+        crate::gameplay::queue_guest_delivery(
+            &mut commands,
+            &mut inbound,
+            &mut presentation,
+            messages,
+            logout.then_some(benilla_protocol::SessionEnd::LoggedOut),
+        );
+    };
+    if primary_failed && service.worker.is_some() {
+        // Terminal primary failure takes down the guest role before the service.
+        // A guest whose selected relay survives stays on the ordinary receive path.
+        if runtime.is_guest()
+            && runtime.driver.as_ref().is_some_and(Session::is_service)
+            && !service.preserves_party_on_primary_failure(&runtime)
+        {
+            let logout = local.active && guest.guest_synchronized();
+            let messages = settle_departing_guest(&mut guest, &mut run, &mut menu);
+            if let Some(mut driver) = runtime.driver.take() {
+                service
+                    .relay_protocol
+                    .lock()
+                    .unwrap()
+                    .select_transport(service.relay_worker_state());
+                driver.leave(now, |command| send_relay(&mut service, command));
+            }
+            retire_departing_guest(&mut guest, &mut run, &mut menu, &mut world, messages, logout);
+            runtime.party.clear();
+            runtime.shared_running = false;
+            runtime.actor_clients.clear();
+            runtime.transport_lost = false;
+            publish_local_departure(&mut view, false);
+        }
+        transport_closed(&mut service, &mut runtime, &mut view, false, now);
     }
     {
         let mut protocol = service.relay_protocol.lock().unwrap();
@@ -811,36 +873,8 @@ fn poll(
                 }
                 // Both departures settle the cached run before discarding it.
                 if was_guest {
-                    let now = std::time::SystemTime::now()
-                        .duration_since(std::time::UNIX_EPOCH)
-                        .map_or(0, |duration| duration.as_secs());
-                    let messages = guest.settle(
-                        &mut run,
-                        &mut menu,
-                        &catalog,
-                        Some(&locale),
-                        &mut notifications,
-                        now,
-                        time.elapsed_secs(),
-                        true,
-                    );
-                    guest.leave();
-                    world.request = None;
-                    run.mechanics = None;
-                    run.started = false;
-                    run.paused = false;
-                    if local.active || menu.in_run {
-                        menu.return_from_run();
-                    }
-                    crate::gameplay::queue_guest_delivery(
-                        &mut commands,
-                        &mut inbound,
-                        &mut presentation,
-                        messages,
-                        local
-                            .active
-                            .then_some(benilla_protocol::SessionEnd::LoggedOut),
-                    );
+                    let messages = settle_departing_guest(&mut guest, &mut run, &mut menu);
+                    retire_departing_guest(&mut guest, &mut run, &mut menu, &mut world, messages, local.active);
                 }
                 if !end_run {
                     if let Some(mut driver) = runtime.driver.take() {
@@ -951,15 +985,7 @@ fn transport_closed(
     // when only the primary fails. State0 (connecting) also passes the native
     // secondary !=2 predicate. Retaining the closed primary prevents an
     // invented reconnect/replacement while its selected relay still owns play.
-    if !secondary
-        && (host || runtime.is_guest())
-        && runtime
-            .driver
-            .as_ref()
-            .is_some_and(|driver| driver.is_service())
-        && service.secondary.is_some()
-        && !service.secondary_failed()
-    {
+    if !secondary && service.preserves_party_on_primary_failure(runtime) {
         return;
     }
     // A host checks actual selected-relay loss before primary failure, even
@@ -988,14 +1014,10 @@ fn transport_closed(
             driver.leave(now, |command| send_relay(service, command));
             service.close();
         } else {
-            service.worker = None;
-            service.secondary = None;
-            service.secondary_lifetime = None;
-            service.secondary_config = None;
-            service.relay_protocol.lock().unwrap().select_transport(None);
             if let Some(driver) = &mut runtime.driver {
                 driver.service_lost();
             }
+            service.close();
         }
         runtime.roster_profile = None;
         service.profile_identity = None;
@@ -1678,9 +1700,11 @@ mod tests {
     #[test]
     fn primary_loss_without_selected_relay_and_off_mode_retain_failure_path() {
         for active in [false, true] {
-            let (primary, _commands) = worker(2);
+            let (primary, commands) = worker(2);
             let mut service = Service::default();
             service.worker = Some(primary);
+            service.pending_password = "pending form credential".into();
+            service.pending_host_capacity = Some(4);
             let mut runtime = if active {
                 party(true)
             } else {
@@ -1689,6 +1713,9 @@ mod tests {
             let mut view = CoopUi::default();
             transport_closed(&mut service, &mut runtime, &mut view, false, 0.0);
             assert!(service.worker.is_none());
+            assert!(service.pending_password.is_empty());
+            assert_eq!(service.pending_host_capacity, None);
+            assert_eq!(commands.try_iter().collect::<Vec<_>>(), [vec![8]]);
             assert_eq!(view.status, "unavailable");
             assert!(runtime.driver.is_none());
             assert_eq!(runtime.transport_lost, active);

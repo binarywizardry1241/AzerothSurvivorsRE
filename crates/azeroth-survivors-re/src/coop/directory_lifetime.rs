@@ -12,6 +12,12 @@ pub fn idle_due(off: bool, now: f64, last: f64) -> bool {
     off && now - last >= 60.0
 }
 
+/// The primary may still connect at exactly eight seconds. A closed primary
+/// needs failure evaluation regardless of its age.
+pub fn primary_failed(state: u8, now: f64, started: f64) -> bool {
+    state == 2 || (state == 0 && now - started > 8.0)
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

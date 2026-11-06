@@ -10,6 +10,7 @@ import argparse
 import hashlib
 from itertools import product
 import json
+from math import inf, nan, nextafter
 import re
 import struct
 import tomllib
@@ -430,7 +431,7 @@ def check_host_terminal_failure(target, data, pe):
     directory = path("crates/azeroth-survivors-re/src/coop_directory.rs").read_text()
     session = path("crates/azeroth-survivors-re/src/coop/session.rs").read_text()
     closed = block_after(directory, "fn transport_closed(")
-    assert closed.index("!service.secondary_failed()") < closed.index("return;") < closed.index("driver.leave(")
+    assert closed.index("service.preserves_party_on_primary_failure(runtime)") < closed.index("return;") < closed.index("driver.leave(")
     assert closed.index("runtime.driver.take_if(") < closed.index("select_transport(service.relay_worker_state())") \
         < closed.index("driver.leave(") < closed.index("service.close()") < closed.index("runtime.transport_lost = true")
     failed = block_after(block_after(directory, "fn poll_secondary("), "Action::Failed =>")
@@ -502,6 +503,112 @@ def check_form_credentials(target, data, pe):
     print(f"PASS: {cases} original credential sequences, four native spans and live form/reply source guards")
 
 
+def check_primary_failure(target, data, pe):
+    from native_terminal import NativeReplay
+
+    assert target["sha256"] == "47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6"
+    replay = NativeReplay(data, pe)
+    status = (0x145eb47f0, 0x145eb484e)
+    closed_status = (0x145eb4897, 0x145eb48c0)
+    role_gate = (0x145eb4a2c, 0x145eb4a45)
+    terminal = (0x145eb5241, 0x145eb52d1)
+    ranges = {
+        (0x145ed4b3e, 0x145ed4b53): "f9e122c6c48a48e9a0bd5e9c5eecafd78fdbf4df635b8a256bd38bac7c1c7d00",
+        (0x145eb3c2d, 0x145eb3c63): "c2d93a7dab8e7aecb69a4b3dec3e0313d1539a26615501b75ee7f132929e0035",
+        status: "9a9411de0ac577735786f397b1648496eb7e7c7e998cddeb5338192f650eaf7b",
+        closed_status: "03c8ab873c3467be54d22fd03edc243c11b9104cd55ced9b726713e78adc0668",
+        role_gate: "c9d35b270570cc7ac948a9ab5622e3b680b66d8949acb3632e1cdf634d9c4b65",
+        terminal: "382d959f68bdcbdcc5903a2dcdfcd6915dea7a70561eb43642ba1f14e8932d04",
+        (0x145e9e760, 0x145e9e8d9): "f96f35b21611d00e2c90da5983478194bbcef2230e2068fc9fef931eb39ee22c",
+        (0x145ed81a6, 0x145ed81ec): "49f6af4c618dcc5a2953a5cfbb688750004143c9d04a470d7c160d8bab0c0efe",
+        (0x145ed8306, 0x145ed840c): "9738e9cfa517a0a423648a5da119cb40e28e35a03abb63131edafeae0697cf9c",
+    }
+    for (start, end), expected in ranges.items():
+        assert digest(replay.raw(start, end - start)) == expected
+    assert struct.unpack("<d", replay.raw(0x1469e4c50, 8)) == (8.0,)
+    assert replay.raw(0x147aeb8e8, 8) == bytes.fromhex("0700000000000080")
+
+    reg = replay.registers
+    cases = 0
+    elapsed = [(age, 0.0) for age in (-1.0, 0.0, nextafter(8.0, 0.0), 8.0,
+                                        nextafter(8.0, inf), inf, nan)] + [(10.0, 2.0)]
+    for state, role, (now, started) in product((0, 1, 2), range(4), elapsed):
+        replay.reset("sampled primary state", [status, closed_status], [0x145eb48c0, role_gate[0]])
+        replay.put(replay.bp + 0x1280, "<Q", replay.app)
+        replay.put(replay.app + 0x1100, "<Q", role)
+        replay.machine.reg_write(reg.UC_X86_REG_RCX, state)
+        for clock, value in ((reg.UC_X86_REG_XMM6, now), (reg.UC_X86_REG_XMM8, started)):
+            replay.machine.reg_write(clock, struct.unpack("<Q", struct.pack("<d", value))[0])
+        assert replay.run(status[0]) == (0x145eb48c0 if role == 3 else role_gate[0])
+        failed = state == 2 or (state == 0 and now - started > 8.0)
+        assert (replay.machine.reg_read(reg.UC_X86_REG_RSI) & 0xff) == failed
+        cases += 1
+
+    for role, failed in product(range(4), (False, True)):
+        destinations = (0x145eb4a9d, 0x145eb4a45, 0x145eb5249)
+        replay.reset("primary failure role gate", [role_gate], destinations)
+        replay.put(replay.bp + 0x1280, "<Q", replay.app)
+        replay.put(replay.app + 0x1100, "<Q", role)
+        replay.machine.reg_write(reg.UC_X86_REG_RSI, int(failed))
+        assert replay.run(role_gate[0]) == destinations[0 if not failed else 2 if role == 2 else 1]
+        cases += 1
+
+    calls = {0x145ed8180: "role", 0x1463ac997: "copy", 0x145e9e760: "close",
+             0x145ea9b60: "drop", 0x145ed8540: "reason"}
+    slot = replay.app + 0x1e48
+    absent = (1 << 64) - 1
+    for preserves_relay, present in product((False, True), repeat=2):
+        replay.reset("terminal primary failure", [terminal], [terminal[1]])
+        replay.put(replay.bp + 0x1280, "<Q", replay.app)
+        replay.put(replay.bp + 0x1210, "<Q", slot)
+        replay.put(replay.bp + 0x1128, "<Q", slot + 8)
+        credential_capacity = 7 if present else absent
+        replay.put(slot, "<Q", credential_capacity)
+        replay.machine.reg_write(reg.UC_X86_REG_RBX, int(preserves_relay))
+        observed = []
+
+        def seam(address):
+            if address not in calls:
+                return False
+            call = calls[address]
+            assert replay.get(slot, "<Q") == (credential_capacity if call == "role" else absent,)
+            if call == "reason":
+                reason = b"the co-op service cannot be reached"
+                reason_ptr = replay.machine.reg_read(reg.UC_X86_REG_R9)
+                assert bytes(replay.machine.mem_read(reason_ptr, len(reason))) == reason
+            observed.append(call)
+            replay.return_seam()
+            return True
+
+        replay.seam = seam
+        replay.run(terminal[0])
+        assert observed == ([] if preserves_relay else
+                            ["role", *(["copy", "close", "drop"] if present else []), "reason"])
+        cases += 1
+
+    directory = path("crates/azeroth-survivors-re/src/coop_directory.rs").read_text()
+    lifetime = path("crates/azeroth-survivors-re/src/coop/directory_lifetime.rs").read_text()
+    assert "state == 2 || (state == 0 && now - started > 8.0)" in lifetime
+    assert "self.primary_started = now;" in block_after(directory, "fn ensure(")
+    poll = block_after(directory, "fn poll(")
+    assert poll.index("let primary_failed =") < poll.index("for (from_secondary, event) in received") \
+        < poll.index("poll_secondary(") < poll.index("if primary_failed && service.worker.is_some()") \
+        < poll.index("let requests =")
+    assert "WorkerEvent::Closed" not in directory
+    terminal_guest = block_after(poll, "if primary_failed && service.worker.is_some()")
+    assert terminal_guest.index("!service.preserves_party_on_primary_failure(&runtime)") \
+        < terminal_guest.index("settle_departing_guest(") < terminal_guest.index("driver.leave(") \
+        < terminal_guest.index("retire_departing_guest(") < terminal_guest.index("transport_closed(")
+    failure = block_after(directory, "fn transport_closed(")
+    assert failure.index("service.preserves_party_on_primary_failure(runtime)") \
+        < failure.index("return;") < failure.index("service.close();")
+    assert failure.count("service.close();") == 2
+    close = block_after(directory, "fn close(&mut self)")
+    assert "self.pending_password = String::new();" in close and "self.pending_host_capacity = None;" in close
+    assert close.index("primary.submit(ClientMessage::Leave)") < close.index("self.close_secondary()")
+    print(f"PASS: {cases} original primary failure cases, nine PE spans, two native constants and live source guards")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
@@ -510,12 +617,14 @@ def main():
     mode.add_argument("--current-close", action="store_true", help="Check the 0.139.2 explicit cooperative close proof and source")
     mode.add_argument("--host-terminal-failure", action="store_true", help="Check 0.141.0 host failure departure order and source")
     mode.add_argument("--form-credentials", action="store_true", help="Check 0.141.0 shared Host/Join password lifetime and source")
+    mode.add_argument("--primary-failure", action="store_true", help="Check 0.141.1 primary lobby failure timing, order and source")
     args = parser.parse_args()
     if args.source_only:
         check_source()
         print("PASS: retained socket source guards; native evidence not revalidated; no compilation or execution")
         return
-    target = installed_identity() if args.current_close or args.host_terminal_failure or args.form_credentials else latest_target(verify=True)
+    use_installed = args.current_close or args.host_terminal_failure or args.form_credentials or args.primary_failure
+    target = installed_identity() if use_installed else latest_target(verify=True)
     data = target_bytes(target)
     pe = load_script("coop_directory_transport_pe", ROOT / "scripts/inventory-executable.py").PE(data)
     if args.current_rtt:
@@ -526,6 +635,8 @@ def main():
         return check_host_terminal_failure(target, data, pe)
     if args.form_credentials:
         return check_form_credentials(target, data, pe)
+    if args.primary_failure:
+        return check_primary_failure(target, data, pe)
     owners, tables, literals, certificates, local_results = check_manifest(target, data, pe)
     check_source()
     print(f"PASS: {owners} current native transport ranges/extracts, {tables} tables, "
