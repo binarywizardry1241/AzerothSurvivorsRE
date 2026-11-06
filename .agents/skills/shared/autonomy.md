@@ -139,6 +139,10 @@ When observed behavior could resolve a gap or audit claim, check relevant
 existing gameplay captures before starting fresh recovery. Use them for
 reported state, event order and errors within the captured interval.
 
+- Look up the selected finding IDs in the [retained gameplay tracker evidence](../../../docs/analysis/gameplay-log-evidence.md)
+  first. Reuse its bounded observations and consult the relevant raw window
+  when more detail is needed. Use [`$checklog`](../checklog/SKILL.md) to triage
+  a new or extended capture for related findings.
 - Search the owning authorized checkout's
   `runtime/original-vulkan-cache/cache/traces/` for `session-*/gameplay.log`.
   Use any associated `session.json` or retained launch evidence. If the
