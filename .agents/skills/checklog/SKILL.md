@@ -1,16 +1,16 @@
 ---
 name: checklog
-description: Review existing Azeroth Survivors gameplay tracker logs and identify observations that can help $fixgap or verify reconstructed behavior. Use for $checklog, requests to inspect the latest gameplay capture, or questions about what a capture can establish.
+description: Review and record existing Azeroth Survivors gameplay logs. Report only new actionable findings and link them to their gap IDs in CURRENT-STATE for $fixgap. Use for $checklog or requests to inspect a gameplay capture.
 ---
 
 # Check Gameplay Logs
 
-Inspect captured gameplay, map useful observations to the repository's permanent
-findings and explain which comparison or source trace each observation enables.
-Review is read-only unless the user asks to save findings. Follow `AGENTS.md`
-and the [shared capture rules](../shared/autonomy.md#reuse-gameplay-tracker-logs).
-Reading a capture does not authorize a build, launch, server, REA job, repair or
-push.
+Review existing captures, record the reviewed window and surface only findings
+that give `$fixgap` new work. Invocation authorizes these documentation updates.
+Follow `AGENTS.md` and the
+[shared capture rules](../shared/autonomy.md#reuse-gameplay-tracker-logs).
+Builds, launches, server operation, REA jobs, repairs and pushes require their
+own authorization.
 
 ## Select and identify the capture
 
@@ -19,13 +19,14 @@ push.
   `runtime/original-vulkan-cache/cache/traces/session-*/gameplay.log` or its
   authorized configured cache location. Use the `# t0=` header to distinguish
   sessions. Check the [retained evidence](../../../docs/analysis/gameplay-log-evidence.md)
-  first so another review can focus on new captures or appended rows.
+  first. Verify the recorded prefix digest before resuming an appended log.
+  If it differs, resolve capture identity before trusting the saved cutoff.
 - Check session metadata and retained launch/build evidence where available.
   Bind an original capture to its launched EXE hash and a rebuilt capture to
   its revision/build identity. The installed EXE can be inspected read-only
   with `python3 -B scripts/register-target.py --inspect-installed`. A current
   installed hash alone leaves launch provenance unconfirmed.
-- For a growing log, read through a fixed last complete line and state the
+- For a growing log, read through a fixed last complete line and record the
   cutoff. A missing end marker in that prefix leaves the outcome unknown.
   Keep the `AZSRUN` clock distinct from elapsed trace time. Use `# t0=` plus
   the row's `t=` offset for wall-clock alignment.
@@ -39,21 +40,34 @@ push.
   `AZSMETER` to distinguish same-name direct damage and procs.
 - Follow [CURRENT-STATE](../../../docs/CURRENT-STATE.md) and the
   [verification register](../../../docs/verification-needed.md) to the owning
-  evidence and live publisher. Report the concrete fields and order observed,
-  log line references, the permanent IDs, and what can be compared or traced
-  next. Identify a source discrepancy only when both sides establish it.
-  Keep expected-output cases, unresolved source leads and verification-only
-  work distinct.
+  evidence and live publisher. An actionable new finding supplies a concrete
+  source discrepancy or changes the next source or recovery step for a gap.
+  Establish a discrepancy against live source and applicable evidence. Repeated
+  expected behavior, additional normal examples and verification-only evidence
+  belong in the retained record when useful. They do not trigger a report or a
+  source-gap update.
 - Account for capture filters and missing inputs. An addon message establishes
   publication within that window. Rules, Lua callbacks, actual rendering and
   original/rebuilt parity require their own evidence. Keep raw logs in ignored
   storage and omit personal identifiers from summaries.
 
-## Save when requested
+## Record the review and report only new findings
 
-Add only new reusable observations to the
-[gameplay tracker evidence](../../../docs/analysis/gameplay-log-evidence.md).
-Record the header, reviewed line range or prefix digest, producer provenance,
-relevant finding IDs and limits. Reuse the existing record for an extended
-window of the same capture. Link any new area from its owning report when
-needed. Preserve finding statuses unless the evidence establishes a change.
+Update the [gameplay tracker evidence](../../../docs/analysis/gameplay-log-evidence.md)
+with the capture header, reviewed line range and prefix digest, producer
+provenance and useful observations. Replace the cutoff when extending the same
+reviewed prefix. A focused review does not advance the general cutoff over
+unreviewed lines. Omit routine confirmations and duplicate observations.
+
+For each actionable new finding, record the log lines and limits in the evidence
+report. Update the owning gap in [CURRENT-STATE](../../../docs/CURRENT-STATE.md)
+with the concrete source or recovery action and a link to that evidence. Reuse
+the permanent ID even when its prior work is in the verification register. Apply
+the project register rules if a genuinely distinct issue needs a new ID.
+Preserve unrelated statuses and keep runtime-only comparisons in the verification
+register. Commit the focused documentation changes locally.
+
+If the review is recorded and there are no actionable new findings, reply only
+`It’s all recorded. Nothing new found.` Otherwise report only each gap ID, what
+was found and the evidence link. Keep routine progress out of chat. If a blocker
+prevents review or recording, report it briefly instead of claiming completion.
