@@ -57,6 +57,17 @@ the [current release review](analysis/release-review-0.141.0.md). The
 
 | Lead group | Releases and claim IDs | Next source/recovery question | Existing finding | Category and tags |
 | --- | --- | --- | --- | --- |
+| Codex completion and guest Rockbiter amulet discovery | [0.141.1](CHANGELOG.md#01411): `changelog:0.141.1:eaa7fb6599d2747c`, `changelog:0.141.1:e9b58d2529ae6b7e` | Trace the guest's Rockbiter legendary key from the offer through `StringRanks` admission into saved `Seen` records. Then compare the displayed Codex membership with the achievement's count and denominator, including saved accounts with all 141 listed entries and accounts with unlisted keys but missing entries. | [#19](verification-needed.md#gap-19), [#73](#gap-73) | Progression & saves; Codex, Shaman, Co-op |
+| Ahn'Qiraj Rifle gun behavior and tooltip | [0.141.1](CHANGELOG.md#01411): `changelog:0.141.1:737de64a7a82f25e` | Trace item 103830 from its weapon descriptor through aiming, muzzle effects, projectile and tooltip selection. Which native fields select gun behavior while preserving the same damage? | [#6](verification-needed.md#gap-6) | Gameplay & combat; Hunter, Weapons |
+| Tabard of Lordaeron crest | [0.141.1](CHANGELOG.md#01411): `changelog:0.141.1:f254ac47b93d1ae2` | Which display and texture inputs give tabard 90012 its blue-and-white crest, and do the preview and equipped appearance consume the same mapping? | — | Visuals & audio; Cosmetics |
+| Co-op Battle Shout caster bonuses and recipient tooltip | [0.141.1](CHANGELOG.md#01411): `changelog:0.141.1:5fb431ffa62f27ff` | Trace the casting warrior's Horn of the Warchief and Bloodlust through the per-caster shout and recipient application. Where are the effective amount and tooltip derived, and how is the recipient's own Horn excluded from someone else's shout? | [#289](verification-needed.md#gap-289) | Co-op & networking; Warrior, Buffs |
+
+[0.141.1](CHANGELOG.md#01411) context: the summary
+`changelog:0.141.1:303cc692c90057b9` repeats the Every Bauble, rifle, tabard
+and Battle Shout leads above. The acknowledgement
+`changelog:0.141.1:1f80975a909f28c0` stays with the release. The Windows
+crash report and dump in `Diagnostics` (`changelog:0.141.1:548650aa574f4367`)
+are Windows-only and are not a desktop repair choice.
 
 ## Gap register
 
