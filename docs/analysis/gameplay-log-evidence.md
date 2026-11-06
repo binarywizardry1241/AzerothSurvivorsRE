@@ -19,6 +19,12 @@ the configured original EXE before assigning the log path. The installed
 The captures lack launch-time EXE hashes. Use them as original-game
 observations with the exact launch bytes unconfirmed.
 
+E and F contain only the gameplay header. G contains two solo Undead Rogue
+attempts in Scholomance on Heroic 3 with Bolstering. At review, the installed
+EXE was 0.141.1 (SHA-256
+`47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6`).
+The launch bytes for E through G are unconfirmed.
+
 To locate the raw files locally, search `runtime/original-vulkan-cache/cache/traces/session-*/gameplay.log`
 for the matching `# t0=` header. Line numbers below include that header. The
 prefix digest identifies the reviewed log bytes even if a capture grows.
@@ -30,6 +36,38 @@ Run time is the `AZSRUN` clock. Trace time is the elapsed `t=` on each row.
 | B | `1793928177.341` | 126,765 lines | `ff4084a8421d9cbc85ba7557c60262a8b83b0254b8a943a781aec78c26213af4` |
 | C | `1793929745.053` | 14,850 lines | `eae6895210fc668cbb7f47151f61d0b7b76020c2651d080ad3fdb6edfbeaf6df` |
 | D | `1793976975.399` | 379,537 lines | `187de0e61cd2de1e6b605b69eda067a163dd3a8bb050877e9eeb2b857be3de88` |
+| E | `1793993466.223` | 1 line | `67522d6f755853b2ffd6a997ed3446ed602d5b23cc6056021efaed204d0676b3` |
+| F | `1793993579.308` | 1 line | `dedd729485279d82ba2a3330acd448f3c6de23e8413438e0c30df90881aa7aff` |
+| G | `1793995446.386` | 998,617 lines | `805a8ddcf8cf8ac555a6ade73111d4d991ab2583db532f2edbd908e7e0576c6c` |
+
+## Scholomance scripted cast packets
+
+**[#313](../CURRENT-STATE.md#gap-313).** G's first attempt ends with `left`
+at run 50.5 (line 22088). The second starts at line 22360. Its schedule
+publishes Kirtonos, Ras and Krastinov `up` at run 240.11, 480.11 and 720.12
+(lines 152204, 445993 and 898374). Kirtonos and Ras go `dead` at 300.01 and
+528.60 (lines 207296 and 543790). The run ends in defeat at 769.7 with two
+boss kills and Krastinov still up (lines 995535–995543).
+
+The incoming `SPELL_GO` trace identifies each caster by the creature entry
+in its packed GUID (10506, 10508 and 11261 respectively). The following rows
+all report an indexed caster and zero hits and misses.
+
+| Caster | Spell IDs and G lines | Rebuilt source |
+| --- | --- | --- |
+| Kirtonos | Shadow Bolt Volley 17228 at 154726, Blood Offering 7154 at 156424, Vampiric Swoop 18144 at 184917, Wing Flap 12882 at 187799 | The [four scripted actions](../../crates/azeroth-survivors-re/src/gameplay/mechanics/kirtonos.rs#L365) share the windup publisher. The separate form-change path already emits `SpellGo` for 16467, also seen at 177661. |
+| Ras | Frostbolt Volley 8398 at 451700 and spell 18099 at 467261, 492363 and 521972 | [Volley](../../crates/azeroth-survivors-re/src/gameplay/mechanics/ras.rs#L332) uses the windup publisher. The Frozen Checkmate grid carries spell 0. Trace 18099 back to its native action before assigning it to that grid or its damage. The separate Frost Armor path already emits 18100, seen at 506716. |
+| Krastinov | Twin Cleaver 15284 at 908931 and 913084, then again at 948107 and 951669 | [Both cleaves](../../crates/azeroth-survivors-re/src/gameplay/mechanics/krastinov.rs#L371) use the windup publisher. Rush, Hook and Bladestorm already have dedicated launch publishers. |
+
+The shared [scripted producer](../../crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs#L812)
+requests a windup at creation and publishes `atka` at activation. The
+[packet adapter](../../crates/azeroth-survivors-re/src/gameplay/client/events.rs#L494)
+translates that windup to `SpellStart` only. Scripted damage uses the separate
+damage path. Recover the launch-packet timing, destination and flags for
+the observed missing casts and connect them to the existing recipient path
+without duplicating the dedicated launches. The capture confirms reception
+of the spell IDs but does not include the full packet fields, marker timing
+or resulting visual effects.
 
 ## Downed-party addon IDs
 

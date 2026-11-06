@@ -7,8 +7,11 @@ observations and their limits to finding IDs for `$fixgap`.
 Reviewed **2026-11-05** against the installed **0.141.0** EXE, 151,493,632 bytes,
 SHA-256 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 The [identity and resources](analysis/target-refresh-0.141.0.json) bind the EXE
-and all twelve MPQs. The [0.140.0 census](analysis/native-census-0.140.0.md)
-and [discovery graph](analysis/as-discovery-0.140.0.md) retain their original scope.
+and all twelve MPQs. The installed **0.141.1** EXE inspected on **2026-11-06**
+has SHA-256 `47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6`.
+Full target registration and coverage refresh are pending.
+The [0.140.0 census](analysis/native-census-0.140.0.md) and
+[discovery graph](analysis/as-discovery-0.140.0.md) retain their original scope.
 
 The fresh PE scan found **845 diagnostic paths**, including **83 Survivors
 modules**. The [26-range ledger](analysis/coverage/file-range-summary.json)
@@ -96,8 +99,6 @@ retains the recovered callback phase and remaining runtime comparison.
 tracks compilation, replay and parity for the connected authority.
 <a id="gap-11"></a>[#11 Addon bridge and overlay](verification-needed.md#gap-11)
 retains the connected interface and verification work.
-<a id="gap-313"></a>[#313 Scholomance encounter scripts](verification-needed.md#gap-313)
-tracks compilation, gameplay and visual comparison for the connected source.
 <a id="gap-312"></a>[#312 Scholomance entry and login position](verification-needed.md#gap-312)
 tracks compilation, MPQ-derived spawn comparison and the retained migration checks.
 <a id="gap-248"></a>[#248 Explosive Orb model](verification-needed.md#gap-248)
@@ -288,3 +289,4 @@ Selected-target selectors resolve through the [connection ledger](analysis/cover
 | #293 | Browser input recovered; app/data bootstrap required | <a id="gap-293"></a>**Unicode names/chat, IME composition and mixed-script fonts.** The [deployed 0.141.0 browser trace](analysis/browser-ime-0.141.0.md) establishes the exact WASM caret call, textarea composition and synthetic keyboard delivery. Connect that contract when a rebuilt browser app/data bootstrap provides the game canvas and Winit web event loop. The [0.141.0 Windows trace](analysis/native-ime-preedit-0.141.0.md) finds the existing Commit reader as the only AS consumer within its typed selectors. Windows composition display remains under [verification](verification-needed.md#gap-293). | Localization & fonts · IME, chat |
 | #297 | Current native placement/size/material proof pending | <a id="gap-297"></a>**Armory foot-glow geometry and placement correspondence.** `systems[id=custom-app-screens-armory]`, `Q41-I01:module_type_namespace:82` (`armory::Stand`). Existing `armory.rs:1906` already draws an oval radial gradient with left 14%, bottom 14px, width 72%, height 64px, FarthestSide and 50% radius. Recover current native foot projection, dimensions, transform, colors/alpha and preview framing against that consumer. This is missing current correspondence, not proof of absent oval artwork or a demonstrated visual mismatch. [current source frontier](analysis/source-frontier-0.127.0.md); [0.127.0 release/source review](analysis/release-review-0.127.0.md) R127-04. [Verification and retained evidence](verification-needed.md#gap-297).  **Selected 0.139.1 selectors:** Stand is `Q41-I01:module_type_namespace:89`, file `0x64e016e`; preview composition is namespace243. Act labels at namespace{81,83,85,87,197} are ambiguous navigation candidates, not one mapped owner. The namespace82 selector above retains 0.127 provenance. | Visuals & audio |
 | #298 | Current-target applicability/contract registration pending; proof-only | <a id="gap-298"></a>**ItemQuery helpers and recipient transformation: current applicability.** Keep completed source and actual historical contract proofs in [verification](verification-needed.md#gap-298). Current 0.139.1 ledger `systems[id=custom-game-smsg]` supplies exact diagnostic/body leads; map relevant inputs, dispatch, layouts/values, dependencies and consumers, then register only the proved bounded scope. Missing registration is not absent implementation. [Module dimensions](analysis/module-contracts-0.139.1.md). | Co-op & networking |
+| #313 | Scripted cast launch packets missing | <a id="gap-313"></a>**Scholomance encounter presentation.** The [Heroic 3 capture](analysis/gameplay-log-evidence.md#scholomance-scripted-cast-packets) shows boss-origin `SPELL_GO` for Kirtonos’s four scripted attacks, Ras’s Frostbolt Volley and Krastinov’s two Twin Cleaver swings. The shared source path emits the windup and marker activation but omits these launch packets. Recover the exact native send timing, fields and Ras spell 18099 producer, then connect the missing launches through the shared recipient path. [Connected mechanics and runtime checks](verification-needed.md#gap-313). | Bosses & guardians |
