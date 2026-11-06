@@ -12,6 +12,7 @@ header_sha=7c1874f9186d9e7d5245e279cdccaa77a66ed8f52871b428630aeb771dc7623c
 manifest=VK_LAYER_AZS_pipeline_cache.json
 library=libAzsVulkanCache.dylib
 bootstrap=libAzsWineTracker.dylib
+relay=azs-wine-tracker-relay
 mode=${1:-}
 
 if [ "$#" -gt 0 ] && { [ "$#" -ne 2 ] || { [ "$mode" != --smoke ] && [ "$mode" != --smoke-wine ]; }; }; then
@@ -47,7 +48,10 @@ fi
     "$source_dir/layer.c" "$source_dir/cache_store.c" -o "$scratch/$library"
 "$compiler" -arch x86_64 -std=c17 -O2 -dynamiclib -fvisibility=hidden \
     -Wall -Wextra -Wpedantic -Werror -Wl,-install_name,@rpath/"$bootstrap" \
-    "$source_dir/wine-tracker-bootstrap.c" -o "$scratch/$bootstrap"
+    "$source_dir/wine-tracker-bootstrap.c" "$source_dir/wine-tracker-relay-launch.c" \
+    -o "$scratch/$bootstrap"
+"$compiler" -arch x86_64 -std=c17 -O2 -Wall -Wextra -Wpedantic -Werror \
+    "$source_dir/wine-tracker-relay.c" -o "$scratch/$relay"
 cp -- "$source_dir/$manifest" "$scratch/$manifest"
 
 if [ -n "$mode" ]; then
@@ -95,5 +99,5 @@ mkdir -p -- "$output_dir"
 if [ ! -d "$output_dir/cache" ]; then
     mkdir -m 700 -- "$output_dir/cache"
 fi
-mv -f -- "$scratch/$library" "$scratch/$manifest" "$scratch/$bootstrap" "$output_dir/"
-printf '%s\n' "$output_dir/$library" "$output_dir/$manifest" "$output_dir/$bootstrap"
+mv -f -- "$scratch/$library" "$scratch/$manifest" "$scratch/$relay" "$scratch/$bootstrap" "$output_dir/"
+printf '%s\n' "$output_dir/$library" "$output_dir/$manifest" "$output_dir/$bootstrap" "$output_dir/$relay"

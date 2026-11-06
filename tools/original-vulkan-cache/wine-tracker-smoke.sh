@@ -38,10 +38,15 @@ printf '%s\r\n' '@echo off' 'if defined WOW_MOVE_TRACE exit /b 51' 'exit /b 0' \
 printf '%s\r\n' '@echo off' 'if not defined WOW_MOVE_TRACE exit /b 52' \
     'echo AZS_CONFIG=%BENILLA_HOME%' 'echo AZS_SAVE=%WOW_ROGUE_SAVE%' \
     'echo AZS_TAGS=%WOW_MOVE_TRACE_TAGS%' 'echo AZS_TRACE_CHAT=%WOW_MOVE_TRACE_CHAT%' \
+    'echo AZS_UI_HANDLERS=%WOW_UI_HANDLERS%' 'echo AZS_UI_PICK=%WOW_UI_PICK%' \
+    'echo [ui-handlers] SmokeFrame:OnEvent 1>&2' \
+    'echo INFO benilla_app::ui_script::extract: [ui-pick] Frame z=1 rect=(0,0)-(4,4) alpha=1.000 texture "SmokeTexture.blp"' \
+    'echo INFO benilla_app::ui_script::extract: [ui-pick] Frame z=2 rect=(0,0)-(4,4) alpha=1.000 Text { text: smoke-typed-value } 1>&2' \
+    'echo 014c:fixme:mmdevapi:smoke-terminal-only 1>&2' \
     'echo %AZS_WINE_SMOKE_MARKER%>"%WOW_MOVE_TRACE%"' \
     > "$prefix/drive_c/azs-tracker-write.cmd"
 
-unset WOW_MOVE_TRACE WOW_MOVE_TRACE_TAGS WOW_MOVE_TRACE_CHAT
+unset WOW_MOVE_TRACE WOW_MOVE_TRACE_TAGS WOW_MOVE_TRACE_CHAT WOW_UI_HANDLERS WOW_UI_PICK
 unset WINEARCH WINELOADER WINELOADERNOEXEC ROSETTA_X87_PATH ROSETTA_X87_JIT
 unset DYLD_INSERT_LIBRARIES DYLD_LIBRARY_PATH
 export WINEPREFIX="$prefix" WINESERVER="$wineserver" TMPDIR="$host_tmp"
@@ -66,30 +71,44 @@ run_probe() {
 }
 
 disabled='C:\azs-tracker-disabled.cmd'
-TRACKER_DETAIL=1 run_probe 0 "$cmd" "$disabled"
+run_probe 0 "$cmd" "$disabled"
 run_probe 1 "$foreign" "$disabled"
 traces="$cache/traces"
 test ! -e "$traces"
 
 write_probe() {
-    if ! output=$(TRACKER_DETAIL=$2 run_probe 1 "$cmd" 'C:\azs-tracker-write.cmd' "$1" 2>&1); then
+    if ! output=$(run_probe 1 "$cmd" 'C:\azs-tracker-write.cmd' "$1" 2>&1); then
         printf '%s\n' "$output" >&2
         return 1
     fi
     printf '%s\n' "$output" | grep -Fq 'AZS_CONFIG=smoke-config'
     printf '%s\n' "$output" | grep -Fq 'AZS_SAVE=smoke-save'
     printf '%s\n' "$output" | grep -Fq 'AZS_TRACE_CHAT=0'
-    printf '%s\n' "$output" | tr -d '\r' | grep -Fxq "AZS_TAGS=$3"
+    printf '%s\n' "$output" | tr -d '\r' | grep -Fxq \
+        'AZS_TAGS=addon,fct,cd,use,move,prs,snd,knb,gate,mmv,csp,spl,face,clmp,fx,aur,aev'
+    printf '%s\n' "$output" | grep -Fq 'AZS_UI_HANDLERS=5'
+    printf '%s\n' "$output" | grep -Fq 'AZS_UI_PICK=0,0,8192'
+    printf '%s\n' "$output" | grep -Fq 'fixme:mmdevapi:smoke-terminal-only'
+    if printf '%s\n' "$output" | grep -Fq '[ui-pick]'; then
+        printf 'UI inventory escaped the diagnostics relay.\n' >&2
+        return 1
+    fi
 }
 
-write_probe azs-wine-tracker-first 0 'addon,fct,cd,use,move'
+write_probe azs-wine-tracker-first
 set -- "$traces"/session-*
 test "$#" -eq 1
 first="$1/gameplay.log"
 grep -Fq azs-wine-tracker-first "$first"
+grep -Fq 'SmokeFrame:OnEvent' "$1/ui-diagnostics.log"
+grep -Fq 'SmokeTexture.blp' "$1/ui-diagnostics.log"
+if grep -Eq 'smoke-typed-value|fixme:mmdevapi:' "$1/ui-diagnostics.log"; then
+    printf 'The diagnostics relay saved excluded output.\n' >&2
+    exit 1
+fi
 first_hash=$(shasum -a 256 < "$first")
 
-write_probe azs-wine-tracker-second 1 'addon,fct,cd,use,move,prs,snd,knb,gate,mmv,csp,spl,face,clmp,fx'
+write_probe azs-wine-tracker-second
 set -- "$traces"/session-*
 test "$#" -eq 2
 test "$first_hash" = "$(shasum -a 256 < "$first")"
@@ -99,4 +118,4 @@ else
     second="$1/gameplay.log"
 fi
 grep -Fq azs-wine-tracker-second "$second"
-printf 'Wine tracker bootstrap verified off, foreign-target gating, preserved settings, and distinct gameplay logs.\n'
+printf 'Wine tracker verified session isolation, saved gameplay and UI diagnostics, and output filtering.\n'

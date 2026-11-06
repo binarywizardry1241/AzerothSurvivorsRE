@@ -30,10 +30,10 @@ than EXE-specific offsets. [Registered EXE identity](../../docs/analysis/target-
 ## Build
 
 Run `tools/original-vulkan-cache/build.sh` from the checkout. This produces the
-Vulkan layer, its loader manifest, the Wine startup library and a private cache
-directory in `runtime/original-vulkan-cache/`. The script downloads and verifies
-the pinned Vulkan-Headers archive in scratch. For an offline build, set
-`AZS_VULKAN_HEADERS` to the matching include directory.
+Vulkan layer, its loader manifest, the Wine startup library and relay, and a
+private cache directory in `runtime/original-vulkan-cache/`. The script
+downloads and verifies the pinned Vulkan-Headers archive in scratch. For an
+offline build, set `AZS_VULKAN_HEADERS` to the matching include directory.
 
 To test the build against the bundled MoltenVK and Vulkan loader without
 starting Wine or the game, run
@@ -52,9 +52,9 @@ Its temporary cache is removed when the script finishes.
 To also test the Wine startup library, use `--smoke-wine` with the same Wine
 runtime path. This starts Wine's command interpreter in a disposable prefix
 and checks that it can write to the Windows trace path prepared at launch.
-It also checks that `TRACKER=0` and unrelated executables leave the capture
-off, and that normal and detailed captures use separate gameplay logs with
-the expected trace tags.
+It also checks that `TRACKER=0` and unrelated executables leave capture off,
+and that two tracked launches use separate gameplay logs with the expected
+trace tags.
 
 With WoWSilicon 3.2.2's bundled MoltenVK, the cold run published 1,054 bytes
 before teardown and the warm run loaded them. An earlier run with MoltenVK
@@ -107,10 +107,10 @@ EXE and uses the Wine bottle's existing `Z:` mapping to set the game's trace
 path before Wine starts it.
 
 Each tracked launch creates a private `session-*` directory under
-`$AZS_VK_CACHE_DIR/traces/` for the game's `gameplay.log`. Set `TRACKER=0` before
-pressing **Play** to turn off gameplay capture. Shader caching follows its own
-settings. If the startup library cannot prepare a capture, it prints a
-diagnostic to standard error and allows the game to start.
+`$AZS_VK_CACHE_DIR/traces/` for the game's `gameplay.log` and the filtered
+`ui-diagnostics.log`. Set `TRACKER=0` before pressing **Play** to turn off capture.
+Shader caching follows its own settings. If the startup library cannot prepare
+a capture, it prints a diagnostic to standard error and allows the game to start.
 
 The game's `WOW_MOVE_TRACE` writer emits timestamped records as events occur.
 The allowlist includes the Azeroth Survivors addon feed, combat damage and
@@ -124,25 +124,32 @@ Use the gameplay trace's `# t0=` Unix timestamp plus each row's `t=` offset
 to place events on a wall-clock timeline. Internal rules, intermediate
 decisions, and unpublished state require separate recovery.
 
-## Detailed gameplay and script diagnostics
+## Captured gameplay and diagnostics
 
-For a short reproduction, add `TRACKER_DETAIL=1` alongside `TRACKER=1` in
-WoWSilicon and press **Play**. The same `gameplay.log` also records player
-input and movement messages, knockback, world loading gates, actor paths,
-facing changes, ground clamp samples, and spell effect transitions where
-the game emits them. For ground clamp samples, also set
-`WOW_CLAMP_TRACE=<creature display ID>`. The original game's writer has no
-size cap, so turn off detail after capturing the behavior of interest.
-[Movement diagnostics](../../crates/benilla-app/src/player/move_trace.rs)
+`TRACKER=1` also records player input and movement messages, knockback,
+world loading gates, actor paths, facing changes, spell and aura effects, and
+animation events where the game emits them. For floor-clamp samples, set
+`WOW_CLAMP_TRACE=<creature display ID>` to select a model. The game's
+`gameplay.log` writer has no size cap. [Movement diagnostics](../../crates/benilla-app/src/player/move_trace.rs)
 · [Actor and ground diagnostics](../../crates/benilla-app/src/net/motion/spline.rs)
+· [Aura visuals](../../crates/benilla-app/src/aura_visual.rs)
+· [Animation events](../../crates/benilla-app/src/creature_anim/events.rs)
 
-For FrameXML, the installed 0.141.0 EXE exposes `WOW_UI_HANDLERS`. Set
-`WOW_UI_HANDLERS=5` in the profile to get periodic counts and timing for
-the busiest UI handlers in the terminal. The report is an aggregate and
-does not enter `gameplay.log`. A chronological record of Lua calls would
-require instrumentation inside the VM. Tracing selected internal native
-functions requires separate, build-specific instrumentation.
-[Handler profiler](../../crates/benilla-ui/src/script/handler_prof.rs)
+The startup library requests the game's handler report every five seconds and
+samples UI geometry and assets once per paint key. The relay routes those UI
+samples to `ui-diagnostics.log` and excludes text samples, which can contain
+typed input. It also saves selected Lua and XML load reports, model tile
+builds, terrain tiles, display changes, and game object spawns and templates.
+The file is capped at 8 MiB per session. Each entry describes something the
+game reported in that session. Complete ordinary-enemy model mapping and MPQ
+asset inventory require other evidence. [UI extraction](../../crates/benilla-app/src/ui_script/extract/mod.rs)
+· [UI load reports](../../crates/benilla-app/src/ui_script/addons.rs)
+· [Terrain tile diagnostics](../../crates/benilla-assets/src/adt.rs)
+
+The FrameXML report summarizes invocation counts and time by frame and
+handler. It lists the busiest handlers and aggregates the rest. A complete
+timeline of Lua calls, nested functions, and script API arguments requires
+instrumentation inside the VM. [Handler profiler](../../crates/benilla-ui/src/script/handler_prof.rs)
 
 The 0.141.0 EXE contains the trace controls and the Azeroth Survivors
 addon feed. The local packet route and trace tag behavior are described by

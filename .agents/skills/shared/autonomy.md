@@ -145,6 +145,9 @@ reported state, event order and errors within the captured interval.
   a new or extended capture for related findings.
 - Search the owning authorized checkout's
   `runtime/original-vulkan-cache/cache/traces/` for `session-*/gameplay.log`.
+  When UI, asset or script evidence is relevant, check the same session's
+  `ui-diagnostics.log` if present. Handler reports are aggregates, UI inventory
+  rows are sampled once per paint key, and the file can reach its size cap.
   Use any associated `session.json` or retained launch evidence. If the
   launch used a custom cache directory, check its authorized location.
 - Verify which executable produced the capture using independent launch or

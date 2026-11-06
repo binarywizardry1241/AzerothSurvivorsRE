@@ -1,6 +1,8 @@
 #define _POSIX_C_SOURCE 200809L
 #define _DARWIN_C_SOURCE
 
+#include "wine-tracker-relay-launch.h"
+
 #include <crt_externs.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -17,8 +19,8 @@
 
 enum { SESSION_NAME_SIZE = 96, PID_SIZE = 32 };
 
-#define GAMEPLAY_TAGS "addon,fct,cd,use,move"
-static const char detail_tags[] = GAMEPLAY_TAGS ",prs,snd,knb,gate,mmv,csp,spl,face,clmp,fx";
+static const char gameplay_tags[] =
+    "addon,fct,cd,use,move,prs,snd,knb,gate,mmv,csp,spl,face,clmp,fx,aur,aev";
 
 static bool is_game_launch(void) {
     const char *enabled = getenv("TRACKER");
@@ -107,13 +109,11 @@ static bool windows_log_path(char out[PATH_MAX + 16], const char *host) {
 }
 
 static bool apply_session(const char *guest, const char *pid) {
-    const char *detail = getenv("TRACKER_DETAIL");
-    const char *tags = detail && strcmp(detail, "1") == 0 ? detail_tags : GAMEPLAY_TAGS;
     struct Change {
         const char *key, *value;
         char *previous;
     } changes[] = {
-        {"WOW_MOVE_TRACE_TAGS", tags, NULL},
+        {"WOW_MOVE_TRACE_TAGS", gameplay_tags, NULL},
         {"WOW_MOVE_TRACE_CHAT", "0", NULL},
         {"WOW_MOVE_TRACE", guest, NULL},
         {"AZS_TRACKER_BOOTSTRAP_PID", pid, NULL},
@@ -147,6 +147,26 @@ done:
         free(changes[i].previous);
     }
     return success;
+}
+
+static void enable_ui_diagnostics(const char *host) {
+    if (!azs_start_tracker_relay(host)) {
+        fputs("[azs-tracker-bootstrap] could not start the UI diagnostics relay\n", stderr);
+        return;
+    }
+    setenv("WOW_UI_HANDLERS", "5", 0);
+    // The game reports each matching paint key once. Cover the logical window
+    // and let the relay select geometry and assets from those rows.
+    setenv("WOW_UI_PICK", "0,0,8192", 0);
+    const char *current_filter = getenv("RUST_LOG");
+    const char *base_filter = current_filter && *current_filter
+        ? current_filter : "info,wgpu=error,naga=warn";
+    char *filter = NULL;
+    if (asprintf(&filter, "%s,benilla_app::ui_models=debug,benilla_app::net::objects=debug,"
+                 "benilla_assets::adt=debug", base_filter) >= 0) {
+        setenv("RUST_LOG", filter, 1);
+        free(filter);
+    }
 }
 
 __attribute__((constructor))
@@ -199,6 +219,7 @@ static void prepare_wine_tracker(void) {
                       windows_log_path(guest, host) && apply_session(guest, pid);
             if (success) {
                 fprintf(stderr, "[azs-tracker-bootstrap] private tracker session: %s\n", host);
+                enable_ui_diagnostics(host);
             } else {
                 unlinkat(traces_fd, name, AT_REMOVEDIR);
             }
