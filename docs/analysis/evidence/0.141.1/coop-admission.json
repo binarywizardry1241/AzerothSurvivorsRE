@@ -1,0 +1,236 @@
+{
+  "target": {
+    "version": "0.141.1",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6",
+    "size_bytes": 151534080
+  },
+  "owner_binding": "pe-runtime-function",
+  "required_version": "0.141.1",
+  "required_protocol": 13,
+  "directory_protocol": 3,
+  "success_continuation": "0x145edab4b",
+  "version_rejection": "0x145edada4",
+  "native_owner": {
+    "role": "host Join dispatcher",
+    "virtual_address": "0x145eda970",
+    "end_exclusive": "0x145edb619",
+    "file_offset": "0x5ed9d70",
+    "byte_count": 3241,
+    "sha256": "ddd556cf7418d8d1fc416d544e66bb37330d8ddc39da5eae5c58f96dfb2c257d"
+  },
+  "admission_range": {
+    "role": "exact Join admission",
+    "virtual_address": "0x145edab11",
+    "end_exclusive": "0x145edab4b",
+    "file_offset": "0x5ed9f11",
+    "byte_count": 58,
+    "sha256": "1385423d3fd221ec2615e351f0e6c819f067a1f14259008a15cfbb542181ca28",
+    "bytes_hex": "837a380d4c8d35db9fc101bb1f0000000f857d02000048837a18070f8572020000b8302e3134413302b934312e3141334a0309c10f8559020000",
+    "instructions": [
+      {
+        "address": "0x145edab11",
+        "bytes_hex": "837a380d"
+      },
+      {
+        "address": "0x145edab15",
+        "bytes_hex": "4c8d35db9fc101"
+      },
+      {
+        "address": "0x145edab1c",
+        "bytes_hex": "bb1f000000"
+      },
+      {
+        "address": "0x145edab21",
+        "bytes_hex": "0f857d020000"
+      },
+      {
+        "address": "0x145edab27",
+        "bytes_hex": "48837a1807"
+      },
+      {
+        "address": "0x145edab2c",
+        "bytes_hex": "0f8572020000"
+      },
+      {
+        "address": "0x145edab32",
+        "bytes_hex": "b8302e3134"
+      },
+      {
+        "address": "0x145edab37",
+        "bytes_hex": "413302"
+      },
+      {
+        "address": "0x145edab3a",
+        "bytes_hex": "b934312e31"
+      },
+      {
+        "address": "0x145edab3f",
+        "bytes_hex": "41334a03"
+      },
+      {
+        "address": "0x145edab43",
+        "bytes_hex": "09c1"
+      },
+      {
+        "address": "0x145edab45",
+        "bytes_hex": "0f8559020000"
+      }
+    ]
+  },
+  "producer_ranges": [
+    {
+      "role": "guest Join constructor and send",
+      "virtual_address": "0x145ed6cec",
+      "end_exclusive": "0x145ed6e35",
+      "file_offset": "0x5ed60ec",
+      "byte_count": 329,
+      "sha256": "f095ced62045cdb093d38cf55897f27135330ee67e2a09638fd738ea4bc1760e",
+      "required_instructions": {
+        "0x145ed6cec": "mov ecx, 7",
+        "0x145ed6d0e": "mov dword ptr [rax + 3], 0x312e3134",
+        "0x145ed6d15": "mov dword ptr [rax], 0x34312e30",
+        "0x145ed6db9": "mov dword ptr [rbp - 0x20], 0xd",
+        "0x145ed6dcc": "mov qword ptr [rbp - 0x40], 7",
+        "0x145ed6df9": "call 0x145e55750",
+        "0x145ed6e32": "call qword ptr [rax + 0x18]"
+      }
+    },
+    {
+      "role": "Join serializer dispatch",
+      "virtual_address": "0x145e55750",
+      "end_exclusive": "0x145e557c1",
+      "file_offset": "0x5e54b50",
+      "byte_count": 113,
+      "sha256": "03bc9e105414de47281fa2c3b9b605dbb43b0f2a0cb4989c0f93572539dd3145",
+      "required_instructions": {
+        "0x145e557a5": "cmovs rax, rcx",
+        "0x145e557b1": "lea rcx, [rip + 0x18e0fb4]",
+        "0x145e557bf": "jmp rax"
+      }
+    },
+    {
+      "role": "Join serializer case zero",
+      "virtual_address": "0x145e557c1",
+      "end_exclusive": "0x145e55800",
+      "file_offset": "0x5e54bc1",
+      "byte_count": 63,
+      "sha256": "6b64aae79aff245e948adbe25fb136c72a281c6d58cd883a16de6102c5a649c4",
+      "required_instructions": {
+        "0x145e557c5": "mov dl, 1",
+        "0x145e557c7": "call 0x14620ada0",
+        "0x145e557cd": "mov edx, dword ptr [rdi + 0x38]",
+        "0x145e557d3": "call 0x14620af40",
+        "0x145e557e4": "call 0x14620ae40",
+        "0x145e557f5": "call 0x14620ae40"
+      }
+    },
+    {
+      "role": "game serializer case zero cell",
+      "virtual_address": "0x14773676c",
+      "end_exclusive": "0x147736770",
+      "file_offset": "0x7734d6c",
+      "byte_count": 4,
+      "sha256": "94862066e561bd95468ee6b425f3611a3b08e45b66bb5455cc3eb97a55b7fdbf"
+    },
+    {
+      "role": "game byte writer",
+      "virtual_address": "0x14620ada0",
+      "end_exclusive": "0x14620add6",
+      "file_offset": "0x620a1a0",
+      "byte_count": 54,
+      "sha256": "1badd689e26002f2f8fcd2849135996233359a92531760a6d4077ba7f31070d1",
+      "required_instructions": {
+        "0x14620adc1": "mov byte ptr [rax + rdi], bl",
+        "0x14620adc4": "inc rdi"
+      }
+    },
+    {
+      "role": "game u32 writer",
+      "virtual_address": "0x14620af40",
+      "end_exclusive": "0x14620af70",
+      "file_offset": "0x620a340",
+      "byte_count": 48,
+      "sha256": "1e59a1b9b1398b7ade99c776ba4eb69f9c34cb9f25ea44c9446e6af1c6f681f6",
+      "required_instructions": {
+        "0x14620af5d": "mov dword ptr [rcx + r9], edx",
+        "0x14620af61": "add r9, 4"
+      }
+    },
+    {
+      "role": "game byte-string writer",
+      "virtual_address": "0x14620ae40",
+      "end_exclusive": "0x14620ae9d",
+      "file_offset": "0x620a240",
+      "byte_count": 93,
+      "sha256": "a690925e9d6e52d9de00f8a61e9103bb53da2cee59a9e868820a76d873365670",
+      "required_instructions": {
+        "0x14620ae66": "mov dword ptr [rcx + rbx], edi",
+        "0x14620ae81": "mov r8, rdi",
+        "0x14620ae84": "call 0x1463ac997"
+      }
+    },
+    {
+      "role": "directory constructor and send",
+      "virtual_address": "0x145e9de59",
+      "end_exclusive": "0x145e9df63",
+      "file_offset": "0x5e9d259",
+      "byte_count": 266,
+      "sha256": "114f15a9057a70ac2e3f6d15270cd2692c7a276fb00d64a2153e040294f0e2de",
+      "required_instructions": {
+        "0x145e9de59": "mov ecx, 7",
+        "0x145e9de74": "mov dword ptr [rax + 3], 0x312e3134",
+        "0x145e9de7b": "mov dword ptr [rax], 0x34312e30",
+        "0x145e9ded8": "mov dword ptr [rbp + 0x228], 3",
+        "0x145e9def4": "mov qword ptr [rbp + 0x208], 7",
+        "0x145e9df14": "mov byte ptr [rbp + 0x22c], 1",
+        "0x145e9df3e": "call 0x14620b7d0",
+        "0x145e9df61": "call rax"
+      }
+    },
+    {
+      "role": "directory serializer dispatch",
+      "virtual_address": "0x14620b7d0",
+      "end_exclusive": "0x14620b833",
+      "file_offset": "0x620abd0",
+      "byte_count": 99,
+      "sha256": "7ceedce8510eef97f4cefcb458bd78541254fc1a25a86dd852455b055bb08491",
+      "required_instructions": {
+        "0x14620b817": "cmovs rax, rcx",
+        "0x14620b823": "lea rcx, [rip + 0x196ab66]",
+        "0x14620b831": "jmp rax"
+      }
+    },
+    {
+      "role": "directory serializer case zero",
+      "virtual_address": "0x14620b833",
+      "end_exclusive": "0x14620b943",
+      "file_offset": "0x620ac33",
+      "byte_count": 272,
+      "sha256": "d227fdd8db77b33635def7943bd4df86822740df07997134b1b9392563ef6116",
+      "required_instructions": {
+        "0x14620b841": "mov byte ptr [rax], 1",
+        "0x14620b84c": "mov r14d, dword ptr [rdi + 0x38]",
+        "0x14620b86a": "mov dword ptr [rax + rbx], r14d",
+        "0x14620b896": "mov dword ptr [rcx + rbx], r14d",
+        "0x14620b8e8": "mov dword ptr [rcx + rbx], r14d",
+        "0x14620b91a": "movzx edi, byte ptr [rdi + 0x3c]",
+        "0x14620b932": "mov byte ptr [rax + rbx], dil"
+      }
+    },
+    {
+      "role": "directory serializer case zero cell",
+      "virtual_address": "0x147b76390",
+      "end_exclusive": "0x147b76394",
+      "file_offset": "0x7b74990",
+      "byte_count": 4,
+      "sha256": "217821f6a113320d908847a21c89daa422617ac9a27041665f6526c9d5639cb3"
+    }
+  ],
+  "ghidra_observation": {
+    "evidence_id": "ev_1bb7be1695e36563a03edc14b17ba745c868f673a09a2d93626bfad75be68116",
+    "slice_sha256": "ddd556cf7418d8d1fc416d544e66bb37330d8ddc39da5eae5c58f96dfb2c257d",
+    "result_sha256": "771bcd3b8e26ba6e65e561ec4885ac133fd3281cd2d910e7db1e177a05d1d581",
+    "scope": "Raw PE runtime-function extent; out-of-slice tables and callees verified separately against the installed PE."
+  }
+}

@@ -3,8 +3,8 @@
 //! connection/removal pump: 0x145877810/0x145896390.
 //! See docs/analysis/coop-server-party-0.115.0.md for the bounded native proof.
 
-// 0.141.0 Join admission at 0x145ecb0c1 checks both fields.
-pub const GAME_VERSION: &str = "0.141.0";
+// 0.141.1 Join admission at 0x145edab11 checks both fields.
+pub const GAME_VERSION: &str = "0.141.1";
 pub const PROTOCOL_VERSION: u32 = 13;
 pub const MAX_PARTY_SIZE: u8 = 5;
 pub const MAX_MESSAGES_PER_CLIENT_TICK: usize = 200;
@@ -923,7 +923,7 @@ mod tests {
     #[test]
     fn native_lifecycle_wire_vectors() {
         let hello = LifecyclePacket::Join(JoinRequest::current(b"pw".to_vec()));
-        let expected = b"\x01\x0d\x00\x00\x00\x07\x00\x00\x000.141.0\x02\x00\x00\x00pw";
+        let expected = b"\x01\x0d\x00\x00\x00\x07\x00\x00\x000.141.1\x02\x00\x00\x00pw";
         assert_eq!(encode_lifecycle(&hello).unwrap(), expected);
         assert_eq!(decode_lifecycle(expected).unwrap(), (hello, expected.len()));
         assert_eq!(encode_lifecycle(&LifecyclePacket::Accepted(JoinAccepted { slot: 7, capacity: 5 })).unwrap(), [2, 7, 5]);
