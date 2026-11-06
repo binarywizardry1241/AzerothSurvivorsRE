@@ -359,14 +359,30 @@ impl super::Save {
         owned.clear();
     }
 
-    pub fn record_seen(&mut self, values: &[(String, u8)]) {
+    pub fn record_seen(&mut self, values: &[(String, u8)]) -> bool {
+        use std::collections::btree_map::Entry;
+
         let mut seen = self.seen();
+        let mut changed = false;
         for (key, quality) in values {
             if key.is_empty() || key.contains(['|', ',', '=', '\r', '\n']) {
                 continue;
             }
-            let previous = seen.entry(super::gear::canonical_seen_key(key).to_owned()).or_default();
-            *previous = (*previous).max((*quality).min(4));
+            let quality = (*quality).min(4);
+            match seen.entry(super::gear::canonical_seen_key(key).to_owned()) {
+                Entry::Vacant(entry) => {
+                    entry.insert(quality);
+                    changed = true;
+                }
+                Entry::Occupied(mut entry) if quality > *entry.get() => {
+                    entry.insert(quality);
+                    changed = true;
+                }
+                Entry::Occupied(_) => {}
+            }
+        }
+        if !changed {
+            return false;
         }
         self.lines.retain(|line| !line.trim().starts_with("seen|"));
         if !seen.is_empty() {
@@ -378,6 +394,7 @@ impl super::Save {
                     .join(",")
             ));
         }
+        true
     }
 }
 

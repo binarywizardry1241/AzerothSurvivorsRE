@@ -68,7 +68,6 @@ pub(in crate::gameplay) fn publish(
         state.host_identity = None;
         state.sent_actions.clear();
         state.inventory.clear();
-        state.sent_seen.clear();
         state.state_sent_at.clear();
         runtime.actor_clients.clear();
         return;
@@ -115,11 +114,18 @@ pub(in crate::gameplay) fn publish(
             .filter(|_| world.ready && synced)
             .and_then(|creation| creation.body_display(hero.race, hero.sex));
         let Some(display) = display else {
-            // A synchronized hero still receives State15 during local
-            // streaming or without character-creation display data.
-            if let Some(client) = client.filter(|_| state_due) {
-                if let Some(native) = game.with_party_hero(slot, |game| game.native_state()) {
-                    runtime.send(Some(client), NativeMessage::State(native));
+            // Seen and State15 reach synchronized guests while the local
+            // character-creation display data is unavailable.
+            if let Some(client) = client.filter(|_| synced) {
+                if let Some((seen, native)) = game.with_party_hero(slot, |game| {
+                    (game.drain_seen_rewards(), state_due.then(|| game.native_state()))
+                }) {
+                    if !seen.is_empty() {
+                        runtime.send(Some(client), NativeMessage::StringRanks(seen));
+                    }
+                    if let Some(native) = native {
+                        runtime.send(Some(client), NativeMessage::State(native));
+                    }
                 }
             }
             continue;
@@ -168,7 +174,7 @@ pub(in crate::gameplay) fn publish(
                     (0.0, Vec::new())
                 };
                 let seen = if client.is_some() {
-                    game.seen_abilities().to_vec()
+                    game.drain_seen_rewards()
                 } else {
                     Vec::new()
                 };
@@ -268,18 +274,8 @@ pub(in crate::gameplay) fn publish(
                 marks_bits: boss_rewards.0.to_bits(), missed_items: boss_rewards.1,
             });
         }
-        let unsent = seen
-            .iter()
-            .filter(|row| {
-                state
-                    .sent_seen
-                    .get(&client)
-                    .is_none_or(|previous| !previous.contains(row))
-            })
-            .cloned()
-            .collect::<Vec<_>>();
-        if !unsent.is_empty() && runtime.send(Some(client), NativeMessage::StringRanks(unsent)) {
-            state.sent_seen.insert(client, seen);
+        if !seen.is_empty() {
+            runtime.send(Some(client), NativeMessage::StringRanks(seen));
         }
         if let Some(native) = native {
             runtime.send(Some(client), NativeMessage::State(native));

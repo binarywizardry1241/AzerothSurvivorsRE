@@ -13,7 +13,7 @@ use std::sync::OnceLock;
 
 use serde::Deserialize;
 
-use crate::player_abilities::{AbilityDefinition, behavior::RuntimeInstance};
+use crate::player_abilities::{AbilityDefinition, CLASSES, behavior::RuntimeInstance};
 use crate::treasure_chests::NativeRng;
 
 pub use super::prose::amulet_lines as description_lines;
@@ -31,6 +31,12 @@ impl Catalog {
             .iter()
             .chain(&self.generated)
             .find(|definition| definition.key == key)
+    }
+
+    fn legendary_for(&self, spell: &str) -> &Definition {
+        self.generated.iter()
+            .find(|definition| definition.ability_key.as_deref() == Some(spell))
+            .expect("each eligible ability has a native legendary amulet")
     }
 }
 
@@ -298,6 +304,24 @@ pub fn catalog() -> &'static Catalog {
     })
 }
 
+fn legendary_available(spell: &str) -> bool {
+    !matches!(spell, "lightning_shield" | "healing_wave" | "explosive_trap")
+}
+
+/// The Codex adds talent-only spells after the normal pool for each class.
+pub fn codex_legendary() -> &'static [(u8, &'static Definition)] {
+    static ENTRIES: OnceLock<Vec<(u8, &'static Definition)>> = OnceLock::new();
+    ENTRIES.get_or_init(|| {
+        let catalog = catalog();
+        CLASSES.iter().flat_map(|class| {
+            let talent_spell = (class.class_id == 7).then_some("rockbiter");
+            class.pool.iter().copied().chain(talent_spell)
+                .filter(|spell| legendary_available(spell))
+                .map(move |spell| (class.class_id, catalog.legendary_for(spell)))
+        }).collect()
+    })
+}
+
 /// Native order: shared definitions of the sampled rarity, then eligible
 /// learned-spell legendaries when rarity 4 was sampled. The current worn key
 /// and banished keys are removed while preserving the remaining order.
@@ -317,16 +341,9 @@ pub fn offering_pool<'a>(
     if rarity == 4 {
         for ability in learned {
             // 0.140.0 0x146020620 skips these keys before the constructor.
-            if matches!(ability.key, "lightning_shield" | "healing_wave" | "explosive_trap") {
-                continue;
+            if legendary_available(ability.key) {
+                pool.push(catalogue.legendary_for(ability.key));
             }
-            pool.push(
-                catalogue
-                    .generated
-                    .iter()
-                    .find(|definition| definition.ability_key.as_deref() == Some(ability.key))
-                    .expect("each current definition has a native legendary amulet"),
-            );
         }
     }
     pool.retain(|definition| {

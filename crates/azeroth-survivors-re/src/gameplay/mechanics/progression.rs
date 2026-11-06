@@ -161,6 +161,16 @@ impl Mechanics {
     pub fn seen_abilities(&self) -> &[(String, u8)] {
         &self.effect_state.seen
     }
+
+    /// A seated guest publishes each pending reward discovery once, in offer order.
+    pub fn drain_seen_rewards(&mut self) -> Vec<(String, u8)> {
+        let mut discoveries = std::mem::take(&mut self.effect_state.seen);
+        discoveries.retain(|(key, _)| {
+            azeroth_survivors_re::coop::client_state::recognized_seen_key(key)
+        });
+        discoveries
+    }
+
     pub fn set_account_grants(&mut self, grants: run_progression::AccountGrants) {
         // AccountGrants carries the retained Normal base of three plus the
         // purchased perk. The current Game constructor selects its rank base.

@@ -35923,6 +35923,96 @@
           "evidence_ref": "docs/analysis/shouts-0.141.1.md"
         }
       ]
+    },
+    {
+      "claim_id": "changelog:0.141.1:eaa7fb6599d2747c",
+      "target": {
+        "version": "0.141.1",
+        "sha256": "47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6"
+      },
+      "status": "static_checked",
+      "rationale": "The hash-bound native membership, thresholds and guest admission were checked against the connected source. Compilation, live network delivery and UI/save parity remain open.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/account_progression.rs",
+        "crates/azeroth-survivors-re/src/codex.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+        "crates/azeroth-survivors-re/src/progression.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/coop-codex-0.141.1.md"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/account_progression.rs": "7e31167ffb32b44ac52a98b86f402d68c3468bae4060bd3d9f57d99cb9d639ee",
+        "crates/azeroth-survivors-re/src/codex.rs": "ac8ce87badd13d64ec660679d769ad88b665e82ff18ff098049f5be84ee08e24",
+        "crates/azeroth-survivors-re/src/loot_rewards.rs": "433d7fa4c62cd9e877e90c512e42117b4d161fd05f62ade1c776cc10e2e583ae",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "c2ccfe7fae7d4f9b374c2f71befad7c7f15fafcd134b26fdacc0d06646e91fec",
+        "crates/azeroth-survivors-re/src/progression.rs": "a627fbb7cdea206d077a21dabfdb8f40597363a46455690c33fdef2e671593a2",
+        "docs/analysis/coop-codex-0.141.1.md": "6e13fa1c076c04fd72897d602f3eacc4043846a9c359020bc1cbce009a27fa45"
+      },
+      "systems": [
+        "custom-app-screens-codex",
+        "custom-game-achievements"
+      ],
+      "gap_ids": [
+        19,
+        73
+      ],
+      "native_contract": "The Codex and evaluator use the same 141 listed keys. Count exact membership, ignore saved extras, and round each required percentage upward. The ordinary startup evaluation awards Every Bauble on a complete existing save.",
+      "static_checks": [
+        {
+          "command": "PYTHONPATH=runtime/armory-recovery/python-libs python3 -B scripts/check-coop-seen.py",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/coop-codex-0.141.1.md"
+        }
+      ]
+    },
+    {
+      "claim_id": "changelog:0.141.1:e9b58d2529ae6b7e",
+      "target": {
+        "version": "0.141.1",
+        "sha256": "47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6"
+      },
+      "status": "static_checked",
+      "rationale": "The hash-bound native membership, thresholds and guest admission were checked against the connected source. Compilation, live network delivery and UI/save parity remain open.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop/client_state.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+        "crates/azeroth-survivors-re/src/save/progress.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/coop-codex-0.141.1.md"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/coop/client_state.rs": "af9a4aff1f876b0830fbc5a0d8a34cddedff9cad8de5b2ae8f50be91c39597ea",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "f62458c082dca1c7b3ddd1f8706d8a5aeca3599493bea1c547a04bd1daf41b73",
+        "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs": "7bae9161af5af72f729786958d96d991871dd0b61f192c46ec22ec8e23c3cef8",
+        "crates/azeroth-survivors-re/src/loot_rewards.rs": "433d7fa4c62cd9e877e90c512e42117b4d161fd05f62ade1c776cc10e2e583ae",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "c2ccfe7fae7d4f9b374c2f71befad7c7f15fafcd134b26fdacc0d06646e91fec",
+        "crates/azeroth-survivors-re/src/save/progress.rs": "97034e8786559c4f95a7b66f3f3bee47ea43f0e856b87c6ce8613afcc0647d44",
+        "docs/analysis/coop-codex-0.141.1.md": "6e13fa1c076c04fd72897d602f3eacc4043846a9c359020bc1cbce009a27fa45"
+      },
+      "systems": [
+        "custom-app-screens-codex",
+        "custom-game-achievements",
+        "custom-game-proto"
+      ],
+      "gap_ids": [
+        19,
+        63,
+        73
+      ],
+      "native_contract": "Guest wire 14 uses the native fixed legacy checks and exact Codex membership fallback for Rockbiter, with 32 accepted rows per packet and 400 per zone. New or upgraded discoveries trigger dated ordinary achievement evaluation and account delivery.",
+      "static_checks": [
+        {
+          "command": "PYTHONPATH=runtime/armory-recovery/python-libs python3 -B scripts/check-coop-seen.py",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/coop-codex-0.141.1.md"
+        }
+      ]
     }
   ]
 }

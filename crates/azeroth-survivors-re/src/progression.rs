@@ -573,6 +573,7 @@ fn achievement_inputs(save: &Save) -> azeroth_survivors_re::account_progression:
     let stats = save.statistics();
     let plain = save.plaintext();
     let gear = crate::save::gear::Records::read(plain.lines());
+    let seen = save.seen();
     // Retained achievement descriptors carry pre-Scholomance ordinals.
     let retained_zone = |index: usize| {
         let key = azeroth_survivors_re::guardians::catalog::ZONES.get(index)?.key;
@@ -599,7 +600,9 @@ fn achievement_inputs(save: &Save) -> azeroth_survivors_re::account_progression:
                 Some(((class, index), rank))
             }).collect(),
         prepared_classes: save.prepared_classes(),
-        seen: save.seen().len(),
+        seen: azeroth_survivors_re::loot_rewards::codex_keys()
+            .filter(|key| seen.contains_key(*key))
+            .count(),
         statistics: [
             "kills",
             "gold",
@@ -2545,8 +2548,9 @@ mod current_grant_tests {
             if let Some(seen) = input["seen"].as_u64() {
                 lines.push(format!(
                     "seen|{}",
-                    (0..seen)
-                        .map(|i| format!("jewelry.fixture{i}=0"))
+                    azeroth_survivors_re::loot_rewards::codex_keys()
+                        .take(seen as usize)
+                        .map(|key| format!("{key}=0"))
                         .collect::<Vec<_>>()
                         .join(",")
                 ));
@@ -2582,15 +2586,45 @@ mod current_grant_tests {
             }
             let mut save = Save::parse(&lines.join("\n")).unwrap();
             let granted = grant_account(&mut save, Some(1_700_000_000));
-            let expected: Vec<String> =
+            let mut expected: Vec<String> =
                 serde_json::from_value(state["new_in_catalog_order"].clone()).unwrap();
-            assert_eq!(granted, expected, "{}", input["name"]);
-            let dates: BTreeMap<String, u64> =
+            let mut dates: BTreeMap<String, u64> =
                 serde_json::from_value(state["dates"].clone()).unwrap();
+            // 0.141.1 completes the actual 141-entry catalog one row earlier
+            // than the retained 0.112.0 fixture.
+            if input["seen"].as_u64() == Some(141) {
+                expected.push("codex:100".into());
+                dates.insert("codex:100".into(), 1_700_000_000);
+            }
+            assert_eq!(granted, expected, "{}", input["name"]);
             assert_eq!(save.achievement_dates(), dates, "{}", input["name"]);
             assert!(grant_account(&mut save, Some(1_800_000_000)).is_empty());
             assert_eq!(save.achievement_dates(), dates);
         }
+    }
+
+    #[test]
+    fn guest_rockbiter_completes_codex_even_with_extra_historical_discoveries() {
+        use azeroth_survivors_re::{coop::client_state, loot_rewards::codex_keys};
+
+        let rockbiter = "legendary:rockbiter";
+        let mut save = Save::default();
+        let rows = codex_keys().filter(|key| *key != rockbiter)
+            .chain(["legendary:healing_wave", "unlisted"]).map(|key| (key.to_owned(), 4))
+            .collect::<Vec<_>>();
+        save.record_seen(&rows);
+        assert_eq!(save.seen().len(), 142);
+        assert!(!grant_account(&mut save, None).contains(&"codex:100".into()));
+
+        let mut accepted = 0;
+        let rows = client_state::accept_seen_grants(
+            vec![(rockbiter.into(), 4)],
+            client_state::recognized_seen_key,
+            &mut accepted,
+        );
+        save.record_seen(&rows);
+        assert_eq!(save.seen().get(rockbiter), Some(&4));
+        assert!(grant_account(&mut save, None).contains(&"codex:100".into()));
     }
 }
 

@@ -1,6 +1,5 @@
-//! Current 0.109.0 account-wide Codex: 142 entries and all fourteen locales.
-//! Native constructors/formatters supply the source data; browsing is read-only.
-//! See docs/analysis/codex-0.109.0.md for target evidence and comparison limits.
+//! The account-wide Codex uses the live class amulet membership and retained
+//! native text, with the ordinary item formatter for newer legendary entries.
 use std::collections::{BTreeMap, BTreeSet};
 
 use azeroth_survivors_re::loot_rewards::{JewelryDefinition, amulets, prose};
@@ -60,10 +59,21 @@ impl CodexCatalog {
         let at = catalog.entries.iter().position(|entry| entry.key == delta.after)
             .expect("current jewelry predecessor") + 1;
         catalog.entries.insert(at, delta.entry);
+        let mut retained = BTreeMap::new();
+        catalog.entries.retain_mut(|entry| {
+            if entry.group != "legendary" {
+                return true;
+            }
+            retained.insert(entry.key.clone(), std::mem::take(entry));
+            false
+        });
+        catalog.entries.extend(amulets::codex_legendary().iter().map(|&(class_id, amulet)| {
+            retained.remove(&amulet.key).unwrap_or_else(|| Entry::legendary(class_id, amulet))
+        }));
         catalog
     }
 }
-#[derive(Deserialize)]
+#[derive(Default, Deserialize)]
 struct Entry {
     key: String,
     name: String,
@@ -81,6 +91,23 @@ struct Entry {
     tag_label: String,
     #[serde(default)]
     growth: String,
+}
+impl Entry {
+    fn legendary(class_id: u8, amulet: &amulets::Definition) -> Self {
+        let spell = amulet.ability_key.as_deref()
+            .and_then(azeroth_survivors_re::player_abilities::AbilityDefinition::by_key)
+            .expect("legendary Codex spell");
+        Self {
+            key: amulet.key.clone(),
+            icon: amulet.icon.clone(),
+            group: "legendary".into(),
+            quality: amulet.rarity as u8,
+            class_id,
+            spell: spell.key.into(),
+            spell_icon: spell.icon.into(),
+            ..Self::default()
+        }
+    }
 }
 /// Exact native formatter outputs, evaluated against each shipped locale catalog.
 /// Names and composed descriptions are already translated and must not be looked up again.
@@ -426,6 +453,7 @@ fn detail(
     catalog: &MenuCatalog,
     entry: Option<&Entry>,
     localized: &BTreeMap<String, EntryText>,
+    language: &Localization,
     discoveries: &BTreeMap<String, u8>,
 ) {
     menu::native_panel(ui, panel_node(Val::Px(330.), 0.), |panel| {
@@ -435,7 +463,23 @@ fn detail(
             label(panel, art, catalog.label(INTRO_CLASSES), 14., MUTED);
             return;
         };
-        let entry_text = localized.get(&entry.key).expect("native Codex text entry");
+        let generated;
+        let entry_text = if let Some(retained) = localized.get(&entry.key) {
+            retained
+        } else {
+            let amulet = amulets::catalog().by_key(&entry.key).expect("native Codex amulet");
+            generated = EntryText {
+                name: language.amulet_name(&amulet.name, amulet.ability_key.as_deref()),
+                descriptions: prose::amulet_lines(amulet, amulet.rarity, 1)
+                    .expect("native Codex amulet effects")
+                    .iter()
+                    .map(|line| line.render(&|key| language.label(key).to_owned()))
+                    .collect(),
+                tag_label: String::new(),
+                growth: String::new(),
+            };
+            &generated
+        };
         let known = discoveries.get(&entry.key).copied();
         let spell_name = catalog
             .abilities
@@ -824,6 +868,7 @@ fn rebuild(
                                 definitions.entries.iter().find(|entry| entry.key == *key)
                             }),
                             localized.language(language.code()),
+                            &language,
                             &discoveries,
                         );
                     });

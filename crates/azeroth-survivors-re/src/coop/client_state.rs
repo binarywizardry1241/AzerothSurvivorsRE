@@ -545,9 +545,9 @@ pub fn accept_marks_and_pity(
     (marks, ids)
 }
 
-/// Native tag14 updates the saved Seen quality map. Caller supplies the native
-/// recognized-key predicate (current1458e4ae0); this layer owns its independent
-/// quality<=4 and cumulative400-row budget, not an arbitrary global string map.
+const SEEN_PACKET_LIMIT: usize = 32;
+
+/// Wire 14 keeps at most 32 valid discoveries per packet and 400 per zone.
 pub fn accept_seen_grants(
     rows: Vec<(String, u8)>,
     mut recognized_key: impl FnMut(&str) -> bool,
@@ -556,162 +556,24 @@ pub fn accept_seen_grants(
     let result = rows
         .into_iter()
         .filter(|(key, quality)| *quality <= 4 && recognized_key(key))
+        .take(SEEN_PACKET_LIMIT)
         .take(400_usize.saturating_sub(*accepted_this_zone))
         .collect::<Vec<_>>();
     *accepted_this_zone += result.len();
     result
 }
 
-/// Exact current client allow-list from1458e4ae0. A `legendary:` prefix
-/// alone grants nothing; its suffix must be one of the103 shipped ability keys.
-/// Quality and per-zone quotas are enforced by `accept_seen_grants`.
+/// The native fixed class checks also accept two former Shaman legendaries
+/// that the current Codex omits. The remaining accepted keys are Codex members.
 pub fn recognized_seen_key(key: &str) -> bool {
-    const KEYS: &[&str] = &[
-        "accuria",
-        "animated_chain",
-        "archimtiros",
-        "blackhand",
-        "blooddrinker",
-        "carrot",
-        "chosen",
-        "dark_iron",
-        "darkmoon",
-        "devoured",
-        "dragonslayer",
-        "earthstrike",
-        "eldre_thalas",
-        "enlightenment",
-        "eye_of_hakkar",
-        "fallen_dragon",
-        "fire_lord",
-        "hoj",
-        "insignia",
-        "jeklik",
-        "legendary:adrenaline_rush",
-        "legendary:aimed_shot",
-        "legendary:arcane_explosion",
-        "legendary:arcane_missiles",
-        "legendary:arcane_shot",
-        "legendary:auto_shot",
-        "legendary:backstab",
-        "legendary:battle_shout",
-        "legendary:blade_flurry",
-        "legendary:blast_wave",
-        "legendary:blizzard",
-        "legendary:bloodrage",
-        "legendary:bloodthirst",
-        "legendary:call_of_flame",
-        "legendary:chain_lightning",
-        "legendary:cleave",
-        "legendary:concussive_shot",
-        "legendary:cone_of_cold",
-        "legendary:consecration",
-        "legendary:corruption",
-        "legendary:curse_of_agony",
-        "legendary:death_coil",
-        "legendary:demo_shout",
-        "legendary:demonic_empowerment",
-        "legendary:devouring_plague",
-        "legendary:divine_shield",
-        "legendary:drain_life",
-        "legendary:earth_shock",
-        "legendary:entangling_roots",
-        "legendary:eviscerate",
-        "legendary:execute",
-        "legendary:exorcism",
-        "legendary:explosive_trap",
-        "legendary:faerie_fire",
-        "legendary:fear",
-        "legendary:fire_blast",
-        "legendary:fire_nova",
-        "legendary:fireball",
-        "legendary:flame_shock",
-        "legendary:flamestrike",
-        "legendary:frost_nova",
-        "legendary:frost_shock",
-        "legendary:frost_trap",
-        "legendary:frostbolt",
-        "legendary:ghostly_strike",
-        "legendary:gouge",
-        "legendary:hammer_of_justice",
-        "legendary:hammer_of_wrath",
-        "legendary:healing_wave",
-        "legendary:hellfire",
-        "legendary:holy_fire",
-        "legendary:holy_light",
-        "legendary:holy_nova",
-        "legendary:holy_shield",
-        "legendary:holy_shock",
-        "legendary:holy_wrath",
-        "legendary:hunters_mark",
-        "legendary:hurricane",
-        "legendary:ice_barrier",
-        "legendary:immolate",
-        "legendary:immolation_trap",
-        "legendary:insect_swarm",
-        "legendary:judgement",
-        "legendary:kidney_shot",
-        "legendary:kill_command",
-        "legendary:lightning_bolt",
-        "legendary:lightning_shield",
-        "legendary:lightwell",
-        "legendary:magma_totem",
-        "legendary:mind_blast",
-        "legendary:mind_flay",
-        "legendary:moonfire",
-        "legendary:mortal_strike",
-        "legendary:multi_shot",
-        "legendary:polymorph",
-        "legendary:psychic_scream",
-        "legendary:pw_shield",
-        "legendary:pyroblast",
-        "legendary:rain_of_fire",
-        "legendary:redemption",
-        "legendary:regrowth",
-        "legendary:rejuvenation",
-        "legendary:rend",
-        "legendary:renew",
-        "legendary:rockbiter",
-        "legendary:rupture",
-        "legendary:seal_fate",
-        "legendary:searing_pain",
-        "legendary:searing_totem",
-        "legendary:serpent_sting",
-        "legendary:shadow_bolt",
-        "legendary:shield_slam",
-        "legendary:shred",
-        "legendary:sinister_strike",
-        "legendary:slice_and_dice",
-        "legendary:smite",
-        "legendary:soul_fire",
-        "legendary:starfire",
-        "legendary:stormstrike",
-        "legendary:sw_pain",
-        "legendary:swipe",
-        "legendary:thorns",
-        "legendary:thunder_clap",
-        "legendary:volley",
-        "legendary:whirlwind",
-        "legendary:wrath",
-        "lifegiving",
-        "malice_stone",
-        "mark_of_fordring",
-        "onyxia_blood",
-        "onyxia_tooth",
-        "prestor",
-        "quick_strike",
-        "remote",
-        "seal_damned",
-        "soulstone",
-        "south_seas_kelp",
-        "spell_power",
-        "star_of_mystaria",
-        "steadfast_might",
-        "talvash",
-        "tep",
-        "vek_nilash",
-        "war_horn",
-        "woven_ivy",
-    ];
-    KEYS.binary_search(&key).is_ok()
+    if matches!(key, "legendary:healing_wave" | "legendary:lightning_shield") {
+        return true;
+    }
+    static CODEX_KEYS: std::sync::OnceLock<Vec<&'static str>> = std::sync::OnceLock::new();
+    let keys = CODEX_KEYS.get_or_init(|| {
+        let mut keys = crate::loot_rewards::codex_keys().collect::<Vec<_>>();
+        keys.sort_unstable();
+        keys
+    });
+    keys.binary_search(&key).is_ok()
 }

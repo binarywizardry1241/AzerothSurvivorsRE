@@ -79,7 +79,6 @@ pub(crate) struct CoopGame {
     addon_publishers: HashMap<ClientId, client::addon_feed::Publisher>,
     state_sent_at: HashMap<ClientId, f64>,
     units: HashMap<u64, publication::UnitSnapshot>,
-    sent_seen: HashMap<ClientId, Vec<(String, u8)>>,
     host_identity: Option<u64>,
     initial_list_identity: Option<u64>,
     tracking_sent: Option<(u64, bool)>,
@@ -631,7 +630,6 @@ fn receive(
             }
             state.motion.remove(&client);
             state.inventory.remove(&client);
-            state.sent_seen.remove(&client);
             state.sent_actions.remove(&client);
             state.addon_publishers.remove(&client);
             state.state_sent_at.remove(&client);
@@ -912,9 +910,16 @@ fn receive(
                 );
                 if !rows.is_empty()
                     && menu.selected_roster_guid() != Some(crate::startup::TESTER_GUID)
+                    && menu.backend_save.record_seen(&rows)
                 {
-                    menu.backend_save.record_seen(&rows);
+                    let events = crate::progression::grant_account(&mut menu.backend_save, Some(now))
+                        .into_iter().map(RunEvent::Achievement);
                     menu.commit_account();
+                    if let Some(game) = run.mechanics.as_mut() {
+                        game.events.extend(events);
+                    } else {
+                        state.pending_events.extend(events);
+                    }
                 }
             }
             NativeMessage::End if guest => {
@@ -1478,7 +1483,6 @@ fn bootstrap(
                 })
             })
         });
-        state.sent_seen.clear();
         state.state_sent_at.clear();
         state.units.clear();
         state.choice_generations.clear();

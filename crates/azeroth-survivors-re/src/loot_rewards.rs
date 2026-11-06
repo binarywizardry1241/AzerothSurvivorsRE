@@ -19,6 +19,13 @@ use crate::treasure_chests::NativeRng;
 pub const TARGET_VERSION: &str = "0.100.1";
 pub const TARGET_SHA256: &str = "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b";
 
+/// Account discovery counts the jewelry and amulets listed in the Codex.
+pub fn codex_keys() -> impl Iterator<Item = &'static str> {
+    JEWELRY.iter().map(|entry| entry.key)
+        .chain(amulets::catalog().shared.iter().map(|entry| entry.key.as_str()))
+        .chain(amulets::codex_legendary().iter().map(|(_, entry)| entry.key.as_str()))
+}
+
 pub fn item_rank_suffix(rank: u32) -> &'static str {
     const SUFFIXES: [&str; 11] = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
     SUFFIXES.get(rank as usize).copied().unwrap_or("X+")

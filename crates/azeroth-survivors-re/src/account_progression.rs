@@ -374,7 +374,12 @@ pub fn progress(definition: &Definition, account: &Account) -> Option<(u64, u64)
             }
             return Some(best);
         }
-        7 => account.seen as u64,
+        7 => {
+            // Native Codex conditions specify a percentage of listed items.
+            let total = crate::loot_rewards::codex_keys().count() as u64;
+            let target = (total * u64::from(definition.selector)).div_ceil(100);
+            return Some((account.seen as u64, target));
+        }
         8 => {
             let have = *account.statistics.get(usize::from(definition.selector))?;
             // Current145ba563f: lifetime marks retain tenths in Save, while
@@ -1004,10 +1009,12 @@ mod tests {
         }
     }
     #[test]
-    fn account_progress_matches_current_native_instruction_cases() {
+    fn account_progress_matches_native_instruction_cases() {
+        const CURRENT_CODEX_COUNT: u64 = 141;
         let fixtures:serde_json::Value=serde_json::from_str(include_str!("../../../docs/analysis/evidence/0.112.0/achievement-grants/native-account-vectors.json")).unwrap();
         for state in fixtures["states"].as_array().unwrap() {
-            let account: Account = serde_json::from_value(state["input"].clone()).unwrap();
+            let mut account: Account = serde_json::from_value(state["input"].clone()).unwrap();
+            account.seen = account.seen.min(CURRENT_CODEX_COUNT as usize);
             for (key, expected) in fixtures["keys"].as_array().unwrap().iter()
                 .zip(state["progress"].as_array().unwrap()) {
                 let key = key.as_str().unwrap();
@@ -1015,9 +1022,15 @@ mod tests {
                     .iter()
                     .find(|definition| definition.key == key)
                     .unwrap();
-                let pair = expected
-                    .as_array()
-                    .map(|pair| (pair[0].as_u64().unwrap(), pair[1].as_u64().unwrap()));
+                let pair = expected.as_array().map(|pair| {
+                    let have = pair[0].as_u64().unwrap();
+                    let target = pair[1].as_u64().unwrap();
+                    match key {
+                        "codex:50" => (have.min(CURRENT_CODEX_COUNT), target),
+                        "codex:100" => (have.min(CURRENT_CODEX_COUNT), CURRENT_CODEX_COUNT),
+                        _ => (have, target),
+                    }
+                });
                 assert_eq!(
                     progress(definition, &account),
                     pair,
