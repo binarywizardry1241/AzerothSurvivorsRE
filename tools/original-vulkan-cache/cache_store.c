@@ -18,20 +18,42 @@
 
 enum { CACHE_HEADER_SIZE = 16 + VK_UUID_SIZE, CACHE_NAME_SIZE = 96 };
 
-static int open_cache_directory(void) {
+static bool trace_enabled(void) {
+    const char *setting = getenv("AZS_VK_CACHE_TRACE");
+    return setting && strcmp(setting, "1") == 0;
+}
+
+static void trace_error(const char *action, int error) {
+    if (trace_enabled()) {
+        fprintf(stderr, "azs-vk-cache: %s (errno %d)\n", action, error);
+    }
+}
+
+static int open_cache_directory(bool report_failure) {
     const char *path = getenv("AZS_VK_CACHE_DIR");
     if (!path || path[0] != '/') {
+        if (report_failure && trace_enabled()) {
+            fputs("azs-vk-cache: disabled (AZS_VK_CACHE_DIR must be an absolute directory)\n",
+                  stderr);
+        }
         return -1;
     }
-    return open(path, O_RDONLY | O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
+    int directory = open(path, O_RDONLY | O_DIRECTORY | O_NOFOLLOW | O_CLOEXEC);
+    if (directory < 0 && report_failure) {
+        trace_error("opening cache directory failed", errno);
+    }
+    return directory;
 }
 
 bool azs_cache_enabled(void) {
-    int directory = open_cache_directory();
+    int directory = open_cache_directory(true);
     if (directory < 0) {
         return false;
     }
     close(directory);
+    if (trace_enabled()) {
+        fputs("azs-vk-cache: cache directory ready\n", stderr);
+    }
     return true;
 }
 
@@ -64,8 +86,7 @@ static bool valid_header(const VkPhysicalDeviceProperties *properties,
 }
 
 static void trace_cache(const char *action, size_t size) {
-    const char *setting = getenv("AZS_VK_CACHE_TRACE");
-    if (setting && strcmp(setting, "1") == 0) {
+    if (trace_enabled()) {
         fprintf(stderr, "azs-vk-cache: %s %zu bytes\n", action, size);
     }
 }
@@ -92,7 +113,7 @@ static bool read_exact(int file, unsigned char *bytes, size_t remaining) {
 
 unsigned char *azs_cache_read(const VkPhysicalDeviceProperties *properties, size_t *size) {
     *size = 0;
-    int directory = open_cache_directory();
+    int directory = open_cache_directory(false);
     if (directory < 0) {
         return NULL;
     }
@@ -125,7 +146,11 @@ unsigned char *azs_cache_read(const VkPhysicalDeviceProperties *properties, size
 static bool cache_slot_available(int directory, const char *name) {
     struct stat metadata;
     if (fstatat(directory, name, &metadata, AT_SYMLINK_NOFOLLOW) == 0) {
-        return S_ISREG(metadata.st_mode);
+        if (S_ISREG(metadata.st_mode)) {
+            return true;
+        }
+        errno = EINVAL;
+        return false;
     }
     return errno == ENOENT;
 }
@@ -151,6 +176,9 @@ static bool write_exact(int file, const unsigned char *bytes, size_t remaining) 
             continue;
         }
         if (count <= 0) {
+            if (count == 0) {
+                errno = EIO;
+            }
             return false;
         }
         bytes += count;
@@ -159,28 +187,48 @@ static bool write_exact(int file, const unsigned char *bytes, size_t remaining) 
     return true;
 }
 
-void azs_cache_write(const VkPhysicalDeviceProperties *properties, const void *data, size_t size) {
+bool azs_cache_write(const VkPhysicalDeviceProperties *properties, const void *data, size_t size) {
     if (!data || !valid_header(properties, data, size)) {
-        return;
+        if (trace_enabled()) {
+            fprintf(stderr, "azs-vk-cache: write rejected header or size (%zu bytes)\n", size);
+        }
+        return false;
     }
-    int directory = open_cache_directory();
+    int directory = open_cache_directory(true);
     if (directory < 0) {
-        return;
+        return false;
     }
 
     char name[CACHE_NAME_SIZE];
     char staging[CACHE_NAME_SIZE];
     cache_name(name, properties);
-    int file = cache_slot_available(directory, name) ? open_staging_file(directory, staging) : -1;
-    if (file >= 0) {
-        bool complete = fchmod(file, S_IRUSR | S_IWUSR) == 0 &&
-                        write_exact(file, data, size) && fsync(file) == 0;
-        if (close(file) == 0 && complete && cache_slot_available(directory, name) &&
-            renameat(directory, staging, directory, name) == 0) {
-            trace_cache("saved", size);
-        } else {
-            unlinkat(directory, staging, 0);
-        }
+    if (!cache_slot_available(directory, name)) {
+        trace_error("cache destination unavailable", errno);
+        close(directory);
+        return false;
+    }
+    int file = open_staging_file(directory, staging);
+    if (file < 0) {
+        trace_error("opening cache staging file failed", errno);
+        close(directory);
+        return false;
+    }
+
+    bool complete = fchmod(file, S_IRUSR | S_IWUSR) == 0 &&
+                    write_exact(file, data, size) && fsync(file) == 0;
+    int write_error = complete ? 0 : errno;
+    if (close(file) != 0 && complete) {
+        complete = false;
+        write_error = errno;
+    }
+    bool saved = complete && cache_slot_available(directory, name) &&
+                 renameat(directory, staging, directory, name) == 0;
+    if (saved) {
+        trace_cache("saved", size);
+    } else {
+        trace_error("writing cache failed", complete ? errno : write_error);
+        unlinkat(directory, staging, 0);
     }
     close(directory);
+    return saved;
 }

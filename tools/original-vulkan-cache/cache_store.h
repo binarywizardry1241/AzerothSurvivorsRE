@@ -10,6 +10,7 @@
 bool azs_cache_enabled(void);
 /* The caller owns the returned data and frees it with free. */
 unsigned char *azs_cache_read(const VkPhysicalDeviceProperties *properties, size_t *size);
-void azs_cache_write(const VkPhysicalDeviceProperties *properties, const void *data, size_t size);
+/* Returns true when the new cache atomically replaces the destination. */
+bool azs_cache_write(const VkPhysicalDeviceProperties *properties, const void *data, size_t size);
 
 #endif

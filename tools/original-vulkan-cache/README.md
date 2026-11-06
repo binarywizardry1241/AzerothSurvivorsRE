@@ -9,11 +9,16 @@ host side of Wine's ABI boundary. [wgpu backend gates](../../third_party/wgpu-ha
 Bevy 0.18.1 creates graphics and compute pipelines with an empty wgpu cache
 field. The Vulkan backend then supplies a null `VkPipelineCache`. This layer
 supplies a private Vulkan cache for those calls, leaves application-owned caches
-alone, and saves compatible cache data after clean device teardown. The next
-launch can reuse MoltenVK's translated shaders. The cache key includes the GPU,
-driver version and pipeline cache UUID. A busy cache or a cache creation error
-falls back to the ordinary call. The layer does not change shaders, render
-settings or gameplay. [Bevy pipeline creation](https://github.com/bevyengine/bevy/blob/v0.18.1/crates/bevy_render/src/render_resource/pipeline_cache.rs) · [wgpu Vulkan pipeline creation](../../third_party/wgpu-hal/src/vulkan/device.rs) · [MoltenVK shader cache](https://github.com/KhronosGroup/MoltenVK/blob/main/Docs/MoltenVK_Runtime_UserGuide.md#shader-load-time)
+alone, and saves compatible cache data during play. The next launch can reuse
+MoltenVK's translated shaders. The cache key includes the GPU, driver version
+and pipeline cache UUID. A busy cache or a cache creation error falls back to the
+ordinary call. [Bevy pipeline creation](https://github.com/bevyengine/bevy/blob/v0.18.1/crates/bevy_render/src/render_resource/pipeline_cache.rs) · [wgpu Vulkan pipeline creation](../../third_party/wgpu-hal/src/vulkan/device.rs) · [MoltenVK shader cache](https://github.com/KhronosGroup/MoltenVK/blob/main/Docs/MoltenVK_Runtime_UserGuide.md#shader-load-time)
+
+The worker takes its first snapshot about two seconds after the first cached
+pipeline call and checks for newer work every 30 seconds. It serializes the
+Vulkan cache under its existing lock and writes the file after releasing that
+lock. Device teardown saves any remaining changes. A failed write or a snapshot
+above 32 MiB preserves the previous cache file.
 
 The registered 0.141.0 EXE zeros the render cache field at `0x144992701` and
 the compute cache field at `0x1449941d0`. The render Vulkan HAL passes the
@@ -39,15 +44,16 @@ tools/original-vulkan-cache/build.sh --smoke /Applications/WoWSilicon.app/Conten
 
 The headless test creates Vulkan graphics and compute pipelines with null
 caches and another compute pipeline with an application-provided cache. It
-checks that the layer redirects only the two null-cache calls, saves a cache,
-and gives the saved bytes to the driver in a separate process. Its temporary
-cache is removed when the script finishes.
+waits for a published file while the Vulkan device is alive, exits without
+destroying the device, and checks that a second process loads the file. The
+second process checks that the layer redirects only the two null-cache calls.
+Its temporary cache is removed when the script finishes.
 
-With WoWSilicon 3.2.2's bundled MoltenVK, the cold run saved 1,054 bytes.
-The warm run reported two shader cache hits and one SPIR-V-to-MSL conversion
-compared with three conversions on the cold run. Both runs still compiled MSL
-into Metal libraries. These are headless driver counters from the smoke
-fixture. [MoltenVK performance logging](https://github.com/KhronosGroup/MoltenVK/blob/main/Docs/MoltenVK_Configuration_Parameters.md#mvk_config_activity_performance_logging_style)
+With WoWSilicon 3.2.2's bundled MoltenVK, the cold run published 1,054 bytes
+before teardown and the warm run loaded them. An earlier run with MoltenVK
+performance logging reported two shader cache hits and one SPIR-V-to-MSL
+conversion on the warm run, compared with three conversions on the cold run.
+Both runs compiled MSL into Metal libraries. [MoltenVK performance logging](https://github.com/KhronosGroup/MoltenVK/blob/main/Docs/MoltenVK_Configuration_Parameters.md#mvk_config_activity_performance_logging_style)
 
 ## WoWSilicon
 
@@ -66,6 +72,7 @@ layer list. To return to the previous launch path, remove the entries added for
 this layer. No game directory files are involved. WoWSilicon passes the profile's
 environment to its Wine command. [WoWSilicon launch source](https://github.com/WoWSilicon/WoWSilicon/blob/v3.2.2/Sources/WoWSiliconSwift/Services/LaunchService.swift#L476-L485)
 
-The first clean game exit can populate the cache. Shader compilation and
-pipeline creation stutters are the intended target. In-game frame times need
-an original-game comparison to quantify the effect.
+Shader compilation and pipeline creation stutters are the intended target.
+In-game frame times need an original-game comparison to quantify the effect.
+For diagnostics, `AZS_VK_CACHE_TRACE=1` prints device cache availability and
+snapshot results to standard error.

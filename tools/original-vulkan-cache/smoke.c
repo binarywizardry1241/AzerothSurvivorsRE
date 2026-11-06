@@ -1,14 +1,20 @@
 /* Headless smoke test for the native Vulkan loader and the pipeline cache layer. */
+#define _POSIX_C_SOURCE 200809L
 #ifndef VK_NO_PROTOTYPES
 #define VK_NO_PROTOTYPES
 #endif
 #include <vulkan/vulkan.h>
 
+#include <dirent.h>
 #include <dlfcn.h>
+#include <errno.h>
+#include <fcntl.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <time.h>
 
 static bool check(VkResult result, const char *operation) {
     if (result == VK_SUCCESS) {
@@ -347,7 +353,52 @@ cleanup:
     return success;
 }
 
-static bool smoke_instance(VkInstance instance, PFN_vkGetInstanceProcAddr get_instance_proc_addr) {
+static bool wait_for_checkpoint(const char *cache_directory) {
+    DIR *directory = opendir(cache_directory);
+    if (!directory) {
+        perror("open checkpoint directory");
+        return false;
+    }
+
+    /* The layer publishes complete cache files by rename. Ignore its staging files. */
+    const char prefix[] = "pipeline-";
+    const char suffix[] = ".bin";
+    for (unsigned attempt = 0; attempt < 200; ++attempt) {
+        struct dirent *entry;
+        while ((entry = readdir(directory)) != NULL) {
+            const char *name = entry->d_name;
+            const size_t length = strlen(name);
+            if (length <= sizeof(prefix) + sizeof(suffix) - 2 ||
+                strncmp(name, prefix, sizeof(prefix) - 1) != 0 ||
+                strcmp(name + length - (sizeof(suffix) - 1), suffix) != 0) {
+                continue;
+            }
+            struct stat metadata;
+            if (fstatat(dirfd(directory), name, &metadata, AT_SYMLINK_NOFOLLOW) == 0 &&
+                S_ISREG(metadata.st_mode) && metadata.st_size > 0) {
+                closedir(directory);
+                return true;
+            }
+        }
+        struct timespec interval = {.tv_nsec = 100000000L};
+        int result;
+        do {
+            result = nanosleep(&interval, &interval);
+        } while (result == -1 && errno == EINTR);
+        if (result == -1) {
+            perror("wait for cache checkpoint");
+            closedir(directory);
+            return false;
+        }
+        rewinddir(directory);
+    }
+    closedir(directory);
+    fputs("timed out waiting for a live pipeline cache checkpoint\n", stderr);
+    return false;
+}
+
+static bool smoke_instance(VkInstance instance, PFN_vkGetInstanceProcAddr get_instance_proc_addr,
+                           const char *checkpoint_directory) {
 #define LOAD_INSTANCE(name) PFN_##name name = (PFN_##name)get_instance_proc_addr(instance, #name)
     LOAD_INSTANCE(vkEnumeratePhysicalDevices);
     LOAD_INSTANCE(vkGetPhysicalDeviceQueueFamilyProperties);
@@ -413,13 +464,25 @@ static bool smoke_instance(VkInstance instance, PFN_vkGetInstanceProcAddr get_in
         return false;
     }
     const bool success = smoke_device(device, vkGetDeviceProcAddr);
+    if (success && checkpoint_directory) {
+        const bool checkpointed = wait_for_checkpoint(checkpoint_directory);
+        if (checkpointed) {
+            fputs("observed live cache checkpoint; exiting without vkDestroyDevice\n", stderr);
+            fflush(stderr);
+        }
+        _Exit(checkpointed ? EXIT_SUCCESS : EXIT_FAILURE);
+    }
     vkDestroyDevice(device, NULL);
     return success;
 }
 
 int main(int argc, char **argv) {
-    if (argc != 2) {
-        fprintf(stderr, "Usage: %s /absolute/path/to/libvulkan.1.dylib\n", argv[0]);
+    const char *checkpoint_directory = NULL;
+    if (argc == 4 && strcmp(argv[2], "--checkpoint") == 0 && argv[3][0] == '/') {
+        checkpoint_directory = argv[3];
+    } else if (argc != 2) {
+        fprintf(stderr, "Usage: %s /absolute/path/to/libvulkan.1.dylib "
+                        "[--checkpoint /absolute/cache/directory]\n", argv[0]);
         return EXIT_FAILURE;
     }
 
@@ -452,7 +515,7 @@ int main(int argc, char **argv) {
         return EXIT_FAILURE;
     }
 
-    const bool success = smoke_instance(instance, get_instance_proc_addr);
+    const bool success = smoke_instance(instance, get_instance_proc_addr, checkpoint_directory);
     destroy_instance(instance, NULL);
     dlclose(loader);
     if (success) {

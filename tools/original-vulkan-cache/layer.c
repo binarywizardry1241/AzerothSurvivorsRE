@@ -1,13 +1,18 @@
+#define _POSIX_C_SOURCE 200809L
 #define VK_NO_PROTOTYPES
 #include <vulkan/vk_layer.h>
 
 #include "cache_store.h"
 
+#include <errno.h>
 #include <pthread.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+
+enum { FIRST_CHECKPOINT_SECONDS = 2, CHECKPOINT_INTERVAL_SECONDS = 30 };
 
 typedef struct InstanceState {
     void *dispatch_key;
@@ -29,11 +34,17 @@ typedef struct DeviceState {
     PFN_vkGetPipelineCacheData cache_data;
     VkPhysicalDeviceProperties properties;
     pthread_mutex_t cache_lock;
+    pthread_cond_t checkpoint_wake;
+    pthread_t checkpoint_thread;
     bool cache_lock_ready;
     bool cache_attempted;
+    bool checkpoint_ready;
+    bool checkpoint_started;
+    bool checkpoint_stop;
     bool trace;
     VkPipelineCache cache;
     size_t redirected;
+    size_t saved_redirected;
     struct DeviceState *next;
 } DeviceState;
 
@@ -182,6 +193,9 @@ static VKAPI_ATTR VkResult VKAPI_CALL layer_create_device(
     state->graphics = (PFN_vkCreateGraphicsPipelines)state->gdpa(*device, "vkCreateGraphicsPipelines");
     state->compute = (PFN_vkCreateComputePipelines)state->gdpa(*device, "vkCreateComputePipelines");
 
+    const char *trace = getenv("AZS_VK_CACHE_TRACE");
+    state->trace = trace && strcmp(trace, "1") == 0;
+
     if (!device_group && azs_cache_enabled()) {
         PFN_vkGetPhysicalDeviceProperties get_properties = (PFN_vkGetPhysicalDeviceProperties)
             instance->gipa(instance->instance, "vkGetPhysicalDeviceProperties");
@@ -191,11 +205,17 @@ static VKAPI_ATTR VkResult VKAPI_CALL layer_create_device(
         if (get_properties && state->create_cache && state->destroy_cache && state->cache_data) {
             get_properties(physical_device, &state->properties);
             state->cache_lock_ready = pthread_mutex_init(&state->cache_lock, NULL) == 0;
+            state->checkpoint_ready = state->cache_lock_ready &&
+                pthread_cond_init(&state->checkpoint_wake, NULL) == 0;
         }
     }
-
-    const char *trace = getenv("AZS_VK_CACHE_TRACE");
-    state->trace = trace && strcmp(trace, "1") == 0;
+    if (state->trace) {
+        const char *status = "unavailable";
+        if (state->cache_lock_ready) {
+            status = state->checkpoint_ready ? "live checkpoints enabled" : "teardown save only";
+        }
+        fprintf(stderr, "[azs-vk-cache] device cache %s\n", status);
+    }
 
     pthread_mutex_lock(&state_lock);
     state->next = devices;
@@ -251,26 +271,119 @@ static bool borrow_cache(DeviceState *state, VkPipelineCache *cache) {
         return false;
     }
     *cache = state->cache;
-    ++state->redirected;
     return true;
 }
 
-static void finish_cache(DeviceState *state) {
-    if (state->cache == VK_NULL_HANDLE) {
+/* The caller holds cache_lock. Only the snapshot needs it, so pipeline creation
+ * can use the cache again while the worker writes the file. */
+static void save_pending_cache(DeviceState *state) {
+    size_t redirected = state->redirected;
+    if (redirected == state->saved_redirected) {
         return;
     }
     size_t size = 0;
-    if (state->cache_data(state->device, state->cache, &size, NULL) == VK_SUCCESS &&
-        size > 0 && size <= AZS_CACHE_MAX_SIZE) {
-        unsigned char *data = malloc(size);
-        if (data) {
-            if (state->cache_data(state->device, state->cache, &size, data) == VK_SUCCESS) {
-                azs_cache_write(&state->properties, data, size);
-            }
-            free(data);
+    VkResult result = state->cache_data(state->device, state->cache, &size, NULL);
+    if (result != VK_SUCCESS || size == 0 || size > AZS_CACHE_MAX_SIZE) {
+        if (state->trace) {
+            fprintf(stderr, "[azs-vk-cache] snapshot size query yielded %zu bytes (%d), limit %u\n",
+                    size, result, AZS_CACHE_MAX_SIZE);
+        }
+        return;
+    }
+    unsigned char *data = malloc(size);
+    if (!data) {
+        if (state->trace) {
+            fprintf(stderr, "[azs-vk-cache] cannot allocate %zu bytes for snapshot\n", size);
+        }
+        return;
+    }
+    result = state->cache_data(state->device, state->cache, &size, data);
+    if (result != VK_SUCCESS) {
+        if (state->trace) {
+            fprintf(stderr, "[azs-vk-cache] snapshot data query yielded %zu bytes (%d)\n",
+                    size, result);
+        }
+        free(data);
+        return;
+    }
+
+    pthread_mutex_unlock(&state->cache_lock);
+    bool saved = azs_cache_write(&state->properties, data, size);
+    free(data);
+    pthread_mutex_lock(&state->cache_lock);
+    if (saved) {
+        state->saved_redirected = redirected;
+        if (state->trace) {
+            fprintf(stderr, "[azs-vk-cache] checkpoint saved after %zu null-cache calls\n", redirected);
         }
     }
-    state->destroy_cache(state->device, state->cache, NULL);
+}
+
+static bool wait_for_checkpoint(DeviceState *state, time_t seconds) {
+    struct timespec deadline;
+    if (clock_gettime(CLOCK_REALTIME, &deadline) != 0) {
+        if (state->trace) {
+            fprintf(stderr, "[azs-vk-cache] cannot schedule checkpoint (%d)\n", errno);
+        }
+        return false;
+    }
+    deadline.tv_sec += seconds;
+    while (!state->checkpoint_stop) {
+        int result = pthread_cond_timedwait(&state->checkpoint_wake, &state->cache_lock, &deadline);
+        if (result == ETIMEDOUT) {
+            return !state->checkpoint_stop;
+        }
+        if (result != 0) {
+            if (state->trace) {
+                fprintf(stderr, "[azs-vk-cache] checkpoint wait failed (%d)\n", result);
+            }
+            return false;
+        }
+    }
+    return false;
+}
+
+static void *checkpoint_cache(void *argument) {
+    DeviceState *state = argument;
+    pthread_mutex_lock(&state->cache_lock);
+    time_t delay = FIRST_CHECKPOINT_SECONDS;
+    while (!state->checkpoint_stop && wait_for_checkpoint(state, delay)) {
+        save_pending_cache(state);
+        delay = CHECKPOINT_INTERVAL_SECONDS;
+    }
+    pthread_mutex_unlock(&state->cache_lock);
+    return NULL;
+}
+
+static void release_cache(DeviceState *state) {
+    ++state->redirected;
+    if (state->checkpoint_ready && state->redirected == 1) {
+        int result = pthread_create(&state->checkpoint_thread, NULL, checkpoint_cache, state);
+        state->checkpoint_started = result == 0;
+        if (!state->checkpoint_started && state->trace) {
+            fprintf(stderr, "[azs-vk-cache] cannot start checkpoint worker (%d)\n", result);
+        }
+    }
+    pthread_mutex_unlock(&state->cache_lock);
+}
+
+static void finish_cache(DeviceState *state) {
+    if (state->checkpoint_started) {
+        pthread_mutex_lock(&state->cache_lock);
+        state->checkpoint_stop = true;
+        pthread_cond_signal(&state->checkpoint_wake);
+        pthread_mutex_unlock(&state->cache_lock);
+        pthread_join(state->checkpoint_thread, NULL);
+    }
+    if (state->cache != VK_NULL_HANDLE) {
+        pthread_mutex_lock(&state->cache_lock);
+        save_pending_cache(state);
+        pthread_mutex_unlock(&state->cache_lock);
+        state->destroy_cache(state->device, state->cache, NULL);
+    }
+    if (state->checkpoint_ready) {
+        pthread_cond_destroy(&state->checkpoint_wake);
+    }
 }
 
 static VKAPI_ATTR void VKAPI_CALL layer_destroy_device(
@@ -304,7 +417,7 @@ static VKAPI_ATTR VkResult VKAPI_CALL layer_create_graphics_pipelines(
     bool borrowed = borrow_cache(state, &cache);
     VkResult result = state->graphics(device, cache, count, info, allocator, pipelines);
     if (borrowed) {
-        pthread_mutex_unlock(&state->cache_lock);
+        release_cache(state);
     }
     return result;
 }
@@ -320,7 +433,7 @@ static VKAPI_ATTR VkResult VKAPI_CALL layer_create_compute_pipelines(
     bool borrowed = borrow_cache(state, &cache);
     VkResult result = state->compute(device, cache, count, info, allocator, pipelines);
     if (borrowed) {
-        pthread_mutex_unlock(&state->cache_lock);
+        release_cache(state);
     }
     return result;
 }

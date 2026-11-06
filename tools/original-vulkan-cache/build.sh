@@ -58,15 +58,18 @@ if [ "$#" -eq 2 ]; then
         VK_DRIVER_FILES="$icd" VK_ADD_LAYER_PATH="$scratch" \
             VK_INSTANCE_LAYERS=VK_LAYER_AZS_pipeline_cache \
             AZS_VK_CACHE_DIR="$scratch/test-cache" AZS_VK_CACHE_TRACE=1 \
-            "$scratch/smoke" "$loader"
+            "$scratch/smoke" "$loader" "$@"
     }
-    if ! cold=$(run_smoke 2>&1); then
+    if ! cold=$(run_smoke --checkpoint "$scratch/test-cache" 2>&1); then
         printf '%s\n' "$cold" >&2
         exit 1
     fi
     printf '%s\n' "$cold"
-    printf '%s\n' "$cold" | grep -Eq 'saved [1-9][0-9]* bytes'
-    printf '%s\n' "$cold" | grep -Fq '2 null-cache calls redirected'
+    printf '%s\n' "$cold" | grep -Fq 'observed live cache checkpoint; exiting without vkDestroyDevice'
+    if printf '%s\n' "$cold" | grep -Fq 'device destroyed'; then
+        printf 'Cold smoke unexpectedly used normal device teardown.\n' >&2
+        exit 1
+    fi
     if ! warm=$(run_smoke 2>&1); then
         printf '%s\n' "$warm" >&2
         exit 1
