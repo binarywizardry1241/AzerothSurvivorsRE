@@ -23,7 +23,7 @@ Run time is the `AZSRUN` clock. Trace time is the elapsed `t=` on each row.
 | Capture | `# t0=` value | Reviewed prefix | SHA-256 of reviewed prefix |
 | --- | --- | ---: | --- |
 | A | `1793927554.520` | 984 lines | `43f1fddec9e53365e7a0e419f80a09b6c536076b3135bb996f13396c401fa609` |
-| B | `1793928177.341` | 25,994 lines | `955f35f91fdc89263848f903f4e49be7c23d1ad57668c55b5847887bfada0367` |
+| B | `1793928177.341` | 74,032 lines | `270c6a423be5500d6c68437081a02f94fdaeea1a475140bf3f9868944f77f0e3` |
 
 ## Meter and combat attribution
 
@@ -50,6 +50,10 @@ level increase with `owed=2` on entry and `owed=0` on resume. These cases give
 the observable publication order and clock behavior. Card contents, selection
 input and layout are outside the capture.
 
+B lines 34038–34072 give the intermediate state after Bellygrub's defeat.
+The run clock stays at 370.22 while `owed` changes from 2 to 1 and the phase
+stays `choosing`. The next transition reports `owed=0`, `playing` and 370.24.
+
 **[#9](../verification-needed.md#gap-9).** A lines 980–984 show `paused → dead`
 with the run clock held at 11.30, `AZSEND result=left`, and a detailed meter
 frame marking the hero `departed`. The final run snapshot still has full HP.
@@ -59,11 +63,12 @@ Compare the phase, exit result and meter departure separately. B had no
 ## Guardian and boss lifecycle
 
 **[#57](../verification-needed.md#gap-57), [#89](../verification-needed.md#gap-89).**
-All 95 B `AZSTGT kind=guardian` snapshots match the most recent `AZSUNITS`
-row for the same GUID on current HP, maximum HP and awake state. The first 70
-are in lines 1–16,493. For example, lines 1866–1868 show both channels publishing
-12,641/12,787 HP. Lair slot 2 becomes awake at run 29.45 (line 1812). After
-Gruff Swiftbite's defeat, the unit row disappears and the lair reports `empty`,
+All 95 B `AZSTGT kind=guardian` snapshots in lines 1–25,994 match the most
+recent `AZSUNITS` row for the same GUID on current HP, maximum HP and awake
+state. The first 70 are in lines 1–16,493. For example, lines 1866–1868 show
+both channels publishing 12,641/12,787 HP. Lair slot 2 becomes awake at run
+29.45 (line 1812). After Gruff Swiftbite's defeat, the unit row disappears
+and the lair reports `empty`,
 GUID `0` and 150 seconds remaining (lines 2958–2973). The same lair publishes a
 new sleeping guardian with a different GUID at run 191.31 (line 15387).
 Compare addon publication, actor removal and respawn. The capture does not
@@ -78,15 +83,21 @@ encounter-specific rows during the fight (first at line 14147). At run 189.28,
 These are addon-facing schedule and meter cases. The trace does not establish
 the boss's movement, reach, hazard geometry or rendered state.
 
+B lines 32424 and 35900 mark Mother Fang's spawn at run 360.07 and defeat at
+378.07. The final `AZSBOSSDMG` at line 35908 remains the last published payload
+through Rhahk’Zor's spawn at run 540.11 (line 66943). The first new boss damage
+payload at line 67915 starts with fresh totals. This matches the existing
+[meter rollover on first admitted hit](../../crates/azeroth-survivors-re/src/run_meter.rs).
+Rhahk’Zor's defeat at run 558.20 is recorded at line 71280.
+
 ## Cache transactions
 
 **[#18](../verification-needed.md#gap-18), [#49](../verification-needed.md#gap-49),
 [#91](../verification-needed.md#gap-91).** B line 622 shows the insufficient-gold
-banner at the initial 25-gold price. Each successful purchase increments `ck`,
-keeps lifetime earned gold (`ge`) unchanged and publishes `choosing` with
-`owed=1`. The first purchased cache disappears from `AZSCHESTS` in the same
-update (lines 5872–5876). The four price transitions can be compared against
-the [cache transaction](../../crates/azeroth-survivors-re/src/treasure_chests/mod.rs).
+banner at the initial 25-gold price. Each successful purchase increments `ck`
+and publishes `choosing` with `owed=1`. The first purchased cache disappears
+from `AZSCHESTS` in the same update (lines 5872–5876). Compare the first four
+price transitions against the [cache transaction](../../crates/azeroth-survivors-re/src/treasure_chests/mod.rs).
 
 | B line | Run time (s) | Paid | Gold before → after | Next price |
 | --- | ---: | ---: | ---: | ---: |
@@ -94,6 +105,12 @@ the [cache transaction](../../crates/azeroth-survivors-re/src/treasure_chests/mo
 | 12036 | 164.25 | 38 | 349 → 311 | 55 |
 | 23943 | 283.02 | 55 | 828 → 773 | 77 |
 | 24161 | 284.67 | 77 | 773 → 696 | 106 |
+
+All 11 observed price increases match the source expression through a next
+price of 770 (line 64392). In purchase nine, the balance falls from 1,005 to
+685 across a 340-gold purchase while lifetime earned gold (`ge`) rises by 20
+(line 48258). Compare balance and earned gold together when other gameplay
+credits occur between snapshots.
 
 The marker list gives the published removal order. It does not show object
 animation, audio, the selected reward or its rendered card.
@@ -108,8 +125,9 @@ animation, audio, the selected reward or its rendered card.
   rendered cards or which native and addon displays were visible. A's historical
   Vulkan event stream reached its 64 MiB cap about 48 seconds before the first
   gameplay row. B uses the gameplay-only tracker.
-- **[#224](../verification-needed.md#gap-224).** B has five client `SPELL_GO`
-  records for Explosive spell 20475 (lines 4256, 6291, 10218, 11298 and 12534).
+- **[#224](../verification-needed.md#gap-224).** B's first 25,994 lines have five
+  client `SPELL_GO` records for Explosive spell 20475 (lines 4256, 6291, 10218,
+  11298 and 12534).
   Use those as selectors for an expiry-event comparison. They do not identify
   every orb spawn or establish its timer, damage formula or hit admission.
 
