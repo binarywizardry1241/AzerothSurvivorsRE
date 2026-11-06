@@ -35799,6 +35799,35 @@
       "gap_ids": [
         257
       ]
+    },
+    {
+      "claim_id": "changelog:0.141.1:f254ac47b93d1ae2",
+      "target": {
+        "version": "0.141.1",
+        "sha256": "47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6"
+      },
+      "status": "source_connected",
+      "rationale": "The shared rebuilt tabard descriptor feeds the new display to the Armory preview, worn appearance and item metadata. The supplied patch provides both torso textures.",
+      "native_contract": "The 0.141.1 tabard tables and the item 90012 metadata branch select display 16078, whose torso columns resolve to the two BLP members in patch-D.MPQ.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/progression.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/lordaeron-tabard-0.141.1.md"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/progression.rs": "8bda237399d008f68ed64fa01f223def86096ddd554301dab7a6e480b097dc97",
+        "docs/analysis/lordaeron-tabard-0.141.1.md": "94f65becf9f1dd46974254e83beeb850f941dc6573db0f7ce13dd82bd1aa3af0"
+      },
+      "systems": [
+        "custom-app-screens-armory",
+        "custom-app-screens-rewards",
+        "custom-game-appearance",
+        "custom-game-gear"
+      ],
+      "gap_ids": [
+        324
+      ]
     }
   ]
 }

@@ -115,6 +115,13 @@ impl Catalog {
             additions.tabard_insertion_index..additions.tabard_insertion_index,
             additions.tabards,
         );
+        // 0.141.1 selects the crest textures supplied by patch-D.MPQ.
+        catalog
+            .tabards
+            .iter_mut()
+            .find(|tabard| tabard.id == 90012)
+            .expect("Tabard of Lordaeron descriptor")
+            .display_id = 16078;
         catalog.companions.extend(additions.companions);
         //145b973b0 supplies the complete current order and menu descriptors.
         // Retain previously recovered reward associations by stable key; the
