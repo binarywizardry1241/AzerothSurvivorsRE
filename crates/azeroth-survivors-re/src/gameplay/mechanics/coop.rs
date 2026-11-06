@@ -1882,6 +1882,19 @@ impl Mechanics {
             )
             .collect()
     }
+
+    pub(in crate::gameplay) fn party_spell_source_slot(&self, recipient: u8, key: &str) -> Option<u8> {
+        let has_spell = |class: &player_abilities::ClassAbilities, learned: &[RuntimeInstance<'_>]| {
+            class.pool.contains(&key) || learned.iter().any(|spell| spell.definition.key == key)
+        };
+        if recipient != 0 && has_spell(self.class, &self.abilities) {
+            return Some(0);
+        }
+        self.coop.remotes.iter().find(|hero| {
+            hero.slot != recipient && has_spell(hero.state.class, &hero.state.abilities)
+        }).map(|hero| hero.slot)
+    }
+
     pub fn has_party(&self) -> bool {
         self.coop.enabled
     }

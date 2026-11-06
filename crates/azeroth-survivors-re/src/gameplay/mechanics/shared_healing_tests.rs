@@ -279,9 +279,12 @@ fn battle_shout_keeps_two_casters_and_uses_the_weaker_aura_after_expiry() {
     for slot in 0..2 {
         game.with_party_hero(slot, |hero| {
             let mut shout = RuntimeInstance::learned(AbilityDefinition::by_key("battle_shout").unwrap());
-            shout.effect_multiplier = if slot == 0 { 3.0 } else { 1.0 };
+            shout.effect_multiplier = if slot == 0 { 1.0 } else { 1.25 };
             shout.duration_multiplier = if slot == 0 { 0.25 } else { 1.0 };
             shout.remaining = 0.0;
+            let bonus = if slot == 0 { 0.5 } else { 0.125 };
+            hero.effect_state.pre_stats.buff_bonus = bonus;
+            hero.effect_state.numeric.buff_bonus = bonus;
             hero.abilities = vec![shout];
             hero.clock = 1.0;
         }).unwrap();
@@ -294,16 +297,20 @@ fn battle_shout_keeps_two_casters_and_uses_the_weaker_aura_after_expiry() {
             let rows = hero.execution.auras.iter().filter(|aura| aura.spell_id == 6673)
                 .copied().collect::<Vec<_>>();
             assert_eq!(rows.len(), 2);
-            let strong = rows.iter().max_by(|a, b| a.effect.value.total_cmp(&b.effect.value)).unwrap();
-            let weak = rows.iter().min_by(|a, b| a.effect.value.total_cmp(&b.effect.value)).unwrap();
-            assert!(strong.effect.value > weak.effect.value);
+            let (strong_source, weak_source) = if slot == 0 { (0, guid(1)) } else { (guid(0), 0) };
+            let strong = rows.iter().find(|row| row.source_guid == strong_source).unwrap();
+            let weak = rows.iter().find(|row| row.source_guid == weak_source).unwrap();
+            let bonus = hero.effect_state.numeric.buff_bonus;
+            let base_shout = hero.abilities[0].definition.effect.value;
+            assert_eq!(strong.effect.value, base_shout * if slot == 0 { 1.0 } else { 1.5 });
+            assert_eq!(weak.effect.value, base_shout * 1.25 * if slot == 0 { 1.125 } else { 1.0 });
             assert!(strong.expires_at < weak.expires_at);
-            assert_eq!(buffs::effective_auras(&rows, hero.clock).next(), Some(strong));
+            assert_eq!(buffs::effective_auras(&rows, hero.clock, bonus).next(), Some(strong));
+            let base_damage = hero.stats.damage_multiplier + 0.03 * hero.level.saturating_sub(1) as f32;
+            assert_eq!(hero.current_damage_multiplier(), base_damage + base_shout * 1.5);
             hero.clock = strong.expires_at;
-            assert_eq!(buffs::effective_auras(&rows, hero.clock).next(), Some(weak));
-            assert_eq!(hero.current_damage_multiplier(), aura_damage(
-                hero.stats.damage_multiplier + 0.03 * hero.level.saturating_sub(1) as f32,
-                &[*weak], hero.clock, hero.effect_state.numeric.buff_bonus));
+            assert_eq!(buffs::effective_auras(&rows, hero.clock, bonus).next(), Some(weak));
+            assert_eq!(hero.current_damage_multiplier(), base_damage + base_shout * 1.25 * 1.125);
             rows
         }).unwrap();
         snapshots.push(rows);

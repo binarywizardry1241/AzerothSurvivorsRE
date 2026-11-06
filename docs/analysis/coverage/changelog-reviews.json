@@ -35878,6 +35878,51 @@
       "gap_ids": [
         6
       ]
+    },
+    {
+      "claim_id": "changelog:0.141.1:5fb431ffa62f27ff",
+      "target": {
+        "version": "0.141.1",
+        "sha256": "47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6"
+      },
+      "status": "static_checked",
+      "rationale": "Live cast, stat winner and recipient spell resource now use the recovered potency factor. Exact instruction replay and source syntax pass; compilation and live party tooltip parity remain open.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop_spell_auxiliary.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/shouts-0.141.1.md",
+        "docs/analysis/evidence/0.141.1/battle-shout.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs": "fe09d9da54a8a9e0b7502fab18a932892e0ec2b7d5b9a8c667d95357adbfc97a",
+        "crates/azeroth-survivors-re/src/gameplay/coop_spell_auxiliary.rs": "de248d8ed4b68412be8ae0c2b8f7b296bbbb5fc78e4cc9b59ac7033d99b40167",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "31a508863ee7a754354a9685418f767985acac6d1da76684c6f346b726657f8b",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "a367a0ca699849498c799ebaaf3e80eab333d9a6408a2594f2c062a6c43d140c",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs": "3bed098472ab3de8c076818b0a64e9094bf32393340fe30c43e55a16488ac64e",
+        "docs/analysis/shouts-0.141.1.md": "81670729784893a24aeec6d0e92862232d003a0448b212fc82619373e9810dab",
+        "docs/analysis/evidence/0.141.1/battle-shout.json": "f9ac28d682d6fb216a4b1c246b3116627ad38fad187577ea1d211f302d65c9f7"
+      },
+      "systems": [
+        "custom-game-game-abilities",
+        "custom-game-game-auras",
+        "custom-game-game-party"
+      ],
+      "gap_ids": [
+        289
+      ],
+      "native_contract": "Source-zero auras keep base strength and use the actor potency; party rows carry the caster-scaled damage/haste value and retain factor 1 through stat and active tooltip selection. The party resource merge supplies the missing Battle Shout row before the recipient override.",
+      "static_checks": [
+        {
+          "command": "python3 -B scripts/check-player-aura-grouping.py --contract battle-shout-potency --verify",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/shouts-0.141.1.md"
+        }
+      ]
     }
   ]
 }

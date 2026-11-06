@@ -343,28 +343,30 @@ def shout_source_check():
         'candidate.until > self.active.until','candidate.fraction > fallback.fraction'],
       'player_abilities/behavior/buffs.rs':['pub fn effective_auras','other_index < *index',
         'old.source_guid != aura.source_guid',
-        'shared_aura = Some(SharedAura'],
+        'shared_aura = Some(SharedAura','self.source_guid == 0','effect.value *= 1.0 + buff_bonus'],
       'player_abilities/behavior/dispatch.rs':['port.share_aura(', 'fn share_aura('],
       'player_abilities/damage.rs':['pub demoralizing_amplification: f32','multiplier += victim.demoralizing_amplification;'],
-      'gameplay/mechanics.rs':['buffs::effective_auras(auras, now)','fn share_aura(',
+      'gameplay/mechanics.rs':['buffs::effective_auras(auras, now, buff_bonus)','fn share_aura(',
         'demoralizing_amplification.get(&row.guid).map_or(0.0, |window| window.value_at(self.now))'],
       'gameplay/mechanics/callbacks.rs':['pub actor_weakening:', 'pub demoralizing_amplification:',
         'weakening.insert(now, effect.value, now + effect.duration)', 'weakening.advance(now)',
         'if spell_id == 1160', 'row.vulnerability_until = self.context.now + effect.duration'],
       'gameplay/mechanics/shared_healing.rs':['Aura(buffs::SharedAura)','pub fn enqueue_aura(',
         'event.source_slot == self.coop.active_slot','expires_at: self.clock + aura.duration',
-        'source_guid: event.source_guid','dx * dx + dy * dy <= 900.0'],
+        'event.source_guid', 'source_guid, effect: aura.effect','dx * dx + dy * dy <= 900.0'],
       'gameplay/mechanics/coop.rs':['&mut game.effect_state.generic.actor_weakening',
-        '&mut game.effect_state.generic.demoralizing_amplification'],
+        '&mut game.effect_state.generic.demoralizing_amplification','fn party_spell_source_slot'],
       'gameplay/mechanics/actor_frame.rs':['generic.actor_weakening.remove(&guid)',
         'generic.demoralizing_amplification.remove(&guid)'],
       'gameplay/mechanics/bosses.rs':['demoralizing_amplification:'],
       'gameplay/mechanics/wards.rs':['demoralizing_amplification:'],
       'gameplay/mechanics/passives.rs':['fn share_aura('],
       'gameplay/coop_spell_auxiliary.rs':['fn active_battle_shout(', '.find(|aura| aura.spell_id == 6673 && now < aura.expires_at)',
-        'row.text_30 = locale.label("Damage increased by {p}%.")','((1.0 + buff_bonus) * aura.effect.value) * 100.0'],
+        'row.text_30 = locale.label("Damage increased by {p}%.")','aura.buff_strength(buff_bonus) * 100.0'],
       'gameplay/coop_overlay.rs':['spell_auxiliary::active_battle_shout(&mut rows, &game.execution.auras,',
-        'game.clock, buff_bonus, locale)'],
+        'game.clock, context.bonuses.buff_bonus, locale)',
+        'append_party_battle_shout(game, 0, &mut rows, &locale)',
+        'append_party_battle_shout(game, slot, &mut resources, member_locale)'],
       'save/talents.rs':['from you and your allies for 6 sec.'],
       'gameplay/mechanics/shared_healing_tests.rs':['fn battle_shout_keeps_two_casters_and_uses_the_weaker_aura_after_expiry'],
     }
@@ -471,14 +473,179 @@ def f32(value):
     return struct.unpack('<f',struct.pack('<f',value))[0]
 
 
+def battle_shout_potency(args):
+    from coverage_common import installed_identity
+    from native_terminal import NativeReplay
+    from script_sources import load_script
+
+    target = installed_identity()
+    assert target['version'] == '0.141.1'
+    assert target['sha256'] == '47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6'
+    data = target_bytes(target)
+    pe = load_script('battle_shout_pe', ROOT/'scripts/inventory-executable.py').PE(data)
+    replay = NativeReplay(data, pe)
+    machine, registers = replay.machine, replay.registers
+    spans = {
+        'self-aura-and-broadcast': (0x145f8ef92, 0x145f8f031),
+        'party-aura-producer': (0x145f49010, 0x145f49118),
+        'party-aura-recipient': (0x145f4b120, 0x145f4bc57),
+        'aura-stat-consumer': (0x145fa5aef, 0x145fa5d07),
+        'active-shout-tooltip': (0x145f51390, 0x145f51752),
+        'party-resource-merge': (0x145f4a6e3, 0x145f4a929),
+        'party-resource-donor': (0x145f4a3b7, 0x145f4a425),
+        'party-resource-donor-tooltip': (0x145f502cd, 0x145f502d9),
+        'guest-recipient-tooltip': (0x145f4ab17, 0x145f4ab24),
+        'local-party-resource-caller': (0x145ebc76a, 0x145ebc790),
+        'guest-party-resource-caller': (0x145eb9a75, 0x145eb9a8b),
+        'resource-class-pool': (0x145f4e399, 0x145f4e3d2),
+        'potency-published': (0x145fa5eb9, 0x145fa5ec2),
+    }
+    ranges = [dict(role=role, start=hex(a), end_exclusive=hex(b),
+        file_offset=hex(pe.rva_offset(a-pe.image_base)),
+        sha256=digest(replay.raw(a,b-a))) for role,(a,b) in spans.items()]
+    assert replay.raw(0x147702554,8) == b'war_horn'
+    assert replay.raw(0x147705c0f,15) == b'unbridled_wrath'
+    assert struct.unpack('<QQ',replay.raw(0x147702c00,16)) == (0x147702554,8)
+    assert struct.unpack('<QQ',replay.raw(0x147706598,16)) == (0x147705c0f,15)
+    assert struct.unpack('<QQ',replay.raw(0x1477065c8,16)) == (0x147705c40,1)
+    assert struct.unpack('<IBB',replay.raw(0x147702c40,6)) == (bits(.15),17,1)
+    assert struct.unpack('<III',replay.raw(0x147705c40,12)) == (72,bits(.06),23)
+    numeric_inputs = []
+    for role,table,tag,branch in [
+        ('war_horn',0x147afe87c,17,0x145fa67da),
+        ('unbridled_wrath',0x147afe8cc,23,0x145fa691b),
+    ]:
+        relative, = struct.unpack('<i',replay.raw(table+tag*4,4))
+        assert table+relative == branch
+        assert replay.raw(branch,4) == (b'\xf3\x0f\x58\xea' if tag == 17 else b'\xf3\x0f\x58\x29')
+        numeric_inputs.append(dict(key=role, dispatch_table=hex(table), tag=tag, add=hex(branch)))
+
+    def set_register(name, value):
+        machine.reg_write(getattr(registers, 'UC_X86_REG_' + name), value)
+
+    def scalar(name, value):
+        replay.scalar(getattr(registers, 'UC_X86_REG_' + name), value)
+
+    def scalar_bits(name):
+        return machine.reg_read(getattr(registers, 'UC_X86_REG_' + name)) & 0xffffffff
+
+    def setup_auras(rows, now, bonus):
+        replay.put(replay.app+0x4e0, '<3Q', 8, replay.mem+0x8000, len(rows))
+        replay.put(replay.app+0x1028, '<f', now)
+        replay.put(replay.app+0x69c, '<f', bonus)
+        for i,(guid,tag,value,spell,until) in enumerate(rows):
+            replay.put(replay.mem+0x8000+i*32, '<QIffIff', guid,tag,value,0.,spell,until,0.)
+
+    def strength(row, bonus):
+        value = row[2] if row[1] in (8, 9) else 0.
+        return f32(value * (f32(1. + bonus) if row[0] == 0 else 1.))
+
+    consumers = []
+    # Raw .375 loses to .5 with zero potency, ties at 1/3, and beats it with .5.
+    for bonus, now, remote_tag in itertools.product([0., f32(1./3.), .5], [0., 2., 8.], [8, 9]):
+        rows = [(0,8,.375,6673,2.), (101,remote_tag,.5,6673,8.),
+                (0,9,.125,900,9.), (202,9,.15625,900,9.)]
+        selected = []
+        for i,row in enumerate(rows):
+            if now >= row[4]: continue
+            if any(other[3] == row[3] and now < other[4] and
+                   (strength(other, bonus) > strength(row, bonus) or
+                    (strength(other, bonus) == strength(row, bonus) and j < i))
+                   for j,other in enumerate(rows) if j != i):
+                continue
+            selected.append(row)
+        replay.reset('stats', [spans['aura-stat-consumer']], [0x145fa5d07])
+        setup_auras(rows, now, bonus)
+        set_register('RSI', replay.app)
+        set_register('RDX', len(rows))
+        scalar('XMM5', bonus)
+        scalar('XMM3', .5)
+        replay.put(replay.bp+0xb0, '<f', .125)
+        replay.run(spans['aura-stat-consumer'][0])
+        damage, recovery = .5, .125
+        for row in selected:
+            if row[1] == 8: damage = f32(damage + strength(row, bonus))
+            if row[1] == 9: recovery = f32(recovery + strength(row, bonus))
+        assert scalar_bits('XMM3') == bits(damage)
+        assert replay.get(replay.bp+0xb0, '<I')[0] == bits(recovery)
+
+        replay.reset('tooltip', [spans['active-shout-tooltip']], [0x145f514f0, replay.done])
+        setup_auras(rows, now, bonus)
+        set_register('RCX', replay.app)
+        set_register('RDX', replay.mem+0xa000)
+        set_register('R8', 1)
+        replay.put(replay.mem+0xa0a8, '<I', 6673)
+        winner = next((row for row in selected if row[3] == 6673 and row[1] == 8), None)
+        actual = replay.run(spans['active-shout-tooltip'][0])
+        assert (actual == 0x145f514f0) == (winner is not None)
+        percent = None
+        if winner is not None:
+            assert scalar_bits('XMM7') == bits(winner[2])
+            replay.context['stops'] = {0x145f51535}
+            replay.run(0x145f5151b)
+            percent = scalar_bits('XMM7')
+            assert percent == bits(f32(strength(winner, bonus)*100.))
+        consumers.append(dict(rows=[[g,t,bits(v),s,bits(e)] for g,t,v,s,e in rows],
+            now=bits(now), buff_bonus=bits(bonus), damage=bits(damage), recovery=bits(recovery),
+            tooltip_percent=percent))
+
+    deliveries = 0
+    for enabled, tag, bonus in itertools.product([0, 1], [7, 8, 9, 10], [0., .5]):
+        replay.reset('producer', [spans['party-aura-producer']], [replay.done])
+        replay.put(replay.app+0x10e3, '<B', enabled)
+        replay.put(replay.app+0xfd8, '<Q', 1)
+        replay.put(replay.app+0x5c8, '<Q', 101)
+        replay.put(replay.app+0x5e0, '<3f', 1., 2., 3.)
+        replay.put(replay.app+0x69c, '<f', bonus)
+        replay.put(replay.app+0xdd0, '<3Q', 8, replay.mem+0x9000, 0)
+        replay.put(replay.mem+0x6000, '<Iff', tag, .375, 0.)
+        set_register('RCX', replay.app)
+        set_register('RDX', 6673)
+        set_register('R8', replay.mem+0x6000)
+        scalar('XMM3', 6.)
+        replay.run(spans['party-aura-producer'][0])
+        assert replay.get(replay.app+0xde0, '<Q')[0] == enabled
+        amount = .375 * (1. + bonus) if enabled and tag in (8, 9) else .375
+        assert replay.get(replay.mem+0x6000, '<Iff') == (tag, amount, 0.)
+        if enabled:
+            event = bytes(machine.mem_read(replay.mem+0x9000, 56))
+            assert event == struct.pack('<QQ3fIffIff4x', 1,101,1.,2.,3.,6673,0.,6.,tag,amount,0.)
+            if tag in (8, 9):
+                replay.reset('recipient', [spans['party-aura-recipient']], [0x145f4b586])
+                setup_auras([], 2., .75)
+                machine.mem_write(replay.mem+0x9000, event)
+                set_register('RCX', replay.app)
+                set_register('RDX', replay.mem+0x9000)
+                replay.run(spans['party-aura-recipient'][0])
+                assert replay.get(replay.app+0x4f0, '<Q')[0] == 1
+                assert replay.get(replay.mem+0x8000, '<QIffIff') == (101,tag,amount,0.,6673,8.,0.)
+                deliveries += 1
+
+    proof = dict(target={k:target[k] for k in ('version','path','sha256','size_bytes')},
+        ranges=ranges, numeric_inputs=numeric_inputs, aura_consumers=consumers, party_producer_cases=16,
+        party_recipient_cases=deliveries, original_instruction_steps=replay.instructions)
+    if args.collect:
+        output = project_path(args.work)
+        output.mkdir(parents=True, exist_ok=True)
+        (output/'battle-shout.json').write_text(portable_json(proof, indent=2)+'\n')
+    else:
+        expected = ROOT/'docs/analysis/evidence/0.141.1/battle-shout.json'
+        assert json.loads(expected.read_text()) == proof
+    parsed = shout_source_check()
+    print(f"Battle Shout 0.141.1: {len(consumers)} stat/tooltip pairs, 16 producers, "
+          f"{deliveries} recipient deliveries, {replay.instructions} instruction steps, "
+          f"{parsed} Rust syntax parses. No compilation or game execution.")
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--contract',choices=['aura-grouping','shouts'],default='aura-grouping')
+    parser.add_argument('--contract',choices=['aura-grouping','shouts','battle-shout-potency'],default='aura-grouping')
     parser.add_argument('--collect',action='store_true')
     parser.add_argument('--verify',action='store_true')
     parser.add_argument('--work',default='runtime/warlock-current/shouts-curated')
     args=parser.parse_args()
     if args.contract=='shouts':return shout_contract(args)
+    if args.contract=='battle-shout-potency':return battle_shout_potency(args)
     code, retained = verify_evidence()
     cases = native_cases(code)
     syntax = check_source()

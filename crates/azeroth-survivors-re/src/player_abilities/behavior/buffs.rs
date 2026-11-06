@@ -23,6 +23,16 @@ pub struct Aura {
     pub healing_power: f32,
 }
 
+impl Aura {
+    /// Received damage and haste buffs already include the caster's bonus.
+    /// A self aura keeps its base value and uses the hero's current bonus.
+    pub fn buff_strength(&self, buff_bonus: f32) -> f32 {
+        let value = if matches!(self.effect.tag, 8 | 9) { self.effect.value } else { 0.0 };
+        let factor = if self.source_guid == 0 { 1.0 + buff_bonus } else { 1.0 };
+        value * factor
+    }
+}
+
 pub(super) fn has_active_immunity(auras: &[Aura], now: f32) -> bool {
     auras.iter().any(|aura| aura.effect.tag == 11 && aura.expires_at > now)
 }
@@ -35,20 +45,22 @@ pub fn refresh_aura(auras: &mut Vec<Aura>, aura: Aura) {
     auras.push(aura);
 }
 
-/// Selected0.127.0 145c19060..145c1920e: same-spell auras contribute once,
-/// using the strongest damage/haste value, with the first live row winning
-/// an equal-strength tie. Rejuvenation remains independently cumulative.
+/// 0.141.1 145fa5b69..145fa5c90: same-spell auras contribute once,
+/// using the strongest effective damage/haste value, with the first live
+/// row winning an equal-strength tie. Rejuvenation remains cumulative.
 /// Native stat candidates preserve unordered clocks/deadlines; competing rows
 /// need an ordered future deadline. The tooltip has its own ordered gate.
-pub fn effective_auras(auras: &[Aura], now: f32) -> impl Iterator<Item = &Aura> {
+pub fn effective_auras(auras: &[Aura], now: f32, buff_bonus: f32) -> impl Iterator<Item = &Aura> {
     auras.iter().enumerate().filter(move |(index, aura)| {
         if now >= aura.expires_at { return false; }
         if aura.spell_id == 774 { return true; }
-        let strength = |row: &Aura| if matches!(row.effect.tag, 8 | 9) { row.effect.value } else { 0.0 };
-        let value = strength(aura);
+        let value = aura.buff_strength(buff_bonus);
         !auras.iter().enumerate().any(|(other_index, other)| other_index != *index
             && other.spell_id == aura.spell_id && now < other.expires_at
-            && (strength(other) > value || (strength(other) == value && other_index < *index)))
+            && {
+                let strength = other.buff_strength(buff_bonus);
+                strength > value || (strength == value && other_index < *index)
+            })
     }).map(|(_, aura)| aura)
 }
 
@@ -335,18 +347,18 @@ pub struct BuffActions {
 
 /// `nearby_actor` is the native base radius query within30 XY units. Its
 /// state-zero restriction and inclusive bound are supplied by execution.rs.
-/// `shield_bonus` is current Game+0x498, not the generic damage multiplier.
+/// `buff_bonus` is the caster's buff potency stat (0.141.1 Game+0x69c).
 pub fn apply_self_buff(
     instance: &RuntimeInstance<'_>,
     now: f32,
     nearby_actor: bool,
-    shield_bonus: f32,
+    buff_bonus: f32,
     vitals: &mut Vitals,
     shield: &mut ShieldReservation,
     auras: &mut Vec<Aura>,
 ) -> Result<BuffActions, BuffFailure> {
     apply_self_buff_with_party(instance, now, nearby_actor, false,
-        shield_bonus, vitals, shield, auras)
+        buff_bonus, vitals, shield, auras)
 }
 
 pub fn apply_self_buff_with_party(
@@ -354,7 +366,7 @@ pub fn apply_self_buff_with_party(
     now: f32,
     nearby_actor: bool,
     party_needs_healing: bool,
-    shield_bonus: f32,
+    buff_bonus: f32,
     vitals: &mut Vitals,
     shield: &mut ShieldReservation,
     auras: &mut Vec<Aura>,
@@ -386,7 +398,7 @@ pub fn apply_self_buff_with_party(
             // 0.139.2 prepares the effect/health lane before applying buff strength.
             let effect_power = instance.effect_multiplier * definition.effect.value;
             let health_power = vitals.maximum_health * effect_power;
-            let mut amount = (shield_bonus + 1.0) * ((power_root * 1.4) * health_power);
+            let mut amount = (buff_bonus + 1.0) * ((power_root * 1.4) * health_power);
             if definition.spell_id == ICE_BARRIER {
                 let other_reservation = if shield.spell_id == ICE_BARRIER {
                     0.0
@@ -411,7 +423,7 @@ pub fn apply_self_buff_with_party(
             shield.amount = amount;
             actions.absorb_changed = true;
             // Kind 15 carries the caster's uncapped coefficient and duration.
-            let coefficient = ((power_root * 1.4) * effect_power) * (shield_bonus + 1.0);
+            let coefficient = ((power_root * 1.4) * effect_power) * (buff_bonus + 1.0);
             actions.shared_aura = Some(SharedAura {
                 spell_id: definition.spell_id,
                 effect: StatusEffect { tag, value: coefficient, duration: 0.0 },
@@ -461,6 +473,10 @@ pub fn apply_self_buff_with_party(
     refresh_aura(auras, Aura { source_guid: 0, effect, spell_id: definition.spell_id,
         expires_at: now + duration, healing_power });
     if definition.key == "battle_shout" {
+        // 0.141.1 145f49010 scales the outgoing copy after storing the self aura.
+        if matches!(effect.tag, 8 | 9) {
+            effect.value *= 1.0 + buff_bonus;
+        }
         actions.shared_aura = Some(SharedAura { spell_id: definition.spell_id, effect, duration });
     }
     Ok(actions)

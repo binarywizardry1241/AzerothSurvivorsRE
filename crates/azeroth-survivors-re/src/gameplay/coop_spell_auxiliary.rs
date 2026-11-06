@@ -14,8 +14,8 @@ fn row(id: u32, name: String, text: String) -> ResourceRow {
     }
 }
 
-/// Selected0.127.0 145c0c300 updates the aura tooltip of an existing Battle
-/// Shout resource from the strongest live contribution, including a friend.
+/// 0.141.1 145f51390 updates the aura tooltip of an existing Battle Shout
+/// resource from the strongest effective contribution, including a friend.
 pub(super) fn active_battle_shout(
     rows: &mut [ResourceRow],
     auras: &[Aura],
@@ -23,11 +23,11 @@ pub(super) fn active_battle_shout(
     buff_bonus: f32,
     locale: &Localization,
 ) {
-    let Some(aura) = effective_auras(auras, now)
+    let Some(aura) = effective_auras(auras, now, buff_bonus)
         .find(|aura| aura.spell_id == 6673 && now < aura.expires_at) else { return; };
     if aura.effect.tag != 8 { return; }
     let Some(row) = rows.iter_mut().find(|row| row.id == aura.spell_id) else { return; };
-    let percent = ((1.0 + buff_bonus) * aura.effect.value) * 100.0;
+    let percent = aura.buff_strength(buff_bonus) * 100.0;
     row.text_30 = locale.label("Damage increased by {p}%.")
         .replace("{p}", &format!("{percent:.0}"));
 }
@@ -244,7 +244,7 @@ mod tests {
     fn current_native_battle_shout_tooltip_uses_the_received_winner() {
         use crate::player_abilities::{StatusEffect, behavior::buffs::Aura};
         let proof: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.127.0/shouts/native-cases.json"
+            "../../../../docs/analysis/evidence/0.141.1/battle-shout.json"
         )).unwrap();
         let locale = Localization::english_for_tests();
         for case in proof["aura_consumers"].as_array().unwrap() {
@@ -256,14 +256,15 @@ mod tests {
                 spell_id: row[3].as_u64().unwrap() as u32,
                 expires_at: f(&row[4]), healing_power: 0.0,
             }).collect::<Vec<_>>();
+            let buff_bonus = f(&case["buff_bonus"]);
             let mut rows = vec![row(6673, "Battle Shout".into(), "original".into())];
-            active_battle_shout(&mut rows, &auras, f(&case["now"]), 0.25, &locale);
+            active_battle_shout(&mut rows, &auras, f(&case["now"]), buff_bonus, &locale);
             let expected = if case["tooltip_percent"].is_null() { "original".into() }
                 else { format!("Damage increased by {:.0}%.", f(&case["tooltip_percent"])) };
             assert_eq!(rows[0].text_30, expected);
             assert_eq!(rows[0].text_18, "original");
             let mut absent = Vec::new();
-            active_battle_shout(&mut absent, &auras, f(&case["now"]), 0.25, &locale);
+            active_battle_shout(&mut absent, &auras, f(&case["now"]), buff_bonus, &locale);
             assert!(absent.is_empty(), "native override only updates an existing resource");
         }
     }

@@ -45,12 +45,9 @@ pub(super) fn install(app: &mut App) {
     );
 }
 
-fn spell_resources(
-    game: &Mechanics,
-    locale: &crate::localization::Localization,
-) -> Vec<ResourceRow> {
+fn spell_resource_context(game: &Mechanics) -> native_overlay_payload::Context {
     let (area_multiplier, buff_bonus, dot_tick_bonus, global_targets) = game.description_inputs();
-    let context = native_overlay_payload::Context {
+    native_overlay_payload::Context {
         maximum_health: game.max_health(),
         damage_multiplier: game.current_damage_multiplier(),
         cooldown_multiplier: game.current_cooldown_multiplier(),
@@ -60,7 +57,14 @@ fn spell_resources(
             dot_tick_bonus,
             global_targets,
         },
-    };
+    }
+}
+
+fn spell_resources(
+    game: &Mechanics,
+    locale: &crate::localization::Localization,
+) -> Vec<ResourceRow> {
+    let context = spell_resource_context(game);
     let mut rows = Vec::new();
     for key in game.class.pool {
         let Some(definition) =
@@ -103,8 +107,47 @@ fn spell_resources(
     }
     spell_auxiliary::append(&mut rows, game, locale);
     spell_auxiliary::active_battle_shout(&mut rows, &game.execution.auras,
-        game.clock, buff_bonus, locale);
+        game.clock, context.bonuses.buff_bonus, locale);
     rows
+}
+
+/// Native party resources fill missing IDs from the other hero slots, then
+/// update Battle Shout's aura text in the recipient's frame.
+fn append_party_battle_shout(
+    game: &mut Mechanics,
+    recipient_slot: u8,
+    rows: &mut Vec<ResourceRow>,
+    locale: &crate::localization::Localization,
+) {
+    const SHOUT_KEY: &str = "battle_shout";
+    let Some(definition) = azeroth_survivors_re::player_abilities::AbilityDefinition::by_key(SHOUT_KEY)
+    else { return; };
+    if !game.has_party() || rows.iter().any(|row| row.id == definition.spell_id) {
+        return;
+    }
+    let Some(slot) = game.party_spell_source_slot(recipient_slot, SHOUT_KEY) else { return; };
+    let Some(row) = game.with_party_hero(slot, |hero| {
+        let learned = hero.abilities.iter().find(|row| row.definition.key == SHOUT_KEY);
+        let preview;
+        let (instance, mode) = match (learned, hero.class.pool.contains(&SHOUT_KEY)) {
+            (Some(instance), true) => (instance, spell_text::Mode::Learned),
+            (Some(instance), false) => (instance, spell_text::Mode::Talent),
+            (None, _) => {
+                preview = hero.preview_spell(definition, 0).0;
+                (&preview, spell_text::Mode::Unlearned)
+            }
+        };
+        let context = spell_resource_context(hero);
+        let mut row = spell_resource(hero, instance, mode, locale, &context);
+        spell_auxiliary::active_battle_shout(std::slice::from_mut(&mut row),
+            &hero.execution.auras, hero.clock, context.bonuses.buff_bonus, locale);
+        row
+    }) else { return; };
+    rows.push(row);
+    let _ = game.with_party_hero(recipient_slot, |hero| {
+        spell_auxiliary::active_battle_shout(rows, &hero.execution.auras,
+            hero.clock, hero.description_inputs().1, locale);
+    });
 }
 
 fn spell_resource(
@@ -369,8 +412,12 @@ fn guest_metadata(
         // The ordinary DBC spell feed cannot supply AS upgrades/talent prose.
         let rows = run
             .mechanics
-            .as_ref()
-            .map(|game| spell_resources(game, &locale))
+            .as_mut()
+            .map(|game| {
+                let mut rows = spell_resources(game, &locale);
+                append_party_battle_shout(game, 0, &mut rows, &locale);
+                rows
+            })
             .unwrap_or_default();
         let rows = rows.iter().map(local_description).collect::<Vec<_>>();
         if descriptions.0 != rows {
@@ -616,7 +663,8 @@ fn publish(
             // The guest's missing-card retry clock observes each accepted HUD.
             runtime.send(Some(client), NativeMessage::HudJson(hud.to_string()));
         }
-        if let Some(resources) = resources {
+        if let Some(mut resources) = resources {
+            append_party_battle_shout(game, slot, &mut resources, member_locale);
             if cache.resources.get(&client) != Some(&resources) {
                 if runtime.send(Some(client), NativeMessage::Resources(resources.clone())) {
                     cache.resources.insert(client, resources);

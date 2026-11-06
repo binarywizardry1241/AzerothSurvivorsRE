@@ -1957,11 +1957,9 @@ fn aura_cooldown(raw: f32, auras: &[buffs::Aura], now: f32, buff_bonus: f32) -> 
 }
 
 fn recovery_with_auras(raw: f32, auras: &[buffs::Aura], now: f32, buff_bonus: f32) -> f32 {
-    buffs::effective_auras(auras, now)
+    buffs::effective_auras(auras, now, buff_bonus)
         .filter(|aura| aura.effect.tag == 9)
-        .fold(raw, |sum, aura| {
-            sum + aura.effect.value * (1.0 + buff_bonus)
-        })
+        .fold(raw, |sum, aura| sum + aura.buff_strength(buff_bonus))
 }
 
 fn aura_movement(base: f32, auras: &[buffs::Aura], now: f32) -> f32 {
@@ -1974,9 +1972,9 @@ fn aura_movement(base: f32, auras: &[buffs::Aura], now: f32) -> f32 {
 
 fn aura_damage(mut base: f32, auras: &[buffs::Aura], now: f32, buff_bonus: f32) -> f32 {
     //1454a7180..7204 visits each live aura in its original row order.
-    for aura in buffs::effective_auras(auras, now) {
+    for aura in buffs::effective_auras(auras, now, buff_bonus) {
         if aura.effect.tag == 8 {
-            base += aura.effect.value * (1.0 + buff_bonus);
+            base += aura.buff_strength(buff_bonus);
         }
         if aura.spell_id == 23505 {
             base += 0.5;
