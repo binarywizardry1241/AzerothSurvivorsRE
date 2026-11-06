@@ -9,6 +9,8 @@ status and the remaining comparison work.
 A and B show solo Undead Rogue runs in Elwynn Forest on Heroic 4 with
 Explosive. C covers one solo entry and exit in each of the thirteen zones
 with the same class and race, on Heroic 5 except Scholomance (Heroic 3).
+D covers a solo Elwynn Heroic 5 run with Explosive and Bolstering, followed
+by a five-player Scholomance Heroic 3 run with Bolstering.
 The WoWSilicon bootstrap checks the Wine launch argument against
 the configured original EXE before assigning the log path. The installed
 `installed-game/AzerothSurvivors.exe` matched the
@@ -27,6 +29,48 @@ Run time is the `AZSRUN` clock. Trace time is the elapsed `t=` on each row.
 | A | `1793927554.520` | 984 lines | `43f1fddec9e53365e7a0e419f80a09b6c536076b3135bb996f13396c401fa609` |
 | B | `1793928177.341` | 126,765 lines | `ff4084a8421d9cbc85ba7557c60262a8b83b0254b8a943a781aec78c26213af4` |
 | C | `1793929745.053` | 14,850 lines | `eae6895210fc668cbb7f47151f61d0b7b76020c2651d080ad3fdb6edfbeaf6df` |
+| D | `1793976975.399` | 379,537 lines | `187de0e61cd2de1e6b605b69eda067a163dd3a8bb050877e9eeb2b857be3de88` |
+
+## Downed-party addon IDs
+
+**[#63](../CURRENT-STATE.md#gap-63).** In D lines 248544–379140, every
+nonempty `AZSDOWNED` row starts with `u` followed by the actor's unpadded
+lowercase hexadecimal GUID. The four distinct tokens first appear at lines
+248544, 253603, 376029 and 378786. Their hexadecimal suffixes decode to the
+same numeric caster GUIDs as `SPELL_GO` at lines 234765, 234762, 234776 and
+234768, respectively. The token for the third actor stays the same across
+`down` and `left` (lines 376029 and 376855). The final list retains that
+token as `left` alongside three `ended` rows (lines 378786–379140).
+
+The [0.140.0 producer recovery](coop-downed-0.140.0.md) identifies the
+world unit GUID as the formatter input. The rebuilt
+[`Party::downed_payload`](../../crates/azeroth-survivors-re/src/coop/game_party.rs#L258)
+uses decimal formatting for that field. The [Lua getter](evidence/0.140.0/embedded-api.lua#L596)
+returns the string ID, and the [catalog](../../crates/benilla-app/src/combat_text/world_anchors.rs#L239)
+keys a fall by the string and its epoch. Recover the exact native GUID
+format and align the shared host and recipient publisher. This evidence
+covers the published IDs for these four actors. Lua return values and
+rendered anchors require separate verification.
+
+## Capture D run boundaries
+
+Elwynn starts at lines 3–106 and ends with `AZSEND result=left` at line
+234595 (run 448.3, two bosses, eight caches). The [addon replay case](addon-run-space-0.139.2.md)
+has `AZSMREQ full` at line 65649, trace 443.910, followed by the identical
+zone payload and the current run, boss, cache and lair lines at lines
+65783–65797, trace 445.776–445.782.
+
+Scholomance starts at lines 234632–234701. The first `AZSPARTY` at line
+234985 lists five heroes. For [#168](../verification-needed.md#gap-168)
+and [#9](../verification-needed.md#gap-9), lines 316208–316218 publish
+`ph=dead`, `AZSREVIVE down=1` and `AZSEND result=defeat` at run 69.23.
+Lines 334038–334047 resume `playing` at 83.85 with full HP, publish
+`down=0` and clear `AZSEND`. The second fall starts at line 353039
+(run 94.32). At run 113.85, lines 378780–378787 show the recipient still
+dead, `down=0`, the other four heroes `ended` or `left`, and a defeat
+payload. The last complete line is at trace 1008.799. These are addon
+publications from one recipient. They leave helper inputs, exact revive
+timing rules and terminal save settlement outside the capture.
 
 ## Zone entry and login position
 
