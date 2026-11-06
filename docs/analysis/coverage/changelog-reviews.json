@@ -32746,6 +32746,44 @@
       ]
     },
     {
+      "claim_id": "changelog:0.140.0:83b104d0d618ca20",
+      "target": {
+        "version": "0.141.0",
+        "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa"
+      },
+      "status": "source_connected",
+      "rationale": "The current Scholomance and shared local spawn selector reaches initial world and player publication. The retained 0.140.0 migration and co-op admission evidence keeps its original provenance. Execution and parity remain unverified.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/zones/scholomance.rs",
+        "crates/azeroth-survivors-re/src/floor_recovery/map.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client.rs",
+        "crates/azeroth-survivors-re/src/save/progress.rs",
+        "crates/azeroth-survivors-re/src/coop/bootstrap.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/zone-login-position-0.141.0.md",
+        "docs/analysis/scholomance-entry-0.140.0.md"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/zones/scholomance.rs": "03c48c7415d5ed8dcfb9cf31736a4038d4507a0943882ea52cef3c95768b7d6e",
+        "crates/azeroth-survivors-re/src/floor_recovery/map.rs": "eb18ca282d0b1f888dd229bd9a1fc5268afedc631f463f510fc00a8a049fcae1",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs": "f91d7e6bfc745beac2ae8e71bd2850dd1e016f247133d53181e18e8f3563d21e",
+        "crates/azeroth-survivors-re/src/gameplay/client.rs": "c8a29569e0ece5571d89f95b275d533bf23c0389bc3863ad5c76026a903138f3",
+        "crates/azeroth-survivors-re/src/save/progress.rs": "769cd897b891e4939cc1c0c6d6d67b4c7c14566766dc946ff54728d9a0ee0496",
+        "crates/azeroth-survivors-re/src/coop/bootstrap.rs": "5c20332c2434415cd385f14eb46264552e5f99d3ec5bbb5da8286c2b77487143",
+        "docs/analysis/zone-login-position-0.141.0.md": "f60ffb205ff4202c4749e43e6947e26f4fe81d5d110945733c036717c937684a",
+        "docs/analysis/scholomance-entry-0.140.0.md": "29669fba6bcec866b86eef9ecea6f0d9bb5b8955e71aaf89f927102aaadcec1f"
+      },
+      "systems": [
+        "custom-game-content",
+        "custom-game-terrain"
+      ],
+      "gap_ids": [
+        312
+      ]
+    },
+    {
       "claim_id": "changelog:0.140.0:a97b78ae28053be4",
       "target": {
         "version": "0.140.0",

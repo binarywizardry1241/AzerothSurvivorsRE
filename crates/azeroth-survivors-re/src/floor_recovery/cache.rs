@@ -32,7 +32,7 @@ impl IndoorCache {
     pub fn height(&self, xy: [f32; 2]) -> Option<f32> {
         self.height_in(xy, &self.heights)
     }
-    fn surface_height(&self, xy: [f32; 2]) -> Option<f32> {
+    pub(super) fn surface_height(&self, xy: [f32; 2]) -> Option<f32> {
         self.height_in(xy, self.surface_grid().cells)
     }
     pub(super) fn surface_grid(&self) -> HeightGrid<'_> {

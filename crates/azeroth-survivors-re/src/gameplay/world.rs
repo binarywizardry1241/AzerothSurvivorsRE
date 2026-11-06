@@ -31,6 +31,7 @@ const WALKABLE_NORMAL_Y: f32 = 0.642_788;
 pub struct ZoneWorldRequest {
     pub identity: u64,
     pub map_id: u32,
+    pub center_wow: [f32; 3],
     pub spawn_wow: [f32; 3],
     pub spawn_facing: f32,
     pub camera_offset: [f32; 3],
@@ -117,7 +118,7 @@ fn prepare_floor(
         world.status = format!("No map directory for {}", request.map_id);
         return;
     };
-    floor.ensure(&game.zone.key, map, request.spawn_wow, &assets);
+    floor.ensure(&game.zone.key, map, request.center_wow, &assets);
     if floor.terrain_ref().is_none() {
         world.ready = false;
         world.status = floor.error.as_ref().map_or_else(

@@ -52302,6 +52302,7 @@
         "crates/benilla-protocol/src/world/writer/self_movement.rs"
       ],
       "evidence_refs": [
+        "docs/analysis/zone-login-position-0.141.0.md",
         "docs/analysis/floor-recovery-0.100.1.md",
         "docs/analysis/mob-movement-0.105.0.md",
         "docs/analysis/boundary-pillars-0.105.0.md",
@@ -52419,6 +52420,13 @@
           "line": 20
         }
       ],
+      "login_position_0_141_0": {
+        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "finding": 312,
+        "evidence": "docs/analysis/zone-login-position-0.141.0.md",
+        "source_connection": "The shared local entry takes the primary/nearest/stored floor height, with the exact Scholomance radial candidate search, before publishing player creation and the initial run snapshot.",
+        "static_validation": "48 bounded native cases, 13 authored zone records and Rust syntax parsing. Runtime and parity remain unverified."
+      },
       "source_review_scope": "Retained partial source correspondence and prior repairs, with exact historical status in incremental-correspondence.json. Current diagnostic joining supplies navigation only; register current bounded contracts separately.",
       "historical_assessment": {
         "target": {

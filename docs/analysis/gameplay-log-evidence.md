@@ -43,15 +43,11 @@ offset `0x739f610` resolves its key pointer to `scholomance`; its 28-byte
 field slice at `0x739f6d0` hashes to
 `55fa0c0c5dc945ef44a53fde06341886a0a2a0e9f739614a9a246227113973e3`.
 Those values agree with the [recovered entry data](scholomance-entry-0.140.0.md).
-The rebuilt [solo request](../../crates/azeroth-survivors-re/src/gameplay/client.rs)
-passes the authored `zone.spawn` directly to the
-[local ObjectCreate](../../crates/benilla-app/src/local_client/player.rs).
-The [floor worker](../../crates/azeroth-survivors-re/src/gameplay/world/native_floor.rs)
-uses that same authored center to build the terrain cache. Recover the
-native selection of the login position between the authored center and
-self ObjectCreate, and trace when that position reaches the initial
-`AZSRUN`. Keep the zone and floor-cache center independent of that position.
-The trace does not reveal the candidate search or tie-breaking rules.
+The [native login-position trace](zone-login-position-0.141.0.md) connects
+the radial search and height fallbacks to local player creation and the
+initial `AZSRUN`. The rebuilt floor worker retains the authored center as
+its cache key. The logged pose remains a comparison point for the rebuilt
+client on the installed MPQs.
 
 Five more zones publish a different initial height from the current table
 at one decimal place, while their XY and facing still agree. Each has a
@@ -211,6 +207,5 @@ animation, audio, the selected reward or its rendered card.
   Use those as selectors for an expiry-event comparison. They do not identify
   every orb spawn or establish its timer, damage formula or hit admission.
 
-The login-position discrepancy is a source investigation lead. Use the other
-observed outputs for comparison with a rebuilt capture of known build identity.
-These captures do not establish rebuilt parity.
+Use these observed outputs for comparison with a rebuilt capture of known
+build identity. Rebuilt parity remains unverified.

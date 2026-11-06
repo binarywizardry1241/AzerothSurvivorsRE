@@ -1333,6 +1333,7 @@ fn bootstrap(
             world.request = Some(ZoneWorldRequest {
                 identity: run.identity,
                 map_id: zone_entry.map_id,
+                center_wow: zone_entry.position,
                 spawn_wow: zone_entry.position,
                 spawn_facing: zone_entry.facing,
                 camera_offset: entry.player.camera_offset,

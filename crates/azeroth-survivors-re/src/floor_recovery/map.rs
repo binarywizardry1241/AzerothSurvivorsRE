@@ -2,7 +2,7 @@
 //! used as a cache substitute. Source geometry comes from the shared MPQ chain.
 use super::{
     cache::{IndoorBuilder, OccupancyBuilder, PrimaryCache, RaisedBuilder},
-    placement, Terrain, Zone,
+    occupancy, placement, HeightGrid, Terrain, Zone,
 };
 use benilla_formats::{
     adt_to_floor_mesh, load_m2_collision_hull, load_wmo_collision_tris, terrain_height_at,
@@ -197,6 +197,65 @@ impl NativeTerrain {
         self.primary.height(xy, |xy| self.adt(xy))
     }
 
+    /// 0.141.0 Game constructor: only Scholomance can replace the authored XY.
+    pub fn login_position(&self, center: [f32; 3]) -> [f32; 3] {
+        let xy = [center[0], center[1]];
+        if self.zone.key == crate::zones::scholomance::KEY {
+            if let Some(position) = self.scholomance_login_position(xy) {
+                return position;
+            }
+        }
+        let height = self
+            .height(xy)
+            .or_else(|| {
+                self.primary
+                    .indoor
+                    .as_ref()?
+                    .surface_grid()
+                    .nearest(xy)
+                    .map(|point| point[2])
+            })
+            .unwrap_or(self.fallback);
+        [xy[0], xy[1], height]
+    }
+
+    fn scholomance_login_position(&self, center: [f32; 2]) -> Option<[f32; 3]> {
+        let floor = self.primary.indoor.as_ref()?;
+        let candidate = |xy: [f32; 2]| {
+            let height = floor.surface_height(xy)?;
+            if !level_login_footprint(floor.surface_grid(), xy)
+                || self
+                    .occupancy
+                    .as_ref()
+                    .is_some_and(|mask| occupancy(mask.grid(), xy) == Some(1))
+            {
+                return None;
+            }
+            Some([xy[0], xy[1], height])
+        };
+        if let Some(position) = candidate(center) {
+            return Some(position);
+        }
+        // 0x146008310 walks outward in half-yard rings and returns the first
+        // admissible point in angular order. The returned XY is unsnapped.
+        let turn = std::f32::consts::TAU;
+        for ring in 1..=16 {
+            let radius = ring as f32 * 0.5;
+            let samples = (radius * turn * 2.0).ceil() as usize;
+            for index in 0..samples {
+                let angle = index as f32 * turn / samples as f32;
+                let xy = [
+                    center[0] + angle.cos() * radius,
+                    center[1] + angle.sin() * radius,
+                ];
+                if let Some(position) = candidate(xy) {
+                    return Some(position);
+                }
+            }
+        }
+        None
+    }
+
     /// Actor movement publication samples the primary surface first. On a
     /// miss, use only the height of the nearest adjusted indoor surface cell.
     pub fn actor_movement_height(&self, xy: [f32; 2]) -> Option<f32> {
@@ -228,6 +287,74 @@ impl NativeTerrain {
         self.navigation_updated_at = now;
     }
 }
+
+// 0x14600d820 requires all 25 half-yard columns, with at most 0.05 yards
+// between the lowest and highest samples.
+fn level_login_footprint(grid: HeightGrid<'_>, xy: [f32; 2]) -> bool {
+    let col = ((xy[0] - grid.origin[0]) * 2.0).floor() as usize;
+    let row = ((xy[1] - grid.origin[1]) * 2.0).floor() as usize;
+    let limit = grid.side.saturating_sub(2);
+    if col < 2 || row < 2 || col >= limit || row >= limit {
+        return false;
+    }
+    let mut low = f32::MAX;
+    let mut high = f32::MIN;
+    for row in row - 2..=row + 2 {
+        for col in col - 2..=col + 2 {
+            let height = grid.cells[row * grid.side + col];
+            if height.is_nan() {
+                return false;
+            }
+            low = low.min(height);
+            high = high.max(height);
+        }
+    }
+    high - low <= 0.05
+}
+
+#[cfg(test)]
+mod login_tests {
+    use super::*;
+
+    #[test]
+    fn scholomance_selects_the_first_level_radial_point_and_other_zones_keep_xy() {
+        let center = crate::zones::scholomance::SPAWN;
+        let height = 93.085;
+        let mut floor = IndoorBuilder::new(center, 10.0);
+        for row in 23..28 {
+            for col in 11..16 {
+                floor.terrain_sample(row * 40 + col, Some(height));
+            }
+        }
+        let mut terrain = NativeTerrain {
+            zone: Zone::for_key(crate::zones::scholomance::KEY).unwrap().clone(),
+            primary: PrimaryCache {
+                indoor: Some(floor.finish()),
+                ..Default::default()
+            },
+            occupancy: None,
+            tiles: Vec::new(),
+            fallback: center[2],
+            navigation: None,
+            navigation_updated_at: 0.0,
+        };
+
+        let [x, y, z] = terrain.login_position(center);
+        assert!((x - 124.883675).abs() < 0.0001);
+        assert!((y - 169.50769).abs() < 0.0001);
+        assert_eq!(z, height);
+
+        let mut mask = OccupancyBuilder::new([118.0, 157.0], 20, vec![height; 400]);
+        mask.cells[12 * 20 + 6] = 1;
+        terrain.occupancy = Some(mask);
+        assert_eq!(terrain.login_position(center), [center[0], center[1], height]);
+
+        terrain.occupancy = None;
+        terrain.zone = Zone::for_key("sm").unwrap().clone();
+        assert_eq!(terrain.login_position(center), [center[0], center[1], height]);
+    }
+}
+
 fn placed(
     mesh: &CollisionMesh,
     position: [f32; 3],

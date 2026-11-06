@@ -163,7 +163,7 @@ def source_checks():
     entry = (ROOT / 'crates/azeroth-survivors-re/src/gameplay/mod.rs').read_text()
     start = entry.index('game.finish_player_entry();')
     assert entry.index('terminal.take_restart_mover()', start) < entry.index('terminal.begin(entry_owned);', start)
-    assert 'game.restart_player_entry(sequence, zone.spawn, zone.facing);' in entry[start:]
+    assert 'game.restart_player_entry(sequence, spawn, zone.facing);' in entry[start:]
     assert 'self.restart_mover = None;' in terminal
     host = {('Darwin', 'arm64'): 'aarch64-apple-darwin', ('Darwin', 'x86_64'): 'x86_64-apple-darwin',
             ('Linux', 'x86_64'): 'x86_64-unknown-linux-gnu'}[(platform.system(), platform.machine())]

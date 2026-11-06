@@ -294,7 +294,7 @@ fn sync_to_client(
         // race model would conceal an asset failure and would not be the selected character.
         return;
     };
-    let Some(zone) = entry.zones.iter().find(|zone| zone.key == game.zone.key) else {
+    let Some(request) = world.request.filter(|request| request.identity == session.identity) else {
         return;
     };
     // Spawn/snapshot synchronization must retain the speed admitted by the native
@@ -323,9 +323,9 @@ fn sync_to_client(
         state.aura_durations.clear();
         spawn.request = Some(LocalPlayerRequest {
             identity: session.identity,
-            map_id: zone.map_id,
-            position_wow: zone.spawn,
-            facing: zone.facing,
+            map_id: request.map_id,
+            position_wow: request.spawn_wow,
+            facing: request.spawn_facing,
             run_speed,
             camera_distance: zone_camera_distance(entry.player.camera_offset),
             camera_pitch: None,

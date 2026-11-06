@@ -352,6 +352,11 @@ fn enter(
     coop: Option<Res<crate::coop_runtime::CoopRuntime>>,
     locale: Res<crate::localization::Localization>,
     bridge: Res<client::BridgeCatalog>,
+    (mut floor, assets, maps): (
+        ResMut<world::NativeFloor>,
+        Option<Res<benilla_assets::WorldAssets>>,
+        Option<Res<benilla_assets::MapCatalogRes>>,
+    ),
 ) {
     if !menu.entering || menu.in_run {
         return;
@@ -393,6 +398,18 @@ fn enter(
         if stock.is_some() { menu.selected_roster_guid() }
         else { Some(run_seeds.player_guid()) }
     }) else { return };
+    let mut spawn = zone.spawn;
+    let map = maps.as_ref().and_then(|maps| maps.0.directory(zone.map_id));
+    if let (Some(assets), Some(map)) = (assets, map) {
+        floor.ensure(&zone.key, map, zone.spawn, &assets);
+        if let Some(terrain) = floor.terrain_ref() {
+            spawn = terrain.login_position(zone.spawn);
+        } else if floor.error.is_none() {
+            // Wait under the presented cover without consuming the run seed or
+            // the retained player's Again state.
+            return;
+        }
+    }
     let class = &catalog.classes[crate::save::CLASS_IDS.iter().position(|id| *id == pick.hero.class).expect("backend Pick class")];
     let (seed_input, seed) = run_seeds.next_with_input();
     // 145b231ce forces the transient Tester's Game to Normal. Later host
@@ -482,7 +499,7 @@ fn enter(
             game.set_showcase(session.showcase);
             game.finish_player_entry();
             if let Some(sequence) = terminal.take_restart_mover() {
-                game.restart_player_entry(sequence, zone.spawn, zone.facing);
+                game.restart_player_entry(sequence, spawn, zone.facing);
             }
             let store = options
                 .cvar("storeLevels")
@@ -513,7 +530,7 @@ fn enter(
             session.ended_by_player = false;
             session.error = None;
             session.last_position = None;
-            session.accepted_position = Some(zone.spawn);
+            session.accepted_position = Some(spawn);
             session.previous_directional_movement = false;
             session.coop_start_wait_since = None;
             session.recovery = Default::default();
@@ -523,7 +540,8 @@ fn enter(
             world.request = Some(ZoneWorldRequest {
                 identity: session.identity,
                 map_id: zone.map_id,
-                spawn_wow: zone.spawn,
+                center_wow: zone.spawn,
+                spawn_wow: spawn,
                 spawn_facing: zone.facing,
                 camera_offset: defaults.camera_offset,
                 camera_target_height: defaults.camera_target_height,
