@@ -133,6 +133,34 @@ after documentation, staging or commits. Tool-performance changes require the
 appropriate to the changed mechanism; cache hits or short samples do not establish
 an end-to-end speedup.
 
+## Reuse gameplay and Vulkan tracker logs
+
+When observed behavior could resolve a gap or audit claim, check relevant
+existing captures before starting fresh recovery. Use gameplay logs for
+reported state and errors, and Vulkan tracker events for graphics call order,
+pipeline activity, presentation and bounded timing questions.
+
+- Search the owning authorized checkout's
+  `runtime/original-vulkan-cache/cache/traces/` for `tracker-*.tsv`. Include
+  nested session directories with `gameplay.log` and `session.json`. If the launch
+  used a `TRACKER_DIR` override, check its authorized location. The legacy
+  `runtime/original-vulkan-cache/cache/tracker.tsv` can provide historical leads.
+- Verify which executable produced the capture using independent launch or
+  build evidence. Bind an original capture to its EXE hash and a rebuilt
+  capture to its source revision and build identity. Correlate the session,
+  timestamps and PID where available, and record relevant runner, graphics
+  settings and inputs. Use captures with unresolved provenance as leads.
+- Read only the relevant events or time window. Account for capture filters,
+  size limits, gaps and termination. Treat missing events as inconclusive
+  unless the relevant call was observable in the captured interval. Heartbeat
+  rows indicate tracker liveness. Keep observed API calls, game behavior and
+  parity conclusions separate, with the scope and limits of each observation.
+- Keep raw logs in ignored runtime storage and retain only compact observations
+  and capture provenance in the owning report or verification record. Continue
+  the permitted static route when applicable captures are unavailable. Collect
+  fresh captures only with separate game execution authorization and within
+  the project's runtime boundaries.
+
 ## Incremental recovery across target updates
 
 Recovery is cumulative. An EXE update changes which evidence applies to the

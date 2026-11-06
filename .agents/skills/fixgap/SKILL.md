@@ -70,8 +70,11 @@ repair the latest outstanding requirement once, reusing completed work and share
 dependencies rather than stepping through historical changes.
 
 REA/Ghidra is conditional, not a prerequisite for every `$fixgap` repair.
-Start with the gap, owning report, retained evidence and live source. Choose the
-route automatically and state it with the selected deliverable:
+Start with the gap, owning report, retained evidence and live source. If runtime
+observations could resolve the selected gap, consult
+[existing gameplay and Vulkan tracker logs](../shared/autonomy.md#reuse-gameplay-and-vulkan-tracker-logs)
+before choosing a recovery route. Choose the route automatically and state it
+with the selected deliverable:
 
 - **Source-only:** the required behavior and its relevant conditions are already
   established, and source tracing identifies the discrepancy. Reuse applicable

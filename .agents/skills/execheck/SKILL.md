@@ -230,6 +230,10 @@ currently discovered custom system rows, source anchors, evidence target
 bindings, remaining work, release claims and relevant historical reports. The
 number of discovered filenames is not a completeness criterion.
 
+When a claim or finding could benefit from runtime observations, consult
+[existing gameplay and Vulkan tracker logs](../shared/autonomy.md#reuse-gameplay-and-vulkan-tracker-logs)
+and carry their provenance and limits into reconciliation.
+
 Use the [REA skill](../reverse-engineer-anything/SKILL.md) for shipped-code
 recovery. Run discovery, registration and accounting sequentially. Do not use
 previous coverage as current until the installed inputs are verified.
