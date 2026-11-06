@@ -58,6 +58,16 @@ credential and hook checks. Commit authors and committers use the account's
 verified GitHub noreply address. Only `origin/main` is a delivery destination;
 historical recovery refs and ignored inputs remain local.
 
+Run `python3 -B scripts/project-github.py configure` to install or update the
+hooks in the checkout that owns `main`. Prepare changes in any authorized
+worktree, then stage them in the configured checkout and use
+`python3 -B scripts/project-github.py commit -m 'prefix: summary'` there.
+The pre-commit hook checks that local `main` matches GitHub. The post-commit
+hook pushes the new commit and checks the live branch tip. The wrapper also
+returns an error if delivery cannot be verified, since Git itself returns
+success once it has written the commit. After a failed push, resolve the error
+and run `python3 -B scripts/project-github.py deliver` to retry the same commit.
+
 Original/rebuilt executables, DLLs, PDBs, MPQs, installed toolchains/dependencies,
 caches, saves, captures, analysis databases, full tool/error logs, bulk generated
 inventories and machine-specific registration stay local in ignored directories.

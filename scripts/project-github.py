@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Project GitHub CLI, credentials and Git identity checks.
+"""Project GitHub CLI, credentials and commit delivery.
 
 Configuration and CLI authentication live under ignored runtime/github-account/.
 Remote operations always use a token selected for the configured account.
@@ -118,12 +118,57 @@ def push_updates(config, remote, url, text):
     return updates
 
 
+def local_main():
+    if Path.cwd().resolve() != ROOT:
+        raise ValueError("Commit and deliver from the project checkout with main checked out")
+    branch = subprocess.run(["git", "symbolic-ref", "--quiet", "HEAD"], cwd=ROOT,
+                            capture_output=True, text=True, check=False)
+    if branch.stdout.strip() != "refs/heads/main":
+        raise ValueError("Commit on main so the commit can be delivered to origin/main")
+    return git(["rev-parse", "HEAD"])
+
+
+def github_main(config):
+    _, env, _, _ = verified_token(config)
+    sha = gh(["api", "repos/{owner}/{repo}/git/ref/heads/main", "--jq", ".object.sha"], env).strip()
+    if not re.fullmatch(r"[0-9a-f]{40}", sha):
+        raise ValueError("Could not read the current GitHub main commit")
+    return sha
+
+
+def check_delivery_base(config):
+    local = local_main()
+    remote = github_main(config)
+    if local != remote:
+        raise ValueError(f"Local main ({local[:12]}) differs from GitHub main ({remote[:12]}). "
+                         "Reconcile main and deliver any pending commit before committing again.")
+
+
+def verify_delivery(config, commit):
+    if github_main(config) != commit:
+        raise ValueError(f"GitHub main did not match {commit}. Check the push result and retry with "
+                         "python3 -B scripts/project-github.py deliver")
+
+
+def deliver(config):
+    commit = local_main()
+    try:
+        subprocess.run(["git", "push", "--no-follow-tags", "origin", "refs/heads/main:refs/heads/main"],
+                       cwd=ROOT, check=True)
+        verify_delivery(config, commit)
+    except (ValueError, OSError, subprocess.CalledProcessError) as error:
+        raise ValueError(f"Delivery of {commit} could not be verified: {error}. "
+                         "Resolve the error and retry with python3 -B scripts/project-github.py deliver") from error
+    print(f"Verified GitHub main at {commit}", flush=True)
+
+
 def configure_local(config):
     _, _, identity, email = verified_token(config)
-    hooks = "runtime/github-account/hooks"
+    legacy_hooks = "runtime/github-account/hooks"
+    directory = ROOT / legacy_hooks
     existing = subprocess.run(["git", "config", "--local", "--get", "core.hooksPath"],
                               cwd=ROOT, capture_output=True, text=True)
-    if existing.returncode == 0 and existing.stdout.strip() != hooks:
+    if existing.returncode == 0 and existing.stdout.strip() not in (legacy_hooks, str(directory)):
         raise ValueError("Existing Git hook configuration needs review")
     gitdir = Path(git(["rev-parse", "--absolute-git-dir"]))
     if existing.returncode != 0 and any(path.is_file() and not path.name.endswith(".sample")
@@ -133,32 +178,33 @@ def configure_local(config):
     location = ROOT / "runtime/github-account/project.json"
     location.write_text(json.dumps(config, indent=2) + "\n")
     location.chmod(0o600)
-    directory = ROOT / hooks
     directory.mkdir(mode=0o700, exist_ok=True)
-    for operation in ("pre-commit", "pre-push"):
+    script = ROOT / "scripts/project-github.py"
+    for operation in ("pre-commit", "post-commit", "pre-push"):
         hook = directory / operation
-        hook.write_text('#!/bin/sh\nset -eu\nproject_root=$(git rev-parse --show-toplevel)\n'
-                        'exec python3 -B "$project_root/scripts/project-github.py" ' + operation + ' "$@"\n')
+        command = shlex.join([sys.executable, "-B", str(script), operation])
+        hook.write_text(f'#!/bin/sh\nexec {command} "$@"\n')
         hook.chmod(0o700)
     settings = {"user.name": config["account"], "user.email": email, "user.useConfigOnly": "true",
-                "commit.gpgsign": "false", "core.hooksPath": hooks, "push.default": "simple",
+                "commit.gpgsign": "false", "core.hooksPath": str(directory), "push.default": "simple",
                 "push.followTags": "false", "credential.https://github.com.username": config["account"],
                 "credential.https://github.com.useHttpPath": "true"}
     for key, value in settings.items():
         subprocess.run(["git", "config", "--local", key, value], cwd=ROOT, check=True)
     key = "credential.https://github.com.helper"
     subprocess.run(["git", "config", "--local", "--unset-all", key], cwd=ROOT, capture_output=True)
-    helper = "!" + shlex.join([sys.executable, "-B", str(ROOT / "scripts/project-github.py"), "credential"])
+    helper = "!" + shlex.join([sys.executable, "-B", str(script), "credential"])
     for value in ("", helper):
         subprocess.run(["git", "config", "--local", "--add", key, value], cwd=ROOT, check=True)
     check_pending_identity(config)
-    print("Project account, credentials and commit/push hooks configured")
+    print("Project account, credentials and automatic commit delivery hooks configured")
 
 
 def main(arguments=None):
     arguments = list(sys.argv[1:] if arguments is None else arguments)
     if not arguments:
-        raise ValueError("Usage: project-github.py gh <arguments> | identity | configure | login | credential <operation> | pre-commit | pre-push")
+        raise ValueError("Usage: project-github.py gh <arguments> | commit <git commit arguments> | "
+                         "deliver | identity | configure | login")
     config = configuration()
     mode, *arguments = arguments
     if mode == "configure":
@@ -180,7 +226,14 @@ def main(arguments=None):
             raise ValueError("Use the dedicated project login configuration for authentication")
         _, env, _, _ = verified_token(config)
         gh(arguments, env, capture=False)
+    elif mode == "commit":
+        local_main()
+        subprocess.run(["git", "commit", *arguments], cwd=ROOT, check=True)
+        verify_delivery(config, local_main())
+    elif mode in ("deliver", "post-commit"):
+        deliver(config)
     elif mode == "pre-commit":
+        check_delivery_base(config)
         check_pending_identity(config)
         from coverage_refresh import refresh
         updated = refresh(staged=True)

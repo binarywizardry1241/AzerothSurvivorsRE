@@ -10,8 +10,8 @@ that give `$fixgap` new work. Invocation authorizes these documentation updates
 and the scoped log cleanup below.
 Follow `AGENTS.md` and the
 [shared capture rules](../shared/autonomy.md#reuse-gameplay-tracker-logs).
-Builds, launches, server operation, REA jobs, repairs and pushes require their
-own authorization.
+Builds, launches, server operation, REA jobs and repairs require their own
+authorization. Deliver commits under the [project rules](../../../AGENTS.md#commit-delivery).
 
 ## Select and identify captures
 
@@ -76,7 +76,7 @@ with the concrete source or recovery action and a link to that evidence. Reuse
 the permanent ID even when its prior work is in the verification register. Apply
 the project register rules if a genuinely distinct issue needs a new ID.
 Preserve unrelated statuses and keep runtime-only comparisons in the verification
-register. Commit the focused documentation changes locally.
+register. Commit and deliver the focused documentation changes to `origin/main`.
 
 ## Remove old logs after recording
 

@@ -2,6 +2,7 @@
 """Check project identity boundaries without network access or credentials."""
 import json
 import os
+import subprocess
 import unittest
 from unittest.mock import patch
 from script_sources import load_script
@@ -63,6 +64,30 @@ class ProjectIdentity(unittest.TestCase):
                 project.push_updates(self.config, "origin", url, text)
         with self.assertRaises(ValueError):
             project.push_updates(self.config, "origin", "https://github.com/other/project.git", update)
+
+    def test_pending_commit_blocks_the_next_commit(self):
+        with patch.object(project, "local_main", return_value="a" * 40), \
+                patch.object(project, "github_main", return_value="b" * 40):
+            with self.assertRaisesRegex(ValueError, "deliver any pending commit"):
+                project.check_delivery_base(self.config)
+
+    def test_failed_push_reports_the_pending_commit_and_retry_command(self):
+        commit = "a" * 40
+        with patch.object(project, "local_main", return_value=commit), \
+                patch.object(project.subprocess, "run", side_effect=subprocess.CalledProcessError(1, "git push")), \
+                patch.object(project, "github_main") as remote:
+            with self.assertRaisesRegex(ValueError, f"{commit}.*project-github.py deliver"):
+                project.deliver(self.config)
+            remote.assert_not_called()
+
+    def test_commit_wrapper_requires_delivery_after_git_reports_success(self):
+        with patch.object(project, "configuration", return_value=self.config), \
+                patch.object(project, "local_main", side_effect=["a" * 40, "b" * 40]), \
+                patch.object(project.subprocess, "run") as run, \
+                patch.object(project, "github_main", return_value="a" * 40):
+            with self.assertRaisesRegex(ValueError, "GitHub main did not match"):
+                project.main(["commit", "-m", "docs: example"])
+            run.assert_called_once_with(["git", "commit", "-m", "docs: example"], cwd=project.ROOT, check=True)
 
 
 if __name__ == "__main__":
