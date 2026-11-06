@@ -37,6 +37,7 @@ printf '%s\r\n' '@echo off' 'if defined WOW_MOVE_TRACE exit /b 51' 'exit /b 0' \
     > "$prefix/drive_c/azs-tracker-disabled.cmd"
 printf '%s\r\n' '@echo off' 'if not defined WOW_MOVE_TRACE exit /b 52' \
     'echo AZS_CONFIG=%BENILLA_HOME%' 'echo AZS_SAVE=%WOW_ROGUE_SAVE%' \
+    'echo AZS_TAGS=%WOW_MOVE_TRACE_TAGS%' 'echo AZS_TRACE_CHAT=%WOW_MOVE_TRACE_CHAT%' \
     'echo %AZS_WINE_SMOKE_MARKER%>"%WOW_MOVE_TRACE%"' \
     > "$prefix/drive_c/azs-tracker-write.cmd"
 
@@ -65,28 +66,30 @@ run_probe() {
 }
 
 disabled='C:\azs-tracker-disabled.cmd'
-run_probe 0 "$cmd" "$disabled"
+TRACKER_DETAIL=1 run_probe 0 "$cmd" "$disabled"
 run_probe 1 "$foreign" "$disabled"
 traces="$cache/traces"
 test ! -e "$traces"
 
 write_probe() {
-    if ! output=$(run_probe 1 "$cmd" 'C:\azs-tracker-write.cmd' "$1" 2>&1); then
+    if ! output=$(TRACKER_DETAIL=$2 run_probe 1 "$cmd" 'C:\azs-tracker-write.cmd' "$1" 2>&1); then
         printf '%s\n' "$output" >&2
         return 1
     fi
     printf '%s\n' "$output" | grep -Fq 'AZS_CONFIG=smoke-config'
     printf '%s\n' "$output" | grep -Fq 'AZS_SAVE=smoke-save'
+    printf '%s\n' "$output" | grep -Fq 'AZS_TRACE_CHAT=0'
+    printf '%s\n' "$output" | tr -d '\r' | grep -Fxq "AZS_TAGS=$3"
 }
 
-write_probe azs-wine-tracker-first
+write_probe azs-wine-tracker-first 0 'addon,fct,cd,use,move'
 set -- "$traces"/session-*
 test "$#" -eq 1
 first="$1/gameplay.log"
 grep -Fq azs-wine-tracker-first "$first"
 first_hash=$(shasum -a 256 < "$first")
 
-write_probe azs-wine-tracker-second
+write_probe azs-wine-tracker-second 1 'addon,fct,cd,use,move,prs,snd,knb,gate,mmv,csp,spl,face,clmp,fx'
 set -- "$traces"/session-*
 test "$#" -eq 2
 test "$first_hash" = "$(shasum -a 256 < "$first")"

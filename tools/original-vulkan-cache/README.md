@@ -53,7 +53,8 @@ To also test the Wine startup library, use `--smoke-wine` with the same Wine
 runtime path. This starts Wine's command interpreter in a disposable prefix
 and checks that it can write to the Windows trace path prepared at launch.
 It also checks that `TRACKER=0` and unrelated executables leave the capture
-off, and that two tracked launches use separate gameplay logs.
+off, and that normal and detailed captures use separate gameplay logs with
+the expected trace tags.
 
 With WoWSilicon 3.2.2's bundled MoltenVK, the cold run published 1,054 bytes
 before teardown and the warm run loaded them. An earlier run with MoltenVK
@@ -122,6 +123,26 @@ or other player data. Keep raw captures in the ignored workspace directory.
 Use the gameplay trace's `# t0=` Unix timestamp plus each row's `t=` offset
 to place events on a wall-clock timeline. Internal rules, intermediate
 decisions, and unpublished state require separate recovery.
+
+## Detailed gameplay and script diagnostics
+
+For a short reproduction, add `TRACKER_DETAIL=1` alongside `TRACKER=1` in
+WoWSilicon and press **Play**. The same `gameplay.log` also records player
+input and movement messages, knockback, world loading gates, actor paths,
+facing changes, ground clamp samples, and spell effect transitions where
+the game emits them. For ground clamp samples, also set
+`WOW_CLAMP_TRACE=<creature display ID>`. The original game's writer has no
+size cap, so turn off detail after capturing the behavior of interest.
+[Movement diagnostics](../../crates/benilla-app/src/player/move_trace.rs)
+· [Actor and ground diagnostics](../../crates/benilla-app/src/net/motion/spline.rs)
+
+For FrameXML, the installed 0.141.0 EXE exposes `WOW_UI_HANDLERS`. Set
+`WOW_UI_HANDLERS=5` in the profile to get periodic counts and timing for
+the busiest UI handlers in the terminal. The report is an aggregate and
+does not enter `gameplay.log`. A chronological record of Lua calls would
+require instrumentation inside the VM. Tracing selected internal native
+functions requires separate, build-specific instrumentation.
+[Handler profiler](../../crates/benilla-ui/src/script/handler_prof.rs)
 
 The 0.141.0 EXE contains the trace controls and the Azeroth Survivors
 addon feed. The local packet route and trace tag behavior are described by

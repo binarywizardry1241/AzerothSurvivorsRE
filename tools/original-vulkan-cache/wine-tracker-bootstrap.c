@@ -17,7 +17,8 @@
 
 enum { SESSION_NAME_SIZE = 96, PID_SIZE = 32 };
 
-static const char tags[] = "addon,fct,cd,use,move";
+#define GAMEPLAY_TAGS "addon,fct,cd,use,move"
+static const char detail_tags[] = GAMEPLAY_TAGS ",prs,snd,knb,gate,mmv,csp,spl,face,clmp,fx";
 
 static bool is_game_launch(void) {
     const char *enabled = getenv("TRACKER");
@@ -106,6 +107,8 @@ static bool windows_log_path(char out[PATH_MAX + 16], const char *host) {
 }
 
 static bool apply_session(const char *guest, const char *pid) {
+    const char *detail = getenv("TRACKER_DETAIL");
+    const char *tags = detail && strcmp(detail, "1") == 0 ? detail_tags : GAMEPLAY_TAGS;
     struct Change {
         const char *key, *value;
         char *previous;
