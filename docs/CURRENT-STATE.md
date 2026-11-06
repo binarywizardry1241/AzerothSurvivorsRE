@@ -1,6 +1,8 @@
 # Current state and source gaps
 
 [Gameplay/runtime verification backlog](verification-needed.md) owns post-source checks and completed finding history.
+The [saved gameplay evidence](analysis/gameplay-log-evidence.md) maps captured
+observations and their limits to finding IDs for `$fixgap`.
 
 Reviewed **2026-11-05** against the installed **0.141.0** EXE, 151,493,632 bytes,
 SHA-256 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
