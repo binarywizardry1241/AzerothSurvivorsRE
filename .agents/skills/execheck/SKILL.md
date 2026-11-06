@@ -231,7 +231,7 @@ bindings, remaining work, release claims and relevant historical reports. The
 number of discovered filenames is not a completeness criterion.
 
 When a claim or finding could benefit from runtime observations, consult
-[existing gameplay and Vulkan tracker logs](../shared/autonomy.md#reuse-gameplay-and-vulkan-tracker-logs)
+[existing gameplay tracker logs](../shared/autonomy.md#reuse-gameplay-tracker-logs)
 and carry their provenance and limits into reconciliation.
 
 Use the [REA skill](../reverse-engineer-anything/SKILL.md) for shipped-code

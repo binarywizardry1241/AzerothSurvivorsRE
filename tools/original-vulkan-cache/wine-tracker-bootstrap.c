@@ -105,12 +105,11 @@ static bool windows_log_path(char out[PATH_MAX + 16], const char *host) {
     return true;
 }
 
-static bool apply_session(const char *host, const char *guest, const char *pid) {
+static bool apply_session(const char *guest, const char *pid) {
     struct Change {
         const char *key, *value;
         char *previous;
     } changes[] = {
-        {"TRACKER_DIR", host, NULL},
         {"WOW_MOVE_TRACE_TAGS", tags, NULL},
         {"WOW_MOVE_TRACE_CHAT", "0", NULL},
         {"WOW_MOVE_TRACE", guest, NULL},
@@ -155,8 +154,7 @@ static void prepare_wine_tracker(void) {
     char pid[PID_SIZE];
     snprintf(pid, sizeof pid, "%ld", (long)getpid());
     const char *previous_pid = getenv("AZS_TRACKER_BOOTSTRAP_PID");
-    if (previous_pid && strcmp(previous_pid, pid) == 0 &&
-        getenv("TRACKER_DIR") && getenv("WOW_MOVE_TRACE")) {
+    if (previous_pid && strcmp(previous_pid, pid) == 0 && getenv("WOW_MOVE_TRACE")) {
         /* Wine can exec its preloader/loader again in the same process. */
         return;
     }
@@ -195,7 +193,7 @@ static void prepare_wine_tracker(void) {
             char guest[PATH_MAX + 16];
             int length = snprintf(host, sizeof host, "%s/traces/%s", cache, name);
             success = length > 0 && (size_t)length < sizeof host &&
-                      windows_log_path(guest, host) && apply_session(host, guest, pid);
+                      windows_log_path(guest, host) && apply_session(guest, pid);
             if (success) {
                 fprintf(stderr, "[azs-tracker-bootstrap] private tracker session: %s\n", host);
             } else {
