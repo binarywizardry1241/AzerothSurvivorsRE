@@ -16,7 +16,7 @@ move the avatar through its world Transform.
 The current target's floor correction packet owner145467450 writes opcode0xc7
 (MSG_MOVE_TELEPORT_ACK), a packed GUID, incremented Game+4cc counter, zero
 movement flags/time, XYZ and facing. That source evidence is retained with
-[floor recovery](floor-recovery-0.100.1.md). Current run integration consumes the
+[floor recovery](floor-recovery.md). Current run integration consumes the
 captured reports and this correction seam.
 
 Validation:50 filtered client tests passed, including the capture regression

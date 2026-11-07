@@ -11,7 +11,7 @@ original-game mechanic or native parity claim.
 
 1. The current native terminal Menu contract sends logout complete before its
    frontend callback; Again retains the session. The hash-bound owners and
-   admission/order checks are in [terminal flow](terminal-flow-0.109.0.md).
+   admission/order checks are in [terminal flow](terminal-flow.md).
 2. Reconstruction
    [`finish_client_delivery`](../../crates/azeroth-survivors-re/src/gameplay/mod.rs)
    flushes `SessionEvent::LoggedOut` before calling `LocalClientSession::logout`.
@@ -59,7 +59,7 @@ handler, log filter, blanket `try_despawn` or new lifecycle timing is introduced
   assert whether a second command was queued, independently of warning handlers.
   They are **not compiled or run**.
 
-The [retained launch evidence](execheck-0.109.0.md#retained-reconstructed-launch-findings)
+The [retained launch evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/execheck-0.109.0.md#retained-reconstructed-launch-findings)
 omits its failing command name and entity owner. The duplicate-removal source
 chain also exists in the recorded pre-build revision `6f55b64`, but the exact
 complete compiled tree was not independently established. This is a source-proven

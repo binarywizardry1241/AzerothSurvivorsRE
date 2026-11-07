@@ -3,14 +3,14 @@
 > Historical **0.92.0 source milestone** (`512b0c3`). The subsequent
 > 0.97.2 recovery checkpoint
 > includes the updated 12-zone catalog, secondary terrain provider and new
-> item-upgrade/mob-loot components. See the [current owning report](treasure-loot-0.97.2.md).
+> item-upgrade/mob-loot components. See the [current owning report](treasure-loot.md).
 > The source links below point to the current files; this report's recorded
 > behavior and validation refer to that older milestone.
 
-Implemented and compiled **2026-10-18** from the [recovered 0.92.0 chest system](treasure-chests-0.92.md).
+Implemented and compiled **2026-10-18** from the [recovered 0.92.0 chest system](treasure-chests.md).
 This component's recovered behavior is bound to the **0.92.0** EXE, SHA-256
 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
-The repository now targets [0.97.2](target-0.97.2.md); this source and its
+The repository now targets [0.97.2](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/target-0.97.2.md); this source and its
 nine-zone catalog have not been revalidated against that build.
 
 The source is a reusable Rust library component in the existing

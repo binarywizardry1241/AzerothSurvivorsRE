@@ -7,7 +7,7 @@ compatibility source and licenses, Cargo manifests/locks,
 build helpers, test fixtures, useful documentation and selected hash-bound native
 evidence. Recovery tools are optional and are not invoked by source builds.
 
-The selected target is [0.105.0](analysis/target-0.105.0.md). Earlier evidence keeps
+The selected target is [0.105.0](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/target-0.105.0.md). Earlier evidence keeps
 its version until revalidated; some current tests depend on historical fixtures.
 [Current state](CURRENT-STATE.md) owns source/recovery gaps;
 [verification-needed](verification-needed.md) owns execution/comparison work and

@@ -5,7 +5,7 @@ The engine source baseline is now
 the revision merged by public wenilla in
 [`c9b1b373`](https://github.com/Arnesen/wenilla/commit/c9b1b373b50ed07f7835492ce004e34b8881c170).
 It advances the [previous import](benilla-update-2026-10-20.md) by 23 upstream
-commits. The [lineage comparison](engine-lineage-0.117.0.md) explains the source
+commits. The [lineage comparison](engine-lineage.md) explains the source
 relationship. This dependency update does not establish which revision was
 compiled into the installed AS EXE, native equivalence or gameplay parity.
 [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) own the remaining findings.

@@ -7,7 +7,7 @@ installed **0.112.5**, SHA-256
 [Native evidence](evidence/0.112.5/escape-menu/manifest.json) and the
 [static checker](../../scripts/check-escape-menu.py) own the exact ranges,
 resource identities, bounded instruction cases and recovery limits. Historical
-pause construction/actions retain their [0.109.0 provenance](run-hud-0.109.0.md).
+pause construction/actions retain their [0.109.0 provenance](run-hud.md).
 
 ## Defect and native contract
 

@@ -11,7 +11,7 @@ captured with ordinary local-client input for the embedding to consume.
 
 `LocalClientExtension` is generic client plumbing. Current Azeroth stored-level
 API and HUD integration are documented separately in
-[target/menu recovery](target-menu-0.100.1.md). This change alone does not establish
+[target/menu recovery](target-menu.md). This change alone does not establish
 native addon API, menu or gameplay parity.
 
 Validation: eight local-client library tests passed with the offline menu

@@ -80,7 +80,7 @@ same numeric caster GUIDs as `SPELL_GO` at lines 234765, 234762, 234776 and
 `down` and `left` (lines 376029 and 376855). The final list retains that
 token as `left` alongside three `ended` rows (lines 378786–379140).
 
-The [0.140.0 producer recovery](coop-downed-0.140.0.md) identifies the
+The [0.140.0 producer recovery](coop-downed.md) identifies the
 world unit GUID as the formatter input. The rebuilt
 [`Party::downed_payload`](../../crates/azeroth-survivors-re/src/coop/game_party.rs#L258)
 uses decimal formatting for that field. The [Lua getter](evidence/0.140.0/embedded-api.lua#L596)
@@ -93,7 +93,7 @@ rendered anchors require separate verification.
 ## Capture D run boundaries
 
 Elwynn starts at lines 3–106 and ends with `AZSEND result=left` at line
-234595 (run 448.3, two bosses, eight caches). The [addon replay case](addon-run-space-0.139.2.md)
+234595 (run 448.3, two bosses, eight caches). The [addon replay case](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/addon-run-space-0.139.2.md)
 has `AZSMREQ full` at line 65649, trace 443.910, followed by the identical
 zone payload and the current run, boss, cache and lair lines at lines
 65783–65797, trace 445.776–445.782.
@@ -124,8 +124,8 @@ The installed 0.141.0 EXE still stores map 289, area 2057, center
 offset `0x739f610` resolves its key pointer to `scholomance`; its 28-byte
 field slice at `0x739f6d0` hashes to
 `55fa0c0c5dc945ef44a53fde06341886a0a2a0e9f739614a9a246227113973e3`.
-Those values agree with the [recovered entry data](scholomance-entry-0.140.0.md).
-The [native login-position trace](zone-login-position-0.141.0.md) connects
+Those values agree with the [recovered entry data](scholomance-entry.md).
+The [native login-position trace](zone-login-position.md) connects
 the radial search and height fallbacks to local player creation and the
 initial `AZSRUN`. The rebuilt floor worker retains the authored center as
 its cache key. The logged pose remains a comparison point for the rebuilt

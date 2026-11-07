@@ -7,10 +7,10 @@ This is now supported by the existing native wrapper log, in addition to static
 code and the inherited engine source. No new launch or audio capture was made.
 
 The integration and validation below describe the recorded 0.92.0 milestone.
-[Current0.109.0 recovery](menu-audio-0.109.0.md) now owns current policy and the
+[Current0.109.0 recovery](menu-audio.md) now owns current policy and the
 connected world-load handoff repair.
 [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) own current application status. The current
-0.105.0 [cold-loading report](cold-loading-0.105.0.md) separately recovers the
+0.105.0 [cold-loading report](cold-loading.md) separately recovers the
 shared stream-watch diagnostic and explains its source correction; it does not
 revalidate this report's historical audio policy or audible output.
 

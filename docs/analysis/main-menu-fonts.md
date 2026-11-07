@@ -1,7 +1,7 @@
 # Native menu font provider — 0.92.0
 
 Current mixed-script registration and the FrameXML fallback connection are owned by
-[the 0.127.0 font repair](mixed-script-fonts-0.127.0.md). Historical glyph/output
+[the 0.127.0 font repair](mixed-script-fonts.md). Historical glyph/output
 claims below retain their original target and validation limits.
 
 Target SHA-256: `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
@@ -40,7 +40,7 @@ SFNT directory/cmap serialization is owned standard encoding; the final output b
 outlines, advances and the recovered new component geometry are preserved. This is not a
 claim that every font-file byte is identical.
 
-The [0.121.0 table-filter repair](font-table-filter-0.121.0.md) preserves the
+The [0.121.0 table-filter repair](font-table-filter.md) preserves the
 original bytes when augmentation makes no changes. When glyphs or aliases
 change, it omits the original `DSIG`, `LTSH`, `VDMX` and `hdmx` tables before
 serialization, matching the current native filter. The eight regenerated

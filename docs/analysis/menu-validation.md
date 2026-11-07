@@ -1,7 +1,7 @@
 # Historical main-menu validation
 
 The checks below retain their **0.97.2 and 0.92** target boundaries. The current
-reference is [0.100.1](target-0.100.1.md); [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) and
+reference is [0.100.1](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/target-0.100.1.md); [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) and
 the [current validation record](evidence/0.100.1/consolidation-validation.json)
 own later results. These historical captures/tests do not establish current parity.
 
@@ -31,7 +31,7 @@ All work, fixtures, builds and reference execution stayed inside this checkout. 
 - Preview asset checks passed for all80 supported race/sex/class looks, including native starter-item mappings. This validates asset resolution, not appearance parity.
 - Build19 focused validation passed34 harness cases (28 distinct checks after repeated name cases):17 binary rules,11 native-save and6 save-browser. The new shared parser, invalid-name Hero fallback, direct writer and import backup semantics are covered. The unchanged run-modifier test passed earlier. Logs remain under `runtime/menu-recovery`.
 
-The [native tooltip report](main-menu-tooltips.md), [ability formatter report](ability-tooltips-0.92.md), [Codex report](codex-0.92-recovery.md), [updater report](main-menu-update.md), [connected worker](main-menu-update-worker.md), [audio report](main-menu-audio.md) and owning [font report](main-menu-fonts.md), [Options report](options-0.92-recovery.md), [Run Options report](run-options-0.92-recovery.md), [name-input report](main-menu-name-input.md), [preview report](main-menu-preview.md) and [progression report](progression-0.92-recovery.md) distinguish recovered rules from source implementation and observed runtime results.
+The [native tooltip report](main-menu-tooltips.md), [ability formatter report](ability-tooltips.md), [Codex report](codex-recovery.md), [updater report](main-menu-update.md), [connected worker](main-menu-update-worker.md), [audio report](main-menu-audio.md) and owning [font report](main-menu-fonts.md), [Options report](options-recovery.md), [Run Options report](run-options-recovery.md), [name-input report](main-menu-name-input.md), [preview report](main-menu-preview.md) and [progression report](progression-recovery.md) distinguish recovered rules from source implementation and observed runtime results.
 
 ## Historical initial-menu checks (2026-10-15)
 

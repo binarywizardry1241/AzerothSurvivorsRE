@@ -3,7 +3,7 @@
 Updated 2026-10-16. Target: supplied **0.92.0** EXE, SHA-256
 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
 Current implementation status is owned by [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md).
-The 0.123.0 [resume repair](update-resume-0.123.0.md) supersedes the historical
+The 0.123.0 [resume repair](update-resume.md) supersedes the historical
 error/empty-buffer and HTTP conversion behavior below; the original 0.92 evidence
 and past validation retain their original target.
 

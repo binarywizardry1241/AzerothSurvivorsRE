@@ -1,6 +1,6 @@
 # Addon texture and character-inventory gaps
 
-Current #53 source status: [the 0.113.2 admission repair](jewelry-texture-admission-0.113.2.md) replaces the legacy atlas-size gate. The inspection and target identity below retain their historical context; [verification-needed](../verification-needed.md) owns current status for #53–#55.
+Current #53 source status: [the 0.113.2 admission repair](jewelry-texture-admission.md) replaces the legacy atlas-size gate. The inspection and target identity below retain their historical context; [verification-needed](../verification-needed.md) owns current status for #53–#55.
 
 These findings own gaps **#53–#55** in [verification-needed](../verification-needed.md).
 The inspected reconstruction source is `54ab94c`. Installed reference discovery
@@ -58,7 +58,7 @@ labels alone do not establish a separate guardian-state or backdrop defect.
 
 ## #54 — Gold atlas rejected and replaced by white
 
-Current source status: [0.113.2 decoder repair](addon-gold-texture-0.113.2.md). The following screenshot/log/source finding is historical. Native replay now admits the unchanged atlas and preserves its alpha; rendered comparison remains open.
+Current source status: [0.113.2 decoder repair](addon-gold-texture.md). The following screenshot/log/source finding is historical. Native replay now admits the unchanged atlas and preserves its alpha; rendered comparison remains open.
 
 The screenshot shows a solid white rectangle in the gold tally. The addon’s
 `modules/ui/run.lua` requests `chat/cleaner_coins.tga`, then uses its top-left
@@ -93,7 +93,7 @@ renders gold with the target’s transparency and no default-texture warning.
 
 ## #55 — Visible outfit never reaches the C-panel inventory
 
-Current source status: [0.113.2 equipped-inventory repair](equipped-inventory-0.113.2.md). The publication absence below describes the inspected revision. Actual worn items, temporary jewelry, item queries and tooltip text now have a source producer; compiled/client/rendered comparison remains open.
+Current source status: [0.113.2 equipped-inventory repair](equipped-inventory.md). The publication absence below describes the inspected revision. Actual worn items, temporary jewelry, item queries and tooltip text now have a source producer; compiled/client/rendered comparison remains open.
 
 The character screenshot shows an equipped 3D model while its paper-doll buttons
 show generic slot silhouettes, including rings/trinkets. A reported case describes missing

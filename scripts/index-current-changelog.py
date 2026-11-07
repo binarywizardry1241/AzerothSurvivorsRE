@@ -19,7 +19,7 @@ from urllib.parse import unquote
 sys.dont_write_bytecode = True
 
 from coverage_common import latest_target, version_key
-from script_sources import current_path, historical_source
+from script_sources import current_path, historical_source, report_provenance, retained_report
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -58,7 +58,7 @@ def relative(path):
     return str(path.resolve().relative_to(ROOT))
 
 
-def project_path(value):
+def checkout_path(value):
     path = Path(value)
     if not path.is_absolute():
         path = ROOT / path
@@ -66,7 +66,18 @@ def project_path(value):
         path.resolve().relative_to(ROOT)
     except ValueError as exc:
         raise argparse.ArgumentTypeError("path must stay inside this checkout") from exc
-    return current_path(path.resolve())
+    return path.resolve()
+
+
+def project_path(value):
+    return current_path(checkout_path(value))
+
+
+def crosswalk_path(version):
+    legacy = ROOT / f'docs/analysis/changelog-coverage-{version}.md'
+    if legacy.is_file() or relative(legacy) in report_provenance(ROOT)['reports']:
+        return legacy
+    return ROOT / 'docs/analysis/changelog-coverage.md'
 
 
 def normalized(text):
@@ -188,13 +199,14 @@ def parse_crosswalk(path, target_version, *, _active=()):
     with their original references, target and file digest. Local rows override
     those leads. This never imports or applies individual target reviews.
     """
-    if path is None or not path.is_file():
+    archived = path is not None and relative(path) in report_provenance(ROOT)['reports']
+    if path is None or (not path.is_file() and not archived):
         return {}, {"path": None, "sha256": None, "target_version": None,
                     "status": "current_target_crosswalk_missing"}
-    path = project_path(path)
+    path = path.resolve()
     if path in _active:
         raise ValueError(f"historical crosswalk cycle: {relative(path)}")
-    raw = path.read_bytes()
+    raw = retained_report(relative(path), root=ROOT) if archived else path.read_bytes()
     text = raw.decode("utf-8")
     declared = re.search(r"(?i)selected\s+(\d+\.\d+\.\d+)\s+target", text)
     crosswalk_version = declared[1] if declared else None
@@ -210,8 +222,8 @@ def parse_crosswalk(path, target_version, *, _active=()):
         reference = local_link(path, link)
         if "://" in reference or "#" in reference:
             raise ValueError("historical crosswalk must name a project-local file without a fragment")
-        inherited_path = project_path(reference)
-        if not inherited_path.is_file():
+        inherited_path = ROOT / reference
+        if not inherited_path.is_file() and reference not in report_provenance(ROOT)['reports']:
             raise ValueError(f"historical crosswalk missing: {reference}")
         inherited_contexts, inherited_identity = parse_crosswalk(
             inherited_path, target_version, _active=_active + (path,))
@@ -387,7 +399,9 @@ def apply_reviews(entries, path, target, system_ids):
             expected = hashes.get(name)
             if not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected):
                 raise ValueError(f"review reference needs its exact file SHA-256: {name}")
-            if file_path.is_file():
+            if name in report_provenance(ROOT)['reports']:
+                data = retained_report(name, expected if current else None, ROOT)
+            elif file_path.is_file():
                 data = file_path.read_bytes()
             elif not current:
                 try:
@@ -557,8 +571,8 @@ def main():
                         help="print release claims as JSON without target or coverage inputs; optionally filter by release")
     parser.add_argument("--output", type=project_path, default=DEFAULT_OUTPUT)
     parser.add_argument("--changelog", type=project_path, default=ROOT / "docs/CHANGELOG.md")
-    parser.add_argument("--crosswalk", type=project_path,
-                        help="release context; defaults to the latest target's version-specific crosswalk")
+    parser.add_argument("--crosswalk", type=checkout_path,
+                        help="release context; defaults to the selected retained or maintained crosswalk")
     parser.add_argument("--reviews", type=project_path, default=DEFAULT_REVIEWS,
                         help="durable individual claim reviews; older target hashes remain historical")
     parser.add_argument("--systems", type=project_path, default=DEFAULT_SYSTEMS,
@@ -576,7 +590,7 @@ def main():
                     print(json.dumps(entry, ensure_ascii=False))
             return
         target = latest_target(verify=True)
-        crosswalk = args.crosswalk or ROOT / f"docs/analysis/changelog-coverage-{target['version']}.md"
+        crosswalk = args.crosswalk or crosswalk_path(target["version"])
         if args.output in (args.changelog, crosswalk, args.reviews, args.systems, ROOT / "changelog_2026-10-15_1.json"):
             raise ValueError("output must not overwrite a changelog source or crosswalk")
         ledger = build_ledger(target, args.changelog, crosswalk, args.reviews, args.systems)

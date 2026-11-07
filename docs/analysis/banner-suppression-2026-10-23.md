@@ -70,7 +70,7 @@ wrap. The desktop consumes those outputs independently.
 
 Guest wire 9 admits the event at `0x145ecd571` and calls Core's
 frontend slot `+0x18` at `0x145ecd5ce` with the raw pointer and length.
-The [desktop vtable registration](coop-command-ingress-0.141.0.md#desktop-and-guest-gossip-capability-initialization)
+The [desktop vtable registration](coop-command-ingress.md#desktop-and-guest-gossip-capability-initialization)
 binds that slot to `0x145e94430`. That callback optionally logs the
 record and observes the separate choices diagnostic, then copies the
 bytes into a queue of 24-byte owned strings at `0x145e94588..0x145e945ba`.
@@ -111,7 +111,7 @@ The scoped locale wrapper result is
 `ev_fd317fd57d5b664563d8255dc1bfcbf65518ddec828537158680fdb47c24ab55`
 (result SHA-256 `783269fd91d905be7923cebe1c857ac4ab239c2d70d1c06a63885937acb1997e`).
 The frontend's exact input is already bound in the
-[source frontier](source-frontier-0.141.0.md#native-query-receipts).
+[source frontier](source-frontier.md#native-query-receipts).
 The original instructions and PE data resolve the omitted vtable,
 JSON keys, jump table and palette data outside the raw imports. The
 red/gold color and size bytes match the historical

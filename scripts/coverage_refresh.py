@@ -60,9 +60,11 @@ def require_index_inputs(inputs, *, literal_include=None):
 
 
 def changelog_inputs(target):
-    crosswalk = f"docs/analysis/changelog-coverage-{target['version']}.md"
+    indexer = load_script("coverage_changelog", "index-current-changelog.py")
+    crosswalk = indexer.crosswalk_path(target['version']).relative_to(ROOT).as_posix()
     inputs = {"docs/CHANGELOG.md", REVIEWS, SYSTEMS, crosswalk,
-              "changelog_2026-10-15_1.json", "scripts/index-current-changelog.py"}
+              "changelog_2026-10-15_1.json", "scripts/index-current-changelog.py",
+              "docs/analysis/report-provenance.json"}
     inputs.update(str(path.relative_to(ROOT))
                   for path in (ROOT / "docs/analysis").glob("changelog-coverage-*.md"))
     for review in load_json(REVIEWS)["reviews"]:

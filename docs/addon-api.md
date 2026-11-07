@@ -221,7 +221,7 @@ The timer can continue to count down between snapshots. `AZSTIMERS` replaces the
 cache and stamps `AZS_TIMERS_UPDATED` only when a payload arrives. Read on a
 throttled refresh and clear the display when changing worlds rather than treating
 an unchanged timestamp as an expired timer.
-[Native timer contract](analysis/addon-timers-0.115.0.md)
+[Native timer contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/addon-timers-0.115.0.md)
 
 ### `AZS_GetRevive()` → `revive`
 Returns the local hero's revive context. A snapshot is empty outside the
@@ -237,7 +237,7 @@ the table as read-only. `AZSREVIVE` replaces it and updates
 `AZS_REVIVE_UPDATED`, a timestamp global. `AZS_GetDownedPartyMembers()` serves
 party-wide downed state where available. To replace the stock bar on clients
 that expose the `revive` HUD part, use `AZS_SetHudShown("revive", false)`.
-[Native revive contract](analysis/addon-party-api-0.113.0.md)
+[Native revive contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/addon-party-api-0.113.0.md)
 
 ### `AZS_GetDownedPartyMembers()` → `list, nil` or `nil, err`
 The other heroes of your party who are down, with where each can be brought back: the spot a friend
@@ -1410,15 +1410,15 @@ since the one before, that the game applies whole and in order (asking the serve
 
 ## Native evidence
 
-- [Addon bridge and VM lifetime](analysis/addon-bridge-0.109.0.md) covers FrameXML
+- [Addon bridge and VM lifetime](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/addon-bridge-0.109.0.md) covers FrameXML
   registration, snapshot admission and new-run cache invalidation.
-- [Heroic affixes and totems](analysis/addon-affixes-totems-0.125.0.md) traces
+- [Heroic affixes and totems](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/addon-affixes-totems-0.125.0.md) traces
   the published affix keys, live totem groups and recipient-specific delivery.
-- [Player position](analysis/addon-player-position-0.139.2.md) and
-  [run space](analysis/addon-run-space-0.139.2.md) cover the position sample,
+- [Player position](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/addon-player-position-0.139.2.md) and
+  [run space](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/addon-run-space-0.139.2.md) cover the position sample,
   run key, destination transitions and reload requests.
-- [Detailed meter](analysis/detailed-meter-0.141.0.md) traces the query interface
+- [Detailed meter](analysis/detailed-meter.md) traces the query interface
   and the ordinary recipient-owned meter snapshots.
-- The [earlier supplied reference](addon-api/reference-supplied-0.139.0.md) and
-  [local-clock proposal](addon-api/local-clock-proposal-supplied.md) are retained
+- The [earlier supplied reference](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/addon-api/reference-supplied-0.139.0.md) and
+  [local-clock proposal](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/addon-api/local-clock-proposal-supplied.md) are retained
   as historical inputs with [recorded hashes](analysis/evidence/0.139.0/source-frontier.json).

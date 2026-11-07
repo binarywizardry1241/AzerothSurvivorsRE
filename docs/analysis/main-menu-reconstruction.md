@@ -1,14 +1,14 @@
 # Historical menu checklist — 0.92 / 0.97.2
 
 This version-bound checklist preserves recovered menu contracts and their original
-validation limits. The selected target is now [0.100.1](target-0.100.1.md);
+validation limits. The selected target is now [0.100.1](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/target-0.100.1.md);
 [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) jointly own implemented behavior and remaining work.
 Earlier menu-only scope and stopped-work instructions are not active project rules.
 
 ## Owning evidence and implementation
 
 - [Save format and actual native interoperability](main-menu-save-format.md): native export decoded by Rust; Rust-produced synthetic save imported by the supplied EXE. Field order, class/race restrictions and run-modifier values were checked. Full save/progression migration is incomplete.
-- [Options recovery](options-0.92-recovery.md): 94 pointer-backed native definitions, exact ranges/choices/inversion, storage and native consumers. Implemented controls persist values; effects owned by absent gameplay systems remain unimplemented.
+- [Options recovery](options-recovery.md): 94 pointer-backed native definitions, exact ranges/choices/inversion, storage and native consumers. Implemented controls persist values; effects owned by absent gameplay systems remain unimplemented.
 - [Preview source integration](main-menu-preview.md): actual user MPQ models, composite appearance, starting outfits and animation; exact native lighting, camera and equipment behavior remain incomplete.
 - [Additional menu content](evidence/0.92/menu-details.json): source-embedded ability icons/descriptions and zone narrative/enemy/boss summaries. The build does not require the reference EXE.
 - [Exact native function slices](evidence/0.92/menu-slices-provenance.json): SHA-bound derived function bytes at original virtual addresses enable scoped REA/Ghidra analysis. Generic raw-image calling conventions are not proof of Windows x64 parameter signatures.

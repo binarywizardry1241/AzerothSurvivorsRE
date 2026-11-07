@@ -20,6 +20,8 @@ class ScriptSources(unittest.TestCase):
         self.temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.addCleanup(self.temporary.cleanup)
         self.addCleanup(sources.provenance.cache_clear)
+        self.addCleanup(sources.report_provenance.cache_clear)
+        self.addCleanup(sources.retained_report.cache_clear)
         self.root = Path(self.temporary.name)
         self.former = 'scripts/check-xinput-0.109.0.py'
         self.original = subprocess.check_output(['git', 'cat-file', 'blob',
@@ -60,6 +62,23 @@ class ScriptSources(unittest.TestCase):
 
     def test_unrelated_paths_keep_their_identity(self):
         self.assertEqual(sources.current_path('docs/REA.md', self.root), self.root / 'docs/REA.md')
+
+    def test_archived_report_keeps_exact_proof_and_a_separate_live_guide(self):
+        original_path = 'docs/addon-api/local-clock-proposal-supplied.md'
+        guide = self.root / 'docs/addon-api.md'
+        guide.write_text('# Addon API\n')
+        commit = '229fd4278b9b40ecd552f1561b4e4e92b3f03339'
+        original = subprocess.check_output(['git', 'cat-file', 'blob', f'{commit}:{original_path}'],
+                                           cwd=sources.ROOT)
+        (self.root / sources.REPORT_INDEX).write_text(json.dumps({
+            'source_commit': commit, 'reports': {original_path: 'docs/addon-api.md'}}))
+        expected = hashlib.sha256(original).hexdigest()
+        self.assertEqual(sources.current_path(original_path, self.root), guide)
+        self.assertEqual(sources.retained_report(original_path, expected, self.root), original)
+        self.assertTrue(sources.recorded_input_matches(original_path, expected, self.root))
+        self.assertFalse(sources.recorded_input_matches(original_path, None, self.root))
+        self.assertFalse(sources.recorded_input_matches(
+            original_path, hashlib.sha256(guide.read_bytes()).hexdigest(), self.root))
 
     def test_stable_name_selects_exact_historical_source_by_digest(self):
         self.assertEqual(sources.historical_source('scripts/check-xinput.py', self.expected, self.root), self.original)

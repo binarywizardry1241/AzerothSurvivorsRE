@@ -211,7 +211,7 @@ observations, source candidates and exact unknown selectors into one immutable
 profile under `runtime/coverage/<sha>/as-discovery/<profile>/`. It launches no
 native query or application. Use the [selected graph record](analysis/coverage/as-discovery.json)
 for input/artifact hashes, population counts and exact reproduction commands;
-[the audit](analysis/execheck-0.115.0.md#as-discovery-frontier-and-reporting-limits)
+[the audit](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/execheck-0.115.0.md#as-discovery-frontier-and-reporting-limits)
 records the six stages' separate limits.
 
 `--write` retains graph, queue and journal; `--check` recomposes the same exact
@@ -292,7 +292,7 @@ reference discovery or certify the omitted engine/data regions.
 
 Analyzer names must be registered for the actual target. The x86 exception-handling and post-search analyzer names are unavailable for this x64 PE and must be omitted from its profile. Inspect fresh failures under `runtime/`; do not retain full diagnostic dumps in documentation or repeat an unchanged failed profile.
 
-The [0.107.0 native census](analysis/native-census-0.107.0.md) diagnoses two
+The [0.107.0 native census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/native-census-0.107.0.md) diagnoses two
 separate whole-image limits: address-table analysis reaches its startup deadline,
 while disabling it permits complete procedure discovery but leaves placeholder
 bodies when entry-point disassembly is also disabled. The separately named
@@ -365,7 +365,7 @@ bound. This 0.107.0 attempt also reached startup timeout (1,801.922 s) without a
 completed inventory or body query. It does not replace the previous failed
 2 GiB profile, and changing a saved profile's heap is rejected on resume.
 
-The [historical 0.108.0 census](analysis/native-census-0.108.0.md) independently
+The [historical 0.108.0 census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/native-census-0.108.0.md) independently
 refreshes all declared-extent decoding, full-PE procedure discovery and the
 sixteen omitted-entry raw probe. Historical 0.107.0 profiles above retain their
 actual target hash; their timeout/bounded outcomes are not current EXE proof.
@@ -380,7 +380,7 @@ native recovery only for a concrete Survivors-specific contract or dependency.
 The selected `full-image-addresses.json` profile remains valid supporting
 evidence even when later generic exploratory proposals are left unapplied.
 
-The [historical 0.109.0 census](analysis/native-census-0.109.0.md) introduced
+The [historical 0.109.0 census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/native-census-0.109.0.md) introduced
 streaming instruction/body/reference exports. The current runner uses REA's
 inspected Ghidra JVM launcher and owned-process controls, with a writable project
 under its ignored census output. Import happens once; subsequent workers open

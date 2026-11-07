@@ -9,9 +9,9 @@ are independent dimensions. Prior-target assessments remain historical.
 
 The [connection ledger](coverage/exe-connections.json) supplies current native
 owners, source anchors and evidence partitions. Every missing current contract
-has its own [module finding](module-contracts-0.119.0.md); the whole-image residuals
-retain exact queue selectors under [#41](unknown-recovery-0.119.0.md).
-[Release findings](release-review-0.119.0.md) remain separate from module coverage.
+has its own [module finding](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/module-contracts-0.119.0.md); the whole-image residuals
+retain exact queue selectors under [#41](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/unknown-recovery-0.119.0.md).
+[Release findings](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-review-0.119.0.md) remain separate from module coverage.
 Neither existing code nor a registered bounded contract certifies a whole module,
 actual execution or parity. Full cooperative source is in scope; no server runs.
 
@@ -31,7 +31,7 @@ it is not a required count for future EXEs. Keep stable system IDs and permanent
 gap identities across updates.
 
 The [0.97.2 inventory](game-layer-inventory.md),
-[ownership report](code-ownership-0.97.2.md) and its engine-delta ledger are
+[ownership report](code-ownership.md) and its engine-delta ledger are
 historical evidence only. Their old RVAs, module counts, missing-source findings
 and source-presence percentages must not be used as current coverage. Current
 status comes from [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md), this register and the
@@ -67,17 +67,17 @@ The whole-owner recovery state is `partial` or `unknown`; implementation is
 `partial` or `missing`; static validation is `bounded`. Whole-system runtime and
 parity remain `unverified`. No status automatically advances another dimension.
 
-The [0.108.0 language repair](localization-0.108.0.md) binds all fourteen
+The [0.108.0 language repair](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/localization-0.108.0.md) binds all fourteen
 descriptor/catalog records and 204 native language-state, loader/initializer/map
 and parser cases. Live source merges executable/save-directory overrides with
 the recovered parser, retains English fallback and persists language beside the
 game save. Complete translation/initialization/platform dependencies, popup/font
 behavior and runtime/parity remain open under #17/#41.
 
-The historical 0.105.0 [Options CVar repair](options-0.105.0.md) binds that target's descriptors,
-defaults and registry delivery. Current [combat-log admission](combat-log-option-0.112.0.md)
-and [Options file/VM delivery](options-vm-0.112.0.md) have separate proofs.
-The historical [normal stock frontend](stock-frontend-0.105.0.md)
+The historical 0.105.0 [Options CVar repair](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/options-0.105.0.md) binds that target's descriptors,
+defaults and registry delivery. Current [combat-log admission](combat-log-option.md)
+and [Options file/VM delivery](options-vm.md) have separate proofs.
+The historical [normal stock frontend](stock-frontend.md)
 binds credentials, realms, permanent saved-roster operations, shared client
 identity and terminal return/restart. The [hover query evidence](evidence/0.105.0/terminal/hover/manifest.json)
 bounds the picker updater and terminal action query. Constructor hook/default
@@ -108,7 +108,7 @@ gameplay or outstanding runtime/parity work.
 `app:` abbreviates `crates/wenilla-rogue-app/src/`; `game:` abbreviates
 `crates/wenilla-rogue/src/`. All **60 known current paths** have partial source
 correspondence. The table retains historical source contracts, including
-[Windows XInput acquisition and custom consumers](pad-0.112.0.md). Whole-system semantics and
+[Windows XInput acquisition and custom consumers](pad.md). Whole-system semantics and
 platform/runtime parity remain open.
 Hazard/raid source connections have current evidence under #42/#43.
 These source correspondences do not establish complete selected-target native bodies.
@@ -119,22 +119,22 @@ complete native ownership and hardware/runtime parity remain open.
 
 | Native diagnostic owner | Reviewed source anchors | Other canonical gaps |
 | --- | --- | --- |
-| `app:legacy_config.rs` | [Current migration/merge source and bounded proof](legacy-config-0.113.2.md); Windows file operations and preservation parity remain unverified | #17, #62 |
-| `app:screens/coop.rs` | [Current capacity/roster/list UI adapter and bounded proof](coop-ui-0.115.0.md); direct-peer roster consumer connected; public discovery/full forms and UI execution/parity remain open | #17, #63 |
-| `game:coop/route.rs` | [Native event projection](coop-transport-0.115.0.md) and [actual world-owned private/shared recipients](coop-session-0.115.0.md); execution/parity unverified | #63 |
-| `game:coop/tcp.rs` | [Native TCP framing/lifecycle/startup](coop-transport-0.115.0.md); direct session integration, no runtime/interoperability proof | #63 |
-| `game:game/party.rs` | [Shared-world/per-hero simulation, targeting, revive, rewards, health scaling and guest HUD source](coop-game-party-0.115.0.md); compilation/gameplay/parity unverified | #63 |
-| `game:server/party.rs` | [Admission/binary lifecycle](coop-server-party-0.115.0.md) and [actual profile/world/bootstrap/replication integration](coop-0.115.0.md); public service and execution/parity open | #63 |
+| `app:legacy_config.rs` | [Current migration/merge source and bounded proof](legacy-config.md); Windows file operations and preservation parity remain unverified | #17, #62 |
+| `app:screens/coop.rs` | [Current capacity/roster/list UI adapter and bounded proof](coop-ui.md); direct-peer roster consumer connected; public discovery/full forms and UI execution/parity remain open | #17, #63 |
+| `game:coop/route.rs` | [Native event projection](coop-transport.md) and [actual world-owned private/shared recipients](coop-session.md); execution/parity unverified | #63 |
+| `game:coop/tcp.rs` | [Native TCP framing/lifecycle/startup](coop-transport.md); direct session integration, no runtime/interoperability proof | #63 |
+| `game:game/party.rs` | [Shared-world/per-hero simulation, targeting, revive, rewards, health scaling and guest HUD source](coop-game-party.md); compilation/gameplay/parity unverified | #63 |
+| `game:server/party.rs` | [Admission/binary lifecycle](coop-server-party.md) and [actual profile/world/bootstrap/replication integration](coop.md); public service and execution/parity open | #63 |
 | `app:lib.rs` | [main.rs: `main`](../../crates/azeroth-survivors-re/src/main.rs); [gameplay/mod.rs: `enter`](../../crates/azeroth-survivors-re/src/gameplay/mod.rs) | #9, #17 |
 | `app:screens/armory.rs` | [armory.rs: `ArmoryCatalog`](../../crates/azeroth-survivors-re/src/armory.rs); [armory.rs: `input`](../../crates/azeroth-survivors-re/src/armory.rs) | #4, #17 |
 | `app:screens/backdrop.rs` | [background.rs: `SceneProfile`](../../crates/azeroth-survivors-re/src/background.rs); [menu_scene.rs: `drive_camera`](../../crates/azeroth-survivors-re/src/menu_scene.rs) | #17, #35, #39 |
 | `app:screens/cards.rs` | [gameplay/native_overlays.rs: `OverlayState`](../../crates/azeroth-survivors-re/src/gameplay/native_overlays.rs); [gameplay/native_overlays.rs: `from_payload`](../../crates/azeroth-survivors-re/src/gameplay/native_overlays.rs) | #2, #18 |
 | `app:screens/codex.rs` | [codex.rs: `CodexPlugin`](../../crates/azeroth-survivors-re/src/codex.rs); [codex.rs: `CodexCatalog`](../../crates/azeroth-survivors-re/src/codex.rs) | #17, #34 |
 | `app:screens/discord.rs` | [community_icon.rs: `image`](../../crates/azeroth-survivors-re/src/community_icon.rs); [menu.rs: `community_button`](../../crates/azeroth-survivors-re/src/menu.rs) | #17, #63 |
-| `app:screens/hud.rs` | Selected [0.108.0 FrameXML HUD](framexml-hud-0.108.0.md) also reaches the real core loader; broader HUD/native owners remain open. [gameplay/run_hud/mod.rs: `RunHudPlugin`](../../crates/azeroth-survivors-re/src/gameplay/run_hud/mod.rs); [gameplay/run_hud/view.rs: `clock`](../../crates/azeroth-survivors-re/src/gameplay/run_hud/view.rs) | #7, #21, #33, #63 |
+| `app:screens/hud.rs` | Selected [0.108.0 FrameXML HUD](framexml-hud.md) also reaches the real core loader; broader HUD/native owners remain open. [gameplay/run_hud/mod.rs: `RunHudPlugin`](../../crates/azeroth-survivors-re/src/gameplay/run_hud/mod.rs); [gameplay/run_hud/view.rs: `clock`](../../crates/azeroth-survivors-re/src/gameplay/run_hud/view.rs) | #7, #21, #33, #63 |
 | `app:screens/hudparts.rs` | [gameplay/run_hud/layout.rs: `parse`](../../crates/azeroth-survivors-re/src/gameplay/run_hud/layout.rs); [gameplay/run_hud/settings.rs: `scale`](../../crates/azeroth-survivors-re/src/gameplay/run_hud/settings.rs) | #7, #33 |
 | `app:screens/language.rs` | [localization.rs: `select`](../../crates/azeroth-survivors-re/src/localization.rs); [menu_fonts.rs: `register_cjk`](../../crates/azeroth-survivors-re/src/menu_fonts.rs) | #17 |
-| `app:screens/markers.rs` | [raid_markers.rs: `Markers::receive`](../../crates/azeroth-survivors-re/src/raid_markers.rs); [gameplay/raid_markers.rs: `present`](../../crates/azeroth-survivors-re/src/gameplay/raid_markers.rs); current encounter producers have separate [bounded proofs](raid-hazards-0.112.0.md), while renderer evidence retains its historical target | #42, #43 |
+| `app:screens/markers.rs` | [raid_markers.rs: `Markers::receive`](../../crates/azeroth-survivors-re/src/raid_markers.rs); [gameplay/raid_markers.rs: `present`](../../crates/azeroth-survivors-re/src/gameplay/raid_markers.rs); current encounter producers have separate [bounded proofs](raid-hazards.md), while renderer evidence retains its historical target | #42, #43 |
 | `app:screens/meter.rs` | [gameplay/meter.rs: `input`](../../crates/azeroth-survivors-re/src/gameplay/meter.rs); [gameplay/meter.rs: `present`](../../crates/azeroth-survivors-re/src/gameplay/meter.rs) | #8, #24, #63 |
 | `app:screens/mod.rs` | [menu.rs: `native_button_gradient`](../../crates/azeroth-survivors-re/src/menu.rs); [hover.rs: `update_hover`](../../crates/azeroth-survivors-re/src/hover.rs) | #9, #17, #22, #23 |
 | `app:screens/options.rs` | [options.rs: `Definitions`, `sync_engine`](../../crates/azeroth-survivors-re/src/options.rs); [cvars/mod.rs: `set`](../../crates/benilla-app/src/cvars/mod.rs); [options_config.rs: `write_atomic`](../../crates/azeroth-survivors-re/src/options_config.rs) | #17, #21, #22, #23, #33 |
@@ -146,7 +146,7 @@ complete native ownership and hardware/runtime parity remain open.
 | `app:screens/talentview.rs` | [gameplay/talent_view.rs: `input`](../../crates/azeroth-survivors-re/src/gameplay/talent_view.rs); [gameplay/talent_view.rs: `rebuild`](../../crates/azeroth-survivors-re/src/gameplay/talent_view.rs) | #10, #12, #22, #23 |
 | `app:screens/touch.rs` | [native_input/mod.rs: `NativeInputPlugin`](../../crates/azeroth-survivors-re/src/native_input/mod.rs) | #23 |
 | `app:screens/update.rs` | [update_ui.rs: `UpdateUiPlugin`](../../crates/azeroth-survivors-re/src/update_ui.rs); [update_ui.rs: `menu_input_enabled`](../../crates/azeroth-survivors-re/src/update_ui.rs) | #17 |
-| `app:screens/xinput.rs` | Windows selector/loader/four-slot poll and event publisher; [current bounded evidence](pad-0.112.0.md) | #22, #41 |
+| `app:screens/xinput.rs` | Windows selector/loader/four-slot poll and event publisher; [current bounded evidence](pad.md) | #22, #41 |
 | `app:update.rs` | [update.rs: `automatic`](../../crates/azeroth-survivors-re/src/update.rs); [update_install.rs: `decode_verified`](../../crates/azeroth-survivors-re/src/update_install.rs); [update_worker.rs: `start`](../../crates/azeroth-survivors-re/src/update_worker.rs) | #17 |
 | `game:achievements.rs` | [account_progression.rs: `meets_feat_with_killing_blows`](../../crates/azeroth-survivors-re/src/account_progression.rs); [progression.rs: `grant_account`](../../crates/azeroth-survivors-re/src/progression.rs) | #19, #26, #27, #34 |
 | `game:appearance.rs` | [preview.rs: `HeroLook`](../../crates/azeroth-survivors-re/src/preview.rs); [save/appearance.rs: `normalize_features`](../../crates/azeroth-survivors-re/src/save/appearance.rs); [hero_name.rs: `normalize`](../../crates/azeroth-survivors-re/src/hero_name.rs) | #17, #25, #34 |
@@ -154,7 +154,7 @@ complete native ownership and hardware/runtime parity remain open.
 | `game:content.rs` | [catalog.rs: `MenuCatalog`](../../crates/azeroth-survivors-re/src/catalog.rs); [enemies/catalog.rs: `EnemyDefinition`](../../crates/azeroth-survivors-re/src/enemies/catalog.rs) | #29, #32, #34, #35 |
 | `game:dbc.rs` | [native_dbc.rs: `spell_metadata`, `item_icons`](../../crates/azeroth-survivors-re/src/native_dbc.rs) | #41 only |
 | `game:driver.rs` | [gameplay/mod.rs: `enter`](../../crates/azeroth-survivors-re/src/gameplay/mod.rs); [gameplay/mod.rs: `native_requests`](../../crates/azeroth-survivors-re/src/gameplay/mod.rs) | #9, #17 |
-| `game:hazards.rs` | [Current hazard/action graph](raid-native-0.112.0.md) and [lifecycle/actor connections](raid-lifecycles-0.112.0.md); [presentation](raid-markers-0.109.0.md) retains its historical target; runtime/parity remains unverified | #42, #43 |
+| `game:hazards.rs` | [Current hazard/action graph](raid-native.md) and [lifecycle/actor connections](raid-lifecycles.md); [presentation](raid-markers.md) retains its historical target; runtime/parity remains unverified | #42, #43 |
 | `game:fonts.rs` | [menu_fonts.rs: `register_framexml`](../../crates/azeroth-survivors-re/src/menu_fonts.rs); [font_patch.rs: `cmap`](../../crates/azeroth-survivors-re/src/font_patch.rs) | #2, #17, #39 |
 | `game:game/abilities.rs` | [player_abilities/behavior/dispatch.rs: `begin_cast`](../../crates/azeroth-survivors-re/src/player_abilities/behavior/dispatch.rs); [gameplay/mechanics/attacks.rs: `weapon_tick`](../../crates/azeroth-survivors-re/src/gameplay/mechanics/attacks.rs) | #13, #16, #19, #24, #32, #34 |
 | `game:game/addon.rs` | [gameplay/client/addon_bootstrap.rs: `extension`](../../crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs); [gameplay/client/addon_feed.rs: `changed`](../../crates/azeroth-survivors-re/src/gameplay/client/addon_feed.rs) | #11, #21, #24, #31, #33, #63 |
@@ -187,7 +187,7 @@ hash-bound. All 350,243 declared extents decode in the linear pass, and the
 separate complement accounts for all 5,126,586 other executable bytes. These
 byte accounting results do not recover complete flow or native semantics.
 Ghidra owner/full-image observations retain the separate
-[native census](native-census-0.113.0.md) limits. Named source
+[native census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/native-census-0.113.0.md) limits. Named source
 anchors and reviewed hashes retain their limited historical correspondence
 review; their preservation does not establish current native-body equivalence.
 Historical data/native/source checkers and addon Lua fixtures retain their

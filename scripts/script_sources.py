@@ -17,6 +17,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = 'docs/analysis/script-provenance.json'
+REPORT_INDEX = 'docs/analysis/report-provenance.json'
 
 
 @lru_cache(maxsize=8)
@@ -25,8 +26,26 @@ def provenance(root=ROOT):
     return json.loads(path.read_text()) if path.is_file() else {'relocations': {}}
 
 
+@lru_cache(maxsize=8)
+def report_provenance(root=ROOT):
+    path = root / REPORT_INDEX
+    return json.loads(path.read_text()) if path.is_file() else {'reports': {}}
+
+
+@lru_cache(maxsize=512)
+def retained_report(name, expected=None, root=ROOT):
+    """Read original report bytes, separate from the maintained topic guide."""
+    index = report_provenance(root)
+    path = PurePosixPath(name)
+    commit = index.get('source_commit', '')
+    if (path.is_absolute() or '..' in path.parts or path.suffix != '.md' or path.parts[0] != 'docs'
+            or name not in index['reports'] or not re.fullmatch('[0-9a-f]{40}', commit)):
+        raise ValueError(f'No archived report commitment for {name}')
+    return committed_bytes(name, commit, expected, root)
+
+
 def current_path(value, root=ROOT):
-    """Resolve a former script reference for live links/imports, never for hashes."""
+    """Resolve former paths for live links/imports, never for recorded hashes."""
     path = Path(value)
     if path.is_absolute():
         try:
@@ -38,7 +57,8 @@ def current_path(value, root=ROOT):
     if (root / name).is_file():
         return root / name
     record = provenance(root)['relocations'].get(name)
-    replacement = root / (record['replacement'] if record else name)
+    report = report_provenance(root)['reports'].get(name)
+    replacement = root / (record['replacement'] if record else report or name)
     if not replacement.resolve().is_relative_to(root.resolve()):
         raise ValueError('Script relocation leaves the project')
     return replacement
@@ -60,6 +80,26 @@ def load_script(name, reference, root=ROOT):
     return module
 
 
+def committed_bytes(name, commit, expected, root):
+    def matching_blob(revision):
+        result = subprocess.run(['git', 'cat-file', 'blob', revision + ':' + name],
+                                cwd=root, capture_output=True)
+        if result.returncode == 0 and (expected is None or hashlib.sha256(result.stdout).hexdigest() == expected):
+            return result.stdout
+        return None
+
+    original = matching_blob(commit)
+    if original is not None:
+        return original
+    if expected is not None:
+        history = subprocess.run(['git', 'log', '--format=%H', commit, '--', name],
+                                 cwd=root, capture_output=True, text=True)
+        for revision in dict.fromkeys(history.stdout.splitlines()):
+            if revision != commit and (original := matching_blob(revision)) is not None:
+                return original
+    raise ValueError(f'Exact historical bytes unavailable for {name}; retain Git history')
+
+
 def historical_source(name, expected, root=ROOT):
     """Return exact pre-migration source only when its Git bytes match the digest."""
     index = provenance(root)
@@ -79,20 +119,10 @@ def historical_source(name, expected, root=ROOT):
         if (path.is_absolute() or '..' in path.parts or path.parts[0] != 'scripts' or
                 not re.fullmatch('[0-9a-f]{40}', commit)):
             raise ValueError('Invalid historical source boundary')
-        result = subprocess.run(['git', 'cat-file', 'blob', commit + ':' + former],
-                                cwd=root, capture_output=True)
-        if result.returncode == 0 and hashlib.sha256(result.stdout).hexdigest() == expected:
-            return result.stdout
-        history = subprocess.run(['git', 'log', '--format=%H', commit, '--', former],
-                                 cwd=root, capture_output=True, text=True)
-        commits = history.stdout.splitlines() if history.returncode == 0 else []
-        for candidate in dict.fromkeys(commits):
-            if candidate == commit:
-                continue
-            result = subprocess.run(['git', 'cat-file', 'blob', candidate + ':' + former],
-                                    cwd=root, capture_output=True)
-            if result.returncode == 0 and hashlib.sha256(result.stdout).hexdigest() == expected:
-                return result.stdout
+        try:
+            return committed_bytes(former, commit, expected, root)
+        except ValueError:
+            continue
     raise ValueError('Exact historical script bytes are unavailable; retain Git history')
 
 
@@ -105,7 +135,7 @@ def historical_matches(name, expected, root=ROOT):
 
 
 def recorded_input_matches(value, expected, root=ROOT):
-    """Verify a recorded input; only script producers may use exact Git bytes."""
+    """Verify a recorded input against live bytes or an explicit Git archive."""
     path = Path(value)
     if not path.is_absolute():
         path = root / path
@@ -114,6 +144,14 @@ def recorded_input_matches(value, expected, root=ROOT):
     except ValueError:
         return False
     current = current_path(path, root)
+    if current != path and name in report_provenance(root)['reports']:
+        if not isinstance(expected, str) or not re.fullmatch('[0-9a-f]{64}', expected):
+            return False
+        try:
+            retained_report(name, expected, root)
+            return True
+        except (OSError, ValueError):
+            return False
     if current.is_file():
         from coverage_common import file_sha256
         try:

@@ -1,6 +1,6 @@
 # 0.92.0 picker Node reconstruction
 
-Current **0.97.2 source recovery (2026-10-18)** is owned by [the home-screen checkpoint](home-screen-0.97.2.md). It connects current controls/placement, catalogs, thirteen locales/fonts, scrolling and scene interfaces. The report below remains explicitly historical0.92 evidence; final source changes have no new runtime/parity comparison, and source/static-only mode prohibits further compiler checks and launches.
+Current **0.97.2 source recovery (2026-10-18)** is owned by [the home-screen checkpoint](home-screen.md). It connects current controls/placement, catalogs, thirteen locales/fonts, scrolling and scene interfaces. The report below remains explicitly historical0.92 evidence; final source changes have no new runtime/parity comparison, and source/static-only mode prohibits further compiler checks and launches.
 
 Updated 2026-10-16. Target `AzerothSurvivors/AzerothSurvivors.exe`, embedded 0.92.0, SHA-256 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
 

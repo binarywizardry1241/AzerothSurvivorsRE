@@ -12,7 +12,7 @@ configured installed game; this checkout contains no game EXE or MPQ copies.
 Existing gameplay, catalogs, repairs and native contracts retain their actual
 historical version/hash until current applicability is established.
 
-The [module register](docs/analysis/module-contracts-0.141.0.md) distinguishes
+The [module register](docs/analysis/module-contracts.md) distinguishes
 partial source, bounded native contracts and remaining source connections.
 Co-op transport, server/party, world bootstrap and replication source remains
 available. New release requirements and current-target correspondence remain
@@ -38,7 +38,7 @@ cargo +1.98.1 run --locked --profile menu -p azeroth-survivors-re -- --data-dir 
 Direct binary launches check a nonempty `WOW_DATA` override, then `Data` and
 `WoW/Data` beside the executable. The first existing directory wins; an empty
 `WOW_DATA` disables automatic discovery. `--data-dir` supplies the override.
-See the [current directory contract](docs/analysis/data-directory-0.115.0.md).
+See the [current directory contract](docs/analysis/data-directory.md).
 
 On Windows, use a path such as `--data-dir "C:\path\to\Data"`.
 The output is `target/menu/AzerothSurvivorsRE` (`.exe` on Windows).
@@ -63,12 +63,12 @@ ignored `.codex/reference-game.json` unless `WOW_DATA` is set. A portable
 build output in `runtime/cargo-target/menu/`. Without MPQs, the menu uses fallback
 art and explains how to supply data. Native extended/CJK fonts can be supplied
 with `--font-dir /path/to/Fonts` or `AZS_FONT_DIR`; see the
-[font supply and registration](docs/analysis/font-inputs-0.113.2.md).
+[font supply and registration](docs/analysis/font-inputs.md).
 
 Language catalogs support `lang/<code>.json` beside the executable and in the
 save-data directory. Entries merge over the built-in text; the save-data file
 wins duplicate keys. Restart to reload files. See the
-[language loader and parser limits](docs/analysis/localization-0.108.0.md).
+[language loader and parser limits](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/localization-0.108.0.md).
 
 ## Play and save data
 
@@ -82,14 +82,14 @@ On Windows, `WOW_PAD=xinput` selects the recovered XInput producer,
 `WOW_PAD=gilrs` (or `wgi`) selects the ordinary backend, and `WOW_PAD=off`
 disables controllers. With no recognized override, Wine selects XInput.
 Other platforms retain the ordinary backend. See the
-[input contracts and limits](docs/analysis/input-0.109.0.md); hardware and
+[input contracts and limits](docs/analysis/input.md); hardware and
 platform parity remain unverified.
 
 The optional stock character frontend is selected with
 `WOW_ROGUE_GLUE=1 ./scripts/run-menu`. It loads the configured GlueXML and
 provides the recovered twelve-zone realm list and local saved-roster operations.
 An explicit `--zone` quickstart takes precedence. This source path is uncompiled;
-see the [stock frontend contracts and limits](docs/analysis/stock-frontend-0.105.0.md).
+see the [stock frontend contracts and limits](docs/analysis/stock-frontend.md).
 
 The helper isolates configuration and progress under `runtime/menu-state`.
 For direct launches, `BENILLA_HOME` selects configuration; `WOW_ROGUE_SAVE`
@@ -110,10 +110,10 @@ Use separate `BENILLA_HOME` directories and `WOW_ROGUE_SAVE` paths for local
 instances so configuration and account writes cannot overlap.
 
 This integration has not been compiled or exercised with two clients. The
-[integration report](docs/analysis/coop-0.115.0.md) records source ownership,
+[integration report](docs/analysis/coop.md) records source ownership,
 static checks and remaining service/presentation limits. The menu's
-[public directory](docs/analysis/coop-directory-0.115.0.md) and
-[Host/Code requests](docs/analysis/coop-forms-0.115.0.md) use the shared native
+[public directory](docs/analysis/coop-directory.md) and
+[Host/Code requests](docs/analysis/coop-forms.md) use the shared native
 WebSocket service. `WOW_ROGUE_LOBBY_URL` overrides its endpoint for a compatible
 service. Directory, form, input and rendered behavior remain unverified.
 

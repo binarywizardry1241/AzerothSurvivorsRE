@@ -153,7 +153,7 @@ instrumentation inside the VM. [Handler profiler](../../crates/benilla-ui/src/sc
 
 The 0.141.0 EXE contains the trace controls and the Azeroth Survivors
 addon feed. The local packet route and trace tag behavior are described by
-the [addon bridge recovery](../../docs/analysis/addon-bridge-0.109.0.md),
+the [addon bridge recovery](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/addon-bridge-0.109.0.md),
 the [supplied API reference](../../docs/addon-api.md#raw-addon-messages),
 and the [Benilla trace writer](../../crates/benilla-assets/src/trace.rs). A
 Wine smoke test establishes the environment handoff and file path. A capture

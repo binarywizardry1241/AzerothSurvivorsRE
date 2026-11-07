@@ -1,6 +1,6 @@
 # Menu catalog source
 
-The repository now targets [Azeroth Survivors 0.100.1](../../../docs/analysis/target-0.100.1.md). The embedded `menu.json` retains its **0.97.2** catalog version; [0.97.2 catalog recovery](../../../docs/analysis/menu-catalog-0.97.2.md) owns its nine classes, 112 abilities, eight races and twelve zones. It has not been regenerated or validated against 0.100.1. The launcher embeds it with `include_str!` through `src/catalog.rs`, so building the source does not require the reference EXE. Images, fonts and models are not included here; icon basenames resolve against the configured MPQs.
+The repository now targets [Azeroth Survivors 0.100.1](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/target-0.100.1.md). The embedded `menu.json` retains its **0.97.2** catalog version; [0.97.2 catalog recovery](../../../docs/analysis/menu-catalog.md) owns its nine classes, 112 abilities, eight races and twelve zones. It has not been regenerated or validated against 0.100.1. The launcher embeds it with `include_str!` through `src/catalog.rs`, so building the source does not require the reference EXE. Images, fonts and models are not included here; icon basenames resolve against the configured MPQs.
 
 ## Historical 0.92.0 extraction
 

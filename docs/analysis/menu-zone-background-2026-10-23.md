@@ -39,7 +39,7 @@ pseudocode to that identity. These are static observations, not target execution
 The [desktop source](../../crates/azeroth-survivors-re/src/background.rs)
 retains `menuScene`/`WOW_MENU_SCENE`, known-zone/speed overrides, previous-zone
 retention until conceal finishes, Black mode and the separate picture/ember
-layers. The native gate/report from [0.109.0](menu-fidelity-0.109.0.md) retains
+layers. The native gate/report from [0.109.0](menu-fidelity.md) retains
 its historical provenance; no mobile/browser default is certified here.
 
 ## Source defect and repair

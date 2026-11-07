@@ -1,6 +1,6 @@
 # Playable zone integration — 2026-10-18
 
-**Preserved 0.97.2 checkpoint.** The selected baseline is now [0.100.1](target-0.100.1.md), with [copy and static identity provenance](target-refresh-0.100.1.json). The source, recovery and validation below have not been revalidated against it. Implementation, builds, tests, launches and native decompilation remain stopped; the refresh copied and identified the EXE only. See [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md).
+**Preserved 0.97.2 checkpoint.** The selected baseline is now [0.100.1](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/target-0.100.1.md), with [copy and static identity provenance](target-refresh-0.100.1.json). The source, recovery and validation below have not been revalidated against it. Implementation, builds, tests, launches and native decompilation remain stopped; the refresh copied and identified the EXE only. See [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md).
 
 This checkpoint integrates loadable, playable levels with the recovered
 mechanics and records local compilation, tests and reconstructed launches. Its reference was the supplied **0.97.2** EXE, SHA-256
@@ -22,7 +22,7 @@ treasure/reward screens must match the EXE.
 The fixed camera, screen-relative movement and replacement HUD/choice widgets
 below are known deviations. This checkpoint proves map/combat wiring only; it
 is not the required player/interface integration. See the
-[native-client baseline audit](native-client-baseline-0.97.2.md) for the existing
+[native-client baseline audit](native-client-baseline.md) for the existing
 benilla player/FrameXML stack that was bypassed and the required correction.
 No implementation was changed during that follow-up audit.
 
@@ -37,7 +37,7 @@ not a recovered copy of the original gameplay UI.
 
 `gameplay/world.rs` reuses the vendored benilla world engine's MPQ source,
 `CurrentMap`, WDT/ADT/WMO streamer, real colliders, `ViewFocus`, `Viewer`, world
-camera and residency counters. The [entry recovery](playable-zone-entry-0.97.2.md)
+camera and residency counters. The [entry recovery](playable-zone-entry.md)
 binds all twelve map IDs, spawn coordinates, facing and radius to the current EXE.
 Map readiness waits for the correct body tile, furnished scene and pending
 collider/merge/render queues. No fabricated terrain is used.

@@ -1,7 +1,7 @@
 # 0.92 menu background and embers
 
 Historical 0.92 report. The selected 0.97.2 target is covered by
-[main-menu-background-0.97.2.md](main-menu-background-0.97.2.md).
+[main-menu-background-0.97.2.md](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/main-menu-background-0.97.2.md).
 
 Updated 2026-10-16. Target `AzerothSurvivors/AzerothSurvivors.exe`, SHA-256
 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
@@ -73,3 +73,7 @@ this custom picker starts `wow_main_theme.mp3`; scoped REA binds its start/watch
 exact volume operands. Build26 connects the recovered theme through the existing mixer source,
 with compilation pending and no new playback. See the [audio report](main-menu-audio.md) for
 current evidence and the remaining backend, scheduling and audible-comparison limits.
+
+## Retained reports
+
+[0.97.2](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/main-menu-background-0.97.2.md)

@@ -1,6 +1,6 @@
 # Main-menu source integration
 
-Current reconstruction target: **0.97.2**; existing implementation baseline: **0.92.0**. The source foundation remains the same pinned revision. The [new target report](target-0.97.2.md) records identity and recovery requirements; this task did not update source logic/catalogs. See [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) and [historical build/runtime verification](menu-validation.md) for the maintained implementation status.
+Current reconstruction target: **0.97.2**; existing implementation baseline: **0.92.0**. The source foundation remains the same pinned revision. The [new target report](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/target-0.97.2.md) records identity and recovery requirements; this task did not update source logic/catalogs. See [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) and [historical build/runtime verification](menu-validation.md) for the maintained implementation status.
 
 ## Implemented milestone choice
 
