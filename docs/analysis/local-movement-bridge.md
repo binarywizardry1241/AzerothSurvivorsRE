@@ -1,4 +1,4 @@
-# Local movement reports and corrections — 2026-10-19
+# Local movement reports and corrections
 
 The local host captures the ordinary controller's actual outgoing position
 reports in order: movement transitions/heartbeats, forced-speed acknowledgments,

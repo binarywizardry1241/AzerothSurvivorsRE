@@ -1,4 +1,4 @@
-# Local client controller integration — 2026-10-18
+# Local client controller integration
 
 The playable adapter now activates the vendored client player rather than integrating screen-relative movement or writing a fixed camera transform. The selected reconstruction target remains the supplied 0.97.2 executable recorded in `target-refresh-0.97.2.json`. This source integration does not establish runtime or native behavioral parity.
 

@@ -1,4 +1,6 @@
-# Native menu font provider — 0.92.0
+# Native menu font provider
+
+This report records 0.92.0.
 
 Current mixed-script registration and the FrameXML fallback connection are owned by
 [the 0.127.0 font repair](mixed-script-fonts.md). Historical glyph/output

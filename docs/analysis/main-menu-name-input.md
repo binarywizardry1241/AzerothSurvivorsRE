@@ -1,4 +1,6 @@
-# Picker name production and editing — 0.92.0
+# Picker name production and editing
+
+This report records 0.92.0.
 
 The target SHA-256 is `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
 Exact native addresses, REA Ghidra Evidence IDs, original fragment-table offsets and values

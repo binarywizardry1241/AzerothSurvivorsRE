@@ -1,4 +1,6 @@
-# 0.92.0 picker ability tooltip text
+# Picker ability tooltip text
+
+This report records 0.92.0.
 
 Recovered 2026-10-16 from SHA-256
 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.

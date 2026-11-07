@@ -1,4 +1,4 @@
-# Main-menu audio recovery (0.92.0)
+# Main-menu audio recovery
 
 This report's historical supplied EXE has SHA-256
 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.

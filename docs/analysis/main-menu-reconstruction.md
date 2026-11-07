@@ -1,4 +1,6 @@
-# Historical menu checklist — 0.92 / 0.97.2
+# Main-menu reconstruction checklist
+
+This report records 0.92, 0.97.2.
 
 This version-bound checklist preserves recovered menu contracts and their original
 validation limits. The selected target is now [0.100.1](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/target-0.100.1.md);

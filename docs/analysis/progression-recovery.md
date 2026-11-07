@@ -1,4 +1,6 @@
-# 0.92.0 account achievements and rewards
+# Account achievements and rewards
+
+This report records 0.92.0.
 
 Reviewed 2026-10-16 against EXE SHA-256
 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.

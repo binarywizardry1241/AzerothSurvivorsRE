@@ -1,4 +1,4 @@
-# Local client Lua and CVar bridge — 2026-10-19
+# Local client Lua and CVar bridge
 
 The embedding can register CVar defaults, queue normal registry writes and
 install a Lua prelude before FrameXML/addons. The same prelude is installed on

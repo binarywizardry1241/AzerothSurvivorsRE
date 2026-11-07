@@ -1,4 +1,6 @@
-# 0.92.0 talent menu recovery and implementation
+# Talent menu recovery and implementation
+
+This report records 0.92.0.
 
 Historical target only. Current definitions and allocation behavior are owned
 by [the 0.97.2 recovery](talents.md); the old addresses and runtime

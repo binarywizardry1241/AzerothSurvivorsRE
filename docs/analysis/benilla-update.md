@@ -1,4 +1,6 @@
-# benilla 0.3.0 source integration
+# benilla source integration
+
+This report records 0.3.0.
 
 The vendored engine advances from [0367a2c2](https://github.com/samwhosung/benilla/commit/0367a2c2180d777392470860693009465495a30d)
 to [e2aeaecf](https://github.com/samwhosung/benilla/commit/e2aeaecffcfcaea27f762f61901ec4046587b843),

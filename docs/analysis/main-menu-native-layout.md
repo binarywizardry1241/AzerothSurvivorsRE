@@ -1,4 +1,4 @@
-# 0.92.0 picker Node reconstruction
+# Picker node reconstruction
 
 Current **0.97.2 source recovery (2026-10-18)** is owned by [the home-screen checkpoint](home-screen.md). It connects current controls/placement, catalogs, thirteen locales/fonts, scrolling and scene interfaces. The report below remains explicitly historical0.92 evidence; final source changes have no new runtime/parity comparison, and source/static-only mode prohibits further compiler checks and launches.
 

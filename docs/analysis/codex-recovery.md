@@ -1,4 +1,6 @@
-# Codex recovery — 0.92.0
+# Codex recovery
+
+This report records 0.92.0.
 
 Updated 2026-10-16. The authoritative target is `AzerothSurvivors/AzerothSurvivors.exe`, SHA-256 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`. Historical0.91.4 addresses are not used. This work concerns the read-only Armory Codex, independently of gameplay.
 

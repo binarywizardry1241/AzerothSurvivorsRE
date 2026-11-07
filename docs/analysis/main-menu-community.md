@@ -1,4 +1,6 @@
-# Community button — 0.92.0
+# Community button
+
+This report records 0.92.0.
 
 Target SHA-256: `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
 The Discord mark is an embedded alpha bitmap, rather than an MPQ texture, PNG or external

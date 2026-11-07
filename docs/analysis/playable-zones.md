@@ -1,4 +1,4 @@
-# Playable zone integration — 2026-10-18
+# Playable zone integration
 
 **Preserved 0.97.2 checkpoint.** The selected baseline is now [0.100.1](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/target-0.100.1.md), with [copy and static identity provenance](target-refresh-0.100.1.json). The source, recovery and validation below have not been revalidated against it. Implementation, builds, tests, launches and native decompilation remain stopped; the refresh copied and identified the EXE only. See [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md).
 

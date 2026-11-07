@@ -1,4 +1,4 @@
-# 0.92.0 main-menu save format
+# Main-menu save format
 
 Updated 2026-10-16. This report concerns the selected 0.92.0 EXE, SHA-256 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`. Historical 0.91.4 addresses are not used. The reconstruction's [`save.rs`](../../crates/azeroth-survivors-re/src/save.rs) now implements the recovered envelope and menu records. The isolated native export/import validation below confirms the envelope and tested picker fields; the menu now integrates picker persistence, safe import/export, gear/look state and talent allocation. Full legacy migration remains incomplete.
 

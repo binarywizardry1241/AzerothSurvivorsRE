@@ -1,4 +1,6 @@
-# Armory, collection, equipment and drop tables — 0.92.0
+# Armory, collection, equipment and drop tables
+
+This report records 0.92.0.
 
 The reconstruction targets `AzerothSurvivors/AzerothSurvivors.exe`, SHA-256
 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.

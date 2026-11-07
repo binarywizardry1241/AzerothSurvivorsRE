@@ -1,4 +1,4 @@
-# Engine lineage and the 0.116.0 release claims
+# Engine lineage and release claims
 
 This is a source comparison for the selected installed **0.117.0** EXE,
 SHA-256 `507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293`,

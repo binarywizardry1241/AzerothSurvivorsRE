@@ -1,4 +1,4 @@
-# 0.92.0 Run Options recovery
+# Run Options recovery
 
 Historical target only. Current page, parser, descriptors, input batching and numeric revalidation are documented in [Run Options0.109.0](run-options.md).
 

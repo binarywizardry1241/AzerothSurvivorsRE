@@ -1,4 +1,6 @@
-# Escape Menu and close action — 0.92.0
+# Escape Menu and close action
+
+This report records 0.92.0.
 
 Target SHA-256: `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
 Native `0x140356600` prepares three picker buttons and supplies a420×322 design

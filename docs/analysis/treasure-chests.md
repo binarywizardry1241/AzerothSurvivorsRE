@@ -1,4 +1,6 @@
-# Treasure-chest spawning — native 0.92.0 recovery
+# Treasure-chest spawning
+
+This report records 0.92.0.
 
 Research checkpoint: **2026-10-18**. That task recovered chest spawning and the lifecycle
 that changes the number of unopened chests. **At that checkpoint, no gameplay implementation,

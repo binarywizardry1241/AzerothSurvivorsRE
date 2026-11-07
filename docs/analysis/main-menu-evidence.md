@@ -1,4 +1,4 @@
-# 0.91.4 main-menu evidence
+# Main-menu evidence
 
 > Historical analysis of **0.91.4**, preserved as `AzerothSurvivors/AzerothSurvivors-0.91.4.exe` (SHA-256 `719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150`). The current target is **0.97.2**; this report remains bound to 0.91.4 and has not been revalidated against the new target. See [current target provenance](target-refresh-0.97.2.json) and the [historical 0.92 refresh](target-refresh-0.92.json).
 

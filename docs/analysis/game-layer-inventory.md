@@ -1,4 +1,4 @@
-# Game-specific source-area inventory — 0.97.2
+# Game-specific source-area inventory
 
 Current ownership accounting follows the [newest supplied target](reconstruction-coverage.md)
 and its [system map](system-coverage.md). This report remains historical 0.97.2 evidence.
