@@ -70,6 +70,13 @@ The acknowledgement
 crash report and dump in `Diagnostics` (`changelog:0.141.1:548650aa574f4367`)
 are Windows-only and are not a desktop repair choice.
 
+[0.142.0](CHANGELOG.md#01420) covers the Apple silicon macOS release.
+The release summary (`changelog:0.142.0:834d0a8114d2f92f`) repeats the
+native package and first-launch instructions (`changelog:0.142.0:97ee6c8f365508a6`)
+and startup updates for the Mac client (`changelog:0.142.0:e268b7f6ce6a673d`).
+These platform-specific distribution and update notes provide context for the
+existing [updater finding #133](#gap-133) and add no `$fixgap` choice.
+
 ## Gap register
 
 This register contains unresolved source, recovery, provenance and resource issues.
