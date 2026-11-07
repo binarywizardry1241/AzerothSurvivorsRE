@@ -1,5 +1,14 @@
 -- Shared exact-API contract checks; capability gates retain historical fixtures.
-arg[1] = arg[1] or "docs/analysis/evidence/0.112.0/addon-api.lua";
+local suite = arg[1];
+if suite == "--timers" then
+    table.remove(arg, 1);
+    assert(arg[1], "pass the installed bootstrap Lua fixture");
+elseif suite == "--totems" then
+    table.remove(arg, 1);
+    arg[1] = arg[1] or "docs/analysis/evidence/0.125.0/embedded-api.lua";
+else
+    arg[1] = arg[1] or "docs/analysis/evidence/0.112.0/addon-api.lua";
+end;
 do
 -- Source-only contract check; no game/client process or Rust compilation.
 -- Run from the checkout root: lua scripts/check-addon-bootstrap.lua
@@ -69,6 +78,140 @@ assert(substitutions == 1 or (substitutions == 0 and string.find(api, "AZS_HUD_C
 assert(execute(read(parser_path), "native-stats-parser"))();
 assert(execute(source, "native-addon-api"))();
 assert(created == 1 and registered == 1);
+local function line(prefix, payload)
+    event, arg1, arg2 = "CHAT_MSG_ADDON", prefix, payload;
+    AZSApiFrame.handler();
+end
+if suite == "--timers" then
+    local checks = 0;
+    local function check(value) assert(value); checks = checks + 1; end;
+    check(type(AZS_GetTimers) == "function" and #AZS_GetTimers() == 0);
+    local party, total, rate = AZS_GetPartyMeter();
+    check(#party == 0 and total == 0 and rate == 0);
+    line("AZSPARTY", "Ada,mage,15,1.5,0.75,Frostbolt,1.0;Bo,warrior,5,0.5,0.25,Cleave,0.3");
+    party, total, rate = AZS_GetPartyMeter();
+    check(#party == 2 and party[1].name == "Ada" and party[2].top == "Cleave" and total == 20 and rate == 2);
+    line("AZSPARTY", "");
+    party, total, rate = AZS_GetPartyMeter();
+    check(#party == 0 and total == 0 and rate == 0 and AZS_PARTY_UPDATED == now);
+    line("AZSTIMERS", "Butcher,icon,summon,25.5,13.0;Proc,,cooldown,5.0,1.0;Butcher,other,summon,40.0,30.0");
+    check(AZS_TIMERS_UPDATED == 100 and #AZS_TIMERS == 3);
+    check(AZS_TIMERS[1].ready == 25.5 and AZS_TIMERS[1].wait == 13);
+    check(AZS_GetTimers()[1].remaining == 25.5);
+    check(#AZS_GetTimers("Butcher") == 2 and #AZS_GetTimers("butcher") == 0);
+    check(#AZS_GetTimers("summon") == 0 and #AZS_GetTimers(false) == 3);
+    line("AZSRUN", "t=20;ph=playing"); now = 101.25;
+    local timers = AZS_GetTimers();
+    check(timers[1].remaining == 4.25 and not timers[1].ready and timers[1].duration == 13);
+    check(timers[2].remaining == 0 and timers[2].ready and timers[2].icon == "");
+    check(timers[3].remaining == 18.75 and timers[3].duration == 30);
+    timers[1].name = "changed";
+    check(AZS_TIMERS[1].name == "Butcher" and AZS_GetTimers()[1].name == "Butcher");
+    line("AZSRUN", "t=20;ph=paused"); now = 500;
+    check(AZS_GetTimers()[1].remaining == 5.5);
+    for _, phase in ipairs({ "choosing", "ready", "dead", "victory" }) do
+        line("AZSRUN", "t=20;ph=" .. phase); now = now + 10;
+        check(AZS_GetTimers()[1].remaining == 5.5);
+    end;
+    line("AZSTIMERS", "Expired,,cooldown,19.0,1.0;Ready,,cooldown,20.0,1.0;Future,,cooldown,100.0,1.0");
+    timers = AZS_GetTimers();
+    check(timers[1].ready and timers[2].ready and timers[3].remaining == 80);
+    check(timers[3].remaining > timers[3].duration);
+    local before = AZS_TIMERS_UPDATED;
+    line("AZSPETS", ""); check(AZS_TIMERS_UPDATED == before and #AZS_GetTimers() == 3);
+    line("AZSTIMERS", ""); check(#AZS_GetTimers() == 0 and AZS_TIMERS_UPDATED == now);
+    -- Ordinary fresh VM evaluation resets only through the exact native initializers.
+    assert(execute(source))();
+    check(#AZS_GetTimers() == 0 and #AZS_REVIVE == 0 and #AZS_PARTY == 0);
+    print("PASS: " .. checks .. " exact timer Lua assertions; stub host only");
+    return;
+end;
+if suite == "--totems" then
+    local checks = 0;
+    local function check(value) assert(value); checks = checks + 1; end;
+    local current = #api == 18935;
+    assert(current or #api == 17776, "wrong embedded API fixture");
+    check(AZS_ZONE.affixes == nil and AZS_ZONE_UPDATED == nil);
+    check(table.getn(AZS_GetTotems()) == 0 and AZS_GetTotemCount() == 0);
+    check(AZS_TOTEMS_UPDATED == nil);
+    line("AZSZONE", "len=1200;affixes=sanguine,explosive");
+    check(AZS_ZONE.affixes == "sanguine,explosive" and AZS_ZONE.len == 1200);
+    check(AZS_ZONE_UPDATED == now);
+    local oldZone = AZS_ZONE;
+    line("AZSZONE", "affixes=");
+    check(AZS_ZONE.affixes == "" and AZS_ZONE ~= oldZone);
+    line("AZSZONE", "len=1200");
+    check(AZS_ZONE.affixes == nil);
+
+    -- Synthetic values exercise the actual parser; keys/caps are not game claims.
+    line("AZSTOTEMS", "fixture_one,123,3,4,25.5,12.0,Interface\\Icons\\Fixture,Fixture One;fixture_two,456,2,2,19.0,10.0,,Fixture Two");
+    check(AZS_TOTEMS_UPDATED == 100 and table.getn(AZS_TOTEMS) == 2);
+    local raw = AZS_TOTEMS[1];
+    check(raw.key == "fixture_one" and raw.spell == 123 and raw.count == 3);
+    check(raw.cap == 4 and raw.ends == 25.5 and raw.dur == 12);
+    check(raw.icon == "Interface\\Icons\\Fixture" and raw.name == "Fixture One");
+    local rows = AZS_GetTotems();
+    check(table.getn(rows) == 2 and rows[1].duration == 12 and rows[1].remaining == 25.5);
+    check(rows[1].ends == nil and rows[1].dur == nil and rows[2].icon == "");
+    check(AZS_GetTotemCount() == 5 and AZS_GetTotemCount("fixture_one") == 3);
+    check(table.getn(AZS_GetTotems("fixture_one")) == 1);
+    check(table.getn(AZS_GetTotems("Fixture_one")) == 0);
+    check(table.getn(AZS_GetTotems("missing")) == 0 and AZS_GetTotemCount("missing") == 0);
+    rows[1].count = 999;
+    check(AZS_TOTEMS[1].count == 3 and AZS_GetTotems()[1].count == 3);
+
+    line("AZSRUN", "t=20;ph=playing"); now = 101.25;
+    rows = AZS_GetTotems();
+    check(rows[1].remaining == 4.25 and rows[1].duration == 12);
+    check(rows[2].remaining == 0 and rows[2].count == 2);
+    check(AZS_GetTotemCount() == 5);
+    for _, phase in ipairs({ "paused", "choosing", "ready", "dead", "victory" }) do
+        line("AZSRUN", "t=20;ph=" .. phase); now = now + 10;
+        check(AZS_GetTotems()[1].remaining == 5.5);
+    end;
+    local oldTotems = AZS_TOTEMS;
+    local updated = AZS_TOTEMS_UPDATED;
+    event, arg1, arg2 = "OTHER_EVENT", "AZSTOTEMS", "";
+    AZSApiFrame.handler();
+    check(AZS_TOTEMS == oldTotems and AZS_TOTEMS_UPDATED == updated);
+    line("AZSPETS", "");
+    check(AZS_TOTEMS == oldTotems and AZS_TOTEMS_UPDATED == updated);
+    line("AZSTOTEMS", "");
+    check(AZS_TOTEMS ~= oldTotems and table.getn(AZS_GetTotems()) == 0);
+    check(AZS_GetTotemCount() == 0 and AZS_TOTEMS_UPDATED == now);
+
+    -- Re-evaluating the bootstrap resets tables but does not clear timestamp globals.
+    local totemStamp, zoneStamp = AZS_TOTEMS_UPDATED, AZS_ZONE_UPDATED;
+    assert(execute(source))();
+    check(table.getn(AZS_TOTEMS) == 0 and AZS_ZONE.affixes == nil);
+    check(AZS_TOTEMS_UPDATED == totemStamp and AZS_ZONE_UPDATED == zoneStamp);
+    check(AZS_GetRunTime() == nil);
+    if current then
+        check(AZS_ON_TOP_FRAMES == "" and next(AZS_ON_TOP) == nil);
+        check(not AZS_IsOnTopOfScreens(nil));
+        local frame = { GetName = function() return "ZFixture"; end };
+        AZS_SetOnTopOfScreens(frame, true);
+        check(AZS_IsOnTopOfScreens(frame) and AZS_IsOnTopOfScreens("ZFixture"));
+        AZS_SetOnTopOfScreens("AFixture", 0); -- zero is truthy in Lua
+        check(AZS_ON_TOP_FRAMES == "AFixture,ZFixture");
+        AZS_SetOnTopOfScreens(frame, true);
+        check(AZS_ON_TOP_FRAMES == "AFixture,ZFixture");
+        AZS_SetOnTopOfScreens(frame, false);
+        check(not AZS_IsOnTopOfScreens(frame) and AZS_ON_TOP_FRAMES == "AFixture");
+        AZS_SetOnTopOfScreens("AFixture", nil);
+        check(AZS_ON_TOP_FRAMES == "");
+        for _, bad in ipairs({ "", false, 4, {} }) do
+            check(not pcall(AZS_SetOnTopOfScreens, bad, true));
+        end;
+        check(not pcall(AZS_SetOnTopOfScreens, nil, true));
+        AZS_SetOnTopOfScreens(" space ", true);
+        check(AZS_ON_TOP_FRAMES == " space "); -- no invented trimming
+        assert(execute(source))();
+        check(AZS_ON_TOP_FRAMES == "" and not AZS_IsOnTopOfScreens(" space "));
+    end;
+    print("PASS: " .. checks .. " shipped addon Lua assertions; stub host only");
+    return;
+end;
 if AZSMeterFrame then
     assert(table.getn(replay_requests) == 1);
     local request = replay_requests[1];
@@ -149,10 +292,6 @@ AZS_OpenStoredLevels(); assert(settings.spendLevels == "1");
 
 -- Invoke the actual embedded handler; event fan-out belongs to the real host
 -- and is covered by the authored, currently unrun Rust VM integration test.
-local function line(prefix, payload)
-    event, arg1, arg2 = "CHAT_MSG_ADDON", prefix, payload;
-    AZSApiFrame.handler();
-end
 line("AZSRUN", "t=8;ph=playing;sl=2;proc=150;pv=3;pm=1");
 now = 101;
 assert(AZS_GetRunTime() == 9 and AZS_GetStoredLevels() == 2);

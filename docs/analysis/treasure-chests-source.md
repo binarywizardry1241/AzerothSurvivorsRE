@@ -143,7 +143,7 @@ project-local analysis tools; it is separate from a normal build:
 
 ```sh
 python3 scripts/recover-treasure-chests.py --write-source-catalog
-python3 scripts/recover-treasure-chest-fixtures.py
+python3 scripts/recover-treasure-fixtures.py --contract chest-rules
 ```
 
 The first command regenerates curated byte/data evidence and the Rust catalog

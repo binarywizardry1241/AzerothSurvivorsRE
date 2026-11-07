@@ -164,11 +164,26 @@ def recorded_input_matches(value, expected, root=ROOT):
 
 class _RecordedInputChecks(ast.NodeTransformer):
     """Keep frozen producer checks explicit after a suite's live paths move."""
-    def __init__(self, functions, producer_hash_functions=(), reference_paths=(), reference_path=None):
+    def __init__(self, functions, producer_hash_functions=(), reference_paths=(), reference_path=None,
+                 command_rewrites=None):
         self.functions = set(functions)
         self.producer_hash_functions = set(producer_hash_functions)
         self.reference_paths = set(reference_paths)
         self.reference_path = reference_path
+        self.command_rewrites = command_rewrites or {}
+
+    def visit_List(self, node):
+        self.generic_visit(node)
+        if node.elts and isinstance(node.elts[0], ast.Constant) and node.elts[0].value == 'lua':
+            arguments = []
+            for argument in node.elts:
+                replacement = self.command_rewrites.get(argument.value) if isinstance(argument, ast.Constant) else None
+                if replacement:
+                    arguments.extend(ast.copy_location(ast.Constant(value=value), argument) for value in replacement)
+                else:
+                    arguments.append(argument)
+            node.elts = arguments
+        return node
 
     def visit_Constant(self, node):
         if isinstance(node.value, str) and node.value in self.reference_paths:
@@ -231,7 +246,7 @@ def run_contract(tool, arguments=None, root=ROOT):
     tree = ast.parse(raw, filename=str(tool))
     tree = _RecordedInputChecks(row.get('file_hash_functions', []),
         row.get('producer_hash_functions', []), row.get('reference_paths', []),
-        str(reference) if reference is not None else None).visit(tree)
+        str(reference) if reference is not None else None, row.get('command_rewrites')).visit(tree)
     ast.fix_missing_locations(tree)
     def producer_input_hash(value):
         path = Path(value)

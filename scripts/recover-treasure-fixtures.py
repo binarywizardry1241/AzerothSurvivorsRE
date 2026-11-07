@@ -6,8 +6,12 @@ Native SIMD/f32 operations determine outputs. Out-of-scope calls fail closed,
 except for the explicitly recorded placement, creation and removal stubs.
 The preserved 0.92 extractor and fixtures remain unchanged.
 """
-from script_sources import load_script
+from script_sources import load_script, run_contract
+
+if __name__ == "__main__":
+    run_contract(__file__)
 from native_recovery import reset_machine
+from coverage_common import artifact_path
 from pathlib import Path
 import hashlib
 import importlib.util
@@ -21,7 +25,7 @@ from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 
 TARGET_SHA256 = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-data = (ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe").read_bytes()
+data = artifact_path("installed-game/AzerothSurvivors.exe").read_bytes()
 assert hashlib.sha256(data).hexdigest() == TARGET_SHA256
 inventory = load_script("inventory", ROOT / "scripts/inventory-executable.py")
 pe = inventory.PE(data)

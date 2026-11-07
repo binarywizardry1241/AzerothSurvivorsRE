@@ -97,7 +97,7 @@ shared aggregation remain unverified.
 ```sh
 python3 -B scripts/check-amulet-names.py
 python3 -B scripts/check-amulet-names.py --parse-source
-python3 -B scripts/check-addon-timer-bridge.py
+python3 -B scripts/check-addon-timers.py --contract bridge
 ```
 
 The new check reproduces all **3,723** bounded cases, verifies current native

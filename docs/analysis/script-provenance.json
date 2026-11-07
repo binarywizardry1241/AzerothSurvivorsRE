@@ -30,6 +30,10 @@
       "scripts/run-execheck.py",
       "scripts/script_sources.py",
       "scripts/shared_analysis.py"
+    ],
+    "c2fd8b0ac4ada4baa907c95f13247b315b75a28b": [
+      "scripts/check-coop-directory-transport.py",
+      "scripts/check-addon-bootstrap.lua"
     ]
   },
   "relocations": {
@@ -2950,8 +2954,9 @@
       "status": "renamed"
     },
     "scripts/recover-treasure-chest-fixtures.py": {
-      "replacement": "scripts/recover-treasure-chest-fixtures.py",
-      "status": "shared-fixture"
+      "replacement": "scripts/recover-treasure-fixtures.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
     },
     "scripts/recover-treasure-interface-0.100.1.py": {
       "replacement": "scripts/recover-treasure-interface.py",
@@ -3040,6 +3045,106 @@
       "status": "renamed",
       "source_commit": "13cdbf074f367004021a80d58303cf08e55550b8",
       "source_sha256": "dfb84bd9fcc77b089ef08ecf1cab6e491e4a035ea9f7f8a2b877613a7101a750"
+    },
+    "scripts/check-addon-banners.py": {
+      "replacement": "scripts/check-addon-api.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-lifecycle.py": {
+      "replacement": "scripts/check-addon-api.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-contracts.py": {
+      "replacement": "scripts/check-addon-api.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-snapshot.py": {
+      "replacement": "scripts/check-addon-api.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-summons.py": {
+      "replacement": "scripts/check-addon-api.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-native.py": {
+      "replacement": "scripts/check-addon-api.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-map.py": {
+      "replacement": "scripts/check-addon-api.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-cache.py": {
+      "replacement": "scripts/check-addon-timers.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-cooldown.py": {
+      "replacement": "scripts/check-addon-timers.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-localizer.py": {
+      "replacement": "scripts/check-addon-timers.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-metadata.py": {
+      "replacement": "scripts/check-addon-timers.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-recovery-base.py": {
+      "replacement": "scripts/check-addon-timers.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-timer-bridge.py": {
+      "replacement": "scripts/check-addon-timers.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-coop-directory.py": {
+      "replacement": "scripts/check-coop-directory-transport.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-coop-directory-lifetime.py": {
+      "replacement": "scripts/check-coop-directory-transport.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-coop-directory-refresh.py": {
+      "replacement": "scripts/check-coop-directory-transport.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-coop-directory-response.py": {
+      "replacement": "scripts/check-coop-directory-transport.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-coop-directory-schema.py": {
+      "replacement": "scripts/check-coop-directory-transport.py",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "retained-contract"
+    },
+    "scripts/check-addon-timer-api.lua": {
+      "replacement": "scripts/check-addon-bootstrap.lua",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "merged-contract"
+    },
+    "scripts/check-addon-totem-api.lua": {
+      "replacement": "scripts/check-addon-bootstrap.lua",
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b",
+      "status": "merged-contract"
     }
   },
   "retained_execution_sources": {
@@ -3354,6 +3459,15 @@
     "scripts/check-coop-directory-transport.py": {
       "source_commit": "d07420bf2181be1a8a5c3bf36196fe8dfe39d611",
       "reason": "Preserve historical WebSocket checker bytes while extending the stable tool with the current raw transport RTT contract and factored writer guards."
+    },
+    "scripts/check-addon-api.py": {
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b"
+    },
+    "scripts/check-addon-timers.py": {
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b"
+    },
+    "scripts/recover-treasure-fixtures.py": {
+      "source_commit": "c2fd8b0ac4ada4baa907c95f13247b315b75a28b"
     }
   },
   "contract_suites": {
@@ -3490,6 +3604,122 @@
         "source_sha256": "325127c918702b458df1c53fdc9287a5b95b9a366f104d3dc3806a4b6a3ca044",
         "file_hash_functions": [],
         "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb"
+      },
+      "listing": {
+        "producer_path": "scripts/check-coop-directory.py",
+        "source_sha256": "ddb301d8ddae64334b3652020fba3be945f6b4ec8a9188d87ff4d9159e8513a1",
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+      },
+      "lifetime": {
+        "producer_path": "scripts/check-coop-directory-lifetime.py",
+        "source_sha256": "e3edf95b49e27da91a7d1c6c6e855868d49e41d31959d25875336e6f1fd129d5",
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+      },
+      "refresh": {
+        "producer_path": "scripts/check-coop-directory-refresh.py",
+        "source_sha256": "1bb98b3664e5f9578d4ea7b67f9b576bb8690315e291f5e994a2ddd743c93965",
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+      },
+      "response": {
+        "producer_path": "scripts/check-coop-directory-response.py",
+        "source_sha256": "47eadfa889231d8b50fd5622996db2509118adb617cfa87d46544b32174b7750",
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+      },
+      "schema": {
+        "producer_path": "scripts/check-coop-directory-schema.py",
+        "source_sha256": "d17c910c523f62789d2761a4dfa4b6f36c74160b4a92cd6677bfe5dab8a48a7b",
+        "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be"
+      }
+    },
+    "scripts/check-addon-api.py": {
+      "banners": {
+        "producer_path": "scripts/check-addon-banners.py",
+        "source_sha256": "6daee65c95572031c300a294cbe38b349b680b282129142855a386102b217244",
+        "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
+      },
+      "lifecycle": {
+        "producer_path": "scripts/check-addon-lifecycle.py",
+        "source_sha256": "701f67118fbf334d41bf9b4f54aed7b9c106723af150d98c9effc6f8df1b7e8a",
+        "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
+      },
+      "publication": {
+        "producer_path": "scripts/check-addon-contracts.py",
+        "source_sha256": "81594104bd76420877eae997fb73fd9b8754de5aaacb220211c1edc69ed7e43c",
+        "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
+      },
+      "snapshots": {
+        "producer_path": "scripts/check-addon-snapshot.py",
+        "source_sha256": "59724ae89df2709a0d0ab8f3aa1782e0fd23d5dbc9b27a34bf33b21dd119530c",
+        "target_sha256": "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
+      },
+      "summons": {
+        "producer_path": "scripts/check-addon-summons.py",
+        "source_sha256": "2c3c3f8bc4ccdf07edd036561bb3d7e7ac97c7f9000491625b8dba3b980db858",
+        "target_sha256": "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a"
+      },
+      "native-bridge": {
+        "producer_path": "scripts/check-addon-native.py",
+        "source_sha256": "35b14080fa0ec624e0521932f2bc2d068104e67905393bc2ab0839bc2250b0d2",
+        "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+        "reference_paths": [
+          "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
+        ]
+      },
+      "world-map": {
+        "producer_path": "scripts/check-addon-map.py",
+        "source_sha256": "86fc66e5c575c0b9ee118fe63174b1e99207b7ee7d0c4ec3cabbaabe2fe65ebf",
+        "target_sha256": "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7",
+        "reference_paths": [
+          "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
+        ]
+      }
+    },
+    "scripts/check-addon-timers.py": {
+      "cache": {
+        "producer_path": "scripts/check-addon-cache.py",
+        "source_sha256": "44875188284276b0be7682f0b9785ec8cb73b1a3b898b918b4eff47affe8ec1a",
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+      },
+      "cooldown": {
+        "producer_path": "scripts/check-addon-cooldown.py",
+        "source_sha256": "a63cfdfb88552ea6765930315aec802ac464148f1624388f4232c38740ecaeeb",
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+      },
+      "localizer": {
+        "producer_path": "scripts/check-addon-localizer.py",
+        "source_sha256": "9039826d179276d3297314ac79712e5f99042027d0696082cd5c4d2a87222baf",
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+      },
+      "metadata": {
+        "producer_path": "scripts/check-addon-metadata.py",
+        "source_sha256": "2b6cd6ff55dd5efeccb7f506abafab7bde028027b1b47e4c04be8efb01a9bfca",
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+      },
+      "recovery-base": {
+        "producer_path": "scripts/check-addon-recovery-base.py",
+        "source_sha256": "fba159b216154ebbc2dd8f0b52386dfce2e8f4d0c886dbb6a79a2b9c17ead371",
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
+      },
+      "bridge": {
+        "producer_path": "scripts/check-addon-timer-bridge.py",
+        "source_sha256": "4b68cf451be9b940a7aef532e439a4c30e7e089bf19e905950e0f3e8ee3e3f41",
+        "target_sha256": "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c",
+        "command_rewrites": {
+          "scripts/check-addon-timer-api.lua": [
+            "scripts/check-addon-bootstrap.lua",
+            "--timers"
+          ]
+        }
+      }
+    },
+    "scripts/recover-treasure-fixtures.py": {
+      "chest-rules": {
+        "producer_path": "scripts/recover-treasure-chest-fixtures.py",
+        "source_sha256": "6dc01c893438e4d938fff12421409630e5fd3de5dcdcdcd3da6b7b45718387f0",
+        "target_sha256": "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2",
+        "reference_paths": [
+          "AzerothSurvivors/AzerothSurvivors.exe"
+        ]
       }
     }
   }

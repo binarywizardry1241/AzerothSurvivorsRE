@@ -16,7 +16,7 @@ import struct
 import tomllib
 
 from coverage_common import ROOT, installed_identity, latest_target, target_bytes
-from script_sources import load_script
+from script_sources import load_script, run_contract
 
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
@@ -610,6 +610,7 @@ def check_primary_failure(target, data, pe):
 
 
 def main():
+    run_contract(__file__)
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--source-only", action="store_true", help="Check retained socket source wiring without revalidating historical native evidence")

@@ -14,7 +14,7 @@ import struct
 import sys
 
 from coverage_common import ROOT, latest_target, target_bytes
-from script_sources import load_script
+from script_sources import load_script, run_contract
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
 EVIDENCE = ROOT / "docs/analysis/evidence/0.115.0/addon-timers"
@@ -88,6 +88,7 @@ def row_record(row):
 
 
 def main():
+    run_contract(__file__)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true", help="retain checked native cases")
     args = parser.parse_args()

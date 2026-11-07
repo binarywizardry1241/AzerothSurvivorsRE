@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from script_sources import load_script
+from script_sources import load_script, run_contract
 from coverage_common import project_path
 
 
@@ -30,6 +30,7 @@ def select_manifest(raw, explicit=None):
 
 
 def main():
+    run_contract(__file__)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--manifest', help='Reviewed native addon API manifest')
     parser.add_argument('--extract', help='Embedded API extraction binding; defaults beside the manifest directory')

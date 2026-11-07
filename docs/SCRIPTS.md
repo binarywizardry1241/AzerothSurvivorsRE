@@ -27,6 +27,8 @@ both documents; moving a finding does not close its verification.
 | Acquire a whole-image native census | `census-native-image.py`, with the REA driver |
 | Recover a feature or check its contracts | Extend the closest existing recovery/checking entry point |
 | Select a retained semantic suite | The existing tool's `--list-contracts` and `--contract <name>` |
+| Check addon bootstrap, timers and totems | `check-addon-bootstrap.lua` with the default suite, `--timers` or `--totems` |
+| Check native addon API, timers or co-op directory | `check-addon-api.py`, `check-addon-timers.py` and `check-coop-directory-transport.py` expose their retained suites through `--list-contracts` |
 | Consolidate identical analysis payloads | `consolidate-analysis-exports.py` |
 | Inspect a recorded execution source | `script_sources.py --show ... --sha256 ...` |
 

@@ -45,7 +45,7 @@ and validation limits.
 
 ## Static checks
 
-`scripts/check-coop-directory-schema.py` verifies **617 exact owner
+`scripts/check-coop-directory-transport.py --contract schema` verifies **617 exact owner
 instructions**, **71 selected contract instructions**, all three key bindings
 and the complete journaled Ghidra receipt with the shared native-subject verifier.
 The raw query input is checked against the selected installed PE's exact bytes
@@ -63,5 +63,5 @@ Compilation, full directory/service execution, filtering interactions, rendered
 colors/labels and original/rebuilt parity remain unverified.
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-coop-directory-schema.py
+PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-coop-directory-transport.py --contract schema
 ```
