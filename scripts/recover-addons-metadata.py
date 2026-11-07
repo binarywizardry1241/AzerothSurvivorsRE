@@ -17,8 +17,8 @@ from coverage_common import ROOT, latest_target, target_bytes
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 START, END = 0x1411dde70, 0x1411ddf2d
 WORK = ROOT / 'runtime/analysis/history/interface/menu-lifecycle/969b671942c0/1411dde70'
-STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/addons-metadata'
-RETAINED = ROOT / 'docs/analysis/evidence/0.109.0/addons-metadata'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/addons-metadata'
+RETAINED = ROOT / 'docs/analysis/evidence/addons-metadata'
 
 
 def encoded(value):

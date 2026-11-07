@@ -21,8 +21,8 @@ ROOT = Path(__file__).resolve().parents[1]
 EXE = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK = ROOT / "runtime/analysis/history/native-recovery/meter-screen/fc23cd6fef39"
-STAGE = ROOT / "runtime/analysis/staging/native-evidence/0.105.0/run-meters/screen"
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/run-meters/screen"
+STAGE = ROOT / "runtime/analysis/staging/native-evidence/run-meters/screen"
+RETAINED = ROOT / "docs/analysis/evidence/run-meters/screen"
 SPANS = {
     "settings-save": (0x1401661E0, 0x1401662FD),
     "settings-load": (0x1401664A7, 0x14016660D),

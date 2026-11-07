@@ -2,9 +2,9 @@
 
 Authority is the configured installed EXE, version **0.112.0**, SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The [manifest](evidence/0.112.0/raid-frame-continuation/manifest.json) binds
+The [manifest](evidence/raid-frame-continuation/manifest.json) binds
 current instructions, visited paths, source guards and explicit fixture seams.
-[Current Ghidra provenance](evidence/0.112.0/raid-frame-continuation/rea-provenance.json)
+[Current Ghidra provenance](evidence/raid-frame-continuation/rea-provenance.json)
 binds the independently located XP owner and its retained final-gate excerpt.
 This extends the [guardian provider recovery](raid-guardian-lifecycle.md)
 at the live frame and stored-level boundaries. It does not establish whole-frame

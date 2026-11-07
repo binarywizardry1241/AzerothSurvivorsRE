@@ -3,8 +3,8 @@
 Target **0.120.0**, 145,447,424 bytes, SHA-256
 `291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08`.
 The [race purchase contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-contracts-0.120.0.md) owns the shared
-account interfaces. The canonical [loader proof](evidence/0.120.0/race-account/manifest.json)
-and [serializer/reset proof](evidence/0.120.0/race-unlocks/manifest.json)
+account interfaces. The canonical [loader proof](evidence/race-account/manifest.json)
+and [serializer/reset proof](evidence/race-unlocks/manifest.json)
 retain their original native bytes and Ghidra query commitments.
 
 ## Recovered persistence contract
@@ -58,7 +58,7 @@ families and leave ownership available to the serializer.
 python3 -B scripts/check-race-persistence.py
 ```
 
-The [recorded result](evidence/0.120.0/race-persistence/check.json) verifies
+The [recorded result](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.120.0/race-persistence/check.json) verifies
 11 canonical native ranges / 767 independently decoded instructions and four
 completed durable loader queries. It replays 80 reset cases / 2,192 original
 instructions in synthetic memory, comparing all 576 account bytes and the

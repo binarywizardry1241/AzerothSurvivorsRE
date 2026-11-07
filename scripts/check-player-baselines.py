@@ -9,7 +9,7 @@ from native_recovery import f32 as _shared_f32, bits as _shared_bits
 import argparse,hashlib,json,struct
 import native_talent_fixture as n
 
-OUT=n.ROOT/'docs/analysis/evidence/0.112.0/balance/player-baselines.json'
+OUT=n.ROOT/'docs/analysis/evidence/balance/player-baselines.json'
 def f(value):
     return _shared_f32(value)
 def bits(value):

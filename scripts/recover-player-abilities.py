@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 SHA256 = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
 CATALOG = ROOT / "crates/azeroth-survivors-re/src/player_abilities/catalog.rs"
-EVIDENCE = ROOT / "docs/analysis/evidence/0.97.2/player-abilities/catalog.json"
+EVIDENCE = ROOT / "docs/analysis/evidence/player-abilities/catalog.json"
 NATIVE = (
     (0x1454F94C0, 0x1454F96C1, 'upgrade-magnitude', 'PE RUNTIME_FUNCTION'),
     (0x14540F1C0, 0x14540F41A, 'learned-rarity', 'PE RUNTIME_FUNCTION'),

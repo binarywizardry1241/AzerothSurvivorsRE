@@ -19,7 +19,7 @@ and accept/reroll consumers.
 ## Native keyboard contract
 
 The complete **921-byte** handler is `[0x1400b3420,0x1400b37b9)`.
-[Ghidra](evidence/0.113.2/card-keyboard/ghidra.json) independently reports precisely this inclusive function
+[Ghidra](evidence/card-keyboard/ghidra.json) independently reports precisely this inclusive function
 body through `0x1400b37b8`. Its early gates require Cards `+0x18 != 0`, Cards
 closing byte `+0x10 == 0`, and InputCapture byte `+1 == 0`. Nonzero capture bytes,
 including synthetic malformed 2 and 255, reach the epilogue without calling
@@ -57,7 +57,7 @@ through `Digit4`, `Numpad1` through `Numpad4`, and `KeyR` to exactly those value
 For example, comparison `0x14435139e` branches to `0x1443524d6`, which writes
 **37**. Only the visited selected paths are retained in
 `key-name-decoder.asm`; the guarded 19-entry length table and admitted lengths
-4/6/7 are committed in the [manifest](evidence/0.113.2/card-keyboard/manifest.json). The retained Bevy 0.18.1
+4/6/7 are committed in the [manifest](evidence/card-keyboard/manifest.json). The retained Bevy 0.18.1
 enum independently agrees, counting payload-bearing `Unidentified` as one
 variant. This source correspondence is additional evidence, not the sole basis
 for assigning names to native values.

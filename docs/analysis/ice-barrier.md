@@ -4,7 +4,7 @@ The selected installed EXE has SHA-256
 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
 Spell 11426 uses an Ice Barrier balance at Game `+0x570` within total absorb
 at `+0x56c`. The active spell reservation remains at `+0x540/+0x544`.
-[Instruction ranges and hashes](evidence/0.139.2/ice-barrier.json)
+[Instruction ranges and hashes](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/ice-barrier.json)
 
 | Transition | Native owner | Source behavior |
 | --- | --- | --- |

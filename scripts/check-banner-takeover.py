@@ -21,7 +21,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
-OUT = ROOT / 'docs/analysis/evidence/0.115.0/banner-takeover'
+OUT = ROOT / 'docs/analysis/evidence/banner-takeover'
 WORK = ROOT / 'runtime/analysis/history/addon/banner-takeover/d697375a5b27/checks'
 RANGES = {
     'banner-registry-read': (0x1402B220F, 0x1402B226C),
@@ -323,10 +323,10 @@ def main():
             assert actual == expected and opcode == 0x96 and capacity >= length
             packets.append([name, body, digest(actual)])
 
-    api_path = 'docs/analysis/evidence/0.115.0/embedded-api.lua'
+    api_path = 'docs/analysis/evidence/embedded-api.lua'
     api = (ROOT / api_path).read_bytes()
     assert data[0x70063F0:0x70063F0 + len(api)] == api
-    baseline = (ROOT / 'docs/analysis/evidence/0.112.0/addon-api.lua').read_text()
+    baseline = (ROOT / 'docs/analysis/evidence/addon-api/bootstrap-contract.lua').read_text()
     functions = ['AZS_SetHudShown', 'AZS_IsHudShown', 'AZS_RegisterBannerHandler',
                  'AZS_UnregisterBannerHandler', 'AZS_ParseBanner', 'AZS_OnBanner']
     for name in functions:

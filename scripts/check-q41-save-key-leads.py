@@ -11,7 +11,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes, file_sha256, json_text
 from script_sources import load_script
 
-KEEP = ROOT/'docs/analysis/evidence/0.113.2/save-key-leads.json'
+KEEP = ROOT/'docs/analysis/evidence/save-key-leads.json'
 WORK = ROOT/'runtime/analysis/history/findings/q41-save-key-leads/1b5e8184d5b5'
 
 
@@ -25,14 +25,14 @@ def main():
     assert target['sha256']=='58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
     image=target_bytes(target)
     pe=load_script('save_key_pe',ROOT/'scripts/inventory-executable.py').PE(image)
-    queue=ROOT/'docs/analysis/evidence/0.113.2/unknown-recovery.json';q=json.loads(queue.read_text())
+    queue=ROOT/'docs/analysis/evidence/unknown-recovery-comparison-2.json';q=json.loads(queue.read_text())
     item=q['inputs']['inventory.json'];assert file_sha256(retained_runtime_path(ROOT/item['path'], ROOT))==item['sha256']
     inventory=json.loads((retained_runtime_path(ROOT/item['path'], ROOT)).read_text());leads=inventory['embedded_candidates']['save_configuration_key_lead']
     assert len(leads)==5
     for lead in leads:
         at=int(lead['file_offset'],16);raw=image[at:at+lead['byte_count']]
         assert raw.decode()==lead['literal'] and hashlib.sha256(raw).hexdigest()==lead['sha256']
-    operand=ROOT/'docs/analysis/evidence/0.113.2/native-operand-boundaries.json';o=json.loads(operand.read_text())
+    operand=ROOT/'docs/analysis/evidence/native-operand-boundaries.json';o=json.loads(operand.read_text())
     assert file_sha256(ROOT/o['inventory']['path'])==o['inventory']['sha256']
     references=[]
     spans=[(int(r['virtual_address'],16),int(r['virtual_address'],16)+r['byte_count'])for r in leads]

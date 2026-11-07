@@ -3,7 +3,7 @@
 Installed EXE SHA-256
 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
 Parent **#41**, selectors **Q41-F01/F02**, with bounded **M03** candidate output.
-The [proof](evidence/0.113.2/computed-flows.json) classifies every original
+The [proof](evidence/computed-flows.json) classifies every original
 computed-flow record against the exact current PE bytes and preserves each
 selector digest. It does not change the census or establish AS/source semantics.
 
@@ -28,7 +28,7 @@ differences are retained, not added together or promoted to missing functions.
 
 ## Current static candidates and boundaries
 
-The [current candidate classifier](evidence/0.113.2/native-call-candidates.json)
+The [current candidate classifier](evidence/native-call-candidates.json)
 consumes the verified full-image census, initial PE import/relocation slots and
 bounded straight-line register propagation. The complete 81,975-record artifact
 remains ignored and is bound by digest. Of these records, 1,555 have encoded

@@ -24,7 +24,7 @@ existing normalized stat/current-damage adapter; regeneration reaches the normal
 health tick. The new seed adds no separate refresh, writer or gameplay rule.
 
 `python3 -B scripts/check-player-baselines.py` reproduces the
-[compact result](evidence/0.112.0/balance/player-baselines.json): **7,776** full
+[compact result](evidence/balance/player-baselines.json): **7,776** full
 original numeric-refresh prefixes, comparing **85,536** exact scalar bit values.
 Profiles cover nine class records, eight race records, levels 1–100 and eight
 explicit zero/f32/u32 boundaries. The previous source differs in **675** compared
@@ -33,7 +33,7 @@ source arithmetic model agrees with all fields. It also verifies the existing
 subtract/add damage projection retains those selected bits and traces the real
 entry/refresh/damage/regeneration source consumers.
 
-The [manifest](evidence/0.112.0/balance/player-baseline-manifest.json) binds a
+The [manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/balance/player-baseline-manifest.json) binds a
 fresh REA/Ghidra import of `1458f28e0..1458f3aaf` and the selected level/racial/
 finalization instructions. Existing aura/buff-store and gear intervals retain
 their canonical extracts; they are referenced rather than duplicated. The full

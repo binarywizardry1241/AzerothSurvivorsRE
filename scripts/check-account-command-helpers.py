@@ -74,7 +74,7 @@ for owned,ach,oldtabs in [({},[],[]),({},allach,[]),({'rerolls':1},allach,[]),({
 # Replay Reset through the full dispatcher after the actual accepted plan,
 # separately with and without the real file parser between those two commands.
 # This owns no duplicate native extract: reuse the canonical dispatcher range.
-dispatcher=json.loads((ROOT/'docs/analysis/evidence/0.109.0/terminal-flow/manifest.json').read_text())
+dispatcher=json.loads((ROOT/'docs/analysis/evidence/terminal-flow/manifest.json').read_text())
 dispatch_owner=next(row for row in dispatcher['ranges']if row['role']=='dispatcher')
 assert hashlib.sha256(c.raw(0x1458bb9f0,0x1458bd2a8)).hexdigest()==dispatch_owner['sha256']
 def reset_after_plan(resets):
@@ -94,7 +94,7 @@ def reset_after_plan(resets):
 # Sidebar admission block reads the already computed saturating remaining
 # reset count, edited flag and owned vector. Execute its current instructions;
 # this does not pretend to run the renderer/query or alter input-time admission.
-rewards_manifest=json.loads((ROOT/'docs/analysis/evidence/0.109.0/rewards-menu/manifest.json').read_text())
+rewards_manifest=json.loads((ROOT/'docs/analysis/evidence/rewards-menu/manifest.json').read_text())
 for role in ['reset','sidebar']:
  owner=next(row for row in rewards_manifest['functions']if row['name']==role)
  assert hashlib.sha256(c.raw(int(owner['address'],16),int(owner['end_exclusive'],16))).hexdigest()==owner['sha256']
@@ -147,7 +147,7 @@ for earned in [[],['zone:duskwood'],allach]:
   petcases.append(dict(earned=earned,input=values,output=got))
 print(len(rewardcases),'Rewards plans,',len(petcases),'Pets payloads and',len(lifecyclecases),'zero-rank serialize/reload/Reset sequences passed')
 parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--write',action='store_true');args=parser.parse_args()
-out=ROOT/'docs/analysis/evidence/0.109.0/account-command-helpers'
+out=ROOT/'docs/analysis/evidence/account-command-helpers'
 if args.write:out.mkdir(parents=True,exist_ok=True)
 # Reuse current helper owners rather than copying their existing extracts.
 canonical={}

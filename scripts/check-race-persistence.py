@@ -23,9 +23,9 @@ from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn import x86_const as reg
 
 SHA = "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08"
-PROOF = ROOT / "docs/analysis/evidence/0.120.0/race-unlocks/manifest.json"
+PROOF = ROOT / "docs/analysis/evidence/race-unlocks/manifest.json"
 SOURCE = ROOT / "crates/azeroth-survivors-re/src"
-LOADER_PROOF = ROOT / "docs/analysis/evidence/0.120.0/race-account/manifest.json"
+LOADER_PROOF = ROOT / "docs/analysis/evidence/race-account/manifest.json"
 
 
 def digest(raw):

@@ -384,7 +384,7 @@ mod tests {
     #[test]
     fn activity_preserves_historical_english_vectors_with_current_zone_labels() {
         let vectors: Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/discord-presence/native-vectors.json"
+            "../../../docs/analysis/evidence/discord-presence/native-vectors.json"
         ))
         .unwrap();
         let catalog = MenuCatalog::embedded();

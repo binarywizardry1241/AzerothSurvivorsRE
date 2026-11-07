@@ -2,10 +2,10 @@
 
 Gap **#41** source/static recovery for the installed EXE with SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The [compact native/source check](evidence/0.112.0/choice-contracts.json) and
-[focused Ghidra observations](evidence/0.112.0/choice-contracts-ghidra.json)
+The [compact native/source check](evidence/choice-contracts.json) and
+[focused Ghidra observations](evidence/choice-contracts-ghidra.json)
 bind the result to current bytes. Existing
-[producer contracts](evidence/0.112.0/native-producer-contracts.json) remain the
+[producer contracts](evidence/native-producer-contracts.json) remain the
 canonical copy of their descriptor, weighted-record, cursor, publication and
 selector extracts.
 

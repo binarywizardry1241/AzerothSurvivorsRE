@@ -50,7 +50,7 @@ def main():
                   locales=records,
                   limitations=['Catalog presence establishes translated source text, not that every owned UI consumer is connected.',
                                'Font coverage and locale-specific runtime rendering require separate validation.'])
-    (ROOT/'docs/analysis/evidence/0.92/menu-localization.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
+    (ROOT/'docs/analysis/evidence/menu-localization.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
 
 if __name__ == '__main__':
     main()

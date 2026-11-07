@@ -15,9 +15,9 @@ from script_sources import load_script
 sys.path.insert(0, str(ROOT/'runtime/tool-state/python/camera/python-libs'))
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 
-SUMMARY = ROOT/'docs/analysis/evidence/0.113.2/native-operand-boundaries.json'
+SUMMARY = ROOT/'docs/analysis/evidence/native-operand-boundaries.json'
 WORK = ROOT/'runtime/analysis/history/findings/q41-address-leaves/ef7c59e5f26b'
-KEEP = ROOT/'docs/analysis/evidence/0.113.2/address-leaves'
+KEEP = ROOT/'docs/analysis/evidence/address-leaves'
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 
 

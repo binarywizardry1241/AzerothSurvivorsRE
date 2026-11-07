@@ -7,9 +7,9 @@ This is the bounded source/recovery portion of permanent gap #21.
 
 ## Native contract
 
-The [manifest](evidence/0.105.0/stored-level-bindings/manifest.json) retains four
+The [manifest](evidence/stored-level-bindings/manifest.json) retains four
 canonical REA/Ghidra instruction extracts. The
-[selected data](evidence/0.105.0/stored-level-bindings/selected-data.json) binds
+[selected data](evidence/stored-level-bindings/selected-data.json) binds
 the command/header/default and format literals to original PE ranges.
 
 | Owner | Recovered behavior |
@@ -19,7 +19,7 @@ the command/header/default and format literals to original PE ranges.
 | `0x1458e71b0` | Installs those transformations for `Interface\FrameXML\Bindings.xml` and `WTF\DefaultBindings.wtf`. |
 | `0x1400f39a0` | Gives the custom Options row the localized `Level Up!` label and its header `Azeroth Survivors`. The separately embedded addon API's FrameXML label remains `Open Level-Ups`. |
 
-The exact selected-target [addon API](evidence/0.105.0/game-mode-audit/addon-api.lua)
+The exact selected-target [addon API](evidence/addon-api/game-mode-contract.lua)
 already provides `AZS_OpenStoredLevels`, which writes `spendLevels=1`.
 The binding checker supplies this recorded API explicitly to the shared Lua
 contract suite; it does not depend on the suite's newer default input.

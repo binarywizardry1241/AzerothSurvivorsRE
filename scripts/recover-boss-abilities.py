@@ -6,7 +6,7 @@ import hashlib, importlib.util, json, struct, subprocess
 ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA='a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
-OUT=ROOT/'docs/analysis/evidence/0.97.2/bosses'
+OUT=ROOT/'docs/analysis/evidence/bosses'
 RUNTIME=ROOT/'runtime/analysis/history/raid/boss-abilities/16e013fe9d5f'
 BRANCHES=(0x1454ccd0a,0x1454ccf5e,0x1454ccd73,0x1454ccf2a,0x1454ccd44)
 FUNCTIONS=(0x1454eeaa0,0x14544b1a0,0x1454f0710,0x1454f08d0)
@@ -38,7 +38,7 @@ def main():
  for a in CONSTANTS:
   o=pe.rva_offset(a-pe.image_base);raw=data[o:o+16];constants.append(dict(va=hex(a),hex=raw.hex(),f32=list(struct.unpack('<4f',raw))))
  a=0x1469acdc0;o=pe.rva_offset(a-pe.image_base);table=dict(**bound(a,a+20),hex=data[o:o+20].hex(),branches=[hex(a+struct.unpack_from('<i',data,o+4*j)[0]) for j in range(5)])
- catalog=json.loads((ROOT/'docs/analysis/evidence/0.97.2/guardians/guardian-catalog.json').read_text());assert catalog['target_sha256']==SHA
+ catalog=json.loads((ROOT/'docs/analysis/evidence/guardians/guardian-catalog.json').read_text());assert catalog['target_sha256']==SHA
  rows=[]
  for zone in catalog['zones']:
   for boss in zone['bosses']:

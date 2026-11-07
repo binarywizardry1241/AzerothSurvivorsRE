@@ -75,6 +75,25 @@ class ScriptSources(unittest.TestCase):
         self.assertTrue(sources.recorded_input_matches(name, hashlib.sha256(original).hexdigest(), self.root))
         self.assertFalse(sources.recorded_input_matches(name, hashlib.sha256(owner.read_bytes()).hexdigest(), self.root))
 
+    def test_evidence_prefix_archive_and_live_category_are_independent(self):
+        from artifact_history import read_artifact
+
+        commit = '869aa7fbc7a177d6dacaa1b3e69b12b24842cc47'
+        prefix = 'docs/analysis/evidence/0.141.0'
+        name = prefix + '/as-discovery-reviews.json'
+        category = 'docs/analysis/evidence/as-discovery-reviews.json'
+        owner = self.root / category
+        owner.parent.mkdir()
+        owner.write_bytes(b'{"current": true}\n')
+        (owner.parent.parent / 'artifact-history.json').write_text(json.dumps([{
+            'source_commit': commit, 'prefixes': [prefix],
+            'relocations': {name: category}}]))
+        original = subprocess.check_output(['git', 'cat-file', 'blob', f'{commit}:{name}'], cwd=sources.ROOT)
+        self.assertEqual(sources.current_path(name, self.root), owner)
+        self.assertEqual(read_artifact(name, self.root), original)
+        self.assertTrue(sources.recorded_input_matches(name, hashlib.sha256(original).hexdigest(), self.root))
+        self.assertFalse(sources.recorded_input_matches(name, hashlib.sha256(owner.read_bytes()).hexdigest(), self.root))
+
     def test_archived_report_keeps_exact_proof_and_a_separate_live_guide(self):
         original_path = 'docs/addon-api/local-clock-proposal-supplied.md'
         guide = self.root / 'docs/addon-api.md'

@@ -14,7 +14,7 @@ import sys
 
 from coverage_common import ROOT, latest_target, json_text, project_path
 
-EVIDENCE = ROOT / "docs/analysis/evidence/0.105.0/custom-dbc"
+EVIDENCE = ROOT / "docs/analysis/evidence/custom-dbc"
 
 
 def vectors(raw, utf8_raw, utf8_widths):

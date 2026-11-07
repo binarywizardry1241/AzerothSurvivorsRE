@@ -2,7 +2,7 @@
 
 This report uses installed **0.109.0**, SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [manifest](evidence/0.109.0/terminal-flow/manifest.json) binds current
+The [manifest](evidence/terminal-flow/manifest.json) binds current
 owners, instruction intervals, current TypeIds and fresh REA/Ghidra results.
 The source correction is in `gameplay/terminal.rs`: preserve every admitted
 terminal command in query order, and deliver the two native gossip-completion

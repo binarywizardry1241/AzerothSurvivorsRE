@@ -107,13 +107,13 @@ mod tests {
 
     fn fixture() -> serde_json::Value {
         serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.105.0/demon-effects/native-vectors.json"
+            "../../../../docs/analysis/evidence/demon-effects/native-vectors.json"
         ))
         .unwrap()
     }
     fn population_fixture() -> serde_json::Value {
         serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.127.0/warlock-population/native-cases.json"
+            "../../../../docs/analysis/evidence/warlock-population/native-cases.json"
         ))
         .unwrap()
     }

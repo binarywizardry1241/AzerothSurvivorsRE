@@ -10,7 +10,7 @@ integration task owns implementation and any build/launch results.
 
 The source-owned [run entry asset](../../crates/azeroth-survivors-re/assets/run-entry-0.97.2.json)
 contains the recovered table and neutral values. Its build/runtime consumer does
-not require the original EXE. [The manifest](evidence/0.97.2/run-entry/manifest.json)
+not require the original EXE. [The manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/run-entry/manifest.json)
 retains full source-span hashes, eight REA records, original PE disassembly,
 class rows and constants. Adjacent `.ghidra.c` files are provider output rather
 than original Rust; exports trim presentation whitespace while the manifest
@@ -50,7 +50,7 @@ the result in an Arc-like object. The radius extension is at
 shared LCG once before constructing the new run. The fresh Game constructor
 independently resolves ground from the selected spawn, preferring its primary
 provider and then its secondary provider before retaining the fallback height.
-The complete existing [constructor evidence](evidence/0.97.2/enemies/initialization-native.json)
+The complete existing [constructor evidence](evidence/enemies/initialization-native.json)
 owns its stack-to-Game aggregate mapping and remaining initialization.
 
 The native Enter request/menu resource remains owned by

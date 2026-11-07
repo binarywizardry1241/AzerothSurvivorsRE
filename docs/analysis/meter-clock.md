@@ -22,7 +22,7 @@ game clock for a local simulation. It preserves the native missing/wrong-type
 zero fallback. This fixes the clock source for every meter mode; Party DPS's
 fourth mode is a separate source addition under #251.
 
-The [bound evidence](evidence/0.121.0/meter-clock.json) records eight passing
+The [bound evidence](evidence/meter-clock.json) records eight passing
 unchanged-instruction cases, including HUD ahead of/behind State, signed and
 unsigned numbers, f64 zero, missing, null and wrong-type data. Its only semantic
 seam is JSON lookup with the exact `time` key and root HUD pointer. Native code,

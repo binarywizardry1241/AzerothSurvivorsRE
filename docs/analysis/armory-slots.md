@@ -42,12 +42,12 @@ copies, all415 connected ordinary item slot fields, 4,864 native class-slot call
 (all256 byte classes by19 slots), and1,792 complete ordered vectors (nine valid
 plus five invalid class inputs, each with all128 achievement masks). It executes
 the original collector, predicate, class guards/iteration and sorted achievement
-membership. [Cases and body/table hashes](evidence/0.112.0/armory-slots/cases.json)
-and [Ghidra identities](evidence/0.112.0/armory-slots/analysis.json) bind the proof.
+membership. [Cases and body/table hashes](evidence/armory-slots/cases.json)
+and [Ghidra identities](evidence/armory-slots/analysis.json) bind the proof.
 
 The ordinary metadata seam supplies only slots from current armor and weapon
 records. Its grammar is independently recovered in the canonical
-[ordinary item constructor](evidence/0.112.0/balance/ordinary-gear-reader.ghidra.c);
+[ordinary item constructor](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/balance/ordinary-gear-reader.ghidra.c);
 item formatting, names and effects are not executed by this check. Allocation,
 Vec growth and byte comparison are host seams. The rebuild producer and viewport
 forwarding are statically recovered. This runs no compiler, game, filesystem,

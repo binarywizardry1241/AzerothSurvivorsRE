@@ -126,7 +126,7 @@ record=dict(target_sha256=target['sha256'],target_executed=False,
                     'Only menu keys/text/icons/points/categories are compared. Gameplay grants, achievement predicates and unlock vectors are not certified.'])
 import argparse
 parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args()
-path=R/('runtime/analysis/staging/native-evidence/0.109.0/achievements-menu' if args.stage else 'docs/analysis/evidence/0.109.0/achievements-menu')/'catalog.json'
+path=R/('runtime/analysis/staging/native-evidence/achievements-menu' if args.stage else 'docs/analysis/evidence/achievements-menu')/'catalog.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print('Passed365 native menu fields, all73entries/1520points and live summary consumers')

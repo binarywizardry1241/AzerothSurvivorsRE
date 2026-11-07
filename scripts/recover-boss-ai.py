@@ -18,7 +18,7 @@ from enemy_evidence import curated_native
 ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA='a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
-OUT=ROOT/'docs/analysis/evidence/0.97.2/bosses'
+OUT=ROOT/'docs/analysis/evidence/bosses'
 RUNTIME=ROOT/'runtime/analysis/history/raid/boss-ai/d107ee102a48'
 
 
@@ -105,7 +105,7 @@ def main():
         reset();uc.mem_write(ACTOR+0x38,bytes([latched]));putf(ACTOR+0xf0,health);putf(ACTOR+0xf4,100)
         execute(0x1454cae88,0x1454caeab,[0x1454caeab])
         enrage.append(dict(latched=latched,health_bits=bits(health),max_health_bits=bits(100),enraged_after=bool(uc.mem_read(ACTOR+0x38,1)[0])))
-    catalog=json.loads((ROOT/'docs/analysis/evidence/0.97.2/guardians/guardian-catalog.json').read_text())
+    catalog=json.loads((ROOT/'docs/analysis/evidence/guardians/guardian-catalog.json').read_text())
     assert catalog['target_sha256']==SHA
     timers=[]
     for zone in catalog['zones']:

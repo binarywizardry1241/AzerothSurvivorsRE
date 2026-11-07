@@ -612,7 +612,7 @@ mod tests {
     #[test]
     fn generic_indices_and_numeric_partitions_match_current_native_aggregate() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.112.0/gameplay-frontiers/contracts.json"
+            "../../../docs/analysis/evidence/gameplay-frontiers/contracts.json"
         ))
         .unwrap();
         for case in fixture["aggregate_order_fixtures"].as_array().unwrap() {
@@ -665,7 +665,7 @@ mod tests {
     fn hit_tokens_match_all_800_selected_native_cases() {
         use conditions::Event;
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.100.1/treasure-interface/hit-token-native.json"
+            "../../../docs/analysis/evidence/treasure-interface/hit-token-native.json"
         ))
         .unwrap();
         assert_eq!(fixture["target_sha256"], TARGET_SHA256);

@@ -2,7 +2,7 @@
 
 [Finding #188](../verification-needed.md#gap-188) uses the installed 0.139.2
 EXE, SHA-256 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
-The [evidence record](evidence/0.139.2/racial-balance.json) binds the selected
+The [evidence record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/racial-balance.json) binds the selected
 PE data, instruction spans and constructor query. The 0.139.1 audit and
 [0.120.0 race ownership and run carry](race-run-carry.md) retain their
 original provenance.

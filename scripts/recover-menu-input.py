@@ -117,7 +117,7 @@ def main():
             "Scrollbar input contains a fallback collection of136-byte records. Its original type identity is not yet bound, so source does not substitute a guessed touch/input collection.",
             "Full shared-wheel query membership, schedule/run predicates and overlap behavior across every root remain incomplete.",
         ])
-    output = ROOT / "docs/analysis/evidence/0.97.2/catalog-menu-input-native.json"
+    output = ROOT / "docs/analysis/evidence/catalog-menu-input-native.json"
     output.write_text(portable_json(report, ensure_ascii=False, indent=2) + "\n")
     print(f"Collected {output.relative_to(ROOT)}")
 

@@ -15,7 +15,7 @@ Missing or incompatible data and backend behavior remain runtime-unverified.
 
 ## Native evidence and implementation
 
-[Hash-bound evidence](evidence/0.97.2/menu-compositor-0.97.2.json) records eight
+[Hash-bound evidence](evidence/menu-compositor.json) records eight
 original PE function spans, original constants, eight REA/Ghidra records and four
 complete embedded WGSL matches. The raw imports have generic GCC ABI, omit external
 code/data and do not recover Rust symbols. Original Windows x64 instructions,

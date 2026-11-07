@@ -14,7 +14,7 @@ shared wrapping counter, GUID, player ownership, spell, radius and position
 fields are unchanged by this source correction.
 
 `scripts/check-raid-hazards.py` executes current original instructions
-with synthetic state. Its [manifest](evidence/0.112.0/raid-hazards/manifest.json)
+with synthetic state. Its [manifest](evidence/raid-hazards/manifest.json)
 records 163 reachable action producer cases, ten transformation-field cases,
 fourteen marker-kind cases, 192 movement-admission cases, seventy radius
 boundary cases and 480 dynamic-object constructions. The radius cases include
@@ -33,7 +33,7 @@ line, bomb, shield, wave, volley, minion or shared actor-frame completeness.
 The complete current graph, generic durations and initial-request tower filter
 retain their [canonical owner](raid-native.md).
 
-[Ghidra provenance](evidence/0.112.0/raid-hazards/rea-provenance.json) binds
+[Ghidra provenance](evidence/raid-hazards/rea-provenance.json) binds
 completed 12.1.4 raw imports for the current lookup and dynamic-object helper.
 Their raw input and pseudocode hashes are independent of the instruction
 fixtures. Raw imports omit external data/code and full-image callers;

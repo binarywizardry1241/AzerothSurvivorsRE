@@ -86,8 +86,8 @@ mod tests {
 
     #[test]
     fn reward_and_pet_commands_match_complete_current_native_helper_vectors() {
-        let vectors: Value = serde_json::from_str(include_str!("../../../../docs/analysis/evidence/0.112.0/reward-admission/cases.json")).unwrap();
-        let historical: Value = serde_json::from_str(include_str!("../../../../docs/analysis/evidence/0.109.0/account-command-helpers/native-vectors.json")).unwrap();
+        let vectors: Value = serde_json::from_str(include_str!("../../../../docs/analysis/evidence/reward-admission/cases.json")).unwrap();
+        let historical: Value = serde_json::from_str(include_str!("../../../../docs/analysis/evidence/account-command-helpers/native-vectors.json")).unwrap();
         let catalog: Value = serde_json::from_str(include_str!("../../assets/rewards-catalogs-0.112.0.json")).unwrap();
         let all = catalog["achievements"].as_array().unwrap().iter()
             .map(|row| row["key"].as_str().unwrap()).collect::<Vec<_>>().join(",");

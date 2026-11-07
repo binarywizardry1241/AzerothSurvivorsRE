@@ -9,9 +9,9 @@ source and comparison gaps; this report does not establish runtime parity.
 
 Target: `AzerothSurvivors/AzerothSurvivors-0.105.0.exe`, SHA-256
 `8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7`.
-The [mover manifest](evidence/0.105.0/terminal/player-mover-manifest.json),
-[packet contracts](evidence/0.105.0/terminal/player-mover-contracts.json) and
-[canonical counter evidence](evidence/0.105.0/terminal/continuation-effects-manifest.json)
+The [mover manifest](evidence/terminal/player-mover-manifest.json),
+[packet contracts](evidence/terminal/player-mover-contracts.json) and
+[canonical counter evidence](evidence/terminal/continuation-effects-manifest.json)
 bind original ranges, constants and Ghidra identities to this target.
 
 Game+548 is a wrapping u32 initialized to **1**. It is independent of the actor
@@ -54,7 +54,7 @@ the controller is held. It does not advance player movement or the game clock.
 ## Optional sink-test writer
 
 The second tick teleport writer is explicit sink-test instrumentation.
-[Gate/default evidence](evidence/0.105.0/terminal/sink-test-contracts.json)
+[Gate/default evidence](evidence/terminal/sink-test-contracts.json)
 records Game+948's disabled default, the exact deadline gate,
 `WOW_ROGUE_SINK_AT`, cycling XY selection, floor minus 0.6, and the pending
 twelve-report guard. Its serializer/counter span references the canonical extract

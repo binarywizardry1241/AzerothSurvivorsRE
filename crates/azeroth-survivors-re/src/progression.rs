@@ -2397,7 +2397,7 @@ mod tests {
             companion_selection: Vec<Case>,
         }
         let fixtures: Fixtures = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.105.0/rewards-menu/input-vectors.json"
+            "../../../docs/analysis/evidence/rewards-menu/input-vectors.json"
         ))
         .unwrap();
         for case in fixtures.companion_selection {
@@ -2552,7 +2552,7 @@ mod current_grant_tests {
     use super::*;
     #[test]
     fn grants_and_dates_match_complete_native_account_cases() {
-        let fixtures:serde_json::Value=serde_json::from_str(include_str!("../../../docs/analysis/evidence/0.112.0/achievement-grants/native-account-vectors.json")).unwrap();
+        let fixtures:serde_json::Value=serde_json::from_str(include_str!("../../../docs/analysis/evidence/achievement-grants/native-account-vectors.json")).unwrap();
         let menu = MenuCatalog::default();
         for state in fixtures["states"].as_array().unwrap() {
             let input = &state["input"];
@@ -2693,7 +2693,7 @@ mod current_date_tests {
     #[test]
     fn dates_match_native_whole_utc_day_calendar_cases() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.100.1/account-progression/native-date-fixtures.json"
+            "../../../docs/analysis/evidence/account-progression/native-date-fixtures.json"
         ))
         .unwrap();
         let catalog = MenuCatalog::default();
@@ -2742,7 +2742,7 @@ mod current_notification_tests {
     use super::*;
     #[test]
     fn achievement_system_lines_match_native_producer_for_all72_definitions() {
-        let fixture:serde_json::Value=serde_json::from_str(include_str!("../../../docs/analysis/evidence/0.100.1/account-progression/native-notification-fixtures.json")).unwrap();
+        let fixture:serde_json::Value=serde_json::from_str(include_str!("../../../docs/analysis/evidence/account-progression/native-notification-fixtures.json")).unwrap();
         let labels = MenuCatalog::default();
         for event in fixture["events"].as_array().unwrap() {
             let notification =

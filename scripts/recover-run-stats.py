@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 START = 0x146BAFFD0
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/run-stats"
+RETAINED = ROOT / "docs/analysis/evidence/run-stats"
 
 
 def check_current():
@@ -28,7 +28,7 @@ def check_current():
         offset = pe.rva_offset(address - pe.image_base)
         return data[offset:offset + size]
 
-    script_path = ROOT / "docs/analysis/evidence/0.139.1/paperdoll-run-stats.lua"
+    script_path = ROOT / "docs/analysis/evidence/addon-api/paperdoll-run-stats.lua"
     script = read(0x1476F0A63, 9167)
     assert script_path.read_bytes() == script
     assert read(0x1476F3ACB, 37) == rb"Interface\FrameXML\PaperDollFrame.lua"

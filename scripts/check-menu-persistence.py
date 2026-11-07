@@ -14,7 +14,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
-OUT = ROOT / "docs/analysis/evidence/0.115.0/menu-persistence"
+OUT = ROOT / "docs/analysis/evidence/menu-persistence"
 STAGE = ROOT / "runtime/analysis/history/interface/menu-persistence/9f64de07bf02/curated"
 RANGES = {
     "export-clock": (0x145002900, 0x145002944),
@@ -179,7 +179,7 @@ def main():
         permitted[:]=[RANGES["export-clock"]]
     # Historical inputs/expected outputs are reused as fixtures only. Every
     # arithmetic instruction and data operand executes from the selected EXE.
-    vectors_path = ROOT / "docs/analysis/evidence/0.109.0/runmods/native-vectors.json"
+    vectors_path = ROOT / "docs/analysis/evidence/runmods/native-vectors.json"
     vectors = json.loads(vectors_path.read_text())
     permitted[:] = [RANGES[k] for k in ("parse", "csv", "split", "memchr")]
     for row in vectors["parsed"]:
@@ -202,7 +202,7 @@ def main():
             u.reg_write(register, value)
         call(RANGES["adjust"][0])
         assert list(struct.unpack("<4H", u.mem_read(scratch, 8))) == row["after"]
-    calendar_path=ROOT/"docs/analysis/evidence/0.109.0/save-backup/native-vectors.json"
+    calendar_path=ROOT/"docs/analysis/evidence/save-backup/native-vectors.json"
     calendar=[x for x in json.loads(calendar_path.read_text())["cases"]if x["contract"]=="utc-calendar"]
     permitted[:]=[RANGES["utc-calendar"]]
     for row in calendar:

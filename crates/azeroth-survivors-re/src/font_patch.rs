@@ -1,6 +1,6 @@
 //! TrueType augmentation recovered from 0.100.1 function 0x1455181d0.
 //! Existing mappings are retained; missing accents, mirrored glyphs and aliases follow
-//! the target's three tables. Evidence: docs/analysis/evidence/0.100.1/locales.json.
+//! the target's three tables. Evidence: docs/analysis/mixed-script-fonts.md.
 
 use std::collections::BTreeMap;
 
@@ -518,7 +518,7 @@ mod tests {
     #[test]
     fn side_apostrophe_advance_matches_current_native_width_and_saturation() {
         let evidence: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/menu-fonts/manifest.json"
+            "../../../docs/analysis/evidence/menu-fonts/manifest.json"
         )).unwrap();
         for case in evidence["contracts"]["native_cases"]["advance"].as_array().unwrap() {
             let mark = [case["mark_xmin"].as_i64().unwrap() as i16, 0,

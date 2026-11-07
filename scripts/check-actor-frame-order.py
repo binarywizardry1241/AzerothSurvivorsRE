@@ -8,11 +8,12 @@ import json
 import re
 import struct
 import sys
+from artifact_history import read_artifact
 from coverage_common import ROOT
 
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 KEPT=ROOT/'docs/analysis/evidence/0.109.0/actor-frame-order'
-STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/actor-frame-order'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/actor-frame-order'
 RANGES={
  'actor-vector':(0x14597830a,0x14597832a),
  'actor-iterator':(0x1459783dc,0x14597841a),
@@ -88,7 +89,7 @@ def main():
   text=''.join(f'{i.address:x}: {i.bytes.hex()} {i.mnemonic} {i.op_str}\n' for i in ins)
   assemblies[role+'.asm']=text
   assembly=SHARED_ASSEMBLY.get(role,role+'.asm')
-  canonical=(KEPT/assembly).read_bytes()if role in SHARED_ASSEMBLY else text.encode()
+  canonical=read_artifact(KEPT/assembly)if role in SHARED_ASSEMBLY else text.encode()
   if role in SHARED_ASSEMBLY:
    lines=[]
    for line in canonical.decode().splitlines():
@@ -135,10 +136,10 @@ def main():
  assert 'call 0x1458bf760' in assemblies['guardian-engage-fields-health.asm']
  for name,relative in EXISTING.items():
   path=ROOT/'docs/analysis/evidence/0.109.0'/relative
-  owner=json.loads((path.parent/'manifest.json').read_text());assert owner['target_sha256']==SHA
+  owner=json.loads(read_artifact(path.parent/'manifest.json'));assert owner['target_sha256']==SHA
   row=next(x for x in owner['ranges']if x['assembly']==path.name)
   assert hashlib.sha256(raw(int(row['va'],16),row['byte_count'])).hexdigest()==row['sha256']
-  for line in path.read_text().splitlines():
+  for line in read_artifact(path).decode().splitlines():
    address,code,*_=line.split();assert raw(int(address[:-1],16),len(code)//2).hex()==code
  # Isolated original machine instructions, with no native callees or process.
  uc=Uc(UC_ARCH_X86,UC_MODE_64);mapped=set();allowed=(0,0);stops=set();stubs=set()
@@ -335,8 +336,8 @@ def main():
   for name,text in assemblies.items():
    if name[:-4]not in SHARED_ASSEMBLY:(output/name).write_text(text)
  else:
-  assert json.loads((output/'manifest.json').read_text())==manifest
+  assert json.loads(read_artifact(output/'manifest.json'))==manifest
   for name,text in assemblies.items():
-   if name[:-4]not in SHARED_ASSEMBLY:assert(output/name).read_text()==text,name
+   if name[:-4]not in SHARED_ASSEMBLY:assert read_artifact(output/name).decode()==text,name
  print(f'PASS actor frame: {cases} native iterator/serial/rescale cases; {len(ranges)} byte ranges; live queue/packet source guards; no build/game')
 if __name__=='__main__':main()

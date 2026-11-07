@@ -123,7 +123,7 @@ mod tests {
     #[test]
     fn selected_target_settings_vectors() {
         let fixture:serde_json::Value=serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.105.0/run-meters/screen/settings-native-vectors.json"
+            "../../../../../docs/analysis/evidence/run-meters/screen/settings-native-vectors.json"
         )).unwrap();
         for case in fixture["settings_cases"].as_array().unwrap() {
             let input = case["input_bits"]
@@ -195,7 +195,7 @@ mod tests {
     #[test]
     fn current_four_mode_native_vectors() {
         let fixture:serde_json::Value=serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.121.0/party-meter-ui.json"
+            "../../../../../docs/analysis/evidence/party-meter-ui.json"
         )).unwrap();
         for case in fixture["fixture"]["settings_cases"].as_array().unwrap() {
             let bits = u32::from_str_radix(case[0].as_str().unwrap().trim_start_matches("0x"), 16).unwrap();

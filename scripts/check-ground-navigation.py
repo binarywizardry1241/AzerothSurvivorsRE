@@ -17,8 +17,8 @@ from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048'
-KEPT = ROOT/'docs/analysis/evidence/0.110.0/ground-navigation'
-STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.110.0/ground-navigation'
+KEPT = ROOT/'docs/analysis/evidence/ground-navigation'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/ground-navigation'
 OWNERS = {
     'segment': 0x1459a3a00, 'occupancy-finalize': 0x1459a3dd0,
     'occupancy-rasterize': 0x1459a4390, 'footprint': 0x1459a4b70,
@@ -104,7 +104,7 @@ def main():
         put(stack+0x8008,'Q',stop);u.reg_write(r.UC_X86_REG_RSP,stack+0x8008);u.emu_start(a,stop,count=1000000)
         assert u.reg_read(r.UC_X86_REG_RIP)==stop
     def packed(xy):return struct.unpack('<Q',struct.pack('<2f',*xy))[0]
-    cases=[];historical=ROOT/'docs/analysis/evidence/0.100.1/floor-recovery'
+    cases=[];historical=ROOT/'docs/analysis/evidence/floor-recovery'
     active=[intervals[k]for k in ['distance-field','descent','segment','chase']]
     for old in json.loads((historical/'navigation-fixtures.json').read_text())['cases']:
         u.mem_write(mem,bytes(0x30000));side=old['side'];cells=old['cells'];xy=old['player']

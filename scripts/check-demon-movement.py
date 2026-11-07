@@ -7,7 +7,7 @@ import json
 import struct
 from coverage_common import ROOT
 a = load_script("actors", ROOT / "scripts/check-demon-actors.py")
-KEPT = ROOT / "docs/analysis/evidence/0.112.0/demon-movement"
+KEPT = ROOT / "docs/analysis/evidence/demon-movement"
 
 def replay_move():
     u,mem,stack=a.machine();r=a.r

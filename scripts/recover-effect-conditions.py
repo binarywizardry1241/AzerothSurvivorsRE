@@ -83,6 +83,6 @@ evidence = dict(target_sha256=SHA, method=__doc__, native_owners=owners,
     threshold_fraction=0.5, flag_bit_offsets=["0x1f", "0x20", "0x21", "0x22"],
     cases=cases, strict_health_thresholds=thresholds,
     instruction_cases=len(cases)*16+len(thresholds))
-path = ROOT / "docs/analysis/evidence/0.100.1/treasure-interface/effect-condition-native.json"
+path = ROOT / "docs/analysis/evidence/treasure-interface/effect-condition-native.json"
 path.write_text(json.dumps(evidence, indent=2) + "\n")
 print("Recovered", evidence["instruction_cases"], "native conditions; no original application executed")

@@ -17,7 +17,7 @@ import struct
 from coverage_common import ROOT, latest_target, project_path, target_bytes
 
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
-RETAINED = ROOT / "docs/analysis/evidence/0.109.0/overlay-style"
+RETAINED = ROOT / "docs/analysis/evidence/overlay-style"
 OWNERS = {"button": (0x140100690, 0x140100835),
           "panel": (0x140101170, 0x1401016BC),
           "color": (0x144C85C10, 0x144C86386),

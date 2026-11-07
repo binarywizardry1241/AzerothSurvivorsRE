@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from coverage_common import latest_target, target_bytes
 
-OUT = ROOT / 'docs/analysis/evidence/0.109.0/camera-room'
+OUT = ROOT / 'docs/analysis/evidence/camera-room'
 
 
 def load(name, path):
@@ -116,7 +116,7 @@ def main():
         assert context['done'], 'Native instruction budget exhausted'
 
     old = load('historical_camera_model', ROOT / 'scripts/native_camera.py')
-    fixture_path = ROOT / 'docs/analysis/evidence/0.105.0/camera-room/native-vectors.json'
+    fixture_path = ROOT / 'docs/analysis/evidence/camera-room-comparison/native-vectors.json'
     fixtures = json.loads(fixture_path.read_text())
     for retained in fixtures['cases']:
         case = retained['input']

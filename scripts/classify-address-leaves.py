@@ -14,10 +14,10 @@ from capstone import Cs, CS_ARCH_X86, CS_MODE_64, CS_GRP_JUMP
 from capstone.x86_const import X86_OP_IMM, X86_OP_MEM, X86_REG_RIP
 
 SOURCE_ROOT = coverage.ROOT
-SUMMARY = 'docs/analysis/evidence/0.121.0/native-operands.json'
-PRIOR = 'docs/analysis/evidence/0.113.2/address-leaves/contract.json'
-ASSEMBLY = 'docs/analysis/evidence/0.113.2/address-leaves/leaves.asm'
-OUTPUT = 'docs/analysis/evidence/0.121.0/address-leaves.json'
+SUMMARY = 'docs/analysis/evidence/native-diagnostics/native-operands.json'
+PRIOR = 'docs/analysis/evidence/address-leaves/contract.json'
+ASSEMBLY = 'docs/analysis/evidence/address-leaves/leaves.asm'
+OUTPUT = 'docs/analysis/evidence/address-leaves.json'
 SHA = '22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150'
 # Current and historical selectors, not inferred native source identities.
 MAPPING = [(0x1442ee990, 0x144094d80), (0x1442ee9a0, 0x144094d90),

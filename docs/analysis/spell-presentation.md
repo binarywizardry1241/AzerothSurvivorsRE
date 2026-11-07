@@ -36,7 +36,7 @@ stride112. Its final `1459286e8..145928751` pass reapplies the current spell
 modifiers. The live visual publisher now supplies these records after learned
 and racial entries, using neutral instances plus current modifiers; it does not
 copy learned upgrades into an auxiliary visual record. Duplicate IDs still keep
-the first recognized entry. The [auxiliary manifest](evidence/0.105.0/auxiliary-spell-scales/manifest.json)
+the first recognized entry. The [auxiliary manifest](evidence/auxiliary-spell-scales/manifest.json)
 binds the collector, producer, modifier writes, timed consumer and Ghidra owner.
 
 The attached-kit gate is now mapped through its actual query producer.
@@ -57,7 +57,7 @@ Native lookup still rejects absent, nonpositive or unordered scales. Command
 the existing effect-root XYZ scale. Source applies that multiplication once at
 creation, preserving translation, rotation and ordinary unit/child transforms.
 Existing effects keep their creation-time scale. The
-[attached-kit manifest](evidence/0.105.0/attached-spell-scales/manifest.json)
+[attached-kit manifest](evidence/attached-spell-scales/manifest.json)
 binds query initialization, membership, class producers, command and source.
 
 ## Effect setting
@@ -99,14 +99,14 @@ guardian's death alone does not force an immediate name update; spawning clears
 the selection so even the same index is republished. No identity/name cache is
 substituted for that law.
 
-The [HUD consumer manifest](evidence/0.105.0/hud-consumers/manifest.json) and
+The [HUD consumer manifest](evidence/hud-consumers/manifest.json) and
 [run HUD report](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/run-hud-0.105.0.md) own these consumers. Existing
 clock/boss/tally/build/banner/level and independent meter consumers retain their
 own reports. These connected source routes do not certify rendered HUD parity.
 
 ## Evidence and checks
 
-The [manifest](evidence/0.105.0/spell-presentation/manifest.json) binds canonical
+The [manifest](evidence/spell-presentation/manifest.json) binds canonical
 assembly, selected REA/Ghidra pseudocode, exact constant bytes and Evidence IDs.
 Raw slice imports omit external code/data and have explicit ABI/discovery limits;
 original PE instructions govern the recovered contracts.

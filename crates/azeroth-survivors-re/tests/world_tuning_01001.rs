@@ -6,7 +6,7 @@ use serde_json::Value;
 fn current_zone_health_factor_matches_native_instructions() {
     let fixture: Value = serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../docs/analysis/evidence/0.100.1/world-tuning.json"
+        "/../../docs/analysis/evidence/world-tuning.json"
     )))
     .unwrap();
     assert_eq!(

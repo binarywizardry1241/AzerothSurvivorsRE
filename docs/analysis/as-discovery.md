@@ -12,7 +12,7 @@ before registering behavior.
 
 Join literals, resource definitions, embedded scripts and native references to
 their source consumers. Use the [source frontier](source-frontier.md) for
-current ownership and the [data pass](evidence/0.141.0/data-classification/manifest.json)
+current ownership and the [data pass](evidence/data-classification.json)
 for candidate evidence. The PaperDoll override illustrates the complete join
 from an exact resource and its localized labels to the core loader.
 
@@ -29,7 +29,7 @@ Applied guarded-table targets establish edges. Follow selector values, caller
 state, aliases and layouts separately to determine their meaning. The
 [switch context review](switch-context-source-review.md) and
 [reference frontier](native-recovery.md#q41-a01-declared-references) own the selected proof and
-remaining caller questions. Use the [0.139.1 context input](evidence/0.139.1/switch-context-source-review.json)
+remaining caller questions. Use the [0.139.1 context input](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.1/switch-context-source-review.json)
 and [0.140.0 correspondence record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.140.0/incremental-correspondence.json)
 to trace inherited findings back to their earlier scope.
 

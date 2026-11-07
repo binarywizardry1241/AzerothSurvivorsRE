@@ -10,10 +10,10 @@ dependency within gap #16; it does not establish runtime parity.
 ## Current talent and effect boundary
 
 The current 120-byte native talent record starts **32 bytes before** the key
-addresses retained in the earlier [selected audit data](evidence/0.105.0/game-mode-audit/selected-data.json).
+addresses retained in the earlier [selected audit data](evidence/game-mode-audit/selected-data.json).
 Its two optional prerequisite strings occupy +0/+16, followed by key/name/icon,
 effects at +80, description at +96 and row/column/rank/exclusive flag at
-+112..+115. The [current records](evidence/0.105.0/demon-offers/native-cases.json)
++112..+115. The [current records](evidence/demon-offers/native-cases.json)
 retain the full-record hashes and both prerequisites.
 
 The source overlays the Warlock Demonology tree with its 14 current entries.
@@ -132,7 +132,7 @@ boundary cases, 120 upgrade-cap cases, two spell-modifier selector cases and
 12 buff-payload cases and36 description-number cases passed. Allocation/heap
 growth, locale misses and rounding have reviewed host seams. No process, OS, networking, file or renderer code runs.
 
-[The manifest](evidence/0.105.0/demon-offers/manifest.json) preserves exact byte
+[The manifest](evidence/demon-offers/manifest.json) preserves exact byte
 hashes, containing procedures, canonical assembly paths and selected REA/Ghidra
 Evidence identities. Raw imports omit external code/data and use Ghidra's generic
 ABI; original Win64 instructions control argument bindings. Branch excerpts are

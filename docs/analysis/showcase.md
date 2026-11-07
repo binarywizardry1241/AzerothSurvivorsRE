@@ -26,9 +26,9 @@ showcase run retains its actual selected character identity.
 
 ## Connected run behavior
 
-[Reviewed native spans](evidence/0.105.0/showcase/manifest.json) bind these
+[Reviewed native spans](evidence/showcase/manifest.json) bind these
 contracts. The complete Begin owner is already registered by the
-[boundary report](evidence/0.105.0/boundary-pillars/manifest.json); its scoped
+[boundary report](evidence/boundary-pillars/manifest.json); its scoped
 showcase ranges are retained here without duplicating the unrelated pet and
 boundary extracts.
 
@@ -79,7 +79,7 @@ pet/demon evidence remains with those adapters.
 instruction vectors**, the nine native/source class-pool comparisons, all
 fourteen globally collected extra spell keys and every retained pickup offset.
 It rehashes the reviewed native spans before replay. The
-[compact results](evidence/0.105.0/showcase/vectors.json) state the boundary:
+[compact results](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/showcase/vectors.json) state the boundary:
 environment-value comparison, playing-tick refill/pending-level/deadline logic
 and incoming-damage admission execute original leaf instructions only.
 Environment lookup, allocators, terrain, stat composition and native callees

@@ -13,7 +13,7 @@ from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-KEEP = ROOT / 'docs/analysis/evidence/0.115.0/menu-services.json'
+KEEP = ROOT / 'docs/analysis/evidence/menu-services.json'
 WORK = ROOT / 'runtime/analysis/history/interface/menu-17/868d56353f25'
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 MAP = {0x140185a30:0x14002b020,0x140185bc7:0x14002b1d0,

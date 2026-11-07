@@ -8,7 +8,7 @@ from coverage_common import latest_target,target_bytes
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 target=latest_target(verify=False);assert target['sha256']==SHA
-OUT=ROOT/'docs/analysis/evidence/0.109.0/runmods-consumers'
+OUT=ROOT/'docs/analysis/evidence/runmods-consumers'
 RANGES={'entry-modifier-copy':(0x14592dc47,0x14592dc59),'independent-difficulty':(0x14592e5d2,0x14592e6a3),'stat-refresh':(0x145926c90,0x145927d2b),'gear-factor-call':(0x145973090,0x1459730a7)}
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE,UC_HOOK_MEM_WRITE
 from unicorn import x86_const as R
@@ -60,7 +60,7 @@ for clas in range(2,12):
    rows.append(dict(class_byte=clas,race_byte=race,modifiers=mods,difficulty_bits='3f800000',difficulty_stores=writes.copy()))
 
 gear=[]
-for row in json.loads((ROOT/'docs/analysis/evidence/0.109.0/runmods/native-vectors.json').read_text())['formulas']:
+for row in json.loads((ROOT/'docs/analysis/evidence/runmods/native-vectors.json').read_text())['formulas']:
  put(game+0x2b0,'4H',*row['values']);reg('RDI',game);reg('RBP',frame);reg('RSP',frame-0x1000);run(0x145973090,0x1459730a7)
  actual=f'{reg('XMM7')&0xffffffff:08x}';assert actual==row['reward_bits'];gear.append(dict(modifiers=row['values'],reward_bits=actual))
 records=[];md=Cs(CS_ARCH_X86,CS_MODE_64)

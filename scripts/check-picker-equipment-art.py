@@ -14,7 +14,7 @@ from coverage_common import ROOT, artifact_path, file_sha256, latest_target, loa
 from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-DIRECTORY = ROOT / "docs/analysis/evidence/0.113.2/picker-equipment-art"
+DIRECTORY = ROOT / "docs/analysis/evidence/picker-equipment-art"
 
 
 def digest(value):

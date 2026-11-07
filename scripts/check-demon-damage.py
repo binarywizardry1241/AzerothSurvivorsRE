@@ -67,9 +67,9 @@ proof = dict(target_sha256=latest_target()['sha256'], case_count=len(rows),
 parser=argparse.ArgumentParser(description='Replay current demon damage instructions without compilation or game launch.')
 parser.add_argument('--write',action='store_true',help='stage a compact proof under ignored runtime/')
 args=parser.parse_args()
-proof_path=ROOT/'docs/analysis/evidence/0.112.0/demon-damage/critical-vectors.json'
+proof_path=ROOT/'docs/analysis/evidence/demon-damage/critical-vectors.json'
 if args.write:
-    out=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/demon-damage';out.mkdir(parents=True,exist_ok=True)
+    out=ROOT/'runtime/analysis/staging/native-evidence/demon-damage';out.mkdir(parents=True,exist_ok=True)
     (out/'critical-vectors.json').write_text(json.dumps(proof,indent=2)+'\n')
 else:
     assert json.loads(proof_path.read_text())==proof,'Current native critical proof differs'

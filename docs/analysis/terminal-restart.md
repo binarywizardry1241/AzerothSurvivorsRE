@@ -2,7 +2,7 @@
 
 Installed target **0.108.0**, SHA-256
 `dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b`.
-The [manifest](evidence/0.108.0/terminal-restart/manifest.json) binds five
+The [manifest](evidence/terminal-restart/manifest.json) binds five
 original PE ranges, two fresh REA/Ghidra imports and the current command table.
 [verification-needed](../verification-needed.md) owns the remaining scope of gap #9.
 

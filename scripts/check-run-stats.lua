@@ -45,7 +45,7 @@ PaperDollFrame_OnEvent = function() stock = stock + 1; end;
 GameTooltip = frame("GameTooltip");
 function GameTooltip:SetOwner(owner, anchor) self.owner = owner; assert(anchor == "ANCHOR_RIGHT"); end;
 function GameTooltip:AddLine(text) self.line = text; end;
-local f = assert(io.open("docs/analysis/evidence/0.139.1/paperdoll-run-stats.lua", "rb"));
+local f = assert(io.open("docs/analysis/evidence/run-stats/paperdoll.lua", "rb"));
 local source = f:read("*a"); f:close(); assert(execute(source, "native-character-pane"))();
 PaperDollFrame_SetStats("player"); assert(stock == 1);
 this = PaperDollFrame; PaperDollFrame_OnLoad(); assert(stock == 2 and events == 1);

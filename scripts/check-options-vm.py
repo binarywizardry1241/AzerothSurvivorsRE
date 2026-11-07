@@ -10,8 +10,8 @@ from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
-RETAINED = ROOT / 'docs/analysis/evidence/0.112.0/options-vm'
-STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.112.0/options-vm'
+RETAINED = ROOT / 'docs/analysis/evidence/options-vm'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/options-vm'
 WORK = ROOT / 'runtime/analysis/history/interface/options-vm/c009572f297f'
 
 

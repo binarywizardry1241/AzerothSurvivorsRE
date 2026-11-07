@@ -10,7 +10,7 @@ from coverage_common import latest_target,file_sha256
 from inventory_refusal_native import RefusalProbe,H,S,PE,D,ENDS,ROOT
 
 WORK=ROOT/'runtime/analysis/history/findings/q41-inventory-refusal/f21f95717d50'
-KEEP=ROOT/'docs/analysis/evidence/0.113.2/inventory-refusals.json'
+KEEP=ROOT/'docs/analysis/evidence/inventory-refusals.json'
 OPS=[0x10a,0x10b,0x10c,0x10d,0x111]
 def encoded(value):return json.dumps(value,sort_keys=True,separators=(',',':')).encode()
 def expected(op,payload):

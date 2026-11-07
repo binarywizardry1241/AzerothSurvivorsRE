@@ -2,7 +2,7 @@
 
 Updated 2026-10-16. This is static analysis of the supplied **0.92.0** target,
 SHA-256 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
-[Curated evidence](evidence/0.92/menu-update-install.json) retains ten scoped
+[Curated evidence](evidence/menu-update-install.json) retains ten scoped
 Ghidra evidence IDs, original function byte hashes, and five PE import bindings.
 `scripts/recover-menu-update-install.py` reproduces that record without executing
 target instructions or requesting anything from the update server.
@@ -150,7 +150,7 @@ branch interval is not described as an original standalone function. Target
 runtime gzip decoding has not been replayed or compared against source fixtures.
 
 The original SHA256 compression owner `0x1404ae320` is now separately bound by
-Ghidra and [five closed native checks](evidence/0.92/update-sha256-native-checks.json).
+Ghidra and [five closed native checks](evidence/update-sha256-native-checks.json).
 `scripts/check-update-sha256.py` replays its original scalar branch against empty,
 `abc`,55/56-byte padding boundaries and a65538-byte payload. It uses the actual
 initial words loaded by119320 from `0x1458e5bb8`, supplies the recovered SHA
@@ -195,7 +195,7 @@ Windows code uses CreateFileW with GENERIC_WRITE0x40000000, share7, and
 OPEN_ALWAYS4, then truncates an existing file through SetFileInformationByHandle
 FileEndOfFileInfo5/length0, with the Rust standard library fallback. This avoids
 inferring field semantics from initializer offsets alone.
-Three [closed native flag checks](evidence/0.92/update-open-options-native-checks.json)
+Three [closed native flag checks](evidence/update-open-options-native-checks.json)
 also passed via `scripts/check-update-open-flags.py`: actual staging flags produce
 GENERIC_WRITE/share7/OPEN_ALWAYS4, with two control cases producing OPEN_EXISTING3
 and TRUNCATE_EXISTING5. The Unicorn boundary stops before CreateFileW and aborts

@@ -16,7 +16,7 @@ from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
 
-PROOF = Path("docs/analysis/evidence/0.121.0/heroic-unlocks/manifest.json")
+PROOF = Path("docs/analysis/evidence/heroic-unlocks/manifest.json")
 SOURCE_ROOT = Path(__file__).resolve().parents[1]
 
 

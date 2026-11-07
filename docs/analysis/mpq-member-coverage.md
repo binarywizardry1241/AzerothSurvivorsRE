@@ -1,7 +1,7 @@
 # Installed MPQ member and source map
 
 EXE SHA-256 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
-The [proof](evidence/0.113.2/mpq-member-coverage.json) resolves the previously
+The [proof](evidence/mpq-member-coverage-comparison-2.json) resolves the previously
 unproduced member/override inventory portion of `Q41-R01` under #41. The nine
 installed archives are read directly and their complete hashes rechecked.
 No archive or member is copied into the project deliverables.

@@ -17,7 +17,7 @@ from discovery_native_subject import verify_native_query_subject
 from equipment_native import EquipmentProbe
 from script_sources import load_script
 
-BASE = ROOT / "docs/analysis/evidence/0.123.0/coop-lobby-ui"
+BASE = ROOT / "docs/analysis/evidence/coop-lobby-ui-comparison"
 
 
 def sha(raw):
@@ -385,7 +385,7 @@ def staff_cases(image, pe, ranges, proof):
 
 
 def check_chat():
-    proof = json.loads((ROOT / "docs/analysis/evidence/0.127.0/coop-lobby-ui/manifest.json").read_text())
+    proof = json.loads((ROOT / "docs/analysis/evidence/coop-lobby-ui/manifest.json").read_text())
     image, pe, ranges, count = verify_manifest(proof, selected_target())
     # Both real admission routes and the footer consume the recovered helper.
     menu = (ROOT / "crates/azeroth-survivors-re/src/menu.rs").read_text()
@@ -549,8 +549,8 @@ def check_kick():
 
     target = latest_target(verify=True)
     image = target_bytes(target)
-    native = json.loads((ROOT / "docs/analysis/evidence/0.127.0/coop-dispatch/manifest.json").read_text())
-    ui = json.loads((ROOT / "docs/analysis/evidence/0.127.0/coop-lobby-ui/manifest.json").read_text())
+    native = json.loads((ROOT / "docs/analysis/evidence/coop-dispatch/manifest.json").read_text())
+    ui = json.loads((ROOT / "docs/analysis/evidence/coop-lobby-ui/manifest.json").read_text())
     assert native["target"]["sha256"] == ui["target"]["sha256"] == target["sha256"]
     contract = native["kick_contract"]
     assert (contract["local_request"], contract["wire_tag"],

@@ -16,7 +16,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-BASE = ROOT / 'docs/analysis/evidence/0.121.0/item-set-publication'
+BASE = ROOT / 'docs/analysis/evidence/item-set-publication'
 WORK = ROOT / 'runtime/analysis/history/progression/set-consumers/5ffe705be785'
 SHA = '22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150'
 MEMBERS, MEMBERS_END = 0x145c86fb0, 0x145c87195

@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
 OUT = ROOT / 'runtime/analysis/history/combat/demon-offers/eeb381e7f5f4/check'
-RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/demon-offers'
+RETAINED = ROOT / 'docs/analysis/evidence/demon-offers'
 OWNERS = {
     'upgrade-magnitude': (0x145986de0, 0x1459870f0),
     'upgrade-apply': (0x145987150, 0x145987255),
@@ -77,7 +77,7 @@ def main():
         assert definition['prerequisite'] == row['prerequisite']
     assert [r['key'] for r in records if r['exclusive_row']] == ['soul_devourer', 'soul_link']
     assert next(r for r in records if r['key'] == 'legion_gate')['alternative_prerequisite'] == 'soul_link'
-    selected = json.loads((ROOT / 'docs/analysis/evidence/0.105.0/game-mode-audit/selected-data.json').read_text())
+    selected = json.loads((ROOT / 'docs/analysis/evidence/game-mode-audit/selected-data.json').read_text())
     scorch = next(row for row in selected['selected_talents'] if row['key'] == 'aftermath')
     key_address = int(scorch['record_prefix']['virtual_address'], 16)
     at = offset(key_address)

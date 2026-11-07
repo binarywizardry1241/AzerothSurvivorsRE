@@ -84,7 +84,7 @@ def check(pe, data):
     for name, expected in metadata(pe, data).items():
         actual = json.loads((ROOT / "crates/azeroth-survivors-re/assets" / name).read_text())
         assert actual == expected, name
-    retained = ROOT / "docs/analysis/evidence/0.105.0/addon-bridge/lists"
+    retained = ROOT / "docs/analysis/evidence/addon-bridge/lists"
     manifest = json.loads((retained / "manifest.json").read_text())
     assert manifest["target_sha256"] == SHA
     for row in manifest["native_ranges"]:

@@ -104,7 +104,7 @@ mod tests {
     #[test]
     fn native_counter_wrapping_threshold_and_rate_rejection_preserve_pending_trigger() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/run-effects/milestone-native.json"
+            "../../../../docs/analysis/evidence/run-effects/milestone-native.json"
         ))
         .unwrap();
         for case in fixture["counters"].as_array().unwrap() {
@@ -137,7 +137,7 @@ mod tests {
     #[test]
     fn conversion_matches_native_scalar_vectors_without_rng_or_global_damage() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/run-effects/milestone-native.json"
+            "../../../../docs/analysis/evidence/run-effects/milestone-native.json"
         ))
         .unwrap();
         for case in fixture["conversion"].as_array().unwrap() {
@@ -157,7 +157,7 @@ mod tests {
     #[test]
     fn counter_rate_and_refresh_match_unchanged_native_state_vectors() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/run-effects/milestone-native.json"
+            "../../../../docs/analysis/evidence/run-effects/milestone-native.json"
         ))
         .unwrap();
         for case in fixture["rates"].as_array().unwrap() {
@@ -267,7 +267,7 @@ mod tests {
     #[test]
     fn companion_producer_matches_native_chance_cap_angle_and_shared_rng_vectors() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/run-effects/milestone-native.json"
+            "../../../../docs/analysis/evidence/run-effects/milestone-native.json"
         ))
         .unwrap();
         for case in fixture["summons"].as_array().unwrap() {

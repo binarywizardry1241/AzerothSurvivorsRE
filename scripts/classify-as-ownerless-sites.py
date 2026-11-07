@@ -86,7 +86,7 @@ def generate(root, target, pe, decoder):
         assert sum(i.size for i in result) == end - start
         return result
 
-    residual = json.loads((root / RESIDUAL).read_text())
+    residual = json.loads(coverage.project_bytes(RESIDUAL, root=root))
     assert residual['target'] == {key: target[key] for key in ('version', 'path', 'sha256', 'size_bytes')}
     binding = residual['artifacts']['diagnostic-sites.jsonl.gz']
     assert coverage.file_sha256(root / binding['path']) == binding['sha256']
@@ -155,7 +155,7 @@ def generate(root, target, pe, decoder):
 
     # Complete instruction correspondence is used only for the already-recovered
     # removal contract. Explicitly bind internal branches and both external calls.
-    predecessor = json.loads((root / PREDECESSOR).read_text())
+    predecessor = json.loads(coverage.project_bytes(PREDECESSOR, root=root))
     removal_proofs = []
     for start, (end, width) in REMOVALS.items():
         name = 'option-remove-eight-byte-row' if width == 8 else 'ability-remove-120-byte-row'
@@ -267,7 +267,7 @@ def generate(root, target, pe, decoder):
 
 
 def generate_current(root, target, pe, decoder, instruction_frontier=False):
-    evidence_dir = Path('docs/analysis/evidence') / target['version']
+    evidence_dir = Path('docs/analysis/evidence')
     residual_path = evidence_dir / 'native-residuals.json'
     residual = json.loads((root / residual_path).read_text())
     assert residual['target'] == {key: target[key] for key in ('version', 'path', 'sha256', 'size_bytes')}
@@ -440,11 +440,14 @@ def generate_current(root, target, pe, decoder, instruction_frontier=False):
 
 
 def verify_proof(result, output, root):
-    saved = json.loads(output.read_text())
+    saved = json.loads(coverage.project_bytes(output, root=root))
     producer = saved['generator']
     assert current_path(producer['path'], root) == root / result['generator']['path']
     assert recorded_input_matches(producer['path'], producer['sha256'], root)
-    assert dict(result, generator=producer) == saved, 'Ownerless-AS role proof differs'
+    assert len(saved['inputs']) == len(result['inputs'])
+    assert all(coverage.same_replay_receipt(current, previous, root)
+               for current, previous in zip(result['inputs'], saved['inputs']))
+    assert dict(result, generator=producer, inputs=saved['inputs']) == saved, 'Ownerless-AS role proof differs'
 
 
 def classify_instruction_frontier(root, residual, declared, body, span, immediate, diagnostic_proof):
@@ -641,12 +644,13 @@ def main():
     target, pe, decoder = load_reference(root)
     if target['version'] == '0.121.0' and not args.instruction_frontier:
         result = generate(root, target, pe, decoder)
-        output = SOURCE_ROOT / PROOF
+        output = SOURCE_ROOT / ('runtime/tmp/as-ownerless-sites.json' if args.write else PROOF)
     else:
         result = generate_current(root, target, pe, decoder, args.instruction_frontier)
         name = 'as-ownerless-instructions.json' if args.instruction_frontier else 'as-ownerless-sites.json'
-        output = SOURCE_ROOT / 'docs/analysis/evidence' / target['version'] / name
+        output = SOURCE_ROOT / 'docs/analysis/evidence' / name
     if args.write:
+        output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(coverage.json_text(result))
     else:
         verify_proof(result, output, root)

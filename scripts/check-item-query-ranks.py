@@ -13,12 +13,14 @@ import platform
 import struct
 import subprocess
 
+from artifact_history import read_artifact
 from coverage_common import ROOT, latest_target, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
 SHA = '22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150'
-OUTPUT = ROOT / 'docs/analysis/evidence/0.121.0/item-set-publication/item-query-ranks.json'
+ARCHIVED_OUTPUT = ROOT / 'docs/analysis/evidence/0.121.0/item-set-publication/item-query-ranks.json'
+OUTPUT = ROOT / 'docs/analysis/evidence/item-set-publication/item-query-ranks.json'
 
 
 def sha(raw):
@@ -30,7 +32,7 @@ SOURCE_ROOT = ROOT
 def receipt(path):
     path = ROOT / path
     logical = path.relative_to(SOURCE_ROOT) if path.is_relative_to(SOURCE_ROOT) else path.relative_to(ROOT)
-    return dict(path=logical.as_posix(), sha256=sha(path.read_bytes()))
+    return dict(path=logical.as_posix(), sha256=sha(read_artifact(path)))
 
 
 def replays(image, pe):
@@ -281,7 +283,7 @@ def main():
     for name, role in [('affixes/manifest.json', 'again-command-dispatch'),
                        ('gear-purchase.json', 'star-purchase-0x145ab44d0')]:
         path = ROOT / 'docs/analysis/evidence/0.121.0' / name
-        proof = json.loads(path.read_text())
+        proof = json.loads(read_artifact(path))
         assert proof['target']['sha256'] == SHA
         row = next(row for row in proof['queries'] if row['role'] == role)
         verify_native_query_subject(ROOT, publication.native_result(ROOT / row['result']['path']),
@@ -328,7 +330,8 @@ def main():
         args.manifest.parent.mkdir(parents=True, exist_ok=True)
         args.manifest.write_text(encoded)
     else:
-        assert args.manifest.read_text() == encoded, 'Item-query rank proof drift; review before --write'
+        retained = ARCHIVED_OUTPUT if args.manifest == OUTPUT and not OUTPUT.is_file() else args.manifest
+        assert read_artifact(retained).decode() == encoded, 'Item-query rank proof drift; review before --write'
     print(json.dumps(dict(cases=len(replay['cases']), original_instruction_steps=replay['original_instruction_steps'],
                           queries=len(queries), reused_proofs=len(reused), syntax_parsed=len(files), compilation='not_run')))
 

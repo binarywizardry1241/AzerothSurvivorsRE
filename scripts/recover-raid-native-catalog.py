@@ -9,7 +9,7 @@ from script_sources import load_script
 import argparse, hashlib, json, struct
 from coverage_common import ROOT,latest_target,target_bytes
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-OUT=ROOT/'docs/analysis/evidence/0.109.0/raid-native'
+OUT=ROOT/'docs/analysis/evidence/raid-native'
 
 def prepare_rea(raw):
  """Stage fresh target-bound raw inputs and portable REA batch plans only."""
@@ -78,7 +78,7 @@ def recover():
       text,size=struct.unpack('<QQ',raw(a,16));r.update(threshold_bits=struct.unpack('<I',raw(a+64,4))[0],yell=raw(text,size).decode())
      row[role].append(r)
    bosses.append(row)
- catalog=json.loads((ROOT/'docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json').read_text());assert catalog['target_sha256']==SHA
+ catalog=json.loads((ROOT/'docs/analysis/evidence/guardian-signatures/catalog.json').read_text());assert catalog['target_sha256']==SHA
  for r in catalog['rows']:
   row=dict(enemy_id=r['enemy_id'],variants=[],phases=[])
   for variant in r['variants']:

@@ -116,7 +116,7 @@ def main():
                                     scope="Read/time/publication host interface; source26 NativeParts supplies real gated ureq/Instant/publication code without executing it during validation.",
                                     fixtures="Six part-reader fixtures PASS within18 installer cases in build25. Locked offline build14.34s;test compile7.54s;105 harness cases with overlap PASS:41 binary,15 native-save,6 config,1 run-modifier,10 save-browser,14 updater,18 installer. No app/request/backend execution."),
                 limits=["Native arithmetic/table lookups were replayed, but no live response, worker, UI or updater process was executed.","Source26 worker calls the part reader through NativeParts; compilation and connected memory-only fixtures passed in build26, no real backend execution.","The helper receives converted io errors; source26 NativeParts uses io::Error::other, bound to target kind41/Other; no real HTTP call executed."])
-    (ROOT/"docs/analysis/evidence/0.92/menu-update-parts.json").write_text(portable_json(report,indent=2)+"\n")
+    (ROOT/"docs/analysis/evidence/menu-update-parts.json").write_text(portable_json(report,indent=2)+"\n")
     print(f"Retained {len(owners)} REA owners; {len(thresholds)} threshold, {len(rates)} exact native rate and {len(kind_checks)} I/O-kind lookup cases PASS.")
 
 

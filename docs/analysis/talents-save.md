@@ -9,7 +9,7 @@ Gameplay application of talent effects remains separately owned by #12/#16.
 ## Definitions and allocation
 
 The current nine-class, 27-tree index at `1472255f8` contains 355 definitions.
-The [manifest](evidence/0.109.0/talents-menu/manifest.json) binds the definition
+The [manifest](evidence/talents-menu/manifest.json) binds the definition
 spans and 22 current native owners to original bytes, with canonical assembly,
 REA/Ghidra provenance and pseudocode where useful. The source loads
 `assets/talents-menu-0.109.0.json` directly. Historical gameplay effect catalogs
@@ -39,7 +39,7 @@ and the page through `save/talents.rs`.
 ## Talent and spec records
 
 The current full parser and serializer are retained once in the shared
-[Save-core manifest](evidence/0.109.0/save-core/manifest.json). The
+[Save-core manifest](evidence/save-core/manifest.json). The
 [typed schema](save-schema.md) calls
 `talents::normalized_rows` for these two record families.
 
@@ -65,7 +65,7 @@ canonical extract/asset hashes and current data fields, then executes current
 native instructions for 1,121 descriptions, 355 metadata/milestone records and
 111 allocation/Save/spec cases: 72 normalization cases across all nine classes,
 23 complete parse/serialize cases and 16 actual spec switches. The retained
-[case fixtures](evidence/0.109.0/talents-menu/native-cases.json) contain native
+[case fixtures](evidence/talents-menu/native-cases.json) contain native
 results. Normalization includes empty through unlimited budgets and the large
 native sorting path. Save fixtures include duplicate, unknown, malformed and
 whitespace-bearing records, strict numeric parsing and incomplete spec slots.

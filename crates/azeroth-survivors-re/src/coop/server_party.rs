@@ -888,7 +888,7 @@ mod tests {
     #[test]
     fn current_hero_fields_match_original_instruction_fixtures() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.121.0/coop-heroic-wire/static-check.json")).unwrap();
+            "../../../../docs/analysis/evidence/coop-heroic-wire/static-check.json")).unwrap();
         for rich in [false, true] {
             let mut hero = hero_fixture();
             if rich {

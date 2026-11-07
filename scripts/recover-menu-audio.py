@@ -8,8 +8,8 @@ sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn import x86_const as r
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-RETAINED=ROOT/'docs/analysis/evidence/0.109.0/menu-audio'
-STAGED=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/menu-audio'
+RETAINED=ROOT/'docs/analysis/evidence/menu-audio'
+STAGED=ROOT/'runtime/analysis/staging/native-evidence/menu-audio'
 WORK=ROOT/'runtime/analysis/history/interface/menu-lifecycle/969b671942c0'
 OWNERS={'focus':(0x14096fa20,0x14096fd1a),'callback':(0x1409705b0,0x140970ba3),'watch':(0x14097b520,0x14097b98e),'handoff':(0x14097bb30,0x14097bcd6),'master':(0x1409a73f0,0x1409a76b8)}
 def encoded(value):return json.dumps(value,indent=2,ensure_ascii=False)+'\n'
@@ -54,7 +54,7 @@ def cvar_vectors(data,pe):
     u,scratch,stack,done,q,put,get,setr=machine(data,pe)
     # Give the callback its reviewed native lexical/f32 parser bodies, not a formula seam.
     cursor=scratch+0x1000
-    cases=json.loads((ROOT/'docs/analysis/evidence/0.92/audio-cvar-fixtures.json').read_text())['cases'];vectors=[]
+    cases=json.loads((ROOT/'docs/analysis/evidence/audio-cvar-fixtures.json').read_text())['cases'];vectors=[]
     def alloc(n):
      nonlocal cursor
      p=cursor;cursor+=(n+31)&~15;return p
@@ -83,7 +83,7 @@ def cvar_vectors(data,pe):
 
 def gain_vectors(data,pe):
     u,scratch,stack,done,q,put,get,setr=machine(data,pe)
-    cases=json.loads((ROOT/'docs/analysis/evidence/0.92/menu-audio.json').read_text())['native_fragment']['cases']
+    cases=json.loads((ROOT/'docs/analysis/evidence/menu-audio.json').read_text())['native_fragment']['cases']
     def hook(_,a,n,__):
         if a==0x14097b780:u.emu_stop();return
         if a==0x145bfa16b:

@@ -11,11 +11,13 @@ import json
 import re
 import struct
 
+from artifact_history import read_artifact
 from creature_query_native import ROOT, T, D, PE, ENDS
 from template_query_native import TemplateQueryProbe
 
 WORK = ROOT / 'runtime/analysis/history/findings/q41-object-query/bf123ebeeebd'
 KEEP = ROOT / 'docs/analysis/evidence/0.113.2'
+STAGE = ROOT / 'runtime/analysis/staging/native-evidence/template-queries'
 
 
 def sha(value):
@@ -160,7 +162,7 @@ def main():
         assert body == encode_object(9005, value, 3, 259)
         wire_cases.append(dict(kind='object', entry=9005, type_id=3, display_id=259, name=value,
                                opcode=opcode, packet_hex=body.hex(), decoded=decoded(opcode, body)))
-    creature_proof = json.loads((KEEP / 'creature-queries.json').read_text())
+    creature_proof = json.loads(read_artifact(KEEP / 'creature-queries.json'))
     known = {r['entry']: r for r in creature_proof['hits']}
     for entry, overrides in [(600, {}), (690, {}), (9613, {}), (9513, {}), (0x80000258, {}),
             (600, {'enemy.600': 'Mob\0tail'}), (600, {'zone.elwynn.subtitle': 'Sub\0tail'}),
@@ -208,11 +210,12 @@ def main():
         limits=common_limits)
     for name, record in [('object-queries.json', result), ('template-query-wire.json', wire)]:
         output = json.dumps(record, indent=2, ensure_ascii=False) + '\n'
-        path = WORK / name if args.stage else KEEP / name
+        path = STAGE / name if args.stage else KEEP / name
         if args.stage:
+            path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(output)
         else:
-            assert path.read_text() == output, name
+            assert read_artifact(path).decode() == output, name
     print(json.dumps(dict(u16_entries=65536, locale_cases=15*len(entries), payload_cases=len(payloads),
                          native_wire_cases=len(wire_cases), source_executed=False, parity_verified=False)))
 

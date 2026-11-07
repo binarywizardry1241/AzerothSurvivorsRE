@@ -21,9 +21,9 @@ def main():
     args=ap.parse_args()
     actions=load('raid_action_inputs','scripts/recover-raid-actions.py')
     target,raw,span,records,_=actions.recover()
-    waves=json.loads((ROOT/'docs/analysis/evidence/0.109.0/raid-waves/manifest.json').read_text())
+    waves=json.loads((ROOT/'docs/analysis/evidence/raid-waves/manifest.json').read_text())
     assert waves['target_sha256']==target['sha256']
-    towers=json.loads((ROOT/'docs/analysis/evidence/0.109.0/raid-towers/manifest.json').read_text())
+    towers=json.loads((ROOT/'docs/analysis/evidence/raid-towers/manifest.json').read_text())
     assert towers['target_sha256']==target['sha256']
     shields=load('raid_shield_inputs','scripts/check-raid-shields.py')
     shield_target,_,_,shield_records=shields.recover()
@@ -41,7 +41,7 @@ def main():
         for (tag,words),mapped in payloads.items():
             if action['native_tag']==tag and tuple(action['words'][:len(words)])==words:
                 special[int(action['record']['va'],16)]=mapped
-    ward_index=json.loads((ROOT/'docs/analysis/evidence/0.109.0/raid-wards/index.json').read_text())
+    ward_index=json.loads((ROOT/'docs/analysis/evidence/raid-wards-comparison/index.json').read_text())
     for va,index in ward_index.items():special[int(va,16)]=(15,index)
     def ability(index):
         row=graph['actions'][index];w=row['words'];tag=row['native_tag'];cool=row['repeat_bits']

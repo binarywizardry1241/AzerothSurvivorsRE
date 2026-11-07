@@ -46,7 +46,7 @@ def main():
     for address, value in FORMATS.items():
         assert raw(address, len(value)) == value
     assert raw(0x146CCCD08, 19) == b"The Reaper's Amulet"
-    metadata = json.loads((ROOT / "docs/analysis/evidence/0.115.0/addon-timers/metadata.json").read_text())
+    metadata = json.loads((ROOT / "docs/analysis/evidence/addon-timers/metadata.json").read_text())
     factory = metadata["generated_timer_amulets"]["factory"]
     assert int(factory["va"], 16) == FACTORY
     assert hashlib.sha256(raw(FACTORY, factory["size"])).hexdigest() == factory["sha256"]
@@ -162,7 +162,7 @@ def main():
             spans.update(probe.executed)
             cases.append(dict(ability=key, case=label, translations=translations,
                               lookups=probe.lookups, formats=probe.formats, key=native_key, name=name))
-    assembly = ROOT / "docs/analysis/evidence/0.115.0/addon-timers/generated-name.asm"
+    assembly = ROOT / "docs/analysis/evidence/addon-timers/generated-name.asm"
     record = dict(target_sha256=SHA,
                   factory_reference="metadata.json#/generated_timer_amulets/factory",
                   rea_evidence_id="ev_4ccdd20d98d77b34649f97e4337d60e664812ddc4edbd16462e9886c22ad8b7b",
@@ -176,7 +176,7 @@ def main():
                           "Formatting seams assert all three exact current templates and supply their string outputs; allocation and std formatting are not reimplemented as native evidence.",
                           "The broader Ghidra result overextended the containing procedure and has unrelated bad instruction/control-flow warnings. Only the original-address common tail and successful bounded instruction cases support these names.",
                           "The source uses these recovered parts for timer publication. Actual locale selection/reward timing and original/rebuilt runtime parity remain unverified."])
-    destination = args.output or ROOT / "docs/analysis/evidence/0.115.0/addon-timers/generated-name-cases.json"
+    destination = args.output or ROOT / "docs/analysis/evidence/addon-timers/generated-name-cases.json"
     assert destination.resolve().is_relative_to(ROOT)
     if args.write:
         destination.write_text(portable_json(record, indent=2, ensure_ascii=False) + "\n")

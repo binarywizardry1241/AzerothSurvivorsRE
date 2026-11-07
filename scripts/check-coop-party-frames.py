@@ -17,7 +17,7 @@ from script_sources import load_script
 
 SHA = "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be"
 BASE = ROOT / "runtime/analysis/tasks/fixgap-205-0.123.0"
-OUT = ROOT / "docs/analysis/evidence/0.123.0/coop-party-frames"
+OUT = ROOT / "docs/analysis/evidence/coop-party-frames"
 OWNERS = [
     ("group-fanout", 0x145c2bd40, 0x145c2bdf3),
     ("recipient-builder", 0x145c2d740, 0x145c2d9aa),
@@ -92,7 +92,7 @@ def query_rows(target, image, pe):
             row["subject_verification"] = verify_native_query_subject(
                 ROOT, native, row, target, image=image, pe=pe)
             rows.append(row)
-    reused = json.loads((ROOT / "docs/analysis/evidence/0.123.0/coop-selection/manifest.json").read_text())
+    reused = json.loads((ROOT / "docs/analysis/evidence/coop-selection/manifest.json").read_text())
     for row in reused["queries"]:
         if row["procedure"] not in ("0x145c0c010", "0x145c2e460"):
             continue
@@ -504,7 +504,7 @@ def receive_order_cases(image, pe):
 
 
 def ordered_world_input():
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.139.2/coop-ordered-input.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/coop-ordered-input.json').read_text())
     target = installed_identity()
     assert target == proof['target']
     image = target_bytes(target)

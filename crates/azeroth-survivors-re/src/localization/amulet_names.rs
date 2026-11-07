@@ -28,7 +28,7 @@ mod tests {
     #[test]
     fn generated_names_match_current_native_constructor_cases() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.115.0/amulet-names.json"
+            "../../../../docs/analysis/evidence/amulet-names.json"
         )).unwrap();
         for case in proof["constructor_cases"].as_array().unwrap() {
             let translations = case["translations"].as_object().unwrap();

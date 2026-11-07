@@ -23,7 +23,7 @@ earlier selectors and their evidence.
 | `Q41-A01` | **Client repair delivered.** Scripted Sweep, `poly` and `rotor` decode and project through the live marker view. [Marker trace](native-recovery.md#marker-geometry-and-local-continuations). | The [0.141.1 encounter trace](scripted-attack-producers.md#rotor-and-polygon) identifies the serializer and same-tag copies. A live server constructor still needs a fresh part writer for tag 6 or 7 before publication. |
 | `Q41-A02` | **Classified.** The nine additional adapters use shared Bevy registration. All 32 immediate and 234 second-hop direct callers were checked for AS diagnostic ownership. [Registration trace](native-recovery.md#q41-a02-complement-references-and-imports). | An AS dependency would require an independent typed registration or dynamic receiver edge. |
 | `Q41-G01` | **Repairs delivered.** Recovered the immediate weakening recipient and strongest-value timer, then restored [periodic Insect Swarm weakening](status-weakening.md#periodic-projectile-recipient-in-01410) under [#136](../CURRENT-STATE.md#gap-136) and [ordinary stacked projectile cadence](projectile-timing.md) under [#322](../verification-needed.md#gap-322). [Ownerless flow](native-recovery.md#q41-g01-ownerless-instructions-and-reference-sources). | Remaining attack-part writer and descriptor questions use the exact `U01` and `G01` run selectors. |
-| `Q41-I01` | **Classified in part.** The 230 complete bundle names resolve 237 interior namespace matches. Two progression image consumers and four creature diagnostics have exact paths. [Bundle trace](source-frontier.md#ui-tuple-metadata), [resource trace](mpq-mount.md#progression-images-and-creature-table-diagnostics). | Recover the next typed loader or registration edge from its exact row in the [2,901-candidate inventory](evidence/0.141.0/data-classification/manifest.json). |
+| `Q41-I01` | **Classified in part.** The 230 complete bundle names resolve 237 interior namespace matches. Two progression image consumers and four creature diagnostics have exact paths. [Bundle trace](source-frontier.md#ui-tuple-metadata), [resource trace](mpq-mount.md#progression-images-and-creature-table-diagnostics). | Recover the next typed loader or registration edge from its exact row in the [2,901-candidate inventory](evidence/data-classification.json). |
 | `Q41-R01` | **Classified in part.** Verified 22 DBC readers, nine override writers, and both progression image consumers under [#103](../verification-needed.md#gap-103) and [#104](../verification-needed.md#gap-104). [MPQ proof](mpq-mount.md). | Mixed-locale precedence requires Data with competing variants. Other resource aliases need a specific typed producer. |
 | [#75](../verification-needed.md#gap-75) | **Source connected.** The recorder, actor/loadout projection and recipient replay are connected. | Compilation, delivery and parity remain in verification. |
 | [#206](../CURRENT-STATE.md#gap-206) | **Blocked on service evidence.** The typed key, departure commands and four Last callbacks are mapped. [Desktop exit](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-desktop-exit.md#last-callbacks-and-process-exit). | An authoritative relay artifact or hash-bound trace must distinguish desktop process exit from recoverable loss. |
@@ -53,7 +53,7 @@ admission. Its remaining checks are in [verification](../verification-needed.md#
 
 ## Q41-D01 immediate consumers
 
-The [ownerless-site classification](evidence/0.141.0/as-ownerless-sites.json)
+The [ownerless-site classification](evidence/as-ownerless-sites.json)
 selects all 74 ownerless AS-path records in the current residual inventory.
 They span 27 declared extents and 18 diagnostic paths. Sixty-four Rust
 Locations reach one of four terminal failure wrappers. Three Locations
@@ -86,7 +86,7 @@ PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/classify-as-ownerl
 
 ## Q41-E01 shared diagnostic interfaces
 
-The [0.141.0 proof](evidence/0.141.0/engine-diagnostic-roles.json) classifies the
+The [0.141.0 proof](evidence/engine-diagnostic-roles.json) classifies the
 entire ownerless shared-path selector. All 1,253 sites are 24-byte Rust
 `Location` records across 79 paths and 863 PE unwind extents. The checker
 replays each RIP-relative load and straight path to its first call. It binds
@@ -126,14 +126,14 @@ The external service scheduler under [#257](../CURRENT-STATE.md#gap-257)
 requires an authoritative service artifact. The EXE supplies the client-side
 boundary.
 
-The [residual manifest](evidence/0.141.0/native-residuals.json) records 488,306
+The [residual manifest](evidence/native-residuals.json) records 488,306
 unobserved executable ranges, 123,402 instruction records outside recovered
 bodies, 11,205 distinct unowned executable destinations, and 74 Survivors
 diagnostic sites without a body owner. These selectors overlap different
 reference and range populations. Follow incoming flow and inspect adjacent
 data before assigning the remaining roles or source ownership.
 
-The [computed correspondence frontier](evidence/0.141.0/computed-correspondence-frontier.json)
+The [computed correspondence frontier](evidence/computed-correspondence-frontier.json)
 preserves all fourteen prior typed questions. The [Codex trace](codex-growth-dispatch.md#admitted-growth-ceilings-in-01410)
 binds the current row producer and two admitted formatter paths under
 #17/#73. The Creature and GameObject questions under #64/#65 retain earlier

@@ -14,7 +14,7 @@ import io
 import json
 from pathlib import Path
 
-from coverage_common import ROOT, file_sha256, latest_target, load_json, project_path, target_bytes
+from coverage_common import ROOT, file_sha256, latest_target, load_json, project_path, same_replay_receipt, target_bytes
 from script_sources import load_script
 
 TARGET_SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
@@ -29,12 +29,12 @@ def load(path):
 
 
 def receipt(path):
-    return {"path": str(path), "sha256": file_sha256(project_path(path))}
+    return {"path": str(path), "sha256": file_sha256(path)}
 
 
 def checked(record):
     path = project_path(record["path"])
-    if file_sha256(path) != record["sha256"]:
+    if file_sha256(record["path"]) != record["sha256"]:
         raise ValueError(f"Retained input changed: {record['path']}")
     return path
 
@@ -243,7 +243,7 @@ def collect():
 def collect_encoded_frontier(target):
     """Project all saved references without modifying the selected Program."""
     identity = {key: target[key] for key in ("version", "path", "sha256", "size_bytes")}
-    base = f"docs/analysis/evidence/{target['version']}"
+    base = "docs/analysis/evidence"
     paths = [f"{base}/native-residuals.json", f"{base}/unknown-recovery.json",
              "docs/analysis/coverage/instruction-summary.json",
              "docs/analysis/coverage/unwind-complement-summary.json"]
@@ -463,13 +463,21 @@ def main():
     if args.encoded_frontier:
         target = latest_target(verify=True)
         value = collect_encoded_frontier(target)
-        path = project_path(f"docs/analysis/evidence/{target['version']}/encoded-reference-frontier.json")
+        path = project_path("docs/analysis/evidence/encoded-reference-frontier.json")
         if args.write:
             pending = path.with_suffix(".json.pending")
             pending.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
             pending.replace(path)
-        elif load(path) != value:
-            raise ValueError("Saved encoded reference frontier differs")
+        else:
+            retained = load(path)
+            for field in ("inputs", "producers"):
+                if (len(value[field]) != len(retained[field]) or not all(
+                        same_replay_receipt(current, previous)
+                        for current, previous in zip(value[field], retained[field]))):
+                    raise ValueError(f"Saved encoded reference frontier {field} differ")
+                value[field] = retained[field]
+            if retained != value:
+                raise ValueError("Saved encoded reference frontier differs")
         print("Verified exact encoded reference, IAT, and ownerless Ghidra flow populations.")
         return
     value = collect()
@@ -490,7 +498,8 @@ def main():
             pending_artifact = artifact.with_suffix(".gz.pending")
             pending_artifact.write_bytes(payload)
             pending_artifact.replace(artifact)
-        path = project_path(OUTPUT)
+        path = project_path("runtime/tmp/as-reference-frontier.json")
+        path.parent.mkdir(parents=True, exist_ok=True)
         pending = path.with_suffix(".json.pending")
         pending.write_text(json.dumps(value, indent=2) + "\n")
         pending.replace(path)

@@ -16,7 +16,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = Path("AzerothSurvivors/AzerothSurvivors-0.97.2.exe")
 SHA = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-OUT = ROOT / "docs/analysis/evidence/0.97.2"
+OUT = ROOT / "docs/analysis/evidence/menu-save"
 RUNTIME = ROOT / "runtime/analysis/history/interface/menu-save/0aae226f7152"
 CLASS_IDS = [1, 2, 3, 4, 5, 7, 8, 9, 11]
 
@@ -86,7 +86,7 @@ def main():
             code = read(start, end - start)
             slice_path = RUNTIME / f"{start:x}.bin"
             slice_path.write_bytes(code)
-            asm_path = OUT / f"{group}-0.97.2-{start:x}.asm"
+            asm_path = OUT / f"{group}-{start:x}.asm"
             assembly = objdump_output([
                 "objdump", "-d", "--no-show-raw-insn", f"--start-address={start:#x}",
                 f"--stop-address={end:#x}", str(TARGET),
@@ -189,7 +189,7 @@ def main():
                 "method": "REA/Ghidra exact native slices plus original Win64 instructions and PE pointer reads",
                 "target_executed": False, "emulation_run": False,
                 "source_compiled": False, "tests_run": False}
-    save(OUT / "menu-save-0.97.2.json", {
+    save(OUT / "manifest.json", {
         **metadata, "procedures": procedures["menu-save"],
         "class_race_eligibility": eligibility,
         "progress": {"current_zones": current_zones, "legacy_zones": legacy_zones,
@@ -221,7 +221,7 @@ def main():
             "Base-directory/OS file helpers retain0.92 baseline semantics where not separately revalidated in this report.",
         ],
     })
-    save(OUT / "appearance-0.97.2.json", {
+    save(OUT / "appearance.json", {
         **metadata, "procedures": procedures["appearance"], "feature_order": ["skin", "face", "hair_style", "hair_color", "facial_hair"],
         "clamp": "cache absent or pair absent: preserve; otherwise feature[i]=min(feature[i],count[i].saturating_sub(1))",
         "cycle": "clamp all; selected=(selected+i8delta).rem_euclid(max(count,1)); missing count uses1",

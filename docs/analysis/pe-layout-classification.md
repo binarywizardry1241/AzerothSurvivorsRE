@@ -7,12 +7,12 @@ interval as supporting file-format context under **#41**. It establishes no AS
 contract or source defect. The original ledger's semantic states, census totals
 and residual selectors remain unchanged.
 
-The [proof](evidence/0.113.2/pe-layout-classification.json) retains all twelve
+The [proof](evidence/pe-layout-classification.json) retains all twelve
 interval/hash records, complete retained incoming-reference checks, two encoded
 reference inventories, fresh REA/Ghidra observations and their Evidence/response
 commitments. Run `python3 -B scripts/check-q41-pe-layout.py`; `--stage`
 writes a candidate under ignored `runtime/analysis/history/findings/q41-layout/2aa5dfce908e/`. The existing
-[file-range generator](evidence/0.113.2/refresh-baseline/file-range-summary.json) owns the 26-interval
+[file-range generator](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.113.2/refresh-baseline/file-range-summary.json) owns the 26-interval
 whole-file partition. No bytes are removed or reclassified in that inventory.
 
 ## Header and section-tail results

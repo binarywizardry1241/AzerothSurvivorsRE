@@ -17,7 +17,7 @@ def main():
     assert target["sha256"] == SHA
     data = target_bytes(target)
     pe = load_script("tabard_locale_pe", ROOT / "scripts/inventory-executable.py").PE(data)
-    contracts = json.loads((ROOT / "docs/analysis/evidence/0.117.0/party-rewards/contracts.json").read_text())
+    contracts = json.loads((ROOT / "docs/analysis/evidence/party-rewards/contracts.json").read_text())
     for row in contracts["native_spans"]:
         address, count = int(row["va"], 16), row["byte_count"]
         at = pe.rva_offset(address - pe.image_base)
@@ -83,7 +83,7 @@ def main():
     assert 'labels.labels.get(&format!("tabard.{id}"))' in owner
     assert ".unwrap_or(&tabard.name)" in owner
     assert "labels.label(&tabard.name)" not in owner
-    proof = json.loads((ROOT / "docs/analysis/evidence/0.117.0/party-rewards/tabard-localization.json").read_text())
+    proof = json.loads((ROOT / "docs/analysis/evidence/party-rewards/tabard-localization.json").read_text())
     assert proof["target_sha256"] == SHA
     assert proof["cases"] == len(cases) == 84
     assert proof["cases_sha256"] == hashlib.sha256(json.dumps(cases, separators=(",", ":")).encode()).hexdigest()

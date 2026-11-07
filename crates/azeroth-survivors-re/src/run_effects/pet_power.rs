@@ -56,7 +56,7 @@ mod tests {
     #[test]
     fn melee_and_ranged_match_unchanged_selected_instructions() {
         let fixtures: Fixture = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.105.0/power-scaling/pet-power/native-power.json"
+            "../../../../docs/analysis/evidence/power-scaling/pet-power/native-power.json"
         ))
         .unwrap();
         assert_eq!(

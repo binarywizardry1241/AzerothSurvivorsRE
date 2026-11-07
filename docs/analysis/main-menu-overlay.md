@@ -12,8 +12,8 @@ The title/description use46/15px, panel padding30×22 and gap12. Buttons have
 minimum width240, gap10 and top margin6; each uses17px text, padding22×10,1px
 border,4px radius, the shared red gradient and black.85 y2/blur6 shadow.
 The native window shade is black sRGBA alpha.55 at global Z400.
-[Curated stores and observations](evidence/0.92/menu-overlay-native.json) and
-[hash-bound function slices](evidence/0.92/menu-overlay-slices-provenance.json)
+[Curated stores and observations](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/menu-overlay-native.json) and
+[hash-bound function slices](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/menu-overlay-slices-provenance.json)
 retain the owning addresses and REA Evidence IDs.
 
 The original runtime confirms Escape opens Menu. Choosing Options and then Done

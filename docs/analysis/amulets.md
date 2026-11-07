@@ -8,7 +8,7 @@ Selected installed EXE: **0.112.0**, SHA-256
 The current generic constructor `1458a1730..1458a2ddc` builds all **113**
 ordinary generated amulets from the current 120-byte ability table at
 `146bf5eb0`. Its canonical native extract/Ghidra observation belongs to
-[Empowerment/Medallion](evidence/0.112.0/demonic-empowerment/manifest.json), role
+[Empowerment/Medallion](evidence/demonic-empowerment/manifest.json), role
 `medallion-constructor`; the constructor is shared, despite that role's name.
 This report references that extract rather than duplicating it. The sixteen
 current shared descriptors start at `146c015c8`, stride 80; Star is now jewelry,
@@ -24,7 +24,7 @@ menu label and class list likewise use the current **Soulfire** spelling. All
 113 current ability names match both source catalogs and their class lists.
 
 `python3 -B scripts/check-amulet-definitions.py` reproduces
-[the compact proof](evidence/0.112.0/balance/amulets.json): 113 actual native
+[the compact proof](evidence/balance/amulets.json): 113 actual native
 constructor executions, sixteen shared descriptor traversals and **1,860**
 native magnitude/selector/string-retention scaling cases. Zero and positive
 factors cover every effect in those descriptors. Current stat/spell variants

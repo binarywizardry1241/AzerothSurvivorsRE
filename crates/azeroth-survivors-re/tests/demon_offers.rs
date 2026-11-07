@@ -11,7 +11,7 @@ use azeroth_survivors_re::{
 
 fn fixture() -> serde_json::Value {
     serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.105.0/demon-offers/native-cases.json"
+        "../../../docs/analysis/evidence/demon-offers/native-cases.json"
     ))
     .unwrap()
 }
@@ -19,7 +19,7 @@ fn fixture() -> serde_json::Value {
 #[test]
 fn current_selected_ability_power_matches_native_descriptor_bytes() {
     let manifest: serde_json::Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.105.0/demon-offers/manifest.json"
+        "../../../docs/analysis/evidence/demon-offers/manifest.json"
     ))
     .unwrap();
     assert_eq!(azeroth_survivors_re::player_abilities::ABILITIES.len(), 113);
@@ -42,7 +42,7 @@ fn current_selected_ability_power_matches_native_descriptor_bytes() {
 
 fn current_fixture() -> serde_json::Value {
     serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.112.0/demonic-empowerment/native-cases.json"
+        "../../../docs/analysis/evidence/demonic-empowerment/native-cases.json"
     )).unwrap()
 }
 
@@ -73,7 +73,7 @@ fn empowerment_uses_current_ordinary_upgrades_and_learned_rarity() {
 #[test]
 fn current_empowerment_upgrade_eligibility_and_apply_match_native_boundaries() {
     let fixture: serde_json::Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.112.0/demonic-empowerment/upgrade-flow-cases.json"
+        "../../../docs/analysis/evidence/demonic-empowerment/upgrade-flow-cases.json"
     )).unwrap();
     let definition = AbilityDefinition::by_key("demonic_empowerment").unwrap();
     for case in fixture["supports_cases"].as_array().unwrap() {

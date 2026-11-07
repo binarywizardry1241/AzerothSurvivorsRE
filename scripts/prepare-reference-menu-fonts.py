@@ -59,8 +59,8 @@ def main():
                             source_file_offset=hex(offset), byte_count=count,
                             sha256=hashlib.sha256(payload).hexdigest(), family=family,
                             native_accent_augmentation=augment))
-    report = ROOT / ('docs/analysis/evidence/0.97.2/locales-font-inputs.json' if current
-                     else 'docs/analysis/evidence/0.92/menu-font-inputs.json')
+    report = ROOT / ('docs/analysis/evidence/locales-font-inputs.json' if current
+                     else 'docs/analysis/evidence/menu-font-inputs.json')
     report.write_text(json.dumps(dict(target=str(target.relative_to(ROOT)), target_sha256=expected,
                                       version=args.target_version, target_executed=False,
                                       purpose='Unmodified native-copy font bytes; ignored local QA data only, never a build input.',

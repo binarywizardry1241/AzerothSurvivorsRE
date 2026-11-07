@@ -12,7 +12,7 @@ All descriptor fields, order, labels, pages, control/storage variants, ranges,
 indentation, inversion, linked writes and dropdown labels/values are recovered
 from this image. The former 96 rows have unchanged descriptor semantics; their
 addresses are rebound rather than treated as unchanged native locations.
-The [manifest](evidence/0.109.0/options/manifest.json) binds the complete table,
+The [manifest](evidence/options/manifest.json) binds the complete table,
 write jump table, eight registered name/default pairs and three native owners.
 
 | Added setting | Native control | Default |

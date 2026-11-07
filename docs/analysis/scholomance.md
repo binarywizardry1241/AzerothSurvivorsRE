@@ -36,7 +36,7 @@ in `patch.MPQ` at hash slot 54677 and block 8115. `patch-C.MPQ` holds the
 `cd1230bca784d319845c3e0b9434cf9333be05e435b8971a01f3f77d01eaa993`.
 These archive/DBC reads establish the data route the existing engine can
 consume. Trace the actual AS map handoff, cover choice and world spawn
-before assigning native behavior to the source entry path. [MPQ inventory](evidence/0.140.0/mpq-member-coverage.json), [existing engine map catalog](../../crates/benilla-formats/src/maps.rs).
+before assigning native behavior to the source entry path. [MPQ inventory](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.140.0/mpq-member-coverage.json), [existing engine map catalog](../../crates/benilla-formats/src/maps.rs).
 
 | 0.140.0 claim ID | Finding and next static step |
 | --- | --- |

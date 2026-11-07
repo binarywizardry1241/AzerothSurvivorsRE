@@ -2,7 +2,7 @@
 
 Findings **#265/#277**. Installed target **0.123.0**, SHA-256
 `de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be`.
-The [manifest](evidence/0.123.0/again-runes/manifest.json) binds four new
+The [manifest](evidence/again-runes/manifest.json) binds four new
 journaled Ghidra subjects and reuses the existing command6 query. Object
 retirement retains its separate [owning proof](again-retirement.md).
 

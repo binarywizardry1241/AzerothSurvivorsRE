@@ -23,7 +23,7 @@ without a separate image cache or manufactured fallback for a missing worn icon.
 
 Fresh REA/Ghidra raw-function analysis binds the current picker equipment owner
 `1402dcbf0..1402dd37a` and shared getter `1458270a0..145827578`.
-The [canonical contract](evidence/0.113.2/picker-equipment-art/native-contract.json)
+The [canonical contract](evidence/picker-equipment-art/native-contract.json)
 records exact range hashes, Evidence IDs and selected instruction text. In the
 picker, the worn-item branch calls the getter at `1402dcdb2`, before passing the
 returned icon name to the existing image request at `1402dcddf`. The empty-item
@@ -50,7 +50,7 @@ python3 -B scripts/check-picker-equipment-art.py
 The check verifies the installed EXE, exact native ranges/calls/DBC literal,
 nine archive hashes, icon and placeholder payloads, catalog/faction selection
 digests, loader registration/admission/retry ordering and resource-driven picker
-invalidation. [Compact proof](evidence/0.113.2/picker-equipment-art/resource-source-proof.json).
+invalidation. [Compact proof](evidence/picker-equipment-art/resource-source-proof.json).
 `--stage` writes regenerated proof under ignored `runtime/` for review.
 
 Ghidra's raw imports omit external data and callees; the picker rarity-color

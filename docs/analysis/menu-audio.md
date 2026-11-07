@@ -2,7 +2,7 @@
 
 Installed EXE SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The current #17 [manifest](evidence/0.109.0/menu-audio/manifest.json) binds five
+The current #17 [manifest](evidence/menu-audio/manifest.json) binds five
 full sound owners, fresh REA/Ghidra queries, current installed MPQ source and
 115 original-instruction cases. The [historical report](main-menu-audio.md)
 retains its actual 0.92.0 observations and device/backend limits;
@@ -40,7 +40,7 @@ parser: invalid event numerics become zero, volumes clamp 0..1 with NaN
 retained, and toggles use nonzero including NaN. Accepted keys update the
 resource tick. Startup registry rejection of invalid saved numerics remains a
 separate stage. The numeric helper ranges are shared with the existing
-[Options values manifest](evidence/0.109.0/options-values/manifest.json).
+[Options values manifest](evidence/options-values/manifest.json).
 
 Watch owner `14097b520` retains enabled/music-enabled gain `MusicVolume × 0.8`,
 the 0.001 floor, -60 dB silence, `20 × log10f` and the 15 ms gain command.

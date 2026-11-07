@@ -3,9 +3,9 @@
 Finding **#246**, lead **`RESOURCE1210:patch-B:DUST2B:consumer`**, now has exact
 configured-model consumers. The selected EXE SHA-256 is
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
-The [original resource receipt](evidence/0.121.0/resource-delta.json) binds the
+The [original resource receipt](evidence/resource-delta.json) binds the
 new patch-B texture and its archive/member identity. The separate
-[consumer proof](evidence/0.121.0/texture-consumers.json) binds the current model
+[consumer proof](evidence/texture-consumers.json) binds the current model
 texture records, filename ranges and particle-emitter records.
 
 ## Observed consumers

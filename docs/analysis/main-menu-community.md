@@ -19,7 +19,7 @@ hex alpha rows in `assets/community-icon.json`. The data extraction utility is
 `scripts/recover-community-icon.py`; it requires the reference only when re-running analysis.
 Neither a source build nor the runtime image constructor reads the EXE. Original VA/file
 ranges, mask/pixel hashes and native function Evidence IDs are retained in
-[community-icon-native.json](evidence/0.92/community-icon-native.json).
+[community-icon-native.json](evidence/community-icon-native.json).
 
 Native action tag11 dispatches to the OS URL opener for `https://discord.gg/UzxaZuSAk`.
 This subtask did not open that URL. The root menu owns the corresponding source action and

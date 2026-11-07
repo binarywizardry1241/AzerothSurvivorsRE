@@ -18,7 +18,7 @@ from native_talent_fixture import (
     UC_X86_REG_RIP, UC_X86_REG_XMM0, UC_X86_REG_XMM1, UC_X86_REG_XMM8,
 )
 
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.112.0/warrior-talents'
+EVIDENCE = ROOT / 'docs/analysis/evidence/warrior-talents'
 PREFIX = (0x14593ed6c, 0x14593f188)
 
 
@@ -51,7 +51,7 @@ def main():
         start, end = int(record['start'], 16), int(record['end_exclusive'], 16)
         assert span(start, end) == {k: v for k, v in record.items() if k != 'role'}
     assert hashlib.sha256((EVIDENCE / 'selected-native.asm').read_bytes()).hexdigest() == manifest['assembly_sha256']
-    leads = json.loads((ROOT / 'docs/analysis/evidence/0.112.0/release-data-leads.json').read_text())
+    leads = json.loads((ROOT / 'docs/analysis/evidence/release-data-leads.json').read_text())
     source = json.loads((ROOT / 'crates/azeroth-survivors-re/assets/warrior-talents-0.112.0.json').read_text())
     assert source['target_sha256'] == target['sha256'] and source['target_version'] == target['version']
     talents = {t['key']: t for t in source['talents']}

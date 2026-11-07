@@ -2,14 +2,14 @@
 
 Installed SHA-256:
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The [current manifest](evidence/0.112.0/in-run-bindings/manifest.json) binds23
+The [current manifest](evidence/in-run-bindings/manifest.json) binds23
 code owners, actual switch tables, path literals and the shared historical
-fixture algorithm. [Ghidra identities](evidence/0.112.0/in-run-bindings/analysis.json)
+fixture algorithm. [Ghidra identities](evidence/in-run-bindings/analysis.json)
 retain portable provider/profile/carrier/seed hashes. Historical
 [0.109.0 recovery](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/in-run-bindings-0.109.0.md) retains its original provenance.
 
 Options event owner `140136fa0..140139424` has105 descriptors. Its complete
-[assembly](evidence/0.112.0/in-run-bindings/options-events.asm) is canonical;
+[assembly](evidence/in-run-bindings/options-events.asm) is canonical;
 raw Ghidra imports omit its external switch table. Current known switch slots
 at `145dc96b8` lead to `140137946`, `140137ccf` and `140137a0a`. Their producer
 membership/domain is a separate #41 boundary. This report retains the complete
@@ -72,7 +72,7 @@ account/character mappings were active.
 
 `python3 -B scripts/check-in-run-bindings.py` passes99 native branches:
 the91 retained filter/take/mouse/wheel vectors, six complete slot toggles and
-two live-commit gates. [Results](evidence/0.112.0/in-run-bindings/cases.json)
+two live-commit gates. [Results](evidence/in-run-bindings/cases.json)
 also bind source early ownership, press/held/release ordering, layout/mouse/wheel
 consumers and the account file/model/edit/save route. Rust syntax parsing ran;
 the new Rust regressions were not compiled or executed.

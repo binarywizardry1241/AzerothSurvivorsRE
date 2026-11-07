@@ -3,7 +3,7 @@
 Target SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 [verification-needed](../verification-needed.md) owns findings #227–#229 and their remaining
-scope. The [record proof](evidence/0.121.0/gear-records.json) retains five durable
+scope. The [record proof](evidence/gear-records.json) retains five durable
 Ghidra queries, source receipts and original-instruction fixtures. Current
 recovery covers persistence, boss and duplicate awards, per-piece pity, receipt
 chat and star offer/debit. Live armory and cooperative ingress integrations are
@@ -55,7 +55,7 @@ Invalid/unowned, maximum, locked and insufficient-funds paths leave both fields
 unchanged. Public offer/transaction methods supply the separate armory owner;
 its live input connection and rendering retain their own validation limits.
 
-[Purchase proof](evidence/0.121.0/gear-purchase.json) binds three current queries
+[Purchase proof](evidence/gear-purchase.json) binds three current queries
 and **324 native offer contexts plus debit/failure branches / 2,111,010 original
 instruction steps**. Descriptor allocation, CRT math and memmove are synthetic
 seams. Tier/cap/discount/ownership/debit and sorted updates use original native
@@ -164,7 +164,7 @@ The selected synchronous local command6 Again path keeps this initial Config.
 The complete summary and its inspected chat/unlock/account-event publishers
 either mutate output queues, receive only Save `App+1110`, or narrow to the
 separate Game `App+10`; they do not install updated Save/Game pity in retained
-Config. The [ownership proof](evidence/0.121.0/again-entry.json) reuses six existing
+Config. The [ownership proof](evidence/again-entry.json) reuses six existing
 manifest selectors and adds four journaled wrapper receipts. Its eight exact
 PE ranges contain 509 bytes / 104 decoded instructions. This is a bounded AS
 call/argument audit, without an all-process alias or arbitrary callback claim.
@@ -217,7 +217,7 @@ execute. Two Rust regressions cover typed-record retention, widths, duplicate
 handling and caps; they are authored and unrun. The changed Rust file was parsed
 with the installed `rustfmt --emit stdout`, without compilation or source edits.
 
-[Reward proof](evidence/0.121.0/gear-rewards.json) binds seven durable current
+[Reward proof](evidence/gear-rewards.json) binds seven durable current
 Ghidra queries and **2,304 boss reward contexts plus two complete private swaps /
 852,122 original instruction steps**. It executes original arithmetic, RNG transition, pity mutation and
 success/miss output ordering, covering every zone, first/final boss, valid and
@@ -230,13 +230,13 @@ regressions cover saturation/reset/duplicates, fractional receipts and current
 roll policy; they are authored and unrun. Relevant Rust files passed syntax-only
 `rustfmt --emit stdout` parsing.
 
-The same reward checker also verifies the [clear/Continue lifecycle proof](evidence/0.121.0/reward-endless-lifecycle.json): **87 cases / 372 original steps**. Constructor fields initialize the shared clear phase and boss counter to zero. Continue changes the separate Endless-enabled flag, mode and deadline, while preserving phase/counter. The first final-clear write follows its reward call. These bounded slices stop before external calls and do not execute the application.
+The same reward checker also verifies the [clear/Continue lifecycle proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.121.0/reward-endless-lifecycle.json): **87 cases / 372 original steps**. Constructor fields initialize the shared clear phase and boss counter to zero. Continue changes the separate Endless-enabled flag, mode and deadline, while preserving phase/counter. The first final-clear write follows its reward call. These bounded slices stop before external calls and do not execute the application.
 
 No build, compiling test, application/game/client/network/server operation or
 original/rebuilt comparison ran. Compilation, gameplay, rendered receipt
 presentation, cooperative runtime and parity remain unverified.
 
 The two mark-receipt keys are bound to all fourteen current locale payloads in
-[the localization proof](evidence/0.121.0/gear-marks-localization.json).
+[the localization proof](evidence/gear-marks-localization.json).
 `scripts/check-set-localization.py --owner marks` verifies all28 values
 without rewriting unrelated catalog entries.

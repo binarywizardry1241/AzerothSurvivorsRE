@@ -9,7 +9,7 @@ from unicorn.x86_const import *
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 target=latest_target(verify=False);assert target['sha256']==SHA
 d=target_bytes(target);m = load_script('pe', ROOT/'scripts/inventory-executable.py');p=m.PE(d)
-layout=json.loads((ROOT/'docs/analysis/evidence/0.92/picker-node-layout.json').read_text())['node_layout']
+layout=json.loads((ROOT/'docs/analysis/evidence/picker-node-layout.json').read_text())['node_layout']
 def raw(a,n):o=p.rva_offset(a-p.image_base);return d[o:o+n]
 def qraw(a):return struct.unpack('<Q',raw(a,8))[0]
 def pair(a):return raw(qraw(a),qraw(a+8)).decode()
@@ -87,7 +87,7 @@ for text in ['Val::Px(430.)','Val::Px(40.)','Val::Px(12.)','Val::Px(10.)','Globa
  assert text in source,text
 ranges=[dict(address=hex(a),end_exclusive=hex(b),sha256=hashlib.sha256(raw(a,b-a)).hexdigest())for a,b in [(0x1401630f0,0x140163fac),(0x140238eb0,0x140239acc)]]
 proof=dict(target_sha256=SHA,ranges=ranges,typed_submission=results,race_records=races,limits=['UI/font/asset submission, race name/line fixtures, shadow allocation and copying are explicit seams in layout samples. The root slice starts after cursor/ECS selection with fixed computed position; placement arithmetic and restriction branch are additionally inspected in the retained native owners.','The eight actual current race records independently match source English fallback; every line key exists in fourteen source locales. Full localized getter execution is not claimed.','No build, game, computed layout, focus/input or rendered parity check ran.'])
-a=argparse.ArgumentParser(description=__doc__);a.add_argument('--write',action='store_true');args=a.parse_args();path=ROOT/'docs/analysis/evidence/0.109.0/armory-pages/race-tip.json'
+a=argparse.ArgumentParser(description=__doc__);a.add_argument('--write',action='store_true');args=a.parse_args();path=ROOT/'docs/analysis/evidence/armory-pages/race-tip.json'
 if args.write:path.write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n')
 else:assert json.loads(path.read_text())==proof
 print('Passed three current typed Node snapshots, title/bullet/span construction, eight native race records/22 lines and fourteen-language key coverage.')

@@ -2,7 +2,7 @@
 
 Selected installed EXE SHA-256:
 `de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be`.
-The [hash-bound proof](evidence/0.123.0/fire-nova/manifest.json) owns the current
+The [hash-bound proof](evidence/fire-nova/manifest.json) owns the current
 native branch, serialized event, configured DBC rows and resource identities
 for **#261**. Current overall status remains in [verification-needed](../verification-needed.md#gap-261).
 

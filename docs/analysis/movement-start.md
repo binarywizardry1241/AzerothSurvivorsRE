@@ -1,6 +1,6 @@
 # Movement-driven run start
 
-The [native evidence](evidence/0.140.0/movement-start.json) for finding #38 and
+The [native evidence](evidence/movement-start.json) for finding #38 and
 release claim `changelog:0.140.0:97b441022c8ea419` is bound to the installed
 0.140.0 EXE SHA-256
 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`.

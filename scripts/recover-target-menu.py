@@ -63,7 +63,7 @@ def main():
     pe = module.PE(data)
     bounds = {pe.image_base + start: pe.image_base + end for start, end, *_ in pe.functions()}
     bounds.update({0x14542f490:0x14542f511,0x1400b7b00:0x1400b7cc8,0x1454207d0:0x1454207ef,0x145439d50:0x145439e5b})
-    out = ROOT / 'runtime/analysis/staging/native-evidence/0.100.1/target-menu'
+    out = ROOT / 'runtime/analysis/staging/native-evidence/target-menu'
     out.mkdir(parents=True, exist_ok=True)
     rows = []
     for label, (start, evidence_path) in PROCEDURES.items():

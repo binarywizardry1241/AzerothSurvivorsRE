@@ -18,7 +18,7 @@ from script_sources import load_script
 from shared_native_inventory import open_readonly_uri
 
 TARGET_SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
-OUTPUT = "docs/analysis/evidence/0.121.0/residual-frontier.json"
+OUTPUT = "docs/analysis/evidence/residual-frontier.json"
 DETAIL = f"runtime/coverage/{TARGET_SHA}/residual-frontier/incoming-flow.json"
 PREFIXES = ("crates/wenilla-rogue/", "crates/wenilla-rogue-app/")
 
@@ -175,9 +175,9 @@ def derive():
         "scripts/coverage_common.py", "scripts/inventory-executable.py", "scripts/script_sources.py")]
     inputs = [receipt(name) for name in (
         "docs/analysis/coverage/full-image-execheck-0.121.0.json",
-        "docs/analysis/evidence/0.121.0/native-residuals.json",
-        "docs/analysis/evidence/0.121.0/as-residual-ranges.json",
-        "docs/analysis/evidence/0.121.0/as-ownerless-sites.json",
+        "docs/analysis/evidence/native-residuals-comparison.json",
+        "docs/analysis/evidence/as-residual-ranges-comparison.json",
+        "docs/analysis/evidence/as-ownerless-sites-comparison.json",
     )]
     census, residual, prior, prior_ownerless = [load_json(checked(row)) for row in inputs]
     if any(value["target"] != identity for value in (census, residual, prior, prior_ownerless)):

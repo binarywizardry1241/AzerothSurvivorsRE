@@ -745,8 +745,8 @@ def retain(directory, documents, check=False):
 def main():
     from coverage_common import ROOT, latest_target
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--classification", default="docs/analysis/evidence/0.115.0/data-classification/manifest.json")
-    parser.add_argument("--unknown", default="docs/analysis/evidence/0.115.0/unknown-recovery.json")
+    parser.add_argument("--classification", default="docs/analysis/evidence/data-classification-comparison/manifest.json")
+    parser.add_argument("--unknown", default="docs/analysis/evidence/unknown-recovery-comparison.json")
     parser.add_argument("--connections", default="docs/analysis/coverage/exe-connections.json")
     parser.add_argument("--census", default="docs/analysis/coverage/full-image-selected.json")
     parser.add_argument("--reviews", help="Project-local explicit bounded review JSON")

@@ -22,11 +22,11 @@ the result to its existing icon interaction tuple. The historical base asset
 and unrelated tooltip expressions retain their original provenance.
 
 The current custom wrapper `140040d90..14004127b` is bound by its
-[Ghidra output](evidence/0.112.0/demon-picker-tooltips/picker.c) and
-[identity](evidence/0.112.0/demon-picker-tooltips/rea.json).
+[Ghidra output](evidence/demon-picker-tooltips/picker.c) and
+[identity](evidence/demon-picker-tooltips/rea.json).
 The two actual picker callers at `140293359` and `1402a2d04` pass class/key
 inputs and the optional annotation to this wrapper; their compact
-[call fragments](evidence/0.112.0/demon-picker-tooltips/callers.asm) retain the
+[call fragments](evidence/demon-picker-tooltips/callers.asm) retain the
 original registers and instructions. Current descriptor lookup, real level-zero
 class stats, default instance, school/name/subtitle and description dispatch
 execute in the bounded check. The raw-carrier decompiler has incomplete external
@@ -46,7 +46,7 @@ instruction cases**: all seven keys in all fourteen current embedded locales.
 It compares emitted localized names, subtitles and bodies to the live composed
 source expressions, verifies the actual class pool, descriptor/code/caller and
 artifact hashes, and traces the live source consumer. The
-[compact cases](evidence/0.112.0/demon-picker-tooltips/data.json) retain the exact
+[compact cases](evidence/demon-picker-tooltips/data.json) retain the exact
 outputs. Existing allocation, byte, locale, String and Rust-format fixture
 services and imported truncf/roundf are explicit host seams. No inherited engine
 implementation is recovered or replaced by this change.

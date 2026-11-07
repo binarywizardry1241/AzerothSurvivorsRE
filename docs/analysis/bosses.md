@@ -22,7 +22,7 @@ to the menu's world loop.
 | `catalog.rs` | Reuse the canonical 60 boss definitions and 191 raw abilities; exact fixed placement points. | [Complete per-zone boss and ability roster](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/boss-catalog-0.97.2.md) |
 | `spawning.rs`, `placement.rs` | Scheduled cursor, endless repeats, startup flag, terrain/path placement and fixed-point selection. | [Scheduling and placement](boss-spawning.md) |
 | `scaling.rs` | Health/damage/speed, entity fields, GUIDs, initial stun and ability timers. | [Creation and scaling](boss-scaling.md) |
-| `ai.rs` | Enrage, cooldown collection, shared movement/melee/status gates and deferred actor lookup. | [Hash-bound AI spans](evidence/0.97.2/bosses/ai-native.json) |
+| `ai.rs` | Enrage, cooldown collection, shared movement/melee/status gates and deferred actor lookup. | [Hash-bound AI spans](evidence/bosses/ai-native.json) |
 | `abilities.rs` | Five dispatch types, ground objects, projectiles, minions, charges and delayed damage. | [Ability effects](boss-abilities.md) |
 | `death.rs` | Kill rewards, equipment, magnet schedule, experience attraction, boss meter and completion transitions. | [Death and completion](boss-death.md) |
 
@@ -101,7 +101,7 @@ and account-event requests from later unimplemented engine/persistence consumers
 
 ## Validation and remaining work
 
-[Static checkpoint and artifact hashes](evidence/0.97.2/bosses/source-validation.json)
+[Static checkpoint and artifact hashes](evidence/bosses/source-validation.json)
 record exact target-byte verification, independent catalog regeneration, retained
 REA provenance, report links and bounded native instruction fixture counts.
 The checkpoint retains **3,166 native input cases/rows**: 252 scheduling/placement,

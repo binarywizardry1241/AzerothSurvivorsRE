@@ -17,8 +17,8 @@ from coverage_common import ROOT, file_sha256, latest_target, target_bytes
 from equipment_native import EquipmentProbe
 from script_sources import load_script
 
-MANIFEST = 'docs/analysis/evidence/0.120.2/service-peer-flags/presentation.json'
-LOCALES = 'docs/analysis/evidence/0.120.2/service-peer-flags/notice-locales.json'
+MANIFEST = 'docs/analysis/evidence/service-peer-flags/presentation.json'
+LOCALES = 'docs/analysis/evidence/service-peer-flags/notice-locales.json'
 HELPER = 'crates/azeroth-survivors-re/src/coop/reconnection.rs'
 
 

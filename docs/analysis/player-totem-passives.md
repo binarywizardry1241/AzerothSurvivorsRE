@@ -6,7 +6,7 @@ The authoritative target is `AzerothSurvivors/AzerothSurvivors-0.97.2.exe`, SHA-
 
 ## Evidence
 
-[native.json](evidence/0.97.2/player-totem-passives/native.json) binds every retained slice and scalar/string to its original VA, file offset, byte count and SHA-256. The three new unchanged native function slices were analyzed through `./scripts/rea` with Ghidra12.1.4. Generic raw Ghidra signatures use the provider's inferred convention; the original Win64 register/stack instructions bind actual arguments.
+[native.json](evidence/player-totem-passives/native.json) binds every retained slice and scalar/string to its original VA, file offset, byte count and SHA-256. The three new unchanged native function slices were analyzed through `./scripts/rea` with Ghidra12.1.4. Generic raw Ghidra signatures use the provider's inferred convention; the original Win64 register/stack instructions bind actual arguments.
 
 | Owner | Recovered behavior | REA evidence |
 | --- | --- | --- |
@@ -17,7 +17,7 @@ The authoritative target is `AzerothSurvivors/AzerothSurvivors-0.97.2.exe`, SHA-
 | `1454a46c0..1454a4c10` | Pulse selection and talent22 healing | Same current GameTick evidence |
 | `14549f01c..14549f02a` | Cached maximum-health pointer is Game+1112 | Same current GameTick evidence |
 
-Curated original disassembly and decompiler text are beside the manifest. The owning full GameTick evidence is [behavior-native.json](evidence/0.97.2/player-abilities/behavior-native.json). [recover-player-totem-passives.py](../../scripts/recover-player-totem-passives.py) prepares exact PE `RUNTIME_FUNCTION` slices and project-local REA plans; `--collect` records completed analyses and re-extracts the original instruction/data ranges. It refuses another target SHA. Binary slices, full REA bundles and disposable plans remain ignored under `runtime/`.
+Curated original disassembly and decompiler text are beside the manifest. The owning full GameTick evidence is [behavior-native.json](evidence/player-abilities/behavior-native.json). [recover-player-totem-passives.py](../../scripts/recover-player-totem-passives.py) prepares exact PE `RUNTIME_FUNCTION` slices and project-local REA plans; `--collect` records completed analyses and re-extracts the original instruction/data ranges. It refuses another target SHA. Binary slices, full REA bundles and disposable plans remain ignored under `runtime/`.
 
 ## Call of Flame
 

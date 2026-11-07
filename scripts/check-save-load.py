@@ -10,7 +10,7 @@ from pathlib import Path
 sys.path.insert(0,'scripts')
 from native_save_fixture import CPU,ROOT,SHA,RUST_WHITESPACE
 from unicorn import x86_const as r
-DEST=ROOT/'docs/analysis/evidence/0.109.0/save-load'
+DEST=ROOT/'docs/analysis/evidence/save-load'
 ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');args=ap.parse_args()
 cpu=CPU();manifest=json.loads((DEST/'manifest.json').read_text());assert manifest['target_sha256']==SHA
 for row in manifest['owners']:

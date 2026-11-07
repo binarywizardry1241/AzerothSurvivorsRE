@@ -95,6 +95,6 @@ output = {
     "cases": cases,
     "limits": ["No audio device, decoder, application or OS/files/network call is executed inside emulation.", "This is event-callback behavior. Native startup CVar registry validation is a separate stage and may reject invalid/NaN loaded settings before the callback.", "Master/focus mixer policies require their separately recovered functions; callback values alone do not prove playback."],
 }
-path = ROOT / "docs/analysis/evidence/0.92/audio-cvar-fixtures.json"
+path = ROOT / "docs/analysis/evidence/audio-cvar-fixtures.json"
 path.write_text(json.dumps(output, indent=2) + "\n")
 print(f"Recorded {len(cases)} native audio CVar edge outputs across {len(fields)} exact keys.")

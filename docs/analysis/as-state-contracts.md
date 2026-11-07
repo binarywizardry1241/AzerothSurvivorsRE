@@ -25,9 +25,9 @@ existing state transition, unconditional unroot and caller-owned gossip completi
 retain their order. `continue_endless` already preserves the endless flag for the
 lifetime of that `Mechanics`; a new run constructs its own state.
 
-[Exact contracts](evidence/0.113.2/as-state-contracts/endless.json),
-[instructions](evidence/0.113.2/as-state-contracts/endless.asm) and
-[Ghidra provenance](evidence/0.113.2/as-state-contracts/endless-rea.json) retain
+[Exact contracts](evidence/as-state-contracts/endless.json),
+[instructions](evidence/as-state-contracts/endless.asm) and
+[Ghidra provenance](evidence/as-state-contracts/endless-rea.json) retain
 the current owner and observations. The original-VA raw import has external-data
 and calling-convention limits; the exact instructions and installed constant
 `147004000 == 300.0f` establish the branch and stores independently of pseudocode.

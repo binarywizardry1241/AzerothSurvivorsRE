@@ -20,8 +20,8 @@ from coverage_common import ROOT, latest_target
 
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 WORK = ROOT / 'runtime/analysis/history/combat/totem-cap/8d6fe173bd27'
-OUT = ROOT / 'runtime/analysis/staging/native-evidence/0.105.0/totem-cap'
-RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/totem-cap'
+OUT = ROOT / 'runtime/analysis/staging/native-evidence/totem-cap-comparison'
+RETAINED = ROOT / 'docs/analysis/evidence/totem-cap-comparison'
 RANGES = {
     'expiry': (0x145949470, 0x14594980a),
     'remove': (0x145926f60, 0x14592700e),
@@ -217,7 +217,7 @@ def main():
         return
 
     # Reuse the canonical earlier cap extract rather than duplicating it.
-    cap = next(r for r in json.loads((ROOT / 'docs/analysis/evidence/0.105.0/game-mode-audit/native-manifest.json').read_text())['native_observations'] if r['role'] == 'totem-kind-cap-branch')
+    cap = next(r for r in json.loads((ROOT / 'docs/analysis/evidence/game-mode-audit/native-manifest.json').read_text())['native_observations'] if r['role'] == 'totem-kind-cap-branch')
     assert hashlib.sha256(raw(int(cap['virtual_address'], 16), cap['byte_count'])).hexdigest() == cap['sha256']
 
     sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))

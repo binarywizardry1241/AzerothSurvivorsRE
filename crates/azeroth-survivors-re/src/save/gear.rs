@@ -377,7 +377,7 @@ mod tests {
 
     fn native() -> serde_json::Value {
         serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.109.0/save-gear/fixtures.json"
+            "../../../../docs/analysis/evidence/save-gear/fixtures.json"
         ))
         .unwrap()
     }

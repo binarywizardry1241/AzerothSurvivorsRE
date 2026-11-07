@@ -40,9 +40,9 @@ stopping at isolated native helpers.
 `python3 -B scripts/check-as-state-collections.py` passes **6,437 native
 cases** with current target verification. Exact ranges, fixture hashes, explicit
 seams and fresh raw-import Ghidra observations are retained in
-[contracts](evidence/0.113.2/as-state-contracts/collections.json),
-[instructions](evidence/0.113.2/as-state-contracts/collections.asm) and
-[provenance](evidence/0.113.2/as-state-contracts/collections-rea.json). The two
+[contracts](evidence/as-state-contracts/collections.json),
+[instructions](evidence/as-state-contracts/collections.asm) and
+[provenance](evidence/as-state-contracts/collections-rea.json). The two
 delayed-action intervals are selected prefixes inside the current diagnostic
 owner `145913e10`; they are not asserted as independent native functions.
 

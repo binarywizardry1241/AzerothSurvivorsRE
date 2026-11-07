@@ -20,7 +20,7 @@ from coverage_common import ROOT, latest_target, project_path, target_bytes
 
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
 WORK = ROOT / "runtime/analysis/history/interface/hud-gap7/696062fa29c4"
-RETAINED = ROOT / "docs/analysis/evidence/0.109.0/hud-ready"
+RETAINED = ROOT / "docs/analysis/evidence/hud-ready"
 OWNERS = {
     "hud-update": (0x14028E670, "hud/session/007-0x14028e670.json"),
     "hud-constructor": (0x14020CCD0, "constructors/session/005-0x14020ccd0.json"),

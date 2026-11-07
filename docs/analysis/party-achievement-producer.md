@@ -9,7 +9,7 @@ validation; the [wire contract](party-achievement-wire.md) owns State15
 serialization and inbound admission. Achievement definitions/predicates and the
 account writer remain separate consumers.
 
-The [curated manifest](evidence/0.117.0/party-achievement-producer/manifest.json)
+The [curated manifest](evidence/party-achievement-producer/manifest.json)
 binds ten instruction ranges, six constants and two completed journaled Ghidra
 queries to this exact EXE. Preferred addresses below are static PE addresses.
 The canonical assembly includes original instruction bytes; the replay verifies

@@ -5,7 +5,7 @@ import ast,json,sys,hashlib,importlib.util,struct,argparse
 from pathlib import Path
 from coverage_common import ROOT,latest_target,target_bytes
 from equipment_native import EquipmentProbe
-OUT=ROOT/'docs/analysis/evidence/0.112.0/in-run-bindings'
+OUT=ROOT/'docs/analysis/evidence/in-run-bindings'
 binding=json.loads((OUT/'manifest.json').read_text());assert binding['target_sha256']==latest_target(verify=True)['sha256']
 assert hashlib.sha256((ROOT/binding['fixture']).read_bytes()).hexdigest()==binding['fixture_sha256']
 mapping={int(a,16):int(b,16)for a,b in binding['addresses'].items()};path=ROOT/'scripts/native_bindings.py';tree=ast.parse(path.read_text());tree.body=[n for n in tree.body if isinstance(n,ast.FunctionDef)and n.name in ['source_checks','vectors']];used={}
@@ -68,7 +68,7 @@ record=dict(target_sha256=t['sha256'],application_executed=False,rebuilt_code_ex
     'Source assertions trace unconditional account file commit, fresh file-model refresh, loaded-VM-only account publication and existing capture/held/repeat/release/layout/mouse/wheel consumers. Rust regressions remain uncompiled.',
     'No compiler, application, device, native filesystem/network/IPC or original/rebuilt comparison. Shared engine and upstream event producer completeness remain #41.'])
 parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args()
-path=(ROOT/'runtime/analysis/staging/native-evidence/0.112.0/in-run-bindings' if args.stage else OUT)/'cases.json'
+path=(ROOT/'runtime/analysis/staging/native-evidence/in-run-bindings' if args.stage else OUT)/'cases.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print('Passed99 current native binding branches and account/capture source consumer checks; no compilation/game')

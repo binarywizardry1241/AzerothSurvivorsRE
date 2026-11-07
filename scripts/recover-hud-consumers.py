@@ -14,7 +14,7 @@ sys.path.insert(0,str(ROOT/'scripts'))
 from coverage_common import latest_target
 SHA='8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 WORK=ROOT/'runtime/analysis/history/findings/fixgap32-33/9040a2da4887'
-OUT=ROOT/'docs/analysis/evidence/0.105.0/hud-consumers'
+OUT=ROOT/'docs/analysis/evidence/hud-consumers'
 SPANS={
  'loot-root':(0x140279050,0x140279ced),
  'loot-row':(0x1401b2970,0x1401b3a63),
@@ -153,7 +153,7 @@ def main():
      retained=previous and same and visible and f32(age)<=300.
      assert (pc==0x14590fe6d)==retained
      flags.append(dict(selected=previous,same=same,visible=visible,age=age,retained=retained))
- canonical=ROOT/'docs/analysis/evidence/0.105.0/addon-bridge/native-manifest.json';cm=json.loads(canonical.read_text());assert cm['target_sha256']==SHA
+ canonical=ROOT/'docs/analysis/evidence/addon-bridge/native-manifest.json';cm=json.loads(canonical.read_text());assert cm['target_sha256']==SHA
  flag=next(r for r in cm['native_observations']if r['role']=='flag-select');assert sha(raw(int(flag['address'],16),flag['byte_count']))==flag['sha256']
  source_checks={
  'crates/azeroth-survivors-re/src/gameplay/run_hud/loot.rs':['session.paused || choosing || input.loading_screen_covering','row.born + time.delta_secs()','now - row.born < 7.','settings.shown("loot")','state.rows.len(), state.revision','GlobalZIndex(6100)','Val::Percent(38.)','progress / 0.05','progress > 0.85'],

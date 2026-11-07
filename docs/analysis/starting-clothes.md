@@ -3,8 +3,8 @@
 Target: installed 0.117.0, SHA-256
 `507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293`.
 Finding **#159** was discovered while tracing the children of #120's
-[Look viewport](armory-looks.md). The [manifest](evidence/0.117.0/starting-clothes/manifest.json),
-[vectors](evidence/0.117.0/starting-clothes/vectors.json) and bounded assembly
+[Look viewport](armory-looks.md). The [manifest](evidence/starting-clothes/manifest.json),
+[vectors](evidence/starting-clothes/vectors.json) and bounded assembly
 extracts retain the current native contracts; [verification-needed](../verification-needed.md)
 owns implementation and comparison status.
 

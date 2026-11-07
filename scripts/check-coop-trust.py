@@ -24,10 +24,10 @@ ROOT = Path(__file__).resolve().parents[1]
 OWNER = (0x145aa8d20, 0x145aa95e1)
 UTF = (0x145f7f020, 0x145f7f229)
 SHA = '291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08'
-CORRESPONDENCE = 'docs/analysis/evidence/0.120.0/coop-correspondence/manifest.json'
+CORRESPONDENCE = 'docs/analysis/evidence/coop-correspondence/manifest.json'
 QUERY = 'runtime/analysis/history/co-op/coop-trust/4fb22b1800ba/query/results/52427a95d30810b14fc7c5da1c95c3453fc4bb8fbe0b2d4f6aa84a0e8b901266.json'
 FIXTURE = 'crates/azeroth-survivors-re/tests/fixtures/guest-engine-trust.json'
-MANIFEST = 'docs/analysis/evidence/0.120.0/coop-trust/manifest.json'
+MANIFEST = 'docs/analysis/evidence/coop-trust/manifest.json'
 QUERY_EVIDENCE = 'ev_d4518f2421735409feb64e5082294ff06366debdb5d1df3531a013c6fcf24002'
 STORAGE = {
     0x140002200: 'allocator initialization',

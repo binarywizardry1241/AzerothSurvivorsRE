@@ -8,7 +8,7 @@ SHA='47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2'
 def main():
  s=importlib.util.spec_from_file_location('inventory',ROOT/'scripts/inventory-executable.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
  data=(ROOT/'AzerothSurvivors/AzerothSurvivors.exe').read_bytes();assert hashlib.sha256(data).hexdigest()==SHA;p=m.PE(data)
- labels=json.loads((ROOT/'docs/analysis/evidence/0.92/embedded-english.json').read_text())
+ labels=json.loads((ROOT/'docs/analysis/evidence/embedded-english-comparison.json').read_text())
  menu=json.loads((ROOT/'crates/azeroth-survivors-re/assets/menu.json').read_text())
  def off(va):return p.rva_offset(va-p.image_base)
  def u64(va):return struct.unpack_from('<Q',data,off(va))[0]
@@ -91,7 +91,7 @@ def main():
    starters.append(dict(race=race,**{'class':cid},slots=slots))
  result=dict(version='0.92.0',classes=classes,zones=zones,starter_items=starter_items,starters=starters)
  (ROOT/'crates/azeroth-survivors-re/assets/armory.json').write_text(portable_json(result,indent=2,ensure_ascii=False)+'\n')
- output=ROOT/'docs/analysis/evidence/0.92/armory';output.mkdir(parents=True,exist_ok=True)
+ output=ROOT/'docs/analysis/evidence/armory';output.mkdir(parents=True,exist_ok=True)
  ranges=[('starter-getter',0x1453df460,0x1453df6fa),('starter-item-reader',0x1453df730,0x1453dfc94),('outfit-merge',0x1453dfcf0,0x1453dff31),('gear-reader',0x1453e0030,0x1453e0f88),('gear-drops',0x1453de990,0x1453ded3e),('armor-effect-scaling',0x1454f0c40,0x1454f0e31),('weapon-effect-scaling',0x1454f0e80,0x1454f1071),('extra-effect-scaling',0x1454f10c0,0x1454f12b1)]
  for label,a,b in ranges:
   text=objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={a:#x}',f'--stop-address={b:#x}','AzerothSurvivors/AzerothSurvivors.exe'],cwd=ROOT,text=True);(output/(label+'.asm')).write_text(text)

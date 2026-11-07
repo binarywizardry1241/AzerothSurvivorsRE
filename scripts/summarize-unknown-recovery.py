@@ -16,7 +16,7 @@ from shared_native_inventory import open_readonly_uri as open_native_inventory, 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 BASE = ROOT/'runtime/coverage'/SHA
 DEFAULT_CENSUS = ROOT/'docs/analysis/coverage/full-image-census.json'
-OUT = ROOT/'docs/analysis/evidence/0.113.2/unknown-recovery.json'
+OUT = ROOT/'docs/analysis/evidence/unknown-recovery-comparison-2.json'
 EXPANDED_INPUTS = {
     'guarded_table_input':'jump_tables',
     'diagnostic_code_input':'diagnostic_leads',

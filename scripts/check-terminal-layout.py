@@ -56,7 +56,7 @@ except ImportError as error:
 
 module = load_script('pe', ROOT / 'scripts/inventory-executable.py')
 from native_terminal import verified_input
-manifest, target, data, pe = verified_input(ROOT / 'docs/analysis/evidence/0.109.0/terminal-presentation')
+manifest, target, data, pe = verified_input(ROOT / 'docs/analysis/evidence/terminal-presentation')
 u = Uc(UC_ARCH_X86, UC_MODE_64)
 size = max(section['rva'] + section['raw_size'] for section in pe.sections)
 u.mem_map(pe.image_base, (size + 4095) & ~4095)

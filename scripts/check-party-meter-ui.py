@@ -17,7 +17,7 @@ import subprocess
 import sys
 
 TARGET = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
-PROOF = "docs/analysis/evidence/0.121.0/party-meter-ui.json"
+PROOF = "docs/analysis/evidence/party-meter-ui.json"
 SOURCES = ["crates/azeroth-survivors-re/src/" + path for path in
            ["run_meter.rs", "gameplay/meter.rs", "gameplay/meter/settings.rs",
             "gameplay/meter/view.rs"]]

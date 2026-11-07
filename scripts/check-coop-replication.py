@@ -12,11 +12,11 @@ from native_terminal import NativeReplay
 from script_sources import load_script
 
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
-MANIFEST = ROOT / 'docs/analysis/evidence/0.115.0/coop-replication/manifest.json'
-GUEST_SPELL_ROWS = ROOT / 'docs/analysis/evidence/0.141.0/coop-guest-spell-rows.json'
-PROTOCOL_13 = ROOT / 'docs/analysis/evidence/0.141.0/coop-replication.json'
-ENTRY_NOTICES = ROOT / 'docs/analysis/evidence/0.141.0/coop-entry-notices.json'
-SETTLEMENT = ROOT / 'docs/analysis/evidence/0.141.0/party-achievement-settlement.json'
+MANIFEST = ROOT / 'docs/analysis/evidence/coop-replication/manifest.json'
+GUEST_SPELL_ROWS = ROOT / 'docs/analysis/evidence/coop-guest-spell-rows.json'
+PROTOCOL_13 = ROOT / 'docs/analysis/evidence/coop-replication.json'
+ENTRY_NOTICES = ROOT / 'docs/analysis/evidence/coop-entry-notices.json'
+SETTLEMENT = ROOT / 'docs/analysis/evidence/party-achievement-settlement.json'
 
 
 def digest(raw):

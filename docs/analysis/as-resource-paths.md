@@ -1,7 +1,7 @@
 # AS resource URI producers
 
 EXE SHA-256 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
-This [bounded proof](evidence/0.113.2/as-resource-paths.json) classifies the
+This [bounded proof](evidence/as-resource-paths.json) classifies the
 original `Q41-D03:resource_path:0..5` candidates under #41 / `Q41-R01`.
 It does not close the other resource, decoder, alias or rendering questions.
 

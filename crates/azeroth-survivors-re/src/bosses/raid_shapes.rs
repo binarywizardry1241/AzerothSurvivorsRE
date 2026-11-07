@@ -1,6 +1,6 @@
 //! Hash-bound 0.109.0 concentric waves (native move tag 27).
 //! Producer:145958e3a..145959146; records and checks:
-//! docs/analysis/evidence/0.109.0/raid-waves/manifest.json.
+//! docs/analysis/raid-waves.md.
 
 use super::{ground, Area, Pending};
 use crate::bosses::{abilities::{CombatContext, CombatPort}, RawBossAbility};

@@ -17,8 +17,8 @@ from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-STAGE = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/raid-actions'
-KEPT = ROOT / 'docs/analysis/evidence/0.109.0/raid-actions'
+STAGE = ROOT / 'runtime/analysis/staging/native-evidence/raid-actions'
+KEPT = ROOT / 'docs/analysis/evidence/raid-actions'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src/bosses/raid_actions.rs'
 RANGES = {
     'dispatch-player-height': (0x145957aef, 0x145957b7c),
@@ -70,7 +70,7 @@ def recover():
                 records.append(dict(boss_id=identity, name=text(boss), native_slot=slot,
                     native_tag=tag,index=len(records),payload_words=w[:5 if tag==8 else 4],
                     repeat_bits=w[12],native_record=span(at,56),native_record_hex=payload.hex()))
-    guardian_path='docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json'
+    guardian_path='docs/analysis/evidence/guardian-signatures/catalog.json'
     guardians=json.loads((ROOT/guardian_path).read_text()); assert guardians['target_sha256']==SHA
     for ri,row in enumerate(guardians['rows']):
         for vi,variant in enumerate(row['variants']):

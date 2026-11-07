@@ -4,7 +4,7 @@ Target SHA-256: `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb
 This connects the current shared actor decisions and their deferred consumers.
 It does not establish compilation, playable encounters or original/rebuilt parity.
 
-The [manifest](evidence/0.109.0/actor-frame-order/manifest.json) binds original
+The [manifest](evidence/actor-frame-order/manifest.json) binds original
 bytes, compact disjoint assembly slices and references to existing canonical
 extracts. Fresh slices are decoded from the verified installed image; no new
 Ghidra session or game process was started for this ordering repair.

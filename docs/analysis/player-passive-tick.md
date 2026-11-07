@@ -10,8 +10,8 @@ This report adds GameTick consumers to the current ability reconstruction. It do
 
 - Source: [passive_tick.rs](../../crates/azeroth-survivors-re/src/player_abilities/behavior/passive_tick.rs).
 - Reproduction: [recover-player-passive-tick.py](../../scripts/recover-player-passive-tick.py).
-- Curated native ranges, constants, profile bytes, hashes and REA IDs: [native.json](evidence/0.97.2/player-passive-tick/native.json).
-- Complete reused GameTick Ghidra owner: `14549d550..1454aaf72`, SHA-256 `14cd87f3990a2c0981051abf8e499d2c229717681964b36a757978a1664455e7`, REA `ev_c5c9cc29e1e6e39c77e71ac55fc8abbce607fd9cb931b6b010eee7b8f4720299`; retained by [behavior-native.json](evidence/0.97.2/player-abilities/behavior-native.json).
+- Curated native ranges, constants, profile bytes, hashes and REA IDs: [native.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/player-passive-tick/native.json).
+- Complete reused GameTick Ghidra owner: `14549d550..1454aaf72`, SHA-256 `14cd87f3990a2c0981051abf8e499d2c229717681964b36a757978a1664455e7`, REA `ev_c5c9cc29e1e6e39c77e71ac55fc8abbce607fd9cb931b6b010eee7b8f4720299`; retained by [behavior-native.json](evidence/player-abilities/behavior-native.json).
 - Related consumers: [hit/death passives](player-hit-passives.md), [totem passives/shared cooldown helper](player-totem-passives.md), [shared ability behavior](player-ability-behavior.md).
 
 The extractor checks the complete selected EXE hash, the reused GameTick byte hash and provider, and each imported focused helper dossier's subject SHA-256 and Ghidra provider before retaining pseudocode. Each original code slice has its own digest. No target execution is involved. Raw slices, REA sessions and generated plans stay under ignored `runtime/analysis/history/native-recovery/player-passive-tick/d94a2c1f9116/`; the curated textual evidence is tracked.

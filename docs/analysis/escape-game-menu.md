@@ -4,7 +4,7 @@
 failure to open the original game's menu. The repaired source path is bound to
 installed **0.112.5**, SHA-256
 `445e9de90f1a0e9be18d4e99e59eb170f4d253ac0440b970cdd0d0b3562dfd36`.
-[Native evidence](evidence/0.112.5/escape-menu/manifest.json) and the
+[Native evidence](evidence/escape-menu/manifest.json) and the
 [static checker](../../scripts/check-escape-menu.py) own the exact ranges,
 resource identities, bounded instruction cases and recovery limits. Historical
 pause construction/actions retain their [0.109.0 provenance](run-hud.md).

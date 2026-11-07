@@ -16,7 +16,7 @@ data = TARGET.read_bytes(); assert hashlib.sha256(data).hexdigest() == SHA
 module = load_script('inventory', ROOT / 'scripts/inventory-executable.py')
 pe = module.PE(data)
 bounds = [(pe.image_base + a, pe.image_base + b) for a,b,*_ in pe.functions()]
-OUT = ROOT / 'docs/analysis/evidence/0.100.1/run-effects'
+OUT = ROOT / 'docs/analysis/evidence/run-effects'
 OUT.mkdir(parents=True, exist_ok=True)
 cache, records = {}, []
 for role, address in [

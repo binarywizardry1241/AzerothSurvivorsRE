@@ -8,10 +8,10 @@ layout, font/rendering and original/rebuilt parity remain unverified.
 ## Producer and consumer
 
 The [picker contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.120.0/race-picker/manifest.json) and
-[hover contract](evidence/0.120.0/race-hover/contract.json) retain the current
+[hover contract](evidence/race-hover/contract.json) retain the current
 native chain. They preserve two durable Ghidra query commitments and 309
 independently decoded original instructions, including the previously retained
-[restriction footer](evidence/0.120.0/race-unlocks/restricted-race-tip.asm).
+[restriction footer](evidence/race-unlocks/restricted-race-tip.asm).
 Assembly is canonical per range; the hover proof adds only missing ranges.
 
 | Boundary | Observed contract |
@@ -27,7 +27,7 @@ The exact 55-byte hint is:
 
 > Open it to every class on the Rewards tab, under Races.
 
-The current [locale dependency](evidence/0.120.0/race-locales/manifest.json)
+The current [locale dependency](evidence/race-locales/manifest.json)
 recovers that key's native translations in all fourteen catalogs. The existing
 selected-language, English, then literal-key fallback remains the localization
 boundary. Raw Ghidra imports omit PE globals and original Rust types; the
@@ -59,7 +59,7 @@ With the existing Capstone and Unicorn installations on `PYTHONPATH`:
 python3 -B scripts/check-race-hover.py --queries
 ```
 
-The [retained result](evidence/0.120.0/race-hover/check.json) records **1,016
+The [retained result](evidence/race-hover/check.json) records **1,016
 synthetic native cases**, **309 exact original instructions**, and **two
 verified durable queries**. The cases cover all fourteen current catalog
 inputs, nine class names, both actual allowed values, and both recovered font

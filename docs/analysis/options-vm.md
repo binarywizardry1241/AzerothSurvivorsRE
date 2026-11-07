@@ -6,7 +6,7 @@ This is the custom Options storage1/2 portion of #17. It connects the existing
 benilla home, file and UI interfaces to the current Azeroth Survivors controls.
 It does not extend engine reconstruction or establish runtime parity.
 
-The [105-row descriptor proof](evidence/0.112.0/options-descriptors/data.json)
+The [105-row descriptor proof](evidence/options-descriptors/data.json)
 identifies 23 string-valued globals and two one-or-nil toggles. Current custom
 writer `14012d1f0` writes their literals through `14056a710` to
 `<engine config_dir>/saved-variables.lua`. Storage1 quotes the supplied text;
@@ -27,7 +27,7 @@ string and Boolean results. `options_globals.rs` now implements this narrow
 custom read contract without creating a Lua VM.
 
 The current collector `1400881e0` calls that read dispatcher from the Options
-event owner at `140139002`. Its [canonical event assembly](evidence/0.112.0/in-run-bindings/options-events.asm)
+event owner at `140139002`. Its [canonical event assembly](evidence/in-run-bindings/options-events.asm)
 admits a value rebuild while open when the model cache is absent or operations
 are queued. The source rereads file literals in its existing open/operation
 rebuild gate, and no longer replaces them with the live VM snapshot. It clears
@@ -60,9 +60,9 @@ iterator `140dee8f0` is executed directly; its old address or ABI is not reused.
 Source guards check the file read, refresh gate, shared home delegation,
 preserved assignment queue and complementary UI conditions.
 
-The [manifest](evidence/0.112.0/options-vm/manifest.json) binds all executed
+The [manifest](evidence/options-vm/manifest.json) binds all executed
 native owner bodies, current read/write tables, filename, caller fragments and
-fresh Ghidra identities. [Selected assembly](evidence/0.112.0/options-vm/selected-native.asm)
+fresh Ghidra identities. [Selected assembly](evidence/options-vm/selected-native.asm)
 is canonical for these current storage1/2 caller fragments; the shared Options
 event owner and descriptor table are referenced once.
 

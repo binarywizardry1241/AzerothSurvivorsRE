@@ -19,7 +19,7 @@ from pathlib import Path
 from coverage_common import ROOT, file_sha256, latest_target, project_path, target_bytes
 from script_sources import load_script
 
-PROOF = ROOT / "docs/analysis/evidence/0.115.0/as-indirect-contracts.json"
+PROOF = ROOT / "docs/analysis/evidence/as-indirect-contracts.json"
 OUTPUT = ROOT / "runtime/analysis/history/findings/q41-indirect-contracts/ed87b1986939"
 PREFIXES = ("crates/wenilla-rogue/", "crates/wenilla-rogue-app/")
 
@@ -101,7 +101,7 @@ def main():
         inputs[relative] = dict(path=relative, sha256=actual)
         return path
 
-    operand_proof = json.loads(read("docs/analysis/evidence/0.115.0/independent-indirects.json").read_text())
+    operand_proof = json.loads(read("docs/analysis/evidence/native-diagnostics/independent-indirects.json").read_text())
     require(operand_proof["target"] == identity, "Indirect target differs")
     artifact = operand_proof["artifact"]
     operands = {}

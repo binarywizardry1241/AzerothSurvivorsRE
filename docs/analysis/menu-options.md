@@ -23,9 +23,9 @@ two-byte codes in native language order and stores English for every other
 code/length. The getter clamps its unsigned index to thirteen and returns the
 corresponding immutable record. Code/index/table targets were re-derived from
 the current instructions and checked against current descriptor pointers.
-The [proof](evidence/0.115.0/menu-options/proof.json), canonical
-[producer](evidence/0.115.0/menu-options/index-producer.asm) and
-[getter](evidence/0.115.0/menu-options/record-getter.asm) bind these bytes to the
+The [proof](evidence/menu-options/proof.json), canonical
+[producer](evidence/menu-options/index-producer.asm) and
+[getter](evidence/menu-options/record-getter.asm) bind these bytes to the
 selected target. Their leaf semantics needed no Rust behavior change.
 
 All **105 current Options descriptors / 1,155 fields**, including the 23 direct
@@ -45,7 +45,7 @@ existing status priority: missing dependency names, outdated while version
 checking is enabled, load-on-demand, then empty. All **16 current native flag
 combinations** match the existing `draw_addons`/`Addons::missing` source law;
 no status/control correction was needed. The
-[selected status instructions](evidence/0.115.0/menu-options/addons-status.asm)
+[selected status instructions](evidence/menu-options/addons-status.asm)
 and proof bind this bounded current behavior. The replay stops before the first
 join/translation call or empty-status construction; inventory/TOC/metadata,
 account writes, loader behavior and rendering remain separate contracts.
@@ -57,7 +57,7 @@ cases**: all 65,536 two-byte codes, five invalid lengths with an unreadable text
 pointer, and 259 getter indices including u64 boundaries. No native external
 callee runs. Seven completed durable REA/Ghidra queries cover both complete
 language leaves and the AddOns page, with
-[digest-checked identities](evidence/0.115.0/menu-options/analysis.json).
+[digest-checked identities](evidence/menu-options/analysis.json).
 Raw imports omit external memory/callees and infer a generic ABI; the original
 instructions and Windows-register fixtures govern. `--write --stage` reproduces
 the source payloads and compact proof

@@ -61,7 +61,7 @@ def main():
                   start=hex(START),end_exclusive=hex(STOP),code_sha256=hashlib.sha256(data[offset:offset+STOP-START]).hexdigest(),
                   boundary="Only the original flag arithmetic executes. Every branch outside the interval aborts. Execution stops before the CreateFileW call instruction; no import/native helper, OS, filesystem, network or process function can execute.",
                   cases=cases)
-    (ROOT/"docs/analysis/evidence/0.92/update-open-options-native-checks.json").write_text(json.dumps(record,indent=2)+"\n")
+    (ROOT/"docs/analysis/evidence/update-open-options-native-checks.json").write_text(json.dumps(record,indent=2)+"\n")
     print(f"PASS: {len(cases)} closed native flag checks; stopped before every OS call.")
 
 

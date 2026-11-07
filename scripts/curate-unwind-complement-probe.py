@@ -89,7 +89,7 @@ def curate():
                     address=instruction.address+instruction.size+operand.mem.disp
                     if address in slots:
                         imported.add(address)
-    output=ROOT/'docs/analysis/evidence'/target['version']/'unwind-complement'
+    output=ROOT/'docs/analysis/evidence/unwind-complement'
     output.mkdir(parents=True,exist_ok=True)
     assembly_path=output/'native.asm'
     assembly_path.write_text('\n\n'.join(assembly)+'\n')

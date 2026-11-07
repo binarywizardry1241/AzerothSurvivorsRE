@@ -17,7 +17,7 @@ retain their 0.97.2 evidence until independently revalidated.
 Five current 88-byte Naxxramas boss records refresh only their scale words.
 Names, ability data and other boss fields retain their historical provenance.
 
-[Evidence and native outputs](evidence/0.100.1/world-tuning.json) retain exact
+[Evidence and native outputs](evidence/world-tuning.json) retain exact
 record/constant ranges, hashes and 108 instruction results at run boundaries,
 including unordered input handling. The optional
 `scripts/recover-world-tuning.py` verifies the full target hash before

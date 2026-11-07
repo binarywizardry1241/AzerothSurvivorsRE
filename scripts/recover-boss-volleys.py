@@ -17,7 +17,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b'
 WORK = ROOT / 'runtime/analysis/history/raid/boss-volleys/4de5482ea03e'
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.108.0/boss-volleys'
+EVIDENCE = ROOT / 'docs/analysis/evidence/boss-volleys'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src/guardians/catalog.rs'
 RANGES = {
     'dispatch-prefix': (0x145950FF8, 0x14595105B),

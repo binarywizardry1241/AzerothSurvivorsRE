@@ -12,10 +12,10 @@ encounter behavior and original/rebuilt parity remain unverified.
 
 The installed 0.109.0 target is SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [manifest](evidence/0.109.0/raid-actions/manifest.json) owns exact original
+The [manifest](evidence/raid-actions/manifest.json) owns exact original
 byte ranges, current records and their payload bits. Guardian payloads reference
 the canonical signature catalog instead of duplicating its native bytes.
-[REA provenance](evidence/0.109.0/raid-actions/rea-provenance.json) records four
+[REA provenance](evidence/raid-actions/rea-provenance.json) records four
 completed Ghidra 12.1.4 queries through `./scripts/rea`: the two producer branches,
 shared constructor and knockback packet serializer. These raw imports use a
 generic ABI and omit global references/external callees; instruction tracing
@@ -34,9 +34,9 @@ and bounded instruction cases establish the selected contracts independently.
 | Delayed visual consumer | `14593874c..1459388cb` | Runs after shared hazards, independent of source liveness |
 
 The native duration helper remains the canonical
-[wave evidence extract](evidence/0.109.0/raid-waves/duration.asm); this repair does
+[wave evidence extract](evidence/raid-waves/duration.asm); this repair does
 not duplicate it. Shared constructor instructions use the canonical
-[line constructor extract](evidence/0.109.0/raid-lines/hazard-constructor.asm),
+[line constructor extract](evidence/raid-lines/hazard-constructor.asm),
 while the separate Ghidra pseudocode remains with this scope.
 Current native jump-table bytes and every selected move's
 duration are checked against the installed target.

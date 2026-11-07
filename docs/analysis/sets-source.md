@@ -4,7 +4,7 @@ Selected installed EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 This report owns the bounded core recovery and source under **#242/#245**;
 [verification-needed](../verification-needed.md) owns overall implementation status.
-The [manifest](evidence/0.121.0/sets-core/manifest.json) binds original code/data,
+The [manifest](evidence/sets-core/manifest.json) binds original code/data,
 five durable Ghidra query receipts, source/asset hashes and exact limits.
 
 ## Recovered boundary
@@ -81,7 +81,7 @@ formatter additionally requires `bonus.calm_regen` and `bonus.crowd_armor`. The 
 two format keys and the two proved four-piece numeric labels, preserving every pre-existing entry. All 812 values are copied
 from the current hash-bound native catalogs; no translation is invented.
 
-The [selected-key receipt](evidence/0.121.0/sets-core/localization.json) records
+The [selected-key receipt](evidence/sets-core/localization.json) records
 only these 58 keys/values and the fourteen existing native payload descriptors.
 Whole native catalogs are not extracted. The bounded check also verifies the
 already present Heroic rank/twist/Difficulty labels, spell display-name keys and
@@ -98,7 +98,7 @@ remain unverified.
 
 ## Static evidence and limits
 
-The [static result](evidence/0.121.0/sets-core/static-check.json) records **2,661
+The [static result](evidence/sets-core/static-check.json) records **2,661
 isolated cases /201,324 original instruction steps**:273 constructor-domain cases
 and2,388 activation, set-ID, PvP normalization, live multiplier-input, tooltip-ID
 decoder, actual compact-gear prefix and four-piece table-selector cases.

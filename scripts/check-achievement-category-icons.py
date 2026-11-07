@@ -9,7 +9,7 @@ from coverage_common import ROOT, latest_target, project_path, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-proof = json.loads((ROOT / 'docs/analysis/evidence/0.121.0/achievement-category-icons.json').read_text())
+proof = json.loads((ROOT / 'docs/analysis/evidence/achievement-category-icons.json').read_text())
 target = latest_target(verify=True)
 assert all(target[key] == value for key, value in proof['target'].items())
 image = target_bytes(target)

@@ -2,7 +2,7 @@
 """Check current warned-line producer/delayed movement using bounded native instructions.
 
 No compiler, process launch or game is used. --write stages reviewed evidence
-under runtime/analysis/staging/native-evidence/0.109.0/raid-lines; default checks retained evidence.
+under runtime/analysis/staging/native-evidence/raid-lines; default checks retained evidence.
 Capstone and Unicorn are optional analysis dependencies, never build inputs.
 """
 from native_recovery import f32 as _shared_f32, bits as _shared_bits
@@ -22,8 +22,8 @@ sys.path[:0]=[str(p) for p in [ROOT/'runtime/tool-state/python/camera/python-lib
     ROOT/'runtime/tool-state/python/armory/python-libs'] if p.is_dir()]
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-RETAINED = ROOT/'docs/analysis/evidence/0.109.0/raid-lines'
-STAGED = ROOT/'runtime/analysis/staging/native-evidence/0.109.0/raid-lines'
+RETAINED = ROOT/'docs/analysis/evidence/raid-lines'
+STAGED = ROOT/'runtime/analysis/staging/native-evidence/raid-lines'
 RANGES = {
     'producer-prefix': (0x145958665, 0x14595870b),
     'producer-tail': (0x14595bf44, 0x14595c0e9),
@@ -76,7 +76,7 @@ def main(write):
                 w=struct.unpack('<14I',v)
                 records.append(dict(boss_id=bid,slot=slot,spell=w[0],repeat_bits=w[12],record=span(a,56),
                     size_input=span(boss+72,4),definition_size_bits=struct.unpack('<I',raw(boss+72,4))[0]))
-    guardian_path='docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json'
+    guardian_path='docs/analysis/evidence/guardian-signatures/catalog.json'
     catalog=json.loads((ROOT/guardian_path).read_text());assert catalog['target_sha256']==SHA
     for ri,row in enumerate(catalog['rows']):
         for vi,variant in enumerate(row['variants']):
@@ -272,7 +272,7 @@ def main(write):
             actual=get(frame+0x1e0,'I')[0]
         assert actual==expected
         row['actor_size_bits']=actual;constructor_size_cases+=1
-    terminal_path='docs/analysis/evidence/0.109.0/terminal-order/manifest.json'
+    terminal_path='docs/analysis/evidence/terminal-order/manifest.json'
     terminal=json.loads((ROOT/terminal_path).read_text());assert terminal['target']['sha256']==SHA
     for role in ['boss-append','guardian-append']:
         item=next(v for v in terminal['ranges'] if v['role']==role)

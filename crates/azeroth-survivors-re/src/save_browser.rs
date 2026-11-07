@@ -127,7 +127,7 @@ mod native_tests {
 
     fn vectors() -> serde_json::Value {
         serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.100.1/saves-browser/native-list-fixtures.json"
+            "../../../docs/analysis/evidence/saves-browser/native-list-fixtures.json"
         ))
         .unwrap()
     }

@@ -6,7 +6,7 @@ Current implementation status remains in [CURRENT-STATE](../CURRENT-STATE.md) an
 This is the complete bounded **Q41-D01 / Q41-G01 / Q41-U01** diagnostic-role
 reconciliation, using existing census observations and exact installed bytes.
 
-The [proof](evidence/0.121.0/as-ownerless-sites.json) selects **all 60** records
+The [proof](evidence/as-ownerless-sites-comparison.json) selects **all 60** records
 from `native-residuals.json:artifacts[diagnostic-sites.jsonl.gz]` where
 `context == 'AS-custom-path' && actual_body_owner == null`. They occupy
 **twenty declared unwind extents / fourteen diagnostic paths**. The connection

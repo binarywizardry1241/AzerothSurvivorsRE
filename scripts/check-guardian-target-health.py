@@ -18,8 +18,8 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 START, END, CONTINUATION = 0x14594AD5C, 0x14594ADDE, 0x14594AF3F
-STAGE = ROOT / "runtime/analysis/staging/native-evidence/0.113.2/guardian-target-health"
-KEPT = ROOT / "docs/analysis/evidence/0.113.2/guardian-target-health"
+STAGE = ROOT / "runtime/analysis/staging/native-evidence/guardian-target-health"
+KEPT = ROOT / "docs/analysis/evidence/guardian-target-health"
 
 
 def main():

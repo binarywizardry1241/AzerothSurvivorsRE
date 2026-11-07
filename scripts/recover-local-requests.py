@@ -59,7 +59,7 @@ for entry in [9005,0,0xffffffff]:
  for counter in [0,1,0xffffff,0x1000000,0xffffffff]:
   reset();reg(UC_X86_REG_RAX,counter);reg(UC_X86_REG_RBX,entry);run(0x1454e4ad2,0x1454e4af5)
   guids.append(dict(entry=entry,counter=counter,expected=u.reg_read(UC_X86_REG_R14)))
-OUT=ROOT/'docs/analysis/evidence/0.100.1/local-requests';OUT.mkdir(parents=True,exist_ok=True);owners=[]
+OUT=ROOT/'docs/analysis/evidence/local-requests';OUT.mkdir(parents=True,exist_ok=True);owners=[]
 ends={p.image_base+a:p.image_base+b for a,b,_ in p.functions()}
 for role,start in [('action-publication',0x1454f5f00),('action-packet',0x14545c420),('gameobject-create',0x1454e4a00),('pickup-create',0x1454da2c0)]:
  end=ends[start];at=p.rva_offset(start-p.image_base);raw=data[at:at+end-start]

@@ -18,7 +18,7 @@ import sys
 sys.dont_write_bytecode = True
 from coverage_common import ROOT, latest_target, target_bytes
 
-PROOF = ROOT / 'docs/analysis/evidence/0.121.0/release-items.json'
+PROOF = ROOT / 'docs/analysis/evidence/release-items.json'
 INITIAL_COMMIT = '1f5b24900d29bd4afcd33a2c09c1e5f392ef82fc'
 INITIAL_FIELDS = ('source_refs', 'status', 'investigation', 'next_static_step')
 CURRENT_STATUSES = {'source_static_connected', 'source_connected_static_partial',

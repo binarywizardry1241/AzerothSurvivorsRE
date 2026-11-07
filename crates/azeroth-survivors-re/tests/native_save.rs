@@ -11,7 +11,7 @@ use serde_json::Value;
 
 fn fixtures() -> Value {
     serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.92/save/interop-fixtures.json"
+        "../../../docs/analysis/evidence/save/interop-fixtures.json"
     ))
     .unwrap()
 }
@@ -193,7 +193,7 @@ fn seen_keeps_unknown_keys_and_merges_native_quality_maxima() {
 #[test]
 fn class_selection_matches_recorded_native_outputs() {
     let fixtures: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.92/save/class-selection-fixtures.json"
+        "../../../docs/analysis/evidence/save/class-selection-fixtures.json"
     ))
     .unwrap();
     let hero = |value: &Value| Hero {

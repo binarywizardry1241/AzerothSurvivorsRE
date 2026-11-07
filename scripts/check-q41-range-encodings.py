@@ -16,7 +16,7 @@ from pathlib import Path
 import struct
 import sys
 
-from coverage_common import ROOT, latest_target, target_bytes, file_sha256, load_json, project_path
+from coverage_common import ROOT, latest_target, target_bytes, file_sha256, load_json, project_bytes, project_path
 from script_sources import load_script
 
 sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
@@ -91,7 +91,7 @@ def selected_census_frontier(census_path, *, details=False):
             yield from csv.DictReader(stream, delimiter='\t')
 
     census = summary(census_path)
-    residual = summary(f"docs/analysis/evidence/{identity['version']}/native-residuals.json")
+    residual = summary("docs/analysis/evidence/native-residuals.json")
     assert census['independent_instructions']['exact_source_bytes_verified']
     inventory = census['independent_instructions']['executable_sections']
     ranges, counts, sizes = [], collections.Counter(), collections.Counter()
@@ -197,7 +197,7 @@ def addressed_formatter_frontier():
     from capstone.x86_const import X86_OP_IMM, X86_OP_MEM, X86_OP_REG, X86_REG_RIP
 
     target = latest_target(verify=True)
-    evidence = ROOT / 'docs/analysis/evidence' / target['version']
+    evidence = ROOT / 'docs/analysis/evidence'
     selection = load_json(evidence / 'addressed-formatters.json')
     source = evidence / 'executable-residual-frontier.json'
     assert file_sha256(source) == selection['residual_proof_sha256']
@@ -458,8 +458,7 @@ def main():
     if args.mixed_formatters:
         if args.stage or args.details:
             ap.error('--mixed-formatters only checks retained evidence')
-        target = latest_target(verify=True)
-        proof = load_json(ROOT / 'docs/analysis/evidence' / target['version'] / 'addressed-formatters.json')
+        proof = load_json('docs/analysis/evidence/addressed-formatters.json')
         print(json.dumps(mixed_formatter_ranges(args.mixed_formatters, proof['mixed_formatter_ranges']), indent=2))
         return
     if args.addressed_formatters:
@@ -479,7 +478,7 @@ def main():
     image = target_bytes(target)
     pe = load_script('residual_pe', 'scripts/inventory-executable.py').PE(image)
     decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_64)
-    proof = json.loads(PROOF.read_text())
+    proof = load_json(PROOF)
     assert proof['target']['sha256'] == target['sha256']
     names = ['missing-executable-ranges.tsv.gz', 'unwind-complement.sqlite']
     inputs = {name: proof['inputs'][name] for name in names}
@@ -546,7 +545,7 @@ def main():
     if args.stage:
         (WORK / 'residual-encodings.json').write_text(encoded)
     else:
-        assert KEEP.read_text() == encoded
+        assert project_bytes(KEEP) == encoded.encode()
     print(json.dumps(dict(ghidra_ranges=ghidra['records'], complement_ranges=complement['records'], parity_verified=False)))
 
 

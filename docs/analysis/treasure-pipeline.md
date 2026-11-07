@@ -40,7 +40,7 @@ contains 17 shared definitions and 112 ability-specific native constructor
 outputs. Raw effect pointer words are forensic data only: runtime consumers
 resolve retained owned key strings, never PE addresses.
 
-[Amulet construction provenance](evidence/0.100.1/treasure-0.100.1-generation/amulet-construction.json)
+[Amulet construction provenance](evidence/treasure-generation/amulet-construction.json)
 binds the source asset to its native constructor/table ranges. The bounded
 constructor was reproduced during consolidation. No original application
 process or OS/network call runs in these extraction helpers.
@@ -102,7 +102,7 @@ Unrecognized effect variants return an explicit missing result instead of
 invented descriptions. The UI owns rendering and replacement comparisons.
 
 Current cards replacement tooltip is independently recovered with REA/Ghidra
-from `1401f9880`; [tooltip owners and constants](evidence/0.100.1/treasure-interface/tooltip-owners.json)
+from `1401f9880`; [tooltip owners and constants](evidence/treasure-interface/tooltip-owners.json)
 bind its source range, analysis identity and current words. The entire
 replacement footer owns the HoverTip. Its auto-width frame expands left/right
 by10px, sits at bottom100% with6px bottom margin, uses12 horizontal/10 vertical
@@ -110,7 +110,7 @@ padding, border1, radius6, row gap4, and a black `.85` shadow at y3/blur12.
 Globalz6050 places it above cards root6000; its border uses the worn amulet's
 rarity text color with alpha `.8`. The footer itself shows localized `Replaces`
 then the worn name, both12px, without an icon. The actual typed footer Node
-stores are [retained separately](evidence/0.100.1/treasure-interface/replacement-footer-node-stores.json).
+stores are [retained separately](evidence/treasure-interface/replacement-footer-node-stores.json).
 
 Wrapper `140113b60` emits `WORN NOW`11px muted, the worn amulet body, then
 `Lost if you take this one`12px red. Body `1401f2c20` uses a30px item icon and
@@ -190,7 +190,7 @@ Both custom messages enter the same native kind0 notification queue described
 in [the banner report](notifications.md); they are no longer discarded
 in an inert command vector or converted to provisional English announcements.
 
-[Retained current instructions and native vectors](evidence/0.100.1/cache-feedback/native.json)
+[Retained current instructions and native vectors](evidence/cache-feedback/native.json)
 bind purchase/click/walk/toast/notification packet owners to the selected hash.
 The recovery script is [recover-cache-feedback.py](../../scripts/recover-cache-feedback.py).
 Nine unchanged-instruction coinage vectors include wrapping boundaries; the

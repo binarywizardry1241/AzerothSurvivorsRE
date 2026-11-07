@@ -17,7 +17,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
-EVIDENCE = ROOT / "docs/analysis/evidence/0.109.0/raid-markers"
+EVIDENCE = ROOT / "docs/analysis/evidence/raid-markers"
 OWNERS = {
     'receiver': (0x140165430, 0x140166870),
     'draw': (0x140164000, 0x1401651e8),
@@ -145,7 +145,7 @@ def collect_rea(work):
                 limits=["Raw imports omit outside callees, PE types and most jump-table data.",
                         "Ghidra uses its generic x86-64 compiler model; Win64 parameter roles are checked against instructions and native replay.",
                         "Native direct/indirect ownership outside these ranges remains #41. Successful pseudocode is not parity proof."])
-    destination=ROOT/"runtime/analysis/staging/native-evidence/0.109.0/raid-markers/rea-records.json"
+    destination=ROOT/"runtime/analysis/staging/native-evidence/raid-markers/rea-records.json"
     destination.parent.mkdir(parents=True,exist_ok=True)
     destination.write_text(text(result))
     print(str(destination.relative_to(ROOT)))
@@ -154,7 +154,7 @@ def collect_rea(work):
 def check(write):
     global EVIDENCE
     if write:
-        EVIDENCE = ROOT / "runtime/analysis/staging/native-evidence/0.109.0/raid-markers"
+        EVIDENCE = ROOT / "runtime/analysis/staging/native-evidence/raid-markers"
     target = latest_target(verify=True)
     if target["sha256"] != SHA:
         raise ValueError("Marker recovery requires the exact registered 0.109.0 bytes")
@@ -195,7 +195,7 @@ def check(write):
                       extract_sha256=hashlib.sha256(asm.encode()).hexdigest())
         if name == "cast":
             # Reuse the canonical current-target extract; never duplicate it.
-            existing = ROOT / "docs/analysis/evidence/0.109.0/raid-waves/cast-start.asm"
+            existing = ROOT / "docs/analysis/evidence/raid-waves/cast-start.asm"
             record["extract_sha256"] = hashlib.sha256(existing.read_bytes()).hexdigest()
             assert existing.read_text()==asm
         elif write:

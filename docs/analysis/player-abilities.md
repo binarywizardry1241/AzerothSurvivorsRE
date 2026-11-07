@@ -26,7 +26,7 @@ behavior report owns each consumer and its remaining engine boundaries.
 
 The [complete catalog](player-ability-catalog.md) lists every definition's
 base power, cooldown, range, radius, targets, duration, tick count and upgrade
-tags. [Machine-readable records](evidence/0.97.2/player-abilities/catalog.json)
+tags. [Machine-readable records](evidence/player-abilities/catalog.json)
 retain120-byte records, referenced upgrade slices and8 constant tables.
 These values are definition inputs, before run, rarity and upgrade modifiers.
 Definition+100 stores a totem's pulse spell ID, not its summoned creature entry;
@@ -37,7 +37,7 @@ Keys are the ability identity. Spell IDs are not unique: Holy Shock and Penance
 both store25912. The native spell-name lookup`1454193f0` uses the first matching
 record; the source retains that policy and also exposes an all-matches iterator.
 
-The [current native evidence](evidence/0.97.2/player-abilities/upgrades-native.json)
+The [current native evidence](evidence/player-abilities/upgrades-native.json)
 retains7 REA/Ghidra analyses, original PE function/span hashes, jump tables and
 scalar values. Original disassembly and decompiler text are adjacent. The native
 definition lookup is independently bound by [catalog recovery](menu-catalog.md).
@@ -52,8 +52,8 @@ definition lookup is independently bound by [catalog recovery](menu-catalog.md).
 | `14540da00` | Definition-level upgrade gates; REA`ev_dd004e0941f614d593c6a66535c370889bdfa060fa2c9987a62e4340aa0b9128`. |
 | `145472190` / `1455292b0` | Ordered eligible-type iterator and collection; iterator REA`ev_fcc6d83195a249301bfe55044444c7ab96e0319e79bf07d0a35c379dc39d62f7`. |
 | `14541b790` / `14541b8b0` | Class-passive cooldown floor/gate; REA`ev_eab4d27544294fb75fe59693dda9cad696acdb6f5b97e492013803ddb6c387eb` /`ev_279eb666ba6bb3854141667b32eb59a25b5a899896c1beabc2949e18fe06a9f4`. |
-| `1454e40a0` | Apply choice; exact upgrade branch`1454e4a29..1454e4b35` in the existing[loot evidence](evidence/0.97.2/loot/manifest.json). |
-| `1454c2eb0` | Shared victim hit/death owner. Reused current REA`ev_ba95562638ee7eaae2ea1dc88d80c5df86859a014473f69b678b229aacd357bd` and[original instructions](evidence/0.97.2/loot/enemy-death.asm). |
+| `1454e40a0` | Apply choice; exact upgrade branch`1454e4a29..1454e4b35` in the existing[loot evidence](evidence/loot/manifest.json). |
+| `1454c2eb0` | Shared victim hit/death owner. Reused current REA`ev_ba95562638ee7eaae2ea1dc88d80c5df86859a014473f69b678b229aacd357bd` and[original instructions](evidence/loot/enemy-death.asm). |
 
 Raw imports use generic GCC register inference. Windows x64 instructions and
 the full hash-checked PE supply the actual arguments and external constants.

@@ -3494,7 +3494,7 @@ mod tests {
             cases: Vec<(usize, usize, usize, [u64; 2])>,
         }
         let fixture: Fixture = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.127.0/ranked-gear/collection.json"
+            "../../../docs/analysis/evidence/ranked-gear/collection.json"
         )).unwrap();
         let catalog = ArmoryCatalog::embedded();
         for (slots, profile, tier, expected) in fixture.cases {
@@ -3554,7 +3554,7 @@ mod tests {
     #[test]
     fn gear_descriptions_match_current_native_instruction_vectors() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/armory-pages/stat-text-fixtures.json"
+            "../../../docs/analysis/evidence/armory-pages/stat-text-fixtures.json"
         ))
         .unwrap();
         let menu = MenuCatalog::embedded();
@@ -3572,7 +3572,7 @@ mod tests {
     #[test]
     fn equipment_bonuses_match_current_native_instruction_vectors() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/armory-pages/bonus-text-fixtures.json"
+            "../../../docs/analysis/evidence/armory-pages/bonus-text-fixtures.json"
         ))
         .unwrap();
         let menu = MenuCatalog::embedded();
@@ -3589,7 +3589,7 @@ mod tests {
 
     fn save_gear_vectors() -> serde_json::Value {
         serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/save-gear/fixtures.json"
+            "../../../docs/analysis/evidence/save-gear/fixtures.json"
         ))
         .unwrap()
     }
@@ -3649,7 +3649,7 @@ mod tests {
     #[test]
     fn current_tabard_admission_matches_native_authority_vectors() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.117.0/tabard-admission/cases.json"
+            "../../../docs/analysis/evidence/tabard-admission/cases.json"
         ))
         .unwrap();
         for case in fixtures["admission_cases"].as_array().unwrap() {
@@ -3768,7 +3768,7 @@ mod tests {
 
     fn native_vectors() -> serde_json::Value {
         serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/armory-pages/native-mutation-fixtures.json"
+            "../../../docs/analysis/evidence/armory-pages/native-mutation-fixtures.json"
         ))
         .unwrap()
     }

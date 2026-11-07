@@ -2,7 +2,7 @@
 //!
 //! Callers sample transport changes before applying the recovered world and
 //! recipient gates. They also supply the selected recipient's locale lookup.
-//! See docs/analysis/evidence/0.120.2/service-peer-flags/presentation.json.
+//! See docs/analysis/service-peer-flags.md.
 
 use super::{engine_packets, replication::EnginePacket};
 use benilla_protocol::{SessionEvent, messages::ChatMessage};

@@ -13,7 +13,7 @@ os.chdir(ROOT)
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--write", action="store_true")
 args = parser.parse_args()
-DEST = ROOT / "docs/analysis/evidence/0.109.0/save-gear"
+DEST = ROOT / "docs/analysis/evidence/save-gear"
 fixtures = {}
 
 

@@ -146,7 +146,7 @@ assert len(rows)==101 and len(shared)==39
 catalog=dict(version='0.92.0',entries=rows+shared)
 assert len({item['key']for item in catalog['entries']})==140
 (R/'crates/azeroth-survivors-re/assets/codex.json').write_text(json.dumps(catalog,indent=2)+'\n')
-evidence=R/'docs/analysis/evidence/0.92/codex';evidence.mkdir(parents=True,exist_ok=True)
+evidence=R/'docs/analysis/evidence/codex';evidence.mkdir(parents=True,exist_ok=True)
 ranges=[(0x145406780,0x145407c37),(0x1454f6a50,0x1454f97b0),(0x145405940,0x145405ab0),(0x145405ab0,0x145405c8c)]
 manifest=dict(target_sha256=SHA,version='0.92.0',method='Bounded Unicorn2.1.4x86-64 execution of nativeconstructor/effectformatter, with reviewed heap/String/locale/floatformat/replace primitives; no OS/files/network are reachable inside emulatedexecution.',functions=[dict(start=hex(a),end=hex(b),sha256=hashlib.sha256(d[p.rva_offset(a-base):p.rva_offset(b-base)]).hexdigest())for a,b in ranges],jewelry_table=dict(address='0x1466dd368',stride=72,count=22),amulet_table=dict(address='0x1466de600',stride=80,count=17),legendary_count=101,shared_count=39,total=140,seen_format='seen|key=highest_quality,...',runtime_checks=['Cleave50%/80%/6sec','Whirlwind60%area/35%damage/1.5sec','Accuria26/36/46/61/82%damage','CommonMarkofFordring15%damage','4/140count,unknownentriesremainundiscovered'],limitations=['Englishnativefallbacktextisimplemented;otherlocaleeffectdescriptionsrequireexplicitnativeformatbinding.','Complete140-entryrebuiltUIparitycomparisonpending.'])
 (evidence/'catalog-provenance.json').write_text(json.dumps(manifest,indent=2)+'\n')

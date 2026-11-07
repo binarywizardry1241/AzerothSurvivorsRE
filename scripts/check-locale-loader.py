@@ -17,8 +17,8 @@ from script_sources import load_script
 
 SHA = "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
 WORK = ROOT / "runtime/analysis/history/findings/gap169-loader/a44cb166d16b"
-RETAINED = ROOT / "docs/analysis/evidence/0.119.0/localization-loader"
-STAGED = ROOT / "runtime/analysis/staging/native-evidence/0.119.0/localization-loader"
+RETAINED = ROOT / "docs/analysis/evidence/localization-loader"
+STAGED = ROOT / "runtime/analysis/staging/native-evidence/localization-loader"
 FUNCTIONS = [
     ("hex", 0x145B26F00, 0x1458E9020),
     ("expect", 0x145B273B0, 0x1458E94D0),
@@ -121,7 +121,7 @@ def derive(destination, collect):
                             plan=receipt(WORK / f"{start:x}-plan.json"), journal=receipt(query / "journal.json"),
                             result=receipt(results[0])))
         if historical:
-            old = ROOT / f"docs/analysis/evidence/0.109.0/localization/{historical:x}.asm"
+            old = ROOT / f"docs/analysis/evidence/localization/{historical:x}.asm"
             lines = [re.match(r"(0x[0-9a-f]+): (.*)", line).groups()
                      for line in old.read_text().splitlines() if re.match(r"0x", line)]
             assert len(lines) == len(instructions), role

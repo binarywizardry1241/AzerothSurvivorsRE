@@ -818,7 +818,7 @@ mod tests {
     #[test]
     fn stationary_facing_preserves_the_current_native_packet_contract() {
         let fixture:serde_json::Value=serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.105.0/mob-movement/stationary-facing-fixtures.json"
+            "../../../../../docs/analysis/evidence/mob-movement/stationary-facing-fixtures.json"
         )).unwrap();
         for row in fixture["cases"].as_array().unwrap() {
             let point=Position{x:row["from_point"][0].as_f64().unwrap() as f32,
@@ -955,7 +955,7 @@ mod tests {
     #[test]
     fn current_pet_movement_packet_preserves_native_duration_boundaries() {
         let fixture:serde_json::Value=serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.112.0/demon-movement/native-cases.json"
+            "../../../../../docs/analysis/evidence/demon-movement/native-cases.json"
         )).unwrap();
         for row in fixture["move"]["cases"].as_array().unwrap() {
             let Some(packet)=row["packet"].as_object() else {continue};

@@ -16,7 +16,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 WORK = ROOT / "runtime/analysis/history/native-recovery/run-integration/f5d0ab575d26"
-OUT = ROOT / "docs/analysis/evidence/0.100.1/run-integration"
+OUT = ROOT / "docs/analysis/evidence/run-integration"
 OLD = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.100.1.exe"
 OLD_SHA = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"

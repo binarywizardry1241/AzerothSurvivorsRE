@@ -11,7 +11,7 @@ import json
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.115.0/talent-context/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/talent-context/manifest.json"
 
 
 def digest(raw):

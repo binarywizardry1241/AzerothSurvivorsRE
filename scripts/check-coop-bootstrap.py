@@ -13,7 +13,7 @@ from pathlib import Path
 from coverage_common import latest_target, project_path, target_bytes
 
 ROOT = Path(__file__).resolve().parents[1]
-PROOF = ROOT / 'docs/analysis/evidence/0.115.0/coop-bootstrap/manifest.json'
+PROOF = ROOT / 'docs/analysis/evidence/coop-bootstrap/manifest.json'
 
 
 def check(path=PROOF, stage=False):

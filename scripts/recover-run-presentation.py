@@ -111,7 +111,7 @@ for state in [0,1,2]:
   reset();root=MEM+0x1000;u.mem_write(root+0x10,struct.pack('<I',state));u.mem_write(root+0x9c9,bytes([phase]));u.reg_write(UC_X86_REG_RSI,root)
   u.emu_start(0x1454451e2,0,count=10000);pc=u.reg_read(UC_X86_REG_RIP);assert pc in [0x145447a82,0x1454ee470,0x1454f0640]
   cast_phases.append(dict(core_state=state,phase=phase,next_owner=hex(pc)))
-OUT=ROOT/'runtime/analysis/staging/native-evidence/0.100.1/run-presentation';OUT.mkdir(parents=True,exist_ok=True);owners=[]
+OUT=ROOT/'runtime/analysis/staging/native-evidence/run-presentation';OUT.mkdir(parents=True,exist_ok=True);owners=[]
 for role,lo,hi in [('actor-aura',0x1454e3550,0x1454e3c2a),('aura-applications',0x1454506a0,0x145450a1f),('spell-go',0x145466ab0,0x145466f0b),('direct-damage',0x14545f6d0,0x14545f9e6),('periodic-damage',0x145464140,0x1454643a4),('actor-hit-log-gate',0x1454d57cf,0x1454d58ab),('actor-periodic-log',0x1454de810,0x1454de916),('direct-heal',0x14545d980,0x14545db34),('player-aura',0x14549e650,0x14549fa40),('player-aura-flags',0x145497900,0x145497a59),('player-aura-alias',0x145487350,0x1454875df),('player-aura-generic',0x14549b830,0x14549b980),('player-aura-active',0x145538730,0x1455388a9),('appearance',0x1454e75f0,0x1454e77f8),('stopped-movement',0x14545ff20,0x145460030),('aura-applications-publisher',0x1454e3ff0,0x1454e4274),
  ('melee-damage',0x14545c690,0x14545cba2),
  ('incoming-melee-log',0x1454de373,0x1454de405),

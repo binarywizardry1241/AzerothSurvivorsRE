@@ -41,7 +41,8 @@ def main():
             visitor = value
     assembly = "\n".join(visitor["assembly"]) + "\n"
     assert "0x145a4a883" in assembly and "0x140c90460" in assembly
-    directory = ROOT / "docs/analysis/evidence/0.92"
+    directory = ROOT / "docs/analysis/evidence/menu-options"
+    directory.mkdir(parents=True, exist_ok=True)
     (directory / "options-config-struct-visitor.asm").write_text(assembly)
     dependency = b"toml-0.8.23"
     offset = data.index(dependency)

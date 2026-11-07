@@ -10,7 +10,7 @@ Current source status belongs to [CURRENT-STATE](../CURRENT-STATE.md) and [verif
 
 ## Complete residual sets
 
-The [residual proof](evidence/0.115.0/native-residuals.json) binds the generator,
+The [residual proof](evidence/native-residuals-comparison-3.json) binds the generator,
 its dependencies, every consumed summary/inventory and twelve complete derived
 inventories. Bulk rows remain under ignored `runtime/`. Each row retains its
 original address, current body relationship, encoded operand or boundary and
@@ -46,13 +46,13 @@ separate evidence and does not silently subtract from that population.
 
 ## Explicit operands and computed interfaces
 
-The [operand proof](evidence/0.115.0/native-operands.json) examines every saved
+The [operand proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.115.0/native-operands.json) examines every saved
 instruction. It retains 571,314 mapped explicit operands: 418,164 address
 expressions absent from the saved reference pair export and 153,150 fixed
 memory pairs already present. All their source instructions have body owners.
 Address formation alone is not a read, write, call or execution edge.
 
-The [ownership proof](evidence/0.115.0/native-ownership.json) separately decodes
+The [ownership proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.115.0/native-ownership.json) separately decodes
 Ghidra's computed-flow sites. It identifies 67,617 actual indirect calls and
 7,645 indirect jumps; 127,190 `ud2`, 204 `int` and three `int3` observations
 are not calls/jumps. Exact import slots resolve 1,329 calls and 175 jumps;
@@ -77,7 +77,7 @@ lookups. Those lookups have 26 literal-name inputs, one ordinal and four inputs
 not established within the observed block. Module identity, forwarding, lookup
 success and subsequent dynamic dispatch are not inferred from a name.
 
-The [address-candidate proof](evidence/0.115.0/native-address-leads.json)
+The [address-candidate proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.115.0/native-address-leads.json)
 validates every one of the 8,051 executable address targets absent from saved
 instruction boundaries/interiors. Each has an independently checked RIP-LEA
 source and a coherent bounded decode consistent with existing instructions.
@@ -133,8 +133,8 @@ twelve artifact hashes/counts unchanged; its current generator/scope metadata
 is retained separately from the original `residual-summary-v2.json` snapshot.
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/classify-native-residuals.py --output-directory runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/residuals-v2 --summary-output docs/analysis/evidence/0.115.0/native-residuals.json
-python3 -B scripts/check-native-residuals.py --proof docs/analysis/evidence/0.115.0/native-residuals.json --negative-tests
+PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/classify-native-residuals.py --output-directory runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/residuals-v2 --summary-output docs/analysis/evidence/native-residuals-comparison-3.json
+python3 -B scripts/check-native-residuals.py --proof docs/analysis/evidence/native-residuals-comparison-3.json --negative-tests
 python3 -B scripts/test-native-residual-summary.py
 PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/test-native-residual-inputs.py
 PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/summarize-refresh-unknowns.py

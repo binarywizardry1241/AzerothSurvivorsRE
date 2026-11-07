@@ -22,7 +22,7 @@ The caller resolves the count before issuing echoes, marks the repeated casts
 as overcasts, and clears the marker after the loop. The source uses the same
 ordinary scheduler and preserves its separate forced-cast and cooldown paths.
 
-The [native receipt](evidence/0.139.2/arcane-echo.json) binds the caller
+The [native receipt](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/arcane-echo.json) binds the caller
 spans and journaled Ghidra analysis to the EXE. In 210 isolated instruction
 cases, the count and final RNG state matched an independent scalar model.
 The check substituted finite CRT floor and truncation. The Rust regression

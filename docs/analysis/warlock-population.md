@@ -4,7 +4,7 @@ Selected installed EXE SHA-256:
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`.
 Finding #290 is source-complete; [verification-needed](../verification-needed.md#gap-290)
 owns its remaining compilation, runtime and parity checks. The
-[manifest](evidence/0.127.0/warlock-population/manifest.json) binds exact original
+[manifest](evidence/warlock-population/manifest.json) binds exact original
 ranges, the shared ten-percent literal and three journaled REA/Ghidra queries.
 This report supersedes only the older Soul Link capacity and Gate selection
 contracts; other demon behavior keeps its original recovery provenance.

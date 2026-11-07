@@ -18,7 +18,7 @@ import sys
 
 from coverage_common import ROOT, latest_target, target_bytes
 
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.108.0/terminal-visuals'
+EVIDENCE = ROOT / 'docs/analysis/evidence/terminal-visuals'
 
 
 def require(value, message):

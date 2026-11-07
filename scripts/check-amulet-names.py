@@ -20,7 +20,7 @@ from coverage_common import latest_target,target_bytes
 from script_sources import load_script
 SHA='0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 WORK=ROOT/'runtime/analysis/history/findings/q41-amulet-inventory/6aef085d4857'
-KEEP=ROOT/'docs/analysis/evidence/0.115.0/amulet-names.json'
+KEEP=ROOT/'docs/analysis/evidence/amulet-names.json'
 
 
 def sha(raw):return hashlib.sha256(raw).hexdigest()
@@ -41,10 +41,10 @@ def derive(source_root):
     main=next(n for n in tree.body if isinstance(n,ast.FunctionDef)and n.name=='main')
     probe_node=next(n for n in main.body if isinstance(n,ast.ClassDef)and n.name=='Probe')
     probe_source=ast.get_source_segment(text,probe_node)
-    metadata_path=ROOT/'docs/analysis/evidence/0.115.0/addon-timers/metadata.json'
+    metadata_path=ROOT/'docs/analysis/evidence/addon-timers/metadata.json'
     metadata=json.loads(metadata_path.read_text());factory=metadata['generated_timer_amulets']['factory']
     assert int(factory['va'],16)==m.FACTORY and sha(raw(m.FACTORY,factory['size']))==factory['sha256']
-    canonical_proof_path=ROOT/'docs/analysis/evidence/0.115.0/addon-timers/generated-name-cases.json'
+    canonical_proof_path=ROOT/'docs/analysis/evidence/addon-timers/generated-name-cases.json'
     canonical=json.loads(canonical_proof_path.read_text());assert canonical['target_sha256']==SHA
     assert canonical['case_count']==24
     for record in canonical['formatter_literals']:
@@ -160,7 +160,7 @@ def derive(source_root):
             inventory_cases.append(dict(input_name=name,picks=picks,name=actual));inventory_executed.update(probe.executed)
     # Current provenance producer and consumer: clone the constructed String
     # into the existing40-byte metadata row, then resolve it without relookup.
-    integration_path=ROOT/'docs/analysis/evidence/0.115.0/addon-timers/integration.json'
+    integration_path=ROOT/'docs/analysis/evidence/addon-timers/integration.json'
     integration=json.loads(integration_path.read_text())
     producer=next(r for r in integration['owners']if r['role']=='effect-rebuild')
     append=next(r for r in integration['owners']if r['role']=='effect-metadata-append')

@@ -13,7 +13,7 @@ from coverage_common import ROOT, file_sha256, latest_target, target_bytes
 from script_sources import load_script
 
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.120.2/relay-implementation/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/relay-implementation/manifest.json"
 
 
 def require(condition, message):

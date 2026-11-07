@@ -7,7 +7,7 @@ static instruction checks do not establish game or presentation parity.
 
 Target: `AzerothSurvivors/AzerothSurvivors-0.105.0.exe`, SHA-256
 `8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7`.
-The [mechanics manifest](evidence/0.105.0/terminal/mechanics-manifest.json)
+The [mechanics manifest](evidence/terminal/mechanics-manifest.json)
 records exact byte ranges, hashes and REA/Ghidra evidence identities. Raw slice
 analysis uses generic x86_64 types/ABI; original PE instructions and literals
 corroborate the recovered contracts. Overlapping meter and pause extracts are
@@ -91,7 +91,7 @@ the connected shared player packet sequence and remaining comparison limits.
 native instruction cases**: 1,547 XP, 103 part-delta/checkpoint, five count-delta,
 28 continuation, 14 abandon and fifteen optional sink-test gate cases. The
 native disabled-default store is also checked separately. Thirty-eight XP cases expose the former
-float order. [Curated native fixtures](evidence/0.105.0/terminal/native-fixtures.json)
+float order. [Curated native fixtures](evidence/terminal/native-fixtures.json)
 retain representative inputs, outputs, exact spans and declared seams; bulk
 regenerable output stays under ignored `runtime/`.
 

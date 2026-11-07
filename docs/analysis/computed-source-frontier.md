@@ -2,7 +2,7 @@
 
 Permanent **#41**, leads **Q41-F01/F02/A01/A02/M01**. Selected installed EXE
 SHA-256: `6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f`.
-The [compact proof](evidence/0.119.0/computed-source-frontier.json) binds the
+The [compact proof](evidence/computed-source-frontier.json) binds the
 complete selected current reference populations, exact instruction prefixes,
 one journaled ownership query and the complete ignored per-site artifact.
 This is a classification frontier, not native/source completeness or parity.

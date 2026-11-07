@@ -11,7 +11,7 @@ import subprocess
 from coverage_common import ROOT,latest_target,target_bytes
 from script_sources import load_script
 
-KEEP=ROOT/'docs/analysis/evidence/0.115.0/q41-framexml-lifetime.json'
+KEEP=ROOT/'docs/analysis/evidence/q41-framexml-lifetime.json'
 WORK=ROOT/'runtime/analysis/history/findings/q41-framexml-lifetime/1227bd6a2f14'
 RUST=ROOT/'crates/azeroth-survivors-re/src/gameplay/client/talent_view.rs'
 SHA='0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
@@ -26,7 +26,7 @@ def derive():
     target=latest_target(verify=True);assert target['sha256']==SHA and target['version']=='0.115.0'
     image=target_bytes(target)
     pe=load_script('framexml_lifetime_pe',ROOT/'scripts/inventory-executable.py').PE(image)
-    old=json.loads((ROOT/'docs/analysis/evidence/0.115.0/q41-framexml.json').read_text())
+    old=json.loads((ROOT/'docs/analysis/evidence/q41-framexml.json').read_text())
     assert old['target']==dict(version='0.115.0',sha256=SHA)
     def native(a,n):
         at=pe.rva_offset(a-pe.image_base);value=image[at:at+n];assert len(value)==n;return value
@@ -37,8 +37,8 @@ def derive():
     assert pointer==int(descriptor['pointer'],16) and length==descriptor['length']==11034
     full=native(pointer,length)
     assert digest(full)==old['native_patch']['sha256']
-    canonical=ROOT/'docs/analysis/evidence/0.108.0/hud-framexml/world-state-patch.lua'
-    popup=ROOT/'docs/analysis/evidence/0.115.0/raid-targets/popup.lua'
+    canonical=ROOT/'docs/analysis/evidence/hud-framexml/world-state-patch.lua'
+    popup=ROOT/'docs/analysis/evidence/raid-targets/popup.lua'
     assert full.count(popup.read_bytes())==1
     at=full.index(popup.read_bytes());assert full[:at]+full[at+len(popup.read_bytes()):]==canonical.read_bytes()
     core=canonical.read_text()
@@ -93,7 +93,7 @@ def derive():
     # The unchanged reader follows the retained 0.105.0 watcher contract. This
     # checks the existing source connection; it does not relabel those native
     # instruction cases as a current-target watcher recovery.
-    historical=ROOT/'docs/analysis/evidence/0.105.0/talent-view/input-vectors.json'
+    historical=ROOT/'docs/analysis/evidence/talent-view/input-vectors.json'
     watcher=json.loads(historical.read_text());assert len(watcher['cases'])==11
     assert watcher['target_sha256']=='8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
     cases={row['name']:row for row in watcher['cases']}

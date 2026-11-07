@@ -38,7 +38,7 @@ def main():
     import capstone
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--write', action='store_true')
-    parser.add_argument('--proof', default='docs/analysis/evidence/0.115.0/q41-diagnostic-contracts.json')
+    parser.add_argument('--proof', default='docs/analysis/evidence/q41-diagnostic-contracts.json')
     args = parser.parse_args()
     target = latest_target(verify=True)
     require(target['sha256'] == '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c', 'Wrong target')
@@ -61,9 +61,9 @@ def main():
             require(pe.rva_offset(address + size - 1 - pe.image_base) - off == size - 1, 'Noncontiguous mapped bytes')
         return pe.data[off:off + size]
 
-    canonical = load_json(consume('docs/analysis/evidence/0.115.0/q41-custom-diagnostics.json'))
-    owned = load_json(consume('docs/analysis/evidence/0.115.0/owned-custom-diagnostics.json'))
-    projection = load_json(consume('docs/analysis/evidence/0.115.0/execheck-diagnostic-sites.json'))
+    canonical = load_json(consume('docs/analysis/evidence/native-diagnostics/q41-custom-diagnostics.json'))
+    owned = load_json(consume('docs/analysis/evidence/native-diagnostics/owned-custom-diagnostics.json'))
+    projection = load_json(consume('docs/analysis/evidence/execheck-diagnostic-sites.json'))
     require(all(p['target'] == identity for p in (canonical, owned, projection)), 'Proof target mismatch')
     expanded = projection['profiles']['expanded_all_seeds']
     source = expanded['artifacts']['jsonl']

@@ -27,7 +27,7 @@ def main():
     data = (ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe").read_bytes()
     assert hashlib.sha256(data).hexdigest() == SHA
     pe = module.PE(data)
-    manifest = json.loads((ROOT / "docs/analysis/evidence/0.105.0/stock-frontend/backend-manifest.json").read_text())
+    manifest = json.loads((ROOT / "docs/analysis/evidence/stock-frontend/backend-manifest.json").read_text())
     for span in manifest["spans"]:
         at, size = int(span["file_offset"], 0), span["byte_count"]
         assert hashlib.sha256(data[at:at + size]).hexdigest() == span["sha256"]

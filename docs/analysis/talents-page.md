@@ -10,7 +10,7 @@ effect application remains separately owned by #12/#16.
 
 ## Current owners and source
 
-The [UI manifest](evidence/0.109.0/talents-menu/ui-manifest.json) binds 38 current
+The [UI manifest](evidence/talents-menu/ui-manifest.json) binds 38 current
 native owners, including page/tree/detail/spec constructors, allocation actions,
 right-click refund, inspection hover, milestone grouping and the shared hover
 query/registration. It references the shared current Save, frontend poll and
@@ -73,7 +73,7 @@ style, rather than assuming equivalence from the older 44-byte shape.
 `python3 -B scripts/check-talents-menu.py --ui` passes 1,121 current native
 descriptions, 355 metadata/milestone records and 252 other native instruction
 cases across 60 retained data/UI owners. The 111 data/Save cases are described in
-the separate report. The 141 additional [UI cases](evidence/0.109.0/talents-menu/ui-native-cases.json)
+the separate report. The 141 additional [UI cases](evidence/talents-menu/ui-native-cases.json)
 cover 27 actual milestone collectors, 81 actual same-row grouping operations,
 rank badge/action/progress/spec/detail-icon constructor prefixes, the complete
 faded-divider helper, progress clamping including NaN and 18 shared-hover paint

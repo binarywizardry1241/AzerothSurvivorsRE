@@ -12,7 +12,7 @@ use serde_json::Value;
 
 fn fixtures() -> Value {
     serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.112.0/talent-allocations/migration-cases.json"
+        "../../../docs/analysis/evidence/talent-allocations/migration-cases.json"
     ))
     .unwrap()
 }

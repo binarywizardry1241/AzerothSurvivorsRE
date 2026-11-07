@@ -27,8 +27,8 @@ shield aura, with infinite expiry and one application. Temporary effects still
 use their captured generic indices; rescue and cooldown rows retain the harmful
 partition. The real field publisher retains its existing 48-slot layout.
 
-[Contracts](evidence/0.112.0/player-aura-indices/contracts.json) and
-[Ghidra provenance](evidence/0.112.0/player-aura-indices/rea-provenance.json) retain:
+[Contracts](evidence/player-aura-indices/contracts.json) and
+[Ghidra provenance](evidence/player-aura-indices/rea-provenance.json) retain:
 
 - **48 original index/order cases**, including empty vectors, all 36 admitted
   generic variants, duplicated sources and interleaved Soul Link/shield rows.

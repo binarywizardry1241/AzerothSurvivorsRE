@@ -18,7 +18,7 @@ from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 WORK = ROOT / "runtime/coverage" / SHA / "mpq-members"
-KEEP = ROOT / "docs/analysis/evidence/0.113.2/mpq-member-coverage.json"
+KEEP = ROOT / "docs/analysis/evidence/mpq-member-coverage-comparison-2.json"
 
 
 def digest(data):
@@ -99,7 +99,7 @@ def derive(stage=False):
                              source_hash_slots=[r["hash_slot"] for r in winning],
                              overridden_archives=sorted({r["archive"] for r in occurrences
                                                         if r["source_priority"] < latest})))
-    queue = json.loads((ROOT / "docs/analysis/evidence/0.113.2/unknown-recovery.json").read_text())
+    queue = json.loads((ROOT / "docs/analysis/evidence/unknown-recovery-comparison-2.json").read_text())
     inv = queue["inputs"]["inventory.json"]
     assert file_sha256(ROOT / inv["path"]) == inv["sha256"]
     inventory = json.loads((ROOT / inv["path"]).read_text())

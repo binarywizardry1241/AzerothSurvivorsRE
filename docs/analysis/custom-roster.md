@@ -39,8 +39,8 @@ map/position were incorrect; the record's four integer fields now have their
 native meaning. Save syntax and separate per-class appearance records remain
 unchanged.
 
-[Factory source and Ghidra evidence](evidence/0.100.1/custom-roster/manifest.json)
-and [four original-instruction rows](evidence/0.100.1/custom-roster/fixtures.json)
+[Factory source and Ghidra evidence](evidence/custom-roster/manifest.json)
+and [four original-instruction rows](evidence/custom-roster/fixtures.json)
 retain current hashes, UTF-8 names and raw appearance inputs. The optional
 recovery script admits only this branch and reviewed allocation/String-clone
 seams; it never launches an original process. Windows arguments/constants are

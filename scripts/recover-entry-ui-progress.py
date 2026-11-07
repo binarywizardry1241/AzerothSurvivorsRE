@@ -19,7 +19,7 @@ from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 WORK = ROOT / "runtime/analysis/history/findings/fixgap58-61/5000ae89a404"
-RETAINED = ROOT / "docs/analysis/evidence/0.113.2/entry-ui-progress"
+RETAINED = ROOT / "docs/analysis/evidence/entry-ui-progress"
 RANGES = {
     "row-total": (0x1405A5267, 0x1405A5272),
     "empty-total": (0x1405A5A3B, 0x1405A5A41),

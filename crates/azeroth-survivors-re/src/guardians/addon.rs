@@ -1,6 +1,6 @@
 //! Semantic guardian/lair projections from the selected 0.97.2 addon producer.
 //! Native wire formatting, delivery cadence and the Lua VM remain owner ports.
-//! Evidence: docs/analysis/evidence/0.97.2/guardians/guardian-addon.json.
+//! Evidence: docs/analysis/guardians.md.
 
 use super::{Lair, Position};
 

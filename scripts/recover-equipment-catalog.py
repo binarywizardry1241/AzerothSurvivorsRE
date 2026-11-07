@@ -20,7 +20,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 WORK = ROOT / "runtime/analysis/history/inventory/equipment-catalog/c4fa4e50a04f"
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/equipment-catalog"
+RETAINED = ROOT / "docs/analysis/evidence/equipment-catalog"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 CONSTRUCTOR = (0x14587B8E0, 0x14587CFC7)

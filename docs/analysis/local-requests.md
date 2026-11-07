@@ -7,7 +7,7 @@ This report's original evidence and checks retain their actual target.
 
 Reviewed 2026-10-19 against supplied SHA-256
 `17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b`.
-The [retained current owners and native vectors](evidence/0.100.1/local-requests/native.json)
+The [retained current owners and native vectors](evidence/local-requests/native.json)
 bind the following claims to the current binary. The complete action and
 GameObject constructors were independently decompiled with REA/Ghidra.
 
@@ -46,7 +46,7 @@ phase gates select alternate-host choice/results publishers, but both return
 immediately with the selected desktop host's false capability. The earlier
 "Core+16" label denotes the optional Game discriminant at wrapper+`10`, not
 an additional manual-cast permission. See the
-[manual-cast instruction cases](evidence/0.100.1/run-presentation/manual-cast-native.json).
+[manual-cast instruction cases](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/run-presentation/manual-cast-native.json).
 Opcode`136` reaches the same handler's no-op default; the local bridge does
 not invent aura removal for the interface's cancel affordance.
 
@@ -101,7 +101,7 @@ behavior change or claim of original/rebuilt runtime parity.
 
 ## Post-rejection dispatch and desktop capability
 
-The [current policy evidence](evidence/0.100.1/manual-cast-policy/native.json)
+The [current policy evidence](evidence/manual-cast-policy/native.json)
 retains19 code spans, two complete REA/Ghidra payload owners,45 native phase
 dispatch cases,32 payload-guard cases and four lifecycle stores. Reproduce it
 with [recover-manual-cast-policy.py](../../scripts/recover-manual-cast-policy.py).
@@ -159,7 +159,7 @@ hover name and lock routing see the current native data. The engine bridge
 previously dropped this actual outbound query; it now retains the entry. No
 nearest-cache tooltip or inferred lock information is supplied.
 
-[Current response evidence](evidence/0.100.1/object-queries/native.json) retains
+[Current response evidence](evidence/object-queries/native.json) retains
 two REA/Ghidra owners, PE byte hashes and17 unchanged-instruction selector/name/
 empty-name packet cases. Native name construction stops before formatting and
 localization; the exact suffix pointer and format prefix are retained. Packet

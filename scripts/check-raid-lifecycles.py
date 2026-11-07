@@ -9,9 +9,10 @@ from native_recovery import f32 as _shared_f32, bits as _shared_bits
 from script_sources import load_script
 import argparse, hashlib, json, math, re, struct, sys
 from pathlib import Path
+from artifact_history import read_artifact
 from coverage_common import ROOT
 sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
-STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-lifecycles'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/raid-lifecycles'
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-lifecycles'
 def f32(v):
     return _shared_f32(v)
@@ -808,7 +809,7 @@ def volley_contracts(raw):
     def xmm(reg, value): uc.reg_write(reg, int.from_bytes(struct.pack('<f', value), 'little'))
     def f32(value): return struct.unpack('<f', struct.pack('<f', value))[0]
 
-    previous = json.loads((ROOT/'docs/analysis/evidence/0.108.0/boss-volleys/native.json').read_text())
+    previous = json.loads(read_artifact(ROOT/'docs/analysis/evidence/0.108.0/boss-volleys/native.json'))
     cases = dict(speed=0, flight=0, payload=0, publication=0, membership=0, aggregation=0, damage_scale=0)
     for case in previous['cases']['speed']:
         put(record, 'II', case['spell_id'], 1)
@@ -1631,7 +1632,7 @@ def main():
  candidates=[]
  for name in files:
   owned={}
-  for line in (canonical/name).read_text().splitlines():
+  for line in read_artifact(canonical/name).decode().splitlines():
    match=re.match(r'^([0-9a-f]+): ([0-9a-f]+) ',line)
    if match and len(match[2])%2==0:
     address=int(match[1],16);value=bytes.fromhex(match[2])
@@ -1643,14 +1644,14 @@ def main():
  # Reuse current Ghidra operation provenance instead of duplicating imports.
  for family in ['raid-hazards','raid-inputs','raid-wards']:
   mod.verify_rea_operations(raw,canonical/family,target['sha256'])
- raid_rea=json.loads((canonical/'raid/rea-provenance.json').read_text())
+ raid_rea=json.loads(read_artifact(canonical/'raid/rea-provenance.json'))
  assert raid_rea['target_sha256']==target['sha256']
  for query in raid_rea['queries']:
   commitment=query['raw_input']
   assert commitment==span(int(commitment['va'],16),commitment['byte_count'])
   assert query['raw_import_sha256']==commitment['sha256']
-  assert hashlib.sha256((canonical/'raid'/query['pseudocode']).read_bytes()).hexdigest()==query['pseudocode_sha256']
- hit_proof=json.loads((canonical/'warrior-talents/manifest.json').read_text())
+  assert hashlib.sha256(read_artifact(canonical/'raid'/query['pseudocode'])).hexdigest()==query['pseudocode_sha256']
+ hit_proof=json.loads(read_artifact(canonical/'warrior-talents/manifest.json'))
  assert hit_proof['target']['sha256']==target['sha256']
  hit=next(row for row in hit_proof['ghidra']if row['role']=='victim-hit')
  assert hit['procedure']['procedure']=='0x14593ec90'
@@ -1672,7 +1673,7 @@ def main():
   instruction=list(md.disasm(value,address));assert sum(row.size for row in instruction)==len(value)
   assembly+=''.join(f'{row.address:x}: {row.bytes.hex()} {row.mnemonic} {row.op_str}'.rstrip()+'\n'for row in instruction)
  if args.stage:(out/'selected-native.asm').write_text(assembly)
- else:assert (out/'selected-native.asm').read_text()==assembly
+ else:assert read_artifact(out/'selected-native.asm').decode()==assembly
  traces={}
  for family,addresses in visited.items():
   intervals=[]
@@ -1691,6 +1692,6 @@ def main():
   'Complete generic item/talent callback bodies and a whole shared actor frame are not executed together. Terrain, population cap and gameplay/rendering parity remain separate requirements.'])
  text=json.dumps(result,indent=2)+'\n'
  if args.stage:(out/'manifest.json').write_text(text)
- else:assert (out/'manifest.json').read_text()==text
+ else:assert read_artifact(out/'manifest.json').decode()==text
  print('Current raid lifecycle cases:',counts,'; no compilation/game')
 if __name__=='__main__':main()

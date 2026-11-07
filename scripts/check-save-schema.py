@@ -10,7 +10,7 @@ import json
 from pathlib import Path
 from native_save_fixture import CPU, ROOT, SHA
 
-DEST = ROOT / "docs/analysis/evidence/0.109.0/save-schema"
+DEST = ROOT / "docs/analysis/evidence/save-schema"
 
 
 def vectors():

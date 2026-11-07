@@ -5,7 +5,7 @@ No compiler, game, renderer or native IO runs; shared fixtures retain historical
 import ast,sys,json,hashlib,types,argparse,importlib.util,struct
 from pathlib import Path
 from coverage_common import ROOT,latest_target,target_bytes
-OUT=ROOT/'docs/analysis/evidence/0.112.0/armory-input-catalog'
+OUT=ROOT/'docs/analysis/evidence/armory-input-catalog'
 manifest=json.loads((OUT/'manifest.json').read_text());assert manifest['target_sha256']==latest_target(verify=True)['sha256']
 for fixture,expected in manifest['fixtures'].items():assert hashlib.sha256((ROOT/fixture).read_bytes()).hexdigest()==expected
 mapping={int(a,16):int(b,16)for a,b in manifest['input_addresses'].items()};used={};path=ROOT/'scripts/check-armory-input.py';tree=ast.parse(path.read_text());end=next(i for i,n in enumerate(tree.body)if isinstance(n,ast.Assign)and ast.unparse(n.targets[0])=='selection');tree.body=tree.body[:end]
@@ -42,7 +42,7 @@ record=dict(target_sha256=manifest['target_sha256'],native_instructions_executed
  'The current class304-byte records and armor noun pointers reproduce45 set rules,32 nouns,415 ordinary and166 PvP names; all used keys exist in14 current locale catalogs.',
  'Codex selection is separately owned. Current cosmetics, slot production, tabard availability and balance metadata have separate canonical proofs.',
  'No compiler, reconstructed Rust, application, renderer, native IO, complete ECS scheduler or original/rebuilt comparison ran.'])
-parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args();path=(ROOT/'runtime/analysis/staging/native-evidence/0.112.0/armory-input-catalog' if args.stage else OUT)/'cases.json'
+parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args();path=(ROOT/'runtime/analysis/staging/native-evidence/armory-input-catalog' if args.stage else OUT)/'cases.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print('Passed574 current native Armory input/navigation cases and581 current name catalog comparisons; no build/game')

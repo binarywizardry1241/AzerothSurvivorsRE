@@ -20,8 +20,8 @@ from coverage_common import latest_target
 ROOT = Path(__file__).resolve().parents[1]
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 WORK = ROOT / 'runtime/analysis/history/target-audit/updater/cbe8022a39a2'
-STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.105.0/updater'
-RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/updater'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/updater-comparison'
+RETAINED = ROOT / 'docs/analysis/evidence/updater-comparison'
 OWNERS = {
     'gate': 0x140080fa0, 'download-schema': 0x14007ef40,
     'latest-schema': 0x14007f4d0, 'data-schema': 0x14007fd20,

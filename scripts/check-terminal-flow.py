@@ -13,7 +13,7 @@ libs=(ROOT/args.python_libs).resolve();output=(ROOT/args.output).resolve()
 if not libs.is_relative_to(ROOT) or not output.is_relative_to(ROOT/'runtime'):raise ValueError('Paths must remain project-local; output belongs in runtime/')
 sys.path.insert(0,str(libs))
 from native_terminal import NativeReplay, verified_input, prepare_rea, require
-EVIDENCE=ROOT/'docs/analysis/evidence/0.109.0/terminal-flow'
+EVIDENCE=ROOT/'docs/analysis/evidence/terminal-flow'
 manifest,target,data,pe=verified_input(EVIDENCE)
 if args.prepare_rea:prepare_rea(EVIDENCE,manifest,data,pe,ROOT/'runtime/analysis/history/interface/terminal-flow/4e862d14c1ed/reproduction')
 model = load_script('xp_model', ROOT/'scripts/recover-terminal-contracts.py')

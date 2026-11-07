@@ -10,11 +10,11 @@ The source described below was written on 2026-10-18. **No builds, compiler
 checks, tests, emulation, original-game launches or rebuilt-game launches ran.**
 There is no installed gameplay adapter or verified gameplay parity.
 
-The [native evidence manifest](evidence/0.97.2/player-abilities/behavior-native.json)
+The [native evidence manifest](evidence/player-abilities/behavior-native.json)
 binds 24 complete native functions and nine interior cast-branch slices to their
 original bytes, file offsets, SHA-256, REA/Ghidra evidence IDs and retained text.
 It also retains the original relative jump tables, scalar bytes and imported
-CRT identities. [Slice preparation](evidence/0.97.2/player-abilities/behavior-slices.json)
+CRT identities. [Slice preparation](evidence/player-abilities/behavior-slices.json)
 and [the reproducible extraction script](../../scripts/recover-player-ability-behavior.py)
 are target-bound. The script's default prepares exact slices/plans; `--collect`
 retains already completed REA analyses and original disassembly. REA uses the

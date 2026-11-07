@@ -26,11 +26,11 @@ KEYS = (
     "Heroes marked in red haven't opened this zone or difficulty with their class: they stay behind when you enter. Pick another, or let them change hero.",
     "Heroes marked in red haven't opened this zone or difficulty with their class: they stay behind when the host enters.",
 )
-EVIDENCE = ROOT / "docs/analysis/evidence/0.123.0/coop-lobby-locales.json"
+EVIDENCE = ROOT / "docs/analysis/evidence/coop-lobby-locales.json"
 CHAT_KEYS = ("Party chat", "Send", "{n} new", "{name} joined the party.",
              "{name} left the party.", "Waiting for players", "Until the run begins",
              "No messages yet. Say hello to your party!", "Say something... (Enter)")
-CHAT_EVIDENCE = ROOT / "docs/analysis/evidence/0.127.0/coop-lobby-ui/locales.json"
+CHAT_EVIDENCE = ROOT / "docs/analysis/evidence/coop-lobby-ui/locales.json"
 
 
 def derive(apply=False, contract="lobby-ui"):

@@ -6,9 +6,9 @@ Implemented source is [hit_passives.rs](../../crates/azeroth-survivors-re/src/pl
 
 ## Evidence and reproduction
 
-The complete current shared owner is `1454c2eb0..1454c63e5`, original-byte SHA-256 `fa34d349dd4e7597bc1f2da2f90bcae0cdef33ed8128f0837a0ec72110d63c49`. Its existing complete REA/Ghidra dossier is reused: `ev_ba95562638ee7eaae2ea1dc88d80c5df86859a014473f69b678b229aacd357bd`, with [original instructions](evidence/0.97.2/loot/enemy-death.asm), [pseudocode](evidence/0.97.2/loot/enemy-death.ghidra.c) and [retained provenance](evidence/0.97.2/loot/rea-provenance.json). Original Windows x64 instructions control argument mapping; generic raw-import Ghidra parameter names do not.
+The complete current shared owner is `1454c2eb0..1454c63e5`, original-byte SHA-256 `fa34d349dd4e7597bc1f2da2f90bcae0cdef33ed8128f0837a0ec72110d63c49`. Its existing complete REA/Ghidra dossier is reused: `ev_ba95562638ee7eaae2ea1dc88d80c5df86859a014473f69b678b229aacd357bd`, with [original instructions](evidence/loot/enemy-death.asm), [pseudocode](evidence/loot/enemy-death.ghidra.c) and [retained provenance](evidence/loot/rea-provenance.json). Original Windows x64 instructions control argument mapping; generic raw-import Ghidra parameter names do not.
 
-The focused helpers were passed unchanged at their original virtual addresses through `./scripts/rea` / the Ghidra provider. Their original PE runtime-function bounds, individual byte hashes, provider profiles, evidence IDs and pseudocode paths are in [native.json](evidence/0.97.2/player-hit-passives/native.json):
+The focused helpers were passed unchanged at their original virtual addresses through `./scripts/rea` / the Ghidra provider. Their original PE runtime-function bounds, individual byte hashes, provider profiles, evidence IDs and pseudocode paths are in [native.json](evidence/player-hit-passives/native.json):
 
 | Helper | Current recovered purpose | Boundary |
 | --- | --- | --- |

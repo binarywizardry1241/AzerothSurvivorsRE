@@ -12,7 +12,7 @@ from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 import unicorn.x86_const as r
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from capstone.x86_const import X86_OP_MEM, X86_REG_RIP
-proof = json.loads((ROOT / 'docs/analysis/evidence/0.121.0/achievement-progress.json').read_text())
+proof = json.loads((ROOT / 'docs/analysis/evidence/achievement-progress.json').read_text())
 t = latest_target(verify=True)
 assert all((t[k] == v for k, v in proof['target'].items()))
 image = target_bytes(t)
@@ -213,6 +213,6 @@ account_source = (ROOT/'crates/azeroth-survivors-re/src/account_progression.rs')
 assert '../assets/account-achievements-0.121.0.json' in account_source
 inputs_source = (ROOT/'crates/azeroth-survivors-re/src/progression.rs').read_text()
 assert inputs_source.count('achievement_inputs(save)') >= 2
-fixture = json.loads((ROOT / 'docs/analysis/evidence/0.121.0/achievement-progress-cases.json').read_text())
+fixture = json.loads((ROOT / 'docs/analysis/evidence/achievement-progress-cases.json').read_text())
 assert fixture['cases'] == [[row['state'], row['kind'], row['minimum'], *row['progress']] for row in results]
 print(json.dumps({'cases': len(results), 'original_instruction_steps': state['steps'], 'application_executed': False}, indent=2))

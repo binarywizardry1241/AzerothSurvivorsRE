@@ -16,7 +16,7 @@ remain unverified.
 | `imp_heroic` | Trauma / `Ability_Warrior_DecisiveStrike` | 21, damage against a victim with retained periodic rows | 0.03 | 3/6/9/12/15% |
 | `unbridled_wrath` | Bloodlust / `Spell_Shadow_BloodBoil` | 23, shared buff potency | 0.06 | 6/12/18/24/30% |
 
-The [current records](evidence/0.112.0/release-data-leads.json) preserve Arms
+The [current records](evidence/release-data-leads.json) preserve Arms
 row0/column0, Fury row1/column0, five ranks and the existing save keys. The two
 records in `assets/warrior-talents-0.112.0.json` now contain the current names,
 icons, descriptions, rank values and effects. Both the runtime effect catalog and
@@ -38,7 +38,7 @@ retained keys and Fury's preceding-row requirement. There is no invented rename,
 reset or Warrior-specific migration.
 
 All ten current English rank descriptions are replayed through `14599ddf0`,
-reusing the [shared formatter evidence](evidence/0.112.0/warlock-talents/manifest.json).
+reusing the [shared formatter evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/warlock-talents/manifest.json).
 The [fourteen locale catalogs](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/locale-catalogs-0.112.0.md) provide translated
 current templates and names. Between-run and in-run viewers use the same
 embedded definitions, shared rank substitution and ordinary icon loader.
@@ -72,7 +72,7 @@ ordering remain on the shared hit route.
 Bloodlust's current refresh owner `1458f28e0` folds stat23 into Game+0x4c0;
 stat21 is deliberately ignored by this scalar refresh. Buff potency and the
 jewelry potency lane add before consumers compute `1 + bonus`. The
-[buff proof](evidence/0.112.0/buff-potency/manifest.json) retains current dispatch,
+[buff proof](evidence/buff-potency/manifest.json) retains current dispatch,
 producer and consumer ranges, including these rules:
 
 - Live damage8 and recovery9 auras multiply their stored magnitude by shared
@@ -109,7 +109,7 @@ The Warrior check verifies exact target/data/code hashes and reproduces 14 rank,
 current catalogs. `--write` refreshes its compact
 fixture only after review. The buff checker independently verifies current
 stat/aura/shield/thorns ranges and bounded native arithmetic, retaining its case
-count in [bounded-cases.json](evidence/0.112.0/buff-potency/bounded-cases.json).
+count in [bounded-cases.json](evidence/buff-potency/bounded-cases.json).
 Ghidra raw imports retain their external-data, Win64 ABI and reference-discovery
 limits in the two manifests. Native instruction fixtures execute controlled
 regions; they do not start the original game or execute the rebuilt Rust source.

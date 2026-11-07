@@ -3,7 +3,7 @@
 Selected installed EXE SHA-256:
 `de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be`.
 This completes the feasible source/static repair for **#262**. The
-[manifest](evidence/0.123.0/sanguine-native.json) binds six journaled Ghidra
+[manifest](evidence/sanguine-native.json) binds six journaled Ghidra
 queries, exact original producer/filter ranges and the live source receipt.
 The wider [0.121.0 affix recovery](heroic-affixes.md) keeps its original
 provenance and is not automatically revalidated by this recipient repair.
@@ -49,7 +49,7 @@ the repair does not use the elite flag as a guardian test.
 python3 -B scripts/check-sanguine-recipients.py --python-path runtime/tests/query-python-deps --python-path runtime/tool-state/python/armory/python-libs
 ```
 
-The [bounded check](evidence/0.123.0/sanguine/static-check.json) verifies all six
+The [bounded check](evidence/sanguine/static-check.json) verifies all six
 exact current query subjects, original producer/filter bytes and assembly,
 13 ward template rows, the repaired source receipt and the live source
 connections. It parses the changed Rust file without compiling it.

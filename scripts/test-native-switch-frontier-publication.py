@@ -26,7 +26,7 @@ class PublicationTests(unittest.TestCase):
         self.input.write_bytes(b'{"input":"verified"}\n')
         self.commitments = [{"path": "runtime/input.json", "sha256": hashlib.sha256(self.input.read_bytes()).hexdigest()}]
         self.target = {"version": "0.120.5", "sha256": "f" * 64}
-        self.directory = self.root / "docs/analysis/evidence/0.120.5"
+        self.directory = self.root / "docs/analysis/evidence"
 
     def tearDown(self):
         self.temporary.cleanup()

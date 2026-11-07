@@ -36,7 +36,7 @@ def run(kind,endpoints=None):
  uc.reg_write(UC_X86_REG_EFLAGS,2);uc.reg_write(UC_X86_REG_MXCSR,0x1f80)
  uc.emu_start(RANGES[kind][0],0,count=10000)
  end=uc.reg_read(UC_X86_REG_RIP);assert end in stops;return end
-manifest=json.loads((ROOT/'docs/analysis/evidence/0.97.2/bosses/abilities-manifest.json').read_text());assert manifest['target_sha256']==SHA
+manifest=json.loads((ROOT/'docs/analysis/evidence/bosses/abilities-manifest.json').read_text());assert manifest['target_sha256']==SHA
 ids={0,1,0xffffffff,10,75,116,120,122,133,403,686,779,1160,1449,1510,1680,1949,1978,2120,2643,2812,3044,3606,5116,5176,5740,6343,6353,6789,6917,7269,8122,10181,11113,11366,13810,15237,16914,19434,20549,24275,26573}
 ids.update(a['raw_words'][1] for a in manifest['boss_ability_records'] if a['raw_words'][0] in (0,1,3,4))
 lookups=[]
@@ -76,5 +76,5 @@ for state in [[1,2,3,4],[0xffffffffffffffff]*4,[0x123456789abcdef,0xfedcba987654
    uc.reg_write(UC_X86_REG_R9,GAME);run('missile-next');radius=uc.reg_read(UC_X86_REG_XMM11)&0xffffffff;angle=uc.reg_read(UC_X86_REG_XMM9)&0xffffffff
   missiles.append(dict(state=state,index=index,count=count,angle_bits=angle,radius_bits=radius,state_after=list(struct.unpack('<QQQQ',uc.mem_read(GAME+0x880,32)))))
 result=dict(version='0.97.2',target_sha256=SHA,method='Unmodified bounded x86-64 instruction intervals with synthetic state; no external instructions/calls permitted; no original/rebuilt OS process or compilation.',ranges={k:[hex(a),hex(b)] for k,(a,b) in RANGES.items()},lookups=lookups,charge_duration=durations,charge_clip=clips,minion_indices=indices,area_range=range_checks,missile_draws=missiles)
-path=ROOT/'docs/analysis/evidence/0.97.2/bosses/abilities-fixtures.json';path.write_text(json.dumps(result,indent=2)+'\n')
+path=ROOT/'docs/analysis/evidence/bosses/abilities-fixtures.json';path.write_text(json.dumps(result,indent=2)+'\n')
 print(f'{len(lookups)} lookup, {len(durations)} duration, {len(clips)} clip, {len(indices)} minion, {len(range_checks)} range, {len(missiles)} missile native fixtures; SHA256 {hashlib.sha256(path.read_bytes()).hexdigest()}')

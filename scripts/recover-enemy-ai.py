@@ -19,7 +19,7 @@ from enemy_evidence import pseudocode_text
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
-OUT = ROOT / 'docs/analysis/evidence/0.97.2/enemies'
+OUT = ROOT / 'docs/analysis/evidence/enemies'
 RUNTIME = ROOT / 'runtime/analysis/history/native-recovery/enemies-ai/8567196e8174'
 FUNCTION = 0x1454c9510
 
@@ -249,7 +249,7 @@ def main():
     parser.add_argument('--output', default='runtime/analysis/history/native-recovery/enemy-ai-current/ab380a5d5c3f')
     parser.add_argument('--check-current', action='store_true')
     parser.add_argument('--write-current', action='store_true')
-    parser.add_argument('--evidence', default='docs/analysis/evidence/0.127.0/caster-navigation/manifest.json')
+    parser.add_argument('--evidence', default='docs/analysis/evidence/caster-navigation/manifest.json')
     args = parser.parse_args()
     if args.check_current:
         check_current(args.evidence, args.write_current)

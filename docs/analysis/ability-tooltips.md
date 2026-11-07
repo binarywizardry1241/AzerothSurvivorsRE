@@ -48,7 +48,7 @@ The optional starting annotation uses native key `picker.starting_spell`.
 The parent owns generic tooltip placement, icon interaction and integrated
 application validation.
 
-[Curated provenance](evidence/0.92/ability-tooltip-native-format.json)
+[Curated provenance](evidence/ability-tooltip-native-format.json)
 records byte hashes, menu definition locations, intercepted boundaries and
 validation. Raw REA scopes, disassembly, full expression input traces and
 isolated emulation output remain under ignored `runtime/analysis/history/interface/menu-recovery/0558cac00653`.
@@ -61,7 +61,7 @@ upgraded gameplay spell behavior is claimed.
 
 ## Spell-pool icon hover
 
-[The icon evidence](evidence/0.92/menu-ability-icon-hover.json) binds the class
+[The icon evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/menu-ability-icon-hover.json) binds the class
 spell loop's entity tuple to `picker::Hover`, `UiTransform` and `SpellInfo`.
 Its 44-byte Hover contains a resting Color, active Color, and one-pixel lift.
 Starting spells rest at gold (0.973, 0.824, 0.416), other spells at LinearRgba

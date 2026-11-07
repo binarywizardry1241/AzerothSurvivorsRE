@@ -10,9 +10,9 @@ status; this repair does not establish rendered parity.
 ## Native contract and source change
 
 The current decoder is `0x145c30ed0..0x145c31e46`, 3,958 original bytes.
-The [manifest](evidence/0.113.2/addon-gold/manifest.json) binds its installed
+The [manifest](evidence/addon-gold/manifest.json) binds its installed
 offset/hash and scoped Ghidra Evidence. The shared
-[canonical decoder assembly](evidence/0.113.2/tga-decoder.asm) is retained once
+[canonical decoder assembly](evidence/tga-decoder.asm) is retained once
 for #53/#54; no duplicate decoder extract is required.
 
 | Native interval | Recovered contract |

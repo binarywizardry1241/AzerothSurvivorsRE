@@ -69,7 +69,7 @@ Unix-nanosecond intent; platform clock-failure behavior was not executed.
 
 ## Evidence and remaining bounds
 
-The [appearance manifest](evidence/0.97.2/appearance-0.97.2.json) records native
+The [appearance manifest](evidence/menu-save/appearance.json) records native
 bounds/byte hashes, assembly paths and completed REA evidence IDs. The
 [save report](menu-save.md) owns parser normalization, first Pick selection,
 per-class persistence, names, item compatibility and envelope operations.

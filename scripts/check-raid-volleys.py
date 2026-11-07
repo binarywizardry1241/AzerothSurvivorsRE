@@ -17,7 +17,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.109.0/raid-volley'
+EVIDENCE = ROOT / 'docs/analysis/evidence/raid-volley'
 WORK = ROOT / 'runtime/analysis/history/raid/raid-volley/b39e0d299b2e/curated'
 RANGES = {
     'speed-prefix': (0x145957ce8, 0x145957d4b),
@@ -115,7 +115,7 @@ def main():
     def xmm(reg, value): uc.reg_write(reg, int.from_bytes(struct.pack('<f', value), 'little'))
     def f32(value): return struct.unpack('<f', struct.pack('<f', value))[0]
 
-    previous = json.loads((ROOT/'docs/analysis/evidence/0.108.0/boss-volleys/native.json').read_text())
+    previous = json.loads((ROOT/'docs/analysis/evidence/boss-volleys/native.json').read_text())
     cases = dict(speed=0, flight=0, payload=0, publication=0, membership=0, aggregation=0, damage_scale=0)
     for case in previous['cases']['speed']:
         put(record, 'II', case['spell_id'], 1)

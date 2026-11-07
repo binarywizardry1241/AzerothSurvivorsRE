@@ -2,9 +2,9 @@
 
 Authority is the configured installed Windows EXE, version **0.112.0**, SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The current [manifest](evidence/0.112.0/raid-guardian-lifecycle/manifest.json),
-[catalog bindings](evidence/0.112.0/raid-guardian-lifecycle/catalog.json) and
-[Ghidra provenance](evidence/0.112.0/raid-guardian-lifecycle/rea-provenance.json)
+The current [manifest](evidence/raid-guardian-lifecycle/manifest.json),
+[catalog bindings](evidence/raid-guardian-lifecycle/catalog.json) and
+[Ghidra provenance](evidence/raid-guardian-lifecycle/rea-provenance.json)
 belong to this target. Historical 0.97.2 constants, fixtures and reports retain
 their original provenance. Current implementation status belongs to
 [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md).

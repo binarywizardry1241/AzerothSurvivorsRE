@@ -13,7 +13,7 @@ The current dependency graph explicitly orders **player control → room
 correction → camera shake**. The existing Rust registration already implements
 this relation; no behavior change is needed.
 
-The [manifest](evidence/0.109.0/camera-room/manifest.json) binds installed code,
+The [manifest](evidence/camera-room/manifest.json) binds installed code,
 vtable and literal bytes. PlayerPlugin's vtable at `145ff4c00` links build slot
 `+0x40` to `140cdf0b0` and name slot `+0x60` to `141259950`, whose literal is
 `benilla_app::player::PlayerPlugin`. Within that build:
@@ -33,7 +33,7 @@ vtable and literal bytes. PlayerPlugin's vtable at `145ff4c00` links build slot
   Shake registration `140ce0721` independently adds After(control).
 
 These are graph dependencies rather than an inference from plugin call order.
-The canonical [After helper](evidence/0.109.0/run-hud/schedule-ordering.asm)
+The canonical [After helper](evidence/run-hud/schedule-ordering.asm)
 `14013d450` and current Before helper `14013d550` append a 56-byte dependency,
 using constructor `144e07e60` to set byte `+0x30` to **1** and **0** respectively.
 The actual graph consumer loads that byte at `144e9767f`; endpoint selection

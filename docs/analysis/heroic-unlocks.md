@@ -7,7 +7,7 @@ save/admission evidence and does not establish the newer cooperative timing.
 Installed EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 [verification-needed](../verification-needed.md#gap-220) owns finding #220. The
-[manifest](evidence/0.121.0/heroic-unlocks/manifest.json) binds the current save
+[manifest](evidence/heroic-unlocks/manifest.json) binds the current save
 parser/writer, class/account admission helpers, clear mutator and account-result
 consumer to completed journaled Ghidra queries and exact original code/data.
 The separate [Heroic helpers](heroic-native.md) retain their own

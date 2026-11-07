@@ -97,7 +97,7 @@ def main():
                   base_fonts=base_fonts,
                   limitations=["Static data is not proof that every localized consumer renders correctly.",
                                "Native behavior/callers are retained separately; no target is launched by this script."])
-    path = ROOT / "docs/analysis/evidence/0.100.1/locales.json"
+    path = ROOT / "docs/analysis/evidence/locales.json"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
 

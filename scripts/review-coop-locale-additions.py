@@ -13,7 +13,7 @@ from collections import Counter
 import hashlib
 import json
 
-from coverage_common import ROOT, file_sha256, latest_target, target_bytes
+from coverage_common import ROOT, file_sha256, latest_target, load_json, project_bytes, target_bytes
 from script_sources import load_script
 
 
@@ -24,10 +24,13 @@ def receipt(path):
 def derive():
     selected = latest_target(verify=True)
     target = {key: selected[key] for key in ("version", "path", "sha256", "size_bytes")}
-    review_path = ROOT / f"docs/analysis/evidence/{target['version']}/locale-catalog-review.json"
-    review = json.loads(review_path.read_text())
-    expected = load_script("coop_locale_catalog_review", ROOT / "scripts/review-current-locale-catalogs.py").derive()
-    if review != expected or review["target"] != target:
+    review_path = ROOT / "docs/analysis/evidence/locale-catalog-review.json"
+    if not review_path.is_file():
+        review_path = review_path.parent / target["version"] / review_path.name
+    review = load_json(review_path)
+    catalog = load_script("coop_locale_catalog_review", ROOT / "scripts/review-current-locale-catalogs.py")
+    catalog.verify_review(catalog.derive(), review)
+    if review["target"] != target:
         raise ValueError("Descriptor/source catalog review is missing or stale")
     image = target_bytes(selected)
     natives, sources = {}, {}
@@ -138,8 +141,10 @@ def check_consumers():
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 
     selected = latest_target(verify=True)
-    path = ROOT / f"docs/analysis/evidence/{selected['version']}/localization-consumers/contracts.json"
-    proof = json.loads(path.read_text())
+    path = ROOT / "docs/analysis/evidence/localization-consumers/contracts.json"
+    if not path.is_file():
+        path = path.parent.parent / selected["version"] / "localization-consumers/contracts.json"
+    proof = load_json(path)
     if proof["target"] != {key: selected[key] for key in ("version", "path", "sha256", "size_bytes")}:
         raise ValueError("Native consumer proof belongs to another target")
     image = target_bytes(selected)
@@ -160,7 +165,7 @@ def check_consumers():
             asm = "\n".join(f"{item.address:016x}  {item.bytes.hex():22s} {item.mnemonic} {item.op_str}".rstrip()
                             for item in parsed) + "\n"
             source = ROOT / row["assembly"]["path"]
-            if source.read_text() != asm or file_sha256(source) != row["assembly"]["sha256"]:
+            if project_bytes(source).decode() != asm or file_sha256(source) != row["assembly"]["sha256"]:
                 raise ValueError("Native consumer independent assembly changed")
         elif raw.hex() != row["bytes"]:
             raise ValueError("Native format record changed")
@@ -192,7 +197,7 @@ def main():
         print(json.dumps(check_consumers(), indent=2))
         return
     proof = derive()
-    path = ROOT / f"docs/analysis/evidence/{proof['target']['version']}/coop-locale-additions.json"
+    path = ROOT / "docs/analysis/evidence/coop-locale-additions.json"
     raw = (json.dumps(proof, ensure_ascii=False, indent=2) + "\n").encode()
     if args.write:
         path.write_bytes(raw)

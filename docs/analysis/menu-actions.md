@@ -71,7 +71,7 @@ zone's current table key, at index `open_count - 1`. Its new table stride is
 240 bytes. Neither function rewrites the stored unlock value or performs save
 migration; migration elsewhere in the application is outside this pass.
 
-[catalog-zone-policy-fixtures.json](evidence/0.97.2/catalog-zone-policy-fixtures.json)
+[catalog-zone-policy-fixtures.json](evidence/catalog-zone-policy-fixtures.json)
 records unchanged native instruction outputs from bounded Unicorn 2.1.4:
 
 - 81 count cases cover all nine classes with missing, zero, 1, 9, 10, 11, 12,
@@ -90,7 +90,7 @@ game-runtime parity.
 
 ## Evidence and reproduction
 
-[catalog-actions-native.json](evidence/0.97.2/catalog-actions-native.json)
+[catalog-actions-native.json](evidence/catalog-actions-native.json)
 retains five complete REA/Ghidra Evidence records, unchanged source spans and
 hashes, original full-PE disassembly, exact URL/command bytes, and the action
 jump table:

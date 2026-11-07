@@ -7,7 +7,7 @@ This is finding **#172**'s source/static repair.
 
 ## Native interface and identity
 
-The [manifest](evidence/0.119.0/achievement-unlock-names/manifest.json) binds
+The [manifest](evidence/achievement-unlock-names/manifest.json) binds
 nine independently located PE code ranges, their complete assembly, journaled
 Ghidra results and observed direct caller edges. Historical 0.118.0 addresses
 were discovery leads only; unique instruction prefixes, current unwind extents,

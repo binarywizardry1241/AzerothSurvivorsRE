@@ -48,7 +48,7 @@ for name,va,n in [('race',0x1469f85c8,12),('gear',0x1469f85f8,13),('jewelry',0x1
  record['tables'].append({'role':name,'address':hex(va),'sha256':hashlib.sha256(raw).hexdigest(),'destinations':[hex(va+r) for r in struct.unpack('<'+'i'*n,raw)]})
 for va in [0x14593f7c0,0x145915914,0x145913300,0x1459132f8,0x1459158a0,0x1459132f4,0x145907534,0x145915800,0x145a47630,0x145a2e6b8,0x14593fc74,0x145907498,0x145907508]:
  record['constants'].append({'address':hex(va),'bits':struct.unpack_from('<I',data,offset(va))[0],'value':struct.unpack_from('<f',data,offset(va))[0]})
-out=ROOT/'runtime/analysis/staging/native-evidence/0.100.1/run-effects';out.mkdir(parents=True,exist_ok=True)
+out=ROOT/'runtime/analysis/staging/native-evidence/run-effects';out.mkdir(parents=True,exist_ok=True)
 (out/'tables-and-payloads.json').write_text(portable_json(record,indent=2)+'\n')
 work=ROOT/'runtime/analysis/history/native-recovery/run-effects/9094f1b4dd32';work.mkdir(parents=True,exist_ok=True)
 start,end=0x1454848a0,0x145484c07

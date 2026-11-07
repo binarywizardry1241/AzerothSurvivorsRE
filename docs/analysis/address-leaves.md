@@ -7,7 +7,7 @@ operand audit's **twenty `not-observed` executable destinations**, reached by
 **21 address-forming operands**. Current implementation status remains in
 [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md).
 
-The [proof](evidence/0.121.0/address-leaves.json) binds the exact
+The [proof](evidence/address-leaves.json) binds the exact
 `native-operands.json:details.unowned_executable_address_candidates` selector,
 complete operand-stream digest, every selected forming instruction, current leaf
 bytes and relevant current surrounding interfaces. It preserves the original

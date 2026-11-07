@@ -2,7 +2,7 @@
 
 Selected installed EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
-The [source proof](evidence/0.121.0/heroic-source.json) binds the exact current
+The [source proof](evidence/heroic-source.json) binds the exact current
 descriptor bytes, original instruction selectors, reused Ghidra receipts and
 the implemented [Heroic core](../../crates/azeroth-survivors-re/src/heroic.rs).
 The [retained helper proof](heroic-native.md) supplies the independent
@@ -72,7 +72,7 @@ unknown keys map to 0, then reuse the one wrapping selector arithmetic owner.
 The current `0x145ac9f90` Ghidra result and original instructions bind the clock
 producer, including the Unix epoch's Windows FILETIME representation.
 
-The [current twist proof](evidence/0.121.0/heroic-twists/manifest.json) and exact
+The [current twist proof](evidence/heroic-twists/manifest.json) and exact
 current selectors supply the following shared policies. These are scalar
 selection helpers, with the original caller's admission and ordering preserved
 by its actual source owner.

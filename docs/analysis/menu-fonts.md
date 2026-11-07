@@ -7,7 +7,7 @@ and comparison status belongs to [verification-needed](../verification-needed.md
 
 ## Recovered inputs and consumers
 
-The [current manifest](evidence/0.109.0/menu-fonts/manifest.json) independently
+The [current manifest](evidence/menu-fonts/manifest.json) independently
 binds all nine supplied menu fonts: Cyrillic Friz/Morpheus/Skurri, three tiny
 SC/JP/KR language-name subsets and the three full CJK fonts. Every SFNT table,
 global checksum, name record and bounded payload extent passes. Native base

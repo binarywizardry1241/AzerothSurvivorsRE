@@ -45,7 +45,7 @@ mod tests {
     #[test]
     fn current_templates_match_native_selectors_names_and_zero_data() {
         let cases: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.113.2/object-queries.json"
+            "../../../../../docs/analysis/evidence/object-queries.json"
         ))
         .unwrap();
         let locale = Localization::english_for_tests();
@@ -71,7 +71,7 @@ mod tests {
     #[test]
     fn raw_fallback_and_unknown_entry_match_the_existing_decoder_boundary() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.113.2/object-queries.json"
+            "../../../../../docs/analysis/evidence/object-queries.json"
         ))
         .unwrap();
         for row in proof["cases"].as_array().unwrap() {

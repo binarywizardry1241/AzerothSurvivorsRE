@@ -69,7 +69,7 @@ def main():
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED
     from unicorn import x86_const as reg
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--proof', default='docs/analysis/evidence/0.115.0/as-address-candidates.json')
+    parser.add_argument('--proof', default='docs/analysis/evidence/native-diagnostics/as-address-candidates.json')
     parser.add_argument('--write', action='store_true', help='Write new evidence under runtime/ for review')
     parser.add_argument('--residual-summary', help='Select a snapshot for a new proof; replay defaults to its retained receipt')
     args = parser.parse_args()

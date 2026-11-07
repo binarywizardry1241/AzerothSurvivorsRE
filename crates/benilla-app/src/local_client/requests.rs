@@ -480,7 +480,7 @@ mod tests {
     #[test]
     fn current_native_publications_match_the_live_action_table_including_racial_overwrite() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/local-requests/native.json"
+            "../../../../docs/analysis/evidence/local-requests/native.json"
         ))
         .unwrap();
         for row in fixtures["publications"].as_array().unwrap() {

@@ -70,7 +70,7 @@ without generic spell modifiers.
   target count plus two, and delays successive bolts by .12 seconds. The native
   missile-speed switch has no5676 travel arm. Its captured caption is Felseeker.
 
-The [spell manifest](evidence/0.105.0/demon-spells/manifest.json) binds exact PE
+The [spell manifest](evidence/demon-spells/manifest.json) binds exact PE
 ranges and the Ghidra Infernal owner to the selected target. Canonical Imp and
 Doomguard packet extraction remains in the actor manifest. Original Win64
 instructions control ABI/field bindings; Ghidra raw imports infer types and omit

@@ -18,7 +18,7 @@ TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 TARGET_SHA = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
 OWNER_SHA = 'fa34d349dd4e7597bc1f2da2f90bcae0cdef33ed8128f0837a0ec72110d63c49'
 REA_ID = 'ev_ba95562638ee7eaae2ea1dc88d80c5df86859a014473f69b678b229aacd357bd'
-DESTINATION = ROOT / 'docs/analysis/evidence/0.97.2/player-hit-passives'
+DESTINATION = ROOT / 'docs/analysis/evidence/player-hit-passives'
 RUNTIME = ROOT / 'runtime/analysis/history/native-recovery/player-hit-passives/6ed5277e33ec'
 HELPERS = (0x1454D4DC0, 0x1454D5230, 0x1454D68B0)
 SPANS = (
@@ -60,7 +60,7 @@ def main():
 
     owner = span(0x1454C2EB0, 0x1454C63E5 - 0x1454C2EB0)
     assert owner['sha256'] == OWNER_SHA
-    provenance_path = ROOT / 'docs/analysis/evidence/0.97.2/loot/rea-provenance.json'
+    provenance_path = ROOT / 'docs/analysis/evidence/loot/rea-provenance.json'
     record = next(row for row in json.loads(provenance_path.read_text())['records']
                   if row['evidence_id'] == REA_ID)
     assert record['subject']['digest']['sha256'] == OWNER_SHA

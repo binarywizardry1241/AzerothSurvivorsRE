@@ -8,7 +8,7 @@ import json
 from native_save_fixture import CPU, ROOT, SHA
 
 DEST = (
-    ROOT / "docs/analysis/evidence/0.109.0/account-commands/frontend-pick-binding.json"
+    ROOT / "docs/analysis/evidence/account-commands/frontend-pick-binding.json"
 )
 TYPE_ID = "069ad40b469b67b8d24e086565767c39"
 
@@ -18,7 +18,7 @@ def main():
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
     cpu = CPU()
-    source = ROOT / "docs/analysis/evidence/0.109.0/talents-menu/ui-manifest.json"
+    source = ROOT / "docs/analysis/evidence/talents-menu/ui-manifest.json"
     canonical = json.loads(source.read_text())
     assert canonical["target_sha256"] == SHA
     owner = next(row for row in canonical["functions"] if row["name"] == "hover-plugin")

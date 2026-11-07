@@ -5,7 +5,7 @@ use serde_json::Value;
 #[test]
 fn current_boss_arrivals_keep_the_native_alert_voice_order_and_zero_gate() {
     let fixture: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.105.0/boss-voices/native-vectors.json"
+        "../../../docs/analysis/evidence/boss-voices/native-vectors.json"
     ))
     .unwrap();
     let mut bosses = 0;

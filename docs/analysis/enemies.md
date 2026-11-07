@@ -51,7 +51,7 @@ The recovered Game constructor initializes ordinary budget to **3**, shared
 death credit to **0**, the patterned-wave deadline to **60 run-seconds**, the
 roaming-elite deadline to **240 run-seconds**, and previous wave kind to **255**.
 These values come from the original aggregate initializer, not conventional
-survivor-game defaults; [initialization evidence](evidence/0.97.2/enemies/initialization-native.json)
+survivor-game defaults; [initialization evidence](evidence/enemies/initialization-native.json)
 binds its stack-to-Game copy and constants to this target.
 
 Ordinary spawning uses both a cost budget and a population deficit. Admission
@@ -81,8 +81,8 @@ dispatch branches. Reused REA/Ghidra Evidence
 `ev_fec0ab5d5ba261d965364f92a8f153a10d9eeb80bde3e3d7c21caff632e529a5`
 matches the original PE function slice SHA-256
 `65114117995dbb7c0699d9f170e5b751ad863decf286531f7851646b0fe6f048`.
-[Retained provenance, byte ranges and constants](evidence/0.97.2/enemies/ai-native.json)
-and [decompiler observations](evidence/0.97.2/enemies/actor-update.ghidra.c)
+[Retained provenance, byte ranges and constants](evidence/enemies/ai-native.json)
+and [decompiler observations](evidence/enemies/actor-update.ghidra.c)
 are paired with original Win64 instruction listings. The Ghidra raw import
 does not supply reliable ABI types or complete outside-call relationships.
 
@@ -119,7 +119,7 @@ does not supply reliable ABI types or complete outside-call relationships.
 
 ## Validation and remaining boundaries
 
-[Validation record](evidence/0.97.2/enemies/source-validation.json) records the
+[Validation record](evidence/enemies/source-validation.json) records the
 checks actually performed and authored-but-unrun Rust coverage. Hash-bound
 extraction/reproducibility, focused REA/Ghidra analysis, bounded execution of
 unchanged selected x86-64 instructions and independent static source review

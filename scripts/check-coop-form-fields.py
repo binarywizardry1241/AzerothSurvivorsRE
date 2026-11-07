@@ -77,7 +77,7 @@ def verify_evidence(manifest_path, target, data, pe):
             assert canonical["target"]["sha256"] == TARGET_SHA
             assert any(item["start"] == row["start"] and item["sha256"] == row["sha256"]
                        for item in canonical["functions"])
-    directory = ROOT / "docs/analysis/evidence/0.115.0/coop-forms"
+    directory = ROOT / "docs/analysis/evidence/coop-forms"
     for name, expected in manifest["extracts"].items():
         path = (directory / name).resolve()
         assert path.is_relative_to(directory.resolve()), name
@@ -373,7 +373,7 @@ def check_source():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", default="docs/analysis/evidence/0.115.0/coop-forms/manifest.json")
+    parser.add_argument("--manifest", default="docs/analysis/evidence/coop-forms/manifest.json")
     parser.add_argument("--output-dir", default="runtime/analysis/history/co-op/coop-form-fields/a2edc9bc58f3")
     args = parser.parse_args()
     target = latest_target(verify=True)

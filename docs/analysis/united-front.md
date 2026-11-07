@@ -2,7 +2,7 @@
 
 Finding **#118**, part of **#113**. Target SHA-256:
 `507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293`.
-[Current native contracts](evidence/0.117.0/united-front.json) bind the earned
+[Current native contracts](evidence/united-front.json) bind the earned
 producer, Hero/bootstrap chain, admission and live numeric consumer.
 
 The current Save configuration producer `145b3b570..145b3be19` searches the

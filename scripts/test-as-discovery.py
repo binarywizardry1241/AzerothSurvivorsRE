@@ -291,7 +291,7 @@ class ProfileTests(unittest.TestCase):
         full = dict(target=self.target, generator=dict(fixture=True), records=[], input_commitments=[self.source],
                     correspondence_candidates={candidate["dispatch_site"]: dict(native_candidate=candidate, location=location)})
         frontier.publish_results(self.root, full, dict(target=self.target), correspondence, [self.source], True)
-        proof_path = "docs/analysis/evidence/fixture/computed-correspondence-frontier.json"
+        proof_path = "docs/analysis/evidence/computed-correspondence-frontier.json"
         published = json.loads((self.root / proof_path).read_text())
         reviews = json.loads((self.root / "reviews.json").read_text())
         record = reviews["pending_correspondence_leads"][0]

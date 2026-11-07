@@ -449,7 +449,7 @@ class HistoricalRanges(unittest.TestCase):
             self.assertEqual(result[1]['git_source']['json_pointer'],'/effects')
             audit.committed_json_output.cache_clear()
     def test_archived_real_talent_payloads_match_all_354_original_effect_ranges(self):
-        path=ROOT/'docs/analysis/evidence/0.97.2/talents.json';source=path.read_bytes();document=json.loads(source)
+        path=ROOT/'docs/analysis/evidence/0.97.2/talents.json';source=audit.read_artifact(path);document=json.loads(source)
         wanted={(row['effects']['byte_count'],row['effects']['sha256']) for row in document['records']}
         found=audit.serialized_preimages(wanted,[(path,document)],{path:hashlib.sha256(source).hexdigest()})
         self.assertEqual(len(document['records']),354)

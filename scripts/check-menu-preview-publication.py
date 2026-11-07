@@ -15,7 +15,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from equipment_native import EquipmentProbe
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
-OUT = 'docs/analysis/evidence/0.112.0/menu-preview-publication'
+OUT = 'docs/analysis/evidence/menu-preview-publication'
 RANGES = [(0x1400fd6dd, 0x1400fd7e7), (0x1400fd801, 0x1400fd922)]
 
 
@@ -145,7 +145,7 @@ def main():
     parser.add_argument('--stage', action='store_true')
     args = parser.parse_args()
     record = recover()
-    path = ROOT / ('runtime/analysis/staging/native-evidence/0.112.0/menu-preview-publication' if args.stage else OUT) / 'cases.json'
+    path = ROOT / ('runtime/analysis/staging/native-evidence/menu-preview-publication' if args.stage else OUT) / 'cases.json'
     if args.stage:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(record, indent=2) + '\n')

@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parent.parent
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
 RUNTIME = ROOT / 'runtime/analysis/history/native-recovery/player-totem-passives/a1ae05a395c3'
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.97.2/player-totem-passives'
+EVIDENCE = ROOT / 'docs/analysis/evidence/player-totem-passives'
 FUNCTIONS = [0x1454d43d0, 0x1454d49e0, 0x1455321e0]
 RANGES = [(0x1454a422c, 0x1454a46a0, 'call-of-flame-expiry'),
           (0x1454a46c0, 0x1454a4c10, 'prepulse-heal'),

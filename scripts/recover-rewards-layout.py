@@ -19,7 +19,7 @@ data=(ROOT/'AzerothSurvivors/AzerothSurvivors-0.105.0.exe').read_bytes()
 assert hashlib.sha256(data).hexdigest()=='8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 pe=module.PE(data)
 bounds={pe.image_base+a:pe.image_base+b for a,b,*_ in pe.functions()}
-layout=json.loads((ROOT/'docs/analysis/evidence/0.92/picker-node-layout.json').read_text())['node_layout']
+layout=json.loads((ROOT/'docs/analysis/evidence/picker-node-layout.json').read_text())['node_layout']
 layout['OFFSET_flex_grow']=348
 
 class Probe:

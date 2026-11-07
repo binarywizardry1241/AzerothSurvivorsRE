@@ -97,7 +97,7 @@ This is retained shared-interface uncertainty, without an established AS delta.
 python3 -B scripts/check-engine-diagnostic-roles.py
 ```
 
-The [compact all-row proof](evidence/0.115.0/engine-diagnostic-roles.json)
+The [compact all-row proof](evidence/engine-diagnostic-roles-comparison.json)
 contains every site, path, declared extent, carrier and first consumer. Column
 arrays keep the complete selection reviewable without another full native
 extract. The checker independently selects the rows from the original

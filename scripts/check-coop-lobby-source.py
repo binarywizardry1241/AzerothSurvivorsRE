@@ -14,7 +14,7 @@ import subprocess
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-BASE = ROOT / "docs/analysis/evidence/0.123.0/coop-lobby-ui"
+BASE = ROOT / "docs/analysis/evidence/coop-lobby-ui-comparison"
 RECEIPT = BASE / "source.json"
 PREFIX = "crates/azeroth-survivors-re/src/"
 SCOPES = (

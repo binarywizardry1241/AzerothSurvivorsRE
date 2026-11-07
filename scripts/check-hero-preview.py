@@ -20,7 +20,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 WORK = ROOT / 'runtime/analysis/history/native-recovery/secondary-pages/408536b1c3c9'
-OUT = ROOT / 'docs/analysis/evidence/0.109.0/hero-preview'
+OUT = ROOT / 'docs/analysis/evidence/hero-preview-comparison'
 OWNERS = {
     'hero-booth': (0x140C17470, 0x140C19989),
     'hero-get-request': (0x14058D450, 0x14058D547),

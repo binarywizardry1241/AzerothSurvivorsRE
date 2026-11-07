@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
-REL = "docs/analysis/evidence/0.119.0/rewards-tabard-localization"
+REL = "docs/analysis/evidence/rewards-tabard-localization"
 WORK = ROOT / "runtime/analysis/history/interface/rewards-tabard/dade7ef4383b"
 # Each extent was independently located in current .pdata; historical addresses
 # were routing leads only. Only the name helper/card need full curated assembly.
@@ -154,7 +154,7 @@ def derive(stage):
         assert i.mnemonic == "lea" and i.address + i.size + struct.unpack("<i", i.bytes[-4:])[0] == address
         rows.append(dict(id=item_id, name=name, key=f"tabard.{item_id}", descriptor_va=hex(address)))
     assert len(rows) == 21
-    locale_proof = json.loads((ROOT / "docs/analysis/evidence/0.119.0/locale-catalog-review.json").read_text())
+    locale_proof = json.loads((ROOT / "docs/analysis/evidence/locale-catalog-review.json").read_text())
     assert locale_proof["target"]["sha256"] == SHA
     locales = []
     for locale in locale_proof["locales"]:

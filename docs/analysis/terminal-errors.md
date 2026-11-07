@@ -2,7 +2,7 @@
 
 Target: installed **0.108.0**, SHA-256
 `dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b`.
-The [manifest](evidence/0.108.0/terminal-errors/manifest.json) binds fresh Ghidra
+The [manifest](evidence/terminal-errors/manifest.json) binds fresh Ghidra
 12.1.4 imports, independently decoded instructions, constructor dependencies
 and data to these exact bytes. Historical
 [0.107.0 lifecycle evidence](terminal-lifecycle.md) retains its own target.

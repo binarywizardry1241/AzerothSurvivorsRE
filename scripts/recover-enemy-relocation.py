@@ -18,7 +18,7 @@ from enemy_evidence import curated_native, pseudocode_text
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
-OUT = ROOT / 'docs/analysis/evidence/0.97.2/enemies'
+OUT = ROOT / 'docs/analysis/evidence/enemies'
 RUNTIME = ROOT / 'runtime/analysis/history/native-recovery/enemies-relocation/2f83a9a2dd04'
 FUNCTION = 0x145531cb0
 

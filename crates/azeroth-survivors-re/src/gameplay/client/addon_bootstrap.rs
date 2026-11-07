@@ -9,19 +9,19 @@ use std::sync::OnceLock;
 mod creature_sound;
 
 const SOURCE: &str =
-    include_str!("../../../../../docs/analysis/evidence/0.127.0/embedded-api.lua");
+    include_str!("../../../../../docs/analysis/evidence/addon-api/embedded-base.lua");
 const LATER_API: &str =
-    include_str!("../../../../../docs/analysis/evidence/0.139.1/embedded-api.lua");
+    include_str!("../../../../../docs/analysis/evidence/addon-api/position-and-clock-reference.lua");
 const CURRENT_API: &str =
-    include_str!("../../../../../docs/analysis/evidence/0.140.0/embedded-api.lua");
+    include_str!("../../../../../docs/analysis/evidence/addon-api/world-anchor-reference.lua");
 const METER_API: &str =
-    include_str!("../../../../../docs/analysis/evidence/0.139.1/meter-api.lua");
+    include_str!("../../../../../docs/analysis/evidence/addon-api/meter.lua");
 const COMBAT_TEXT_FRAME_HANDLERS: &str =
-    include_str!("../../../../../docs/analysis/evidence/0.139.2/combat-text/frame-handlers.lua");
+    include_str!("../../../../../docs/analysis/evidence/combat-text/frame-handlers.lua");
 const COMBAT_TEXT_API: &str =
-    include_str!("../../../../../docs/analysis/evidence/0.139.2/combat-text/event-projection-api.lua");
+    include_str!("../../../../../docs/analysis/evidence/combat-text/event-projection-api.lua");
 const STATS_PARSER: &str = include_str!(
-    "../../../../../docs/analysis/evidence/0.105.0/addon-bridge/native-stats-parser.lua"
+    "../../../../../docs/analysis/evidence/addon-api/native-stats-parser.lua"
 );
 
 fn section<'a>(source: &'a str, first: &str, next: &str) -> &'a str {

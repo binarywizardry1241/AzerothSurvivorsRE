@@ -13,7 +13,7 @@ from coverage_common import ROOT, installed_identity, latest_target, target_byte
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-BASE = ROOT / 'docs/analysis/evidence/0.123.0/coop-reconnect'
+BASE = ROOT / 'docs/analysis/evidence/coop-reconnect'
 
 
 def digest(raw):
@@ -260,7 +260,7 @@ def current_reply_order():
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from equipment_native import EquipmentProbe
 
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.139.2/coop-reconnect-replies.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/coop-reconnect-replies.json').read_text())
     target = installed_identity()
     assert target == proof['target']
     image = target_bytes(target)

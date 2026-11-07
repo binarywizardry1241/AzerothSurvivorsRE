@@ -10,7 +10,7 @@ from creature_query_native import PE, D, ENDS
 from name_query_native import NameProbe, H, S
 
 WORK = ROOT / 'runtime/analysis/history/findings/q41-all/f1125d689593'
-KEEP = ROOT / 'docs/analysis/evidence/0.113.2/name-queries.json'
+KEEP = ROOT / 'docs/analysis/evidence/name-queries.json'
 
 
 def decoded(body):

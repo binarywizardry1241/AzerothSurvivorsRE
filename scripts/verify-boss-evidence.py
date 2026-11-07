@@ -8,7 +8,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'docs/analysis/evidence/0.97.2/bosses'
+OUT = ROOT / 'docs/analysis/evidence/bosses'
 FIXTURES = ROOT / 'crates/azeroth-survivors-re/tests/fixtures'
 SHA = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
 

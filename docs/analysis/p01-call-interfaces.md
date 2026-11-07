@@ -10,7 +10,7 @@ retains their exact target/caller partitions. This report classifies four more
 bounded interfaces accounting for ten of those original records; it establishes
 no additional AS source defect or whole-system equivalence.
 
-The [proof](evidence/0.113.2/q41-call-interfaces.json) retains the original routing
+The [proof](evidence/q41-call-interfaces.json) retains the original routing
 records separately from the new classifications, current native ranges, fresh
 REA/Ghidra bodies/Evidence IDs and 153 synthetic instruction cases. Run
 `python3 -B scripts/check-q41-call-interfaces.py`; `--stage` writes a

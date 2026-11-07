@@ -12,7 +12,7 @@ import struct
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-MANIFEST = ROOT / 'docs/analysis/evidence/0.115.0/coop-transport/manifest.json'
+MANIFEST = ROOT / 'docs/analysis/evidence/coop-transport/manifest.json'
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 
 

@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK = ROOT / "runtime/analysis/history/combat/balance-catalog/a8787b6f4df0"
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/balance-catalog/manifest.json"
+RETAINED = ROOT / "docs/analysis/evidence/balance-catalog/manifest.json"
 ASSETS = ROOT / "crates/azeroth-survivors-re/assets"
 SOURCE = ROOT / "crates/azeroth-survivors-re/src"
 CLASSES, ABILITIES, TREES = 0x146BAB7A8, 0x146BACAD8, 0x146E74860
@@ -250,7 +250,7 @@ def main():
     # internal30/31. Special Demonology variants30..34 are separately owned by
     # selected-data.json and the current overlays; never alias those variants.
     current_demonology = json.loads((ASSETS / "demonology-0.105.0.json").read_text())
-    selected = json.loads((ROOT / "docs/analysis/evidence/0.105.0/game-mode-audit/selected-data.json").read_text())
+    selected = json.loads((ROOT / "docs/analysis/evidence/game-mode-audit/selected-data.json").read_text())
     assert current_demonology["target_sha256"] == selected["target_sha256"] == SHA
     selected_rows = {row["key"]: row for row in selected["selected_talents"]}
     overlays = {row["key"]: row for row in current_demonology["talents"]}

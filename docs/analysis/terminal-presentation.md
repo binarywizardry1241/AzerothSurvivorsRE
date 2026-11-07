@@ -2,7 +2,7 @@
 
 This report uses installed **0.109.0**, SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [manifest](evidence/0.109.0/terminal-presentation/manifest.json) binds fresh
+The [manifest](evidence/terminal-presentation/manifest.json) binds fresh
 current owners, selected native instruction intervals and REA/Ghidra identities.
 Existing canonical terminal root/content and account summary extracts are
 referenced in place. Full raw decompilation and regeneration output stay ignored.
@@ -43,7 +43,7 @@ older release label.
 
 The effective-damage producer is shared hit owner `145971490`. Its current
 health writer and positive prior-health clamp are canonical in
-[ward shared-hit evidence](evidence/0.109.0/raid-wards/common-hit.asm).
+[ward shared-hit evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.109.0/raid-wards/common-hit.asm).
 Subsequent interpolation branches preserve that prior health before
 `145971b66` selects `min(modifiedDamage,max(priorHealth,0))`, promotes to f64
 and adds it to Game`+708`. Current payload reads that exact field. Source

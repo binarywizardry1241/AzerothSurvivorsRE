@@ -2,7 +2,7 @@
 
 Gap **#41**, installed EXE SHA-256
 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
-[Native/source proof](evidence/0.113.2/as-ui-contracts-guardian.json),
+[Native/source proof](evidence/as-ui-contracts-guardian.json),
 [equipment control dependency](as-ui-contracts-reward-controls.md),
 [related Horn eligibility](as-ui-contracts-horn.md).
 

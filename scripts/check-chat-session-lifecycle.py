@@ -16,7 +16,7 @@ import xml.etree.ElementTree as ET
 from coverage_common import ROOT, artifact_path, file_sha256, latest_target, load_json
 
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
-OUTPUT = ROOT / "docs/analysis/evidence/0.109.0/chat-session-lifecycle.json"
+OUTPUT = ROOT / "docs/analysis/evidence/chat-session-lifecycle.json"
 
 
 def body(text, start, end):
@@ -29,7 +29,7 @@ def main():
     args = parser.parse_args()
     assert latest_target(verify=True)["sha256"] == SHA
     probe = load_script("minimap_resource_probe", ROOT / "scripts/check-minimap-lifecycle.py")
-    registered = load_json("docs/analysis/evidence/0.109.0/minimap-lifecycle.json")
+    registered = load_json("docs/analysis/evidence/minimap-lifecycle.json")
     assert registered["target_sha256"] == SHA
     assert {p.name.lower() for p in artifact_path("installed-game/Data").iterdir() if p.suffix.lower() == ".mpq"} == {
         row["path"].split("/")[-1].lower() for row in registered["archives"]

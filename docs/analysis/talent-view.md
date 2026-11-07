@@ -25,7 +25,7 @@ actual 0.105.0 native watcher/layout evidence and its limits.
   toggles once on a changed string, and clears its observation outside a run.
   Missing globals leave the prior observation unchanged. The offline client
   implements this optional bridge with VM identity so a replacement VM establishes
-  a new baseline. [Eleven original-instruction cases and exact Lua fragments](evidence/0.105.0/talent-view/input-vectors.json)
+  a new baseline. [Eleven original-instruction cases and exact Lua fragments](evidence/talent-view/input-vectors.json)
   bind this contract to the selected bytes; REA/Ghidra observation
   `ev_3935b31648697d72e6cecfa7bf22624a50939888b11095f63e26aa71b655476d`
   corroborates the owning function and Windows register arguments.
@@ -41,8 +41,8 @@ actual 0.105.0 native watcher/layout evidence and its limits.
   1.6, padding 40/20, a 42-pixel Talents heading, the class-colored subtitle and
   its muted hint, an 18-pixel Close label, and a growing three-tree/detail row.
   The source uses the existing per-root canvas fit rather than scaling rasterized
-  glyphs. [Layout manifest](evidence/0.105.0/talent-view/layout-manifest.json)
-  and [constructor vectors](evidence/0.105.0/talent-view/layout-vectors.json)
+  glyphs. [Layout manifest](evidence/talent-view/layout-manifest.json)
+  and [constructor vectors](evidence/talent-view/layout-vectors.json)
   retain selected ranges, instruction replay seams and limits.
 - **Shared read-only trees:** `14012bb00` passes the read-only flag to the same
   tree/details consumers used by the Armory. The source shares catalog/art,

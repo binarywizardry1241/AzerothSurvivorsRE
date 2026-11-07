@@ -42,7 +42,7 @@ def number(word):
 def verify_evidence():
     target = latest_target(verify=True)
     assert target['version'] == '0.119.0' and target['sha256'] == SHA
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.119.0/druid-release/manifest.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/druid-release/manifest.json').read_text())
     assert all(target[key] == proof['target'][key] for key in ('version', 'sha256', 'size_bytes'))
     image = target_bytes(target)
     spec = importlib.util.spec_from_file_location('aura_pe', ROOT / 'scripts/inventory-current-target.py')
@@ -390,7 +390,7 @@ def shout_contract(args):
     target=latest_target(verify=True)
     assert target['sha256']=='3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb'
     data=target_bytes(target);pe=load_script('shout_pe',ROOT/'scripts/inventory-executable.py').PE(data)
-    output=project_path(args.work)if args.collect else ROOT/'docs/analysis/evidence/0.127.0/shouts'
+    output=project_path(args.work)if args.collect else ROOT/'docs/analysis/evidence/shouts'
     def raw(a,b):at=pe.rva_offset(a-pe.image_base);return data[at:at+b-a]
     def receipt(path):return dict(path=path.relative_to(ROOT).as_posix(),sha256=digest(path.read_bytes()))
     manifest=dict(schema_version=1,target={k:target[k]for k in ['version','path','sha256','size_bytes']},ranges=[])
@@ -436,7 +436,7 @@ def shout_contract(args):
                 evidence_id=native['evidence_id'],provider=native['provider'],analysis_profile_digest=native['analysis_profile']['digest'])
             verify_native_query_subject(ROOT,native,query,manifest['target'],image=data,pe=pe);manifest['queries'].append(query)
         # Reuse the party owner's exact completed receipt, not a second copy.
-        party=json.loads((ROOT/'docs/analysis/evidence/0.127.0/revive-choice/manifest.json').read_text())
+        party=json.loads((ROOT/'docs/analysis/evidence/revive-choice/manifest.json').read_text())
         assert party['target']==manifest['target'];manifest['queries'].append(party['queries'][0])
         from coverage_common import artifact_path
         text=''

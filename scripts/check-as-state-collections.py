@@ -23,7 +23,7 @@ sys.path.insert(0, str(ROOT / "runtime/tool-state/python/camera/python-libs"))
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-KEPT = ROOT / "docs/analysis/evidence/0.113.2/as-state-contracts/collections.json"
+KEPT = ROOT / "docs/analysis/evidence/as-state-contracts/collections.json"
 STAGE = ROOT / "runtime/analysis/history/native-recovery/as-state-contracts/a6cf7f2e1fff/staged/collections.json"
 OWNERS = [("packed-guid", 0x1458B6E10, 0x1458B7025),
           ("remove-pickup", 0x14594FD70, 0x14594FF8D),

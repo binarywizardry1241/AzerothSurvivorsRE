@@ -14,7 +14,7 @@ fn bits(value: &Value) -> u32 {
 #[test]
 fn current_boss_caller_arithmetic_matches_native_vectors() {
     let fixture: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.109.0/boss-inputs/manifest.json"
+        "../../../docs/analysis/evidence/boss-inputs/manifest.json"
     ))
     .unwrap();
     assert_eq!(

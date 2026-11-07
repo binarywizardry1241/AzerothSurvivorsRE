@@ -1,7 +1,7 @@
 # Seal of the Damned
 
 [Finding #308](../verification-needed.md#gap-308) and the
-[native receipt](evidence/0.139.2/seal-of-the-damned.json) bind this repair
+[native receipt](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/seal-of-the-damned.json) bind this repair
 to SHA-256 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
 
 The ring descriptor at `0x1476b0350` retains a base of 0.1 and uses native

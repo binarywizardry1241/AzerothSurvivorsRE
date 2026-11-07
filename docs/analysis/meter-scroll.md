@@ -68,7 +68,7 @@ through its mutable assignment. It now compares the tint through the existing
 Bevy change-detection interface before writing the field. The icon values and
 the activation conditions remain as recorded in the live paint source.
 
-The [tint proof](evidence/0.141.0/meter-minimap-tint.json) binds the two
+The [tint proof](evidence/meter-minimap-tint.json) binds the two
 color values, native writer and comparison table. Seven bounded instruction
 replays cover equal and changed tint, both open states, interaction, a different
 color tag and a NaN channel. The check supplies synthetic component and tick

@@ -84,7 +84,7 @@ def main():
         locales.append(dict(code=path.stem, required_distinct_codepoints=len(required),
                             absent_from_registered_target_font_maps=[dict(codepoint=f'U+{code:04X}', character=chr(code)) for code in missing]))
     output = dict(validation='Owned native composite patch applied to exact reference QA inputs; not comparison of final font bytes against native runtime.', fonts=records, locale_catalog_coverage=locales)
-    (ROOT / 'docs/analysis/evidence/0.92/menu-font-patch-validation.json').write_text(json.dumps(output, indent=2, ensure_ascii=False) + '\n')
+    (ROOT / 'docs/analysis/evidence/menu-font-patch-validation.json').write_text(json.dumps(output, indent=2, ensure_ascii=False) + '\n')
     for row in records:
         print(f"{row['font']}: {row['original_glyphs']}→{row['patched_glyphs']}, original outlines/mappings retained, valid checksum")
     for row in locales:

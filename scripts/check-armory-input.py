@@ -123,7 +123,7 @@ for branch,start,stop in [('sparse',0x14037d695,0x14037d54b),('dense',0x14037d8f
     selection.append(dict(branch=branch,kind=kind,old=old,interaction=interaction,changed=changed))
 def span(a,b):
  o=pe.rva_offset(a-pe.image_base);return dict(address=hex(a),end_exclusive=hex(b),sha256=hashlib.sha256(data[o:o+b-a]).hexdigest())
-OUT=ROOT/'docs/analysis/evidence/0.109.0/armory-pages'
+OUT=ROOT/'docs/analysis/evidence/armory-pages'
 mutation=dict(target_sha256=SHA,method='Bounded current original-instruction execution; explicit slot/descriptor/ownership seams.',mutations=rows,mouse_messages=presses)
 proof=dict(target_sha256=SHA,target_executed=False,ranges=[span(0x14015fcf0,0x14016053b),span(0x140161be0,0x140162744),span(0x14013ead0,0x14013ecbe),span(0x14037d490,0x14037d9c5),span(0x145de4bf4,0x145de4c24)],primary_rows=primary,navigation=nav,codex_selection=selection,limits=[
  'Primary rows execute after ECS change/tick iteration, before the real Interaction predicate, account getter and current action jump table. Descriptor/account access, disposal, copy and account/menu-command publication are explicit seams. Mutation and both publication calls execute in native instructions; no actual account, disk or preview receiver runs.',

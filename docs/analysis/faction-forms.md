@@ -8,7 +8,7 @@ EXE is 0.120.0, 145,447,424 bytes, SHA-256
 ## Recovered contract and source correction
 
 The retained [current native contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-contracts-0.120.0.md#horde-and-alliance-druid-forms--190)
-and [canonical instructions](evidence/0.120.0/race-unlocks/manifest.json)
+and [canonical instructions](evidence/race-unlocks/manifest.json)
 bind descriptor `145b7b820`. The existing full-PE Ghidra result
 `ev_0892f2bc62e89c57a8d5182ae620a92fd1d060bab4b2184a4e8084ef964ee36f`
 was reused after checking its saved result, plan, journal, target and normalized
@@ -32,7 +32,7 @@ Field131 receives the form or the ordinary body when no recognized form remains;
 field132 always receives the independently selected ordinary race/sex body.
 The native nonzero-sex and out-of-range-race fallback branches are retained in
 the bounded replay, without changing existing source admission or body lookup.
-The [proof](evidence/0.120.0/faction-forms/proof.json) binds the two existing
+The [proof](evidence/faction-forms/proof.json) binds the two existing
 instruction ranges and the independent 56-byte ordinary-body tables at
 `1475f7a04..1475f7a3c`; assembly is not duplicated.
 

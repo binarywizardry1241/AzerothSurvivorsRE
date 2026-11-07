@@ -22,7 +22,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 EXPECTED_SHA256 = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-OUTPUT = ROOT / "docs/analysis/evidence/0.97.2/guardians"
+OUTPUT = ROOT / "docs/analysis/evidence/guardians"
 SOURCE = ROOT / "crates/azeroth-survivors-re/src/guardians/catalog.rs"
 ZONE_TABLE = 0x146716438
 ZONE_STRIDE = 0xF0
@@ -194,7 +194,7 @@ def write_source(zones):
     lines = [
         "//! Generated guardian inputs from the selected 0.97.2 executable.",
         "//! SHA-256 a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589.",
-        "//! Evidence: docs/analysis/evidence/0.97.2/guardians/guardian-catalog.json.",
+        "//! Evidence: docs/analysis/evidence/guardians/guardian-catalog.json.",
         "//! Regenerate: python3 scripts/recover-guardian-catalog.py --write-source-catalog.",
         "//! Raw offset names intentionally retain unresolved semantics. These are",
         "//! semantic source records, not declarations of the native in-memory ABI.",

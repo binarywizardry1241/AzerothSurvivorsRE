@@ -15,7 +15,7 @@ from script_sources import load_script
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 START, END, SITE = 0x14583f9c0, 0x145840035, 0x14583fa56
 TABLE, SECOND = 0x147014f3c, 0x147014f8c
-KEEP = ROOT / 'docs/analysis/evidence/0.113.2/q41-m01-jewelry'
+KEEP = ROOT / 'docs/analysis/evidence/q41-m01-jewelry'
 PROBE = ROOT / 'runtime/analysis/history/findings/q41-m01-jewelry/1c9142944e3d/rea-pe'
 SOURCE = 'crates/azeroth-survivors-re/src/loot_rewards.rs'
 
@@ -141,7 +141,7 @@ def derive():
                 cases += 1
                 outputs.update(struct.pack('<I', actual))
 
-    queue = json.loads((ROOT / 'docs/analysis/evidence/0.113.2/unknown-recovery.json').read_text())
+    queue = json.loads((ROOT / 'docs/analysis/evidence/unknown-recovery-comparison-2.json').read_text())
     refs_path = ROOT / queue['inputs']['references.tsv.gz']['path']
     assert file_sha256(refs_path) == queue['inputs']['references.tsv.gz']['sha256']
     with gzip.open(refs_path, 'rt') as stream:

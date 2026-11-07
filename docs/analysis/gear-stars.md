@@ -2,7 +2,7 @@
 
 Target SHA-256: `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 [verification-needed](../verification-needed.md#gap-230) owns the complete finding.
-The [proof](evidence/0.121.0/gear-stars.json) binds original code/data,
+The [proof](evidence/gear-stars.json) binds original code/data,
 successful journaled Ghidra queries and the source helper.
 
 ## Recovered arithmetic

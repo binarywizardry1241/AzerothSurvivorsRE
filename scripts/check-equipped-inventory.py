@@ -14,7 +14,7 @@ sys.path[:0] = [str(ROOT/'runtime/tool-state/python/armory/python-libs'),
 from equipment_native import EquipmentProbe
 
 SHA='58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
-OUT=ROOT/'docs/analysis/evidence/0.113.2/equipped-inventory'
+OUT=ROOT/'docs/analysis/evidence/equipped-inventory'
 target=latest_target(verify=True);assert target['sha256']==SHA
 data=target_bytes(target);pe=load_script('inventory_pe',ROOT/'scripts/inventory-executable.py').PE(data)
 # Retained Ghidra/assembly ownership and exact byte ranges are checked before

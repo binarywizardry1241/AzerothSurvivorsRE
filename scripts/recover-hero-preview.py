@@ -119,7 +119,8 @@ def main():
     functions = {pe.image_base+a:pe.image_base+z for a,z,_ in pe.functions()}
     runtime = ROOT/'runtime/analysis/history/native-recovery/hero-preview/aba028924da5'
     runtime.mkdir(exist_ok=True)
-    evidence = ROOT/'docs/analysis/evidence/0.97.2'
+    evidence = ROOT/'docs/analysis/evidence/hero-preview'
+    evidence.mkdir(parents=True, exist_ok=True)
     records = []
     for start, role in FUNCTIONS.items():
         end = functions[start]
@@ -139,7 +140,7 @@ def main():
             (runtime/f'{stem}.asm').write_text(assembly)
         assembly = runtime/f'{stem}.asm'
         if assembly.exists():
-            (evidence/f'hero-preview-0.97.2-{stem}.asm').write_text(assembly.read_text())
+            (evidence/f'{stem}.asm').write_text(assembly.read_text())
         record = dict(address=hex(start),end_exclusive=hex(end),file_offset=hex(offset),
                       byte_count=len(payload),sha256=hashlib.sha256(payload).hexdigest(),role=role)
         bundle = runtime/f'rea-{stem}'/'evidence-bundle.json'
@@ -210,7 +211,7 @@ def main():
                                   compiler_checks='not run',
                                   tests='not run',
                                   runtime='not run'))
-    (evidence/'hero-preview-0.97.2.json').write_text(portable_json(report,indent=2)+'\n')
+    (evidence/'manifest.json').write_text(portable_json(report,indent=2)+'\n')
     print(f'Recorded {len(records)} hero-preview slices; prepared={args.prepare}.')
 
 

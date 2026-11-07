@@ -49,7 +49,7 @@ object; the separate localization recovery owns the translated assets.
 
 ## Source validation and native evidence
 
-[catalog.json](evidence/0.97.2/catalog.json) records the original source identity,
+[catalog.json](evidence/catalog.json) records the original source identity,
 every class, zone, ability, enemy and boss record's raw bytes and SHA-256, string
 locations, and referenced slice lengths. Names and zone/class blurbs are
 checked against the exact embedded English values. Enemy IDs and boss IDs are
@@ -61,7 +61,7 @@ slice at `+128`, loading-screen string at `+144`, and blurb at `+160`. The old
 184-byte zone stride is invalid for this target. Enemy and boss strides remain
 80 and 88 bytes respectively.
 
-[catalog-native.json](evidence/0.97.2/catalog-native.json) retains complete REA
+[catalog-native.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/catalog-native.json) retains complete REA
 Evidence for three exact function slices, along with their original PE
 exception-directory boundaries and byte hashes. REA 6.5.0 used Ghidra 12.1.4.
 

@@ -13,8 +13,8 @@ ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT/'scripts'),str(R
 from coverage_common import latest_target,target_bytes
 parser=argparse.ArgumentParser(description="Check gap57 current unit health event mapping/token interface without compilation or game execution")
 parser.add_argument("--collect",action="store_true");args=parser.parse_args()
-STAGE=ROOT/"runtime/analysis/staging/native-evidence/0.113.2/guardian-target-health"
-KEPT=ROOT/"docs/analysis/evidence/0.113.2/guardian-target-health"
+STAGE=ROOT/"runtime/analysis/staging/native-evidence/guardian-target-health"
+KEPT=ROOT/"docs/analysis/evidence/guardian-target-health"
 SHA="58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn import x86_const as r

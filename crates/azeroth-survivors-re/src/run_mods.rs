@@ -21,7 +21,7 @@ mod tests {
     #[test]
     fn formulas_match_historical_native_vectors() {
         let vectors: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/runmods/native-vectors.json"
+            "../../../docs/analysis/evidence/runmods/native-vectors.json"
         )).unwrap();
         for row in vectors["formulas"].as_array().unwrap() {
             let values = std::array::from_fn(|index| row["values"][index].as_u64().unwrap() as u16);

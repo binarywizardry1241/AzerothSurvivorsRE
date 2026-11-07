@@ -6,7 +6,7 @@ This report belongs to permanent **#41** and the exact installed target
 [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md); this report classifies the target's data
 selectors without promoting structural observations to native semantic closure.
 
-The [compact proof](evidence/0.115.0/data-classification/manifest.json) commits
+The [compact proof](evidence/data-classification-comparison/manifest.json) commits
 every selected input and all regenerable row inventories. Reproduce with
 `python3 -B scripts/classify-target-data.py`; `--stage` proposes updated
 proof/inventories under ignored `runtime/analysis/history/findings/q41-data/6a6f0540f967/`. Installed EXE/MPQs

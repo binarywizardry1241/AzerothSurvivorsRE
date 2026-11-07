@@ -12,7 +12,7 @@ report distinguishes native data and behavior from the source rendering.
 The hash-bound [extractor](../../scripts/extract-menu-progression.py) generates
 [`progression.json`](../../crates/azeroth-survivors-re/assets/progression.json).
 The menu build uses that asset and does not require the EXE. The
-[curated definition evidence](evidence/0.92/progression-definitions.json)
+[curated definition evidence](evidence/progression-definitions.json)
 retains record addresses, hashes, field sizes, consumer addresses and totals.
 
 The native achievement constructor is `0x14542a930`–`0x14542edb2`. It builds
@@ -110,7 +110,7 @@ native tabard lane.
 
 The original accepted a sealed synthetic account with all 66 achievement keys,
 rendered 1,365 points, and round-tripped confirmed purchases and appearances.
-[Runtime proof](evidence/0.92/progression-runtime-proof.json) records the native
+[Runtime proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-runtime-proof.json) records the native
 click sequence, saved records and capture hashes. Affordable tabard cards toggle
 a pending purchase directly; Confirm commits it, and clicking an owned card
 immediately wears it. Unaffordable cards have no action. Pending plans survive
@@ -172,7 +172,7 @@ The card's bronze gradient layer,50-pixel framed icon and earned/locked shadows,
 44-pixel badge radial gradient and partial-progress count formatting are recovered
 from native constructors. Summary uses the native right-pane padding 18×12 and gap 10,
 small headings and two-column grids, replacing estimated section Y coordinates.
-[Card, flow and unlock evidence](evidence/0.92/progression-card-flow-unlocks.json)
+[Card, flow and unlock evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-card-flow-unlocks.json)
 retains exact values, addresses, all 66 native vectors and verification limits.
 `available_points(&Save)` exposes the existing native earned-minus-spent rule to
 the shared Rewards tab caption. Source formatting passed; parent integrated
@@ -181,7 +181,7 @@ new free-tabard gate fixture. No UI launch or
 new capture was performed in this pass.
 
 Checkpoint 21 applies the next constructor batch from
-[category flow evidence](evidence/0.92/progression-category-flow.json). Summary
+[category flow evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-category-flow.json). Summary
 category rows use the native plain Pick+Interaction+Node bundle, zero padding,
 gap 10, 32-pixel framed icon, 15-pixel name, 12-pixel count and 12-pixel bar; there is
 no Hover/background component. Category view adds the native 13-pixel counts
@@ -196,9 +196,9 @@ each list every frame using its measured content and inverse scale, restores the
 cached position only for newly added components, and writes both the component
 and persisted scroll value. Checkpoint 22 applies those rules. Existing page and
 modal gates are preserved because external run-condition equivalence remains
-unverified. [Wheel consumer evidence](evidence/0.92/progression-achlist-wheel.json)
+unverified. [Wheel consumer evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-achlist-wheel.json)
 contains the binding chain, literals, instruction anchors and closed REA IDs;
-[bounded assembly](evidence/0.92/progression-achlist-wheel.asm) retains its complete
+[bounded assembly](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-achlist-wheel.asm) retains its complete
 original instruction flow. Parent build 22 passed in 11.82s and all 26 binary tests passed;
 no UI launch/capture was performed.
 
@@ -216,18 +216,18 @@ and external AchList run-condition equivalence; shared intrinsic Armory shell in
 flow sizing; tabard intrinsic flow and hover; generic button hover styles; and
 non-English layout verification. The isolated AchList wheel algorithm is recovered; its outer source modal
 gating remains provisional until native run conditions are traced. The native category texture table
-is recovered in [category evidence](evidence/0.92/progression-category-textures.json);
+is recovered in [category evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-category-textures.json);
 Collection/Feats source constants use native INV_Chest_Plate16 and
 Ability_Warrior_SavageBlow textures. These are fidelity defects under the
 project's hard rule, not accepted substitutes. The existing source is provisional
 where listed.
 
 Bounded static provenance is retained in
-[catalog](evidence/0.92/progression-catalog-slices-provenance.json),
-[UI](evidence/0.92/progression-ui-slices-provenance.json),
-[consumer](evidence/0.92/progression-consumer-slices-provenance.json),
-[rule](evidence/0.92/progression-rules-slices-provenance.json) and
-[control](evidence/0.92/progression-control-slices-provenance.json) records.
+[catalog](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-catalog-slices-provenance.json),
+[UI](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-ui-slices-provenance.json),
+[consumer](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-consumer-slices-provenance.json),
+[rule](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-rules-slices-provenance.json) and
+[control](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-control-slices-provenance.json) records.
 Full raw slices, REA bundles and disposable disassembly stay in the checkout's
 ignored `runtime/analysis/history/interface/menu-recovery/0558cac00653` directory. A large constructor analysis exceeded
 the MCP response limit; its complete retained evidence was successfully read

@@ -15,9 +15,9 @@ The separate [current refusal repair](inventory-refusals.md) connects the five m
 
 ## Native contract
 
-The compact [manifest](evidence/0.113.2/equipped-inventory/manifest.json) binds
+The compact [manifest](evidence/equipped-inventory/manifest.json) binds
 sixteen native owners, relevant data tables and seven REA/Ghidra operations to
-current bytes. [native.asm](evidence/0.113.2/equipped-inventory/native.asm) retains
+current bytes. [native.asm](evidence/equipped-inventory/native.asm) retains
 only the instruction slices needed for GUIDs, slots, row identity and ordering.
 Ghidra imported bounded raw slices; external references and its generic ABI are
 limitations. Win64 instructions and the bounded replay resolve the arguments.
@@ -116,13 +116,13 @@ armor branches,154 icon lookups,9 identity branches,8 counter boundaries,
 checks every logical response field against the source initializer, including
 zero-health, health-only bonding, spell defaults and the overflow separator.
 It also checks current native bytes and the real request/consumer connections.
-Retained results: [cases.json](evidence/0.113.2/equipped-inventory/cases.json).
+Retained results: [cases.json](evidence/equipped-inventory/cases.json).
 
 The second checker reuses a hash-checked historical fixture algorithm with
 individually recovered current addresses. Current instructions pass1722 stat,
 1722 bonus and5040 lore cases across14 locales. Results match the retained
 historical fixtures, whose original0.109.0 provenance remains unchanged.
-Current proof: [text.json](evidence/0.113.2/equipped-inventory/text.json).
+Current proof: [text.json](evidence/equipped-inventory/text.json).
 
 The third checker executes the current definition/name constructor for all581
 synthetic/faction gear IDs across14 locales:8134 names match the shared
@@ -133,7 +133,7 @@ inventory-owner factor branch passes all five rarities at picks0/1/2/5/10;
 The actual IAT entries bind powf/floorf and the copy seam. Current slot tables,
 Roman suffixes, quality increments, stored amulet name and full line construction
 are bound through the native producer slices and constructor replay.
-Results and limits: [prose.json](evidence/0.113.2/equipped-inventory/prose.json).
+Results and limits: [prose.json](evidence/equipped-inventory/prose.json).
 The [English native vectors](../../crates/azeroth-survivors-re/tests/fixtures/equipped-inventory-0.113.2.json)
 are also inputs to authored Rust comparisons; those comparisons are unrun.
 

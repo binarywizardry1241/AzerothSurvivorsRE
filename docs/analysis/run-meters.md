@@ -8,7 +8,7 @@ Demonology gameplay producers remain #24.
 
 ## Accounting and live consumers
 
-The [accounting manifest](evidence/0.105.0/run-meters/accounting/manifest.json)
+The [accounting manifest](evidence/run-meters/accounting/manifest.json)
 binds seven current native owners to exact PE ranges, hashes and REA/Ghidra
 identities. Original Windows x64 instructions control parameter interpretation;
 raw-import pseudocode uses a generic ABI and omits external data/callees.
@@ -33,8 +33,8 @@ consume captured breakdowns after effective damage is known.
 
 ## Meter screen and persistence
 
-The [screen manifest](evidence/0.105.0/run-meters/screen/manifest.json) and
-[layout record](evidence/0.105.0/run-meters/screen/layout.json) bind the selected
+The [screen manifest](evidence/run-meters/screen/manifest.json) and
+[layout record](evidence/run-meters/screen/layout.json) bind the selected
 settings, header, placement and screen ranges. The source implementation is
 [meter.rs](../../crates/azeroth-survivors-re/src/gameplay/meter.rs), with separate
 settings and view modules. The meter is the target's custom overlay, separate
@@ -71,7 +71,7 @@ world pointer arbiter after overlay actions. Its per-frame union resets in
 `First`; independent overlays cannot release one another's capture. The minimap
 bridge reads the visible named FrameXML frame's resolved normalized bounds.
 
-The retained [move/resize instructions](evidence/0.105.0/run-meters/screen/move-resize.asm)
+The retained [move/resize instructions](evidence/run-meters/screen/move-resize.asm)
 check left-button or active-touch ownership before querying the cursor. A released
 drag clears its state and calls the settings writer at `0x14016db76` even when
 the cursor has left the window. While held, a valid cursor supplies the movement,
@@ -111,7 +111,7 @@ effective-damage total rather than implementing the terminal screen.
 
 ## Checks and reproduction
 
-[Native vectors](evidence/0.105.0/run-meters/accounting/native-vectors.json)
+[Native vectors](evidence/run-meters/accounting/native-vectors.json)
 record **89 passing unchanged-instruction cases**: effective damage/overkill,
 source precedence, exact f64 splits, sequential insertion/merging, healing
 admission, Soul Link credit, boss elapsed time and last-primary stop conditions,
@@ -124,10 +124,10 @@ admission/multiplier selection; the corpus does not establish live gameplay or o
 python3 scripts/recover-run-meters.py check
 ```
 
-[Screen vectors](evidence/0.105.0/run-meters/screen/settings-native-vectors.json)
+[Screen vectors](evidence/run-meters/screen/settings-native-vectors.json)
 record **25 passing unchanged native settings/layout cases**: legacy/mode load,
 NaN/infinity/saturation, scaled resize/clamps and header dimensions.
-[Styling vectors](evidence/0.105.0/run-meters/screen/styling-native-vectors.json)
+[Styling vectors](evidence/run-meters/screen/styling-native-vectors.json)
 add **42 passing unchanged hover/tint cases** and **20 typed constructor
 records** for header/menu/grip and proc-chip layout. Twenty-four bounded native
 screen ranges are retained. Recheck them with:

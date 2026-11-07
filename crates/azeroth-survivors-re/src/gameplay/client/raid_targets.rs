@@ -13,7 +13,7 @@ pub(crate) struct RaidTargets {
 }
 
 const POPUP: &str = include_str!(
-    "../../../../../docs/analysis/evidence/0.115.0/raid-targets/popup.lua"
+    "../../../../../docs/analysis/evidence/raid-targets/popup.lua"
 );
 
 pub(super) fn appends() -> Vec<(String, String)> {

@@ -19,7 +19,7 @@ mod tests {
     #[test]
     fn current_native_packets_reach_the_existing_name_decoder() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.113.2/name-queries.json"
+            "../../../../../docs/analysis/evidence/name-queries.json"
         )).unwrap();
         for case in proof["fixtures"].as_array().unwrap() {
             let player = LocalPlayerUi {

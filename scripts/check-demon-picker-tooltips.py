@@ -14,7 +14,7 @@ from equipment_native import EquipmentProbe
 
 SHA='dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 ASSETS=ROOT/'crates/azeroth-survivors-re/assets'
-OUT=ROOT/'docs/analysis/evidence/0.112.0/demon-picker-tooltips'
+OUT=ROOT/'docs/analysis/evidence/demon-picker-tooltips'
 WORK=ROOT/'runtime/analysis/history/interface/menu-page-dependencies/e47c1f72f82a/demon-picker-curated'
 KEYS=['corruption','immolate','curse_of_agony','hellfire','death_coil','drain_life','demonic_empowerment']
 RANGES=[(0x140040d90,0x14004127b),(0x1458994a0,0x145899537),

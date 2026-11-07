@@ -57,9 +57,9 @@ Save and notification delivery have not been executed by this repair.
 
 ## Evidence and checks
 
-The [manifest](evidence/0.119.0/hakkar-smoothie/manifest.json) references the
+The [manifest](evidence/hakkar-smoothie/manifest.json) references the
 existing three completed current-target REA/Ghidra results and canonical owner
-hashes in [friend achievements](evidence/0.119.0/friend-achievements/manifest.json).
+hashes in [friend achievements](evidence/friend-achievements/manifest.json).
 Only the missing selected instruction spans are retained in the new assembly;
 shared instructions keep their canonical earlier extract. No new Ghidra import
 or duplicate Program was needed. Full-PE pseudocode has unresolved computed-flow

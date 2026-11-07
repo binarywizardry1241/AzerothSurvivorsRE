@@ -35,7 +35,7 @@ def main():
         parser.error("workdir must stay inside project runtime")
     installed = args.current_target or args.installed_sha256 is not None
     default_provenance = (workdir / "input.json" if installed else
-                          ROOT / "docs/analysis/evidence/0.92/menu-slices-provenance.json")
+                          ROOT / "docs/analysis/evidence/menu-slices-provenance.json")
     provenance_path = (ROOT / args.provenance).resolve() if args.provenance else default_provenance
     if not provenance_path.is_relative_to(ROOT):
         parser.error("provenance must stay inside this checkout")

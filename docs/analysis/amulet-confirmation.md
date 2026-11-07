@@ -15,7 +15,7 @@ amulet into an empty slot retain ordinary selection.
 
 ## Native state and input
 
-The [contract](evidence/0.127.0/amulet-confirmation/contract.json) binds fourteen
+The [contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.127.0/amulet-confirmation/contract.json) binds fourteen
 completed Ghidra queries to exact original-VA raw slices of this installed PE.
 Their immutable result receipts, input plans and query journals remain under
 the shared analysis storage. Raw imports omit external constants/callees and
@@ -95,7 +95,7 @@ presentation. Guest bootstrap preserves an authoritative newer Choices payload
 while retiring the old modal. Offer revision checks also run before loading
 can skip ordinary input; source existence is checked before modal root reuse.
 
-The [locale proof](evidence/0.127.0/amulet-confirmation/locales.json) retains
+The [locale proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.127.0/amulet-confirmation/locales.json) retains
 three exact entries from each of fourteen hash-bound embedded catalogs:
 Cancel, the replacement title and the permanent-loss warning. Existing item
 names, AMULET, WORN NOW, NEW, Confirm and loss/rank strings are reused.

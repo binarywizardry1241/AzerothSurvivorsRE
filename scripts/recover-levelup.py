@@ -28,7 +28,7 @@ def main():
     old, new = inventory.PE(historical), inventory.PE(current)
     functions = list(new.functions())
     starts = [start for start, _, _ in functions]
-    manifest = json.loads((ROOT / "docs/analysis/evidence/0.97.2/native-overlays/manifest.json").read_text())
+    manifest = json.loads((ROOT / "docs/analysis/evidence/native-overlays-comparison/manifest.json").read_text())
     WORK.mkdir(parents=True, exist_ok=True)
     records = []
     for lead in manifest["functions"]:

@@ -4769,7 +4769,7 @@ mod rng_integration {
     #[test]
     fn inline_level_heal_matches_selected_native_instruction_vectors() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/run-effects/level-progression-native.json"
+            "../../../../docs/analysis/evidence/run-effects/level-progression-native.json"
         ))
         .unwrap();
         for case in fixture["cases"].as_array().unwrap() {

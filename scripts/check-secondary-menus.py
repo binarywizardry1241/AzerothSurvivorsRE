@@ -22,7 +22,7 @@ import unicorn.x86_const as x
 
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 ASSETS = ROOT / 'crates/azeroth-survivors-re/assets'
-OUT = ROOT / 'docs/analysis/evidence/0.115.0/secondary-menus'
+OUT = ROOT / 'docs/analysis/evidence/secondary-menus'
 TABLES = {
     'perks': (120, [0x145f26fb8, 0x147034700]),
     'companions': (96, [0x145f25670, 0x146ccd3e0, 0x14703aac8, 0x14733a878]),
@@ -311,7 +311,7 @@ def main():
     args = parser.parse_args()
     value = verify()
     if args.stage:
-        path = ROOT / 'runtime/analysis/staging/native-evidence/0.115.0/secondary-menus/contracts.json'
+        path = ROOT / 'runtime/analysis/staging/native-evidence/secondary-menus/contracts.json'
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n')
     else:

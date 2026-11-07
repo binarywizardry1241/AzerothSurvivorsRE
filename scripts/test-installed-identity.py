@@ -120,7 +120,7 @@ class VersionMarkers(unittest.TestCase):
     def test_picker_revision_uses_native_pointer_and_exact_length(self):
         recovery = load_script("menu_identity", "recover-menu-identity.py")
         pe = load_script("inventory_pe", "inventory-executable.py").PE
-        proof = load_json(ROOT / "docs/analysis/evidence/0.100.1/menu-identity/native.json")
+        proof = load_json(ROOT / "docs/analysis/evidence/menu-identity/native.json")
         args = bytearray.fromhex(next(span["bytes_hex"] for span in proof["spans"]
                                        if span["role"] == "footer-format-arguments"))
         operands = recovery.FOOTER_ARGS.fullmatch(args)

@@ -1,5 +1,5 @@
 //! Canonical boss semantic headers, revalidated against installed0.109.0.
-//! Current proof: docs/analysis/evidence/0.109.0/boss-inputs/manifest.json.
+//! Current proof: docs/analysis/evidence/boss-inputs/manifest.json.
 //! The live current action graph is owned by raid_area_catalog and
 //! raid_native_catalog; old seven-word fixture abilities retain their provenance.
 //! Normal builds require no EXE.

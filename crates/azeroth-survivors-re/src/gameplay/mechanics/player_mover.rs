@@ -1,6 +1,5 @@
 //! 0.105.0 Game+548 is one player-mover sequence, separate from actor Game+908.
-//! Packet/initializer contracts: docs/analysis/evidence/0.105.0/terminal/
-//! continuation-effects-contracts.json and player-mover-contracts.json.
+//! Packet and initializer contracts: docs/analysis/player-mover.md.
 
 use super::{Mechanics, RunEvent};
 

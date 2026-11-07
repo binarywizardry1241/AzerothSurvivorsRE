@@ -8,10 +8,10 @@ use serde_json::Value;
 use std::cell::RefCell;
 
 fn catalog() -> Value {
-    serde_json::from_str(include_str!("../../../docs/analysis/evidence/0.108.0/boss-volleys/catalog.json")).unwrap()
+    serde_json::from_str(include_str!("../../../docs/analysis/evidence/boss-volleys/catalog.json")).unwrap()
 }
 fn native() -> Value {
-    serde_json::from_str(include_str!("../../../docs/analysis/evidence/0.108.0/boss-volleys/native.json")).unwrap()
+    serde_json::from_str(include_str!("../../../docs/analysis/evidence/boss-volleys/native.json")).unwrap()
 }
 fn boss(id: u32) -> &'static BossDefinition {
     ZONES.iter().flat_map(|zone| zone.bosses).find(|boss| boss.id == id).unwrap()

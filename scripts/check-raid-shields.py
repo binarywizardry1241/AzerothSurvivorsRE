@@ -12,8 +12,8 @@ import sys
 from coverage_common import ROOT
 
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/raid-shields'
-KEPT=ROOT/'docs/analysis/evidence/0.109.0/raid-shields'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/raid-shields'
+KEPT=ROOT/'docs/analysis/evidence/raid-shields'
 SOURCE=ROOT/'crates/azeroth-survivors-re/src/bosses/raid_shields.rs'
 RANGES={
     'producer':(0x145959aa1,0x145959bc4),
@@ -45,7 +45,7 @@ def recover():
                     rows.append(dict(boss_id=identity,native_slot=slot,phase=phase,index=len(rows),
                         native_tag=23,spell=w[0],duration_bits=w[1],repeat_bits=0 if phase else w[12],
                         record=span(at,stride),native_record_hex=v.hex()))
-    guardian_path='docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json'
+    guardian_path='docs/analysis/evidence/guardian-signatures/catalog.json'
     guardians=json.loads((ROOT/guardian_path).read_text());assert guardians['target_sha256']==SHA
     for ri,row in enumerate(guardians['rows']):
         for vi,variant in enumerate(row['variants']):

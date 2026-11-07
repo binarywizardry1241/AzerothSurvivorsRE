@@ -21,7 +21,7 @@ from shared_native_inventory import open_readonly_uri as open_native_inventory
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 WORK = ROOT / "runtime/analysis/history/findings/q41-flow-relations/710b14cd9802"
-CURATED = ROOT / "docs/analysis/evidence/0.113.2/q41-options-flow"
+CURATED = ROOT / "docs/analysis/evidence/q41-options-flow"
 RANGES = {
     "descriptor-dispatch": (0x1401A6770, 0x1401A67D9),
     "format-argument": (0x1401A68F4, 0x1401A691E),
@@ -47,7 +47,7 @@ def main():
     assert target["sha256"] == SHA, "Recover a changed target before using these sites"
     image = target_bytes(target)
     pe = load_script("q41_options_pe", ROOT / "scripts/inventory-executable.py").PE(image)
-    queue = json.loads((ROOT / "docs/analysis/evidence/0.113.2/unknown-recovery.json").read_text())
+    queue = json.loads((ROOT / "docs/analysis/evidence/unknown-recovery-comparison-2.json").read_text())
     assert queue["target"]["sha256"] == SHA
     names = ["instructions.tsv.gz", "bodies.tsv.gz", "native-instructions.sqlite",
              "diagnostic_code_input", "guarded_table_input"]

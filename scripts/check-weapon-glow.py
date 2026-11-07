@@ -15,7 +15,7 @@ from coverage_common import ROOT, latest_target, project_path, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.121.0/weapon-glow.json"
+MANIFEST = ROOT / "docs/analysis/evidence/weapon-glow.json"
 
 
 def sha(raw):
@@ -288,7 +288,7 @@ def replay_priority(proof):
 def current_unholy():
     """Replay the current gate with synthetic earned-key storage and memcmp."""
     from native_terminal import NativeReplay
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.127.0/party-achievements-insane.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/party-achievements-insane.json').read_text())
     target = latest_target(verify=True)
     assert all(target[key] == value for key, value in proof['target'].items())
     image = target_bytes(target)

@@ -20,7 +20,7 @@ fn historical_native_boss_constructor_stats_and_cooldowns() {
         "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
     );
     let catalog: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.97.2/bosses/catalog.json"
+        "../../../docs/analysis/evidence/bosses/catalog.json"
     )).unwrap();
     let cases = fixture["creation_cases"].as_array().unwrap();
     assert_eq!(cases.len(), 480);

@@ -15,7 +15,7 @@ from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 FIXTURE_SHA = 'dc86584441262a59ac8efac6aafe76eb48c6c7337a1cea9b50c8b522505f8971'
-OUT = ROOT / 'docs/analysis/evidence/0.113.2/equipped-inventory/text.json'
+OUT = ROOT / 'docs/analysis/evidence/equipped-inventory/text.json'
 # No blanket address delta: callers, imports and formatters were resolved
 # separately from current PE instructions and compact formatting arguments.
 ADDRESSES = {
@@ -72,7 +72,7 @@ def main():
 
     namespace = {'__name__': 'inventory_text_fixture', '__file__': str(path)}
     exec(compile(ast.fix_missing_locations(Rebind().visit(tree)), str(path), 'exec'), namespace)
-    historical = ROOT / 'docs/analysis/evidence/0.109.0/armory-pages'
+    historical = ROOT / 'docs/analysis/evidence/armory-pages'
     references = []
     for key, name in [('fixture', 'stat-text-fixtures.json'),
                       ('bonus_fixture', 'bonus-text-fixtures.json')]:

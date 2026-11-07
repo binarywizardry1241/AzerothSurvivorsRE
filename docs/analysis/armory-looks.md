@@ -3,8 +3,8 @@
 Target: installed 0.117.0, SHA-256
 `507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293`.
 The [verification-needed](../verification-needed.md) owns finding **#120** and its remaining
-runtime/presentation limits. [Native captures](evidence/0.117.0/armory-looks/nodes.json)
-and the [recovery manifest](evidence/0.117.0/armory-looks/manifest.json) bind the
+runtime/presentation limits. [Native captures](evidence/armory-looks/nodes.json)
+and the [recovery manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.117.0/armory-looks/manifest.json) bind the
 selected native instructions, data, Ghidra results and source connections.
 
 ## Native contract and source repair

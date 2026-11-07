@@ -22,7 +22,7 @@ DISPATCH = 0x14591D320
 PHASE = (0x14594810A, 0x14594824E)
 PHASE_SHA = "5c555e4e9a78952ea9f80c14e4a591be7e136157aacc8b069a7c5b0f21153e39"
 PHASE_SKIP = 0x145948761
-KEPT = ROOT / "docs/analysis/evidence/0.113.2/raid-gaze"
+KEPT = ROOT / "docs/analysis/evidence/raid-gaze"
 
 
 def queue_cases(raw):
@@ -248,7 +248,7 @@ def main():
     result = inspect()
     text = json.dumps(result, indent=2, ensure_ascii=False) + "\n"
     if arguments.stage:
-        out = ROOT / "runtime/analysis/staging/native-evidence/0.113.2/raid-gaze/manifest.json"
+        out = ROOT / "runtime/analysis/staging/native-evidence/raid-gaze/manifest.json"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(text)
     else:

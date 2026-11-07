@@ -52,7 +52,7 @@ def run(kind,endpoints=None):
  uc.reg_write(UC_X86_REG_EFLAGS,2);uc.reg_write(UC_X86_REG_MXCSR,0x1f80)
  uc.emu_start(ranges[kind][0],0,count=10000)
  end=uc.reg_read(UC_X86_REG_RIP);assert end in stops;return end
-catalog=json.loads((ROOT/'docs/analysis/evidence/0.97.2/enemies/catalog.json').read_text())
+catalog=json.loads((ROOT/'docs/analysis/evidence/enemies/catalog.json').read_text())
 assert catalog['target_sha256']==SHA
 weights=[];admissions=[]
 for zone in catalog['zones']:
@@ -121,5 +121,5 @@ for minutes in [0,1,4,12,20,60]:
  xmm(UC_X86_REG_XMM0,now);xmm(UC_X86_REG_XMM6,minutes);run('pattern-interval');pattern=uc.reg_read(UC_X86_REG_XMM6)&0xffffffff
  intervals.append(dict(minutes_bits=bits(minutes),elite_at_bits=elite,pattern_at_bits=pattern))
 result=dict(version='0.97.2',target_sha256=SHA,method='Unmodified x86-64 instruction scopes in bounded Unicorn, synthetic state; ceilf import supplied explicitly between separate scopes; target/game/source never launched or compiled.',ranges={k:[hex(a),hex(b)] for k,(a,b) in ranges.items()},admission=admissions,weights=weights,budget=budget,population=population,uniform=uniform,formations=formations,intervals=intervals)
-out=ROOT/'docs/analysis/evidence/0.97.2/enemies/spawning-fixtures.json';out.write_text(json.dumps(result,indent=2)+'\n')
+out=ROOT/'docs/analysis/evidence/enemies/spawning-fixtures.json';out.write_text(json.dumps(result,indent=2)+'\n')
 print(f'{len(admissions)} admission, {len(weights)} weight, {len(budget)} budget, {len(population)} population, {len(uniform)} uniform, {len(formations)} formation, {len(intervals)} interval native fixtures; SHA256 {hashlib.sha256(out.read_bytes()).hexdigest()}')

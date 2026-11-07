@@ -19,7 +19,7 @@ from coverage_common import latest_target
 
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK = ROOT / "runtime/analysis/history/raid/follower-audit/5bbc8003c866"
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/follower-lifecycle"
+RETAINED = ROOT / "docs/analysis/evidence/follower-lifecycle"
 
 
 def module(name, path):

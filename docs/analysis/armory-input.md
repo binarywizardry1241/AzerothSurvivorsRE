@@ -60,7 +60,7 @@ current locale key is now shown in the source footer.
 
 ## Evidence, validation and limits
 
-[The manifest](evidence/0.100.1/armory-input/manifest.json) retains ten bounded
+[The manifest](evidence/armory-input/manifest.json) retains ten bounded
 current owners, exact PE byte hashes, REA/Ghidra evidence for the secondary-click
 owner, typed bundle identity and the footer literals. Raw GCC decompiler signatures
 are not treated as Windows x64 call definitions; original assembly binds the

@@ -20,7 +20,7 @@ from script_sources import load_script
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
 WORK = ROOT / "runtime/analysis/history/findings/q41-data-contracts/27d2ef7f9d9d"
-KEEP = ROOT / "docs/analysis/evidence/0.115.0/q41-glue-strings.json"
+KEEP = ROOT / "docs/analysis/evidence/q41-glue-strings.json"
 TEMPLATE = "{blurb} Starts with {spell}; every level offers three of its spells. {hp} health."
 QUERIES = [
     ("glue-strings", 0x14585a400, 0x14585a51b, "core-file read/transform/publication"),
@@ -181,7 +181,7 @@ def main():
                         "profile": evidence["analysis_profile"]["digest"],
                         "plan": receipt(directory / "plan.json"), "journal": receipt(journal_path),
                         "result": receipt(result_path)})
-    assembly_path = ROOT / "docs/analysis/evidence/0.115.0/q41-glue-strings.asm"
+    assembly_path = ROOT / "docs/analysis/evidence/q41-glue-strings.asm"
     observed = {start: bytearray() for _, start, _, _ in QUERIES}
     for line in assembly_path.read_text().splitlines():
         if line.startswith("#"):

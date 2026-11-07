@@ -14,7 +14,7 @@ TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe'
 SHA='17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
 START,END=0x14544d300,0x14544d440
 WORK=ROOT/'runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/custom-roster'
-OUT=ROOT/'docs/analysis/evidence/0.100.1/custom-roster'
+OUT=ROOT/'docs/analysis/evidence/custom-roster'
 def main():
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('action',choices=['prepare','collect','fixtures']);args=parser.parse_args()
  data=TARGET.read_bytes();assert hashlib.sha256(data).hexdigest()==SHA

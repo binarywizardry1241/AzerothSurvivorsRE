@@ -69,9 +69,9 @@ its existing deferred damage/status consumers.
 
 ## Evidence and limits
 
-[Manifest](evidence/0.110.0/ordinary-pets/manifest.json),
-[native vectors/data](evidence/0.110.0/ordinary-pets/native-tick.json) and
-[Ghidra owners](evidence/0.110.0/ordinary-pets/ghidra-owners.json) bind the current
+[Manifest](evidence/ordinary-pets/manifest.json),
+[native vectors/data](evidence/ordinary-pets/native-tick.json) and
+[Ghidra owners](evidence/ordinary-pets/ghidra-owners.json) bind the current
 bytes, helper identities and observations. Each native range has one canonical
 assembly extract; the shared movement/facing serializers belong to the
 [#1 report](ground-navigation.md).

@@ -22,7 +22,7 @@ sys.path.insert(0,str(ROOT/'scripts'))
 from coverage_common import latest_target
 SHA='8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 WORK=ROOT/'runtime/analysis/history/native-recovery/visual-contracts/cb9aede040a5'
-OUT=ROOT/'docs/analysis/evidence/0.105.0/spell-presentation'
+OUT=ROOT/'docs/analysis/evidence/spell-presentation'
 OWNERS={
     'radius':(0x1459614e0,0x1459615f3),
     'spell-scales':(0x145924e50,0x145925103),

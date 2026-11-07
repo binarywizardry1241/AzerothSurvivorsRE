@@ -20,7 +20,7 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--stage', action='store_true')
 parser.add_argument('--prepare-rea', action='store_true')
 args = parser.parse_args()
-evidence = ROOT/'docs/analysis/evidence/0.112.0/achievement-veteran'
+evidence = ROOT/'docs/analysis/evidence/achievement-veteran'
 work = ROOT/'runtime/analysis/history/progression/achievement-grants/6d75f76be1b4'
 manifest, target, data, pe = verified_input(evidence)
 require(target['sha256'] == 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a', 'Selected target changed')
@@ -44,7 +44,7 @@ if args.prepare_rea:
     sys.exit(0)
 
 # Reuse the current typed parser and its supporting allocation/perk owners.
-support = json.loads((ROOT/'docs/analysis/evidence/0.112.0/talent-allocations/manifest.json').read_text())
+support = json.loads((ROOT/'docs/analysis/evidence/talent-allocations/manifest.json').read_text())
 require(support['target_sha256'] == target['sha256'], 'Current typed Save identity')
 for row in support['functions'] + support['replayed_shared_owners']:
     offset = pe.rva_offset(int(row['address'], 16)-pe.image_base)

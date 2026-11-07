@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 TABLE, COUNT = 0x146c00368, 23
 START, END = 0x14589e0e0, 0x14589e755
-OUTPUT = ROOT / 'docs/analysis/evidence/0.112.0/jewelry/validation.json'
+OUTPUT = ROOT / 'docs/analysis/evidence/jewelry/validation.json'
 CATALOG = ROOT / 'crates/azeroth-survivors-re/src/loot_rewards/catalog_01120.rs'
 
 
@@ -159,7 +159,7 @@ def main():
                                            upgrades=upgrades, increment_bits=actual))
     # Reuse the one canonical current shared-stat extract, owned by the buff
     # recovery. Execute only its Mystaria arithmetic with independent inputs.
-    buff_path = ROOT / 'docs/analysis/evidence/0.112.0/buff-potency/manifest.json'
+    buff_path = ROOT / 'docs/analysis/evidence/buff-potency/manifest.json'
     buff = json.loads(buff_path.read_text())
     assert buff['target_sha256'] == SHA
     stat_cases = []

@@ -11,7 +11,7 @@ from pathlib import Path
 import inventory_text_native as m
 from coverage_common import ROOT
 
-OUT=ROOT/'docs/analysis/evidence/0.113.2/equipped-inventory/prose.json'
+OUT=ROOT/'docs/analysis/evidence/equipped-inventory/prose.json'
 FIXTURE=ROOT/'crates/azeroth-survivors-re/tests/fixtures/equipped-inventory-0.113.2.json'
 SHA='58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 assets=ROOT/'crates/azeroth-survivors-re/assets'

@@ -657,7 +657,7 @@ mod native_startup {
     #[test]
     fn damaged_startup_matches_recorded_native_slot_selection() {
         let fixtures: Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.92/save/startup-recovery-fixtures.json"
+            "../../../docs/analysis/evidence/save/startup-recovery-fixtures.json"
         ))
         .unwrap();
         for case in fixtures["cases"].as_array().unwrap() {
@@ -841,7 +841,7 @@ mod custom_roster_tests {
     fn temporary_character_matches_current_native_factory_without_save_mutation() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(concat!(
             env!("CARGO_MANIFEST_DIR"),
-            "/../../docs/analysis/evidence/0.100.1/custom-roster/fixtures.json"
+            "/../../docs/analysis/evidence/custom-roster/fixtures.json"
         )))
         .unwrap();
         for row in fixture["cases"].as_array().unwrap() {
@@ -886,7 +886,7 @@ mod custom_roster_tests {
     #[test]
     fn runmods_parser_and_steps_match_current_native_vectors() {
         let vectors: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/runmods/native-vectors.json"
+            "../../../docs/analysis/evidence/runmods/native-vectors.json"
         )).unwrap();
         for row in vectors["parsed"].as_array().unwrap() {
             let actual = RunMods::parse_csv(row["input"].as_str().unwrap()).unwrap_or_default();

@@ -5,9 +5,9 @@ use crate::localization::Localization;
 
 const PATH: &str = r"Interface\FrameXML\PaperDollFrame.lua";
 const SOURCE: &str =
-    include_str!("../../../../../docs/analysis/evidence/0.139.1/paperdoll-run-stats.lua");
+    include_str!("../../../../../docs/analysis/evidence/run-stats/paperdoll.lua");
 const MANIFEST: &str =
-    include_str!("../../../../../docs/analysis/evidence/0.105.0/run-stats/manifest.json");
+    include_str!("../../../../../docs/analysis/evidence/run-stats/manifest.json");
 const EXTRA_LABELS: [&str; 3] = [
     "Worn gear: ",
     "Stormguard: +%.0f%% Damage Reduction (Active)",

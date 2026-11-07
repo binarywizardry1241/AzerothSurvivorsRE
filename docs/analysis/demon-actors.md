@@ -131,11 +131,11 @@ also supports the addon snapshot's merged ordinary/special allocation order.
 
 ## Evidence and validation limits
 
-The [manifest](evidence/0.112.0/demon-actors/manifest.json) binds exact current
+The [manifest](evidence/demon-actors/manifest.json) binds exact current
 PE bytes, descriptor data, canonical target/cooldown/pool/expiry/retain extracts
 and Ghidra Evidence IDs. Shared time-effect ranges refer to the
-[canonical selected excerpts](evidence/0.112.0/demon-time-effects/manifest.json);
-the [addon bridge](evidence/0.112.0/addon-bridge/manifest.json) owns the
+[canonical selected excerpts](evidence/demon-time-effects/manifest.json);
+the [addon bridge](evidence/addon-bridge/manifest.json) owns the
 shared stable-retain assembly. Raw-slice pseudocode has inferred types and can
 omit external jump-table arms or floating returns. Exact Win64 instructions,
 installed constants and the native replay control those interpretations.

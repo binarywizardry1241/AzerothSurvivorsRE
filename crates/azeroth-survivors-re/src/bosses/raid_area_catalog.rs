@@ -1,6 +1,6 @@
 //! Complete current0.109.0 recurring boss schedules and health phases.
 //! Generated semantic connections are not the native48-byte ability ABI.
-//! Native input graph: docs/analysis/evidence/0.109.0/raid-native/catalog.json.
+//! Native input graph: docs/analysis/raid-native.md.
 //! Summon phases retain their existing public helper and shared original latch.
 //! Compilation, gameplay and native parity remain unverified.
 

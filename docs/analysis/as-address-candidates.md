@@ -3,7 +3,7 @@
 Target: installed 0.115.0 EXE, SHA-256
 `0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c`.
 The complete address inventory contains five code-only candidates whose source
-owner has direct AS diagnostic context. Their [compact proof](evidence/0.115.0/as-address-candidates.json)
+owner has direct AS diagnostic context. Their [compact proof](evidence/native-diagnostics/as-address-candidates.json)
 binds that exact selection, current original code/constants, source expression
 and native cases. No source defect was found in this bounded comparison.
 

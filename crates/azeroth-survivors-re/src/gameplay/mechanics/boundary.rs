@@ -115,7 +115,7 @@ mod tests {
 
     fn fixtures() -> Value {
         serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.105.0/boundary-pillars/native-fixtures.json"
+            "../../../../../docs/analysis/evidence/boundary-pillars/native-fixtures.json"
         ))
         .unwrap()
     }
@@ -123,7 +123,7 @@ mod tests {
     #[test]
     fn all_twelve_shapes_follow_current_native_points() {
         let current: Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.110.0/ground-navigation/native-cases.json"
+            "../../../../../docs/analysis/evidence/ground-navigation/native-cases.json"
         )).unwrap();
         assert_eq!(current["target_sha256"], "e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048");
         for row in current["boundary_shapes"].as_array().unwrap() {

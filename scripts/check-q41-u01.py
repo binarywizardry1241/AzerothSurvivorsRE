@@ -17,7 +17,7 @@ from script_sources import load_script
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 FIRST, LAST = 0x145840D60, 0x145840F61
 START, END = 0x145840D78, 0x145840F24
-KEEP = ROOT / 'docs/analysis/evidence/0.113.2/q41-u01'
+KEEP = ROOT / 'docs/analysis/evidence/q41-u01'
 PROBE = ROOT / 'runtime/analysis/history/findings/q41-u01/df7f818123c7/rea-pe'
 TABLES = [('POWER', 0x14700BD34, 'f'), ('COOLDOWN', 0x14700BD60, 'f'),
           ('TARGETS', 0x14700BD90, 'I'), ('AREA', 0x14700BDC0, 'f'),
@@ -54,7 +54,7 @@ def derive():
         assert len(value) == count
         return value
 
-    queue_path = ROOT / 'docs/analysis/evidence/0.113.2/unknown-recovery.json'
+    queue_path = ROOT / 'docs/analysis/evidence/unknown-recovery-comparison-2.json'
     queue = json.loads(queue_path.read_text())
     assert queue['target']['sha256'] == SHA
     ranges = committed(queue['inputs']['missing-executable-ranges.tsv.gz'])

@@ -16,7 +16,7 @@ def digest(raw):
 def check_current_guest():
     from native_terminal import NativeReplay
 
-    manifest = json.loads((ROOT / "docs/analysis/evidence/0.141.0/party-achievement-settlement.json").read_text())
+    manifest = json.loads((ROOT / "docs/analysis/evidence/party-achievement-settlement.json").read_text())
     raw = target_bytes(manifest["target"])
     pe = load_script("party_delivery_pe", ROOT / "scripts/inventory-executable.py").PE(raw)
     for row in manifest["native_spans"]:
@@ -107,7 +107,7 @@ def main():
     if args.current_guest:
         check_current_guest()
         return
-    manifest = json.loads((ROOT / "docs/analysis/evidence/0.117.0/party-achievements/manifest.json").read_text())
+    manifest = json.loads((ROOT / "docs/analysis/evidence/party-achievements/manifest.json").read_text())
     raw = artifact_path("installed-game/AzerothSurvivors.exe").read_bytes()
     assert manifest["schema"] == "as-party-achievement-delivery-v1"
     assert manifest["target"] == {

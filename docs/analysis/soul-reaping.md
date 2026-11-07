@@ -9,7 +9,7 @@ It revalidates the reused Voidwalker arithmetic against this target; historical
 
 ## Native ownership and retained evidence
 
-[The manifest](evidence/0.112.0/demon-post-hit/manifest.json) binds selected
+[The manifest](evidence/demon-post-hit/manifest.json) binds selected
 instruction spans, constants, complete owner extents and Ghidra observations to
 this hash. Each selected span has one retained assembly extract in that directory.
 The common melee owner is `145956d00`; the current generic effect dispatcher is
@@ -20,7 +20,7 @@ was additionally followed through its current jump table and decoded branches.
 Focused raw imports do not establish full-image reference or caller coverage.
 
 Current talent definitions and their original Effect64 bytes remain canonical
-in [warlock-talents/definitions.json](evidence/0.112.0/warlock-talents/definitions.json).
+in [warlock-talents/definitions.json](evidence/warlock-talents/definitions.json).
 The compositor translates current raw35 into marker253/35, preserving its
 float at+4. That marker prevents reuse of a historical numeric interpretation.
 
@@ -153,7 +153,7 @@ spell0, while spell attacks retain their spell presentation and pending path.
   rows/rank scaling; `targeting::random_index` retains the shared RNG sequence.
 
 Run `python3 -B scripts/check-demon-post-hit.py --verify`.
-[The retained cases](evidence/0.112.0/demon-post-hit/native-cases.json) cover 5
+[The retained cases](evidence/demon-post-hit/native-cases.json) cover 5
 rank-scaling cases, 72 learned-rank/tie selections, 36 periodic mutations, 36 Drain
 Life vectors executed through both native consumers with input nonmutation
 checks, 36 coefficient vectors through both consumers, 54 critical/bonus/half

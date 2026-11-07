@@ -3,7 +3,7 @@
 Selected installed EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 This is a bounded **Q41-U03** classification within [#41](../CURRENT-STATE.md#gap-41).
-The [compact proof](evidence/0.121.0/as-residual-ranges.json) binds every selected
+The [compact proof](evidence/as-residual-ranges-comparison.json) binds every selected
 range to the unchanged expanded census, exact original bytes and direct-flow
 observations. It does not change the census's unobserved-byte population or
 establish complete AS semantics, missing source or parity.

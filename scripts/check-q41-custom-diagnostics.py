@@ -21,7 +21,7 @@ from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 WORK = ROOT / "runtime/analysis/history/findings/q41-remaining/687b5b35cf28"
-KEEP = ROOT / "docs/analysis/evidence/0.113.2/q41-custom-diagnostics.json"
+KEEP = ROOT / "docs/analysis/evidence/q41-custom-diagnostics-comparison.json"
 
 
 def sha(data):
@@ -53,7 +53,7 @@ def derive():
 
     decoder = Cs(CS_ARCH_X86, CS_MODE_64)
     decoder.detail = True
-    queue_path = ROOT / "docs/analysis/evidence/0.113.2/unknown-recovery.json"
+    queue_path = ROOT / "docs/analysis/evidence/unknown-recovery-comparison-2.json"
     queue = json.loads(queue_path.read_text())
     assert queue["target"]["sha256"] == SHA
     inputs = {k: queue["inputs"][k] for k in ["bodies.tsv.gz", "diagnostic-ownership.json"]}

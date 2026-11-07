@@ -14,7 +14,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-KEPT = ROOT / "docs/analysis/evidence/0.113.2/ground-handoff"
+KEPT = ROOT / "docs/analysis/evidence/ground-handoff"
 
 
 def main():

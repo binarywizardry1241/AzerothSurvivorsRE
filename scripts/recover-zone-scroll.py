@@ -100,7 +100,7 @@ def main():
         limitations=["Static source recovery only; no compilation, compiler checks, emulated fixtures, or game/rebuilt launches were performed in this pass.",
                      "Raw Ghidra import uses generic GCC ABI; original Windows x64 instruction text establishes actual register/data use.",
                      "The producer and shared pending resource are recovered; the auxiliary byte controls the entering display. catalog-menu-input-native.json independently binds its Enter writer, while the original type/name, completion writer and complete system schedule ordering remain unresolved."])
-    output = ROOT / "docs/analysis/evidence/0.97.2/catalog-zone-scroll-native.json"
+    output = ROOT / "docs/analysis/evidence/catalog-zone-scroll-native.json"
     output.write_text(portable_json(report, ensure_ascii=False, indent=2) + "\n")
     print(f"Collected {output.relative_to(ROOT)}")
 

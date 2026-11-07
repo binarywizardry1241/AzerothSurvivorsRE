@@ -16,7 +16,7 @@ import struct
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.117.0/coop-history/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/coop-history/manifest.json"
 
 
 def verify():

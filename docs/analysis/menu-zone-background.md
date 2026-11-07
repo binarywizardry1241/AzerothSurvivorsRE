@@ -9,7 +9,7 @@ causality in the reported run and displayed parity remain unverified.
 
 Installed **0.112.5**, SHA-256
 `445e9de90f1a0e9be18d4e99e59eb170f4d253ac0440b970cdd0d0b3562dfd36`,
-is the specification. The [manifest](evidence/0.112.5/menu-zone-background/manifest.json)
+is the specification. The [manifest](evidence/menu-zone-background/manifest.json)
 binds five fresh native ranges, canonical assembly and selected Ghidra
 pseudocode to that identity. These are static observations, not target execution.
 

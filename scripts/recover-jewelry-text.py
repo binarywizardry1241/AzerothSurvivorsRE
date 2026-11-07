@@ -20,7 +20,7 @@ RANGES = [(0x14589e0e0, 0x14589e755), (0x14589e760, 0x14589ea98),
           (0x140305770, 0x1403058c7), (0x14027268f, 0x140272ef1),
           (0x14027302a, 0x140273037)]
 ASSETS = ROOT / 'crates/azeroth-survivors-re/assets'
-OUTPUT = ROOT / 'docs/analysis/evidence/0.112.0/jewelry/text-validation.json'
+OUTPUT = ROOT / 'docs/analysis/evidence/jewelry/text-validation.json'
 DELTA = ASSETS / 'jewelry-codex-0.112.0.json'
 
 
@@ -39,7 +39,7 @@ def main():
     pe = module('jewelry_text_pe', ROOT / 'scripts/inventory-executable.py').PE(data)
     locales = module('codex_locale_reader', ROOT / 'scripts/recover-codex.py').embedded_locales(data, pe)
     probe = EquipmentProbe(data, pe, RANGES)
-    rows = json.loads((ROOT / 'docs/analysis/evidence/0.112.0/jewelry/validation.json').read_text())['rows']
+    rows = json.loads((ROOT / 'docs/analysis/evidence/jewelry/validation.json').read_text())['rows']
     base = json.loads((ASSETS / 'codex-locales-0.105.0.json').read_text())
     old_delta = json.loads((ASSETS / 'codex-locale-delta-0.109.0.json').read_text())['locales']
     for code, entries in old_delta.items():

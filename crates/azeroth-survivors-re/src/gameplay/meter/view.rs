@@ -311,7 +311,7 @@ mod tests {
     #[test]
     fn party_adapter_matches_current_native_rows_and_keeps_equal_name_heroes() {
         let fixture:serde_json::Value=serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.121.0/party-meter-ui.json"
+            "../../../../../docs/analysis/evidence/party-meter-ui.json"
         )).unwrap();
         let locale = Localization::english_for_tests().for_code("fr");
         for case in fixture["fixture"]["party_rows"].as_array().unwrap() {
@@ -340,7 +340,7 @@ mod tests {
     #[test]
     fn party_color_native_vectors_preserve_distinct_fallbacks_and_f32_values() {
         let fixture:serde_json::Value=serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.121.0/party-meter-ui.json"
+            "../../../../../docs/analysis/evidence/party-meter-ui.json"
         )).unwrap();
         let locale = Localization::english_for_tests();
         for case in fixture["fixture"]["colors"].as_array().unwrap() {

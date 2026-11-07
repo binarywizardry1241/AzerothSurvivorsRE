@@ -508,7 +508,7 @@ mod tests {
     #[test]
     fn showcase_followers_match_current_native_class_selector() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.105.0/follower-lifecycle/native-vectors.json"
+            "../../../../docs/analysis/evidence/follower-lifecycle/native-vectors.json"
         )).unwrap();
         for row in fixture["class_selector"].as_array().unwrap() {
             let expected = row["showcase_entries"].as_array().unwrap().iter()
@@ -520,12 +520,12 @@ mod tests {
     #[test]
     fn descriptors_match_selected_target_bytes() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.105.0/pet-creation/definitions.json"
+            "../../../../docs/analysis/evidence/pet-creation/definitions.json"
         ))
         .unwrap();
         assert_eq!(fixture["target_sha256"], TARGET_SHA256);
         let current: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.139.2/nathrezim-summon.json"
+            "../../../../docs/analysis/evidence/nathrezim-summon.json"
         ))
         .unwrap();
         for row in fixture["definitions"].as_array().unwrap() {
@@ -577,7 +577,7 @@ mod tests {
     #[test]
     fn initialization_matches_unchanged_native_instructions() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.105.0/pet-creation/construction-native.json"
+            "../../../../docs/analysis/evidence/pet-creation/construction-native.json"
         ))
         .unwrap();
         assert_eq!(fixture["target_sha256"], TARGET_SHA256);
@@ -644,10 +644,10 @@ mod tests {
     #[test]
     fn current_native_demon_display_and_collision_scales() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/demon-actors/native-scale-cases.json"
+            "../../../../docs/analysis/evidence/demon-actors/native-scale-cases.json"
         )).unwrap();
         let current: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.139.2/nathrezim-summon.json"
+            "../../../../docs/analysis/evidence/nathrezim-summon.json"
         ))
         .unwrap();
         for row in fixture["cases"].as_array().unwrap() {

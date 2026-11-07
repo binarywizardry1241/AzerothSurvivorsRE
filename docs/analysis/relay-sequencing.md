@@ -2,10 +2,10 @@
 
 Selected installed EXE SHA-256:
 `80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c`.
-The [bounded proof](evidence/0.120.2/relay-sequencing/manifest.json) connects the
+The [bounded proof](evidence/relay-sequencing/manifest.json) connects the
 newly observed `coop/relay.rs` diagnostic to an actual service-input contract
 and the reconstructed source. The discovery/source-discrepancy observations
-retain their reviewed revision `5799d44b`; the [implementation proof](evidence/0.120.2/relay-implementation/manifest.json) owns the repaired live paths below. Neither proof establishes which release introduced the native layer.
+retain their reviewed revision `5799d44b`; the [implementation proof](evidence/relay-implementation/manifest.json) owns the repaired live paths below. Neither proof establishes which release introduced the native layer.
 
 ## Current native boundary
 

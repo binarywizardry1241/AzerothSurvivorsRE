@@ -16,7 +16,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
-KEEP = ROOT / 'docs/analysis/evidence/0.113.2/q41-p01-aura'
+KEEP = ROOT / 'docs/analysis/evidence/q41-p01-aura'
 WORK = ROOT / 'runtime/analysis/history/findings/q41-p01-aura/ebd7af99df13'
 ALIAS, END = 0x14580b380, 0x14580b64e
 SOURCE = 'crates/azeroth-survivors-re/src/run_effects/player_auras.rs'

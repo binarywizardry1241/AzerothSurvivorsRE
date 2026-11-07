@@ -27,7 +27,7 @@ No game was launched during this source checkpoint.
 - [Recovered zone/enemy constants](../../crates/azeroth-survivors-re/src/treasure_chests/catalog.rs).
 - [Focused integration tests](../../crates/azeroth-survivors-re/tests/treasure_chests.rs).
 - [Native instruction fixtures](../../crates/azeroth-survivors-re/tests/fixtures/treasure-chests-native.json).
-- [Validation record](evidence/0.92/treasure-chests/source-validation.json).
+- [Validation record](evidence/treasure-chests/source-validation.json).
 
 Implemented from the owning native evidence:
 

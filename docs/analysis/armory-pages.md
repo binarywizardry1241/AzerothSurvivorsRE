@@ -11,7 +11,7 @@ evidence retain their own targets.
 
 Current REA/Ghidra owners for Collection, its missing-list producer and entries,
 Look footer, full Details content, gear constructor, rarity/slot names and gear
-stat descriptions are retained once in the [manifest](evidence/0.109.0/armory-pages/manifest.json).
+stat descriptions are retained once in the [manifest](evidence/armory-pages/manifest.json).
 Each record binds the exact current byte range, hash, Ghidra Evidence/profile,
 and original-VA pseudocode. Raw-function imports omit external globals and use a
 generic ABI; original bytes, call instructions, native table fields and bounded

@@ -2,7 +2,7 @@
 
 Permanent **#296**. The installed 146,721,280-byte EXE is SHA-256
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`.
-The [compact proof](evidence/0.127.0/run-level-cap/manifest.json) binds current
+The [compact proof](evidence/run-level-cap/manifest.json) binds current
 original instructions/data, three completed journaled Ghidra queries and static
 cases. The [0.119.0 cap 99 report](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/run-level-cap-0.119.0.md) retains its historical
 provenance; this report supersedes only the run cap and its selected consumers.
@@ -59,7 +59,7 @@ reads `Interface\FrameXML\ReputationFrame.lua`, formats its original contents
 followed by the native suffix, then publishes the same path. The 83-byte compact
 format record at `14707f7d8` retains the historical literal text; its u32 argument
 at `14707f7d4` is now 120. Missing root, archive chain or file publishes nothing.
-The exact new [suffix](evidence/0.127.0/run-level-cap.lua) is registered through
+The exact new [suffix](evidence/hud-framexml/run-level-cap.lua) is registered through
 `client/framexml_hud.rs`, replacing the historical cap 99 suffix.
 
 The existing core loader appends it before addons and recreates that ordering in

@@ -475,7 +475,7 @@ def check_source():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--evidence-dir", default="docs/analysis/evidence/0.115.0/coop-ui")
+    parser.add_argument("--evidence-dir", default="docs/analysis/evidence/coop-ui")
     args = parser.parse_args()
     directory = project_path(args.evidence_dir)
     target = latest_target(verify=True)

@@ -4,7 +4,7 @@ use serde_json::Value;
 
 fn fixture() -> Value {
     serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.105.0/boss-catalog/catalog.json"
+        "../../../docs/analysis/evidence/boss-catalog/catalog.json"
     ))
     .unwrap()
 }
@@ -23,7 +23,7 @@ fn word(raw: &[u8], offset: usize) -> u32 {
 fn selected_boss_records_match_native_bytes() {
     let fixture = fixture();
     let sizes: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.127.0/creature-sizes/contract.json"
+        "../../../docs/analysis/evidence/creature-sizes/contract.json"
     )).unwrap();
     let zones = fixture["zones"].as_array().unwrap();
     assert_eq!(
@@ -101,7 +101,7 @@ fn selected_boss_records_match_native_bytes() {
 fn current_native_reach_cases_match_the_source_constructor() {
     use azeroth_survivors_re::bosses::scaling::{initial_stats_with_powf, BossScalingInput};
     let fixture: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.105.0/boss-catalog/reach-native.json"
+        "../../../docs/analysis/evidence/boss-catalog/reach-native.json"
     ))
     .unwrap();
     assert_eq!(
@@ -145,7 +145,7 @@ fn current_native_reach_cases_match_the_source_constructor() {
 fn current_named_dimensions_feed_boss_and_enemy_reach() {
     use azeroth_survivors_re::{bosses::scaling as boss, enemies::{catalog as enemy, scaling}};
     let current: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.127.0/creature-sizes/reach-native.json"
+        "../../../docs/analysis/evidence/creature-sizes/reach-native.json"
     )).unwrap();
     assert_eq!(current["target_sha256"],
         "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb");

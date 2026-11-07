@@ -23,7 +23,7 @@ mod tests {
     #[test]
     fn clock_responses_preserve_native_wire_bytes() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.113.2/clock-queries.json"
+            "../../../../../docs/analysis/evidence/clock-queries.json"
         )).unwrap();
         for case in proof["fixtures"].as_array().unwrap() {
             let unix_time = case["unix_time"].as_u64().unwrap() as u32;
@@ -37,7 +37,7 @@ mod tests {
     #[test]
     fn name_responses_preserve_current_native_wire_bytes() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.113.2/name-queries.json"
+            "../../../../../docs/analysis/evidence/name-queries.json"
         )).unwrap();
         for case in proof["fixtures"].as_array().unwrap() {
             let (opcode, body) = packet(SessionEvent::PlayerName {
@@ -86,7 +86,7 @@ mod tests {
     #[test]
     fn serializers_match_current_native_bytes_and_reuse_the_actual_decoder() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.113.2/template-query-wire.json"
+            "../../../../../docs/analysis/evidence/template-query-wire.json"
         ))
         .unwrap();
         for case in proof["cases"].as_array().unwrap() {

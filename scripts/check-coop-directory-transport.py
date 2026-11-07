@@ -20,7 +20,7 @@ from script_sources import load_script, run_contract
 
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
-MANIFEST = ROOT / "docs/analysis/evidence/0.115.0/coop-directory-transport/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/coop-directory-transport/manifest.json"
 OWNERS = {
     "url-override": "0x145891ab0",
     "ensure-service": "0x145891330",
@@ -259,7 +259,7 @@ def check_source():
 def check_current_rtt(target, data, pe):
     """Reuse the canonical current proof; do not copy its extracts or hashes."""
     from discovery_native_subject import verify_native_query_subject
-    proof = json.loads((ROOT / "docs/analysis/evidence/0.127.0/coop-dispatch/manifest.json").read_text())
+    proof = json.loads((ROOT / "docs/analysis/evidence/coop-dispatch/manifest.json").read_text())
     identity = {key: target[key] for key in ("version", "path", "sha256", "size_bytes")}
     assert proof["target"] == identity and target["version"] == "0.127.0"
     roles = {
@@ -319,7 +319,7 @@ def check_current_rtt(target, data, pe):
 
 
 def check_current_close(target, data, pe):
-    proof = json.loads(path("docs/analysis/evidence/0.139.2/coop-close.json").read_text())
+    proof = json.loads(path("docs/analysis/evidence/coop-close.json").read_text())
     assert proof["target"] == target
 
     def raw(address, length):

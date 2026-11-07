@@ -145,7 +145,7 @@ def main():
     args = parser.parse_args()
     sys.path[:0] = args.python_path
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
-    manifest = json.loads((ROOT / "docs/analysis/evidence/0.123.0/sanguine-native.json").read_text())
+    manifest = json.loads((ROOT / "docs/analysis/evidence/sanguine-native.json").read_text())
     target = latest_target(verify=True)
     assert target["sha256"] == manifest["target"]["sha256"], "Selected target changed"
     image = target_bytes(target)
@@ -228,7 +228,7 @@ def main():
                       "application_compiled_or_executed": False,
                       "parity_verified": False}
     if args.write:
-        (ROOT / 'docs/analysis/evidence/0.123.0/sanguine/static-check.json').write_text(portable_json(result, indent=2) + '\n')
+        (ROOT / 'docs/analysis/evidence/sanguine/static-check.json').write_text(portable_json(result, indent=2) + '\n')
     print(json.dumps(result, indent=2))
 
 

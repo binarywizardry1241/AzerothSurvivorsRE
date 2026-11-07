@@ -40,7 +40,7 @@ This includes charge speed/minimum/delays, conversion bounds, corpse lifetime,
 absolute mask, angle period and the shared half-yard value. Variable fixture
 health, power, positions, deadlines and helper outputs remain deliberate inputs.
 
-The [manifest](evidence/0.112.0/raid-lifecycles/manifest.json) records each
+The [manifest](evidence/raid-lifecycles/manifest.json) records each
 suite's actual visited instruction ranges and their current byte hashes.
 Ranges already retained by the dispatcher, generic-duration, marker, ward or
 guardian-reset owner reference that canonical assembly. A fixed canonical

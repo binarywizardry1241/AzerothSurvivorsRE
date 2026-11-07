@@ -21,7 +21,7 @@ and the existing whole-parser Evidence
 Their raw responses stay under ignored runtime; the whole parser also owns the
 separate [beaten-zone finding](game-mode-gap-audit.md#totem-limit-and-saveaccount-additions).
 
-The [retained manifest](evidence/0.105.0/talent-migration/manifest.json) binds
+The [retained manifest](evidence/talent-migration/manifest.json) binds
 the exact decoder, lookup, normalizer and learning-gate ranges, compact Ghidra
 extracts and their original byte hashes. The native contract is:
 

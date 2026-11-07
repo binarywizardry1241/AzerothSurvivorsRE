@@ -19,11 +19,11 @@ logout has already removed the HUD. No new settings or file format are added.
 
 ## Current recovery and source connections
 
-The [manifest](evidence/0.109.0/run-hud/manifest.json) binds 34 selected owners
+The [manifest](evidence/run-hud/manifest.json) binds 34 selected owners
 and their complete declared extents or bounded stackless leaf extents. Fresh
-[REA/Ghidra records](evidence/0.109.0/run-hud/rea-records.json) identify 24 freshly
+[REA/Ghidra records](evidence/run-hud/rea-records.json) identify 24 freshly
 queried current helpers, their raw-input-to-PE byte mappings and provider/profile
-digests. The existing current [ready-label manifest](evidence/0.109.0/hud-ready/manifest.json)
+digests. The existing current [ready-label manifest](evidence/hud-ready/manifest.json)
 retains the main updater, constructor, boss/build rows and visibility-reader
 Ghidra identities. Whole owner hashes identify recovery boundaries; they do not
 certify every external callee, global reference or indirect target.
@@ -39,7 +39,7 @@ certify every external callee, global reference or indirect target.
 | Custom pause | Actions `14028b370`, panel `14028bce0` and child builder `1402082f0` retain Resume/Options/End Run/Quit and immediate character-selection/logout cases. Only End Run has confirmation: a repeat at least `0.35f` and below `3f` after the original press accepts; an early repeat leaves the first deadline intact; expiry rearms it. The initial stock-frame Escape handoff is superseded by the [0.112.5 repair](escape-game-menu.md); talent and Options ownership remain separate. Shared button/panel styling is covered separately by [current overlay style](overlay-style.md). |
 | Class icon | Constructor calls `14588d790` then `140063ba0`. Both are stackless leaves omitted from PE unwind records; current branch/return boundaries and actual tables are recovered separately. Their connected original instructions match `stored_hud::class_rect` for **every u8 class ID**, including unknown-ID fallbacks. |
 | Stored levels | Current updater `14028c9f0` requires a positive integer `storedLevels`, enabled `hudLevels`, absent choice/reward payloads and no pause. It writes native Display Flex/None, then updates displayed hover/pulse, border, two shadows, lift/scale, count and localized `LEVEL {n}` text. `14028c740` accepts the first changed Pressed row and sends command `0x16`; the live `OpenStoredLevels` consumer calls the existing mechanics admission and publishes `spendLevels=1` only when spending opened. |
-| Core FrameXML | Current native path/format/write owner `1459a7290..1459a751d` reads `Interface\FrameXML\WorldStateFrame.lua` and the current patch descriptor. The exact 10,204-byte patch at `147232588` is byte-for-byte the canonical [0.108.0 Lua](evidence/0.108.0/hud-framexml/world-state-patch.lua); its selected HUD interval remains 8,191 bytes. The live core loader supplies it before layers/addons for direct TOC and nested Script reads, on every fresh VM/ReloadUI. Locale updates do not reinstall it. Current pointer/length identity and source routes are checked independently of the historical report. |
+| Core FrameXML | Current native path/format/write owner `1459a7290..1459a751d` reads `Interface\FrameXML\WorldStateFrame.lua` and the current patch descriptor. The exact 10,204-byte patch at `147232588` is byte-for-byte the canonical [0.108.0 Lua](evidence/hud-framexml/world-state-patch.lua); its selected HUD interval remains 8,191 bytes. The live core loader supplies it before layers/addons for direct TOC and nested Script reads, on every fresh VM/ReloadUI. Locale updates do not reinstall it. Current pointer/length identity and source routes are checked independently of the historical report. |
 
 The [class-provider proof](hud-class-provider.md) positively identifies
 the stored icon's frontend Pick resource through its TypeID, initializer and
@@ -118,7 +118,7 @@ Its **843 original-instruction cases** cover:
 - three bounded chaining-metadata construction cases, checking adjacent bytes
   remain unchanged.
 
-The durable [vector fixture](evidence/0.109.0/run-hud/vectors.json) keeps selected
+The durable [vector fixture](evidence/run-hud/vectors.json) keeps selected
 boundary representatives, all category counts and the SHA-256 of the canonical
 full result. It includes examples where the old border expression rounds
 differently. The checker still executes and asserts all 843 cases, then verifies

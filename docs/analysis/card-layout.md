@@ -2,7 +2,7 @@
 
 Target: `installed-game/AzerothSurvivors.exe`, 140,203,520 bytes, SHA-256
 `dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b`.
-The [manifest](evidence/0.108.0/card-layout/manifest.json) binds current PE
+The [manifest](evidence/card-layout/manifest.json) binds current PE
 owners, instruction/data ranges and five fresh REA/Ghidra evidence records.
 [verification-needed](../verification-needed.md) owns current implementation and gap status.
 
@@ -42,7 +42,7 @@ referenced PE data and every extract's instruction boundaries. Extracts are
 decoded from their declared owner entry, avoiding instruction-shaped bytes
 inside another instruction.
 
-The [native cases](evidence/0.108.0/card-layout/native-cases.json) record twelve
+The [native cases](evidence/card-layout/native-cases.json) record twelve
 passing bounded instruction replays: one frame, one footer, two name-font,
 two plain-description, two highlighted-parent and four span cases. Both native
 font-handle representations and both span colors are covered. Source checks

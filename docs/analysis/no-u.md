@@ -16,7 +16,7 @@ addition produces 73 records/1,520 points.
 health is nonpositive (`145934606..145934699`). Its Game+6a8 vector has pointer
 at+6b0 and length at+6b8. It normalizes spell16038→8349,14186→2098 and5308→20647;
 Frostbolt116 stays116. The canonical instructions already reside in the
-[meter hit extract](evidence/0.105.0/run-meters/accounting/hit.asm).
+[meter hit extract](evidence/run-meters/accounting/hit.asm).
 
 Snapshot `1458a77c0` copies that vector (its outer run owner addresses are16
 bytes above Game). Feat evaluator `1458d4740` selects feat6 through the current
@@ -41,7 +41,7 @@ membership cases and24 kill-record boundary/alias cases, with full EXE hash and
 selected catalog constants/strings checked. Synthetic memory supplies the
 metadata, identity and post-hit health; no native allocator, external call or
 game is executed. Only necessary constructor/evaluator extracts are retained in
-[native vectors](evidence/0.105.0/no-u/native-vectors.json).
+[native vectors](evidence/no-u/native-vectors.json).
 
 Seven changed Rust modules parse. Authored regressions consume native vectors
 and exercise player/source-kind2 pending Frostbolt impacts through the real

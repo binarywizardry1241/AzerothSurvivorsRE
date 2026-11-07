@@ -34,7 +34,7 @@ Rest intervals are 2/1.6/1.3/1 seconds. Gold-sniffer uses a shared fractional
 
 `run_effects/loot_companions.rs` owns definitions, configuration, selection,
 motion and the collector state machine. Its canonical
-[native vectors and ranges](evidence/0.105.0/companions/native-vectors.json)
+[native vectors and ranges](evidence/companions/native-vectors.json)
 retain relevant startup/helper/tick instructions. Larger Ghidra raw responses
 remain disposable project-local analysis output. Generic raw-import ABI/callee/
 data limitations are resolved only for these reviewed contracts; they do not

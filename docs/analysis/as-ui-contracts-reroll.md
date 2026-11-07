@@ -2,7 +2,7 @@
 
 Gap **#41**, selected installed EXE SHA-256
 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
-[Current pointer/renewal proof](evidence/0.113.2/as-ui-contracts-reroll.json),
+[Current pointer/renewal proof](evidence/as-ui-contracts-reroll.json),
 [keyboard and capture contract](card-keyboard.md),
 [ordered local delivery](card-delivery.md).
 

@@ -15,7 +15,7 @@ The current Windows selector `140305f10..14030611e`, loader
 choice, DLL/symbol order, slot/probe/reconnect lifetime and aggregate-before-
 typed event publication. Registration `1401b6e3d..1401b6e75` retains the three
 backend outcomes. Fresh raw imports and actual current PE data bind the
-[XInput manifest](evidence/0.112.0/xinput/manifest.json).
+[XInput manifest](evidence/xinput/manifest.json).
 
 Current custom owners are `1401b8090` (projection), `1401c0a70` (handoff),
 `1401c1150` (world input), `1401c1c50` (focus), `1401c3da0` (settings) and
@@ -24,7 +24,7 @@ and resource/borrow guards; historical stack offsets are not reused. Its linked
 query, parent, occlusion, geometry, placement, color/shadow, scroll and engine
 getter/default boundaries have fresh current Ghidra observations. Eighteen
 retained owner identities and thirty-two canonical intervals belong to the
-[consumer manifest](evidence/0.112.0/pad/manifest.json).
+[consumer manifest](evidence/pad/manifest.json).
 
 Live source still owns every admitted pad, separate radial/activity thresholds,
 oldest-first keyboard/mouse queues, segment-wise cursor travel and the one-pass
@@ -75,7 +75,7 @@ explicit synthetic boundaries, rather than invented current settings.
 
 `--prepare-rea` on the XInput/consumer checkers prepares bounded current carriers
 under ignored project `runtime/`; no EXE/MPQ copy or process is needed. The
-[additional dependency record](evidence/0.112.0/pad/dependencies.json) owns the
+[additional dependency record](evidence/pad/dependencies.json) owns the
 slider/formatter and supplemental current helper observations. Selected native
 intervals have one canonical assembly copy even when multiple fixtures use them.
 

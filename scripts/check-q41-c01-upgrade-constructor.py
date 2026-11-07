@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-KEEP = ROOT / "docs/analysis/evidence/0.113.2/q41-c01-upgrade-constructor"
+KEEP = ROOT / "docs/analysis/evidence/q41-c01-upgrade-constructor"
 WORK = ROOT / "runtime/analysis/history/findings/q41-c01-upgrade-apply/3e27dc535e29"
 RANGES = {
     "candidate-bound": (0x1459657AD, 0x1459657E4),
@@ -69,7 +69,7 @@ def main():
         return dict(address=hex(address), end_exclusive=hex(address + size),
                     byte_count=size, sha256=digest(raw(address, size)))
 
-    proof_path = ROOT / "docs/analysis/evidence/0.113.2/unknown-recovery.json"
+    proof_path = ROOT / "docs/analysis/evidence/unknown-recovery-comparison-2.json"
     proof = json.loads(proof_path.read_text())
     assert proof["target"]["sha256"] == SHA
     inputs = {key: proof["inputs"][key] for key in ("diagnostic-ownership.json", "bodies.tsv.gz")}
@@ -108,7 +108,7 @@ def main():
     path, count, line, column = struct.unpack("<QQII", raw(0x14730E150, 24))
     assert (path, count, line, column) == (0x14730B2E8, 41, 348, 47)
     assert raw(path, count) == b"crates\\wenilla-rogue\\src\\game\\upgrades.rs"
-    helper_path = ROOT / "docs/analysis/evidence/0.113.2/q41-c01/contract.json"
+    helper_path = ROOT / "docs/analysis/evidence/q41-c01/contract.json"
     helper = json.loads(helper_path.read_text())
     assert helper["target_sha256"] == SHA
     bounds = next(row for row in helper["ranges"] if row["role"] == "bounds-diagnostic")

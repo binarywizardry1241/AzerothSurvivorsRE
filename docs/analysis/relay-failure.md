@@ -3,7 +3,7 @@
 Installed target SHA-256
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`
 (146,088,960 bytes). This report owns the source/static repair for **#216**.
-The [current proof](evidence/0.121.0/relay-failure/manifest.json) binds the actual
+The [current proof](evidence/relay-failure/manifest.json) binds the actual
 guest getter, shared owner, terminal selector and admission/refusal flag
 producers. The [selected transport proof](relay-policy.md) owns selected
 configuration installation, terminal transport failure and their current native

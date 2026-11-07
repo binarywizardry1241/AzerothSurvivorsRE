@@ -9,16 +9,16 @@ transaction remains in the [release contract](https://github.com/binarywizardry1
 
 ## Current contracts and connected source
 
-The [canonical account evidence](evidence/0.120.0/race-account/manifest.json)
+The [canonical account evidence](evidence/race-account/manifest.json)
 binds fourteen exact native ranges, 1,260 independently decoded instructions
 and eight durable Ghidra results. The ordered base-plus-purchases union
 `145a97aa0..145a97c00` reuses its existing
-[canonical extract](evidence/0.120.0/race-unlocks/allowed-races-union.asm).
+[canonical extract](evidence/race-unlocks/allowed-races-union.asm).
 The [picker proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.120.0/race-picker/manifest.json) separately follows
 the account union into each portrait's allowed byte and race-action admission.
 The detailed [release contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-contracts-0.120.0.md) owns purchase
 admission and the separate tooltip interface.
-The [entry evidence](evidence/0.120.0/race-entry/manifest.json) adds ten exact
+The [entry evidence](evidence/race-entry/manifest.json) adds ten exact
 ranges/285 instructions, two relative dispatch slots and three durable queries
 for the actual frontend/backend and stock roster consumers.
 

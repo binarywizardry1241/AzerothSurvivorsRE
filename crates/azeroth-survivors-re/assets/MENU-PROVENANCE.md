@@ -12,7 +12,7 @@ Source artifact at extraction:
 - Size: 130,888,192 bytes.
 - SHA-256: `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
 - Embedded game version: 0.92.0, independently recorded in docs/analysis/target-refresh-0.92.json.
-- Exact source records, string/slice locations, bytes and hashes: docs/analysis/evidence/0.92/menu-provenance.json.
+- Exact source records, string/slice locations, bytes and hashes: docs/analysis/evidence/menu-provenance.json.
 
 | Source | File offset | Preferred-image VA | Layout |
 | --- | --- | --- | --- |

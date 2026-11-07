@@ -71,7 +71,7 @@ def main():
                 checks=checks,boundary="Only original compression instructions run in Unicorn. In-memory CPU feature byte147764158=0 selects the existing scalar fallback, bypassing CPU detection/accelerated path. Any call/branch outside the function aborts. Padding and final big-endian formatting are supplied by the harness from native119320 operations. No OS, file, HTTP or updater instructions are reachable.",
                 scope="Binds native updater hash to standard SHA256; does not identify its original crate/version or replay the whole downloader.",
                 provider_choice="Source fixture helper reuses pinned ring0.17.14 SHA256 already present in lock and target dependencies; no claim native updater compression is ring. No sha2 crate/version string was found in bounded target byte search.")
-    (ROOT/"docs/analysis/evidence/0.92/update-sha256-native-checks.json").write_text(portable_json(report,indent=2)+"\n")
+    (ROOT/"docs/analysis/evidence/update-sha256-native-checks.json").write_text(portable_json(report,indent=2)+"\n")
     print(f"{len(checks)} closed native SHA256 vectors passed; no requests, files or processes in target execution.")
 
 

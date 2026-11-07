@@ -3,7 +3,7 @@
 Finding **#201**, discovered through **#41**'s retained CreatureQuery dispatch
 questions, is a source/static repair. The installed target is **0.120.2**,
 SHA-256 `80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c`.
-The [manifest](evidence/0.120.2/template-query-input/manifest.json) binds the
+The [manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.120.2/template-query-input/manifest.json) binds the
 current native handler, journaled Ghidra result and bounded instruction replay.
 
 ## Native input and source correction

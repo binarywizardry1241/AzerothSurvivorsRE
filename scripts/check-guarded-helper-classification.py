@@ -12,7 +12,7 @@ from script_sources import load_script
 
 
 def main():
-    proof_path = ROOT / "docs/analysis/evidence/0.120.2/guarded-helper-classification/manifest.json"
+    proof_path = ROOT / "docs/analysis/evidence/guarded-helper-classification/manifest.json"
     proof = json.loads(proof_path.read_text())
     if proof['native_decoder_version'] != CAPSTONE_VERSION:
         raise ValueError('Native decoder version differs')

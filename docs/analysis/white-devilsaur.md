@@ -2,10 +2,10 @@
 
 This bounded static follow-up belongs to **#119**, selected EXE SHA-256
 `507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293`.
-[Evidence](evidence/0.117.0/white-devilsaur-leads.json) binds the exact current
+[Evidence](evidence/white-devilsaur-leads.json) binds the exact current
 records, code, historical source snapshots, Locations, callers and eleven journaled
 Ghidra queries. The separately retained
-[integration evidence](evidence/0.117.0/white-devilsaur-integration.json) connects
+[integration evidence](evidence/white-devilsaur-integration.json) connects
 the recovered switch to source and additional journaled native queries.
 This report supersedes
 the initial [release review](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-review-0.117.0.md)'s literal-window pet

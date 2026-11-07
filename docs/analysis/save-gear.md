@@ -10,10 +10,10 @@ outfit consumers. [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed]
 
 The full current Save parser `14589e380..1458a2926` and serializer
 `1458a4340..1458a681d` are retained once in the shared
-[Save-core evidence](evidence/0.109.0/save-core/manifest.json). The equipment,
+[Save-core evidence](evidence/save-core/manifest.json). The equipment,
 Seen, getter and outfit leaves have canonical original-VA assembly, Ghidra
 pseudocode, byte hashes and evidence/profile identities in the
-[equipment manifest](evidence/0.109.0/save-gear/manifest.json). Raw-range Ghidra
+[equipment manifest](evidence/save-gear/manifest.json). Raw-range Ghidra
 imports do not infer the original function ABI; register/field claims below use
 the current assembly and bounded instruction replays.
 

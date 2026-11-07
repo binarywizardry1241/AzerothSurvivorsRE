@@ -7,7 +7,7 @@ rendered comparison remain open; [verification-needed](../verification-needed.md
 
 ## Native contract
 
-[Manifest](evidence/0.105.0/boundary-pillars/manifest.json) binds all retained
+[Manifest](evidence/boundary-pillars/manifest.json) binds all retained
 instruction/data ranges to this target. REA/Ghidra inspected the exact native
 Begin function `145917cc0` and shared GameObject creator `145944080`:
 `ev_419101e9c9480b80011c12dda4bc004638b72be793b7107a33d6d2e035de79cf`

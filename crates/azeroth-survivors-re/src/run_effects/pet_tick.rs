@@ -327,7 +327,7 @@ mod tests {
     #[test]
     fn ordinary_plans_match_unchanged_selected_pet_loop() {
         let fixture: Fixture = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.105.0/power-scaling/pet-tick/native-tick.json"
+            "../../../../docs/analysis/evidence/power-scaling/pet-tick/native-tick.json"
         ))
         .unwrap();
         assert_eq!(

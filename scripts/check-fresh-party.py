@@ -10,7 +10,7 @@ from coverage_common import ROOT, latest_target, project_path, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.123.0/fresh-party/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/fresh-party/manifest.json"
 
 
 def sha(raw):

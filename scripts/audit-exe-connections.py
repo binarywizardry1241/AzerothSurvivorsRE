@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 import re
 
-from artifact_history import iter_artifact_paths
+from artifact_history import current_artifact_path, has_archived_artifact, iter_artifact_paths
 from coverage_common import ROOT, file_sha256, json_text, latest_target, load_json, project_path, same_artifact, target_bytes
 
 OUTPUT = "docs/analysis/coverage/exe-connections.json"
@@ -40,7 +40,9 @@ SELECTED_TARGET_BOUNDED_CONTRACT_VALIDITIES = frozenset({
 
 
 def commitment(path):
-    path = project_path(path)
+    path = ROOT / path
+    if not has_archived_artifact(path):
+        path = project_path(path)
     return {"path": path.relative_to(ROOT).as_posix(), "sha256": file_sha256(path)}
 
 
@@ -174,6 +176,9 @@ def evidence_documents(target):
     spec.loader.exec_module(helper)
     rows = []
     for path in iter_artifact_paths(ROOT / "docs/analysis/evidence", ".json", recursive=True):
+        retained = current_artifact_path(path)
+        if retained != path and retained.is_file() and file_sha256(path) == file_sha256(retained):
+            continue
         value = load_json(path)
         if not isinstance(value, dict):
             digest = None

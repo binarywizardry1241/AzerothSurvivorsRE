@@ -808,7 +808,7 @@ fn long_run_does_not_expire_existing_chests_and_positions_filter_shared_list() {
 #[test]
 fn source_catalog_matches_all_native_zone_records_and_enemy_flags() {
     let manifest: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.97.2/treasure-chests/catalog.json"
+        "../../../docs/analysis/evidence/treasure-chests/catalog.json"
     ))
     .unwrap();
     assert_eq!(manifest["version"], "0.97.2");

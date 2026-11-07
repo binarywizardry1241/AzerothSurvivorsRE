@@ -9,7 +9,7 @@ import struct
 from coverage_common import ROOT
 
 a = load_script("demon_actors", ROOT / "scripts/check-demon-actors.py")
-KEPT = ROOT / "docs/analysis/evidence/0.112.0/demon-spell-math"
+KEPT = ROOT / "docs/analysis/evidence/demon-spell-math"
 
 
 def replay():

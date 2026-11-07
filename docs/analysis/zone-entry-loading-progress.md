@@ -59,7 +59,7 @@ The [existing source](../../crates/benilla-app/src/loading_screen.rs)
 reads the [map loading-screen ID](../../crates/benilla-formats/src/maps.rs),
 then the [path catalog](../../crates/benilla-formats/src/loading_screen.rs)
 and uses the same archive-only read, path cache and one-shot miss behavior.
-The [current resource proof](evidence/0.141.0/resource-consumers.json)
+The [current resource proof](evidence/resource-consumers.json)
 joins all 13 entry zones to eight distinct map IDs and eight exact BLP2
 members through the installed Map column 38 and LoadingScreens column 2.
 Open-world zones reuse their continent art. Scholomance map 289 uses

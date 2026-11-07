@@ -15,7 +15,7 @@ engine `--username=HERO`, `--password=survivor` and `--realmlist=azeroth.local`.
 The source local bridge begins the normal glue manager's login using those
 fixed local credentials. It starts no socket worker.
 
-The [native SRP contract](evidence/0.105.0/terminal/stock-realms/auth-contract.json)
+The [native SRP contract](evidence/terminal/stock-realms/auth-contract.json)
 binds client normalization, fixed server credentials and both proof outcomes.
 The native client normalizes 1..16 printable ASCII bytes to uppercase,
 without trimming. The local server derives its proof from the submitted
@@ -41,7 +41,7 @@ its independent custom menu music publisher.
 
 ## Recovered local backend contract
 
-The [realm proof](evidence/0.105.0/terminal/stock-realms/contracts.json) binds
+The [realm proof](evidence/terminal/stock-realms/contracts.json) binds
 twelve realms in the selected-target zone order. Each uses its actual zone
 name, `azeroth.local:8085+index`, PvP type 1, flags 0, category 1, a one-based
 realm ID, and native `f32` difficulty squared for population. The auth
@@ -51,7 +51,7 @@ refreshes retain that auth snapshot after character creation/deletion.
 The world listener `145896880..1458968f9` derives the connection zone from
 port minus 8085; an out-of-range value uses index zero. It copies that zone's
 key into connection `+98/+a0`. Ordinary enumeration and login use this
-connection key, independently of the custom saved Pick. [Roster recovery](evidence/0.105.0/stock-frontend/roster-projection-manifest.json)
+connection key, independently of the custom saved Pick. [Roster recovery](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/stock-frontend/roster-projection-manifest.json)
 owns the factory's ordered projection and selected-zone map/area/position.
 The displayed level is `clamp(best_level, 1, 60)`. The shared source equipment
 projector now feeds both the ordinary roster and the in-world player. Native
@@ -67,7 +67,7 @@ bypasses zone unlock and saved talent allocation while retaining gear. The row
 is never appended to Save; ordinary saved rows retain their order.
 
 The current packet owner `14589b380` dispatches opcodes 0x36/0x37/0x38/0x3d
-to Create/Enumerate/Delete/Login. The [backend manifest](evidence/0.105.0/stock-frontend/backend-manifest.json)
+to Create/Enumerate/Delete/Login. The [backend manifest](evidence/stock-frontend/backend-manifest.json)
 binds the relevant original instructions and Ghidra owners:
 
 - Create normalizes trimmed 2..12 ASCII letters to title case. Failed names
@@ -102,7 +102,7 @@ vectors** and rehashes seventeen original byte ranges. Those vectors execute onl
 original leaf instructions: GUID maximum/order/wrap, Unicode scalar counts
 and invalid-name statuses, the permanent roster count boundary, and the shared modifier-word transfer. Native
 callees never execute; name-error cases supply the failed-normalization outcome
-and already-trimmed input. [Retained results](evidence/0.105.0/stock-frontend/backend-vectors.json)
+and already-trimmed input. [Retained results](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/stock-frontend/backend-vectors.json)
 state those limits. Separate roster and realm checkers own their respective
 current-target table and instruction assertions. The realm recovery checker
 also passes twelve credential-boundary vectors against unchanged native

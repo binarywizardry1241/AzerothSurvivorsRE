@@ -41,15 +41,15 @@ layout difference is local state byte `Game+0x94e`, versus the supplied report's
 
 Owning evidence:
 
-- [Manifest](evidence/0.92/treasure-chests/manifest.json): original function-byte
+- [Manifest](evidence/treasure-chests/manifest.json): original function-byte
   hashes, exact VA/RVA/file offsets, 20 bounded disassemblies, constants, all
   nine zones, and the 27 chest-dropping enemy definitions.
-- [REA provenance](evidence/0.92/treasure-chests/rea-provenance.json): Ghidra
+- [REA provenance](evidence/treasure-chests/rea-provenance.json): Ghidra
   Evidence IDs, raw-slice identities, analysis profiles, limitations and curated
   pseudocode. REA was run through `./scripts/rea` using Ghidra 12.1.4.
 - [Extractor](../../scripts/recover-treasure-chests.py): reproducible original
   PE reads and disassembly, guarded by the complete target SHA-256.
-- [Embedded addon interface](evidence/0.92/official-addon-api.lua): consumer
+- [Embedded addon interface](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/official-addon-api.lua): consumer
   schema, corroborated here by the native producer and iterator.
 
 ## Recovered normal-run rules
@@ -245,7 +245,7 @@ Walking purchase uses fixed planar range **3.0**, rather than the ordinary XP
 pickup radius. With click-only setting `Game+0x944` nonzero, walking does not buy;
 it emits `Right-click a cache to buy it.` once using hint byte `+0x945`.
 The native option is `cacheOnClick`; the constructor initializes its backing
-byte to zero. The existing [Options descriptor evidence](evidence/0.92/options-definitions.json)
+byte to zero. The existing [Options descriptor evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/options-definitions.json)
 independently binds the setting name and help text.
 
 Explicit purchase handler `0x145495820` requires active state 1, matches the

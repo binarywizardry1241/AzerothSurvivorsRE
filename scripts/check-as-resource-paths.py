@@ -6,7 +6,7 @@ import json
 import re
 import struct
 
-from coverage_common import ROOT, latest_target, file_sha256, target_bytes, verify_resources
+from coverage_common import ROOT, latest_target, file_sha256, load_json, project_bytes, target_bytes, verify_resources
 from script_sources import load_script
 
 WORK=ROOT/'runtime/analysis/history/findings/q41-all/f1125d689593'
@@ -24,8 +24,7 @@ def current_consumers():
     from capstone.x86_const import X86_REG_RIP, X86_REG_R8, X86_REG_R9D, X86_REG_RAX, X86_REG_RSP
 
     target = latest_target(verify=True)
-    proof = json.loads((ROOT / 'docs/analysis/evidence' / target['version']
-                        / 'resource-consumers.json').read_text())
+    proof = load_json('docs/analysis/evidence/resource-consumers.json')
     assert proof['schema_version'] == 1 and target['sha256'] == proof['target_sha256']
     verify_resources(target)
     image = target_bytes(target)
@@ -211,7 +210,7 @@ def legacy_consumers(args):
     target=latest_target(verify=True)
     assert target['sha256']=='58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
     proof_path=ROOT/'docs/analysis/evidence/0.113.2/mpq-member-coverage.json'
-    proof=json.loads(proof_path.read_text())
+    proof=load_json(proof_path)
     lead_input=proof['outputs']['resource-leads.jsonl']
     assert file_sha256(ROOT/lead_input['path'])==lead_input['sha256']
     leads=[json.loads(line)for line in (ROOT/lead_input['path']).read_text().splitlines()]
@@ -252,7 +251,7 @@ def legacy_consumers(args):
     reused=[]
     for name in ['race-portraits/manifest.json','meter-minimap/manifest.json']:
         path=ROOT/'docs/analysis/evidence/0.113.2'/name
-        p=json.loads(path.read_text());assert p['target_sha256']==target['sha256']
+        p=load_json(path);assert p['target_sha256']==target['sha256']
         reused.append(dict(path=str(path.relative_to(ROOT)),sha256=file_sha256(path)))
     assert verify_resources(target)==9
     mpq=load_script('as_uri_mpq','scripts/check-minimap-lifecycle.py')
@@ -295,7 +294,7 @@ def legacy_consumers(args):
             'No source omission is established for these eight paths. Existing AS load/handle consumers and benilla MPQ chain are reused; no generic engine reconstruction, compilation, Rust/client/game execution, binary asset export or original/rebuilt parity.'])
     text=json.dumps(result,indent=2)+'\n'
     if args.stage:(WORK/'as-resource-paths.json').write_text(text)
-    else:assert KEEP.read_text()==text
+    else:assert project_bytes(KEEP)==text.encode()
     print(json.dumps(dict(selected_candidates=6,available_members=8,native_cases=len(cases),source_defect_found=False)))
 
 

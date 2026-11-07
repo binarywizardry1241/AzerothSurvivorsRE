@@ -4,9 +4,9 @@ Finding **#248**, lead **`RESOURCE1210:display16111:M2-texture-consumer`**, is
 now joined to current **world actor field/publication inputs**, beyond its original
 CreatureQuery-only lead. Target EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
-The [world/interface proof](evidence/0.121.0/orb-world-resource.json) reuses the
+The [world/interface proof](evidence/orb-world-resource.json) reuses the
 affix recovery's canonical journaled constructor query; the original
-[DBC/model receipt](evidence/0.121.0/resource-consumer-9612.json) remains the
+[DBC/model receipt](evidence/resource-consumer-9612.json) remains the
 canonical resource join rather than a duplicate extract.
 
 ## Native actor-to-display join
@@ -82,7 +82,7 @@ source route supplies no AS-specific alias before the shared loader boundary.
 
 ### Current native filename and URL boundary
 
-The [native path proof](evidence/0.121.0/orb-model-path.json) now establishes
+The [native path proof](evidence/orb-model-path.json) now establishes
 three current helpers independently of the source's historical WoW addresses:
 `0x145edd7e0..0x145eddb9c` normalizes the filename,
 `0x145edd720..0x145edd7da` supplies the refused-filename fallback, and

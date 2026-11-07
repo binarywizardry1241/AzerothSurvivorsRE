@@ -17,7 +17,7 @@ palette, hover animation or substitute widget is warranted by this recovery.
 | Shadow vector | `142649b80..142649c3d` | Allocate one 52-byte shadow row; copy the four supplied Val pairs and color. |
 
 Fresh Ghidra 12.1.4 records and exact code/data hashes are retained in the
-[manifest](evidence/0.109.0/overlay-style/manifest.json). The terminal's direct
+[manifest](evidence/overlay-style/manifest.json). The terminal's direct
 calls at `140203f96`/`140205884` and pause panel's call at `1402087e8` resolve
 to these same helpers. Their instructions are independently decoded and retained
 once. Raw imports use inferred ABI/types and omit external PE relationships;
@@ -52,7 +52,7 @@ all border/gradient/shadow values, and verify preserved caller layout plus
 overwritten widths/radii. Allocator setup, successful allocation and `memcpy`
 are explicit seams; all interpreted instruction bytes match the selected EXE,
 and native writes are restricted to scratch memory. The retained
-[cases](evidence/0.109.0/overlay-style/native-cases.json) record those bounds.
+[cases](evidence/overlay-style/native-cases.json) record those bounds.
 Source checks trace the constants to the actual shared consumers; they do not
 execute Rust or prove its type correctness.
 

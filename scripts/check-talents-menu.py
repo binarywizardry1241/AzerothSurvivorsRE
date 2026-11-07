@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.109.0/talents-menu'
+EVIDENCE = ROOT / 'docs/analysis/evidence/talents-menu'
 
 class Machine:
  def __init__(self):

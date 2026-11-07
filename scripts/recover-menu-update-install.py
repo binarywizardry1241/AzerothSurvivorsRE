@@ -103,7 +103,7 @@ def main():
                      "Data-manifest schema and local selection four fixtures passed22. Metadata/combined plan/UI pipeline compiled and injected sequence fixtures passed23 (15.47s;64 harness cases); source26 connects the real installer adapters as code, compiled with fixtures passing in build26; no live execution.",
                      "1670c0 scoped Ghidra output stops at external jump dispatch. Original table/branch bytes plus exact flate2 primary source bind single-member/trailer semantics; target runtime decoding has not been replayed.",
                      "No reference/rebuilt installer execution or update download occurred."])
-    path = ROOT / "docs/analysis/evidence/0.92/menu-update-install.json"
+    path = ROOT / "docs/analysis/evidence/menu-update-install.json"
     path.write_text(portable_json(report, indent=2) + "\n")
     print(f"Recorded {len(functions)} REA owners and {len(import_records)} exact PE-import bindings; static only.")
 

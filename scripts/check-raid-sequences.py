@@ -18,7 +18,7 @@ RANGES={'sequence':(0x1459592f4,0x145959449),'drifting-circles':(0x145959ceb,0x1
 def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');args=ap.parse_args()
  mod = load_script('sequence_inputs', ROOT/'scripts/recover-raid-actions.py');target,raw,span,_,_=mod.recover();assert target['sha256']==SHA
- catalog=json.loads((ROOT/'docs/analysis/evidence/0.109.0/raid-native/catalog.json').read_text());assert catalog['target_sha256']==SHA
+ catalog=json.loads((ROOT/'docs/analysis/evidence/raid-native/catalog.json').read_text());assert catalog['target_sha256']==SHA
  selected=[(i,row)for i,row in enumerate(catalog['actions'])if row['native_tag']in[18,24]]
  sys.path[:0]=[str(ROOT/'runtime/tool-state/python/armory/python-libs'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
  from capstone import Cs,CS_ARCH_X86,CS_MODE_64
@@ -121,7 +121,7 @@ def main():
   for token in tokens:assert ''.join(token.split()) in source,(name,token)
  adapter=(base/'gameplay/mechanics/bosses.rs').read_text()
  assert adapter.index('for (amount, source_guid) in incoming') < adapter.index('self.apply_raid_post_actions(post_actions')
- output=ROOT/('runtime/analysis/staging/native-evidence/0.109.0/raid-sequences'if args.write else'docs/analysis/evidence/0.109.0/raid-sequences')
+ output=ROOT/('runtime/analysis/staging/native-evidence/raid-sequences'if args.write else'docs/analysis/evidence/raid-sequences')
  if args.write:output.mkdir(parents=True,exist_ok=True)
  ranges=[]
  for role,(a,b)in RANGES.items():

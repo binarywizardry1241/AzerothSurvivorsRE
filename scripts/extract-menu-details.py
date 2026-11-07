@@ -25,7 +25,7 @@ def main():
         return data[o:o+n].decode('utf-8')
     p = ROOT / 'crates/azeroth-survivors-re/assets/menu.json'
     catalog = json.loads(p.read_text())
-    provenance = json.loads((ROOT / 'docs/analysis/evidence/0.92/menu-provenance.json').read_text())
+    provenance = json.loads((ROOT / 'docs/analysis/evidence/menu-provenance.json').read_text())
     for row, record in zip(catalog['classes'], provenance['classes']):
         row['spell_keys'] = record['spell_keys']
         row['starting_spell_key'] = record['starting_spell_key']
@@ -55,7 +55,7 @@ def main():
         ability_table=dict(file_offset='0x66d4320',virtual_address=hex(pe.offset_va(0x66d4320)),count=111,stride_bytes=120),
         zones=dict(file_offset='0x66d1210',count=9,stride_bytes=184,blurb_offset=112,enemy_offset=64,boss_offset=80,enemy_locale_id_offset=32,boss_locale_id_offset=48),
         output='crates/azeroth-survivors-re/assets/menu.json')
-    (ROOT/'docs/analysis/evidence/0.92/menu-details.json').write_text(json.dumps(report,indent=2)+'\n')
+    (ROOT/'docs/analysis/evidence/menu-details.json').write_text(json.dumps(report,indent=2)+'\n')
     print(f'Recovered {len(abilities)} ability icons/descriptions and {len(catalog["zones"])} zone summaries.')
 
 if __name__ == '__main__':

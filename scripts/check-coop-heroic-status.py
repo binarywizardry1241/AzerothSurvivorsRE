@@ -10,7 +10,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.121.0/coop-heroic-status/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/coop-heroic-status/manifest.json"
 LOCKED_KEY = "you haven't opened {heroic} of {zone} with this class yet"
 
 
@@ -30,7 +30,7 @@ def main():
     assert proof["target"] == {k: selected[k] for k in ("version", "path", "sha256", "size_bytes")}
     image = target_bytes(selected)
     locale_owner = load_script("coop_status_locale_owner", ROOT / "scripts/check-set-localization.py")
-    locale_base = json.loads((ROOT / "docs/analysis/evidence/0.121.0/orb-source.json").read_text())
+    locale_base = json.loads((ROOT / "docs/analysis/evidence/orb-source.json").read_text())
     assert locale_base["target"] == proof["target"]
     table = locale_base["locale_table"]
     at = int(table["file_offset"], 16)

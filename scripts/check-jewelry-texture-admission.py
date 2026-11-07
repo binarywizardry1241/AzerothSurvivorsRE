@@ -16,7 +16,7 @@ import struct
 from coverage_common import latest_target, target_bytes
 
 ROOT = Path(__file__).resolve().parent.parent
-MANIFEST = ROOT / "docs/analysis/evidence/0.113.2/jewelry-texture-admission.json"
+MANIFEST = ROOT / "docs/analysis/evidence/jewelry-texture-admission.json"
 
 
 def digest(raw):

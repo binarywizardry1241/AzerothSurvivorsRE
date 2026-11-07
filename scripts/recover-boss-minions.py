@@ -17,7 +17,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b"
 WORK = ROOT / "runtime/analysis/history/raid/boss-minions/0d6660367d5f"
-EVIDENCE = ROOT / "docs/analysis/evidence/0.108.0/boss-minions"
+EVIDENCE = ROOT / "docs/analysis/evidence/boss-minions"
 CATALOG = ROOT / "crates/azeroth-survivors-re/src/guardians/catalog.rs"
 PHASES = ROOT / "crates/azeroth-survivors-re/src/bosses/minion_phases.rs"
 

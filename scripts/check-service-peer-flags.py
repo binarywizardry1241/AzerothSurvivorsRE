@@ -20,7 +20,7 @@ from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn import x86_const as reg
 
-PROOF = ROOT / 'docs/analysis/evidence/0.120.2/service-peer-flags/core.json'
+PROOF = ROOT / 'docs/analysis/evidence/service-peer-flags/core.json'
 SESSION = 'crates/azeroth-survivors-re/src/coop/session.rs'
 WIRE = 'crates/azeroth-survivors-re/src/coop/directory_wire.rs'
 DIRECTORY = 'crates/azeroth-survivors-re/src/coop_directory.rs'

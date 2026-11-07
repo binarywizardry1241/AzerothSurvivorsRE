@@ -63,9 +63,9 @@ wards use real targeting and combat consumers described in
 
 ## Evidence and validation
 
-The [manifest](evidence/0.109.0/raid-sequences/manifest.json) binds each selected
+The [manifest](evidence/raid-sequences/manifest.json) binds each selected
 instruction range and the weakening template to the installed bytes. Its
-[REA provenance](evidence/0.109.0/raid-sequences/rea-provenance.json) retains
+[REA provenance](evidence/raid-sequences/rea-provenance.json) retains
 successful Ghidra12.1.4 native18/native24 raw imports, provider limitations and
 pseudocode hashes. Raw imports do not recover external/global relationships.
 The full-image ownership work remains separately accounted under **#41**.

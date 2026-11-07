@@ -263,13 +263,13 @@ def main():
     assert target["sha256"] == SHA, "This checker requires the exact 0.120.0 target"
     image = target_bytes(target)
     pe = load_script("race_eligibility_pe", "scripts/inventory-executable.py").PE(image)
-    promoted = ROOT / "docs/analysis/evidence/0.120.0/race-account/manifest.json"
+    promoted = ROOT / "docs/analysis/evidence/race-account/manifest.json"
     path = args.manifest or (promoted if promoted.exists() else ROOT / "runtime/analysis/history/findings/gap187/7b90808b1bfc/loader/curated/manifest.json")
     path = path.resolve()
     assert path.is_relative_to(ROOT), "Manifest must be inside the project"
     new_proof = verify_manifest(path, image, pe, args.queries)
     # Reuse the canonical union; do not duplicate that older current-target extract.
-    old_manifest = ROOT / "docs/analysis/evidence/0.120.0/race-unlocks/manifest.json"
+    old_manifest = ROOT / "docs/analysis/evidence/race-unlocks/manifest.json"
     old = json.loads(old_manifest.read_text())
     union = next(row for row in old["native_ranges"] if row["role"] == "allowed-races-union")
     offset = pe.rva_offset(UNION[0] - pe.image_base)

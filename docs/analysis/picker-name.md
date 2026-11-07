@@ -10,7 +10,7 @@ rendered behavior and original/rebuilt parity remain open.
 
 ## Native contract
 
-The [manifest](evidence/0.109.0/picker-name/manifest.json) binds the complete
+The [manifest](evidence/picker-name/manifest.json) binds the complete
 content-update function `0x140078c10..0x140079fa6`, the font helper
 `0x140067b70..0x140067bfb`, and the relevant portrait/name construction ranges.
 REA/Ghidra evidence IDs, exact PE file offsets, input/extract hashes and analysis

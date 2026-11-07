@@ -26,7 +26,7 @@ sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 
-OUT = ROOT / 'docs/analysis/evidence/0.100.1/manual-cast-policy'
+OUT = ROOT / 'docs/analysis/evidence/manual-cast-policy'
 OUT.mkdir(parents=True, exist_ok=True)
 roles = [
     ('desktop-host', 0x14000d230, 0x14000d4fc),

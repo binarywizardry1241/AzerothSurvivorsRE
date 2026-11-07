@@ -1,6 +1,6 @@
 # World-anchored combat text
 
-The installed `AzerothSurvivors.exe` is 0.139.2, 150,793,728 bytes, SHA-256 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`. The [evidence manifest](evidence/0.139.2/combat-text/manifest.json) records hash-bound native slices, Ghidra result identities and the exact Lua callback block. The 0.139.1 full-audit baseline retains its original identity.
+The installed `AzerothSurvivors.exe` is 0.139.2, 150,793,728 bytes, SHA-256 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`. The [evidence manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/combat-text/manifest.json) records hash-bound native slices, Ghidra result identities and the exact Lua callback block. The 0.139.1 full-audit baseline retains its original identity.
 
 ## Frame-handler source connection
 

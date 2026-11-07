@@ -276,7 +276,7 @@ def main():
             "These fixtures are instruction-component comparisons, not original/rebuilt game parity.",
             "Death accumulator +0x910 downstream meaning remains unresolved.",
             "Boss loot rolls enqueue permanent equipment; they do not directly equip, save, or upgrade run abilities."])
-    path=ROOT/"docs/analysis/evidence/0.97.2/mob-loot.json"
+    path=ROOT/"docs/analysis/evidence/mob-loot.json"
     path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(json.dumps(evidence,indent=2)+"\n")
     print("Recovered 12 zones/60 primary bosses; native fixtures: %d boss candidates, %d multipliers, %d deaths, %d equipment rolls." %

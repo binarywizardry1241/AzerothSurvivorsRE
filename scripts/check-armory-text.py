@@ -135,7 +135,7 @@ proof=dict(target_sha256=SHA,equipment_bonus_range=dict(address=hex(bonus_start)
  limits=['Original dispatcher, stat-description arithmetic/key selection, target-count branch and original string composition execute.',
  'Host formatting, locale lookup and mathematical imports are explicit seams; no OS/filesystem/VM/game reaches execution.',
  'These vectors do not compile or execute the reconstructed source or certify gameplay/render parity.'])
-outdir=ROOT/'docs/analysis/evidence/0.109.0/armory-pages'
+outdir=ROOT/'docs/analysis/evidence/armory-pages'
 for name,value in [('stat-text-validation.json',proof),('stat-text-fixtures.json',dict(target_sha256=SHA,cases=fixture)),('bonus-text-fixtures.json',dict(target_sha256=SHA,cases=bonus_fixture))]:
  payload=json.dumps(value,ensure_ascii=False,indent=2)+'\n';path=outdir/name
  if args.write:path.write_text(payload)

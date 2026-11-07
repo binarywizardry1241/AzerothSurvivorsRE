@@ -23,7 +23,7 @@ class ClassificationInputs(unittest.TestCase):
         self.addCleanup(temporary.cleanup)
         self.root = Path(temporary.name)
         self.target = dict(version='fixture', path='installed-game/fixture.exe', sha256='a'*64, size_bytes=12)
-        self.directory = self.root/'docs/analysis/evidence/fixture'
+        self.directory = self.root/'docs/analysis/evidence'
         self.directory.mkdir(parents=True)
         self.path = self.directory/'native-residuals.json'
         self.census_path = 'docs/analysis/coverage/full-image-selected.json'
@@ -225,7 +225,7 @@ class ClassificationInputs(unittest.TestCase):
             self.record['counts']['diagnostic_sites']=dict(records=4,owned=2,ownerless=2)
             self.record['inputs']=[self.receipt(r['path']) for r in self.record['inputs']]
             self.write_json(self.path.relative_to(self.root),self.record)
-            self.write_json('docs/analysis/evidence/fixture/addon-timers/integration.json',dict(target_sha256=self.target['sha256']))
+            self.write_json('docs/analysis/evidence/addon-timer-integration.json',dict(target_sha256=self.target['sha256']))
         path=self.directory/(name+'.json')
         if path.exists():return json.loads(path.read_text())
         generator,dep_field,deps,_=SUPPORT[name]
@@ -254,7 +254,7 @@ class ClassificationInputs(unittest.TestCase):
                 import_slots_with_owned_explicit_operands=0,diagnostic_paths_with_explicit_operands=0)
         elif name=='native-address-leads':
             operand=self.support_fixture('native-operands')
-            r.update(source_census=census,operand_summary=self.receipt('docs/analysis/evidence/fixture/native-operands.json'),
+            r.update(source_census=census,operand_summary=self.receipt('docs/analysis/evidence/native-operands.json'),
                 function_entry_or_incoming_flow_edges_inferred=False,
                 counts=dict(addressed_executable_targets=1,admitted_code_only_starts=1,retained_existing_instruction_starts=0,exceptions={}))
             seed=dict(site='0x5000',source_site='0x1002',source_instruction_bytes='488d05f73f0000',source_native_owner='0x1000',
@@ -273,7 +273,7 @@ class ClassificationInputs(unittest.TestCase):
                 r['classification_digest']=hashlib.sha256(''.join(json.dumps(x,separators=(',',':'))+'\n' for x in projection).encode()).hexdigest()
             else:
                 self.support_fixture('q41-custom-diagnostics');x=self.support_rows[3]
-                r.update(inputs=dict(diagnostics=diagnostic,saved_bodies=body,canonical_D01=self.receipt('docs/analysis/evidence/fixture/q41-custom-diagnostics.json')),
+                r.update(inputs=dict(diagnostics=diagnostic,saved_bodies=body,canonical_D01=self.receipt('docs/analysis/evidence/q41-custom-diagnostics.json')),
                     classification_boundary_complete=True,paths=[x['path']],
                     site_columns=['path_index','instruction','data_target','kind','source_line','source_column','extent_index','first_call','first_consumer','flow_address_and_bytes_sha256','selected_pointer_carriers'],
                     sites=[[0,x['instruction_address'],x['target_address'],x['kind'],1,2,0,'0x6000','0x6000','d'*64,['r8']]],
@@ -290,10 +290,10 @@ class ClassificationInputs(unittest.TestCase):
                 selected_first_interfaces_are_source_semantics=False,parity_verified=False,both_conditional_successors_followed=True)
             y=self.support_rows[2];excluded=dict(residual_ordinal=2,path=y['path'],site=y['instruction_address'],
                 actual_body_owner=y['actual_body_owner'],gameplay_recovered=False,custom_game_crate=True)
-            ownerless=self.receipt('docs/analysis/evidence/fixture/q41-custom-diagnostics.json');engine=self.receipt('docs/analysis/evidence/fixture/engine-diagnostic-roles.json')
+            ownerless=self.receipt('docs/analysis/evidence/q41-custom-diagnostics.json');engine=self.receipt('docs/analysis/evidence/engine-diagnostic-roles.json')
             r.update(selector='all owned fixture diagnostic rows',canonical_ownerless_proof=ownerless,canonical_engine_proof=engine,
                 inputs=[self.receipt(self.path.relative_to(self.root).as_posix()),self.record['artifacts']['diagnostic-sites.jsonl.gz'],census,body,ownerless,engine,diagnostic,
-                    self.receipt('docs/analysis/evidence/fixture/addon-timers/integration.json')],
+                    self.receipt('docs/analysis/evidence/addon-timer-integration.json')],
                 artifacts=dict(owned_AS=dict(self.gzip('runtime/owned.jsonl.gz',json.dumps(row)+'\n'),rows=1),
                     excluded_context=dict(self.gzip('runtime/excluded.jsonl.gz',json.dumps(excluded)+'\n'),rows=1)),
                 finite_bounds=dict(instructions_per_path=256,conditional_guards_per_path=16,paths_per_site=256),
@@ -317,7 +317,7 @@ class ClassificationInputs(unittest.TestCase):
             self.write_bytes('crates/fixture.rs',source.encode())
             self.write_json('runtime/as-cases.json',dict(target=self.target,hp_cases=[dict(kind='hp-helper'),dict(kind='hp-caller')],support_thunk_cases=[{}]))
             r.update(inputs=[self.receipt(self.path.relative_to(self.root).as_posix()),self.record['artifacts']['diagnostic-sites.jsonl.gz'],census,body,
-                    self.receipt('docs/analysis/evidence/fixture/native-address-leads.json'),address['inventory']],
+                    self.receipt('docs/analysis/evidence/native-address-leads.json'),address['inventory']],
                 source_contract=dict(path='crates/fixture.rs',function='health_polynomial',body_sha256=hashlib.sha256(source.encode()).hexdigest()),
                 exact_direct_AS_context_candidates=[dict(site='0x5000',source_site='0x1002',source_native_owner='0x1000',direct_diagnostic_context=[self.support_rows[0]['path']])],
                 ranges={'fixture':dict(start='0x5000',end_exclusive='0x5001',sha256='c'*64,instruction_count=1)},cases=self.receipt('runtime/as-cases.json'),checks=dict(hp_helper_cases=1,hp_caller_cases=1,support_thunk_cases=1))

@@ -13,7 +13,7 @@ import argparse, hashlib, json, math, struct, subprocess, sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.100.1.exe'
 SHA = '17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
-OUT = ROOT / 'runtime/analysis/staging/native-evidence/0.100.1/notifications'
+OUT = ROOT / 'runtime/analysis/staging/native-evidence/notifications'
 WORK = ROOT / 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0'
 OWNERS = {
     'dispatch': 0x140062b50, 'update': 0x1400925b0, 'row': 0x1401034a0,

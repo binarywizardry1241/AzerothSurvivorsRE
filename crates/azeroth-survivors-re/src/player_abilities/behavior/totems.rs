@@ -142,7 +142,7 @@ mod tests {
     #[test]
     fn kind_limit_matches_native_vectors() {
         let vectors: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.127.0/totem-cap/native-vectors.json"
+            "../../../../../docs/analysis/evidence/totem-cap/native-vectors.json"
         )).unwrap();
         for case in vectors["cap_cases"].as_array().unwrap() {
             let key = case["key"].as_str().unwrap();

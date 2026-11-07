@@ -13,7 +13,7 @@ from script_sources import load_script
 
 
 def main():
-    manifest = ROOT / "docs/analysis/evidence/0.120.2/relay-sequencing/manifest.json"
+    manifest = ROOT / "docs/analysis/evidence/relay-sequencing/manifest.json"
     proof = json.loads(manifest.read_text())
     selected = latest_target(verify=True)
     if any(selected[k] != proof["target"][k] for k in ("version", "sha256", "size_bytes")):

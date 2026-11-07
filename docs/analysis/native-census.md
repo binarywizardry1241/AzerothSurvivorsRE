@@ -78,7 +78,7 @@ it also contains admitted handler instructions.
 
 ### Guarded tables and AS discovery
 
-The [applied and proposed proof](evidence/0.141.0/native-switch-proposal-review.json)
+The [applied and proposed proof](evidence/native-switch-proposal-review.json)
 binds all 3,936 guarded tables to the selected pass. The
 [guarded dispatch review](switch-context-source-review.md) records
 current AS-context sites, prior geometry candidates and the pending type,

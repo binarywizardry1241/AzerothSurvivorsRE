@@ -7,7 +7,7 @@ use serde_json::Value;
 
 fn fixtures() -> Value {
     serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.112.0/warrior-talents/native-cases.json"
+        "../../../docs/analysis/evidence/warrior-talents/native-cases.json"
     ))
     .unwrap()
 }
@@ -103,7 +103,7 @@ fn bloodlust_shield_matches_native_order_and_reserved_expiry() {
     use azeroth_survivors_re::player_abilities::behavior::{buffs, state::Vitals};
     use azeroth_survivors_re::player_abilities::{AbilityDefinition, RuntimeInstance};
     let fixture: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.112.0/buff-potency/bounded-cases.json"
+        "../../../docs/analysis/evidence/buff-potency/bounded-cases.json"
     ))
     .unwrap();
     for case in fixture["cases"]

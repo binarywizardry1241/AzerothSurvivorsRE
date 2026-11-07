@@ -2,9 +2,9 @@
 
 Authority is the configured installed Windows EXE, version **0.112.0**, SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The current [manifest](evidence/0.112.0/raid-reward-pickups/manifest.json),
-[instruction extract](evidence/0.112.0/raid-reward-pickups/selected-native.asm)
-and [Ghidra provenance](evidence/0.112.0/raid-reward-pickups/rea-provenance.json)
+The current [manifest](evidence/raid-reward-pickups/manifest.json),
+[instruction extract](evidence/raid-reward-pickups/selected-native.asm)
+and [Ghidra provenance](evidence/raid-reward-pickups/rea-provenance.json)
 bind the AS pickup creator `145944310..14594544f` and AS object provider
 `14594f020..14594fb4d`. This continues the explicit pickup-output boundary in
 [primary boss lifecycle](raid-boss-lifecycle.md) and

@@ -5,8 +5,9 @@ Synthetic installed-instruction fixtures; no compiler, Rust or game process.
 """
 from script_sources import load_script
 import argparse, hashlib, json, re, sys, struct, math
+from artifact_history import read_artifact
 from coverage_common import ROOT
-STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-pickup-collection'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/raid-pickup-collection'
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-pickup-collection'
 g = load_script('g', ROOT/'scripts/check-raid-guardian-lifecycle.py');r=g.r
 g.RANGES.clear();g.RANGES.update({'loop':(0x1459028e1,0x1459035f4),'reserved':(0x1459d4d20,0x1459d4edc),'remove':(0x14594d9e0,0x14594dbfd),'attract':(0x14594eb50,0x14594ee2e)})
@@ -188,7 +189,7 @@ def main():
  paths=['raid-frame-continuation/selected-native.asm','raid-boss-lifecycle/selected-native.asm','raid-reward-pickups/selected-native.asm','raid-lifecycles/selected-native.asm','raid-guardian-lifecycle/selected-native.asm','raid-forced-position/selected-native.asm','raid/queue.asm','raid-hazards/dispatcher.asm']
  canonical={}
  for path in paths:
-  for line in (ROOT/'docs/analysis/evidence/0.112.0'/path).read_text().splitlines():
+  for line in read_artifact(ROOT/'docs/analysis/evidence/0.112.0'/path).decode().splitlines():
    hit=re.match(r'^([0-9a-f]+): ([0-9a-f]+) ',line)
    if hit:canonical.setdefault(int(hit[1],16),(bytes.fromhex(hit[2]),'../'+path))
  new={};traces={};calls={}
@@ -216,7 +217,7 @@ def main():
    'No Rust execution/compiler, game process, actual client/audio/UI interaction, terrain integration, or original/rebuilt parity comparison.'])
  for name,value in {'selected-native.asm':assembly,'manifest.json':json.dumps(proof,indent=2)+'\n'}.items():
   if args.stage:(out/name).write_text(value)
-  else:assert(out/name).read_text()==value,name
+  else:assert read_artifact(out/name).decode()==value,name
  print(json.dumps(counts,indent=2));print('Current pickup collection checks passed; no compilation/game')
 
 if __name__=='__main__':main()

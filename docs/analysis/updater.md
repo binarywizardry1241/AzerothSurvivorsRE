@@ -3,7 +3,7 @@
 Target SHA-256 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
 This current #17 recovery supersedes the behavioral provenance in the
 [historical updater report](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/updater-0.105.0.md). The
-[manifest](evidence/0.109.0/updater/manifest.json) binds 21 current full owners,
+[manifest](evidence/updater/manifest.json) binds 21 current full owners,
 fresh REA/Ghidra queries, and 184 bounded original-instruction cases.
 [verification-needed](../verification-needed.md) retains overall build/runtime limits.
 
@@ -36,7 +36,7 @@ register/scalar operands and structure offsets after independently rebinding
 calls and RIP data. Current eligibility `140185a30`, apply `14017f830`,
 patch schema `14012a810` and frontend producers were freshly inspected rather
 than declared equivalent from a guessed version offset. The
-[address/range map](evidence/0.109.0/updater/address-map.json) records that scope.
+[address/range map](evidence/updater/address-map.json) records that scope.
 
 Exact opt-out `WOW_ROGUE_UPDATE=0`, case-insensitive `AzerothSurvivors` stem,
 exact auto-install value 1, numeric version lanes, nonempty latest version,

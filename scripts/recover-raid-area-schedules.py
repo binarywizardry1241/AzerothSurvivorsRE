@@ -21,7 +21,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b"
 WORK = ROOT / "runtime/analysis/history/raid/raid-area-schedules/2d7891e075b8"
-EVIDENCE = ROOT / "docs/analysis/evidence/0.108.0/raid-area-schedules"
+EVIDENCE = ROOT / "docs/analysis/evidence/raid-area-schedules"
 SOURCE = ROOT / "crates/azeroth-survivors-re/src/bosses/raid_area_catalog.rs"
 
 
@@ -108,7 +108,7 @@ def recover():
 
     # Reuse the canonical current-target actor/constructor extracts, rather than
     # retaining a second copy of identical assembly or Ghidra pseudocode.
-    manifest = json.loads((ROOT / "docs/analysis/evidence/0.108.0/boss-minions/manifest.json").read_text())
+    manifest = json.loads((ROOT / "docs/analysis/evidence/boss-minions/manifest.json").read_text())
     for record in manifest["spans"]:
         at = int(record["file_offset"], 16)
         assert hashlib.sha256(data[at:at + record["byte_count"]]).hexdigest() == record["sha256"]
@@ -245,7 +245,7 @@ def main():
     # Native summon bytes already have a canonical target-bound extract. Keep
     # their selected scheduling metadata here and reference that copy instead
     # of retaining the same sixty raw records a second time.
-    canonical_path = "docs/analysis/evidence/0.108.0/boss-minions/catalog.json"
+    canonical_path = "docs/analysis/evidence/boss-minions/catalog.json"
     canonical = json.loads((ROOT / canonical_path).read_text())
     assert canonical["target_sha256"] == SHA
     for index, boss in enumerate(catalog["bosses"]):

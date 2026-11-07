@@ -10,7 +10,7 @@ Build15 compiled and rendered the backdrop and embers without reported shader er
 The rebuilt frame was inspected alongside the native picker; exact visual parity is not claimed.
 
 REA/Ghidra scoped functions `0x140201e50` and `0x140127000` recover the constructor
-and particle update. [menu-background-native.json](evidence/0.92/menu-background-native.json)
+and particle update. [menu-background-native.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/menu-background-native.json)
 records their evidence IDs, original constant bytes/VAs/file offsets, type bindings,
 formulas and remaining limits. `scripts/recover-menu-background.py` reproduces the
 curated record from the SHA-bound reference and existing local REA exports. Neither

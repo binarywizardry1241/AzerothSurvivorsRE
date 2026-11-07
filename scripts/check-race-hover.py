@@ -20,7 +20,7 @@ from script_sources import load_script
 SHA = '291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08'
 START, END = 0x1402f97e9, 0x1402f9b3c
 HINT = 'Open it to every class on the Rewards tab, under Races.'
-KEEP = ROOT / 'docs/analysis/evidence/0.120.0/race-hover'
+KEEP = ROOT / 'docs/analysis/evidence/race-hover'
 
 
 def sha(raw):
@@ -176,7 +176,7 @@ def main():
                 sorted((ROOT / 'crates/azeroth-survivors-re/assets/locales').glob('*.json'))}
     assert len(catalogs) == 14
     if not args.native_only:
-        locale_proof = json.loads((ROOT / 'docs/analysis/evidence/0.120.0/race-locales/manifest.json').read_text())
+        locale_proof = json.loads((ROOT / 'docs/analysis/evidence/race-locales/manifest.json').read_text())
         assert locale_proof['target']['sha256'] == SHA and len(locale_proof['locales']) == 14
         for row in locale_proof['locales']:
             payload = row['payload']

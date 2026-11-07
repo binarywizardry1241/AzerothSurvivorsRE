@@ -35,7 +35,7 @@ health, and exclusion of a caster's own shared event.
 
 ## Detailed feed recovery
 
-The complete retained [meter Lua](evidence/0.139.1/meter-api.lua) is byte
+The complete retained [meter Lua](evidence/addon-api/meter-api.lua) is byte
 identical to 50,637 bytes at file offset `0x7a466cc` in this EXE
 (SHA-256 `2871135e74cc78964c4997e12d3c9360a80adfa57ca166ddde3f4d4af1295588`).
 Its `AZSMREQ full` request on load and world entry drives replay through

@@ -53,7 +53,7 @@ substitute was introduced.
 
 ## Current native vital contract
 
-The [canonical proof](evidence/0.113.2/guardian-target-health/manifest.json) binds
+The [canonical proof](evidence/guardian-target-health/manifest.json) binds
 one current assembly extract and a bounded Ghidra 12.1.4 observation. The
 engagement block `14594ad5c..14594adde` reads actor health/max from `+160/+164`,
 calls the current imported `ceilf`, and inserts fields28/22. The continuation
@@ -73,7 +73,7 @@ formatting remains independent of the integer UNIT contract.
 
 ## Current field-event consumer interface
 
-The [current interface proof](evidence/0.113.2/guardian-target-health/interface-manifest.json)
+The [current interface proof](evidence/guardian-target-health/interface-manifest.json)
 revalidates the necessary shared consumer against this exact EXE. The queued
 UNIT-notice arm `1406411c7..1406411f6` calls the current watcher wrapper
 `144fae0e0` and signals only when it returns true. The wrapper reads the UI

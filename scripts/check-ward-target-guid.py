@@ -16,7 +16,7 @@ from coverage_common import ROOT, file_sha256, latest_target, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-KEEP = ROOT / "docs/analysis/evidence/0.121.0/ward-target-guid.json"
+KEEP = ROOT / "docs/analysis/evidence/ward-target-guid.json"
 SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
 GUIDS = (0, 1, 0xFFFFFF, 0xFFFFFFFE, 0xFFFFFFFF, 0x100000000,
          0x123456789ABCDEF0, 0xFFFFFFFFFFFFFFFF)
@@ -195,7 +195,7 @@ def derive():
                                "entry_sha256": hashlib.sha256(raw(dispatch_table + login_index * 4,
                                                                    dispatch_table + login_index * 4 + 4)).hexdigest()},
             "publication_dependency": receipt(orb_script),
-            "publication_proof": receipt(ROOT / "docs/analysis/evidence/0.121.0/orb-world-resource.json"),
+            "publication_proof": receipt(ROOT / "docs/analysis/evidence/orb-world-resource.json"),
             "seed_cases": seed_cases, "constructor_cases": constructor_cases,
             "private_swap_cases": swap_cases, "publication_cases": publication_cases,
             "publication_case_count": len(GUIDS) * 12, "publication_native_steps": native_steps,

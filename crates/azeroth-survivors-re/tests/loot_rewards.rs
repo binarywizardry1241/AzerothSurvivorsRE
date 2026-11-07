@@ -185,7 +185,7 @@ fn rarity_weights_match_native_branches_including_level_cap() {
 #[test]
 fn source_catalog_matches_all_current_native_records() {
     let fixture: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.112.0/jewelry/validation.json"
+        "../../../docs/analysis/evidence/jewelry/validation.json"
     )).unwrap();
     assert_eq!(fixture["target"]["version"], "0.112.0");
     assert_eq!(JEWELRY.len(), fixture["rows"].as_array().unwrap().len());
@@ -201,7 +201,7 @@ fn source_catalog_matches_all_current_native_records() {
 #[test]
 fn mystaria_growth_matches_current_native_increments_and_remains_uncapped() {
     let fixture: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.112.0/jewelry/validation.json"
+        "../../../docs/analysis/evidence/jewelry/validation.json"
     )).unwrap();
     let definition = JewelryDefinition::by_key("star_of_mystaria").unwrap();
     assert_eq!((definition.tag, definition.slot), (19, 1));
@@ -215,7 +215,7 @@ fn mystaria_growth_matches_current_native_increments_and_remains_uncapped() {
                    bits(&case["increment_bits"]), "{case}");
     }
     let text: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.112.0/jewelry/text-validation.json"
+        "../../../docs/analysis/evidence/jewelry/text-validation.json"
     )).unwrap();
     for case in text["cap_cases"].as_array().unwrap() {
         let actual = prose::jewelry_description(definition, f32_value(&case["amount_bits"]))

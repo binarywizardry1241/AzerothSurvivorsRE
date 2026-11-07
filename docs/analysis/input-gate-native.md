@@ -114,7 +114,7 @@ write booleans.
   and pressed touch before window position. When both are clear, they
   clear the drag tags and enter their own persistence routes. Thus the
   drag may retain ownership outside a hovered Block node.
-  [Drag receipts](evidence/0.139.2/input-gate-drags.json).
+  [Drag receipts](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/input-gate-drags.json).
 - **Escape (#59).** The shared input preparation owner `0x14025d4d0`
   resolves the same gate TypeId, clears its physical vector at
   `0x14025da42` and conditionally adds physical Escape `0x73` at

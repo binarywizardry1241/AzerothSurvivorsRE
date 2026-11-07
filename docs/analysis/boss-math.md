@@ -10,9 +10,9 @@ The boss spawner calls this owner and passes its results through
 `make_combat_actor`; these are the actual actor health, damage, speed and reach
 inputs, rather than an unused comparison helper.
 
-The [canonical constructor](evidence/0.105.0/boss-catalog/manifest.json) already
+The [canonical constructor](evidence/boss-catalog/manifest.json) already
 retains REA/Ghidra's complete `14592ff90..145930df2` extract. This recovery reuses
-it and retains only [compact current vectors](evidence/0.105.0/boss-math/native.json).
+it and retains only [compact current vectors](evidence/boss-math/native.json).
 Two original-PE ranges, `145930179..145930209` and `14593054f..1459306ae`,
 execute the endless gate/exponent, health, damage, percentage conversion,
 movement speed, reach and initial-clock writes. The native `SQRTSS` and packed

@@ -7,7 +7,7 @@ embedded-map construction, external overrides and lookup. The
 [catalog report](locale-catalogs.md) owns exact catalog payloads;
 [verification-needed](../verification-needed.md) owns implementation and deferred validation.
 
-The [canonical manifest](evidence/0.119.0/localization-loader/contracts.json)
+The [canonical manifest](evidence/localization-loader/contracts.json)
 binds current PE byte ranges, independent assembly, journaled Ghidra queries,
 direct call edges and RIP-relative address observations. It records historical
 instruction-structure comparisons separately: matching instruction layout does

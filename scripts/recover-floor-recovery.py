@@ -11,7 +11,7 @@ import argparse, hashlib, json, math, struct, subprocess, sys
 ROOT = Path(__file__).resolve().parents[1]
 SHA = '17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
 TARGET = ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe'
-OUT = ROOT/'docs/analysis/evidence/0.100.1/floor-recovery'
+OUT = ROOT/'docs/analysis/evidence/floor-recovery'
 WORK = ROOT/'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0'
 OWNERS = {'movement':0x1454a5cb0, 'minimum-floor':0x14552b4e0,
  'nearest-floor':0x14552d220, 'blocked-footprint':0x1455257a0,

@@ -5,7 +5,7 @@ Current target/source ownership: [0.113.2 ground query/publication](https://gith
 
 Target: supplied **0.105.0** EXE, SHA-256
 `8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7`.
-[Manifest](evidence/0.105.0/mob-movement/manifest.json) records original PE byte
+[Manifest](evidence/mob-movement/manifest.json) records original PE byte
 ranges, hashes, the explicit current ABI and three REA/Ghidra Evidence IDs.
 [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) jointly own overall implementation and validation.
 
@@ -84,7 +84,7 @@ serialization are explicit seams. The nonpositive-duration facing serializer is
 statically recovered but intercepted in those cases. These checks execute no
 Rust source, real MPQ geometry, rendered animation or original game process.
 
-The [source/data validation record](evidence/0.105.0/mob-movement/source-validation.json)
+The [source/data validation record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/mob-movement/source-validation.json)
 binds the ground-cache fix to source hashes, the compiled application hash, test
 filters, input manifest and log digests. The locked macOS aarch64 `menu` build
 passed, as did **37 targeted Rust tests**: 34 spline/grounding cases, one local

@@ -10,7 +10,7 @@ import struct
 ROOT = Path(__file__).resolve().parent.parent
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
-OUT = ROOT / 'docs/analysis/evidence/0.97.2/menu-background-0.97.2.json'
+OUT = ROOT / 'docs/analysis/evidence/menu-background.json'
 
 
 def main():

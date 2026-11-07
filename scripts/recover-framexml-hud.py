@@ -10,7 +10,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b"
-EVIDENCE = ROOT / "docs/analysis/evidence/0.108.0/hud-framexml"
+EVIDENCE = ROOT / "docs/analysis/evidence/hud-framexml"
 START = b"function UpdateTalentButton()"
 END = b"-- Azeroth Survivors: a spell's tooltip beside its action button"
 

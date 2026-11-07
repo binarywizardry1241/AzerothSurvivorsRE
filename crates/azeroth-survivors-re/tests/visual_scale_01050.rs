@@ -11,7 +11,7 @@ fn u(value: &Value) -> u32 {
 #[test]
 fn current_native_scale_table_vectors() {
     let fixture: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.105.0/spell-presentation/native.json"
+        "../../../docs/analysis/evidence/spell-presentation/native.json"
     ))
     .unwrap();
     for case in fixture["scale_publication"].as_array().unwrap() {

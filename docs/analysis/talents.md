@@ -8,8 +8,8 @@ run for this work, for this source-recovery checkpoint.
 
 The historical [0.92 report](talents-recovery.md) remains version-bound.
 Its old addresses and UI geometry are not evidence of current behavior. The
-current owning evidence is [talent definitions](evidence/0.97.2/talents.json)
-and [native consumers](evidence/0.97.2/talents-native.json).
+current owning evidence is [talent definitions](evidence/talents.json)
+and [native consumers](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/talents-native.json).
 
 ## Current definitions
 

@@ -16,7 +16,7 @@ sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'), str(
 import capstone
 import native_talent_fixture as native
 
-KEPT = ROOT / 'docs/analysis/evidence/0.112.0/player-aura-indices'
+KEPT = ROOT / 'docs/analysis/evidence/player-aura-indices'
 STAGE = ROOT / 'runtime/analysis/history/native-recovery/gameplay-frontiers/1d609cc38fa0/aura-indices-staged'
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 
@@ -150,7 +150,7 @@ def producer_aliases(machine):
 
 
 def packed_words(machine):
-    path = ROOT / 'docs/analysis/evidence/0.100.1/run-presentation/player-aura-native.json'
+    path = ROOT / 'docs/analysis/evidence/run-presentation/player-aura-native.json'
     seeds = json.loads(path.read_text())
     flag_results, application_results = [], []
     for case in seeds['flags']:

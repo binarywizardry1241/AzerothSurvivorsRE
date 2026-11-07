@@ -110,7 +110,7 @@ def check_state_consumer_closure(directory, target, data, pe, raw):
 
 def main():
     target = latest_target(verify=True)
-    directory = ROOT / 'docs/analysis/evidence/0.115.0/coop-spell-text'
+    directory = ROOT / 'docs/analysis/evidence/coop-spell-text'
     contract = json.loads((directory / 'append-contract.json').read_text())
     assert contract['target'] == {'version': target['version'], 'sha256': target['sha256']}
     assert not contract['compiled'] and not contract['target_executed']

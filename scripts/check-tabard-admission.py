@@ -27,7 +27,7 @@ EXPECTED = {
     GATE: "01459186fc35b32cc809d7af103500db5b1655d9c1f4ee7c1a4897c80c0c62d1",
     ADMISSION: "ba53b73770b933718eb360c15c0d37a92f6d0ed59c6d2684087a40c857251ce4",
 }
-KEPT = ROOT / "docs/analysis/evidence/0.117.0/tabard-admission/cases.json"
+KEPT = ROOT / "docs/analysis/evidence/tabard-admission/cases.json"
 STAGED = ROOT / "runtime/analysis/history/native-recovery/target/6f083622318f/tabard-admission/checker-cases.json"
 
 

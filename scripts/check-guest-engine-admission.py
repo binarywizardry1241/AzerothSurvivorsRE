@@ -19,8 +19,8 @@ from script_sources import load_script
 
 
 SHA = '6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f'
-PROOF = ROOT / 'docs/analysis/evidence/0.119.0/guest-engine-admission.json'
-PRIOR = ROOT / 'docs/analysis/evidence/0.119.0/coop-item-registry/manifest.json'
+PROOF = ROOT / 'docs/analysis/evidence/guest-engine-admission.json'
+PRIOR = ROOT / 'docs/analysis/evidence/coop-item-registry-comparison/manifest.json'
 PREDICATE = (0x145ae0ce0, 0x145ae0e04)
 TABLE = (0x1472da60c, 0x1472dab30)
 RECEIVE = (0x145b1cd70, 0x145b1cdee)

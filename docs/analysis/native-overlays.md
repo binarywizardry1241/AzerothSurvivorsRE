@@ -10,10 +10,10 @@ parity is claimed.
 
 The target is `AzerothSurvivors/AzerothSurvivors-0.97.2.exe`, SHA-256
 `a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589`.
-[`manifest.json`](evidence/0.97.2/native-overlays/manifest.json) retains38
+[`manifest.json`](evidence/native-overlays-comparison/manifest.json) retains38
 unchanged PE function slices analyzed through project-local REA/Ghidra, including
 slice hashes and complete tool evidence. The original Win64 instructions govern
-argument layout. [`data-spans.json`](evidence/0.97.2/native-overlays/data-spans.json)
+argument layout. [`data-spans.json`](evidence/native-overlays-comparison/data-spans.json)
 retains the relevant original constant bytes, ranges and hashes.
 
 | Owner | Address | Recovered responsibility |
@@ -159,7 +159,7 @@ operation order. Healing/absorb power-upgrade descriptions retain the native
 square-root transform, and Redemption retains its before/after burst-chance
 calculation.
 
-[`prose-fixtures.json`](evidence/0.97.2/native-overlays/prose-fixtures.json)
+[`prose-fixtures.json`](evidence/native-overlays-comparison/prose-fixtures.json)
 records baseline and modified **emulated formatter** outputs, symbolic
 expressions and callsite addresses.573 shared numeric outputs matched exactly
 as f32 when the baseline expressions were evaluated with the independently
@@ -228,7 +228,7 @@ transaction owner rather than presentation.
 
 ## Client descriptor and racial bindings
 
-[`client-descriptors.json`](evidence/0.97.2/native-overlays/client-descriptors.json)
+[`client-descriptors.json`](evidence/native-overlays-comparison/client-descriptors.json)
 retains the original bounded instruction ranges and hashes. Player field owner
 `145491140` sets normal rest state2 in descriptor194's high byte while retaining
 the actual facial-hair low byte. Its race faction table is Human1, Orc2,
@@ -282,7 +282,7 @@ misses deliberately select the embedded English fallback.
 The source-owned
 [`native-amulets-0.97.2.json`](../../crates/azeroth-survivors-re/assets/native-amulets-0.97.2.json)
 retains names, keys, icons, rarity,64-byte effects and owned strings.
-[`amulet-construction.json`](evidence/0.97.2/native-overlays/amulet-construction.json)
+[`amulet-construction.json`](evidence/native-overlays-comparison/amulet-construction.json)
 binds its SHA-256, constructor scope, reviewed calls and record counts. Raw
 padding reflects the bounded emulator's zeroed allocation and is not a claim
 about native uninitialized padding. Original pointer words are forensic data;
@@ -311,7 +311,7 @@ A result shorter than three receives exactly one rarity2 gold offer using
 `max(cache_price>>1,60)`. This is source offer generation, separate from purchase,
 selection application, presentation and shared completion.
 
-[`amulet-draw-fixtures.json`](evidence/0.97.2/native-overlays/amulet-draw-fixtures.json)
+[`amulet-draw-fixtures.json`](evidence/native-overlays-comparison/amulet-draw-fixtures.json)
 records36 unchanged native sampler-span executions, including one-element pools
 and rejection cases. Each selected index and final four-word RNG state matched
 the source equations. No calls are substituted in this sampler span.
@@ -324,7 +324,7 @@ duration, health-power and effect values. Reward refresh`1454b84f0` overwrites
 only these talent lanes, preserving learned rank, upgrades, remaining cooldown
 and ordinary multipliers. The source companion implements this numeric subset.
 
-[`amulet-modifier-fixtures.json`](evidence/0.97.2/native-overlays/amulet-modifier-fixtures.json)
+[`amulet-modifier-fixtures.json`](evidence/native-overlays-comparison/amulet-modifier-fixtures.json)
 retains274 bounded native evaluator vectors across matching/nonmatching generated
 selectors and shared definitions. The seven numeric equations matched their
 native output bits in every case. These are finite current-catalogue inputs at
@@ -351,12 +351,12 @@ python3 scripts/recover-native-amulets.py
 ### Client cooldown publication integration
 
 The ordinary successful-cast branch
-[`14549ec0f..14549ed8b`](evidence/0.97.2/native-overlays/ordinary-cooldown-publication.asm)
+[`14549ec0f..14549ed8b`](evidence/native-overlays-comparison/ordinary-cooldown-publication.asm)
 stores the final scheduled remaining value after the native minimum/NaN handling,
 then emits its spell cooldown as truncated saturated unsigned milliseconds.
 The failed-cast branch writes only the`.2` retry and jumps to the next instance;
 the learned instance's initial`.5` delay is also separate from a cooldown packet.
-The [client descriptor manifest](evidence/0.97.2/native-overlays/client-descriptors.json)
+The [client descriptor manifest](evidence/native-overlays-comparison/client-descriptors.json)
 binds this380-byte span to the selected executable.
 
 The live scheduler now exposes publication after successful rescheduling.

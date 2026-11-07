@@ -16,7 +16,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 SHA = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-OUT = ROOT / "runtime/analysis/staging/native-evidence/0.97.2/enemies"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/enemies"
 RUNTIME = ROOT / "runtime/analysis/history/native-recovery/enemy-spawning/20e2f3691d48"
 FUNCTIONS = (0x1454beef0, 0x145536a90, 0x14552ef30, 0x1454c2040, 0x1454c17b0, 0x1454c2a20, 0x14552f110, 0x14552f4d0, 0x145529990, 0x1454d1b70)
 BRANCHES = (0x1454a7f41, 0x1454a818a, 0x1454a7fb1, 0x1454a8050)

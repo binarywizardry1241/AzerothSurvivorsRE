@@ -25,7 +25,7 @@ Implementation is `src/run_options.rs` plus `src/run_mods.rs`. It uses a separat
 
 ## Evidence and limits
 
-Reproduce static constant and bounded instruction extraction with `python3 scripts/recover-run-options.py`. [Constants/instruction manifest](evidence/0.92/run-options/constants.json), [UI slice provenance](evidence/0.92/runmods-ui-slices-provenance.json) and [reward slice provenance](evidence/0.92/runmods-reward-slices-provenance.json) bind the data to the target. Full REA results remain local under `runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-<VA>`.
+Reproduce static constant and bounded instruction extraction with `python3 scripts/recover-run-options.py`. [Constants/instruction manifest](evidence/run-options/constants.json), [UI slice provenance](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/runmods-ui-slices-provenance.json) and [reward slice provenance](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/runmods-reward-slices-provenance.json) bind the data to the target. Full REA results remain local under `runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-<VA>`.
 
 Primary UI REA IDs: frame `ev_2051e360a74b3ae0c781f76502523582468663e492c5136ed40fb231fff78fae`, row wrapper `ev_f4dceb57619968577db5195859d852ebfd697724f8df4800a70e9edf5dfdb42f`, row child `ev_f25b4563311a14bdb112ad150956bc003f437d6b522be9167cd15eb1916a75b0`, summary `ev_3ccca30583c5660a720ccafd3760ab63cade7dd62a60e47ced097fcbb6583ccf`.
 

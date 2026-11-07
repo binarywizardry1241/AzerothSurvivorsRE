@@ -15,7 +15,7 @@ def main():
     parser.add_argument("--native", action="store_true")
     parser.add_argument("--keen-source", action="store_true", help="also require #164's source boundary repair")
     args = parser.parse_args()
-    proof = json.loads((ROOT / "docs/analysis/evidence/0.117.0/united-front.json").read_text())
+    proof = json.loads((ROOT / "docs/analysis/evidence/united-front.json").read_text())
     target = latest_target(verify=True)
     assert target["sha256"] == proof["target"]["sha256"]
     image = target_bytes(target)

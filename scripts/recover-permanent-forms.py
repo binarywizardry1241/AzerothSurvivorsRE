@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from coverage_common import latest_target
 
 WORK = ROOT / 'runtime/analysis/history/co-op/forms/bdf1935e7cdb'
-RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/permanent-forms'
+RETAINED = ROOT / 'docs/analysis/evidence/permanent-forms'
 SPANS = [('selector', 0x1458F5F7D, 0x1458F6026),
          ('bear', 0x1458F6C6A, 0x1458F6C8E),
          ('current-display-store', 0x1458F6026, 0x1458F60C3),

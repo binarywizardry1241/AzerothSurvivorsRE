@@ -20,12 +20,12 @@ for value in inputs:
  raw=value.encode();u.mem_write(0x201000,raw+bytes(8));u.reg_write(UC_X86_REG_RCX,0x201000);u.reg_write(UC_X86_REG_RDX,len(raw));u.reg_write(UC_X86_REG_RSP,0x208000);u.mem_write(0x208000,struct.pack('<Q',0x200000));u.emu_start(0x1400a4890,0x200000,count=10000)
  ptr=u.reg_read(UC_X86_REG_RAX);n=u.reg_read(UC_X86_REG_RDX);trim=bytes(u.mem_read(ptr,n)).decode()
  out.append(dict(input=value,trimmed=trim,store_or_spend=trim=='1',hud=trim!='0'))
-(R/'docs/analysis/evidence/0.100.1/target-menu/cvar-trim-native.json').write_text(portable_json(dict(target_sha256=hashlib.sha256(d).hexdigest(),entry='0x1400a4890',end='0x1400a4b09',method='Complete original helper instructions; return address/input UTF8/stack explicitly supplied, no imported calls or arithmetic shims.',cases=out),indent=2,ensure_ascii=True)+'\n')
+(R/'docs/analysis/evidence/target-menu/cvar-trim-native.json').write_text(portable_json(dict(target_sha256=hashlib.sha256(d).hexdigest(),entry='0x1400a4890',end='0x1400a4b09',method='Complete original helper instructions; return address/input UTF8/stack explicitly supplied, no imported calls or arithmetic shims.',cases=out),indent=2,ensure_ascii=True)+'\n')
 print(len(out),'original trim cases; non-trimmed whitespace candidates:',[hex(ord(x['input'][0]))for x in out[11::2]if x['trimmed']!= '1'])
 
 import subprocess
 def span(a,n):
  o=p.rva_offset(a-p.image_base);raw=d[o:o+n];return dict(address=hex(a),file_offset=hex(o),byte_count=n,sha256=hashlib.sha256(raw).hexdigest())
-O=R/'docs/analysis/evidence/0.100.1/target-menu'
+O=R/'docs/analysis/evidence/target-menu'
 (O/'cvar-trim.asm').write_text(objdump_output(['objdump','-d','--no-show-raw-insn','--start-address=0x1400a4890','--stop-address=0x1400a4b09',str(R/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe')],cwd=R,text=True).replace(str(R)+'/', ''))
 (O/'cvar-trim-proof.json').write_text(portable_json(dict(target_sha256=hashlib.sha256(d).hexdigest(),helper=span(0x1400a4890,0x279),whitespace_table=span(0x146d6a47f,256),table_pointer=span(0x147a37e60,8),cases=len(out),comparison='Rust str::trim Unicode White_Space matches all75 native cases; Python strip differs for001C..001F.',target_executed=False),indent=2)+'\n')

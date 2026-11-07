@@ -59,7 +59,7 @@ def hook(_,a,size,unused):
 u.hook_add(UC_HOOK_CODE,hook)
 def effects(ptr, count):
     return decode_effects(ptr, count, u.mem_read, text, p.image_base, end)
-source=json.loads((R/'docs/analysis/evidence/0.97.2/player-abilities/catalog.json').read_text())['definitions'];generated=[]
+source=json.loads((R/'docs/analysis/evidence/player-abilities/catalog.json').read_text())['definitions'];generated=[]
 for definition in source:
  next_heap=HEAP+0x1000;out=HEAP;u.mem_write(out,bytes(112));address=int(definition['record']['virtual_address'],16)
  sp=STACK+0x1f0008;wq(sp,STOP)
@@ -105,7 +105,7 @@ for amulet in generated+shared:
   fixtures.append({'amulet_key':amulet['key'],'ability_key':key,'native_lane_bits':list(struct.unpack('<7I',native))})
 payload={'target_sha256':SHA,'legendary_owner':'0x145414300','shared_table':'0x14671f7b0','shared_stride':80,'generated':generated,'shared':shared,'limitations':['Emulated constructors are not original application runtime observations.','Effect tags/raw payloads are retained; complete runtime effect composition and all variant semantics are separate recovery.','Raw pointer words are forensic data only; strings are independently retained as source values.']}
 asset=R/'crates/azeroth-survivors-re/assets/native-amulets-0.97.2.json';asset.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
-evidence=R/'docs/analysis/evidence/0.97.2/native-overlays'
+evidence=R/'docs/analysis/evidence/native-overlays-comparison'
 (evidence/'amulet-modifier-fixtures.json').write_text(json.dumps({'target_sha256':SHA,'owner':'0x145415f40','fixture_count':len(fixtures),'mismatches':0,'lane_order':['power:f32','cooldown:f32','targets:u32','area:f32','duration:f32','health_power:f32','effect:f32'],'fixtures':fixtures,'limits':['Finite current catalogue inputs at base empowerment1; source Rust was not compiled/executed by this helper.','Reviewed roundf import is substituted; extreme/nonfinite inputs remain outside the fixtures.']},indent=2)+'\n')
 draws=[];mask=(1<<64)-1
 def native_step(words):

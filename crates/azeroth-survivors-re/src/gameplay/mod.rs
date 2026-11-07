@@ -2199,7 +2199,7 @@ mod tests {
     #[test]
     fn current_level_cvar_text_and_flags_match_native_whitespace_cases() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/target-menu/cvar-trim-native.json"
+            "../../../../docs/analysis/evidence/target-menu/cvar-trim-native.json"
         ))
         .unwrap();
         for case in fixture["cases"].as_array().unwrap() {

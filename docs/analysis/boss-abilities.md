@@ -8,11 +8,11 @@ The source constructs concrete terrain-adjusted attacks, delayed hit records, mi
 
 ## Evidence and method
 
-- [Manifest: original PE ranges, constants, jump table and all 191 records](evidence/0.97.2/bosses/abilities-manifest.json).
-- [Retained REA/Ghidra decompilation and provenance](evidence/0.97.2/bosses/abilities-rea.json).
-- [Original dispatch instructions](evidence/0.97.2/bosses/abilities-dispatch.asm), [delayed effect resolution](evidence/0.97.2/bosses/abilities-effect-resolution.asm).
-- [153 bounded original-instruction fixtures](evidence/0.97.2/bosses/abilities-fixtures.json).
-- Canonical raw records originate in the already selected-hash-bound [guardian/boss catalog](evidence/0.97.2/guardians/guardian-catalog.json).
+- [Manifest: original PE ranges, constants, jump table and all 191 records](evidence/bosses/abilities-manifest.json).
+- [Retained REA/Ghidra decompilation and provenance](evidence/bosses/abilities-rea.json).
+- [Original dispatch instructions](evidence/bosses/abilities-dispatch.asm), [delayed effect resolution](evidence/bosses/abilities-effect-resolution.asm).
+- [153 bounded original-instruction fixtures](evidence/bosses/abilities-fixtures.json).
+- Canonical raw records originate in the already selected-hash-bound [guardian/boss catalog](evidence/guardians/guardian-catalog.json).
 
 `python3 scripts/recover-boss-abilities.py` verifies the selected EXE digest, retains original ranges/bytes digests/constants and prepares project-local plans. `python3 scripts/rea-batch.py runtime/analysis/history/raid/boss-abilities/16e013fe9d5f/plan-<address>.json` invokes `./scripts/rea` with Ghidra. Five raw branch-entry slices at their original virtual addresses recover the jump-table bodies without manufacturing executable behavior. Their end-of-slice decompiler warnings are evidence limitations; original outgoing instructions govern. Complete native helpers and the two leaf lookup intervals are also analyzed.
 

@@ -14,7 +14,7 @@ from coverage_common import ROOT, file_sha256, latest_target, target_bytes
 from script_sources import load_script
 
 
-PROOF = ROOT / "docs/analysis/evidence/0.120.2/codex-growth-dispatch/manifest.json"
+PROOF = ROOT / "docs/analysis/evidence/codex-growth-dispatch/manifest.json"
 
 
 def check_stat_labels(proof):

@@ -2,7 +2,7 @@
 
 The installed PE contains 151,493,632 bytes and has SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
-The [whole-image discovery delta](evidence/0.141.0/discovery-delta.json)
+The [whole-image discovery delta](evidence/discovery-delta.json)
 compares the verified 0.141.0 and 0.140.0 inventories. Addresses are
 preferred PE virtual addresses.
 
@@ -37,7 +37,7 @@ verification record retains the compilation, save, UI, co-op and parity checks.
 
 `+n` and `−n` are one-based selectors into the
 `candidate_changes.module_type_namespace.added` and `.removed`
-arrays in the [delta](evidence/0.141.0/discovery-delta.json). The corresponding
+arrays in the [delta](evidence/discovery-delta.json). The corresponding
 literal selects the full byte range in the current or predecessor inventory.
 All four additions and five removals are namespace matches.
 
@@ -51,14 +51,14 @@ The distinct binding, Lua declaration, UI registration, textual ID,
 save/configuration and resource-path populations are unchanged. The PE
 import library/function sets are also unchanged. The 28,656-byte main
 addon Lua span at file offset `0x7ae141a` matches the [canonical retained
-extract](evidence/0.140.0/embedded-api.lua) with SHA-256
+extract](evidence/addon-api/selected-reference.lua) with SHA-256
 `24be94eb96a3e539ab7d30a9171090cfd15e2667efa0a9423802b37705f4e8e6`.
 Exact Lua bytes leave native producer and scheduling correspondence
 as separate questions.
 
 ## Q41-I01 embedded Lua, bindings and persistence
 
-The [embedded classification receipt](evidence/0.141.0/data-classification/manifest.json)
+The [embedded classification receipt](evidence/data-classification.json)
 selects all 2,901 occurrences. The following byte joins account for 930 of
 949 binding-identifier, 149 of 259 Lua declaration, 29 of 347 Lua
 registration-token and five of seven textual-ID occurrences. Select each
@@ -68,12 +68,12 @@ addon API span and their occurrences count once.
 
 | File offset / bytes | Exact payload and rebuilt consumer |
 | --- | --- |
-| `0x76ec4d8` / 11,034 | The [core patch](evidence/0.108.0/hud-framexml/world-state-patch.lua) with the [raid popup](evidence/0.115.0/raid-targets/popup.lua) inserted at byte 9,728. The pointer/length at file `0x76eeff8` confirms the full span and its SHA-256 is `c71f24c567d36c3c7f7c557e71ef8e136c6d62ae34369f3fdae386f623061809`. The rebuilt client installs these through the [core](../../crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs) and [raid](../../crates/azeroth-survivors-re/src/gameplay/client/raid_targets.rs) append paths. |
-| `0x73a90c3` / 271 | [StaticPopup death wrapper](evidence/0.115.0/death-popup.lua), installed by the core append path. |
-| `0x7ae141a` / 28,656 | [Main addon API](evidence/0.140.0/embedded-api.lua). The [rebuilt extension](../../crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs) composes recovered sections into the WorldStateFrame append. |
-| `0x76dfef4` / 50,637 | [Meter API](evidence/0.139.1/meter-api.lua), including the five textual IDs at ordinals 2–6. The `AZS_ML_QUERY` and `AZS_ML_LOADOUT` Lua tables use value 1 as request defaults. The [typed producer and publication](detailed-meter.md#rebuilt-authority-and-replay) are connected under [#75](../verification-needed.md#gap-75). |
-| `0x76ef063` / 9,167 | [PaperDoll Lua](evidence/0.139.1/paperdoll-run-stats.lua). [The rebuilt character pane](../../crates/azeroth-survivors-re/src/gameplay/client/run_stats.rs) installs the complete localized payload with the [stock FrameXML chunk](#paperdoll-core-file-and-localized-gear-prefix). |
-| `0x7ae478c` / 1,810 and `0x7ae4e9e` / 830 | [Combat text API](evidence/0.139.2/combat-text/event-projection-api.lua) and [frame handlers](evidence/0.139.2/combat-text/frame-handlers.lua), appended by the rebuilt extension. |
+| `0x76ec4d8` / 11,034 | The [core patch](evidence/hud-framexml/world-state-patch.lua) with the [raid popup](evidence/raid-targets/popup.lua) inserted at byte 9,728. The pointer/length at file `0x76eeff8` confirms the full span and its SHA-256 is `c71f24c567d36c3c7f7c557e71ef8e136c6d62ae34369f3fdae386f623061809`. The rebuilt client installs these through the [core](../../crates/azeroth-survivors-re/src/gameplay/client/framexml_hud.rs) and [raid](../../crates/azeroth-survivors-re/src/gameplay/client/raid_targets.rs) append paths. |
+| `0x73a90c3` / 271 | [StaticPopup death wrapper](evidence/hud-framexml/death-popup.lua), installed by the core append path. |
+| `0x7ae141a` / 28,656 | [Main addon API](evidence/addon-api/selected-reference.lua). The [rebuilt extension](../../crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs) composes recovered sections into the WorldStateFrame append. |
+| `0x76dfef4` / 50,637 | [Meter API](evidence/addon-api/meter-api.lua), including the five textual IDs at ordinals 2–6. The `AZS_ML_QUERY` and `AZS_ML_LOADOUT` Lua tables use value 1 as request defaults. The [typed producer and publication](detailed-meter.md#rebuilt-authority-and-replay) are connected under [#75](../verification-needed.md#gap-75). |
+| `0x76ef063` / 9,167 | [PaperDoll Lua](evidence/addon-api/paperdoll-run-stats.lua). [The rebuilt character pane](../../crates/azeroth-survivors-re/src/gameplay/client/run_stats.rs) installs the complete localized payload with the [stock FrameXML chunk](#paperdoll-core-file-and-localized-gear-prefix). |
+| `0x7ae478c` / 1,810 and `0x7ae4e9e` / 830 | [Combat text API](evidence/combat-text/event-projection-api.lua) and [frame handlers](evidence/combat-text/frame-handlers.lua), appended by the rebuilt extension. |
 
 Outside those spans, the other two textual IDs are the `bagId = 0`
 loop starts in `BenillaOpenBackpack` and `BenillaCloseBackpack` at
@@ -115,7 +115,7 @@ publication sites at `0x145ddb13a` and `0x145ddb1f6`. In between, the
 formatter at `0x145ddb1c8` takes the little-endian `u32` value 120 at
 `0x1476e1848` and the packed template at `0x1476e184c`. This explains why
 the completed Lua line is absent as a contiguous PE string. The existing
-[ReputationFrame append](evidence/0.127.0/run-level-cap.lua) supplies the
+[ReputationFrame append](evidence/hud-framexml/run-level-cap.lua) supplies the
 result under [#181](../verification-needed.md#gap-181).
 
 | Save/configuration ordinal | Current role and source boundary |
@@ -203,7 +203,7 @@ widget behavior are owned by the corresponding AS screen traces.
 
 The ten 40-byte file descriptors at file offsets `0x6712628..0x67127b8`
 carry separate path and payload pointers with their exact lengths. The
-[resource proof](evidence/0.141.0/resource-consumers.json) binds each
+[resource proof](evidence/resource-consumers.json) binds each
 descriptor and payload. The source counterpart is
 [`include_dir` and `content::read`](../../crates/benilla-app/src/ui_script/content.rs).
 The [glue layer](../../crates/benilla-app/src/ui_script/glue.rs) loads

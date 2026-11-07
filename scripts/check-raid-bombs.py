@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check current player-bomb producer/follow/burst contracts without building or launching.
 
---write stages textual evidence under runtime/analysis/staging/native-evidence/0.109.0/raid-bombs.
+--write stages textual evidence under runtime/analysis/staging/native-evidence/raid-bombs.
 The shared hazard constructor remains canonical under raid-lines; external
 height, serializers, localization and canonical damage are controlled seams.
 """
@@ -20,8 +20,8 @@ sys.path[:0]=[str(p) for p in [ROOT/'runtime/tool-state/python/camera/python-lib
     ROOT/'runtime/tool-state/python/armory/python-libs'] if p.is_dir()]
 
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-RETAINED=ROOT/'docs/analysis/evidence/0.109.0/raid-bombs'
-STAGED=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/raid-bombs'
+RETAINED=ROOT/'docs/analysis/evidence/raid-bombs'
+STAGED=ROOT/'runtime/analysis/staging/native-evidence/raid-bombs'
 RANGES={
     'producer':(0x145957d4b,0x145957f34),
     'player-follow-height':(0x14594f1b5,0x14594f1f8),
@@ -58,7 +58,7 @@ def main(write):
                 if v[45]!=30:continue
                 w=list(struct.unpack('<14I',v));records.append(dict(boss_id=bid,slot=slot,payload_words=w[:5],repeat_bits=w[12],record=span(a,56)))
     assert [(v['boss_id'],v['slot']) for v in records]==[(192,1),(193,3),(1494,5)]
-    guardians=json.loads((ROOT/'docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json').read_text());assert guardians['target_sha256']==SHA
+    guardians=json.loads((ROOT/'docs/analysis/evidence/guardian-signatures/catalog.json').read_text());assert guardians['target_sha256']==SHA
     assert all(m['tag']!=30 for g in guardians['rows'] for v in g['variants'] for m in v)
     assert all(p['tag']!=30 for g in guardians['rows'] for p in g['phases'])
     md=Cs(CS_ARCH_X86,CS_MODE_64);uc=Uc(UC_ARCH_X86,UC_MODE_64);mapped=set()

@@ -20,7 +20,7 @@ import sys
 ROOT=Path(__file__).resolve().parents[1]
 if ROOT.name=='runtime':ROOT=ROOT.parent
 sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
-from coverage_common import file_sha256,latest_target,target_bytes
+from coverage_common import file_sha256,latest_target,load_json,same_replay_receipt,target_bytes
 from script_sources import load_script
 from compact_evidence import proof_text,SOURCE_SHA256 as RENDERER_SHA256
 SHA='0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
@@ -63,7 +63,7 @@ EXPECTED={0x145eb7540:912,0x145eb7280:263,0x145eb7200:258,0x145eb7363:104,
 
 
 def sha(raw):return hashlib.sha256(raw).hexdigest()
-def artifact(path):return dict(path=path.relative_to(ROOT).as_posix(),sha256=sha(path.read_bytes()))
+def artifact(path):return dict(path=path.relative_to(ROOT).as_posix(),sha256=file_sha256(path))
 def packed(value):return json.dumps(value,sort_keys=True,separators=(',',':')).encode()
 
 
@@ -98,7 +98,7 @@ def derive():
         offset=pe.rva_offset(a-pe.image_base);result=image[offset:offset+n]
         assert len(result)==n;return result
     decoder=Cs(CS_ARCH_X86,CS_MODE_64);decoder.detail=True
-    queue=json.loads((ROOT/'docs/analysis/evidence/0.115.0/unknown-recovery.json').read_text())
+    queue=load_json('docs/analysis/evidence/0.115.0/unknown-recovery.json')
     assert queue['target']['sha256']==SHA
     diag_input=queue['inputs']['diagnostic-ownership']['inventory']
     body_input=queue['inputs']['ghidra-census']['execution_artifacts']['bodies.tsv.gz']
@@ -174,7 +174,7 @@ def derive():
                       sha(b''.join(struct.pack('<Q',i.address)+bytes(i.bytes)for i in flow)),carriers])
     assert counts==EXPECTED
     # Reuse the existing canonical D01 helper identities, without another extract.
-    d01=json.loads(D01.read_text());assert d01['target']['sha256']==SHA
+    d01=load_json(D01);assert d01['target']['sha256']==SHA
     d01_helpers={int(r['entry'],16):r for r in d01['helpers']}
     for entry,(role,carrier)in INTERFACES.items():
         # The allocator hook is a single RET inside a wider PE interval.
@@ -323,8 +323,8 @@ def derive_residual_roles(target, interfaces):
     trace = load_script('diagnostic_pointer_trace', ROOT/'scripts/check-owned-custom-diagnostics.py')
     canonical = load_script('diagnostic_registers', ROOT/'scripts/classify-native-ownership.py').canonical_register
     identity = {k: target[k] for k in ('version', 'path', 'sha256', 'size_bytes')}
-    residual_path = ROOT/'docs/analysis/evidence'/target['version']/'native-residuals.json'
-    residual = json.loads(residual_path.read_text())
+    residual_path = ROOT/'docs/analysis/evidence/native-residuals.json'
+    residual = load_json(residual_path)
     assert residual['target'] == identity
     inventory = residual['artifacts']['diagnostic-sites.jsonl.gz']
     assert file_sha256(ROOT/inventory['path']) == inventory['sha256']
@@ -474,6 +474,18 @@ def derive_residual_roles(target, interfaces):
                 ])
 
 
+def verify_residual_proof(value, retained):
+    assert same_replay_receipt(value['generator'], retained['generator'])
+    for field in ('inputs', 'dependencies'):
+        assert len(value[field]) == len(retained[field])
+        assert all(same_replay_receipt(current, previous)
+                   for current, previous in zip(value[field], retained[field]))
+    replay = dict(value, generator=retained['generator'], inputs=retained['inputs'],
+                  dependencies=retained['dependencies'])
+    if replay != retained:
+        raise ValueError('Retained E01 proof differs from current selected boundaries')
+
+
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--stage',action='store_true')
@@ -483,16 +495,16 @@ def main():
         ap.error('--interfaces requires --stage')
     target = latest_target(verify=True)
     if target['sha256'] != SHA:
-        proof = ROOT/'docs/analysis/evidence'/target['version']/'engine-diagnostic-roles.json'
-        retained = None if args.interfaces else json.loads(proof.read_text())
+        proof = ROOT/'docs/analysis/evidence/engine-diagnostic-roles.json'
+        retained = None if args.interfaces else load_json(proof)
         value = derive_residual_roles(target, json.load(sys.stdin) if args.interfaces else retained['interfaces'])
         if args.stage:
-            stage = ROOT/'runtime/tmp'/f'engine-diagnostic-roles-{target["version"]}.json'
+            stage = ROOT/'runtime/tmp/engine-diagnostic-roles.json'
             stage.parent.mkdir(parents=True, exist_ok=True)
             stage.write_text(proof_text(value)+'\n')
             print(stage.relative_to(ROOT))
         else:
-            assert value == retained, 'Retained E01 proof differs from current selected boundaries'
+            verify_residual_proof(value, retained)
         print(json.dumps(value['counts'], indent=2))
         return
 
@@ -503,6 +515,6 @@ def main():
         WORK.mkdir(parents=True,exist_ok=True);path=WORK/'engine-diagnostic-roles.json';path.write_text(text)
         print(json.dumps(dict(status='staged',proof=artifact(path),counts=value['counts'],digest=value['classification_digest']),indent=2))
     else:
-        assert json.loads(KEEP.read_text())==value,'Retained E01 proof differs from current selected boundaries'
+        assert load_json(KEEP)==value,'Retained E01 proof differs from current selected boundaries'
         print(json.dumps(dict(status='pass',proof=artifact(KEEP),counts=value['counts'],digest=value['classification_digest']),indent=2))
 if __name__=='__main__':main()

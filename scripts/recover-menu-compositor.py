@@ -116,7 +116,7 @@ def main():
                                'Native source names are analyst role bindings, not recovered Rust symbols.',
                                'Shared world terrain/model/lighting systems are reused; matching these shaders does not establish all shared engine code or visual parity.',
                                'Standalone ECS registration/scheduling, missing-data handling and render backend remain uncompiled and runtime-unverified.'])
-    destination = ROOT / 'docs/analysis/evidence/0.97.2/menu-compositor-0.97.2.json'
+    destination = ROOT / 'docs/analysis/evidence/menu-compositor.json'
     destination.write_text(portable_json(output, indent=2)+'\n')
     print(f'{destination.relative_to(ROOT)}: {len(functions)} PE spans, {len(shaders)} exact newline-converted shader matches')
 

@@ -8,7 +8,7 @@ from pathlib import Path
 from coverage_common import ROOT, latest_target, file_sha256, json_text
 from movement_entry_native import MovementEntry, FIRST, LAST, BEGIN, PHASE_STOP, D, PE, f32
 
-OUT = ROOT / 'docs/analysis/evidence/0.113.2/movement-entry'
+OUT = ROOT / 'docs/analysis/evidence/movement-entry'
 WORK = ROOT / 'runtime/analysis/history/findings/q41-movement-entry/69454deae884'
 
 

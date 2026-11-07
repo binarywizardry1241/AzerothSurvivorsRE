@@ -20,7 +20,7 @@ from derived_gzip import derived_gzip_text
 
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 WORK = ROOT/'runtime/analysis/history/findings/q41-expanded-ownership/6304bee20684'
-PROOF = ROOT/'docs/analysis/evidence/0.115.0/expanded-code-ownership.json'
+PROOF = ROOT/'docs/analysis/evidence/expanded-code-ownership.json'
 
 
 def rows(path):
@@ -63,10 +63,10 @@ def main():
     for record in dependencies:
         checked(record)
 
-    residual = read('docs/analysis/evidence/0.115.0/execheck-residuals.json')
+    residual = read('docs/analysis/evidence/execheck-residuals.json')
     census = read('docs/analysis/coverage/full-image-execheck-0.115.0.json')
-    canonical = read('docs/analysis/evidence/0.115.0/native-residuals.json')
-    data = read('docs/analysis/evidence/0.115.0/data-classification/manifest.json')
+    canonical = read('docs/analysis/evidence/native-residuals-comparison-3.json')
+    data = read('docs/analysis/evidence/data-classification-comparison/manifest.json')
     assert all(value['target'] == identity for value in (residual, census, canonical, data))
     assert census['independent_instructions']['exact_source_bytes_verified']
     artifacts = residual['artifacts']

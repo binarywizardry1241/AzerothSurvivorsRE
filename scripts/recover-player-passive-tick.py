@@ -38,7 +38,7 @@ def main():
     functions[0x1454d42f0] = 0x1454d43cf
     functions[0x145512d50] = 0x145512df7
     runtime = ROOT/'runtime/analysis/history/native-recovery/player-passive-tick/d94a2c1f9116'; runtime.mkdir(exist_ok=True)
-    evidence = ROOT/'runtime/analysis/staging/native-evidence/0.97.2/player-passive-tick'; evidence.mkdir(parents=True, exist_ok=True)
+    evidence = ROOT/'runtime/analysis/staging/native-evidence/player-passive-tick'; evidence.mkdir(parents=True, exist_ok=True)
     rows = []
     for start, end, name in SPANS+[(a, functions[a], f'{a:x}') for a in HELPERS]:
         offset = pe.rva_offset(start-pe.image_base); payload = binary[offset:offset+end-start]
@@ -71,10 +71,10 @@ def main():
             else:
                 record['analysis_status'] = 'Exact assembly retained; focused REA helper analysis not run'
         rows.append(record)
-    shared = json.loads((ROOT/'docs/analysis/evidence/0.97.2/player-abilities/behavior-native.json').read_text())
+    shared = json.loads((ROOT/'docs/analysis/evidence/player-abilities/behavior-native.json').read_text())
     tick = dict(next(x for x in shared['analyses'] if x['name']=='14549d550'))
     for key in ('assembly', 'pseudocode'):
-        tick[key] = 'docs/analysis/evidence/0.97.2/player-abilities/' + tick[key]
+        tick[key] = 'docs/analysis/evidence/player-abilities/' + tick[key]
     owner = tick['original']
     owner_offset = pe.rva_offset(int(owner['address'],16)-pe.image_base)
     assert hashlib.sha256(binary[owner_offset:owner_offset+owner['size']]).hexdigest() == owner['sha256']

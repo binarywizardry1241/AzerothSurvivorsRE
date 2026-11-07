@@ -1,6 +1,6 @@
 -- Run the exact selected EXE Lua with explicit widget/font/event seams.
 -- This executes interpreted Lua, not the game, compiled Rust or a renderer.
-local file = assert(io.open("docs/analysis/evidence/0.108.0/hud-framexml/world-state-patch.lua", "rb"));
+local file = assert(io.open("docs/analysis/evidence/hud-framexml/world-state-patch.lua", "rb"));
 local patch = file:read("*a"); file:close();
 local source = patch;
 local execute = loadstring or load;

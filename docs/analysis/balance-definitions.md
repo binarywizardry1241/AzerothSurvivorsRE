@@ -33,7 +33,7 @@ human-readable catalog represents it as a numeric value and converts it to u32.
 ## Current definition and consumer checks
 
 `python3 -B scripts/check-balance-definitions.py` reproduces the
-[compact result](evidence/0.112.0/balance/definitions.json):
+[compact result](evidence/balance/definitions.json):
 
 - All **113** ordinary ability records, at `146bf5eb0` with stride 120: keys,
   names, icons, ordered upgrade bytes, IDs, exact numeric/status bits, school
@@ -68,10 +68,10 @@ rounding. Current [amulet construction/names](amulets.md),
 separate current proofs. Matching definitions does not certify every spell,
 proc, actor or menu consumer in those systems.
 
-The [manifest](evidence/0.112.0/balance/manifest.json) binds fresh Ghidra imports
+The [manifest](evidence/balance/manifest.json) binds fresh Ghidra imports
 for the ordinary reader, equipment merger and three scalers, plus selected
 native stat intervals and actual input tables. The numeric-refresh owner reuses
-[canonical current provenance](evidence/0.112.0/buff-potency/manifest.json).
+[canonical current provenance](evidence/buff-potency/manifest.json).
 Raw Ghidra imports omit external data and retain unresolved computed jumps;
 actual PE tables and original instruction execution own those exact dispatch
 conclusions. `--prepare-rea` writes reproducible bounded plans under ignored

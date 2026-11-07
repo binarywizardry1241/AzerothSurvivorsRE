@@ -14,7 +14,7 @@ ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/"AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA="8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK=ROOT/"runtime/analysis/history/findings/fixgap20-26-27/f1152a393fb1/companions-curated"
-RETAINED=ROOT/"docs/analysis/evidence/0.105.0/companions"
+RETAINED=ROOT/"docs/analysis/evidence/companions"
 RANGES={"select":(0x14592F7A0,0x14592FD7C),"movement":(0x14592F1A0,0x14592F49A),
         "sweep-filter":(0x1459A3E50,0x1459A40AE),
         "sweep":(0x14592F560,0x14592F73B),"startup":(0x145918950,0x14591983C),

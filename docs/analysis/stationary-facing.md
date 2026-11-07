@@ -8,7 +8,7 @@ Target: supplied **0.105.0** EXE, SHA-256
 
 ## Native contract and evidence
 
-The canonical [movement manifest](evidence/0.105.0/mob-movement/manifest.json)
+The canonical [movement manifest](evidence/mob-movement/manifest.json)
 binds actor dispatch `14593d6bb..14593d801` and facing serializer
 `1458aa520..1458aa81e` to their original PE ranges/hashes. Existing REA/Ghidra
 Evidence `ev_dceae76d625ed8cf5ac7b49d7312851bff992b390330ec3230a804069b0df7b3`
@@ -23,7 +23,7 @@ move type **3**, the raw target GUID, flags `0x100`, duration **1 ms**, and one
 destination equal to that same start. This is distinct from move type 1's stop
 packet. NaN duration takes the travel branch.
 
-[Twelve native facing cases](evidence/0.105.0/mob-movement/stationary-facing-fixtures.json)
+[Twelve native facing cases](evidence/mob-movement/stationary-facing-fixtures.json)
 execute the unchanged current caller **and** facing serializer in Unicorn:
 positive/negative zero and negative duration, each under four controlled terrain
 result pairs. No terrain query occurs, the serial wraps from `u32::MAX` to zero,

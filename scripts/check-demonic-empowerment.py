@@ -15,7 +15,7 @@ import native_talent_fixture as n
 
 ROOT=n.ROOT
 SHA='dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
-OUT=ROOT/'docs/analysis/evidence/0.112.0/demonic-empowerment/native-cases.json'
+OUT=ROOT/'docs/analysis/evidence/demonic-empowerment/native-cases.json'
 ASSET=ROOT/'crates/azeroth-survivors-re/assets/legionlord-0.112.0.json'
 
 
@@ -39,7 +39,7 @@ def recover():
   for key in ['assembly','pseudocode']:
    if key in row and hashlib.sha256((OUT.parent/row[key]).read_bytes()).hexdigest()!=row[key+'_sha256']:raise ValueError('Retained extract drift')
  vm=n.Machine()
- lead=json.loads((ROOT/'docs/analysis/evidence/0.112.0/release-data-leads.json').read_text())['selected_abilities'][0]
+ lead=json.loads((ROOT/'docs/analysis/evidence/release-data-leads.json').read_text())['selected_abilities'][0]
  ability=int(lead['record']['virtual_address'],16)
  def instance():
   at=vm.alloc(128);vm.put(at,ability)

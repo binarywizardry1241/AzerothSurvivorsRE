@@ -12,7 +12,7 @@ import subprocess
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-EVIDENCE = ROOT / "docs/analysis/evidence/0.119.0/achievement-unlock-names"
+EVIDENCE = ROOT / "docs/analysis/evidence/achievement-unlock-names"
 
 
 def digest(data):
@@ -176,7 +176,7 @@ def main():
     assert len(joined) == 22 and literals == 35
     assert sum(kind == "cosmetic" for kind, row in joined) == 14
 
-    review = json.loads((ROOT / "docs/analysis/evidence/0.119.0/locale-catalog-review.json").read_text())
+    review = json.loads((ROOT / "docs/analysis/evidence/locale-catalog-review.json").read_text())
     locale_cases = 0
     for locale in review["locales"]:
         payload = locale["payload"]

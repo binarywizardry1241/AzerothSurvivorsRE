@@ -21,7 +21,7 @@ from script_sources import load_script
 
 
 SHA = '6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f'
-PROOF = ROOT / 'docs/analysis/evidence/0.119.0/computed-source-frontier.json'
+PROOF = ROOT / 'docs/analysis/evidence/computed-source-frontier.json'
 OUTPUT = ROOT / 'runtime/analysis/history/findings/q41-computed-context/0331bdd120bb/contextual-sites.jsonl.gz'
 PREFIXES = ('crates/wenilla-rogue/', 'crates/wenilla-rogue-app/')
 
@@ -35,7 +35,7 @@ def run(write):
     target = latest_target(verify=True)
     assert target['sha256'] == SHA and target['version'] == '0.119.0'
     image = target_bytes(target)
-    proof_path = ROOT / 'docs/analysis/evidence/0.119.0/native-residuals.json'
+    proof_path = ROOT / 'docs/analysis/evidence/native-residuals-comparison-2.json'
     proof = json.loads(proof_path.read_text())
     assert proof['target']['sha256'] == SHA
     inputs = [dict(path=proof_path.relative_to(ROOT).as_posix(), sha256=file_sha256(proof_path))]

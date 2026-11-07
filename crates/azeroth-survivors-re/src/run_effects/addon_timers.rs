@@ -1,7 +1,6 @@
 //! 0.115.0 AZSTIMERS row selection, native owner1459721c0.
 //!
-//! The canonical switch and arithmetic are retained in
-//! docs/analysis/evidence/0.115.0/addon-timers/timer-rows.asm. This projection
+//! The native switch and arithmetic back the timer contract in docs/addon-api.md. This projection
 //! reads the live generic-effect slots without advancing any gameplay clock.
 
 use super::EffectRow;

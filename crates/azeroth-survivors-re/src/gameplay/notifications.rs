@@ -167,7 +167,7 @@ mod tests {
     #[test]
     fn fade_uses_the_native_three_second_clock_boundaries() {
         let vectors: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/notifications/native-clock-fixtures.json"
+            "../../../../docs/analysis/evidence/notifications/native-clock-fixtures.json"
         )).unwrap();
         let bits = |value: &str| u32::from_le_bytes(std::array::from_fn(|index| {
             u8::from_str_radix(&value[index*2..index*2+2], 16).unwrap()

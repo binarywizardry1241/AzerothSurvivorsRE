@@ -13,7 +13,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/class-rules"
+RETAINED = ROOT / "docs/analysis/evidence/class-rules"
 
 
 def main():
@@ -38,7 +38,7 @@ def main():
             if field in scope:
                 assert hashlib.sha256((ROOT / scope[field]).read_bytes()).hexdigest() == scope[field + "_sha256"]
 
-    selected = json.loads((ROOT / "docs/analysis/evidence/0.105.0/game-mode-audit/selected-data.json").read_text())
+    selected = json.loads((ROOT / "docs/analysis/evidence/game-mode-audit/selected-data.json").read_text())
     assert selected["target_sha256"] == SHA
     source = json.loads((ROOT / "crates/azeroth-survivors-re/assets/talents.json").read_text())
     talents = {row["key"]: row for cls in source["classes"] for tree in cls["trees"] for row in tree["talents"]}

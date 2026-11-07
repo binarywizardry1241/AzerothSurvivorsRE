@@ -15,7 +15,7 @@ import sys
 
 from coverage_common import ROOT, latest_target, target_bytes
 
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.109.0/terminal-order'
+EVIDENCE = ROOT / 'docs/analysis/evidence/terminal-order'
 MASK64 = (1 << 64) - 1
 
 

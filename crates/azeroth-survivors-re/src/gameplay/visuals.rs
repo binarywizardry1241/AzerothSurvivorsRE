@@ -744,7 +744,7 @@ mod tests {
     fn movement_endpoints_and_duration_match_current_native_dispatch() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(concat!(
             env!("CARGO_MANIFEST_DIR"),
-            "/../../docs/analysis/evidence/0.105.0/mob-movement/native-fixtures.json"
+            "/../../docs/analysis/evidence/mob-movement/native-fixtures.json"
         ))).unwrap();
         let point = |row: &serde_json::Value| -> [f32; 3] {
             std::array::from_fn(|i| row[i].as_f64().unwrap() as f32)
@@ -806,7 +806,7 @@ mod tests {
     fn ward_creation_target_preserves_native_guid_and_snapshot_changes() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(concat!(
             env!("CARGO_MANIFEST_DIR"),
-            "/../../docs/analysis/evidence/0.121.0/ward-target-guid.json"
+            "/../../docs/analysis/evidence/ward-target-guid.json"
         ))).unwrap();
         for row in fixture["publication_cases"].as_array().unwrap() {
             let target = row["target_guid"].as_u64().unwrap();

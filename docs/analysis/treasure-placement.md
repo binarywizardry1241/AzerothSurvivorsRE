@@ -3,7 +3,7 @@
 Selected EXE SHA-256:
 `17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b`.
 
-The [current catalog evidence](evidence/0.100.1/treasure-chests/catalog.json)
+The [current catalog evidence](evidence/treasure-chests-comparison/catalog.json)
 binds all twelve zone geometry records and ordinary enemy cache flags to exact
 current PE ranges. Recovered values agree with the existing source constants;
 this update gives those constants their independently checked current provenance.

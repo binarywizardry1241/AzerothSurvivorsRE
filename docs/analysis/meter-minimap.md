@@ -16,7 +16,7 @@ different from the native image arrangement.
 
 Fresh REA/Ghidra 12.1.4 recovery follows the current placement owner
 `1402137d0` into its direct child-constructor call `1402b23f0`. The
-[canonical manifest](evidence/0.113.2/meter-minimap/manifest.json) binds exact
+[canonical manifest](evidence/meter-minimap/manifest.json) binds exact
 current PE bytes, immutable inputs, two Ghidra observations and six disjoint
 assembly extracts. These are bounded raw imports with synthetic ABI/type names,
 not original Rust source or whole-engine recovery.

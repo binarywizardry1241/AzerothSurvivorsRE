@@ -15,8 +15,8 @@ import struct
 import sys
 from coverage_common import ROOT
 
-KEPT = ROOT/'docs/analysis/evidence/0.112.0/raid-inputs'
-STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-inputs'
+KEPT = ROOT/'docs/analysis/evidence/raid-inputs'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/raid-inputs'
 RANGES = {
     'boss-health-endless': (0x14593b2d9, 0x14593b386),
     'boss-damage-actor-stats': (0x14593b6e1, 0x14593b848),

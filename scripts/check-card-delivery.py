@@ -11,7 +11,7 @@ from coverage_common import ROOT, latest_target, target_bytes, file_sha256
 from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
-KEEP = ROOT/'docs/analysis/evidence/0.113.2/card-delivery'
+KEEP = ROOT/'docs/analysis/evidence/card-delivery'
 PROBE = ROOT/'runtime/analysis/history/findings/q41-card-delivery/4f64e372ed30/rea'
 SOURCE = ROOT/'crates/azeroth-survivors-re/src/gameplay/mod.rs'
 RANGES = [(0x1400dd4a0, 0x1400dd55b), (0x14586b5f5, 0x14586b700),

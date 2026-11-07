@@ -10,7 +10,7 @@ from coverage_common import ROOT
 CHECK = load_script('raid_native_checks', ROOT/'scripts/check-raid-native.py')
 from unicorn import UC_HOOK_CODE
 from unicorn.x86_const import *
-OUT=ROOT/'docs/analysis/evidence/0.109.0/boss-inputs'
+OUT=ROOT/'docs/analysis/evidence/boss-inputs'
 
 def arithmetic():
  u,mem=CHECK.fixture()

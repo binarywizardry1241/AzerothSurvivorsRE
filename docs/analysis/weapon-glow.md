@@ -2,7 +2,7 @@
 
 Target SHA-256: `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 [verification-needed](../verification-needed.md#gap-235) owns the full source/presentation
-finding. The [proof](evidence/0.121.0/weapon-glow.json) binds native ranges,
+finding. The [proof](evidence/weapon-glow.json) binds native ranges,
 the successful journaled Ghidra unlock query and source helpers.
 
 ## Admission and saved selection
@@ -39,7 +39,7 @@ last valid class row removes all earlier class rows, then appends. A later
 invalid row leaves the earlier selection intact. The parser retains known
 locked choices; admission remains the getter/setter responsibility. The
 writer formats class u8 and enchant u32 with a newline from each eight-byte row.
-The [record proof](evidence/0.121.0/weapon-glow-records.json) replays4,077
+The [record proof](evidence/weapon-glow-records.json) replays4,077
 original parser cases and55 writer rows with declared synthetic token/storage
 interfaces; no actual save file is written.
 
@@ -56,7 +56,7 @@ The qualified synchronous local Again path preserves this captured selection.
 its high dword. `145b2d433` stores the pair at frame `+0x104c`, relative to
 temporary Config base frame `+0xeb0`, preserving Config `+0x1a0`.
 `145b2d743..145b2d775` copies all 448 bytes to the constructor input and calls
-`145bdcb10`; the [Again audit](evidence/0.121.0/again-entry.json)'s canonical
+`145bdcb10`; the [Again audit](evidence/again-entry.json)'s canonical
 `constructor-embedded-config` selector carries them to Game `+0x1b0`.
 The inspected start/constructor bodies do not call the Save glow getter or
 admission helper, and no later direct frame store overwrites these glow bytes.
@@ -97,7 +97,7 @@ flows through the same save getter. Fresh run entry freezes the chosen enchant a
 nineteen star bytes; local and cooperative world publication uses each displayed
 weapon with its corresponding frozen worn rank. Unchanged local enchant fields
 are skipped. Exact current translations for all eight consumed labels are
-bound by [the locale proof](evidence/0.121.0/weapon-glow-localization.json).
+bound by [the locale proof](evidence/weapon-glow-localization.json).
 The complete integration status remains in `CURRENT-STATE`.
 
 ```sh

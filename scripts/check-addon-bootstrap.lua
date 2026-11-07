@@ -7,15 +7,15 @@ elseif suite == "--totems" then
     table.remove(arg, 1);
     arg[1] = arg[1] or "docs/analysis/evidence/addon-api/embedded-reference.lua";
 else
-    arg[1] = arg[1] or "docs/analysis/evidence/0.112.0/addon-api.lua";
+    arg[1] = arg[1] or "docs/analysis/evidence/addon-api/bootstrap-contract.lua";
 end;
 do
 -- Source-only contract check; no game/client process or Rust compilation.
 -- Run from the checkout root: lua scripts/check-addon-bootstrap.lua
 -- This uses host stubs, not the real FrameXML VM. Rust lifecycle regressions
 -- live alongside addon_bootstrap.rs and remain unrun without build permission.
-local api_path = arg[1] or "docs/analysis/evidence/0.105.0/game-mode-audit/addon-api.lua";
-local parser_path = arg[2] or "docs/analysis/evidence/0.105.0/addon-bridge/native-stats-parser.lua";
+local api_path = arg[1] or "docs/analysis/evidence/addon-api/game-mode-contract.lua";
+local parser_path = arg[2] or "docs/analysis/evidence/addon-api/native-stats-parser.lua";
 local function read(path)
     local file = assert(io.open(path, "rb"));
     local source = file:read("*a");

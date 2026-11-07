@@ -42,7 +42,7 @@ socket or platform-time implementation is introduced.
 
 ## Evidence and limits
 
-The [proof](evidence/0.113.2/clock-queries.json) binds the current native ranges,
+The [proof](evidence/clock-queries.json) binds the current native ranges,
 six fresh REA/Ghidra observations, import identity and reviewed source.
 `python3 -B scripts/check-clock-queries.py` reproduces **131,117 original-
 instruction cases**: all 65,536 u16 whole-second values with fractional ticks

@@ -9,11 +9,12 @@ import json
 import math
 import re
 import struct
+from artifact_history import read_artifact
 from coverage_common import ROOT
 
 g = load_script('guardian_fixture', ROOT/'scripts/check-raid-guardian-lifecycle.py')
 r = g.r
-STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-lair-marker'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/raid-lair-marker'
 KEPT = ROOT/'docs/analysis/evidence/0.112.0/raid-lair-marker'
 RANGES = {'marker': (0x1459073c5, 0x145907826), 'packet': (0x1458c28a0, 0x1458c2b46)}
 RANGES.update({'flag-read':(0x14005ca50,0x14005d01b),'flag-command':(0x14005d112,0x14005d129),
@@ -335,9 +336,13 @@ def main():
         file = ROOT/'docs/analysis/evidence/0.112.0'/path
         # The two families form one consumer repair. Stage may reference its
         # exact companion candidate before root promotes the pair together.
-        if args.stage and not file.exists() and path.startswith('raid-forced-position/'):
-            file = ROOT/'runtime/analysis/staging/native-evidence/0.112.0'/path
-        for line in file.read_text().splitlines():
+        try:
+            source = read_artifact(file)
+        except FileNotFoundError:
+            if not args.stage or not path.startswith('raid-forced-position/'):
+                raise
+            source = (STAGE.parent / path).read_bytes()
+        for line in source.decode().splitlines():
             hit = re.match(r'^([0-9a-f]+): ([0-9a-f]+) ',line)
             if hit: canonical.setdefault(int(hit[1],16),(bytes.fromhex(hit[2]),'../'+path))
     new,traces = {},{}
@@ -375,7 +380,7 @@ def main():
                          'The existing SessionEvent::GossipPoi client interface remains the reused port. No compiler, Rust execution, game, controller, network/client/rendering or parity comparison.'])
     for name,value in {'selected-native.asm':assembly,'manifest.json':json.dumps(proof,indent=2)+'\n'}.items():
         if args.stage: (out/name).write_text(value)
-        else: assert (out/name).read_text() == value,name
+        else: assert read_artifact(out/name).decode() == value,name
     print(json.dumps(counts,indent=2))
     print('Current AS lair marker checks passed; no compilation/game/client')
 

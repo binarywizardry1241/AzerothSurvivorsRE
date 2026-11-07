@@ -34,7 +34,7 @@ applies completion and republishes the party snapshot. Interactions continue to
 include nearby choosers and expose the updated fraction to the existing HUD and
 addon consumers. No new timer, packet or UI owner is introduced.
 
-[Current proof](evidence/0.127.0/revive-choice/manifest.json) binds two journaled
+[Current proof](evidence/revive-choice/manifest.json) binds two journaled
 Ghidra queries to the exact declared PE slice, their original results, selected
 native instructions and constants. Run the maintained checker without compiling:
 

@@ -190,7 +190,7 @@ mod tests {
 
     fn fixtures() -> serde_json::Value {
         let value: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.105.0/power-scaling/weapon/native-fixtures.json"
+            "../../../../docs/analysis/evidence/power-scaling/weapon/native-fixtures.json"
         ))
         .unwrap();
         assert_eq!(value["target_sha256"], TARGET_SHA256);
@@ -212,7 +212,7 @@ mod tests {
     #[test]
     fn selected_talent_ranks_match_current_native_stat16_and17() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.105.0/power-scaling/ranks/native-fixtures.json"
+            "../../../../docs/analysis/evidence/power-scaling/ranks/native-fixtures.json"
         ))
         .unwrap();
         assert_eq!(fixtures["target_sha256"], TARGET_SHA256);

@@ -14,7 +14,7 @@ import struct
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.119.0/hakkar-smoothie'
+EVIDENCE = ROOT / 'docs/analysis/evidence/hakkar-smoothie'
 SOURCE = ROOT / 'crates/azeroth-survivors-re'
 
 

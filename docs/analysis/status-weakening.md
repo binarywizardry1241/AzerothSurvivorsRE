@@ -1,7 +1,7 @@
 # Damage weakening
 
 [Finding #136](../verification-needed.md#gap-136) and the
-[native receipt](evidence/0.139.2/status-weakening.json) cover the selected
+[native receipt](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/status-weakening.json) cover the selected
 status-scaling tables of the installed EXE, SHA-256
 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
 
@@ -28,7 +28,7 @@ rendering, and original/rebuilt comparison remain open.
 
 ## Ground-periodic and self-aura payloads in 0.141.0
 
-The [current selector evidence](evidence/0.141.0/status-talent-selectors.json)
+The [current selector evidence](evidence/status-talent-selectors.json)
 binds both current-only tables under #136 to the installed 0.141.0 EXE.
 Its SHA-256 is
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
@@ -75,7 +75,7 @@ uses the same active-pair check and separate aura replacement gate.
 The timer helper range `0x145db7490..0x145db762b` has SHA-256
 `f82ad3229c0d96861c4135e2f0aeb1ef03b7826e3f4a9083a134838d25373f67`.
 Isolated instruction replay matched all 244 steps of the [retained timer
-sequences](evidence/0.127.0/shouts/native-cases.json) and 600 finite boundary
+sequences](evidence/shouts/native-cases.json) and 600 finite boundary
 cases against the [source timer](../../crates/azeroth-survivors-re/src/player_abilities/behavior/state.rs).
 The added cases cross four initial active/fallback states with five clocks,
 five incoming magnitudes and six deadlines. They cover expiration, ties,

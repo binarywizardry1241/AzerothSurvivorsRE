@@ -4,7 +4,7 @@ The installed EXE is 151,493,632 bytes with SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 This classifies [Q41-F01 and Q41-F02](unknown-recovery.md)
 under [#41](../CURRENT-STATE.md#gap-41). The
-[residual manifest](evidence/0.141.0/native-residuals.json) binds the independent
+[residual manifest](evidence/native-residuals.json) binds the independent
 instruction databases, selected Ghidra instruction and reference exports,
 diagnostic owners, and both exact indirect-site lists.
 
@@ -18,7 +18,7 @@ its decoded instruction bytes against the installed PE. It used Capstone and
 the existing [operand decoder](../../scripts/classify-independent-indirects.py).
 Fixed RIP-relative slots were joined to the PE import directory and DIR64
 relocations. Jumps were joined by site to the applied and candidate lists
-in the [guarded switch proof](evidence/0.141.0/native-switch-proposal-review.json)
+in the [guarded switch proof](evidence/native-switch-proposal-review.json)
 under the `guarded-2/guarded-proposals.json` input.
 
 | Structural class | F01 calls | F01 jumps | F02 jumps |
@@ -397,7 +397,7 @@ at `0x14656d8e4`, and tail-calls the locale lookup at `0x145e78800` with the
 label pointer and length. The caller pairs the returned label with the
 earlier slot label through the format program at `0x1465c5580`.
 
-The [stat label proof](evidence/0.141.0/codex-stat-labels.json) reuses the
+The [stat label proof](evidence/codex-stat-labels.json) reuses the
 exact Codex owner query and verifies all 20 cells and all 23 initial rows.
 The English labels match the effective Codex assets, including the Mystaria
 delta. The [live Details consumer](../../crates/azeroth-survivors-re/src/codex.rs)
@@ -408,7 +408,7 @@ state and other Details branches retain their separate evidence limits.
 
 ```sh
 PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/check-codex-growth-dispatch.py \
-  --proof docs/analysis/evidence/0.141.0/codex-stat-labels.json
+  --proof docs/analysis/evidence/codex-stat-labels.json
 ```
 
 ### Shared color comparison and receiver dispatch

@@ -19,7 +19,7 @@ Star uses the existing sixteen-step diminishing health growth family, with no
 finite magnitude/offering ceiling. Its full accumulated value adds to the health
 multiplier; its separate damage reduction is `min(value * .16, .12)`. The
 current stat dispatch and exact arithmetic reuse the canonical
-[buff-potency evidence](evidence/0.112.0/buff-potency/manifest.json). Health
+[buff-potency evidence](evidence/buff-potency/manifest.json). Health
 continues growing after this item's mitigation reaches 12%. The ordinary shared
 armor cap/conversion stage remains independently applied after composition.
 
@@ -51,7 +51,7 @@ migration. The native producer copies the unchanged `star_of_mystaria` key,
 and the source's Seen map/lookup preserve that identity across its category move.
 Actual save I/O and original/rebuilt persistence remain unverified.
 
-The [manifest](evidence/0.112.0/jewelry/manifest.json) owns the canonical selected
+The [manifest](evidence/jewelry/manifest.json) owns the canonical selected
 instruction intervals, fresh REA/Ghidra owner identities and raw-import limits.
 The noncompiling checks are:
 

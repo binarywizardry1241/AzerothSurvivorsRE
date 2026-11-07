@@ -12,7 +12,7 @@ recovery with its original target.
 The current achievement constructor `0x145b2da80..0x145b3764f` stores kind 9,
 Heroic mode 2, rank 3, boss 1494, spell 740 and the five-Druid Tranquility
 composition. Its current description explicitly names Heroic III. The
-[evidence](evidence/0.127.0/party-achievements-photosynthesis.json) binds exact
+[evidence](evidence/party-achievements-photosynthesis.json) binds exact
 original bytes, selected text and both journaled constructor/evaluator results.
 
 The evaluator `0x145b3cd70..0x145b3de9c` first computes the effective rank as
@@ -57,7 +57,7 @@ The same current constructor places `coop:insane` immediately after
 Photosynthesis: The Insane, 50 points, Co-op category, icon
 `Spell_Shadow_UnholyFrenzy`. Its condition is kind 15, exact Heroic mode 2/rank 5,
 2400 seconds, at least three current members and zone key `naxx`.
-[Current evidence](evidence/0.127.0/party-achievements-insane.json) binds nine
+[Current evidence](evidence/party-achievements-insane.json) binds nine
 completed queries, exact descriptor/evaluator/producer/lifecycle/wire spans and
 reused current validator/revive results. It does not duplicate those extracts.
 

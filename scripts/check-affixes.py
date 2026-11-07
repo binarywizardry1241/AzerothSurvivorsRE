@@ -25,7 +25,7 @@ def shared_root():
     return common.resolve().parent
 
 
-PROOF = ROOT / 'docs/analysis/evidence/0.121.0/affixes/manifest.json'
+PROOF = ROOT / 'docs/analysis/evidence/affixes/manifest.json'
 
 
 def digest(value):

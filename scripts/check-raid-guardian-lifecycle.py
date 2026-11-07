@@ -7,12 +7,13 @@ or game process. --stage writes unique ignored candidate evidence.
 from script_sources import load_script
 import argparse,hashlib,importlib.util,json,math,re,struct,sys
 from pathlib import Path
+from artifact_history import read_artifact
 from coverage_common import ROOT,latest_target,target_bytes
 sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE,UC_HOOK_MEM_UNMAPPED
 from unicorn import x86_const as r
-STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-guardian-lifecycle'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/raid-guardian-lifecycle'
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-guardian-lifecycle'
 RANGES={'health':(0x14596a3e0,0x14596a740),'damage':(0x14596a7e0,0x14596a96f),
  'knots':(0x1459cdd20,0x1459cde5e),'candidates':(0x1459d2440,0x1459d25c5),
@@ -656,15 +657,15 @@ def main():
  owners={};new={};retained={}
  for name in ['guardian-decision-reset','guardian-selection-constructor','guardian-selector']:
   path=ROOT/'docs/analysis/evidence/0.112.0/raid-inputs'/(name+'.asm')
-  for line in path.read_text().splitlines():
+  for line in read_artifact(path).decode().splitlines():
    hit=re.match(r'^([0-9a-f]+): ([0-9a-f]+) ',line)
    if hit:retained[int(hit[1],16)]=(bytes.fromhex(hit[2]),'../raid-inputs/'+path.name)
  path=ROOT/'docs/analysis/evidence/0.112.0/raid-wards/unit-presentation.asm'
- for line in path.read_text().splitlines():
+ for line in read_artifact(path).decode().splitlines():
   hit=re.match(r'^([0-9a-f]+): ([0-9a-f]+) ',line)
   if hit:retained[int(hit[1],16)]=(bytes.fromhex(hit[2]),'../raid-wards/'+path.name)
  path=ROOT/'docs/analysis/evidence/0.112.0/raid-lifecycles/selected-native.asm'
- for line in path.read_text().splitlines():
+ for line in read_artifact(path).decode().splitlines():
   hit=re.match(r'^([0-9a-f]+): ([0-9a-f]+) ',line)
   if hit:retained[int(hit[1],16)]=(bytes.fromhex(hit[2]),'../raid-lifecycles/'+path.name)
  for rows in machine.visited.values():
@@ -677,7 +678,7 @@ def main():
  for a,value in sorted(new.items()):
   ins=list(machine.md.disasm(value,a));assert sum(i.size for i in ins)==len(value);assembly+=''.join(f'{i.address:x}: {i.bytes.hex()} {i.mnemonic} {i.op_str}'.rstrip()+'\n'for i in ins)
  if args.stage:(out/'selected-native.asm').write_text(assembly)
- else:assert(out/'selected-native.asm').read_text()==assembly
+ else:assert read_artifact(out/'selected-native.asm').decode()==assembly
  traces={}
  for name,rows in machine.visited.items():
   intervals=[]
@@ -690,7 +691,7 @@ def main():
   zones=[dict(index=z['index'],key=z['key'],record=z['record'],guardian_indices=z['selected_indices'],guardian_ids=[z['enemies'][i]['id']for i in z['selected_indices']],explicit_points=[[i,bits(x),bits(y)]for i,x,y in z['points']],hp_knots_bits=z['knots'],zone_scale_bits=z['zone_scale_bits'],enemies=[dict(index=e['index'],id=e['id'],record=e['record'])for e in z['enemies']])for z in zones])
  doc=json.dumps(catalog_record,indent=2)+'\n'
  if args.stage:(out/'catalog.json').write_text(doc)
- else:assert(out/'catalog.json').read_text()==doc
+ else:assert read_artifact(out/'catalog.json').decode()==doc
  manifest=dict(target_version=target['version'],target_sha256=target['sha256'],target_executed=False,cases=counts,source_checks=source,visited_instruction_ranges=traces,current_owner_provenance=owners_record,
   current_entry_contracts={k:dict(**span(a,b-a))for k,(a,b)in RANGES.items()},
   native_order={'entry_mode_gate':'0x1458fb937','scheduling_suppression_gate':'0x145904118','rune_timer':'0x145906574','chest_timer':'0x1459067a5','forced_magnet':'0x1459068e6','guardian_unit_call':'0x145906c44','completion':'0x145907826','strength_entry':'0x145907959','shared_game_level':'0x4e0','current_unit_level_read':'0x14593c5ac'},
@@ -705,6 +706,6 @@ def main():
    'Source historical0972 constants/fixtures retain their original provenance; this report does not relabel them.'])
  doc=json.dumps(manifest,indent=2)+'\n'
  if args.stage:(out/'manifest.json').write_text(doc)
- else:assert(out/'manifest.json').read_text()==doc
+ else:assert read_artifact(out/'manifest.json').decode()==doc
  print('Current guardian provider checks passed; no compilation/game')
 if __name__=='__main__':main()

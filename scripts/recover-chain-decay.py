@@ -21,7 +21,7 @@ for tags in [[],[23],[0],[31],[0,31],[0,23,31],[31,23,0],[23,23],list(range(23))
  for i,tag in enumerate(tags):u.mem_write(MEM+0x1000+i*64,bytes([tag]))
  u.reg_write(UC_X86_REG_RDI,MEM);u.reg_write(UC_X86_REG_RBP,MEM+0x8000);u.emu_start(LO,0,count=1000);assert u.reg_read(UC_X86_REG_RIP)==HI
  cases.append(dict(tags=tags,decay_bits=struct.unpack('<I',u.mem_read(MEM+0x803c,4))[0]))
-OUT=ROOT/'docs/analysis/evidence/0.100.1/treasure-interface';owners=[]
+OUT=ROOT/'docs/analysis/evidence/treasure-interface';owners=[]
 for role,lo,hi in [('chain-decay-presence',LO,HI),('chain-decay-power',0x1454fbe1c,0x1454fbe82)]:
  off=p.rva_offset(lo-p.image_base);owners.append(dict(role=role,start=hex(lo),end_exclusive=hex(hi),sha256=hashlib.sha256(data[off:off+hi-lo]).hexdigest()));(OUT/(role+'.asm')).write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={lo:#x}',f'--stop-address={hi:#x}',str(ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe')],text=True))
 (OUT/'chain-decay-native.json').write_text(portable_json(dict(target_sha256=SHA,method=__doc__,owners=owners,cases=cases),indent=2)+'\n');print('Recovered',len(cases),'native chain attenuation scans')

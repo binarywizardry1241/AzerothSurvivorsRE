@@ -25,13 +25,13 @@ the catalog is generated source, and all original/derived binaries stay ignored.
 
 Owning evidence:
 
-- [Function identities and bounded instructions](evidence/0.97.2/guardians/manifest.json)
-  and [REA dossiers/provenance](evidence/0.97.2/guardians/rea-provenance.json).
-- [Exact catalog](evidence/0.97.2/guardians/guardian-catalog.json): twelve zones,
+- [Function identities and bounded instructions](evidence/guardians/manifest.json)
+  and [REA dossiers/provenance](evidence/guardians/rea-provenance.json).
+- [Exact catalog](evidence/guardians/guardian-catalog.json): twelve zones,
   148 enemies, sixty boss records and 48 health-curve knots, including original
   strings, float bits, source ranges and hashes.
-- [Reward producers and consumers](evidence/0.97.2/guardians/guardian-rewards.json).
-- [Validation state](evidence/0.97.2/guardians/source-validation.json), including
+- [Reward producers and consumers](evidence/guardians/guardian-rewards.json).
+- [Validation state](evidence/guardians/source-validation.json), including
   compilation status and earlier, superseded attempts.
 
 REA ran through `./scripts/rea` with Ghidra 12.1.4 on exact, unmodified function
@@ -182,7 +182,7 @@ for the remaining-time field. Missing or dead linked actors produce empty
 slots. Map projection uses the native bounds/axis order without clamping;
 absent bounds produce `(-1,-1)`.
 
-See [addon producer evidence](evidence/0.97.2/guardians/guardian-addon.json).
+See [addon producer evidence](evidence/guardians/guardian-addon.json).
 The complete upstream unit-list alive/order filter, delivery, wire serialization
 and VM scheduling remain outside this projection component. The source does
 not equate possession of a schema with a working native addon bridge.

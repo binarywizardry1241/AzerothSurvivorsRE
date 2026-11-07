@@ -140,7 +140,7 @@
     },
     "reviews": {
       "path": "docs/analysis/coverage/changelog-reviews.json",
-      "sha256": "4be933d8860a7b4db053b16f118b267124da5f6bc97ccd75293125501db410ab",
+      "sha256": "94b82aaf6fcc5150676cc5b6de0767d834ab800bfa3a7f6719ec22a666988073",
       "applied_reviews": 8,
       "historical_unapplied_reviews": [
         {
@@ -4699,6 +4699,8 @@
             "crates/benilla-app/src/local_client/requests.rs",
             "crates/benilla-formats/src/spells/mod.rs",
             "scripts/check-equipped-inventory-0.113.2.py",
+            "scripts/check-equipped-inventory-text-0.113.2.py",
+            "scripts/check-equipped-inventory-prose-0.113.2.py",
             "scripts/inventory_text_native.py",
             "docs/analysis/equipped-inventory-0.113.2.md"
           ]
@@ -5081,6 +5083,7 @@
             "crates/azeroth-survivors-re/src/gameplay/coop_commands.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs",
+            "scripts/check-coop-item-text-0.115.0.py",
             "scripts/coop_item_text_native.py",
             "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop_spell_text.rs",
@@ -5159,6 +5162,7 @@
             "scripts/check-addon-bootstrap.lua",
             "scripts/check-revive-addon-0.115.0.py",
             "crates/azeroth-survivors-re/src/run_effects.rs",
+            "crates/azeroth-survivors-re/src/run_effects/addon_timers.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/addon_timers.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
@@ -5203,6 +5207,7 @@
             "scripts/check-addon-bootstrap.lua",
             "scripts/check-revive-addon-0.115.0.py",
             "crates/azeroth-survivors-re/src/run_effects.rs",
+            "crates/azeroth-survivors-re/src/run_effects/addon_timers.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/addon_timers.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
@@ -5414,6 +5419,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/menu.rs",
+            "scripts/check-release-review-0.117.0.py",
             "docs/analysis/release-review-0.117.0.md"
           ]
         },
@@ -5439,6 +5445,7 @@
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop/client_state.rs",
             "crates/azeroth-survivors-re/src/menu_state.rs",
+            "scripts/check-party-achievement-producer-0.117.0.py",
             "scripts/check-party-achievement-wire-0.117.0.py",
             "scripts/check-party-achievements-0.117.0.py",
             "crates/azeroth-survivors-re/src/save.rs",
@@ -5446,11 +5453,13 @@
             "scripts/check-coop-history-0.117.0.py",
             "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+            "scripts/check-party-rewards-0.117.0.py",
             "crates/azeroth-survivors-re/src/armory_cosmetics.rs",
             "crates/azeroth-survivors-re/src/run_effects/loot_companions.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/loot_companions.rs",
             "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
             "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+            "scripts/check-item-query-names-0.117.0.py",
             "crates/azeroth-survivors-re/src/run_progression.rs",
             "crates/azeroth-survivors-re/src/coop_profile.rs",
             "crates/azeroth-survivors-re/src/coop/server_party.rs",
@@ -5464,8 +5473,10 @@
             "crates/azeroth-survivors-re/src/talents.rs",
             "crates/azeroth-survivors-re/src/run_effects/pets.rs",
             "crates/azeroth-survivors-re/src/gameplay/talent_view.rs",
+            "scripts/check-white-devilsaur-0.117.0.py",
             "scripts/check-tabard-admission-0.117.0.py",
             "scripts/check-purchased-tabards-0.117.0.py",
+            "scripts/check-tabard-localization-0.117.0.py",
             "scripts/check-starting-clothes-0.117.0.py",
             "scripts/check-coop-handshake-0.117.0.py",
             "docs/analysis/release-review-0.117.0.md",
@@ -5506,6 +5517,7 @@
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/coop/client_state.rs",
             "crates/azeroth-survivors-re/src/menu_state.rs",
+            "scripts/check-party-achievement-producer-0.117.0.py",
             "scripts/check-party-achievement-wire-0.117.0.py",
             "scripts/check-party-achievements-0.117.0.py",
             "docs/analysis/coop-achievements-0.117.0.md",
@@ -5548,11 +5560,13 @@
             "crates/azeroth-survivors-re/src/save/schema.rs",
             "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+            "scripts/check-party-rewards-0.117.0.py",
             "crates/azeroth-survivors-re/src/armory_cosmetics.rs",
             "crates/azeroth-survivors-re/src/run_effects/loot_companions.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/loot_companions.rs",
             "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
             "crates/azeroth-survivors-re/src/gameplay/client/inventory.rs",
+            "scripts/check-item-query-names-0.117.0.py",
             "crates/azeroth-survivors-re/src/account_progression.rs",
             "docs/analysis/release-review-0.117.0.md",
             "docs/analysis/party-rewards-0.117.0.md",
@@ -5571,6 +5585,7 @@
             "crates/azeroth-survivors-re/src/progression.rs",
             "crates/azeroth-survivors-re/src/run_effects/loot_companions.rs",
             "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+            "scripts/check-party-rewards-0.117.0.py",
             "crates/azeroth-survivors-re/src/armory.rs",
             "crates/azeroth-survivors-re/src/armory_cosmetics.rs",
             "crates/azeroth-survivors-re/src/save/schema.rs",
@@ -5621,6 +5636,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
             "crates/azeroth-survivors-re/src/gameplay/talent_view.rs",
             "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
+            "scripts/check-white-devilsaur-0.117.0.py",
             "docs/analysis/white-devilsaur-0.117.0.md"
           ]
         },
@@ -5876,6 +5892,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/localization.rs",
+            "scripts/restore-coop-locales-0.119.0.py",
             "crates/azeroth-survivors-re/assets/locales/en.json",
             "crates/azeroth-survivors-re/assets/locales/pl.json",
             "crates/azeroth-survivors-re/assets/locales/cs.json",
@@ -6066,6 +6083,7 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
+            "scripts/check-faction-forms-0.120.0.py",
             "docs/analysis/faction-forms-0.120.0.md"
           ]
         },
@@ -6472,18 +6490,23 @@
             "crates/azeroth-survivors-re/src/run_options.rs",
             "crates/azeroth-survivors-re/src/save/gear.rs",
             "scripts/check-achievement-catalog-0.121.0.py",
+            "scripts/check-achievement-category-icons-0.121.0.py",
+            "scripts/check-achievement-progress-0.121.0.py",
             "scripts/check-affixes-0.121.0.py",
             "scripts/check-again-entry-0.121.0.py",
             "scripts/check-armory-collection-0.121.0.py",
             "scripts/check-armory-star-purchase-0.121.0.py",
             "scripts/check-armory-stat-format-0.121.0.py",
             "scripts/check-boss-prediction-0.121.0.py",
+            "scripts/check-collection-localization-0.121.0.py",
             "scripts/check-coop-heroic-status-0.121.0.py",
             "scripts/check-coop-heroic-wire-0.121.0.py",
             "scripts/check-coop-native-metadata-0.121.0.py",
             "scripts/check-coop-scaling-0.121.0.py",
             "scripts/check-difficulty-state-0.121.0.py",
             "scripts/check-difficulty-ui-0.121.0.py",
+            "scripts/check-gear-purchase-0.121.0.py",
+            "scripts/check-gear-records-0.121.0.py",
             "scripts/check-gear-rewards-0.121.0.py",
             "scripts/check-gear-stars-0.121.0.py",
             "scripts/check-heroic-notice-0.121.0.py",
@@ -6533,9 +6556,11 @@
             "crates/azeroth-survivors-re/assets/locales/zh.json",
             "crates/azeroth-survivors-re/src/bosses/abilities.rs",
             "crates/azeroth-survivors-re/src/bosses/raid_actions.rs",
+            "crates/azeroth-survivors-re/src/bosses/raid_area_catalog.rs",
             "crates/azeroth-survivors-re/src/bosses/raid_areas.rs",
             "crates/azeroth-survivors-re/src/bosses/raid_extra.rs",
             "crates/azeroth-survivors-re/src/bosses/raid_sequence_areas.rs",
+            "crates/azeroth-survivors-re/src/bosses/raid_shapes.rs",
             "crates/azeroth-survivors-re/src/bosses/raid_towers.rs",
             "crates/azeroth-survivors-re/src/bosses/spawning.rs",
             "crates/azeroth-survivors-re/src/coop/game_party.rs",
@@ -6792,6 +6817,7 @@
             "crates/azeroth-survivors-re/src/save/gear.rs",
             "crates/azeroth-survivors-re/src/save/gear_rewards.rs",
             "scripts/check-coop-heroic-wire-0.121.0.py",
+            "scripts/check-gear-records-0.121.0.py",
             "scripts/check-gear-rewards-0.121.0.py",
             "scripts/check-set-localization-0.121.0.py",
             "docs/analysis/gear-progression-0.121.0.md"
@@ -6815,6 +6841,7 @@
             "crates/azeroth-survivors-re/src/save/gear_rewards.rs",
             "scripts/check-again-entry-0.121.0.py",
             "scripts/check-coop-heroic-wire-0.121.0.py",
+            "scripts/check-gear-records-0.121.0.py",
             "scripts/check-gear-rewards-0.121.0.py",
             "docs/analysis/gear-progression-0.121.0.md"
           ]
@@ -6832,6 +6859,7 @@
             "crates/azeroth-survivors-re/src/save/gear.rs",
             "crates/azeroth-survivors-re/src/save/gear_progression.rs",
             "scripts/check-armory-star-purchase-0.121.0.py",
+            "scripts/check-gear-purchase-0.121.0.py",
             "scripts/check-set-localization-0.121.0.py",
             "docs/analysis/gear-progression-0.121.0.md"
           ]
@@ -6851,6 +6879,7 @@
             "crates/azeroth-survivors-re/src/gameplay/mechanics/effects.rs",
             "crates/azeroth-survivors-re/src/gear_stars.rs",
             "crates/azeroth-survivors-re/src/save/gear_progression.rs",
+            "scripts/check-gear-purchase-0.121.0.py",
             "scripts/check-gear-stars-0.121.0.py",
             "scripts/check-item-query-ranks-0.121.0.py",
             "docs/analysis/gear-stars-0.121.0.md"
@@ -7091,6 +7120,7 @@
             "scripts/check-armory-collection-0.121.0.py",
             "scripts/check-armory-star-purchase-0.121.0.py",
             "scripts/check-armory-stat-format-0.121.0.py",
+            "scripts/check-collection-localization-0.121.0.py",
             "scripts/check-set-localization-0.121.0.py",
             "docs/analysis/armory-collection-0.121.0.md"
           ]
@@ -7127,6 +7157,8 @@
             "crates/azeroth-survivors-re/src/progression/achievements_sidebar.rs",
             "crates/azeroth-survivors-re/src/save/heroic.rs",
             "scripts/check-achievement-catalog-0.121.0.py",
+            "scripts/check-achievement-category-icons-0.121.0.py",
+            "scripts/check-achievement-progress-0.121.0.py",
             "scripts/check-run-achievements-0.121.0.py",
             "scripts/check-set-localization-0.121.0.py",
             "docs/analysis/achievement-catalog-0.121.0.md"
@@ -7270,6 +7302,7 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/coop/directory.rs",
             "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
             "crates/azeroth-survivors-re/src/coop_directory_row.rs",
             "docs/analysis/coop-selection-0.123.0.md"
@@ -7439,7 +7472,8 @@
             "crates/azeroth-survivors-re/src/coop/session.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
-            "docs/analysis/coop-smoothing-0.123.0.md"
+            "docs/analysis/coop-smoothing-0.123.0.md",
+            "scripts/check-coop-smoothing-0.123.0.py"
           ]
         },
         {
@@ -7454,7 +7488,8 @@
             "crates/azeroth-survivors-re/src/coop/session.rs",
             "crates/azeroth-survivors-re/src/coop/replication.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
-            "docs/analysis/coop-smoothing-0.123.0.md"
+            "docs/analysis/coop-smoothing-0.123.0.md",
+            "scripts/check-coop-smoothing-0.123.0.py"
           ]
         },
         {
@@ -7782,7 +7817,8 @@
             "crates/azeroth-survivors-re/src/gameplay/mod.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs",
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
-            "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs"
+            "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+            "scripts/check-gear-rewards.py"
           ]
         },
         {
@@ -7932,7 +7968,8 @@
           "status": "static_checked",
           "application": "historical_unapplied",
           "changed_refs": [
-            "crates/azeroth-survivors-re/src/armory.rs"
+            "crates/azeroth-survivors-re/src/armory.rs",
+            "scripts/check-armory-collection.py"
           ]
         },
         {
@@ -7997,6 +8034,8 @@
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
             "crates/azeroth-survivors-re/src/menu.rs",
             "crates/azeroth-survivors-re/src/picker.rs",
+            "scripts/check-coop-lobby-ui.py",
+            "scripts/restore-coop-lobby-locales.py",
             "scripts/check-coop-directory-transport.py",
             "crates/azeroth-survivors-re/src/coop/staff.rs",
             "crates/azeroth-survivors-re/src/coop_directory_row.rs",
@@ -8025,6 +8064,8 @@
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
             "crates/azeroth-survivors-re/src/menu.rs",
             "crates/azeroth-survivors-re/src/picker.rs",
+            "scripts/check-coop-lobby-ui.py",
+            "scripts/restore-coop-lobby-locales.py",
             "scripts/check-coop-directory-transport.py",
             "crates/azeroth-survivors-re/src/coop/staff.rs",
             "crates/azeroth-survivors-re/src/coop_directory_row.rs",
@@ -8053,6 +8094,8 @@
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
             "crates/azeroth-survivors-re/src/menu.rs",
             "crates/azeroth-survivors-re/src/picker.rs",
+            "scripts/check-coop-lobby-ui.py",
+            "scripts/restore-coop-lobby-locales.py",
             "scripts/check-coop-directory-transport.py",
             "crates/azeroth-survivors-re/src/coop/staff.rs",
             "crates/azeroth-survivors-re/src/coop_directory_row.rs",
@@ -8081,6 +8124,8 @@
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
             "crates/azeroth-survivors-re/src/menu.rs",
             "crates/azeroth-survivors-re/src/picker.rs",
+            "scripts/check-coop-lobby-ui.py",
+            "scripts/restore-coop-lobby-locales.py",
             "scripts/check-coop-directory-transport.py",
             "crates/azeroth-survivors-re/src/coop/staff.rs",
             "crates/azeroth-survivors-re/src/coop_directory_row.rs",
@@ -8147,7 +8192,8 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gear_stars.rs",
-            "crates/azeroth-survivors-re/src/armory.rs"
+            "crates/azeroth-survivors-re/src/armory.rs",
+            "scripts/check-gear-stars.py"
           ]
         },
         {
@@ -8160,7 +8206,8 @@
           "application": "historical_unapplied",
           "changed_refs": [
             "crates/azeroth-survivors-re/src/gear_stars.rs",
-            "crates/azeroth-survivors-re/src/armory.rs"
+            "crates/azeroth-survivors-re/src/armory.rs",
+            "scripts/check-gear-stars.py"
           ]
         },
         {
@@ -8393,6 +8440,8 @@
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
             "crates/azeroth-survivors-re/src/menu.rs",
             "crates/azeroth-survivors-re/src/picker.rs",
+            "scripts/check-coop-lobby-ui.py",
+            "scripts/restore-coop-lobby-locales.py",
             "scripts/check-coop-directory-transport.py",
             "crates/azeroth-survivors-re/src/coop/staff.rs",
             "crates/azeroth-survivors-re/src/coop_directory_row.rs",
@@ -8562,6 +8611,8 @@
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
             "crates/azeroth-survivors-re/src/menu.rs",
             "crates/azeroth-survivors-re/src/picker.rs",
+            "scripts/check-coop-lobby-ui.py",
+            "scripts/restore-coop-lobby-locales.py",
             "scripts/check-coop-directory-transport.py",
             "crates/azeroth-survivors-re/src/coop/staff.rs",
             "crates/azeroth-survivors-re/src/coop_directory_row.rs",
@@ -8590,6 +8641,8 @@
             "crates/azeroth-survivors-re/src/gameplay/coop.rs",
             "crates/azeroth-survivors-re/src/menu.rs",
             "crates/azeroth-survivors-re/src/picker.rs",
+            "scripts/check-coop-lobby-ui.py",
+            "scripts/restore-coop-lobby-locales.py",
             "scripts/check-coop-directory-transport.py",
             "crates/azeroth-survivors-re/src/coop/staff.rs",
             "crates/azeroth-survivors-re/src/coop_directory_row.rs",
@@ -12057,6 +12110,7 @@
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
           "changed_refs": [
+            "crates/azeroth-survivors-re/src/enemies/catalog.rs",
             "docs/analysis/scholomance-0.140.0.md"
           ]
         },
@@ -12106,7 +12160,9 @@
           },
           "status": "pending_claim_recovery",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/bosses/raid_shapes.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.140.0:abf600240606fb36",
@@ -12154,7 +12210,9 @@
           },
           "status": "source_connected",
           "application": "historical_unapplied",
-          "changed_refs": []
+          "changed_refs": [
+            "crates/azeroth-survivors-re/src/gameplay/mechanics/player_mover.rs"
+          ]
         },
         {
           "claim_id": "changelog:0.140.0:3af814319808b3f0",

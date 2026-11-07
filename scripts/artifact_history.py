@@ -12,6 +12,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = "docs/analysis/artifact-history.json"
+EVIDENCE = PurePosixPath("docs/analysis/evidence")
 COMMIT = re.compile(r"[0-9a-f]{40}")
 SHA256 = re.compile(r"[0-9a-f]{64}")
 
@@ -22,6 +23,18 @@ def _indexes(root):
     return json.loads(path.read_text()) if path.is_file() else ()
 
 
+def _paths_in_commit(root, commit, prefixes):
+    for prefix in prefixes:
+        path = PurePosixPath(prefix)
+        if path == EVIDENCE or not path.is_relative_to(EVIDENCE) or ".." in path.parts:
+            raise ValueError(f"Invalid historical evidence directory: {prefix}")
+    result = subprocess.run(["git", "ls-tree", "--full-tree", "-r", "-z", "--name-only", commit, "--", *prefixes],
+                            cwd=root, capture_output=True, text=True)
+    if result.returncode:
+        raise ValueError(f"Historical evidence tree unavailable at {commit}; retain Git history")
+    return result.stdout.rstrip("\0").split("\0") if result.stdout else ()
+
+
 @lru_cache(maxsize=8)
 def archive_index(root=ROOT):
     entries = {}
@@ -29,7 +42,9 @@ def archive_index(root=ROOT):
         commit = document["source_commit"]
         if not COMMIT.fullmatch(commit):
             raise ValueError("Invalid historical evidence commit")
-        for name in document["paths"]:
+        prefixes = document.get("prefixes", ())
+        paths = _paths_in_commit(root, commit, prefixes) if prefixes else ()
+        for name in (*document.get("paths", ()), *paths):
             artifact = PurePosixPath(name)
             if (name != artifact.as_posix() or artifact.is_absolute()
                     or not artifact.is_relative_to("docs/analysis") or ".." in artifact.parts
@@ -51,7 +66,8 @@ def artifact_name(path, root):
 
 
 def has_archived_artifact(path, root=ROOT):
-    return artifact_name(path, root) in archive_index(root)
+    name = artifact_name(path, root)
+    return bool(name and name.startswith("docs/analysis/") and name in archive_index(root))
 
 
 @lru_cache(maxsize=1024)
@@ -73,16 +89,40 @@ def iter_artifact_paths(directory, suffix, recursive=False, root=ROOT):
 
 def archived_replacement(path, root=ROOT):
     name = artifact_name(path, root)
-    if name not in archive_index(root):
-        return None
+    relocated = _relocations(root).get(name)
+    if relocated is not None:
+        return relocated
     for document in _indexes(root):
         replacement = document.get("replacement")
-        if replacement and name in document["paths"]:
+        if replacement and name in document.get("paths", ()):
             target = root / replacement
             if not target.resolve().is_relative_to(root / "docs/analysis"):
                 raise ValueError(f"Archived evidence replacement leaves analysis docs: {name}")
             return target
     return None
+
+
+@lru_cache(maxsize=8)
+def _relocations(root):
+    locations = {}
+    for document in _indexes(root):
+        for name, replacement in document.get("relocations", {}).items():
+            source = PurePosixPath(name)
+            target = PurePosixPath(replacement)
+            if (source == EVIDENCE or target == EVIDENCE
+                    or not source.is_relative_to(EVIDENCE) or not target.is_relative_to(EVIDENCE)
+                    or ".." in (*source.parts, *target.parts) or name in locations):
+                raise ValueError(f"Invalid evidence relocation: {name}")
+            locations[name] = root / target
+    return locations
+
+
+def current_artifact_path(path, root=ROOT):
+    """Resolve a retained live evidence input to its stable category path."""
+    path = root / path
+    if path.exists():
+        return path
+    return _relocations(root).get(artifact_name(path, root), path)
 
 
 def committed_bytes(name, commit, expected, root):

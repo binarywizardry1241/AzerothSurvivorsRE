@@ -8,7 +8,7 @@ owns remaining validation; [guest settlement](https://github.com/binarywizardry1
 describes the separate #166/#174 lifecycle obligation. The historical 0.117.0
 catalogs, fixtures and Save recovery retain their original provenance.
 
-The [manifest](evidence/0.119.0/friend-achievements/manifest.json) binds nine
+The [manifest](evidence/friend-achievements/manifest.json) binds nine
 current unwind owners, selected original instruction ranges, the computed
 composition table, seven English description keys and nine completed durable
 REA/Ghidra queries. Full-PE pseudocode has unresolved computed-flow and

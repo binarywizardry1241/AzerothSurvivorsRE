@@ -4,7 +4,7 @@
 existing loading renderer and native FrameXML/addon loader. The selected
 **0.113.2** target is SHA-256
 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
-The current [UI-progress manifest](evidence/0.113.2/entry-ui-progress/manifest.json)
+The current [UI-progress manifest](evidence/entry-ui-progress/manifest.json)
 binds the recovered producer, consumer and scalar replays. Picker scenery is #60.
 
 ## Current UI-progress contract
@@ -76,7 +76,7 @@ post-entry nameplate clear and world/login arming remain in the final path.
 
 The initial repair was recovered against **0.112.5**, SHA-256
 `445e9de90f1a0e9be18d4e99e59eb170f4d253ac0440b970cdd0d0b3562dfd36`.
-Its [historical manifest](evidence/0.112.5/zone-loading/manifest.json) retains
+Its [historical manifest](evidence/zone-loading/manifest.json) retains
 raise, drive, catalog and map/art contracts with their actual provenance. The
 current progress recovery above revalidates its selected producer/consumer,
 without relabeling those historical RVAs as current evidence.

@@ -2,7 +2,7 @@
 
 Target: installed **0.109.0**, SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [manifest](evidence/0.109.0/run-seed/manifest.json) binds fresh REA/Ghidra
+The [manifest](evidence/run-seed/manifest.json) binds fresh REA/Ghidra
 imports, original PE instructions and the connected source. This report owns
 this constructor dependency of [gap #9](../verification-needed.md).
 

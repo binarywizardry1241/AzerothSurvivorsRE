@@ -25,7 +25,7 @@ combined build/test and isolated original/rebuilt comparison results in
   Source persistence, three menu selectors, counts and class isolation use these
   paths. Migration does not copy the old allocation into all three slots.
 - **Talent definitions:** all current target definitions and extracted values are
-  in [talents.json evidence](evidence/0.100.1/talents.json). The shared rule module
+  in [talents.json evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/talents.json). The shared rule module
   serves save normalization and the menu. Historical comments/geometry that have
   not been independently checked remain historical evidence, despite shared code.
 - **Hourly backups:** current ordinary-write `1454356a0` writes the active save,
@@ -49,8 +49,8 @@ combined build/test and isolated original/rebuilt comparison results in
   defaults true and hides only a one-byte `0`. Complete helper instruction
   replay verifies Unicode White_Space trimming at both ends, including NBSP,
   while excluding zero-width space, BOM and U+001C–U+001F. Rust `str::trim`
-  matches all [75 retained native cases](evidence/0.100.1/target-menu/cvar-trim-native.json);
-  the [proof](evidence/0.100.1/target-menu/cvar-trim-proof.json) retains the helper/table
+  matches all [75 retained native cases](evidence/target-menu/cvar-trim-native.json);
+  the [proof](evidence/target-menu/cvar-trim-proof.json) retains the helper/table
   hashes. Host/HUD CVar reads now use that helper; the final all-target regression pass
   compares all75 native cases.
 - **Stored-level HUD and ready prompt:** current HUD root `140082d40` and
@@ -62,11 +62,11 @@ combined build/test and isolated original/rebuilt comparison results in
   the 14/sec hover blend, 2.6-radian pulse, border/shadows and lift/scale. Flag
   owner `140363920` treats exact `0` as hidden. Source now implements this
   hierarchy in `gameplay/stored_hud.rs`; root owns input, addon and scheduler
-  wiring. [Exact constructor layout](evidence/0.100.1/target-menu/hud-layout.json)
+  wiring. [Exact constructor layout](evidence/target-menu/hud-layout.json)
 - **Fourteen locales:** exact current pointer/length JSON includes Czech and
   2,632 labels per language. Locale order and explicit keyed translations are
   connected; no arbitrary player/file text replacement is used. Current tables
-  and embedded font hashes are in [locale evidence](evidence/0.100.1/locales.json).
+  and embedded font hashes are in [locale evidence](evidence/locales.json).
 - **Czech glyphs and FrameXML font supply:** current augmentation `1455181d0`
   has 41 composite records, two mirrors and six aliases. New mode 4 positions the
   apostrophe to the right of the stem with a 2%-em gap and aligns its top with
@@ -74,14 +74,14 @@ combined build/test and isolated original/rebuilt comparison results in
   user font bytes to the real FrameXML text engine before it initializes.
   Source delivery does not bundle the EXE's embedded fonts. Exact glyph/fallback
   parity requires compatible user fonts, normally through `--font-dir`. The
-  [current embedded-resource index](evidence/0.100.1/exe-assets.json) retains
+  [current embedded-resource index](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/exe-assets.json) retains
   ten validated font records and eight images as textual offsets/hashes only.
   Its explicit reproduction command selects0.100.1; the generic extractor
   keeps its historical0.97.2 defaults.
 - **Ordinary equipment effects:** current item owner `14546f110`, class table
   `1469d59a0` and scaling owners `14554c7c0/14554ca00/14554cc40` independently
   revalidate all **415** ordinary pieces. There are **zero** numeric effect
-  changes from the prior catalog. [Current gear proof](evidence/0.100.1/target-menu/gear-effects.json)
+  changes from the prior catalog. [Current gear proof](evidence/target-menu/gear-effects.json)
   retains every result. Names, appearance, starter outfits, flavor and drop data
   keep their separate historical provenance. PvP qualities 5/6 are separate
   consumers and are not included in this 415-piece result. Their later
@@ -170,7 +170,7 @@ uses ordinary Import rows for backups; no browser Restore control was inferred.
 
 ## Evidence and validation
 
-[Target/menu manifest](evidence/0.100.1/target-menu/manifest.json) binds 38 exact
+[Target/menu manifest](evidence/target-menu/manifest.json) binds 38 exact
 owners, selected-PE disassembly, completed REA/Ghidra Evidence IDs, their derived
 input hashes, the new option descriptor and Naxxramas boss records. The raw-slice
 Ghidra ABI is generic x86-64 GCC; original Windows register arguments, omitted

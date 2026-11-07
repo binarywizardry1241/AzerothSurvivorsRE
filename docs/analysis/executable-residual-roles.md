@@ -9,7 +9,7 @@ The selected instruction union and the original selectors retain their counts.
 
 ## Q41-B01 executable section
 
-The [executable residual proof](evidence/0.141.0/executable-residual-frontier.json)
+The [executable residual proof](evidence/executable-residual-frontier.json)
 checks the original bytes of all 488,306 ranges outside the selected instruction
 union. The encoding and reference results keep PE-declared membership separate.
 
@@ -38,7 +38,7 @@ That address dereferences the receiver and tail-transfers to `0x145ca8360`.
 This establishes the adapter's role at this use. Other address records do
 not by themselves establish a caller, argument type or runtime admission.
 
-The [formatter operand proof](evidence/0.141.0/addressed-formatters.json)
+The [formatter operand proof](evidence/addressed-formatters.json)
 follows all 59 address materializations for the 37 dereference-tail
 adapters in that selector. Fifty-eight materializations for 36 adapters
 write a callback field at `+8` in a live 16-byte format-argument row.
@@ -71,7 +71,7 @@ The active subscriber and visitor determine whether they format the record.
 
 On normal return the SIMD store at `0x14270626e` replaces the callback
 field before the direct `R9` argument at `0x142706281`. The
-[unwind map proof](evidence/0.141.0/addressed-formatters.json) binds
+[unwind map proof](evidence/addressed-formatters.json) binds
 the containing PE entry at `0x1427053d0` to
 `VCRUNTIME140.dll!__CxxFrameHandler3` and its FuncInfo at `0x1480d5984`.
 The call is in state 16 with no catch table. All 13 cleanup funclets on its
@@ -129,7 +129,7 @@ the pinned Taffy 0.9.2 grid sizing callback.
 | Taffy grid sizing caller `0x1434f0a2e..0x1434f0ab8` | `c1e99f253391228e7acfe3045268bc8244f612be0b24eaf86821cda9ca205dd8` |
 
 The remaining eight direct tails match the saved address and source-site
-selectors in the [executable residual proof](evidence/0.141.0/executable-residual-frontier.json).
+selectors in the [executable residual proof](evidence/executable-residual-frontier.json).
 The Taffy range continues through its local jump to the final return.
 
 | Preferred VA range and saved references | Checked shared boundary | Range SHA-256 |
@@ -154,7 +154,7 @@ and tail-transfers to `0x14637f150`. The 219 adapters that set the length
 locally read Vulkan format or structure labels, including `D32_SFLOAT` and
 `PHYSICAL_DEVICE_VULKAN_1_1_PROPERTIES`. Seven preserve the incoming length.
 Their selector and actual callers remain separate from the leaf role.
-The [complete-range text projection](evidence/0.141.0/addressed-formatters.json)
+The [complete-range text projection](evidence/addressed-formatters.json)
 extends this group to 70 outside-declared mixed ranges covering 9,283 bytes.
 All 407 adapters establish the shared formatter argument order. Of these,
 402 tail to `0x14637f150` and five tail to `0x14637ec80`. The 391 adapters
@@ -184,7 +184,7 @@ retains its earlier data and alignment classification.
 ## Q41-U01 declared extents
 
 All 372,623 declared extents decode linearly through their recorded ends.
-The [AS Location proof](evidence/0.141.0/as-residual-ranges.json) selects 193
+The [AS Location proof](evidence/as-residual-ranges.json) selects 193
 mixed residuals, covering 127,970 bytes in 49 of 404 declared extents with
 genuine AS Rust Locations. Whole-extent decoding establishes both boundaries
 for each of the 193 intervals. Each begins after a `JMP`, `RET` or `UD2`.
@@ -199,7 +199,7 @@ missing-executable-range ordinals 51872–51877. Two start at `0x145e26778`
 and `0x145e269d2`, following signed-relative dispatch indexed by the low two
 bits of the tagged I/O result. The stores between address formation and
 transfer explain their absence from the strict guarded-table producer. The
-[journaled Ghidra raw-slice trace](evidence/0.141.0/tcp-pump-residuals.json)
+[journaled Ghidra raw-slice trace](evidence/tcp-pump-residuals.json)
 at `0x145e266d0..0x145e26c0e` and original table bytes supply the four vectors
 in index order.
 
@@ -239,7 +239,7 @@ and hit consumers. No source discrepancy was established on these routes.
 
 The raw static join found 58 ranges without an incoming edge. The TCP,
 Soulfire, font and amplification traces account for six. The
-[dispatch join](evidence/0.141.0/as-residual-dispatch.json) connects 16 more,
+[dispatch join](evidence/as-residual-dispatch.json) connects 16 more,
 including jumps into range interiors. It checks nine guarded vectors and one
 fixed descriptor vector against complete original instruction boundaries.
 The original 58-row selector stays reproducible, and 36 rows still lack a
@@ -289,7 +289,7 @@ vector, with wider stat and gear contributions retaining their own scope.
 
 ### Incoming cells for the remaining 36 ranges
 
-The [entry-frontier proof](evidence/0.141.0/as-residual-entry-frontier.json)
+The [entry-frontier proof](evidence/as-residual-entry-frontier.json)
 finds an exact incoming signed-relative cell for every row left by the
 preceding join. For each row it verifies the original range and containing
 extent hashes, RIP-relative base load, signed dword lookup, base addition
@@ -386,7 +386,7 @@ Some exact cells also have reviewed producers:
   records at `0x1473a9948` reaches 501 unique action descriptors through
   moves, phases, alternates and nested action lists. Its fourteen tag-22
   rows are byte-identical as a multiset to the retained
-  [ward payloads](evidence/0.109.0/raid-wards/manifest.json). Three have
+  [ward payloads](evidence/raid-wards-comparison/manifest.json). Three have
   kind 0 (eggs), five have kind 1 (healing), and six have kind 2 (shielding).
   The [live ward producer](../../crates/azeroth-survivors-re/src/bosses/raid_wards.rs)
   supplies those three warnings. The additional kind-3 and kind-4
@@ -534,7 +534,7 @@ unproved. The rebuilt input rechecks budget and dependencies per action.
 
 ## Q41-U03 executable complement
 
-The [complement projection](evidence/0.141.0/executable-complement-projection.json)
+The [complement projection](evidence/executable-complement-projection.json)
 checks all 351,512 complement regions and 5,376,717 original bytes. The
 331,286 regions whose complete encoding is a `NOP`/`INT3` candidate contain
 2,690,758 bytes unobserved by both passes. The other 20,226 regions contain
@@ -588,7 +588,7 @@ bytes of graphics context.
 
 ## Q41-U04 seeded traversal stops
 
-The [stop proof](evidence/0.141.0/complement-stop-proof.json) checks all 5,943
+The [stop proof](evidence/complement-stop-proof.json) checks all 5,943
 records against the independent traversal and exact selected instruction
 and body starts. All 39 stops at the file-backed complement boundary equal
 the next declared unwind entry and have an immediately preceding decoded

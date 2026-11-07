@@ -72,7 +72,7 @@ def check_current(proof, target, image, pe):
             return False
     machine.hook_add(UC_HOOK_CODE, hook)
     machine.hook_add(UC_HOOK_MEM_UNMAPPED, fault)
-    historical = json.loads((ROOT / 'docs/analysis/evidence/0.121.0/collection-progress-cases.json').read_text())
+    historical = json.loads((ROOT / 'docs/analysis/evidence/collection-progress-cases.json').read_text())
     cases = []
     for slots, profile, values in historical['profiles']:
         for tier in (0, 1, 2, 3, 5, 4):
@@ -98,7 +98,7 @@ def check_current(proof, target, image, pe):
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--proof', type=project_path,
-    default=ROOT / 'docs/analysis/evidence/0.121.0/armory-collection.json')
+    default=ROOT / 'docs/analysis/evidence/armory-collection.json')
 args = parser.parse_args()
 proof = json.loads(args.proof.read_text())
 target = latest_target(verify=True)
@@ -294,6 +294,6 @@ for row in proof['source_bindings']:
 source = (ROOT / 'crates/azeroth-survivors-re/src/armory.rs').read_text()
 for needle in proof['source_contracts']:
     assert needle in source, needle
-fixture = json.loads((ROOT / 'docs/analysis/evidence/0.121.0/collection-progress-cases.json').read_text())
+fixture = json.loads((ROOT / 'docs/analysis/evidence/collection-progress-cases.json').read_text())
 assert fixture['cases'] == summary_cases
 print(json.dumps(dict(drop_cases=540, summary_cases=len(summary_cases), original_instruction_steps=state['steps'], application_executed=False), indent=2))

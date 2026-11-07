@@ -2,7 +2,7 @@
 
 Selected EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
-The [manifest](evidence/0.121.0/heroic-rewards/manifest.json) binds four completed
+The [manifest](evidence/heroic-rewards/manifest.json) binds four completed
 durable Ghidra queries and current code/data. [verification-needed](../verification-needed.md)
 owns **#226**. Boss drop chance and class-mark/pity transactions have separate
 owners; this report covers terminal talent XP and the captured feat inputs.
@@ -32,7 +32,7 @@ The shared raw scalar helper `145ac0330..145ac0366` instead defaults to one
 outside ranks 1–5. Source therefore clamps at this particular summary consumer
 before calling `heroic::reward_multiplier`, preserving the distinct drop/helper
 domain. The descriptor's canonical owner remains the
-[Heroic source evidence](evidence/0.121.0/heroic-source.json).
+[Heroic source evidence](evidence/heroic-source.json).
 
 The current summary localizes the six-byte **Heroic** key at `147663350` for
 part index five (`145b28bd2..145b28c08`). The live talent-XP event now uses that
@@ -59,7 +59,7 @@ Current source snapshot construction supplies raw kills and rank-at-least-III
 to the retained `full_reward` boolean. `from_heroic_run` makes this explicit;
 the old `from_run` entry remains a historical Run Options adapter. Current
 per-item native predicates are separately established by the
-[#237 proof](evidence/0.121.0/run-achievements.json) and
+[#237 proof](evidence/run-achievements.json) and
 `scripts/check-run-achievements.py`. Descriptor/evaluator ownership
 remains separate from this shared input:
 
@@ -81,7 +81,7 @@ report no longer treats those per-item native conditions as unresolved.
 PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-heroic-rewards.py
 ```
 
-The [result](evidence/0.121.0/heroic-rewards/static-check.json) records **4,032**
+The [result](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.121.0/heroic-rewards/static-check.json) records **4,032**
 original-instruction XP contexts and **2,304** complete party-context cases,
 covering all 256 rank bytes at the party boundary, rank overflow at summary,
 all twelve zones, f32/integer boundaries, wins, Veteran bonuses and cooperative

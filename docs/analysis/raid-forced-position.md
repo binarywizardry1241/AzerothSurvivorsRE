@@ -7,9 +7,9 @@ actual historical target; their report-count source correspondence is superseded
 
 Authority is the configured installed EXE, version **0.112.0**, SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The [manifest](evidence/0.112.0/raid-forced-position/manifest.json) binds
+The [manifest](evidence/raid-forced-position/manifest.json) binds
 current instructions, explicit reused extracts, source guards and profile counts.
-[Ghidra provenance](evidence/0.112.0/raid-forced-position/rea-provenance.json)
+[Ghidra provenance](evidence/raid-forced-position/rea-provenance.json)
 binds the independently located current movement-report owner and its retained
 pending-position excerpt. This follows the current [raid lifecycle](raid-lifecycles.md)
 and [admitted-frame](raid-frame-continuation.md) recovery.

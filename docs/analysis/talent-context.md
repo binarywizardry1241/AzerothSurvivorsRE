@@ -2,7 +2,7 @@
 
 Permanent **#98**, lead **TALENTXP01**, belongs to installed 0.115.0,
 SHA-256 `0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c`.
-The [native proof](evidence/0.115.0/talent-context/manifest.json) binds thirteen
+The [native proof](evidence/talent-context/manifest.json) binds thirteen
 original code ranges, eighteen completed journaled Ghidra queries, the exact
 strings/data descriptors and supporting current co-op interfaces.
 [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) own current completion status.

@@ -47,7 +47,7 @@ def current_coop_contract():
 
     target = latest_target(verify=True)
     identity = {key: target[key] for key in ('version', 'path', 'sha256', 'size_bytes')}
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.127.0/coop-dispatch/manifest.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/coop-dispatch/manifest.json').read_text())
     require(proof['target'] == identity, 'Co-op dispatch proof belongs to another target')
     pe = module('current_coop_dispatch_pe', 'scripts/inventory-executable.py').PE(target_bytes(target))
     decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_64)
@@ -346,7 +346,7 @@ def current_coop_contract():
 def hero_refresh_contract():
     from equipment_native import EquipmentProbe
 
-    manifest = ROOT / 'docs/analysis/evidence/0.139.2/coop-hero-refresh.json'
+    manifest = ROOT / 'docs/analysis/evidence/coop-hero-refresh.json'
     proof = json.loads(manifest.read_text())
     target = installed_identity()
     require(target == proof['target'], 'Wrong target for cooperative Hero dispatch')
@@ -558,14 +558,14 @@ def main():
         span(address, address+instruction.size)
         return dict(site=hex(address), bytes=instruction.bytes.hex(), instruction=mnemonic+' '+operands)
 
-    projection = json.loads(consume('docs/analysis/evidence/0.115.0/expanded-gap-dispatch.json').read_text())
+    projection = json.loads(consume('docs/analysis/evidence/expanded-gap-dispatch.json').read_text())
     require(projection['target'] == identity, 'Expanded dispatch target differs')
     artifact = projection['artifact']
     with gzip.open(consume(artifact['path'], artifact['sha256']), 'rt') as stream:
         selected = [r for r in map(json.loads, stream) if int(r['site'], 16) in SITES]
     require(sorted(int(r['site'], 16) for r in selected) == SITES, 'Selected thirteen-site population differs')
 
-    metadata = json.loads(consume('docs/analysis/evidence/0.115.0/addon-timers/metadata.json').read_text())
+    metadata = json.loads(consume('docs/analysis/evidence/addon-timers/metadata.json').read_text())
     table = metadata['spells']['native']
     require(table['va'] == '0x146cc4580' and table['size'] == 113*120 and
             sha(raw(int(table['va'], 16), table['size'])) == table['sha256'], 'Changed current ability input table')
@@ -662,7 +662,7 @@ def main():
         (0x14597a324, 'mov', 'qword ptr [r13 + 0x78], rax'),
         (0x14597a7fb, 'movabs', 'rdx, 0x8000000000000004'),
         (0x14597a805, 'mov', 'qword ptr [r13 + 0x78], rdx')]]
-    open_proof = json.loads(consume('docs/analysis/evidence/0.115.0/coop-ui/open-admission.json').read_text())
+    open_proof = json.loads(consume('docs/analysis/evidence/coop-ui/open-admission.json').read_text())
     require(open_proof['target']['sha256'] == target['sha256'] and open_proof['contract']['action'] == 10, 'Changed established OPEN input')
 
     # Cases below are admitted ONLY under the stated producer/predicate.
@@ -747,7 +747,7 @@ def main():
                          'Mutable alias/descriptor ancestry, remaining negative/action/effect discriminants and executed branches stay unresolved.',
                          'Ghidra warnings and oversized neighboring bodies are retained as limitations, never inferred source contracts.',
                          'Existing source behavior is not reopened only for newest-target proof. No gameplay source changes, compilation or application/game/network execution.'])
-    output = ROOT/'docs/analysis/evidence/0.115.0/q41-dispatch-contracts.json'
+    output = ROOT/'docs/analysis/evidence/q41-dispatch-contracts.json'
     if args.write:
         output.write_text(portable_json(proof, indent=2)+'\n')
     else:

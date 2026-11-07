@@ -20,7 +20,7 @@ from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 import unicorn.x86_const as r
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-KEPT = ROOT / "docs/analysis/evidence/0.113.2/as-state-contracts/step.json"
+KEPT = ROOT / "docs/analysis/evidence/as-state-contracts/step.json"
 STAGE = ROOT / "runtime/analysis/history/native-recovery/as-state-contracts/a6cf7f2e1fff/staged/step.json"
 RANGES = [(0x1458681B5, 0x1458681F1), (0x14586C2E1, 0x14586C2F9),
           (0x14590A241, 0x14590A2F2)]

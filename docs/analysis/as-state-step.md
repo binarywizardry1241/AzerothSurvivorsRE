@@ -20,7 +20,7 @@ Its ordinary local branch (`Game+c0d == 0`) reads phase `Game+c12`, consumes a
 pending startup request in phase zero, and advances the clock at `Game+b6c` only
 in active phase one. The same supplied delta reaches learned abilities, procs,
 demons, hazards and enemy updates; the selected direct calls are retained in
-[step.asm](evidence/0.113.2/as-state-contracts/step.asm).
+[step.asm](evidence/as-state-contracts/step.asm).
 
 The live adapter previously passed Bevy's elapsed f32 directly to
 `Mechanics::tick`, allowing steps above 100ms to advance the run clock and its
@@ -43,8 +43,8 @@ phase-store seam. The actual call bytes are checked independently. Source guards
 check the cap's position before clock advancement and preserve the existing
 nonpositive gate.
 
-[Contracts](evidence/0.113.2/as-state-contracts/step.json) and
-[fresh REA/Ghidra provenance](evidence/0.113.2/as-state-contracts/step-rea.json)
+[Contracts](evidence/as-state-contracts/step.json) and
+[fresh REA/Ghidra provenance](evidence/as-state-contracts/step-rea.json)
 retain exact current ranges and hashes. Original-VA raw imports lack complete
 external data and Win64 ABI information. The local function's excluded nonlocal
 tail jump leaves the raw import and causes a decompiler warning; that branch is

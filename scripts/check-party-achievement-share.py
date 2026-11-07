@@ -17,7 +17,7 @@ from coverage_common import latest_target,target_bytes,project_path
 from script_sources import load_script
 from native_terminal import NativeReplay
 
-EVIDENCE=ROOT/'docs/analysis/evidence/0.120.2/party-achievement-share'
+EVIDENCE=ROOT/'docs/analysis/evidence/party-achievement-share'
 def digest(raw):return hashlib.sha256(raw).hexdigest()
 def require(value,message):
     if not value:raise ValueError(message)

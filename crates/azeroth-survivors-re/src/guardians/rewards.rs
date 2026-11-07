@@ -1,6 +1,6 @@
 //! Guardian-specific reward inputs recovered from the selected 0.97.2 EXE.
 //!
-//! Evidence: docs/analysis/evidence/0.97.2/guardians/guardian-rewards.json.
+//! Evidence: docs/analysis/guardians.md.
 //! The owning Game retains its shared XP, choice queues, pickup creation,
 //! localization and account-event consumers. These helpers do not create a
 //! replacement loot UI, private RNG or account/save mutation route.

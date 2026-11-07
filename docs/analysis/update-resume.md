@@ -2,7 +2,7 @@
 
 Selected installed EXE SHA-256:
 `de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be`.
-The [manifest](evidence/0.123.0/update-resume/manifest.json) binds four journaled
+The [manifest](evidence/update-resume/manifest.json) binds four journaled
 Ghidra raw-slice queries, exact original instruction/data ranges, two guarded
 error representation tables and actual source hashes. This supplies a bounded
 current `custom-app-update` contract under **#133/#263**. It does not establish

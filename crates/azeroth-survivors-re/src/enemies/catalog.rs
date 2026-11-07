@@ -1,9 +1,9 @@
 //! Selected 0.97.2 enemy definitions recovered from original PE bytes.
 //! Named creature scales use bounded0.127.0 overrides from
-//! docs/analysis/evidence/0.127.0/creature-sizes/contract.json; other fields retain
+//! docs/analysis/evidence/creature-sizes/contract.json; other fields retain
 //! their existing provenance. Apply with recover-enemy-catalog.py --size-contract.
 //! SHA-256 a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589.
-//! Evidence: docs/analysis/evidence/0.97.2/enemies/catalog.json.
+//! Evidence: docs/analysis/evidence/enemies/catalog.json.
 //! Regenerate: python3 scripts/recover-enemy-catalog.py.
 //! These semantic source records do not declare the native memory ABI.
 //! Raw field names retain offsets whose full meanings remain unrecovered.

@@ -61,9 +61,9 @@ arguments. It does not certify Windows CRT versus host powf bit parity.
 
 ## Evidence and checks
 
-The [proof](evidence/0.113.2/zone-key-guardian-damage.json) retains exact range
+The [proof](evidence/zone-key-guardian-damage.json) retains exact range
 hashes, fresh REA/Ghidra parser Evidence IDs, definition/record hashes, input
-bits and result commitments. The [single instruction extract](evidence/0.113.2/zone-key-guardian-damage.asm)
+bits and result commitments. The [single instruction extract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.113.2/zone-key-guardian-damage.asm)
 is bound to those current bytes. The parser's fresh 297-byte Ghidra body lies
 outside declared PE unwind extents; it is not assigned an invented enclosing
 owner. The guardian function is already the selected actual Ghidra owner in

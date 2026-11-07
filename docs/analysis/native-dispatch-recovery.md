@@ -7,8 +7,8 @@ the installed 140,514,816-byte EXE with SHA-256
 Recovered code/data contracts, actual native body ownership, source connections
 and runtime/parity verification remain separate observations.
 
-The original [integrated census](evidence/0.112.0/integrated-census.json) remains
-immutable. The new [supporting census](evidence/0.112.0/full-native-census.json)
+The original [integrated census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/integrated-census.json) remains
+immutable. The new [supporting census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/full-native-census.json)
 provides discovery context for the AS recovery. Generic engine completeness is
 outside the gameplay repair's completion criteria.
 
@@ -19,7 +19,7 @@ body ownership improves from 579 to **626 sites**; 55 remain without an observed
 body owner. Independently decoding a diagnostic, dispatch source or case target
 does not create a function entry or establish a gameplay contract.
 
-The [custom-only proof/census](evidence/0.112.0/custom-dispatch-census.json)
+The [custom-only proof/census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/custom-dispatch-census.json)
 retains **44 bounded tables and 438 distinct edges**. Recovery handles scalar
 aliases, exact unsigned guards, complete mathematical domains, and intervening
 instructions that preserve an already calculated 64-bit destination. It rejects
@@ -31,7 +31,7 @@ The current options proof reads all 105 immutable records at `145dc2250`, stride
 exactly `0..3`; dispatch source `14012d257` uses table `145dc9668`. This produces
 two further real reference owners.
 
-[Producer contracts](evidence/0.112.0/native-producer-contracts.json) retain the
+[Producer contracts](evidence/native-producer-contracts.json) retain the
 current byte spans, descriptors, native replay cases and their input bounds:
 
 - Factory `1458a1730` was replayed for all **113 immutable ability descriptors**
@@ -97,7 +97,7 @@ identity remain static proof limits. No further concrete missing AS behavior
 was identified in these routes. These scoped contracts do not change the global
 census or certify its ownership.
 
-The [current frontier](evidence/0.112.0/native-custom-frontiers.json) retains
+The [current frontier](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/native-custom-frontiers.json) retains
 **55 ownerless references in 18 declared extents and 30 computed frontiers**.
 These are native proof limits; they do not independently establish missing or
 incorrect reconstructed gameplay. The two label observations above also retain
@@ -138,7 +138,7 @@ remain separate validation work.
 | AS references with an actual body owner | 579 | 626 |
 | AS references without an actual body owner | 102 | 55 |
 
-The [supporting switch proof](evidence/0.112.0/full-native-switches.json) admits
+The [supporting switch proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/full-native-switches.json) admits
 3,713 whole tables, 69,176 encoded cases and 23,920 distinct edges. Whole-domain
 boundary checks reject 419 proposals. A complete lexical scan of 347,158 current
 declared extents supplies additional source-code candidates, without assigning
@@ -152,8 +152,8 @@ established/table boundaries. Their carried source owner is explicitly an
 observation from the original operand parent, never asserted as the latest owner.
 Only independently observed direct CALLs supply the separate helper-entry queue.
 
-The [same-parent explicit-operand audit](evidence/0.112.0/full-native-operands.json)
-and [ownership classification](evidence/0.112.0/full-native-classification.json)
+The [same-parent explicit-operand audit](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/full-native-operands.json)
+and [ownership classification](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/full-native-classification.json)
 retain encoded address/data relationships separately from AS contracts. Their
 source candidates use an immutable Git tree. Operand detail snapshots have
 separate runtime locations and exact hash commitments.

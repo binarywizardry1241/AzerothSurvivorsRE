@@ -58,7 +58,7 @@ and sex. No third racial mapping or replacement artwork is introduced.
 
 ## Evidence and limits
 
-[Native/resource proof](evidence/0.113.2/race-portraits/manifest.json) binds the
+[Native/resource proof](evidence/race-portraits/manifest.json) binds the
 fresh REA/Ghidra Appearance and tooltip imports, current native ranges/data,
 original-instruction checks and MPQ member identity. The checks pass **32 atlas/sex/tint cases**, **72 class eligibility cases**,
 **two button Node constructions**, **eight tooltip constructor submissions** and

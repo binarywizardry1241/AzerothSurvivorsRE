@@ -13,7 +13,7 @@ from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 import unicorn.x86_const as r
 
 ASSET = ROOT / 'crates/azeroth-survivors-re/assets/achievement-catalog-0.121.0.json'
-PROOF = ROOT / 'docs/analysis/evidence/0.121.0/achievement-catalog.json'
+PROOF = ROOT / 'docs/analysis/evidence/achievement-catalog.json'
 
 def recover(keys, x, data, p):
     u=Uc(UC_ARCH_X86,UC_MODE_64);size=max(s['rva']+max(s['virtual_size'],s['raw_size'])for s in p.sections);u.mem_map(p.image_base,(size+4095)&~4095)

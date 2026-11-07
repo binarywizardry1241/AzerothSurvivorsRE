@@ -9,7 +9,7 @@ owns their current implementation and validation status.
 
 ## Exact current populations and order
 
-The [compact contract](evidence/0.117.0/party-rewards/contracts.json) binds seventeen
+The [compact contract](evidence/party-rewards/contracts.json) binds seventeen
 code/table ranges, three completed journaled Ghidra queries and bounded original
 instruction results. The [release descriptor proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-review-0.117.0.md)
 owns each new field and its independent table copies.
@@ -56,7 +56,7 @@ selection command. Run entry passes the selected descriptors to
 `begin_loot_companions`; their creature ID, scale and display reach the existing
 creation event, object fields, movement and collection actors. Cooperative
 profile creation and replication also consume the merged definition registry.
-The [current creature-query proof](evidence/0.117.0/party-rewards/creature-query-contract.json)
+The [current creature-query proof](evidence/party-rewards/creature-query-contract.json)
 connects 9623–9626 to empty name/subname, creature type 8, rank 0 and their
 descriptor displays. The ordinary client query adapter now includes those
 four rows; actual cache/VM execution remains unverified.
@@ -75,7 +75,7 @@ pointer, not a quality field. The actual ItemQuery consumer reads rarity from
 tabard quality from the same earned/purchased catalog distinction rather than
 an older fixed ID set that omitted 90025.
 
-The [current ItemQuery bridge](evidence/0.117.0/item-query-bridge/contracts.json)
+The [current ItemQuery bridge](evidence/item-query-bridge/contracts.json)
 connects the requested ID to the actual metadata constructor and logical opcode
 0x58 response. Its separate replay checks 404 current native response cases
 across 66 starters, 21 tabards and 14 cosmetics with four locale states; it

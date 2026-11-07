@@ -9,7 +9,7 @@ import struct
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.121.0/armory-stat-format/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/armory-stat-format/manifest.json"
 KEYS = ("damage", "cooldown", "hp", "crit", "crit_damage", "speed", "armor",
         "regen", "pickup", "gold", "area", "count", "echo", "calm_regen", "crowd_armor")
 

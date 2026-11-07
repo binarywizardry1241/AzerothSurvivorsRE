@@ -3,7 +3,7 @@
 //! Target SHA-256:
 //! 17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b.
 //! Target native owners are identified alongside the recovered operations.
-//! Catalog byte provenance: `docs/analysis/evidence/0.100.1/treasure-chests/catalog.json`.
+//! Catalog byte provenance: docs/analysis/treasure-chests.md.
 //! Historical 0.92 native fixtures remain version-bound regression evidence.
 //! This module is executable source, not a binary-layout or save-file adapter.
 //! Terrain/entity/UI adapters and a shared RNG seed must come from the owning
@@ -652,7 +652,7 @@ mod coinage_tests {
     #[test]
     fn player_coinage_matches_current_native_wrapping_values() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/cache-feedback/native.json"
+            "../../../../docs/analysis/evidence/cache-feedback/native.json"
         )).unwrap();
         for row in fixture["coinage"].as_array().unwrap() {
             assert_eq!(super::coinage(row["gold"].as_u64().unwrap() as u32),

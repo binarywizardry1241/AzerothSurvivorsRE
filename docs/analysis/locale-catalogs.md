@@ -6,7 +6,7 @@ The configured EXE and Data were read in place. This bounded data review does
 not execute the game or promote earlier native lookup/UI contracts.
 [verification-needed](../verification-needed.md) owns permanent finding status.
 
-The [descriptor review](evidence/0.119.0/locale-catalog-review.json) independently
+The [descriptor review](evidence/locale-catalog-review.json) independently
 locates fourteen flat UTF-8 JSON payloads and the contiguous fourteen-record
 seven-u64 table `[0x1475d7350,0x1475d7660)`, raw
 `[0x75d6150,0x75d6460)`. The 784-byte table hashes to
@@ -15,7 +15,7 @@ Each code/autonym/pointer/length is checked against its complete current payload
 the trailing word remains an unknown u64. Exact ranges, hashes and source
 receipts are retained without duplicating the fourteen payloads.
 
-The [complete content delta](evidence/0.119.0/locale-content-delta.json) verifies
+The [complete content delta](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.119.0/locale-content-delta.json) verifies
 that all fourteen descriptor-bounded payloads are byte-identical to 0.118.0.
 Each has 2,979 keys; together they contain 41,706 values. The retained pre-repair
 source review records 41,056 values: fifty missing keys in each non-English

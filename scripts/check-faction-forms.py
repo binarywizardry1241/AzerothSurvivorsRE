@@ -20,8 +20,8 @@ import unicorn.x86_const as reg
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-HERE = ROOT / "docs/analysis/evidence/0.120.0/faction-forms"
-RETAINED = ROOT / "docs/analysis/evidence/0.120.0/race-unlocks"
+HERE = ROOT / "docs/analysis/evidence/faction-forms"
+RETAINED = ROOT / "docs/analysis/evidence/race-unlocks"
 SHA = "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08"
 START, STOP = 0x145B7BA7D, 0x145B7BBDE
 TABLE = 0x1475F7A04

@@ -29,7 +29,7 @@ No inventory, ownership, equipment or save mutation rule changes here.
 
 ## Static evidence
 
-The [manifest](evidence/0.113.2/armory-badges/manifest.json) binds two fresh
+The [manifest](evidence/armory-badges/manifest.json) binds two fresh
 REA/Ghidra raw-function imports, exact current instruction ranges and literals.
 The three assembly extracts have one canonical copy under that directory.
 Raw imports omit external data/callees and use a generic ABI; actual Win64

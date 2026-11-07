@@ -20,7 +20,7 @@ from unicorn.x86_const import *
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 START, END = 0x1401317C0, 0x140131B21
 MASK = (1 << 64) - 1
-RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/talent-view/input-vectors.json'
+RETAINED = ROOT / 'docs/analysis/evidence/talent-view/input-vectors.json'
 
 
 def recover():

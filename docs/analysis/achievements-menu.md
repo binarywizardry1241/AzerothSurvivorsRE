@@ -12,7 +12,7 @@ The current catalog constructor `1458dccb0..1458e11aa` emits **73 entries worth
 1,520 points**. All 365 menu name/description/icon/point/category fields agree
 with the existing source asset after its English label and token expansion.
 The constructor also runs the current gear iterator `1459c38b0` for all nine
-classes. The [catalog record](evidence/0.109.0/achievements-menu/catalog.json)
+classes. The [catalog record](evidence/achievements-menu/catalog.json)
 binds the byte ranges, output digest and class counts. No gameplay grant or
 predicate has been inferred from these menu fields.
 
@@ -42,8 +42,8 @@ retained old total is used by the summary, score or account progress bar.
   Node snapshots** and two category-body font sizes from current constructor
   instructions. UI submission, assets/fonts, account getters, allocation,
   color conversion and formatted text are fixture seams. The
-  [layout record](evidence/0.109.0/achievements-menu/layout.json) retains emitted
-  fields and their instruction hashes; [Ghidra provenance](evidence/0.109.0/achievements-menu/rea.json)
+  [layout record](evidence/achievements-menu/layout.json) retains emitted
+  fields and their instruction hashes; [Ghidra provenance](evidence/achievements-menu/rea.json)
   identifies the independently recovered owners.
 - Both Rust owners parse with the installed Rust formatter. This is a syntax
   check, not compilation or type checking.

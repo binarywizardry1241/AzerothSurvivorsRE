@@ -39,7 +39,7 @@ for race in range(1,9):
    assert rect==expected,(race,sex,rect,expected);assert tint==([1.]*4 if allowed else[.25,.25,.25,1.]),(race,sex,allowed,tint)
    assert struct.unpack('<I',u.mem_read(FRAME+0x598,4))[0]==int(allowed)
    rows.append({'race':race,'name':NAMES[race],'native_key':native_key,'sex':sex,'allowed':allowed,'rect':rect,'tint':tint})
-layout=json.loads((ROOT/'docs/analysis/evidence/0.92/picker-node-layout.json').read_text())['node_layout']
+layout=json.loads((ROOT/'docs/analysis/evidence/picker-node-layout.json').read_text())['node_layout']
 import capstone
 md=capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_64);md.detail=True
 def memvec(ins):
@@ -82,7 +82,7 @@ for cls,expected in source_allowed.items():
   allowed_cases.append({'class':cls,'race':race,'allowed':allowed})
 from unicorn import UC_HOOK_CODE
 records=race_records
-layout=json.loads((ROOT/'docs/analysis/evidence/0.92/picker-node-layout.json').read_text())['node_layout']
+layout=json.loads((ROOT/'docs/analysis/evidence/picker-node-layout.json').read_text())['node_layout']
 PARENT=0x200001000;CONTEXT=0x200002000;ASSET=0x200003000
 u.mem_write(CONTEXT,struct.pack('<QQ',ASSET,0));u.mem_write(ASSET,struct.pack('<Q',0x12345));u.mem_write(PARENT,bytes(64))
 seen=[]
@@ -161,7 +161,7 @@ compact['portrait_cases']={'count':len(rows),'sha256':digest(rows)}
 compact['class_eligibility_cases']={'count':len(allowed_cases),'sha256':digest(allowed_cases)}
 import argparse
 parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args()
-directory=ROOT/('runtime/analysis/history/inventory/armory-races/b9e0f34c201a/staged' if args.stage else 'docs/analysis/evidence/0.113.2/race-portraits')
+directory=ROOT/('runtime/analysis/history/inventory/armory-races/b9e0f34c201a/staged' if args.stage else 'docs/analysis/evidence/race-portraits')
 if args.stage:
  directory.mkdir(parents=True,exist_ok=True)
  (directory/'cases.json').write_text(json.dumps(compact,indent=2)+'\n')

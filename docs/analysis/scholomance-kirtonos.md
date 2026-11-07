@@ -1,6 +1,6 @@
 # Scholomance: Kirtonos the Herald
 
-The [native receipt](evidence/0.141.0/scholomance-kirtonos.json) binds the
+The [native receipt](evidence/scholomance-kirtonos.json) binds the
 script, shared dispatcher and hit consumers to `installed-game/AzerothSurvivors.exe`,
 SHA-256 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 The action rows, header pointers and fixed-cycle data identify the current

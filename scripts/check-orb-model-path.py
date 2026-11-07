@@ -17,7 +17,7 @@ from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
 SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
-OUT = ROOT / "docs/analysis/evidence/0.121.0/orb-model-path.json"
+OUT = ROOT / "docs/analysis/evidence/orb-model-path.json"
 FUNCTIONS = {
     "model-path": (0x145EDD720, 0x145EDD7DA),
     "model-name": (0x145EDD7E0, 0x145EDDB9C),
@@ -233,12 +233,12 @@ def derive():
             cases.append({"role": role, "input": name, "source": source.decode() if role == "model-url" else None,
                           "output": actual, "original_instruction_steps": state["steps"]})
 
-    parent = ROOT / "docs/analysis/evidence/0.121.0/resource-consumer-9612.json"
+    parent = ROOT / "docs/analysis/evidence/resource-consumer-9612.json"
     model = json.loads(parent.read_text())
     assert model["target"]["sha256"] == SHA
     assert model["model_path_as_authored"] == authored
     assert all(not row["present"] for lookup in model["model_name_hash_lookups"] for row in lookup["archives"])
-    inventory_path = ROOT / "docs/analysis/evidence/0.121.0/mpq-member-coverage.json"
+    inventory_path = ROOT / "docs/analysis/evidence/mpq-member-coverage-comparison.json"
     inventory = json.loads(inventory_path.read_text())
     reader_path = ROOT / "scripts/check-minimap-lifecycle.py"
     reader = load_script("orb_model_archive_reader", reader_path)

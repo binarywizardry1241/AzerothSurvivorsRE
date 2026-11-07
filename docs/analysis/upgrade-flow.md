@@ -5,7 +5,7 @@ font and footer correction is owned by [card layout/font recovery](https://githu
 
 Updated 2026-10-19 against the selected supplied EXE, SHA-256
 `17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b`.
-The [current manifest](evidence/0.100.1/upgrade-flow/manifest.json) binds five
+The [current manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/upgrade-flow/manifest.json) binds five
 complete native owners to their PE bytes and fresh REA/Ghidra evidence. External
 constants, calls and Windows arguments are checked against the original PE;
 raw Ghidra imports alone do not recover those dependencies.

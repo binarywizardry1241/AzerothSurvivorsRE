@@ -2,8 +2,8 @@
 
 Authority is the configured installed EXE, version **0.112.0**, SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The [manifest](evidence/0.112.0/raid-lair-marker/manifest.json) and
-[Ghidra provenance](evidence/0.112.0/raid-lair-marker/rea-provenance.json)
+The [manifest](evidence/raid-lair-marker/manifest.json) and
+[Ghidra provenance](evidence/raid-lair-marker/rea-provenance.json)
 bind the current AS marker fields and explicit shared-provider seams. This
 supports the [forced-position handoff repair](raid-forced-position.md);
 the existing benilla GossipPoi client interface remains the port.

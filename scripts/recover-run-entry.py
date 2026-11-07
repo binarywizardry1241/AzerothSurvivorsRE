@@ -17,7 +17,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.100.1.exe"
 SHA = "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b"
-OUT = ROOT / "docs/analysis/evidence/0.100.1/run-effects"
+OUT = ROOT / "docs/analysis/evidence/run-effects"
 ASSET = ROOT / "crates/azeroth-survivors-re/assets/run-entry-0.100.1.json"
 module = load_script("inventory", ROOT / "scripts/inventory-executable.py")
 data = TARGET.read_bytes()

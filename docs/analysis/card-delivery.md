@@ -4,8 +4,8 @@ Installed EXE SHA-256
 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
 This selected AS contract belongs to #41 (`Q41-S01`/`Q41-M03`).
 [CURRENT-STATE](../CURRENT-STATE.md) owns overall status. The
-[proof](evidence/0.113.2/card-delivery/proof.json) binds the selected current bytes, fresh REA/Ghidra queries,
-native fixtures and source. [delivery.asm](evidence/0.113.2/card-delivery/delivery.asm) retains the canonical
+[proof](evidence/card-delivery/proof.json) binds the selected current bytes, fresh REA/Ghidra queries,
+native fixtures and source. [delivery.asm](evidence/card-delivery/delivery.asm) retains the canonical
 selected instruction excerpts; complete disposable owner decodes remain under
 `runtime/analysis/history/findings/q41-card-delivery/4f64e372ed30/`.
 

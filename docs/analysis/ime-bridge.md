@@ -3,7 +3,7 @@
 Finding [#293](../CURRENT-STATE.md#gap-293). The selected installed Windows EXE
 is `installed-game/AzerothSurvivors.exe` 0.139.2, SHA-256
 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
-The [range and query manifest](evidence/0.139.2/ime-bridge.json) binds this
+The [range and query manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/ime-bridge.json) binds this
 bounded repair to the installed bytes. The [0.127.0 report](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/ime-bridge-0.127.0.md)
 owns the earlier focus, caret, and IME message census.
 

@@ -31,13 +31,13 @@ week, even when the completed run raised an unlock ceiling. The requested Pick
 stays unchanged. The common start owner `145b21eb0` binds the Tester identity at
 `145b22727..145b2277c`, the Normal branch at `145b231ce`, constructor input
 write at `145b2368c` and later raw-Pick metadata minimum at `145b25984`.
-The [affix proof](evidence/0.121.0/affixes/manifest.json) binds the retained
+The [affix proof](evidence/affixes/manifest.json) binds the retained
 rank/week writes and copies through `145b2d080`. Calendar, affix effects
 and the rest of the run configuration retain their independent contracts.
 
-The [start/admission proof](evidence/0.121.0/heroic-notice/manifest.json)
+The [start/admission proof](evidence/heroic-notice/manifest.json)
 binds the common constructor and later independent host metadata branch.
-For the synchronous local Again route, the [entry ownership audit](evidence/0.121.0/again-entry.json)
+For the synchronous local Again route, the [entry ownership audit](evidence/again-entry.json)
 also binds the original nineteen equipment IDs, nineteen star bytes,
 class-filtered pity vector and chosen weapon glow. `RunSession::prepare_entry_loadout` retains those
 values and their derived gear effects only when both the captured solo-Again
@@ -50,7 +50,7 @@ into Game at `+0x1b0`, and copies the complete `0xd38`-byte Game to its output.
 The rank reaches Game `+0x36f`. `RunRules::heroic_rank` is the shared source input
 for stat, guardian, boss, healing and other twist consumers.
 
-The [constructor proof](evidence/0.121.0/difficulty-state.json) binds the exact
+The [constructor proof](evidence/difficulty-state.json) binds the exact
 installed bytes, original Ghidra result and three bounded instruction ranges.
 Eight ranks, including out-of-domain bytes, pass sixteen declared memory-copy
 seams. This proves copying, not admission or complete Game construction.
@@ -64,7 +64,7 @@ movement speed. Current run construction supplies unity for the obsolete
 percentage inputs. Existing historical scalar entry points preserve their
 original behavior for older evidence and callers.
 
-The [scaling proof](evidence/0.121.0/heroic-scaling/manifest.json) binds ordinary
+The [scaling proof](evidence/heroic-scaling/manifest.json) binds ordinary
 constructor `145c14ae0` and scheduled boss constructor `145c275f0`: two durable
 Ghidra results, six exact ranges and **64 original-instruction stat cases**.
 The fixtures retain the recovered float operation order and declare curve,

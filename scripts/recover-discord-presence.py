@@ -159,8 +159,8 @@ OWNERS={
  'meter-definition':(0x14599cb60,0x14599db10), 'json-f32':(0x1458e6790,0x1458e6878),
  'json-number':(0x1458edff0,0x1458ee116),
 }
-RETAINED=ROOT/'docs/analysis/evidence/0.109.0/discord-presence'
-STAGED=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/discord-presence'
+RETAINED=ROOT/'docs/analysis/evidence/discord-presence'
+STAGED=ROOT/'runtime/analysis/staging/native-evidence/discord-presence'
 
 def vectors():
     base={'phase':'playing','endless':False,'level':10,'kills':1000,'time':123,'dealt':24600,'meter':[]}

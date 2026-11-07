@@ -2,7 +2,7 @@
 
 This scoped static recovery uses the installed **0.108.0** EXE, SHA-256
 `dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b`.
-The [contracts](evidence/0.108.0/terminal-visuals/contracts.json) bind current
+The [contracts](evidence/terminal-visuals/contracts.json) bind current
 ranges, TypeIds, direct calls, diagnostics and retained Ghidra output. The
 [0.107.0 report](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/terminal-visuals-0.107.0.md) retains its historical provenance.
 Current overall status belongs to [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md).

@@ -17,7 +17,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 WORK = ROOT / 'runtime/analysis/history/native-recovery/run-callbacks/1f73bc1e04b7'
-OUT = ROOT / 'docs/analysis/evidence/0.100.1/run-callbacks'
+OUT = ROOT / 'docs/analysis/evidence/run-callbacks'
 OWNERS = {
     'player-damage': 0x14548f420,
     'actor-hit': 0x1454c2eb0,

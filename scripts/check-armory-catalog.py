@@ -368,16 +368,16 @@ def main():
     assert ASSET.name in source and 'piece.effects = effects.clone();' in source and 'piece.display_id = display;' in source
     if args.write:
         write(ASSET,result);write(WORK/'armory-catalog-current.json',catalog)
-        write(ROOT/'docs/analysis/evidence/0.109.0/armory-pages/catalog.json',evidence)
-        write(ROOT/'docs/analysis/evidence/0.109.0/armory-pages/scaling.json',scaling)
-        write(ROOT/'docs/analysis/evidence/0.109.0/armory-pages/starters.json',starter)
-        write(ROOT/'docs/analysis/evidence/0.109.0/armory-pages/display-fallback.json',display_proof)
+        write(ROOT/'docs/analysis/evidence/armory-pages/catalog.json',evidence)
+        write(ROOT/'docs/analysis/evidence/armory-pages/scaling.json',scaling)
+        write(ROOT/'docs/analysis/evidence/armory-pages/starters.json',starter)
+        write(ROOT/'docs/analysis/evidence/armory-pages/display-fallback.json',display_proof)
     else:
         assert json.loads(ASSET.read_text())==result
-        assert json.loads((ROOT/'docs/analysis/evidence/0.109.0/armory-pages/catalog.json').read_text())==evidence
-        assert json.loads((ROOT/'docs/analysis/evidence/0.109.0/armory-pages/scaling.json').read_text())==scaling
-        assert json.loads((ROOT/'docs/analysis/evidence/0.109.0/armory-pages/starters.json').read_text())==starter
-        assert json.loads((ROOT/'docs/analysis/evidence/0.109.0/armory-pages/display-fallback.json').read_text())==display_proof
+        assert json.loads((ROOT/'docs/analysis/evidence/armory-pages/catalog.json').read_text())==evidence
+        assert json.loads((ROOT/'docs/analysis/evidence/armory-pages/scaling.json').read_text())==scaling
+        assert json.loads((ROOT/'docs/analysis/evidence/armory-pages/starters.json').read_text())==starter
+        assert json.loads((ROOT/'docs/analysis/evidence/armory-pages/display-fallback.json').read_text())==display_proof
     print(f'Checked 415 ordinary and 83 PvP effects,166 faction previews and 12 native zone/drop mappings; {len(changes)} current record overrides and {len(cases)} native scaler cases.')
 
 if __name__=='__main__':main()

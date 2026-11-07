@@ -4,7 +4,7 @@ Recovered **2026-10-19** from the supplied 0.100.1 PE, SHA-256
 `17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b`.
 The [recovery script](../../scripts/recover-account-progression.py)
 regenerates the shared [catalog](../../crates/azeroth-survivors-re/assets/progression.json)
-and [hash-bound evidence](evidence/0.100.1/account-progression/manifest.json).
+and [hash-bound evidence](evidence/account-progression/manifest.json).
 Building the reconstruction does not require the EXE.
 
 This is historical 0.100.1 achievement/grant evidence. The current shared asset's
@@ -31,7 +31,7 @@ The twelve zone pairs use current catalog order. The nine `classlast:*` entries
 retain the Scarab Wall/Ahn'Qiraj condition, now explicitly zone index **10**;
 they do not switch to Naxxramas. Whole Armory has target **498**, from the native
 iterator's actual six quality lanes, rather than the 415 ordinary gear effects.
-The retained [native catalog](evidence/0.100.1/account-progression/catalog-native.json)
+The retained [native catalog](evidence/account-progression/catalog-native.json)
 contains every generated ID, without inferring either faction's absent lane.
 The legendary subset has 83 IDs across nine classes. The Codex consumer uses
 **141** as its denominator, so half/all thresholds are **71/141**.
@@ -67,7 +67,7 @@ Snapshot `1454502d0` is absent if wrapper+10 is2, selected GUID+f80 is`0xffffff`
 Constructor `1454ad570` defaults its game state to0 and phase to0. Factory
 `14544f710` overwrites the +9c2 flag from exact environment variable
 `WOW_ROGUE_SHOWCASE=1`; missing/other values producefalse. The
-[delivery/guard proof](evidence/0.100.1/account-progression/delivery-guards.json)
+[delivery/guard proof](evidence/account-progression/delivery-guards.json)
 retains the temporary-layout/copy edges. The caller owns these gates; the
 reconstructed application's environment override needs its own integration. A valid snapshot contains elapsed time,
 density-normalized/truncated/saturating u32 kills, guardians, caches, win,

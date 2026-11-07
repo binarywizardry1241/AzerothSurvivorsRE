@@ -2,10 +2,10 @@
 
 Authority is the configured installed EXE, version **0.112.0**, SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The [manifest](evidence/0.112.0/raid-pickup-collection/manifest.json) binds the
+The [manifest](evidence/raid-pickup-collection/manifest.json) binds the
 actual current instructions, PE owners, dispatch entries, constants, CRT import
 identities, explicit fixture seams and live source guards.
-[Ghidra provenance](evidence/0.112.0/raid-pickup-collection/rea-provenance.json)
+[Ghidra provenance](evidence/raid-pickup-collection/rea-provenance.json)
 binds the current reservation/removal helpers and collection/completion excerpts.
 Generic raw-import types and incomplete dispatch decompilation do not select the
 contracts below; installed Win64 instruction fixtures do.

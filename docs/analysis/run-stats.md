@@ -3,7 +3,7 @@
 The selected EXE (SHA-256
 `8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7`)
 embeds the complete character-pane extension at `146baffd0`, 8,584 bytes.
-The [canonical Lua and manifest](evidence/0.105.0/run-stats/manifest.json)
+The [canonical Lua and manifest](evidence/run-stats/manifest.json)
 retain its exact bytes, input fields and translatable literals.
 
 ## Connected source

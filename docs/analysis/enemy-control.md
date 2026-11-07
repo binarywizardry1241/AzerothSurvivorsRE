@@ -2,7 +2,7 @@
 
 This owns the source/static completion of **#286** for 0.127.0, SHA-256
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`.
-The [manifest](evidence/0.127.0/enemy-control/manifest.json) binds current original
+The [manifest](evidence/enemy-control/manifest.json) binds current original
 status dispatch, exact instructions/data, the completed Ghidra admission leaf
 and shared actor-update query. Older behavior reports retain their original
 0.97.2 provenance; they do not specify this replacement control policy.
@@ -58,7 +58,7 @@ The existing noncompiling checker accepts `--enemy-control` and replays
 counts 0–6 and 255, and immunity before/at/after the current time. It verifies
 shared counter writes, exact f32 duration results, sixth-attempt cancellation,
 reset and immunity ordering, plus connected source guards. The result is
-[static-check.json](evidence/0.127.0/enemy-control/static-check.json). Root/Fear
+[static-check.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.127.0/enemy-control/static-check.json). Root/Fear
 fixtures enter immediately after the GUID/state lookup; the dispatch table
 and producer/consumer order are independently bound in the manifest.
 

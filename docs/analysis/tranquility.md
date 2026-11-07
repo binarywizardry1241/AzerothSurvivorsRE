@@ -7,7 +7,7 @@ combat-log presentation and original/rebuilt parity still unverified.
 
 ## Native contract and source correction
 
-The canonical [Druid evidence](evidence/0.119.0/druid-release/manifest.json)
+The canonical [Druid evidence](evidence/druid-release/manifest.json)
 retains the full pulse branch `145bc5784..145bc5a51`, its exact instruction
 bytes, original journaled REA/Ghidra result identities and the shared
 source-kind-three exclusion `145bd983b..145bd985a`. The

@@ -10,11 +10,12 @@ import json
 import math
 import re
 import struct
+from artifact_history import read_artifact
 from coverage_common import ROOT
 
 g = load_script('guardian_fixture', ROOT/'scripts/check-raid-guardian-lifecycle.py')
 r = g.r
-STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-forced-position'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/raid-forced-position'
 KEPT = ROOT/'docs/analysis/evidence/0.112.0/raid-forced-position'
 RANGES = {'report-prefix': (0x1458f1b50, 0x1458f1c13),
           'report-return': (0x1458f26b1, 0x1458f26f7),
@@ -162,7 +163,7 @@ def main():
              'raid/queue.asm', 'raid-hazards/dispatcher.asm']
     canonical = {}
     for path in paths:
-        for line in (ROOT/'docs/analysis/evidence/0.112.0'/path).read_text().splitlines():
+        for line in read_artifact(ROOT/'docs/analysis/evidence/0.112.0'/path).decode().splitlines():
             hit = re.match(r'^([0-9a-f]+): ([0-9a-f]+) ', line)
             if hit: canonical.setdefault(int(hit[1], 16), (bytes.fromhex(hit[2]), '../'+path))
     new, traces = {}, {}
@@ -188,7 +189,7 @@ def main():
                  'No Rust execution, compiler, game, terrain/client rendering, movement interaction or original/rebuilt parity comparison.'])
     for name, value in {'selected-native.asm': assembly, 'manifest.json': json.dumps(proof,indent=2)+'\n'}.items():
         if args.stage: (out/name).write_text(value)
-        else: assert (out/name).read_text() == value, name
+        else: assert read_artifact(out/name).decode() == value, name
     print(json.dumps(counts,indent=2))
     print('Current forced-position checks passed; no compilation/game')
 

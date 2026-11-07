@@ -150,7 +150,7 @@ def main():
         limitations=['Only five ordinary rarities are covered here; PvP qualities 5/6 have a separate current owner.',
             'Item names, appearance, localized prose, drops and starter outfits retain their existing historical provenance.',
             'Current instruction consumers and exact tables establish numeric source data; no original runtime comparison is implied.'])
-    output = ROOT / 'docs/analysis/evidence/0.100.1/target-menu/gear-effects.json'
+    output = ROOT / 'docs/analysis/evidence/target-menu/gear-effects.json'
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2) + '\n')
     print(f'Revalidated {len(rows)} ordinary pieces; {len(changed)} numeric effect changes')

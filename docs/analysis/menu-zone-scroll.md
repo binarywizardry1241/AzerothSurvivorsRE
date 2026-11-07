@@ -10,7 +10,7 @@ picker-root constructor. Its preserved REA/Ghidra Evidence ID is
 `ev_3e47308fef07df3f785b0fa2e109eb7861d6efaa03049fadb913885b656c2f50`.
 The complete record, unchanged original bytes, original PE disassembly, and
 supporting type/call chain are in
-[catalog-zone-scroll-native.json](evidence/0.97.2/catalog-zone-scroll-native.json).
+[catalog-zone-scroll-native.json](evidence/catalog-zone-scroll-native.json).
 
 ## Role binding
 

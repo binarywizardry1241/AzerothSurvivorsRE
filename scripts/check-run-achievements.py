@@ -15,7 +15,7 @@ import struct
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-PROOF = ROOT / 'docs/analysis/evidence/0.121.0/run-achievements.json'
+PROOF = ROOT / 'docs/analysis/evidence/run-achievements.json'
 
 
 def f32(value):
@@ -229,7 +229,7 @@ def connected_source(rank_only=False):
 def photosynthesis_current(target, image, pe):
     """Check only the current exact-rank addition and its retained live consumers."""
     from discovery_native_subject import verify_native_query_subject
-    proof_path = ROOT / 'docs/analysis/evidence/0.127.0/party-achievements-photosynthesis.json'
+    proof_path = ROOT / 'docs/analysis/evidence/party-achievements-photosynthesis.json'
     proof = json.loads(proof_path.read_text())
     assert proof['target'] == {key: target[key] for key in proof['target']}
     assert proof['gap_ids'] == [157]
@@ -417,7 +417,7 @@ def insane_current(target, image, pe):
     """Replay the current survival predicate and recipient life-marker normalization."""
     import math
     from discovery_native_subject import verify_native_query_subject
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.127.0/party-achievements-insane.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/party-achievements-insane.json').read_text())
     assert proof['target'] == {key: target[key] for key in proof['target']}
     assert proof['gap_ids'] == [285]
     for row in proof['ranges']:

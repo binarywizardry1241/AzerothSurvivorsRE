@@ -10,8 +10,8 @@ from script_sources import load_script
 import argparse, hashlib, json, math, re, struct, sys
 from coverage_common import ROOT
 SHA='dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
-KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-wards'
-STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-wards'
+KEPT=ROOT/'docs/analysis/evidence/raid-wards'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/raid-wards'
 RANGES={
  'create':(0x145916190,0x145916468),
  'producer':(0x145922b99,0x145922f47),
@@ -32,8 +32,8 @@ def recover(verify_rea=False):
  mod = load_script('ward_graph', ROOT/'scripts/check-raid-target.py')
  target,raw,span,graph,headers=mod.recover();mod.check_graph(graph,headers);assert target['sha256']==SHA
  if verify_rea:mod.verify_rea_operations(raw,KEPT,SHA)
- historical=json.loads((ROOT/'docs/analysis/evidence/0.109.0/raid-wards/index.json').read_text())
- oldgraph=json.loads((ROOT/'docs/analysis/evidence/0.109.0/raid-native/catalog.json').read_text())
+ historical=json.loads((ROOT/'docs/analysis/evidence/raid-wards-comparison/index.json').read_text())
+ oldgraph=json.loads((ROOT/'docs/analysis/evidence/raid-native/catalog.json').read_text())
  by_index={row['index']:row for row in graph['actions']}
  pairs=[(historical[row['record']['va']],by_index[row['index']]) for row in oldgraph['actions'] if row['native_tag']==22]
  rows=[row for index,row in sorted(pairs)]

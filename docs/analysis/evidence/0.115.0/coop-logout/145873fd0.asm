@@ -1,4 +1,0 @@
-0x145873fd0: test bl, 1
-0x145873fd3: jne 0x145876375
-0x145873fd9: mov rcx, rsi
-0x145873fdc: call 0x145889a60

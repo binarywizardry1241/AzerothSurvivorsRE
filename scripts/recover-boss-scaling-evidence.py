@@ -6,7 +6,7 @@ import hashlib,importlib.util,json,struct,subprocess
 ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 EXPECTED='a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
-OUT=ROOT/'docs/analysis/evidence/0.97.2/bosses';RUN=ROOT/'runtime/analysis/history/raid/bosses/c18a36bfd52c/scaling'
+OUT=ROOT/'docs/analysis/evidence/bosses';RUN=ROOT/'runtime/analysis/history/raid/bosses/c18a36bfd52c/scaling'
 def main():
  data=TARGET.read_bytes();assert hashlib.sha256(data).hexdigest()==EXPECTED
  spec=importlib.util.spec_from_file_location('inventory',ROOT/'scripts/inventory-executable.py');inv=importlib.util.module_from_spec(spec);spec.loader.exec_module(inv);pe=inv.PE(data)

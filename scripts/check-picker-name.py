@@ -20,7 +20,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 WORK = ROOT / 'runtime/analysis/history/interface/portrait/968a66465324'
-OUT = ROOT / 'docs/analysis/evidence/0.109.0/picker-name'
+OUT = ROOT / 'docs/analysis/evidence/picker-name'
 RANGES = {
     'content-update': (0x140078c10, 0x140079fa6),
     'name-font-size': (0x140067b70, 0x140067bfb),
@@ -36,7 +36,7 @@ def check_ime(write):
     from native_terminal import verified_input, NativeReplay
     from native_recovery import f32, bits
     sys.path.insert(0, str(ROOT/'runtime/tool-state/python/armory/python-libs'))
-    evidence = ROOT/'docs/analysis/evidence/0.127.0/ime-bridge'
+    evidence = ROOT/'docs/analysis/evidence/ime-bridge'
     manifest, target, data, pe = verified_input(evidence)
     for query in manifest['queries']:
         for key in ['plan', 'journal', 'result', 'raw_input']:

@@ -65,7 +65,7 @@ def main():
     assert hashlib.sha256(data).hexdigest()==SHA
     pe_module = load_script('pe', ROOT/'scripts/inventory-executable.py')
     pe=pe_module.PE(data)
-    manifest_path=ROOT/'docs/analysis/evidence/0.105.0/demon-actors/manifest.json'
+    manifest_path=ROOT/'docs/analysis/evidence/demon-actors-comparison/manifest.json'
     manifest=json.loads(manifest_path.read_text())
     assert manifest['target_sha256']==SHA
     for row in manifest['ranges']:
@@ -162,7 +162,7 @@ def main():
             put(game+0x4c8,'<3f',*current['player']);put(game+0x9ec,'<f',current['now'])
             # Exact selected descriptor copied from canonical recovered data.
             entry={1:9512,2:9518,3:9519,4:9520,5:9514,6:9521,7:9522,8:9523}[kind]
-            source=json.loads((ROOT/'docs/analysis/evidence/0.105.0/pet-creation/definitions.json').read_text())
+            source=json.loads((ROOT/'docs/analysis/evidence/pet-creation/definitions.json').read_text())
             rows=source['definitions'] if isinstance(source,dict) else source
             definition=next(row for row in rows if row['entry']==entry)
             address=int(definition['address'],16)
@@ -192,7 +192,7 @@ def main():
     result=dict(target_sha256=SHA,owner='docs/analysis/evidence/0.105.0/power-scaling/pet-tick/helpers-manifest.json#special-target',
                 method='Unchanged original selector instructions in Unicorn with actual PE jump table and constants.',
                 seams=['Supplied ordered radius-query results; no terrain/network/game process.'],cases=cases)
-    retained=ROOT/'docs/analysis/evidence/0.105.0/demon-actors/native-target-cases.json'
+    retained=ROOT/'docs/analysis/evidence/demon-actors-comparison/native-target-cases.json'
     if args.check:
         assert json.loads(retained.read_text())==result,'retained selector vectors drift'
     else:(OUT/'native-target-cases.json').write_text(json.dumps(result,indent=2)+'\n')
@@ -203,7 +203,7 @@ def main():
     mask=(1<<64)-1;total=(seeds[0]+seeds[3])&mask
     draw=((((total<<23)&mask)|(total>>41))+seeds[0])&mask
     draw=f32((draw>>40)/2**24)
-    defs=json.loads((ROOT/'docs/analysis/evidence/0.105.0/pet-creation/definitions.json').read_text())['definitions']
+    defs=json.loads((ROOT/'docs/analysis/evidence/pet-creation/definitions.json').read_text())['definitions']
     for kind in range(1,9):
       for rank in range(4):
        for health in [5.,75.]:
@@ -246,7 +246,7 @@ def main():
     critical_result=dict(target_sha256=SHA,owner='docs/analysis/evidence/0.105.0/game-mode-audit/native-manifest.json#demon-crit',
         input=dict(base=17.5,power_multiplier=1.25,demon_damage=.25,demon_crit=.1,aura10=.3,buff_bonus=.4,health_bonus=.2,armor=.075,player_crit=.2,critical_multiplier=2.),
         method='Unchanged original complete critical/power helper in Unicorn; actual PE constants; preserved Win64 inputs.',cases=critical_cases)
-    retained=ROOT/'docs/analysis/evidence/0.105.0/demon-actors/native-critical-cases.json'
+    retained=ROOT/'docs/analysis/evidence/demon-actors-comparison/native-critical-cases.json'
     if args.check:assert json.loads(retained.read_text())==critical_result,'retained critical vectors drift'
     else:(OUT/'native-critical-cases.json').write_text(json.dumps(critical_result,indent=2)+'\n')
     phase='bounce';bounce_cases=[];frame=stack+0x8000
@@ -278,7 +278,7 @@ def main():
         method='Unchanged native post-primary-impact tick tail in Unicorn; current gear lookup/query/packet/canonical hit owners are intercepted.',
         limitations=['The preceding launch-marker branch is statically traced; this cohort begins after its admission.',
                      'Query candidates are supplied; primary damage/death has already completed before the tested tail.'],cases=bounce_cases)
-    retained=ROOT/'docs/analysis/evidence/0.105.0/demon-actors/native-bounce-cases.json'
+    retained=ROOT/'docs/analysis/evidence/demon-actors-comparison/native-bounce-cases.json'
     if args.check:assert json.loads(retained.read_text())==bounce_result,'retained bounce vectors drift'
     else:(OUT/'native-bounce-cases.json').write_text(json.dumps(bounce_result,indent=2)+'\n')
     phase='visual';visual_cases=[]
@@ -298,7 +298,7 @@ def main():
         visual_cases.append(dict(kind=kind,packets=list(visual_packets)))
     visual_result=dict(target_sha256=SHA,owner='0x145950ab0..0x145950c36',
         method='Unchanged shared native Imp/Doomguard packet producer in Unicorn; packet serializer is intercepted to capture its arguments.',cases=visual_cases)
-    retained=ROOT/'docs/analysis/evidence/0.105.0/demon-actors/native-visual-cases.json'
+    retained=ROOT/'docs/analysis/evidence/demon-actors-comparison/native-visual-cases.json'
     if args.check:assert json.loads(retained.read_text())==visual_result,'retained visual vectors drift'
     else:(OUT/'native-visual-cases.json').write_text(json.dumps(visual_result,indent=2)+'\n')
     print(f'{len(cases)} native special-demon selector cases recorded; game not launched')

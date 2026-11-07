@@ -91,7 +91,7 @@ spawns [ward template 12](../../crates/azeroth-survivors-re/src/bosses/raid_ward
 with entry 9612, display 16111 and scale 0.9. The [ward visual adapter](../../crates/azeroth-survivors-re/src/gameplay/visuals.rs)
 passes that display to the shared creature path. The selected
 `CreatureDisplayInfo.dbc` and `CreatureModelData.dbc` in `patch.MPQ` are
-byte-identical to the [historical DBC receipt](evidence/0.121.0/resource-consumer-9612.json).
+byte-identical to the [historical DBC receipt](evidence/resource-consumer-9612.json).
 Display 16111 selects model 2247 and variation `SporeCreature_DeathParticle`.
 The [catalog](../../crates/benilla-formats/src/creatures.rs) supplies the
 authored `Creature\SporeCreature\SporeCreature.mdx` to the
@@ -173,7 +173,7 @@ members, and the format literals establish no AS producer for guild state.
 
 ### Packed DBC readers
 
-The [resource proof](evidence/0.141.0/resource-consumers.json) lists the
+The [resource proof](evidence/resource-consumers.json) lists the
 exact PE instruction sites for 22 readers. The separate CreatureSoundData
 catalog read is described below. Each loads a slice into
 `r8:r9` before calling the member read interface at `0x14623e170`.
@@ -212,7 +212,7 @@ argument carriers independently of the raw-slice decompiler's inferred ABI.
 ## Registered resource overrides
 
 The selected-census references to the writer at 0x146244270 contain
-nine direct call sites. The [override proof](evidence/0.141.0/resource-consumers.json)
+nine direct call sites. The [override proof](evidence/resource-consumers.json)
 binds the exact calls, native ranges, and Ghidra results to this EXE.
 The writer calls 0x146243ed0 at 0x1462442e7 and uses the shared map at
 0x148ac3210. The reader at 0x146243a60 calls the same key helper at
@@ -303,7 +303,7 @@ this table for row-ID validation, separate from the AS death-sound
 override and playback path under [#182](../verification-needed.md#gap-182).
 
 Three Ghidra raw-slice receipts corroborate the original PE operand and
-call-site checks. The [resource proof](evidence/0.141.0/resource-consumers.json)
+call-site checks. The [resource proof](evidence/resource-consumers.json)
 binds their spans to the installed image and records the URI, publication
 edges, and diagnostic descriptor uses. The existing resource checker
 replays these bindings and checks both image members in place.

@@ -16,8 +16,8 @@ from coverage_common import ROOT, file_sha256, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
-MANIFEST = ROOT / "docs/analysis/evidence/0.121.0/data-classification/manifest.json"
-PROOF = ROOT / "docs/analysis/evidence/0.121.0/included-source-frontier.json"
+MANIFEST = ROOT / "docs/analysis/evidence/data-classification/manifest.json"
+PROOF = ROOT / "docs/analysis/evidence/included-source-frontier.json"
 UNKNOWN = "embedded_lead_schema_or_consumer_unresolved"
 
 

@@ -141,7 +141,7 @@ mod tests {
     #[test]
     fn weapon_recovery_uses_current_native_aura_order_before_the_reciprocal() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.105.0/power-scaling/weapon/native-fixtures.json"
+            "../../../../../docs/analysis/evidence/power-scaling/weapon/native-fixtures.json"
         ))
         .unwrap();
         let f = |value: &serde_json::Value| f32::from_bits(value.as_u64().unwrap() as u32);

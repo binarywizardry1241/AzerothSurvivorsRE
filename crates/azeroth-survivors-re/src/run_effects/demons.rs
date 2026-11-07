@@ -423,7 +423,7 @@ mod tests {
     #[test]
     fn current_native_demon_damage_vectors() {
         let data: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/demon-damage/critical-vectors.json"
+            "../../../../docs/analysis/evidence/demon-damage/critical-vectors.json"
         )).unwrap();
         assert_eq!(data["target_sha256"], "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a");
         for row in data["cases"].as_array().unwrap() {
@@ -452,7 +452,7 @@ mod tests {
     #[test]
     fn selected_exe_target_vectors() {
         let data: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/demon-actors/native-target-cases.json"
+            "../../../../docs/analysis/evidence/demon-actors/native-target-cases.json"
         ))
         .unwrap();
         assert_eq!(data["target_sha256"], TARGET_SHA256);
@@ -558,7 +558,7 @@ mod tests {
     #[test]
     fn current_native_non_doomguard_cadence_vectors() {
         let data: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/demon-actors/native-clock-cases.json"
+            "../../../../docs/analysis/evidence/demon-actors/native-clock-cases.json"
         )).unwrap();
         assert_eq!(data["target_sha256"], TARGET_SHA256);
         for row in data["cases"].as_array().unwrap() {
@@ -575,7 +575,7 @@ mod tests {
     #[test]
     fn current_native_summon_angles_and_infernal_landing_vectors() {
         let data: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/demon-actors/native-landing-cases.json"
+            "../../../../docs/analysis/evidence/demon-actors/native-landing-cases.json"
         )).unwrap();
         assert_eq!(data["target_sha256"], TARGET_SHA256);
         assert_eq!(data["cases"].as_array().unwrap().len(), 84);
@@ -610,7 +610,7 @@ mod tests {
     #[test]
     fn current_native_ranged_update_deadlines_wake_for_pending_attack() {
         let data: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/demon-actors/native-update-cases.json"
+            "../../../../docs/analysis/evidence/demon-actors/native-update-cases.json"
         )).unwrap();
         for row in data["cases"].as_array().unwrap() {
             let f = |key: &str| f32::from_bits(row[key].as_u64().unwrap() as u32);

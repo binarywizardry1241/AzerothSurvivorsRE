@@ -16,7 +16,7 @@ is VA `0x1458f0eb8`. The native action consumer independently confirms index
 bound 94 at `0x1401937db`, stride 152 at `0x1401937e5`, table base at
 `0x1401937ec`, and checkbox control kind 5 at `0x1401937f3`.
 
-[Retained definitions and provenance](evidence/0.92/options-definitions.json)
+[Retained definitions and provenance](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/options-definitions.json)
 include every record's address, raw bytes/hash, keys, tooltip source, storage
 and control discriminants, ranges, choice values, linked writes, page and
 native default candidates. The source asset
@@ -48,7 +48,7 @@ size, then stores maximum scale at `0x1402180d1`. The shared screen systems
 There is no recovered 85%-of-window constraint. Earlier screenshot-normalized
 990×653 estimates are superseded by these stores.
 
-[Curated layout evidence](evidence/0.92/options-layout.json) retains native
+[Curated layout evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/options-layout.json) retains native
 store addresses, literal bytes and independently measured Bevy 0.18.1 Node
 field offsets. The content uses 28px horizontal/18px vertical padding, 12px
 section gaps, 190px navigation and 20px column gaps. The scroll viewport has
@@ -101,7 +101,7 @@ restored to defaults. Its native header, one quiet second, exit flush, and
 `with_extension("tmp")` → write → sync → rename sequence are now implemented.
 It does not use the former PID temporary name or backup/rollback sequence.
 Unknown top-level sections are not serialized by the native CVar structure.
-See [hash-bound writer/timer evidence](evidence/0.92/options-config-native.json).
+See [hash-bound writer/timer evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/options-config-native.json).
 Build20/21 compile, and the three focused config cases pass. Build21 runs the
 CVar timer independently in Last and removes the extra Done/Escape flush.
 Build24 adds the native whole-document typed reader and warning/default fallback,
@@ -126,7 +126,7 @@ Key Bindings loads the actual MPQ `Bindings.xml`, `DefaultBindings.wtf` and
 Lua sandbox. Binding command bodies are parsed as data. It renders native
 headers/labels and two key slots, captures keyboard/modifier/mouse/wheel input,
 unbinds on right-click, cancels capture on Escape and restores native defaults.
-Changes persist in the engine's `bindings/account.txt` diff format. Build22 saves in the input frame, consuming each request once and logging write failure without reverting live keys; the directory-shaped write-failure fixture passes. Native serializer/snapshot order and the complete character-specific binding lifecycle remain incomplete. See [writer/consumer evidence](evidence/0.92/keybindings-native-persistence.json). Headers toggle independently; the observed initial Movement group is expanded, with the other eight collapsed. The original
+Changes persist in the engine's `bindings/account.txt` diff format. Build22 saves in the input frame, consuming each request once and logging write failure without reverting live keys; the directory-shaped write-failure fixture passes. Native serializer/snapshot order and the complete character-specific binding lifecycle remain incomplete. See [writer/consumer evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/keybindings-native-persistence.json). Headers toggle independently; the observed initial Movement group is expanded, with the other eight collapsed. The original
 runtime independently confirmed `W / UpArrow → G / UpArrow`, Escape preserving
 those slots, and Defaults immediately restoring them. Native binding rows use
 30px minimum height, 24px left padding, 10px spacing, 300px labels, 200px key
@@ -147,17 +147,17 @@ dimmed its title; the rebuilt footer displayed the fixture's TOC note in build14
 No Lua addon code was executed. Native desktop captures contain no install-ZIP
 or remove controls, so catalog labels alone do not authorize inventing them.
 The native header/list/row functions are bound in
-[AddOns slice provenance](evidence/0.92/options-addons-slices-provenance.json).
+[AddOns slice provenance](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/options-addons-slices-provenance.json).
 
 The native footer Defaults tag15 passes the current page byte through the
 `0x140192f10 → 0x140193e50` dispatch. The command consumer is now bound through table`0x1458f2820` case1 to
 `0x14018e235`: page6 resets bindings separately, while other pages scan94
 records and write defaults only for matching page bytes.
-[Curated dispatch/instruction proof](evidence/0.92/options-defaults-native.json)
+[Curated dispatch/instruction proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/options-defaults-native.json)
 records the original PE switch table omitted by raw-slice Ghidra analysis.
 The nine previously unresolved UI defaults were subsequently observed after
 explicit native page Defaults: seven HUD visibility values are1, and both
-nameplate globals are0. See [isolated runtime proof](evidence/0.92/options-runtime-defaults.json).
+nameplate globals are0. See [isolated runtime proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/options-runtime-defaults.json).
 Their engine/VM owners and persistence lifecycle remain separate obligations.
 
 ## Remaining gaps and validation limits

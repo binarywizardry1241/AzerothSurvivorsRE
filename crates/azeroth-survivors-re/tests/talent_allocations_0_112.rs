@@ -26,7 +26,7 @@ fn allocation(value: &Value) -> Vec<(String, u8)> {
 #[test]
 fn current_native_allocations_reach_load_import_every_spec_and_switch() {
     let fixtures: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.112.0/talent-allocations/native-save-cases.json"
+        "../../../docs/analysis/evidence/talent-allocations/native-save-cases.json"
     ))
     .unwrap();
     for case in fixtures["cases"].as_array().unwrap() {

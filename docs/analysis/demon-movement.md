@@ -2,7 +2,7 @@
 
 The installed target is SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The [manifest](evidence/0.112.0/demon-movement/manifest.json) binds the current
+The [manifest](evidence/demon-movement/manifest.json) binds the current
 shared follower move `145939bf0..145939eed` and MonsterMove serializer
 `1458c3bf0..1458c3e8d`, including Ghidra provenance for the movement owner.
 This is the actual callee of the current special-demon movement branches,

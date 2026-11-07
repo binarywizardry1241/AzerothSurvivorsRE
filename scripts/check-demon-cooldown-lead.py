@@ -19,7 +19,7 @@ from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048'
-EVIDENCE = ROOT/'docs/analysis/evidence/0.110.0/execheck-contract-leads.json'
+EVIDENCE = ROOT/'docs/analysis/evidence/execheck-contract-leads.json'
 
 
 def f32(value):

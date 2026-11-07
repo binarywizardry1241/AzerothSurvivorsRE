@@ -8,7 +8,7 @@ does not close the whole Codex, native-discovery or rendering findings.
 
 The selected installed EXE is **0.120.2**, SHA-256
 `80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c`.
-The [proof](evidence/0.120.2/codex-growth-dispatch/manifest.json) binds the
+The [proof](evidence/codex-growth-dispatch/manifest.json) binds the
 original query results, six exact native ranges, native input data and live
 source. Historical recovery retains its actual targets: the
 [0.109.0 Codex report](codex.md),
@@ -148,7 +148,7 @@ separate. Current source/recovery status remains in
 
 ## Admitted growth ceilings in 0.141.0
 
-The [current proof](evidence/0.141.0/codex-growth-ceiling.json) binds
+The [current proof](evidence/codex-growth-ceiling.json) binds
 `Q41-F01:correspondence:retained-table-1403076a2` to installed EXE SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 The Details owner at `0x140371ee0` loads the jewelry slice through
@@ -172,7 +172,7 @@ recovered reward and actor-targeted DoT policy remains under
 ```sh
 PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-codex-growth-dispatch.py \
-  --proof docs/analysis/evidence/0.141.0/codex-growth-ceiling.json
+  --proof docs/analysis/evidence/codex-growth-ceiling.json
 ```
 
 The check verifies one saved Ghidra pseudocode query and replays the original

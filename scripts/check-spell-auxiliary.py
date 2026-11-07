@@ -11,7 +11,7 @@ from script_sources import load_script
 sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import x86_const as R
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
-BASE = ROOT / 'docs/analysis/evidence/0.115.0/coop-spell-text'
+BASE = ROOT / 'docs/analysis/evidence/coop-spell-text'
 ASSET = ROOT / 'crates/azeroth-survivors-re/assets/native-spell-talents-0.115.0.json'
 
 
@@ -263,7 +263,7 @@ def derive():
     constructor=load_script('aux_amulet_constructor',constructor_path)
     tree=ast.parse(constructor_path.read_text());main=next(n for n in tree.body if isinstance(n,ast.FunctionDef)and n.name=='main')
     probe_node=next(n for n in main.body if isinstance(n,ast.ClassDef)and n.name=='Probe')
-    metadata_path=ROOT/'docs/analysis/evidence/0.115.0/addon-timers/metadata.json';metadata=json.loads(metadata_path.read_text())
+    metadata_path=ROOT/'docs/analysis/evidence/addon-timers/metadata.json';metadata=json.loads(metadata_path.read_text())
     factory=metadata['generated_timer_amulets']['factory'];assert hashlib.sha256(raw(int(factory['va'],16),factory['size'])).hexdigest()==factory['sha256']
     namespace=dict(vars(constructor),pe=pe,raw=raw,factory=factory)
     exec(compile(ast.Module(body=[probe_node],type_ignores=[]),'<canonical-timer-Probe>','exec'),namespace)

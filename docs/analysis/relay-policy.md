@@ -6,7 +6,7 @@ Installed target SHA-256
 to the **#214** network-support summary. Failure provenance remains the
 independent #216 obligation; localized reason display is [#217](relay-locales.md).
 
-The [current proof](evidence/0.121.0/relay-policy/manifest.json) reuses the retained
+The [current proof](evidence/relay-policy/manifest.json) reuses the retained
 [0.120.5 policy](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-review-0.120.5.md) as historical knowledge, then binds the
 required producer/state/factory/consumer connections to current code and data.
 Current correspondence covers the selected policy, not the entire co-op system.

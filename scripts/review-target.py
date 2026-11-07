@@ -14,7 +14,7 @@ import struct
 from coverage_common import ROOT, file_sha256, json_text, latest_target, target_bytes
 
 SHA = "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a"
-OUTPUT = ROOT / "docs/analysis/evidence/0.112.0/release-data-leads.json"
+OUTPUT = ROOT / "docs/analysis/evidence/release-data-leads.json"
 
 
 def review():

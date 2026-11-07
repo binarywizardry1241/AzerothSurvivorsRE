@@ -4,7 +4,7 @@ Selected EXE: `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`
 146,721,280 bytes. Finding #237 retains the historical achievement/catalog
 work in [verification-needed](../verification-needed.md#gap-237). This report
 owns the changed Danger Money/Hazard Pay producer and recipient connection.
-The [current proof](evidence/0.127.0/ranked-gear/earned-marks.json) binds exact
+The [current proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.127.0/ranked-gear/earned-marks.json) binds exact
 native ranges, constants, import identity, source consumers and the retained
 current Ghidra recipient-snapshot query.
 
@@ -62,7 +62,7 @@ max_boss_marks = max(raw_game_base_max, duplicate_ledger_boss_max)
 ```
 
 The current successful Ghidra query is reused from
-[party-achievements-insane.json](evidence/0.127.0/party-achievements-insane.json),
+[party-achievements-insane.json](evidence/party-achievements-insane.json),
 role `recipient-snapshot`; its exact scalar merge at `145bd1422..145bd144d`
 is independently replayed. The raw private State15 fields remain base-only.
 The ledger belongs to the receiving account and does not need the host to know

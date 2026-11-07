@@ -208,7 +208,7 @@ mod tests {
     #[test]
     fn all_selected_target_timed_interval_vectors_match_bits() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/treasure-interface/timed-cast-native.json"
+            "../../../../docs/analysis/evidence/treasure-interface/timed-cast-native.json"
         )).unwrap();
         assert_eq!(fixture["target_sha256"], super::super::TARGET_SHA256);
         assert_eq!(fixture["cases"].as_array().unwrap().len(), 324);
@@ -226,7 +226,7 @@ mod tests {
     #[test]
     fn timed_live_due_and_split_global_snapshots_match_original_instructions() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/run-effects/timed-live-native.json"
+            "../../../../docs/analysis/evidence/run-effects/timed-live-native.json"
         )).unwrap();
         assert_eq!(fixture["target_sha256"], super::super::TARGET_SHA256);
         for case in fixture["intervals"].as_array().unwrap() {
@@ -270,7 +270,7 @@ mod tests {
     #[test]
     fn chain_decay_uses_composed_row_presence_for_every_native_vector() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/treasure-interface/chain-decay-native.json"
+            "../../../../docs/analysis/evidence/treasure-interface/chain-decay-native.json"
         )).unwrap();
         assert_eq!(fixture["target_sha256"], super::super::TARGET_SHA256);
         for case in fixture["cases"].as_array().unwrap() {
@@ -287,7 +287,7 @@ mod tests {
     #[test]
     fn all_native_temporary_stat_state_vectors_match() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/treasure-interface/temporary-stat-native.json"
+            "../../../../docs/analysis/evidence/treasure-interface/temporary-stat-native.json"
         )).unwrap();
         assert_eq!(fixture["target_sha256"], super::super::TARGET_SHA256);
         for case in fixture["cases"].as_array().unwrap() {
@@ -305,7 +305,7 @@ mod tests {
     #[test]
     fn shield_burst_matches_current_native_scalar_vectors() {
         let fixture:serde_json::Value=serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/treasure-interface/temporary-stat-native.json"
+            "../../../../docs/analysis/evidence/treasure-interface/temporary-stat-native.json"
         )).unwrap();
         for case in fixture["shield_burst"].as_array().unwrap() {
             let value=|key:&str|case[key].as_f64().unwrap() as f32;
@@ -332,7 +332,7 @@ mod tests {
     }
     fn status_explosion_fixture()->serde_json::Value {
         serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/treasure-interface/status-explosion-native.json"
+            "../../../../docs/analysis/evidence/treasure-interface/status-explosion-native.json"
         )).unwrap()
     }
     #[test]

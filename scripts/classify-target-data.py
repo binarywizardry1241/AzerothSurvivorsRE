@@ -25,7 +25,7 @@ from shared_native_inventory import open_readonly_uri as open_native_inventory
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
 WORK = ROOT / "runtime/analysis/history/findings/q41-data/6a6f0540f967"
-KEEP = ROOT / "docs/analysis/evidence/0.115.0/data-classification/manifest.json"
+KEEP = ROOT / "docs/analysis/evidence/data-classification-comparison/manifest.json"
 TALENTXP_QUERIES = [
     ("owner",0x14013d690,0x14013eea1,"plan.json","seeds.tsv","rea","talentxp-native-key-domain"),
     ("branch",0x14013e826,0x14013e8cc,"branch-plan.json","branch-seeds.tsv","branch-rea","talentxp-first-consumer"),
@@ -74,7 +74,7 @@ def main():
             print("./scripts/rea query "+plan.relative_to(ROOT).as_posix())
         return
     base = ROOT / "runtime/coverage" / SHA
-    queue_path = ROOT / "docs/analysis/evidence/0.115.0/unknown-recovery.json"
+    queue_path = ROOT / "docs/analysis/evidence/unknown-recovery-comparison.json"
     queue = json.loads(queue_path.read_text())
     inputs = []
 
@@ -225,7 +225,7 @@ def main():
             "The request producer, full queued-value schema and downstream talent UI/progression/source behavior remain separate missing AS connections. Do not call this a save-format field or infer numeric talent XP behavior from its spelling."])
     candidate_starts = [int(r["virtual_address"],16) for r in candidates]
     max_length = max(r["byte_count"] for r in candidates)
-    api = json.loads((ROOT/"docs/analysis/evidence/0.115.0/discovery-delta.json").read_text())["embedded_api"]
+    api = json.loads((ROOT/"docs/analysis/evidence/discovery-delta-comparison.json").read_text())["embedded_api"]
     api_start = int(api["virtual_address"],16)
     assert digest(image[int(api["file_offset"],16):int(api["file_offset"],16)+api["byte_count"]]) == api["sha256"]
     source_xml = []

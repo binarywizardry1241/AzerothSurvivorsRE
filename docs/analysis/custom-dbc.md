@@ -9,9 +9,9 @@ The [decoded diagnostic discovery](coverage/diagnostic-ownership.json) finds
 eight instruction references to `crates/wenilla-rogue/src/dbc.rs` in four native
 extents. All eight refer to three Rust Location records for source lines 38, 48
 and 52. These are bounds-check owners, not a new game-specific DBC asset format.
-The [canonical producer manifest](evidence/0.105.0/custom-dbc/manifest.json) binds
+The [canonical producer manifest](evidence/custom-dbc/manifest.json) binds
 original PE byte ranges, assembly, scoped Ghidra pseudocode and Evidence IDs.
-The [dictionary/caller manifest](evidence/0.105.0/custom-dbc/dictionary-consumers.json)
+The [dictionary/caller manifest](evidence/custom-dbc/dictionary-consumers.json)
 adds table construction, fixed descriptors, replacement branches and callers,
 referencing the existing producer and addon-debuff extracts.
 
@@ -37,7 +37,7 @@ then passes that dictionary and the Spell table to the metadata producer at
 owned name at offsets 0..24, owned icon at 24..48 and the fixed dispel slice at
 48..64. A missing ID or failed table open/header yields null. The current direct
 call at `1458ed1dd` connects this getter to the target-debuff addon serializer
-([canonical owner](evidence/0.105.0/addon-bridge/lists/manifest.json)); the call at
+([canonical owner](evidence/addon-bridge/lists/manifest.json)); the call at
 `145917d40` supplies ID zero during Begin warmup. These direct E8 references do
 not establish complete computed/indirect/global reference coverage.
 
@@ -103,7 +103,7 @@ Texture decoding remains the ordinary asset consumer's separate responsibility.
 
 ## Lazy dictionary lifetime and synchronization
 
-The [canonical lazy-cache manifest](evidence/0.105.0/custom-dbc/lazy-cache.json)
+The [canonical lazy-cache manifest](evidence/custom-dbc/lazy-cache.json)
 binds four additional current native ranges: the item/spell publication wrappers
 `145d4d1d7..145d4d231` and `145d4d231..145d4d28b`, shared 48-byte map-move closure
 `1458b9810..1458b9893`, and shared Once synchronization
@@ -141,7 +141,7 @@ SpellIcon.dbc, preserving the native failed-first-table boundary.
 `python3 -B scripts/check-custom-dbc.py` verifies the four original
 selected extents and executes **23 original string-reader cases** with synthetic
 DBC buffers. Its original UTF-8 validator executes without a replacement seam.
-[Retained reader results](evidence/0.105.0/custom-dbc/native-vectors.json).
+[Retained reader results](evidence/custom-dbc/native-vectors.json).
 
 `python3 -B scripts/check-custom-dbc-dictionaries.py` verifies both
 canonical manifests, table literals, original loader ranges and direct calls.
@@ -151,7 +151,7 @@ missing icons and all dispel branches; 24 header admissions covering all three
 table blocks, short/bad headers, exact/short extents, field-count independence
 and wrapping multiplication; two occupied-bucket replacement branches; and one
 current-data display-ID collection/flatten/deduplication case.
-[Retained dictionary results](evidence/0.105.0/custom-dbc/native-dictionary-vectors.json).
+[Retained dictionary results](evidence/custom-dbc/native-dictionary-vectors.json).
 Allocation, memcpy, hashing and map insertion in producer-loop cases are explicit
 fixture seams. Collector allocation and sorting are also explicit seams; native
 selection, pair flattening and deduplication execute without substitution. The
@@ -168,7 +168,7 @@ waiter wakeup; forced publication after poison; and a competing builder winning
 between construction and publication. Allocation/drop, synthetic MPQ files,
 dictionary producers and OS wait/wake calls are explicit seams. Getter control
 flow, shared Once atomic transitions and map movement remain original PE
-instructions. [Retained cache results](evidence/0.105.0/custom-dbc/lazy-native-vectors.json).
+instructions. [Retained cache results](evidence/custom-dbc/lazy-native-vectors.json).
 Source assertions bind the two independent static caches and fallible-load-before-
 publication ordering. Rustfmt parses the changed source without compiling it.
 

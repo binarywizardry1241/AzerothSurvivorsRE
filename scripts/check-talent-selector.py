@@ -16,7 +16,7 @@ DEFINITION = 0x14767D1F0
 PAYLOAD = 0x14767C8B8
 TABLE = 0x1476858DC
 AGGREGATE = 0x145B38120
-DIRECTORY = ROOT / "docs/analysis/evidence/0.121.0/talent-selector"
+DIRECTORY = ROOT / "docs/analysis/evidence/talent-selector"
 
 
 def digest(raw):

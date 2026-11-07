@@ -15,7 +15,7 @@ from coverage_common import ROOT, latest_target, project_path, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-KEPT = ROOT / "docs/analysis/evidence/0.121.0/heroic-scaling"
+KEPT = ROOT / "docs/analysis/evidence/heroic-scaling"
 RANGES = {
     "ordinary-health": (0x145c14eb3, 0x145c14ee0),
     "ordinary-damage": (0x145c150c5, 0x145c150dc),
@@ -74,7 +74,7 @@ def run(write):
     target, image, pe = context()
     path = KEPT / "manifest.json"
     old = None if write else json.loads(path.read_text())
-    core = json.loads((ROOT / "docs/analysis/evidence/0.121.0/heroic-source.json").read_text())
+    core = json.loads((ROOT / "docs/analysis/evidence/heroic-source.json").read_text())
     descriptor = next(row for row in core["native_data"] if row["role"] == "heroic-five-descriptors")
     decoder = Cs(CS_ARCH_X86, CS_MODE_64)
     decoder.detail = True

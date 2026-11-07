@@ -26,7 +26,7 @@ sys.path.insert(0, str(ROOT / "runtime/tool-state/python/camera/python-libs"))
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-KEPT = ROOT / "docs/analysis/evidence/0.113.2/as-state-contracts"
+KEPT = ROOT / "docs/analysis/evidence/as-state-contracts"
 STAGE = ROOT / "runtime/analysis/history/native-recovery/as-state-contracts/a6cf7f2e1fff/staged"
 FIRST, LAST = 0x1458F4C30, 0x1458F4DA8
 
@@ -155,7 +155,7 @@ def main():
     parser.add_argument("--write", action="store_true", help="Retain current enemy-control static result")
     args = parser.parse_args()
     if args.enemy_control:
-        return check_enemy_control(ROOT / "docs/analysis/evidence/0.127.0/enemy-control/manifest.json", args.write)
+        return check_enemy_control(ROOT / "docs/analysis/evidence/enemy-control/manifest.json", args.write)
     target = latest_target(verify=True)
     assert target["version"] == "0.113.2" and target["sha256"] == SHA
     image = target_bytes(target)

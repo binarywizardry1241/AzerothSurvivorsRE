@@ -162,7 +162,7 @@ def review_dispatch_frontier(root):
 
     target = latest_target(verify=True)
     assert (target["version"], target["sha256"]) == (DISPATCH_VERSION, DISPATCH_SHA256)
-    path = Path("docs/analysis/evidence") / DISPATCH_VERSION / "as-residual-ranges.json"
+    path = Path("docs/analysis/evidence/as-residual-ranges.json")
     proof_bytes = (root / path).read_bytes()
     proof = json.loads(proof_bytes)
     assert proof["target"] == {key: target[key] for key in proof["target"]}
@@ -263,7 +263,7 @@ def check_entry_frontier(root):
     from script_sources import load_script
 
     target = latest_target(verify=True)
-    evidence = root / "docs/analysis/evidence" / target["version"]
+    evidence = root / "docs/analysis/evidence"
     selection = json.loads((evidence / "as-residual-entry-frontier.json").read_text())
     assert selection["target"] == {key: target[key] for key in selection["target"]}
     records = {}
@@ -380,19 +380,23 @@ def join_reference_exports(receipt, artifacts, extents):
                                         for _, _, row in ranges if row["start"] in lacking_starts})
 
 
-def derive(root):
+def derive(root, *, writing=False):
     sys.path.insert(0, str(root / "scripts"))
     import capstone
     from capstone.x86 import X86_OP_IMM
     from artifact_history import has_archived_artifact
-    from coverage_common import latest_target, project_bytes, target_bytes
+    from coverage_common import latest_target, project_bytes, same_artifact, target_bytes
     from script_sources import load_script
 
     target = latest_target(verify=True)
     version = target["version"]
     historical = version == HISTORICAL_VERSION
-    evidence = f"docs/analysis/evidence/{version}"
-    summary_kind = "execheck" if historical else "selected"
+    evidence = "docs/analysis/evidence"
+    retained_inputs = {}
+    if not writing:
+        recorded_evidence = f"{evidence}/{version}" if historical else evidence
+        retained_inputs = json.loads(project_bytes(
+            f"{recorded_evidence}/as-residual-ranges.json", root=root))["inputs"]
     identity = {key: target[key] for key in ("version", "path", "sha256", "size_bytes")}
     image = target_bytes(target)
     pe = load_script("residual_range_pe", root / "scripts/inventory-executable.py").PE(image)
@@ -411,16 +415,28 @@ def derive(root):
         inputs[name] = {"path": name, "sha256": digest(raw)}
         return json.loads(raw)
 
-    summary_name = f"docs/analysis/coverage/full-image-{summary_kind}-{version}.json"
-    if not historical and not has_archived_artifact(summary_name, root):
-        summary_name = "docs/analysis/coverage/full-image-selected.json"
+    def evidence_source(name):
+        current = f"{evidence}/{name}"
+        previous = f"{evidence}/{version}/{name}"
+        if historical or (previous in retained_inputs and has_archived_artifact(previous, root)
+                          and same_artifact(previous, current, retained_inputs[previous]["sha256"], root)):
+            return source(previous)
+        return source(current)
+
+    summary_name = "docs/analysis/coverage/full-image-selected.json"
+    previous_summary = f"docs/analysis/coverage/full-image-selected-{version}.json"
+    if historical:
+        summary_name = f"docs/analysis/coverage/full-image-execheck-{version}.json"
+    elif (previous_summary in retained_inputs and same_artifact(
+            previous_summary, summary_name, retained_inputs[previous_summary]["sha256"], root)):
+        summary_name = previous_summary
     summary = source(summary_name)
-    residuals = source(f"{evidence}/native-residuals.json")
+    residuals = evidence_source("native-residuals.json")
     assert summary["target"] == residuals["target"] == identity
     missing_path = receipt("missing-executable-ranges", summary["independent_instructions"]["executable_sections"]["range_inventory"])
     extent_path = receipt("declared-extent-roles", residuals["artifacts"]["declared-extent-roles.tsv.gz"])
     diagnostics_path = receipt("diagnostic-sites", residuals["artifacts"]["diagnostic-sites.jsonl.gz"])
-    proposal_review = source(f"{evidence}/native-switch-proposal-review.json")
+    proposal_review = evidence_source("native-switch-proposal-review.json")
     assert proposal_review["target"] == identity
     proposal_input = next(row for row in proposal_review["inputs"] if row["path"].endswith("/guarded-proposals.json"))
     proposed = json.loads(receipt("guarded-proposals", proposal_input).read_text())
@@ -620,7 +636,7 @@ def main():
         return
     if args.dispatch_frontier:
         result = review_dispatch_frontier(args.inputs_root.resolve())
-        destination = checkout / "docs/analysis/evidence" / DISPATCH_VERSION / "as-residual-dispatch.json"
+        destination = checkout / "docs/analysis/evidence/as-residual-dispatch.json"
         if args.write:
             destination.write_text(json.dumps(result, indent=2) + "\n")
         else:
@@ -635,13 +651,15 @@ def main():
                           "typed_descriptor_joins": len(result["typed_descriptor_joined"]),
                           "open_entries": len(result["still_without_reviewed_entry"])}))
         return
-    proof = derive(args.inputs_root.resolve())
+    from coverage_common import project_bytes
+    proof = derive(args.inputs_root.resolve(), writing=args.write)
     target = proof["target"]
     historical = target["version"] == HISTORICAL_VERSION
-    destination = checkout / "docs/analysis/evidence" / target["version"] / "as-residual-ranges.json"
+    evidence = checkout / "docs/analysis/evidence"
+    destination = (evidence / HISTORICAL_VERSION if historical else evidence) / "as-residual-ranges.json"
     if historical or not args.write:
         from script_sources import recorded_input_matches
-        prior_generator = json.loads(destination.read_text())["generator"]
+        prior_generator = json.loads(project_bytes(destination, root=checkout))["generator"]
         assert recorded_input_matches(prior_generator["path"], prior_generator["sha256"], checkout)
         proof["generator"] = prior_generator
     full_raw = (json.dumps(proof, ensure_ascii=False, separators=(",", ":")) + "\n").encode()
@@ -666,7 +684,7 @@ def main():
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_text(raw)
     else:
-        assert json.loads(destination.read_text()) == compact, "Retained range classification differs"
+        assert json.loads(project_bytes(destination, root=checkout)) == compact, "Retained range classification differs"
         if historical:
             assert details.read_bytes() == full_raw, "Retained detailed range inventory differs"
     print(json.dumps({"counts": proof["counts"], "reference_join": proof.get("reference_join")}, indent=2))

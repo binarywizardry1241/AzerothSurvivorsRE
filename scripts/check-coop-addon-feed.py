@@ -15,7 +15,7 @@ def main():
     assert target['version'] == '0.115.0' and target['sha256'] == SHA
     data = target_bytes(target)
     pe = load_script('coop_feed_pe', ROOT / 'scripts/inventory-executable.py').PE(data)
-    directory = ROOT / 'docs/analysis/evidence/0.115.0/coop-game-party'
+    directory = ROOT / 'docs/analysis/evidence/coop-game-party'
     manifest = json.loads((directory / 'manifest.json').read_text())
     assert manifest['target']['sha256'] == SHA
     roles = {'hud-json', 'hud-meter-json', 'party-meter', 'meter-format', 'revive-format'}
@@ -31,7 +31,7 @@ def main():
     assert checked == roles
     for name in ('hud-json.asm', 'hud-meter-json.asm', 'meter-format.c', 'revive-format.c'):
         assert hashlib.sha256((directory / name).read_bytes()).hexdigest() == manifest['extracts'][name]
-    api = (ROOT / 'docs/analysis/evidence/0.115.0/embedded-api.lua').read_text()
+    api = (ROOT / 'docs/analysis/evidence/embedded-api.lua').read_text()
     for prefix, columns in {
         'AZSSPELLS': ['key', 'spell', 'rank', 'cd', 'cdmax'],
         'AZSBUFFS': ['spell', 'left'],

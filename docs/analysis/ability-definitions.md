@@ -2,7 +2,7 @@
 
 Selected installed EXE: SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [proof](evidence/0.109.0/ability-definitions.json) compares all fields of
+The [proof](evidence/ability-definitions.json) compares all fields of
 the 113 recovered stride-120 records at preferred VA `0x146be1c18` against
 the live [Rust catalog](../../crates/azeroth-survivors-re/src/player_abilities/catalog.rs).
 The current [addon contract checker](../../scripts/check-addon-contracts.py)

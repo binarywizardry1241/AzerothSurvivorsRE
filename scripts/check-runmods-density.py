@@ -62,7 +62,7 @@ for percent,base in itertools.product([0,99,100,105,150,65535],[0.,1.,2.75]):
  put(game+0x2b6,'H',percent);reg('R13',game);run(*RANGES['guardian-speed-read']);run(0x14593e180,0x14593e191);reg('XMM7',bits(base));run(0x14593e428,0x14593e42c);actual=bits(xf('XMM7'));assert actual==bits(f(base*f(percent/100)));speeds.append([percent,base,f'{actual:08x}'])
  # Stampede actor read supplies movement_speed*1.4 from the same percentage.
  reg('RSI',game);reg('RAX',0);reg('RCX',definitions);put(definitions+0x3c,'f',base);run(*RANGES['stampede-speed']);actual=bits(xf('XMM0'));want=bits(f(f(f(percent/100)*f(base*f(1.05)))*f(1.4)));assert actual==want;speeds.append([percent,base,'stampede',f'{actual:08x}'])
-out=ROOT/'docs/analysis/evidence/0.109.0/runmods-scaling';ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');args=ap.parse_args();md=Cs(CS_ARCH_X86,CS_MODE_64);ranges=[]
+out=ROOT/'docs/analysis/evidence/runmods-scaling';ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');args=ap.parse_args();md=Cs(CS_ARCH_X86,CS_MODE_64);ranges=[]
 if args.write:out.mkdir(parents=True,exist_ok=True)
 for role,(a,b)in RANGES.items():
  off=p.rva_offset(a-p.image_base);raw=data[off:off+b-a];ins=list(md.disasm(raw,a));assert sum(i.size for i in ins)==len(raw);assembly=''.join(f'{i.address:#x}: {i.bytes.hex()} {i.mnemonic} {i.op_str}'.rstrip()+'\n'for i in ins);file=out/(role+'.asm')

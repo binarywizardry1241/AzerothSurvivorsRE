@@ -19,7 +19,7 @@ from script_sources import load_script
 
 SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
 START, END, TABLE, CREATE = 0x145BE8D58, 0x145BE8DDA, 0x146FC0B40, 0x145C13CE0
-KEEP = ROOT / "docs/analysis/evidence/0.121.0/orb-world-resource.json"
+KEEP = ROOT / "docs/analysis/evidence/orb-world-resource.json"
 
 
 def source_connection():
@@ -111,7 +111,7 @@ def derive(publication_target=0x123456789ABCDEF0):
                 "file_offset": hex(pe.rva_offset(address - pe.image_base)),
                 "sha256": hashlib.sha256(raw(address, size)).hexdigest()}
 
-    model_path = ROOT / "docs/analysis/evidence/0.121.0/resource-consumer-9612.json"
+    model_path = ROOT / "docs/analysis/evidence/resource-consumer-9612.json"
     model = json.loads(model_path.read_text())
     assert model["target"]["sha256"] == SHA
     query_dir = ROOT / "runtime/analysis/history/findings/fixgap220229/03231eb4cb7b/affixes/orb-create/query"

@@ -40,7 +40,7 @@ for event_amount in [0.,1.,100.,123.5]:
    bits=lambda v:struct.unpack('<I',struct.pack('<f',v))[0]
    u.mem_write(MEM+0x474,struct.pack('<f',damage));u.reg_write(UC_X86_REG_R12,MEM);u.reg_write(UC_X86_REG_RBX,bits(event_amount));u.reg_write(UC_X86_REG_XMM6,bits(fraction));u.emu_start(0x1454cd9b3,0,count=1000);assert u.reg_read(UC_X86_REG_RIP)==0x1454cd9c7
    bursts.append(dict(event_amount=event_amount,fraction=fraction,damage_multiplier=damage,power_bits=u.reg_read(UC_X86_REG_XMM9)&0xffffffff))
-OUT=ROOT/'docs/analysis/evidence/0.100.1/treasure-interface';owners=[]
+OUT=ROOT/'docs/analysis/evidence/treasure-interface';owners=[]
 for role,lo,hi in [('temporary-stat-update',0x1454cddcf,0x1454cde24),('temporary-stat-create',0x1454cde9f,0x1454cdee7),('temporary-stat-refresh',0x1454ce754,0x1454ce788),('temporary-stat-consumer',0x1454a6bbe,0x1454a6c63),('shield-burst',0x1454cd8a7,0x1454cda42)]:
  off=p.rva_offset(lo-p.image_base);owners.append(dict(role=role,start=hex(lo),end_exclusive=hex(hi),sha256=hashlib.sha256(data[off:off+hi-lo]).hexdigest()));(OUT/(role+'.asm')).write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={lo:#x}',f'--stop-address={hi:#x}',str(ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe')],text=True))
 (OUT/'temporary-stat-native.json').write_text(portable_json(dict(target_sha256=SHA,method=__doc__,owners=owners,cases=cases,shield_burst=bursts),separators=(',',':'))+'\n');print('Recovered',len(cases),'native temporary-stat updates')

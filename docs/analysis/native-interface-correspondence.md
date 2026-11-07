@@ -124,7 +124,7 @@ and height at `0x140338c88` and the plain canvas dimensions at
 `0x140338d85` from the 24-byte block at `0x1465c4520`. Both pairs are
 460 × 400. The scale cap store at `0x140338d96` writes `0x3fb33333`,
 the `f32` representation of 1.4. The packed layout records reproduce
-the corresponding bytes retained in the [0.139.2 modal evidence](evidence/0.139.2/coop-ready-check.json).
+the corresponding bytes retained in the [0.139.2 modal evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/coop-ready-check.json).
 
 The lobby's outer constructor at `0x140103540` sends the same kind of
 full-viewport Node and packed backdrop at `0x140103b1d..0x140103b5d`.

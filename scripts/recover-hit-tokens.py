@@ -45,7 +45,7 @@ for enabled in [False,True]:
       if pc==STOPS[1]:
        raw=bytes(u.mem_read(frame+0x88,35));event=dict(spell_id=struct.unpack_from('<I',raw,8)[0],school=raw[28],kind=raw[29],source_kind=raw[30],critical=raw[31],first_hit=raw[32],first_critical=raw[33],first_periodic=raw[34])
       cases.append(dict(enabled=enabled,source=source,critical=critical,periodic_flag=periodic,first_tokens=first,critical_tokens=crit,event=event,remaining_first=remaining(MEM+0x1000,read(0xf0)),remaining_critical=remaining(MEM+0x2000,read(0x108))))
-out=ROOT/'docs/analysis/evidence/0.100.1/treasure-interface';spans=[]
+out=ROOT/'docs/analysis/evidence/treasure-interface';spans=[]
 for lo,hi in SPANS:
  off=pe.rva_offset(lo-pe.image_base);raw=data[off:off+hi-lo];spans.append(dict(start=hex(lo),end_exclusive=hex(hi),file_offset=hex(off),sha256=hashlib.sha256(raw).hexdigest()))
  (out/f'hit-token-{lo:x}.asm').write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={lo:#x}',f'--stop-address={hi:#x}',str(ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe')],text=True))

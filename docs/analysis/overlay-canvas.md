@@ -10,7 +10,7 @@ selected native paths; no new size/scale behavior is introduced.
 The current owners are `14018f300..14018f75e` (layout fit) and
 `140190700..140191126` (render-target propagation). Fresh Ghidra 12.1.4
 imports bind their identities in the
-[manifest](evidence/0.109.0/overlay-canvas/manifest.json). Exact original
+[manifest](evidence/overlay-canvas/manifest.json). Exact original
 instruction windows independently establish:
 
 - Convert the window's physical width/height to `f32`, divide by its active

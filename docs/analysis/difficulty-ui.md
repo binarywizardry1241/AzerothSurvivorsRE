@@ -4,7 +4,7 @@ Target: installed 0.121.0 Windows EXE, 146,088,960 bytes, SHA-256
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 This report owns the menu and localization portion of permanent finding **#219**.
 [verification-needed](../verification-needed.md) owns its remaining gameplay/source status.
-The [manifest](evidence/0.121.0/difficulty-ui/manifest.json) binds seventeen durable
+The [manifest](evidence/difficulty-ui/manifest.json) binds seventeen durable
 Ghidra queries, original PE ranges, locale descriptors and the source connections.
 The older [Run Options report](run-options.md) retains its actual target;
 its four-percentage policy is not the current Difficulty menu.
@@ -27,14 +27,14 @@ recovery. The Difficulty page also invalidates on rank, zone, maximum and Save
 revision. `picker.rs::PickerContentKey` follows the current Pick rank rather
 than the legacy modifier tuple, retaining the existing name-only exclusion.
 
-The current [state-connection proof](evidence/0.121.0/difficulty-state.json)
+The current [state-connection proof](evidence/difficulty-state.json)
 binds the constructor's unchanged copy of its rank input into Game, separately
 from presentation. The source restores the requested `Pick.heroic_rank` through
 save/schema; `gameplay::enter` clamps the effective run rank to the selected
 class/zone ceiling without rewriting that Pick. Changing class or zone therefore
 can retain a selected, locked row. `RunRules.heroic_rank` reaches
 the ordinary and boss spawn paths through the current
-[scaling proof](evidence/0.121.0/heroic-scaling/manifest.json); the retained legacy
+[scaling proof](evidence/heroic-scaling/manifest.json); the retained legacy
 percentage fields receive unity from live entry. These bounded static proofs
 do not establish compilation, application execution or parity.
 
@@ -48,7 +48,7 @@ instead of showing a reward derived from the old four percentages.
 
 Original frame `14014b510`, page `14014bce0`, row `140278430`, row contents
 `14014d0e0` and badge helper `14014b7e0` execute to typed UI submission seams in
-the [retained captures](evidence/0.121.0/difficulty-ui/submissions.json).
+the [retained captures](evidence/difficulty-ui/submissions.json).
 `run_options.rs` keeps the established custom overlay and shared UI interfaces,
 using these current submissions:
 

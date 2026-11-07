@@ -1,7 +1,7 @@
 # Talent cooldown-reset selector
 
 [Finding #141](../verification-needed.md#gap-141) and the [native
-receipt](evidence/0.139.2/kill-selector.json) cover the selected seven-cell
+receipt](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/kill-selector.json) cover the selected seven-cell
 runtime selector of the installed EXE, SHA-256
 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
 
@@ -29,7 +29,7 @@ gameplay and original/rebuilt comparison remain open.
 
 ## Kill reset and Prepared selectors in 0.141.0
 
-The [current evidence](evidence/0.141.0/status-talent-selectors.json) binds
+The [current evidence](evidence/status-talent-selectors.json) binds
 the shared talent extent `0x145f8e670..0x145f92a55` to installed SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 The two tables use different inputs and have different consumers.

@@ -6,7 +6,7 @@ use azeroth_survivors_re::{
 
 fn fixture() -> serde_json::Value {
     serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.112.0/warlock-talents/effect-cases.json"
+        "../../../docs/analysis/evidence/warlock-talents/effect-cases.json"
     ))
     .unwrap()
 }

@@ -214,7 +214,7 @@ mod shout_damage_tests {
     #[test]
     fn current_native_damage_counts_judgement_and_the_shout_fallback_independently() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.127.0/shouts/native-cases.json"
+            "../../../../docs/analysis/evidence/shouts/native-cases.json"
         )).unwrap();
         for case in proof["independent_hit"].as_array().unwrap() {
             let f = |index: usize| f32::from_bits(case[index].as_u64().unwrap() as u32);

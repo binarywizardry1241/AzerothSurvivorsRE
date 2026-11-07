@@ -11,7 +11,7 @@ SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 def main():
     target = latest_target(verify=True)
     assert target['version'] == '0.115.0' and target['sha256'] == SHA
-    evidence = json.loads((ROOT / 'docs/analysis/evidence/0.115.0/coop-replication/manifest.json').read_text())
+    evidence = json.loads((ROOT / 'docs/analysis/evidence/coop-replication/manifest.json').read_text())
     assert evidence['target']['sha256'] == SHA
     source_root = ROOT / 'crates/azeroth-survivors-re/src'
     encoder = (source_root / 'coop/engine_packets.rs').read_text()

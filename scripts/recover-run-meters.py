@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK = ROOT / "runtime/analysis/history/native-recovery/meter-accounting/09505f8efe24"
-OUT = ROOT / "runtime/analysis/staging/native-evidence/0.105.0/run-meters/accounting"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/run-meters/accounting"
 OWNERS = {"hit": 0x145933EC0, "source": 0x1458F2EE0,
           "breakdown": 0x1458F27A0, "record": 0x14595F3C0,
           "summary": 0x1458FAD90, "healing-credit": 0x1458F8050,
@@ -471,7 +471,7 @@ def main():
     if args.action in ("verify", "check"):
         result = native_vectors(pe)
         if args.action == "check":
-            retained = ROOT / "docs/analysis/evidence/0.105.0/run-meters/accounting"
+            retained = ROOT / "docs/analysis/evidence/run-meters/accounting"
             expected = json.loads((retained / "native-vectors.json").read_text())
             assert result["target_sha256"] == expected["target_sha256"]
             assert result["cases"] == expected["cases"], "Retained native meter vectors drifted"
@@ -553,7 +553,7 @@ def main():
         owners.append(row)
     reused = []
     if args.action == "collect":
-        manifest_path = ROOT / "docs/analysis/evidence/0.105.0/mob-movement/manifest.json"
+        manifest_path = ROOT / "docs/analysis/evidence/mob-movement/manifest.json"
         current = json.loads(manifest_path.read_text())
         actor = next(row for row in current["rea"] if row["role"] == "actor")
         lo, hi = int(actor["start"], 16), int(actor["end_exclusive"], 16)

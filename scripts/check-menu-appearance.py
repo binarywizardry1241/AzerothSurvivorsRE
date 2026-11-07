@@ -5,7 +5,7 @@ import json
 from native_save_fixture import CPU, ROOT
 from unicorn.x86_const import UC_X86_REG_RBP, UC_X86_REG_RSP, UC_X86_REG_R8
 
-DEST = ROOT / "docs/analysis/evidence/0.109.0/save-schema/appearance-controls.json"
+DEST = ROOT / "docs/analysis/evidence/save-schema/appearance-controls.json"
 MASK = (1 << 64) - 1
 
 

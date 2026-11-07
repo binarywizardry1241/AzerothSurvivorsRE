@@ -19,7 +19,7 @@ from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 WORK = ROOT / "runtime/analysis/history/inventory/chest-lifecycle/cf9c18b2353c"
-KEPT = ROOT / "docs/analysis/evidence/0.113.2/cache-lifecycle"
+KEPT = ROOT / "docs/analysis/evidence/cache-lifecycle"
 RANGES = {
     "create-go": (0x145954610, 0x145954940),
     "purchase": (0x145954A70, 0x145954C6E),

@@ -28,7 +28,7 @@ mod tests {
     #[test]
     fn current_native_refusals_reach_the_existing_inventory_decoder() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.113.2/inventory-refusals.json"
+            "../../../../../docs/analysis/evidence/inventory-refusals.json"
         ))
         .unwrap();
         for row in proof["source_fixtures"].as_array().unwrap() {

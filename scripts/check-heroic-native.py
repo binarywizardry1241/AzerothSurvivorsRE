@@ -15,7 +15,7 @@ from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.121.0/heroic-native/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/heroic-native/manifest.json"
 
 
 def sha(value):

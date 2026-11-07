@@ -16,7 +16,7 @@ revalidate this report's historical audio policy or audible output.
 
 ## Native evidence
 
-[menu-audio.json](evidence/0.92/menu-audio.json) retains the captured log-prefix
+[menu-audio.json](evidence/menu-audio.json) retains the captured log-prefix
 hash, selected line numbers, exact constant bytes and nine bounded native gain
 outputs. `scripts/recover-menu-audio.py` regenerates that evidence from the
 verified target and the existing log. Its emulation performs no audio, file,
@@ -50,7 +50,7 @@ PE import table to CRT `log10f`. The watch sends a15,000,000ns volume tween.
 The original instructions, rather than the raw-image Ghidra parameter names,
 bind the SoundConfig fields and operands.
 
-The [CVar/focus policy](evidence/0.92/audio-cvar-policy.json) binds the sound
+The [CVar/focus policy](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/audio-cvar-policy.json) binds the sound
 observer callback at `1408fd770` and focus gate at `1408fcc90`. Its82 unchanged
 native callback outputs cover all14 audio keys, using the native f32/lexical
 parser rather than a numeric formula stub. Volumes clamp0..1 with NaN retained;

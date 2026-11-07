@@ -1,6 +1,6 @@
 # Scholomance encounter dispatch
 
-The [evidence manifest](evidence/0.140.0/scholomance-encounters.json) binds these observations to the installed `0.140.0` EXE, SHA-256 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`. It records the original PE ranges and the result digests for the bounded Ghidra queries. Raw imports omit external code and jump tables. The original instructions govern the call arguments and branches. [Finding #313](../CURRENT-STATE.md#gap-313).
+The [evidence manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.140.0/scholomance-encounters.json) binds these observations to the installed `0.140.0` EXE, SHA-256 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`. It records the original PE ranges and the result digests for the bounded Ghidra queries. Raw imports omit external code and jump tables. The original instructions govern the call arguments and branches. [Finding #313](../CURRENT-STATE.md#gap-313).
 
 ## Scheduled bosses and their placement
 
@@ -30,7 +30,7 @@ Frozen Checkmate at `0x145ee6300` uses one shared RNG draw and sends its high bi
 
 The Checkmate constructor creates one part with zero offsets relative to the attack impact and a `0.3`-second tail. The common initializer at `0x145fcc5e0` sets its impact to the run clock plus `1.75` seconds. It uses `1.75 × 0.85` when the ranked flag is set. The constructor applies the same hold to Ras.
 
-The solo and co-op hit ticks both enter `0x145fcefb0`. The co-op host also calls it through `0x145e736e0` for each swapped hero. The hit sampler at `0x145ed9480` uses the part's absolute timing and checks per-recipient hit history. Its geometry switch at `0x145ee1e90` takes the grid branch to `0x145ee2a90`. That function rotates the recipient into grid space and tests the danger bit of the containing cell. If the bit is clear, it also accepts any danger cell whose nearest point is strictly closer than the recipient radius minus `0.05`, with a minimum effective radius of zero. The part's danger mask already excludes invalid cells. Both Scholomance masks passed 364 native instruction cases with the floor and hypotenuse calls stubbed. [Retained geometry pseudocode binding](evidence/0.140.0/bounded-native-frontier.json).
+The solo and co-op hit ticks both enter `0x145fcefb0`. The co-op host also calls it through `0x145e736e0` for each swapped hero. The hit sampler at `0x145ed9480` uses the part's absolute timing and checks per-recipient hit history. Its geometry switch at `0x145ee1e90` takes the grid branch to `0x145ee2a90`. That function rotates the recipient into grid space and tests the danger bit of the containing cell. If the bit is clear, it also accepts any danger cell whose nearest point is strictly closer than the recipient radius minus `0.05`, with a minimum effective radius of zero. The part's danger mask already excludes invalid cells. Both Scholomance masks passed 364 native instruction cases with the floor and hypotenuse calls stubbed. [Retained geometry pseudocode binding](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.140.0/bounded-native-frontier.json).
 
 The client grid draw branch at `0x1400ba420` requires both the valid and danger bits before projecting each tile. It uses half the grid pitch for the tile bounds and projects from eight units below to eight units above the tile origin at `0x1400ba6eb`. The tile batch uses mask key 3 and paint style 6. The adjacent tile checks construct a boundary batch using mask key 4 and paint style 1. The constructor's appearance byte 2 serializes as `"c":"blue"` at `0x145fc8198`. The decoder's blue branch at `0x1400b3e15` loads RGB `(0.3, 0.6, 1)`.
 
@@ -40,7 +40,7 @@ The host dispatcher at `0x145f74bd0` admits recurring actions only after checkin
 
 ## Gandling's scripted attacks and Straight A's
 
-The [native receipt](evidence/0.140.0/scholomance-straight-as.json) binds the Gandling producers, part geometry, recipient hit sampler, expiry, death callback and achievement inputs to the installed 0.140.0 image. The script starts its Office, Dismissed and Quiz deadlines at spawn plus 1.5, 5.25 and 15 seconds. Their priorities are 30, 20 and 10 and their successful repeat delays are 21, 24 and 28 seconds before rank and enrage scaling. A live blocking attack or pending follow-up holds the scheduler.
+The [native receipt](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.140.0/scholomance-straight-as.json) binds the Gandling producers, part geometry, recipient hit sampler, expiry, death callback and achievement inputs to the installed 0.140.0 image. The script starts its Office, Dismissed and Quiz deadlines at spawn plus 1.5, 5.25 and 15 seconds. Their priorities are 30, 20 and 10 and their successful repeat delays are 21, 24 and 28 seconds before rank and enrage scaling. A live blocking attack or pending follow-up holds the scheduler.
 
 | Attack | Recovered source behavior |
 | --- | --- |

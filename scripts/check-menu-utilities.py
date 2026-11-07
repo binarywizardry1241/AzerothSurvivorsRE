@@ -83,7 +83,7 @@ assert 'if choice.0 != locale.index' in choice and 'locale.select(choice.0, &mut
 assert choice.index('if selected {')>choice.index('for (choice, interaction)')
 assert 'return;' not in choice.split('for (choice, interaction)',1)[1].split('if selected {',1)[0]
 record=dict(target_sha256=t['sha256'],target_executed=False,languages=languages,input_cases=len(results),input_result_sha256=hashlib.sha256(json.dumps(results,sort_keys=True).encode()).hexdigest(),pixel_count=len(alpha),alpha_sha256=hashlib.sha256(alpha).hexdigest(),rgba_sha256=hashlib.sha256(rgba).hexdigest(),ranges=[span(0x14002ffea,0x1400300cc),span(0x1400a9b90,ends[0x1400a9b90]),span(0x140270430,ends[0x140270430]),span(0x1400201b0,ends[0x1400201b0]),span(0x140243110,ends[0x140243110])],limits=['Only the current admitted per-row input fragment and complete RGBA producer execute. Bevy query/ticks and UI scheduling are fixtures; locale mutation/persistence, refresh, memcmp, allocation and memcpy are explicit seams.','Current popup/choice/top-right constructors are statically traced separately. This check does not render, open URLs, touch a save/configuration or run a game.'])
-path=ROOT/('runtime/analysis/staging/native-evidence/0.109.0/menu-utilities'if args.stage else'docs/analysis/evidence/0.109.0/menu-utilities')/'native.json'
+path=ROOT/('runtime/analysis/staging/native-evidence/menu-utilities'if args.stage else'docs/analysis/evidence/menu-utilities')/'native.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==json.loads(json.dumps(record))
 print('Passed588 native language-choice admission cases, all1200 community pixels and current source guards')

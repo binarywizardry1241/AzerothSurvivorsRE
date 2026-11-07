@@ -18,7 +18,7 @@ the player's class.
 
 The current model writes **field131**. **Field132** is calculated separately
 from the normal race/sex body and remains that body while transformed. The
-[retained selector and descriptor instructions](evidence/0.105.0/permanent-forms/manifest.json)
+[retained selector and descriptor instructions](evidence/permanent-forms/manifest.json)
 record the actual original-PE byte ranges and their hashes. REA/Ghidra examined
 the current owner as a raw slice; its generic ABI and missing external types
 are analysis limits. The original instructions establish the register bindings

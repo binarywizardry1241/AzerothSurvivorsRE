@@ -7,7 +7,7 @@ The selector is independently rederived from all **3,766,641** saved references
 and the hash-bound body inventory. All **73,393** selected records have type
 `DATA` and address exact PE unwind-handler RVA fields.
 
-[The proof](evidence/0.115.0/unowned-unwind-destinations.json) binds the complete
+[The proof](evidence/native-diagnostics/unowned-unwind-destinations.json) binds the complete
 selected field projection, checker source, original reference/body files, metadata-reader
 sources, two import thunks, all twelve native callback entries and the 35
 metadata records selecting those native callbacks. Bulk reference rows remain

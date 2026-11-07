@@ -19,7 +19,7 @@ from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
 SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
-OUTPUT = "docs/analysis/evidence/0.121.0/as-data-slots.json"
+OUTPUT = "docs/analysis/evidence/as-data-slots.json"
 ARTIFACT = "runtime/analysis/history/findings/q41-data-slots/3c0eb7d6c150/exact-slot-operands.jsonl.gz"
 QUERIES = [
     ("locale-selector", 0x145AEB1E0, 0x145AEB337),
@@ -50,9 +50,9 @@ def collect():
     if target["sha256"] != SHA:
         raise ValueError("The exact 0.121.0 target is required")
     inputs = [receipt(path) for path in (
-        "docs/analysis/evidence/0.121.0/native-residuals.json",
-        "docs/analysis/evidence/0.121.0/native-operands.json",
-        "docs/analysis/evidence/0.121.0/as-reference-frontier.json",
+        "docs/analysis/evidence/native-residuals-comparison.json",
+        "docs/analysis/evidence/native-diagnostics/native-operands.json",
+        "docs/analysis/evidence/as-reference-frontier.json",
     )]
     residuals, operands, frontier = [json.loads(checked(row).read_text()) for row in inputs]
     if any(value["target"]["sha256"] != SHA for value in (residuals, operands, frontier)):

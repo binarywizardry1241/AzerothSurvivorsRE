@@ -8,11 +8,11 @@ use azeroth_survivors_re::bosses::{
 use serde_json::Value;
 
 fn catalog() -> Value {
-    serde_json::from_str(include_str!("../../../docs/analysis/evidence/0.108.0/boss-minions/catalog.json")).unwrap()
+    serde_json::from_str(include_str!("../../../docs/analysis/evidence/boss-minions/catalog.json")).unwrap()
 }
 
 fn native() -> Value {
-    serde_json::from_str(include_str!("../../../docs/analysis/evidence/0.108.0/boss-minions/native.json")).unwrap()
+    serde_json::from_str(include_str!("../../../docs/analysis/evidence/boss-minions/native.json")).unwrap()
 }
 
 fn boss(id: u32) -> &'static BossDefinition {

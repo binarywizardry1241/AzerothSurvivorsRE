@@ -59,7 +59,7 @@ struct Input {
 #[test]
 fn retained_terrain_and_timer_instruction_cases_replay() {
     let fixture: MovementFixture = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.100.1/floor-recovery/native-fixtures.json"
+        "../../../docs/analysis/evidence/floor-recovery/native-fixtures.json"
     ))
     .unwrap();
     let zone = Zone::for_key("naxx").unwrap();
@@ -130,7 +130,7 @@ struct GridCase {
 #[test]
 fn current_grid_helper_instructions_replay() {
     let fixture: GridFixtures = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.100.1/floor-recovery/grid-fixtures.json"
+        "../../../docs/analysis/evidence/floor-recovery/grid-fixtures.json"
     ))
     .unwrap();
     for (index, case) in fixture.cases.into_iter().enumerate() {
@@ -217,7 +217,7 @@ struct CandidateFixture {
 fn current_triangle_rasterizer_instructions_replay() {
     use floor_recovery::cache::IndoorBuilder;
     let fixture: TriangleFixtures = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.100.1/floor-recovery/triangle-fixtures.json"
+        "../../../docs/analysis/evidence/floor-recovery/triangle-fixtures.json"
     ))
     .unwrap();
     for (index, case) in fixture.cases.into_iter().enumerate() {
@@ -290,7 +290,7 @@ struct OccupancyCase {
 fn current_occupancy_rasterizer_instructions_replay() {
     use floor_recovery::cache::OccupancyBuilder;
     let fixture: OccupancyFixtures = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.100.1/floor-recovery/occupancy-fixtures.json"
+        "../../../docs/analysis/evidence/floor-recovery/occupancy-fixtures.json"
     ))
     .unwrap();
     for (index, case) in fixture.cases.into_iter().enumerate() {
@@ -321,7 +321,7 @@ struct PlacementCase {
 fn current_placement_rotation_and_vertex_instructions_replay() {
     use floor_recovery::placement;
     let fixture: PlacementFixtures = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.100.1/floor-recovery/placement-fixtures.json"
+        "../../../docs/analysis/evidence/floor-recovery/placement-fixtures.json"
     ))
     .unwrap();
     for (index, case) in fixture.cases.into_iter().enumerate() {
@@ -390,7 +390,7 @@ struct NavigationQuery {
 fn current_distance_field_segment_and_chase_instructions_replay() {
     use floor_recovery::navigation::{segment_fraction, DistanceField};
     let fixture: NavigationFixtures = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.100.1/floor-recovery/navigation-fixtures.json"
+        "../../../docs/analysis/evidence/floor-recovery/navigation-fixtures.json"
     ))
     .unwrap();
     for (index, case) in fixture.cases.into_iter().enumerate() {

@@ -166,7 +166,7 @@ mod tests {
     #[test]
     fn parser_matches_original_instruction_fixtures() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.109.0/localization/native-vectors.json"
+            "../../../../docs/analysis/evidence/localization/native-vectors.json"
         ))
         .unwrap();
         for case in fixtures["parser"]["cases"].as_array().unwrap() {

@@ -18,7 +18,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
-OUT = ROOT / 'docs/analysis/evidence/0.112.0/xinput'
+OUT = ROOT / 'docs/analysis/evidence/xinput'
 WORK = ROOT / 'runtime/analysis/history/movement/input/8d261063d4b4'
 RANGES = {'poll': (0x14031d0a0, 0x14031dd31), 'axis': (0x140300240, 0x140300377),
           'backend': (0x140305f10, 0x14030611e), 'loader': (0x1403058d0, 0x140305e82),

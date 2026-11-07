@@ -5,7 +5,7 @@ use std::collections::BTreeSet;
 
 fn evidence() -> Value {
     serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.97.2/enemies/catalog.json"
+        "../../../docs/analysis/evidence/enemies/catalog.json"
     ))
     .unwrap()
 }
@@ -26,7 +26,7 @@ fn word(record: &[u8], offset: usize) -> u32 {
 fn every_definition_preserves_selected_native_bytes() {
     let source = evidence();
     let sizes: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.127.0/creature-sizes/contract.json"
+        "../../../docs/analysis/evidence/creature-sizes/contract.json"
     )).unwrap();
     assert_eq!(source["target_version"], "0.97.2");
     assert_eq!(

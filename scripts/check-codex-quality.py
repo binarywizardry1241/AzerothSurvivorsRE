@@ -36,7 +36,7 @@ for kind,items in [(0,[dict(key='jewelry',quality=0)]),(1,shared),(2,[dict(key='
 source=(ROOT/'crates/azeroth-survivors-re/src/codex.rs').read_text();assert 'let quality = entry_quality(entry, discovered);'in source and '.map(|_| quality_color(entry_quality(entry, known)))'in source
 at=p.rva_offset(0x140364670-p.image_base)
 proof=dict(target_sha256=target['sha256'],address='0x140364670',end_exclusive='0x140364725',sha256=hashlib.sha256(d[at:at+0xb5]).hexdigest(),cases=rows,limits=['Only native current quality selector executes; key and seen getters are explicit fixtures, and the initialized shared Vec handle points to the actual current17-record table.','The full142-record current constructor pass independently compares all source item qualities. No UI, build or game ran.'])
-a=argparse.ArgumentParser(description=__doc__);a.add_argument('--write',action='store_true');args=a.parse_args();path=ROOT/'docs/analysis/evidence/0.109.0/codex/quality.json'
+a=argparse.ArgumentParser(description=__doc__);a.add_argument('--write',action='store_true');args=a.parse_args();path=ROOT/'docs/analysis/evidence/codex/quality.json'
 if args.write:path.write_text(json.dumps(proof,indent=2)+'\n')
 else:assert json.loads(path.read_text())==proof
 print('Passed 114 native quality cases; jewelry reads highest seen rarity, all17 shared amulets and legendary headings keep fixed quality.')

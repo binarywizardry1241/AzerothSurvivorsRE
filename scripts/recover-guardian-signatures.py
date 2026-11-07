@@ -11,7 +11,7 @@ from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-OUT = ROOT / 'docs/analysis/evidence/0.109.0/guardian-signatures'
+OUT = ROOT / 'docs/analysis/evidence/guardian-signatures'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src/guardians/signature_catalog.rs'
 RANGES = {
     'selector': (0x14588d220, 0x14588d582),

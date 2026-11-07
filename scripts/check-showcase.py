@@ -43,7 +43,7 @@ def main():
         offset = pe.rva_offset(address - pe.image_base)
         return data[offset:offset + size]
 
-    manifest = json.loads((ROOT / "docs/analysis/evidence/0.105.0/showcase/manifest.json").read_text())
+    manifest = json.loads((ROOT / "docs/analysis/evidence/showcase/manifest.json").read_text())
     for row in manifest["ranges"]:
         start = int(row["start"], 16)
         end = int(row["end_exclusive"], 16)

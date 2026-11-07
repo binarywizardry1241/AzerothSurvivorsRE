@@ -136,7 +136,7 @@ asset=R/'crates/azeroth-survivors-re/assets/progression.json'
 asset.write_text(portable_json(dict(version='0.100.1',target_sha256=hashlib.sha256(d).hexdigest(),perks=perks,tabards=tabards,companions=companions,achievements=achievements,legendary_sets={k:[id for id in ids if id//10%10==4]for k,ids in gear_ids.items()}),indent=2,ensure_ascii=False)+'\n')
 # Curate text owners with exact full-owner hashes, keeping generic raw-ABI Ghidra limitations explicit.
 import subprocess
-O=R/'docs/analysis/evidence/0.100.1/account-progression';O.mkdir(parents=True,exist_ok=True)
+O=R/'docs/analysis/evidence/account-progression';O.mkdir(parents=True,exist_ok=True)
 ends={p.image_base+a:p.image_base+z for a,z,_ in p.functions()}
 def span(a,n):return dict(address=hex(a),file_offset=hex(p.rva_offset(a-p.image_base)),byte_count=n,sha256=hashlib.sha256(pe_bytes(a,n)).hexdigest())
 procedures=[]

@@ -127,7 +127,7 @@ def main():
                 assert actual == expected, (family, row["id"], selected, actual, expected)
                 cases.append((family, row["id"], selected, actual))
 
-    proof = json.loads((ROOT / "docs/analysis/evidence/0.117.0/item-query-bridge/contracts.json").read_text())
+    proof = json.loads((ROOT / "docs/analysis/evidence/item-query-bridge/contracts.json").read_text())
     assert proof["target_sha256"] == target["sha256"]
     for span in proof["native_spans"]:
         start, count = int(span["va"], 16), span["byte_count"]

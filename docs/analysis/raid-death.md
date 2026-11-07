@@ -72,7 +72,7 @@ instruction bytes to synthetic native source-search, removal-index, death-state
 and object/publication fixtures. **875 isolated native profiles** pass: 375
 source GUID/state cases, four index boundaries, twelve cancellation appends,
 252 removals, sixteen death writes and 216 complete delayed-visual queue cases.
-The [manifest](evidence/0.115.0/raid-death/manifest.json)
+The [manifest](evidence/raid-death/manifest.json)
 records actual case counts, boundaries and explicit host seams. The compact
 instruction extract and Ghidra provenance retain their target/input hashes;
 raw query state stays under ignored `runtime/`.

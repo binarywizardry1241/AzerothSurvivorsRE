@@ -32,10 +32,10 @@ camera adjustment remains a separate existing target-specific world check.
 
 ## Fresh selected-target evidence
 
-[Selected data](evidence/0.105.0/game-mode-audit/selected-data.json) and the
-[native manifest](evidence/0.105.0/game-mode-audit/native-manifest.json) bind
+[Selected data](evidence/game-mode-audit/selected-data.json) and the
+[native manifest](evidence/game-mode-audit/native-manifest.json) bind
 observations to original file ranges and hashes. The exact
-[embedded addon source](evidence/0.105.0/game-mode-audit/addon-api.lua) is 10,365
+[embedded addon source](evidence/addon-api/game-mode-contract.lua) is 10,365
 bytes at file offset `0x6e74644`, VA `0x146e75444`, SHA-256
 `b79b53002002820291022749e09cc34aa660ccf372fd4479dae4b424c160f212`.
 
@@ -47,8 +47,8 @@ bytes at file offset `0x6e74644`, VA `0x146e75444`, SHA-256
 | Guardian flag serialization | Owner `1459b1b70`; `ev_56bd198df1248b7260f6e1ed8d8e4519e394abfc4a90b9ee67728db0551f330b` | The native serializer compares each lair index with the selected flag index and formats a boolean; Lua accepts the `flag` field and returns its matching lair. Complete lair-selection/repopulation semantics remain separate recovery. |
 | Native meter and controls | Meter labels Damage Done / Healing Done / Boss Damage; `screens/meter.rs` locations and owner `140172ae0`; custom HUD/pad/touch/talentview type identities | These are separate custom screen owners, not stock client panels. Ghidra also observed the native meter update function. Labels/type names alone do not recover all screen rules. |
 | Native controller input | `screens/xinput.rs`, XInput DLL/GetState literals, polling owner `140092ab0`; `ev_57fe1f9685d63ac3ae5a31bddad77d44b49b92d0657a4f324875cc8d1f30c746` | Native polling iterates four controller slots and handles connection/state changes. Complete AS button mapping/focus/touch behavior remains unrecovered. |
-| Per-kind totem cap | [Instructions](evidence/0.105.0/game-mode-audit/totem-kind-cap-branch.asm), `145921b3e..145921cb5`, parent `14591f620` | Counts equal ability keys; up to 39 existing entries skips removal. At 40 or more it removes the first matching entry and calls two cleanup paths before creating the new totem. Display IDs 4587/4589 and the `magma_totem` comparison identify this branch. Complete forced-expiry/Call of Flame semantics still need recovery. |
-| Beaten-zone restoration | [Instructions](evidence/0.105.0/game-mode-audit/beaten-zone-unlock-repair.asm), parent `145886e60`; `ev_562816d41bbcf4c7865b78870afeeb61b0bfe750db85ff64389f802a2f43625e` | Save loading parses `beat` records, deduplicates class/zone entries and merges the next-zone value (`index + 2`, capped at 12) into each class's maximum unlock. Complete save migration/refund behavior and malformed inputs remain unverified. |
+| Per-kind totem cap | [Instructions](evidence/game-mode-audit/totem-kind-cap-branch.asm), `145921b3e..145921cb5`, parent `14591f620` | Counts equal ability keys; up to 39 existing entries skips removal. At 40 or more it removes the first matching entry and calls two cleanup paths before creating the new totem. Display IDs 4587/4589 and the `magma_totem` comparison identify this branch. Complete forced-expiry/Call of Flame semantics still need recovery. |
+| Beaten-zone restoration | [Instructions](evidence/game-mode-audit/beaten-zone-unlock-repair.asm), parent `145886e60`; `ev_562816d41bbcf4c7865b78870afeeb61b0bfe750db85ff64389f802a2f43625e` | Save loading parses `beat` records, deduplicates class/zone entries and merges the next-zone value (`index + 2`, capped at 12) into each class's maximum unlock. Complete save migration/refund behavior and malformed inputs remain unverified. |
 
 The source-path scan covered the entire PE for the two custom game crates and
 found 51 distinct diagnostic file paths. These are nonexhaustive ownership

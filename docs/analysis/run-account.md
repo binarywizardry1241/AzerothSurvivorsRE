@@ -2,7 +2,7 @@
 
 Target: installed **0.109.0**, SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [manifest](evidence/0.109.0/run-account/manifest.json) binds the current
+The [manifest](evidence/run-account/manifest.json) binds the current
 summary `1458b8620`, component-delta helper `1459ca650`, enclosing tick
 `1458ad720`, optional roster projection, Save selector and direct write leaf.
 Full current owners were inspected through fresh REA/Ghidra imports; compact

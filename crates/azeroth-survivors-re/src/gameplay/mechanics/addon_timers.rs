@@ -49,7 +49,7 @@ mod tests {
     #[test]
     fn cooldown_input_matches_current_native_aura_vectors() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.115.0/addon-timers/cooldown-input-cases.json"
+            "../../../../../docs/analysis/evidence/addon-timers/cooldown-input-cases.json"
         )).unwrap();
         let number = |value: &serde_json::Value| f32::from_bits(value.as_u64().unwrap() as u32);
         for case in proof["cases"].as_array().unwrap() {
@@ -73,7 +73,7 @@ mod tests {
     #[test]
     fn live_entry_retains_native_racial_recovery_before_any_reciprocal() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.115.0/addon-timers/cooldown-base-cases.json"
+            "../../../../../docs/analysis/evidence/addon-timers/cooldown-base-cases.json"
         )).unwrap();
         for case in proof["cases"].as_array().unwrap() {
             let class = match case["class_id"].as_u64().unwrap() {

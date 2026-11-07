@@ -1,6 +1,6 @@
 //! Current0.109.0 scheduled boss construction arithmetic.
 //! Owner14596d8d0, selected arithmetic14596dab9..db66 and14596dec9..e028.
-//! docs/analysis/evidence/0.109.0/boss-inputs/manifest.json revalidates all60
+//! docs/analysis/evidence/boss-inputs/manifest.json revalidates all60
 //! semantic headers and480 isolated native arithmetic cases. Damage/HP powf
 //! call order and the current Endless admission differ from historical0.105.0.
 //! Windows CRT, compilation, live actors and native parity remain unverified.

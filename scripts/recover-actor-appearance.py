@@ -16,7 +16,7 @@ data = TARGET.read_bytes()
 assert hashlib.sha256(data).hexdigest() == SHA
 module = load_script('inventory', ROOT / 'scripts/inventory-executable.py')
 pe = module.PE(data)
-OUT = ROOT / 'runtime/analysis/staging/native-evidence/0.100.1/run-effects'
+OUT = ROOT / 'runtime/analysis/staging/native-evidence/run-effects'
 OUT.mkdir(parents=True, exist_ok=True)
 owners = []
 for role, lo, hi in [

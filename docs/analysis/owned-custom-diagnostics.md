@@ -4,7 +4,7 @@ Target SHA-256:
 `0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c`.
 This completes the bounded per-row projection for the **618 owned AS diagnostic
 sites**, complementing the [107 ownerless AS sites](custom-diagnostic-roles.md).
-The [compact proof](evidence/0.115.0/owned-custom-diagnostics.json) commits every
+The [compact proof](evidence/native-diagnostics/owned-custom-diagnostics.json) commits every
 selected row and its guarded first-interface paths in ignored runtime storage.
 It establishes no new source defect or missing AS implementation.
 
@@ -115,7 +115,7 @@ an adjacent filename as consumed text.
 
 The current literal-name lookup is reused from the
 [timer/localization evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/addon-timers-0.115.0.md). Current banner and raid
-consumers keep their separate [banner owner proof](evidence/0.115.0/banners-owner.json),
+consumers keep their separate [banner owner proof](evidence/banners-owner.json),
 [raid-target report](raid-targets.md) and
 [ground-source lifetime report](raid-death.md). A diagnostic's immediate
 interface does not re-certify those complete mechanics.

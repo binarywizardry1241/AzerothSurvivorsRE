@@ -16,7 +16,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.115.0/coop-game-party'
+EVIDENCE = ROOT / 'docs/analysis/evidence/coop-game-party'
 
 
 def f32(value):

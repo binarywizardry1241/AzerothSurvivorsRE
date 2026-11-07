@@ -25,7 +25,7 @@ queued Options commands is documented in the [Options report](options-values.md)
 current native hash, scoped Ghidra identity, source connections and **ten native
 locale snapshot/forwarding cases** (no chain, all eight client indices and an
 unclamped byte). The chain pointer, empty raw inventory and collector are
-explicit fixture seams. The [canonical extract/manifest](evidence/0.109.0/addons-metadata/manifest.json)
+explicit fixture seams. The [canonical extract/manifest](evidence/addons-metadata/manifest.json)
 records those limits. TOC parsing, sorting, filesystem and VM do not execute.
 
 An authored source regression reads a project-local TOC with English/German

@@ -14,9 +14,9 @@ Chinese/Korean subsets. Ordinary English 1.12 MPQ fonts therefore do not reprodu
 native multilingual menu, even when their filenames match.
 
 The exact native functions, REA Ghidra Evidence IDs and 21 composite records are retained in
-[menu-font-native.json](evidence/0.92/menu-font-native.json). Font names/table metadata are
-in [menu-font-metadata.json](evidence/0.92/menu-font-metadata.json); native copy ranges and
-SHA-256 hashes are in [menu-font-inputs.json](evidence/0.92/menu-font-inputs.json).
+[menu-font-native.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/menu-font-native.json). Font names/table metadata are
+in [menu-font-metadata.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/menu-font-metadata.json); native copy ranges and
+SHA-256 hashes are in [menu-font-inputs.json](evidence/menu-font-inputs.json).
 
 `0x14545c270` registers `Fonts\FRIZQT__.TTF`, `Fonts\MORPHEUS.TTF` and
 `Fonts\SKURRI.TTF`. It first calls `0x145459290` for Friz/Morpheus, retaining the original
@@ -82,7 +82,7 @@ The recovered component-position/flag unit check passed via project-local rustc.
 owned patch to the exact QA Friz/Morpheus inputs added19 missing glyphs to each; all original
 glyph outlines and cmap bindings remained unchanged, both SFNT checksums were valid, and
 both fonts parsed through the same read-fonts library used by Bevy. Those checks are retained
-in [menu-font-patch-validation.json](evidence/0.92/menu-font-patch-validation.json). The supplied native
+in [menu-font-patch-validation.json](evidence/menu-font-patch-validation.json). The supplied native
 font maps cover every language-specific catalog codepoint after augmentation; five shared emoji/variation
 codepoints are absent from these maps in all locales. Their native rendering route remains unverified.
 `scripts/verify-menu-font-patch.py` reproduces these outline/mapping/checksum/coverage checks.

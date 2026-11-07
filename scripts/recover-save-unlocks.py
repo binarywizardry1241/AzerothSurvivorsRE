@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK = ROOT / "runtime/analysis/history/progression/save-unlock/58edea489ca1/curated"
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/save-unlocks"
+RETAINED = ROOT / "docs/analysis/evidence/save-unlocks"
 SPANS = {
     "beat-record": (0x145889778, 0x145889916),
     "beat-key-collector": (0x145996570, 0x145996879),

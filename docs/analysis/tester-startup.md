@@ -6,7 +6,7 @@ belong to [verification-needed](../verification-needed.md).
 
 Target: `AzerothSurvivors/AzerothSurvivors-0.105.0.exe`, SHA-256
 `8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7`.
-The [manifest](evidence/0.105.0/stock-frontend/tester/manifest.json) binds the
+The [manifest](evidence/stock-frontend/tester/manifest.json) binds the
 current factory, zone parser, positional caller, publication and login gates.
 Its shared references preserve the existing canonical roster/terminal/showcase
 extracts. Fresh Ghidra pseudocode is retained for the factory and zone parser;

@@ -76,7 +76,7 @@ decoded and repaired. It retains 8,105,367 unobserved executable bytes and
 unresolved computed/reference semantics; these remain separate from complete
 linear byte accounting. The earlier integrated profile retains its original
 21,990,655 instructions and 10,439,117 residual bytes in the owning report.
-The [historical diagnostic-owner selection](evidence/0.112.0/refresh-baseline/seeded-census.json) separately completes
+The [historical diagnostic-owner selection](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/refresh-baseline/seeded-census.json) separately completes
 all 53 selected owners: 12,236 independently checked instructions and 198
 unresolved call sites. The fresh custom partition decodes all 681 leads; 626
 have body owners and 55 remain ownerless. Alias/input/dispatch and source
@@ -98,7 +98,7 @@ assessments retain their original target; superseded values are not current
 implementation requirements. The [claim review](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/changelog-coverage-0.112.0.md)
 separates changed warlock, warrior, equipment, achievement, HUD and locale work.
 
-The [data-only review](evidence/0.112.0/release-data-leads.json) independently
+The [data-only review](evidence/release-data-leads.json) independently
 locates fourteen locale payloads, both warrior replacements and Empowerment.
 The locale payloads now exactly match source under the separate [catalog proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/locale-catalogs-0.112.0.md).
 Data observations remain separate from complete effect/migration/UI contracts. Current [Warrior recovery](warrior-talents.md) connects shared
@@ -180,7 +180,7 @@ Consistent accounting does not establish recovered semantics or parity.
 
 The [2026-10-22 EXE sweep](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/execheck-0.109.0.md) reproduces the complete selected
 Ghidra exports with independent instruction verification and replays all 63
-existing current-target static checkers. Its [connection map](evidence/0.109.0/exe-connections.json)
+existing current-target static checkers. Its [connection map](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.109.0/exe-connections.json)
 links every custom path to native/source/evidence owners, separating diagnostic
 coverage from bounded current contracts. The additional
 [113-definition comparison](ability-definitions.md) is data-only.
@@ -211,7 +211,7 @@ remains unverified.
 Generic engine/compiler/OS reconstruction is not a prerequisite. The census
 keeps the complete 23,020,961-instruction linear pass separate from actual
 Ghidra flow recovery. The
-[historical atomic native selection](evidence/0.109.0/native-image-current.json) binds the final
+[historical atomic native selection](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.109.0/native-image-current.json) binds the final
 22,422,439-instruction / 420,596-function census, guarded
 switch proofs, source/import/pointer classification and historical exact-byte
 audit. All 420,417 requested function starts decode with repaired bodies,

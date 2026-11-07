@@ -386,7 +386,7 @@ def publish_results(root, full, compact, correspondence, commitments, publish):
             "selector": ["correspondence_candidates", site, "native_candidate"],
             "location_selector": ["correspondence_candidates", site, "location"],
         }
-    directory = root / (f"docs/analysis/evidence/{full['target']['version']}" if publish else
+    directory = root / ("docs/analysis/evidence" if publish else
                         f"runtime/coverage/{full['target']['sha256']}/native-final")
     names = ("native-switch-proposal-review.json", "computed-correspondence-frontier.json") if publish else (
         "switch-review-compact.json", "computed-correspondence-frontier.json")
@@ -414,8 +414,11 @@ def main():
     args = parser.parse_args()
     if bool(args.predecessor_census_summary) != bool(args.predecessor_applied_summary):
         parser.error("complete context reconciliation needs both predecessor census and applied summaries")
-    census_path, applied_summary_path, proposed_summary_path, previous_path = [
-        project_path(value) for value in (args.census_summary, args.applied_summary, args.proposed_summary, args.predecessor)]
+    census_path, applied_summary_path, proposed_summary_path = [
+        project_path(value) for value in (args.census_summary, args.applied_summary, args.proposed_summary)]
+    previous_path = (ROOT / args.predecessor).resolve()
+    if not previous_path.is_relative_to(ROOT):
+        raise ValueError("Predecessor proof must stay inside the checkout")
     census, applied_summary, proposed_summary, previous = [json.loads(read_artifact(path)) for path in (
         census_path, applied_summary_path, proposed_summary_path, previous_path)]
     registered = latest_target(verify=True)
@@ -443,7 +446,7 @@ def main():
         ref = lead["historical_classification"]["classification_evidence"]
         historical_proofs[ref["path"]] = ref["sha256"]
     for path, checksum in historical_proofs.items():
-        proof = project_path(path)
+        proof = ROOT / path
         assert file_sha256(proof) == checksum
         inputs.append(proof)
     geometry_baselines = {}

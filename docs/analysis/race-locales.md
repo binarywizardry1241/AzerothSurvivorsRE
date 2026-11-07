@@ -5,7 +5,7 @@ Reference: installed read-only **0.120.0**, 145,447,424 bytes, SHA-256
 This is the localization dependency for **#187/#188/#189/#191**;
 [verification-needed](../verification-needed.md) owns their implementation status.
 
-The [locale manifest](evidence/0.120.0/race-locales/manifest.json) retains the
+The [locale manifest](evidence/race-locales/manifest.json) retains the
 independently located fourteen-record descriptor table, each exact payload
 range/hash and the actual pre-repair source receipts. The existing
 `review-current-locale-catalogs.py` independently discovers the current flat JSON

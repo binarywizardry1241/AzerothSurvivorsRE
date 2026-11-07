@@ -15,9 +15,9 @@ bytes differ from the historical loop. A bounded REA/Ghidra 12.1.4 import of the
 current range independently recovers the request copy, `0xff` terminator and
 transformed-tag filter. Subtracting three, using 29 for underflow, and rejecting
 9/23 suppresses native **12/26** before dispatcher `14591d320`.
-The [manifest](evidence/0.113.2/raid-gaze/manifest.json),
-[canonical assembly](evidence/0.113.2/raid-gaze/queue.asm) and
-[REA provenance](evidence/0.113.2/raid-gaze/rea-provenance.json) bind those bytes.
+The [manifest](evidence/raid-gaze/manifest.json),
+[canonical assembly](evidence/raid-gaze/queue.asm) and
+[REA provenance](evidence/raid-gaze/rea-provenance.json) bind those bytes.
 Decompiler bad-data halts mark omitted outgoing continuations in the raw import;
 the exact-byte instruction fixture owns actual loop exit behavior.
 

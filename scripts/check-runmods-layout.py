@@ -22,7 +22,7 @@ def sample(role):
  u=Uc(UC_ARCH_X86,UC_MODE_64);end=max(x['rva']+max(x['virtual_size'],x['raw_size'])for x in p.sections);u.mem_map(p.image_base,(end+4095)&~4095)
  for x in p.sections:u.mem_write(p.image_base+x['rva'],d[x['raw_offset']:x['raw_offset']+x['raw_size']])
  u.mem_map(0x200000000,0x1000000);u.mem_map(0x300000000,0x200000);u.mem_map(0x400000000,4096);heap=0x200010000;STOP=0x400000000
- layout=json.loads((R/'docs/analysis/evidence/0.92/picker-node-layout.json').read_text())['node_layout'];layout['OFFSET_flex_grow']=348
+ layout=json.loads((R/'docs/analysis/evidence/picker-node-layout.json').read_text())['node_layout'];layout['OFFSET_flex_grow']=348
  records=[];texts=[];seams=set()
  def q(a):return struct.unpack('<Q',u.mem_read(a,8))[0]
  def wq(a,v):u.mem_write(a,struct.pack('<Q',v))
@@ -112,7 +112,7 @@ assert 'Node {width:Val::Percent(100.),column_gap:Val::Px(12.)'not in source
 record=dict(target_sha256=target['sha256'],typed_submission=results,
  shared_node_painter='docs/analysis/evidence/0.109.0/overlay-style/manifest.json',
  limits=['Current original canvas/page/row/reward constructors execute to typed submission boundaries; child callback invocation is supplied separately by the actual page body.','UI submission, asset/font handles, localization and argument formatting, damage/gradient allocation and generic button internals use explicit seams. The current shared panel painter140101170 executes and is retained once under overlay-style.','No compiler, computed layout, input device, GPU, game or original/rebuilt comparison ran.'])
-parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--write',action='store_true');args=parser.parse_args();path=R/'docs/analysis/evidence/0.109.0/runmods/layout.json'
+parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--write',action='store_true');args=parser.parse_args();path=R/'docs/analysis/evidence/runmods/layout.json'
 if args.write:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print('Verified current Run Options canvas,19 Nodes and16 text submissions; no build/game')

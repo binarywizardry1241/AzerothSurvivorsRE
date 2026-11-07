@@ -44,7 +44,7 @@ for amount in [0.,1.,100.,123.5]:
  for fraction in [.15,.2,.3,.5]:
   reset();u.mem_write(STACK+0x10,struct.pack('<f',fraction));u.mem_write(STACK+0xf0,struct.pack('<Q',MEM+0x3000));u.mem_write(MEM+0x3018,struct.pack('<f',amount));u.emu_start(0x1454ceb91,0,count=1000);assert u.reg_read(UC_X86_REG_RIP)==0x1454ceba8
   powers.append(dict(maximum_health=amount,fraction=fraction,power_bits=u.reg_read(UC_X86_REG_XMM9)&0xffffffff))
-OUT=ROOT/'docs/analysis/evidence/0.100.1/treasure-interface';owners=[]
+OUT=ROOT/'docs/analysis/evidence/treasure-interface';owners=[]
 for role,lo,hi in [('status-proc',0x1454cc572,0x1454cc630),('status-actions',0x1454ce02d,0x1454ce0b4),('death-explosion-admission',0x1454cbe8f,0x1454cc992),('death-explosion-actions',0x1454ce981,0x1454cea84),('death-explosion-power',0x1454ceaf7,0x1454cec28)]:
  off=p.rva_offset(lo-p.image_base);owners.append(dict(role=role,start=hex(lo),end_exclusive=hex(hi),sha256=hashlib.sha256(data[off:off+hi-lo]).hexdigest()));(OUT/(role+'.asm')).write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={lo:#x}',f'--stop-address={hi:#x}',str(ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe')],text=True))
 (OUT/'status-explosion-native.json').write_text(portable_json(dict(target_sha256=SHA,method=__doc__,owners=owners,status=status,rates=rates,death_powers=powers),indent=2)+'\n');print('Recovered',len(status),'status RNG,',len(rates),'timestamp,',len(powers),'death-power native vectors')

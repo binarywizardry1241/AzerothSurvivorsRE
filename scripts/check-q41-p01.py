@@ -13,10 +13,10 @@ from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 WORK = ROOT / 'runtime/analysis/history/findings/q41-p01/e2671bf7955c'
-OUT = ROOT / 'docs/analysis/evidence/0.113.2/q41-p01/manifest.json'
+OUT = ROOT / 'docs/analysis/evidence/q41-p01/manifest.json'
 SELECTED = ROOT / 'docs/analysis/coverage/seeded-census.json'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src/native_input/acquisition.rs'
-PROOF = ROOT / 'docs/analysis/evidence/0.113.2/unknown-recovery.json'
+PROOF = ROOT / 'docs/analysis/evidence/unknown-recovery-comparison-2.json'
 OWNER = 0x1400b6eb0
 CALL = 0x1400b718f
 LOADER = 0x1400a7ea0

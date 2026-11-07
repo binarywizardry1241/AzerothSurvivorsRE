@@ -15,7 +15,7 @@ import sys
 
 from coverage_common import ROOT, latest_target
 
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.105.0/card-layout'
+EVIDENCE = ROOT / 'docs/analysis/evidence/card-layout-comparison'
 
 
 def main():

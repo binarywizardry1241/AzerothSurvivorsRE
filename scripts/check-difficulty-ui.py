@@ -19,7 +19,7 @@ from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 from compact_evidence import proof_text
 
-DEST = ROOT / 'docs/analysis/evidence/0.121.0/difficulty-ui'
+DEST = ROOT / 'docs/analysis/evidence/difficulty-ui'
 WORK = ROOT / 'runtime/analysis/history/findings/fixgap219/888a65e3edb9/difficulty-ui'
 GROUPS = {
     'runmods': [0x140288ed0, 0x140289500, 0x140289bc0],

@@ -6,7 +6,7 @@ The reconstruction in `crates/azeroth-survivors-re/src/enemies/scaling.rs` conta
 
 ## Owning native evidence
 
-[Retained evidence](evidence/0.97.2/enemies/scaling-evidence.json) records exact native function byte hashes, file offsets, constant spans and curated procedure/assembly/pseudocode facets from the focused REA/Ghidra results. Full exported analysis bundles remain under ignored runtime; the excerpts retain their Evidence IDs, profiles, limitations and full-record digests. The original instructions govern SSE operand order; raw-slice Ghidra signatures are generic and do not express the target's Win64 calling convention.
+[Retained evidence](evidence/enemies/scaling-evidence.json) records exact native function byte hashes, file offsets, constant spans and curated procedure/assembly/pseudocode facets from the focused REA/Ghidra results. Full exported analysis bundles remain under ignored runtime; the excerpts retain their Evidence IDs, profiles, limitations and full-record digests. The original instructions govern SSE operand order; raw-slice Ghidra signatures are generic and do not express the target's Win64 calling convention.
 
 | Function | Selected-target VA interval | REA evidence |
 | --- | --- | --- |
@@ -40,7 +40,7 @@ The GUID counter increments with u32 wrapping. GUID is `0xf130000000000000 | ((e
 
 ## Fresh Game spawn-state defaults
 
-[Constructor initialization evidence](evidence/0.97.2/enemies/initialization-native.json) binds the fresh-Game initializer `14549bb90..14549cefd` to this target and retains REA `ev_6ba2251b09c79873deb3f9348a6c19acb85427880b59bbb77c74fc878b07d86d`. The constructor assembles a Game at stack **RBP+0x28** and copies `0x960` bytes to its original output argument at `14549cd4f..14549cd63`. The called thunk's PE import is verified as `memcpy`. Thus a stack field at RBP+X is Game+(X−0x28); matching numeric offsets across those two bases would identify different fields.
+[Constructor initialization evidence](evidence/enemies/initialization-native.json) binds the fresh-Game initializer `14549bb90..14549cefd` to this target and retains REA `ev_6ba2251b09c79873deb3f9348a6c19acb85427880b59bbb77c74fc878b07d86d`. The constructor assembles a Game at stack **RBP+0x28** and copies `0x960` bytes to its original output argument at `14549cd4f..14549cd63`. The called thunk's PE import is verified as `memcpy`. Thus a stack field at RBP+X is Game+(X−0x28); matching numeric offsets across those two bases would identify different fields.
 
 | Field | Game offset | Stack offset from RBP | Initial value | Native source |
 | --- | --- | --- | --- | --- |

@@ -20,7 +20,7 @@ from coverage_common import ROOT,file_sha256,latest_target,target_bytes
 from derived_gzip import derived_gzip_text
 
 WORK=ROOT/'runtime/analysis/history/findings/q41-expanded-ownership/6304bee20684'
-KEEP=ROOT/'docs/analysis/evidence/0.115.0/expanded-gap-dispatch.json'
+KEEP=ROOT/'docs/analysis/evidence/expanded-gap-dispatch.json'
 
 
 def module(name,path):
@@ -40,7 +40,7 @@ def main():
     def read(path):return json.loads(checked(dict(path=path,sha256=file_sha256(ROOT/path))).read_text())
     target=latest_target(verify=True)
     identity={k:target[k]for k in ('version','path','sha256','size_bytes')}
-    source=read('docs/analysis/evidence/0.115.0/expanded-code-ownership.json')
+    source=read('docs/analysis/evidence/expanded-code-ownership.json')
     assert source['target']==identity
     boundary_path=checked(source['outputs']['missing-range-boundaries.tsv.gz'])
     for path in ['scripts/coverage_common.py','scripts/derived_gzip.py','scripts/inventory-executable.py',

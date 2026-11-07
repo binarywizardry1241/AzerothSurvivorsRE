@@ -39,7 +39,7 @@ def main():
     raw = image[offset:offset + COUNT * STRIDE]
     if hashlib.sha256(raw).hexdigest() != TABLE_SHA:
         raise ValueError('113-descriptor native table differs')
-    manifest_path = ROOT / 'docs/analysis/evidence/0.112.0/demonic-empowerment/manifest.json'
+    manifest_path = ROOT / 'docs/analysis/evidence/demonic-empowerment/manifest.json'
     manifest_digest = file_sha256(manifest_path)
     manifest = load_json(manifest_path)
     factory = next(row for row in manifest['ranges'] if int(row['address'], 16) == 0x1458a1730)

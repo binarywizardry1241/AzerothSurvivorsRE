@@ -272,7 +272,7 @@ mod tests {
     #[test]
     fn current_native_absorb_display_rounding() {
         let proof: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.115.0/coop-spell-text/auxiliary-contract.json"
+            "../../../../docs/analysis/evidence/coop-spell-text/auxiliary-contract.json"
         ))
         .unwrap();
         for row in proof["shield_cases"].as_array().unwrap() {
@@ -286,7 +286,7 @@ mod tests {
     #[test]
     fn current_native_stat_and_alias_vectors() {
         let proof: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.115.0/coop-spell-text/auxiliary-contract.json"
+            "../../../../docs/analysis/evidence/coop-spell-text/auxiliary-contract.json"
         ))
         .unwrap();
         let locale = Localization::english_for_tests();

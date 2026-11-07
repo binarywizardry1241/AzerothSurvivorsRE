@@ -13,7 +13,7 @@ from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE,UC_HOOK_MEM_UNMAPPED
 from unicorn.x86_const import *
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 NATIVE = load_script('raid_native_inputs', ROOT/'scripts/recover-raid-native-catalog.py')
-OUT=ROOT/'docs/analysis/evidence/0.109.0/raid-native'
+OUT=ROOT/'docs/analysis/evidence/raid-native'
 
 def fixture():
  u=Uc(UC_ARCH_X86,UC_MODE_64);mem=0x70000000;u.mem_map(mem,0x10000);mapped=set()

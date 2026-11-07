@@ -210,6 +210,6 @@ manifest = {
     "startup_zone_cases": zone_cases,
     "limits": ["Native OS reader/UTF8 error-to-None behavior is proved separately from145421330 instructions, not by its stub.", "Fixtures cover native damaged-seal branch/account outputs and slot selection, not valid plaintext parsing or complete legacy migration.", "The original application was not launched. The native25ms Core-worker cadence remains outside this fixture."],
 }
-destination = ROOT / "docs/analysis/evidence/0.92/save/startup-recovery-fixtures.json"
+destination = ROOT / "docs/analysis/evidence/save/startup-recovery-fixtures.json"
 destination.write_text(json.dumps(manifest, indent=2) + "\n")
 print(f"Recorded {len(cases)} native startup and {len(zone_cases)} zone-clamp cases; damaged outputs exactly equal native unreadable-file default.")

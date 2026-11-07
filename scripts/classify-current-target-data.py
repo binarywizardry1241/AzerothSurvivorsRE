@@ -20,7 +20,7 @@ import sqlite3
 import struct
 import subprocess
 
-from coverage_common import ROOT, file_sha256, latest_target, project_path, target_bytes
+from coverage_common import ROOT, file_sha256, latest_target, load_json, optional_target_json, project_path, target_bytes
 from script_sources import load_script
 from shared_native_inventory import open_readonly_uri as open_native_inventory
 
@@ -70,7 +70,7 @@ class Inputs:
 
     def load(self, value, current=True):
         receipt = self.commit(value)
-        document = json.loads(project_path(receipt["path"]).read_text())
+        document = load_json(receipt["path"])
         if current and any(document.get("target", {}).get(k) != self.target[k]
                            for k in ("version", "sha256", "size_bytes")):
             raise ValueError("Input belongs to another target: " + receipt["path"])
@@ -209,10 +209,10 @@ def classify(args):
             candidate_selectors=[row["selector"] for row in contained],
             role="encoded_pointer_u64_length_UTF8_candidate_not_recovered_native_type"))
 
-    payloads = project_path(args.container_manifest or f"docs/analysis/evidence/{target['version']}/discovery-delta.json")
+    payloads = project_path(args.container_manifest or "docs/analysis/evidence/discovery-delta.json")
     if args.container_manifest and not payloads.is_file():
         raise ValueError("Explicit container manifest is absent")
-    if payloads.is_file():
+    if args.container_manifest or optional_target_json(payloads, target) is not None:
         api = inputs.load(payloads)["embedded_api"]
         at, start = int(api["file_offset"], 16), int(api["virtual_address"], 16)
         raw = image[at:at + api["byte_count"]]
@@ -387,7 +387,7 @@ def main():
     mode.add_argument("--check", action="store_true")
     args = parser.parse_args()
     proof = classify(args)
-    path = project_path(args.manifest or f"docs/analysis/evidence/{proof['target']['version']}/data-classification/manifest.json")
+    path = project_path(args.manifest or "docs/analysis/evidence/data-classification.json")
     raw = (json.dumps(proof, indent=2, ensure_ascii=False) + "\n").encode()
     if args.write:
         path.parent.mkdir(parents=True, exist_ok=True)

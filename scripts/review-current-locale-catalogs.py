@@ -14,7 +14,8 @@ import json
 import re
 import struct
 
-from coverage_common import ROOT, file_sha256, latest_target, project_path, target_bytes
+from artifact_history import has_archived_artifact
+from coverage_common import ROOT, file_sha256, latest_target, load_json, optional_target_json, same_replay_receipt, target_bytes
 from script_sources import load_script
 
 
@@ -23,7 +24,7 @@ def digest(raw):
 
 
 def receipt(path):
-    path = project_path(path)
+    path = (ROOT / path).resolve()
     return dict(path=path.relative_to(ROOT).as_posix(), sha256=file_sha256(path))
 
 
@@ -138,9 +139,13 @@ def derive():
         added[code], natives[code] = missing, catalog
     english = natives["en"]
     family, family_kind = {}, {}
-    release_path = ROOT / f"docs/analysis/evidence/{target['version']}/release-review.json"
-    if release_path.is_file():
-        release = json.loads(release_path.read_text())
+    release_path = ROOT / "docs/analysis/evidence/release-review.json"
+    release = optional_target_json(release_path, target)
+    if release is None:
+        release_path = release_path.parent / target["version"] / release_path.name
+        if has_archived_artifact(release_path):
+            release = load_json(release_path)
+    if release is not None:
         if release["target"]["sha256"] != target["sha256"]:
             raise ValueError("Release labels are bound to another target")
         inputs.append(receipt(release_path))
@@ -180,6 +185,16 @@ def derive():
                         "Source locale fallback is inspected statically; no Rust execution, compilation, native emulation, application/server run or original/rebuilt parity comparison occurred."])
 
 
+def verify_review(derived, retained):
+    inputs = retained["inputs"]
+    if (not same_replay_receipt(derived["generator"], retained["generator"])
+            or len(derived["inputs"]) != len(inputs)
+            or not all(same_replay_receipt(current, prior)
+                       for current, prior in zip(derived["inputs"], inputs))
+            or dict(derived, generator=retained["generator"], inputs=inputs) != retained):
+        raise ValueError("Locale review missing/stale; run --write")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
@@ -188,7 +203,7 @@ def main():
                       help="Verify all source catalogs equal the current native payloads without replacing the historical audit")
     args = parser.parse_args()
     proof = derive()
-    path = ROOT / f"docs/analysis/evidence/{proof['target']['version']}/locale-catalog-review.json"
+    path = ROOT / "docs/analysis/evidence/locale-catalog-review.json"
     raw = (json.dumps(proof, ensure_ascii=False, indent=2) + "\n").encode()
     if args.check_source:
         if not all(row["exact_native_payload_source_bytes_equal"] for row in proof["locales"]):
@@ -196,8 +211,10 @@ def main():
     elif args.write:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(raw)
-    elif not path.is_file() or path.read_bytes() != raw:
-        raise ValueError("Locale review missing/stale; run --write")
+    else:
+        if not path.is_file():
+            path = path.parent / proof["target"]["version"] / path.name
+        verify_review(proof, load_json(path))
     print(json.dumps(dict(target=proof["target"], locale_table=proof["locale_table"], counts=proof["counts"],
                           source_payloads_match=all(row["exact_native_payload_source_bytes_equal"] for row in proof["locales"]),
                           written=args.write), indent=2))

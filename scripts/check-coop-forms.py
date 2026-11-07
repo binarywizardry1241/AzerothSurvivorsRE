@@ -14,7 +14,7 @@ old=load_script('old_coop_ui', ROOT/'scripts/check-coop-ui.py')
 x=latest_target(verify=True); d=target_bytes(x);p=load_script('pe',ROOT/'scripts/inventory-executable.py').PE(d)
 assert x['sha256'] == '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 import hashlib
-manifest_path=ROOT/'docs/analysis/evidence/0.115.0/coop-forms/manifest.json'
+manifest_path=ROOT/'docs/analysis/evidence/coop-forms/manifest.json'
 manifest=json.loads(manifest_path.read_text())
 assert manifest['target']['sha256']==x['sha256']
 for row in manifest['functions']:

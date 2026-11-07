@@ -14,7 +14,7 @@ import subprocess
 from artifact_history import read_artifact
 from coverage_common import ROOT, latest_target, target_bytes
 
-EVIDENCE = ROOT / "docs/analysis/evidence/0.113.0/party-api"
+EVIDENCE = ROOT / "docs/analysis/evidence/party-api"
 LUA_FIXTURES = ROOT / "docs/analysis/evidence/addon-api"
 
 

@@ -18,7 +18,7 @@ from pathlib import Path
 
 from coverage_common import ROOT, latest_target, target_bytes
 
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.109.0/stock-lifecycle'
+EVIDENCE = ROOT / 'docs/analysis/evidence/stock-lifecycle'
 MASK = (1 << 64) - 1
 
 
@@ -151,7 +151,7 @@ def current_name_contract(args):
     target=latest_target(verify=True)
     require(target['sha256']=='3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb','Wrong current name target')
     data=target_bytes(target);pe=load_script('current_name_pe',ROOT/'scripts/inventory-executable.py').PE(data)
-    output=project_path(args.work)if args.collect else ROOT/'docs/analysis/evidence/0.127.0/hero-names'
+    output=project_path(args.work)if args.collect else ROOT/'docs/analysis/evidence/hero-names'
     def digest(b):return hashlib.sha256(b).hexdigest()
     def receipt(path):return dict(path=path.relative_to(ROOT).as_posix(),sha256=digest(path.read_bytes()))
     def raw(a,b):at=pe.rva_offset(a-pe.image_base);return data[at:at+b-a]

@@ -48,9 +48,9 @@ baseline. Packet checks do not execute that client or prove its appearance.
 
 ## Evidence and verification
 
-[Manifest](evidence/0.110.0/ground-navigation/manifest.json) binds each exact
+[Manifest](evidence/ground-navigation/manifest.json) binds each exact
 native instruction range and the neighbor table to this EXE.
-[Ghidra owners](evidence/0.110.0/ground-navigation/ghidra-owners.json) bind the
+[Ghidra owners](evidence/ground-navigation/ghidra-owners.json) bind the
 raw-slice decompiler observations; inferred C types are subordinate to assembly.
 One canonical assembly per current range is retained. No EXE or database is
 tracked.

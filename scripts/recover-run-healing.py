@@ -90,7 +90,7 @@ for health in [25.,95.,100.,110.,float('nan')]:
      u.reg_write(UC_X86_REG_XMM7,effective);u.reg_write(UC_X86_REG_XMM8,bits(total));u.reg_write(UC_X86_REG_R13,MEM)
      u.emu_start(0x1454afe1f,0,count=10000)
     batches.append(dict(health_bits=bits(health),regeneration_bits=bits(regen),queued=[dict(spell_id=s,amount_bits=bits(a))for s,a in queued],rows=[dict(tag=t,value_bits=bits(v))for t,v in rows],expected=dict(health_bits=read(0x418),absorb_bits=read(0x41c),pool_bits=read(0x120),regeneration_bits=regenerated,credits=credits,updated=updated)))
-OUT=ROOT/'docs/analysis/evidence/0.100.1/run-effects';OUT.mkdir(parents=True,exist_ok=True);owners=[]
+OUT=ROOT/'docs/analysis/evidence/run-effects';OUT.mkdir(parents=True,exist_ok=True);owners=[]
 for role,lo,hi,session in [('heal-player',0x1454a54c0,0x1454a589c,'rea-heal-player'),('heal-provenance',0x1454a0520,0x1454a08b1,'rea-healing'),('heal-meter',0x1454a53b0,0x1454a54b8,None),('lightwell-source',0x1454b46a0,0x1454b4712,None),('lightwell-bounce-source',0x1454b4aeb,0x1454b4b5d,None),('companion-source',0x1454b24bd,0x1454b2568,None),('healing-pool-pulse',0x1454b110c,0x1454b13bb,None),('healing-frame-batch',0x1454af732,0x1454aff01,None)]:
  off=pe.rva_offset(lo-pe.image_base);raw=data[off:off+hi-lo];row=dict(role=role,address=hex(lo),end_exclusive=hex(hi),file_offset=hex(off),sha256=hashlib.sha256(raw).hexdigest())
  (OUT/(role+'.asm')).write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={lo:#x}',f'--stop-address={hi:#x}',str(TARGET)],text=True))

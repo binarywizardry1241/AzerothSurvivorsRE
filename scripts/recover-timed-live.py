@@ -93,7 +93,7 @@ for success in [False,True]:
     tails.append(dict(success=success,depth=depth,effect_count=effect_count,
         expected_remaining_bits=struct.unpack('<I',u.mem_read(MEM+0x200c,4))[0],
         cast_event=address==0x1454b10c7,event_hex=bytes(u.mem_read(STACK+0xb0,40)).hex() if address==0x1454b10c7 else None))
-OUT=ROOT/'docs/analysis/evidence/0.100.1/run-effects'; OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'docs/analysis/evidence/run-effects'; OUT.mkdir(parents=True,exist_ok=True)
 owners=[]
 for role,lo,hi,session in [('timed-initial-iterator',0x145545650,0x14554573a,'iterator'),
     ('timed-initial-constructor',0x145559c90,0x145559eac,'construct'),

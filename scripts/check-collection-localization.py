@@ -13,8 +13,8 @@ import struct
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-PROOF = ROOT / "docs/analysis/evidence/0.121.0/collection-localization.json"
-CATALOG_RECEIPTS = ROOT / "docs/analysis/evidence/0.121.0/orb-source.json"
+PROOF = ROOT / "docs/analysis/evidence/collection-localization.json"
+CATALOG_RECEIPTS = ROOT / "docs/analysis/evidence/orb-source.json"
 SOURCE = "crates/azeroth-survivors-re/src/armory.rs"
 KEYS = ("armory.collection_complete", "armory.zones_done", "armory.star_cap",
         "armory.star_cap_none", "armory.stars")

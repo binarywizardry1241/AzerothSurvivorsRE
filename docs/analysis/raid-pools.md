@@ -10,7 +10,7 @@ compilation/gameplay/rendering/parity requirements;
 
 The selected EXE is SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [manifest](evidence/0.109.0/raid-pools/manifest.json) binds the producer,
+The [manifest](evidence/raid-pools/manifest.json) binds the producer,
 activation, periodic deadlines, marker kind/lifetime and all three current
 payloads: boss394 slot2 and the first phases of guardians111/1011. The shared
 constructor and donut membership retain single canonical extracts under

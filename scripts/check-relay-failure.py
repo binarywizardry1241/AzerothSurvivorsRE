@@ -6,5 +6,5 @@ from script_sources import load_script
 
 if __name__ == "__main__":
     load_script("relay_policy_native", ROOT / "scripts/check-relay-policy.py").main(
-        ROOT / "docs/analysis/evidence/0.121.0/relay-failure/manifest.json"
+        ROOT / "docs/analysis/evidence/relay-failure/manifest.json"
     )

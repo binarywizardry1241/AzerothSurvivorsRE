@@ -3,7 +3,7 @@
 Selected installed EXE SHA-256:
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
 This is the current combat-log option portion of #17. The
-[manifest](evidence/0.112.0/combat-log-option/manifest.json) binds its descriptor,
+[manifest](evidence/combat-log-option/manifest.json) binds its descriptor,
 current REA/Ghidra instruction extracts and trimming dependency to this target.
 
 Current Options row 62 at `145dc4720` is the Combat-page `combatLogFile`

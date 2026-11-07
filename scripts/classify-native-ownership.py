@@ -21,7 +21,7 @@ import struct
 import sys
 import tarfile
 import tempfile
-from coverage_common import ROOT, latest_target, target_bytes, load_json, json_text, file_sha256, project_path, same_artifact
+from coverage_common import ROOT, latest_target, target_bytes, load_json, json_text, file_sha256, optional_target_json, project_path, same_artifact
 from shared_native_inventory import open_readonly_uri as open_native_inventory, selected_inventory
 from derived_gzip import derived_gzip_text
 from instruction_facts import InstructionFacts, HELPER_SHA256 as FACTS_SHA256
@@ -230,9 +230,8 @@ def run_full_native(args):
             raise ValueError('Native ownership artifact differs: '+filename)
     helpers=module('ownership_census','scripts/summarize-native-image.py');pe_helpers=module('ownership_pe','scripts/inventory-current-target.py')
     pe=pe_helpers.pe_parser(target_bytes(target));ranges=[]
-    resolver_boundary_path=ROOT/f"docs/analysis/evidence/{target['version']}/native-resolver-boundaries.json"
-    resolver_boundaries=load_json(resolver_boundary_path) if resolver_boundary_path.exists() else None
-    if resolver_boundaries is not None and resolver_boundaries['target']['sha256']!=target['sha256']:raise ValueError('Resolver-boundary evidence target differs')
+    resolver_boundary_path=ROOT/'docs/analysis/evidence/native-resolver-boundaries.json'
+    resolver_boundaries=optional_target_json(resolver_boundary_path, target)
     def verify_resolver_boundary(value):
         if isinstance(value,dict):
             if all(key in value for key in ('va','byte_count','sha256')):
@@ -245,12 +244,11 @@ def run_full_native(args):
         elif isinstance(value,list):
             for child in value:verify_resolver_boundary(child)
     if resolver_boundaries is not None:verify_resolver_boundary(resolver_boundaries)
-    source_boundary_path=ROOT/f"docs/analysis/evidence/{target['version']}/native-source-boundaries.json"
-    source_boundaries=load_json(source_boundary_path) if source_boundary_path.exists() else None
+    source_boundary_path=ROOT/'docs/analysis/evidence/native-source-boundaries.json'
+    source_boundaries=optional_target_json(source_boundary_path, target)
     source_boundary_digest=file_sha256(source_boundary_path) if source_boundaries is not None else None
     resource_paths={}
     if source_boundaries is not None:
-        if source_boundaries['target']['sha256']!=target['sha256']:raise ValueError('Source-boundary target differs')
         verify_resolver_boundary(source_boundaries)
         for row in source_boundaries.get('embedded_resource_paths',[]):
             if row.get('role')!='embedded-shader-comment':raise ValueError('Unsupported resource path role')
@@ -494,8 +492,8 @@ def native_core_inputs(args):
                  'scripts/instruction_facts.py','scripts/derived_gzip.py'):
         inputs[name]=file_sha256(ROOT/name)
     for suffix in ('native-resolver-boundaries.json','native-source-boundaries.json'):
-        path=ROOT/f"docs/analysis/evidence/{target['version']}"/suffix
-        inputs[path.relative_to(ROOT).as_posix()]=file_sha256(path) if path.is_file() else None
+        path=ROOT/'docs/analysis/evidence'/suffix
+        inputs[path.relative_to(ROOT).as_posix()]=file_sha256(path) if optional_target_json(path, target) is not None else None
     diagnostic=ROOT/f"runtime/coverage/{target['sha256']}/diagnostic-ownership.json"
     inputs[diagnostic.relative_to(ROOT).as_posix()]=file_sha256(diagnostic)
     database=selected_inventory(target,root=ROOT)

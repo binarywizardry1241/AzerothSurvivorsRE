@@ -405,7 +405,7 @@ def main():
         else:return None
         return[have,target]
 
-    historical=json.loads((ROOT/'docs/analysis/evidence/0.100.1/account-progression/native-account-fixtures.json').read_text())
+    historical=json.loads((ROOT/'docs/analysis/evidence/account-progression/native-account-fixtures.json').read_text())
     states=[dict(row['input'])for row in historical['states']]
     states.extend(dict(name=f'class{c}-zone{z}',beaten=[[c,z]])for c in classes for z in range(12))
     states.extend(dict(name=f'all-classes-zone{z}',beaten=[[c,z]for c in classes])for z in range(12))
@@ -490,7 +490,7 @@ def main():
                 'No compiler, rebuilt Rust, application/game, real save/file/OS clock, rendering or original/rebuilt comparison runs.'])
     account_vectors=dict(target_sha256=SHA,entry='0x1459b47d0',grant='0x1459b6410',keys=[row['key']for row in rows],
         states=[dict(state,progress=[row['progress']for row in state['progress']])for state in retained_accounts])
-    destination=ROOT/('runtime/analysis/history/progression/achievement-grants/6d75f76be1b4/curated'if args.stage else'docs/analysis/evidence/0.112.0/achievement-grants')
+    destination=ROOT/('runtime/analysis/history/progression/achievement-grants/6d75f76be1b4/curated'if args.stage else'docs/analysis/evidence/achievement-grants')
     if args.stage:
         destination.mkdir(parents=True,exist_ok=True);(destination/'native-vectors.json').write_text(json.dumps(result,indent=2)+'\n');(destination/'selected-native.asm').write_text('\n'.join(assembly))
         (destination/'native-account-vectors.json').write_text(json.dumps(account_vectors,indent=2)+'\n')

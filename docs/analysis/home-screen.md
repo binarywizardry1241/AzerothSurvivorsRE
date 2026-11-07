@@ -67,7 +67,7 @@ This is an implemented source checkpoint, **not verified 1:1 menu parity**.
 
 ## Evidence and reproduction
 
-[`home-native.json`](evidence/0.97.2/home-native.json) records exact original PE
+[`home-native.json`](evidence/home-native.json) records exact original PE
 function spans, byte hashes, literal bytes, available REA/Ghidra IDs, analyzed
 body coverage and limitations. `scripts/recover-home.py --prepare` creates
 project-local raw slices and REA plans under ignored `runtime/analysis/history/interface/menu-0972/ae941624b762`.

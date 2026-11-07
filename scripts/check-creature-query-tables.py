@@ -15,7 +15,7 @@ from script_sources import recorded_input_matches
 import capstone
 import unicorn
 
-KEEP = ROOT / 'docs/analysis/evidence/0.120.2/creature-query-tables/native-check.json'
+KEEP = ROOT / 'docs/analysis/evidence/creature-query-tables/native-check.json'
 WORK = ROOT / 'runtime/analysis/history/native-recovery/target/4c8611f1a165/creature-query-tables'
 
 
@@ -114,7 +114,7 @@ def main():
     if not args.stage:
         verify_receipts()
     records = source_records()
-    frontier = json.loads((ROOT / 'docs/analysis/evidence/0.120.2/computed-correspondence-frontier.json').read_text())
+    frontier = json.loads((ROOT / 'docs/analysis/evidence/computed-correspondence-frontier-comparison-2.json').read_text())
     leads = [r for key, r in frontier['leads'].items() if key.startswith('retained-table-145af')]
     assert len(leads) == 13
     probe = Probe()

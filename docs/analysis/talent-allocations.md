@@ -10,7 +10,7 @@ their independently stated definition/effect provenance.
 
 ## Current native contracts
 
-The [manifest](evidence/0.112.0/talent-allocations/manifest.json) binds ten selected
+The [manifest](evidence/talent-allocations/manifest.json) binds ten selected
 Ghidra owners and seven shared replayed bodies to the installed bytes. The class
 pointer index is `14723f158`; the Warlock descriptor is `14723e9d8`. Each tree has
 64 bytes of descriptor data and 160-byte definitions. Key pointer/length are at
@@ -76,7 +76,7 @@ body and canonical extract hashes, then replays:
   exclusion, duplicate, low-budget and renamed-key cases, plus sixteen Warrior
   stable-key/rank cases. Each checks all three native slot readers.
 
-The [current fixtures](evidence/0.112.0/talent-allocations/native-save-cases.json)
+The [current fixtures](evidence/talent-allocations/native-save-cases.json)
 also feed `tests/talent_allocations_0_112.rs` for load, sealed import, all slot
 reads, switching and reopen assertions. Those Rust tests were added but **not
 run**. The changed allocation source and new regression file were syntax-parsed
@@ -85,7 +85,7 @@ with the existing pinned rustfmt, without compilation.
 `python3 -B scripts/check-talent-migration.py` separately replays all 32
 historical migration input strings through the current native Save parser,
 normalizer, all three slot readers, serializer and reopen path. Its
-[current expectations](evidence/0.112.0/talent-allocations/migration-cases.json)
+[current expectations](evidence/talent-allocations/migration-cases.json)
 feed `tests/talent_migration.rs`; the original 0.105.0 fixture remains unchanged
 and is hash-bound as the input source. Current expected order follows row/tree/
 column order. The three `preserved-keys` cases refund historical Bane ranks

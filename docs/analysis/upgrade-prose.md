@@ -5,7 +5,7 @@ This is bounded instruction recovery, not an original/rebuilt runtime comparison
 
 ## Recovered producers
 
-[Current manifest](evidence/0.100.1/native-overlays/manifest.json) binds every
+[Current manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/native-overlays/manifest.json) binds every
 admitted byte range and the current REA/Ghidra description analysis. Main
 formatter `145487680`, class-passive formatter `1454e9d90`, power line
 `145420ad0`, cooldown line `1454531a0`, magnitude `14550c1f0` and ordered writer
@@ -50,7 +50,7 @@ The script admits unchanged native owners and reviewed String, locale-miss,
 allocation and named CRT math boundaries; unreviewed calls fail closed. No OS or
 network calls or reference-application launch are allowed by the emulator.
 
-[Description fixtures](evidence/0.100.1/native-overlays/prose-fixtures.json) retain
+[Description fixtures](evidence/native-overlays/prose-fixtures.json) retain
 112 baseline,112 modified,112 large-area and2 independent Lightwell scenarios,
 actual numeric formatter
 outputs, templates, f32 instruction expressions and explicit synthetic inputs.

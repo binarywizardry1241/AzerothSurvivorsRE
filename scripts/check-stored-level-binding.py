@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from coverage_common import latest_target
 
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/stored-level-bindings"
+RETAINED = ROOT / "docs/analysis/evidence/stored-level-bindings"
 WORK = ROOT / "runtime/analysis/history/movement/keyboard-y/2009d7578a0a"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 
@@ -96,7 +96,7 @@ def main():
         # the source XML's body, without a client process or a compiled harness.
         body = json.dumps(source.text.strip())
         check = f'''arg = arg or {{}}
-arg[1] = "docs/analysis/evidence/0.105.0/game-mode-audit/addon-api.lua"
+arg[1] = "docs/analysis/evidence/addon-api/game-mode-contract.lua"
 dofile("scripts/check-addon-bootstrap.lua")
 assert(BINDING_HEADER_AZS == "Azeroth Survivors")
 assert(BINDING_NAME_AZS_OPENLEVELS == "Open Level-Ups")

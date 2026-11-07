@@ -2,9 +2,9 @@
 
 Authority is the configured installed Windows EXE, version **0.112.0**, SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The current [manifest](evidence/0.112.0/raid-boss-lifecycle/manifest.json),
-[instruction extract](evidence/0.112.0/raid-boss-lifecycle/selected-native.asm)
-and [Ghidra provenance](evidence/0.112.0/raid-boss-lifecycle/rea-provenance.json)
+The current [manifest](evidence/raid-boss-lifecycle/manifest.json),
+[instruction extract](evidence/raid-boss-lifecycle/selected-native.asm)
+and [Ghidra provenance](evidence/raid-boss-lifecycle/rea-provenance.json)
 belong to this target. Historical catalogs and earlier recovery retain their
 actual provenance. [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) own implementation status.
 

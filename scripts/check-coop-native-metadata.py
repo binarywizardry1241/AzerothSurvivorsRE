@@ -6,7 +6,7 @@ import json
 from coverage_common import ROOT
 from script_sources import load_script
 
-DEST = ROOT / "docs/analysis/evidence/0.121.0/coop-native-metadata"
+DEST = ROOT / "docs/analysis/evidence/coop-native-metadata"
 
 
 def main():

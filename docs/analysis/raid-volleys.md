@@ -4,9 +4,9 @@ Installed target **0.109.0**, SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
 This completes a source portion of **#42/#43**, not all encounter mechanics or
 presentation. [verification-needed](../verification-needed.md) owns the remaining gaps.
-The [manifest](evidence/0.109.0/raid-volley/manifest.json) binds fresh native
+The [manifest](evidence/raid-volley/manifest.json) binds fresh native
 ranges, all sixty boss memberships and separate static case counts;
-[REA provenance](evidence/0.109.0/raid-volley/rea.json) identifies the Ghidra
+[REA provenance](evidence/raid-volley/rea.json) identifies the Ghidra
 producer and hazard-tick analyses. Historical inputs are not relabeled as proof.
 
 ## Native contract and source connection

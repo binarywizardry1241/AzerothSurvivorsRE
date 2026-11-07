@@ -14,8 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 WORK = ROOT / 'runtime/analysis/history/combat/demon-effects/5bf09d547ac6'
-OUT = ROOT / 'runtime/analysis/staging/native-evidence/0.105.0/demon-effects'
-RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/demon-effects'
+OUT = ROOT / 'runtime/analysis/staging/native-evidence/demon-effects'
+RETAINED = ROOT / 'docs/analysis/evidence/demon-effects'
 OWNERS = [('demon-hit', 0x14594c4e0, 0x14594cce9),
           ('shard-prune', 0x145995f70, 0x145996047)]
 

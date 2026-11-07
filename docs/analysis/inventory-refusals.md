@@ -64,10 +64,10 @@ existing implementation is reused at this packet boundary.
 
 ## Evidence and checks
 
-The [proof](evidence/0.113.2/inventory-refusals.json) commits the current incoming
+The [proof](evidence/inventory-refusals.json) commits the current incoming
 owner and serializer ranges, fresh serializer REA/Ghidra Evidence IDs, retained
 current incoming observations, all-case result hashes and eighty native wire
-fixtures. The [serializer extract](evidence/0.113.2/inventory-refusals.asm) is its
+fixtures. The [serializer extract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.113.2/inventory-refusals.asm) is its
 single current native copy. Full incoming bytes are read from the configured
 installed EXE rather than duplicated into another extract.
 

@@ -17,7 +17,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b"
-EVIDENCE = ROOT / "docs/analysis/evidence/0.108.0/raid-cast"
+EVIDENCE = ROOT / "docs/analysis/evidence/raid-cast"
 WORK = ROOT / "runtime/analysis/history/combat/cast-presentation/e6d958ff3e6f"
 RANGES = {
     "hold": (0x145950630, 0x145950872),

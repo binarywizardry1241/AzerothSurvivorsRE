@@ -44,7 +44,7 @@ engine color syntax remains outside this bounded AS interface contract.
 
 ## Checks and limits
 
-The [native fixture](evidence/0.121.0/party-meter-ui.json) records **76 passing
+The [native fixture](evidence/party-meter-ui.json) records **76 passing
 cases** and **6,905 original instruction steps**: current mode conversion,
 four menu Action payloads/titles, changed/unchanged saves, Reset visibility,
 missing/present-empty text, all four row selectors, elapsed time, current-rate

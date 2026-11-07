@@ -20,10 +20,10 @@ The [target record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blo
 | Loader normalization `1458893a4` onward | Sort and deduplicate class/zone pairs before restoration. |
 | Merge loop `1458895c6..14588964f` | For each pair, calculate `min(zone index + 2, 12)`. Raise an existing same-class unlock only when this is higher; append a missing class. The final zone remains capped at twelve. |
 
-The [native vectors and range hashes](evidence/0.105.0/save-unlocks/native-vectors.json)
+The [native vectors and range hashes](evidence/save-unlocks/native-vectors.json)
 bind the new record, collector, key-selector and merge-tail extracts to the PE.
 The merge prelude/insertion instructions reuse the canonical
-[audit extract](evidence/0.105.0/game-mode-audit/beaten-zone-unlock-repair.asm);
+[audit extract](evidence/game-mode-audit/beaten-zone-unlock-repair.asm);
 the new tail begins at `1458895ce`, after that extract's last displayed instruction.
 
 Retained Ghidra save-loader Evidence

@@ -10,7 +10,7 @@ from unicorn import x86_const as r
 parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args()
 t=latest_target(verify=True);assert t['sha256']=='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0';d=target_bytes(t)
 m = load_script('pe', ROOT/'scripts/inventory-executable.py');p=m.PE(d)
-retained=ROOT/'docs/analysis/evidence/0.109.0/rewards-menu'
+retained=ROOT/'docs/analysis/evidence/rewards-menu'
 for row in json.loads((retained/'manifest.json').read_text())['functions']:
  off=p.rva_offset(int(row['address'],16)-p.image_base)
  assert hashlib.sha256(d[off:off+row['byte_count']]).hexdigest()==row['sha256'],row['name']
@@ -86,7 +86,7 @@ for row_rank in(0,1):
    prerequisites.append(dict(explicit_row_rank=row_rank,required=required,prerequisite_rank=prerequisite_rank,accepted=accepted))
 records.update(confirmation=confirmation,confirm_continuations=navigation,prerequisites=prerequisites)
 records['limitations']+=['Eight current prerequisite-block cases use explicit descriptor/row inputs and memcmp; they do not execute the complete plan validator.','Four complete current confirmation-helper cases use explicit clone/apply/enqueue/disposal seams; validation and real persistence are not executed.','Four current Confirm-leave continuations call a fixture helper and stop before the native outer loop/close branch. Destination tag2 additional gear-selection path is separately owned by Armory input recovery.']
-path=ROOT/('runtime/analysis/staging/native-evidence/0.109.0/rewards-menu'if args.stage else'docs/analysis/evidence/0.109.0/rewards-menu')/'input.json'
+path=ROOT/('runtime/analysis/staging/native-evidence/rewards-menu'if args.stage else'docs/analysis/evidence/rewards-menu')/'input.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(records,indent=2)+'\n')
 else:assert json.loads(path.read_text())==json.loads(json.dumps(records))
 print('Passed26 current Rewards input/confirmation/prerequisite cases; no persistence/build/game')

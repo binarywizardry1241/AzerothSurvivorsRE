@@ -196,7 +196,7 @@ mod tests {
     #[test]
     fn explosive_orb_matches_current_localized_identity_and_empty_override() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.121.0/orb-source.json"
+            "../../../../../docs/analysis/evidence/orb-source.json"
         )).unwrap();
         for case in proof["cases"].as_array().unwrap() {
             let expected = case["name"].as_str().unwrap();
@@ -227,7 +227,7 @@ mod tests {
     #[test]
     fn current_white_and_cooperative_companion_templates_match_native_fixture() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.117.0/white-devilsaur-integration.json"
+            "../../../../../docs/analysis/evidence/white-devilsaur-integration.json"
         ))
         .unwrap();
         let rows = fixture["creature_templates"].as_array().unwrap();
@@ -295,7 +295,7 @@ mod tests {
     #[test]
     fn every_native_template_matches_in_all_languages_and_with_missing_keys() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.113.2/creature-queries.json"
+            "../../../../../docs/analysis/evidence/creature-queries.json"
         ))
         .unwrap();
         let catalogs: Vec<serde_json::Value> = [

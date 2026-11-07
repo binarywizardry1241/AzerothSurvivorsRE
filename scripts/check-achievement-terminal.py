@@ -23,7 +23,7 @@ sys.path.insert(0, str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from native_terminal import NativeReplay, require, verified_input
 
 work = ROOT/'runtime/analysis/history/progression/achievement-grants/6d75f76be1b4'
-evidence = work/'terminal-curated' if args.stage else ROOT/'docs/analysis/evidence/0.112.0/achievement-terminal'
+evidence = work/'terminal-curated' if args.stage else ROOT/'docs/analysis/evidence/achievement-terminal'
 manifest, target, data, pe = verified_input(evidence)
 require(target['sha256'] == 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a', 'Selected target changed')
 require(hashlib.sha256((evidence/'selected-native.asm').read_bytes()).hexdigest() == manifest['selected_assembly_sha256'], 'Curated terminal assembly changed')
@@ -444,7 +444,7 @@ talents = (ROOT/'crates/azeroth-survivors-re/src/save/talents.rs').read_text()
 xp_owner = talents.split('pub(super) fn add_terminal_talent_xp(', 1)[1].split('pub fn talent_xp(', 1)[0]
 require('xp.saturating_add(amount)' in xp_owner and 'talent_fields(line)' in xp_owner, 'XP-only row mutation')
 require('normalized(' not in xp_owner and 'store_specs(' not in xp_owner and 'set_talent_allocation(' not in xp_owner, 'XP owner must not normalize or mirror specs')
-canonical = json.loads((ROOT/'docs/analysis/evidence/0.112.0/addon-bridge/manifest.json').read_text())
+canonical = json.loads((ROOT/'docs/analysis/evidence/addon-bridge/manifest.json').read_text())
 summary = next(row for row in canonical['owners'] if row['role'] == 'run-save')
 require(summary['va'] == '0x1458b9fb0' and summary['sha256'] == manifest['ranges'][0]['sha256'], 'Canonical current summary identity')
 tick = next(row for row in canonical['owners'] if row['role'] == 'poll')
@@ -465,7 +465,7 @@ require(marker_writes == ['0x1458b0a90'], 'Running phases retain the terminal ma
 
 # Reuse the current typed Save parser/serializer owners to demonstrate the
 # concrete stale active-slot case through the actual native write projection.
-talent_manifest = json.loads((ROOT/'docs/analysis/evidence/0.112.0/talent-allocations/manifest.json').read_text())
+talent_manifest = json.loads((ROOT/'docs/analysis/evidence/talent-allocations/manifest.json').read_text())
 require(talent_manifest['target_sha256'] == target['sha256'], 'Current typed Save identity')
 for row in talent_manifest['functions'] + talent_manifest['replayed_shared_owners']:
     offset = pe.rva_offset(int(row['address'], 16)-pe.image_base)

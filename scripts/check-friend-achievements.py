@@ -15,7 +15,7 @@ import struct
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-EVIDENCE = ROOT / "docs/analysis/evidence/0.119.0/friend-achievements"
+EVIDENCE = ROOT / "docs/analysis/evidence/friend-achievements"
 
 
 def digest(raw):

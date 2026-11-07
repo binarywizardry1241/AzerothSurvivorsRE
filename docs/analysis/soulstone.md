@@ -2,7 +2,7 @@
 
 Permanent finding **#295** is source/static complete for installed EXE SHA-256
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`.
-The [manifest](evidence/0.127.0/soulstone/manifest.json) binds the exact incoming
+The [manifest](evidence/soulstone/manifest.json) binds the exact incoming
 owner, original constants and completed journaled Ghidra query to this target.
 Compilation, execution and original/rebuilt parity remain unverified.
 
@@ -54,7 +54,7 @@ The existing resurrection checker provides the current `--soulstone` suite:
 PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-revive-choice.py --soulstone
 ```
 
-The [result](evidence/0.127.0/soulstone/static-check.json) records **40 cases
+The [result](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.127.0/soulstone/static-check.json) records **40 cases
 across 109 original instruction sites**. The suite verifies current parent bytes,
 the raw-slice Ghidra subject and saved query
 receipts, then replays the original charge/health instructions, spell1020

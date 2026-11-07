@@ -13,7 +13,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-PROOF = Path("docs/analysis/evidence/0.121.0/again-entry.json")
+PROOF = Path("docs/analysis/evidence/again-entry.json")
 SOURCE = "crates/azeroth-survivors-re/src/"
 
 

@@ -25,7 +25,7 @@ mod tests {
     #[test]
     fn selected_native_form_vectors_preserve_first_match_and_race() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.120.0/faction-forms/vectors.json"
+            "../../../../docs/analysis/evidence/faction-forms/vectors.json"
         ))
         .unwrap();
         let template = super::super::catalog().classes.iter()

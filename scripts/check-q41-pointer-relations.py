@@ -21,7 +21,7 @@ from shared_native_inventory import open_readonly_uri as open_native_inventory
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 WORK = ROOT / "runtime/analysis/history/findings/q41-pointer-relations/e48c17ec3be5"
-CURATED = ROOT / "docs/analysis/evidence/0.113.2/q41-pointer-relations"
+CURATED = ROOT / "docs/analysis/evidence/q41-pointer-relations"
 RANGES = {
     "armory-argument": (0x140136A95, 0x140136AEF),
     "display-dispatch": (0x14017F820, 0x14017F831),
@@ -59,7 +59,7 @@ def main():
         return dict(address=hex(address), end_exclusive=hex(address + size),
                     byte_count=size, sha256=digest(raw(address, size)))
 
-    queue_path = ROOT / "docs/analysis/evidence/0.113.2/unknown-recovery.json"
+    queue_path = ROOT / "docs/analysis/evidence/unknown-recovery-comparison-2.json"
     queue = json.loads(queue_path.read_text())
     assert queue["target"]["sha256"] == SHA
     inputs = {}

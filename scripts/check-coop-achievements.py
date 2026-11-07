@@ -22,7 +22,7 @@ parser.add_argument('--constructor-only', action='store_true',
 args = parser.parse_args()
 if args.constructor_only and (args.stage or args.require_retained_queries):
     parser.error('--constructor-only is read-only and does not consume Ghidra receipts')
-EVIDENCE = ROOT / ('runtime/analysis/history/native-recovery/target/6f083622318f/coop-achievements/staged' if args.stage else 'docs/analysis/evidence/0.117.0/coop-achievements')
+EVIDENCE = ROOT / ('runtime/analysis/history/native-recovery/target/6f083622318f/coop-achievements/staged' if args.stage else 'docs/analysis/evidence/coop-achievements')
 def emit_json(name, value):
     path = EVIDENCE / name
     if args.stage:
@@ -42,7 +42,7 @@ target = latest_target(verify=True)
 assert target['sha256'] == '507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293'
 data = target_bytes(target)
 pe = inventory.PE(data)
-canonical = ROOT/'docs/analysis/evidence/0.117.0/coop-achievements'
+canonical = ROOT/'docs/analysis/evidence/coop-achievements'
 if not args.constructor_only:
     manifest = json.loads((canonical/'manifest.json').read_text())
     assert manifest['target']['sha256'] == target['sha256']

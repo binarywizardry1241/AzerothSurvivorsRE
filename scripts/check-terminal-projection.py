@@ -9,7 +9,7 @@ libs=(ROOT/args.python_libs).resolve();out=(ROOT/args.output).resolve()
 if not libs.is_relative_to(ROOT)or not out.is_relative_to(ROOT/'runtime'):raise ValueError('All paths must remain project-local; output belongs in runtime/')
 sys.path.insert(0,str(libs))
 from native_terminal import NativeReplay,verified_input,require
-mf,target,data,pe=verified_input(ROOT/'docs/analysis/evidence/0.109.0/terminal-presentation');n=NativeReplay(data,pe);u=n.machine;R=n.registers
+mf,target,data,pe=verified_input(ROOT/'docs/analysis/evidence/terminal-presentation');n=NativeReplay(data,pe);u=n.machine;R=n.registers
 put,get,reset,run,scalar=n.put,n.get,n.reset,n.run,n.scalar
 m,bp,sp,app=n.mem,n.bp,n.sp,n.app
 f = load_script('float_model', ROOT/'scripts/recover-terminal-contracts.py')

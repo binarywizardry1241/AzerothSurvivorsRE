@@ -1,6 +1,6 @@
 # Ras Frostwhisper
 
-The [PE ranges and Ghidra receipts](evidence/0.141.0/scholomance-ras.json)
+The [PE ranges and Ghidra receipts](evidence/scholomance-ras.json)
 bind this trace to the installed 0.141.0 image, SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 This is scoped evidence for [#313](../verification-needed.md#gap-313) and
@@ -16,7 +16,7 @@ deadline is at or before their own scaled warning plus a quarter second.
 | --- | --- |
 | Frostbolt Volley | `0x145dbcc10` chooses the nearest eligible hero with the lower GUID winning ties. The part builder at `0x14605b6a0` starts six violet capsules at that angle in 60° steps. Each clips a 20-yard ray to the room, is 2.5 yards wide and uses 2.3 times effective boss damage. The windup is 1.5 seconds before rank scaling. |
 | Chill Nova | `0x145dbc1c0` uses the live boss position, a radius of 11, 2.6 times effective boss damage, and a 2.25-second windup before rank scaling. A hit attempts a six-yard push away from that position. |
-| Frozen Checkmate | `0x145dbde00` passes the top bit of the shared RNG draw to the six-yard grid builder. The source uses the two [previously emulated Scholomance masks](evidence/0.140.0/scholomance-encounters.json) at (96, 138), a 1.75-second base windup, and a 0.3-second tail. Grid sampling checks the danger bit and nearby tile edges with the recipient radius; the client projects the intersection of the valid and danger masks onto the arena. |
+| Frozen Checkmate | `0x145dbde00` passes the top bit of the shared RNG draw to the six-yard grid builder. The source uses the two [previously emulated Scholomance masks](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.140.0/scholomance-encounters.json) at (96, 138), a 1.75-second base windup, and a 0.3-second tail. Grid sampling checks the danger bit and nearby tile edges with the recipient radius; the client projects the intersection of the valid and danger masks onto the arena. |
 
 Chill Nova writes spell `0x46b3` at `0x145dbc45c` and copies the
 168-byte part from `[rbp+0x48]` at `0x145dbc5a5`. The write at

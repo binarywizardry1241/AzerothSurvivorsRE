@@ -80,7 +80,7 @@ for seed in [0,1,2,7,0xffffffffffffffff,0x9e3779b97f4a7c12,0x9e3779b97f4a7c15,0x
   state^=(state<<13)&0xffffffffffffffff;state^=state>>7;state^=(state<<17)&0xffffffffffffffff;indices.append(state%limit)
  want=[fragments[key][i]for key,i in zip(['prefix','middle','suffix'],indices)];assert selected==want;names.append(dict(seed=seed,name=''.join(selected)[:12]))
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
-md=Cs(CS_ARCH_X86,CS_MODE_64);out=ROOT/'docs/analysis/evidence/0.109.0/import-restore';ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');args=ap.parse_args()
+md=Cs(CS_ARCH_X86,CS_MODE_64);out=ROOT/'docs/analysis/evidence/import-restore';ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');args=ap.parse_args()
 if args.write:out.mkdir(parents=True,exist_ok=True)
 records=[]
 for role,a,b in [('restore',0x140062330,0x14006253f),('normalize-pick',0x1458a7fc0,0x1458a8367),('clamp-zone',0x14589c030,0x14589c1c7),('default-pick',0x1458a92f0,0x1458a93d5),('random-name',0x140063ff0,0x14006418d)]:

@@ -13,8 +13,8 @@ primary/alternative prerequisites and exclusions come from those current bytes.
 Moved Affliction and Destruction definitions are included because they share the
 persisted Warlock allocation. This does not revalidate all their gameplay effects.
 
-The [definition proof](evidence/0.112.0/warlock-talents/definitions.json) binds every
-record and effect span to installed bytes. The [native manifest](evidence/0.112.0/warlock-talents/manifest.json)
+The [definition proof](evidence/warlock-talents/definitions.json) binds every
+record and effect span to installed bytes. The [native manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/warlock-talents/manifest.json)
 retains the formatter and milestone classifier once. Ghidra Evidence
 `ev_1d2d17f97df3d2640d326b9968951d15c926c9127dc0a980a6ba42c189fe1673`
 recovers formatter `14599ddf0..14599e1ee`; original instruction replay supplies

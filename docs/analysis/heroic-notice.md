@@ -2,7 +2,7 @@
 
 Installed EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
-The [manifest](evidence/0.121.0/heroic-notice/manifest.json) binds the current
+The [manifest](evidence/heroic-notice/manifest.json) binds the current
 victory-account owner, rarity-name helper, start/admission owner and frontend dispatcher to four
 completed journaled Ghidra subjects and exact original code/data.
 [verification-needed](../verification-needed.md#gap-220) owns overall #220 status;
@@ -104,7 +104,7 @@ collection and teardown render the same localized chat helper. Cached account
 progress can persist while presentation remains unadmitted.
 
 Run `scripts/check-heroic-notice.py` with the installed project Capstone
-and Unicorn modules. The [result](evidence/0.121.0/heroic-notice/static-check.json)
+and Unicorn modules. The [result](evidence/heroic-notice/static-check.json)
 records **160** changed-clear/guest-admission cases, **2,880** post-clear ceiling
 cases and **18** frontend branch cases, plus **3,072** local/host minimum cases
 and **1,280** Tester-branch cases: **7,410** cases and **132,146** original

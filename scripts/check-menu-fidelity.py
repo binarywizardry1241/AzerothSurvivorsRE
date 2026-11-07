@@ -11,7 +11,7 @@ import sys
 
 from coverage_common import ROOT, latest_target, target_bytes
 
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.109.0/menu-fidelity'
+EVIDENCE = ROOT / 'docs/analysis/evidence/menu-fidelity'
 EXPLICIT_ENDS = {0x1459a77c0: 0x1459a7991, 0x14361df00: 0x14361df39}
 
 

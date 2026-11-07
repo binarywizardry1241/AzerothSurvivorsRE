@@ -3,7 +3,7 @@
 Target: installed read-only 0.109.0 EXE, SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
 [verification-needed](../verification-needed.md) owns #22/#41. The
-[manifest](evidence/0.109.0/xinput/manifest.json) and canonical assembly bind the
+[manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.109.0/xinput/manifest.json) and canonical assembly bind the
 fresh REA/Ghidra poll, axis publisher, backend selector and loader. Earlier
 [input](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/input-0.105.0.md) and [XInput](xinput.md) reports retain their
 historical identities; their addresses are not current contracts.

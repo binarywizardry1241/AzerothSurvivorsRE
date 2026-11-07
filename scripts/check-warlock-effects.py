@@ -16,7 +16,7 @@ import native_talent_fixture as n
 ROOT=n.ROOT
 SHA='dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 ASSET=ROOT/'crates/azeroth-survivors-re/assets/warlock-effects-0.112.0.json'
-PROOF=ROOT/'docs/analysis/evidence/0.112.0/warlock-talents/effect-cases.json'
+PROOF=ROOT/'docs/analysis/evidence/warlock-talents/effect-cases.json'
 
 
 def raw(address,size):
@@ -33,7 +33,7 @@ def floats(raw):return struct.unpack('<f',raw)[0]
 
 def recover():
  if n.target['sha256']!=SHA:raise ValueError('Exact current installed target required')
- manifest_path=ROOT/'docs/analysis/evidence/0.112.0/warrior-talents/manifest.json'
+ manifest_path=ROOT/'docs/analysis/evidence/warrior-talents/manifest.json'
  manifest=json.loads(manifest_path.read_text())
  if manifest['target']['sha256']!=SHA:raise ValueError('Current collector manifest target drift')
  for span in manifest['ranges']:

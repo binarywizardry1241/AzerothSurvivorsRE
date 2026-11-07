@@ -30,7 +30,7 @@ SHA = '507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293'
 target = latest_target(verify=True)
 assert target['sha256'] == SHA
 data = target_bytes(target)
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.117.0/starting-clothes'
+EVIDENCE = ROOT / 'docs/analysis/evidence/starting-clothes'
 manifest = json.loads((EVIDENCE / 'manifest.json').read_text())
 assert manifest['target']['sha256'] == SHA
 spec = importlib.util.spec_from_file_location('inventory', ROOT / 'scripts/inventory-executable.py')

@@ -8,7 +8,7 @@ It establishes bounded static contracts and one source repair. Compilation,
 game execution and original/rebuilt gameplay or visual parity remain unverified.
 [verification-needed](../verification-needed.md) owns the overall status.
 
-The [complete current graph](evidence/0.112.0/raid/catalog.json) supplies all
+The [complete current graph](evidence/raid/catalog.json) supplies all
 reachable input records, including recursive children. Relevant native tags
 contain 23 tracking/Aftershock records, 11 whirlwinds, three sweeps, nine drifting
 circle records, six tethers, two gazes, four enemy-producing rains and one
@@ -64,7 +64,7 @@ then executes **2,851** isolated original-byte cases:
 450 tether, 34 gaze/tracking and 26 spawn/exposure/healing profiles.
 It also checks the live source connections/order. `--stage` writes candidate
 evidence beneath ignored `runtime/`; default mode verifies the reviewed
-[manifest](evidence/0.112.0/raid-stateful/manifest.json).
+[manifest](evidence/raid-stateful/manifest.json).
 
 The manifest identifies every executed instruction range by current installed
 bytes and its canonical assembly owner. Existing graph/hazard/input/ward ranges

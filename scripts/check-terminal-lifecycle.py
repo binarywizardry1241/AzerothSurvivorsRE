@@ -17,7 +17,7 @@ import sys
 from artifact_history import read_artifact
 from coverage_common import ROOT, latest_target, target_bytes
 
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.107.0/terminal-lifecycle'
+EVIDENCE = ROOT / 'docs/analysis/evidence/terminal-lifecycle'
 
 
 def require(value, why):

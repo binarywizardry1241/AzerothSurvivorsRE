@@ -17,9 +17,9 @@ addon, its textures, its anchors or its draw order.
 
 ## Selected-target native contract
 
-The [native manifest](evidence/0.113.2/jewelry-texture-admission.json) binds exact
+The [native manifest](evidence/jewelry-texture-admission.json) binds exact
 source ranges, byte hashes, selected Ghidra dossiers and unchanged addon inputs.
-The full canonical decoder extract is [tga-decoder.asm](evidence/0.113.2/tga-decoder.asm).
+The full canonical decoder extract is [tga-decoder.asm](evidence/tga-decoder.asm).
 
 | Owner | Selected range | Static result |
 | --- | --- | --- |

@@ -357,7 +357,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
-    dest = ROOT / "docs/analysis/evidence/0.109.0/account-commands"
+    dest = ROOT / "docs/analysis/evidence/account-commands"
     rows = []
     for kind in ("Talents", "Spec", "Rewards"):
         for accepted in (False, True):
@@ -418,7 +418,7 @@ def main():
     c = cpu()
     canonical = json.loads(
         (
-            ROOT / "docs/analysis/evidence/0.109.0/terminal-flow/manifest.json"
+            ROOT / "docs/analysis/evidence/terminal-flow/manifest.json"
         ).read_text()
     )
     owner = next(row for row in canonical["ranges"] if row["role"] == "dispatcher")

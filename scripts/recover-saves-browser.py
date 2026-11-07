@@ -12,7 +12,7 @@ import argparse, hashlib, json, struct, subprocess, sys
 ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe'
 SHA='17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
-OUT=ROOT/'docs/analysis/evidence/0.100.1/saves-browser'
+OUT=ROOT/'docs/analysis/evidence/saves-browser-comparison'
 WORK=ROOT/'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0'
 OWNERS={
     'desktop-page':0x140279c80,'desktop-row':0x1401517c0,'confirmation-pane':0x140151bf0,

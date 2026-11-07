@@ -15,7 +15,7 @@ from coverage_common import ROOT, artifact_path, project_path
 from script_sources import load_script
 
 SHA = "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293"
-EVIDENCE = ROOT / "docs/analysis/evidence/0.117.0/release-review.json"
+EVIDENCE = ROOT / "docs/analysis/evidence/release-review.json"
 # Exact reviewed populations, not count-only admission or an automatic rebaseline.
 # A changed source/native/query receipt requires a new review of that population.
 POPULATION_DIGESTS = {

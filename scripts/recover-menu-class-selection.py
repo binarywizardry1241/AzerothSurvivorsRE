@@ -59,6 +59,6 @@ result={'target_sha256':SHA,'native_range':['0x1453f9420','0x1453f9603'],'method
 start,end=0x1453f9420,0x1453f9603
 result['native_range_sha256']=hashlib.sha256(d[p.rva_offset(start-base):p.rva_offset(end-base)]).hexdigest()
 text=json.dumps(result,indent=2)[:-2]+',\n  "cases": [\n'+',\n'.join('    '+json.dumps(row,separators=(',',':')) for row in rows)+'\n  ]\n}\n'
-path=R/'docs/analysis/evidence/0.92/save/class-selection-fixtures.json'
+path=R/'docs/analysis/evidence/save/class-selection-fixtures.json'
 path.write_text(text)
 print('Recorded native class selector:144 fresh +9 saved outputs')

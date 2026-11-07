@@ -32,8 +32,8 @@ Aura production `145925d75..145925da8` computes only
 rank power and qualified spell power. The current demon consumer applies
 `1 + current buff potency` once. It strengthens demons only; the aura carries no
 attack-speed lane. The canonical consumer is shared with
-[demon damage](evidence/0.112.0/demon-damage/manifest.json), and the shared Horn
-scalar with [buff potency](evidence/0.112.0/buff-potency/manifest.json).
+[demon damage](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/demon-damage/manifest.json), and the shared Horn
+scalar with [buff potency](evidence/buff-potency/manifest.json).
 
 Both the picker and live upgrade/description paths now use the current damage-only
 literal and ordinary percentage duration upgrades. Neutral picker values are
@@ -109,9 +109,9 @@ reward/UI work. Source regressions cover these same vectors but remain unrun.
 40 upgrade magnitudes, six learned rarities, five direct-factor Medallion scaling
 cases, fifty generic scaling exponent captures, twelve aura compositions, nine once-only consumer potency cases, thirty
 learn-admission cases, sixteen live-cast gate cases, six repeated-pick cases and
-nine native descriptions. The [manifest](evidence/0.112.0/demonic-empowerment/manifest.json)
+nine native descriptions. The [manifest](evidence/demonic-empowerment/manifest.json)
 binds the necessary native ranges and curated REA/Ghidra output; the
-[fixtures](evidence/0.112.0/demonic-empowerment/native-cases.json) retain results.
+[fixtures](evidence/demonic-empowerment/native-cases.json) retain results.
 
 These checks execute bounded original instructions in mapped installed-image
 memory. Explicit seams cover allocation, C memory and English localization

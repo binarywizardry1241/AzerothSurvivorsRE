@@ -72,7 +72,7 @@ def verify_expressions(baseline, modified):
 SCENARIOS=('baseline','modified','large_area','singular_overlap','plural_no_overlap')
 WORK=R/'runtime/analysis/history/findings/gap102/6d5d1bb31515'
 ASSET=R/'crates/azeroth-survivors-re/assets/native-spell-descriptions-0.115.0.json'
-EVIDENCE=R/'docs/analysis/evidence/0.115.0/spell-descriptions'
+EVIDENCE=R/'docs/analysis/evidence/spell-descriptions'
 SOFT_RADIUS={'0x14585cb7b','0x14596c2d2','0x14585d8f0'}
 def profiles():
  baseline=dict(instance_f32={off:1. for off in [16,20,28,32,56,60,68,72,80]},instance_u32={8:1,24:0,64:0},stats_f32={0:120.,4:1.,8:1.,40:1.,64:0.,72:0.},stats_u32={52:0},upgrade_counts=[0]*5)
@@ -185,7 +185,7 @@ def collect(check=False):
   if check:assert destination.read_text()==asm,destination
   else:EVIDENCE.mkdir(parents=True,exist_ok=True);destination.write_text(asm)
  proof['ranges']=spans
- proof['canonical_references']=['docs/analysis/evidence/0.115.0/coop-overlay/manifest.json','docs/analysis/evidence/0.115.0/coop-spell-text/manifest.json']
+ proof['canonical_references']=['docs/analysis/evidence/coop-overlay/manifest.json','docs/analysis/evidence/coop-spell-text/manifest.json']
  proof['definition_table']=dict(start='0x146cc4580',count=113,stride=120,sha256=hashlib.sha256(b''.join(bytes.fromhex(x['raw_hex'])for x in definitions.values())).hexdigest())
  for role,query in [('primary','query-14585c8e0'),('passive','base-passive-query')]:
   if check and not (WORK/query/'journal.json').exists():

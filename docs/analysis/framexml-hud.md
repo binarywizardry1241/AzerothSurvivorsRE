@@ -13,8 +13,8 @@ current installed EXE; the results below retain their 0.108.0 provenance.
 
 Installed 0.108.0 is 140,203,520 bytes, SHA-256
 `dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b`.
-The [manifest](evidence/0.108.0/hud-framexml/manifest.json) binds one canonical
-[10,204-byte Lua patch](evidence/0.108.0/hud-framexml/world-state-patch.lua)
+The [manifest](evidence/hud-framexml/manifest.json) binds one canonical
+[10,204-byte Lua patch](evidence/hud-framexml/world-state-patch.lua)
 at `1471f8278`, its native pointer/length descriptor and the selected 8,191-byte
 HUD interval. This interval begins at `function UpdateTalentButton()` and ends
 before the action-tooltip patch. Earlier talent-toggle, world-state suppression
@@ -22,11 +22,11 @@ and later tooltip/chat overrides are retained as evidence, but are not installed
 by this repair. Existing talent binding/pause ownership remains separate.
 
 Fresh REA/Ghidra recovery of `1459a01d0..1459a045d` and its
-[Win64 instruction extract](evidence/0.108.0/hud-framexml/world-state-loader.asm)
+[Win64 instruction extract](evidence/hud-framexml/world-state-loader.asm)
 identify the `Interface\FrameXML\WorldStateFrame.lua` path (38 bytes), original
 text, patch descriptor and formatted-source write route. The descriptor at
 `1471faa58` contains the exact patch pointer and 10,204-byte length. The
-[REA record](evidence/0.108.0/hud-framexml/rea-record.json) binds the raw import,
+[REA record](evidence/hud-framexml/rea-record.json) binds the raw import,
 query and profile. Raw imports omit PE-wide references and external callee
 semantics; generic Ghidra `gcc` parameter typing is not Win64 ABI proof.
 Nearby references to `1471f8278` also delimit a six-element array: they are not

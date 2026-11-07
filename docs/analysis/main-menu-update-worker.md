@@ -2,7 +2,7 @@
 
 Updated 2026-10-16. Target **0.92.0**, SHA-256
 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
-[Curated evidence](evidence/0.92/menu-update-worker.json) retains11 scoped Ghidra
+[Curated evidence](evidence/menu-update-worker.json) retains11 scoped Ghidra
 owners,3 exact in-owner UI branches,7 literal bindings and2 math imports.
 `python3 scripts/recover-menu-update-worker.py` reproduces those static bindings.
 Its derived branch intervals are not presented as original standalone functions.

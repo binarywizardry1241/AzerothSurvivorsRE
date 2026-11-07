@@ -16,7 +16,7 @@ value queues that voice kit immediately after 8174; zero skips only the voice.
 Both packets have opcode `0x02d2` (`SMSG_PLAY_SOUND`) and one little-endian u32
 body. There is no speaker GUID, position, delayed timer or phase gate in this
 sound branch. The byte-backed source is the shared
-[constructor extract](evidence/0.105.0/boss-catalog/constructor.asm), with
+[constructor extract](evidence/boss-catalog/constructor.asm), with
 Ghidra Evidence `ev_4013bdef3f794cf06df3c99ac1f48cfbd0958abc4c64e4dd43e722251fb2c9bc`
 and its identity retained by the [boss catalog](boss-catalog.md).
 
@@ -52,7 +52,7 @@ EXE hash and replays **124 bounded unchanged-native instruction cases** from
 `1459309b6..145930ab9`. Every current boss is checked with spare and full packet
 vectors, plus nonzero-one and unsigned-maximum voice boundaries. Checks verify
 the packet order, opcode, four-byte body, zero gate and preservation of existing
-queued packets. [Retained vectors](evidence/0.105.0/boss-voices/native-vectors.json)
+queued packets. [Retained vectors](evidence/boss-voices/native-vectors.json)
 include the exact instruction-range digest. Allocation and vector growth are
 explicit synthetic-memory seams; native callees and operating-system calls do
 not execute. These checks do not execute the game or its audio engine.

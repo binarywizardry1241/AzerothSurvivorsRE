@@ -3,9 +3,9 @@
 This report owns the gameplay consumers of finding #219. The installed target is
 0.121.0, SHA-256
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
-The [native manifest](evidence/0.121.0/heroic-twists/manifest.json) binds 33 exact
+The [native manifest](evidence/heroic-twists/manifest.json) binds 33 exact
 instruction ranges, 13 data ranges and eight completed durable Ghidra operations.
-The [source receipts](evidence/0.121.0/heroic-twists/source-static.json) identify
+The [source receipts](evidence/heroic-twists/source-static.json) identify
 the reviewed source fragments separately. [verification-needed](../verification-needed.md)
 owns current implementation status. Compilation, execution and original/rebuilt
 parity remain unverified.
@@ -72,7 +72,7 @@ The live source uses `Numeric.calm_regen` and the existing
 `IncomingState.last_hit_at`. The historical `regeneration_fraction` component
 remains separate from this conditional lane.
 
-The independently owned [set-consumer proof](evidence/0.121.0/set-consumers/manifest.json)
+The independently owned [set-consumer proof](evidence/set-consumers/manifest.json)
 binds the numeric producer: dispatch table `147692ddc` entry13 reaches
 `145bd2d21`, which adds the row's `f32` to XMM10. `145bd2af5` retains that lane
 at frame `-0xc`; `145bd3099` reloads it and `145bd309e` stores `Game+0x518`.

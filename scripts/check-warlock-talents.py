@@ -15,7 +15,7 @@ import native_talent_fixture as native
 ROOT = native.ROOT
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 ASSET = ROOT/'crates/azeroth-survivors-re/assets/warlock-talents-0.112.0.json'
-PROOF = ROOT/'docs/analysis/evidence/0.112.0/warlock-talents/definitions.json'
+PROOF = ROOT/'docs/analysis/evidence/warlock-talents/definitions.json'
 DESCRIPTORS = 0x14723e9d8
 FORMATTER = 0x14599ddf0
 MILESTONE = 0x14599e380

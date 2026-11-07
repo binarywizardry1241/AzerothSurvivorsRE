@@ -10,7 +10,7 @@ from creature_query_native import PE, D, ENDS
 from clock_query_native import ClockProbe, H, NOW, DIFF
 
 WORK = ROOT / 'runtime/analysis/history/findings/q41-all/f1125d689593'
-KEEP = ROOT / 'docs/analysis/evidence/0.113.2/clock-queries.json'
+KEEP = ROOT / 'docs/analysis/evidence/clock-queries.json'
 EPOCH = 116_444_736_000_000_000
 TICKS = 10_000_000
 

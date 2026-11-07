@@ -37,7 +37,7 @@ the existing reason0x17; no target-change behavior is inferred from that call.
 
 ## Static evidence and limits
 
-The [proof](evidence/0.113.2/name-queries.json) binds both native ranges, twelve
+The [proof](evidence/name-queries.json) binds both native ranges, twelve
 fresh Ghidra observations, the reviewed source and deterministic native results.
 `python3 -B scripts/check-name-queries.py` executes **2,236 original-
 instruction cases**: all 256 values in each metadata byte with/without Game,

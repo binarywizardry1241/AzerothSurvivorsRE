@@ -58,7 +58,7 @@ mod tests {
     fn native_startup_identity_survives_run_seed_advances() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(concat!(
             env!("CARGO_MANIFEST_DIR"),
-            "/../../docs/analysis/evidence/0.121.0/ward-target-guid.json"
+            "/../../docs/analysis/evidence/ward-target-guid.json"
         ))).unwrap();
         for row in fixture["seed_cases"].as_array().unwrap() {
             let state = row["seed"].as_u64().unwrap();

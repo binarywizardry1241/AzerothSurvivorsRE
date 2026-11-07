@@ -71,7 +71,7 @@ for kinds in [[], [0], [6], [3, 6], [6, 6]]:
         u.emu_start(SPANS[2][0], 0, count=1000)
         gates.append(dict(kinds=kinds, before=before, after=after,
                           show=u.reg_read(UC_X86_REG_RIP) == 0x1454c6ec7))
-OUT = ROOT / 'docs/analysis/evidence/0.100.1/run-effects'
+OUT = ROOT / 'docs/analysis/evidence/run-effects'
 OUT.mkdir(parents=True, exist_ok=True)
 owners = []
 for role, lo, hi in [('level-experience', 0x1454c69e0, 0x1454c74c6), ('level-system-message', 0x14545dc90, 0x14545ded4)]:

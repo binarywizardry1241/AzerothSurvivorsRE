@@ -14,7 +14,7 @@ from coverage_common import ROOT, file_sha256, latest_target, project_path, targ
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-OUTPUT = "docs/analysis/evidence/0.121.0/transport-pointer-boundary.json"
+OUTPUT = "docs/analysis/evidence/transport-pointer-boundary.json"
 TARGET = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
 
 

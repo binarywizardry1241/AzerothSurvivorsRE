@@ -4,7 +4,7 @@ use azeroth_survivors_re::enemies::ai::Math;
 use serde_json::Value;
 use std::cell::RefCell;
 
-fn fixtures() -> Value { serde_json::from_str(include_str!("../../../docs/analysis/evidence/0.97.2/bosses/abilities-fixtures.json")).unwrap() }
+fn fixtures() -> Value { serde_json::from_str(include_str!("../../../docs/analysis/evidence/bosses/abilities-fixtures.json")).unwrap() }
 fn number(row: &Value, key: &str) -> u32 { row[key].as_u64().unwrap() as u32 }
 fn float(row: &Value, key: &str) -> f32 { f32::from_bits(number(row,key)) }
 fn point(value: &Value) -> Position { Position { x: f32::from_bits(value[0].as_u64().unwrap() as u32), y: f32::from_bits(value[1].as_u64().unwrap() as u32), z: 0.0 } }

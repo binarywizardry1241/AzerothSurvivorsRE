@@ -3,7 +3,7 @@
 The installed 0.115.0 target, SHA-256
 `0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c`,
 has **83,284 exact independent indirect-transfer sites** in the selected F01/F02
-inventories. The [compact proof](evidence/0.115.0/independent-indirects.json)
+inventories. The [compact proof](evidence/native-diagnostics/independent-indirects.json)
 binds the complete ignored row inventory, both owning SQLite inventories and
 summaries, the current saved-Program body ranges, the original PE, and the
 completed residual and Ghidra ownership proofs.
@@ -65,7 +65,7 @@ python3 -B scripts/classify-independent-indirects.py \
   --output-directory runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/independent-indirects-final \
   --summary-output runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/independent-indirect-summary-final.json
 python3 -B scripts/check-independent-indirects.py \
-  --proof docs/analysis/evidence/0.115.0/independent-indirects.json \
+  --proof docs/analysis/evidence/independent-indirects.json \
   --negative-tests
 ```
 

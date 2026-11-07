@@ -8,7 +8,7 @@ validation. It does **not** establish full native gameplay or visual parity.
 
 ## Current evidence
 
-The [function manifest](evidence/0.100.1/run-effects/manifest.json) binds complete
+The [function manifest](evidence/run-effects/manifest.json) binds complete
 current function bodies and REA/Ghidra evidence IDs for run factory14544f710,
 account run grants14547ede0, Veteran factor14547f960, result14544a260 and
 account consumer14543f4f0 and shared status1454ff860. Their complete original assembly and raw pseudocode
@@ -16,34 +16,34 @@ are retained beside the manifest. The raw imports omit external constants,
 callees and jump tables; original PE assembly/data control those interpretations.
 
 The current stat owner1454a6a40, constructor1454ad570,
-[switch destinations](evidence/0.100.1/run-effects/tables-and-payloads.json),
-and [entry inputs](evidence/0.100.1/run-effects/entry-inputs.json) bind the scalar
-composition. [Run callback recovery](evidence/0.100.1/run-callbacks/manifest.json)
+[switch destinations](evidence/run-effects/tables-and-payloads.json),
+and [entry inputs](evidence/run-effects/entry-inputs.json) bind the scalar
+composition. [Run callback recovery](evidence/run-callbacks/manifest.json)
 contains the incoming damage, actor hit, class-special and periodic owners.
 [Generic callback recovery](treasure-effect-callbacks.md) owns the current
 condition/selector layouts, finite native condition vectors, freecast instance
-construction and Chastise changes. [Healing fixtures](evidence/0.100.1/run-effects/healing-native.json)
+construction and Chastise changes. [Healing fixtures](evidence/run-effects/healing-native.json)
 retain current general heal/provenance/meter owners with REA evidence,1008
 original-instruction healing/overheal cases,320 pool-pulse gate cases and480
-frame-batch cases. [Actor appearance](evidence/0.100.1/run-effects/actor-appearance.json)
+frame-batch cases. [Actor appearance](evidence/run-effects/actor-appearance.json)
 retains the current shared constructor, ordinary/guardian original model and
 scale storage, NULL ordinary metadata for primary bosses, restoration and ceil
 health-field publication. Exact
 current Lightwell source3 and companion source2 sites are retained separately;
 the companion loop is not used as Lightwell evidence.
 
-[Frame/publication windows](evidence/0.100.1/run-effects/frame-publication.json)
+[Frame/publication windows](evidence/run-effects/frame-publication.json)
 retain14 current instruction spans for normal scheduler placement, pending
 hostile impacts and synchronous player-aura publications. The separate early
 `Game9b2` flag refills health, clears pending levels and uses `Game994`; its
 producer is now proven as `WOW_ROGUE_SHOWCASE` exact`1` in the current
 [account delivery guards](account-progression.md). Showcase gameplay
 itself remains incomplete. It is not treated as a queued spawn request.
-[Level progression](evidence/0.100.1/run-effects/level-progression-native.json)
+[Level progression](evidence/run-effects/level-progression-native.json)
 retains two REA/Ghidra owners,48 unchanged native inline-heal cases and30
 periodic-message gate cases. It binds the actual system-chat serializer,
 localized templates, format precisions and level/XP descriptor fields.
-[Timed live-cast recovery](evidence/0.100.1/run-effects/timed-live-native.json)
+[Timed live-cast recovery](evidence/run-effects/timed-live-native.json)
 retains the current initial iterator/constructor Ghidra owners and refresh/tick
 instructions,128 split-cooldown interval cases,25 due/NaN gates and12 successful
 cast-event tails. It supplements the prior324 equal-global interval vectors.
@@ -87,7 +87,7 @@ controller input, collision, model pivot and rendering parity remain separate.
 | Save seam | Equipment queue drains independently of terminal statistics. Seen ability quality merges through the save owner. A result is exposed until marked saved, so a failed flush can retry. Account class XP, lifetime counters, beaten/open-zone data and character result fields are owned by the shared save adapter. |
 
 The movement admission predicate is independently recovered in
-[movement-admission.json](evidence/0.100.1/run-effects/movement-admission.json):
+[movement-admission.json](evidence/run-effects/movement-admission.json):
 phase0 starts only when consecutive accepted XY reports differ by squared
 distance strictly greater than exactf32 bits`3d23d70a` (approximately.04).
 Z/facing alone does not start it. Parent application integration owns report

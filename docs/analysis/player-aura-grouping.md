@@ -9,7 +9,7 @@ original/rebuilt comparison remain unverified.
 
 ## Native contract and implementation
 
-The canonical [Druid manifest](evidence/0.119.0/druid-release/manifest.json)
+The canonical [Druid manifest](evidence/druid-release/manifest.json)
 binds the existing journaled Ghidra publisher result
 `ev_505f6c2f397b33bca86ac0eb9a294bea4d1a9d33c1428c7e4a234a0721be6665`
 and exact instructions `145b8bd9c..145b8beb5` (281 bytes / 60 instructions).

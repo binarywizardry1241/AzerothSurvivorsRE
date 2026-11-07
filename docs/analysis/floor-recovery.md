@@ -9,7 +9,7 @@ Current target/source recovery: [ground/navigation and publication — 0.110.0](
 
 Selected 0.100.1 EXE SHA-256
 `17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b`.
-[Manifest](evidence/0.100.1/floor-recovery/manifest.json), unchanged PE instructions
+[Manifest](evidence/floor-recovery/manifest.json), unchanged PE instructions
 and fresh REA/Ghidra output bind the current owners. This report separates native
 recovery, source cache production, and the separately validated controller/runtime adapter.
 
@@ -154,7 +154,7 @@ with a near-foot ray. The world plugin prepares the fixed cache after ordinary
 world residency publication, and holds run readiness until preparation completes.
 
 Current actor owner`1454db6c0`refreshes Game+8c0 through`14552aaf0`. The exact
-[refresh slice](evidence/0.100.1/floor-recovery/actor-navigation-refresh.asm)
+[refresh slice](evidence/floor-recovery/actor-navigation-refresh.asm)
 reuses a field at the same player cell; a changed/outside cell rebuilds after
 `.2`seconds inclusive, and an absent field builds immediately. All distance cells
 begin at`u16::MAX`; the player's cell becomes0 even if its mask is blocked.
@@ -204,8 +204,8 @@ The indoor probes retain absent primary columns and exercise the wider secondary
 lookup. Cache preparation took roughly1–3seconds per zone in this profile,
 except SM at18.05seconds. Preparation is off-thread and gates readiness; these
 measurements do not establish native loading-time parity. The full
-[probe](evidence/0.100.1/floor-recovery/mpq-probe.json) and
-[MPQ input SHA-256 manifest](evidence/0.100.1/floor-recovery/mpq-inputs.json)
+[probe](evidence/floor-recovery/mpq-probe.json) and
+[MPQ input SHA-256 manifest](evidence/floor-recovery/mpq-inputs.json)
 record every row, exact separately supplied archive and probe hash. MPQs are
 excluded from delivery. Runtime logs remain under
 `runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/floor-mpq-probe.{json,log}`.
@@ -217,14 +217,14 @@ excluded from delivery. Runtime logs remain under
 with explicit cache/math/packet boundaries, plus48 unchanged native grid-helper
 cases,12 floor-triangle cases,10 occupancy-triangle cases,5 placement cases and
 4 navigation fields with16 segment/chase queries.
-[Movement fixtures](evidence/0.100.1/floor-recovery/native-fixtures.json)
+[Movement fixtures](evidence/floor-recovery/native-fixtures.json)
 cover timer boundaries, phase/flag exclusions, repeated recovery, deep falls and
-12 stale reports. [Grid fixtures](evidence/0.100.1/floor-recovery/grid-fixtures.json)
+12 stale reports. [Grid fixtures](evidence/floor-recovery/grid-fixtures.json)
 include NaN holes, ring selection, all-blocked/all-clear footprints and edge
-positions. [Floor triangles](evidence/0.100.1/floor-recovery/triangle-fixtures.json)
-and [occupancy triangles](evidence/0.100.1/floor-recovery/occupancy-fixtures.json)
+positions. [Floor triangles](evidence/floor-recovery/triangle-fixtures.json)
+and [occupancy triangles](evidence/floor-recovery/occupancy-fixtures.json)
 cover winding, slope, height caps, strict baseline boundaries and grid edges.
-[Placements](evidence/0.100.1/floor-recovery/placement-fixtures.json) execute both
+[Placements](evidence/floor-recovery/placement-fixtures.json) execute both
 the original rotation owner and actual vertex multiplication, with only host
 sinf/cosf and allocation seams. They are native instruction results, not expected
 outputs generated from the Rust transcription. A separate f32 operation-order

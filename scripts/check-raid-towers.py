@@ -16,8 +16,8 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-STAGED=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/raid-towers'
-RETAINED=ROOT/'docs/analysis/evidence/0.109.0/raid-towers'
+STAGED=ROOT/'runtime/analysis/staging/native-evidence/raid-towers'
+RETAINED=ROOT/'docs/analysis/evidence/raid-towers'
 
 def f32(v):
     return _shared_f32(v)
@@ -59,7 +59,7 @@ def main(write):
                         row.update(phase_index=slot,threshold_bits=w[16],yell=raw(text_ptr,text_len).decode())
                     records.append(row)
     assert [(v['boss_id'],v['role'],v['slot'])for v in records]==[(1594,'phase',0),(994,'move',5),(1493,'move',3),(1493,'phase',0),(1494,'phase',2)]
-    guardians=json.loads((ROOT/'docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json').read_text())
+    guardians=json.loads((ROOT/'docs/analysis/evidence/guardian-signatures/catalog.json').read_text())
     assert guardians['target_sha256']==SHA
     assert all(x['tag']!=12 for row in guardians['rows'] for variant in row['variants'] for x in variant)
     assert all(x['tag']!=12 for row in guardians['rows'] for x in row['phases'])

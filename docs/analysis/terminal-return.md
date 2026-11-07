@@ -2,7 +2,7 @@
 
 Target: `AzerothSurvivors/AzerothSurvivors-0.105.0.exe`, SHA-256
 `8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7`.
-The [routing manifest](evidence/0.105.0/terminal/return-routing-manifest.json)
+The [routing manifest](evidence/terminal/return-routing-manifest.json)
 binds the original byte ranges, REA/Ghidra identities and bounded instruction
 checks. [verification-needed](../verification-needed.md) owns integrated gap #9 status.
 
@@ -66,7 +66,7 @@ survives the source's First/Update schedule boundary.
 vectors**: exact environment value/length/result cases, startup variant to
 frontend flag, both frontend field stores, both terminal labels and all three
 command mappings. No native callee executes; localization cases stop before
-their calls. The [retained vectors](evidence/0.105.0/terminal/return-routing-vectors.json)
+their calls. The [retained vectors](evidence/terminal/return-routing-vectors.json)
 record these inputs and outputs. Rust lifecycle regression source covers
 Login → InWorld → logout CharSelect → new InWorld → ordinary end Login; it was
 not compiled or run. Rustfmt parsed the three changed Rust owners without

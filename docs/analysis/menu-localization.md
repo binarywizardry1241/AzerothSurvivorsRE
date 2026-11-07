@@ -17,7 +17,7 @@ the source's ten-language 0.92 baseline.
 
 [recover-menu-locales.py historical recipe](../SCRIPTS.md#historical-execution-sources)
 checks the complete EXE digest before reading those descriptors and reproduces
-the source JSON assets. [locales.json](evidence/0.97.2/locales.json) retains
+the source JSON assets. [locales.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/locales.json) retains
 the descriptor addresses, catalog byte ranges and hashes, output hashes, and
 exact native function-slice provenance. Source builds embed the recovered JSON;
 building does not require the EXE.
@@ -25,11 +25,11 @@ building does not require the EXE.
 The current English catalog shares 2,469 keys with the 2,507-key historical
 baseline, removes 38 and adds 152. Removed keys include `menu.new_hero`; old keys
 are not silently retained as current target data. The complete difference and
-static checks are in [locales-validation.json](evidence/0.97.2/locales-validation.json).
+static checks are in [locales-validation.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/locales-validation.json).
 
 ## Native layout and choice behavior
 
-[locales-native.json](evidence/0.97.2/locales-native.json) retains 13 scoped REA
+[locales-native.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/locales-native.json) retains 13 scoped REA
 records with Evidence IDs, exact slice hashes, assembly, pseudocode and four
 confirmed Node constructions. The important native owners are:
 
@@ -76,7 +76,7 @@ zh, ja and ko. `menu_fonts.rs` follows this sequence.
 
 The exact current base-font table at `0x146a01590` registers Friz, Morpheus and
 Skurri. Friz and Morpheus pass through `0x145504c10`, with original bytes retained
-on augmentation failure. [locales-font-tables.json](evidence/0.97.2/locales-font-tables.json)
+on augmentation failure. [locales-font-tables.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/locales-font-tables.json)
 retains native bytes/hashes and decoded records for these tables:
 
 - 27 composite accents at `0x1469ade10`, extending the old rows with Romanian
@@ -97,7 +97,7 @@ AZS_NAMES_SC.TTF, AZS_NAMES_JP.TTF, AZS_NAMES_KR.TTF, AZS_SC.TTF, AZS_JP.TTF and
 AZS_KR.TTF. The optional QA utility `python3 scripts/prepare-reference-menu-fonts.py`
 checks the current reference digest and copies nine exact native ranges into
 ignored `runtime/analysis/history/interface/menu-fonts/464de1c5cd8f`; `--target-version 0.92.0` preserves the old
-workflow. Its [textual range manifest](evidence/0.97.2/locales-font-inputs.json)
+workflow. Its [textual range manifest](evidence/locales-font-inputs.json)
 is tracked. Binary font data remain ignored and are not source deliverables.
 
 ## Validation and remaining limits
@@ -120,7 +120,7 @@ The parent class-tile wrapper at `0x14008e6b0` calls the actual icon/caption bod
 `0x140244c40`. REA Evidence
 `ev_5bfa3cd7af7cb953084a588d88f12a2b0802a808d40e5d99a7bc7b245c576b7a`
 and the exact 2,578-byte slice are retained in
-[locales-class-label-native.json](evidence/0.97.2/locales-class-label-native.json).
+[locales-class-label-native.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/locales-class-label-native.json).
 The caption is 12 pixels and writes TextLayout bytes `00 03` at `0x1402455db`:
 Left justification and NoWrap, using the matching Bevy 0.18.1 enum layout. The
 source previously left the default wrapping policy enabled; the class-caption

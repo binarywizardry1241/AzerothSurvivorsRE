@@ -8,7 +8,7 @@ compilation, gameplay, rendering and original/rebuilt parity unverified.
 
 ## Native producer and current records
 
-The [manifest](evidence/0.109.0/raid-waves/manifest.json) binds current native
+The [manifest](evidence/raid-waves/manifest.json) binds current native
 move27 to producer `145958e3a..145959146`, its six payload words, five recurring
 boss slots, three guardian signature slots and one guardian health phase. The producer's Ghidra evidence is
 `ev_80cfbb2fcc905e884a1d637976f79982ef233ae88e39b17ddcb61c2b1f105e10`.
@@ -29,7 +29,7 @@ separately reviewed original instructions.
 | Guardian1511 health phase0 | — | 3 |
 
 Guardian records have one canonical copy in the
-[guardian signature catalog](evidence/0.109.0/guardian-signatures/catalog.json).
+[guardian signature catalog](evidence/guardian-signatures/catalog.json).
 Native shape0 is a circle and shape1 a donut; the marker serializer and damage
 consumer own those meanings. Move numbers and shape numbers are separate enums.
 

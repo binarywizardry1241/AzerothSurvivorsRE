@@ -4,7 +4,7 @@ Bound to the installed 145,357,824-byte EXE, SHA-256
 `6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f`.
 This report owns the recovered boundary and connected source for **#166** and the forced guest
 Menu/Again account-transaction dependency **#174**. The
-[manifest](evidence/0.119.0/guest-settlement/manifest.json) binds current PE
+[manifest](evidence/guest-settlement/manifest.json) binds current PE
 function extents, exact instruction/data spans, six unique historical-seed
 relocations and ten completed durable REA/Ghidra queries. Historical addresses
 were leads; current bytes, decoded operands and tables establish the contracts.
@@ -91,7 +91,7 @@ phase must preserve these checkpoints and must not add the whole run twice.
 
 Current account delivery `145b15590..145b15ac7` and recipient snapshot
 `145b16920..145b16b9c` use the shared current
-[friend-achievement evidence](evidence/0.119.0/friend-achievements/manifest.json).
+[friend-achievement evidence](evidence/friend-achievements/manifest.json).
 The delivery excludes roster GUID `0xffffff`; showcase excludes local runs but
 **does not exclude an admitted guest**. Five cumulative counters subtract saved
 checkpoints at `+187c..+188c`, floor a negative difference at zero, and saturate

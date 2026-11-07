@@ -15,7 +15,7 @@ import subprocess
 from coverage_common import ROOT, latest_target, project_path, target_bytes
 from script_sources import load_script
 
-PROOF = ROOT / "docs/analysis/evidence/0.117.0/white-devilsaur-integration.json"
+PROOF = ROOT / "docs/analysis/evidence/white-devilsaur-integration.json"
 
 
 def digest(raw):

@@ -10,7 +10,7 @@ import struct
 import sys
 from coverage_common import ROOT, latest_target, target_bytes
 SHA = "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a"
-KEPT = ROOT / "docs/analysis/evidence/0.112.0/demon-actors"
+KEPT = ROOT / "docs/analysis/evidence/demon-actors"
 t = latest_target()
 if t["sha256"] != SHA:
     raise SystemExit("Selected target differs; do not reuse 0.112.0 actor evidence")
@@ -23,7 +23,7 @@ import unicorn.x86_const as r
 
 
 def talent_effect(key):
-    data = json.loads((ROOT / "docs/analysis/evidence/0.112.0/warlock-talents/definitions.json").read_text())
+    data = json.loads((ROOT / "docs/analysis/evidence/warlock-talents/definitions.json").read_text())
     assert data["target_sha256"] == SHA
     record = next(row for row in data["definitions"] if row["key"] == key)
     effect = record["effects"]
@@ -423,7 +423,7 @@ def main():
         assert hashlib.sha256(d[offset:offset + end - start]).hexdigest() == owner["sha256"], owner["role"]
         for name, digest in owner.get("text_sha256", {}).items():
             assert hashlib.sha256((KEPT / name).read_bytes()).hexdigest() == digest, name
-    shared_dir = ROOT / "docs/analysis/evidence/0.112.0/demon-time-effects"
+    shared_dir = ROOT / "docs/analysis/evidence/demon-time-effects"
     shared = json.loads((shared_dir / "manifest.json").read_text())
     assert shared["target_sha256"] == SHA
     for owner in shared["ranges"]:

@@ -3,7 +3,7 @@
 Recovered2026-10-19 from the selected0.100.1 EXE, SHA-256
 `17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b`.
 The existing REA/Ghidra actor-hit/dispatcher recovery provides the owning call
-paths; [current retained packet assembly](evidence/0.100.1/run-presentation/aura-native.json)
+paths; [current retained packet assembly](evidence/run-presentation/aura-native.json)
 binds each additional serializer/caller range to its exact original bytes.
 This is an implemented embedding connection, not an original/rebuilt visual
 comparison. The desktop comparison remains unverified.
@@ -103,7 +103,7 @@ consume these native outputs without modifying their expectations.
 ## Remaining presentation boundaries
 
 Current player owner`14549e650` is recovered through
-[REA/Ghidra evidence](evidence/0.100.1/run-presentation/player-aura-rea.json).
+[REA/Ghidra evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/run-presentation/player-aura-rea.json).
 The new pure`run_effects/player_auras.rs` projector preserves the complete
 producer order: active self auras, first generic18/20 shield when absorb is
 positive and no active kind7 shield, all active temporary15 states, and all
@@ -121,7 +121,7 @@ fields47..94, flag words95..100 and application words113..124; first
 publication includes all66 words. Expiry-only changes emit no field delta.
 The owner emits no separate aura-duration packet.
 
-The [current player fixtures](evidence/0.100.1/run-presentation/player-aura-native.json)
+The [current player fixtures](evidence/run-presentation/player-aura-native.json)
 execute1536 complete native flag words,180 application-word branches and36
 complete alias calls, with no external call stubs. Rust tests additionally
 cover source partition order, exact expiry, sentinel exclusion and incremental
@@ -167,7 +167,7 @@ packet owner`1454440d0` uses jump table`14673eabc`; entry44 for`136` is its defa
 `145444697`, which returns at`145447a82` without reading aura state or mutating
 the game. Its sole direct caller`14543fd49` passes each decoded received packet
 from`1455130a0`. The same consumer handles normal spell-cast`12e` and login.
-The [six bounded native dispatch cases](evidence/0.100.1/run-presentation/cancel-aura-native.json)
+The [six bounded native dispatch cases](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/run-presentation/cancel-aura-native.json)
 vary payload lengths0/1/3/4/8/65535, admit no external calls and verify unchanged
 game memory. This proves the received-channel no-op; it does not prove absence
 of a separate indirect client-request interceptor. Helpful flag9 alone is not

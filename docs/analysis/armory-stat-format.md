@@ -40,7 +40,7 @@ arithmetic and fixed precision, including the two current Heroic-era stat tags.
 The source's typed stat projection supplies the count as a numeric value; this
 proof retains native tag11's unsigned integer width independently.
 
-The [manifest](evidence/0.121.0/armory-stat-format/manifest.json) binds the saved
+The [manifest](evidence/armory-stat-format/manifest.json) binds the saved
 Ghidra query, raw subject, jump table, precision metadata and original bytes.
 Ghidra's decompiler did not resolve the fifteen-target jump table; the saved
 result records that limit. The checker decodes the complete bounded function
@@ -51,7 +51,7 @@ that prefix as a full decompilation.
 adjacent binary32 values at tenth/whole-percent boundaries, negative values,
 fixed precision ties and full-width `u32` counts. All **384** decoded
 instructions are visited across **15,690** original instruction steps. The
-[result](evidence/0.121.0/armory-stat-format/static-check.json) records exact
+[result](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.121.0/armory-stat-format/static-check.json) records exact
 numeric argument bits, keys, format descriptors and declared seams.
 
 The CRT `roundf`, fixed one-decimal formatter and locale-format interfaces are

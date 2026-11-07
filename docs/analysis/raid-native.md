@@ -9,7 +9,7 @@ own evidence and are not certified by matching data.
 
 ## Complete graph and boss headers
 
-The [current catalog](evidence/0.112.0/raid/catalog.json) follows all twelve zone
+The [current catalog](evidence/raid/catalog.json) follows all twelve zone
 boss slices and all thirty-seven guardian signatures, including alternate move
 lists, health phases, nested sequences and replacement schedules. Its 493 nodes
 retain all 257 boss recurring / 33 boss phase records, forty guardian lists with
@@ -37,7 +37,7 @@ Kel'Thuzad (one phase). Their records and native tower producer still exist.
 Deleting them from the graph would change phase numbering, timer admission and
 other source state without matching the current executable.
 
-The current actor tick's [initial-request loop](evidence/0.112.0/raid/queue.asm)
+The current actor tick's [initial-request loop](evidence/raid/queue.asm)
 reads the native tag at request+53, stops at `0xff`, copies the request payload,
 and skips tag 12 before calling the common dispatcher at `14591f790`.
 It advances to the next 56-byte request without invoking any tower producer.
@@ -53,8 +53,8 @@ consumer or globally disable marker kind 4, which other actions also use.
 
 ## Static evidence and limits
 
-The [proof](evidence/0.112.0/raid/manifest.json) and
-[REA provenance](evidence/0.112.0/raid/rea-provenance.json) bind the current
+The [proof](evidence/raid/manifest.json) and
+[REA provenance](evidence/raid/rea-provenance.json) bind the current
 assembly and Ghidra 12.1.4 observations. The bounded raw import omits PE-wide
 callers/types and ends at the original loop's outgoing boundary; Ghidra renders
 those omitted continuations as bad-data halts. The independently decoded assembly

@@ -110,7 +110,7 @@ def source_inspection():
 
 
 def check_coop():
-    manifest_path = ROOT / 'docs/analysis/evidence/0.139.2/coop-raid-targets.json'
+    manifest_path = ROOT / 'docs/analysis/evidence/coop-raid-targets.json'
     manifest = json.loads(manifest_path.read_text())
     target = installed_identity()
     assert target == manifest['target'], 'Selected cooperative raid-target EXE changed'
@@ -234,7 +234,7 @@ def main():
         offset = pe.rva_offset(start - pe.image_base)
         excerpts.append({'role': role, 'start': hex(start), 'end_exclusive': hex(end),
                          'sha256': hashlib.sha256(data[offset:offset + end - start]).hexdigest()})
-    popup = ROOT / 'docs/analysis/evidence/0.115.0/raid-targets/popup.lua'
+    popup = ROOT / 'docs/analysis/evidence/raid-targets/popup.lua'
     popup_bytes = popup.read_bytes()
     assert popup_bytes == data[0x7334dd4:0x7335112], 'Canonical popup must match exact selected-target bytes'
     popup_result = subprocess.run(['lua', str(ROOT / 'scripts/check-raid-target-popup.lua'), str(popup)],
@@ -314,7 +314,7 @@ def main():
                         'Live source guards are inspection only, not Rust execution',
                         'No compilation, application launch, rendering or original/rebuilt parity']}
     (output / 'proof.json').write_text(json.dumps(proof, indent=2) + '\n')
-    evidence = ROOT / 'docs/analysis/evidence/0.115.0/raid-targets'
+    evidence = ROOT / 'docs/analysis/evidence/raid-targets'
     manifest = json.loads((evidence / 'manifest.json').read_text())
     assert manifest['target']['sha256'] == target['sha256']
     assert manifest['native_checks'] == proof, 'Retained native proof changed'

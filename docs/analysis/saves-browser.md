@@ -14,12 +14,12 @@ preserved.
 
 ## Current native contracts and source delivery
 
-The [manifest](evidence/0.109.0/saves-browser/manifest.json) binds current page,
+The [manifest](evidence/saves-browser/manifest.json) binds current page,
 row, confirmation, import/export/directory owners and the four save-related
-input branches. [Ghidra observations](evidence/0.109.0/saves-browser/rea.json)
+input branches. [Ghidra observations](evidence/saves-browser/rea.json)
 bind the freshly recovered page/input and import owners. The current
-[Escape owner](evidence/0.109.0/in-run-bindings/cancel.asm) and
-[Options event owner](evidence/0.109.0/in-run-bindings/options-events.asm) remain
+[Escape owner](evidence/in-run-bindings-comparison/cancel.asm) and
+[Options event owner](evidence/in-run-bindings-comparison/options-events.asm) remain
 canonical shared extracts rather than being duplicated.
 
 Escape `1401901e2..14019025b` gives binding capture first priority. With no
@@ -51,7 +51,7 @@ save-data directory owner `1458ef170` prefers the parent of `WOW_ROGUE_SAVE`;
 when the override is present but has no parent it does not fall through. Without
 that override it probes `APPDATA`, `XDG_DATA_HOME`, then `HOME`; the first two
 append `wenilla-rogue`, while HOME appends `.local/share/wenilla-rogue`.
-The [data-directory extract](evidence/0.109.0/saves-browser/data-directory.asm)
+The [data-directory extract](evidence/saves-browser/data-directory.asm)
 is also canonical for current language-file persistence.
 
 The portable encryption/envelope implementation and OS filesystem primitives

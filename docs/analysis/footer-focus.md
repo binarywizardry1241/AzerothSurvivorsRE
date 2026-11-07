@@ -9,20 +9,20 @@ control byte, not the focus policy.
 This resolves the remaining component-layout ambiguity in the
 [treasure interface recovery](treasure-pipeline.md). All eight bounded
 owners, the command-queue fragment, exact tuple name and byte/data-flow mapping
-are retained in the [hash-bound manifest](evidence/0.100.1/treasure-interface/footer-focus/manifest.json).
+are retained in the [hash-bound manifest](evidence/treasure-interface/footer-focus/manifest.json).
 
 ## Native byte and type mapping
 
-1. The [footer queue fragment](evidence/0.100.1/treasure-interface/footer-focus/queue.asm)
+1. The [footer queue fragment](evidence/treasure-interface/footer-focus/queue.asm)
    writes handler `0x140177830`, the footer entity and the three bytes `00 02 01`:
    `0x14010bd9f` writes `01` at record offset `0x12`, and `0x14010bda5` writes
    little-endian `0x0200` at record offset `0x10`.
-2. The [command handler](evidence/0.100.1/treasure-interface/footer-focus/command.asm)
+2. The [command handler](evidence/treasure-interface/footer-focus/command.asm)
    advances the command payload by 16 bytes and calls `0x14005daa0`. The
-   [entity insert owner](evidence/0.100.1/treasure-interface/footer-focus/insert.asm)
+   [entity insert owner](evidence/treasure-interface/footer-focus/insert.asm)
    reads the payload's bytes `8..10` and passes them to `0x1402129f0` in
    `ECX = 0x010200` (`0x14005daec..0x14005daf7`).
-3. The [typed bundle metadata owner](evidence/0.100.1/treasure-interface/footer-focus/component-ids.asm)
+3. The [typed bundle metadata owner](evidence/treasure-interface/footer-focus/component-ids.asm)
    references the selected EXE's literal at `0x145963e6c`, length 102:
 
    ```text
@@ -31,13 +31,13 @@ are retained in the [hash-bound manifest](evidence/0.100.1/treasure-interface/fo
 
    It registers component IDs through `0x140205300`, `0x140204480`,
    `0x140203fd0`, in that order. Their component sizes are `0`, `1`, `1`.
-   The [ID collector](evidence/0.100.1/treasure-interface/footer-focus/component-id-collect.asm)
+   The [ID collector](evidence/treasure-interface/footer-focus/component-id-collect.asm)
    outputs those three IDs in tuple order. Although its intermediate stack slots
    are reversed, with all three presence flags equal to `1` its writes at
    `0x1401a31c7`, `0x1401a31be`, `0x1401a31dd` emit the first, second, third
    registered IDs respectively. Reading intermediate stack order as tuple order
    would therefore be incorrect.
-4. The [ECS writer](evidence/0.100.1/treasure-interface/footer-focus/ecs-writer.asm)
+4. The [ECS writer](evidence/treasure-interface/footer-focus/ecs-writer.asm)
    separates the packed argument and writes the components as follows:
 
    | Packed byte | Value | Destination | Instruction evidence |
@@ -72,7 +72,7 @@ requires a controlled runtime comparison.
 
 REA used the project launcher and Ghidra 12.1.4. Fresh insert-owner evidence is
 `ev_c79a8ffd0dfc9fcb49771449fd5efccb8f1bfb470d4e8fd92f302a9af2212ef4`,
-retained as [Ghidra pseudocode](evidence/0.100.1/treasure-interface/footer-focus/insert.ghidra.c).
+retained as [Ghidra pseudocode](evidence/treasure-interface/footer-focus/insert.ghidra.c).
 The bounded raw import uses Ghidra's default GCC ABI; its parameter labels are
 not treated as Windows x64 argument evidence. The register mapping above is
 taken directly from the selected PE's instructions.

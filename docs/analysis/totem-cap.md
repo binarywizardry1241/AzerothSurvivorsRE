@@ -7,7 +7,7 @@ This is the source/static repair for permanent finding **#13**. The
 the current limit is **30 per captured ability key**, rather than 30 across
 both kinds together.
 
-The [current contract](evidence/0.127.0/totem-cap/contract.json) binds the exact
+The [current contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.127.0/totem-cap/contract.json) binds the exact
 original cap and removal instruction ranges. Current dispatcher
 `145c60650..145c647f0` is shared with the existing journaled Ghidra query named
 in that contract. Its raw pseudocode stops at an external jump table, so the
@@ -48,7 +48,7 @@ same-kind rows with independent mixed populations, exact survivor order and
 expiry-before-destroy GUID/position publication. Only the cap and vector-removal
 instructions run in an isolated emulator; CRT comparison/move and gameplay
 callbacks are explicit seams. The existing Rust vector regression now consumes
-the [current native vectors](evidence/0.127.0/totem-cap/native-vectors.json).
+the [current native vectors](evidence/totem-cap/native-vectors.json).
 
 Compilation and the authored Rust regression were not run. No game, client,
 network or server was operated; actual VM/event delivery, gameplay, rendering

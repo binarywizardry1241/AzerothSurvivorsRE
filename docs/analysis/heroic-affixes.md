@@ -3,7 +3,7 @@
 Target: the installed **0.121.0** EXE, SHA-256
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 This report owns the source/static portion of **#221–#224**. The
-[manifest](evidence/0.121.0/affixes/manifest.json) binds exact code/data ranges,
+[manifest](evidence/affixes/manifest.json) binds exact code/data ranges,
 completed durable Ghidra queries and source checks. [verification-needed](../verification-needed.md)
 owns overall status; [Heroic helpers](heroic-native.md) retain their earlier
 bounded selection proof. Source integration does not establish execution or parity.
@@ -187,7 +187,7 @@ Run from the owning checkout with the existing project Python dependencies:
 PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-affixes.py
 ```
 
-The [result](evidence/0.121.0/affixes/static-check.json) binds the installed
+The [result](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.121.0/affixes/static-check.json) binds the installed
 hash, **32 code ranges / 51 data ranges**, independently decoded containing-owner
 boundaries, **six completed Ghidra query subjects/results**, current113 ability
 kind records/nine class pools. Source syntax and connection checks follow the

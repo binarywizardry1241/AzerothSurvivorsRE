@@ -6,7 +6,7 @@ This is a static encoding classification under **#41**, selectors
 `Q41-U01`, `Q41-U02` and `Q41-U04`. It neither establishes AS ownership nor
 changes any original census population or function-body observation.
 
-The [proof](evidence/0.113.2/residual-encodings.json) binds the canonical queue,
+The [proof](evidence/residual-encodings.json) binds the canonical queue,
 both full input inventories, exact original PE bytes, Capstone version and
 complete classified-output commitments. No residual interval is sampled away.
 

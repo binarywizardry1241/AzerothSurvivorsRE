@@ -127,7 +127,7 @@ mod tests {
 
     fn fixtures() -> serde_json::Value {
         serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.105.0/pickup-effects/native-vectors.json"
+            "../../../docs/analysis/evidence/pickup-effects/native-vectors.json"
         ))
         .unwrap()
     }

@@ -18,7 +18,7 @@ from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA='dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
-OUT=ROOT/'docs/analysis/evidence/0.112.0/pad'
+OUT=ROOT/'docs/analysis/evidence/pad'
 WORK=ROOT/'runtime/analysis/history/movement/input/8d261063d4b4'
 OWNERS={'pad-state':(0x1401b8090,0x1401b8543),'pad-handoff':(0x1401c0a70,0x1401c114e),
         'pad-world':(0x1401c1150,0x1401c18d2),'pad-focus':(0x1401c1c50,0x1401c3673),

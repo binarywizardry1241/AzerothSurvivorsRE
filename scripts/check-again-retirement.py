@@ -15,7 +15,7 @@ from coverage_common import ROOT, latest_target, target_bytes, project_path
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-BASE = ROOT / "docs/analysis/evidence/0.123.0/again-retirement"
+BASE = ROOT / "docs/analysis/evidence/again-retirement"
 
 
 def digest(raw):

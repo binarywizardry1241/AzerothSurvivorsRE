@@ -2,7 +2,7 @@
 
 Target: installed **0.109.0**, SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [manifest](evidence/0.109.0/terminal-order/manifest.json) binds six fresh
+The [manifest](evidence/terminal-order/manifest.json) binds six fresh
 Ghidra 12.1.4 imports, independently decoded PE ranges and the live source
 connections. [verification-needed](../verification-needed.md) owns permanent gap #9 and
 the remaining terminal/startup scope. This report covers one source correction;

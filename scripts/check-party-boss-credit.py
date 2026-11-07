@@ -10,7 +10,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.120.2/party-achievement-share'
+EVIDENCE = ROOT / 'docs/analysis/evidence/party-achievement-share'
 PREFIX = 'crates/azeroth-survivors-re/src/'
 
 

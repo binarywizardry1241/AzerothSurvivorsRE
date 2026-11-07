@@ -5,7 +5,7 @@ Selected installed EXE SHA-256
 (146,088,960 bytes). This report owns the source/static repair for **#217**;
 relay failure provenance is independently owned by #216.
 
-The [current proof](evidence/0.121.0/relay-locales/manifest.json) binds all fourteen
+The [current proof](evidence/relay-locales/manifest.json) binds all fourteen
 56-byte locale descriptors at `0x14765af88`, their exact 3,187-key JSON payloads,
 and the native translation of `the co-op relay cannot be reached`. The source
 catalogs now contain those exact fourteen values. `coop_forms.rs::localized_reason`

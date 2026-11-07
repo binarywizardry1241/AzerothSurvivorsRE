@@ -5,7 +5,7 @@ Selected installed EXE SHA-256:
 This report owns the item-query and local-client connection for **#234**.
 [verification-needed](../verification-needed.md) owns the overall finding status; the
 [set core](sets-source.md) owns identity, activation and descriptors.
-The [publication proof](evidence/0.121.0/item-set-publication/manifest.json)
+The [publication proof](evidence/item-set-publication/manifest.json)
 binds six durable Ghidra queries, original ranges, source connections and
 isolated member-constructor cases. No application or rebuilt source executes.
 
@@ -74,7 +74,7 @@ The selected item request is opcode `0x56` in packet-handler owner
 entire selected item-query prefix/response branch through `145b112ae`; it is
 not a complete decompilation of that multi-opcode handler. Its external switch
 cell at `147664324` selects the original item arm. The
-[rank/field proof](evidence/0.121.0/item-set-publication/item-query-ranks.json)
+[rank/field proof](evidence/item-set-publication/item-query-ranks.json)
 also binds the complete frozen-rank helper `145bad070` and equip-line mapper
 iterator `145c6eb70`.
 

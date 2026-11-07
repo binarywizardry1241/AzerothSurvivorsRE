@@ -18,7 +18,7 @@ from script_sources import load_script
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
 WORK = ROOT/"runtime/analysis/history/findings/q41-data/6a6f0540f967/mount"
-KEEP = ROOT/"docs/analysis/evidence/0.115.0/data-directory/manifest.json"
+KEEP = ROOT/"docs/analysis/evidence/data-directory/manifest.json"
 SPANS = {
     "candidate_paths": (0x145b81690,0x145b8198f,"9f34c9ac0db5fe4ec72e259ecbc8d0ed9f5b27db64eb790a435d0566daa3a7c5"),
     "first_existing_directory": (0x145b81cc0,0x145b81e23,"5df9eb86cf0f5e87ef31eaf2df291539d6ea43195e4c9cc34ab0392592fc0a5a"),

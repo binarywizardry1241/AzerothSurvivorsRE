@@ -16,7 +16,7 @@ from enemy_evidence import curated_native
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 EXPECTED = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-OUTPUT = ROOT / "docs/analysis/evidence/0.97.2/enemies"
+OUTPUT = ROOT / "docs/analysis/evidence/enemies"
 RUNTIME = ROOT / "runtime/analysis/history/native-recovery/enemies/b24ae4fa5276/scaling"
 FUNCTIONS = [("constructor", 0x1454c2040, 0x1454c293c),
              ("flagged-health-polynomial", 0x1454f0830, 0x1454f0875),

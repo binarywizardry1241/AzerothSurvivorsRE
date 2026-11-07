@@ -3,7 +3,7 @@
 Selected installed EXE SHA-256:
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
 [verification-needed](../verification-needed.md) owns gap #17; this report owns its backdrop,
-menu-scene, shared-scrollbar and GameWindow portions. The [manifest](evidence/0.109.0/menu-fidelity/manifest.json)
+menu-scene, shared-scrollbar and GameWindow portions. The [manifest](evidence/menu-fidelity/manifest.json)
 records current PE ranges, original-byte hashes, canonical assembly, selected
 Ghidra pseudocode and REA provider identities. Historical filenames retain their
 original provenance; current reuse below follows fresh installed-byte recovery.
@@ -81,7 +81,7 @@ modal run condition. SystemTypeSet TypeID
 `59a80baef35bd02ce1508356898f3ad9` binds FunctionSystem vtable `145de69a0`
 through type getter `1401a5370` to runner `14019e4f0` and poll `140191820`.
 Configuration helper `14013d450` appends DependencyKind::After (`1`). The
-[canonical frontend poll](evidence/0.109.0/menu-fidelity/frontend-poll.c) is
+[canonical frontend poll](evidence/menu-fidelity/frontend-poll.c) is
 shared with the Discord lifecycle report; it is not duplicated there.
 
 Source now follows that four-stage Update chain after the client feed.

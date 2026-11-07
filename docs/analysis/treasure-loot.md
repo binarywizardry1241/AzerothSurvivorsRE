@@ -15,12 +15,12 @@ The standing menu-parity rule still prevents a GitHub push for this task.
 
 ## Evidence and source
 
-- [Native spans/constants](evidence/0.97.2/loot/manifest.json), with exact file
+- [Native spans/constants](evidence/loot/manifest.json), with exact file
   offsets, function-byte hashes and adjacent original instruction listings.
-- [REA/Ghidra provenance](evidence/0.97.2/loot/rea-provenance.json), preserving
+- [REA/Ghidra provenance](evidence/loot/rea-provenance.json), preserving
   Evidence IDs, provider profiles, raw-slice identities and limitations.
   Adjacent `.ghidra.c` files are decompiler observations, not original source.
-- [Current chest/zone/enemy records](evidence/0.97.2/treasure-chests/catalog.json).
+- [Current chest/zone/enemy records](evidence/treasure-chests/catalog.json).
 - [Chest source](../../crates/azeroth-survivors-re/src/treasure_chests/mod.rs),
   [reward source](../../crates/azeroth-survivors-re/src/loot_rewards.rs), and
   [mob loot source](../../crates/azeroth-survivors-re/src/mob_loot.rs).
@@ -178,7 +178,7 @@ covering **3,902 bounded native fixture cases**. The locked/offline Apple
 Silicon library and application build passed. No game, Windows build or
 rendered comparison was run. Seventeen focused REA records are retained; an
 optional full-PE startup was cancelled after 762 seconds without a function
-result, and closed successfully. See the [validation record](evidence/0.97.2/loot/source-validation.json)
+result, and closed successfully. See the [validation record](evidence/loot/source-validation.json)
 and [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md). Fixtures execute bounded unchanged native
 instructions in an emulator with explicit hooks; they do not execute the game
 process or establish live application parity.

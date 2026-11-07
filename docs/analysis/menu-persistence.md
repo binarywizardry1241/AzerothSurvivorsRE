@@ -78,11 +78,11 @@ Structural resemblance, the imported parser's body and historical vectors do
 not establish full current schema, envelope or dispatcher equivalence. No new
 source omission was demonstrated in those inspected routes.
 
-The [manifest](evidence/0.115.0/menu-persistence/manifest.json) binds current bytes,
+The [manifest](evidence/menu-persistence/manifest.json) binds current bytes,
 descriptors, retained fixture identities and finite checks. One canonical
-[assembly extract](evidence/0.115.0/menu-persistence/native.asm) contains the
+[assembly extract](evidence/menu-persistence/native.asm) contains the
 selected ranges; its backup-clock block remains inside the ordinary writer.
-[REA observations](evidence/0.115.0/menu-persistence/rea.json) bind the journaled
+[REA observations](evidence/menu-persistence/rea.json) bind the journaled
 Ghidra queries and curated pseudocode. Original-VA raw imports retain their exact
 current input hash; their generic decompiler ABI is not a Windows x64 signature.
 Assembly registers, fields and branches govern the recovered contracts.

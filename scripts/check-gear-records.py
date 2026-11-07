@@ -26,7 +26,7 @@ def replay():
     image = target_bytes(target)
     pe = load_script("gear_records_pe", ROOT / "scripts/inventory-executable.py").PE(image)
     source_root = Path(__file__).resolve().parents[1]
-    proof = json.loads((source_root / "docs/analysis/evidence/0.121.0/gear-records.json").read_text())
+    proof = json.loads((source_root / "docs/analysis/evidence/gear-records.json").read_text())
     assert proof["target"] == {key: target[key] for key in ("version", "path", "sha256", "size_bytes")}
     for row in proof["source_bindings"]:
         assert hashlib.sha256((source_root / row["path"]).read_bytes()).hexdigest() == row["sha256"]

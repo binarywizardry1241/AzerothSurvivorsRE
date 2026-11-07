@@ -69,7 +69,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--stage',action='store_true');args=parser.parse_args()
     work=ROOT/'runtime/analysis/history/findings/q41-call-interfaces/3d285c807f09'
-    parent=ROOT/'docs/analysis/evidence/0.113.2/q41-p01-aura/manifest.json'
+    parent=ROOT/'docs/analysis/evidence/q41-p01-aura/manifest.json'
     routing=json.loads(parent.read_text())['target_routing']
     assert len(routing)==21 and sum(r['record_count']for r in routing)==244
     wanted={'0x144bf4410':1,'0x145a3dce0':3,'0x145a4abe0':1,'0x145cdf070':5}
@@ -121,7 +121,7 @@ def main():
             'Tag0 copy cases do not classify other converter variants or repair original computed body ownership. All original census/P01 counts/selectors remain unchanged.',
             'No new AS source defect is established. No compiler, source, Windows/controller/filesystem/auth/network/game or original/rebuilt parity execution.'])
     encoded=json.dumps(result,indent=2)+'\n'
-    path=work/'call-interfaces.json'if args.stage else ROOT/'docs/analysis/evidence/0.113.2/q41-call-interfaces.json'
+    path=work/'call-interfaces.json'if args.stage else ROOT/'docs/analysis/evidence/q41-call-interfaces.json'
     if args.stage:path.write_text(encoded)
     else:assert path.read_text()==encoded
     print(json.dumps(dict(selected_original_records=10,abi_cases=153,source_change_required=False,parity_verified=False)))

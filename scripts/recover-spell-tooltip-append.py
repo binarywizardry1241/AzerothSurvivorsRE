@@ -23,7 +23,7 @@ from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
-FIXTURE = ROOT / 'docs/analysis/evidence/0.115.0/coop-spell-text/append-fixtures.json'
+FIXTURE = ROOT / 'docs/analysis/evidence/coop-spell-text/append-fixtures.json'
 OWNERS = (0x1458629b0, 0x1459c1b00, 0x1459d1360, 0x14586a730)
 
 

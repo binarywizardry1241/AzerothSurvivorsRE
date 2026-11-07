@@ -17,7 +17,7 @@ from equipment_native import EquipmentProbe
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 START, END = 0x14595d7bb, 0x14595d970
-OUT = ROOT / 'docs/analysis/evidence/0.112.0/jewelry/seen-validation.json'
+OUT = ROOT / 'docs/analysis/evidence/jewelry/seen-validation.json'
 
 
 def main():

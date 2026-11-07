@@ -19,8 +19,8 @@ from coverage_common import latest_target
 
 ROOT = Path(__file__).resolve().parents[1]
 WORK = ROOT / "runtime/analysis/history/interface/options-lifecycle/9e8ac4b82f89"
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/options"
-STAGED = ROOT / "runtime/analysis/staging/native-evidence/0.105.0/options-lifecycle"
+RETAINED = ROOT / "docs/analysis/evidence/options-comparison"
+STAGED = ROOT / "runtime/analysis/staging/native-evidence/options-lifecycle"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 RANGES = {
     "global-store": (0x14063ADF0, 0x14063B40E),

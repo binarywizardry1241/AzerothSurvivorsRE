@@ -24,7 +24,7 @@ from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn import x86_const as reg
 
 SHA = '291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08'
-PROOF = ROOT / 'docs/analysis/evidence/0.120.0/coop-correspondence/manifest.json'
+PROOF = ROOT / 'docs/analysis/evidence/coop-correspondence/manifest.json'
 DIR = 'crates/azeroth-survivors-re/src/coop_directory.rs'
 SESSION = 'crates/azeroth-survivors-re/src/coop/session.rs'
 
@@ -188,7 +188,7 @@ def main():
     heartbeat = load_script('lobby_loss_heartbeat', ROOT / 'scripts/check-coop-heartbeat.py').replay()
     result['heartbeat'] = heartbeat
     result.update(source())
-    receipt_path = ROOT / 'docs/analysis/evidence/0.120.0/coop-lobby-loss/manifest.json'
+    receipt_path = ROOT / 'docs/analysis/evidence/coop-lobby-loss/manifest.json'
     if receipt_path.exists():
         proof = json.loads(receipt_path.read_text())
         assert proof['target_sha256'] == SHA

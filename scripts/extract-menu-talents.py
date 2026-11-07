@@ -59,7 +59,7 @@ def main():
     data=(ROOT/'AzerothSurvivors/AzerothSurvivors.exe').read_bytes()
     assert hashlib.sha256(data).hexdigest()==EXPECTED
     pe=m.PE(data)
-    english=json.loads((ROOT/'docs/analysis/evidence/0.92/embedded-english.json').read_text())
+    english=json.loads((ROOT/'docs/analysis/evidence/embedded-english-comparison.json').read_text())
     def pair(at):
         p,n=struct.unpack_from('<QQ',data,at)
         return pe.rva_offset(p-pe.image_base),n
@@ -94,6 +94,6 @@ def main():
         classes.append(dict(key=key,id=class_id,trees=trees))
     result=dict(version='0.92.0',classes=classes)
     (ROOT/'crates/azeroth-survivors-re/assets/talents.json').write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')
-    (ROOT/'docs/analysis/evidence/0.92/talent-definitions.json').write_text(json.dumps(dict(artifact_sha256=EXPECTED,target_executed=False,index=dict(file_offset='0x68aab48',virtual_address=hex(pe.offset_va(0x68aab48)),count=9,stride_bytes=200),tree_stride=64,talent_stride=104,description_formatter=dict(function='0x145424990',rank_scaling_helper='0x145426f20',formatter_jump_table='0x1468aedb0',scaling_jump_table='0x1468aee68',effect_discriminant_bytes=1),records=evidence,limits=['The extractor performs static reads only; runtime allocation proof is recorded separately in talents-0.92-recovery.md.','Per-rank tooltip numbers are recovered from native consumers; application of talent effects during gameplay is outside the implemented menu scope.','Pixel parity and malformed imported allocation normalization remain unverified.']),indent=2)+'\n')
+    (ROOT/'docs/analysis/evidence/talent-definitions.json').write_text(json.dumps(dict(artifact_sha256=EXPECTED,target_executed=False,index=dict(file_offset='0x68aab48',virtual_address=hex(pe.offset_va(0x68aab48)),count=9,stride_bytes=200),tree_stride=64,talent_stride=104,description_formatter=dict(function='0x145424990',rank_scaling_helper='0x145426f20',formatter_jump_table='0x1468aedb0',scaling_jump_table='0x1468aee68',effect_discriminant_bytes=1),records=evidence,limits=['The extractor performs static reads only; runtime allocation proof is recorded separately in talents-0.92-recovery.md.','Per-rank tooltip numbers are recovered from native consumers; application of talent effects during gameplay is outside the implemented menu scope.','Pixel parity and malformed imported allocation normalization remain unverified.']),indent=2)+'\n')
     print(f'Recovered {sum(len(t["talents"]) for c in classes for t in c["trees"])} talents in 27 trees, including native per-rank description values.')
 if __name__=='__main__':main()

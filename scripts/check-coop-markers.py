@@ -14,7 +14,7 @@ def digest(data):
 
 def main():
     target = latest_target(verify=True)
-    expected = json.loads((ROOT / 'docs/analysis/evidence/0.115.0/coop-markers/manifest.json').read_text())
+    expected = json.loads((ROOT / 'docs/analysis/evidence/coop-markers/manifest.json').read_text())
     assert target['sha256'] == expected['target']['sha256'] == '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
     assert target['version'] == expected['target']['version'] == '0.115.0'
     assert expected['target_executed'] is False

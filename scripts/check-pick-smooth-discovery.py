@@ -16,7 +16,7 @@ from coverage_common import ROOT, latest_target, target_bytes, project_path
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-BASE = ROOT / "docs/analysis/evidence/0.123.0/pick-smooth"
+BASE = ROOT / "docs/analysis/evidence/pick-smooth"
 DISCOVERY_SOURCE_REVISION = "14bc932e5f52188fbe0f3f1c38c07d2cbd382e44"
 
 

@@ -9,7 +9,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.113.2/legacy-config'
+EVIDENCE = ROOT / 'docs/analysis/evidence/legacy-config'
 manifest = json.loads((EVIDENCE / 'manifest.json').read_text())
 target = latest_target(verify=True)
 assert target['sha256'] == manifest['target']['sha256']

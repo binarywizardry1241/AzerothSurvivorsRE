@@ -5,7 +5,7 @@ consumers and deferred device/parity requirements in [input](https://github.com/
 Target: `AzerothSurvivors/AzerothSurvivors-0.105.0.exe`, SHA-256
 `8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7`.
 
-The [manifest](evidence/0.105.0/xinput/manifest.json) preserves the existing
+The [manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/xinput/manifest.json) preserves the existing
 audit's canonical `controller-poll` extent and newly reviewed full Ghidra body,
 plus its axis-publication helper. These are x86-64 raw imports with generic ABI
 and external/global gaps. Original Windows PE instructions establish the actual

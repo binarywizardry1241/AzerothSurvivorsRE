@@ -2,7 +2,7 @@
 
 The installed EXE contains 151,493,632 bytes and has SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
-The [applied and proposed switch proof](evidence/0.141.0/native-switch-proposal-review.json)
+The [applied and proposed switch proof](evidence/native-switch-proposal-review.json)
 selects each current context under
 `complete_AS_context_reconciliation.current_AS_context_tables[site]`.
 Thirty of 54 AS diagnostic-context tables have one exact predecessor
@@ -176,7 +176,7 @@ establish applicability when no equal geometry exists.
 | #141 | `0x145fbcd0a`, `0x145fc0924` |
 
 All 14 stable historical questions remain in the
-[computed correspondence frontier](evidence/0.141.0/computed-correspondence-frontier.json).
+[computed correspondence frontier](evidence/computed-correspondence-frontier.json).
 The Codex question `retained-table-1403076a2` has a bounded current
 producer-to-formatter proof at `0x140374fd5`. The other 13 remain current applicability
 work under #64/#65. Recover actual opcode admission, selector domains,

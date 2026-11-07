@@ -60,7 +60,7 @@ replacement order, frame-free cleanup, reload separation and aborted-entry gate.
 Four isolated Lua cases reproduce the two old absent-global failures and verify
 two frame-present controls. Their frame methods are explicit stubs; they do not
 execute reconstructed Rust or a game VM. The compact
-[evidence record](evidence/0.109.0/chat-session-lifecycle.json) retains exact
+[evidence record](evidence/chat-session-lifecycle.json) retains exact
 resource hashes and these boundaries.
 
 The existing `check-addon-contracts.py` also passes its **307 bounded

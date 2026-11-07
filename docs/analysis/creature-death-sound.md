@@ -5,7 +5,7 @@ Permanent **#182**, discovered under **#41**, lead
 145,357,824 bytes, SHA-256
 `6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f`.
 [verification-needed](../verification-needed.md) owns current overall status. The
-[compact proof](evidence/0.119.0/creature-death-sound/manifest.json) binds both
+[compact proof](evidence/creature-death-sound/manifest.json) binds both
 native functions, original Ghidra queries, installed table and source consumers.
 
 ## Exact native operation

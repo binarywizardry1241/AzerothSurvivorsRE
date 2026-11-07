@@ -14,7 +14,7 @@ import native_talent_fixture as n
 
 ROOT = n.ROOT
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
-BASE = ROOT/'docs/analysis/evidence/0.112.0/demonic-empowerment'
+BASE = ROOT/'docs/analysis/evidence/demonic-empowerment'
 OUT = BASE/'upgrade-flow-cases.json'
 
 

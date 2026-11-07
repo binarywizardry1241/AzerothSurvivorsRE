@@ -76,7 +76,7 @@ Monastery/Naxxramas WDTs were absent. The existing updater's own
 The decoded size and SHA-256 of every patch were verified before installation
 and rechecked afterward. Patch 3's existing `.update` matched the manifest and
 was reused; patches 4–6 were downloaded and gzip-decoded from the listed parts.
-See [the retained data record](evidence/0.97.2/run-entry/data-refresh.json).
+See [the retained data record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/run-entry/data-refresh.json).
 
 Only this checkout's `AzerothSurvivors/Data` changed. No external installed game,
 player save or reference EXE was modified. MPQs, decoded/downloaded parts, binaries,
@@ -104,7 +104,7 @@ All twelve zones subsequently reached world readiness, captured their rendered
 level and exited zero, without logged asset errors/panics. The exact capture
 binary SHA-256 is
 `1cbd5deda29892dbe371c01aef20fbc8bca8e3102d870e38bafad35079070d92`.
-The [retained summary](evidence/0.97.2/run-entry/zone-smoke.json) binds each
+The [retained summary](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/run-entry/zone-smoke.json) binds each
 zone/map/spawn result to this binary and its local screenshot hash. Raw captures
 and logs are under `runtime/zone-smoke-final/<zone>/`.
 An earlier Elwynn capture also visibly showed damage, a kill and collected XP.
@@ -118,7 +118,7 @@ recovered gold yaw in rendering. The final build also passed with the existing
 unused-source and linker-unwind warnings (`runtime/playable-release-build.log`).
 Final-build Elwynn and Scarlet Monastery checks again reached residency and
 captured their level with zero exits and no logged asset errors/panics; see the
-[post-review record](evidence/0.97.2/run-entry/postreview-smoke.json). This final
+[post-review record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/run-entry/postreview-smoke.json). This final
 binary SHA-256 is `2c1268d39ef5ce89ac2eb0ee6bf2c04a8551616ed9c394fa1a5b0639d742f7e1`;
 its captures/logs are under `runtime/zone-postreview/`. The complete twelve-zone
 check above precedes only those review corrections. The hash-bound entry
@@ -130,7 +130,7 @@ three earned cards, clicking Soul Fire added its learned icon, holding W moved
 the player/camera, Escape paused, and Return to menu restored the picker and
 resident animated backdrop. The scenario used the isolated
 `runtime/menu-qa-state` profile. See the
-[manual check record](evidence/0.97.2/run-entry/manual-check.json); native log is
+[manual check record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/run-entry/manual-check.json); native log is
 `runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-interaction.log`. Arrow keys, both-mouse movement,
 digit-choice keys, death/retry and victory were not manually checked. This one
 short interaction does not establish all-class control or original-game parity.

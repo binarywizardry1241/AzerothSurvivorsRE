@@ -1,5 +1,5 @@
 //! Generated 0.100.1 zone geometry and enemy chest flags.
-//! Owning byte spans: docs/analysis/evidence/0.100.1/treasure-chests/catalog.json.
+//! Owning byte spans: docs/analysis/treasure-chests.md.
 //! Regenerate: python3 scripts/recover-treasure-0.100.1-catalog.py --write-source-catalog
 //! The build uses these constants and never reads the reference executable.
 

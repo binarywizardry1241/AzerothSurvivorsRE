@@ -22,7 +22,7 @@ SHA = '80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c'
 OWNER = (0x145b01eb0, 0x145b04a8a)
 CASES = {0x56: (0x145b02908, 'RDI'), 0x5e: (0x145b02ac8, 'R14'),
          0x60: (0x145b02b69, 'R14')}
-KEEP = ROOT / 'docs/analysis/evidence/0.120.2/template-query-input/static-check.json'
+KEEP = ROOT / 'docs/analysis/evidence/template-query-input/static-check.json'
 SOURCE = 'crates/azeroth-survivors-re/src/gameplay/coop_commands.rs'
 
 

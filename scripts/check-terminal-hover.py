@@ -19,7 +19,7 @@ from coverage_common import latest_target
 
 
 ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE = ROOT / "docs/analysis/evidence/0.105.0/terminal/hover"
+EVIDENCE = ROOT / "docs/analysis/evidence/terminal/hover"
 INTERACTION = 0x140295CF0
 BORDER = 0x1402967D0
 

@@ -13,7 +13,7 @@ from script_sources import load_script
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 b=target_bytes(latest_target(verify=True));p=load_script('diff_pe',ROOT/'scripts/inventory-executable.py').PE(b)
-layout=json.loads((ROOT/'docs/analysis/evidence/0.92/picker-node-layout.json').read_text())['node_layout'];layout['OFFSET_flex_grow']=348
+layout=json.loads((ROOT/'docs/analysis/evidence/picker-node-layout.json').read_text())['node_layout'];layout['OFFSET_flex_grow']=348
 
 def sample(role,selected=0,maximum=5,normal=True,account=5,locked=False,current=None,affix_selector=0):
  u=Uc(UC_ARCH_X86,UC_MODE_64);end=max(s['rva']+max(s['virtual_size'],s['raw_size']) for s in p.sections);u.mem_map(p.image_base,(end+4095)&~4095)

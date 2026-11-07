@@ -21,7 +21,7 @@ from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 WORK = ROOT / "runtime/analysis/history/findings/q41-card-typing/f4f4a3385d50"
-KEEP = ROOT / "docs/analysis/evidence/0.113.2/card-keyboard"
+KEEP = ROOT / "docs/analysis/evidence/card-keyboard"
 RANGES = {
     "keyboard": (0x1400B3420, 0x1400B37B9),
     "snapshot-typing": (0x1400D8667, 0x1400D8789),

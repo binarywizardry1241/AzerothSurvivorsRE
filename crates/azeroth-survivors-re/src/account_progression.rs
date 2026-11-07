@@ -762,7 +762,7 @@ mod tests {
             cases: Vec<(String, u8, u64, u64, u64)>,
         }
         let fixture: Fixture = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.121.0/achievement-progress-cases.json"
+            "../../../docs/analysis/evidence/achievement-progress-cases.json"
         )).unwrap();
         for (name, native_kind, minimum, numerator, denominator) in fixture.cases {
             let input = fixture.inputs.iter().find(|input| input.name == name).unwrap();
@@ -814,7 +814,7 @@ mod tests {
         #[derive(Deserialize)]
         struct Fixtures { cases: Vec<Case> }
         let fixtures: Fixtures = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.117.0/coop-achievements/predicates-native.json"
+            "../../../docs/analysis/evidence/coop-achievements/predicates-native.json"
         )).unwrap();
         for case in fixtures.cases {
             let context = NativeCoopFeats {
@@ -970,7 +970,7 @@ mod tests {
     #[test]
     fn current_boss_feats_match_original_native_attribution_vectors() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.112.0/achievement-grants/native-vectors.json"
+            "../../../docs/analysis/evidence/achievement-grants/native-vectors.json"
         )).unwrap();
         for case in fixture["cases"].as_array().unwrap() {
             let definition = definitions().iter().find(|row| row.key == case["key"].as_str().unwrap()).unwrap();
@@ -991,7 +991,7 @@ mod tests {
     #[test]
     fn no_u_matches_selected_native_pair_vectors_without_a_victory_requirement() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.105.0/no-u/native-vectors.json"
+            "../../../docs/analysis/evidence/no-u/native-vectors.json"
         )).unwrap();
         let definition = definitions().iter().find(|row| row.key == "feat:nou").unwrap();
         for case in fixture["membership_cases"].as_array().unwrap() {
@@ -1011,7 +1011,7 @@ mod tests {
     #[test]
     fn account_progress_matches_native_instruction_cases() {
         const CURRENT_CODEX_COUNT: u64 = 141;
-        let fixtures:serde_json::Value=serde_json::from_str(include_str!("../../../docs/analysis/evidence/0.112.0/achievement-grants/native-account-vectors.json")).unwrap();
+        let fixtures:serde_json::Value=serde_json::from_str(include_str!("../../../docs/analysis/evidence/achievement-grants/native-account-vectors.json")).unwrap();
         for state in fixtures["states"].as_array().unwrap() {
             let mut account: Account = serde_json::from_value(state["input"].clone()).unwrap();
             account.seen = account.seen.min(CURRENT_CODEX_COUNT as usize);
@@ -1048,7 +1048,7 @@ mod run_tests {
     #[test]
     fn snapshots_and_feats_match_native_boundaries_and_utc_grants() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.100.1/account-progression/native-run-fixtures.json"
+            "../../../docs/analysis/evidence/account-progression/native-run-fixtures.json"
         ))
         .unwrap();
         for row in fixtures["cases"].as_array().unwrap() {

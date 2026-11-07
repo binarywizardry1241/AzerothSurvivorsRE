@@ -44,7 +44,7 @@ table, four exact missing paths and a readable **256×256 Elwynn tile**. Its
 independent bounded MPQ reader follows the registered patch order and refuses
 changed archives or unsupported file forms. It checks the live source gate,
 player reset and probe admission without executing Rust. The compact
-[resource evidence](evidence/0.109.0/minimap-lifecycle.json) retains hashes and
+[resource evidence](evidence/minimap-lifecycle.json) retains hashes and
 results; extracted asset contents remain ignored under `runtime/`.
 
 The changed renderer syntax-parses with the project rustfmt. These checks do

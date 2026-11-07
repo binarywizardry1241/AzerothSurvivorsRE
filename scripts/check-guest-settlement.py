@@ -350,7 +350,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--require-retained-queries', action='store_true')
     args = parser.parse_args()
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.119.0/guest-settlement/manifest.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/guest-settlement/manifest.json').read_text())
     target = latest_target(verify=True)
     assert all(target[k] == proof['target'][k] for k in ('version', 'sha256', 'size_bytes'))
     image = target_bytes(target)

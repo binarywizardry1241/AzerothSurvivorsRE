@@ -18,7 +18,7 @@ assert target['sha256']=='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be0133274
 d=target_bytes(target)
 module = load_script('save_pe', R/'scripts/inventory-executable.py')
 p=module.PE(d)
-manifest=json.loads((R/'docs/analysis/evidence/0.109.0/save-core/manifest.json').read_text())
+manifest=json.loads((R/'docs/analysis/evidence/save-core/manifest.json').read_text())
 for row in manifest['functions']:
  off=p.rva_offset(int(row['address'],16)-p.image_base)
  assert hashlib.sha256(d[off:off+row['byte_count']]).hexdigest()==row['sha256'],row['name']
@@ -118,7 +118,7 @@ record=dict(target_version=target['version'],target_sha256=target['sha256'],
  target_executed=False,compilation=False,case_count=len(cases),cases=cases,
  seams=['allocator/deallocator','memcpy/memmove/memset','failed-UTF8 String drop'],
  scalar_sha1_cpu_cache=0)
-output=R/'docs/analysis/evidence/0.109.0/save-core/envelope.json'
+output=R/'docs/analysis/evidence/save-core/envelope.json'
 if args.write:output.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(output.read_text())==record
 print(f"PASS {len(cases)} current native save-envelope cases, including full opener and scalar SHA-1; no compilation or application launch.")

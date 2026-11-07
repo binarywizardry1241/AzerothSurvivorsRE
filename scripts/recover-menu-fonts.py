@@ -20,8 +20,8 @@ from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-RETAINED = ROOT / 'docs/analysis/evidence/0.109.0/menu-fonts'
-STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/menu-fonts'
+RETAINED = ROOT / 'docs/analysis/evidence/menu-fonts'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/menu-fonts'
 WORK = ROOT / 'runtime/analysis/history/interface/menu-lifecycle/969b671942c0'
 OWNERS = {'cjk-provider': (0x1458f8a60, 0x1458f8c4a),
           'augment': (0x1458f8cd0, 0x1458fb738),
@@ -175,7 +175,7 @@ def check_contract(evidence):
         assert native['subject']['digest']['sha256'] == query['input_sha256']
     patch = load_script('mixed_font_cmap', ROOT / 'scripts/verify-menu-font-patch.py')
     assets = load_script('mixed_font_inputs', ROOT / 'scripts/recover-exe-assets.py')
-    historical = json.loads((ROOT / 'docs/analysis/evidence/0.109.0/menu-fonts/manifest.json').read_text())
+    historical = json.loads((ROOT / 'docs/analysis/evidence/menu-fonts/manifest.json').read_text())
     old = {row['filename']: row['sha256'] for row in historical['contracts']['fonts']}
     fonts = []
     for row in manifest['fonts']:

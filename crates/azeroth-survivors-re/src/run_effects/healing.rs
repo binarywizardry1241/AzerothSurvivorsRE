@@ -393,7 +393,7 @@ mod tests {
     #[test]
     fn current_native_frame_batch_healing_vectors_match() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/run-effects/healing-native.json"
+            "../../../../docs/analysis/evidence/run-effects/healing-native.json"
         ))
         .unwrap();
         let eq = |value: f32, expected: &serde_json::Value| {
@@ -484,7 +484,7 @@ mod tests {
     #[test]
     fn current_native_healing_overheal_and_pool_vectors_match() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/run-effects/healing-native.json"
+            "../../../../docs/analysis/evidence/run-effects/healing-native.json"
         ))
         .unwrap();
         assert_eq!(fixture["target_sha256"], super::super::TARGET_SHA256);
@@ -595,7 +595,7 @@ mod tests {
     #[test]
     fn current_native_healing_pool_pulse_gates_match() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/run-effects/healing-native.json"
+            "../../../../docs/analysis/evidence/run-effects/healing-native.json"
         ))
         .unwrap();
         for case in fixture["pulses"].as_array().unwrap() {

@@ -2523,7 +2523,7 @@ mod persistence_tests {
     #[test]
     fn numeric_writes_match_current_native_precision_and_negative_zero() {
         let vectors: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/options-values/native-vectors.json"
+            "../../../docs/analysis/evidence/options-values/native-vectors.json"
         )).unwrap();
         for case in vectors["number"].as_array().unwrap() {
             let bytes: Vec<_> = case["input_f32_bits"].as_str().unwrap().as_bytes()

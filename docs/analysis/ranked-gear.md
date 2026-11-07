@@ -2,7 +2,7 @@
 
 Selected EXE: `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`,
 146,721,280 bytes. Historical catalog/repair evidence retains its original target.
-The current [star proof](evidence/0.127.0/ranked-gear/stars.json) binds native
+The current [star proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.127.0/ranked-gear/stars.json) binds native
 ranges/data, four successful journaled Ghidra queries and live source consumers.
 
 ## Final-star effects (#230)

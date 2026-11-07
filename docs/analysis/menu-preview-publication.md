@@ -3,8 +3,8 @@
 Installed target SHA-256:
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
 Current producer `1400fc450..1400fd95d` is the direct caller of the hero request
-setter `1408691d0`. [Ghidra identity](evidence/0.112.0/menu-preview-publication/analysis.json)
-and [bounded results](evidence/0.112.0/menu-preview-publication/cases.json) retain
+setter `1408691d0`. [Ghidra identity](evidence/menu-preview-publication/analysis.json)
+and [bounded results](evidence/menu-preview-publication/cases.json) retain
 the current body/range hashes.
 
 Both Character (`1400fd6dd`) and Picker (`1400fd801`) geometry branches use signed

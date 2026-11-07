@@ -3,9 +3,9 @@
 Selected installed EXE SHA-256:
 `de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be`.
 This source/static repair owns **#283**, found while tracing the live caller for
-[#264](coop.md#choices-progression-and-rewards). The [manifest](evidence/0.123.0/solo-clear/manifest.json)
+[#264](coop.md#choices-progression-and-rewards). The [manifest](evidence/solo-clear/manifest.json)
 reuses that finding's six current native subjects and canonical ranges, plus
-the retained full-driver query owned by the [smoothing proof](evidence/0.123.0/coop-smoothing/manifest.json).
+the retained full-driver query owned by the [smoothing proof](evidence/coop-smoothing/manifest.json).
 Only two additional compact driver ranges are extracted; no native query was
 repeated or launched.
 

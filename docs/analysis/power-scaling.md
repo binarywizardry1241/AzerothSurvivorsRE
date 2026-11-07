@@ -25,7 +25,7 @@ weapon16/pet17 rows.
 
 Current inline owner `145902c51..145902f6b`, miss tail `145904029..14590404f`
 and ordered query `145925e50` are bound by the
-[weapon manifest](evidence/0.105.0/power-scaling/weapon/manifest.json).
+[weapon manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/power-scaling/weapon/manifest.json).
 
 | Class | Base damage | Base interval | Range |
 | --- | ---: | ---: | ---: |
@@ -55,13 +55,13 @@ including when the query center is elsewhere. Avoided actors retain their own
 partition. Current instruction vectors include large sets and equal-key ties.
 Current Improved Heroic Strike and Unbridled Wrath records independently bind
 stat16 coefficients .05 and .04 per rank. The current
-[rank owner](evidence/0.105.0/power-scaling/ranks/manifest.json) confirms the
+[rank owner](evidence/power-scaling/ranks/manifest.json) confirms the
 raw35 magnitude multiplication by the selected rank; source fixtures exercise
 the retained catalog's internal30 representation of these same coefficients.
 
 ### Ordinary combat pets
 
-The [creation manifest](evidence/0.105.0/pet-creation/manifest.json) binds the
+The [creation manifest](evidence/pet-creation/manifest.json) binds the
 current constructor, raw29 collector and selected producers. The catalog retains
 all thirteen current descriptors; only verified special0 grants are connected:
 
@@ -79,9 +79,9 @@ fields and startup ring angles. The first update is at creation+1 second;
 subsequent updates use current time+.25. The live adapter publishes actual unit
 creation and movement into the existing client.
 
-The [tick fixtures](evidence/0.105.0/power-scaling/pet-tick/native-tick.json),
-[Ghidra helper identities](evidence/0.105.0/power-scaling/pet-tick/helpers-manifest.json)
-and [bounded loop](evidence/0.105.0/power-scaling/pet-loop-rea.json) bind ordinary
+The [tick fixtures](evidence/power-scaling/pet-tick/native-tick.json),
+[Ghidra helper identities](evidence/power-scaling/pet-tick/helpers-manifest.json)
+and [bounded loop](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/power-scaling/pet-loop-rea.json) bind ordinary
 target retention, player leashes, movement, attack deadlines and projectile
 payloads. Melee queries use radius26 and new-target player distance<28; retained
 targets use player distance<32. Ranged queries use radius28. Movement speeds
@@ -113,13 +113,13 @@ callbacks. The weapon stage precedes ordinary casts; the pet stage follows the
 healing pool and precedes class-special ticks and pending impacts. Deferred
 source attribution is captured separately from freecast provenance. Spell0
 bypasses ability lookup, matching the current
-[selector gates](evidence/0.105.0/power-scaling/zero-spell/manifest.json).
+[selector gates](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/power-scaling/zero-spell/manifest.json).
 
 Native validation passed **785 bounded cases**: 28 weapon, 15 weapon queries,
 3 timer initialization, 576 pet arithmetic, 60 pet tick, 12 projectile payload,
 8 pending damage gates, 24 creation/angle/GUID, 15 selected rank, 38 spell0
 selector and 6 recovery cases. The
-[pet power fixture](evidence/0.105.0/power-scaling/pet-power/native-power.json)
+[pet power fixture](evidence/power-scaling/pet-power/native-power.json)
 records raw float bits. The scripts stage reproducible output under ignored
 `runtime/` before curation. Native calls use declared allocation, terrain,
 target-query, packet, clock or supplied-sample seams as appropriate; instruction
@@ -131,7 +131,7 @@ Compilation did not reach the reconstruction crate before cancellation; its
 disposable build output was removed. Current work is source-only, with no
 further compiling checks. No original/rebuilt application, audio or real-MPQ
 gameplay comparison has run for these changes. The compact
-[validation record](evidence/0.105.0/power-scaling/source-validation.json)
+[validation record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/power-scaling/source-validation.json)
 identifies the source and the limits of these checks.
 
 ## Remaining boundaries

@@ -9,7 +9,7 @@ separate in [CURRENT-STATE](../CURRENT-STATE.md#gap-293) and
 the historical [0.109.0 ASCII name contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/hero-names-0.109.0.md) only for the
 selected current name validator, case conversion and picker admission paths.
 
-The [manifest](evidence/0.127.0/hero-names/manifest.json) binds exact current
+The [manifest](evidence/hero-names/manifest.json) binds exact current
 instructions, code/data ranges, Create result codes and two journaled
 REA/Ghidra queries. Discovery used the current adjacent Create error-result
 arms and their validator/wrapper calls; old RVAs and old matching prefixes are
@@ -83,7 +83,7 @@ composition-event routing and active-input preedit presentation are separate
 #293 consumers; this name repair does not itself establish that platform/IME
 behavior or font rendering has run.
 
-The current [Windows IME boundary](evidence/0.127.0/hero-names/windows-ime-boundary.json)
+The current [Windows IME boundary](evidence/hero-names/windows-ime-boundary.json)
 also rules out an inferred platform workaround. Message0x281 clears
 `ISC_SHOWUICOMPOSITIONWINDOW` from its `lParam` before `DefWindowProcW`;
 message0x10f handles IMM result/preedit processing and returns a handled zero.

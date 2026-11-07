@@ -7,7 +7,7 @@ import struct
 from coverage_common import ROOT
 from script_sources import load_script
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.121.0/armory-star-purchase/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/armory-star-purchase/manifest.json"
 
 
 def f32(value):

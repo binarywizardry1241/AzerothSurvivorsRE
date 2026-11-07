@@ -14,7 +14,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-BASE = ROOT / "docs/analysis/evidence/0.123.0/coop-selection"
+BASE = ROOT / "docs/analysis/evidence/coop-selection"
 
 
 def digest(raw):

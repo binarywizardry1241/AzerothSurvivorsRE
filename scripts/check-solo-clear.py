@@ -19,7 +19,7 @@ from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
 
-BASE = ROOT / "docs/analysis/evidence/0.123.0/solo-clear"
+BASE = ROOT / "docs/analysis/evidence/solo-clear"
 
 
 def sha(raw):

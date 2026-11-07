@@ -33,9 +33,9 @@ only, so numeric talent or amulet inputs cannot shift captured proc attribution.
 The whole current collector `14599e8d0..14599ef73` executes for every current
 talent/rank in `scripts/check-warlock-effects.py`: **145 rank/effect
 cases** pass. Its canonical native extraction is shared with the
-[Warrior manifest](evidence/0.112.0/warrior-talents/manifest.json); the check
+[Warrior manifest](evidence/warrior-talents/manifest.json); the check
 verifies the selected native ranges and extraction hashes. The
-[fixtures](evidence/0.112.0/warlock-talents/effect-cases.json) retain original and
+[fixtures](evidence/warlock-talents/effect-cases.json) retain original and
 projected effect indices so source regressions address each emitted payload.
 Defined semantic fields are compared; inactive native union padding is excluded.
 
@@ -50,7 +50,7 @@ Supremacy no longer supplies a flat 25% demon bonus. Its lesser-talent ranks
 feed the dedicated actor consumers. Soul Link's additional 1/2/3% damage
 reduction is appended once to the stat-refresh scratch copy, following current
 `1458f2a52..1458f2b8d`, before the common numeric finish and armor cap. The
-[Warlock manifest](evidence/0.112.0/warlock-talents/manifest.json) retains
+[Warlock manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/warlock-talents/manifest.json) retains
 that selected native stat-refresh range. The contribution is not accumulated
 in permanently equipped rows across refreshes.
 

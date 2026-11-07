@@ -35,12 +35,12 @@ unchanged wording establishes unchanged arithmetic.
 
 ## Evidence and checks
 
-[The manifest](evidence/0.115.0/spell-descriptions/manifest.json) binds the current
+[The manifest](evidence/spell-descriptions/manifest.json) binds the current
 definition table and canonical primary/passive/school/damage-fragment assembly
 extracts. Durable REA/Ghidra queries recovered both description owners. Their raw
 slice decompilation leaves computed branches unresolved; original PE branch
 bytes and bounded admitted instructions establish the recovered branches.
-Existing canonical [passive cooldown/floor evidence](evidence/0.115.0/coop-overlay/manifest.json)
+Existing canonical [passive cooldown/floor evidence](evidence/coop-overlay/manifest.json)
 is reused rather than copied.
 
 The non-compiling check is:
@@ -55,7 +55,7 @@ baseline, modified, and large-area inputs plus both additional Lightwell grammar
 combinations: 341 scenarios and 1,814 numeric comparisons. A separate expression
 evaluation compares 578 shared baseline callsites with independently emulated
 modified-input values. All 68 template keys exist in all 14 locale catalogs.
-Compact [cases](evidence/0.115.0/spell-descriptions/cases.json) cover seven
+Compact [cases](evidence/spell-descriptions/cases.json) cover seven
 representative spells, including current Searing Pain power, passive floors,
 area softening, periodic rounding, Empowerment, and all four Lightwell branches.
 Rust source tests consume those cases; they have not been compiled or run.

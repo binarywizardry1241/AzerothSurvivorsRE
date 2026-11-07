@@ -93,7 +93,7 @@ def derive():
 
 
 
-EVIDENCE = ROOT / "docs/analysis/evidence/0.120.0/race-entry"
+EVIDENCE = ROOT / "docs/analysis/evidence/race-entry"
 
 
 def digest(value):

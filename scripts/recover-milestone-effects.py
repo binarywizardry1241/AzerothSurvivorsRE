@@ -185,7 +185,7 @@ for chance in [0.,.08,1.,float('nan')]:
         admitted=admitted,expires_bits=expires,angle_bits=angle,
         final_words=list(struct.unpack('<4Q',u.mem_read(MEM+0x8a0,32)))))
 
-OUT=ROOT/'docs/analysis/evidence/0.100.1/run-effects'; OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'docs/analysis/evidence/run-effects'; OUT.mkdir(parents=True,exist_ok=True)
 owners=[]
 for role,lo,hi in [
  ('milestone-counter-condition',0x1454cbcf4,0x1454cbddd),

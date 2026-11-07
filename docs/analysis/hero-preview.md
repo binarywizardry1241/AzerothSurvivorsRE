@@ -18,7 +18,7 @@ Current diagnostic `crates/benilla-app/src/portrait/hero_booth.rs` binds
 `140c17470..140c19989`. Four exact original-VA ranges were decoded through
 REA/Ghidra. Their canonical assembly, pseudocode, full hashes, profile/Evidence
 IDs and independent instruction boundaries are in the
-[manifest](evidence/0.109.0/hero-preview/manifest.json).
+[manifest](evidence/hero-preview-comparison/manifest.json).
 
 The current implementation uses its own **`hero`** booth, not the historical
 `dressup` token. The bridge reads the custom request through `14058d450`, creates

@@ -23,11 +23,11 @@ from script_sources import load_script
 
 SHA = "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
 WORK = ROOT / "runtime/analysis/history/findings/q41-embedded-resources/0d964184062b"
-KEEP = ROOT / "docs/analysis/evidence/0.119.0/run-level-cap"
+KEEP = ROOT / "docs/analysis/evidence/run-level-cap-comparison"
 START, END = 0x145B44190, 0x145B443C1
 BOOT_START, BOOT_END = 0x145AA8A20, 0x145AA8B5B
 PATH = r"Interface\FrameXML\ReputationFrame.lua"
-SUFFIX = ROOT / "docs/analysis/evidence/0.119.0/run-level-cap.lua"
+SUFFIX = ROOT / "docs/analysis/evidence/run-level-cap.lua"
 
 
 def digest(raw):
@@ -198,7 +198,7 @@ def xp_required(level):
 def check_current(args, target):
     assert target["version"] == "0.127.0"
     assert target["sha256"] == "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb"
-    keep = ROOT / "docs/analysis/evidence/0.127.0/run-level-cap"
+    keep = ROOT / "docs/analysis/evidence/run-level-cap"
     work = ROOT / "runtime/analysis/history/progression/level-cap/2f947655c618"
     suffix_path = keep.with_suffix(".lua")
     image = target_bytes(target)
@@ -400,7 +400,7 @@ def main():
                           sha256=digest(value), assembly=receipt(path), instructions=len(decoded)))
     assert sites[0x145AA8AB8].mnemonic == "call" and sites[0x145AA8AB8].op_str == hex(START)
     # The current formatter's exact u32/radix input prefix is already canonical.
-    reused = ROOT / "docs/analysis/evidence/0.119.0/rewards-tabard-localization/contracts.json"
+    reused = ROOT / "docs/analysis/evidence/rewards-tabard-localization/contracts.json"
     formatter = next(s for s in json.loads(reused.read_text())["data_spans"]
                      if s["role"] == "u32-ID-read-and-radix-10")
     assert digest(raw(int(formatter["va"], 16), formatter["byte_count"])) == formatter["sha256"]

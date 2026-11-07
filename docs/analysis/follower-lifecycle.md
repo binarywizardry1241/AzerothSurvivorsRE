@@ -7,7 +7,7 @@ This report owns the selected follower source/recovery portion of gap #25.
 
 ## Current producers
 
-The [native vectors](evidence/0.105.0/follower-lifecycle/native-vectors.json)
+The [native vectors](evidence/follower-lifecycle/native-vectors.json)
 traverse all **355 current talent definitions / 429 effect payloads** and
 replay the existing native constructor for all **130 amulets / 375 effects**.
 Neither producer catalog contains raw effect2. The historical Demonic Pact
@@ -24,7 +24,7 @@ constructed effect that could exist elsewhere in the executable.
 | Raw33 Infernal/Doomguard and raw34 Pit Lord/Felguard | Ordered proc markers in the actual successful-cast callback reach `after_damaging_cast_for` and synchronous creation/landing. Temporary origins, live actor AI, spell/missile attribution and removal use the existing demon adapter. Supremacy's permanent greater grants retain their separate initial route. |
 | Showcase Begin `1459187ae..145918878` | Now adds the selected class's special companions after ordinary/granted setup, through the same live creation and combat adapter. |
 
-The [existing constructor evidence](evidence/0.105.0/pet-creation/manifest.json)
+The [existing constructor evidence](evidence/pet-creation/manifest.json)
 and [Demonology integration](demon-gameplay.md) own creature fields,
 terrain/movement, special attacks, meters and captured missile state. A recovered
 producer alone does not certify those consumers' runtime fidelity.
@@ -69,7 +69,7 @@ sentinel. Existing native arithmetic still preserves an unordered old deadline.
 `python3 -B scripts/check-follower-lifecycle.py --check` passed: newest
 target identity, full bounded catalog producer inventory, **25 native selector,
 expiry and origin-gate cases**, and three retained native ranges/text digests.
-The [manifest](evidence/0.105.0/follower-lifecycle/manifest.json) references the
+The [manifest](evidence/follower-lifecycle/manifest.json) references the
 existing canonical caller, constructor, departure arithmetic and pet loop.
 The full balance-catalog and equipment-catalog checks also passed, including
 source table agreement and the equipment owner's 1,484 native scaling cases.

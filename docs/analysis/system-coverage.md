@@ -79,7 +79,7 @@ defaults and registry delivery. Current [combat-log admission](combat-log-option
 and [Options file/VM delivery](options-vm.md) have separate proofs.
 The historical [normal stock frontend](stock-frontend.md)
 binds credentials, realms, permanent saved-roster operations, shared client
-identity and terminal return/restart. The [hover query evidence](evidence/0.105.0/terminal/hover/manifest.json)
+identity and terminal return/restart. The [hover query evidence](evidence/terminal/hover/manifest.json)
 bounds the picker updater and terminal action query. Constructor hook/default
 dependencies were recovered for that target and Interaction-only actions retain typed device
 routing; later computed/global painters and dynamic registry mutation remain unresolved. These are source/static portions of #17 and #9; full system

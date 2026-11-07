@@ -9,6 +9,7 @@ from native_recovery import f32 as _shared_f32, bits as _shared_bits
 from script_sources import load_script
 import argparse, hashlib, json, math, re, struct, sys
 from pathlib import Path
+from artifact_history import read_artifact
 from coverage_common import ROOT, target_bytes
 
 sys.path[:0] = [str(ROOT/'runtime/tool-state/python/camera/python-libs'),
@@ -17,7 +18,7 @@ from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED
 from unicorn import x86_const as r
 
-STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-boss-lifecycle'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/raid-boss-lifecycle'
 KEPT = ROOT/'docs/analysis/evidence/0.112.0/raid-boss-lifecycle'
 RANGES = {
     'minutes': (0x14590412c, 0x145904141),
@@ -611,12 +612,12 @@ def retain_evidence(out,machine,raw,span,stage):
     candidates={}
     for file in files:
         rows={}
-        for line in(canonical/file).read_text().splitlines():
+        for line in read_artifact(canonical/file).decode().splitlines():
             match=re.match(r'^([0-9a-f]+): ([0-9a-f]+) ',line)
             if match:
                 address=int(match[1],16);value=bytes.fromhex(match[2]);assert address not in rows and raw(address,len(value))==value,(file,hex(address));rows[address]=value
         assert rows,file;candidates['../'+file]=rows
-    prior=None if stage else json.loads((out/'manifest.json').read_text())
+    prior=None if stage else json.loads(read_artifact(out/'manifest.json'))
     recorded={}
     if prior:
         for intervals in prior['visited_instruction_ranges'].values():
@@ -640,7 +641,7 @@ def retain_evidence(out,machine,raw,span,stage):
         instructions=list(machine.md.disasm(value,address));assert sum(i.size for i in instructions)==len(value)
         assembly+=''.join(f'{i.address:x}: {i.bytes.hex()} {i.mnemonic} {i.op_str}'.rstrip()+'\n'for i in instructions)
     if stage:(out/'selected-native.asm').write_text(assembly)
-    else:assert(out/'selected-native.asm').read_text()==assembly
+    else:assert read_artifact(out/'selected-native.asm').decode()==assembly
     traces={}
     for family,addresses in machine.visited.items():
         intervals=[]
@@ -672,7 +673,7 @@ def main():
     canonical=ROOT/'docs/analysis/evidence/0.112.0';dependencies=[]
     for family in ['raid-hazards','raid-inputs','raid-guardian-lifecycle']:
         mod.verify_rea_operations(raw,canonical/family,target['sha256']);dependencies.append(dict(path='../'+family+'/rea-provenance.json',target_sha256=target['sha256']))
-    hit=json.loads((canonical/'warrior-talents/manifest.json').read_text());assert hit['target']['sha256']==target['sha256'];victim=next(row for row in hit['ghidra']if row['role']=='victim-hit');assert victim['input_sha256']==span(0x14593ec90,0x145942543-0x14593ec90)['sha256']
+    hit=json.loads(read_artifact(canonical/'warrior-talents/manifest.json'));assert hit['target']['sha256']==target['sha256'];victim=next(row for row in hit['ghidra']if row['role']=='victim-hit');assert victim['input_sha256']==span(0x14593ec90,0x145942543-0x14593ec90)['sha256']
     dependencies.append(dict(path='../warrior-talents/manifest.json',role='victim-hit',evidence_id=victim['evidence_id'],input_range=span(0x14593ec90,0x145942543-0x14593ec90)))
     retained=retain_evidence(out,machine,raw,span,args.stage)
     calls={family:dict(intercepted_seams=[hex(a)for a in sorted(machine.seam_calls.get(family,set()))],observed_calls=[dict(instruction=span(a,5),target=hex(b),role='intercepted seam'if b in machine.seam_calls.get(family,set())else'byte-executed same-scope helper')for a,b in sorted(edges)])for family,edges in machine.call_edges.items()}
@@ -687,7 +688,7 @@ def main():
                 'Whole shared-frame callbacks, client packet/wire parity, presentation/audio timing and gameplay parity remain open. Global #41 can reveal undiscovered producers beyond the selected reachable raid graph.'])
     text=json.dumps(result,indent=2)+'\n'
     if args.stage:(out/'manifest.json').write_text(text)
-    else:assert(out/'manifest.json').read_text()==text
+    else:assert read_artifact(out/'manifest.json').decode()==text
     print('Current primary-boss lifecycle cases:',{k:v if isinstance(v,int)else v['cases']for k,v in counts.items()},'; source guards:',source['guards'],'; no compilation/game')
 
 if __name__=='__main__':main()

@@ -23,7 +23,7 @@ from unicorn.x86_const import (
     UC_X86_REG_R9, UC_X86_REG_R11, UC_X86_REG_R12, UC_X86_REG_R13, UC_X86_REG_R14,
 )
 
-EVIDENCE = ROOT / "docs/analysis/evidence/0.112.5/escape-menu"
+EVIDENCE = ROOT / "docs/analysis/evidence/escape-menu"
 MASK = (1 << 64) - 1
 ESCAPE = 0x73
 MODIFIERS = {value for value in range(63) if (0x7B18000000000000 >> value) & 1}

@@ -2,7 +2,7 @@
 
 Reviewed 2026-10-18 against `AzerothSurvivors/AzerothSurvivors-0.97.2.exe`,
 SHA-256 `a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589`.
-The [textual evidence](evidence/0.97.2/native-client-baseline.json) records the
+The [textual evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/native-client-baseline.json) records the
 verified byte ranges, hashes, source owners and current adapter fingerprints.
 This is historical pre-integration evidence. [Controller integration](local-controller-source-integration.md) explains the subsequent source changes; [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) own current behavior and remaining gaps. Full native parity is unverified.
 No code changes, builds, compiler tests or original/rebuilt launches occurred.

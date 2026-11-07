@@ -22,7 +22,7 @@ def sample(role):
  u=Uc(UC_ARCH_X86,UC_MODE_64);end=max(x['rva']+max(x['virtual_size'],x['raw_size'])for x in p.sections);u.mem_map(p.image_base,(end+4095)&~4095)
  for x in p.sections:u.mem_write(p.image_base+x['rva'],d[x['raw_offset']:x['raw_offset']+x['raw_size']])
  u.mem_map(0x200000000,0x1000000);u.mem_map(0x300000000,0x200000);u.mem_map(0x400000000,4096);heap=0x200010000;STOP=0x400000000
- layout=json.loads((R/'docs/analysis/evidence/0.92/picker-node-layout.json').read_text())['node_layout'];layout['OFFSET_flex_grow']=348
+ layout=json.loads((R/'docs/analysis/evidence/picker-node-layout.json').read_text())['node_layout'];layout['OFFSET_flex_grow']=348
  records=[];texts=[]
  def q(a):return struct.unpack('<Q',u.mem_read(a,8))[0]
  def wq(a,v):u.mem_write(a,struct.pack('<Q',v))
@@ -136,7 +136,7 @@ record=dict(target_sha256=target['sha256'],target_executed=False,results=results
             limits=['Only current constructor instructions run; account getters, UI/asset/font submission, allocation, color conversion and text/number/localization are explicit seams.',
                     'Matching384-byte Bevy Node field layout is checked at typed current submission sites. Snapshots establish emitted fields, not computed layout, shaping, input or GPU parity.',
                     'The body sample supplies one selected title and a zero-count category. Two text sizes and outer image/column/row Nodes are captured; fixture text contents are not native formatting proof.'])
-path=R/('runtime/analysis/staging/native-evidence/0.109.0/achievements-menu' if args.stage else 'docs/analysis/evidence/0.109.0/achievements-menu')/'layout.json'
+path=R/('runtime/analysis/staging/native-evidence/achievements-menu' if args.stage else 'docs/analysis/evidence/achievements-menu')/'layout.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print('Passed',sum(len(v['nodes'])for v in results.values()),'current typed Node snapshots, two body font sizes and source layout guards')

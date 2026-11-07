@@ -5,13 +5,14 @@ Synthetic original-instruction fixtures only; no compiler or game process.
 """
 from script_sources import load_script
 import argparse,hashlib,importlib.util,json,math,re,struct,sys
+from artifact_history import read_artifact
 from coverage_common import ROOT
 
 def load():
  module = load_script('guardian_providers', ROOT/'scripts/check-raid-guardian-lifecycle.py');return module
 
 g=load();r=g.r
-STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-frame-continuation'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/raid-frame-continuation'
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-frame-continuation'
 RANGES={'after-hostile':(0x145900736,0x1459028d6),'after-actor':(0x1459028d6,0x14590412c),
  'xp-choice':(0x1459128da,0x145912914),'choice-publish':(0x14595d970,0x14595d995),
@@ -165,7 +166,7 @@ def main():
   'raid-wards/unit-presentation.asm','raid-wards/addon-target.asm','raid-guardian-lifecycle/selected-native.asm',
   'raid-stateful/selected-native.asm','raid-hazards/dispatcher.asm','raid/queue.asm']
  for name in paths:
-  for line in(ROOT/'docs/analysis/evidence/0.112.0'/name).read_text().splitlines():
+  for line in read_artifact(ROOT/'docs/analysis/evidence/0.112.0'/name).decode().splitlines():
    hit=re.match(r'^([0-9a-f]+): ([0-9a-f]+) ',line)
    if hit:canonical.setdefault(int(hit[1],16),(bytes.fromhex(hit[2]),'../'+name))
  owners={};new={}
@@ -201,7 +202,7 @@ def main():
  artifacts={'selected-native.asm':assembly,'manifest.json':json.dumps(proof,indent=2)+'\n'}
  for name,value in artifacts.items():
   if args.stage:(out/name).write_text(value)
-  else:assert(out/name).read_text()==value,name
+  else:assert read_artifact(out/name).decode()==value,name
  print(json.dumps(counts,indent=2));print('Current frame continuation checks passed; no compilation/game')
 
 if __name__=='__main__':main()

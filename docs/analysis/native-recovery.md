@@ -9,7 +9,7 @@ in its permanent finding.
 
 ## Q41-A01: declared references
 
-The selected [reference proof](evidence/0.141.0/encoded-reference-frontier.json)
+The selected [reference proof](evidence/encoded-reference-frontier.json)
 classifies 3,988,020 encoded references. Of these, 126,346 reach executable
 addresses outside saved bodies: 113,504 same-extent branches and 12,842
 address operands. No direct encoded call or memory operand in this projection

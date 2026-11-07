@@ -25,9 +25,9 @@ queue cases**, covering all sequences of up to three deadlines drawn from
 negative infinity, -1, 0, 1, positive infinity and NaN, with six supplied clocks.
 The check compares complete supplied Game writes, retained record bytes/order,
 the existing output prefix and every appended output record in order.
-[Contracts](evidence/0.113.2/as-state-contracts/delayed-visuals.json),
-[instructions](evidence/0.113.2/as-state-contracts/delayed-visuals.asm) and
-[fresh Ghidra provenance](evidence/0.113.2/as-state-contracts/delayed-visuals-rea.json)
+[Contracts](evidence/as-state-contracts/delayed-visuals.json),
+[instructions](evidence/as-state-contracts/delayed-visuals.asm) and
+[fresh Ghidra provenance](evidence/as-state-contracts/delayed-visuals-rea.json)
 retain the current input identity and byte ranges.
 
 The original memmove and spell serializer are explicit fixture seams. Packet

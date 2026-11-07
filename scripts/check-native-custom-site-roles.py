@@ -10,7 +10,7 @@ import struct
 
 from coverage_common import ROOT, latest_target, project_path, target_bytes
 
-PROOF = 'docs/analysis/evidence/0.109.0/native-custom-site-roles.json'
+PROOF = 'docs/analysis/evidence/native-custom-site-roles.json'
 PATH = 'crates/wenilla-rogue/src/game/auras.rs'
 SITES = {0x145994020, 0x14599456f, 0x14591c62d, 0x1459284ea, 0x1459294ad}
 COUNTS = {'bounds-failure-location': 67, 'missing-key-failure-location': 1,

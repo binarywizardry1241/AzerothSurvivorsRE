@@ -1,7 +1,7 @@
 # Font inputs and registration
 
 Target SHA-256 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
-The [compact proof](evidence/0.113.2/font-inputs.json) owns this bounded
+The [compact proof](evidence/font-inputs.json) owns this bounded
 classification under #17/#41 (`B02`, `R01`, `D01`–`D03`). It preserves the
 original census/queue populations; it does not close resource or font parity.
 

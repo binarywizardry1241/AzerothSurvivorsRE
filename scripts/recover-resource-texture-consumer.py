@@ -15,7 +15,7 @@ from script_sources import load_script
 
 SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
 TEXTURE = "WORLD\\GENERIC\\PASSIVEDOODADS\\DUELINGFLAG\\DUST2B.BLP"
-OUT = ROOT / "docs/analysis/evidence/0.121.0/texture-consumers.json"
+OUT = ROOT / "docs/analysis/evidence/texture-consumers.json"
 
 
 def main():
@@ -26,7 +26,7 @@ def main():
     target = latest_target(verify=True)
     assert target["sha256"] == SHA
     inventory = ROOT / f"runtime/coverage/{SHA}/mpq-members/members.jsonl"
-    coverage = json.loads((ROOT / "docs/analysis/evidence/0.121.0/mpq-member-coverage.json").read_text())
+    coverage = json.loads((ROOT / "docs/analysis/evidence/mpq-member-coverage-comparison.json").read_text())
     archive_receipts = {r["path"]: r for r in coverage["archives"]}
     mpq = load_script("texture_member_reader", ROOT / "scripts/check-minimap-lifecycle.py")
     members = {}
@@ -110,8 +110,8 @@ def main():
         return {"path": str(path.relative_to(ROOT)), "sha256": file_sha256(path)}
     result["generator"] = receipt(ROOT / "scripts/recover-resource-texture-consumer.py")
     result["parser"] = receipt(ROOT / "scripts/check-minimap-lifecycle.py")
-    result["archive_inventory"] = receipt(ROOT / "docs/analysis/evidence/0.121.0/mpq-member-coverage.json")
-    result["parent_resource_proof"] = receipt(ROOT / "docs/analysis/evidence/0.121.0/resource-delta.json")
+    result["archive_inventory"] = receipt(ROOT / "docs/analysis/evidence/mpq-member-coverage-comparison.json")
+    result["parent_resource_proof"] = receipt(ROOT / "docs/analysis/evidence/resource-delta.json")
     result["source_boundaries"] = [receipt(ROOT / name) for name in (
         "crates/benilla-m2/src/lib.rs", "crates/benilla-formats/src/particles.rs",
         "crates/benilla-assets/src/m2.rs", "crates/benilla-formats/src/chain.rs")]

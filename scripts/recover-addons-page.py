@@ -12,7 +12,7 @@ import sys
 from coverage_common import latest_target
 ROOT = Path(__file__).resolve().parents[1]
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-RETAINED = ROOT/'docs/analysis/evidence/0.105.0/options/addons-page.json'
+RETAINED = ROOT/'docs/analysis/evidence/options-comparison/addons-page.json'
 
 
 def main():

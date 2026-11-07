@@ -21,7 +21,7 @@ all nine classes** into the build-independent
 The class index is VA `0x1468ac348`, file offset `0x68aab48`, with nine
 200-byte records. Each class contains three 64-byte tree records; talent
 records are 104 bytes. The retained
-[definition evidence](evidence/0.92/talent-definitions.json) records every
+[definition evidence](evidence/talent-definitions.json) records every
 talent address and record hash. Names, icons, row, column, maximum rank,
 prerequisite and raw 64-byte effects all come from those records.
 
@@ -91,7 +91,7 @@ gaps. Its newly closed row scope `0x140225f80` uses intrinsic-height rows,
 8px gaps, centered items, 26×26 non-shrinking icons and 12px text. The icon
 border is one pixel with radius six. These rules allow translated names to
 wrap instead of relying on a fixed 32px row step. The new
-[intrinsic-body dossier](evidence/0.92/talent-intrinsic-body.json) records exact
+[intrinsic-body dossier](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/talent-intrinsic-body.json) records exact
 Node fields, instruction anchors, shared helpers and remaining styling gaps.
 
 Background builder `0x1400a2c60` loads four TalentFrame MPQ quadrants with
@@ -106,9 +106,9 @@ Details builder `0x140226ef0` calls the common 22px section heading and uses
 31px available-point text,
 13px allocation summary, 12px progress/help and 14px tooltip body. Node,
 background and description consumers are retained in the scoped
-[UI](evidence/0.92/talent-ui-slices-provenance.json),
-[page](evidence/0.92/talent-page-slices-provenance.json) and
-[art](evidence/0.92/talent-art-slices-provenance.json) provenance files.
+[UI](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/talent-ui-slices-provenance.json),
+[page](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/talent-page-slices-provenance.json) and
+[art](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/talent-art-slices-provenance.json) provenance files.
 Disposable disassembly and captured reference pixels stay under
 `runtime/analysis/history/interface/menu-recovery/0558cac00653` and `runtime/analysis/history/native-recovery/reference-captures/1415f0451c23`.
 

@@ -20,10 +20,10 @@ The source uses the existing sealed envelope for active files, backups and
 manual exports. Export does not run the active-save backup timer. UTC naming
 is shared between those paths. Import keeps its distinct before-import backup.
 
-[Ordinary-write instructions](evidence/0.100.1/target-menu/ordinary-write.asm),
-[hourly backup](evidence/0.100.1/target-menu/hourly-backup.asm),
-[filename filter](evidence/0.100.1/target-menu/backup-name-filter.asm) and
-[path ordering](evidence/0.100.1/target-menu/backup-path-order.asm) retain the
+[Ordinary-write instructions](evidence/target-menu/ordinary-write.asm),
+[hourly backup](evidence/target-menu/hourly-backup.asm),
+[filename filter](evidence/target-menu/backup-name-filter.asm) and
+[path ordering](evidence/target-menu/backup-path-order.asm) retain the
 current native ownership. The target/menu manifest carries their body hashes
 and REA identities. Static recovery does not establish desktop restore parity.
 

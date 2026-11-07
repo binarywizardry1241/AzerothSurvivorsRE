@@ -21,7 +21,7 @@ TABLE, INDEX = 0x14732E768, 0x148217160
 GETTER, SETTER = 0x1458E1F35, 0x1458E0210
 OPTIONS, COUNT, STRIDE = 0x145EE9600, 105, 152
 WORK = ROOT / "runtime/analysis/history/interface/menu-options/22af7f7d012d"
-KEEP = ROOT / "docs/analysis/evidence/0.115.0/menu-options"
+KEEP = ROOT / "docs/analysis/evidence/menu-options"
 PRIOR_COMMIT = "0a1b4a62b3de3b0b3c0569537a7e81bf4c2fc73f"
 ADDED = ["Unlocked zones", "No password", "Zone: any",
          "No lobby matches the filters.", "Zone: {zone}", "{shown} of {all} shown"]
@@ -57,7 +57,7 @@ def derive(write=False):
                     byte_count=size, sha256=digest(raw(address, size)))
 
     source = (ROOT / "crates/azeroth-survivors-re/src/localization.rs").read_text()
-    previous = json.loads((ROOT / "docs/analysis/evidence/0.113.2/q41-language/proof.json").read_text())
+    previous = json.loads((ROOT / "docs/analysis/evidence/q41-language/proof.json").read_text())
     assert previous["target"]["sha256"] == "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
     locales, codes, keys = [], [], None
     for index in range(14):

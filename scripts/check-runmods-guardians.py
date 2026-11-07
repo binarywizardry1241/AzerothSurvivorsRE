@@ -187,7 +187,7 @@ source_knot_fields=0
 for zi,block in enumerate(knots_source):
  source_bits=[int(x,16)for x in re.findall(r'f32::from_bits\(0x([0-9a-f]+)',block)];expected=[v for pair in native_knots(zi)for v in pair];assert source_bits==expected,(zi,source_bits,expected);source_knot_fields+=len(expected)
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
-md=Cs(CS_ARCH_X86,CS_MODE_64);out=ROOT/'docs/analysis/evidence/0.109.0/runmods-scaling';ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');args=ap.parse_args()
+md=Cs(CS_ARCH_X86,CS_MODE_64);out=ROOT/'docs/analysis/evidence/runmods-scaling';ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');args=ap.parse_args()
 if args.write:out.mkdir(parents=True,exist_ok=True)
 ranges=[]
 # Current guardian input records already own the omitted middle ranges.

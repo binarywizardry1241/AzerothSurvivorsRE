@@ -1,6 +1,6 @@
 # Doctor Theolen Krastinov
 
-The [PE ranges and Ghidra receipts](evidence/0.141.0/scholomance-krastinov.json)
+The [PE ranges and Ghidra receipts](evidence/scholomance-krastinov.json)
 are bound to the installed EXE SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 The current action table at `0x147af7838` retains the four initial delays,

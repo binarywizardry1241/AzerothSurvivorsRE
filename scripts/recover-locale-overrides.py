@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b'
 WORK = ROOT / 'runtime/analysis/history/interface/locale-overrides/f85c9ec06bba'
-RETAINED = ROOT / 'docs/analysis/evidence/0.108.0/localization-overrides'
+RETAINED = ROOT / 'docs/analysis/evidence/localization-overrides'
 RANGES = {
     'loader': (0x1458E4B30, 0x1458E527E),
     'initializer': (0x1459CAEA0, 0x1459CB26C),

@@ -380,7 +380,7 @@ mod tests {
     #[test]
     fn all_typed_families_match_current_full_native_round_trips() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.109.0/save-schema/fixtures.json"
+            "../../../../docs/analysis/evidence/save-schema/fixtures.json"
         ))
         .unwrap();
         for case in fixtures["cases"].as_array().unwrap() {
@@ -398,7 +398,7 @@ mod tests {
     #[test]
     fn purchased_csv_values_match_the_current_native_descriptor_gate() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.117.0/tabard-admission/purchases.json"
+            "../../../../docs/analysis/evidence/tabard-admission/purchases.json"
         ))
         .unwrap();
         for case in fixtures["cases"].as_array().unwrap() {
@@ -432,7 +432,7 @@ mod tests {
     #[test]
     fn optional_appearance_cache_matches_current_native_clamp() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.109.0/save-schema/fixtures.json"
+            "../../../../docs/analysis/evidence/save-schema/fixtures.json"
         ))
         .unwrap();
         for case in fixtures["appearance_cases"].as_array().unwrap() {

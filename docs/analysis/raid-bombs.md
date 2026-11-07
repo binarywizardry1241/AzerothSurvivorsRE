@@ -14,7 +14,7 @@ catalog. The source changes have not been compiled or exercised in a game.
 ## Producer and presentation
 
 The current dispatcher enters native30 at `145957d4b..145957f34`. The
-[manifest](evidence/0.109.0/raid-bombs/manifest.json) records exact native bytes,
+[manifest](evidence/raid-bombs/manifest.json) records exact native bytes,
 data, checks and Ghidra provenance. The five payload words are spell, radius,
 windup, player-damage factor and enemy-damage factor; the independent native
 repeat stays in source word6.
@@ -122,9 +122,9 @@ descending-index load against mixed and repeated removal indices. The tower
 checker separately executes the two rounding-sensitive accumulated additions.
 
 The common native constructor is retained once under
-[raid-lines](evidence/0.109.0/raid-lines/hazard-constructor.asm). This report
+[raid-lines](evidence/raid-lines/hazard-constructor.asm). This report
 retains the successful current Ghidra seeded branch decompilation as
-[producer.pseudo.c](evidence/0.109.0/raid-bombs/producer.pseudo.c). Height,
+[producer.pseudo.c](evidence/raid-bombs/producer.pseudo.c). Height,
 localization, serializers, CRT distance and canonical player-damage internals
 are explicit seams. Their complete engine behavior is not recertified by these
 bounded cases.

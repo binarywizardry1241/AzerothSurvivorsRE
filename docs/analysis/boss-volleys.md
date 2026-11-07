@@ -12,18 +12,18 @@ mechanics and complete volley hazard/presentation equivalence remain open.
 The installed 0.108.0 input is SHA-256
 `dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b`.
 [Registration](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/target-refresh-0.108.0.json) owns its identity. The
-[catalog](evidence/0.108.0/boss-volleys/catalog.json) records all sixty boss IDs,
+[catalog](evidence/boss-volleys/catalog.json) records all sixty boss IDs,
 including the 34 with no recurring native tag4 move, and exact current move
 bytes/addresses/hashes. Current records use the already recovered 104-byte boss,
 56-byte scheduled move and tag byte45 layouts; semantic source tag1 is an
 adapter, not that native ABI. The current native slot is retained as evidence;
 other source move kinds and their mixed ordering retain separate provenance.
 
-The [manifest](evidence/0.108.0/boss-volleys/manifest.json) binds selected dispatcher
+The [manifest](evidence/boss-volleys/manifest.json) binds selected dispatcher
 instructions and the canonical shared repeat extract to the exact EXE. Fresh
 REA/Ghidra 12.1.4 analysis imported the full `145950bf0..145956052` dispatcher
 at its original VA, with its thirty jump-table destinations explicitly seeded.
-The retained [volley pseudocode](evidence/0.108.0/boss-volleys/dispatch.pseudo.c)
+The retained [volley pseudocode](evidence/boss-volleys/dispatch.pseudo.c)
 is a branch aid. Seeds are analyst assertions; the raw import uses the generic
 `gcc` compiler spec and does not resolve original external data/calls. Win64
 registers, scalar constants and original branch instructions were inspected

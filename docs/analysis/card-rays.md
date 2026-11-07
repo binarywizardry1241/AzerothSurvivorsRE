@@ -7,7 +7,7 @@ jewelry-card rays. Other effect/HUD settings retain their owning evidence.
 
 ## Native setting contract
 
-[The retained contract](evidence/0.127.0/card-rays/contract.json) binds the exact
+[The retained contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.127.0/card-rays/contract.json) binds the exact
 descriptor, original instructions, query provenance and scalar fixtures.
 
 - Descriptor `0x146255f38` is `cardRays`, Graphics page 8, ordinary CVar storage
@@ -23,7 +23,7 @@ descriptor, original instructions, query provenance and scalar fixtures.
   Absence defaults to enabled; empty text and alternative numeric text such as
   `00` and `0.0` remain enabled. The owner publishes the resulting bool.
 - The exact current tooltip specifies rays behind both level-up and jewelry
-  cards. [Fourteen locale receipts](evidence/0.127.0/card-rays/locales.json)
+  cards. [Fourteen locale receipts](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.127.0/card-rays/locales.json)
   retain each payload's target-bound hash and the two connected labels.
 
 The journaled Ghidra query is

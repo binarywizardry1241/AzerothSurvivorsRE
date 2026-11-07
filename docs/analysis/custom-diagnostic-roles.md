@@ -16,7 +16,7 @@ extent is retained as provenance and is never substituted for a Ghidra body.
 | Stable vector removals | 2 | Locations are forwarded to ordinary 8-byte and 120-byte removal helpers. Their successful paths shift later rows, decrement length and return the removed row. |
 | Adjacent key literals | 8 | The passed lengths select `spell`, `p` and `zone`; the adjacent diagnostic filenames are never consumed by these calls. |
 
-The [compact proof](evidence/0.115.0/q41-custom-diagnostics.json) retains every
+The [compact proof](evidence/native-diagnostics/q41-custom-diagnostics.json) retains every
 site, exact Location or literal target, declared extent hash, local flow and
 first-consumer identity. It binds the original diagnostic inventory and saved
 Ghidra body file by SHA-256. Every instruction in the selected flow is decoded

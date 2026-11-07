@@ -37,7 +37,7 @@ Recovered2026-10-19 from the selected0.100.1 EXE, SHA-256
 The rebuilt menu capture exposed a stale historical footer, `v0.97.2 (43fe5ff8)`.
 The target footer is **`v0.100.1 (903c892d)`**.
 
-[Current proof](evidence/0.100.1/menu-identity/native.json) retains the complete
+[Current proof](evidence/menu-identity/native.json) retains the complete
 picker owner at`1400c1b30`, REA/Ghidra identity, original formatter arguments
 at`1400c2f48..2fac`, version/build bytes and the compact format descriptor.
 The version slice at`14593d538` points to seven bytes at`14593d530`; the

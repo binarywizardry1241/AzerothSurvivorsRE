@@ -57,8 +57,8 @@ item definitions, so partitioning does not remove numeric tooltip lines.
 
 ## Current static evidence
 
-[Contracts](evidence/0.112.0/gameplay-frontiers/contracts.json) and
-[Ghidra provenance](evidence/0.112.0/gameplay-frontiers/rea-provenance.json) retain:
+[Contracts](evidence/gameplay-frontiers/contracts.json) and
+[Ghidra provenance](evidence/gameplay-frontiers/rea-provenance.json) retain:
 
 - **355 talent descriptors / 429 ordered payloads**, across all nine classes,
   compared with the live source overlays by count, tag, marker and modifier.

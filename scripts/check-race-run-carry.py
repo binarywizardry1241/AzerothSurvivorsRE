@@ -15,7 +15,7 @@ from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from capstone.x86 import X86_OP_MEM, X86_REG_RIP, X86_REG_R13
 from equipment_native import EquipmentProbe
 
-HERE = ROOT / 'docs/analysis/evidence/0.120.0/race-run-carry'
+HERE = ROOT / 'docs/analysis/evidence/race-run-carry'
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--queries', action='store_true', help='Verify retained ignored query journals/results as well')
 args = parser.parse_args()

@@ -62,7 +62,7 @@ def main():
     inventory = load_script("inventory", ROOT / "scripts/inventory-executable.py")
     pe = inventory.PE(data)
     ends = {pe.image_base + a: pe.image_base + b for a, b, _ in pe.functions()}
-    output = ROOT / "docs/analysis/evidence/0.97.2/loot"
+    output = ROOT / "docs/analysis/evidence/loot"
     output.mkdir(parents=True, exist_ok=True)
     runtime = ROOT / "runtime/analysis/history/native-recovery/treasure/8e7a02353994"
     (runtime / "slices").mkdir(parents=True, exist_ok=True)

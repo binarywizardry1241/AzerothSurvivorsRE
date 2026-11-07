@@ -15,7 +15,7 @@ from coverage_common import ROOT, latest_target, project_path, target_bytes
 from script_sources import load_script
 
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.120.4/release-contracts/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/release-contracts/manifest.json"
 
 
 def sha(data):

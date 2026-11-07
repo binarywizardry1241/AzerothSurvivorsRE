@@ -323,7 +323,7 @@ def main():
     import capstone
     from capstone.x86_const import X86_OP_IMM, X86_OP_MEM, X86_REG_RIP
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--proof', default='docs/analysis/evidence/0.115.0/owned-custom-diagnostics.json')
+    parser.add_argument('--proof', default='docs/analysis/evidence/native-diagnostics/owned-custom-diagnostics.json')
     parser.add_argument('--stage', action='store_true')
     parser.add_argument('--residual-summary', help='Select a snapshot for a new proof; replay defaults to its retained receipt')
     args = parser.parse_args()
@@ -355,12 +355,12 @@ def main():
     require(census['target'] == identity and census_binding in residual['inputs'], 'Residual census differs')
     body_path = project_path(census['artifacts']['directory'])/'bodies.tsv.gz'
     consume(body_path, census['artifacts']['files']['bodies.tsv.gz']['sha256'])
-    ownerless_binding = consume('docs/analysis/evidence/0.115.0/q41-custom-diagnostics.json')
+    ownerless_binding = consume('docs/analysis/evidence/native-diagnostics/q41-custom-diagnostics.json')
     ownerless = load_json(project_path(ownerless_binding['path']))
-    engine_binding = consume('docs/analysis/evidence/0.115.0/engine-diagnostic-roles.json')
+    engine_binding = consume('docs/analysis/evidence/engine-diagnostic-roles-comparison.json')
     engine = load_json(project_path(engine_binding['path']))
     require(ownerless['target'] == identity and engine['target'] == identity, 'Canonical diagnostic target differs')
-    timer_binding = consume('docs/analysis/evidence/0.115.0/addon-timers/integration.json')
+    timer_binding = consume('docs/analysis/evidence/addon-timers/integration.json')
     timer = load_json(project_path(timer_binding['path']))
     require(timer['target_sha256'] == SHA256, 'Existing timer/localizer target differs')
     diag_binding = consume(ownerless['inputs']['diagnostic-ownership']['path'], ownerless['inputs']['diagnostic-ownership']['sha256'])

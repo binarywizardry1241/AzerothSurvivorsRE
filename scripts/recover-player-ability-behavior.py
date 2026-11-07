@@ -211,7 +211,7 @@ def main():
   end=f[0x1454e7a20];at=p.rva_offset(a-p.image_base);path=folder/f'case-{a:x}.bin';path.write_bytes(d[at:at+end-a])
   plan=dict(target=str(path.relative_to(R)),output=f'runtime/analysis/history/native-recovery/player-abilities/f36879d4a545/rea-case-{a:x}',open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(a)),timeout=180,open_timeout=90,cleanup_timeout=60,environment={'REA_GHIDRA_STARTUP_TIMEOUT_MS':'180000'},operations=[dict(name='analyze_function',arguments=dict(procedure=hex(a)),timeout=300)])
   (folder/f'plan-case-{a:x}.json').write_text(portable_json(plan,indent=2)+'\n')
- out=R/'docs/analysis/evidence/0.97.2/player-abilities';out.mkdir(parents=True,exist_ok=True)
+ out=R/'docs/analysis/evidence/player-abilities';out.mkdir(parents=True,exist_ok=True)
  limitations=['Static code recovery only. Raw Ghidra slices omit data and callees; original PE instructions control Win64 argument mapping.',
               'Bounded case imports begin inside the original cast function, not at original function entries. Live count/modifier registers must be bound using its original assembly.',
               'Current host float/CRT and equal-key sorting have not been compared against Windows execution.',

@@ -8,12 +8,12 @@
 //! it, and locale changes must not reinstall frames or shift managed positions.
 
 const SOURCE: &str = include_str!(
-    "../../../../../docs/analysis/evidence/0.108.0/hud-framexml/world-state-patch.lua"
+    "../../../../../docs/analysis/evidence/hud-framexml/world-state-patch.lua"
 );
 const DEATH_POPUP: &str =
-    include_str!("../../../../../docs/analysis/evidence/0.115.0/death-popup.lua");
+    include_str!("../../../../../docs/analysis/evidence/hud-framexml/death-popup.lua");
 const RUN_LEVEL_CAP: &str =
-    include_str!("../../../../../docs/analysis/evidence/0.127.0/run-level-cap.lua");
+    include_str!("../../../../../docs/analysis/evidence/hud-framexml/run-level-cap.lua");
 
 pub(super) fn appends() -> Vec<(String, String)> {
     vec![

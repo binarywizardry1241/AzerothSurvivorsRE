@@ -3,7 +3,7 @@
 Selected installed EXE: **0.117.0**, 145,283,072 bytes, SHA-256
 `507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293`.
 This report owns the source/static repair of **#111**. The
-[manifest](evidence/0.117.0/marker-order/manifest.json) binds exact native owners,
+[manifest](evidence/marker-order/manifest.json) binds exact native owners,
 selected instruction extracts, journaled Ghidra receipts and replay results.
 [verification-needed](../verification-needed.md) owns current implementation limits.
 

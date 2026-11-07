@@ -7,7 +7,7 @@ SHA-256 `a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589`.
 The active source-only instruction was honored: no builds, compiler checks,
 compile-based tests, emulated fixtures, or original/rebuilt game launches ran.
 
-[catalog-menu-input-native.json](evidence/0.97.2/catalog-menu-input-native.json)
+[catalog-menu-input-native.json](evidence/catalog-menu-input-native.json)
 retains unchanged current PE spans and hashes, full REA/Ghidra records,
 original PE disassembly, type/call bindings and exact constants. Recovered
 behavior, implemented source and verified execution are distinct below.

@@ -149,7 +149,7 @@ unverified.
 
 ## Evidence, validation and remaining limits
 
-[Curated evidence](evidence/0.97.2/menu-scene-0.97.2.json) contains target identity,
+[Curated evidence](evidence/menu-scene.json) contains target identity,
 original function ranges/file offsets, immutable slice hashes and saved
 REA/Ghidra evidence IDs. Sibling `menu-scene-0.97.2-*.asm` files preserve original
 instructions. `scripts/recover-menu-scene.py --prepare` reproduces these

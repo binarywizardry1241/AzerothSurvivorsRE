@@ -2,7 +2,7 @@
 
 Updated 2026-10-16. Target: supplied **0.92.0** EXE, SHA-256
 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
-[The curated evidence](evidence/0.92/menu-update-data.json) retains seven scoped
+[The curated evidence](evidence/menu-update-data.json) retains seven scoped
 Ghidra owners, original function-byte hashes, exact strings, metadata import
 bindings and261 closed native filename checks. Reproduce it with
 `python3 scripts/recover-menu-update-data.py`. This is analysis tooling; building

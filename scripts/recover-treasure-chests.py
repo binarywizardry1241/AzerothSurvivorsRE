@@ -17,7 +17,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors.exe"
 EXPECTED = "47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2"
-OUTPUT = ROOT / "docs/analysis/evidence/0.92/treasure-chests"
+OUTPUT = ROOT / "docs/analysis/evidence/treasure-chests"
 
 # End addresses are exclusive. Focused tick extracts avoid retaining unrelated
 # combat/ability code. Whole-function hashes below additionally bind the scopes.
@@ -156,7 +156,7 @@ def main():
     (OUTPUT / "manifest.json").write_text(portable_json(result, indent=2) + "\n")
     if args.write_source_catalog:
         lines = ["//! Generated 0.92 zone geometry and enemy chest flags.",
-                 "//! Owning byte spans: docs/analysis/evidence/0.92/treasure-chests/manifest.json.",
+                 "//! Owning byte spans: docs/analysis/evidence/treasure-chests/manifest.json.",
                  "//! Regenerate: python3 scripts/recover-treasure-chests.py --write-source-catalog",
                  "//! The build uses these constants and never reads the reference executable.",
                  "", "use super::{EnemyDefinition, Position, ZoneDefinition};", "",

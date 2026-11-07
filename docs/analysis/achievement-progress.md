@@ -5,9 +5,9 @@ Target SHA-256: `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca815
 this report covers the current account predicates. Earlier ordinary, cooperative
 and run-feat predicates retain their separately documented provenance.
 
-The [proof](evidence/0.121.0/achievement-progress.json) binds current native code,
+The [proof](evidence/achievement-progress.json) binds current native code,
 data, the journaled Ghidra query, source and
-[native-derived cases](evidence/0.121.0/achievement-progress-cases.json).
+[native-derived cases](evidence/achievement-progress-cases.json).
 
 ## Native interface
 

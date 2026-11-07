@@ -2,7 +2,7 @@
 
 This bounded **#42/#43** repair uses installed **0.109.0**, SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [manifest](evidence/0.109.0/raid-towers/manifest.json) binds all five current
+The [manifest](evidence/raid-towers/manifest.json) binds all five current
 native12 records and all nine retained summon phase records, their indices/thresholds/yells, warning literals, locale JSON
 spans and selected producer/RNG/group-consumer instructions. Source connection
 and static native instruction checks do not establish original/rebuilt parity.

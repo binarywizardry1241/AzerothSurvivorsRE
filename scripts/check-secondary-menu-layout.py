@@ -16,7 +16,7 @@ def get(n):return u.reg_read(getattr(r,'UC_X86_REG_'+n))
 def setr(n,v):u.reg_write(getattr(r,'UC_X86_REG_'+n),v)
 def put(a,f,*v):u.mem_write(a,struct.pack('<'+f,*v))
 def ret():sp=get('RSP');setr('RIP',struct.unpack('<Q',u.mem_read(sp,8))[0]);setr('RSP',sp+8)
-layout=json.loads((ROOT/'docs/analysis/evidence/0.92/picker-node-layout.json').read_text())['node_layout'];layout['OFFSET_flex_grow']=348
+layout=json.loads((ROOT/'docs/analysis/evidence/picker-node-layout.json').read_text())['node_layout'];layout['OFFSET_flex_grow']=348
 card_cases=[]
 for available,shown in [(False,False),(False,True),(True,False),(True,True)]:
  u.mem_write(H,bytes(0x10000));put(S+0x8008,'Q',END);put(S+0x8030,'Q',available);put(S+0x8038,'Q',shown);put(H+0x1000,'B',1);put(H+0x2000,'B',1);rows=[]
@@ -114,7 +114,7 @@ for case in viewport_cases:
 source={key:(ROOT/path).read_text()for key,path in [('armory','crates/azeroth-survivors-re/src/armory.rs'),('talents','crates/azeroth-survivors-re/src/talents.rs'),('rewards','crates/azeroth-survivors-re/src/progression/rewards.rs')]}
 for key,gap in expected.items():assert any(f'"{key}", {int(gap)}.'in value for value in source.values()),key
 record=dict(target_sha256=selected['sha256'],application_executed=False,rebuilt_code_executed=False,native_instructions_executed=True,card_cases=card_cases,viewports=viewport_cases,card_owner=span(0x140161580,0x140161c09),grid_track_producer=span(0x1402b2f27,0x1402b2f57),limits=['Four native cosmetic card parent Nodes and all four named viewport Nodes are captured before UI publication. The appearance grid initializer is captured separately.','Named viewport entry captures use opaque UI/capture pointers. Late initializer captures seed vector constants traced to actual current loads/zeroing; fixed header rendering and ECS publication are not executed.','Allocation/byte copy, locale/achievement lookup and UI publication are explicit fixture seams. Shared wheel/drag scheduling, actual geometry, fonts and GPU rendering are not executed.'])
-parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args();path=ROOT/('runtime/analysis/staging/native-evidence/0.112.0/secondary-menu-layout'if args.stage else'docs/analysis/evidence/0.112.0/secondary-menu-layout')/'nodes.json'
+parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args();path=ROOT/('runtime/analysis/staging/native-evidence/secondary-menu-layout'if args.stage else'docs/analysis/evidence/secondary-menu-layout')/'nodes.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print('Passed 4 cosmetic card states, 4 named retained viewport Nodes and current appearance grid geometry')

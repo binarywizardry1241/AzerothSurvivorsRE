@@ -12,7 +12,7 @@ whole-army gameplay or original/rebuilt parity.
 
 ## Native contracts
 
-The [manifest](evidence/0.105.0/demon-effects/manifest.json) binds the current
+The [manifest](evidence/demon-effects/manifest.json) binds the current
 complete demon-hit and shard-prune owners to unchanged PE extents, hashes and
 REA/Ghidra evidence. Existing canonical tick evidence supplies shard generation;
 existing actor-update evidence supplies the periodic critical owner. Win64

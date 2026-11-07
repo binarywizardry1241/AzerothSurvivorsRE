@@ -5,9 +5,9 @@ The selected source/static repair for finding **#294** is complete.
 execution and original/rebuilt comparison. The authoritative installed EXE is
 0.127.0, SHA-256
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`.
-The [native manifest](evidence/0.127.0/mograine-marks/native-manifest.json)
+The [native manifest](evidence/mograine-marks/native-manifest.json)
 binds original instructions, referenced constants and journaled Ghidra results.
-The [current data records](evidence/0.127.0/mograine-marks/data-records.json)
+The [current data records](evidence/mograine-marks/data-records.json)
 own the selected catalog identities and payloads. Historical raid contracts
 retain their recorded target and broader limits under #42/#43.
 
@@ -114,7 +114,7 @@ The two journal-completed queries carry exact raw-result, original-plan, slice
 and analysis-profile receipts for discovery graph reviews. The oversized tick
 reply remains export-only; it is not a completed raw-result journal operation.
 
-The [static check](evidence/0.127.0/mograine-marks/static-check.json) records
+The [static check](evidence/mograine-marks/static-check.json) records
 **5,977 isolated original-instruction cases**. With the project's retained
 Python libraries, use:
 

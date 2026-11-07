@@ -1,7 +1,7 @@
 # Windows AccessKit teardown on window creation
 
 [Finding #311](../verification-needed.md#gap-311) tracks the 0.139.1 Wine and
-Proton alt-tab release claim. The [evidence manifest](evidence/0.139.2/wine-accesskit.json)
+Proton alt-tab release claim. The [evidence manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/wine-accesskit.json)
 binds the current recovery to 0.139.2, SHA-256
 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
 

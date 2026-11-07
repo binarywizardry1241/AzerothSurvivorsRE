@@ -41,7 +41,7 @@ Source `save/progress.rs` implements this migration, merging and canonical outpu
 Its current keys come from the recovered `menu.json`, while its legacy key table
 is separate historical format knowledge.
 
-The earlier [zone policy fixtures](evidence/0.97.2/catalog-zone-policy-fixtures.json)
+The earlier [zone policy fixtures](evidence/catalog-zone-policy-fixtures.json)
 fed **typed native Save fields** directly. Their stored-count bounds remain valid;
 they did not prove the text parser's numeric `unlock` interpretation. The source
 fixture adapters now create canonical `open` rows from the fixture's bounded
@@ -181,7 +181,7 @@ python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-save/0aae22
 python3 scripts/recover-menu-save.py
 ```
 
-The [manifest](evidence/0.97.2/menu-save-0.97.2.json) records target identity,
+The [manifest](evidence/menu-save/manifest.json) records target identity,
 native byte hashes/bounds, completed REA evidence IDs, decompiler-result hashes,
 original instruction paths and table values. Raw slice imports use generic GCC
 ABI: their argument names are not Win64 signatures. Original register/stack

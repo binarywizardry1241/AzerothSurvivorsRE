@@ -177,7 +177,7 @@ def replay(verify=True):
               "result": "passed", "limits": "Synthetic descriptor, CRT math and memmove; reconstructed Rust and game/client/server/network do not execute."}
     if verify:
         source_root = Path(__file__).resolve().parents[1]
-        proof = json.loads((source_root / "docs/analysis/evidence/0.121.0/gear-purchase.json").read_text())
+        proof = json.loads((source_root / "docs/analysis/evidence/gear-purchase.json").read_text())
         for row in proof["source_bindings"]:
             assert hashlib.sha256((source_root / row["path"]).read_bytes()).hexdigest() == row["sha256"]
         for key in result:

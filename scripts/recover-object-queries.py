@@ -65,7 +65,7 @@ for entry in [0, 9000, *range(9001,9015), 0xffffffff]:
     assert raw[12:] == bytes(101)
     cases.append(dict(entry=entry,type_id=kind,display_id=display,key=prefix+suffix,
                       empty_name_packet=raw.hex(),data=[0]*24))
-OUT=ROOT/'docs/analysis/evidence/0.100.1/object-queries';OUT.mkdir(parents=True,exist_ok=True)
+OUT=ROOT/'docs/analysis/evidence/object-queries';OUT.mkdir(parents=True,exist_ok=True)
 ends={pe.image_base+a:pe.image_base+b for a,b,_ in pe.functions()};owners=[]
 for role,start,stop in [('query-name',0x145420890,ends[0x145420890]),
                         ('query-packet',0x145465300,ends[0x145465300]),

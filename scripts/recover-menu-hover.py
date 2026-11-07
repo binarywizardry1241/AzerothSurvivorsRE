@@ -91,7 +91,7 @@ def main():
                              picker="Class icons, enabled zones, Enter and Run Options attached; Run Options has common red gradient and recovered black shadow.",
                              validation="Integrated hover build/render and native/rebuilt pointer-state comparison pending; owning report tracks later validation."),
         provenance=["picker-input-provenance.json", "native-hover-command-provenance.json", "menu-slices-provenance.json", "existing constructor slice provenance alongside these records"])
-    path = ROOT / "docs/analysis/evidence/0.92/menu-hover-native.json"
+    path = ROOT / "docs/analysis/evidence/menu-hover-native.json"
     path.write_text(portable_json(report, indent=2) + "\n")
     print(f"Recorded {len(native)} native function bindings and {len(literals)} literal regions.")
 

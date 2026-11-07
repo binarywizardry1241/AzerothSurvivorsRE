@@ -20,8 +20,8 @@ from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-RETAINED = ROOT / 'docs/analysis/evidence/0.109.0/localization'
-STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/localization'
+RETAINED = ROOT / 'docs/analysis/evidence/localization'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/localization'
 WORK = ROOT / 'runtime/analysis/history/interface/menu-lifecycle/969b671942c0'
 FIXTURES = [('native_localization.py', 'native_vectors'),
             ('recover-locale-parser.py', 'replay'),

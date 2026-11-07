@@ -16,7 +16,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--require-retained-queries', action='store_true')
     args = parser.parse_args()
-    path = ROOT / 'docs/analysis/evidence/0.119.0/druid-release/manifest.json'
+    path = ROOT / 'docs/analysis/evidence/druid-release/manifest.json'
     proof = json.loads(path.read_text())
     target = latest_target(verify=True)
     assert all(target[k] == proof['target'][k] for k in ('version','sha256','size_bytes')), 'Selected target differs'

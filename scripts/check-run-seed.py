@@ -14,7 +14,7 @@ MULTIPLIER = 0x5851F42D4C957F2D
 
 
 def main():
-    evidence = ROOT / 'docs/analysis/evidence/0.109.0/run-seed'
+    evidence = ROOT / 'docs/analysis/evidence/run-seed'
     manifest = json.loads((evidence / 'manifest.json').read_text())
     target = latest_target(verify=True)
     assert all(target[k] == v for k, v in manifest['target'].items()), 'Changed selected target'

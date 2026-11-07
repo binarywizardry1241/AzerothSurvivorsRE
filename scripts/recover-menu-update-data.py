@@ -146,7 +146,7 @@ def main():
                      "Combined metadata/UI pipeline compiled and injected tests passed23 (15.47s;64 harness cases). No real adapter call, metadata request, backup cleanup or new UI launch was performed.",
                      "Source26 connects native-gated adapters as code; compilation and all five connected memory-only fixtures passed in build26, no live adapter execution.",
                      "std::fs metadata import chain is bound from original instruction bytes; the scoped generic-GCC Ghidra signature is not trusted as a Windows ABI declaration."])
-    path = ROOT / "docs/analysis/evidence/0.92/menu-update-data.json"
+    path = ROOT / "docs/analysis/evidence/menu-update-data.json"
     path.write_text(portable_json(report, indent=2) + "\n")
     print(f"Recorded {len(functions)} Ghidra owners and {len(checks)} closed native filename checks; no requests or processes.")
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check 0.109.0 concentric-wave records/instructions without a compiler or game.
 
---write stages curated evidence under runtime/analysis/staging/native-evidence/0.109.0/raid-waves.
+--write stages curated evidence under runtime/analysis/staging/native-evidence/raid-waves.
 Optional Capstone/Unicorn dependencies must already be installed. Native external
 height, hold and packet functions are explicit seams, not executed game code.
 """
@@ -17,8 +17,8 @@ import struct
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/raid-waves'
-RETAINED = ROOT / 'docs/analysis/evidence/0.109.0/raid-waves'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/raid-waves'
+RETAINED = ROOT / 'docs/analysis/evidence/raid-waves'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src/bosses/raid_shapes.rs'
 CATALOG = ROOT / 'crates/azeroth-survivors-re/src/bosses/raid_area_catalog.rs'
 
@@ -63,7 +63,7 @@ def run(write):
                     index=len(records),payload_words=list(words[:6]),repeat_bits=words[12],
                     native_record=span(address,56),native_record_hex=payload.hex()))
     assert [(x['boss_id'],x['native_slot']) for x in records] == [(792,1),(1294,1),(991,2),(393,3),(1093,2)]
-    guardian_path='docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json'
+    guardian_path='docs/analysis/evidence/guardian-signatures/catalog.json'
     guardians=json.loads((ROOT/guardian_path).read_text())
     assert guardians['target_sha256']==SHA
     for ri,row in enumerate(guardians['rows']):

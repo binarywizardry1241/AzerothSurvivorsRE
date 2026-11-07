@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 EXE = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK = ROOT / "runtime/analysis/history/inventory/pickup-effects/1fa80c104cd1"
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/pickup-effects"
+RETAINED = ROOT / "docs/analysis/evidence/pickup-effects"
 RANGES = {
     "create-special": (0x14593A644, 0x14593A920),
     "collect-rune": (0x1459451C0, 0x1459458F0),

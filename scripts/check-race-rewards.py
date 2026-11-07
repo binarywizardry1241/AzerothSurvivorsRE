@@ -23,7 +23,7 @@ from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 import unicorn.x86_const as r
 
-HERE = ROOT / 'docs/analysis/evidence/0.120.0/race-rewards'
+HERE = ROOT / 'docs/analysis/evidence/race-rewards'
 SHA = '291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08'
 NEW = [('race-toggle', 0x1401b740b, 0x1401b74a8),
        ('race-toggle-assignment', 0x1401b782d, 0x1401b78ff),
@@ -60,7 +60,7 @@ def derive(stage, queries):
                            file_offset=hex(at), sha256=digest(raw), instructions=len(ins),
                            assembly=path.relative_to(ROOT).as_posix()))
     # Original retained ranges, not another copy of their assembly.
-    prior = ROOT / 'docs/analysis/evidence/0.120.0/race-unlocks/manifest.json'
+    prior = ROOT / 'docs/analysis/evidence/race-unlocks/manifest.json'
     old = json.loads(prior.read_text())
     for row in old['native_ranges']:
         at = pe.rva_offset(int(row['va'], 16) - pe.image_base)

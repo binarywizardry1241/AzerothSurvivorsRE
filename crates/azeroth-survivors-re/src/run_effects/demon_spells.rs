@@ -170,7 +170,7 @@ mod tests {
     #[test]
     fn historical_native_power_vectors_match_float_bits() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.105.0/demon-spells/native-vectors.json"
+            "../../../../docs/analysis/evidence/demon-spells/native-vectors.json"
         ))
         .unwrap();
         assert_eq!(fixture["target_sha256"], super::super::pets::TARGET_SHA256);
@@ -201,7 +201,7 @@ mod tests {
     #[test]
     fn historical_target_count_and_fallback_vectors_match() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.105.0/demon-spells/native-vectors.json"
+            "../../../../docs/analysis/evidence/demon-spells/native-vectors.json"
         ))
         .unwrap();
         for row in fixture["cases"]["targets"].as_array().unwrap() {
@@ -261,7 +261,7 @@ mod tests {
     #[test]
     fn current_native_infernal_pulse_deadlines_match_float_bits() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/demon-spell-math/native-vectors.json"
+            "../../../../docs/analysis/evidence/demon-spell-math/native-vectors.json"
         )).unwrap();
         assert_eq!(fixture["target_sha256"], super::super::demons::TARGET_SHA256);
         assert_eq!(fixture["interval"].as_array().unwrap().len(), 252);
@@ -278,7 +278,7 @@ mod tests {
     #[test]
     fn current_native_focus_rank_caps_resets_and_wrapping_match() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/demon-spell-math/native-vectors.json"
+            "../../../../docs/analysis/evidence/demon-spell-math/native-vectors.json"
         )).unwrap();
         assert_eq!(fixture["focus"].as_array().unwrap().len(), 280);
         for row in fixture["focus"].as_array().unwrap() {
@@ -296,7 +296,7 @@ mod tests {
     #[test]
     fn current_imp_fire_selector_and_complete_power_order_match_native() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/demon-spell-math/native-additional-cases.json"
+            "../../../../docs/analysis/evidence/demon-spell-math/native-additional-cases.json"
         )).unwrap();
         assert_eq!(fixture["imp"].as_array().unwrap().len(), 480);
         for row in fixture["imp"].as_array().unwrap() {
@@ -325,7 +325,7 @@ mod tests {
     #[test]
     fn current_infernal_visual_uses_fresh_area_modifiers() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/demon-spell-math/native-additional-cases.json"
+            "../../../../docs/analysis/evidence/demon-spell-math/native-additional-cases.json"
         )).unwrap();
         for row in fixture["visual"].as_array().unwrap().iter()
             .filter(|row| row["special"].as_u64() == Some(6)) {

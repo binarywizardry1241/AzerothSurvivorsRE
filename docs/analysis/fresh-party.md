@@ -2,7 +2,7 @@
 
 Installed EXE: **0.123.0**, 146,228,736 bytes, SHA-256
 `de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be`.
-The [current proof](evidence/0.123.0/fresh-party/manifest.json) completes the
+The [current proof](evidence/fresh-party/manifest.json) completes the
 selected source/static work for **#207/#208**. The prior
 [0.120.4 observation](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-review-0.120.4.md) retains its original target.
 
@@ -37,7 +37,7 @@ separate; resetting the whole Service would change this contract.
 
 Current receiver`145bdc810` immediately calls sender`145bd7aa0` at`145bdce1f`
 when a control request has response=false; it sends response=true before returning
-to subsequent service events. The saved [relay receiver proof](evidence/0.123.0/relay-load/manifest.json)
+to subsequent service events. The saved [relay receiver proof](evidence/relay-load/manifest.json)
 binds this dependency without a new query. The source's deferred `Relay::outgoing`
 is an adapter queue, so its already admitted replies must reach the selected
 worker before the next event clears rows or drops that transport.

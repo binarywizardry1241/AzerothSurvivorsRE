@@ -23,7 +23,7 @@ SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 TABLE, COUNT, STRIDE = 0x146fe05c8, 113, 120
 START, STOP = 0x14596cd85, 0x14596ce0f
 RUNTIME = ROOT / 'runtime/analysis/history/native-recovery/as-ui-contracts/09a4d154b813'
-OUT = ROOT / 'docs/analysis/evidence/0.113.2/as-ui-contracts-horn.json'
+OUT = ROOT / 'docs/analysis/evidence/as-ui-contracts-horn.json'
 SOURCE = 'crates/azeroth-survivors-re/src/loot_rewards.rs'
 CATALOG = 'crates/azeroth-survivors-re/src/player_abilities/catalog.rs'
 

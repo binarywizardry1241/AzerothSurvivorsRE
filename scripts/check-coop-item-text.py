@@ -8,7 +8,7 @@ import struct
 
 from coverage_common import ROOT, latest_target, project_path, target_bytes
 
-PROOF = ROOT / 'docs/analysis/evidence/0.115.0/coop-item-text/manifest.json'
+PROOF = ROOT / 'docs/analysis/evidence/coop-item-text/manifest.json'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src'
 
 

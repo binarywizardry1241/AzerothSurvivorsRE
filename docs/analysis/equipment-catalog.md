@@ -19,8 +19,8 @@ legendary additions and scaling consumers. Its checked formula produces every
 ordinary rarity/class/slot combination in `assets/armory.json`, including native
 health rounding and equal-tag merging. The current recovery rechecks all **415**
 records against those tables and consumers; it reuses the canonical
-[data ranges](evidence/0.105.0/pvp-gear/data-evidence.json) and
-[procedure extracts](evidence/0.105.0/pvp-gear/procedures.json).
+[data ranges](evidence/pvp-gear/data-evidence.json) and
+[procedure extracts](evidence/pvp-gear/procedures.json).
 Names, appearance, prose and starter outfits keep their separately recorded
 historical provenance.
 
@@ -29,7 +29,7 @@ each of the **113** current ability descriptors at `146bacad8`, stride 120.
 The shared catalog at `146bb5798..146bb5ce8` contains **17** records, stride 80.
 The selected-target offer owner `145959720` supplies those exact shared bounds
 and calls the constructor for learned abilities at rarity 4. The retained
-[offer block](evidence/0.105.0/equipment-catalog/offer-pool.asm) records the live
+[offer block](evidence/equipment-catalog/offer-pool.asm) records the live
 connection; this is not an inferred catalog based on matching strings.
 
 The constructor's **112 existing generated** definitions and all **17 shared**
@@ -54,7 +54,7 @@ their original target identity and are never dereferenced as native pointers.
 Current rank owner `14587af80` retains the five rarity steps
 `[0.6, 0.5, 0.35, 0.25, 0.2]` and generic
 `3 - 2 * (1 - step/2) ^ max(picks-1, 0)` multiplier. Its existing canonical
-[assembly](evidence/0.105.0/demon-offers/amulet-rank.asm) leads through
+[assembly](evidence/demon-offers/amulet-rank.asm) leads through
 `1459a8f10` to current iterator `1459b5410`; passive effects use `1458e0750`.
 The iterator multiplies stat amounts and spell modifier magnitudes, caps spell
 cooldown reduction at 0.5 and floors target counts after adding native 0.0001.
@@ -76,7 +76,7 @@ checks the full EXE hash before recovery, then:
 Legionlord uses its separate recovered rank interpolation, documented and
 checked in [Demonology offers](demon-offers.md); those canonical extracts
 are referenced rather than duplicated. The ordinary gear's earlier 166 native
-scaling cases remain [separate evidence](evidence/0.105.0/pvp-gear/native-scaling-validation.json).
+scaling cases remain [separate evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/pvp-gear/native-scaling-validation.json).
 
 Run `python3 scripts/recover-equipment-catalog.py --check` for the
 noncompiling source/native checks. `--prepare` stages three focused REA plans
@@ -87,9 +87,9 @@ reservation, successful allocation, locale miss, string formatting and memcpy
 seams; unknown calls fail closed. Scaling uses only a floorf seam and real PE
 data/jump tables.
 
-The [compact result](evidence/0.105.0/equipment-catalog/catalog-validation.json)
+The [compact result](evidence/equipment-catalog/catalog-validation.json)
 contains counts, normalized output digests and exact native byte ranges. The
-[manifest](evidence/0.105.0/equipment-catalog/manifest.json) binds the extracts to
+[manifest](evidence/equipment-catalog/manifest.json) binds the extracts to
 REA/Ghidra evidence and records the shared canonical dependencies. Ghidra does
 not resolve the constructor/passive indirect switches; the complete selected
 assembly and bounded original-instruction cases supply those observations.

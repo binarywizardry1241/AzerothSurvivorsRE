@@ -2,8 +2,7 @@
 //!
 //! The 0.115.0 receiver admits only `type: "lobbies"`, replaces the whole
 //! snapshot and orders titled hosts before untitled hosts. See the hash-bound
-//! parser/receiver evidence in `docs/analysis/evidence/0.115.0/coop-directory`.
-//! Signed rank, difficulty and lock-reason additions: coop-directory-schema-0.123.0.md.
+//! parser and receiver evidence in docs/analysis/coop.md.
 use serde_json::Value;
 
 #[derive(Clone, Debug, PartialEq, Eq)]

@@ -11,7 +11,7 @@ from pathlib import Path
 from native_save_fixture import CPU, ROOT, SHA
 from unicorn import x86_const as r
 
-DEST = ROOT / "docs/analysis/evidence/0.109.0/login-roster"
+DEST = ROOT / "docs/analysis/evidence/login-roster"
 manifest = json.loads((DEST / "manifest.json").read_text())
 assert manifest["target_sha256"] == SHA
 cpu = CPU()

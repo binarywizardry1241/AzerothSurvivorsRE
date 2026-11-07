@@ -14,9 +14,9 @@ The installed 0.108.0 EXE is 140,203,520 bytes, SHA-256
 The recovery tool resolves and verifies this target before reading it; changed
 bytes are rejected rather than interpreted with this layout.
 
-The [catalog](evidence/0.108.0/boss-minions/catalog.json) retains exact native
+The [catalog](evidence/boss-minions/catalog.json) retains exact native
 record/string ranges and their hashes. The
-[manifest](evidence/0.108.0/boss-minions/manifest.json) binds the selected assembly,
+[manifest](evidence/boss-minions/manifest.json) binds the selected assembly,
 constants and three REA/Ghidra imports to the EXE. Each raw import uses the full
 declared native owner at its original VA:
 

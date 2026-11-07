@@ -8,11 +8,11 @@ compilation, actual interaction and original/rebuilt presentation are unverified
 
 ## Native contracts and live consumers
 
-The [manifest](evidence/0.105.0/pickup-effects/manifest.json) binds selected
+The [manifest](evidence/pickup-effects/manifest.json) binds selected
 original instructions, strings and three REA/Ghidra owners. Raw-import
 pseudocode has inferred types and absent external data/callees; original Win64
 instructions control argument interpretation. The shared GameObject creator
-is the canonical [boundary-pillar extract](evidence/0.105.0/boundary-pillars/manifest.json),
+is the canonical [boundary-pillar extract](evidence/boundary-pillars/manifest.json),
 not a second copied constructor.
 
 - Begin `145919949..145919b24` chooses two or three magnets using the original
@@ -72,7 +72,7 @@ serialization and the exact Lua parser consumer.
 original-instruction cases**: 24 rune mutations/casts, 48 leech clamps/admission
 cases, three XP-flight scenarios, twelve schedule/RNG cases, two coin/counter
 cases (including u32 wrap), and four descriptor selections. The retained
-[vectors](evidence/0.105.0/pickup-effects/native-vectors.json) record exact float
+[vectors](evidence/pickup-effects/native-vectors.json) record exact float
 bits and RNG state. Allocation, translation, terrain answers, field-map insertion,
 packet composition and meter insertion are explicit harness seams. These checks
 do not execute the EXE or validate real MPQ presentation.

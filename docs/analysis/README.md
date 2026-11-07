@@ -24,3 +24,8 @@ the exact retired extracts and reports in Git. Read an indexed input by its
 original path with `python3 -B scripts/artifact_history.py PATH`; use
 `--sha256` when a proof records an expected digest. Archived evidence retains
 its original applicability and checks.
+
+Working evidence paths are organized by feature. Target versions belong in the
+proof metadata. A retained fixture or extract keeps its bytes when moved.
+Checkers use the category path for working inputs and the original logical
+path when verifying a historical receipt.

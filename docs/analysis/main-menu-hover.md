@@ -13,7 +13,7 @@ background switching in the reconstructed menu did not come from this native pat
 The public Bevy 0.18.1 compiled layout binds UiTransform translation0/scale16/rotation24,
 Val2 x0/y8 and Interaction tags0/1/2 to the original instructions. This is a cross-checked
 type-layout inference; the original Rust component name has not been recovered.
-The owning [menu-hover-native.json](evidence/0.92/menu-hover-native.json) includes
+The owning [menu-hover-native.json](evidence/menu-hover-native.json) includes
 SHA-bound constant bytes, REA evidence IDs, instruction ranges and limits.
 `scripts/recover-menu-hover.py` reproduces its static record from the reference and
 existing REA exports; it is not a build or runtime dependency.

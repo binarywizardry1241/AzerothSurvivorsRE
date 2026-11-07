@@ -2,7 +2,7 @@
 
 Installed SHA-256:
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The [current manifest](evidence/0.112.0/armory-input-catalog/manifest.json)
+The [current manifest](evidence/armory-input-catalog/manifest.json)
 independently binds the historical fixture algorithm to current bodies and
 data. Historical [Armory recovery](armory-pages.md) retains its target.
 
@@ -28,9 +28,9 @@ and166 PvP faction names, and every used key exists in all14 current locale
 maps. Existing name assets retain their actual extraction provenance; these
 current data comparisons establish their stated continued use. The current
 ordinary descriptor constructor is already canonical in the
-[balance evidence](evidence/0.112.0/balance/ordinary-gear-reader.ghidra.c).
+[balance evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/balance/ordinary-gear-reader.ghidra.c).
 
-[Results](evidence/0.112.0/armory-input-catalog/cases.json) retain compact case
+[Results](evidence/armory-input-catalog/cases.json) retain compact case
 digests and exact class/string spans. Cosmetics, candidate slot ordering and
 Scarlet purchased-save migration have their separate current
 [appearance](armory-cosmetics.md), [slot](armory-slots.md) and

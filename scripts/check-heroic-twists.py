@@ -24,7 +24,7 @@ sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
                str(ROOT / "runtime/tool-state/python/armory/python-libs")]
 
 SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
-KEPT = ROOT / "docs/analysis/evidence/0.121.0/heroic-twists"
+KEPT = ROOT / "docs/analysis/evidence/heroic-twists"
 RANGES = {
     "healing": (0x145bd10e0, 0x145bd138f),
     "guardian-stats": (0x145c4e9e0, 0x145c4f08f),

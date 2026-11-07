@@ -38,7 +38,7 @@ def main():
     args = parser.parse_args()
     target = latest_target(verify=True)
     assert target["version"] == "0.120.0" and target["sha256"] == SHA
-    proof = json.loads((ROOT / "docs/analysis/evidence/0.120.0/race-locales/manifest.json").read_text())
+    proof = json.loads((ROOT / "docs/analysis/evidence/race-locales/manifest.json").read_text())
     assert proof["target"]["sha256"] == SHA
     image = target_bytes(target)
     pe = load_script("race_locale_pe", ROOT / "scripts/inventory-executable.py").PE(image)

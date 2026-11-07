@@ -2,7 +2,7 @@
 
 Installed EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
-The [manifest](evidence/0.121.0/heroic-native/manifest.json) binds three durable
+The [manifest](evidence/heroic-native/manifest.json) binds three durable
 Ghidra raw-slice queries, original instruction/data ranges and actual source
 receipts. This is bounded native recovery for the new `heroic.rs` owner, not a
 complete difficulty implementation or proof of weekly behavior. Supplied items
@@ -69,7 +69,7 @@ modeling limitation; exact original instruction bytes govern this connection.
 
 ## Validation and next static work
 
-The [static result](evidence/0.121.0/heroic-native/static-check.json) records
+The [static result](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.121.0/heroic-native/static-check.json) records
 **174 affix-selection cases**, including 64-bit boundary selectors, and
 **16 rank-name cases**, covering translation hit/miss, all displayed ranks and
 two rejected ranks. It checks **7,569 original instruction steps**, exact

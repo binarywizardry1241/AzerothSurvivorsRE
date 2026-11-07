@@ -12,7 +12,7 @@ SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 def main():
     target = latest_target(verify=True)
     assert target['version'] == '0.115.0' and target['sha256'] == SHA
-    manifest = json.loads((ROOT / 'docs/analysis/evidence/0.115.0/coop-spell-text/manifest.json').read_text())
+    manifest = json.loads((ROOT / 'docs/analysis/evidence/coop-spell-text/manifest.json').read_text())
     assert manifest['target']['sha256'] == SHA and not manifest['compiled'] and not manifest['target_executed']
     data = target_bytes(target)
     pe = load_script('coop_spell_text_pe', ROOT / 'scripts/inventory-executable.py').PE(data)

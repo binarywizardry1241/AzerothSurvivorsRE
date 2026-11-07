@@ -16,7 +16,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from coverage_common import latest_target, json_text
-OUT = ROOT / 'docs/analysis/evidence/0.105.0/camera-room'
+OUT = ROOT / 'docs/analysis/evidence/camera-room-comparison'
 RUN = ROOT / 'runtime/tool-state/python/camera'
 
 

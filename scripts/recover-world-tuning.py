@@ -58,7 +58,7 @@ for zone in zones:
         u.reg_write(UC_X86_REG_XMM10,0); u.reg_write(UC_X86_REG_XMM15,0)
         for start,end in ranges: u.emu_start(start,end,count=100)
         cases.append(dict(zone=zone['key'],clock_bits=clock,result_bits=u.reg_read(UC_X86_REG_XMM14)&0xffffffff))
-out=ROOT/'docs/analysis/evidence/0.100.1/world-tuning.json'
+out=ROOT/'docs/analysis/evidence/world-tuning.json'
 out.write_text(json.dumps(dict(target_sha256=SHA,method=__doc__,
     owners=[span(a,z-a) for a,z in ranges], constants=[span(0x1459158a4,4),span(0x1459158d8,4)],
     zones=zones,naxx_bosses=bosses,cases=cases,

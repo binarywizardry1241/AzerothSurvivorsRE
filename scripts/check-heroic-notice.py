@@ -19,7 +19,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--write', action='store_true')
     args = parser.parse_args()
-    directory = ROOT / 'docs/analysis/evidence/0.121.0/heroic-notice'
+    directory = ROOT / 'docs/analysis/evidence/heroic-notice'
     proof = json.loads((directory / 'manifest.json').read_text())
     target = latest_target(verify=True)
     assert proof['target'] == {k: target[k] for k in ('version', 'path', 'sha256', 'size_bytes')}

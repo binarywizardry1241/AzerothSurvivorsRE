@@ -1,6 +1,6 @@
 # Primary boss death, damage meter and completion
 
-Reviewed 2026-10-18. Target SHA-256: `a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589`, project-local supplied `0.97.2` EXE. [death-native.json](evidence/0.97.2/bosses/death-native.json) retains 15 focused native instruction scopes, eight relevant literal strings and three hash-matching REA records. Implementation is `crates/azeroth-survivors-re/src/bosses/death.rs`.
+Reviewed 2026-10-18. Target SHA-256: `a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589`, project-local supplied `0.97.2` EXE. [death-native.json](evidence/bosses/death-native.json) retains 15 focused native instruction scopes, eight relevant literal strings and three hash-matching REA records. Implementation is `crates/azeroth-survivors-re/src/bosses/death.rs`.
 
 The shared damage/death owner `1454c2eb0` was already decompiled for this exact target: REA `ev_ba95562638ee7eaae2ea1dc88d80c5df86859a014473f69b678b229aacd357bd`. Its original bytes are checked again against the selected PE before reusing the record. The primary arm is `1454c41d3..1454c4af9`; unrelated generic damage, on-kill procs, aura/packet removal and guardian/ordinary branches are not replaced by the boss component. The caller must invoke this arm once after the shared owner marks the actor dead and stops its movement.
 

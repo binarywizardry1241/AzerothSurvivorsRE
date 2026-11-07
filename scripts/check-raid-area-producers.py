@@ -11,7 +11,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b'
-OUT = ROOT / 'docs/analysis/evidence/0.108.0/raid-area-producers'
+OUT = ROOT / 'docs/analysis/evidence/raid-area-producers'
 RANGES = {
     'create': (0x1459508f0, 0x145950af7),
     'follow': (0x145948715, 0x145948a53),

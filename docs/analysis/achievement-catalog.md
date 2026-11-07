@@ -10,7 +10,7 @@ and party conditions.
 
 Original constructor `145b973b0..145ba0d42` and its class-gear iterator
 `145c7d050..145c7d51b` emit **124 achievements worth 2,950 points**. The
-[catalog proof](evidence/0.121.0/achievement-catalog.json) binds the current target,
+[catalog proof](evidence/achievement-catalog.json) binds the current target,
 native ranges, journaled Ghidra result and normalized source asset. Synthetic
 allocation, string/number formatting, locale lookup and token replacement are
 explicit interfaces; undefined record padding and synthetic heap pointers are
@@ -24,14 +24,14 @@ proved by the new descriptor constructor. Existing sidebar, category counts,
 point totals, progress and reward views consume the resulting catalog.
 
 The category domain is now Zones, Classes, Collection, Feats, Lifetime, Co-op
-and Heroic. The separate [category artwork proof](evidence/0.121.0/achievement-category-icons.json)
+and Heroic. The separate [category artwork proof](evidence/achievement-category-icons.json)
 binds all seven icons plus Summary directly to the current category button.
-The [locale projection](evidence/0.121.0/achievement-localization.json) checks
+The [locale projection](evidence/achievement-localization.json) checks
 202 actual native keys in all fourteen catalogs. Four numeric replacement
 strings are not locale keys and retain ordinary literal fallback.
 
 The current category artwork is independently bound by
-[achievement-category-icons.json](evidence/0.121.0/achievement-category-icons.json).
+[achievement-category-icons.json](evidence/achievement-category-icons.json).
 AS category control `1400cb7a0` reads the category byte, increments it with u8
 wrapping, and selects a relative string at `1461b1c18` and its length at
 `1461b1c38`. Summary (`0xff`) selects entry zero; categories 0–6 select entries
@@ -46,7 +46,7 @@ constant/loading/selection connections. No replacement artwork is inferred.
 ## Current run and party conditions
 
 `145ba6470..145ba7292` evaluates catalog variants 0–14 and skips already earned
-keys. [Original predicate replay](evidence/0.121.0/run-achievements.json) stops
+keys. [Original predicate replay](evidence/run-achievements.json) stops
 at its actual award branch, before date acquisition, save mutation or notices.
 The current `145b90f00..145b91272` party helper executes as native code too.
 

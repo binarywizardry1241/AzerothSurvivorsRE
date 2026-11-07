@@ -16,7 +16,7 @@ u=Uc(UC_ARCH_X86,UC_MODE_64);extent=max(x['rva']+max(x['raw_size'],x['virtual_si
 for x in p.sections:u.mem_write(p.image_base+x['rva'],data[x['raw_offset']:x['raw_offset']+x['raw_size']])
 H,S,D=0x200000000,0x300000000,0x400000000;u.mem_map(H,0x20000);u.mem_map(S,0x20000);u.mem_map(D,4096)
 q=lambda a:struct.unpack('<Q',u.mem_read(a,8))[0];wq=lambda a,v:u.mem_write(a,struct.pack('<Q',v));reg=lambda r:u.reg_read(r)
-layout=json.loads((ROOT/'docs/analysis/evidence/0.92/picker-node-layout.json').read_text())['node_layout']
+layout=json.loads((ROOT/'docs/analysis/evidence/picker-node-layout.json').read_text())['node_layout']
 def node(a):
  b=bytes(u.mem_read(a,384));out={}
  for k,off in layout.items():
@@ -70,7 +70,7 @@ proof=dict(target_sha256=t['sha256'],address=hex(a),end_exclusive=hex(b),sha256=
  'Shadow helper input color/spread/blur and bundle fields are captured. Generic color conversion is a declared copy fixture, shadow allocation and ECS submission are bypassed. Current32-byte child/entry prefix plus384-byte Node and component field stores establish offsets.',
  'Legendary effect metadata is independently covered by the full current Codex constructor pass. Unknown question text and legendary spell badge child construction are outside this bounded tile sample.',
  'No build, application, GPU, computed layout or original/rebuilt comparison ran.'])
-parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--write',action='store_true');args=parser.parse_args();path=ROOT/'docs/analysis/evidence/0.109.0/codex/tile.json'
+parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--write',action='store_true');args=parser.parse_args();path=ROOT/'docs/analysis/evidence/codex/tile.json'
 if args.write:path.write_text(json.dumps(proof,indent=2)+'\n')
 else:assert json.loads(path.read_text())==proof
 print(f'Passed {len(rows)} complete current Codex tile submissions at grid/Details sizes, including every rarity/known/selected combination; no compiler/game.')

@@ -15,8 +15,8 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-OUT = ROOT / 'docs/analysis/evidence/0.109.0/raid-pools'
-STAGE = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/raid-pools'
+OUT = ROOT / 'docs/analysis/evidence/raid-pools'
+STAGE = ROOT / 'runtime/analysis/staging/native-evidence/raid-pools'
 
 def f32(v):
     return _shared_f32(v)
@@ -48,7 +48,7 @@ def recover():
                 w = list(struct.unpack('<14I',value))
                 rows.append(dict(boss_id=boss_id,native_slot=slot,native_tag=28,
                     words=w[:5],repeat_bits=w[12],record=span(at,56)))
-    catalog = json.loads((ROOT/'docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json').read_text())
+    catalog = json.loads((ROOT/'docs/analysis/evidence/guardian-signatures/catalog.json').read_text())
     assert catalog['target_sha256'] == SHA
     for row in catalog['rows']:
         for phase in row['phases']:
@@ -57,7 +57,7 @@ def recover():
             assert span(at,72)['sha256'] == phase['record']['sha256']
             rows.append(dict(guardian_id=row['enemy_id'],phase_index=phase['index'],native_tag=28,
                 words=phase['words'][4:9],repeat_bits=0,
-                canonical_record=f'docs/analysis/evidence/0.109.0/guardian-signatures/catalog.json#/rows/{catalog["rows"].index(row)}/phases/{phase["index"]}/record'))
+                canonical_record=f'docs/analysis/evidence/guardian-signatures/catalog.json#/rows/{catalog["rows"].index(row)}/phases/{phase["index"]}/record'))
     assert len(rows) == 3 and rows[0]['boss_id'] == 394
     assert [row['guardian_id'] for row in rows[1:]] == [111,1011]
     return target, raw, span, rows

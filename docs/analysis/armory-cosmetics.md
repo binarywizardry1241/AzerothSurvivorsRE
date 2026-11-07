@@ -44,8 +44,8 @@ stay outside the scrolling bodies. The Appearance grid has two flexible columns,
 - `scripts/check-secondary-menu-layout.py` captures four card states,
   all four named viewport Nodes and the Appearance grid initializer. Late
   initializers use vector constants traced to current native loads/zeroing.
-- [Cosmetic cases](evidence/0.112.0/armory-cosmetics/cases.json),
-  [layout captures](evidence/0.112.0/secondary-menu-layout/nodes.json) and their
+- [Cosmetic cases](evidence/armory-cosmetics/cases.json),
+  [layout captures](evidence/secondary-menu-layout/nodes.json) and their
   adjoining analysis manifests bind original ranges, output and Ghidra identities.
   Allocation, byte services, formatting/localization, ordinary-item rejection,
   baseline outfits, combined inventory and UI publication are explicit seams.

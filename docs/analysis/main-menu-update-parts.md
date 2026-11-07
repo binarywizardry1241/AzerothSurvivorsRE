@@ -7,7 +7,7 @@ The 0.123.0 [resume repair](update-resume.md) supersedes the historical
 error/empty-buffer and HTTP conversion behavior below; the original 0.92 evidence
 and past validation retain their original target.
 
-[Curated evidence](evidence/0.92/menu-update-parts.json) binds six Ghidra owners,
+[Curated evidence](evidence/menu-update-parts.json) binds six Ghidra owners,
 their original bytes, five threshold checks, five exact native floating-point
 rate checks and three native I/O-kind lookups. Reproduce with
 `python3 scripts/recover-menu-update-parts.py`.

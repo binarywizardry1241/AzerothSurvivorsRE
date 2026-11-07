@@ -31,7 +31,7 @@ def main():
         tables.append(dict(kind=kind,address=hex(address),file_offset=hex(offset),stride=16,count=count,entries=entries))
     output = ROOT/'crates/azeroth-survivors-re/assets/hero-name.json'
     output.write_text(json.dumps(catalog,indent=2)+'\n')
-    report = ROOT/'docs/analysis/evidence/0.92/picker-name-native.json'
+    report = ROOT/'docs/analysis/evidence/picker-name-native.json'
     evidence = json.loads(report.read_text())
     assert evidence['artifact_sha256'] == EXPECTED
     evidence.update(tables=tables,output=str(output.relative_to(ROOT)),output_sha256=hashlib.sha256(output.read_bytes()).hexdigest())

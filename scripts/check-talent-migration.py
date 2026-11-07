@@ -9,8 +9,8 @@ import json
 
 from native_talent_fixture import ROOT, Machine, data, pe, target
 
-HISTORICAL = ROOT / 'docs/analysis/evidence/0.105.0/talent-migration/native-cases.json'
-CURRENT = ROOT / 'docs/analysis/evidence/0.112.0/talent-allocations/migration-cases.json'
+HISTORICAL = ROOT / 'docs/analysis/evidence/talent-migration/native-cases.json'
+CURRENT = ROOT / 'docs/analysis/evidence/talent-allocations/migration-cases.json'
 
 
 def recover():

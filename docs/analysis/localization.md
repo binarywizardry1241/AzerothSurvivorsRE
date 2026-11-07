@@ -20,7 +20,7 @@ entries, followed by save-data-directory entries. Equal roots are retained.
 Read errors contribute nothing; a malformed file contributes no prefix entries
 and prints a diagnostic. Later entries overwrite equal keys, including empty
 strings; omitted embedded keys survive. The shared save-data path contract has
-one canonical current [extract](evidence/0.109.0/saves-browser/data-directory.asm).
+one canonical current [extract](evidence/saves-browser/data-directory.asm).
 
 The custom flat string-object parser retains its permissive native behavior:
 repeated initial BOM, raw string controls, trailing text after the closing
@@ -33,9 +33,9 @@ Current owners include lookup `1458ec500`, selection `1458ec750`, startup
 `1458ecea0`, persistence `1458edf70`, loader `1458eb8a0`, parser `1458ed780`,
 string `1458e96e0`, expect `1458e94d0`, hex `1458e9020`, lazy callback
 `1458e89d0`, initializer `1459d19a0`, and native map insertion `1459a13c0`.
-The [manifest](evidence/0.109.0/localization/manifest.json) binds their exact
+The [manifest](evidence/localization/manifest.json) binds their exact
 current ranges and current Ghidra queries. The
-[address map](evidence/0.109.0/localization/address-map.json) records independent
+[address map](evidence/localization/address-map.json) records independent
 instruction/operand comparison for twenty-two historical/current owner pairs:
 registers, instruction layout, scalar immediates and structure offsets agree;
 calls and RIP-relative data are independently rebound. This is not a blanket
@@ -55,7 +55,7 @@ body is from the installed current PE. Retained fixture source hashes prevent
 silent fixture drift. The actual current callback and worker traverse fourteen
 descriptors; native HashMap insertion separately executes overwrite/new-key/
 empty-value stores. All results are in the
-[current vectors](evidence/0.109.0/localization/native-vectors.json).
+[current vectors](evidence/localization/native-vectors.json).
 
 File/environment/path results, Unicode trim, allocation/copy, hashing/byte
 comparison, parser results used by the loader, map storage and diagnostics have

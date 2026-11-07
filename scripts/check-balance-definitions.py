@@ -11,7 +11,7 @@ import argparse, hashlib, json, math, re, struct, sys
 from pathlib import Path
 from coverage_common import ROOT,latest_target,target_bytes
 SHA='dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
-OUT=ROOT/'docs/analysis/evidence/0.112.0/balance/definitions.json'
+OUT=ROOT/'docs/analysis/evidence/balance/definitions.json'
 ASSETS=ROOT/'crates/azeroth-survivors-re/assets'
 
 def load(name,path):
@@ -25,7 +25,7 @@ def digest(x):return hashlib.sha256(json.dumps(x,sort_keys=True,ensure_ascii=Fal
 
 def recover(apply_gear=False):
  target=latest_target(verify=True);assert target['sha256']==SHA;data=target_bytes(target);pe=load('balance_pe','scripts/inventory-executable.py').PE(data);spans={}
- manifest_path=ROOT/'docs/analysis/evidence/0.112.0/balance/manifest.json';manifest=json.loads(manifest_path.read_text());assert manifest['target']['sha256']==SHA
+ manifest_path=ROOT/'docs/analysis/evidence/balance/manifest.json';manifest=json.loads(manifest_path.read_text());assert manifest['target']['sha256']==SHA
  for row in manifest['ranges']+manifest['ghidra_observations']:
   a,b=int(row['address'],16),int(row['end_exclusive'],16);off=pe.rva_offset(a-pe.image_base)
   assert hashlib.sha256(data[off:off+b-a]).hexdigest()==row.get('sha256',row.get('raw_input_sha256'))

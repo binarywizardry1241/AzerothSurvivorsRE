@@ -96,7 +96,7 @@ source=(ROOT/'crates/azeroth-survivors-re/src/discord/transport.rs').read_text()
 for fragment in ['for index in 0..10','from_secs(1)','from_secs(4)','from_secs(20)','1_048_576','nonce.wrapping_add(1)','receiver.try_iter()','opcode == 2','"SET_ACTIVITY"','"1559232589020012564"'] :assert fragment in source,fragment
 ranges=[]
 for a,b in [(0x140067fc0,0x14006a050),(0x14006af20,0x14006b038),(0x14006b080,0x14006b1e5),(0x1400a91d0,0x1400a933f),(0x14004e850,0x14004e96c),(0x140090800,0x14009080f),(0x1401a5860,0x1401a58d9),(0x140046860,0x140046c91)]:ranges.append(dict(start=hex(a),end_exclusive=hex(b),sha256=hashlib.sha256(raw(a,b-a)).hexdigest()))
-manifest_path=ROOT/'docs/analysis/evidence/0.109.0/discord-transport/manifest.json'
+manifest_path=ROOT/'docs/analysis/evidence/discord-transport/manifest.json'
 if manifest_path.exists():
  manifest=json.loads(manifest_path.read_text());assert manifest['target_sha256']==t['sha256']
  for row in manifest['owners']:
@@ -105,7 +105,7 @@ if manifest_path.exists():
   for kind in ('assembly','pseudocode'):
    assert hashlib.sha256((manifest_path.parent/row[kind]).read_bytes()).hexdigest()==row[kind+'_sha256']
 record=dict(target_sha256=t['sha256'],case_count=len(results),cases=results,ranges=ranges,limits=['Full native frame helpers execute against explicit JSON serializer/read_exact/write_all/allocation/free seams; no OS, pipe, server or application runs.','Throttle and nonce are isolated no-OS worker fragments. Worker endpoint, retry, JSON command, deduplication, channel and reply paths are statically traced, not certified by these fragment cases.','Windows is the only supplied platform artifact. Unix endpoint discovery remains unsupported instead of inventing native behavior.'])
-path=ROOT/('runtime/analysis/staging/native-evidence/0.109.0/discord-transport'if args.stage else'docs/analysis/evidence/0.109.0/discord-transport')/'native.json'
+path=ROOT/('runtime/analysis/staging/native-evidence/discord-transport'if args.stage else'docs/analysis/evidence/discord-transport')/'native.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==json.loads(json.dumps(record))
 print(f'Passed {len(results)} native Discord frame/throttle/nonce cases; no IPC or game')

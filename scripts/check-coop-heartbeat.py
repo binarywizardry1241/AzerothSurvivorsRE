@@ -23,7 +23,7 @@ CONSTRUCT, MESSAGE = 0x145e03b40, 0x146fb2290
 def replay():
     target = latest_target(verify=True)
     assert target['version'] == '0.120.0' and target['sha256'] == SHA
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.120.0/coop-correspondence/manifest.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/coop-correspondence/manifest.json').read_text())
     assert all(target[key] == proof['target'][key] for key in ('version', 'sha256', 'size_bytes'))
     image = target_bytes(target)
     pe = load_script('heartbeat_pe', ROOT / 'scripts/inventory-executable.py').PE(image)

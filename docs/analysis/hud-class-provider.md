@@ -2,7 +2,7 @@
 
 Target: installed **0.109.0**, SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [manifest](evidence/0.109.0/hud-class-provider/manifest.json) binds the
+The [manifest](evidence/hud-class-provider/manifest.json) binds the
 registration, both system runners, class forwarding windows and immutable data.
 [Current HUD recovery](run-hud.md) owns the separate class/atlas mapping.
 
@@ -16,7 +16,7 @@ its resource ID in R13 and stores it at system state`+b98`. The descriptor has
 layout64/alignment8 and TypeID bytes
 `069ad40b469b67b8d24e086565767c39`, matching the frontend Pick installed by
 startup `140064930` through its `145d9d780` identity constant. The canonical
-[frontend Pick binding](evidence/0.109.0/account-commands/frontend-pick-binding.json)
+[frontend Pick binding](evidence/account-commands/frontend-pick-binding.json)
 retains that construction and its three equal TypeID copies. The source's
 frontend Pick, independently restored after import, remains the corresponding
 owner.

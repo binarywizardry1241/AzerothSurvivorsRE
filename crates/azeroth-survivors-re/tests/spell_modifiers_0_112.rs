@@ -8,7 +8,7 @@ use serde_json::Value;
 
 fn fixture() -> Value {
     serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.112.0/demonic-empowerment/spell-modifier-cases.json"
+        "../../../docs/analysis/evidence/demonic-empowerment/spell-modifier-cases.json"
     ))
     .unwrap()
 }

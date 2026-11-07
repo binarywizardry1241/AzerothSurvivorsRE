@@ -18,9 +18,9 @@ actual callers are `1458b076b` and `1458b0c75`; snapshot construction is
 `1458c02a0`. The [checker](../../scripts/check-achievement-grants.py)
 reuses the canonical current constructor and executes original grant, set,
 date, lethal-record, incoming-history and eligibility instructions against
-synthetic typed memory. [Native vectors](evidence/0.112.0/achievement-grants/native-vectors.json),
-[canonical instructions](evidence/0.112.0/achievement-grants/selected-native.asm)
-and [bounded Ghidra provenance](evidence/0.112.0/achievement-grants/ghidra.json)
+synthetic typed memory. [Native vectors](evidence/achievement-grants/native-vectors.json),
+[canonical instructions](evidence/achievement-grants/selected-native.asm)
+and [bounded Ghidra provenance](evidence/achievement-grants/ghidra.json)
 retain the exact range commitments and analysis limits.
 
 | Key / boss ID | Native feat variant | Lethal-hit predicate |
@@ -115,7 +115,7 @@ in each of 12 zones, all-class zone completion, all-class talent XP boundaries,
 per-class open-zone boundaries, item/legendary subsets, Codex 70/71/141/142/143,
 lifetime thresholds and roster lengths spanning native vector/remainder loops.
 Five Codex states also check undated grants. The
-[21 retained account states](evidence/0.112.0/achievement-grants/native-account-vectors.json)
+[21 retained account states](evidence/achievement-grants/native-account-vectors.json)
 are current native results, including the corrected 142-entry boundary, and
 now drive the authored pure-module and Save-adapter Rust regressions. Historical
 fixtures are reused only as input data; their older expected results remain
@@ -124,11 +124,11 @@ unchanged in their historical evidence directory.
 ## Terminal account producers
 
 Current summary `1458b9fb0..1458bba6a` is reused from the canonical
-[addon-bridge owner](evidence/0.112.0/addon-bridge/manifest.json), rather than
+[addon-bridge owner](evidence/addon-bridge/manifest.json), rather than
 duplicating its Ghidra extraction. Current XP parts begin at `1458ba062`;
 the delta iterator is `1459da440`, the XP-row mutation is `1458d2fe0`, and
 the terminal phase/counter transaction is `1458b0828..1458b0bed`. The
-[terminal manifest](evidence/0.112.0/achievement-terminal/manifest.json) binds
+[terminal manifest](evidence/achievement-terminal/manifest.json) binds
 eight current ranges, two additional bounded Ghidra owners and the selected
 instruction windows to this EXE. Historical 0.105.0/0.109.0 terminal reports
 retain their original identities; their old addresses are not reused here.
@@ -176,7 +176,7 @@ gates, 432 all-class XP mutations, 36 backend XP/save calls, 504 permanent bests
 36 optional-row fallbacks, 14 first-result/count cases and 432 beaten-pair
 insertions. It retains compact counts/digests and ten representative XP vectors
 with six arithmetic boundaries in
-[native vectors](evidence/0.112.0/achievement-terminal/native-vectors.json).
+[native vectors](evidence/achievement-terminal/native-vectors.json).
 This exposed a source adapter defect: `grant_terminal_xp` called the allocation
 editor, which normalized the live allocation and mirrored it into the selected
 saved spec. Native XP gain preserves both. The adapter now updates only the
@@ -215,7 +215,7 @@ Tester); custom `0xfffffe` remains eligible. The source previously applied
 ordinary account Veteran grants to Tester runs too. Run entry now zeroes only
 that Veteran input for the Tester before applying account grants.
 
-The [Veteran manifest](evidence/0.112.0/achievement-veteran/manifest.json) retains
+The [Veteran manifest](evidence/achievement-veteran/manifest.json) retains
 the967-byte owner,42-byte caller, exact0.2f32 data and fresh Ghidra provenance.
 The [checker](../../scripts/check-achievement-veteran.py) passes1,620
 complete current factor cases using native typed Save inputs, including all
@@ -223,7 +223,7 @@ nine selected/rival classes, zero/positive/import-clamped ranks, lower/tied/
 higher/u32::MAX XP, empty accounts, ignored class6 and first-row duplicates.
 Its81 original caller cases check GUID admission, selected-class/backend
 arguments and the stored factor bits. Compact result digests are retained in
-[native vectors](evidence/0.112.0/achievement-veteran/native-vectors.json).
+[native vectors](evidence/achievement-veteran/native-vectors.json).
 Run `python3 -B scripts/check-achievement-veteran.py`; `--prepare-rea`
 prepares its bounded current-owner Ghidra plan. No other perk system is promoted
 by this proof.

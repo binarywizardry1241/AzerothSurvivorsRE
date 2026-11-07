@@ -18,7 +18,7 @@ from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 WORK = ROOT / 'runtime/analysis/history/findings/q41-data-relations/26c724b75a92'
-CURATED = ROOT / 'docs/analysis/evidence/0.113.2/q41-data-bindings'
+CURATED = ROOT / 'docs/analysis/evidence/q41-data-bindings'
 ENTRY, END = 0x1401A8020, 0x1401A81C6
 LITERAL, SIZE = 0x145EEE140, 17
 READER = 0x1401A8163
@@ -52,7 +52,7 @@ def main():
         return dict(address=hex(address), end_exclusive=hex(address + count),
                     byte_count=count, sha256=digest(raw(address, count)))
 
-    queue_path = ROOT / 'docs/analysis/evidence/0.113.2/unknown-recovery.json'
+    queue_path = ROOT / 'docs/analysis/evidence/unknown-recovery-comparison-2.json'
     queue = json.loads(queue_path.read_text())
     assert queue['target']['sha256'] == SHA
     assert queue['selectors']['Q41-D01']['records'] == 531765

@@ -16,7 +16,7 @@ import struct
 from coverage_common import ROOT, latest_target, project_path, target_bytes
 
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
-RETAINED = ROOT / "docs/analysis/evidence/0.109.0/overlay-canvas"
+RETAINED = ROOT / "docs/analysis/evidence/overlay-canvas"
 OWNERS = {"fit": (0x14018F300, 0x14018F75E), "scale": (0x140190700, 0x140191126)}
 RANGES = {"fit": (0x14018F60F, 0x14018F6AE),
           "target-fit": (0x140190C4A, 0x140190CE1),

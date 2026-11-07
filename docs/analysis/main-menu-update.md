@@ -2,7 +2,7 @@
 
 Updated 2026-10-16. Target: supplied **0.92.0** executable, SHA-256
 `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
-The [curated native record](evidence/0.92/menu-update-native.json) binds the
+The [curated native record](evidence/menu-update-native.json) binds the
 instructions, embedded strings, Ghidra evidence IDs and bounded pure-function
 checks to that target. `scripts/recover-menu-update.py` reproduces the record;
 it requires the reference only for analysis, never for the source build.

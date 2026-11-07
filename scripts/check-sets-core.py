@@ -11,7 +11,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-BASE = ROOT / 'docs/analysis/evidence/0.121.0/sets-core'
+BASE = ROOT / 'docs/analysis/evidence/sets-core'
 
 
 def sha(value):

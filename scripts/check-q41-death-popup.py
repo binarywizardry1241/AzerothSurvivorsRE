@@ -16,7 +16,7 @@ from script_sources import load_script
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
 WORK = ROOT / "runtime/analysis/history/findings/q41-data-contracts/27d2ef7f9d9d/static-popup"
-KEEP = ROOT / "docs/analysis/evidence/0.115.0/q41-death-popup.json"
+KEEP = ROOT / "docs/analysis/evidence/q41-death-popup.json"
 START, END = 0x145995680, 0x1459958a1
 
 
@@ -65,7 +65,7 @@ def main():
         print(f"./scripts/rea query {relative / 'plan.json'}")
         return
 
-    assembly_path = ROOT / "docs/analysis/evidence/0.115.0/death-popup-bootstrap.asm"
+    assembly_path = ROOT / "docs/analysis/evidence/death-popup-bootstrap.asm"
     instructions = []
     cursor = START
     for line in assembly_path.read_text().splitlines():
@@ -76,7 +76,7 @@ def main():
         instructions.append({"site": hex(cursor), "bytes": encoded, "decoded": decoded})
         cursor += len(value)
     assert cursor == END
-    lua_path = ROOT / "docs/analysis/evidence/0.115.0/death-popup.lua"
+    lua_path = ROOT / "docs/analysis/evidence/hud-framexml/death-popup.lua"
     lua = lua_path.read_bytes()
     assert lua == raw(0x1473339ac, 271)
     assert raw(0x1473339a8, 4).hex() == "c0800f01"

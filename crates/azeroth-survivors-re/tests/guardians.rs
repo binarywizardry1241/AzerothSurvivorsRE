@@ -220,7 +220,7 @@ fn initial_spawn_pause_boundary_and_respawn_use_run_state() {
 #[test]
 fn current_named_guardian_scales_reach_the_actual_spawn_port() {
     let current: Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.127.0/creature-sizes/reach-native.json"
+        "../../../docs/analysis/evidence/creature-sizes/reach-native.json"
     )).unwrap();
     let mut checked = 0;
     for row in current["cases"].as_array().unwrap().iter()

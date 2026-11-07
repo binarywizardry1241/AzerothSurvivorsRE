@@ -32,7 +32,7 @@ from unicorn.x86_const import (
 )
 
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
-MANIFEST = ROOT / "docs/analysis/evidence/0.109.0/save-schema/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/save-schema/manifest.json"
 RUST_WHITESPACE = (
     "\t\n\v\f\r \x85\xa0\u1680"
     + "".join(map(chr, range(0x2000, 0x200B)))

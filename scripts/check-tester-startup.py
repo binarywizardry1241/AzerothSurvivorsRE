@@ -17,7 +17,7 @@ import sys
 from coverage_common import latest_target
 
 ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.105.0/stock-frontend/tester'
+EVIDENCE = ROOT / 'docs/analysis/evidence/stock-frontend/tester'
 
 
 def main():

@@ -9,10 +9,10 @@ original/rebuilt parity remain unverified.
 
 ## Native producers and packet contracts
 
-The [manifest](evidence/0.105.0/arrival-announcements/manifest.json) binds the
+The [manifest](evidence/arrival-announcements/manifest.json) binds the
 selected producer ranges, original PE bytes and Ghidra yell-helper observation.
-The existing [boss constructor](evidence/0.105.0/boss-catalog/constructor.asm) and
-[emote serializer](evidence/0.105.0/terminal/notification-packet.asm) remain their
+The existing [boss constructor](evidence/boss-catalog/constructor.asm) and
+[emote serializer](evidence/terminal/notification-packet.asm) remain their
 canonical extracts; they are referenced without duplicating them.
 
 | Producer | Current native range | Recovered message |
@@ -29,7 +29,7 @@ canonical extracts; they are referenced without duplicating them.
 The `1458a9500..1458a97d9` serializer emits opcode `0x96`, chat type `0x5a`
 (`RAID_BOSS_EMOTE`), language zero, a length-prefixed inline speaker/title, zero
 target GUID, a length-prefixed body and tag zero. The
-[`1458aae00..1458ab145` serializer](evidence/0.105.0/arrival-announcements/yell-packet.asm)
+[`1458aae00..1458ab145` serializer](evidence/arrival-announcements/yell-packet.asm)
 emits the same opcode with type `0x0c` (`MONSTER_YELL`), language zero, the
 actual source GUID, inline source name, zero target GUID, body and tag zero.
 All lengths count UTF-8 bytes plus the terminating NUL. Ghidra Evidence

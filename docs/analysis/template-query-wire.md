@@ -63,9 +63,9 @@ is unavailable. The embedded catalogs normally supply those keys.
 
 ## Evidence and checks
 
-The [GameObject proof](evidence/0.113.2/object-queries.json) retains current native
+The [GameObject proof](evidence/object-queries.json) retains current native
 range hashes, fresh REA/Ghidra Evidence IDs, all name/type/display classes and
-full-output commitments. [Wire fixtures](evidence/0.113.2/template-query-wire.json)
+full-output commitments. [Wire fixtures](evidence/template-query-wire.json)
 retain 21 exact original response bodies and the inspected decoder's expected
 field projections. No second complete incoming-handler extract is added.
 The fresh Ghidra plans/responses remain under ignored

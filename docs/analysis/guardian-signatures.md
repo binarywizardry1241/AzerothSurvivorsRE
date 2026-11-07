@@ -15,11 +15,11 @@ The recovery tool resolves `coverage_common.latest_target(verify=True)` and read
 the configured installed file directly. It rejects changed bytes. No game,
 compiler or compiling test is launched.
 
-The [catalog](evidence/0.109.0/guardian-signatures/catalog.json) binds all thirty-seven
+The [catalog](evidence/guardian-signatures/catalog.json) binds all thirty-seven
 signature identities, forty base/alternate lists, 120 recurring records and
 fifteen phase records to exact bytes. The
-[manifest](evidence/0.109.0/guardian-signatures/manifest.json) owns the compact
-canonical assembly ranges. [REA provenance](evidence/0.109.0/guardian-signatures/rea-provenance.json)
+[manifest](evidence/guardian-signatures/manifest.json) owns the compact
+canonical assembly ranges. [REA provenance](evidence/guardian-signatures/rea-provenance.json)
 records three completed Ghidra 12.1.4 imports through `./scripts/rea` and their
 pseudocode hashes.
 

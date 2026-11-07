@@ -2,7 +2,7 @@
 
 Gap **#41**, selected installed EXE SHA-256
 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
-The [native/source proof](evidence/0.113.2/as-ui-contracts-horn.json) binds the
+The [native/source proof](evidence/as-ui-contracts-horn.json) binds the
 current reward owner, exact predicate prefix, 113 ability descriptors and source.
 
 The existing reward pool omitted Horn of the Warchief when Demonic Empowerment

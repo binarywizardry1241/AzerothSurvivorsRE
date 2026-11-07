@@ -12,7 +12,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 EXPECTED = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-OUTPUT = ROOT / "docs/analysis/evidence/0.97.2/guardians"
+OUTPUT = ROOT / "docs/analysis/evidence/guardians"
 RANGES = (
     ("guardian-death-rewards", 0x1454C422B, 0x1454C44D8),
     ("guardian-pending-rewards", 0x1454AA235, 0x1454AA34C),

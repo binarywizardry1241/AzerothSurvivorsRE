@@ -112,7 +112,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--binary", type=local, default=local("AzerothSurvivors/AzerothSurvivors-0.97.2.exe"))
     parser.add_argument("--runtime", type=local, default=local("runtime/analysis/history/native-recovery/asset-recovery/3d2191ace2ff"))
-    parser.add_argument("--output", type=local, default=local("docs/analysis/evidence/0.97.2/asset-native.json"))
+    parser.add_argument("--output", type=local, default=local("docs/analysis/evidence/asset-native.json"))
     parser.add_argument("--run-rea", action="store_true", help="run new Ghidra sessions; choose a fresh --runtime directory")
     args = parser.parse_args()
     try:

@@ -22,7 +22,7 @@ import capstone
 import native_talent_fixture as native
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
-KEPT = ROOT / 'docs/analysis/evidence/0.112.0/gameplay-frontiers'
+KEPT = ROOT / 'docs/analysis/evidence/gameplay-frontiers'
 STAGE = ROOT / 'runtime/analysis/history/native-recovery/gameplay-frontiers/1d609cc38fa0/staged'
 RESET = (0x1459b7f00, 0x1459b82a6)
 FILTER = (0x1459cbd40, 0x1459cbeab)
@@ -371,7 +371,7 @@ def mutable_alias_boundaries(machine):
                                                           (0x1459cc290, 0x1459cc40f), (0x1459cdb60, 0x1459cdcb3)]],
         source_rows_unchanged_in_all_reader_cases=True, selector_boundaries=selector_boundaries,
         aura_contract='docs/analysis/evidence/0.112.0/player-aura-indices/contracts.json',
-        aura_contract_sha256=file_sha256(ROOT / 'docs/analysis/evidence/0.112.0/player-aura-indices/contracts.json'),
+        aura_contract_sha256=file_sha256(ROOT / 'docs/analysis/evidence/player-aura-indices/contracts.json'),
         remaining_obligation='Whole typed-resource pointer/lifetime identity and absence of unseen computed/aliased writes are separate static ownership claims. All identified AS producer/state/presentation paths in this focused audit have source consumers; no additional concrete missing AS behavior remains demonstrated.',
         limits='Header/source-operand audit is bounded to existing custom diagnostic/selected AS owners. Bulk inventory remains ignored; no whole-image or body ownership promotion.')
 

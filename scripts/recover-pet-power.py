@@ -131,7 +131,7 @@ def main():
                               sha256=hashlib.sha256(raw).hexdigest(), bits=struct.unpack('<I', raw)[0]))
     # One canonical extract owns the shared inline tick ranges. Scope fixtures
     # refer to it instead of retaining overlapping copies of these instructions.
-    curated = ROOT / 'runtime/analysis/staging/native-evidence/0.105.0/power-scaling'
+    curated = ROOT / 'runtime/analysis/staging/native-evidence/power-scaling'
     curated.mkdir(parents=True, exist_ok=True)
     assembly = []
     for start, end in [(0x145904e91, 0x1459077f2)]:

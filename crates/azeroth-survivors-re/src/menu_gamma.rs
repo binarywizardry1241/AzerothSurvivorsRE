@@ -2,7 +2,7 @@
 //!
 //! The render-graph adapter comes from vendored benilla-app/ui_gamma.rs. Its three WGSL files
 //! are reused in place and match the SHA-bound 0.97.2 EXE after LF/CRLF conversion only;
-//! offsets and digests are in docs/analysis/evidence/0.97.2/menu-compositor-0.97.2.json.
+//! offsets and digests are in docs/analysis/menu-compositor.md.
 //! Bevy UI emits gamma-space color and this final pass decodes it once for the sRGB output.
 //! The preview's separate float image receives an identity decode for ordinary ImageNode input.
 //! Per-view uniforms keep that conversion separate from the Options display-gamma ramp.

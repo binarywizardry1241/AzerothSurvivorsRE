@@ -66,7 +66,7 @@ def main():
         assert sum(i.size for i in decoder.disasm(value, start)) == len(value), name
         owners.append(dict(role=name, start=hex(start), end_exclusive=hex(end),
                            sha256=expected, file_offset=hex(pe.rva_offset(start - pe.image_base))))
-    kept = ROOT / "docs/analysis/evidence/0.117.0/marker-order"
+    kept = ROOT / "docs/analysis/evidence/marker-order"
     proof = json.loads((kept / "manifest.json").read_text())
     assert proof["target"]["sha256"] == SHA
     for row in proof["ranges"]:

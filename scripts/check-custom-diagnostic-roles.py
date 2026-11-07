@@ -27,7 +27,7 @@ from compact_evidence import proof_text, SOURCE_SHA256 as RENDERER_SHA256
 
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 WORK = ROOT / 'runtime/analysis/history/findings/q41-d01/42d7c6285604'
-KEEP = ROOT / 'docs/analysis/evidence/0.115.0/q41-custom-diagnostics.json'
+KEEP = ROOT / 'docs/analysis/evidence/native-diagnostics/q41-custom-diagnostics.json'
 GENERATOR = 'scripts/check-custom-diagnostic-roles.py'
 GENERATOR_SHA256 = hashlib.sha256((ROOT / GENERATOR).read_bytes()).hexdigest()
 RENDERER = 'scripts/compact_evidence.py'
@@ -62,7 +62,7 @@ def derive():
         return result
     decoder = Cs(CS_ARCH_X86, CS_MODE_64)
     decoder.detail = True
-    queue = json.loads((ROOT / 'docs/analysis/evidence/0.115.0/unknown-recovery.json').read_text())
+    queue = json.loads((ROOT / 'docs/analysis/evidence/unknown-recovery-comparison.json').read_text())
     assert queue['target']['sha256'] == SHA
     diagnostics_input = queue['inputs']['diagnostic-ownership']['inventory']
     body_input = queue['inputs']['ghidra-census']['execution_artifacts']['bodies.tsv.gz']

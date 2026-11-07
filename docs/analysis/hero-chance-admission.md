@@ -2,7 +2,7 @@
 
 **#164** is a distinct source discrepancy found while tracing **#118** through
 the current Hero admission owner `145ae1990..145ae232d`, SHA-bound by the shared
-[native proof](evidence/0.117.0/united-front.json). It concerns the existing keen
+[native proof](evidence/united-front.json). It concerns the existing keen
 equipment-chance field `Hero+178`, not the new cooperative-luck field `+17c`.
 
 The earlier reconstructed source replaced an incoming NaN with zero. The native sequence at

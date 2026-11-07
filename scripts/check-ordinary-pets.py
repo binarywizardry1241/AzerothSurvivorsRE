@@ -5,7 +5,7 @@ import argparse,hashlib,importlib.util,json,math,struct,sys
 from pathlib import Path
 from coverage_common import ROOT,latest_target,target_bytes
 SHA='e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048'
-KEPT=ROOT/'docs/analysis/evidence/0.110.0/ordinary-pets';STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.110.0/ordinary-pets'
+KEPT=ROOT/'docs/analysis/evidence/ordinary-pets';STAGE=ROOT/'runtime/analysis/staging/native-evidence/ordinary-pets'
 def dump(x):return json.dumps(x,indent=2,allow_nan=False)+'\n'
 def weapon_cases(pe):
     u, r, mem, stack, done = historical.machine(pe)
@@ -170,7 +170,7 @@ def main():
   if a in (0x1400021d0,0x145927fa0):ret();return
   if not (0x145929f40<=a<0x14592e0e8 or pending_phase and 0x1458fb585<=a<=0x1458fb6e3):raise AssertionError('Unreviewed flow '+hex(a))
  u.hook_add(UC_HOOK_CODE,hook)
- old=json.loads((ROOT/'docs/analysis/evidence/0.105.0/power-scaling/pet-tick/native-tick.json').read_text())['cases'];cases=[]
+ old=json.loads((ROOT/'docs/analysis/evidence/power-scaling/pet-tick/native-tick.json').read_text())['cases'];cases=[]
  for row in old:
   current=row['input'];result=dict(movement=None,attack=None,query_radius=None);u.mem_write(mem,bytes(0x30000));u.mem_write(stack,bytes(0x10000))
   put(game+0xd0,'2Q',pet,1);put(game+0x49c,'f',current['player_speed_multiplier']);put(game+0x4d8,'3f',*current['player_position']);put(game+0x570,'2Q',actors,len(current['targets']));put(game+0xa54,'f',current['now'])
@@ -203,7 +203,7 @@ def main():
  cooldown_phase=False
  # Fresh current melee and ranged stat17 arithmetic, with a supplied crit draw.
  power_phase=True;power_cases=[]
- old_power=json.loads((ROOT/'docs/analysis/evidence/0.105.0/power-scaling/pet-power/native-power.json').read_text())['cases']
+ old_power=json.loads((ROOT/'docs/analysis/evidence/power-scaling/pet-power/native-power.json').read_text())['cases']
  for v in old_power:
   u.mem_write(mem,bytes(0x30000));put(game+0x800,'2Q',ids,len(v['rows']));put(game+0x4e8,'I',v['level']);put(game+0x48c,'I',v['damage_bits']);put(game+0x494,'2I',v['chance_bits'],v['critical_multiplier_bits']);put(game+0x9c0,'4Q',1,2,3,4)
   put(definition+0x2c,'I',v['base_bits']);put(pet+0x20,'Q',33);put(frame+0x118,'Q',definition)
@@ -221,7 +221,7 @@ def main():
  gate_stops=set()
  # Frostbolt's current travel-time selection and all pending-row stores.
  impacts=[];impact_phase=True;gate_stops={0x14592dc90};pending_rows=mem+0x23000
- for v in json.loads((ROOT/'docs/analysis/evidence/0.105.0/power-scaling/pet-tick/native-tick.json').read_text())['impact_cases']:
+ for v in json.loads((ROOT/'docs/analysis/evidence/power-scaling/pet-tick/native-tick.json').read_text())['impact_cases']:
   put(definition+0x34,'I',116);put(definition+0x38,'B',4);put(game+0xa54,'f',v['now']);put(game+0x5e0,'3Q',64,pending_rows,0)
   u.reg_write(r.UC_X86_REG_RSI,game);u.reg_write(r.UC_X86_REG_RBP,frame);u.reg_write(r.UC_X86_REG_RSP,stack+0x1000);u.reg_write(r.UC_X86_REG_R15,definition);u.reg_write(r.UC_X86_REG_R13,definition);u.reg_write(r.UC_X86_REG_R12,51);u.reg_write(r.UC_X86_REG_R8,116)
   for reg,point in [(r.UC_X86_REG_XMM10,v['target']),(r.UC_X86_REG_XMM1,v['from_'])]:u.reg_write(reg,int.from_bytes(struct.pack('<4f',*point[:2],0.,0.),'little'))
@@ -229,7 +229,7 @@ def main():
   u.emu_start(0x14592db5b,0,count=1000);tag,value,duration=get(pending_rows+0x60,'I2f');critical,player,overcast,school=get(pending_rows+0x78,'4B')
   actual=dict(now=v['now'],from_=v['from_'],target=v['target'],impact_at=get(pending_rows+0x6c,'f')[0],effect_tag=tag,effect_value=value,effect_duration=duration,critical=bool(critical),damages_player=bool(player),overcast=bool(overcast),school=school);assert actual==v,(actual,v);impacts.append(actual)
  impact_phase=False;pending_phase=True;gate_stops={0x1458fb6e3};pending_gates=[]
- for v in json.loads((ROOT/'docs/analysis/evidence/0.105.0/power-scaling/pet-tick/native-tick.json').read_text())['pending_gate_cases']:
+ for v in json.loads((ROOT/'docs/analysis/evidence/power-scaling/pet-tick/native-tick.json').read_text())['pending_gate_cases']:
   result=dict(damage_calls=[],status_calls=[]);put(frame+0x350,'Q',game+0x4f0);put(frame+0x438,'Q',game);put(frame+0x11b,'B',4);put(frame+0x100,'I2f',1,.3,2.);put(frame+0xb0,'B',0)
   u.reg_write(r.UC_X86_REG_RBP,frame);u.reg_write(r.UC_X86_REG_RSP,stack+0x1000);u.reg_write(r.UC_X86_REG_RAX,0);u.reg_write(r.UC_X86_REG_RDI,51);u.reg_write(r.UC_X86_REG_RBX,116);u.reg_write(r.UC_X86_REG_XMM7,v['power_bits']);sx(r.UC_X86_REG_XMM10,0.);u.emu_start(0x1458fb585,0,count=1000)
   actual=dict(power_bits=v['power_bits'],**result);assert actual==v,(actual,v);pending_gates.append(actual)
@@ -256,10 +256,10 @@ def main():
  for role,a in [('pet-tick',0x145929f40),('movement',0x1459348e0),('cooldown',0x145954780),('target-query',0x1459261a0),('expired-pet-cleanup',0x145927fa0),('creation',0x145929010),('weapon-stage',0x1458f7312),('weapon-no-target',0x1458f84ab),('pending-gate',0x1458fb585)]:
   b={0x1458f7312:0x1458f761b,0x1458f84ab:0x1458f84d1,0x1458fb585:0x1458fb6e3}.get(a) or bounds[a];o=pe.rva_offset(a-pe.image_base);v=d[o:o+b-a];asm[role+'.asm']=''.join(f'{i.address:x}: {i.bytes.hex()} {i.mnemonic} {i.op_str}'.rstrip()+'\n'for i in md.disasm(v,a));rows.append(dict(role=role,va=hex(a),byte_count=len(v),file_offset=hex(o),sha256=hashlib.sha256(v).hexdigest(),assembly=role+'.asm'))
  weapons=json.loads(json.dumps(weapon_cases(pe)))
- previous=json.loads((ROOT/'docs/analysis/evidence/0.105.0/power-scaling/weapon/native-fixtures.json').read_text())['swings']
+ previous=json.loads((ROOT/'docs/analysis/evidence/power-scaling/weapon/native-fixtures.json').read_text())['swings']
  for a,b in zip(weapons,previous):assert a==b,(a['name'],{k:(a.get(k),b.get(k))for k in set(a)|set(b)if a.get(k)!=b.get(k)})
  record=dict(target_sha256=SHA,pet_power_cases=[dict(fixture_index=i,**{k:v[k]for k in ["melee_bits","ranged_bits","ranged_critical_bits"]})for i,v in enumerate(power_cases)],impact_cases=impacts,pending_gate_cases=pending_gates,priority_cases=priorities,weapon_cases=[dict(fixture_index=i,**{k:v[k]for k in ["calls","radius_bits","melee","hit","remaining_after_bits","rng_after"]})for i,v in enumerate(weapons)],cases=[dict(fixture_index=i,output=v["output"])for i,v in enumerate(cases)],deadline_cases=gates,ordinary_cooldown_cases=cooldowns,ordinary_descriptors=descriptors,ordinary_grants=grants,target_process_launched=False,compilation='not_run',parity='unverified')
- manifest=dict(target_sha256=SHA,input_fixtures=[dict(path=n,sha256=hashlib.sha256((ROOT/n).read_bytes()).hexdigest())for n in ["docs/analysis/evidence/0.105.0/power-scaling/weapon/native-fixtures.json","docs/analysis/evidence/0.105.0/power-scaling/pet-tick/native-tick.json","docs/analysis/evidence/0.105.0/power-scaling/pet-power/native-power.json"]],ranges=rows,native_case_count=len(cases)+len(gates)+len(weapons)+len(cooldowns)+len(power_cases)*2+len(priorities)+len(impacts)+len(pending_gates),limits=['Pet controls use supplied ordered target queries, movement and period seams; separate power cases supply critical samples. Weapon cases execute current RNG with packet/hit seams.','Impact cases execute travel and pending-row stores. Pending gates execute prepared captured contexts and intercept final hit/status calls; arbitrary proc/context lifecycles are not executed.','No Rust execution, compilation, MPQ/client/game/platform or parity check.'])
+ manifest=dict(target_sha256=SHA,input_fixtures=[dict(path=n,sha256=hashlib.sha256((ROOT/n).read_bytes()).hexdigest())for n in ["docs/analysis/evidence/power-scaling/weapon/native-fixtures.json","docs/analysis/evidence/power-scaling/pet-tick/native-tick.json","docs/analysis/evidence/power-scaling/pet-power/native-power.json"]],ranges=rows,native_case_count=len(cases)+len(gates)+len(weapons)+len(cooldowns)+len(power_cases)*2+len(priorities)+len(impacts)+len(pending_gates),limits=['Pet controls use supplied ordered target queries, movement and period seams; separate power cases supply critical samples. Weapon cases execute current RNG with packet/hit seams.','Impact cases execute travel and pending-row stores. Pending gates execute prepared captured contexts and intercept final hit/status calls; arbitrary proc/context lifecycles are not executed.','No Rust execution, compilation, MPQ/client/game/platform or parity check.'])
  if args.write:
   STAGE.mkdir(parents=True,exist_ok=True)
   for n,s in asm.items():(STAGE/n).write_text(s)

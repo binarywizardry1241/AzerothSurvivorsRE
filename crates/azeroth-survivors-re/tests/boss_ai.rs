@@ -30,7 +30,7 @@ fn all_boss_ability_timer_slots_match_native_instructions() {
         let boss=&zone.bosses[row["boss_index"].as_u64().unwrap() as usize];
         let original_slot=row["ability_index"].as_u64().unwrap() as usize;
         let historical: Value=serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.97.2/bosses/catalog.json")).unwrap();
+            "../../../docs/analysis/evidence/bosses/catalog.json")).unwrap();
         let old_zone=historical["zones"].as_array().unwrap().iter()
             .find(|z| z["key"]==row["zone"]).unwrap();
         let old=&old_zone["bosses"][row["boss_index"].as_u64().unwrap() as usize]

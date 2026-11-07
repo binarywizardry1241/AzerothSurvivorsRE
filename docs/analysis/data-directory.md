@@ -41,7 +41,7 @@ The wrapper's shell syntax was checked without invoking Cargo or the game.
 
 ## Current native/source proof
 
-The [compact proof](evidence/0.115.0/data-directory/manifest.json) binds four
+The [compact proof](evidence/data-directory/manifest.json) binds four
 successful durable REA/Ghidra queries to their exact current raw ranges:
 
 | Native range | Recovered boundary |

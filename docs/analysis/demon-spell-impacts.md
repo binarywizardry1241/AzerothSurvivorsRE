@@ -2,7 +2,7 @@
 
 The installed target is SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The [canonical native excerpt](evidence/0.112.0/demon-spell-impacts/manifest.json)
+The [canonical native excerpt](evidence/demon-spell-impacts/manifest.json)
 binds `145900a09..1459013e6` to the current pending-hit owner. Gap #24 source now
 routes each due impact through `pending_demon_spell_hit`, preserving the
 ordinary damage/status call exactly once before these explicit follow-ups.

@@ -25,7 +25,7 @@ from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 FIRST, LAST = 0x14591CAD0, 0x14591CC4E
-KEPT = ROOT / "docs/analysis/evidence/0.113.2/as-state-contracts/delayed-visuals.json"
+KEPT = ROOT / "docs/analysis/evidence/as-state-contracts/delayed-visuals.json"
 STAGE = ROOT / "runtime/analysis/history/native-recovery/as-state-contracts/a6cf7f2e1fff/staged/delayed-visuals.json"
 
 

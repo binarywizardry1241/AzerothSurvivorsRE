@@ -4,7 +4,7 @@ Selected installed EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 This bounded discovery owns **[#247](../verification-needed.md#gap-247)**, separate
 from [#224](../verification-needed.md#gap-224)'s Explosive combat rules. The
-[proof](evidence/0.121.0/orb-query/manifest.json) binds exact current instructions,
+[proof](evidence/orb-query/manifest.json) binds exact current instructions,
 tables, data, historical source and one journaled Ghidra query. The subsequent
 [query source repair](explosive-orb-source.md) connects its exact current
 locale and constructor contract; combat remains separately owned.
@@ -80,7 +80,7 @@ the independently supplied combat item #224.
 PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-explosive-orb-query.py
 ```
 
-The [result](evidence/0.121.0/orb-query/static-check.json) verifies exact current
+The [result](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.121.0/orb-query/static-check.json) verifies exact current
 bytes/Capstone boundaries, the original table entries and source omission,
 plus the durable 151-byte raw Ghidra subject/result. **Eight name-getter cases**
 and **24 opcode/entry-to-constructor cases** execute **2,656 original

@@ -96,7 +96,7 @@ def main():
 
     harness = load_module('mob_movement_native', 'mob_movement_fixtures.py')
     cases = harness.fixtures(pe, data, PROFILE)
-    historical = json.loads((ROOT / 'docs/analysis/evidence/0.100.1/mob-movement/native-fixtures.json').read_text())
+    historical = json.loads((ROOT / 'docs/analysis/evidence/mob-movement-comparison/native-fixtures.json').read_text())
     assert historical['target_sha256'] == harness.SHA
     unchanged = cases == historical['cases']
     facing_cases = [row for row in harness.fixtures(pe, data, PROFILE, execute_facing=True)

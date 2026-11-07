@@ -16,8 +16,8 @@ from coverage_common import ROOT, latest_target, project_path, target_bytes
 from script_sources import load_script
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
-STAGE = ROOT / "runtime/analysis/staging/native-evidence/0.115.0/raid-death"
-KEPT = ROOT / "docs/analysis/evidence/0.115.0/raid-death"
+STAGE = ROOT / "runtime/analysis/staging/native-evidence/raid-death"
+KEPT = ROOT / "docs/analysis/evidence/raid-death"
 RANGES = {
     "source-gate": (0x145923D40, 0x145923E05,
                     "2177a8cbf0701c841978b6e811b3bff07b68d99d360abd5838fe1d5ec27204d5"),

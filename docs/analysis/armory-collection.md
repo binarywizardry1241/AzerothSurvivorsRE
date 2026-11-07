@@ -9,7 +9,7 @@ Its prefix explicitly supplies the owned-rank collector with the interval
 `[0,8)` (`1401278be..1401278ce`) and writes the star denominator as forty at
 `140127997`. Owned ranks alone enter the numerator. Class weapon counts no
 longer select either the denominator or the row's slot domain. The current
-[collection proof](evidence/0.127.0/ranked-gear/collection.json) retains the
+[collection proof](evidence/ranked-gear/collection.json) retains the
 exact target bytes and native-derived inputs/results.
 
 `collection_set_progress` now constructs eight armor positions, including
@@ -20,7 +20,7 @@ already gates set rows on `p.slot < 8`; that source guard is preserved, with its
 historical native provenance, and no missing weapon guard is claimed.
 
 `check-armory-collection.py --proof
-docs/analysis/evidence/0.127.0/ranked-gear/collection.json` passes **120 current
+docs/analysis/evidence/ranked-gear/collection.json` passes **120 current
 original-instruction prefix cases / 10,372 steps**, across both class weapon
 counts, all six tiers, absent/partial/full armor, and weapon-only ownership.
 The native interval `[0,8)` is asserted before the synthetic owned-rank

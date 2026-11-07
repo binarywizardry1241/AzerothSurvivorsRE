@@ -74,7 +74,8 @@ def main():
             (runtime/f'{stem}.asm').write_text(assembly)
         assembly = runtime/f'{stem}.asm'
         if assembly.exists():
-            curated = ROOT/f'docs/analysis/evidence/0.97.2/menu-scene-0.97.2-{stem}.asm'
+            curated = ROOT/f'docs/analysis/evidence/menu-scene/{stem}.asm'
+            curated.parent.mkdir(parents=True, exist_ok=True)
             curated.write_text(assembly.read_text())
         record=dict(address=hex(start),end_exclusive=hex(end),file_offset=hex(offset),
                     sha256=hashlib.sha256(payload).hexdigest(),byte_count=len(payload),role=role)
@@ -86,7 +87,7 @@ def main():
                 (runtime/f'{stem}.c').write_text(r['raw_result']['value']['pseudocode'])
                 break
         records.append(record)
-    out=ROOT/'docs/analysis/evidence/0.97.2/menu-scene-0.97.2.json'
+    out=ROOT/'docs/analysis/evidence/menu-scene.json'
     report=dict(date='2026-10-18',target_version='0.97.2',target_sha256=SHA,
                 target_executed=False,functions=records,
                 request_layout=dict(tag=0,map=4,zone=8,eye=12,target=24,clearance=36,bytes=40),

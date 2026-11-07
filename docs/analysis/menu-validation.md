@@ -2,7 +2,7 @@
 
 The checks below retain their **0.97.2 and 0.92** target boundaries. The current
 reference is [0.100.1](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/target-0.100.1.md); [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) and
-the [current validation record](evidence/0.100.1/consolidation-validation.json)
+the [current validation record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/consolidation-validation.json)
 own later results. These historical captures/tests do not establish current parity.
 
 ## Explicit menu screenshot checkpoint — 2026-10-18

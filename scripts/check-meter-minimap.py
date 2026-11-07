@@ -20,7 +20,7 @@ from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 WORK = ROOT / 'runtime/analysis/history/native-recovery/meter-gap56/bfc9fcca3800'
-RETAINED = ROOT / 'docs/analysis/evidence/0.113.2/meter-minimap'
+RETAINED = ROOT / 'docs/analysis/evidence/meter-minimap'
 OWNERS = [(0x1402b23f0, 0x1402b33e5), (0x1402137d0, 0x14021475c)]
 RANGES = {
     'children': (0x1402b23f0, 0x1402b2c9d),
@@ -186,7 +186,7 @@ def check_current_tint(target, pe):
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64
     from unicorn import x86_const as reg
 
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/meter-minimap-tint.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/meter-minimap-tint.json').read_text())
     assert all(target[key] == proof['target'][key] for key in ('version', 'sha256', 'size_bytes'))
     machine = Uc(UC_ARCH_X86, UC_MODE_64)
     pages = set()

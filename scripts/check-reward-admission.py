@@ -80,7 +80,7 @@ for earned in [[],['zone:duskwood'],allach]:
 def span(a):
  b=ends[a];at=pe.rva_offset(a-pe.image_base);return dict(va=hex(a),end_exclusive=hex(b),sha256=hashlib.sha256(data[at:at+b-a]).hexdigest())
 record=dict(target_sha256=SHA,application_executed=False,rebuilt_code_executed=False,native_instructions_executed=True,owners={k:span(a)for k,a in OWNERS.items()},rewards=reward_cases,pets=pet_cases,limits=['Current complete validator/application, spending, clone, instinct collector and pet collector/map/getter instructions execute.','Allocator, Vec growth, bytes, String cloning, current perk/companion lookup and complete84-entry key/point registry are explicit typed seams.','No native file parser, serializer, OS operation, ECS scheduler, game process or rebuilt Rust executes. Historical save and UI lifecycle evidence retains its own provenance.'])
-parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args();path=ROOT/('runtime/analysis/staging/native-evidence/0.112.0/reward-admission'if args.stage else'docs/analysis/evidence/0.112.0/reward-admission')/'cases.json'
+parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args();path=ROOT/('runtime/analysis/staging/native-evidence/reward-admission'if args.stage else'docs/analysis/evidence/reward-admission')/'cases.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print(f'Passed {len(reward_cases)} current Rewards admission/application and {len(pet_cases)} pet normalization cases with 243 actor getter projections')

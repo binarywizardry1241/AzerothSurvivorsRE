@@ -4,13 +4,14 @@ from portable_paths import portable_json
 from script_sources import load_script
 import argparse, hashlib, json, math, re, struct, sys
 from pathlib import Path
+from artifact_history import read_artifact
 from coverage_common import ROOT,target_bytes
 def load(name,path):
     m = load_script(name, ROOT/path);return m
 base=load('reward_boss_cpu','scripts/check-raid-boss-lifecycle.py')
 r=base.r;f=base.f;bits=base.bits;fb=base.fb
 base.RANGES=dict(base.RANGES,**{'reward-pickup':(0x145944310,0x14594544f),'reward-object':(0x14594f020,0x14594fb4d),'guardian-magnet':(0x14593d3f0,0x14593d4f6)})
-STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-reward-pickups'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/raid-reward-pickups'
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-reward-pickups'
 
 class Machine(base.Machine):
@@ -230,14 +231,14 @@ def retain(out,machine,raw,span,stage):
     files=['raid-boss-lifecycle/selected-native.asm','raid-guardian-lifecycle/selected-native.asm','raid-lifecycles/selected-native.asm','raid-hazards/transform-unit.asm','raid-wards/unit-presentation.asm'];canonical=ROOT/'docs/analysis/evidence/0.112.0';candidates={}
     for name in files:
         rows={}
-        for line in(canonical/name).read_text().splitlines():
+        for line in read_artifact(canonical/name).decode().splitlines():
             match=re.match(r'^([0-9a-f]+): ([0-9a-f]+) ',line)
             if match:
                 a=int(match[1],16);value=bytes.fromhex(match[2]);assert raw(a,len(value))==value and a not in rows,(name,hex(a));rows[a]=value
         assert rows;candidates['../'+name]=rows
     recorded={}
     if not stage:
-        prior=json.loads((out/'manifest.json').read_text())
+        prior=json.loads(read_artifact(out/'manifest.json'))
         for intervals in prior['visited_instruction_ranges'].values():
             for interval in intervals:
                 a=int(interval['va'],16);b=a+interval['byte_count'];instructions=list(machine.md.disasm(raw(a,b-a),a));assert sum(i.size for i in instructions)==b-a
@@ -256,7 +257,7 @@ def retain(out,machine,raw,span,stage):
     for a,value in sorted(new.items()):
         instructions=list(machine.md.disasm(value,a));assert sum(i.size for i in instructions)==len(value);assembly+=''.join(f'{i.address:x}: {i.bytes.hex()} {i.mnemonic} {i.op_str}'.rstrip()+'\n'for i in instructions)
     if stage:(out/'selected-native.asm').write_text(assembly)
-    else:assert(out/'selected-native.asm').read_text()==assembly
+    else:assert read_artifact(out/'selected-native.asm').decode()==assembly
     traces={}
     for family,addresses in machine.visited.items():
         intervals=[]
@@ -284,6 +285,6 @@ def main():
         limits=['Original instructions execute in synthetic CPU fixtures only; no Rust compilation, compiling tests or game process.','AS creator/object descriptors, counters, RNG, normalization and XP merge consumers execute; field-map storage, packet serialization, localization, allocation/copy and terrain answers remain explicit existing engine ports.','CRT hypot/sin/cos outputs use controlled host responses; native CRT implementation and MPQ terrain parity are unverified.','The primary composition executes actual pickup/object providers, gear provider/rolls and XP attraction; notice/name publishing and magnet-vector removal remain named seams. Guardian composition starts with actual gold creation then executes its existing current magnet helper.','Existing cache kind2, collection rewards/XP/stat providers and complete game presentation are not certified by this bounded death-output proof. Source/behavior correspondence is statically traced and awaits permitted Rust/runtime comparison.'])
     text=json.dumps(manifest,indent=2)+'\n'
     if args.stage:(out/'manifest.json').write_text(text)
-    else:assert(out/'manifest.json').read_text()==text
+    else:assert read_artifact(out/'manifest.json').decode()==text
     print('Current AS reward pickups:',{k:v['cases']for k,v in cases.items()},'; source:',source['token_guards'],'token guards; no compilation/game')
 if __name__=='__main__':main()

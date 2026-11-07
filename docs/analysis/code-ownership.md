@@ -6,8 +6,8 @@ It identifies source/debug leads for reconstruction; it is not a completion
 measure. The complete custom-code inventory and reconstruction percentage remain
 unmeasured. [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) are maintained separately.
 
-The [ownership ledger](evidence/0.97.2/game-code-ownership.json) retains native
-byte hashes and unresolved attribution. Its [66-entry source map](evidence/0.97.2/reconstruction-source-map.json)
+The [ownership ledger](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/game-code-ownership.json) retains native
+byte hashes and unresolved attribution. Its [66-entry source map](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/reconstruction-source-map.json)
 is pinned to source revision `00b13c0846af3e6e99339b5e9e7627a68f6117c9`;
 entries are not complete-body certifications. A shared engine filename can contain
 custom changes, and a new filename can be a generic refactor. Do not count whole
@@ -65,8 +65,8 @@ Four complete shared shader sources match after newline normalization; that is
 bounded reuse evidence, not proof about other engine bodies.
 
 The [source-area list](game-layer-inventory.md),
-[custom-file ledger](evidence/0.97.2/game-module-coverage.json) and
-[engine-delta ledger](evidence/0.97.2/game-engine-delta.json) remain discovery
+[custom-file ledger](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/game-module-coverage.json) and
+[engine-delta ledger](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/game-engine-delta.json) remain discovery
 indexes. Their area counts are no longer used as reconstruction progress.
 
 ## Original build and debug evidence

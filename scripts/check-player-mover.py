@@ -15,7 +15,7 @@ import struct
 import sys
 
 ROOT = Path(__file__).resolve().parent.parent
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.105.0/terminal'
+EVIDENCE = ROOT / 'docs/analysis/evidence/terminal'
 
 
 def f32(value):

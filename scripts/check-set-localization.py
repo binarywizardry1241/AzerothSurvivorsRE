@@ -13,7 +13,7 @@ from pathlib import Path
 
 from coverage_common import ROOT, latest_target, target_bytes
 
-PROOF = ROOT / 'docs/analysis/evidence/0.121.0/sets-core/localization.json'
+PROOF = ROOT / 'docs/analysis/evidence/sets-core/localization.json'
 CATALOGS = ROOT / 'crates/azeroth-survivors-re/assets/locales'
 SET_BONUS_KEYS = ('bonus.calm_regen', 'bonus.crowd_armor')
 GLOW_KEYS = ('armory.glow','armory.glow_none','armory.glow_icy','Icy Chill','Crusader','Fiery Weapon','item.upgraded','item.not_upgraded')
@@ -62,7 +62,7 @@ def append_selected(path, values):
 
 def inspect(apply=False, owner="sets"):
     target = latest_target(verify=True)
-    proof = json.loads((ROOT/'docs/analysis/evidence/0.121.0/orb-source.json').read_text())
+    proof = json.loads((ROOT/'docs/analysis/evidence/orb-source.json').read_text())
     assert {k:target[k] for k in ('version','path','sha256','size_bytes')} == proof['target']
     image = target_bytes(target)
     asset = json.loads((ROOT/'crates/azeroth-survivors-re/assets/sets-0.121.0.json').read_text())
@@ -170,11 +170,11 @@ def main():
     parser.add_argument('--write',action='store_true')
     args=parser.parse_args()
     result=inspect(args.apply,args.owner)
-    proof_path = {'sets':PROOF,'glow':ROOT/'docs/analysis/evidence/0.121.0/weapon-glow-localization.json',
-                  'marks':ROOT/'docs/analysis/evidence/0.121.0/gear-marks-localization.json',
-                  'armory':ROOT/'docs/analysis/evidence/0.121.0/armory-localization.json',
-                  'purchase':ROOT/'docs/analysis/evidence/0.121.0/armory-purchase-localization.json',
-                  'achievements':ROOT/'docs/analysis/evidence/0.121.0/achievement-localization.json'}[args.owner]
+    proof_path = {'sets':PROOF,'glow':ROOT/'docs/analysis/evidence/weapon-glow-localization.json',
+                  'marks':ROOT/'docs/analysis/evidence/gear-marks-localization.json',
+                  'armory':ROOT/'docs/analysis/evidence/armory-localization.json',
+                  'purchase':ROOT/'docs/analysis/evidence/armory-purchase-localization.json',
+                  'achievements':ROOT/'docs/analysis/evidence/achievement-localization.json'}[args.owner]
     inserted=sum(row.pop('inserted') for row in result['locales'])
     if args.write:
         proof_path.write_text(json.dumps(result,indent=2,ensure_ascii=False)+'\n')

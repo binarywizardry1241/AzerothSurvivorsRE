@@ -13,7 +13,7 @@ import re
 from coverage_common import latest_target, target_bytes
 
 ROOT = Path(__file__).resolve().parent.parent
-EVIDENCE = ROOT / "docs/analysis/evidence/0.117.0/party-achievement-producer"
+EVIDENCE = ROOT / "docs/analysis/evidence/party-achievement-producer"
 
 
 def require(condition, message):

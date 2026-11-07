@@ -2,9 +2,9 @@
 
 Selected EXE SHA-256:
 `80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c`.
-The [manifest](evidence/0.120.2/guarded-helper-classification/manifest.json)
+The [manifest](evidence/guarded-helper-classification/manifest.json)
 classifies the nine previously pending helper-table selectors in the
-[geometry comparison](evidence/0.120.2/guarded-table-correspondence.json).
+[geometry comparison](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.120.2/guarded-table-correspondence.json).
 The other four unmatched geometries retain their existing trust, party,
 service-pump and wire-parser findings. The fourteen retained correspondence
 tables are a separate population and are not reset or repeated here.

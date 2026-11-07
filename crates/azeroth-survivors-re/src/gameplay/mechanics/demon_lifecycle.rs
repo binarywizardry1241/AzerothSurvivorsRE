@@ -290,7 +290,7 @@ mod tests {
     #[test]
     fn gate_caps_and_creation_draw_order_match_current_original_instructions() {
         let data: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.127.0/warlock-population/native-cases.json"
+            "../../../../../docs/analysis/evidence/warlock-population/native-cases.json"
         )).unwrap();
         for row in data["gate"].as_array().unwrap() {
             let mut state = State::default();
@@ -332,7 +332,7 @@ mod tests {
     #[test]
     fn current_native_build_clock_and_overlap_vectors() {
         let data: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.112.0/demon-actors/native-lifecycle-cases.json"
+            "../../../../../docs/analysis/evidence/demon-actors/native-lifecycle-cases.json"
         )).unwrap();
         let talent = azeroth_survivors_re::run_effects::catalog().classes.iter()
             .flat_map(|class| &class.talents)

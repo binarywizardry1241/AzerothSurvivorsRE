@@ -12,7 +12,7 @@ Discord IPC service. No service request was made during reconstruction.
 
 ## Recovered worker
 
-The [manifest](evidence/0.109.0/discord-transport/manifest.json) binds eight current
+The [manifest](evidence/discord-transport/manifest.json) binds eight current
 ranges, fresh REA/Ghidra profiles and canonical C/assembly. Publisher spawning
 reaches `1401a5860`, the standard thread builder `140046860`, thunk `14004e850`,
 payload `140090800` and worker `140067fc0`. Ghidra's raw import signatures are

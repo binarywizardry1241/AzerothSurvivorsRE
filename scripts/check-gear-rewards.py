@@ -292,7 +292,7 @@ def replay(verify=True):
               "limits": "Zone lookup/candidate collection/allocation seams for boss rolls; complete original private swap executes without seams. No application, Rust, game, network or server executes."}
     if verify:
         source_root = Path(__file__).resolve().parents[1]
-        proof = json.loads((source_root / "docs/analysis/evidence/0.121.0/gear-rewards.json").read_text())
+        proof = json.loads((source_root / "docs/analysis/evidence/gear-rewards.json").read_text())
         for key in result: assert result[key] == proof[key], key
         lifecycle = proof["lifecycle_evidence"]
         lifecycle_path = source_root / lifecycle["path"]

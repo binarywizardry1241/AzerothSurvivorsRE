@@ -30,7 +30,7 @@ def compact(path):
 def check_soulstone():
     """Replay the current rescue write and its shared incoming-aura guard."""
     from discovery_native_subject import verify_native_query_subject
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.127.0/soulstone/manifest.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/soulstone/manifest.json').read_text())
     target = latest_target(verify=True)
     assert proof['target'] == {key: target[key] for key in ('version', 'path', 'sha256', 'size_bytes')}
     image = target_bytes(target)
@@ -314,7 +314,7 @@ def replays(image, pe, proof, guest_hud):
 def check_parallel_current():
     from discovery_native_subject import verify_native_query_subject
     from coverage_common import project_path, file_sha256
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.127.0/revive-choice/manifest.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/revive-choice/manifest.json').read_text())
     target = latest_target(verify=True)
     assert all(target[k] == proof['target'][k] for k in ('version', 'sha256', 'size_bytes'))
     image = target_bytes(target)
@@ -387,7 +387,7 @@ def main():
     if args.parallel_current:
         print(json.dumps(check_parallel_current(), indent=2))
         return
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.119.0/revive-choice/manifest.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/revive-choice-comparison/manifest.json').read_text())
     target = latest_target(verify=True)
     assert all(target[k] == proof['target'][k] for k in ('version', 'sha256', 'size_bytes'))
     image = target_bytes(target)

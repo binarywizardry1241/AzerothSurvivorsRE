@@ -29,7 +29,7 @@ for kind,a,count,stride in [('perks',0x145ded238,13,120),('companions',0x145deef
  tables.append(dict(kind=kind,address=hex(a),count=count,stride=stride,sha256=hashlib.sha256(raw(a,count*stride)).hexdigest()))
 assert asset['companions'][-1]['key']=='sapphiron'and asset['companions'][-1]['achievement']=='feat:nou'and asset['companions'][-1]['achievement_name']=='no u'
 record=dict(target_sha256=t['sha256'],records=records,tables=tables,limits=['Data records only. Runtime selection, account grants, validation, persistence and presentation have separate owning reports; this comparison executes no native function or application.'])
-path=ROOT/('runtime/analysis/staging/native-evidence/0.109.0/rewards-menu'if args.stage else'docs/analysis/evidence/0.109.0/rewards-menu')/'data.json'
+path=ROOT/('runtime/analysis/staging/native-evidence/rewards-menu'if args.stage else'docs/analysis/evidence/rewards-menu')/'data.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print('Verified all current13 perks,13 companions and20 tabards against live asset')

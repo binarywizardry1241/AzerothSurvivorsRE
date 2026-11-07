@@ -17,7 +17,7 @@ import native_talent_fixture as native
 from coverage_common import ROOT, file_sha256, json_text, latest_target
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
-OUT = ROOT / 'docs/analysis/evidence/0.112.0/ui-frontier-inputs.json'
+OUT = ROOT / 'docs/analysis/evidence/ui-frontier-inputs.json'
 
 
 def raw(address, size):

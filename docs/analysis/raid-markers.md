@@ -6,9 +6,9 @@ It is read in place through the ignored reference configuration. This report
 owns current renderer recovery and the line-head repair under **#43**.
 [verification-needed](../verification-needed.md) owns current status; the
 [0.108.0 report](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/raid-markers-0.108.0.md) retains its historical evidence.
-The [manifest](evidence/0.109.0/raid-markers/manifest.json) binds 18 declared
+The [manifest](evidence/raid-markers/manifest.json) binds 18 declared
 owners, their exact bytes and canonical extracts to the selected target.
-[REA provenance](evidence/0.109.0/raid-markers/rea-records.json) records bounded
+[REA provenance](evidence/raid-markers/rea-records.json) records bounded
 Ghidra queries. Raw imports lack authoritative Rust types, outside callees and
 some switch tables; Win64 instructions and bounded replay resolve the selected
 contracts below. This does not complete global native ownership under #41.
@@ -96,7 +96,7 @@ nonzero, and the spell must not use the ranged slot. It also inserts the timed
 [the source consumer](../../crates/benilla-app/src/spell/net.rs). Ten separate
 producer cases verify spell-zero suppression, duration conversion and flags.
 The canonical cast-start extract remains in the
-[wave evidence](evidence/0.109.0/raid-waves/manifest.json); it is not duplicated.
+[wave evidence](evidence/raid-waves/manifest.json); it is not duplicated.
 
 The release note says a winding boss shows a cast bar. The selected packet
 consumer does **not** establish a boss widget, and the custom HUD boss-row

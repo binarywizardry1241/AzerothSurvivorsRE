@@ -16,7 +16,7 @@ from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 WORK = ROOT / "runtime/analysis/history/findings/q41-c01/53e633ec2c9b"
-CURATED = ROOT / "docs/analysis/evidence/0.113.2/q41-c01"
+CURATED = ROOT / "docs/analysis/evidence/q41-c01"
 RANGES = {
     "dispatch": (0x140147509, 0x140147528),
     "slot-action": (0x14014786B, 0x1401478B1),
@@ -43,7 +43,7 @@ def main():
     assert target["sha256"] == SHA, "Recover changed target before reusing addresses"
     image = target_bytes(target)
     pe = load_script("q41_c01_pe", ROOT / "scripts/inventory-executable.py").PE(image)
-    queue_path = ROOT / "docs/analysis/evidence/0.113.2/unknown-recovery.json"
+    queue_path = ROOT / "docs/analysis/evidence/unknown-recovery-comparison-2.json"
     queue = json.loads(queue_path.read_text())
     assert queue["target"]["sha256"] == SHA
     diagnostic_input = queue["inputs"]["diagnostic-ownership.json"]

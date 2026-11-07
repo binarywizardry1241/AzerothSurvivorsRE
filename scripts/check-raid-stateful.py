@@ -13,8 +13,8 @@ sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE,UC_HOOK_MEM_UNMAPPED
 from unicorn import x86_const as r
-STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-stateful'
-KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-stateful'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/raid-stateful'
+KEPT=ROOT/'docs/analysis/evidence/raid-stateful'
 TAGS=(11,14,15,24,25,26,31,33)
 def f32(v):
     return _shared_f32(v)

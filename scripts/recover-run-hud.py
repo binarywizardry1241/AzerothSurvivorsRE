@@ -21,7 +21,7 @@ import sys
 from coverage_common import ROOT, latest_target, project_path, target_bytes
 
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
-RETAINED = ROOT / "docs/analysis/evidence/0.109.0/run-hud"
+RETAINED = ROOT / "docs/analysis/evidence/run-hud"
 OWNERS = {
     "scale": 0x1401903B0,
     "visibility-settings": 0x14007D0B0,
@@ -108,7 +108,7 @@ SPANS = {
 }
 # Canonical selected color conversion instructions are retained by shared style.
 # Reuse them without another copy of their assembly in the HUD evidence folder.
-COLOR_DEPENDENCY = "docs/analysis/evidence/0.109.0/overlay-style/manifest.json"
+COLOR_DEPENDENCY = "docs/analysis/evidence/overlay-style/manifest.json"
 EXTERNAL_SPANS = [(0x144C85C10, 0x144C85C61), (0x144C8633B, 0x144C86386)]
 
 
@@ -470,7 +470,7 @@ def main():
         at=pe.rva_offset(a-pe.image_base);result=data[at:at+count];assert len(result)==count;return result
     def span(a,b):return dict(address=hex(a),end_exclusive=hex(b),file_offset=hex(pe.rva_offset(a-pe.image_base)),byte_count=b-a,sha256=digest(raw(a,b-a)))
     anchor=data.index(b'function AZS_MainBar_Slice(');start=data.rfind(b'\0',0,anchor)+1;end=data.index(b'\0',anchor);patch=data[start:end]
-    canonical=ROOT/'docs/analysis/evidence/0.108.0/hud-framexml/world-state-patch.lua'
+    canonical=ROOT/'docs/analysis/evidence/hud-framexml/world-state-patch.lua'
     assert patch==canonical.read_bytes(),'Current FrameXML Lua differs from retained patch'
     descriptor=end+4;assert data[descriptor:descriptor+16]==struct.pack('<QQ',pe.offset_va(start),len(patch))
     assert struct.unpack('<Q',raw(0x145DF1890+72,8))[0]==OWNERS['drag-schedule-runner']

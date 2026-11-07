@@ -11,7 +11,7 @@ use std::collections::BTreeMap;
 #[test]
 fn beaten_zone_repair_matches_selected_native_vectors_and_survives_reparse() {
     let vectors: serde_json::Value = serde_json::from_str(include_str!(
-        "../../../docs/analysis/evidence/0.105.0/save-unlocks/native-vectors.json"
+        "../../../docs/analysis/evidence/save-unlocks/native-vectors.json"
     ))
     .unwrap();
     for case in vectors["save_cases"].as_array().unwrap() {

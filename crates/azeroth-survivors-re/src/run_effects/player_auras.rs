@@ -213,7 +213,7 @@ mod tests {
     #[test]
     fn current_native_aura_sources_preserve_first_shield_order_and_aliases() {
         let fixture:serde_json::Value=serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/player-aura-indices/contracts.json")).unwrap();
+            "../../../../docs/analysis/evidence/player-aura-indices/contracts.json")).unwrap();
         assert_eq!(fixture["target"]["sha256"],"dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a");
         for case in fixture["alias_cases"].as_array().unwrap().iter().chain(
             fixture["actual_producer_aliases"]["actual_aura_source_rows"].as_array().unwrap()) {
@@ -255,7 +255,7 @@ mod tests {
         // Historical inputs retain their target. The current aura-index checker
         // replays every flags/applications case against the 0.112.0 publisher.
         let fixture:serde_json::Value=serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/run-presentation/player-aura-native.json")).unwrap();
+            "../../../../docs/analysis/evidence/run-presentation/player-aura-native.json")).unwrap();
         assert_eq!(fixture["target_sha256"],super::super::TARGET_SHA256);
         for case in fixture["aliases"].as_array().unwrap() {
             assert_eq!(player_aura_alias(case["name"].as_str().unwrap(),case["kind"].as_u64().unwrap() as u8),

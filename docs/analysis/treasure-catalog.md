@@ -7,7 +7,7 @@ The cache library now consumes all22 current jewelry records and all129 amulets
 (17 shared,112 generated). Keys, strings, raw effect records, rarity factors and
 empowerment steps are retained from the current selected PE. Current constructor
 `145425af0`, shared table `14673c6e0` and ability table `146736b48` are bound in
-[construction evidence](evidence/0.100.1/treasure-0.100.1-generation/amulet-construction.json).
+[construction evidence](evidence/treasure-generation/amulet-construction.json).
 The current asset is a build input with owned strings; PE pointer words are
 forensic provenance and are never dereferenced by the reconstruction.
 

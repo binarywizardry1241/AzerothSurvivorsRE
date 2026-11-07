@@ -4,7 +4,7 @@ Selected installed EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 This source correction owns **#250**, discovered through #41's bounded
 [font-context residual ranges](as-residual-ranges.md). The
-[proof](evidence/0.121.0/font-table-filter/manifest.json) binds exact native
+[proof](evidence/font-table-filter/manifest.json) binds exact native
 instructions, both selector tables, a journaled Ghidra result and the live source.
 Earlier [augmentation recovery](menu-fonts.md) retains its original target;
 [verification-needed](../verification-needed.md) owns current implementation/validation limits.

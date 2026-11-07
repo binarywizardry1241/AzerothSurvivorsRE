@@ -19,7 +19,7 @@ mod tests {
     #[test]
     fn native_epoch_rounding_and_wire_wrap_reach_the_actual_decoder() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.113.2/clock-queries.json"
+            "../../../../../docs/analysis/evidence/clock-queries.json"
         )).unwrap();
         for case in proof["fixtures"].as_array().unwrap() {
             let ticks = case["ticks"].as_u64().unwrap();

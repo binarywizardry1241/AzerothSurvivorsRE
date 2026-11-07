@@ -325,6 +325,18 @@ def load_json(path):
         raise ValueError(f"Cannot read project JSON {path}: {error}") from error
 
 
+def optional_target_json(path, target):
+    """A stable optional record from a previous release is pending for this target."""
+    if not path.is_file():
+        return None
+    proof = load_json(path)
+    if proof["target"]["version"] != target["version"]:
+        return None
+    if proof["target"]["sha256"] != target["sha256"]:
+        raise ValueError(f"Optional proof target differs from the selected bytes: {path}")
+    return proof
+
+
 def file_sha256(path):
     result = hashlib.sha256()
     try:
@@ -375,6 +387,21 @@ def same_artifact(first, second, expected, root=None):
     except (OSError, ValueError):
         return False
     return True
+
+
+def same_replay_receipt(current, retained, root=ROOT):
+    """Match regenerated receipt metadata to exact archived evidence or producer bytes."""
+    if current == retained:
+        return True
+    if {key: value for key, value in current.items() if key not in ("path", "sha256")} != {
+            key: value for key, value in retained.items() if key not in ("path", "sha256")}:
+        return False
+    path, previous = current["path"], retained["path"]
+    expected = retained["sha256"]
+    if path == previous and path.startswith("scripts/"):
+        from script_sources import recorded_input_matches
+        return recorded_input_matches(previous, expected, root)
+    return current["sha256"] == expected and same_artifact(path, previous, expected, root)
 
 
 def version_key(value):

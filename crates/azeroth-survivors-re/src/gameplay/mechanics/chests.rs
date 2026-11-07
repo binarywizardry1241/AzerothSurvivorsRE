@@ -305,7 +305,7 @@ mod tests {
     #[test]
     fn cache_creation_matches_current_native_descriptor_and_shared_rng() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.113.2/cache-lifecycle/manifest.json"
+            "../../../../../docs/analysis/evidence/cache-lifecycle/manifest.json"
         )).unwrap();
         for row in fixture["native_replay"]["descriptor_fixtures"].as_array().unwrap() {
             let mut counter = row["counter"].as_u64().unwrap() as u32;

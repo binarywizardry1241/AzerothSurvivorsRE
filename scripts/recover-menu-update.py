@@ -197,7 +197,7 @@ def main():
                 "No metadata request or source UI launch was performed during this implementation batch.",
                 "Ghidra analyze_function for153590 failed; its original bytes and bounded native checks are retained instead.",
                 "Native/rebuilt updater UI parity remains unverified; current source executable stem fails native shipped-executable gate."])
-    path = ROOT / "docs/analysis/evidence/0.92/menu-update-native.json"
+    path = ROOT / "docs/analysis/evidence/menu-update-native.json"
     path.write_text(portable_json(report, indent=2) + "\n")
     print(f"Recorded {len(functions)} REA bindings and {len(cases)} closed native string checks.")
 

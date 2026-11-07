@@ -15,7 +15,7 @@ import struct
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
-OUT = ROOT / 'docs/analysis/evidence/0.97.2/bosses/catalog.json'
+OUT = ROOT / 'docs/analysis/evidence/bosses/catalog.json'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src/bosses/catalog.rs'
 KEYS = ('elwynn', 'duskwood', 'wsg', 'ungoro', 'ab', 'feralas', 'arena', 'sm', 'av', 'brm', 'aq', 'naxx')
 
@@ -71,7 +71,7 @@ def main():
          'Canonical source is reused rather than copied; builds never require the reference EXE.'])
     text=json.dumps(result,indent=2)+'\n'
     lines=['//! Canonical selected 0.97.2 boss records, shared with guardian scaling.',
-           '//! Independent byte proof: docs/analysis/evidence/0.97.2/bosses/catalog.json.',
+           '//! Independent byte proof: docs/analysis/evidence/bosses/catalog.json.',
            '//! Regenerate supplemental point data: python3 scripts/recover-boss-point-data.py.',
            '//! Boss definitions/abilities have one source owner; normal builds need no EXE.',
            'pub use crate::guardians::catalog::{BossDefinition, RawBossAbility, ZoneDefinition, ZONES};','',

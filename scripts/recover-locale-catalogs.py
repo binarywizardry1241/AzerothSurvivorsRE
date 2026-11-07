@@ -25,7 +25,7 @@ TABLE, INDEX = 0x1472FFEF0, 0x1481ED0E0
 GETTER, GETTER_END = 0x1458971E0, 0x145897203
 SETTER, SETTER_END = 0x145895970, 0x145895AC7
 WORK = ROOT / "runtime/analysis/history/findings/q41-remaining/687b5b35cf28/locales"
-KEEP = ROOT / "docs/analysis/evidence/0.113.2/q41-language"
+KEEP = ROOT / "docs/analysis/evidence/q41-language"
 
 
 def digest(value):

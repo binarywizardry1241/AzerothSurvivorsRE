@@ -562,7 +562,7 @@ mod class_selection_tests {
     #[test]
     fn restored_pick_matches_current_native_paths_and_keeps_other_state() {
         let vectors: Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/import-restore/native-vectors.json"
+            "../../../docs/analysis/evidence/import-restore/native-vectors.json"
         )).unwrap();
         let catalog = MenuCatalog::embedded();
         for row in vectors["restore"].as_array().unwrap() {
@@ -751,7 +751,7 @@ mod class_selection_tests {
     #[test]
     fn picker_class_switches_match_native_fixture_without_accessing_player_files() {
         let fixtures: Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.92/save/class-selection-fixtures.json"
+            "../../../docs/analysis/evidence/save/class-selection-fixtures.json"
         ))
         .unwrap();
         let hero = |value: &Value| Hero {
@@ -986,7 +986,7 @@ mod class_selection_tests {
     fn startup_zone_clamp_matches_recorded_native_outputs() {
         let catalog = MenuCatalog::embedded();
         let fixtures: Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.97.2/catalog-zone-policy-fixtures.json"
+            "../../../docs/analysis/evidence/catalog-zone-policy-fixtures.json"
         ))
         .unwrap();
         let cases = fixtures["selection_cases"].as_array().unwrap();

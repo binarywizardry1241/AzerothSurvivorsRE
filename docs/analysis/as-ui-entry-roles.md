@@ -4,7 +4,7 @@ Selected installed EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 This **Q41-F01/U03** follow-up reconciles every selected UI/font entry boundary
 from the [AS-context residual proof](as-residual-ranges.md) and current
-AS-reference projection. The [bound observations](evidence/0.121.0/as-ui-entry-roles.json)
+AS-reference projection. The [bound observations](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.121.0/as-ui-entry-roles.json)
 retain all **16 distinct sites**: twelve residual-interval prefixes and ten
 actual-body computed-JMP sites, with six sites present in both populations.
 The report classifies the observed interface and its remaining proof; it does

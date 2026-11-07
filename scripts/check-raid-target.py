@@ -14,11 +14,12 @@ import re
 import struct
 import sys
 from pathlib import Path
+from artifact_history import read_artifact
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 HISTORICAL = ROOT/'docs/analysis/evidence/0.109.0/raid-native/catalog.json'
-STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/raid'
 KEPT = ROOT/'docs/analysis/evidence/0.112.0/raid'
 ZONE_TABLE, GUARDIAN_TABLE = 0x146bf2630, 0x146bfb470
 DURATION = (0x145896950, 0x145896b44)
@@ -137,7 +138,7 @@ def recover():
 
 
 def check_graph(graph, headers):
-    historical = json.loads(HISTORICAL.read_text())
+    historical = json.loads(read_artifact(HISTORICAL))
     assert len(graph['actions'])==len(historical['actions'])==493
     relocated = []
     for new,old in zip(graph['actions'],historical['actions']):
@@ -157,7 +158,7 @@ def check_graph(graph, headers):
                 if isinstance(value,list):return [without_spans(v) for v in value]
                 return value
             assert without_spans(new)==without_spans(old)
-    old_headers = json.loads((ROOT/'docs/analysis/evidence/0.109.0/boss-inputs/manifest.json').read_text())['boss_headers']
+    old_headers = json.loads(read_artifact(ROOT/'docs/analysis/evidence/0.109.0/boss-inputs/manifest.json'))['boss_headers']
     source = (ROOT/'crates/azeroth-survivors-re/src/guardians/catalog.rs').read_text()
     blocks = re.findall(r'^    BossDefinition \{(.*?)(?=^    BossDefinition \{|^\];)',source,re.M|re.S)
     assert len(blocks)==len(headers)==60
@@ -312,13 +313,13 @@ def source_checks():
 
 def verify_rea_operations(raw, directory, target_sha256):
     """Bind the current operation-style raw imports to installed bytes and prose."""
-    record = json.loads((directory/'rea-provenance.json').read_text())
+    record = json.loads(read_artifact(directory/'rea-provenance.json'))
     assert record['target_sha256']==target_sha256
     assert record['operations']
     for operation in record['operations']:
         first = int(operation['va'],16)
         assert hashlib.sha256(raw(first,operation['byte_count'])).hexdigest()==operation['input_sha256']
-        assert hashlib.sha256((directory/operation['pseudocode']).read_bytes()).hexdigest()==operation['pseudocode_sha256']
+        assert hashlib.sha256(read_artifact(directory/operation['pseudocode'])).hexdigest()==operation['pseudocode_sha256']
 
 
 def main():
@@ -349,7 +350,7 @@ def main():
     assert towers==[dict(boss_id=i,role=r,slot=s) for i,r,s in
                    ((1594,'phases',0),(994,'moves',5),(1493,'moves',3),(1493,'phases',0),(1494,'phases',2))]
     proof = dict(target_version=target['version'],target_sha256=SHA,target_executed=False,
-                 historical_graph=dict(path=str(HISTORICAL.relative_to(ROOT)),sha256=hashlib.sha256(HISTORICAL.read_bytes()).hexdigest()),
+                 historical_graph=dict(path=str(HISTORICAL.relative_to(ROOT)),sha256=hashlib.sha256(read_artifact(HISTORICAL)).hexdigest()),
                  counts=dict(actions=493,bosses=60,boss_recurring=257,boss_phases=33,guardian_identities=37,
                              guardian_lists=40,guardian_recurring=120,guardian_phases=15),
                  relocated_pointer_nodes=relocated,all_scalar_graph_values_and_root_order_match=True,
@@ -367,13 +368,13 @@ def main():
     directory = STAGE if args.stage else KEPT
     if args.stage:directory.mkdir(parents=True,exist_ok=True)
     if not args.stage:
-        rea = json.loads((directory/'rea-provenance.json').read_text())
+        rea = json.loads(read_artifact(directory/'rea-provenance.json'))
         assert rea['target_sha256']==SHA
         for query in rea['queries']:
             commitment = query['raw_input']
             assert commitment==span(int(commitment['va'],16),commitment['byte_count'])
             assert query['raw_import_sha256']==commitment['sha256']
-            assert hashlib.sha256((directory/query['pseudocode']).read_bytes()).hexdigest()==query['pseudocode_sha256']
+            assert hashlib.sha256(read_artifact(directory/query['pseudocode'])).hexdigest()==query['pseudocode_sha256']
     artifacts = {'catalog.json':graph_text(graph),'manifest.json':dump(proof)}
     for role,(first,last) in (('queue',QUEUE),('duration',DURATION)):
         instructions = list(decoder.disasm(raw(first,last-first),first))
@@ -382,7 +383,7 @@ def main():
     for name,value in artifacts.items():
         path = directory/name
         if args.stage:path.write_text(value)
-        else:assert path.read_text()==value, f'Current raid proof/source drift: {path}'
+        else:assert read_artifact(path).decode()==value, f'Current raid proof/source drift: {path}'
     print('Raid 0.112.0:493 graph nodes,60 boss headers,493 native durations,262 native queue cases; source guards pass; no build/game')
 
 

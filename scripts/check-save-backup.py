@@ -11,7 +11,7 @@ from pathlib import Path
 from native_save_fixture import CPU, ROOT, SHA
 from unicorn import x86_const as r
 
-DEST = ROOT / 'docs/analysis/evidence/0.109.0/save-backup'
+DEST = ROOT / 'docs/analysis/evidence/save-backup'
 EXTRA_OWNERS = [0x1458a33c0,0x1458aa710,0x145914c00,0x145914950,
                 0x1458f0930,0x1458aab40,0x141224760,0x141224160,
                 0x140009eb0,0x1459a9520,0x145ba6490,0x145bb5090,

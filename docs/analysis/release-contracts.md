@@ -5,10 +5,10 @@ The selected installed EXE is **0.120.2**, 145,484,288 bytes, SHA-256
 The supplied notes are labeled **0.120.1**. No 0.120.2 notes were supplied;
 this audit neither changes their label nor concludes that either label is a typo.
 [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) own implementation status and permanent
-findings. The [manifest](evidence/0.120.2/party-achievement-share/manifest.json)
+findings. The [manifest](evidence/party-achievement-share/manifest.json)
 binds current native instructions, ten journaled Ghidra results, source
 observations and the bounded replay. The original audit observations remain
-unchanged. The [source repair](evidence/0.120.2/party-achievement-share/source-repair.json)
+unchanged. The [source repair](evidence/party-achievement-share/source-repair.json)
 connects both #195 and #196 below, with compilation, execution and parity separate.
 
 | Supplied item | Finding | Current native/source result | Next source/static step |
@@ -123,13 +123,13 @@ observations at their recorded pre-repair Git commit. Its scratch-only original-
 counter cases and 216 history cases** (540 total), covering killer/departure
 admission, down/dead inclusion, empty/multiple batches, existing history
 prefixes, exact event metadata/order and wrapping counter overflow. The
-[counter/history result](evidence/0.120.2/party-achievement-share/static-check.json)
+[counter/history result](evidence/party-achievement-share/static-check.json)
 retains both original audit omissions; that historical receipt is not rewritten
 as repaired-source validation. Allocation branches are excluded by preallocated vectors. The
 existing equipment function is an explicit argument-recording callback seam;
 loot/RNG behavior is not exercised.
 
-The separate [source check](evidence/0.120.2/party-achievement-share/source-check.json)
+The separate [source check](evidence/party-achievement-share/source-check.json)
 binds eleven reviewed files and traces the lethal record/active-slot producer,
 shared queue ownership, recipient admission/order, State pair/enriched/damage
 fields and existing host/guest account consumers. Rust syntax parses for

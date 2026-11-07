@@ -165,7 +165,7 @@ def main():
         return
     target = latest_target(verify=True)
     assert target['version'] == '0.115.0' and target['sha256'] == SHA
-    retained = json.loads((ROOT / 'docs/analysis/evidence/0.115.0/coop-seen/manifest.json').read_text())
+    retained = json.loads((ROOT / 'docs/analysis/evidence/coop-seen/manifest.json').read_text())
     assert retained['target']['sha256'] == SHA
     assert not retained['compiled'] and not retained['target_executed']
     data = target_bytes(target)

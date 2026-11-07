@@ -20,7 +20,7 @@ from script_sources import load_script
 SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
 TABLE, START, END = 0x14765AF88, 0x145B85C20, 0x145B861E4
 WORK = ROOT / "runtime/analysis/history/findings/fixgap/de557e34e98e/resource-query"
-KEEP = ROOT / "docs/analysis/evidence/0.121.0/orb-source.json"
+KEEP = ROOT / "docs/analysis/evidence/orb-source.json"
 
 
 def derive():

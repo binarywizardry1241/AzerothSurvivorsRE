@@ -213,7 +213,7 @@ source=(ROOT/'crates/azeroth-survivors-re/src/enemies/scaling.rs').read_text();a
 fields=['zone_index','enemy_index','label','difficulty_bits','hp_percent','damage_percent','speed_percent','health_bits','damage_bits','movement_speed_bits']
 vectors=dict(stats=[{k:c[k]for k in fields}for c in cases],population=[{k:c[k]for k in ['density_percent','statuses','success']}for c in gate_cases],flags=flag_cases)
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
-md=Cs(CS_ARCH_X86,CS_MODE_64);out=ROOT/'docs/analysis/evidence/0.109.0/runmods-scaling';ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');args=ap.parse_args()
+md=Cs(CS_ARCH_X86,CS_MODE_64);out=ROOT/'docs/analysis/evidence/runmods-scaling';ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');args=ap.parse_args()
 if args.write:out.mkdir(parents=True,exist_ok=True)
 ranges=[]
 for name,a,b in [('flagged-health',0x14599e9c0,0x14599ea05),('ordinary-health',0x14599ea10,0x14599ea55)]:

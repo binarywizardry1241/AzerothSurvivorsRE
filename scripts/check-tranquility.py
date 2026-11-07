@@ -318,7 +318,7 @@ def main():
     pe = load_pe(image)
     current = target['sha256'] == CURRENT_SHA
     if not current:
-        proof = json.loads((ROOT / 'docs/analysis/evidence/0.119.0/druid-release/manifest.json').read_text())
+        proof = json.loads((ROOT / 'docs/analysis/evidence/druid-release/manifest.json').read_text())
         for row in [r for r in proof['native_spans'] if 176 in r['gap_ids']] + [proof['constants'][1]]:
             at = pe.rva_offset(int(row['start'], 16) - pe.image_base)
             assert at == int(row['file_offset'], 16)

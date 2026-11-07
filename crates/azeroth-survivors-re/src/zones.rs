@@ -22,7 +22,7 @@ mod tests {
     #[test]
     fn native_keys_and_unknown_text_select_the_recovered_definition() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.113.2/zone-key-guardian-damage.json"
+            "../../../docs/analysis/evidence/zone-key-guardian-damage.json"
         ))
         .unwrap();
         for case in proof["source_key_cases"].as_array().unwrap() {

@@ -11,7 +11,7 @@ import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 WORK = ROOT / "runtime/analysis/history/native-recovery/consolidation/11a8f25258b7"
-OUT = ROOT / "runtime/analysis/staging/native-evidence/0.100.1/upgrade-flow"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/upgrade-flow"
 ROLES = ("choice-complete", "cards-animate", "card-tooltip", "cards-ray-image", "cards-root")
 
 

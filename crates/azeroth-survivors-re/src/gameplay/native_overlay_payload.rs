@@ -731,7 +731,7 @@ mod native_tests {
     fn historical_descriptions_match_native_inputs_and_large_area_branch() {
         let fixture: Value = serde_json::from_str(include_str!(concat!(
             env!("CARGO_MANIFEST_DIR"),
-            "/../../docs/analysis/evidence/0.100.1/native-overlays/prose-fixtures.json"
+            "/../../docs/analysis/evidence/native-overlays/prose-fixtures.json"
         )))
         .unwrap();
         let catalog: DescriptionCatalog = serde_json::from_str(include_str!(
@@ -810,7 +810,7 @@ mod native_tests {
     #[test]
     fn current_descriptions_match_selected_native_grammar_and_numeric_cases() {
         let fixture: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.115.0/spell-descriptions/cases.json"
+            "../../../../docs/analysis/evidence/spell-descriptions/cases.json"
         ))
         .unwrap();
         let locale = Localization::english_for_tests();
@@ -942,7 +942,7 @@ mod native_tests {
     #[test]
     fn empowerment_description_matches_current_localized_literal_and_native_numbers() {
         let fixture: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.112.0/demonic-empowerment/native-cases.json"
+            "../../../../docs/analysis/evidence/demonic-empowerment/native-cases.json"
         )).unwrap();
         let locale = Localization::english_for_tests();
         for case in fixture["empowerment_description_cases"].as_array().unwrap() {

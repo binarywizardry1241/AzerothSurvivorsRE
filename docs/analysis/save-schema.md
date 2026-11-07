@@ -12,10 +12,10 @@ separate current Save-core evidence.
 
 The authoritative full parser `14589e380..1458a2926` and serializer
 `1458a4340..1458a681d` are retained once in the shared
-[Save-core manifest](evidence/0.109.0/save-core/manifest.json). Additional current
+[Save-core manifest](evidence/save-core/manifest.json). Additional current
 appearance owners, exact byte hashes, original-VA Ghidra/assembly extracts and
 bounded native helper ranges are in the
-[schema manifest](evidence/0.109.0/save-schema/manifest.json). Existing historical
+[schema manifest](evidence/save-schema/manifest.json). Existing historical
 reports and data keep their original targets.
 
 The source previously retained arbitrary raw lines and serialized families in
@@ -86,7 +86,7 @@ parser and serializer** for 134 retained canonical cases, including all families
 unknown/malformed rows, numeric overflow/truncation, duplicate/empty records,
 class ordering, legacy migration and every current companion key. It also runs
 27 current optional-cache clamp cases. The retained
-[fixtures](evidence/0.109.0/save-schema/fixtures.json) are the actual native text
+[fixtures](evidence/save-schema/fixtures.json) are the actual native text
 results consumed by Rust source regressions.
 
 `python3 -B scripts/check-menu-appearance.py` executes 675 current feature

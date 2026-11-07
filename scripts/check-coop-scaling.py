@@ -11,8 +11,8 @@ from coverage_common import ROOT, installed_identity, latest_target, target_byte
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.127.0/coop-scaling/manifest.json"
-INCOMING_MANIFEST = ROOT / "docs/analysis/evidence/0.141.0/coop-incoming/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/coop-scaling/manifest.json"
+INCOMING_MANIFEST = ROOT / "docs/analysis/evidence/coop-incoming.json"
 
 
 def sha(raw):

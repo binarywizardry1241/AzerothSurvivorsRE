@@ -13,7 +13,7 @@ from native_terminal import NativeReplay, require, verified_input
 
 ROOT = Path(__file__).resolve().parents[1]
 manifest, target, data, pe = verified_input(
-    ROOT / "docs/analysis/evidence/0.109.0/hud-class-provider"
+    ROOT / "docs/analysis/evidence/hud-class-provider"
 )
 
 

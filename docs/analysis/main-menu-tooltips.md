@@ -14,7 +14,7 @@ with16px white title,12px muted subtitle and13px gold body. The native0a2320
 shadow path converts sRGB components and stores raw LinearRgba; this tooltip uses
 black.85 offset(0,3),spread0,blur10.
 
-[Curated stores/formulas/runtime observation](evidence/0.92/picker-tooltip-native.json)
+[Curated stores/formulas/runtime observation](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/picker-tooltip-native.json)
 link the hash-bound slices and REA evidence. The`tooltip.rs` module is wired and compiled in build19, with the recovered
 101 ability expressions from the111×120-byte native table at1466d5b20 and
 specialized formatter1454cc0b0. See the [ability formatter report](ability-tooltips.md).

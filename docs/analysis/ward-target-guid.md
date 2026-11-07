@@ -8,7 +8,7 @@ Solo construction also retained Mechanics' default1 rather than the selected
 native identity. These are source input/publication defects, separate from
 #248's unavailable named model input.
 
-The [proof and fixtures](evidence/0.121.0/ward-target-guid.json) bind installed
+The [proof and fixtures](evidence/ward-target-guid.json) bind installed
 **0.121.0**, SHA-256
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 They reuse the existing Orb receiver, login, Game constructor, private hero-swap
@@ -58,7 +58,7 @@ other hero and saves the previous active context. Independently, actor-hit
 GUID enters RDX at `145c169ec` before `145b807a0`. This identifies the
 active combat hero, separately from account/award ownership.
 
-The [canonical receiver proof](evidence/0.121.0/orb-world-resource.json)
+The [canonical receiver proof](evidence/orb-world-resource.json)
 executes `145c13ce0` through its field-write and create-packet interfaces.
 It reads Game+4b0 and supplies its low/high words to fields16/17. These are
 the existing engine's `UNIT_FIELD_TARGET` lanes. This contract concerns the

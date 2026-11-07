@@ -6,7 +6,7 @@ This report owns the live consumers for **#231–#233**.
 [verification-needed](../verification-needed.md) owns overall implementation status.
 The [set core](sets-source.md) owns identity, activation and the108
 ordinary/empowered descriptors; [item publication](item-set-publication.md)
-owns #234. The [consumer manifest](evidence/0.121.0/set-consumers/manifest.json)
+owns #234. The [consumer manifest](evidence/set-consumers/manifest.json)
 binds native queries, selected original bytes, isolated instruction cases and
 the inspected source. Compilation, gameplay and original/rebuilt parity are
 separate and have not run.

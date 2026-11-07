@@ -17,7 +17,7 @@ from coverage_common import ROOT, file_sha256, json_text, latest_target, project
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-PLAN = "docs/analysis/evidence/0.121.0/switch-correspondence-replay.json"
+PLAN = "docs/analysis/evidence/switch-correspondence-replay.json"
 SCRIPT = "scripts/replay-switch-correspondence.py"
 # Exact first replay publication, before freezing all four query-fixture inputs.
 # It may transition once to this derivation; arbitrary current outputs may not.

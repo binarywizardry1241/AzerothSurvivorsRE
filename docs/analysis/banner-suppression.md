@@ -115,7 +115,7 @@ The frontend's exact input is already bound in the
 The original instructions and PE data resolve the omitted vtable,
 JSON keys, jump table and palette data outside the raw imports. The
 red/gold color and size bytes match the historical
-[row constants](evidence/0.100.1/notifications/manifest.json)
+[row constants](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/notifications/manifest.json)
 at current VAs `0x1465c5558`/`0x1465c54e8` and
 `0x1465c4690`/`0x1465c4664`.
 
@@ -174,7 +174,7 @@ rendered visibility and original/rebuilt comparison remain unverified.
 
 The installed SHA-256 is
 `0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c`.
-The [current instruction proof](evidence/0.115.0/banner-takeover/native-cases.json)
+The [current instruction proof](evidence/banner-takeover/native-cases.json)
 and `scripts/check-banner-takeover.py` independently bind and replay:
 
 - `1402b220f..1402b226c`: the actual `hudBanners` read, shared trim call and
@@ -217,10 +217,10 @@ BANNER01's current kind table is twelve pointer/length pairs at
 `14700cda0..14700ce60`: boss, finalboss, bossdown, guardian, achievement, unlocked,
 magnet, cache, rune, downed, frienddown and revived. The final three cooperative
 producers remain excluded. The quoted-field helper's canonical current extract
-remains [banners-owner](evidence/0.115.0/banners-owner.json); no duplicate copy is
+remains [banners-owner](evidence/banners-owner.json); no duplicate copy is
 introduced here.
 
-The [new Ghidra/edge proof](evidence/0.115.0/banner-takeover/record-parser.json)
+The [new Ghidra/edge proof](evidence/banner-takeover/record-parser.json)
 connects all three quoted-field calls to `145853470..145853bb9`, the scoped-locale
 wrapper, and the current update owner's optional-result/fallback route. It
 recognizes the banner record, checks the kind/id and processes its text/name
@@ -236,7 +236,7 @@ Reproduce the static checks and prepare the optional durable query with:
 
 ```sh
 python3 -B scripts/check-banner-takeover.py
-lua scripts/check-addon-bootstrap.lua docs/analysis/evidence/0.115.0/embedded-api.lua
+lua scripts/check-addon-bootstrap.lua docs/analysis/evidence/embedded-api.lua
 python3 -B scripts/check-banner-takeover.py --prepare-rea
 ./scripts/rea query runtime/analysis/history/addon/banner-takeover/d697375a5b27/checks/rea-reproduce-6ac15e9be5ba64fe/plan.json
 ```
@@ -266,9 +266,9 @@ which is distinct from the custom Notifications root controlled by `hudBanners`.
 | `140c2da3a..140c2da61` within `140c2d970..140c2e80e` | Chat routing builds script arguments, resolves the event name and calls the event publisher. This excerpt is decoded separately from the incomplete raw-import switch. |
 | `1410330a0..1410330bd` | Event-name lookup reads pointer/length tables at `1460cc410` and `1460cc128`; source enum index 31 resolves to `CHAT_MSG_RAID_BOSS_EMOTE`. |
 
-The [native manifest](evidence/0.113.2/banner-takeover/manifest.json) binds exact
+The [native manifest](evidence/banner-takeover-comparison/manifest.json) binds exact
 selected ranges and the canonical currently embedded Lua API. The
-[Ghidra observations](evidence/0.113.2/banner-takeover/rea.json) bind three focused
+[Ghidra observations](evidence/banner-takeover-comparison/rea.json) bind three focused
 raw imports to their provider/profile and original byte owners. Raw imports omit
 external/global context and use generic ABI types; independently decoded PE
 instructions govern interpretation. The check reconstructs each raw import from
@@ -276,7 +276,7 @@ the selected PE segments and zero padding. No other AS or engine behavior is cer
 
 The actual `patch.MPQ` **ChatFrame.lua** performs
 `RaidBossEmoteFrame:AddMessage(body, ...)` inside `ChatFrame_OnEvent`.
-The [resource contract](evidence/0.113.2/banner-takeover/framexml-contract.json)
+The [resource contract](evidence/banner-takeover-comparison/framexml-contract.json)
 retains its member digest and exact four-line call site. The host's
 [chat router](../../crates/benilla-app/src/ui_chat/frames.rs) fires the normal Lua
 event. Its [frame wrappers](../../crates/benilla-ui/src/script/object.rs) are
@@ -287,7 +287,7 @@ This source trace does not execute the loaded addon or prove its hook is active.
 ## Installed addon chat contract
 
 The installed **3.2.32-survivors** addon's `docs/RUN-BANNERS.md` and owning modules
-were inspected read-only. The [contract record](evidence/0.113.2/banner-takeover/addon-chat-contract.json)
+were inspected read-only. The [contract record](evidence/banner-takeover-comparison/addon-chat-contract.json)
 retains their relative paths, file hashes and source anchors. It establishes the
 expected routing below; it does not prove the hooks were active during a reported
 duplicate.
@@ -362,9 +362,9 @@ latched values; they remain **unrun**.
 The chat-routing check passes **93 original-instruction event-name cases** against
 the source enum, including raid-boss emotes, system messages, monster yells and
 raid warnings. This leaf has no external-call seams. Its
-[manifest](evidence/0.113.2/banner-takeover/chat-routing.json) binds both lookup
+[manifest](evidence/banner-takeover-comparison/chat-routing.json) binds both lookup
 tables and the exact publication excerpt. The associated
-[Ghidra observations](evidence/0.113.2/banner-takeover/chat-routing-rea.json)
+[Ghidra observations](evidence/banner-takeover-comparison/chat-routing-rea.json)
 retain raw-input reconstruction hashes and analysis limits. Publication callees,
 the complete chat route and loaded Lua handlers are not replayed by this check.
 

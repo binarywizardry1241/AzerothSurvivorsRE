@@ -22,7 +22,7 @@ The run initializer `0x1454b07c0` contains a separate branch guarded by raw Game
 
 ## Placement
 
-Only two zone records provide fixed boss spawn points: **Scarlet Monastery, index 7, has four**; **Naxxramas, index 11, has six**. The other ten slices are empty. Exact point float bits and source spans are in [catalog.json](evidence/0.97.2/bosses/catalog.json); generated source points share [catalog.rs](../../crates/azeroth-survivors-re/src/bosses/catalog.rs) with canonical boss reexports.
+Only two zone records provide fixed boss spawn points: **Scarlet Monastery, index 7, has four**; **Naxxramas, index 11, has six**. The other ten slices are empty. Exact point float bits and source spans are in [catalog.json](evidence/bosses/catalog.json); generated source points share [catalog.rs](../../crates/azeroth-survivors-re/src/bosses/catalog.rs) with canonical boss reexports.
 
 Point-filter helper `0x145529b50` retains points whose native `hypotf(point-player)` distance is **at least 20**. Equality qualifies and unordered distance refuses. A nonempty candidate list is selected uniformly using the shared native multiply/reject draw, including an RNG draw when only one candidate remains. The selected point's Z uses the recovered primary-height, secondary-height, then fallback-height chain.
 
@@ -32,9 +32,9 @@ For the other zones, the empty candidate list calls shared native placement `0x1
 
 ## Evidence and checks
 
-- [spawning-manifest.json](evidence/0.97.2/bosses/spawning-manifest.json) retains ten original instruction scopes, constants, exact default-field mapping and matching reused REA provenance for the main tick, run initializer and Game constructor.
+- [spawning-manifest.json](evidence/bosses/spawning-manifest.json) retains ten original instruction scopes, constants, exact default-field mapping and matching reused REA provenance for the main tick, run initializer and Game constructor.
 - Reused SHA-checked REA dossiers: main tick `ev_c5c9cc29e1e6e39c77e71ac55fc8abbce607fd9cb931b6b010eee7b8f4720299`; run initializer `ev_e6f30ed60ac4cc6f9c3c6dea58abc8cc11d4f27c396aaed4d6801d2aba98d9df`; constructor `ev_6ba2251b09c79873deb3f9348a6c19acb85427880b59bbb77c74fc878b07d86d`.
-- New focused REA/Ghidra point-filter Evidence: [`ev_90c1541efd3a719e744b67b824ab03a4752ffed1d84692ffaf1394c701ac14bb`](evidence/0.97.2/bosses/spawning-point-filter-native.json). The unchanged PE function slice is mapped at its original VA; its completed session exported and closed. Raw-import inferred signatures are not original source types, and Win64 instructions govern.
+- New focused REA/Ghidra point-filter Evidence: [`ev_90c1541efd3a719e744b67b824ab03a4752ffed1d84692ffaf1394c701ac14bb`](evidence/bosses/spawning-point-filter-native.json). The unchanged PE function slice is mapped at its original VA; its completed session exported and closed. Raw-import inferred signatures are not original source types, and Win64 instructions govern.
 - Passed **252 bounded unchanged-instruction cases**: 228 schedule cases across all 12 zones, six point-distance gates, six farthest/total-order comparisons and 12 point-selection/RNG cases. Native creation is explicitly stubbed without consuming RNG; actual creator behavior is a separate owner. Fixtures are retained in [boss-spawning-native.json](../../crates/azeroth-survivors-re/tests/fixtures/boss-spawning-native.json). Independent mathematical RNG reconstruction agrees with all native point/endless outputs and resulting shared state.
 - Authored [boss_spawning.rs regression checks](../../crates/azeroth-survivors-re/tests/boss_spawning.rs) compare source schedule, point choices and RNG against those native outputs and cover suppression/startup behavior. **Compilation and Rust tests were not run**, at this source-recovery checkpoint.
 

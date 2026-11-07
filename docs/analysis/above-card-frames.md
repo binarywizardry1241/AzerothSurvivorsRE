@@ -30,7 +30,7 @@ plugin builder. It compares row counts and ordered strings before
 replacing the vector. Missing VM state and a missing value have
 their own input branches. The 1,159-byte Lua block that defines and
 initializes the API matches both the 0.140.0 extract and the
-[0.127.0 Lua used by the rebuilt bootstrap](evidence/0.127.0/embedded-api.lua).
+[0.127.0 Lua used by the rebuilt bootstrap](evidence/addon-api/embedded-base.lua).
 
 ## Pointer and paint consumers
 

@@ -1,12 +1,12 @@
 //! Enemy/guardian inputs retain 0.97.2 provenance; primary boss headers are revalidated against0.109.0.
 //! Named0.127.0 creature scales override only their scale field; exact current
-//! rows/consumers: docs/analysis/evidence/0.127.0/creature-sizes/contract.json.
-//! Current boss proof: docs/analysis/evidence/0.109.0/boss-inputs/manifest.json.
+//! rows/consumers: docs/analysis/evidence/creature-sizes/contract.json.
+//! Current boss proof: docs/analysis/evidence/boss-inputs/manifest.json.
 //! Boss summons and recurring volleys use selected 0.108.0 inputs; other moves
 //! retain historical provenance. See boss-minions-0.108.0.md and
 //! boss-volleys-0.108.0.md under docs/analysis/.
 //! SHA-256 a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589.
-//! Evidence: docs/analysis/evidence/0.97.2/guardians/guardian-catalog.json.
+//! Evidence: docs/analysis/guardians.md.
 //! Regenerate: python3 scripts/recover-guardian-catalog.py --write-source-catalog.
 //! Raw offset names intentionally retain unresolved semantics. These are
 //! semantic source records, not declarations of the native in-memory ABI.

@@ -17,7 +17,7 @@ ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 EXPECTED='a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
 RUNTIME=ROOT/'runtime/analysis/history/native-recovery/enemies/b24ae4fa5276/scaling'
-OUTPUT=ROOT/'docs/analysis/evidence/0.97.2/enemies'
+OUTPUT=ROOT/'docs/analysis/evidence/enemies'
 FUNCTIONS=[('game-constructor',0x14549bb90,0x14549cefd),
            ('constructor-final-stat-refresh',0x1454950d0,0x14549617c)]
 SPANS=[('constructor-output-argument',0x14549bb90,0x14549bc28),

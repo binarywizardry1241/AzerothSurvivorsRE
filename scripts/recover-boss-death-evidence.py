@@ -10,7 +10,7 @@ import hashlib,importlib.util,json,subprocess
 ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 EXPECTED='a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
-OUT=ROOT/'docs/analysis/evidence/0.97.2/bosses'
+OUT=ROOT/'docs/analysis/evidence/bosses'
 SPANS=[('primary-boss-survivor-scan',0x1454c41d3,0x1454c422b),('primary-boss-counter-meter',0x1454c44dd,0x1454c450f),
  ('primary-boss-announcement-account',0x1454c450f,0x1454c46d9),('primary-boss-pickups',0x1454c46d9,0x1454c47cb),
  ('primary-boss-equipment-admission',0x1454c47cb,0x1454c4859),('primary-boss-equipment-roll',0x1454c4922,0x1454c4ab3),

@@ -20,7 +20,7 @@ import sys
 from coverage_common import ROOT, latest_target, project_path, target_bytes
 
 SHA = "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a"
-RETAINED = ROOT / "docs/analysis/evidence/0.112.0/build-countdowns"
+RETAINED = ROOT / "docs/analysis/evidence/build-countdowns"
 SPANS = {
     "timer-admission-deadline": (0x1458F5400, 0x1458F5493),
     "inactive-timer": (0x1458F55F0, 0x1458F5602),

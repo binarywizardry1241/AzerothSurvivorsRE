@@ -11,7 +11,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parent.parent
 EXPECTED = '47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2'
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors.exe'
-OUTPUT = ROOT / 'docs/analysis/evidence/0.92/run-options'
+OUTPUT = ROOT / 'docs/analysis/evidence/run-options'
 
 
 def main():

@@ -12,7 +12,7 @@ does not certify every historical class consumer or original/rebuilt parity.
 [`recover-balance-catalog.py`](../../scripts/recover-balance-catalog.py)
 reads the complete tables from the selected PE and compares their semantic fields
 with the actual embedded assets and Rust catalog. It uses only Python's standard
-library. The [compact manifest](evidence/0.105.0/balance-catalog/manifest.json)
+library. The [compact manifest](evidence/balance-catalog/manifest.json)
 retains table/range hashes, whole-catalog semantic digests, coverage counts and
 the explicit representation translations. Regenerable full inventories are not
 duplicated in the repository.
@@ -89,7 +89,7 @@ falls back to the descriptor's display name when the key is absent. Localization
 now preserves that fallback for ability names, starters and pool names; it no
 longer turns the new spell into the literal missing translation key.
 
-The canonical [native extracts](evidence/0.105.0/balance-catalog/manifest.json)
+The canonical [native extracts](evidence/balance-catalog/manifest.json)
 contain four current instruction scopes and the normalized Ghidra output for the
 base-tooltip owner. Its Evidence ID is
 `ev_e9c7077b7f489248135624b4093659ccd00bfa0875de086bf40221cb9aa77fb6`.

@@ -4,7 +4,7 @@ This report records 0.92.0.
 
 The target SHA-256 is `47e4ab65c1ad7366e554171a6a28b0272141664010a50795371129b203111bf2`.
 Exact native addresses, REA Ghidra Evidence IDs, original fragment-table offsets and values
-are retained in [picker-name-native.json](evidence/0.92/picker-name-native.json).
+are retained in [picker-name-native.json](evidence/picker-name-native.json).
 
 The picker Random action at `0x140125b70` calls the 413-byte producer `0x14011a6f0`.
 It combines one of20 prefixes,16 middle fragments and10 suffixes. A fresh call seeds a64-bit

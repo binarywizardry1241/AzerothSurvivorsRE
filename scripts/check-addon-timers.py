@@ -17,7 +17,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script, run_contract
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
-EVIDENCE = ROOT / "docs/analysis/evidence/0.115.0/addon-timers"
+EVIDENCE = ROOT / "docs/analysis/evidence/addon-timers"
 SELECTOR = 0x1459721C0
 RESERVE = 0x145D150F0
 

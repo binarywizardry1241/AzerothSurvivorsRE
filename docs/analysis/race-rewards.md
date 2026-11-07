@@ -5,7 +5,7 @@ Target: installed read-only EXE, SHA-256
 This implements #188's source scope. Compilation, actual purchase/save/network/
 gameplay interaction and original/rebuilt presentation parity remain unverified.
 The original [release contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-contracts-0.120.0.md) retains discovery
-provenance; the [purchase proof](evidence/0.120.0/race-rewards/proof.json) and
+provenance; the [purchase proof](evidence/race-rewards/proof.json) and
 [run carry proof](race-run-carry.md) bind current dependencies separately.
 
 ## Purchase transaction and presentation

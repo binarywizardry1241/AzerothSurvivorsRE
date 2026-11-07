@@ -7,7 +7,7 @@ size and independent reach constituents. [Release/source review](https://github.
 R126-16–19 retains their separate claim identities. Earlier boss/enemy reports
 and all other fields keep their actual target provenance.
 
-The [current contract](evidence/0.127.0/creature-sizes/contract.json) retains all
+The [current contract](evidence/creature-sizes/contract.json) retains all
 17 named records, exact names/IDs/IEEE754 scales, row bytes and selected native
 consumer ranges. The existing catalog recovery tool locates the zone table
 through all twelve ordered zone keys: current `14703a5b0`, stride 240. Enemy
@@ -69,8 +69,8 @@ world interfaces remain the implementation boundary.
 ## Checks and remaining verification
 
 ```sh
-python3 -B scripts/recover-enemy-catalog.py --size-contract docs/analysis/evidence/0.127.0/creature-sizes/contract.json
-python3 -B scripts/recover-boss-catalog.py --reach-contract docs/analysis/evidence/0.127.0/creature-sizes/contract.json
+python3 -B scripts/recover-enemy-catalog.py --size-contract docs/analysis/evidence/creature-sizes/contract.json
+python3 -B scripts/recover-boss-catalog.py --reach-contract docs/analysis/evidence/creature-sizes/contract.json
 ```
 
 Both pass. The first checks current target/table/record/string identities and
@@ -78,7 +78,7 @@ every selected source scale. The second verifies original instructions/constants
 and **51 isolated native reach cases**: each selected creature in its applicable
 ordinary/boss projection, all seven in the guardian constructor, and nine
 zero/negative/cap-boundary/infinity/NaN inputs per arithmetic sequence.
-[Native vectors](evidence/0.127.0/creature-sizes/reach-native.json) are independent
+[Native vectors](evidence/creature-sizes/reach-native.json) are independent
 of the Rust source.
 
 Existing Rust catalog regressions now use explicit current scale overrides

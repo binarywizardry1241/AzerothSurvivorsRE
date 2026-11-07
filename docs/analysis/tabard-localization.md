@@ -24,7 +24,7 @@ reaches the ordinary `Item::template`/inventory-query tooltip producer.
 Recipient-specific cooperative inventory queries reuse that constructor with
 the member's localized catalog.
 
-The independent [current ItemQuery bridge](evidence/0.117.0/item-query-bridge/contracts.json)
+The independent [current ItemQuery bridge](evidence/item-query-bridge/contracts.json)
 binds opcode `0x56` through selected table entry 11 at `1472db538`, metadata call
 `145af9e97`, name transfer into the response record, serializer call
 `145afa9b1` and actual sender `145b1a8d0`. Serializer `145b66370` writes opcode
@@ -32,10 +32,10 @@ binds opcode `0x56` through selected table entry 11 at `1472db538`, metadata cal
 twenty-one tabards and proves that the localization constructor's output is
 the actual item-template response name.
 
-The [shared native contract](evidence/0.117.0/party-rewards/contracts.json)
+The [shared native contract](evidence/party-rewards/contracts.json)
 binds the constructor bytes, format records, tables and completed journaled
 Ghidra query without duplicating native extracts.
-[Bounded cases](evidence/0.117.0/party-rewards/tabard-localization.json) bind
+[Bounded cases](evidence/party-rewards/tabard-localization.json) bind
 the full twenty-one-tabard population and four lookup states per tabard.
 `python3 -B scripts/check-tabard-localization.py` passes **84 original
 instruction cases**: absent ID key with an unrelated literal-name translation,

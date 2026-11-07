@@ -12,9 +12,9 @@ icons, twelve-zone Drops and live run stats use these records.
 
 ## Recovered contracts
 
-[Data evidence](evidence/0.105.0/pvp-gear/data-evidence.json) binds the tables,
-strings and values to native byte ranges. [Procedure hashes](evidence/0.105.0/pvp-gear/procedures.json)
-and [REA/Ghidra provenance](evidence/0.105.0/pvp-gear/rea.json) identify the
+[Data evidence](evidence/pvp-gear/data-evidence.json) binds the tables,
+strings and values to native byte ranges. [Procedure hashes](evidence/pvp-gear/procedures.json)
+and [REA/Ghidra provenance](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/pvp-gear/rea.json) identify the
 retained extracts and their analysis limits.
 
 | Owner | Selected-target behavior |
@@ -28,7 +28,7 @@ retained extracts and their analysis limits.
 | Equipment effects `0x1458beb10` | Reads nineteen equipment words, resolves item effects, and adds equal tags before stat refresh. Tags 0–10 and 12 use floating addition; tag 11 uses integer addition. Pickup bonuses therefore add together before their single multiplicative stat application. |
 
 The equipment-effect decompiler does not resolve its indirect tag switch.
-The retained [assembly](evidence/0.105.0/pvp-gear/equipment-effects.asm) supplies
+The retained [assembly](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/pvp-gear/equipment-effects.asm) supplies
 the additive branches; its partial pseudocode is not treated as complete source.
 The nearby `0x1458bd600` predicate checks slot existence, and `0x1458bc2e0`
 iterates display IDs; neither is evidence for an invented menu transition.
@@ -63,7 +63,7 @@ dependency used by the existing recovery tools.
 
 - **166 original-instruction scaling cases passed**, using real PE data/jump
   tables, sufficient preallocated vector buffers and a finite nonnegative
-  health `roundf` import seam. [Record](evidence/0.105.0/pvp-gear/native-scaling-validation.json).
+  health `roundf` import seam. [Record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/pvp-gear/native-scaling-validation.json).
 - Recovery revalidated all **415 ordinary numeric definitions** and **166
   existing PvP faction preview records** without changes.
 - A locked/offline serial Armory run passed **seven tests**, including canonical

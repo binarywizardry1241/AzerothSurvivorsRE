@@ -4,9 +4,9 @@ Permanent **#177** belongs to installed 0.119.0, 145,357,824 bytes, SHA-256
 `6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f`.
 [verification-needed](../verification-needed.md) owns current implementation status.
 The [Druid release contracts](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-contracts-0.119.0.md) and their
-[original manifest](evidence/0.119.0/druid-release/manifest.json) retain the
+[original manifest](evidence/druid-release/manifest.json) retain the
 canonical cast, prune, event, recipient and independent-tick ranges. The
-[repair manifest](evidence/0.119.0/rejuvenation/manifest.json) adds only the
+[repair manifest](evidence/rejuvenation/manifest.json) adds only the
 missing admission/snapshot/lifecycle evidence and references those original
 ranges instead of duplicating their extracts.
 

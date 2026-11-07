@@ -4,7 +4,7 @@ Target SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
 This owns the recurring-summon build-icon presentation shared by gaps **#17/#24**.
 [verification-needed](../verification-needed.md) retains the parent gaps and runtime limits.
-The [manifest](evidence/0.112.0/build-countdowns/manifest.json) binds current
+The [manifest](evidence/build-countdowns/manifest.json) binds current
 owner extents, selected code/data bytes and focused Ghidra records. Raw imports
 have inferred types/ABI and bounded external-reference coverage.
 
@@ -79,7 +79,7 @@ activity/timestamps, inactive/active counters, cooldown clamping and exact
 clock boundaries. Their 144 admitted cases check remaining seconds bit for bit.
 A further **18 remaining-clamp cases** cover negative, unordered and infinite
 inputs; **11 number-classification cases** verify the custom serializer's
-finite/nonfinite branch. The [compact cases](evidence/0.112.0/build-countdowns/native-cases.json)
+finite/nonfinite branch. The [compact cases](evidence/build-countdowns/native-cases.json)
 bind the full admitted-vector digest and representative boundaries.
 
 Inputs and state vectors are synthetic replay seams. These checks execute

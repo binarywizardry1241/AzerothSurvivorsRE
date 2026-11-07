@@ -20,10 +20,10 @@ orders candidates by row/tree/column before admitting each point.
 
 The current normalizer's completed REA/Ghidra evidence is
 `ev_50d7414935b7a5cff55145094e6e1ddbad69055ab8cded7335bc5181dc36d263`.
-[Current native slices](evidence/0.100.1/target-menu/talent-normalize.asm) and
-[retained pseudocode](evidence/0.100.1/target-menu/talent-normalize.ghidra.c)
+[Current native slices](evidence/target-menu/talent-normalize.asm) and
+[retained pseudocode](evidence/target-menu/talent-normalize.ghidra.c)
 keep generic-ABI and external-call limitations explicit. Definition and effect
-payload provenance is retained in [talent evidence](evidence/0.100.1/talents.json).
+payload provenance is retained in [talent evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/talents.json).
 
 The menu places the three selectors above Talent Points and shows per-tree
 counts or `Empty`, using the current spec-card owner `140165440`. Original-menu

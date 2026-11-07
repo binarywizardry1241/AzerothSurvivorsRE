@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def check():
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.115.0/coop-overlay/manifest.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/coop-overlay/manifest.json').read_text())
     target = latest_target(verify=True)
     assert target['sha256'] == proof['target']['sha256']
     image = target_bytes(target)
@@ -112,7 +112,7 @@ def check_diagnostic_consumers():
     from capstone.x86_const import X86_OP_MEM, X86_REG_RIP
     from script_sources import load_script
 
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/q41-diagnostic-consumers.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/q41-diagnostic-consumers.json').read_text())
     target = latest_target(verify=True)
     assert target['sha256'] == proof['target_sha256']
     pe = load_script('overlay_pe', ROOT / 'scripts/inventory-current-target.py').pe_parser(target_bytes(target))
@@ -159,7 +159,7 @@ def check_choice_gold():
     from native_terminal import NativeReplay
     from script_sources import load_script
 
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/choice-gold-credit.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/choice-gold-credit.json').read_text())
     target = latest_target(verify=True)
     assert all(target[key] == proof['target'][key] for key in ('version', 'sha256', 'size_bytes'))
     image = target_bytes(target)
@@ -244,7 +244,7 @@ def check_choice_variants():
     from native_terminal import NativeReplay
     from script_sources import load_script
 
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/choice-card-variants.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/choice-card-variants.json').read_text())
     target = latest_target(verify=True)
     assert all(target[key] == value for key, value in proof['target'].items())
     image = target_bytes(target)
@@ -308,7 +308,7 @@ def check_choice_completion():
     from native_terminal import NativeReplay
     from script_sources import load_script
 
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/choice-completion.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/choice-completion.json').read_text())
     target = latest_target(verify=True)
     assert all(target[key] == value for key, value in proof['target'].items())
     image = target_bytes(target)

@@ -6,10 +6,10 @@ Recovered source lives in `crates/azeroth-survivors-re/src/enemies/spawning.rs` 
 
 ## Owning evidence and method
 
-- [Instruction ranges, exact bytes digests, constants and jump table](evidence/0.97.2/enemies/spawning-manifest.json).
-- [15 retained REA/Ghidra records](evidence/0.97.2/enemies/spawning-rea.json). Ten complete PE functions and four original branch-entry slices are imported at their original virtual addresses. The ordinary main tick reuses the already hash-bound REA result from the same selected target.
-- [Bounded original-instruction fixtures](evidence/0.97.2/enemies/spawning-fixtures.json): 982 admission checks, 517 weights, 8 budget cases, 7 population cases, 21 uniform random selections, 18 formation counts and 6 interval pairs.
-- [Recovered constructor defaults](evidence/0.97.2/enemies/initialization-native.json), owned by the scaling recovery.
+- [Instruction ranges, exact bytes digests, constants and jump table](evidence/enemies/spawning-manifest.json).
+- [15 retained REA/Ghidra records](evidence/enemies/spawning-rea.json). Ten complete PE functions and four original branch-entry slices are imported at their original virtual addresses. The ordinary main tick reuses the already hash-bound REA result from the same selected target.
+- [Bounded original-instruction fixtures](evidence/enemies/spawning-fixtures.json): 982 admission checks, 517 weights, 8 budget cases, 7 population cases, 21 uniform random selections, 18 formation counts and 6 interval pairs.
+- [Recovered constructor defaults](evidence/enemies/initialization-native.json), owned by the scaling recovery.
 - [Exact zone/enemy catalog and roster](enemy-catalog.md).
 
 `python3 scripts/recover-enemy-spawning.py` verifies the full selected EXE digest, reads original PE mappings, retains disassembly/constant evidence and prepares project-local REA plans. `python3 scripts/rea-batch.py runtime/analysis/history/native-recovery/enemy-spawning/20e2f3691d48/plan-<address>.json` runs each prepared plan through `./scripts/rea` with Ghidra. Raw slices are unmodified bytes, not executable replacements. They omit unrelated code/data, so original Win64 instructions and selected-image constants govern recovered arguments. Decompiler-generated bad-instruction warnings at a shared-tail slice boundary do not mean the original EXE has that failure; the original outgoing branch is retained in assembly.

@@ -19,8 +19,8 @@ sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'),
 import native_talent_fixture as native
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
-RETAINED = ROOT / 'docs/analysis/evidence/0.112.0/options-choice-labels/cases.json'
-STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.112.0/options-choice-labels/cases.json'
+RETAINED = ROOT / 'docs/analysis/evidence/options-choice-labels/cases.json'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/options-choice-labels/cases.json'
 
 
 def main():

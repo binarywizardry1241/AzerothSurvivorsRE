@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 SHA = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
 WORK = ROOT / "runtime/analysis/history/interface/menu-actions/213951b39c5b"
-OUT = ROOT / "docs/analysis/evidence/0.97.2"
+OUT = ROOT / "docs/analysis/evidence"
 STARTS = [0x140099B40, 0x140091C00, 0x1402707E0, 0x14541D7F0, 0x145427250]
 
 

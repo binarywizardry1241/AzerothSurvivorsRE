@@ -127,7 +127,7 @@ mod tests {
     #[test]
     fn current_native_typed_default_and_utc_vectors() {
         let fixtures: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.109.0/save-backup/native-vectors.json"
+            "../../../../docs/analysis/evidence/save-backup/native-vectors.json"
         )).unwrap();
         for row in fixtures["cases"].as_array().unwrap() {
             match row["contract"].as_str().unwrap() {

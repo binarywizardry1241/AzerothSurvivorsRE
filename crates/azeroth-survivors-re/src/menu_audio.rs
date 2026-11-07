@@ -64,7 +64,7 @@ mod tests {
     #[test]
     fn shared_mixer_gain_matches_closed_native_controller_outputs() {
         let evidence: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/menu-audio/native-vectors.json"
+            "../../../docs/analysis/evidence/menu-audio/native-vectors.json"
         ))
         .unwrap();
         assert_eq!(THEME, evidence["theme"].as_str().unwrap());
@@ -91,7 +91,7 @@ mod tests {
     #[test]
     fn consumed_cvars_match_native_callback_field_bytes() {
         let evidence: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.109.0/menu-audio/native-vectors.json"
+            "../../../docs/analysis/evidence/menu-audio/native-vectors.json"
         ))
         .unwrap();
         let mut checked = 0;

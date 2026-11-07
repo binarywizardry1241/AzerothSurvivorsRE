@@ -14,7 +14,7 @@ binding-row count at +0x40, displays `options.no_bindings` when empty, or iterat
 the 48-byte section/binding rows. It calls section constructor **0x140208490**
 and binding-row constructor **0x140206f60**. It creates no character-specific
 selector or confirmation popup. The full procedure hash and Ghidra evidence ID
-are retained in the [manifest](evidence/0.105.0/options/binding-sets.json).
+are retained in the [manifest](evidence/options-comparison/binding-sets.json).
 A custom selector and its cross-layer popup transport are therefore absent from
 the reconstruction. The existing custom binding editor still follows the live
 binding command/key/reset/save paths described in the Options owner.
@@ -33,7 +33,7 @@ to account bindings before it is saved. Unchecking restores the checked state
 and opens `BENILLA_CONFIRM_DELETING_CHARACTER_SPECIFIC_BINDINGS`; it does not
 change the active binding set yet. The popup's acceptance loads set 1 before
 saving set 1. Cancel preserves the character set. The earlier
-[lifecycle manifest](evidence/0.105.0/options/lifecycle-manifest.json) remains the
+[lifecycle manifest](evidence/options-comparison/lifecycle-manifest.json) remains the
 canonical extract for ordinary commit and Defaults. The engine's existing
 binding store, event generation and account/character save writer own these
 operations.

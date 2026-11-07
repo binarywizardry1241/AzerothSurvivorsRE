@@ -4,7 +4,7 @@ Selected installed EXE: **0.119.0**, 145,357,824 bytes, SHA-256
 `6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f`.
 [verification-needed](../verification-needed.md) owns permanent finding **#171**. The
 [0.118.0 investigation](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/locale-catalogs-0.118.0.md) remains historical evidence;
-the [current contract](evidence/0.119.0/rewards-tabard-localization/contracts.json)
+the [current contract](evidence/rewards-tabard-localization/contracts.json)
 independently binds the native inputs, tab selection, name helper and card output.
 
 `progression/rewards.rs::tabards` now looks up `tabard.<id>` in the live menu

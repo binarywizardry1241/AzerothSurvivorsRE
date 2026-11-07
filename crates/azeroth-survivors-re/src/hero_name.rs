@@ -169,7 +169,7 @@ mod tests {
     #[test]
     fn selected_native_unicode_name_vectors() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../docs/analysis/evidence/0.127.0/hero-names/native-cases.json"
+            "../../../docs/analysis/evidence/hero-names/native-cases.json"
         )).unwrap();
         for case in proof["normalizations"].as_array().unwrap() {
             let value = case["value"].as_str().unwrap();

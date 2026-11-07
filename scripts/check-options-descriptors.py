@@ -18,7 +18,7 @@ for index,prior in enumerate(source['rows']):
  if storage==1:assert prior['default']==text(*struct.unpack_from('<QQ',b,48)),key
  rows.append(row)
 record=dict(target_sha256=SHA,table=dict(va=hex(BASE),count=COUNT,stride=STRIDE,sha256=hashlib.sha256(raw(BASE,COUNT*STRIDE)).hexdigest()),compared_fields=COUNT*11,fields_digest=hashlib.sha256(json.dumps(rows,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest(),literal_defaults=sum(row['storage']==1 for row in rows),limits=['All105 descriptor records and direct stored defaults match connected source. Historical source addresses retain their actual provenance.','This compares static descriptors only. Engine/global default registration, dispatch, file writes, numeric formatting and active option application remain separate contracts; combatLogFile has its own current replay.'])
-parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args();path=ROOT/('runtime/analysis/staging/native-evidence/0.112.0/options-descriptors'if args.stage else'docs/analysis/evidence/0.112.0/options-descriptors')/'data.json'
+parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args();path=ROOT/('runtime/analysis/staging/native-evidence/options-descriptors'if args.stage else'docs/analysis/evidence/options-descriptors')/'data.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print('Passed all 105 current Options descriptors / 1155 fields and literal stored defaults')

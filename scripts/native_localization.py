@@ -20,7 +20,7 @@ from coverage_common import artifact_path, latest_target
 ROOT = Path(__file__).resolve().parents[1]
 SHA = "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b"
 WORK = ROOT / "runtime/analysis/history/interface/localization/8110c7a7b957"
-RETAINED = ROOT / "docs/analysis/evidence/0.108.0/localization"
+RETAINED = ROOT / "docs/analysis/evidence/localization-comparison"
 ASSETS = ROOT / "crates/azeroth-survivors-re/assets/locales"
 TABLE = 0x146E95450
 RANGES = {

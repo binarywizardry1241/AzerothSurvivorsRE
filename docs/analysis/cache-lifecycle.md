@@ -14,7 +14,7 @@ serial, draws one yaw from the shared run RNG, publishes the full GameObject
 descriptor and queues creation before the logical pickup append. Field14 is
 **READY=1**. The actual selector, constructor inputs and call site are bound
 separately from the synthetic constructor cases in the
-[manifest](evidence/0.113.2/cache-lifecycle/manifest.json).
+[manifest](evidence/cache-lifecycle/manifest.json).
 
 The current GO driver `1409d9dc0..1409dada3` selects **AnimationData147 (Closed)**
 on first sight of READY. If Closed is absent, its model-dependent remap retains
@@ -46,7 +46,7 @@ cache publisher emits no such event, its ordinary removal does not enter that
 announced-animation branch. The existing source's direct GUID-removal/fade path
 matches this bounded consumer contract. Displayed behavior, fade timing and
 generic announced-animation completion remain unverified. The
-[receiver manifest](evidence/0.113.2/cache-lifecycle/destroy-consumer.json) binds
+[receiver manifest](evidence/cache-lifecycle/destroy-consumer.json) binds
 its system name, registration, vtable, handler, typed component identities and
 selected branches to the current PE.
 
@@ -54,9 +54,9 @@ Five bounded REA/Ghidra12.1.4 dossiers recover the constructor, charge,
 interaction, removal and GO driver; four more recover the client receiver,
 marker branch, ordinary teardown and announcement consumer. Input/body hashes,
 Evidence IDs and profile digests are in the manifests. The
-[canonical assembly](evidence/0.113.2/cache-lifecycle/selected-native.asm) retains
+[canonical assembly](evidence/cache-lifecycle/selected-native.asm) retains
 the four relevant AS owners and GO selector/fallback window; the
-[receiver extract](evidence/0.113.2/cache-lifecycle/destroy-consumer.asm) retains
+[receiver extract](evidence/cache-lifecycle/destroy-consumer.asm) retains
 its necessary boundary windows. Raw inputs, complete
 dossiers and tool logs stay in ignored `runtime/`. Headerless imports omit
 external data/types/caller coverage; exact installed PE bytes and instruction

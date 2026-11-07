@@ -3,9 +3,9 @@
 This report binds the installed target SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`
 to bounded arithmetic and volley-capture contracts used by gap #24. The
-[manifest](evidence/0.112.0/demon-spell-math/manifest.json) records exact image
+[manifest](evidence/demon-spell-math/manifest.json) records exact image
 ranges and the current Hellfire catalog record. The larger time-effect owner
-is retained as [shared time-effect excerpts](evidence/0.112.0/demon-time-effects/manifest.json); the Pit Lord list helper has one
+is retained as [shared time-effect excerpts](evidence/demon-time-effects/manifest.json); the Pit Lord list helper has one
 canonical Ghidra C/assembly extract here.
 
 ## Recovered contracts

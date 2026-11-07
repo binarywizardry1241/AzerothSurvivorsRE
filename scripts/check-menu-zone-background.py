@@ -11,7 +11,7 @@ import sys
 
 from coverage_common import ROOT, latest_target, target_bytes
 
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.112.5/menu-zone-background'
+EVIDENCE = ROOT / 'docs/analysis/evidence/menu-zone-background'
 EXPECTED_SHA = '445e9de90f1a0e9be18d4e99e59eb170f4d253ac0440b970cdd0d0b3562dfd36'
 
 

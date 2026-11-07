@@ -2,7 +2,7 @@
 
 Reviewed 2026-10-18. Authority is `AzerothSurvivors/AzerothSurvivors-0.97.2.exe`, SHA-256 `a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589`. These source components reconstruct the supplied target; they do not establish a playable world or verified runtime parity.
 
-Primary boss creation is native `1454bf100..1454bfeec`, called by the selected target's scheduled and endless boss branches. `1454c8110` is a generic pickup creator, rather than the primary boss constructor. The PE unwind extent, three focused instruction scopes, constants and Ghidra evidence are retained in [scaling-native.json](evidence/0.97.2/bosses/scaling-native.json). REA `ev_ea4194960d19031fb3a6d3910c92132b075e08f93cc510876cf0191af4062b77` analyses unchanged function bytes at the original VA.
+Primary boss creation is native `1454bf100..1454bfeec`, called by the selected target's scheduled and endless boss branches. `1454c8110` is a generic pickup creator, rather than the primary boss constructor. The PE unwind extent, three focused instruction scopes, constants and Ghidra evidence are retained in [scaling-native.json](evidence/bosses/scaling-native.json). REA `ev_ea4194960d19031fb3a6d3910c92132b075e08f93cc510876cf0191af4062b77` analyses unchanged function bytes at the original VA.
 
 `crates/azeroth-survivors-re/src/bosses/scaling.rs` implements the constructor's scalar arithmetic and initial AI fields. It consumes the canonical `guardians::catalog::BossDefinition` reexported by `bosses::catalog`; there is one boss catalog and no duplicate data table. The ordinary enemy module's matching run-option/endless-exponent/GUID helpers are reused. Guardians use a different stat caller and scaling formula.
 

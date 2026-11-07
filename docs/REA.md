@@ -572,7 +572,7 @@ python3 -B scripts/audit-native-constant-dispatch.py --census-summary docs/analy
 python3 -B scripts/audit-native-dispatch.py --census-summary docs/analysis/coverage/full-image-selected.json --write
 python3 -B scripts/classify-native-ownership.py --census-summary docs/analysis/coverage/full-image-selected.json --operand-summary runtime/coverage/selected-operands.json --write
 python3 -B scripts/revalidate-historical-native-ranges.py --census-summary docs/analysis/coverage/full-image-selected.json --write
-python3 -B scripts/summarize-custom-native-coverage.py --site-role-proof docs/analysis/evidence/0.109.0/native-custom-site-roles.json --write
+python3 -B scripts/summarize-custom-native-coverage.py --site-role-proof docs/analysis/evidence/native-custom-site-roles.json --write
 python3 -B scripts/check-full-image-native.py --write
 python3 -B scripts/check-reconstruction-coverage.py
 ```

@@ -21,7 +21,7 @@ from script_sources import load_script
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 START, END = 0x145C30ED0, 0x145C31E46
 WORK = ROOT / "runtime/analysis/history/native-recovery/tga/f4a37f701d98"
-RETAINED = ROOT / "docs/analysis/evidence/0.113.2/addon-gold"
+RETAINED = ROOT / "docs/analysis/evidence/addon-gold"
 ATLAS_SHA = "7e2b57533361f224e01171dbc857247b04096fdc33e58364901b230b75b270be"
 ATLAS_RGBA_SHA = "df19b43c5a4b9af721a620bce4b638202b2c6c4004b9a8e23ee8d46361b4a60c"
 
@@ -205,7 +205,7 @@ def source_check():
 
 
 def assembly_check(raw):
-    path = ROOT / "docs/analysis/evidence/0.113.2/tga-decoder.asm"
+    path = ROOT / "docs/analysis/evidence/tga-decoder.asm"
     current, payload = START, bytearray()
     for line in path.read_text().splitlines():
         if not line or line.startswith(";"):

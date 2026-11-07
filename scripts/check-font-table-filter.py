@@ -14,7 +14,7 @@ import struct
 import sys
 
 TARGET = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
-KEEP = "docs/analysis/evidence/0.121.0/font-table-filter"
+KEEP = "docs/analysis/evidence/font-table-filter"
 SOURCE = "crates/azeroth-survivors-re/src/font_patch.rs"
 DROP = (b"DSIG", b"LTSH", b"VDMX", b"hdmx")
 REPLACE = (b"cmap", b"glyf", b"head", b"hhea", b"hmtx", b"loca", b"maxp", b"post")

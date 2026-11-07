@@ -19,7 +19,7 @@ from script_sources import load_script
 
 SHA = "445e9de90f1a0e9be18d4e99e59eb170f4d253ac0440b970cdd0d0b3562dfd36"
 WORK = ROOT / "runtime/analysis/history/native-recovery/loading-entry/5bc5f52a493a"
-RETAINED = ROOT / "docs/analysis/evidence/0.112.5/zone-loading"
+RETAINED = ROOT / "docs/analysis/evidence/zone-loading"
 GROUPS = {
     "raise": ([0x14093FD70], 0x14093FEC8),
     "drive-setup": ([0x140971F30, 0x1409739E0], 0x1409758B5),

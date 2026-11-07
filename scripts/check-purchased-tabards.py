@@ -22,7 +22,7 @@ ROUTINE = (0x145B2BBD0, 0x145B2BDEE)
 ROUTINE_SHA = "c18c75d0d13a2f1d3ec67afa14902cf0a87cd6bf9c438a8bcd11591b074b9d55"
 POINTER_TABLE = (0x1475C60A0, 0x1475C6168)
 MASK = 0x1FFFC3F
-KEPT = ROOT / "docs/analysis/evidence/0.117.0/tabard-admission/purchases.json"
+KEPT = ROOT / "docs/analysis/evidence/tabard-admission/purchases.json"
 STAGED = ROOT / "runtime/analysis/history/native-recovery/target/6f083622318f/tabard-admission/checker-purchases.json"
 
 

@@ -11,7 +11,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 ASSET=ROOT/'crates/azeroth-survivors-re/assets/armory-name-rules-0.109.0.json'
-OUT=ROOT/'docs/analysis/evidence/0.109.0/armory-pages'
+OUT=ROOT/'docs/analysis/evidence/armory-pages'
 WORK=ROOT/'runtime/analysis/history/native-recovery/secondary-pages/408536b1c3c9'
 OWNERS={'collection':('armory-collection',0x1402339b0,0x1402357e8),
         'missing-list':('armory-missing',0x140140a30,0x1401413f9),

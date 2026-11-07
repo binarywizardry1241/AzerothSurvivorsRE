@@ -2,7 +2,7 @@
 
 Gap **#41** static recovery for installed SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The [input proof](evidence/0.112.0/ui-frontier-inputs.json) binds the selected
+The [input proof](evidence/ui-frontier-inputs.json) binds the selected
 native ranges, original-instruction scenarios and source interfaces. This
 follow-up concerns AS marker transport, custom font augmentation and the
 remaining custom UI interfaces; it does not reconstruct generic ECS/input/font
@@ -131,7 +131,7 @@ application, component registration or query selection. Establishing that
 those insertion calls and the queried columns share the same registered
 component identity is the necessary remaining engine-interface contract.
 No generic ECS storage reconstruction or action-enum widening follows from it.
-Fresh isolated [Ghidra query identities](evidence/0.112.0/ui-frontier-inputs-ghidra.json)
+Fresh isolated [Ghidra query identities](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/ui-frontier-inputs-ghidra.json)
 retain both constructor observations, raw and normalized pseudocode hashes and
 the caller-seeded raw-import limits; existing extracts are not duplicated.
 

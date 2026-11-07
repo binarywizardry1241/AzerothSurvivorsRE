@@ -21,7 +21,7 @@ target = latest_target(verify=True)
 assert target['sha256'] == SHA
 data = target_bytes(target)
 pe = load_script('pe', ROOT/'scripts/inventory-executable.py').PE(data)
-path = ROOT/'docs/analysis/evidence/0.115.0/coop-forms/lifecycle.json'
+path = ROOT/'docs/analysis/evidence/coop-forms/lifecycle.json'
 manifest = json.loads(path.read_text())
 assert manifest['target']['sha256'] == SHA
 for row in manifest['functions'] + manifest.get('canonical_owner_refs', []):

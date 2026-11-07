@@ -17,7 +17,7 @@ from coverage_common import ROOT, latest_target, target_bytes, project_path
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-BASE = ROOT / "docs/analysis/evidence/0.123.0/coop-picks"
+BASE = ROOT / "docs/analysis/evidence/coop-picks-comparison"
 
 
 def digest(raw):
@@ -165,7 +165,7 @@ def check_current():
     from unicorn import UC_HOOK_CODE
     from unicorn.x86_const import UC_X86_REG_RIP, UC_X86_REG_RDX, UC_X86_REG_RAX
     from coverage_common import file_sha256
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.127.0/coop-picks/manifest.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/coop-picks/manifest.json').read_text())
     target = latest_target(verify=True)
     assert all(target[key] == proof['target'][key] for key in ('version', 'sha256', 'size_bytes'))
     image = target_bytes(target)

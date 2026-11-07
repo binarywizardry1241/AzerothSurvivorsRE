@@ -3,7 +3,7 @@ use azeroth_survivors_re::enemies::{catalog::ZoneDefinition, spawning::*, waves:
 use serde_json::Value;
 
 fn fixtures() -> Value {
-    serde_json::from_str(include_str!("../../../docs/analysis/evidence/0.97.2/enemies/spawning-fixtures.json")).unwrap()
+    serde_json::from_str(include_str!("../../../docs/analysis/evidence/enemies/spawning-fixtures.json")).unwrap()
 }
 fn number(row: &Value, key: &str) -> u32 { row[key].as_u64().unwrap() as u32 }
 fn float(row: &Value, key: &str) -> f32 { f32::from_bits(number(row, key)) }

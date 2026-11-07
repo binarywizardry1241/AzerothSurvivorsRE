@@ -190,7 +190,7 @@ def complement_stops():
     identity = {key: target[key] for key in ('version', 'path', 'sha256', 'size_bytes')}
     analysis = ROOT / 'docs/analysis'
     version = identity['version']
-    evidence = analysis / 'evidence' / version
+    evidence = analysis / 'evidence'
     census_path = analysis / f'coverage/full-image-selected-{version}.json'
     if not has_archived_artifact(census_path, ROOT):
         census_path = analysis / 'coverage/full-image-selected.json'
@@ -348,7 +348,7 @@ def complement_stops():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--write', action='store_true', help='Publish the reviewed compact classification proof')
+    parser.add_argument('--write', action='store_true', help='Stage the historical proof under runtime/tmp')
     parser.add_argument('--complement-stops', action='store_true',
                         help='Print the current retained complement stop classification')
     args = parser.parse_args()
@@ -359,7 +359,10 @@ def main():
         return
     if args.write:
         proof = derive(commitment(Path(__file__).resolve()))
-        OUT.write_text(portable_json(proof, indent=2) + '\n')
+        staged = ROOT / 'runtime/tmp/u04-trap-fill.json'
+        staged.parent.mkdir(parents=True, exist_ok=True)
+        staged.write_text(portable_json(proof, indent=2) + '\n')
+        print(staged.relative_to(ROOT))
     else:
         retained = load(OUT)
         generator = retained['generator']

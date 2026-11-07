@@ -7,7 +7,7 @@ owns current implementation status. [0.105.0 catalog recovery](https://github.co
 and [historical layout recovery](codex-recovery.md) retain their own targets.
 
 Current REA/Ghidra owners cover the grid, Details, interactive tile, legendary
-constructor and effect-description mapper in the [manifest](evidence/0.109.0/codex/manifest.json).
+constructor and effect-description mapper in the [manifest](evidence/codex/manifest.json).
 The current native class/ability/jewelry/shared-amulet tables are read afresh.
 All 142 English structural records match the existing historical source asset,
 so the live renderer reuses that canonical corpus after current revalidation.
@@ -26,7 +26,7 @@ recovered constructor and has not been invented. Selection remains a read-only
 Codex resource. Current `14037d490` compares enum/index/string identity before
 writing it, so repeated clicks now avoid a redundant source resource write.
 Both sparse/dense branches and common Armory navigation are covered by the
-[current input record](evidence/0.109.0/armory-pages/input.json); clean tabs,
+[current input record](evidence/armory-pages/input.json); clean tabs,
 Done and picker reopen preserve selection.
 
 Current typed submission replay revalidates the six-pixel grid gaps, default

@@ -1,7 +1,7 @@
 # Windows first-start configuration migration
 
 Target SHA-256: `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
-The [manifest](evidence/0.113.2/legacy-config/manifest.json) binds the current
+The [manifest](evidence/legacy-config/manifest.json) binds the current
 native ranges, Ghidra evidence/profile identities and canonical extracts.
 Historical 0.112.5 addresses are not reused. Current implementation status lives
 in [verification-needed](../verification-needed.md), gap #62; this is a source/static repair,

@@ -95,6 +95,12 @@ readers before removing a consumed file. Consolidate recovery and checking
 scripts around their maintained entry point, with exact producer provenance for
 older contracts.
 
+Keep evidence fixtures and extracts under their feature category, including
+staged outputs. Write new proof to the stable category path and store its
+target identity in the manifest. Read a historical receipt's original logical
+path through the archive reader. A category relocation gives live consumers a
+new path while recorded hashes continue to verify against the original bytes.
+
 Use the shared analysis catalog and content store for reusable native results.
 Keep temporary analysis outputs in a task-owned scratch directory under
 `runtime/tmp/` unless the runner has a canonical path. Clean up scratch after

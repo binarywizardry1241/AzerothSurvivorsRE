@@ -20,7 +20,7 @@ from discovery_native_subject import verify_native_query_subject
 from native_terminal import NativeReplay
 from script_sources import load_script
 
-BASE = ROOT / "docs/analysis/evidence/0.123.0/coop-correction"
+BASE = ROOT / "docs/analysis/evidence/coop-correction"
 
 
 def sha(raw):
@@ -258,7 +258,7 @@ def source_checks():
 
 
 def check_teleport_ack():
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.141.0/coop-replication.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/coop-replication.json').read_text())
     target = installed_identity()
     assert target == proof['target']
     image = target_bytes(target)

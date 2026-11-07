@@ -9,12 +9,12 @@ The target is `AzerothSurvivors/AzerothSurvivors.exe`, SHA-256
 2,507 labels: English, Polski, Deutsch, Português (Brasil), Español, Français, Türkçe,
 Русский, 简体中文 and 한국어. The owned build includes those textual catalogs and does not
 need the reference executable to build or run. Exact source offsets, byte lengths and hashes
-are in [menu-localization.json](evidence/0.92/menu-localization.json).
+are in [menu-localization.json](evidence/menu-localization.json).
 
 REA Ghidra analyzed exact PE function slices for the popup constructor `0x14022a2a0`,
 choice handler `0x140075040`, default-language loader `0x14541f9f0` and setter/writer
 `0x145420a10`. Their Evidence IDs and recovered literal styles are in
-[localization-native-paths.json](evidence/0.92/localization-native-paths.json).
+[localization-native-paths.json](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/localization-native-paths.json).
 The constructor places an unscaled window popover at right16/top58, min-width200,
 padding8/gap4, with a 12px heading and ten 17px choices. Selecting the current language
 closes the list without rewriting the language file.

@@ -81,7 +81,7 @@ def main():
     # flat table. The constructor's four nine-entry loops and two stack tables
     # supply the order, discriminants, thresholds, icons, points and categories.
     menu = json.loads((ROOT / "crates/azeroth-survivors-re/assets/menu.json").read_text())
-    english = json.loads((ROOT / "docs/analysis/evidence/0.92/embedded-english.json").read_text())
+    english = json.loads((ROOT / "docs/analysis/evidence/embedded-english-comparison.json").read_text())
     achievements = []
 
     def achievement(key, name, description, icon, points, category, kind, target=1, selector=0, tokens=None):
@@ -206,7 +206,7 @@ def main():
                 "Achievement constructor, account progress and UI consumers are recorded separately.",
                 "Recovered gameplay descriptions are not evidence of implemented gameplay effects."],
     )
-    (ROOT / "docs/analysis/evidence/0.92/progression-definitions.json").write_text(
+    (ROOT / "docs/analysis/evidence/progression-definitions.json").write_text(
         json.dumps(evidence, indent=2) + "\n")
     print(f"Recovered {len(perks)} perks/companion upgrades, {len(tabards)} tabards, {len(achievements)} achievements.")
 

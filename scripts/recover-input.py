@@ -14,7 +14,7 @@ import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 WORK = ROOT / 'runtime/analysis/history/movement/input/dfe894095d7c'
-RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/input'
+RETAINED = ROOT / 'docs/analysis/evidence/input'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 
 

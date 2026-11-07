@@ -6,9 +6,9 @@ The widened selector is the current **Soul Reaping** effect variant. It is not
 evidence of an absent new talent. The retained source already implements the
 recovered scaling under its stable internal marker253/35.
 
-The initial [selector observation](evidence/0.121.0/talent-selector-36.json)
+The initial [selector observation](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.121.0/talent-selector-36.json)
 retains the exact old/new switch geometry and its original uncertainty. The
-new [contract](evidence/0.121.0/talent-selector/contract.json) binds the actual
+new [contract](evidence/talent-selector/contract.json) binds the actual
 current definition, original instructions, completed journaled Ghidra queries,
 source boundaries and synthetic cases.
 The source receipts bind the relevant rank/aggregate method fragments, keeping

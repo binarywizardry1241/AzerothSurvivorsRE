@@ -2,7 +2,7 @@
 
 The selected installed EXE is 145,283,072 bytes, SHA-256
 `507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293`.
-The [curated native evidence](evidence/0.117.0/party-achievement-wire/manifest.json)
+The [curated native evidence](evidence/party-achievement-wire/manifest.json)
 binds the current party-context extension, reader admission, state validation and
 guest delivery boundary for **#157**. The actual predicate and producer mappings
 belong to the party-achievement repair; this report preserves unresolved member

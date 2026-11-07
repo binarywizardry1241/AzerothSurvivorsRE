@@ -15,12 +15,14 @@ import sys
 HERE = Path(__file__).resolve()
 ROOT = next(p for p in HERE.parents if (p / "scripts/coverage_common.py").is_file())
 sys.path.insert(0, str(ROOT / "scripts"))
+from artifact_history import read_artifact
 from coverage_common import artifact_path, file_sha256, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
 MANIFEST = ROOT / "docs/analysis/evidence/0.115.0/data-classification/manifest.json"
-KEEP = ROOT / "docs/analysis/evidence/0.115.0/q41-embedded-containers.json"
+ARCHIVED_OUTPUT = ROOT / "docs/analysis/evidence/0.115.0/q41-embedded-containers.json"
+KEEP = ROOT / "docs/analysis/evidence/q41-embedded-containers.json"
 UNKNOWN = "embedded_lead_schema_or_consumer_unresolved"
 CATEGORIES = {"module_type_namespace": 922, "game_binding_identifier": 352,
               "lua_ui_registration": 336, "resource_path": 306,
@@ -39,7 +41,7 @@ def encoded(value):
 
 
 def receipt(path):
-    return {"path": path.relative_to(ROOT).as_posix(), "sha256": digest(path.read_bytes())}
+    return {"path": path.relative_to(ROOT).as_posix(), "sha256": digest(read_artifact(path))}
 
 
 def selector_ranges(selectors):
@@ -86,14 +88,14 @@ def derive():
                 else:
                     resolved = (ROOT / path).resolve()
                     assert resolved.is_relative_to(ROOT)
-                    assert digest(resolved.read_bytes()) == value["sha256"], path
+                    assert digest(read_artifact(resolved)) == value["sha256"], path
             for item in value.values():
                 verify_project_receipts(item)
-    baseline = json.loads(MANIFEST.read_text())
+    baseline = json.loads(read_artifact(MANIFEST))
     assert baseline["target"]["sha256"] == SHA
     data_record = baseline["outputs"]["embedded-classification.jsonl"]
     data = ROOT / data_record["path"]
-    raw = data.read_bytes()
+    raw = read_artifact(data)
     assert len(raw) == data_record["bytes"] and digest(raw) == data_record["sha256"]
     rows = [json.loads(line) for line in raw.splitlines()]
     assert len(rows) == data_record["records"] == 2110
@@ -155,7 +157,7 @@ def derive():
     for selector, gap, name in [("Q41-I01:resource_path:208", 107, "q41-glue-strings.json"),
                                 ("Q41-I01:resource_path:211", 106, "q41-death-popup.json")]:
         proof_path = ROOT / "docs/analysis/evidence/0.115.0" / name
-        proof = json.loads(proof_path.read_text())
+        proof = json.loads(read_artifact(proof_path))
         assert proof["schema_version"] == 1 and proof["target"]["sha256"] == SHA
         assert gap in proof["gap_ids"] and selector in proof["lead_ids"]
         assert any(r["selector"] == selector for r in left)
@@ -239,9 +241,11 @@ def main():
     options = parser.parse_args()
     proof = derive()
     if options.write:
+        options.proof.parent.mkdir(parents=True, exist_ok=True)
         options.proof.write_text(json.dumps(proof, indent=2) + "\n")
     else:
-        assert json.loads(options.proof.read_text()) == proof, "Embedded-container proof differs"
+        retained = ARCHIVED_OUTPUT if options.proof == KEEP and not KEEP.is_file() else options.proof
+        assert json.loads(read_artifact(retained)) == proof, "Embedded-container proof differs"
     print("PASS: 2110 exact target rows, 7 included containers, 709 occurrences/173 original unknowns; 2 separate core contracts, 106 remaining without these connections; semantics/runtime/parity remain bounded")
 
 

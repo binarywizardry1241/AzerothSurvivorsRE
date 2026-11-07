@@ -19,7 +19,7 @@ from script_sources import load_script
 from shared_native_inventory import open_readonly_uri as open_native_inventory
 
 WORK = ROOT / 'runtime/analysis/history/findings/q41-layout/2aa5dfce908e'
-KEEP = ROOT / 'docs/analysis/evidence/0.113.2/pe-layout-classification.json'
+KEEP = ROOT / 'docs/analysis/evidence/pe-layout-classification.json'
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 
 

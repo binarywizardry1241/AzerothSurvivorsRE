@@ -18,7 +18,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes, project_path
 
 SHA = "dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a"
-RETAINED = ROOT / "docs/analysis/evidence/0.112.0/demon-post-hit"
+RETAINED = ROOT / "docs/analysis/evidence/demon-post-hit"
 OWNERS = {"common-melee": 0x145956D00, "demon-spell-pending": 0x14595A460,
           "generic-effects": 0x145934C50, "main-effects-tick": 0x14592F2B0,
           "effect-rank-scale": 0x14599D900, "melee-packet": 0x1458C4BF0,
@@ -265,7 +265,7 @@ def population_caps(args):
     assert target['sha256'] == '3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb'
     data = target_bytes(target)
     pe = load_script('population_pe', ROOT/'scripts/inventory-executable.py').PE(data)
-    output = project_path(args.work) if args.collect else ROOT/'docs/analysis/evidence/0.127.0/warlock-population'
+    output = project_path(args.work) if args.collect else ROOT/'docs/analysis/evidence/warlock-population'
     spans = {
         'soul-link-grant': (0x145c88de0, 0x145c88ec7),
         'soul-link-clamp': (0x145c70e16, 0x145c70e5a),

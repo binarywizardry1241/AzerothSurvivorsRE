@@ -21,7 +21,7 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from coverage_common import latest_target
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 WORK = ROOT / 'runtime/analysis/history/native-recovery/arrival-announcements/cce8ae90fdde'
-OUT = ROOT / 'docs/analysis/evidence/0.105.0/arrival-announcements'
+OUT = ROOT / 'docs/analysis/evidence/arrival-announcements'
 RANGES = [
     ('elite', 0x14590E0D4, 0x14590E273),
     ('pack', 0x14590EAE3, 0x14590EB02),
@@ -37,9 +37,9 @@ RANGES = [
 ]
 CANONICAL = [
     ('emote-packet', 0x1458A9500, 0x1458A97D9,
-     'docs/analysis/evidence/0.105.0/terminal/notification-packet.asm'),
+     'docs/analysis/evidence/terminal/notification-packet.asm'),
     ('boss-constructor', 0x14592FF90, 0x145930DF2,
-     'docs/analysis/evidence/0.105.0/boss-catalog/constructor.asm'),
+     'docs/analysis/evidence/boss-catalog/constructor.asm'),
 ]
 LITERALS = [
     (0x146E79CE8, '%s approaches!'),

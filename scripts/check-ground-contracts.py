@@ -278,7 +278,7 @@ if args.evidence:
     raise SystemExit(0)
 SHA='58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 assert latest_target(verify=True)['sha256']==SHA
-KEPT=ROOT/'docs/analysis/evidence/0.113.2/ground-contracts'
+KEPT=ROOT/'docs/analysis/evidence/ground-contracts'
 STAGE=ROOT/'runtime/analysis/history/movement/movement/3da3103d4c50/staged'
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn import x86_const as r

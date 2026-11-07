@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK = ROOT / "runtime/analysis/history/raid/boss-voices/f6c50f31a263"
-OUT = ROOT / "docs/analysis/evidence/0.105.0/boss-voices/native-vectors.json"
+OUT = ROOT / "docs/analysis/evidence/boss-voices/native-vectors.json"
 BEGIN, END = 0x1459309B6, 0x145930AB9
 ZONES = 0x146BA9450
 

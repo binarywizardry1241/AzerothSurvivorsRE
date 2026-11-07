@@ -14,7 +14,7 @@ not native data types. Original census/queue populations remain unchanged.
 | `147015f7e` / `talentxp` | The AS backend message's JSON `type` value. Current producer `14587b0e0` serializes `xp`, `before`, `total`, `points`, `gained`, `into`, `next`, `class` and `parts` before publication. |
 | `1473002d5` / `characters.txt` | The default AS character filename. Current path helper `1458988e0` selects `WOW_ROGUE_SAVE` first; absent override follows its base-directory helper and appends this filename. No actual save access is performed by the analysis. |
 
-The [proof](evidence/0.113.2/save-key-leads.json) retains each original literal,
+The [proof](evidence/save-key-leads.json) retains each original literal,
 all five exact forming operands, current native bytes and fresh Ghidra evidence.
 The frontend's focused function-body set omits computed cases; separate
 code-only Ghidra observations establish the selected MOVABS/CMP/JE and case

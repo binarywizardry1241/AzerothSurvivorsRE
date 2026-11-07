@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK = ROOT / "runtime/analysis/history/native-recovery/game-mode-audit/45b065b87af5"
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/game-mode-audit"
+RETAINED = ROOT / "docs/analysis/evidence/game-mode-audit"
 NATIVE = {
     "demon-targeting": (0x14594CDC0, 0x14594E0E4),
     "demon-attack-timing": (0x14594E0F0, 0x14594E482),

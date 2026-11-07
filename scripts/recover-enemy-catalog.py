@@ -18,7 +18,7 @@ import struct
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 SHA256 = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-OUTPUT = ROOT / "docs/analysis/evidence/0.97.2/enemies"
+OUTPUT = ROOT / "docs/analysis/evidence/enemies"
 SOURCE = ROOT / "crates/azeroth-survivors-re/src/enemies/catalog.rs"
 RUNTIME = ROOT / "runtime/analysis/history/native-recovery/enemies-catalog/cb147ed49eac"
 ZONE_TABLE, ZONE_STRIDE, ENEMY_STRIDE = 0x146716438, 240, 80
@@ -304,7 +304,7 @@ def source_text(zones):
     lines = [
         "//! Selected 0.97.2 enemy definitions recovered from original PE bytes.",
         f"//! SHA-256 {SHA256}.",
-        "//! Evidence: docs/analysis/evidence/0.97.2/enemies/catalog.json.",
+        "//! Evidence: docs/analysis/evidence/enemies/catalog.json.",
         "//! Regenerate: python3 scripts/recover-enemy-catalog.py.",
         "//! These semantic source records do not declare the native memory ABI.",
         "//! Raw field names retain offsets whose full meanings remain unrecovered.",

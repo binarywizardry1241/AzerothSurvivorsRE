@@ -28,7 +28,7 @@ engine; their complete selected-target revalidation remains separate work under
 all **16** missing/outdated/demand/version-check combinations with the unchanged
 native decision instructions. It stops before the first joining/translation/UI
 callee, with explicit memory fixtures and no native external call. The
-[retained record](evidence/0.105.0/options/addons-page.json) includes those cases
+[retained record](evidence/options-comparison/addons-page.json) includes those cases
 and both scoped Ghidra Evidence IDs. Existing account/character/TOC enable
 precedence checks remain in the canonical lifecycle manifest.
 

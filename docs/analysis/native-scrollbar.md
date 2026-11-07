@@ -1,7 +1,7 @@
 # Native scrollbar reconstruction
 
 The verified 0.92 EXE defines the shared control used by Options and the
-Achievements list. [Evidence](evidence/0.92/progression-scrollbar-consumers.json)
+Achievements list. [Evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/progression-scrollbar-consumers.json)
 records closed REA scopes, constructor/type metadata, system vtable associations,
 constants, instruction anchors and limitations. No new UI process or capture was
 used in this pass.

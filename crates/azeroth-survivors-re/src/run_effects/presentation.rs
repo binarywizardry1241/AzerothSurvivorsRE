@@ -55,7 +55,7 @@ mod tests {
     #[test]
     fn original_actor_aura_slot_and_application_vectors_match() {
         let fixture:serde_json::Value=serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.100.1/run-presentation/aura-native.json")).unwrap();
+            "../../../../docs/analysis/evidence/run-presentation/aura-native.json")).unwrap();
         assert_eq!(fixture["target_sha256"],super::super::TARGET_SHA256);
         for case in fixture["slots"].as_array().unwrap() {
             let mut slots=AuraSlots { spells:serde_json::from_value(case["initial"].clone()).unwrap() };

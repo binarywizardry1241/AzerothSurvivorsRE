@@ -5,7 +5,7 @@
 cloak rewards and fresh cooperative clear credit. This assessment uses
 `installed-game/AzerothSurvivors.exe` (151,493,632 bytes, SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`).
-The [PE ranges and four Ghidra receipts](evidence/0.141.0/party-achievement-settlement.json)
+The [PE ranges and four Ghidra receipts](evidence/party-achievement-settlement.json)
 bind this scope independently of the registered 0.140.0 audit.
 
 The native State15 dispatcher installs the accepted cache at `0x145ece3b3`.

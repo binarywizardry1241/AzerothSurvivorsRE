@@ -86,7 +86,7 @@ def main():
     for first, last, digest in RANGES:
         offset = pe.rva_offset(first - pe.image_base)
         assert hashlib.sha256(data[offset:offset + last - first]).hexdigest() == digest
-    manifest_path = ROOT / "docs/analysis/evidence/0.115.0/coop-forms/requests.json"
+    manifest_path = ROOT / "docs/analysis/evidence/coop-forms/requests.json"
     manifest = json.loads(manifest_path.read_text())
     assert manifest["target"]["sha256"] == TARGET_SHA
     for row in manifest["functions"]:

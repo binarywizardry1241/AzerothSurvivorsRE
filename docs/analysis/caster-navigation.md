@@ -2,9 +2,9 @@
 
 This bounded #287 contract uses installed **0.127.0**, SHA-256
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`.
-The [manifest](evidence/0.127.0/caster-navigation/manifest.json) binds exact
+The [manifest](evidence/caster-navigation/manifest.json) binds exact
 native ranges, three completed journaled Ghidra queries and the reused actor
-owner. [Native cases](evidence/0.127.0/caster-navigation/native-cases.json)
+owner. [Native cases](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.127.0/caster-navigation/native-cases.json)
 record the permitted instruction checks. Historical ordinary AI and ground
 navigation retain their original provenance; this report establishes only the
 current interfaces and gates below.

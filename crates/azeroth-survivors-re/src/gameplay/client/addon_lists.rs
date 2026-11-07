@@ -412,7 +412,7 @@ mod tests {
     #[test]
     fn map_selection_matches_unchanged_current_native_vectors() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.105.0/addon-bridge/lists/map-native.json"
+            "../../../../../docs/analysis/evidence/addon-bridge/lists/map-native.json"
         ))
         .unwrap();
         for case in fixture["cases"].as_array().unwrap() {

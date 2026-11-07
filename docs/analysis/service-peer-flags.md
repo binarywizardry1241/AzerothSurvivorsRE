@@ -4,7 +4,7 @@ Target: installed read-only EXE, 145,484,288 bytes, SHA-256
 `80ac3217660a02020b3e09f1ce93bfaa6ba89abd9a9d62405b9f70114fd6d46c`.
 Findings **#199/#200** own the two service messages; current completion and
 remaining parity requirements belong to [verification-needed](../verification-needed.md).
-The [core manifest](evidence/0.120.2/service-peer-flags/core.json) adds exact
+The [core manifest](evidence/service-peer-flags/core.json) adds exact
 readers, reset and parser-finalization bytes to the canonical
 [initial relay proof](relay-sequencing.md). It references the original
 parser/writer extracts rather than duplicating their bytes.
@@ -54,13 +54,13 @@ world name, without added class colors or decoration. Guest notice delivery addi
 requires the synchronized client and an active local engine port. These gates
 are distinct from transport liveness and ordinary disconnection settlement.
 
-The [presentation proof](evidence/0.120.2/service-peer-flags/presentation.json)
+The [presentation proof](evidence/service-peer-flags/presentation.json)
 binds the template, actor iteration, locale, name and packet helpers. Peer true
 uses **“{hero} lost connection, reconnecting...”**; false uses
 **“{hero} is back.”** Lookup precedes single-pass brace substitution; inserted
 names are not parsed again. A recognized exact two-byte member language selects
 that catalog; an invalid code preserves the selected global language.
-[Targeted locale evidence](evidence/0.120.2/service-peer-flags/notice-locales.json)
+[Targeted locale evidence](evidence/service-peer-flags/notice-locales.json)
 binds all six notices to descriptor-bounded native JSON in fourteen languages.
 The existing engine encoder carries SYSTEM chat10/opcode96 with universal
 language, zero sender/tag and NUL-terminated text; no replacement overlay is used.
@@ -72,7 +72,7 @@ survives until a later eligible sample. An empty host cannot raise the flag.
 The original `145b08856..145b089b9` branches have **170 exhaustive cases** in
 the core replay. A dead guest skips retry sampling without advancing its cache.
 
-The [leave/rejoin proof](evidence/0.120.2/service-peer-flags/lifetime.json)
+The [leave/rejoin proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.120.2/service-peer-flags/lifetime.json)
 binds four further functions and the actual guest-close vtable. Guest creation
 zeros cached notice bytes `+fea/+feb` through the original zeroed SIMD store
 `145b21a96`. Local guest Leave disables the handle, sends Leave and removes

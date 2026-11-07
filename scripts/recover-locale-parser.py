@@ -18,7 +18,7 @@ from coverage_common import latest_target, target_bytes
 ROOT = Path(__file__).resolve().parents[1]
 SHA = "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b"
 WORK = ROOT / "runtime/analysis/history/interface/locale-overrides/f85c9ec06bba"
-RETAINED = ROOT / "docs/analysis/evidence/0.108.0/localization-overrides"
+RETAINED = ROOT / "docs/analysis/evidence/localization-overrides"
 RANGES = {"parser": (0x1458E6A10, 0x1458E70AE),
           "string": (0x1458E2970, 0x1458E31AE),
           "expect": (0x1458E2760, 0x1458E292E),

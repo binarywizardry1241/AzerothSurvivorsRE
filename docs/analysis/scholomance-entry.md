@@ -2,7 +2,7 @@
 
 The installed EXE SHA-256 is
 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`.
-[Entry evidence](evidence/0.140.0/scholomance-entry.json) binds the new source
+[Entry evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.140.0/scholomance-entry.json) binds the new source
 data to its exact PE ranges. The [zone discovery](scholomance.md#zone-entry-resources-and-unlocks)
 records the independently recovered DBC, WDT, ADT and loading-screen members.
 All twelve installed archives match the registered hashes.

@@ -16,7 +16,7 @@ import struct
 import sys
 
 from coverage_common import ROOT, latest_target
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.105.0/custom-dbc'
+EVIDENCE = ROOT / 'docs/analysis/evidence/custom-dbc'
 
 
 def main():

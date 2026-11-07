@@ -29,7 +29,7 @@ cast/earlier-queued-action admission cases. Every fragment rejects external
 calls. Current selector `145898f10..145899272`, reset owner
 `1459b7f00..1459b82a6`, constructor selection lane, phase lane and recurring
 lane are independently byte-bound in the
-[manifest](evidence/0.112.0/raid-inputs/manifest.json).
+[manifest](evidence/raid-inputs/manifest.json).
 
 Guardian selection still consumes a rejected-bit-57 RNG draw, including kinds
 without alternatives; the current temporary register is R14. Reset restores
@@ -53,7 +53,7 @@ Unlisted calls fail. Named source guards bind those rules and phase-before-
 recurring ordering to `ai`, `minion_phases`, `raid_area_catalog`, guardian
 replacement state and encounter announcements.
 
-[Ghidra provenance](evidence/0.112.0/raid-inputs/rea-provenance.json) records
+[Ghidra provenance](evidence/raid-inputs/rea-provenance.json) records
 completed 12.1.4 raw imports for the full current boss constructor and guardian
 reset owner. External code/data and full-image callers are outside those
 imports; assembly and bounded cases own exact arithmetic/state conclusions.

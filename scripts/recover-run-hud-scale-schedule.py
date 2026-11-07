@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK = ROOT / "runtime/analysis/history/findings/fixgap7-layout/9e57035e83b9/scale-schedule"
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/run-hud"
+RETAINED = ROOT / "docs/analysis/evidence/run-hud"
 RANGES = {
     "scale-schedule-registration": (0x140159200, 0x140159391),
     "scale-schedule-configs": (0x14006CDD0, 0x14006D29D),

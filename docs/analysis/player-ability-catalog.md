@@ -122,5 +122,5 @@ See [source and behavior](player-abilities.md) for formulas and limitations.
 Upgrade tags:0 power,1 cooldown,2 targets,3 area,4 duration.
 
 School/kind/status tags, original record bytes, exact f32 bits, class pools and starter keys
-are retained in [catalog evidence](evidence/0.97.2/player-abilities/catalog.json).
+are retained in [catalog evidence](evidence/player-abilities/catalog.json).
 No EXE is required by a source build. No game execution or compilation was used here.

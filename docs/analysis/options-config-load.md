@@ -2,7 +2,7 @@
 
 The verified 0.92 EXE startup function `0x140e88250` calls the stored-config
 reader, then handles its result inline. [Hash-bound evidence and instruction
-anchors](evidence/0.92/options-config-load-native.json) distinguish the three
+anchors](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/options-config-load-native.json) distinguish the three
 paths. The initial recovery was read-only; the source integration is described below.
 
 Absent input skips the file fold. A valid table applies recognized entries and
@@ -30,13 +30,13 @@ The small `0x144fcb120` closure was a false semantic lead. It formats the debug
 placeholder for a missing-resource panic rather than applying configuration.
 Its closed REA scope and the actual startup branches are retained in the evidence.
 
-The [typed reader/visitor dossier](evidence/0.92/options-config-typed-native.json)
+The [typed reader/visitor dossier](evidence/menu-options/options-config-typed-native.json)
 binds `LocalConfig` (eleven bytes), its one exact `cvars` field (five bytes),
 whole-result acceptance, unknown-root-field skipping and the default empty map.
 The visitor is `0x140c8f030`; `0x1408d0c20` parses TOML then invokes the typed
 dispatcher `0x140c937d0`. The target embeds `toml-0.8.23`, matching Cargo.lock.
 The source uses that typed deserializer rather than folding an untyped document.
-The [String-map dossier](evidence/0.92/options-config-string-map-native.json)
+The [String-map dossier](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/options-config-string-map-native.json)
 closes the per-entry value visitor, expected-type literal and accumulated-map
 cleanup. Non-string entries reject the whole configuration, including unknown CVar keys.
 The underlying TOML whole-map DateTime adapter is preserved rather than blocked by

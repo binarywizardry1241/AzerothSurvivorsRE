@@ -12,7 +12,7 @@ name. `gameplay/client/inventory.rs::definition` instead passed the literal
 English name to `MenuCatalog::label`. Existing `starter.*` translations and
 overrides therefore did not reach that item-template name producer.
 
-The [current ItemQuery bridge](evidence/0.117.0/item-query-bridge/contracts.json)
+The [current ItemQuery bridge](evidence/item-query-bridge/contracts.json)
 proves the relevant connection. Dispatcher `145af93e0` bounds opcode `0x56`
 through the table at `1472db538`; selected entry 11 reaches `145af9682`.
 The parsed requested ID reaches metadata constructor `145ab6630` at

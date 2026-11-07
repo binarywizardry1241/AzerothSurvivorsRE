@@ -74,7 +74,7 @@ mod strongest_window_tests {
     #[test]
     fn current_native_shout_sequences_keep_the_future_fallback() {
         let proof: serde_json::Value = serde_json::from_str(include_str!(
-            "../../../../../docs/analysis/evidence/0.127.0/shouts/native-cases.json"
+            "../../../../../docs/analysis/evidence/shouts/native-cases.json"
         )).unwrap();
         for sequence in proof["strongest_sequences"].as_array().unwrap() {
             let mut window = StrongestWindow::default();

@@ -13,7 +13,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from native_terminal import NativeReplay
 from script_sources import load_script
 
-PROOF = ROOT / 'docs/analysis/evidence/0.121.0/heroic-rewards/manifest.json'
+PROOF = ROOT / 'docs/analysis/evidence/heroic-rewards/manifest.json'
 
 
 def main():

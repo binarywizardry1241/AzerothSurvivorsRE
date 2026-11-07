@@ -47,17 +47,17 @@ separate historical serializer/reload/Reset fixture retains its 0.109.0 identity
 
 - `scripts/check-rewards-catalogs.py` passes 420 native display fields,
   84 entries / 1,775 points, 43 ordered unlock rows and all descriptor fields.
-  The [catalog replay record](evidence/0.112.0/rewards-catalogs/catalogs.json)
+  The [catalog replay record](evidence/rewards-catalogs/catalogs.json)
   binds instruction/table ranges and output digests.
 - `scripts/check-reward-admission.py` passes 312 complete native Rewards
   admission/application cases, 81 pet normalization cases and 243 actor getter
-  projections. Its [current vectors](evidence/0.112.0/reward-admission/cases.json)
+  projections. Its [current vectors](evidence/reward-admission/cases.json)
   include rejection of tabard 90016 purchases. Adjoining analysis manifests retain
   Ghidra identities and current range commitments.
 - `scripts/check-tabard-availability.py` passes160 native iterator,
   combined-inventory and class-look cases across all20 tabards, gate presence
   and absent/first/SIMD-lane/scalar-tail purchased entries. Its
-  [compact migration proof](evidence/0.112.0/tabard-availability/cases.json)
+  [compact migration proof](evidence/tabard-availability/cases.json)
   retains all eight Scarlet purchase/feat combinations.
 
 Allocation, Vec growth, bytes, String cloning, formatting/locale miss, current

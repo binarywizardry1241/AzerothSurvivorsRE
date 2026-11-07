@@ -8,19 +8,19 @@ Scorched Earth's already implemented dependency belongs to
 
 ## Definitions and live consumers
 
-The [selected native data](evidence/0.105.0/game-mode-audit/selected-data.json)
+The [selected native data](evidence/game-mode-audit/selected-data.json)
 retains Shadow Dance's key record at `146e66668` and its two effects at
 `146e65f78`: variant28 selects `backstab`; variant4 retains the 20% splash,
 five-yard radius and `backstab`/`eviscerate` key list. Its complete preceding
 prerequisite fields still require `preparation`, with no alternative. The
 current prose explicitly says Backstab replaces Sinister Strike.
 
-The existing [native constructor](evidence/0.105.0/power-scaling/weapon/game-constructor.ghidra.c)
+The existing [native constructor](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.105.0/power-scaling/weapon/game-constructor.ghidra.c)
 scans the equipped 64-byte rows for variant28 at `1459010c2..14590113e`, with its
 key-read tail at `14590162f..145901647`. It publishes one initial spell key,
 using the class default when no replacement exists. The canonical shared
 extract and Ghidra identity are referenced by the
-[manifest](evidence/0.105.0/class-rules/manifest.json); no duplicate constructor
+[manifest](evidence/class-rules/manifest.json); no duplicate constructor
 extract is retained here.
 
 The [talent asset](../../crates/azeroth-survivors-re/assets/talents.json) now
@@ -38,7 +38,7 @@ Shadow Weaving's selected key record is `146e68c48`, with variant5 at
 selector is unchanged. The source now uses that exact payload and displays
 `0.5` for the tooltip's percentage.
 
-The [current conversion branch](evidence/0.105.0/class-rules/conversion.asm)
+The [current conversion branch](evidence/class-rules/conversion.asm)
 at `14592b5e3..14592b6dc` checks the native condition, resolves the event victim
 among live actor records, multiplies its maximum health by the row fraction,
 temporarily selects source-kind3 and calls `145933ec0`. The school and spell

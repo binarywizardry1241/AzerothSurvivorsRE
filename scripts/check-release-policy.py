@@ -15,7 +15,7 @@ from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
 
-MANIFEST = ROOT / "docs/analysis/evidence/0.120.5/release-policy/manifest.json"
+MANIFEST = ROOT / "docs/analysis/evidence/release-policy/manifest.json"
 
 
 def sha(raw):

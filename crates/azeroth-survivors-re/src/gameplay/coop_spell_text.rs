@@ -267,7 +267,7 @@ mod tests {
     #[test]
     fn all_native_append_vectors() {
         let fixture: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.115.0/coop-spell-text/append-fixtures.json"
+            "../../../../docs/analysis/evidence/coop-spell-text/append-fixtures.json"
         ))
         .unwrap();
         let locale = Localization::english_for_tests();

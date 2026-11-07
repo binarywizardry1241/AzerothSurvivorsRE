@@ -2,7 +2,7 @@
 
 The selected 0.112.0 EXE is SHA-256
 `dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a`.
-The [manifest](evidence/0.112.0/demon-damage/manifest.json) binds the critical
+The [manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/demon-damage/manifest.json) binds the critical
 owner `14595c200`, its external dispatch/data tables and the health-bonus writer
 to the installed bytes. [verification-needed](../verification-needed.md) owns gap #24;
 this bounded contract does not certify the whole demon scheduler or gameplay.

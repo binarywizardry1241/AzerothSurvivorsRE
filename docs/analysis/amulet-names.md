@@ -27,9 +27,9 @@ keys. The Legionlord's single name is itself its literal key.
 
 Target SHA-256:
 `0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c`.
-The [proof](evidence/0.115.0/amulet-names.json) reuses the current factory
+The [proof](evidence/amulet-names.json) reuses the current factory
 `0x14583d3e0` and canonical common-tail extract from the
-[timer name proof](evidence/0.115.0/addon-timers/generated-name-cases.json).
+[timer name proof](evidence/addon-timers/generated-name-cases.json).
 No constructor assembly is duplicated or re-extracted. The canonical probe
 class is reused by its AST node and exact source commitment.
 

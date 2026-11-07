@@ -9,8 +9,8 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 from discovery_native_subject import verify_native_query_subject
 
-BASE = ROOT / "docs/analysis/evidence/0.123.0/coop-start"
-CURRENT = ROOT / "docs/analysis/evidence/0.140.0/movement-start.json"
+BASE = ROOT / "docs/analysis/evidence/coop-start"
+CURRENT = ROOT / "docs/analysis/evidence/movement-start.json"
 
 
 def verify(proof, target):

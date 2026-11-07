@@ -21,8 +21,8 @@ compares the previous/final XY squared distance with the exact f32 0.04 value.
 It invokes Begin only for phase0, a strictly greater ordered distance, local
 index0 and absent pending-start flag. Begin's current entry **14590b550** stores
 phase1 at **14590b5c7**, before its separately owned actor/stat/publication work.
-The [contract](evidence/0.113.2/movement-entry/contract.json) and
-[canonical selected assembly](evidence/0.113.2/movement-entry/movement-entry.asm)
+The [contract](evidence/movement-entry/contract.json) and
+[canonical selected assembly](evidence/movement-entry/movement-entry.asm)
 bind the actual bytes, Ghidra observations and replay limits.
 
 The source previously applied its start check only in `Admission::Accepted`.

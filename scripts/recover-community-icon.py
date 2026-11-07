@@ -50,7 +50,7 @@ def main():
                   validation=['Original static alpha bytes expand to 4800 RGBA bytes by recovered code.',
                               'Source image helper reconstructs the same bytes; integrated rendering and OS URL dispatch remain separate checks.',
                               'No external URL was opened during this recovery.'])
-    (ROOT / 'docs/analysis/evidence/0.92/community-icon-native.json').write_text(portable_json(report, indent=2) + '\n')
+    (ROOT / 'docs/analysis/evidence/community-icon-native.json').write_text(portable_json(report, indent=2) + '\n')
     print(f'Recovered {width}x{height} community mask as textual alpha rows; RGBA SHA-256 {hashlib.sha256(rgba).hexdigest()}')
 
 if __name__ == '__main__':

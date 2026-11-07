@@ -1,5 +1,5 @@
 -- Interpret only the exact recovered wrapper with explicit stock-popup seams.
-local file=assert(io.open("docs/analysis/evidence/0.115.0/death-popup.lua","rb"));
+local file=assert(io.open("docs/analysis/evidence/hud-framexml/death-popup.lua","rb"));
 local source=file:read("*a"); file:close();
 local execute=loadstring or load;
 local cases=0;

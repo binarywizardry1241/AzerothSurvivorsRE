@@ -79,7 +79,7 @@ effect remain unverified.
 
 ## Verification and limits
 
-The [manifest](evidence/0.121.0/armory-star-purchase/manifest.json) binds seven
+The [manifest](evidence/armory-star-purchase/manifest.json) binds seven
 journaled Ghidra operations, their immutable raw subjects and original ranges
 to this target. The two dispatcher decompilations stop at indirect jump tables;
 the aligned original instruction blocks, rather than those incomplete
@@ -93,7 +93,7 @@ the actual delta-chip Node/text submission and wrapping row. The replay
 decodes1,364 instructions and executes1,486 original instruction steps across
 501 distinct instructions. Synthetic RET carriers and stop destinations do
 not contribute to those execution counts. The
-[compact result](evidence/0.121.0/armory-star-purchase/static-check.json)
+[compact result](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.121.0/armory-star-purchase/static-check.json)
 records the exact arguments, typed submissions and declared seams. In the
 insufficient-funds branch the replay crosses the original scalar-format call
 with a balance distinct from cost, establishing that its `n` argument is the

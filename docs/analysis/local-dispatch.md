@@ -10,7 +10,7 @@ classification, not complete protocol semantics or source/runtime parity.
 ## Complete opcode domain, bounded input states
 
 Current incoming owner `0x1458646d0` masks its opcode to sixteen bits. The
-[proof](evidence/0.113.2/local-dispatch.json) covers **all65,536 opcodes in eight
+[proof](evidence/local-dispatch.json) covers **all65,536 opcodes in eight
 synthetic profiles**: optional Game discriminant0/2 at wrapper+0x10, Game's
 local/nonlocal flag0/1 at wrapper+0xc1d, and absent/present fallback row at
 wrapper+0x1390. Payloads are32 zero bytes; channel flag/index remain0/0.
@@ -86,7 +86,7 @@ guards against the configured installed EXE. Fresh Ghidra observations retain
 five request wrappers, name helpers separately in ignored analysis, the factory,
 Core/forwarders/startup, actual leaf and both publishers. The curated proof
 records only the observations used by this classification; raw projects stay
-under ignored runtime. [Interface extract](evidence/0.113.2/local-dispatch-interfaces.asm)
+under ignored runtime. [Interface extract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.113.2/local-dispatch-interfaces.asm)
 retains only the necessary callback/guard spans, without duplicating the full
 incoming function or existing query/refusal extracts.
 

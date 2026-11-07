@@ -17,7 +17,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from coverage_common import latest_target
-OUT = ROOT / 'docs/analysis/evidence/0.105.0/boss-math'
+OUT = ROOT / 'docs/analysis/evidence/boss-math'
 WORK = ROOT / 'runtime/analysis/history/raid/boss-math/5dbad0250cf7'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 
@@ -83,7 +83,7 @@ def main():
         [817.5, 1., 100, 100, 100, 0, True, 720., 1., 1.],
         [720., 1., 100, 100, 100, 1, True, 720., 1., 1.],
     ]
-    catalog = json.loads((ROOT/'docs/analysis/evidence/0.105.0/boss-catalog/catalog.json').read_text())
+    catalog = json.loads((ROOT/'docs/analysis/evidence/boss-catalog/catalog.json').read_text())
     cases = []
     for zi, zone in enumerate(catalog['zones']):
         zva = int(zone['record']['va'], 16)

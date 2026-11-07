@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK = ROOT / "runtime/analysis/history/combat/power-scaling/11f43211b8a5/pet-creation"
-OUT = ROOT / "runtime/analysis/staging/native-evidence/0.105.0/pet-creation"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/pet-creation"
 DEFINITIONS = {
     "wolf": 0x146E75008, "raptor": 0x146E75058,
     "imp": 0x146E74FC0, "felguard": 0x146E750E8,

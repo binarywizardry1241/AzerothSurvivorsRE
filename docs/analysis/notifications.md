@@ -9,8 +9,8 @@ The historical `account_event` port name is misleading: **`bossdown` and
 
 Current actor-hit owner `0x1454d4ff0` builds JSON `type` and `name` fields, then
 appends to Game's JSON queue at `+0x568/+0x570/+0x578`. The current
-[guardian](evidence/0.100.1/notifications/guardian-producer.asm) and
-[boss](evidence/0.100.1/notifications/boss-producer.asm) fragments retain those
+[guardian](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/notifications/guardian-producer.asm) and
+[boss](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/notifications/boss-producer.asm) fragments retain those
 instructions. The name is already localized by the producer.
 
 Frontend owner `0x140062b50` dispatches `bossdown` at `0x14006412c` and `guardian`
@@ -24,7 +24,7 @@ elapsed-seconds `f32` at `+0x1c`. Both named events use kind `0`.
 | `bossdown` | `{name} is defeated!` |
 | `guardian` | `{name} is slain! Its hoard and a level.` |
 
-The [manifest](evidence/0.100.1/notifications/manifest.json) binds these exact
+The [manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/notifications/manifest.json) binds these exact
 strings, eight bounded owners, current REA/Ghidra evidence and the type proof
 below. The nearby account-consumer queue that calls `0x14542f570` is unrelated:
 that helper merges discovered ability quality, clamped to `4`, into `seen`.
@@ -33,7 +33,7 @@ It does not count named bosses or guardians. No new Save mutation was added.
 ## Native presentation and lifetime
 
 Banner updater `0x1400925b0` builds a typed `BannerRoot, Node, GlobalZIndex,
-Pickable` bundle. Its [actual Node argument](evidence/0.100.1/notifications/root-node.json)
+Pickable` bundle. Its [actual Node argument](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.100.1/notifications/root-node.json)
 has absolute top `27%`, width `100%`, column direction, centered children and
 `5px` row gap. Global Z is `4100`; both Pickable flags are false. The tuple
 does not contain FocusPolicy.
@@ -89,7 +89,7 @@ registration and the host field; this worker owns the isolated module.
 It verifies the full selected EXE hash and executed **12 native fade and 12
 native expiry cases** in bounded original instruction fragments, with explicit
 clock/component-memory seams and no imported calls. The
-[retained vectors](evidence/0.100.1/notifications/native-clock-fixtures.json)
+[retained vectors](evidence/notifications/native-clock-fixtures.json)
 include exact boundaries, adjacent f32 values and NaN. The source's fade test
 compares exact result bits with all native fade vectors; its second test covers
 equal/unordered expiry and loading-cover retention.

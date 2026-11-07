@@ -15,7 +15,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
-KEEP = ROOT / "docs/analysis/evidence/0.115.0/q41-framexml.json"
+KEEP = ROOT / "docs/analysis/evidence/q41-framexml.json"
 
 
 def digest(raw):
@@ -36,7 +36,7 @@ def derive():
         at = pe.rva_offset(start - pe.image_base)
         return image[at:at + length]
 
-    owner_path = ROOT / "docs/analysis/evidence/0.115.0/raid-targets/manifest.json"
+    owner_path = ROOT / "docs/analysis/evidence/raid-targets/manifest.json"
     owner = json.loads(owner_path.read_text())
     assert owner["target"]["sha256"] == SHA
     bootstrap = next(row for row in owner["functions"] if row["role"] == "core-patch-bootstrap")
@@ -50,7 +50,7 @@ def derive():
     pointer, length = struct.unpack("<QQ", encoded)
     assert (pointer, length) == (int(descriptor["pointer"], 16), descriptor["length"])
     patch = raw(pointer, length)
-    source_path = ROOT / "docs/analysis/evidence/0.108.0/hud-framexml/world-state-patch.lua"
+    source_path = ROOT / "docs/analysis/evidence/hud-framexml/world-state-patch.lua"
     popup_path = owner_path.parent / owner["popup"]["path"]
     source, popup = source_path.read_bytes(), popup_path.read_bytes()
     assert digest(popup) == owner["popup"]["sha256"]

@@ -20,8 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 WORK = ROOT / "runtime/analysis/history/findings/fixgap7-layout/9e57035e83b9"
-OUT = ROOT / "runtime/analysis/staging/native-evidence/0.105.0/run-hud"
-RETAINED = ROOT / "docs/analysis/evidence/0.105.0/run-hud"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/run-hud"
+RETAINED = ROOT / "docs/analysis/evidence/run-hud"
 OWNERS = {
     "layout-update": 0x14026F450,
     "layout-constructor": 0x1401B8700,

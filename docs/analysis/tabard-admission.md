@@ -1,7 +1,7 @@
 # Contest Winner's Tabard admission
 
 Target SHA-256: `507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293`.
-The [manifest](evidence/0.117.0/tabard-admission/manifest.json) binds current
+The [manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.117.0/tabard-admission/manifest.json) binds current
 EXE ranges, eight completed journaled Ghidra queries and canonical extracts.
 [verification-needed](../verification-needed.md) owns the current implementation status.
 This report owns **#156** and the distinct purchased-record defect **#160**.

@@ -265,7 +265,7 @@ if args.stage:
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2) + '\n')
 else:
-    output = ROOT / 'docs/analysis/evidence/0.117.0/armory-looks/nodes.json'
+    output = ROOT / 'docs/analysis/evidence/armory-looks/nodes.json'
     assert json.loads(output.read_text()) == result, 'Retained Armory Look node evidence differs'
     manifest = json.loads(output.with_name('manifest.json').read_text())
     assert manifest['target']['sha256'] == TARGET

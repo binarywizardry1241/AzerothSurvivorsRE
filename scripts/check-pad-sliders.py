@@ -8,7 +8,7 @@ from native_recovery import f32 as _shared_f32, bits as _shared_bits
 import argparse,hashlib,json,math,struct
 import native_talent_fixture as n
 
-OUT=n.ROOT/'docs/analysis/evidence/0.112.0/pad/sliders.json'
+OUT=n.ROOT/'docs/analysis/evidence/pad/sliders.json'
 
 def f(v):
     return _shared_f32(v)

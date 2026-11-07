@@ -21,7 +21,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from native_recovery import f32, bits
 from script_sources import load_script
 
-HERE = ROOT / "docs/analysis/evidence/0.120.0/enemy-callback"
+HERE = ROOT / "docs/analysis/evidence/enemy-callback"
 TARGET_SHA = "291c281bd0a4255fdb3d04b2e442121e2df144f388f16de086b430e875aaad08"
 START, RETURN = 0x145BBF0B1, 0x145BBF153
 NONZERO, ZERO = 0x145BF6F80, 0x145BF6FD0

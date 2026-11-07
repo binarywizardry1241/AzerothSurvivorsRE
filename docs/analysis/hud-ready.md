@@ -28,7 +28,7 @@ Fresh REA 6.5.0/Ghidra 12.1.4 raw imports establish these bounded current owners
 | Build rows | `14020a060` | Builds the two supplied icon vectors; distinct from the visibility owner. |
 | `hudparts.rs` visibility | `14007d0b0` | Registers and reads the nine visibility CVars; it is not the boss/icon constructor. |
 
-The [manifest](evidence/0.109.0/hud-ready/manifest.json) binds each owner's
+The [manifest](evidence/hud-ready/manifest.json) binds each owner's
 declared PE extent, file bytes, REA Evidence ID, raw input and analysis profile.
 These relationships identify recovery boundaries; they do not certify every
 branch, native/source equivalence or complete HUD ownership. In particular,

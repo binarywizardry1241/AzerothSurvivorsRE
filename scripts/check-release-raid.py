@@ -21,7 +21,7 @@ from script_sources import load_script
 
 SHA = "445e9de90f1a0e9be18d4e99e59eb170f4d253ac0440b970cdd0d0b3562dfd36"
 VERSION = "0.112.5"
-OUT = ROOT / "docs/analysis/evidence/0.112.5/raid-release-review.json"
+OUT = ROOT / "docs/analysis/evidence/raid-release-review.json"
 QUEUE = (0x1459A9007, 0x1459A90AD)
 QUEUE_SHA = "0aaf22e19bc1bd3f7cdff5021e99faa9e4fc34b1634b7e8b3aa067ef43ae158d"
 DISPATCH = 0x14597EAB0
@@ -233,7 +233,7 @@ def check_marks(write=False):
     """Current native11 producer, payload and connected-source checks."""
     from coverage_common import file_sha256
     from discovery_native_subject import verify_native_query_subject
-    keep = ROOT / "docs/analysis/evidence/0.127.0/mograine-marks"
+    keep = ROOT / "docs/analysis/evidence/mograine-marks"
     proof = json.loads((keep / "native-manifest.json").read_text())
     target = installed_identity()
     assert {key: target[key] for key in proof["target"]} == proof["target"]

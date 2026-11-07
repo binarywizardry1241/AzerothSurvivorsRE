@@ -59,9 +59,9 @@ and runtime parity remain unverified.
   1, 2, 37 and 99), comparing twelve exact f32 lanes, 3,456 scalar values.
 
 Three journaled Ghidra raw queries cover the selected constructor, refresh and
-starter getter. [The manifest](evidence/0.120.0/race-run-carry/manifest.json)
+starter getter. [The manifest](evidence/race-run-carry/manifest.json)
 binds original results, journals, plans, raw input hashes and source receipts.
-[The vectors](evidence/0.120.0/race-run-carry/vectors.json) and canonical assembly
+[The vectors](evidence/race-run-carry/vectors.json) and canonical assembly
 retain selected proof. The default checker verifies current bytes, source
 receipts, native/source cases and saved vectors; `--queries` also verifies the
 retained ignored query commitments. No duplicate pseudocode export is tracked.

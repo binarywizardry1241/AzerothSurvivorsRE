@@ -11,7 +11,7 @@ counter sequences, 144 real UNIT field cases, twenty-four healing cases,
 twenty shield-ownership cases, sixteen deadline cases, thirty-two deferred
 hatch/heal/removal/dead-parent cases and one addon normal-kind case. Current
 inputs, exact instruction ranges and results live in the
-[manifest](evidence/0.112.0/raid-wards/manifest.json).
+[manifest](evidence/raid-wards/manifest.json).
 
 Constructor `145916190..145916468` still clamps template index to 11, clamps
 health to at least 1, shares the ordinary wrapping counter and creates a real
@@ -29,7 +29,7 @@ for a zero-initialized actor field does not alter its value. Current shared
 hit/death gates and shared actor-stage ordering have independent contracts.
 The ward-only cases do not certify complete hit/death callbacks or a whole frame.
 
-[Ghidra provenance](evidence/0.112.0/raid-wards/rea-provenance.json) records a
+[Ghidra provenance](evidence/raid-wards/rea-provenance.json) records a
 completed 12.1.4 raw import for the full current ward constructor. The import
 omits external code/data and full-image callers. Exact assembly and synthetic
 fixtures, with explicit trig, field-map, heal and hatch seams, own the bounded

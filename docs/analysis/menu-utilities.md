@@ -51,8 +51,8 @@ choice cases** (14 current × 14 selected × three interaction states) and the c
 native alpha expansion. Selected/current code getters, persistence and consumer
 refresh are explicit seams; native comparison/admission/close/queue instructions
 run unchanged. Allocation/memcpy are seams for the pixel producer. Unknown callees
-abort. The [record](evidence/0.109.0/menu-utilities/native.json) retains native
-range/output hashes; [Ghidra identities](evidence/0.109.0/menu-utilities/rea.json)
+abort. The [record](evidence/menu-utilities/native.json) retains native
+range/output hashes; [Ghidra identities](evidence/menu-utilities/rea.json)
 bind the independently recovered current owners.
 
 No Rust compilation/test, application, UI query/schedule, OS language-file write,

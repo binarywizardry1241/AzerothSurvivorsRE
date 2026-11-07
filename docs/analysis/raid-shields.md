@@ -13,9 +13,9 @@ Original/rebuilt parity remains unverified.
 
 The installed target is 0.109.0, SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [manifest](evidence/0.109.0/raid-shields/manifest.json) owns exact native
+The [manifest](evidence/raid-shields/manifest.json) owns exact native
 payload bits and six retained instruction ranges. Guardian bytes reference the
-canonical current signature catalog. [REA provenance](evidence/0.109.0/raid-shields/rea-provenance.json)
+canonical current signature catalog. [REA provenance](evidence/raid-shields/rea-provenance.json)
 records four completed Ghidra 12.1.4 queries through `./scripts/rea`: the move
 producer, damage branch, actor aura helper and application-count helper.
 Imports are bounded original-VA raw ranges with a generic ABI; they do not
@@ -31,7 +31,7 @@ establish global native ownership or execution.
 | Application counter | `14590d560..14590d902` | Player-owner preference, live remaining ticks, 255 cap and packed byte groups |
 
 The guardian reset continues to use its canonical current
-[decision extract](evidence/0.109.0/guardian-signatures/decision.asm), which clears
+[decision extract](evidence/guardian-signatures/decision.asm), which clears
 the shield deadline while omitting the exposure deadline. This report does not
 duplicate that owner.
 

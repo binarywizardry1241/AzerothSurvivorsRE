@@ -12,8 +12,8 @@ Earlier menu-only scope and stopped-work instructions are not active project rul
 - [Save format and actual native interoperability](main-menu-save-format.md): native export decoded by Rust; Rust-produced synthetic save imported by the supplied EXE. Field order, class/race restrictions and run-modifier values were checked. Full save/progression migration is incomplete.
 - [Options recovery](options-recovery.md): 94 pointer-backed native definitions, exact ranges/choices/inversion, storage and native consumers. Implemented controls persist values; effects owned by absent gameplay systems remain unimplemented.
 - [Preview source integration](main-menu-preview.md): actual user MPQ models, composite appearance, starting outfits and animation; exact native lighting, camera and equipment behavior remain incomplete.
-- [Additional menu content](evidence/0.92/menu-details.json): source-embedded ability icons/descriptions and zone narrative/enemy/boss summaries. The build does not require the reference EXE.
-- [Exact native function slices](evidence/0.92/menu-slices-provenance.json): SHA-bound derived function bytes at original virtual addresses enable scoped REA/Ghidra analysis. Generic raw-image calling conventions are not proof of Windows x64 parameter signatures.
+- [Additional menu content](evidence/menu-details.json): source-embedded ability icons/descriptions and zone narrative/enemy/boss summaries. The build does not require the reference EXE.
+- [Exact native function slices](evidence/menu-slices-provenance.json): SHA-bound derived function bytes at original virtual addresses enable scoped REA/Ghidra analysis. Generic raw-image calling conventions are not proof of Windows x64 parameter signatures.
 
 ## Existing 0.92 parity checklist, pending 0.97.2 revalidation
 

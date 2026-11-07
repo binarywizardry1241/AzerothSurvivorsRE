@@ -10,7 +10,7 @@ import json
 import re
 
 ROOT=Path(__file__).resolve().parents[1]
-OUT=ROOT/'docs/analysis/evidence/0.97.2/enemies'
+OUT=ROOT/'docs/analysis/evidence/enemies'
 SHA='a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 

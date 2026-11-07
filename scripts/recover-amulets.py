@@ -76,7 +76,7 @@ for i in range(17):
 assert len(generated)==112 and len(shared)==17
 payload={'target_sha256':SHA,'legendary_owner':'0x145425af0','shared_table':'0x14673c6e0','shared_stride':80,'generated':generated,'shared':shared,'limitations':['Emulated constructors are not original application runtime observations.','Effect tags/raw payloads are retained; complete effect semantics belong to their owning consumers.','Raw pointer words are forensic data only; decoded strings are retained as owned source data.']}
 asset=R/'crates/azeroth-survivors-re/assets/native-amulets-0.100.1.json';asset.write_text(json.dumps(payload,indent=2,ensure_ascii=False)+'\n')
-evidence=R/'docs/analysis/evidence/0.100.1/treasure-0.100.1-generation';evidence.mkdir(parents=True,exist_ok=True)
+evidence=R/'docs/analysis/evidence/treasure-generation';evidence.mkdir(parents=True,exist_ok=True)
 def span(address,size):
  offset=p.rva_offset(address-p.image_base);raw=d[offset:offset+size]
  return {'va':hex(address),'file_offset':hex(offset),'byte_count':size,'sha256':hashlib.sha256(raw).hexdigest()}

@@ -15,11 +15,12 @@ import json
 import re
 import subprocess
 
-from artifact_history import archived_artifact
-from coverage_common import ROOT, file_sha256, load_json, project_bytes, same_artifact
+from artifact_history import archived_artifact, current_artifact_path
+from coverage_common import ROOT, file_sha256, load_json, optional_target_json, project_bytes, same_artifact
 from script_sources import historical_matches, provenance
 
 DIAGNOSTIC_SUMMARY = 'docs/analysis/coverage/diagnostic-ownership.json'
+EVIDENCE = Path('docs/analysis/evidence')
 
 
 @lru_cache(maxsize=8)
@@ -132,7 +133,7 @@ class SupportInputs:
         return self.bound(dict(path=str(Path(c['artifacts']['directory'])/name), sha256=c['artifacts']['files'][name]['sha256']))
 
     def proof(self, name):
-        return self.read(self.receipt('docs/analysis/evidence/'+self.selected['version']+'/'+name+'.json'))
+        return self.read(self.receipt((EVIDENCE / (name+'.json')).as_posix()))
 
     def diagnostic_input(self):
         summary = load_json(self.root/'docs/analysis/coverage/diagnostic-ownership.json')
@@ -170,7 +171,9 @@ class SupportInputs:
 
     def receipt_matches(self, actual, expected):
         return actual == expected or (
-            expected['path'] == self.census_summary and actual['sha256'] == expected['sha256']
+            actual['sha256'] == expected['sha256']
+            and (expected['path'] == self.census_summary or
+                 current_artifact_path(actual['path'], self.root) == self.root / expected['path'])
             and same_artifact(actual['path'], expected['path'], expected['sha256'], self.root)
         )
 
@@ -276,7 +279,7 @@ class SupportInputs:
         key = lambda x: (x['path'],x['instruction_address'],x['target_address'],x['kind'])
         expected = Counter(key(x) for x in rows)
         if engine:
-            self.same_receipt(r['inputs']['canonical_D01'], self.receipt('docs/analysis/evidence/'+self.selected['version']+'/q41-custom-diagnostics.json'))
+            self.same_receipt(r['inputs']['canonical_D01'], self.receipt((EVIDENCE / 'q41-custom-diagnostics.json').as_posix()))
             columns = ['path_index','instruction','data_target','kind','source_line','source_column','extent_index',
                        'first_call','first_consumer','flow_address_and_bytes_sha256','selected_pointer_carriers']
             require(r['site_columns'] == columns, 'engine diagnostic site columns differ')
@@ -314,9 +317,9 @@ class SupportInputs:
     def owned(self, r):
         self.common_diagnostic_inputs(r)
         for key,name in [('canonical_ownerless_proof','q41-custom-diagnostics'),('canonical_engine_proof','engine-diagnostic-roles')]:
-            self.same_receipt(r[key],self.receipt('docs/analysis/evidence/'+self.selected['version']+'/'+name+'.json'))
+            self.same_receipt(r[key],self.receipt((EVIDENCE / (name+'.json')).as_posix()))
             self.input_set(r,[r[key]])
-        self.input_set(r,[self.diagnostic_input(), self.receipt('docs/analysis/evidence/'+self.selected['version']+'/addon-timers/integration.json')])
+        self.input_set(r,[self.diagnostic_input(), self.receipt((EVIDENCE / 'addon-timer-integration.json').as_posix())])
         require(set(r['artifacts']) == {'owned_AS','excluded_context'}, 'owned diagnostic artifact set differs')
         expected = {i:x for i,x in enumerate(self.diagnostic_rows()) if x['context'] == 'AS-custom-path' and x['actual_body_owner']}
         excluded = {i:x for i,x in enumerate(self.diagnostic_rows()) if x['context'] == 'excluded-coop-path' and x['actual_body_owner']}
@@ -416,8 +419,7 @@ class SupportInputs:
             require(any(self.receipt_matches(row, expected) for row in residual['inputs']),
                     'engine diagnostic owning census differs')
             owner = checker('check-engine-diagnostic-roles')
-            require(owner.derive_residual_roles(self.selected, record['interfaces']) == record,
-                    'engine diagnostic residual proof differs')
+            owner.verify_residual_proof(owner.derive_residual_roles(self.selected, record['interfaces']), record)
             return
         self.schema(name,record)
         if name == 'native-operands': self.operands(record)
@@ -513,7 +515,7 @@ def verified_classifications(selected, *, root=None, census_summary=None):
     if not census_path.is_relative_to(root):
         raise ValueError('Native classification census escapes project')
     census_name = census_path.relative_to(root).as_posix()
-    directory = root / 'docs/analysis/evidence' / selected['version']
+    directory = root / EVIDENCE
     names = ('native-residuals', 'native-operands', 'native-ownership',
              'native-address-leads', 'independent-indirects', 'q41-custom-diagnostics',
              'engine-diagnostic-roles', 'unowned-unwind-destinations',
@@ -535,7 +537,8 @@ def verified_classifications(selected, *, root=None, census_summary=None):
             return dict(path=path.relative_to(root).as_posix(), sha256=expected)
         if path not in hashes:
             hashes[path] = file_sha256(path)
-        if hashes[path] != expected and not (allow_residual_predecessors and
+        if hashes[path] != expected and not (
+                (name.startswith('scripts/') or allow_residual_predecessors) and
                 residual_input_matches(path, expected, hashes[path], root)):
             raise ValueError('Native classification artifact changed: ' + name)
         return dict(path=path.relative_to(root).as_posix(), sha256=expected)
@@ -555,10 +558,10 @@ def verified_classifications(selected, *, root=None, census_summary=None):
 
     for name in names:
         path = directory / (name + '.json')
-        if not path.is_file():
+        value = optional_target_json(path, selected)
+        if value is None:
             continue
         proof = bound(dict(path=str(path), sha256=file_sha256(path)))
-        value = load_json(path)
         if value.get('target') != selected:
             raise ValueError('Native classification target differs: ' + name)
         for field in ('source_semantics_complete', 'global_native_semantics_complete',

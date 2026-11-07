@@ -655,7 +655,7 @@ mod spec_tests {
     fn terminal_xp_preserves_live_allocation_and_all_saved_specs() {
         let fixture: serde_json::Value = serde_json::from_str(include_str!(concat!(
             env!("CARGO_MANIFEST_DIR"),
-            "/../../docs/analysis/evidence/0.112.0/achievement-terminal/native-vectors.json"
+            "/../../docs/analysis/evidence/achievement-terminal/native-vectors.json"
         )))
         .unwrap();
         for case in fixture["typed_xp_save_cases"].as_array().unwrap() {

@@ -1,6 +1,6 @@
 # Death Recap
 
-The [evidence manifest](evidence/0.139.2/death-recap.json) binds #300 to
+The [evidence manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.139.2/death-recap.json) binds #300 to
 `installed-game/AzerothSurvivors.exe`, SHA-256
 `0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908`.
 The [0.139.1 renderer correspondence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/native-interface-correspondence-0.139.1.md)

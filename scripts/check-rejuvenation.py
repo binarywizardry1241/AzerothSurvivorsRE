@@ -22,7 +22,7 @@ from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_INVAL
 from unicorn import x86_const as R
 
 SHA = '6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f'
-PROOF = ROOT / 'docs/analysis/evidence/0.119.0/rejuvenation/manifest.json'
+PROOF = ROOT / 'docs/analysis/evidence/rejuvenation/manifest.json'
 GAME, ROWS, EVENTS, DEF, SNAP, RATIOS = [0x20000000 + i * 0x10000 for i in range(6)]
 FRAME, STACK, RET = 0x200e0000, 0x200f0000, 0x21000000
 

@@ -9,7 +9,7 @@ from pathlib import Path
 from coverage_common import latest_target, target_bytes
 
 ROOT = Path(__file__).resolve().parents[1]
-MANIFEST = ROOT / 'docs/analysis/evidence/0.115.0/coop-server-party/manifest.json'
+MANIFEST = ROOT / 'docs/analysis/evidence/coop-server-party/manifest.json'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src/coop/server_party.rs'
 
 

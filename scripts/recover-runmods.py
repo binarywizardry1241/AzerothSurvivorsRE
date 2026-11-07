@@ -11,8 +11,8 @@ from unicorn import x86_const as r
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 OWNERS={'parse':(0x14590e190,0x14590e3bf),'difficulty':(0x14590e3c0,0x14590e420),'adjust':(0x14590e420,0x14590e496),'reward':(0x14590e4a0,0x14590e508),'csv':(0x1459c3dd0,0x1459c4445),'split':(0x1459c7330,0x1459c74ea),'memchr':(0x145bd5860,0x145bd5945),'input':(0x1401cac30,0x1401cb2ab),'frame':(0x1401ca600,0x1401cac22),'canvas':(0x140267da0,0x140268065),'page':(0x140268070,0x140269117),'row-wrapper':(0x1401c0e30,0x1401c10a4),'row':(0x140269200,0x140269d6e),'summary':(0x1401bfcc0,0x1401bff1e),'summary-child':(0x1402678f0,0x140267d31)}
-RETAINED=ROOT/'docs/analysis/evidence/0.109.0/runmods'
-STAGED=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/runmods'
+RETAINED=ROOT/'docs/analysis/evidence/runmods'
+STAGED=ROOT/'runtime/analysis/staging/native-evidence/runmods'
 target=latest_target(verify=False);assert target['sha256']==SHA and target['version']=='0.109.0';data=target_bytes(target)
 module = load_script('runmods_pe', ROOT/'scripts/inventory-executable.py');pe=module.PE(data)
 u=Uc(UC_ARCH_X86,UC_MODE_64);extent=max(s['rva']+max(s['raw_size'],s['virtual_size'])for s in pe.sections);u.mem_map(pe.image_base,(extent+4095)&~4095)

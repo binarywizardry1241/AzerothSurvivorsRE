@@ -26,7 +26,7 @@ their historical scalar payloads, recursive connections, repeats and phase
 metadata. Thirty-seven action nodes have relocated pointer words. The two gaze
 payloads remain byte-identical: Mandokir 992 recurring slot 2 (action 179), and
 Champion 911 health phase 0 at 50% (action 428), including the phase's
-`%s stares you down!` text. The [compact evidence](evidence/0.112.5/raid-release-review.json)
+`%s stares you down!` text. The [compact evidence](evidence/raid-release-review.json)
 binds current table ranges and both retained roots to exact bytes.
 
 The current initial-request loop at `1459a9007..1459a90ad` copies each request,

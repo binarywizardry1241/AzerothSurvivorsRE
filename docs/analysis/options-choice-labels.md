@@ -13,7 +13,7 @@ than **1000**. Negative values and NaN select the first label; positive infinity
 selects the last. Empty lists have no current descriptor producer; the source
 retains its safe fallback for that unproved input.
 
-The [45 native cases](evidence/0.112.0/options-choice-labels/cases.json) execute
+The [45 native cases](evidence/options-choice-labels/cases.json) execute
 the complete original formatter with all three actual choice descriptors:
 WorldDetail, spellEffectLevel and weatherDensity. They cover half-step rounding,
 negative/oversized values, signed zero, NaN and both infinities. Eight cases
@@ -21,7 +21,7 @@ demonstrate the previous source mismatch. Allocation, byte operations and roundf
 are explicit fixture seams; the original empty-registry English fallback runs
 unchanged. The actual Options value-label widget calls the corrected method.
 
-[REA provenance](evidence/0.112.0/options-choice-labels/rea.json) retains the
+[REA provenance](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.112.0/options-choice-labels/rea.json) retains the
 fresh Ghidra query and address-preserving carrier identity. Its generic ABI and
 missing switch-table context do not supply Rust types or a closed incoming tag
 domain. The exact Win64 replay establishes this selected formatter contract;

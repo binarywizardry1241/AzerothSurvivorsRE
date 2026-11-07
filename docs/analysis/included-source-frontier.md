@@ -2,8 +2,8 @@
 
 Permanent **#41**, leads **Q41-B02/I01**. Selected EXE SHA-256:
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
-The [compact reconciliation](evidence/0.121.0/included-source-frontier.json)
-joins the complete current [data-classification population](evidence/0.121.0/data-classification/manifest.json)
+The [compact reconciliation](evidence/included-source-frontier.json)
+joins the complete current [data-classification population](evidence/data-classification/manifest.json)
 to actual AS-source `include_str!` inputs. It preserves that classifier's original
 decisions and source receipts. [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) own current
 implementation status; [the historical container review](native-recovery.md#data-and-included-scripts)

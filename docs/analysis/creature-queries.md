@@ -14,9 +14,9 @@ owns remaining cache, FrameXML, network and parity work. The
 [template wire report](template-query-wire.md) owns packet prefix, GUID and
 decoder behavior, including the separate short co-op entry correction.
 
-The [finite proof manifest](evidence/0.120.2/creature-query-tables/manifest.json)
+The [finite proof manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.120.2/creature-query-tables/manifest.json)
 binds eight journaled Ghidra results, native byte ranges, table cells and source
-consumers to the [instruction replay](evidence/0.120.2/creature-query-tables/native-check.json).
+consumers to the [instruction replay](evidence/creature-query-tables/native-check.json).
 Native addresses and counts below apply to that proof's target.
 
 ## Entry, fields and consumers
@@ -111,8 +111,8 @@ arbitrary aliases or the reused engine. No compiler, client, game, socket,
 server or controlled original/rebuilt comparison ran. Existing Rust tests
 remain uncompiled and unrun.
 
-The [earlier proof](evidence/0.113.2/creature-queries.json) recorded 246
+The [earlier proof](evidence/creature-queries.json) recorded 246
 templates and 80 truncated-length and GUID cases. It also binds the
-[branch transcription](evidence/0.113.2/creature-query-branches.asm) for the
+[branch transcription](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.113.2/creature-query-branches.asm) for the
 empty-name leaf outside the unwind inventory. Its exact source and findings
 remain historical inputs for the broader wire proof.

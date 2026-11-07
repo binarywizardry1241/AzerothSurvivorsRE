@@ -37,7 +37,7 @@ missing tooltip or cast-error symptom was not reproduced in the application.
 
 ## Checks and limits
 
-The [proof](evidence/0.113.2/request-lifetimes.json) retains the original handler
+The [proof](evidence/request-lifetimes.json) retains the original handler
 bytes, its existing current Ghidra observations, result digest and sixty fixtures.
 `python3 -B scripts/check-request-lifetimes.py` passes **396,072 native
 cases**: all65,536 u16 values for each metadata/cast opcode in both Game states,

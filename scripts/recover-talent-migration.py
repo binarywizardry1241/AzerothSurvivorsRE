@@ -19,8 +19,8 @@ ROOT = Path(__file__).resolve().parents[1]
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
 WORK = ROOT / 'runtime/analysis/history/progression/talent-migration/367c7942bb6d'
-OUT = ROOT / 'runtime/analysis/staging/native-evidence/0.105.0/talent-migration'
-RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/talent-migration'
+OUT = ROOT / 'runtime/analysis/staging/native-evidence/talent-migration'
+RETAINED = ROOT / 'docs/analysis/evidence/talent-migration'
 OWNERS = {
     'decode-entry': (0x1459a6540, 0x1459a679b),
     'normalize': (0x1458e2c50, 0x1458e3400),

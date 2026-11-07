@@ -196,7 +196,7 @@ def main():
                                  "Effect payloads are retained verbatim; gameplay effect application is outside menu scope.",
                                  "Raw Ghidra function slices omit data/callees and use generic x64 signatures; verify Win64 argument registers in original PE instructions.",
                                  "Current talent screen pixel/layout parity remains unverified."])
-    (ROOT / "docs/analysis/evidence/0.97.2/talents.json").write_text(json.dumps(evidence, indent=2) + "\n")
+    (ROOT / "docs/analysis/evidence/talents.json").write_text(json.dumps(evidence, indent=2) + "\n")
     print(f"Recovered {len(records)} current talents in {len(descriptors)} trees from SHA-256 {SHA256}.")
 
 

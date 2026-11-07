@@ -19,7 +19,7 @@ SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
 TABLE, COUNT, STRIDE = 0x145DA1810, 104, 152
 ASSET = ROOT / "crates/azeroth-survivors-re/assets/options.json"
 WORK = ROOT / "runtime/analysis/history/interface/options/9d5d040da63a"
-EVIDENCE = ROOT / "docs/analysis/evidence/0.109.0/options"
+EVIDENCE = ROOT / "docs/analysis/evidence/options"
 # Registered name/default pairs, independently located in this target's table.
 ADDED = {
     "UnitNamePlayerPVPTitle": 0x145FFCD78,

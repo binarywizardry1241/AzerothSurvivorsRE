@@ -14,7 +14,7 @@ import struct
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-PROOF=ROOT/'docs/analysis/evidence/0.121.0/weapon-glow-records.json'
+PROOF=ROOT/'docs/analysis/evidence/weapon-glow-records.json'
 CLASSES=(1,2,3,4,5,7,8,9,11)
 
 

@@ -89,7 +89,7 @@ def main():
                 assert got == want, (kind, hex(table), index, got, want)
                 checked += 1
 
-    proof = json.loads((ROOT / "docs/analysis/evidence/0.117.0/party-rewards/contracts.json").read_text())
+    proof = json.loads((ROOT / "docs/analysis/evidence/party-rewards/contracts.json").read_text())
     assert proof["target_sha256"] == SHA
     for row in proof["native_spans"]:
         address, count = int(row["va"], 16), row["byte_count"]
@@ -217,7 +217,7 @@ def main():
     assert "tabard.id==id&&tabard.zone.is_none()" in compact_purchase
     assert "Save" not in purchase and "MenuCatalog" not in purchase
     assert "pub(crate)useazeroth_survivors_re::account_progression::is_purchasable_tabard;" in "".join((SOURCES / "progression.rs").read_text().split())
-    creature = json.loads((ROOT / "docs/analysis/evidence/0.117.0/party-rewards/creature-query-contract.json").read_text())
+    creature = json.loads((ROOT / "docs/analysis/evidence/party-rewards/creature-query-contract.json").read_text())
     assert creature["target"]["sha256"] == SHA
     assert [row["entry"] for row in creature["creature_templates"]] == list(range(9623, 9627))
     for row in creature["native_spans"]:

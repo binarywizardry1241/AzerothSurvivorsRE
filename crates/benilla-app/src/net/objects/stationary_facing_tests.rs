@@ -19,7 +19,7 @@ fn client() -> App {
 fn packets() -> Vec<SessionEvent> {
     let fixture: serde_json::Value = serde_json::from_str(include_str!(concat!(
         env!("CARGO_MANIFEST_DIR"),
-        "/../../docs/analysis/evidence/0.105.0/mob-movement/stationary-facing-fixtures.json"
+        "/../../docs/analysis/evidence/mob-movement/stationary-facing-fixtures.json"
     )))
     .unwrap();
     fixture["cases"]

@@ -191,7 +191,7 @@ def main():
     if args.current_state15:
         check_state15_0_140()
         return
-    evidence = json.loads((ROOT / "docs/analysis/evidence/0.117.0/party-achievement-wire/manifest.json").read_text())
+    evidence = json.loads((ROOT / "docs/analysis/evidence/party-achievement-wire/manifest.json").read_text())
     data = artifact_path("installed-game/AzerothSurvivors.exe").read_bytes()
     assert evidence["schema"] == "as-party-achievement-wire-v1"
     assert evidence["target"] == {

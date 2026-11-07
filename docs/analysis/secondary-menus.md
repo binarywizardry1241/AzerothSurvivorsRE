@@ -16,9 +16,9 @@ other presentation, account or mechanic contracts.
 | Navigation and dirty Rewards plans | Current `14023ec90..14023ee7e` executes 336 complete calls: seven prior tabs, eight destinations including Done, two drop-getter outcomes and absent/equal/changed plans. Every case retains the full 24-byte Codex selection. Changed Rewards plans defer leaving, equal plans proceed, and Drop Tables uses the first supplied location. Existing `ProgressionState::request_page`, confirmation handling and `ArmoryState::enter_page` supply these state consumers. |
 | Retained Talents details | Fresh journaled Ghidra recovery at `140350810` independently rebinds the retained native constructor. Its 7,380-byte scalar/instruction shape matches the canonical 0.112.0 owner after masking only actual branch and RIP-relative relocation fields. The live `talent-details` viewport retains its 9px row gap. Equipment, companion-look and appearance viewports remain connected at their existing consumers. Computed scrolling/layout is untested. |
 
-The [contract record](evidence/0.115.0/secondary-menus/contracts.json) retains
+The [contract record](evidence/secondary-menus/contracts.json) retains
 current table/range hashes, asset commitments, source guards and result digests.
-The [native record](evidence/0.115.0/secondary-menus/native.json) binds two fresh
+The [native record](evidence/secondary-menus/native.json) binds two fresh
 Ghidra Evidence/profile identities and thirteen unique relocation-only matches.
 These additionally include the ten existing talent allocation/spec helpers and
 the achievement-catalog constructor. Those matches preserve every nonrelocation
@@ -39,7 +39,7 @@ fixture boundaries; these cases do not execute actual accounts, filesystem,
 ECS/query membership or UI publication. Fresh native queries used
 `./scripts/rea query <plan.json>`; their databases, journals, saved results and
 full decompiler output remain under ignored project-local runtime storage.
-The compact [navigation extract](evidence/0.115.0/secondary-menus/navigation.c)
+The compact [navigation extract](evidence/secondary-menus/navigation.c)
 retains Ghidra's generic ABI limitations; original bytes and instruction replay
 govern the interpretation.
 

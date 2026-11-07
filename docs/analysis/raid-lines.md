@@ -15,7 +15,7 @@ presentation and original/rebuilt parity remain unverified.
 ## Native producer and inputs
 
 The dispatcher `1459578e0` selects native7 at `145958665`; its continuation is
-`14595bf44..14595c0e9`. [The manifest](evidence/0.109.0/raid-lines/manifest.json)
+`14595bf44..14595c0e9`. [The manifest](evidence/raid-lines/manifest.json)
 binds the decoded instruction ranges, constants and **17 primary boss** plus
 **20 guardian** recurring slots to this target. All selected payloads contain
 spell100. The guardian alternate moveset is retained as a separate variant;
@@ -59,7 +59,7 @@ different owners and are not interchangeable.
 ## Facing and delayed35 lifecycle
 
 The current hold helper is retained once in
-[raid-waves/hold.asm](evidence/0.109.0/raid-waves/hold.asm). Its facing=true branch
+[raid-waves/hold.asm](evidence/raid-waves/hold.asm). Its facing=true branch
 calls packet constructor `1458c6f10`; it sends one stationary **moveType4**
 packet rather than the moveType1 stop packet. After packed GUID/origin/serial it
 writes angle, flags `0x100`, duration `1`, count `1` and the same origin as its
@@ -116,10 +116,10 @@ normal facing, flags, single destination point and the zero-duration floor.
 **37 current constructor-size cases** execute the native load/multiply/store
 lanes, compare selected source catalog values and trace the live size port.
 The actor-record copies retain their canonical
-[terminal-order evidence](evidence/0.109.0/terminal-order/manifest.json).
+[terminal-order evidence](evidence/terminal-order/manifest.json).
 
 The Ghidra raw import and seeded native7 branch decompilation are retained as
-[producer.pseudo.c](evidence/0.109.0/raid-lines/producer.pseudo.c), with provider
+[producer.pseudo.c](evidence/raid-lines/producer.pseudo.c), with provider
 and input identity in the manifest. The fresh full delayed-owner import reached
 a bridge identity failure; a narrowed import also failed. Those raw diagnostics
 remain under ignored `runtime/`. The delayed consumer's evidence here is its

@@ -9,7 +9,7 @@ import struct
 
 from native_talent_fixture import ROOT, Machine, data, pe, target
 
-EVIDENCE = ROOT / 'docs/analysis/evidence/0.112.0/talent-allocations'
+EVIDENCE = ROOT / 'docs/analysis/evidence/talent-allocations'
 
 
 def raw(address, size):
@@ -152,7 +152,7 @@ def main():
                 assert refund == expected, (index, row['key'], 'refund')
                 assert dict(vm.values(query)) == (candidate if expected else allocation), (index, row['key'], 'refund mutation')
                 gates += 2
-    historical = json.loads((ROOT / 'docs/analysis/evidence/0.109.0/talents-menu/native-cases.json').read_text())
+    historical = json.loads((ROOT / 'docs/analysis/evidence/talents-menu/native-cases.json').read_text())
     for case in historical['save_rows']:
         assert vm.serialize(vm.parse(case['input'])) == case['output']
     for case in historical['switch']:

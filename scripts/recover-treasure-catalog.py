@@ -16,7 +16,7 @@ import struct
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.100.1.exe"
 SHA256 = "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b"
-OUTPUT = ROOT / "docs/analysis/evidence/0.100.1/treasure-chests/catalog.json"
+OUTPUT = ROOT / "docs/analysis/evidence/treasure-chests-comparison/catalog.json"
 ZONE_BASE = 0x146733518
 ZONE_STRIDE = 240
 ZONE_COUNT = 12
@@ -93,7 +93,7 @@ def main():
     OUTPUT.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n")
     if args.write_source_catalog:
         lines = ["//! Generated 0.100.1 zone geometry and enemy chest flags.",
-                 "//! Owning byte spans: docs/analysis/evidence/0.100.1/treasure-chests/catalog.json.",
+                 "//! Owning byte spans: docs/analysis/evidence/treasure-chests-comparison/catalog.json.",
                  "//! Regenerate: python3 scripts/recover-treasure-catalog.py --write-source-catalog",
                  "//! The build uses these constants and never reads the reference executable.", "",
                  "use super::{EnemyDefinition, Position, ZoneDefinition};", "",

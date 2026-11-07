@@ -360,7 +360,7 @@ OWNERS = {"page": ("codex-page", 0x14021bc60, 0x14021e00d),
           "effect-map": ("codex-effect-map", 0x1459d7d40, 0x1459dad58)}
 
 def evidence(data, pe, write):
-    folder = ROOT / "docs/analysis/evidence/0.109.0/codex"
+    folder = ROOT / "docs/analysis/evidence/codex"
     bounds = {pe.image_base+a: pe.image_base+b for a,b,_ in pe.functions()}
     prior = None if write else json.loads((folder/"manifest.json").read_text())
     if write: folder.mkdir(parents=True, exist_ok=True)
@@ -426,12 +426,12 @@ def main():
     source = (ROOT / "crates/azeroth-survivors-re/src/codex.rs").read_text()
     if args.check:
         assert name in source and "text.0.entry(code).or_default().extend(rows)" in source
-        retained = ROOT / "docs/analysis/evidence/0.109.0/codex/validation.json"
+        retained = ROOT / "docs/analysis/evidence/codex/validation.json"
         assert portable_record(json.loads(retained.read_text())) == portable_record(proof)
     else:
         save(WORK / "codex-validation.json", proof)
         if args.apply:
-            save(ROOT / "docs/analysis/evidence/0.109.0/codex/validation.json", proof)
+            save(ROOT / "docs/analysis/evidence/codex/validation.json", proof)
     print("Checked 142 current entries, 1,988 localized records, 1,540 fresh jewelry rarity descriptions, 308 native growth branches and 13 current locale corrections")
 
 

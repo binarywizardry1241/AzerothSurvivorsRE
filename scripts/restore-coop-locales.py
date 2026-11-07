@@ -23,7 +23,7 @@ def main():
     expected_sha = "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
     if target["version"] != "0.119.0" or target["sha256"] != expected_sha:
         raise ValueError("This repair is bound to the recovered 0.119.0 target")
-    retained = json.loads((ROOT / "docs/analysis/evidence/0.119.0/locale-catalog-review.json").read_text())
+    retained = json.loads((ROOT / "docs/analysis/evidence/locale-catalog-review.json").read_text())
     reviewer = load_script("restore_coop_locale_review", ROOT / "scripts/review-current-locale-catalogs.py")
     current = reviewer.derive()
     if current["target"] != retained["target"] or current["locale_table"] != retained["locale_table"]:

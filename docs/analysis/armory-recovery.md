@@ -37,10 +37,10 @@ all72 race/class results as19 paperdoll slot IDs. Baseline is independent of sex
 zero; a two-handed primary (inventory type17) clears the offhand. The preview agent
 has connected these native results in place of DBC starter-outfit selection.
 
-See [catalog provenance](evidence/0.92/armory/catalog-provenance.json) and the adjacent
+See [catalog provenance](evidence/armory/catalog-provenance.json) and the adjacent
 curated native assembly for table addresses, hashes, scalars and consumer evidence.
-Ghidra slice identities are in [slice provenance](evidence/0.92/armory-slices-provenance.json)
-and [core slice provenance](evidence/0.92/armory-core-slices-provenance.json).
+Ghidra slice identities are in [slice provenance](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/armory-slices-provenance.json)
+and [core slice provenance](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/armory-core-slices-provenance.json).
 
 ## Native save interoperability
 
@@ -80,18 +80,18 @@ header/overlay/preview behavior still requires a controlled runtime comparison.
 
 The native Armory is an overlay over the still-present picker. Exact root constructor`0x140043f10..0x140044618` builds the ArmoryRoot tuple (type-name identity linked through native bundle metadata and deferred spawn). Its Node is Absolute,100%wide/high, with GlobalZIndex5400. BackgroundColor is sRGBA(.012,.010,.008,.970), not an estimated black shade. A separate radial gradient uses center anchor with Percent0/Percent−20 offsets, FarthestCorner shape, default Oklaba interpolation, and stops at0%/70%: LinearRgba(.30,.17,.06,.35) to transparent black. The raw colors pass through native144c4bc10 before being stored as LinearRgba, consistent with the recovered common-pane route.
 
-The shell`0x1401f5430` is100%×100%, column layout, padding40px horizontally/20px vertically, gap14px. Its content body is100%wide, grows, and has18px column gaps. The shell dispatches Character/Collection/Drops/Codex/Talents/Achievements/Rewards under the same overlay. The reconstruction's bright picker utility overlap was an observed parity defect; parent-owned shared overlay integration compiled in build19, alongside34 passing focused cases; a post-integration runtime comparison was not launched. See [decoded style and identity chain](evidence/0.92/armory-root-style.json) and [constructor instructions](evidence/0.92/armory-root-constructor.asm). Native data recovery alone does not prove rebuilt layering parity.
+The shell`0x1401f5430` is100%×100%, column layout, padding40px horizontally/20px vertically, gap14px. Its content body is100%wide, grows, and has18px column gaps. The shell dispatches Character/Collection/Drops/Codex/Talents/Achievements/Rewards under the same overlay. The reconstruction's bright picker utility overlap was an observed parity defect; parent-owned shared overlay integration compiled in build19, alongside34 passing focused cases; a post-integration runtime comparison was not launched. See [decoded style and identity chain](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/armory-root-style.json) and [constructor instructions](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/armory-root-constructor.asm). Native data recovery alone does not prove rebuilt layering parity.
 
 ## Shared header and shell flow
 
-REA now recovers shared header03bc70→1f4550 and intrinsic button03b3f0. The header is a100% row with14px gaps and centered children. Its growing title column contains46px heading text and15px class-colored summary with a muted collected-count span. Tabs use16px text with native locale keys, positive Talents/Rewards counters, and intrinsic dimensions:14×6px padding,1px border,5px radius. Done uses18px text after an18px spacer. Selected controls use the native red gradient/GOLD border/PAPER text; unselected controls use black alpha.5/EDGE border/GOLD text. Hover is native PAPER with zero lift. These values and exact code extracts are retained in [shared header evidence](evidence/0.92/armory/shared-header-style.json).
+REA now recovers shared header03bc70→1f4550 and intrinsic button03b3f0. The header is a100% row with14px gaps and centered children. Its growing title column contains46px heading text and15px class-colored summary with a muted collected-count span. Tabs use16px text with native locale keys, positive Talents/Rewards counters, and intrinsic dimensions:14×6px padding,1px border,5px radius. Done uses18px text after an18px spacer. Selected controls use the native red gradient/GOLD border/PAPER text; unselected controls use black alpha.5/EDGE border/GOLD text. Hover is native PAPER with zero lift. These values and exact code extracts are retained in [shared header evidence](evidence/armory/shared-header-style.json).
 
 The owned build_header_row/shell_node/body_node APIs implement that flow. Codex and, from checkpoint25, Talents use the recovered whole padded shell. From source26, Character/Collection/Drops use that shared shell/header/body flow too; the old independent absolute pane placement is removed. Progression still has its separately tracked body reconstruction. Applying shared inner flow is not a claim that those remaining absolute body layouts are native. The new header/Codex source compiled in parent-owned build20 (8m33s); no UI launch or capture was performed. The collected-count TextSpan explicitly carries the native15px font and compiled in build21. Other page body layouts still require reconstruction and comparison.
 
 
 ## Persistence event follow-up — checkpoint25
 
-Appearance mutations now issue full-Pick commits, while equipment/cosmetic mutations issue account-only commits. Earlier local name/zone edits therefore join an appearance event but do not accidentally enter an equipment save. This distinction follows native Armory input `0x140045520` and the independently bound Core command path, not a generic changed-resource assumption. See the [save-policy evidence](evidence/0.92/save/persistence-policy.json). These call-site corrections compiled and their shared persistence fixtures passed in parent build25; no Armory runtime comparison was launched.
+Appearance mutations now issue full-Pick commits, while equipment/cosmetic mutations issue account-only commits. Earlier local name/zone edits therefore join an appearance event but do not accidentally enter an equipment save. This distinction follows native Armory input `0x140045520` and the independently bound Core command path, not a generic changed-resource assumption. See the [save-policy evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/save/persistence-policy.json). These call-site corrections compiled and their shared persistence fixtures passed in parent build25; no Armory runtime comparison was launched.
 
 
 ## Intrinsic three-pane body — source26,2026-10-16
@@ -128,8 +128,8 @@ that information through icon consumers/tooltips. Item tooltips are still missin
 The Details and Look regions now use their recovered header/footer flow, including
 60px selected-item portraits and automatic top margin for the Look footer.
 
-Evidence: [body fields and open gaps](evidence/0.92/armory-intrinsic-body.json),
-[curated original instructions](evidence/0.92/armory-intrinsic-body.asm), and the
+Evidence: [body fields and open gaps](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/armory-intrinsic-body.json),
+[curated original instructions](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.92/armory-intrinsic-body.asm), and the
 adjacent hash-bound`armory-body-*-provenance.json` slice manifests. The bounded
 Ghidra dossiers cover the native assemblers and child consumers; signatures from
 raw GCC imports are not trusted as Win64 call definitions. Original instructions,

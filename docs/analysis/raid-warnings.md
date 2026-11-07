@@ -2,7 +2,7 @@
 
 This bounded **#43** source repair uses installed **0.109.0**, SHA-256
 `76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0`.
-The [manifest](evidence/0.109.0/raid-warnings/manifest.json) binds the current
+The [manifest](evidence/raid-warnings/manifest.json) binds the current
 warning sites, literal bytes, dispatcher and exact packet/name helper ranges.
 It does not certify complete encounter or custom cast-widget ownership.
 
@@ -66,7 +66,7 @@ native packet-constructor cases**, **9 native speaker-name cases**, **18
 common-tail localization/fallback cases**, and **6 native ward-kind cases**.
 It checks the selected dispatcher CFG, every retained literal and all nine
 templates in **14 locale catalogs**, plus the connected source intent and
-consumer. [Packet/name vectors](evidence/0.109.0/raid-warnings/packet-vectors.json)
+consumer. [Packet/name vectors](evidence/raid-warnings/packet-vectors.json)
 retain the compact results, including Unicode and buffer-growth boundaries.
 
 Unicorn executes original instructions using synthetic allocation, byte copy,

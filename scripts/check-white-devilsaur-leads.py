@@ -12,7 +12,7 @@ import struct
 from coverage_common import ROOT, artifact_path, project_path
 from script_sources import load_script
 
-PROOF = ROOT / "docs/analysis/evidence/0.117.0/white-devilsaur-leads.json"
+PROOF = ROOT / "docs/analysis/evidence/white-devilsaur-leads.json"
 PROOF_SHA = "22f987e0436f87e6eecbf511e0aa801d2da924bc97b77911f3d453a56eabc64c"
 
 

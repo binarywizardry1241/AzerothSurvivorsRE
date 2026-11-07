@@ -9,7 +9,7 @@ Historical source-presence audit: 23 of 55 identified areas have current-target 
 
 These historical 0.97.2 file/behavior leads are nonexhaustive and do not measure reconstructed code. They describe the source-map cutoff below, not current app completeness. See [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) for implemented behavior.
 
-[Source ownership](code-ownership.md) · [Custom-file ledger](evidence/0.97.2/game-module-coverage.json) · [Engine-delta ledger](evidence/0.97.2/game-engine-delta.json)
+[Source ownership](code-ownership.md) · [Custom-file ledger](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/game-module-coverage.json) · [Engine-delta ledger](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.97.2/game-engine-delta.json)
 
 ## Custom game file areas
 

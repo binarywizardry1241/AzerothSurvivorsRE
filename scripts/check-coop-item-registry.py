@@ -22,11 +22,11 @@ from coverage_common import ROOT, file_sha256, installed_identity, latest_target
 from script_sources import load_script
 from shared_native_inventory import open_readonly
 
-BASE = ROOT / 'docs/analysis/evidence/0.121.0/coop-item-registry'
+BASE = ROOT / 'docs/analysis/evidence/coop-item-registry'
 
 
 def item_name_check(run_native):
-    proof = json.loads((ROOT / 'docs/analysis/evidence/0.139.2/coop-item-name.json').read_text())
+    proof = json.loads((ROOT / 'docs/analysis/evidence/coop-item-name.json').read_text())
     target = installed_identity()
     assert target == proof['target']
     image = target_bytes(target)
@@ -175,7 +175,7 @@ def item_name_replay(image, pe, ranges, routing_exits):
 def carrier_check(run_native):
     """Current wire25 carrier, keeping historical registry suites independent."""
     from discovery_native_subject import verify_native_query_subject
-    base = ROOT / 'docs/analysis/evidence/0.127.0/coop-item-carrier'
+    base = ROOT / 'docs/analysis/evidence/coop-item-carrier'
     proof = json.loads((base / 'manifest.json').read_text())
     target = latest_target(verify=True)
     assert all(target[k] == v for k, v in proof['target'].items())
@@ -267,7 +267,7 @@ def carrier_replay(image, pe):
 
     probe = Carrier()
     # Existing historical packet is only a grammar fixture, not current behavior.
-    fixture = json.loads((ROOT / 'docs/analysis/evidence/0.113.2/equipped-inventory/cases.json').read_text())
+    fixture = json.loads((ROOT / 'docs/analysis/evidence/equipped-inventory/cases.json').read_text())
     original = bytes.fromhex(fixture['packets'][0]['payload_hex'])
     cursor = 12
     for _ in range(4): cursor = original.index(0, cursor) + 1

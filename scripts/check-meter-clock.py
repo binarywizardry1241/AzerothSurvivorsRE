@@ -15,7 +15,7 @@ import sys
 
 TARGET = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
 SOURCE = "crates/azeroth-survivors-re/src/gameplay/meter/view.rs"
-PROOF = "docs/analysis/evidence/0.121.0/meter-clock.json"
+PROOF = "docs/analysis/evidence/meter-clock.json"
 FIRST, LAST = 0x1401c8fdf, 0x1401c9048
 
 
