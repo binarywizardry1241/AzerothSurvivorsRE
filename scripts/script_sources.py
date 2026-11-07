@@ -44,6 +44,28 @@ def retained_report(name, expected=None, root=ROOT):
     return committed_bytes(name, commit, expected, root)
 
 
+def retained_runtime_path(path, root=ROOT):
+    """Find a relocated closed recovery path without following an unsafe redirect."""
+    path = Path(path)
+    runtime = root / 'runtime'
+    if not path.is_relative_to(runtime) or path == runtime or path.exists() or path.is_symlink():
+        return path
+    layout = runtime / 'analysis/recovery-layout.json'
+    if not layout.is_file():
+        return path
+    first, *parts = path.relative_to(runtime).parts
+    destination = json.loads(layout.read_text())['relocations'].get(first)
+    if destination is None:
+        return path
+    history = runtime / 'analysis/history'
+    base = root / destination
+    resolved = base.joinpath(*parts)
+    if (not base.is_relative_to(history) or base.resolve() != base
+            or '..' in parts or not resolved.parent.resolve().is_relative_to(history)):
+        raise ValueError('Historical recovery relocation leaves the shared history directory')
+    return resolved
+
+
 def current_path(value, root=ROOT):
     """Resolve former paths for live links/imports, never for recorded hashes."""
     path = Path(value)
@@ -56,6 +78,8 @@ def current_path(value, root=ROOT):
         name = path.as_posix()
     if (root / name).is_file():
         return root / name
+    if name.startswith('runtime/'):
+        return retained_runtime_path(root / name, root)
     record = provenance(root)['relocations'].get(name)
     report = report_provenance(root)['reports'].get(name)
     replacement = root / (record['replacement'] if record else report or name)

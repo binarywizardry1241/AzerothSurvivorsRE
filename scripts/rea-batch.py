@@ -23,6 +23,7 @@ import time
 
 from coverage_common import artifact_path
 from shared_analysis import SharedAnalysis
+from script_sources import retained_runtime_path
 
 ROOT = Path(__file__).resolve().parent.parent
 ENV_KEYS = {"REA_GHIDRA_STARTUP_TIMEOUT_MS", "REA_GHIDRA_SEED_FILE", "REA_GHIDRA_DISABLED_ANALYZERS",
@@ -412,7 +413,7 @@ class ResumableClient:
 
     def verified_result_path(self, receipt):
         """Admit a historical result or its catalogued immutable CAS alias."""
-        logical = Path(os.path.normpath(ROOT / receipt["path"]))
+        logical = retained_runtime_path(Path(os.path.normpath(ROOT / receipt["path"])), ROOT)
         if (not logical.is_relative_to(self.directory)
                 and not logical.parent.resolve().is_relative_to(self.directory)):
             raise ValueError("Saved completed query result escaped output")

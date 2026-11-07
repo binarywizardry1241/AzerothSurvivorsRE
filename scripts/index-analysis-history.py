@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 
 from shared_analysis import SharedAnalysis, file_digest
+from script_sources import retained_runtime_path
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -32,7 +33,7 @@ def import_history(root, apply=False):
                 continue
             completed += 1
             receipt = row["result"]
-            logical = Path(os.path.normpath(root / receipt["path"]))
+            logical = retained_runtime_path(Path(os.path.normpath(root / receipt["path"])), root)
             if not logical.is_relative_to(root / "runtime"):
                 raise ValueError("Historical operation result leaves runtime/")
             if not logical.is_file():

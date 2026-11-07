@@ -178,7 +178,7 @@ def inventory():
                           "unregistered_data_files": sum(not row["registered_archive"] for row in resources)},
                "selectors": {"exe": "ranges[selector]; exact file_start/file_end_exclusive and sha256",
                              "data": "data_resources[selector]; exact portable path and complete sha256"},
-               "unknown_queue": f"docs/analysis/unknown-recovery-{target['version']}.md#whole-file-and-data-range-leads",
+               "unknown_queue": "docs/analysis/unknown-recovery.md",
                "limits": ledger["limits"], "reconstruction_complete": False, "parity_verified": False}
     return output, payload, summary
 

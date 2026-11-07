@@ -75,6 +75,9 @@ forward only relevant historical differences. Put exact target identities and
 reproduction details in the linked evidence. Avoid version-suffixed narrative
 reports, parallel version sections and concatenation of prior reports. Keep
 shared behavior, methods and limitations in one place.
+Once the consolidated owner and its consumers are verified, remove superseded
+working copies and obsolete runtime duplicates. Keep the consolidated owner,
+unique evidence and the provenance needed to verify historical commitments.
 
 Keep exact historical inputs whose bytes or original paths a verifier still
 requires. Store new hash-bound machine evidence under its canonical evidence
@@ -88,6 +91,9 @@ Keep temporary analysis outputs in a task-owned scratch directory under
 publishing or verifying the useful result. Reuse canonical inventory, journal,
 checkpoint and Program paths instead of creating per-version copies of the
 same payload. Preserve separate target identities and distinct required evidence.
+Keep durable recovery work in the owning category. Record target identity in
+the receipt or manifest and reuse the existing category directory. Avoid new
+version-stamped folders directly under `runtime/`.
 
 ## Source gaps and verification ownership
 

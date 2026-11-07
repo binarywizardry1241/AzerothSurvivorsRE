@@ -2,7 +2,7 @@
 """Recover current player-ability records from the SHA-bound PE, without execution.
 
 The generated Rust catalog is standalone source: building it needs no EXE.
-Native consumer recovery is owned by player-abilities-0.97.2.md and the separate
+Native consumer recovery is owned by player-abilities.md and the separate
 behavior report. A table record alone does not establish behavior parity.
 """
 from portable_paths import objdump_output, portable_json
@@ -212,10 +212,10 @@ def main():
                     definitions=records, classes=classes, constants=constants,
                     limitations=['Raw school/kind/effect tags are retained; consumer recovery owns their semantics.',
                                  'Table extraction and source reproduction are not compilation or gameplay parity.'])
-    roster = ['# Player-ability catalog — 0.97.2', '',
+    roster = ['# Player-ability catalog', '',
               'Generated from the hash-bound current PE by `recover-player-abilities.py`.',
               'These are definition values before the recovered cast/upgrade multipliers.',
-              'See [source and behavior](player-abilities-0.97.2.md) for formulas and limitations.', '',
+              'See [source and behavior](player-abilities.md) for formulas and limitations.', '',
               '| Key | Kind | Base power | Base cooldown (s) | Range | Radius | Targets | Duration | Ticks | Upgrade tags |',
               '| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |']
     for row in records:
@@ -227,7 +227,7 @@ def main():
                    'are retained in [catalog evidence](evidence/0.97.2/player-abilities/catalog.json).',
                    'No EXE is required by a source build. No game execution or compilation was used here.'])
     outputs = {CATALOG: '\n'.join(rust) + '\n', EVIDENCE: json.dumps(evidence, ensure_ascii=False, indent=2) + '\n',
-               ROOT / 'docs/analysis/player-ability-catalog-0.97.2.md': '\n'.join(roster) + '\n'}
+               ROOT / 'docs/analysis/player-ability-catalog.md': '\n'.join(roster) + '\n'}
     for path, text in outputs.items():
         if args.check:
             assert path.read_text() == text, f'generated source drift: {path.relative_to(ROOT)}'

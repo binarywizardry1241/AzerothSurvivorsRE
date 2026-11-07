@@ -80,6 +80,21 @@ class ScriptSources(unittest.TestCase):
         self.assertFalse(sources.recorded_input_matches(
             original_path, hashlib.sha256(guide.read_bytes()).hexdigest(), self.root))
 
+    def test_closed_runtime_paths_resolve_inside_category_history(self):
+        old = self.root / 'runtime/addon-bridge-old/result.json'
+        new = self.root / 'runtime/analysis/history/addon/bridge/result.json'
+        new.parent.mkdir(parents=True)
+        new.write_text('{}')
+        layout = self.root / 'runtime/analysis/recovery-layout.json'
+        layout.write_text(json.dumps({'relocations': {
+            old.parent.name: new.parent.relative_to(self.root).as_posix(),
+            'invalid': 'runtime/analysis/history/../../outside',
+        }}))
+        self.assertEqual(sources.retained_runtime_path(old, self.root), new)
+        self.assertEqual(sources.current_path(old, self.root), new)
+        with self.assertRaisesRegex(ValueError, 'leaves the shared history'):
+            sources.current_path('runtime/invalid/file.json', self.root)
+
     def test_stable_name_selects_exact_historical_source_by_digest(self):
         self.assertEqual(sources.historical_source('scripts/check-xinput.py', self.expected, self.root), self.original)
 

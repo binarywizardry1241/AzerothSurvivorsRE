@@ -26,10 +26,14 @@ streams. Dense boundary/operand audits do not require a persistent detail cache.
 | Indexed native query working set | `native-hot/` | One idle materialization plus actively leased users; shared across tasks |
 | Ghidra installed datatype archive cache | `tool-cache/packed-db-cache/` | One expanded cache per installed `.gdt` input, with Ghidra's cross-process locks |
 | Task progress | `tasks/` or retained historical task directories | Small journals, plans and references |
+| Closed legacy recovery | `history/<category>/` | One category directory with opaque receipt IDs |
 | Native admission and request contexts | `scheduler/` and `requests/` | Two shared worker slots, compatible-Program gates and verified pre-start cache pointers |
 
 The files are local analysis state, not build inputs or GitHub deliverables.
 Users still supply their MPQs; source builds do not require the reference EXE.
+The local `recovery-layout.json` maps former loose paths to retained category
+locations. Move only closed recovery whose consumers can resolve the new path.
+Retain the exact payloads, target commitments and catalogued object links.
 
 The primary checkout owns this project-wide workspace. Linked-worktree source
 tasks route native operations through the primary checkout instead of creating
