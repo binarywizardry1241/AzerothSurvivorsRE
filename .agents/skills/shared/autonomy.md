@@ -66,6 +66,28 @@ Use likely future consumers and recovery value to judge retention, with no
 hourly/daily expiry. Keep useful documented analysis even when no current job is
 reading it; remove session leftovers with no remaining use.
 
+## Consolidate reports and analysis storage
+
+Keep one readable Markdown report per category. Search for an existing owner
+before creating a file, and extend that report when a release changes the same
+category. Use headings for version/hash-specific findings and link the relevant
+section from the registers. Keep shared behavior, methods and limitations in
+one place. Record the changed facts and their applicability under each target
+without copying unchanged tables, repeated background or whole reports.
+
+Keep exact historical inputs whose bytes or original paths a verifier still
+requires. Store new hash-bound machine evidence under its canonical evidence
+owner and reference it from the report. A mutable narrative report is a guide
+to the evidence and should not become a new immutable verifier input. Check
+inbound links, path consumers and recorded hashes before merging existing files.
+
+Use the shared analysis catalog and content store for reusable native results.
+Keep temporary analysis outputs in a task-owned scratch directory under
+`runtime/tmp/` unless the runner has a canonical path. Clean up scratch after
+publishing or verifying the useful result. Reuse canonical inventory, journal,
+checkpoint and Program paths instead of creating per-version copies of the
+same payload. Preserve separate target identities and distinct required evidence.
+
 ## Source gaps and verification ownership
 
 `docs/CURRENT-STATE.md` owns unresolved source, recovery, provenance and resource

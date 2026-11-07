@@ -18,6 +18,8 @@ Apply the shared [completion cleanup rules](../shared/autonomy.md#completion-cle
 to remove finished disposable output and retire unused temporary worktrees after
 integrating their durable changes. Reuse suitable tools/caches; preserve active
 work and required evidence rather than duplicating or retaining every output.
+Apply the shared [report and storage rules](../shared/autonomy.md#consolidate-reports-and-analysis-storage).
+Add a repair to its existing category report even when the target version changes.
 
 When fresh native recovery is needed, apply the shared
 [analysis-script reuse rules](../shared/autonomy.md#reuse-analysis-scripts) and

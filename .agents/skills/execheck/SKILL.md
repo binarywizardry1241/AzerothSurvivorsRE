@@ -531,7 +531,9 @@ correspondence proof. Preserve old reviews and their limits; a missing current
 assessment does not undo an existing implementation. Update package metadata
 and the documented baseline where applicable.
 
-Update owning reports/registers when facts change. Keep CURRENT-STATE concise:
+Apply the shared [report and storage rules](../shared/autonomy.md#consolidate-reports-and-analysis-storage).
+Update each category's existing report with target-bound findings and reuse
+unchanged results by reference. Keep CURRENT-STATE concise:
 record the actual selected identity, implementation, material gaps and checks;
 link the complete mapping/action table and state meaningful finished checks and
 residual unknowns. Preserve every permanent gap number, issue identity and closed
