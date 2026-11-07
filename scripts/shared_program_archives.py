@@ -608,6 +608,26 @@ def _clean_program_scratch(project, *, temporary_only=False):
             if path.stat().st_nlink == 1:
                 removed += path.stat().st_blocks * 512
             path.unlink()
+    if temporary_only:
+        return removed
+    # Ghidra's empty file-cache layout contains only a maintenance timestamp.
+    # Keep any populated cache and all configuration files.
+    for cache in runtime.glob("cache/*-ghidra/fscache2"):
+        if cache.resolve() != cache or not cache.is_dir():
+            continue
+        marker = cache / ".lastmaint"
+        new = cache / "new"
+        children = set(cache.iterdir())
+        if new in children and not new.is_symlink() and new.is_dir() and not any(new.iterdir()):
+            children.remove(new)
+        if children == {marker} and not marker.is_symlink() and marker.is_file():
+            attrs = marker.stat()
+            removed += attrs.st_blocks * 512 if attrs.st_nlink == 1 else 0
+            marker.unlink()
+    for parent, _, _ in os.walk(runtime, topdown=False):
+        directory = Path(parent)
+        if not any(directory.iterdir()):
+            directory.rmdir()
     return removed
 
 

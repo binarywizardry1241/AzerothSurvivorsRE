@@ -184,6 +184,16 @@ class ProgramArchiveTests(unittest.TestCase):
         temporary = runtime / "tmp" / "ghidra.cache"
         temporary.parent.mkdir(parents=True)
         temporary.write_bytes(b"temporary provider bytes")
+        empty_cache = runtime / "cache" / "empty-ghidra" / "fscache2"
+        (empty_cache / "new").mkdir(parents=True)
+        (empty_cache / ".lastmaint").write_text("timestamp")
+        populated_cache = runtime / "cache" / "populated-ghidra" / "fscache2"
+        populated_cache.mkdir(parents=True)
+        (populated_cache / ".lastmaint").write_text("timestamp")
+        (populated_cache / "cached").write_bytes(b"cached data")
+        config = runtime / "config" / "preferences"
+        config.parent.mkdir()
+        config.write_bytes(b"preferences")
         attempts = self.project.parent / "attempts"
         completed = attempts / "completed"
         failed = attempts / "failed"
@@ -194,6 +204,10 @@ class ProgramArchiveTests(unittest.TestCase):
         (failed / "bridge-stdout.log").write_text("ERROR analysis did not finish")
         self.automatic()
         self.assertFalse(temporary.exists())
+        self.assertFalse(empty_cache.parent.exists())
+        self.assertTrue((populated_cache / ".lastmaint").is_file())
+        self.assertTrue((populated_cache / "cached").is_file())
+        self.assertTrue(config.is_file())
         self.assertFalse((completed / "bridge-stdout.log").exists())
         self.assertTrue((completed / "prepare.json").is_file())
         self.assertTrue((failed / "bridge-stdout.log").is_file())

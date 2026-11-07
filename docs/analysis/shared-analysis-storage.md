@@ -260,6 +260,9 @@ snapshot after every query while preserving referenced evidence and checkpoints.
 An unrelated headless process does not block archival. The native audit sweeps
 deferred ready slices and removes idle headless scratch under the Program lease.
 Unfinished slice checkpoints and failure diagnostics remain available.
+Cold Programs also drop empty runner directories and Ghidra file-cache shells
+that contain only a maintenance timestamp. The runner recreates these paths
+when needed. Populated caches and configuration files stay with the Program.
 
 Both Java launchers set Ghidra's supported `pdb.cache.dir` property to the shared
 datatype cache. The installed Ghidra implementation guards its cache map with

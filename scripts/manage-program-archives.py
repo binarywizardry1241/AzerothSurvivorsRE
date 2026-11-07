@@ -150,10 +150,6 @@ def sweep_ready_raw():
         runtime = project.parent / "runtime"
         if project.name != "project" or project.resolve() != project or not runtime.is_dir():
             continue
-        if (not (runtime / "tmp").exists()
-                and not any(runtime.glob("config/*-ghidra/ghidra_*_PUBLIC/osgi"))
-                and not any(project.parent.glob("attempts/*/bridge-stdout.log"))):
-            continue
         try:
             result["reclaimed_allocated_bytes"] += clean_archived_program_scratch(project)
         except (OSError, ValueError) as error:
