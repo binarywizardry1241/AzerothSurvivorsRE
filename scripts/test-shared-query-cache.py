@@ -23,7 +23,7 @@ PEER = ROOT / "scripts/fixtures/fake-rea-mcp.py"
 
 class SharedQueryCache(unittest.TestCase):
     def setUp(self):
-        scratch = ROOT / "runtime/shared-query-tests"
+        scratch = ROOT / "runtime/tests/shared-query"
         scratch.mkdir(parents=True, exist_ok=True)
         temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.addCleanup(temporary.cleanup)

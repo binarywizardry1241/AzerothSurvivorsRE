@@ -19,7 +19,7 @@ from coverage_common import artifact_path, latest_target
 
 ROOT = Path(__file__).resolve().parents[1]
 SHA = "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b"
-WORK = ROOT / "runtime/localization-0.108.0"
+WORK = ROOT / "runtime/analysis/history/interface/localization/8110c7a7b957"
 RETAINED = ROOT / "docs/analysis/evidence/0.108.0/localization"
 ASSETS = ROOT / "crates/azeroth-survivors-re/assets/locales"
 TABLE = 0x146E95450
@@ -94,7 +94,7 @@ def recover(data, pe):
 
 def stage_assembly(data, pe):
     """Keep compact, original-PE disassembly with its exact source-byte identity."""
-    sys.path.insert(0, str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/camera/python-libs"))
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     decoder = Cs(CS_ARCH_X86, CS_MODE_64)
     for name, (start, end) in RANGES.items():
@@ -110,7 +110,7 @@ def stage_assembly(data, pe):
 
 
 def native_vectors(data, pe):
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
 

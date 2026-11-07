@@ -7,7 +7,7 @@ color conversion are explicit fixtures; no UI, game, compiler or GPU runs.
 from script_sources import load_script
 import argparse, hashlib, json, struct, sys
 from coverage_common import ROOT,latest_target,target_bytes
-sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 t=latest_target(verify=True);assert t['sha256']=='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0';data=target_bytes(t)

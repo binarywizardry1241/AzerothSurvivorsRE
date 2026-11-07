@@ -4,13 +4,13 @@ from script_sources import load_script
 import argparse, hashlib, json, math, struct, sys
 from pathlib import Path
 from coverage_common import ROOT,latest_target,target_bytes,reference_config
-sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn import x86_const as r
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 RETAINED=ROOT/'docs/analysis/evidence/0.109.0/menu-audio'
-STAGED=ROOT/'runtime/native-evidence/0.109.0/menu-audio'
-WORK=ROOT/'runtime/menu-lifecycle-0.109.0'
+STAGED=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/menu-audio'
+WORK=ROOT/'runtime/analysis/history/interface/menu-lifecycle/969b671942c0'
 OWNERS={'focus':(0x14096fa20,0x14096fd1a),'callback':(0x1409705b0,0x140970ba3),'watch':(0x14097b520,0x14097b98e),'handoff':(0x14097bb30,0x14097bcd6),'master':(0x1409a73f0,0x1409a76b8)}
 def encoded(value):return json.dumps(value,indent=2,ensure_ascii=False)+'\n'
 def machine(data,pe):
@@ -150,7 +150,7 @@ def main():
     if args.collect:
         STAGED.mkdir(parents=True,exist_ok=True)
         for name,value in [('manifest.json',manifest),('native-vectors.json',vectors)]:(STAGED/name).write_text(encoded(value))
-        sys.path.insert(0,str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'));from capstone import Cs,CS_ARCH_X86,CS_MODE_64
+        sys.path.insert(0,str(ROOT/'runtime/tool-state/python/camera/python-libs'));from capstone import Cs,CS_ARCH_X86,CS_MODE_64
         decoder=Cs(CS_ARCH_X86,CS_MODE_64)
         for role,(a,b)in OWNERS.items():
             off=pe.rva_offset(a-pe.image_base);raw=data[off:off+b-a];body=f';0.109.0 SHA256 {SHA}\n;{a:#x}..{b:#x} SHA256 {hashlib.sha256(raw).hexdigest()}\n'

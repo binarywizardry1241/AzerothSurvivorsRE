@@ -16,8 +16,8 @@ import struct
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
-WORK = ROOT / "runtime/secondary-pages-0.109.0"
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
+WORK = ROOT / "runtime/analysis/history/native-recovery/secondary-pages/408536b1c3c9"
 from coverage_common import latest_target, target_bytes
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
 ASSET = ROOT / "crates/azeroth-survivors-re/assets/armory-catalog-delta-0.109.0.json"
@@ -238,7 +238,7 @@ def recover(data, pe, display_values):
 
 
 def replay(data, pe, cases):
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import UC_X86_REG_RCX, UC_X86_REG_RDX, UC_X86_REG_RSP, UC_X86_REG_RIP, UC_X86_REG_XMM0
     u = Uc(UC_ARCH_X86, UC_MODE_64)

@@ -67,7 +67,7 @@ The full current achievement presentation and run/cooperative feat conditions
 have separate source owners.
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-achievement-progress.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-achievement-progress.py
 ```
 
 The non-compiling check passes **522 original-instruction cases / 2,471,673

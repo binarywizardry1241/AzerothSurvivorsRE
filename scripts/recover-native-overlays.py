@@ -13,8 +13,8 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 SHA = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-WORK = ROOT / "runtime/native-overlays-0.97.2"
-OUT = ROOT / "runtime/native-evidence/0.97.2/native-overlays"
+WORK = ROOT / "runtime/analysis/history/native-recovery/native-overlays/09f281cf4862"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/0.97.2/native-overlays"
 FUNCTIONS = {
     "effect-aggregate": 0x145415A50,
     "spell-modifiers": 0x145415F40,

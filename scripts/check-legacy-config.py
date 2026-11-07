@@ -23,7 +23,7 @@ for row in manifest['functions']:
 for name, expected in manifest['extracts'].items():
     assert hashlib.sha256((EVIDENCE / name).read_bytes()).hexdigest() == expected
 
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import UC_X86_REG_RBP, UC_X86_REG_RCX, UC_X86_REG_RDX, UC_X86_REG_RSI, UC_X86_REG_RBX
 
@@ -84,7 +84,7 @@ for token in ('destination.with_extension("part")', 'fs::rename(staging, destina
 # The account-save owner stays separate from local-state migration.
 assert 'characters.txt' not in source
 assert 'WOW_ROGUE_SAVE' in (ROOT / 'crates/azeroth-survivors-re/src/save.rs').read_text()
-output = ROOT / 'runtime/fixgap-62-63/migration-native-cases.json'
+output = ROOT / 'runtime/analysis/history/findings/fixgap-62-63/3d692fb58a61/migration-native-cases.json'
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(json.dumps(rows, indent=2) + '\n')
 print(f'#62: native byte/extract hashes, {len(rows)} native predicate cases and startup/source connections pass; Rust/Windows/runtime unverified')

@@ -19,7 +19,7 @@ from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 KEEP = ROOT / "docs/analysis/evidence/0.113.2/q41-c01-upgrade-constructor"
-WORK = ROOT / "runtime/q41-c01-upgrade-apply"
+WORK = ROOT / "runtime/analysis/history/findings/q41-c01-upgrade-apply/3e27dc535e29"
 RANGES = {
     "candidate-bound": (0x1459657AD, 0x1459657E4),
     "candidate-index": (0x1459659DE, 0x145965A06),

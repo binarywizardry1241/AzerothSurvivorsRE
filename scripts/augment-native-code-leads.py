@@ -4,6 +4,7 @@
 Retains prior independent source/case code roles and their input commitments.
 Only newly prepared undecoded, nonconflicting diagnostic starts are added.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from collections import Counter
 import copy
@@ -118,7 +119,7 @@ def main():
         inputs.append(result['independent_revalidation']['prior_input'])
     result.update(generator=generation, generator_dependencies=dependencies, inputs=inputs,
                   legacy_census_metric='additional_diagnostic_code_starts counts newly inserted code starts after the guarded-case queue. Per-record roles preserve actual custom/engine diagnostics, dispatch sources and case targets.')
-    if file_sha256(ROOT / generation['path']) != generation['sha256'] or any(file_sha256(ROOT / row['path']) != row['sha256'] for row in dependencies + inputs):
+    if file_sha256(ROOT / generation['path']) != generation['sha256'] or any(file_sha256(retained_runtime_path(ROOT / row['path'], ROOT)) != row['sha256'] for row in dependencies + inputs):
         raise ValueError('Code-only augmentation inputs changed during analysis')
     project_path(args.output).write_text(json_text(result))
     print(json_text({'distinct_code_only_starts': result['distinct_code_only_starts'], 'counts_by_evidence_role': result['counts_by_evidence_role']}))

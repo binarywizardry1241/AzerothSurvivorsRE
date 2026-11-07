@@ -22,8 +22,8 @@ SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--python-libs", default="runtime/armory-recovery/python-libs")
-    parser.add_argument("--output", default="runtime/showcase-0.105.0/checks.json")
+    parser.add_argument("--python-libs", default="runtime/tool-state/python/armory/python-libs")
+    parser.add_argument("--output", default="runtime/analysis/history/native-recovery/showcase/9ec57e4dd4f5/checks.json")
     args = parser.parse_args()
     target = latest_target(verify=True)
     assert target["sha256"] == SHA, "Newest supplied target requires fresh showcase recovery"

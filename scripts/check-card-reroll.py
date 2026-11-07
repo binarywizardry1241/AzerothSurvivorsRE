@@ -17,7 +17,7 @@ from native_recovery import bits
 from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
-RUNTIME = ROOT / 'runtime/as-ui-contracts-0.113.2'
+RUNTIME = ROOT / 'runtime/analysis/history/native-recovery/as-ui-contracts/09a4d154b813'
 OUT = ROOT / 'docs/analysis/evidence/0.113.2/as-ui-contracts-reroll.json'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src/gameplay/mod.rs'
 

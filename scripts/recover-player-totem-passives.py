@@ -12,7 +12,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parent.parent
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
-RUNTIME = ROOT / 'runtime/player-totem-passives-0.97.2'
+RUNTIME = ROOT / 'runtime/analysis/history/native-recovery/player-totem-passives/a1ae05a395c3'
 EVIDENCE = ROOT / 'docs/analysis/evidence/0.97.2/player-totem-passives'
 FUNCTIONS = [0x1454d43d0, 0x1454d49e0, 0x1455321e0]
 RANGES = [(0x1454a422c, 0x1454a46a0, 'call-of-flame-expiry'),
@@ -46,7 +46,7 @@ def main():
         target = RUNTIME / f'{address:x}.bin'
         target.write_bytes(data[at:at + end - address])
         plan = dict(target=str(target.relative_to(ROOT)),
-                    output=f'runtime/player-totem-passives-0.97.2/rea-{address:x}',
+                    output=f'runtime/analysis/history/native-recovery/player-totem-passives/a1ae05a395c3/rea-{address:x}',
                     open_options=dict(format='raw-binary', architecture='x86_64', entry_point=hex(address)),
                     timeout=180, open_timeout=90, cleanup_timeout=60,
                     environment={'REA_GHIDRA_STARTUP_TIMEOUT_MS': '180000'},

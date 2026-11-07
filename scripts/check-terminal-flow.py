@@ -5,8 +5,8 @@ import argparse, json, random, struct, sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 parser=argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--python-libs',default='runtime/armory-recovery/python-libs')
-parser.add_argument('--output',default='runtime/terminal-flow-0.109.0/static-check.json')
+parser.add_argument('--python-libs',default='runtime/tool-state/python/armory/python-libs')
+parser.add_argument('--output',default='runtime/analysis/history/interface/terminal-flow/4e862d14c1ed/static-check.json')
 parser.add_argument('--prepare-rea',action='store_true')
 args=parser.parse_args()
 libs=(ROOT/args.python_libs).resolve();output=(ROOT/args.output).resolve()
@@ -15,7 +15,7 @@ sys.path.insert(0,str(libs))
 from native_terminal import NativeReplay, verified_input, prepare_rea, require
 EVIDENCE=ROOT/'docs/analysis/evidence/0.109.0/terminal-flow'
 manifest,target,data,pe=verified_input(EVIDENCE)
-if args.prepare_rea:prepare_rea(EVIDENCE,manifest,data,pe,ROOT/'runtime/terminal-flow-0.109.0/reproduction')
+if args.prepare_rea:prepare_rea(EVIDENCE,manifest,data,pe,ROOT/'runtime/analysis/history/interface/terminal-flow/4e862d14c1ed/reproduction')
 model = load_script('xp_model', ROOT/'scripts/recover-terminal-contracts.py')
 replay=NativeReplay(data,pe);u=replay.machine;R=replay.registers
 mem,stack,done,bp,sp,app=replay.mem,replay.stack,replay.done,replay.bp,replay.sp,replay.app

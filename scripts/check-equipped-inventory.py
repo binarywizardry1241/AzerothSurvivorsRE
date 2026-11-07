@@ -9,8 +9,8 @@ import argparse, hashlib, json, math, struct, sys
 from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
-sys.path[:0] = [str(ROOT/'runtime/armory-recovery/python-libs'),
-               str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+sys.path[:0] = [str(ROOT/'runtime/tool-state/python/armory/python-libs'),
+               str(ROOT/'runtime/tool-state/python/camera/python-libs')]
 from equipment_native import EquipmentProbe
 
 SHA='58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'

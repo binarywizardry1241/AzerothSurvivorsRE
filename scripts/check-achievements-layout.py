@@ -10,7 +10,7 @@ import argparse, hashlib, json, struct, sys
 from coverage_common import ROOT,latest_target,target_bytes
 from pathlib import Path
 R=ROOT
-sys.path[:0]=[str(R/'runtime/camera-recovery-0.105.0/python-libs'),str(R/'runtime/armory-recovery/python-libs')]
+sys.path[:0]=[str(R/'runtime/tool-state/python/camera/python-libs'),str(R/'runtime/tool-state/python/armory/python-libs')]
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 target=latest_target(verify=True)
@@ -136,7 +136,7 @@ record=dict(target_sha256=target['sha256'],target_executed=False,results=results
             limits=['Only current constructor instructions run; account getters, UI/asset/font submission, allocation, color conversion and text/number/localization are explicit seams.',
                     'Matching384-byte Bevy Node field layout is checked at typed current submission sites. Snapshots establish emitted fields, not computed layout, shaping, input or GPU parity.',
                     'The body sample supplies one selected title and a zero-count category. Two text sizes and outer image/column/row Nodes are captured; fixture text contents are not native formatting proof.'])
-path=R/('runtime/native-evidence/0.109.0/achievements-menu' if args.stage else 'docs/analysis/evidence/0.109.0/achievements-menu')/'layout.json'
+path=R/('runtime/analysis/staging/native-evidence/0.109.0/achievements-menu' if args.stage else 'docs/analysis/evidence/0.109.0/achievements-menu')/'layout.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print('Passed',sum(len(v['nodes'])for v in results.values()),'current typed Node snapshots, two body font sizes and source layout guards')

@@ -127,13 +127,13 @@ rendering, save I/O or original/rebuilt parity comparison ran.
 Reproduce from this checkout using the existing ignored Python dependencies:
 
 ```sh
-export PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs
+export PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs
 python3 -B scripts/check-choice-contracts.py
 python3 -B scripts/check-balance-definitions.py
 python3 -B scripts/check-demonic-upgrade-flow.py
 ```
 
 `--prepare-rea` prepares two bounded raw-range plans beneath
-`runtime/choice-contracts-0.112.0/`; run each with `scripts/rea-batch.py` in a new
+`runtime/analysis/history/native-recovery/choice-contracts/d1999c75543b/`; run each with `scripts/rea-batch.py` in a new
 output directory to reproduce its Ghidra observation. Bulk case inventories,
 raw Ghidra responses and failed full-image startup diagnostics remain ignored.

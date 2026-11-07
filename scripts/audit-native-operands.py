@@ -4,6 +4,7 @@
 This is an independent operand inventory, not Ghidra Data Reference analysis,
 register propagation, runtime aliases, or function/source identity inference.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from bisect import bisect_left, bisect_right
 from collections import Counter
@@ -148,7 +149,7 @@ def main():
     compact['unowned_executable_candidates']={'destinations':len(destinations),'exact_observed_instructions':len(exact),'observed_instruction_interiors':len(interior),'not_observed':len(destinations)-len(exact)-len(interior),'exact_import_thunk_sources':len(thunk_candidates)}
     compact['import_slots_with_owned_explicit_operands']=sum(any(value is not None for _,value in sites) for sites in import_sites.values())
     compact['diagnostic_paths_with_explicit_operands']=len(diagnostic_sites)
-    if any(file_sha256(ROOT/row['path'])!=row['sha256'] for row in dependencies) or file_sha256(ROOT/'scripts/audit-native-operands.py')!=GENERATOR_SHA256 or file_sha256(summary_path)!=summary_digest or file_sha256(diagnostic_path)!=diagnostic_digest:raise ValueError('Operand generator or selected census changed during audit')
+    if any(file_sha256(retained_runtime_path(ROOT/row['path'], ROOT))!=row['sha256'] for row in dependencies) or file_sha256(ROOT/'scripts/audit-native-operands.py')!=GENERATOR_SHA256 or file_sha256(summary_path)!=summary_digest or file_sha256(diagnostic_path)!=diagnostic_digest:raise ValueError('Operand generator or selected census changed during audit')
     derived_json(detail_path,detail,publish=args.write)
     compact['details']={'path':detail_path.relative_to(ROOT).as_posix(),'sha256':file_sha256(detail_path)}
     summary_output=artifact_path(args.summary_output) if args.summary_output else ROOT/f"docs/analysis/evidence/{target['version']}/native-operand-boundaries.json"

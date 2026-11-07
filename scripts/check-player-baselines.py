@@ -33,7 +33,7 @@ def verify_manifest():
 def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--write',action='store_true');p.add_argument('--prepare-rea',action='store_true');args=p.parse_args();manifest=verify_manifest()
  if args.prepare_rea:
-  work=n.ROOT/'runtime/balance-0.112.0/player-refresh';work.mkdir(parents=True,exist_ok=True);row=manifest['whole_owner'];start,end=int(row['address'],16),int(row['end_exclusive'],16);offset=n.pe.rva_offset(start-n.pe.image_base)
+  work=n.ROOT/'runtime/analysis/history/combat/balance/b7a3722a6153/player-refresh';work.mkdir(parents=True,exist_ok=True);row=manifest['whole_owner'];start,end=int(row['address'],16),int(row['end_exclusive'],16);offset=n.pe.rva_offset(start-n.pe.image_base)
   (work/'code.bin').write_bytes(n.data[offset:offset+end-start]);(work/'seeds.tsv').write_text(f'{start:#x}\tcode\n{start:#x}\tfunction\n')
   plan=dict(target=str((work/'code.bin').relative_to(n.ROOT)),output=str((work/'rea').relative_to(n.ROOT)),open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(start)),init_timeout=60,timeout=240,environment={'REA_GHIDRA_SEED_FILE':str((work/'seeds.tsv').relative_to(n.ROOT))},operations=[dict(name='procedure_pseudo_code',arguments=dict(procedure=hex(start)))])
   (work/'plan.json').write_text(json.dumps(plan,indent=2)+'\n');print('Prepared current player baseline REA/Ghidra plan under project runtime/');return

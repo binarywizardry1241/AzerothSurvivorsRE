@@ -5,6 +5,7 @@ Transport-state and ordinary lock seams are covered by the canonical predicate
 fixture. This replay stops before native cleanup calls. Rust is parsed only;
 queue-only Rust regressions are authored but are not compiled or executed.
 """
+from runtime_layout import retained_runtime_path
 import hashlib
 import itertools
 import json
@@ -18,7 +19,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn import x86_const as reg
 
@@ -192,7 +193,7 @@ def main():
         proof = json.loads(receipt_path.read_text())
         assert proof['target_sha256'] == SHA
         for row in proof['files']:
-            assert digest((ROOT / row['path']).read_bytes()) == row['sha256'], row['path']
+            assert digest((retained_runtime_path(ROOT / row['path'], ROOT)).read_bytes()) == row['sha256'], row['path']
         assert proof['native_cases'] == result['predicate_cases'] + result['gate_cases'] + heartbeat['native_cases']
         assert proof['native_instructions'] == result['predicate_instructions'] + result['gate_instructions'] + heartbeat['native_instructions']
     result.update(target_sha256=SHA, compilation=False, rust_executed=False,

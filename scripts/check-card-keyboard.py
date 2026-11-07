@@ -20,7 +20,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-WORK = ROOT / "runtime/q41-card-typing-0.113.2"
+WORK = ROOT / "runtime/analysis/history/findings/q41-card-typing/f4f4a3385d50"
 KEEP = ROOT / "docs/analysis/evidence/0.113.2/card-keyboard"
 RANGES = {
     "keyboard": (0x1400B3420, 0x1400B37B9),
@@ -106,7 +106,7 @@ def main():
     assert raw(threshold_address, 4).hex() == "6666e63e"
     threshold = from_bits(0x3EE66666)
 
-    keycode_sources = list((ROOT / "runtime/cargo/registry/src").glob("*/bevy_input-0.18.1/src/keyboard.rs"))
+    keycode_sources = list((ROOT / "runtime/tool-state/cargo/registry/src").glob("*/bevy_input-0.18.1/src/keyboard.rs"))
     assert len(keycode_sources) == 1, "Restore the project-local retained Bevy 0.18.1 source"
     keycode_path = keycode_sources[0]
     enum_text = keycode_path.read_text().split("pub enum KeyCode {", 1)[1].split("\n}", 1)[0]

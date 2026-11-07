@@ -2,7 +2,7 @@
 """Extract SHA-bound current save/appearance evidence; never execute or emulate the EXE.
 
 Writes textual evidence and the small build-time save item-bounds catalog. REA plans
-are prepared below runtime/menu-save-0.97.2; run selected plans with rea-batch.py.
+are prepared below runtime/analysis/history/interface/menu-save/0aae226f7152; run selected plans with rea-batch.py.
 Existing completed REA/Ghidra dossiers contribute their evidence IDs and C hashes.
 """
 from portable_paths import objdump_output, portable_json, portable_record
@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = Path("AzerothSurvivors/AzerothSurvivors-0.97.2.exe")
 SHA = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
 OUT = ROOT / "docs/analysis/evidence/0.97.2"
-RUNTIME = ROOT / "runtime/menu-save-0.97.2"
+RUNTIME = ROOT / "runtime/analysis/history/interface/menu-save/0aae226f7152"
 CLASS_IDS = [1, 2, 3, 4, 5, 7, 8, 9, 11]
 
 # Exclusive bounds come from this target's .pdata; the small PvP lookup has no unwind row.

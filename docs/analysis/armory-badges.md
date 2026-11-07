@@ -36,7 +36,7 @@ Raw imports omit external data/callees and use a generic ABI; actual Win64
 instructions and original PE data determine the recorded argument/layout facts.
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs \
+PYTHONPATH=runtime/tool-state/python/camera/python-libs \
   python3 -B scripts/check-armory-badges.py
 ```
 

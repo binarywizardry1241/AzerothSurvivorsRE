@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class CompressionTests(unittest.TestCase):
     def setUp(self):
-        scratch = ROOT / "runtime/analysis-compression-tests"
+        scratch = ROOT / "runtime/tests/analysis-compression"
         scratch.mkdir(parents=True, exist_ok=True)
         self.temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.root = Path(self.temporary.name)
@@ -27,7 +27,7 @@ class CompressionTests(unittest.TestCase):
     def tearDown(self):
         self.temporary.cleanup()
         try:
-            (ROOT / "runtime/analysis-compression-tests").rmdir()
+            (ROOT / "runtime/tests/analysis-compression").rmdir()
         except OSError:
             pass
 

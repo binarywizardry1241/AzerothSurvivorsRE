@@ -20,7 +20,8 @@ from shared_analysis import SharedAnalysis, _fsync_directory, file_digest
 ROOT = Path(__file__).resolve().parents[1]
 BLOCKED_PARTS = {"analysis", "cargo", "cargo-target", "node_modules", "target", "project", "runner",
                  "home", "tmp", "cache", "config", "data", "state", "menu-state", "tests", "Saves",
-                 "AddOns", "python-libs", "python-deps", "query-python-deps", ".git"}
+                 "AddOns", "python-libs", "python-deps", "query-python-deps", "tool-state", "client",
+                 "github-account", "original-vulkan-cache", ".git"}
 BLOCKED_NAME = re.compile(r"journal|progress|ready|bootstrap|active.process|ownership|persistent.profile|"
                           r"session.result|^plan[.-]|^attempts[.]|^.*[.]lock$", re.I)
 IMMUTABLE_SUFFIXES = (".tsv.gz", ".csv.gz", ".json.gz", ".asm", ".ghidra.c", ".bin")
@@ -132,7 +133,14 @@ def candidates(root, minimum=65536):
     runtime = root / "runtime"
     if not runtime.is_dir():
         return
-    for parent, directories, names in os.walk(runtime, followlinks=False):
+    yield from immutable_candidates(root, runtime, minimum)
+    history = runtime / "analysis/history"
+    if history.is_dir() and not history.is_symlink():
+        yield from immutable_candidates(root, history, minimum)
+
+
+def immutable_candidates(root, directory, minimum):
+    for parent, directories, names in os.walk(directory, followlinks=False):
         directories[:] = sorted(name for name in directories
                                 if name not in BLOCKED_PARTS and not name.startswith("optimized-")
                                 and not name.endswith((".rep", ".app"))
@@ -262,6 +270,8 @@ def main():
     mode.add_argument("--recover", action="store_true")
     mode.add_argument("--repair-aliases", action="store_true", help="Repair only dangling catalog-verified CAS aliases")
     mode.add_argument("--audit-aliases", action="store_true", help="List repairable aliases without changing links")
+    mode.add_argument("--retire-stale-aliases", action="store_true",
+                      help="Retain provenance for missing or replaced aliases without modifying files or payloads")
     mode.add_argument("--share-census-exports", metavar="PLAN", help="Share completed exports under the saved census lock")
     mode.add_argument("--migrate-census-exports", action="store_true", help="Share completed exports in the canonical census store")
     mode.add_argument("--consolidate-proof-files", action="store_true", help="Share frozen census inputs and immutable PE/stage evidence")
@@ -277,7 +287,7 @@ def main():
     if any([args.find_sha256, args.find_target, args.find_text]):
         if any((args.migrate, args.verify, args.recover, args.repair_aliases, args.audit_aliases,
                 args.share_census_exports, args.migrate_census_exports, args.consolidate_proof_files,
-                args.consolidate_identical_legacy)):
+                args.consolidate_identical_legacy, args.retire_stale_aliases)):
             parser.error("Search cannot be combined with a mutation or verification mode")
         if not (ROOT / "runtime/analysis/knowledge.sqlite").is_file():
             parser.error("No shared catalog exists yet")
@@ -294,6 +304,8 @@ def main():
         if not (ROOT / "runtime/analysis/knowledge.sqlite").is_file():
             parser.error("No shared catalog exists yet")
         result = SharedAnalysis(ROOT).repair_aliases(apply=args.repair_aliases)
+    elif args.retire_stale_aliases:
+        result = {"retired_aliases": SharedAnalysis(ROOT).retire_stale_aliases()}
     elif args.share_census_exports:
         result = share_census_exports(args.share_census_exports)
     elif args.migrate_census_exports:

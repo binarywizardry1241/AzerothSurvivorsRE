@@ -13,6 +13,7 @@ import sys
 
 from coverage_common import ROOT, file_sha256, latest_target, load_json, project_path
 from execheck_pipeline import Pipeline, source_closure, AuditSession
+from runtime_layout import owned_runtime_path
 from shared_analysis import file_digest
 
 # These changes preserve the exact stage inputs and sealed output bytes.
@@ -124,8 +125,7 @@ def main():
     profile_hash = digest({"collector": collector})[:16]
     summary_profile = digest(source_closure(ROOT, ["scripts/summarize-native-image.py"]))[:16]
     work = args.work or f"runtime/coverage/{target['sha256']}/pipeline/{profile_hash}"
-    if not project_path(work).is_relative_to(ROOT / "runtime"):
-        raise ValueError("--work must stay in checkout runtime/")
+    work = owned_runtime_path(project_path(work), ROOT).relative_to(ROOT).as_posix()
     bindings = {"python": sys.executable, "target_sha": target["sha256"], "version": target["version"], "work": work,
                 "census_summary": args.census_summary or "docs/analysis/coverage/full-image-census.json", "summary_profile": summary_profile}
     for value in args.bind:

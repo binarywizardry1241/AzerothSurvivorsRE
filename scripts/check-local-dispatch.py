@@ -8,7 +8,7 @@ import itertools
 import struct
 from coverage_common import latest_target,file_sha256
 from local_dispatch_native import DispatchProbe,H,VT,LEAF,PE,D,ENDS,ROOT
-WORK=ROOT/'runtime/q41-local-dispatch-0.113.2'
+WORK=ROOT/'runtime/analysis/history/findings/q41-local-dispatch/a90425d0da88'
 KEEP=ROOT/'docs/analysis/evidence/0.113.2/local-dispatch.json'
 PROFILES=[list(p)for p in itertools.product([False,True],repeat=3)]
 def sha(data):return hashlib.sha256(data).hexdigest()

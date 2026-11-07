@@ -5,6 +5,7 @@ Exact diagnostic paths and baseline source hashes are candidates, never proof
 of the target's source revision. Fixed slots preserve their initial image value;
 local register propagation is deliberately bounded and not runtime observation.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from collections import Counter, deque
 import csv
@@ -198,7 +199,7 @@ def source_candidates(target,diagnostics,owner,expanded,resource_paths=None,*,sy
             'native_source_semantics_established':False})
     missing={row['diagnostic_path'] for row in paths if row['classification']=='missing-engine-source-candidate'}
     archives=[]
-    for archive in sorted((ROOT/'runtime/upstream-sync').glob('benilla-*.tar.gz')):
+    for archive in sorted((ROOT/'runtime/analysis/history/native-recovery/upstream-sync/30a991f45830').glob('benilla-*.tar.gz')):
         matches=[];archive_digest=file_sha256(archive)
         with tarfile.open(archive) as source:
             for member in source:
@@ -594,7 +595,7 @@ def refresh_source_mapping(args,payload):
                                  ('imports','import-ownership.json',report['import_ownership']['artifact']),
                                  ('resolvers','conditional-export-resolvers.json',report['conditional_export_resolvers']['artifact'])):
         receipt=payload['artifacts'][name];path=output_directory/filename
-        derived_bytes(path,(ROOT/receipt['path']).read_bytes(),publish=args.write)
+        derived_bytes(path,(retained_runtime_path(ROOT/receipt['path'], ROOT)).read_bytes(),publish=args.write)
         record['path']=path.relative_to(ROOT).as_posix()
     return report
 

@@ -31,7 +31,7 @@ def main():
     records = []
     visitor = None
     for address in (0x140EAF640, 0x1408D0C20, 0x140C937D0, 0x140C8F030, 0x140C90460):
-        bundle = ROOT / f"runtime/menu-recovery/rea-{address:x}/evidence-bundle.json"
+        bundle = ROOT / f"runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-{address:x}/evidence-bundle.json"
         record = next(r for r in json.loads(bundle.read_text())["records"]
                       if r["operation"] == "analyze_function")
         value = record["raw_result"]["value"]

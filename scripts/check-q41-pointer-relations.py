@@ -4,6 +4,7 @@
 Only original instruction fragments execute with synthetic memory. --stage
 writes review material under runtime/; no compiler or application is invoked.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 import bisect
 import csv
@@ -19,7 +20,7 @@ from coverage_common import file_sha256
 from shared_native_inventory import open_readonly_uri as open_native_inventory
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-WORK = ROOT / "runtime/q41-pointer-relations-0.113.2"
+WORK = ROOT / "runtime/analysis/history/findings/q41-pointer-relations/e48c17ec3be5"
 CURATED = ROOT / "docs/analysis/evidence/0.113.2/q41-pointer-relations"
 RANGES = {
     "armory-argument": (0x140136A95, 0x140136AEF),
@@ -64,7 +65,7 @@ def main():
     inputs = {}
     for role in ["inventory.json", "bodies.tsv.gz", "references.tsv.gz", "native-instructions.sqlite"]:
         item = queue["inputs"][role]
-        assert file_sha256(ROOT / item["path"]) == item["sha256"], role
+        assert file_sha256(retained_runtime_path(ROOT / item["path"], ROOT)) == item["sha256"], role
         inputs[role] = item
     inventory = json.loads((ROOT / inputs["inventory.json"]["path"]).read_text())
     relocations = inventory["pe"]["base_relocation_records"]["records"]

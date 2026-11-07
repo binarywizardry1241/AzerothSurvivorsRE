@@ -33,7 +33,7 @@ established in these five routes, and no new save record or engine code is added
 `python3 -B scripts/check-q41-save-key-leads.py` rechecks all five byte
 leads, the complete fixed-operand input commitment, selected code/producer
 observations and the live source connections. `--stage` writes a candidate under
-ignored `runtime/q41-save-key-leads-0.113.2` for review. Fresh Ghidra can be
+ignored `runtime/analysis/history/findings/q41-save-key-leads/1b5e8184d5b5` for review. Fresh Ghidra can be
 reproduced with the original plan/seeds retained there: the five current owner
 entry candidates recorded in the proof, plus code-only seeds `1400e9c45`/`1400ea3e6`,
 the recorded disabled-analyzer profile and a fresh project-local output path.

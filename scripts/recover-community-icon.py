@@ -27,7 +27,7 @@ def main():
     for start, role in [('1401231b0', 'Creates 40×30 RGBA image at 123b30–123b7a and passes handle to 200950 at 124113'),
                         ('140101160', 'Expands alpha to RGBA(255,255,255,a), 101360–1013b7'),
                         ('140200950', 'Community button and 24×18 tinted ImageNode')]:
-        bundle = ROOT / f'runtime/menu-recovery/rea-{start}/evidence-bundle.json'
+        bundle = ROOT / f'runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-{start}/evidence-bundle.json'
         evidence = None
         if bundle.exists():
             records = json.loads(bundle.read_text())['records']

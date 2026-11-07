@@ -10,7 +10,7 @@ from native_recovery import bits as _shared_bits
 from pathlib import Path
 import hashlib, importlib.util, json, struct, subprocess, sys
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 SHA='17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
@@ -95,7 +95,7 @@ for role,lo,hi,session in [('heal-player',0x1454a54c0,0x1454a589c,'rea-heal-play
  off=pe.rva_offset(lo-pe.image_base);raw=data[off:off+hi-lo];row=dict(role=role,address=hex(lo),end_exclusive=hex(hi),file_offset=hex(off),sha256=hashlib.sha256(raw).hexdigest())
  (OUT/(role+'.asm')).write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={lo:#x}',f'--stop-address={hi:#x}',str(TARGET)],text=True))
  if session:
-  response=ROOT/f'runtime/generic-healing-0.100.1/{session}/003-procedure_pseudo_code.json'
+  response=ROOT/f'runtime/analysis/history/native-recovery/generic-healing/d74f4eab5d63/{session}/003-procedure_pseudo_code.json'
   if response.exists():
    ev=json.loads(response.read_text())['response']['result']['structuredContent'];assert ev['subject']['digest']['sha256']==row['sha256'];assert ev['provider']['id']=='ghidra';row['rea_evidence_id']=ev['evidence_id'];row['analysis_profile']=ev['analysis_profile'];(OUT/(role+'.ghidra.c')).write_text(ev['normalized_result'])
  owners.append(row)

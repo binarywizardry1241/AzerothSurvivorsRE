@@ -28,7 +28,7 @@ def main():
     parser.add_argument('--python-libs', type=Path,
                         help='Existing project-local Unicorn directory')
     parser.add_argument('--output', type=Path,
-                        default=Path('runtime/terminal-restart-0.108.0/native-vectors.json'))
+                        default=Path('runtime/analysis/history/interface/terminal-restart/9687d826a4a5/native-vectors.json'))
     args = parser.parse_args()
     manifest = json.loads((EVIDENCE / 'manifest.json').read_text())
     target = latest_target(verify=True)

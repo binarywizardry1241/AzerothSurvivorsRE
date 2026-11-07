@@ -37,7 +37,7 @@ def main():
         ("14001c280", "Ready3 1.2s timer; apply; localized failure or AppExit success"),
         ("1456a6570", "OpenOptions flags, CreateFileW and truncate-existing behavior"),
     ]:
-        record = json.loads((ROOT / f"runtime/menu-recovery/rea-{address}/evidence-bundle.json").read_text())["records"][0]
+        record = json.loads((ROOT / f"runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-{address}/evidence-bundle.json").read_text())["records"][0]
         va = int(address, 16)
         boundary = next(item for item in pe.functions() if pe.image_base + item[0] == va)
         end = pe.image_base + boundary[1]
@@ -60,10 +60,10 @@ def main():
                     failure="Record stage before attempting its download. On error remove every attempted stage, ignoring cleanup errors, publish Failed4 with original plan+error.",
                     success="Publish Ready3 with retained plan; no replacement performed on this worker thread"),
         gzip=dict(library="flate2-1.1.9", variant="Public read::GzDecoder; private32KiB BufReader into bufread::GzDecoder (single member)",
-                  primary_source="runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/flate2-1.1.9/src/gz/bufread.rs",
-                  primary_source_sha256=hashlib.sha256((ROOT/"runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/flate2-1.1.9/src/gz/bufread.rs").read_bytes()).hexdigest(),
-                  public_read_source_sha256=hashlib.sha256((ROOT/"runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/flate2-1.1.9/src/gz/read.rs").read_bytes()).hexdigest(),
-                  private_buffer_source_sha256=hashlib.sha256((ROOT/"runtime/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/flate2-1.1.9/src/bufreader.rs").read_bytes()).hexdigest(),
+                  primary_source="runtime/tool-state/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/flate2-1.1.9/src/gz/bufread.rs",
+                  primary_source_sha256=hashlib.sha256((ROOT/"runtime/tool-state/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/flate2-1.1.9/src/gz/bufread.rs").read_bytes()).hexdigest(),
+                  public_read_source_sha256=hashlib.sha256((ROOT/"runtime/tool-state/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/flate2-1.1.9/src/gz/read.rs").read_bytes()).hexdigest(),
+                  private_buffer_source_sha256=hashlib.sha256((ROOT/"runtime/tool-state/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/flate2-1.1.9/src/bufreader.rs").read_bytes()).hexdigest(),
                   input_route="1193e5 allocates0x8000;11943b–119459 builds BufReader before161480. Public read::GzDecoder::new builds that same private32KiB buffer then bufread::GzDecoder.",
                   backend="Target byte paths include miniz_oxide-0.8.9 at file0x6ad9025; same dependency already in source lock.",
                   constructor="0x140161929 writes multi byte+0xf0=false",
@@ -71,7 +71,7 @@ def main():
                   table=dict(address="0x1458e9e08",targets=[hex(0x1458E9E08+lane) for lane in struct.unpack('<5i',raw(0x1458E9E08,20))]),
                   branch=dict(start="0x140167180",end="0x14016780e",sha256=hashlib.sha256(raw(0x140167180,0x68e)).hexdigest(),
                               boundary="Explicit original interval within1670c0; not a standalone original function",
-                              rea_evidence_id=json.loads((ROOT/"runtime/menu-recovery/rea-140167180/evidence-bundle.json").read_text())["records"][0]["evidence_id"])),
+                              rea_evidence_id=json.loads((ROOT/"runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-140167180/evidence-bundle.json").read_text())["records"][0]["evidence_id"])),
         open_options=dict(owner="0x140119469",wrapper="0x1456afd70 →1456a68b0 →1456a6570",
                           fields=dict(write_at25=True,truncate_at27=True,create_at28=True,read_at24=False,append_at26=False,create_new_at29=False),
                           windows="CreateFileW GENERIC_WRITE0x40000000/share7/OPEN_ALWAYS4; if existing and truncate, SetFileInformationByHandle FileEndOfFileInfo5 with length0, plus std fallback",
@@ -95,7 +95,7 @@ def main():
                             module="crates/azeroth-survivors-re/src/update_install.rs", linked_to_app=True,
                             scope="Path/apply/cleanup/Ready/stream/part helpers connected in source26 through update_worker.rs native-gated filesystem/HTTP/process adapters. No real adapter executed; compilation and all five connected memory-only fixtures passed in build26.",
                             tests="crates/azeroth-survivors-re/tests/update_install.rs",
-                            result="All18/18 installer fixtures passed Cargo25:6 earlier apply/cleanup/timer,6 stream and6 part-reader cases. Locked offline build14.34s;test compile7.54s;105 harness cases with overlap passed (41 binary,15 native-save,6 config,1 run-modifier,10 save-browser,14 updater,18 installer). Logs runtime/menu-recovery/menu-{build,tests}-25-save-events-talents-progress.log. All injected backends read/write memory; no requests, actual file replacement or process launch.",
+                            result="All18/18 installer fixtures passed Cargo25:6 earlier apply/cleanup/timer,6 stream and6 part-reader cases. Locked offline build14.34s;test compile7.54s;105 harness cases with overlap passed (41 binary,15 native-save,6 config,1 run-modifier,10 save-browser,14 updater,18 installer). Logs runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-{build,tests}-25-save-events-talents-progress.log. All injected backends read/write memory; no requests, actual file replacement or process launch.",
                             stream_fixtures=["Every two-part split, one-byte and empty parts; empty payload", "CRC and ISIZE corruption produce native flate2 InvalidInput error", "Decoded size/SHA mismatch and no decoder-side case normalization", "Only first gzip member decoded, even if second is corrupt", "65538-byte independent zlib fixture crosses64KiB output read and8KiB writer capacities", "Input/write/flush errors precede manifest verification"],
                             sha256="Five closed native4ae320 vectors pass; see update-sha256-native-checks.json. Source helper reuses pinned ring0.17.14 standard SHA256; does not assert native updater crate identity.",
                             part_reader="menu-update-parts.json binds lazy/short/empty/error semantics, shared wrapping counters, exact clock sampling and per-positive-read publication. Six source fixtures PASS25;10 closed native arithmetic checks and3 native I/O-kind lookups passed. Kind0x29 is target Other; source26 NativeParts supplies io::Error::other conversion as code, without live execution."),

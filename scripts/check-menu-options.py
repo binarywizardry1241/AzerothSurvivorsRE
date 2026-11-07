@@ -20,7 +20,7 @@ SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
 TABLE, INDEX = 0x14732E768, 0x148217160
 GETTER, SETTER = 0x1458E1F35, 0x1458E0210
 OPTIONS, COUNT, STRIDE = 0x145EE9600, 105, 152
-WORK = ROOT / "runtime/menu-options-0.115.0"
+WORK = ROOT / "runtime/analysis/history/interface/menu-options/22af7f7d012d"
 KEEP = ROOT / "docs/analysis/evidence/0.115.0/menu-options"
 PRIOR_COMMIT = "0a1b4a62b3de3b0b3c0569537a7e81bf4c2fc73f"
 ADDED = ["Unlocked zones", "No password", "Zone: any",
@@ -32,8 +32,8 @@ def digest(data):
 
 
 def derive(write=False):
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                   str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                   str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as reg

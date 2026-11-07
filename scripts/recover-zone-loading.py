@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Hash-bound #61 cover recovery/replay; never builds or launches an application.
 
---prepare writes raw Ghidra plans below runtime/loading-entry-0.112.5.
+--prepare writes raw Ghidra plans below runtime/analysis/history/native-recovery/loading-entry/5bc5f52a493a.
 --collect stages compact evidence there after the plans run through scripts/rea-batch.py.
 --check checks retained evidence, native gate/progress replays and connected source.
 Requires the existing project-local Capstone and Unicorn recovery dependencies.
@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "445e9de90f1a0e9be18d4e99e59eb170f4d253ac0440b970cdd0d0b3562dfd36"
-WORK = ROOT / "runtime/loading-entry-0.112.5"
+WORK = ROOT / "runtime/analysis/history/native-recovery/loading-entry/5bc5f52a493a"
 RETAINED = ROOT / "docs/analysis/evidence/0.112.5/zone-loading"
 GROUPS = {
     "raise": ([0x14093FD70], 0x14093FEC8),
@@ -47,8 +47,8 @@ def f32(value):
 
 
 def dependencies():
-    for directory in ("runtime/camera-recovery-0.105.0/python-libs",
-                      "runtime/armory-recovery/python-libs"):
+    for directory in ("runtime/tool-state/python/camera/python-libs",
+                      "runtime/tool-state/python/armory/python-libs"):
         sys.path.insert(0, str(ROOT / directory))
 
 

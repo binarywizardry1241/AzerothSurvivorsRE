@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Verify the selected 0.119 Druid native/source receipts without compiling or running a game."""
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import importlib.util
@@ -29,7 +30,7 @@ def main():
         assert pe.rva_offset(int(row['start'],16)-pe.image_base) == at, row['role']
         assert digest(image[at:at+row['byte_count']]) == row['sha256'], row['role']
     for row in [proof['assembly'],proof['decompiler']] + proof['source_receipts']:
-        assert digest((ROOT / row['path']).read_bytes()) == row['sha256'], row['path']
+        assert digest((retained_runtime_path(ROOT / row['path'], ROOT)).read_bytes()) == row['sha256'], row['path']
     # Check exact concatenated instruction bytes and boundaries, independent of Ghidra.
     import capstone
     cs = capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_64)

@@ -36,14 +36,14 @@ def main():
     ]:
         boundary = next(item for item in pe.functions() if pe.image_base + item[0] == address)
         end = pe.image_base + boundary[1]
-        record = json.loads((ROOT / f"runtime/menu-recovery/rea-{address:x}/evidence-bundle.json").read_text())["records"][0]
+        record = json.loads((ROOT / f"runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-{address:x}/evidence-bundle.json").read_text())["records"][0]
         functions.append(dict(address=hex(address), end=hex(end), byte_sha256=hashlib.sha256(raw(address, end-address)).hexdigest(),
                               rea_evidence_id=record["evidence_id"], role=role))
 
     # Replay only the comparison block, supplied with the ASCII-lowercase copy
     # produced earlier in 150850. Both branch outcomes stop before error/return
     # construction. No target helper, import, filesystem or network can execute.
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import UC_X86_REG_RCX, UC_X86_REG_R13
     start, success, failure = 0x140150B50, 0x140150B9C, 0x140150C4C
@@ -134,7 +134,7 @@ def main():
         native_filename_checks=dict(count=len(checks), cases=checks, interval=dict(start=hex(start), end=hex(success), sha256=hashlib.sha256(raw(start, success-start)).hexdigest()),
                                     boundary="Only comparison instructions run in Unicorn. ASCII-lowercase-copy input supplied; success/failure branch stops before allocation/helper/import calls. No OS or update code reachable."),
         env_conversion=dict(interval=["0x1456c7890","0x1456c7952"],byte_sha256=hashlib.sha256(raw(0x1456C7890,194)).hexdigest(),
-                            rea_evidence_id=json.loads((ROOT/"runtime/menu-recovery/rea-1456c7890/evidence-bundle.json").read_text())["records"][0]["evidence_id"],
+                            rea_evidence_id=json.loads((ROOT/"runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-1456c7890/evidence-bundle.json").read_text())["records"][0]["evidence_id"],
                             boundary="Explicit194-byte leaf interval; no PE unwind entry; original ret/CC boundary retained, not claimed as unwind-proven function.",
                             rule="WTF8 String conversion rejects ED A0..BF surrogate encodings; failed env String conversion takes the default URL branch, not lossy substitution."),
         implementation=dict(source26_validation='Build26 final --locked --offline PASS in11.08s (menu-build-26-final.log); preceding combined build PASS in29.09s. All169 focused harness cases with overlap PASS:74 binary,19 native-save,6 config,1 run-modifier,14 save-browser,37 updater,18 installer; test compilation12.95s (menu-tests-26-menu-bridges.log). The five connected memory-only fixtures passed within those harnesses. No live adapter, app, metadata/HTTP request, download, staging/replacement/install or process launch was executed.',

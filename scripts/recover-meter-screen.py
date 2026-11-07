@@ -20,8 +20,8 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 EXE = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/meter-screen-0.105.0"
-STAGE = ROOT / "runtime/native-evidence/0.105.0/run-meters/screen"
+WORK = ROOT / "runtime/analysis/history/native-recovery/meter-screen/fc23cd6fef39"
+STAGE = ROOT / "runtime/analysis/staging/native-evidence/0.105.0/run-meters/screen"
 RETAINED = ROOT / "docs/analysis/evidence/0.105.0/run-meters/screen"
 SPANS = {
     "settings-save": (0x1401661E0, 0x1401662FD),
@@ -84,7 +84,7 @@ def bits(value):
 
 
 def vectors(pe):
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64
     from unicorn.x86_const import (UC_X86_REG_RBP, UC_X86_REG_RSP, UC_X86_REG_RAX,
         UC_X86_REG_RCX, UC_X86_REG_RDX, UC_X86_REG_R8, UC_X86_REG_RIP,

@@ -5,6 +5,7 @@ This executes selected original instructions in isolated Unicorn scratch memory.
 Allocation, visual/packet publication and full hero scheduling are declared seams;
 these cases do not execute reconstructed Rust, sockets, a server or a game.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from collections import Counter
 import hashlib
@@ -434,7 +435,7 @@ def verify(image, pe, required):
         assert at == int(row['file_offset'], 16)
         assert digest(image[at:at + row['byte_count']]) == row['sha256'], row['role']
     for row in proof['exports']:
-        assert digest((ROOT / row['path']).read_bytes()) == row['sha256'], row['path']
+        assert digest((retained_runtime_path(ROOT / row['path'], ROOT)).read_bytes()) == row['sha256'], row['path']
     queries = proof['queries'] + [r for r in old['queries'] if r['role'] in proof['reused_queries']]
     present = 0
     for row in queries:
@@ -497,7 +498,7 @@ def verify_definition_inputs(image, pe, proof):
 def source_checks():
     proof = json.loads(PROOF.read_text())
     for row in proof['source_receipts']:
-        assert digest((ROOT / row['path']).read_bytes()) == row['sha256'], row['path']
+        assert digest((retained_runtime_path(ROOT / row['path'], ROOT)).read_bytes()) == row['sha256'], row['path']
     base = ROOT / 'crates/azeroth-survivors-re'
     read = lambda name: (base / 'src' / name).read_text()
     buffs = read('player_abilities/behavior/buffs.rs')
@@ -564,7 +565,7 @@ def source_checks():
     # Parsing is deliberately separate from compiling or executing these tests.
     parser = ROOT / '.tools/rust/1.98.1-aarch64-apple-darwin/bin/rustfmt'
     assert parser.is_file(), 'Configured syntax parser unavailable'
-    rust = [ROOT / row['path'] for row in proof['source_receipts'] if row['path'].endswith('.rs')]
+    rust = [retained_runtime_path(ROOT / row['path'], ROOT) for row in proof['source_receipts'] if row['path'].endswith('.rs')]
     for path in rust:
         result = subprocess.run([str(parser), '--edition', '2024', '--emit', 'stdout',
                                  '--config', 'skip_children=true'], input=path.read_text(),

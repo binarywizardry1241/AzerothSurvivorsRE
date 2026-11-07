@@ -5,7 +5,7 @@ import argparse,hashlib,importlib.util,json,math,struct,sys
 from pathlib import Path
 from coverage_common import ROOT,latest_target,target_bytes
 SHA='e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048'
-KEPT=ROOT/'docs/analysis/evidence/0.110.0/ordinary-pets';STAGE=ROOT/'runtime/native-evidence/0.110.0/ordinary-pets'
+KEPT=ROOT/'docs/analysis/evidence/0.110.0/ordinary-pets';STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.110.0/ordinary-pets'
 def dump(x):return json.dumps(x,indent=2,allow_nan=False)+'\n'
 def weapon_cases(pe):
     u, r, mem, stack, done = historical.machine(pe)
@@ -129,7 +129,7 @@ def main():
  historical = load_script('historical_weapon_harness', ROOT/'scripts/recover-weapon-power.py')
  t=latest_target(verify=True);assert t['sha256']==SHA;d=target_bytes(t)
  sp=importlib.util.spec_from_file_location('pe',ROOT/'scripts/inventory-executable.py');m=importlib.util.module_from_spec(sp);sp.loader.exec_module(m);pe=m.PE(d)
- sys.path[:0]=[str(ROOT/'runtime/armory-recovery/python-libs'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+ sys.path[:0]=[str(ROOT/'runtime/tool-state/python/armory/python-libs'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
  from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
  import unicorn.x86_const as r
  from capstone import Cs,CS_ARCH_X86,CS_MODE_64

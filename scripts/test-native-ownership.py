@@ -66,7 +66,7 @@ class DiagnosticReferences(unittest.TestCase):
 
 class SourceMappingProjection(unittest.TestCase):
     def setUp(self):
-        scratch = ROOT / "runtime/coverage-tests"
+        scratch = ROOT / "runtime/tests/coverage"
         scratch.mkdir(parents=True, exist_ok=True)
         self.temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.root = Path(self.temporary.name)

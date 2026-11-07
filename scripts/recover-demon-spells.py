@@ -14,8 +14,8 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-WORK = ROOT / 'runtime/demon-scaling-01050'
-OUT = ROOT / 'runtime/native-evidence/0.105.0/demon-spells'
+WORK = ROOT / 'runtime/analysis/history/combat/demon-scaling/b82b4fc2eee1'
+OUT = ROOT / 'runtime/analysis/staging/native-evidence/0.105.0/demon-spells'
 RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/demon-spells'
 RANGES = {
     'infernal-status-capture': (0x14594F752, 0x14594F7C3),
@@ -40,7 +40,7 @@ def bits(value):
     return _shared_bits(value)
 
 def vectors(pe):
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, __version__
     import unicorn.x86_const as reg
     u = Uc(UC_ARCH_X86, UC_MODE_64)

@@ -64,7 +64,7 @@ def main():
     ends = {pe.image_base + a: pe.image_base + b for a, b, _ in pe.functions()}
     output = ROOT / "docs/analysis/evidence/0.97.2/loot"
     output.mkdir(parents=True, exist_ok=True)
-    runtime = ROOT / "runtime/treasure-0.97.2"
+    runtime = ROOT / "runtime/analysis/history/native-recovery/treasure/8e7a02353994"
     (runtime / "slices").mkdir(parents=True, exist_ok=True)
     records = []
     for name, start in SCOPES.items():

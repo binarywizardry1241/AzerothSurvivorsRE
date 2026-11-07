@@ -14,7 +14,7 @@ The [proof](evidence/0.113.2/q41-call-interfaces.json) retains the original rout
 records separately from the new classifications, current native ranges, fresh
 REA/Ghidra bodies/Evidence IDs and 153 synthetic instruction cases. Run
 `python3 -B scripts/check-q41-call-interfaces.py`; `--stage` writes a
-candidate under ignored `runtime/q41-call-interfaces-0.113.2/`. Original current
+candidate under ignored `runtime/analysis/history/findings/q41-call-interfaces/3d285c807f09/`. Original current
 probe plans/responses remain there. No application or compiled code is built.
 
 | Target / original records | Bounded result |

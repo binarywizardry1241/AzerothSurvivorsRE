@@ -54,7 +54,7 @@ policy; this repair does not rewrite the broader save format or refund talents.
 
 Run `python3 scripts/recover-save-unlocks.py --check` from the checkout.
 Without `--check`, fresh reviewed candidates are generated beneath
-`runtime/save-unlock-0.105.0/curated`, leaving retained evidence untouched.
+`runtime/analysis/history/progression/save-unlock/58edea489ca1/curated`, leaving retained evidence untouched.
 
 **209 native instruction cases passed**: 22 exact zone-key cases, 17 class/record
 cases and 170 unlock-merge cases. These include all nine playable classes and

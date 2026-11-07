@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
 from coverage_common import latest_target
 SHA='8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-WORK=ROOT/'runtime/fixgap32-33'
+WORK=ROOT/'runtime/analysis/history/findings/fixgap32-33/9040a2da4887'
 OUT=ROOT/'docs/analysis/evidence/0.105.0/auxiliary-spell-scales'
 SPANS={'timed26-collector':(0x14599e640,0x14599e793),
  'refresh-neutral-instance':(0x14592853b,0x1459285c1),
@@ -45,7 +45,7 @@ def main():
   ghidra=dict(start='0x145927dc0',end_exclusive='0x145928908',sha256=hashlib.sha256(raw(0x145927dc0,0xb48)).hexdigest(),pseudocode='refresh.ghidra.c',pseudocode_sha256=hashlib.sha256(text.encode()).hexdigest(),evidence_id=ev['evidence_id'])
  assert hashlib.sha256((OUT/ghidra['pseudocode']).read_bytes()).hexdigest()==ghidra['pseudocode_sha256']
  assert hashlib.sha256(raw(int(ghidra['start'],16),int(ghidra['end_exclusive'],16)-int(ghidra['start'],16))).hexdigest()==ghidra['sha256']
- sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+ sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
  from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
  from unicorn import x86_const as x
  u=Uc(UC_ARCH_X86,UC_MODE_64);extent=max(s['rva']+max(s['raw_size'],s['virtual_size'])for s in pe.sections);u.mem_map(pe.image_base,(extent+4095)&~4095)

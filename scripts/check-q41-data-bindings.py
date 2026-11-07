@@ -4,6 +4,7 @@
 Only original instructions and declared allocation/localization seams run. No
 compiler, application, files/save operations, Rust or renderer is exercised.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 import csv
 import gzip
@@ -16,7 +17,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
-WORK = ROOT / 'runtime/q41-data-relations-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/findings/q41-data-relations/26c724b75a92'
 CURATED = ROOT / 'docs/analysis/evidence/0.113.2/q41-data-bindings'
 ENTRY, END = 0x1401A8020, 0x1401A81C6
 LITERAL, SIZE = 0x145EEE140, 17
@@ -32,8 +33,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--stage', action='store_true')
     args = parser.parse_args()
-    sys.path[:0] = [str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'),
-                   str(ROOT / 'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'),
+                   str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as reg
@@ -58,7 +59,7 @@ def main():
     assert queue['selectors']['Q41-D02']['records'] == 174560
     inputs = {key: queue['inputs'][key] for key in ('references.tsv.gz', 'bodies.tsv.gz')}
     for item in inputs.values():
-        assert digest((ROOT / item['path']).read_bytes()) == item['sha256']
+        assert digest((retained_runtime_path(ROOT / item['path'], ROOT)).read_bytes()) == item['sha256']
     with gzip.open(ROOT / inputs['bodies.tsv.gz']['path'], 'rt') as file:
         owners = list(csv.DictReader(file, delimiter='\t'))
     assert not any(row['external'] == 'false' and int(row['start'], 16) <= LITERAL <= int(row['end'], 16)

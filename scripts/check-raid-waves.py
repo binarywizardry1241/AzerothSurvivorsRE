@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check 0.109.0 concentric-wave records/instructions without a compiler or game.
 
---write stages curated evidence under runtime/native-evidence/0.109.0/raid-waves.
+--write stages curated evidence under runtime/analysis/staging/native-evidence/0.109.0/raid-waves.
 Optional Capstone/Unicorn dependencies must already be installed. Native external
 height, hold and packet functions are explicit seams, not executed game code.
 """
@@ -17,7 +17,7 @@ import struct
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-STAGED = ROOT / 'runtime/native-evidence/0.109.0/raid-waves'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/raid-waves'
 RETAINED = ROOT / 'docs/analysis/evidence/0.109.0/raid-waves'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src/bosses/raid_shapes.rs'
 CATALOG = ROOT / 'crates/azeroth-survivors-re/src/bosses/raid_area_catalog.rs'

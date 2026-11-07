@@ -19,8 +19,8 @@ import sys
 from coverage_common import ROOT, latest_target
 
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-WORK = ROOT / 'runtime/totem-cap-01050'
-OUT = ROOT / 'runtime/native-evidence/0.105.0/totem-cap'
+WORK = ROOT / 'runtime/analysis/history/combat/totem-cap/8d6fe173bd27'
+OUT = ROOT / 'runtime/analysis/staging/native-evidence/0.105.0/totem-cap'
 RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/totem-cap'
 RANGES = {
     'expiry': (0x145949470, 0x14594980a),
@@ -59,7 +59,7 @@ def current_cap(mode, contract_path):
     ranges = [(address(row['start']), address(row['end_exclusive'])) for row in contract['ranges']]
     for row, (start, end) in zip(contract['ranges'], ranges):
         assert hashlib.sha256(raw(start, end - start)).hexdigest() == row['sha256']
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as x
     machine = Uc(UC_ARCH_X86, UC_MODE_64)
@@ -220,7 +220,7 @@ def main():
     cap = next(r for r in json.loads((ROOT / 'docs/analysis/evidence/0.105.0/game-mode-audit/native-manifest.json').read_text())['native_observations'] if r['role'] == 'totem-kind-cap-branch')
     assert hashlib.sha256(raw(int(cap['virtual_address'], 16), cap['byte_count'])).hexdigest() == cap['sha256']
 
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as x
     u = Uc(UC_ARCH_X86, UC_MODE_64)

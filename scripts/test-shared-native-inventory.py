@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class NativeStorage(unittest.TestCase):
     def setUp(self):
-        scratch = ROOT / "runtime/shared-native-tests"
+        scratch = ROOT / "runtime/tests/shared-native"
         scratch.mkdir(parents=True, exist_ok=True)
         self.temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.root = Path(self.temporary.name)

@@ -145,7 +145,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
     result = check()
     if args.stage:
-        output = ROOT / "runtime/picker-art-0.113.2/resource-source-proof.json"
+        output = ROOT / "runtime/analysis/history/interface/picker-art/5bd0e9fa60e9/resource-source-proof.json"
         output.write_text(json.dumps(result, indent=2) + "\n")
     else:
         assert result == load_json(DIRECTORY / "resource-source-proof.json")

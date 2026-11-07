@@ -192,7 +192,7 @@ an untouched initial attack delay, no death rewards and no second replacement
 next frame. Its r18 focused rerun passed **54/54**, with the current boss catalog
 and scaling focused cases each passing1/1. The separate current/historical
 fixture boundaries were corrected by the target worker/root. Log:
-`runtime/consolidation-2026-10-19/final-regressions-r17.log`.
+`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/final-regressions-r17.log`.
 
 The subsequent [milestone/conversion and indexed refresh pass](milestone-effects.md)
 retains760 unchanged native instruction cases and adds four library/four
@@ -207,7 +207,7 @@ learned grant27 and timed grant26. The corrected tests now require level HP
 109/118 and verify that timed casting neither duplicates the granted Whirlwind
 slot nor resets its independent learned timer. Those fixture corrections passed
 in r17. Integration targets had not yet run after the failed
-application target. Log:`runtime/consolidation-2026-10-19/final-regressions-r16.log`.
+application target. Log:`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/final-regressions-r16.log`.
 
 The frame/aura/earned-level application regressions passed in r17. They cover
 self-shield before a due hostile impact,
@@ -230,32 +230,32 @@ The subsequent r14b pass succeeded: **45 library,147 application,6 boss ability
 and6 boss AI tests passed**, including the shared serial and full generated
 cache transaction. One separate Saves fixture assumed a case-sensitive volume;
 its corrected filesystem test and engine request/picking tests run separately.
-Log:`runtime/consolidation-2026-10-19/shared-serial-integration-r14b.log`.
+Log:`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/shared-serial-integration-r14b.log`.
 
 Before the final execution-aware generic callback seam, the targeted Cargo run
 passed23 library and28 mechanics tests, including selected loadout composition,
 shared rescue deadlines, native account grants/Veteran and corrected threshold
-rounding. Log:`runtime/consolidation-2026-10-19/effects-native-grants-tests.log`.
+rounding. Log:`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/effects-native-grants-tests.log`.
 The central r6 pass compiled the execution-aware bridge and passed26 library
 and115 binary cases; its sole failed Chastise assertion discarded the tick that
 contained the synchronous Nova. The corrected focused Chastise test and ordinary
 XP/gold rounding test pass. Subsequent focused tests pass all800 selected-native
 hit-token vectors, variant12 aura/rate-limited explosions and variant14 owner
 exclusion plus original tick restoration. Logs are under
-`runtime/consolidation-2026-10-19/{chastise-focused,pickup-focused,hit-tokens-800,kill-explosion-focused,kill-spread-focused}.log`.
+`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/{chastise-focused,pickup-focused,hit-tokens-800,kill-explosion-focused,kill-spread-focused}.log`.
 The later shared refresh/callback pass succeeded in19 focused live tests,
 including bounce raw-power ownership, stun, exhausted stored-DoT explosion
 eligibility and same-frame temporary-stat leech/expiry. Log:
-`runtime/consolidation-2026-10-19/callback-live-r3.log`. The subsequent combined
+`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/callback-live-r3.log`. The subsequent combined
 current library/binary r11 pass succeeded43 library and133 binary tests in
-`runtime/consolidation-2026-10-19/effects-presentation-integration-r11.log`.
+`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/effects-presentation-integration-r11.log`.
 The r12 initial new batch regression exposed an SSE NaN operand-order and
 unordered-credit admission difference; the retained native cases drove its
 correction. R12c then passed44 library and138 binary tests. The latest combined
 pass passed44 library and142 binary tests, including480 new batch vectors,
 actual physical attack metadata, canonical appearance restoration, healing
 meter proportions and stun Stop/serial/aura ordering. Log:
-`runtime/consolidation-2026-10-19/effects-presentation-integration-r13b.log`.
+`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/effects-presentation-integration-r13b.log`.
 R13 initially hit an incomplete concurrent presentation edit; the coherent
 snapshot was rerun as r13b. Native condition
 tests contain1539 finite original-instruction cases; bounded instruction

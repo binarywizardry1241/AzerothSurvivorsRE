@@ -3,7 +3,7 @@
 
 This script never executes either EXE. A match locates a candidate for REA;
 it does not establish that its behavior survived a version change. All output
-is disposable project-local research material under runtime/treasure-0.97.2.
+is disposable project-local research material under runtime/analysis/history/native-recovery/treasure/8e7a02353994.
 """
 from portable_paths import objdump_output
 
@@ -65,7 +65,7 @@ def main():
     low = new.rva_offset(0x5300000)
     high = new.rva_offset(0x5650000)
     search = new.data[low:high]
-    output = ROOT / "runtime/treasure-0.97.2"
+    output = ROOT / "runtime/analysis/history/native-recovery/treasure/8e7a02353994"
     output.mkdir(parents=True, exist_ok=True)
     records = []
     for role, address in SEEDS.items():

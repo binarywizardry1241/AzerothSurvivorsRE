@@ -55,7 +55,7 @@ no catalog effects.
 [`recover-pvp-gear.py`](../../scripts/recover-pvp-gear.py)
 hash-checks the reference before recovery. `--write-assets` regenerates only the
 supplemental PvP/drop asset; `--prepare` stages native slices/plans under ignored
-`runtime/pvp-gear-0.105.0/`. Source builds consume the checked-in JSON and never
+`runtime/analysis/history/inventory/pvp-gear/cf55d61c5cf0/`. Source builds consume the checked-in JSON and never
 require the reference EXE. `--fixtures` requires the project-local Unicorn
 dependency used by the existing recovery tools.
 

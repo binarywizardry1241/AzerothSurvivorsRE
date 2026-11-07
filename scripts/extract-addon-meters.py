@@ -12,7 +12,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-RUNTIME = ROOT / "runtime/addon-bridge-0.105.0/meters"
+RUNTIME = ROOT / "runtime/analysis/history/addon/addon-bridge/c88825b8ee6e/meters"
 RETAINED = ROOT / "docs/analysis/evidence/0.105.0/addon-bridge/meters"
 OWNERS = {
     "serialize-meter": (0x1458BFF90, 0x1458C01AA),

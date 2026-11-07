@@ -31,7 +31,7 @@ def main():
     parser.add_argument('--python-libs', type=Path,
                         help='Existing project-local Unicorn installation')
     parser.add_argument('--output', type=Path,
-                        default=Path('runtime/terminal-visuals-0.108.0/native-vectors.json'))
+                        default=Path('runtime/analysis/history/interface/terminal-visuals/5e13c68cce68/native-vectors.json'))
     parser.add_argument('--prepare-rea', action='store_true',
                         help='Stage raw-function Ghidra reproduction plans under runtime/')
     args = parser.parse_args()
@@ -89,7 +89,7 @@ def main():
             require(hashlib.sha256(raw(a, e-a)).hexdigest() == owner['sha256'],
                     f'Public hook-registration owner changed at {a:#x}')
     if args.prepare_rea:
-        directory = ROOT / 'runtime/terminal-visuals-0.108.0/reproduction'
+        directory = ROOT / 'runtime/analysis/history/interface/terminal-visuals/5e13c68cce68/reproduction'
         directory.mkdir(parents=True, exist_ok=True)
         for row in ranges.values():
             if 'rea_evidence_id' not in row:

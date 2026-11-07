@@ -68,7 +68,7 @@ def derive(root, source_root):
             for role, first, count in [("first-byte-table", 0x14730de70, 180),
                                        ("h-second-byte-table", 0x14730df24, 40)]]
 
-    query_root = "runtime/q41-font-filter-0.121.0"
+    query_root = "runtime/analysis/history/findings/q41-font-filter/ec279f17978a"
     plan = binding(query_root + "/plan-v2.json")
     journal_path = query_root + "/query-v2/journal.json"
     journal = json.loads((root / journal_path).read_text())

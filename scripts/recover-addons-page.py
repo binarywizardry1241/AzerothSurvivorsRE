@@ -20,7 +20,7 @@ def main():
     target=latest_target(verify=True);assert target['version']=='0.105.0' and target['sha256']==SHA
     data=(ROOT/target['path']).read_bytes()
     module = load_script('inventory', ROOT/'scripts/inventory-executable.py');pe=module.PE(data)
-    sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
     import unicorn.x86_const as r
     u=Uc(UC_ARCH_X86,UC_MODE_64)
@@ -62,7 +62,7 @@ def main():
                         'Status priority does not establish all TOC parsing, transitive loader behavior, rendering or runtime parity.'])
     if args.check:assert portable_record(json.loads(RETAINED.read_text()))==portable_record(result)
     else:
-        path=ROOT/'runtime/secondary-options-0.105.0/addons-page.json';path.parent.mkdir(parents=True,exist_ok=True);path.write_text(portable_json(result,indent=2)+'\n')
+        path=ROOT/'runtime/analysis/history/native-recovery/secondary-options/5690c1d4900f/addons-page.json';path.parent.mkdir(parents=True,exist_ok=True);path.write_text(portable_json(result,indent=2)+'\n')
     print('Checked all16 current AddOns status combinations; no native external call, game or compilation')
 
 

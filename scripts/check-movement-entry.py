@@ -9,7 +9,7 @@ from coverage_common import ROOT, latest_target, file_sha256, json_text
 from movement_entry_native import MovementEntry, FIRST, LAST, BEGIN, PHASE_STOP, D, PE, f32
 
 OUT = ROOT / 'docs/analysis/evidence/0.113.2/movement-entry'
-WORK = ROOT / 'runtime/q41-movement-entry-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/findings/q41-movement-entry/69454deae884'
 
 
 def record(path):
@@ -23,7 +23,7 @@ def main():
     target = latest_target(verify=True)
     assert target['sha256'] == '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
     import sys
-    sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     decoder = Cs(CS_ARCH_X86, CS_MODE_64)
 
@@ -83,8 +83,8 @@ def main():
     assert 'last_reported_position' not in text
     assert 'correction_commits_its_position_and_teleport_before_starting_the_run' in text
     observations = []
-    for path in [ROOT/'runtime/q41-local-movement-0.113.2/rea/003-procedure_info-1458fd2b0.json',
-                 ROOT/'runtime/q41-local-begin-0.113.2/rea/003-procedure_info.json']:
+    for path in [ROOT/'runtime/analysis/history/findings/q41-local-movement/0c550a598fd4/rea/003-procedure_info-1458fd2b0.json',
+                 ROOT/'runtime/analysis/history/findings/q41-local-begin/87c7d513caa2/rea/003-procedure_info.json']:
         evidence = json.loads(path.read_text())['response']['result']['structuredContent']
         observation = {k: evidence[k] for k in ['evidence_id', 'provider', 'operation', 'parameters', 'normalized_result']}
         profile = evidence['analysis_profile']

@@ -15,7 +15,7 @@ from pathlib import Path
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = ROOT / "runtime/run-integration-0.100.1"
+WORK = ROOT / "runtime/analysis/history/native-recovery/run-integration/f5d0ab575d26"
 OUT = ROOT / "docs/analysis/evidence/0.100.1/run-integration"
 OLD = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.100.1.exe"

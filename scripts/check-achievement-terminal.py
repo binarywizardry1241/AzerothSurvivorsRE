@@ -19,10 +19,10 @@ parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--stage', action='store_true')
 parser.add_argument('--prepare-rea', action='store_true')
 args = parser.parse_args()
-sys.path.insert(0, str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from native_terminal import NativeReplay, require, verified_input
 
-work = ROOT/'runtime/achievement-grants-0.112.0'
+work = ROOT/'runtime/analysis/history/progression/achievement-grants/6d75f76be1b4'
 evidence = work/'terminal-curated' if args.stage else ROOT/'docs/analysis/evidence/0.112.0/achievement-terminal'
 manifest, target, data, pe = verified_input(evidence)
 require(target['sha256'] == 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a', 'Selected target changed')
@@ -452,7 +452,7 @@ start, end = int(tick['va'], 16), int(tick['end'], 16)
 offset = pe.rva_offset(start-pe.image_base)
 body = data[offset:offset+end-start]
 require(hashlib.sha256(body).hexdigest() == tick['sha256'], 'Canonical current tick identity')
-sys.path.insert(0, str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'))
+sys.path.insert(0, str(ROOT/'runtime/tool-state/python/camera/python-libs'))
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64, CS_AC_WRITE, CS_OP_MEM
 decoder = Cs(CS_ARCH_X86, CS_MODE_64)
 decoder.detail = True

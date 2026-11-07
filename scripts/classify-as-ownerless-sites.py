@@ -166,7 +166,7 @@ def generate(root, target, pe, decoder):
         assert journal['status'] == 'completed'
         for result in prior_query['results']:
             assert commitment(result['path'])['sha256'] == result['sha256']
-        raw_path = f'runtime/q41-native-ownership-0.119.0/{name}.bin'
+        raw_path = f'runtime/analysis/history/findings/q41-native-ownership/4f8ecbe3466f/{name}.bin'
         raw = (root / raw_path).read_bytes()
         assert hashlib.sha256(raw).hexdigest() == journal['identity']['target']['sha256']
         old_start = int(journal['identity']['open_options']['entry_point'], 16)

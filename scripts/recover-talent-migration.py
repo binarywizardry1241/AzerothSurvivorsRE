@@ -18,8 +18,8 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
-WORK = ROOT / 'runtime/talent-migration-01050'
-OUT = ROOT / 'runtime/native-evidence/0.105.0/talent-migration'
+WORK = ROOT / 'runtime/analysis/history/progression/talent-migration/367c7942bb6d'
+OUT = ROOT / 'runtime/analysis/staging/native-evidence/0.105.0/talent-migration'
 RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/talent-migration'
 OWNERS = {
     'decode-entry': (0x1459a6540, 0x1459a679b),
@@ -60,7 +60,7 @@ def main():
             (WORK / f'{role}.bin').write_bytes(blob)
             save(WORK / f'{role}-plan.json', dict(
                 target=str((WORK / f'{role}.bin').relative_to(ROOT)),
-                output=f'runtime/talent-migration-01050/rea-{role}',
+                output=f'runtime/analysis/history/progression/talent-migration/367c7942bb6d/rea-{role}',
                 init_timeout=60, open_timeout=60, timeout=180,
                 open_options=dict(format='raw-binary', architecture='x86_64', entry_point=hex(lo)),
                 operations=[dict(name='procedure_pseudo_code', arguments=dict(procedure=hex(lo)))]))
@@ -94,7 +94,7 @@ def main():
                 if field in expected:
                     assert hashlib.sha256((RETAINED / expected[field]).read_bytes()).hexdigest() == expected[field + '_sha256']
 
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)

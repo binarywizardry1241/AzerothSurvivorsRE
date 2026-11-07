@@ -43,7 +43,7 @@ visibility and response path; no new packet envelope or UI owner is introduced.
 Run the maintained non-compiling checker:
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs:runtime/camera-recovery-0.105.0/python-libs python3 -B scripts/check-coop-picks.py --current
+PYTHONPATH=runtime/tool-state/python/armory/python-libs:runtime/tool-state/python/camera/python-libs python3 -B scripts/check-coop-picks.py --current
 ```
 
 It passes **835 isolated original-instruction cases**: 784 missing-timer/reset/

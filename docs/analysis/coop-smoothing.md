@@ -73,7 +73,7 @@ only on the demonstrated transformation branches.
 ## Static checks and limits
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-coop-smoothing.py
 ```
 

@@ -114,7 +114,7 @@ def main():
     generated += ['];', suffix.rstrip()]
     generated = '\n'.join(generated) + '\n'
 
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     native = Uc(UC_ARCH_X86, UC_MODE_64)

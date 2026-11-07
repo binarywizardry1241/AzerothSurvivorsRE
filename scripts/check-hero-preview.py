@@ -19,7 +19,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-WORK = ROOT / 'runtime/secondary-pages-0.109.0'
+WORK = ROOT / 'runtime/analysis/history/native-recovery/secondary-pages/408536b1c3c9'
 OUT = ROOT / 'docs/analysis/evidence/0.109.0/hero-preview'
 OWNERS = {
     'hero-booth': (0x140C17470, 0x140C19989),
@@ -67,8 +67,8 @@ def main():
             (WORK / (role + '-plan.json')).write_text(portable_json(plan, indent=2) + '\n')
         print('Prepared four exact current-target Ghidra inputs; target not run.')
         return
-    sys.path[:0] = [str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'),
-                    str(ROOT / 'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'),
+                    str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
     import capstone
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as reg

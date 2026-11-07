@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
 OUT = ROOT / 'docs/analysis/evidence/0.97.2/enemies'
-RUNTIME = ROOT / 'runtime/enemies-relocation-0.97.2'
+RUNTIME = ROOT / 'runtime/analysis/history/native-recovery/enemies-relocation/2f83a9a2dd04'
 FUNCTION = 0x145531cb0
 
 
@@ -55,7 +55,7 @@ def main():
         offset = int(function['file_offset'], 16)
         path.write_bytes(data[offset:offset + end - FUNCTION])
         save(RUNTIME / f'plan-{FUNCTION:x}.json', dict(
-            target=str(path.relative_to(ROOT)), output=f'runtime/enemies-relocation-0.97.2/rea-{FUNCTION:x}',
+            target=str(path.relative_to(ROOT)), output=f'runtime/analysis/history/native-recovery/enemies-relocation/2f83a9a2dd04/rea-{FUNCTION:x}',
             open_options=dict(format='raw-binary', architecture='x86_64', entry_point=hex(FUNCTION)),
             timeout=180, open_timeout=60,
             operations=[dict(name='analyze_function', arguments=dict(procedure=hex(FUNCTION)))]))
@@ -95,7 +95,7 @@ def main():
 
 
 def fixtures(data, pe, function):
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     uc = Uc(UC_ARCH_X86, UC_MODE_64)

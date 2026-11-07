@@ -15,16 +15,16 @@ import sys
 from coverage_common import ROOT, json_text, latest_target, target_bytes
 from script_sources import load_script
 
-sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 import unicorn.x86_const as r
 
-sys.path.insert(0, str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"))
+sys.path.insert(0, str(ROOT / "runtime/tool-state/python/camera/python-libs"))
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 KEPT = ROOT / "docs/analysis/evidence/0.113.2/as-state-contracts/collections.json"
-STAGE = ROOT / "runtime/as-state-contracts-0.113.2/staged/collections.json"
+STAGE = ROOT / "runtime/analysis/history/native-recovery/as-state-contracts/a6cf7f2e1fff/staged/collections.json"
 OWNERS = [("packed-guid", 0x1458B6E10, 0x1458B7025),
           ("remove-pickup", 0x14594FD70, 0x14594FF8D),
           ("nearby-pickup-guids", 0x14598AD90, 0x14598AFEE),

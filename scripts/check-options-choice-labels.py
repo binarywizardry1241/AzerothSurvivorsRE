@@ -14,13 +14,13 @@ import sys
 
 from coverage_common import ROOT, file_sha256, latest_target
 
-sys.path[:0] = [str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'),
-               str(ROOT / 'runtime/armory-recovery/python-libs')]
+sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'),
+               str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
 import native_talent_fixture as native
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 RETAINED = ROOT / 'docs/analysis/evidence/0.112.0/options-choice-labels/cases.json'
-STAGED = ROOT / 'runtime/native-evidence/0.112.0/options-choice-labels/cases.json'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.112.0/options-choice-labels/cases.json'
 
 
 def main():

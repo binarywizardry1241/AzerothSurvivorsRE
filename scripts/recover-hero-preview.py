@@ -117,7 +117,7 @@ def main():
     inventory = load_script('inventory', ROOT/'scripts/inventory-executable.py')
     pe = inventory.PE(binary)
     functions = {pe.image_base+a:pe.image_base+z for a,z,_ in pe.functions()}
-    runtime = ROOT/'runtime/hero-preview-0.97.2'
+    runtime = ROOT/'runtime/analysis/history/native-recovery/hero-preview/aba028924da5'
     runtime.mkdir(exist_ok=True)
     evidence = ROOT/'docs/analysis/evidence/0.97.2'
     records = []
@@ -128,8 +128,8 @@ def main():
         stem = f'{start:x}'
         if args.prepare:
             (runtime/f'{stem}.bin').write_bytes(payload)
-            plan = dict(target=f'runtime/hero-preview-0.97.2/{stem}.bin',
-                        output=f'runtime/hero-preview-0.97.2/rea-{stem}',
+            plan = dict(target=f'runtime/analysis/history/native-recovery/hero-preview/aba028924da5/{stem}.bin',
+                        output=f'runtime/analysis/history/native-recovery/hero-preview/aba028924da5/rea-{stem}',
                         open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(start)),
                         timeout=240,open_timeout=60,
                         operations=[dict(name='analyze_function',arguments=dict(procedure=hex(start)))])

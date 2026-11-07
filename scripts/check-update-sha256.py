@@ -28,7 +28,7 @@ def main():
     assert any(pe.image_base+a == start and pe.image_base+b == end for a,b,*_ in pe.functions())
     initial = raw(0x1458E5BB8,32)
     assert struct.unpack("<8I",initial) == (0x6A09E667,0xBB67AE85,0x3C6EF372,0xA54FF53A,0x510E527F,0x9B05688C,0x1F83D9AB,0x5BE0CD19)
-    sys.path.insert(0,str(ROOT/"runtime/armory-recovery/python-libs"))
+    sys.path.insert(0,str(ROOT/"runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import UC_X86_REG_RCX,UC_X86_REG_RDX,UC_X86_REG_R8,UC_X86_REG_RSP,UC_X86_REG_RIP
     machine = Uc(UC_ARCH_X86,UC_MODE_64)
@@ -64,7 +64,7 @@ def main():
         expected=hashlib.sha256(payload).hexdigest()
         assert actual==expected,(len(payload),actual,expected)
         checks.append(dict(input_length=len(payload),input_sha256=expected,native_sha256=actual,blocks=len(padded)//64))
-    record=json.loads((ROOT/"runtime/menu-recovery/rea-1404ae320/evidence-bundle.json").read_text())["records"][0]
+    record=json.loads((ROOT/"runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-1404ae320/evidence-bundle.json").read_text())["records"][0]
     report=dict(date="2026-10-16",target_sha256=SHA,owner="0x140119320",
                 compression=dict(start=hex(start),end=hex(end),sha256=hashlib.sha256(raw(start,end-start)).hexdigest(),rea_evidence_id=record["evidence_id"]),
                 initial_state=dict(address="0x1458e5bb8",bytes_hex=initial.hex(),owner_load="0x14011954b/0x140119559"),

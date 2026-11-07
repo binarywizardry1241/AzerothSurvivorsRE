@@ -243,7 +243,7 @@ cases additionally establish the actor category/dead/retirement boundaries.
 Replay with `python3 -B scripts/check-achievement-grants.py`. To prepare
 fresh Ghidra inputs, use its `--prepare-rea` option and run the nine generated
 plans with `python3 -B scripts/rea-batch.py <plan>`. Outputs stay under ignored
-`runtime/achievement-grants-0.112.0`; the EXE is read in place and never launched.
+`runtime/analysis/history/progression/achievement-grants/6d75f76be1b4`; the EXE is read in place and never launched.
 Ghidra raw fragments have incomplete external/ABI context and indirect-table
 limits; byte-bound dispatch and original instruction replay establish the
 contracts, rather than inferred decompiler argument types.

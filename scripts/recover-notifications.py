@@ -13,8 +13,8 @@ import argparse, hashlib, json, math, struct, subprocess, sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.100.1.exe'
 SHA = '17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
-OUT = ROOT / 'runtime/native-evidence/0.100.1/notifications'
-WORK = ROOT / 'runtime/target-menu-consolidation'
+OUT = ROOT / 'runtime/analysis/staging/native-evidence/0.100.1/notifications'
+WORK = ROOT / 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0'
 OWNERS = {
     'dispatch': 0x140062b50, 'update': 0x1400925b0, 'row': 0x1401034a0,
     'root-bundle': 0x14034e3e0, 'deferral-producer': 0x140061430,
@@ -106,7 +106,7 @@ def main():
 
 
 def native_fixtures(pe, data):
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import (UC_X86_REG_RSP, UC_X86_REG_RBP, UC_X86_REG_R12,
         UC_X86_REG_R13, UC_X86_REG_R15, UC_X86_REG_EDX, UC_X86_REG_XMM0,

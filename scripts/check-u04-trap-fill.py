@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Replay Q41-U04 trap-fill or complement stop evidence without running the target."""
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json
 import argparse
 from bisect import bisect_right
@@ -20,7 +21,7 @@ from shared_native_inventory import open_readonly_uri as open_native_inventory
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 START, END = 0x145807d86, 0x145807d90
 OUT = ROOT / 'docs/analysis/evidence/0.113.2/u04-trap-fill.json'
-PROBE = ROOT / 'runtime/fixgap-u04-0.113.2/rea-bounded'
+PROBE = ROOT / 'runtime/analysis/history/findings/fixgap-u04/0947d2a831c0/rea-bounded'
 
 
 def load(path):
@@ -32,7 +33,7 @@ def commitment(path):
 
 
 def committed(record):
-    path = ROOT / record['path']
+    path = retained_runtime_path(ROOT / record['path'], ROOT)
     assert path.resolve().is_relative_to(ROOT), 'Input escapes checkout'
     assert file_sha256(path) == record['sha256'], f'Input drift: {path}'
     return path
@@ -146,7 +147,7 @@ def derive(generator):
     for row in observations[5:7]:
         row['result'] = {key: row['result'][key] for key in ['address', 'status', 'procedure', 'mnemonic', 'flow']}
     observations[0]['result'] = {'complete': True, 'matched_installed_file_context': True}
-    seed_path = ROOT / 'runtime/fixgap-u04-0.113.2/seeds.tsv'
+    seed_path = ROOT / 'runtime/analysis/history/findings/fixgap-u04/0947d2a831c0/seeds.tsv'
     assert file_sha256(seed_path) == profile['parameters']['analysis_seeds']['sha256']
     assert load(PROBE / 'run.json')['failure'] is None
     return {'schema_version': 1, 'target': {key: target[key] for key in ['version', 'path', 'sha256', 'size_bytes']},

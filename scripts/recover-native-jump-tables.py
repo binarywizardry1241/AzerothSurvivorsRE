@@ -5,6 +5,7 @@ No guessed table lengths: accept an explicit unsigned CMP/JA(JAE) bound on the
 unchanged selector and the exact MOVSXD/ADD/JMP idiom. Other enum/vtable and
 runtime invariants remain unknown. Table targets are code seeds, not functions.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from array import array
 from bisect import bisect_right
@@ -422,7 +423,7 @@ def main():
         limits=['Only explicit unsigned selector guards or whole-domain boundary-validated potential scalar successors in the exact signed-relative table idiom are recovered. Missing enum/type invariants and other dispatch remain unknown.',
             'Recovered successors describe the guarded fallthrough path; unknown incoming computed edges or wider caller invariants are not silently excluded.',
             'Successors seed code and flow edges, never invented function boundaries. No application compilation or execution.'])
-    if file_sha256(ROOT/'scripts/native_scalar_aliases.py')!=ALIAS_HELPER_SHA256 or any(file_sha256(ROOT/row['path'])!=row['sha256'] for row in pe_dependencies) or file_sha256(ROOT/'scripts/recover-native-jump-tables.py')!=GENERATOR_SHA256:raise ValueError('Jump proof generator changed during analysis; rerun before publication')
+    if file_sha256(ROOT/'scripts/native_scalar_aliases.py')!=ALIAS_HELPER_SHA256 or any(file_sha256(retained_runtime_path(ROOT/row['path'], ROOT))!=row['sha256'] for row in pe_dependencies) or file_sha256(ROOT/'scripts/recover-native-jump-tables.py')!=GENERATOR_SHA256:raise ValueError('Jump proof generator changed during analysis; rerun before publication')
     if file_sha256(ROOT/'scripts/summarize-native-image.py')!=helpers.GENERATOR_SHA256 or file_sha256(ROOT/'scripts/classify-native-ownership.py')!=classifier.GENERATOR_SHA256:raise ValueError('Jump proof dependency changed during analysis')
     if linear_input is not None:
         for reference in [linear_input['summary'],linear_input['inventory'],*linear_input['helpers']]:

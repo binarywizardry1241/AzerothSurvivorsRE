@@ -577,6 +577,29 @@ class SharedAnalysis:
         return {"objects": len(objects), "aliases": len(aliases), "queries": self.query_count(),
                 "unique_payload_bytes": sum(row[1] for row in objects), "integrity": "ok"}
 
+    def retire_stale_aliases(self):
+        """Retain proof for obsolete aliases while leaving files and objects intact."""
+        retired = 0
+        with self.lock(), self.connect() as connection:
+            rows = connection.execute(
+                "SELECT a.path,a.sha256,a.provenance,o.bytes,o.kind FROM analysis_aliases a "
+                "JOIN analysis_objects o USING(sha256) "
+                "WHERE NOT EXISTS (SELECT 1 FROM analysis_migrations m WHERE m.path=a.path AND m.state!='complete')"
+            ).fetchall()
+            for name, digest, previous, size, kind in rows:
+                alias = self.alias_path(name)
+                if alias.is_symlink() or (alias.exists() and not alias.is_file()):
+                    continue
+                self.verify_receipt(self._receipt(digest, size, kind))
+                record = canonical({"former_alias": name, "original_provenance": json.loads(previous)})
+                connection.execute("INSERT OR IGNORE INTO analysis_observations VALUES(?,?,?,?,?)",
+                                   (digest, hashlib.sha256(record.encode()).hexdigest(), record,
+                                    "retired-runtime-alias", time.time()))
+                connection.execute("DELETE FROM analysis_migrations WHERE path=? AND state='complete'", (name,))
+                connection.execute("DELETE FROM analysis_aliases WHERE path=?", (name,))
+                retired += 1
+        return retired
+
     def _registered_moves(self):
         programs = self.store / "programs"
         if not programs.is_dir() or programs.is_symlink():

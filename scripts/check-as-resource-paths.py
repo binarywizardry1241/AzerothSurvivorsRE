@@ -9,7 +9,7 @@ import struct
 from coverage_common import ROOT, latest_target, file_sha256, target_bytes, verify_resources
 from script_sources import load_script
 
-WORK=ROOT/'runtime/q41-all-0.113.2'
+WORK=ROOT/'runtime/analysis/history/findings/q41-all/f1125d689593'
 KEEP=ROOT/'docs/analysis/evidence/0.113.2/as-resource-paths.json'
 PATHS={
     'bar':['interface/paperdollinfoframe/ui-character-skills-bar.blp'],

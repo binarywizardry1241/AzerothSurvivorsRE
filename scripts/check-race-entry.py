@@ -10,8 +10,8 @@ import struct
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path[:0] = [str(ROOT / "scripts"), str(ROOT / "runtime/armory-recovery/python-libs"),
-                  str(ROOT / "runtime/camera-recovery-0.105.0/python-libs")]
+sys.path[:0] = [str(ROOT / "scripts"), str(ROOT / "runtime/tool-state/python/armory/python-libs"),
+                  str(ROOT / "runtime/tool-state/python/camera/python-libs")]
 from coverage_common import latest_target, target_bytes
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
@@ -189,7 +189,7 @@ def main():
                   roster_replay_seams=roster["seams"], compilation=False,
                   application_process_executed=False, parity_verified=False)
     if args.write:
-        output = ROOT / "runtime/gap187/entry-check.json"
+        output = ROOT / "runtime/analysis/history/findings/gap187/7b90808b1bfc/entry-check.json"
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(portable_json(result, indent=2) + "\n")
     print(json.dumps(result, indent=2))

@@ -57,7 +57,7 @@ unlock names remain separately owned by #172.
 ## Static checks and limits
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs python3 -B scripts/check-rewards-tabard-localization.py --queries
+PYTHONPATH=runtime/tool-state/python/camera/python-libs python3 -B scripts/check-rewards-tabard-localization.py --queries
 ```
 
 `--queries` additionally checks retained local journals/results; omit it when

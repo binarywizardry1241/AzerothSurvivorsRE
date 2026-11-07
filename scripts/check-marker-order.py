@@ -26,7 +26,7 @@ OWNERS = {
 }
 SUBMIT = 0x141807840
 TOWER = (0x14014B857, 0x14014B92D)
-OUTPUT = ROOT / "runtime/0.117.0/marker-order/check.json"
+OUTPUT = ROOT / "runtime/analysis/history/native-recovery/target/6f083622318f/marker-order/check.json"
 
 
 def digest(data):
@@ -41,7 +41,7 @@ def main():
     assert target["version"] == "0.117.0" and target["sha256"] == SHA
     data = target_bytes(target)
     pe = load_script("marker_order_pe", ROOT / "scripts/inventory-executable.py").PE(data)
-    for directory in ("runtime/camera-recovery-0.105.0/python-libs", "runtime/armory-recovery/python-libs"):
+    for directory in ("runtime/tool-state/python/camera/python-libs", "runtime/tool-state/python/armory/python-libs"):
         path = ROOT / directory
         if path.is_dir():
             sys.path.insert(0, str(path))

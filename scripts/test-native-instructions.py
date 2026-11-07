@@ -83,7 +83,7 @@ class StaticInstructions(unittest.TestCase):
                          [[110, 115], [130, 140], [145, 150]])
 
     def test_resume_rejects_changed_target_decoder_or_tool(self):
-        scratch = ROOT / "runtime/coverage-tests"
+        scratch = ROOT / "runtime/tests/coverage"
         scratch.mkdir(parents=True, exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as directory:
             path = Path(directory) / "inventory.sqlite"
@@ -96,7 +96,7 @@ class StaticInstructions(unittest.TestCase):
                     native.open_inventory(path, {**metadata, **changed})
 
     def test_pending_and_undecoded_extents_cannot_certify_native_completeness(self):
-        scratch = ROOT / "runtime/coverage-tests"
+        scratch = ROOT / "runtime/tests/coverage"
         scratch.mkdir(parents=True, exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as directory:
             path = Path(directory) / "inventory.sqlite"
@@ -113,7 +113,7 @@ class StaticInstructions(unittest.TestCase):
             self.assertEqual(summary["counts"]["undecoded_suffix_bytes_summed"], 5)
 
     def test_equal_summary_publication_preserves_alias_bytes_and_mtime(self):
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as directory:
             path=Path(directory)/'summary.json';source=Path(directory)/'immutable'
             source.write_text(native.json_text({'counts':{'instructions':1}}));path.symlink_to(source.name)

@@ -17,7 +17,7 @@ spec.loader.exec_module(frontier)
 
 class PublicationTests(unittest.TestCase):
     def setUp(self):
-        self.scratch = ROOT / "runtime/switch-frontier-publication-tests"
+        self.scratch = ROOT / "runtime/tests/switch-frontier-publication"
         self.scratch.mkdir(parents=True, exist_ok=True)
         self.temporary = tempfile.TemporaryDirectory(dir=self.scratch)
         self.root = Path(self.temporary.name)

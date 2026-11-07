@@ -8,7 +8,7 @@ from script_sources import load_script
 import argparse, hashlib, json, struct, sys
 from pathlib import Path
 from coverage_common import ROOT,latest_target,target_bytes
-sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--write',action='store_true');args=parser.parse_args()

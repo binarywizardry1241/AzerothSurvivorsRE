@@ -67,7 +67,7 @@ owned-definition disposal, environment lookups/path primitives and byte `memcmp`
 are explicit recorded host seams. Directory tests verify native probe/fallback/
 append policy with neutral path fixtures; they do not test Windows path parsing. Action destinations, import/error/directory literals, retained instruction
 hashes and the live source routes are checked too. `--stage` recreates candidate
-extracts/manifests under ignored `runtime/native-evidence/0.109.0/saves-browser/`
+extracts/manifests under ignored `runtime/analysis/staging/native-evidence/0.109.0/saves-browser/`
 for review.
 
 No Rust compilation/test, application, actual file import/export/open-folder,

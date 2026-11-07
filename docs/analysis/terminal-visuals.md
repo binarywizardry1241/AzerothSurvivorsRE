@@ -135,7 +135,7 @@ Run from the checkout root:
 ```sh
 python3 -B scripts/check-terminal-visuals.py
 python3 -B scripts/check-terminal-visuals.py \
-  --python-libs runtime/armory-recovery/python-libs --prepare-rea
+  --python-libs runtime/tool-state/python/armory/python-libs --prepare-rea
 ```
 
 The checker verifies **29 native ranges**, **75 direct query-call contracts**,

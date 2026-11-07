@@ -73,7 +73,7 @@ invalid auxiliary fonts are logged. Binary font data are not repository delivera
 
 For isolated reference comparison only, `python3 scripts/prepare-reference-menu-fonts.py`
 checks the supplied reference SHA and copies the exact original native font byte ranges to
-ignored `runtime/menu-fonts`. This utility is optional analysis tooling, never a build step.
+ignored `runtime/analysis/history/interface/menu-fonts/b488d8153517`. This utility is optional analysis tooling, never a build step.
 The resulting files and patched QA outputs remain ignored runtime artifacts.
 
 ## Validation and remaining gaps

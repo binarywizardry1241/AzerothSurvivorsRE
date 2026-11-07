@@ -9,7 +9,7 @@ from script_sources import load_script
 from native_recovery import effects as decode_effects
 from pathlib import Path
 import sys, struct, json, hashlib, math
-R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/armory-recovery/python-libs'))
+R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 m = load_script('inventory', R/'scripts/inventory-executable.py')

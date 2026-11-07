@@ -18,7 +18,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/save-unlock-0.105.0/curated"
+WORK = ROOT / "runtime/analysis/history/progression/save-unlock/58edea489ca1/curated"
 RETAINED = ROOT / "docs/analysis/evidence/0.105.0/save-unlocks"
 SPANS = {
     "beat-record": (0x145889778, 0x145889916),
@@ -36,7 +36,7 @@ def main():
     assert hashlib.sha256(data).hexdigest() == SHA, "Selected EXE hash mismatch"
     module = load_script("pe", ROOT / "scripts/inventory-executable.py")
     pe = module.PE(data)
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as x
     u = Uc(UC_ARCH_X86, UC_MODE_64)

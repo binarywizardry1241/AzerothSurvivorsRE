@@ -14,7 +14,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 SHA = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-WORK = ROOT / "runtime/menu-actions-0.97.2"
+WORK = ROOT / "runtime/analysis/history/interface/menu-actions/213951b39c5b"
 OUT = ROOT / "docs/analysis/evidence/0.97.2"
 STARTS = [0x140099B40, 0x140091C00, 0x1402707E0, 0x14541D7F0, 0x145427250]
 
@@ -60,8 +60,8 @@ def main():
         stem = f"{start:x}"
         if args.prepare:
             (WORK / f"{stem}.bin").write_bytes(bytes.fromhex(source["raw_hex"]))
-            plan = dict(target=f"runtime/menu-actions-0.97.2/{stem}.bin",
-                        output=f"runtime/menu-actions-0.97.2/rea-{stem}",
+            plan = dict(target=f"runtime/analysis/history/interface/menu-actions/213951b39c5b/{stem}.bin",
+                        output=f"runtime/analysis/history/interface/menu-actions/213951b39c5b/rea-{stem}",
                         open_options=dict(format="raw-binary", architecture="x86_64", entry_point=hex(start)),
                         timeout=180, open_timeout=60, cleanup_timeout=60,
                         environment={"REA_GHIDRA_STARTUP_TIMEOUT_MS": "180000"},
@@ -98,7 +98,7 @@ def main():
 
 def fixtures(data, pe, span, identity):
     # Reuse an existing project-local installed dependency; no package download.
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import __version__ as unicorn_version
     from unicorn.x86_const import UC_X86_REG_RAX, UC_X86_REG_RCX, UC_X86_REG_RDX, UC_X86_REG_R8, UC_X86_REG_RSP, UC_X86_REG_RIP

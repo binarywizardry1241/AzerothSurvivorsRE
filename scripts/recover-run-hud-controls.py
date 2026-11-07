@@ -18,7 +18,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/fixgap7-controls"
+WORK = ROOT / "runtime/analysis/history/findings/fixgap7-controls/0a67d4e83b28"
 RETAINED = ROOT / "docs/analysis/evidence/0.105.0/run-hud"
 OWNERS = {
     "scale": (0x14003DB10, "rea-scale"),
@@ -94,7 +94,7 @@ def write(path, value):
 
 def native_vectors(data, pe):
     # Uses an existing project-local analysis dependency; never installs it.
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import (UC_X86_REG_RAX, UC_X86_REG_RCX,
                                   UC_X86_REG_RDX, UC_X86_REG_RDI,

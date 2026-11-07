@@ -15,44 +15,44 @@ ROOT = Path(__file__).resolve().parent.parent
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.100.1.exe'
 SHA = '17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
 PROCEDURES = {
-    'save-parse': (0x145430740, 'runtime/save-specs-01001/ghidra-core/003-145430740.json'),
-    'ordinary-write': (0x1454356a0, 'runtime/save-specs-01001/consolidation/rea-normalize/003-procedure_pseudo_code.json'),
-    'hourly-backup': (0x145469450, 'runtime/save-specs-01001/consolidation/rea-hourly/003-procedure_pseudo_code.json'),
+    'save-parse': (0x145430740, 'runtime/analysis/history/progression/save-specs/db92d3948ef4/ghidra-core/003-145430740.json'),
+    'ordinary-write': (0x1454356a0, 'runtime/analysis/history/progression/save-specs/db92d3948ef4/consolidation/rea-normalize/003-procedure_pseudo_code.json'),
+    'hourly-backup': (0x145469450, 'runtime/analysis/history/progression/save-specs/db92d3948ef4/consolidation/rea-hourly/003-procedure_pseudo_code.json'),
     'backup-name-filter': (0x14546a1f0, None),
     'backup-path-order': (0x145502f00, None),
     'talent-budget': (0x14542f490, None),
     'talent-can-learn': (0x145483ba0, None),
     'talent-exclusive': (0x1454834e0, None),
     'talent-previous-rows': (0x145483d70, None),
-    'talent-normalize': (0x145483fc0, 'runtime/target-menu-consolidation/rea-talent-normalize/003-procedure_pseudo_code.json'),
+    'talent-normalize': (0x145483fc0, 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-talent-normalize/003-procedure_pseudo_code.json'),
     'talent-collector': (0x14553b8e0, None),
     'talent-comparator': (0x145507670, None),
     'talent-refund': (0x145483720, None),
     'spec-view': (0x14542e5c0, None),
     'spec-switch': (0x14542e9f0, None),
     'spec-allocation-edit': (0x145439e60, None),
-    'spec-cards': (0x140165440, 'runtime/target-menu-consolidation/rea-spec-panel/003-procedure_pseudo_code.json'),
-    'saves-page': (0x140279c80, 'runtime/target-menu-consolidation/rea-saves-page/003-procedure_pseudo_code.json'),
-    'font-augment': (0x1455181d0, 'runtime/target-menu-consolidation/rea-font-augment/003-procedure_pseudo_code.json'),
-    'gear-reader': (0x14546f110, 'runtime/target-menu-consolidation/rea-gear-reader/003-procedure_pseudo_code.json'),
-    'armor-effect-scaling': (0x14554c7c0, 'runtime/target-menu-consolidation/rea-armor-scaling/003-procedure_pseudo_code.json'),
+    'spec-cards': (0x140165440, 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-spec-panel/003-procedure_pseudo_code.json'),
+    'saves-page': (0x140279c80, 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-saves-page/003-procedure_pseudo_code.json'),
+    'font-augment': (0x1455181d0, 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-font-augment/003-procedure_pseudo_code.json'),
+    'gear-reader': (0x14546f110, 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-gear-reader/003-procedure_pseudo_code.json'),
+    'armor-effect-scaling': (0x14554c7c0, 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-armor-scaling/003-procedure_pseudo_code.json'),
     'weapon-effect-scaling': (0x14554ca00, None),
     'extra-effect-scaling': (0x14554cc40, None),
     'late-enemy-health': (0x1454d4130, None),
     'store-level-controls': (0x140062560, None),
-    'hud-constructor': (0x140105220, 'runtime/target-menu-consolidation/rea-levelup-constructor/003-procedure_pseudo_code.json'),
-    'hud-flags': (0x140363920, 'runtime/target-menu-consolidation/rea-stored-hud-flags/003-procedure_pseudo_code.json'),
-    'stored-hud-update': (0x1400909d0, 'runtime/target-menu-consolidation/rea-hud-live-update/003-procedure_pseudo_code.json'),
+    'hud-constructor': (0x140105220, 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-levelup-constructor/003-procedure_pseudo_code.json'),
+    'hud-flags': (0x140363920, 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-stored-hud-flags/003-procedure_pseudo_code.json'),
+    'stored-hud-update': (0x1400909d0, 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-hud-live-update/003-procedure_pseudo_code.json'),
     'stored-button-gradient': (0x1400b68f0, None),
     'hud-root': (0x140082d40, None),
-    'save-serialize': (0x145436620, 'runtime/target-menu-consolidation/rea-save-serialize/003-procedure_pseudo_code.json'),
+    'save-serialize': (0x145436620, 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-save-serialize/003-procedure_pseudo_code.json'),
     'roster-result': (0x14544a260, None),
     'class-atlas-rectangle': (0x1400b7b00, None),
     'class-descriptor': (0x1454207d0, None),
     'roster-guid-allocation': (0x145439d50, None),
     'roster-login-consumer': (0x1454440d0, None),
     'menu-state-initialize': (0x14543edf0, None),
-    'picker-input': (0x1400c44f0, 'runtime/target-menu-consolidation/rea-picker-input/003-procedure_pseudo_code.json'),
+    'picker-input': (0x1400c44f0, 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-picker-input/003-procedure_pseudo_code.json'),
 }
 
 
@@ -63,7 +63,7 @@ def main():
     pe = module.PE(data)
     bounds = {pe.image_base + start: pe.image_base + end for start, end, *_ in pe.functions()}
     bounds.update({0x14542f490:0x14542f511,0x1400b7b00:0x1400b7cc8,0x1454207d0:0x1454207ef,0x145439d50:0x145439e5b})
-    out = ROOT / 'runtime/native-evidence/0.100.1/target-menu'
+    out = ROOT / 'runtime/analysis/staging/native-evidence/0.100.1/target-menu'
     out.mkdir(parents=True, exist_ok=True)
     rows = []
     for label, (start, evidence_path) in PROCEDURES.items():
@@ -111,7 +111,7 @@ def main():
         boss=[span(ptr+88*j,88) for j in range(count)]
     # Only the constructor's actual R8+8 Node arguments are retained; other
     # linear-evaluator candidates are not treated as recovered Nodes.
-    snapshots = json.loads((ROOT/'runtime/target-menu-consolidation/hud-node-stores.json').read_text())[0]['snapshots']
+    snapshots = json.loads((ROOT/'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/hud-node-stores.json').read_text())[0]['snapshots']
     calls = {'0x140106a9b','0x140106f4a','0x1401072a3','0x1401077ae','0x140107b36'}
     hud_nodes = [row for row in snapshots if row['argument']=='R8+8' and row['call'].split()[0] in calls]
     (out/'hud-layout.json').write_text(portable_json(dict(target_sha256=SHA,

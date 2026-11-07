@@ -45,7 +45,7 @@ def main():
     print("PASS: installed target, exact embedded Lua, 8 native owners, 2 instruction excerpts and 7 constants")
 
     if args.prepare_rea:
-        work = ROOT / "runtime/party-addon-api-reproduce" / target["sha256"]
+        work = ROOT / "runtime/analysis/history/native-recovery/party-addon-api-reproduce/dd0ada42693c" / target["sha256"]
         work.mkdir(parents=True, exist_ok=True)
         owners = evidence["native_owners"]
         start = min(int(row["va"], 16) for row in owners)

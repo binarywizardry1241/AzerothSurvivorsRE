@@ -11,7 +11,7 @@ import argparse, hashlib, json, math, re, struct, sys
 from coverage_common import ROOT
 SHA='dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-wards'
-STAGE=ROOT/'runtime/native-evidence/0.112.0/raid-wards'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-wards'
 RANGES={
  'create':(0x145916190,0x145916468),
  'producer':(0x145922b99,0x145922f47),
@@ -68,7 +68,7 @@ def recover(verify_rea=False):
  return raw,span,rows,catalog,index,baselines
 
 def native_cases(raw,catalog):
- sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+ sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
  from capstone import Cs,CS_ARCH_X86,CS_MODE_64
  from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_MEM_UNMAPPED,UC_HOOK_CODE
  from unicorn import x86_const as r
@@ -223,7 +223,7 @@ def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--stage',action='store_true');args=p.parse_args()
  raw,span,rows,catalog,index,baselines=recover(not args.stage)
  cases=native_cases(raw,catalog)
- sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+ sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs')]
  from capstone import Cs,CS_ARCH_X86,CS_MODE_64
  md=Cs(CS_ARCH_X86,CS_MODE_64);ranges=[];assemblies={}
  for role,(a,b) in RANGES.items():

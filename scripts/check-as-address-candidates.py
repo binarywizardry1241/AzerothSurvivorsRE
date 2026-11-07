@@ -91,7 +91,7 @@ def main():
         record = dict(path=path.relative_to(ROOT).as_posix(), sha256=actual)
         inputs.append(record)
         return record
-    address_summary_binding = consume('runtime/q41-ownership-0.115.0/address-leads/summary.json')
+    address_summary_binding = consume('runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/address-leads/summary.json')
     address_summary = load_json(project_path(address_summary_binding['path']))
     require(address_summary['target'] == identity, 'Address candidate target differs')
     consume(address_summary['inventory']['path'], address_summary['inventory']['sha256'])
@@ -302,7 +302,7 @@ def main():
             require([u.reg_read(r) for r in (reg.UC_X86_REG_RCX, reg.UC_X86_REG_RDX, reg.UC_X86_REG_R8)] == [DEFINITION, count*16, 8], 'Vector deallocation arguments differ')
         thunk_cases.append(dict(kind='vector-buffer-deallocation', count=count, exit=hex(expected_exit)))
     case_payload = json_text(dict(target=identity, hp_cases=cases, support_thunk_cases=thunk_cases))
-    case_path = ROOT/'runtime/q41-as-addresses-0.115.0/native-cases.json'
+    case_path = ROOT/'runtime/analysis/history/findings/q41-as-addresses/e528e90bbac6/native-cases.json'
     case_binding = dict(path=case_path.relative_to(ROOT).as_posix(), sha256=hashlib.sha256(case_payload.encode()).hexdigest())
     record = dict(schema_version=1, target=identity, generator=dict(path=GENERATOR, sha256=GENERATOR_SHA256),
                   tool_versions=dict(capstone=capstone.__version__, unicorn=unicorn.__version__), dependencies=dependencies,

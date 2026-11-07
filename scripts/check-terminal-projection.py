@@ -4,7 +4,7 @@ from script_sources import load_script
 import argparse, json, math, struct, sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
-p=argparse.ArgumentParser(description=__doc__);p.add_argument('--python-libs',default='runtime/armory-recovery/python-libs');p.add_argument('--output',default='runtime/terminal-flow-0.109.0/projection-check.json');args=p.parse_args()
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('--python-libs',default='runtime/tool-state/python/armory/python-libs');p.add_argument('--output',default='runtime/analysis/history/interface/terminal-flow/4e862d14c1ed/projection-check.json');args=p.parse_args()
 libs=(ROOT/args.python_libs).resolve();out=(ROOT/args.output).resolve()
 if not libs.is_relative_to(ROOT)or not out.is_relative_to(ROOT/'runtime'):raise ValueError('All paths must remain project-local; output belongs in runtime/')
 sys.path.insert(0,str(libs))

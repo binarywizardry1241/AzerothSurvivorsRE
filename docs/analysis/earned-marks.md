@@ -89,7 +89,7 @@ duplicate-inclusive Danger Money/Hazard Pay counters.
 The existing non-compiling checker accepts the current proof:
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-gear-rewards.py --proof docs/analysis/evidence/0.127.0/ranked-gear/earned-marks.json
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-gear-rewards.py --proof docs/analysis/evidence/0.127.0/ranked-gear/earned-marks.json
 ```
 
 It passes **41 cases / 2,155 original instruction steps**, including tag13 raw

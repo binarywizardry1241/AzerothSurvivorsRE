@@ -13,7 +13,7 @@ import struct
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from native_terminal import NativeReplay, require, verified_input
 
 parser = argparse.ArgumentParser(description=__doc__)
@@ -21,7 +21,7 @@ parser.add_argument('--stage', action='store_true')
 parser.add_argument('--prepare-rea', action='store_true')
 args = parser.parse_args()
 evidence = ROOT/'docs/analysis/evidence/0.112.0/achievement-veteran'
-work = ROOT/'runtime/achievement-grants-0.112.0'
+work = ROOT/'runtime/analysis/history/progression/achievement-grants/6d75f76be1b4'
 manifest, target, data, pe = verified_input(evidence)
 require(target['sha256'] == 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a', 'Selected target changed')
 require(hashlib.sha256((evidence/'selected-native.asm').read_bytes()).hexdigest() == manifest['selected_assembly_sha256'], 'Curated Veteran assembly changed')

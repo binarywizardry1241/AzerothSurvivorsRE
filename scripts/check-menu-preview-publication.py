@@ -145,7 +145,7 @@ def main():
     parser.add_argument('--stage', action='store_true')
     args = parser.parse_args()
     record = recover()
-    path = ROOT / ('runtime/native-evidence/0.112.0/menu-preview-publication' if args.stage else OUT) / 'cases.json'
+    path = ROOT / ('runtime/analysis/staging/native-evidence/0.112.0/menu-preview-publication' if args.stage else OUT) / 'cases.json'
     if args.stage:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(record, indent=2) + '\n')

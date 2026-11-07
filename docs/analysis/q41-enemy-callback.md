@@ -73,7 +73,7 @@ for this lead.
 With the existing Capstone and Unicorn installations available:
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs python3 -B scripts/check-q41-enemy-callback.py
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-q41-enemy-callback.py
 ```
 
 The checker verifies the current target, exact query/result commitments and

@@ -103,7 +103,7 @@ the two 0.92 error/empty-buffer cases replaced by the recovered current behavior
 Run the non-compiling checker with existing local dependencies:
 
 ```sh
-python3 -B scripts/check-update-resume.py --python-path runtime/tests/query-python-deps --python-path runtime/armory-recovery/python-libs
+python3 -B scripts/check-update-resume.py --python-path runtime/tests/query-python-deps --python-path runtime/tool-state/python/armory/python-libs
 ```
 
 It verifies **four exact query subjects**, every retained code/data byte and

@@ -19,7 +19,7 @@ from equipment_native import EquipmentProbe
 from script_sources import load_script
 
 SHA = "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
-WORK = ROOT / "runtime/q41-embedded-resources-0.119.0"
+WORK = ROOT / "runtime/analysis/history/findings/q41-embedded-resources/0d964184062b"
 KEEP = ROOT / "docs/analysis/evidence/0.119.0/creature-death-sound"
 TRANSFORM = (0x145B45BF0, 0x145B45D27)
 PATCHER = (0x145B45D30, 0x145B45E4D)

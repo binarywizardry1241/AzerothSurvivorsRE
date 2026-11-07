@@ -67,7 +67,7 @@ history, summary departure and cleanup retain their separate consumers.
 ## Validation and limits
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs python3 -B scripts/check-coop-clear.py
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-coop-clear.py
 ```
 
 The checker verifies six exact current query subjects, original code/assembly

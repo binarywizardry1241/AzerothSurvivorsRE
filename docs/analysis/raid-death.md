@@ -78,9 +78,9 @@ instruction extract and Ghidra provenance retain their target/input hashes;
 raw query state stays under ignored `runtime/`.
 
 ```sh
-python3 -B scripts/check-raid-death.py --python-libs runtime/armory-recovery/python-libs --python-libs runtime/camera-recovery-0.105.0/python-libs
+python3 -B scripts/check-raid-death.py --python-libs runtime/tool-state/python/armory/python-libs --python-libs runtime/tool-state/python/camera/python-libs
 python3 -B scripts/check-raid-death.py --prepare-rea
-./scripts/rea query runtime/raid-death-0.115.0/source-gate-plan.json
+./scripts/rea query runtime/analysis/history/raid/raid-death/b1b638db1912/source-gate-plan.json
 ```
 
 The second command recreates the exact current 176-byte input and query plan;

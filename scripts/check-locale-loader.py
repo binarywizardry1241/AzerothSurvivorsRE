@@ -16,9 +16,9 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
-WORK = ROOT / "runtime/gap169-0.119.0-loader"
+WORK = ROOT / "runtime/analysis/history/findings/gap169-loader/a44cb166d16b"
 RETAINED = ROOT / "docs/analysis/evidence/0.119.0/localization-loader"
-STAGED = ROOT / "runtime/native-evidence/0.119.0/localization-loader"
+STAGED = ROOT / "runtime/analysis/staging/native-evidence/0.119.0/localization-loader"
 FUNCTIONS = [
     ("hex", 0x145B26F00, 0x1458E9020),
     ("expect", 0x145B273B0, 0x1458E94D0),

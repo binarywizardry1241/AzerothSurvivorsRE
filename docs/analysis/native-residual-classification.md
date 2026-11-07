@@ -133,7 +133,7 @@ twelve artifact hashes/counts unchanged; its current generator/scope metadata
 is retained separately from the original `residual-summary-v2.json` snapshot.
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/classify-native-residuals.py --output-directory runtime/q41-ownership-0.115.0/residuals-v2 --summary-output docs/analysis/evidence/0.115.0/native-residuals.json
+PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/classify-native-residuals.py --output-directory runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/residuals-v2 --summary-output docs/analysis/evidence/0.115.0/native-residuals.json
 python3 -B scripts/check-native-residuals.py --proof docs/analysis/evidence/0.115.0/native-residuals.json --negative-tests
 python3 -B scripts/test-native-residual-summary.py
 PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/test-native-residual-inputs.py

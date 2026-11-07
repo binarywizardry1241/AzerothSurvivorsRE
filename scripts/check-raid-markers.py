@@ -145,7 +145,7 @@ def collect_rea(work):
                 limits=["Raw imports omit outside callees, PE types and most jump-table data.",
                         "Ghidra uses its generic x86-64 compiler model; Win64 parameter roles are checked against instructions and native replay.",
                         "Native direct/indirect ownership outside these ranges remains #41. Successful pseudocode is not parity proof."])
-    destination=ROOT/"runtime/native-evidence/0.109.0/raid-markers/rea-records.json"
+    destination=ROOT/"runtime/analysis/staging/native-evidence/0.109.0/raid-markers/rea-records.json"
     destination.parent.mkdir(parents=True,exist_ok=True)
     destination.write_text(text(result))
     print(str(destination.relative_to(ROOT)))
@@ -154,15 +154,15 @@ def collect_rea(work):
 def check(write):
     global EVIDENCE
     if write:
-        EVIDENCE = ROOT / "runtime/native-evidence/0.109.0/raid-markers"
+        EVIDENCE = ROOT / "runtime/analysis/staging/native-evidence/0.109.0/raid-markers"
     target = latest_target(verify=True)
     if target["sha256"] != SHA:
         raise ValueError("Marker recovery requires the exact registered 0.109.0 bytes")
     data = target_bytes(target)
     module = load_script("marker_pe", ROOT / "scripts/inventory-executable.py")
     pe = module.PE(data)
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                    str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                    str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     import capstone
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED
     from unicorn import x86_const as r
@@ -810,7 +810,7 @@ if __name__ == "__main__":
     parser.add_argument("--write",action="store_true")
     parser.add_argument("--prepare-rea",action="store_true")
     parser.add_argument("--collect-rea",action="store_true")
-    parser.add_argument("--work",default="runtime/raid-markers-0.109.0")
+    parser.add_argument("--work",default="runtime/analysis/history/raid/raid-markers/c4ee1de5a66a")
     args=parser.parse_args()
     if args.prepare_rea:prepare_rea(args.work)
     elif args.collect_rea:collect_rea(args.work)

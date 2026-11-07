@@ -24,7 +24,7 @@ Reproduce the retained ten instruction ranges, twenty-two float constants, sourc
 python3 scripts/recover-player-hit-passives.py
 ```
 
-To reproduce the three focused Ghidra analyses when their disposable runtime dossiers are absent, first run the script with `--prepare`, then each corresponding `runtime/player-hit-passives-0.97.2/plan-<VA>.json` through `scripts/rea-batch.py`, and rerun the curation script. Every slice is equality/hash-bound to the selected PE. The script only reads the EXE and performs static disassembly/data extraction; it does not execute target code.
+To reproduce the three focused Ghidra analyses when their disposable runtime dossiers are absent, first run the script with `--prepare`, then each corresponding `runtime/analysis/history/native-recovery/player-hit-passives/6ed5277e33ec/plan-<VA>.json` through `scripts/rea-batch.py`, and rerun the curation script. Every slice is equality/hash-bound to the selected PE. The script only reads the EXE and performs static disassembly/data extraction; it does not execute target code.
 
 ## Entry, gates and order
 

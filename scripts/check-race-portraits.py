@@ -8,7 +8,7 @@ original native instructions choose the race key, rectangle and RGB tint.
 from pathlib import Path
 import hashlib,importlib.util,json,struct,sys
 ROOT=next(path for path in Path(__file__).resolve().parents if (path/'AGENTS.md').is_file())
-sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
 from coverage_common import latest_target,target_bytes,reference_config
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64
 from unicorn.x86_const import *
@@ -161,7 +161,7 @@ compact['portrait_cases']={'count':len(rows),'sha256':digest(rows)}
 compact['class_eligibility_cases']={'count':len(allowed_cases),'sha256':digest(allowed_cases)}
 import argparse
 parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args()
-directory=ROOT/('runtime/armory-races-0.113.2/staged' if args.stage else 'docs/analysis/evidence/0.113.2/race-portraits')
+directory=ROOT/('runtime/analysis/history/inventory/armory-races/b9e0f34c201a/staged' if args.stage else 'docs/analysis/evidence/0.113.2/race-portraits')
 if args.stage:
  directory.mkdir(parents=True,exist_ok=True)
  (directory/'cases.json').write_text(json.dumps(compact,indent=2)+'\n')

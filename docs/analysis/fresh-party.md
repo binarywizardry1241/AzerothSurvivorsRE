@@ -86,5 +86,5 @@ omission is identified. Compilation, actual next-party admission, transport
 delivery and original/rebuilt parity remain unverified.
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-fresh-party.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-fresh-party.py
 ```

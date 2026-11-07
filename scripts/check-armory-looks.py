@@ -3,8 +3,9 @@
 
 This is a non-compiling instruction fixture. No application, rebuilt code, UI
 publication, layout or interaction runs. Default mode compares retained evidence
-without writing; --stage writes only runtime/0.117.0/armory-looks/nodes-staged.json.
+without writing; --stage writes only runtime/analysis/history/native-recovery/target/6f083622318f/armory-looks/nodes-staged.json.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import importlib.util
@@ -16,7 +17,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from capstone.x86 import X86_OP_REG, X86_OP_MEM, X86_REG_RIP
 from coverage_common import latest_target, target_bytes
@@ -260,7 +261,7 @@ parser.add_argument('--prepare-queries', action='store_true',
                     help='Extract current function slices and journaled REA plans under runtime/')
 args = parser.parse_args()
 if args.stage:
-    output = ROOT / 'runtime/0.117.0/armory-looks/nodes-staged.json'
+    output = ROOT / 'runtime/analysis/history/native-recovery/target/6f083622318f/armory-looks/nodes-staged.json'
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2) + '\n')
 else:
@@ -274,7 +275,7 @@ else:
         assert ends[start] == end
         assert bound(start, end)['sha256'] == query['sha256']
         receipt = query['decompiler']
-        assert hashlib.sha256((ROOT / receipt['path']).read_bytes()).hexdigest() == receipt['sha256']
+        assert hashlib.sha256((retained_runtime_path(ROOT / receipt['path'], ROOT)).read_bytes()).hexdigest() == receipt['sha256']
         saved = query['retained_query_result']
         if (ROOT / saved['path']).exists():
             assert hashlib.sha256((ROOT / saved['path']).read_bytes()).hexdigest() == saved['sha256']
@@ -290,7 +291,7 @@ else:
     assert hashlib.sha256(output.read_bytes()).hexdigest() == manifest['nodes']['sha256']
     assert hashlib.sha256(Path(__file__).read_bytes()).hexdigest() == manifest['checker']['sha256']
 if args.prepare_queries:
-    directory = ROOT / 'runtime/0.117.0/armory-looks'
+    directory = ROOT / 'runtime/analysis/history/native-recovery/target/6f083622318f/armory-looks'
     directory.mkdir(parents=True, exist_ok=True)
     ends = {pe.image_base + start: pe.image_base + end for start, end, _ in pe.functions()}
     for name, start, end in [('look', LOOK_OWNER, LOOK_END),
@@ -299,8 +300,8 @@ if args.prepare_queries:
                              ('kept-publish', 0x1402cee60, 0x1402cf037)]:
         assert ends[start] == end
         (directory / (name + '.bin')).write_bytes(raw(start, end - start))
-        plan = {'target': f'runtime/0.117.0/armory-looks/{name}.bin',
-                'output': f'runtime/0.117.0/armory-looks/{name}-query',
+        plan = {'target': f'runtime/analysis/history/native-recovery/target/6f083622318f/armory-looks/{name}.bin',
+                'output': f'runtime/analysis/history/native-recovery/target/6f083622318f/armory-looks/{name}-query',
                 'init_timeout': 90,
                 'open_options': {'format': 'raw-binary', 'architecture': 'x86_64',
                                  'entry_point': hex(start)},

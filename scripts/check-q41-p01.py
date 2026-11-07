@@ -12,7 +12,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
-WORK = ROOT / 'runtime/q41-p01-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/findings/q41-p01/e2671bf7955c'
 OUT = ROOT / 'docs/analysis/evidence/0.113.2/q41-p01/manifest.json'
 SELECTED = ROOT / 'docs/analysis/coverage/seeded-census.json'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src/native_input/acquisition.rs'
@@ -35,7 +35,7 @@ def main():
     ap.add_argument('--write', action='store_true')
     args = ap.parse_args()
     # Use the existing project-local Capstone environment; no dependency install.
-    sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64, CS_GRP_JUMP, CS_GRP_RET
     from capstone.x86_const import X86_OP_IMM, X86_OP_MEM, X86_REG_RBP
     target = latest_target(verify=True)

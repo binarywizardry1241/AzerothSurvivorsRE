@@ -70,7 +70,7 @@ This is an implemented source checkpoint, **not verified 1:1 menu parity**.
 [`home-native.json`](evidence/0.97.2/home-native.json) records exact original PE
 function spans, byte hashes, literal bytes, available REA/Ghidra IDs, analyzed
 body coverage and limitations. `scripts/recover-home.py --prepare` creates
-project-local raw slices and REA plans under ignored `runtime/menu-0972`.
+project-local raw slices and REA plans under ignored `runtime/analysis/history/interface/menu-0972/ae941624b762`.
 Run selected plans with `python3 scripts/rea-batch.py <plan>`; `--collect` refreshes
 curated provenance without launching the target. Named function roles are analyst
 interpretations bound to instruction/data consumers, not recovered Rust symbols.
@@ -89,7 +89,7 @@ SHA-bound catalog regeneration/check and locale/font/table extraction succeeded.
 seams. They establish those bounded policies, not save migration or rendering.
 
 One locked/offline Apple Silicon application compilation completed in **14.61s**
-(`runtime/menu-0972/build.log`), with existing unused-code/future-compatibility
+(`runtime/analysis/history/interface/menu-0972/ae941624b762/build.log`), with existing unused-code/future-compatibility
 warnings. During this task another active work stream updated `AGENTS.md` to
 source/static-only mode. The build had finished when cancellation was attempted;
 no further compilation, compiler checks, compile-based tests or launches were

@@ -47,7 +47,7 @@ The independent Rejuvenation and grouped-icon repairs remain **#177/#178**.
 
 ```sh
 # Use the repository's existing Python dependency installation for Unicorn.
-PYTHONPATH=runtime/armory-recovery/python-libs python3 -B scripts/check-tranquility.py
+PYTHONPATH=runtime/tool-state/python/armory/python-libs python3 -B scripts/check-tranquility.py
 ```
 
 **388 cases pass** against the selected original instructions from

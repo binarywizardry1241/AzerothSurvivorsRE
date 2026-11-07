@@ -76,6 +76,6 @@ slots. Rendered behavior, initialized scheduling and original/rebuilt comparison
 remain open under [#8](../verification-needed.md#gap-8).
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-meter-minimap.py --current-tint
 ```

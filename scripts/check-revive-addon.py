@@ -14,7 +14,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 EVIDENCE = ROOT / "docs/analysis/evidence/0.115.0/revive-addon"
-WORK = ROOT / "runtime/revive-implementation-0.115.0/checks"
+WORK = ROOT / "runtime/analysis/history/co-op/revive-implementation/e5305123b4cc/checks"
 CLIENT = ROOT / "crates/azeroth-survivors-re/src/gameplay/client"
 
 

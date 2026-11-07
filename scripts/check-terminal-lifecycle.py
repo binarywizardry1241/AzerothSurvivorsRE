@@ -26,8 +26,8 @@ def require(value, why):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--python-libs', default='runtime/armory-recovery/python-libs')
-    parser.add_argument('--output', default='runtime/gap9-0.107.0/lifecycle-checks.json')
+    parser.add_argument('--python-libs', default='runtime/tool-state/python/armory/python-libs')
+    parser.add_argument('--output', default='runtime/analysis/history/findings/gap9/d9983efe90eb/lifecycle-checks.json')
     parser.add_argument('--prepare-rea', action='store_true', help='Stage current raw-function Ghidra plans under runtime/')
     args = parser.parse_args()
     libs, output = [(ROOT / value).resolve() for value in (args.python_libs, args.output)]
@@ -56,7 +56,7 @@ def main():
             if key in row:
                 require(hashlib.sha256((EVIDENCE / row[key]).read_bytes()).hexdigest() == row[key + '_sha256'], key)
     if args.prepare_rea:
-        directory = ROOT / 'runtime/gap9-0.107.0/lifecycle-reproduction'
+        directory = ROOT / 'runtime/analysis/history/findings/gap9/d9983efe90eb/lifecycle-reproduction'
         directory.mkdir(parents=True, exist_ok=True)
         for row in manifest['ranges']:
             if 'rea_evidence_id' not in row:

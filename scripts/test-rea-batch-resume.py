@@ -23,7 +23,7 @@ FAKE_PEER = ROOT / "scripts/fixtures/fake-rea-mcp.py"
 
 class BatchOperationRecovery(unittest.TestCase):
     def setUp(self):
-        scratch = ROOT / "runtime/rea-batch-tests"
+        scratch = ROOT / "runtime/tests/rea-batch"
         scratch.mkdir(parents=True, exist_ok=True)
         temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.addCleanup(temporary.cleanup)

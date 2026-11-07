@@ -150,7 +150,7 @@ operation, renderer or original/rebuilt parity comparison ran.
 Reproduce the static checks from this checkout:
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-card-keyboard-0.113.2.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-card-keyboard-0.113.2.py
 ```
 
 The four retained `*-plan.json` / `*-seeds.tsv` pairs reproduce the bounded

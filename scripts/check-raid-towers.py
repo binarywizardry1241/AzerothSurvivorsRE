@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check current grouped-tower instructions/source without compiling or launching.
 
---write stages selected textual evidence under runtime/native-evidence/0.109.0.
+--write stages selected textual evidence under runtime/analysis/staging/native-evidence/0.109.0.
 CRT trigonometry/hypot, terrain, zone lookup, packets and allocation are explicit
 synthetic seams. Original RNG, placement, grouping and failure admission execute.
 """
@@ -16,7 +16,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-STAGED=ROOT/'runtime/native-evidence/0.109.0/raid-towers'
+STAGED=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/raid-towers'
 RETAINED=ROOT/'docs/analysis/evidence/0.109.0/raid-towers'
 
 def f32(v):
@@ -26,7 +26,7 @@ def bits(v):
 def dump(v):return json.dumps(v,indent=2,ensure_ascii=False)+'\n'
 
 def main(write):
-    sys.path[:0]=[str(ROOT/'runtime/armory-recovery/python-libs'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+    sys.path[:0]=[str(ROOT/'runtime/tool-state/python/armory/python-libs'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
     from capstone import Cs,CS_ARCH_X86,CS_MODE_64
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE,UC_HOOK_MEM_UNMAPPED
     from unicorn import x86_const as r

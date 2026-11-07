@@ -4,7 +4,7 @@ from portable_paths import objdump_output, portable_json
 from script_sources import load_script
 from pathlib import Path
 import sys, struct, json, hashlib
-R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/armory-recovery/python-libs'))
+R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64
 from unicorn.x86_const import *
 m = load_script('iv', R/'scripts/inventory-executable.py')

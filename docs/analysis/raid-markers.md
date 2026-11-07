@@ -137,7 +137,7 @@ and reconstructed Rust execution are not tested. Source hashes/text guards
 record renewed tracing, not a compiler or semantic-equivalence certificate.
 
 `--write` stages extracts/results under ignored
-`runtime/native-evidence/0.109.0/raid-markers/` for review. To reproduce Ghidra
+`runtime/analysis/staging/native-evidence/0.109.0/raid-markers/` for review. To reproduce Ghidra
 recovery, run `--prepare-rea --work runtime/raid-markers-replay`, run every
 generated `plan.json` with `python3 -B scripts/rea-batch.py`, then run
 `--collect-rea --work runtime/raid-markers-replay`. Only compact reviewed

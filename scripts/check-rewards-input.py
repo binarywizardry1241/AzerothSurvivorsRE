@@ -4,7 +4,7 @@ from script_sources import load_script
 import argparse,ast,hashlib,importlib.util,json,struct,sys
 from pathlib import Path
 from coverage_common import ROOT,latest_target,target_bytes
-sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn import x86_const as r
 parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args()
@@ -86,7 +86,7 @@ for row_rank in(0,1):
    prerequisites.append(dict(explicit_row_rank=row_rank,required=required,prerequisite_rank=prerequisite_rank,accepted=accepted))
 records.update(confirmation=confirmation,confirm_continuations=navigation,prerequisites=prerequisites)
 records['limitations']+=['Eight current prerequisite-block cases use explicit descriptor/row inputs and memcmp; they do not execute the complete plan validator.','Four complete current confirmation-helper cases use explicit clone/apply/enqueue/disposal seams; validation and real persistence are not executed.','Four current Confirm-leave continuations call a fixture helper and stop before the native outer loop/close branch. Destination tag2 additional gear-selection path is separately owned by Armory input recovery.']
-path=ROOT/('runtime/native-evidence/0.109.0/rewards-menu'if args.stage else'docs/analysis/evidence/0.109.0/rewards-menu')/'input.json'
+path=ROOT/('runtime/analysis/staging/native-evidence/0.109.0/rewards-menu'if args.stage else'docs/analysis/evidence/0.109.0/rewards-menu')/'input.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(records,indent=2)+'\n')
 else:assert json.loads(path.read_text())==json.loads(json.dumps(records))
 print('Passed26 current Rewards input/confirmation/prerequisite cases; no persistence/build/game')

@@ -112,17 +112,17 @@ Run from this checkout, with the selected reference present:
 
 ```sh
 python3 scripts/recover-menu-actions.py --prepare
-python3 scripts/rea-batch.py runtime/menu-actions-0.97.2/plan-140099b40.json
-python3 scripts/rea-batch.py runtime/menu-actions-0.97.2/plan-140091c00.json
-python3 scripts/rea-batch.py runtime/menu-actions-0.97.2/plan-1402707e0.json
-python3 scripts/rea-batch.py runtime/menu-actions-0.97.2/plan-14541d7f0.json
-python3 scripts/rea-batch.py runtime/menu-actions-0.97.2/plan-145427250.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-actions/213951b39c5b/plan-140099b40.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-actions/213951b39c5b/plan-140091c00.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-actions/213951b39c5b/plan-1402707e0.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-actions/213951b39c5b/plan-14541d7f0.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-actions/213951b39c5b/plan-145427250.json
 python3 scripts/recover-menu-actions.py --collect
 python3 scripts/recover-menu-actions.py --fixtures
 ```
 
 The batch runner requires fresh output directories on a repeat run. The
 fixture helper reuses the existing project-local Unicorn dependency at
-`runtime/armory-recovery/python-libs`; it installs nothing. All five native
+`runtime/tool-state/python/armory/python-libs`; it installs nothing. All five native
 queries completed and closed their sessions. No build or game launch was run
 in this action-recovery subtask.

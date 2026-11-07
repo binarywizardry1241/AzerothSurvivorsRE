@@ -21,8 +21,8 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 RETAINED = ROOT / 'docs/analysis/evidence/0.109.0/menu-fonts'
-STAGED = ROOT / 'runtime/native-evidence/0.109.0/menu-fonts'
-WORK = ROOT / 'runtime/menu-lifecycle-0.109.0'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/menu-fonts'
+WORK = ROOT / 'runtime/analysis/history/interface/menu-lifecycle/969b671942c0'
 OWNERS = {'cjk-provider': (0x1458f8a60, 0x1458f8c4a),
           'augment': (0x1458f8cd0, 0x1458fb738),
           'base-provider': (0x1458fc5c0, 0x1458fc818),
@@ -46,7 +46,7 @@ def encoded(value):
 
 
 def native(data, pe):
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     machine = Uc(UC_ARCH_X86, UC_MODE_64)
@@ -164,7 +164,7 @@ def native(data, pe):
 
 def check_contract(evidence):
     """Selected mixed-script classification, supplied cmap and live consumer check."""
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from native_terminal import verified_input, NativeReplay
     manifest, target, data, pe = verified_input(evidence)
     for query in manifest['queries']:

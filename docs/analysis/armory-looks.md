@@ -54,7 +54,7 @@ native span/reference check.
 
 Reproduce the captures with `python3 -B scripts/check-armory-looks.py`.
 Add `--prepare-queries` to recreate the four exact function slices and their
-`*-plan.json` files under `runtime/0.117.0/armory-looks/`. Run each desired plan
+`*-plan.json` files under `runtime/analysis/history/native-recovery/target/6f083622318f/armory-looks/`. Run each desired plan
 through `./scripts/rea query`; saved matching results resume automatically.
 
 The 384-byte Node interpretation is bounded to the captured stores and the

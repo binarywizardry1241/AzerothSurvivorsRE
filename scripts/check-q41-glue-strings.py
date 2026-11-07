@@ -19,7 +19,7 @@ from coverage_common import ROOT, file_sha256, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
-WORK = ROOT / "runtime/q41-data-contracts-0.115.0"
+WORK = ROOT / "runtime/analysis/history/findings/q41-data-contracts/27d2ef7f9d9d"
 KEEP = ROOT / "docs/analysis/evidence/0.115.0/q41-glue-strings.json"
 TEMPLATE = "{blurb} Starts with {spell}; every level offers three of its spells. {hp} health."
 QUERIES = [
@@ -54,7 +54,7 @@ def quote(value):
 
 
 def native_escaping(raw):
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as reg
     cases = ["", "plain", '"', "\\", "\n", '\\"\n', "é🙂", "a" * 17,

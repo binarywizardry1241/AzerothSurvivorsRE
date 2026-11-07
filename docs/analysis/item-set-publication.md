@@ -148,8 +148,8 @@ current rendering, placement and input parity remain unverified.
 Run the existing dependencies without compilation:
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs python3 -B scripts/check-item-set-publication.py
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs python3 -B scripts/check-item-query-ranks.py
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-item-set-publication.py
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-item-query-ranks.py
 ```
 
 The check executes the original member-list constructor in an isolated

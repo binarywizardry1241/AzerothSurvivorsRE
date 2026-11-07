@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
 from coverage_common import latest_target
 SHA='8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-WORK=ROOT/'runtime/visual-contracts-0.105.0'
+WORK=ROOT/'runtime/analysis/history/native-recovery/visual-contracts/cb9aede040a5'
 OUT=ROOT/'docs/analysis/evidence/0.105.0/spell-presentation'
 OWNERS={
     'radius':(0x1459614e0,0x1459615f3),
@@ -92,7 +92,7 @@ def main():
             (WORK/(name+'-plan.json')).write_text(dump(plan))
     if args.prepare_rea:
         print('Prepared selected-target REA/Ghidra plans; no target execution');return
-    sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
     from unicorn import x86_const as x
     uc=Uc(UC_ARCH_X86,UC_MODE_64)

@@ -9,7 +9,7 @@ from pathlib import Path
 from coverage_common import latest_target,file_sha256
 from inventory_refusal_native import RefusalProbe,H,S,PE,D,ENDS,ROOT
 
-WORK=ROOT/'runtime/q41-inventory-refusal-0.113.2'
+WORK=ROOT/'runtime/analysis/history/findings/q41-inventory-refusal/f21f95717d50'
 KEEP=ROOT/'docs/analysis/evidence/0.113.2/inventory-refusals.json'
 OPS=[0x10a,0x10b,0x10c,0x10d,0x111]
 def encoded(value):return json.dumps(value,sort_keys=True,separators=(',',':')).encode()
@@ -59,7 +59,7 @@ def main():
  for a,b in [(H,ENDS[H]),(S,ENDS[S])]:
   off=PE.rva_offset(a-PE.image_base);ranges.append(dict(start=hex(a),end_exclusive=hex(b),sha256=hashlib.sha256(D[off:off+b-a]).hexdigest()))
  observations=[]
- files=[ROOT/'runtime/q41-creature-query-0.113.2/rea-incoming/003-procedure_info.json',ROOT/'runtime/q41-creature-query-0.113.2/rea-incoming/005-procedure_pseudo_code.json',
+ files=[ROOT/'runtime/analysis/history/findings/q41-creature-query/2dca5c5bd546/rea-incoming/003-procedure_info.json',ROOT/'runtime/analysis/history/findings/q41-creature-query/2dca5c5bd546/rea-incoming/005-procedure_pseudo_code.json',
   WORK/'rea-refusal/003-procedure_info.json',WORK/'rea-refusal/005-procedure_pseudo_code.json']
  for path in files:
   ev=json.loads(path.read_text())['response']['result']['structuredContent'];assert ev['subject']['digest']['sha256']==target['sha256']

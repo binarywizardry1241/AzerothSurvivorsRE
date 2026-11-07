@@ -13,7 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe'
 SHA='17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
 OUT=ROOT/'docs/analysis/evidence/0.100.1/saves-browser'
-WORK=ROOT/'runtime/target-menu-consolidation'
+WORK=ROOT/'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0'
 OWNERS={
     'desktop-page':0x140279c80,'desktop-row':0x1401517c0,'confirmation-pane':0x140151bf0,
     'ui-input':0x14028d750,'world-input':0x140287fa0,'extension-filter':0x1402852f0,
@@ -68,7 +68,7 @@ def main():
                 'Static reconstruction and finite fragments do not establish interactive or cross-platform filesystem parity.'])
     (OUT/'manifest.json').write_text(portable_json(manifest,indent=2)+'\n')
     if not args.fixtures:return
-    sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
     from unicorn.x86_const import UC_X86_REG_RAX,UC_X86_REG_RBP,UC_X86_REG_RCX,UC_X86_REG_RDX,UC_X86_REG_R8,UC_X86_REG_RSP,UC_X86_REG_RSI
     def create(base,length):

@@ -261,7 +261,7 @@ ordinary Session synchronization and retirement gates still own admission.
 | Name join and fallback `0x145e9ee08..0x145e9eef6` | `0x5e9e208` | `c5d45c8849dfe0ee3aef978a46c05b13cf673789073880bcc2ae59db0803e1f1` |
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-coop-party-frames.py --host-name-query
 ```
 
@@ -310,7 +310,7 @@ explicit guest departure and service close remain the separate [#206 path](coop-
 | Showcase store `0x145ec0be1..0x145ec0bef` | `0x5ebffe1` | `e4cbfca119017465cc309b557e51ef6a431a4e44c02798554cde90f1d6c2f685` |
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-coop-party-frames.py --host-controls
 ```
 
@@ -354,7 +354,7 @@ classifies the query's retained-text dependency and leaves other adapters
 with their own producers.
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-coop-party-frames.py --host-ping
 ```
 
@@ -412,7 +412,7 @@ handler. The guest trust adapter preserves already escaped pipe pairs.
 | Actor recipient admission `0x145ecac52..0x145ecacba` | `0x5eca052` | `722a59e9a5ab7e40d2e682a4e11e4cea91779e07fa7e97b037d293196074ff81` |
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-coop-party-frames.py --host-chat
 ```
 
@@ -442,7 +442,7 @@ publishes it locally and to synchronized assigned peers without consuming
 their rate window.
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-coop-party-frames.py --local-chat
 ```
 
@@ -471,7 +471,7 @@ ordinary local guest Logout response continues to use its local port.
 | Origin gate `0x145e9ebc7..0x145e9ebdd` | `0x5e9dfc7` | `d4ad901041bea551d54e48e29e82cf18284c8b7153520e13c663dfc3d59cddcb` |
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-coop-party-frames.py --host-logout
 ```
 

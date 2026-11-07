@@ -23,7 +23,7 @@ from coverage_common import latest_target, target_bytes
 
 ROOT = Path(__file__).resolve().parents[1]
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
-WORK = ROOT / "runtime/secondary-pages-0.109.0"
+WORK = ROOT / "runtime/analysis/history/native-recovery/secondary-pages/408536b1c3c9"
 ASSETS = ROOT / "crates/azeroth-survivors-re/assets"
 RANGES = {
     "effect-description-map": (0x1459D7D40, 0x1459DAD58),
@@ -71,7 +71,7 @@ def embedded_locales(data, pe):
 
 
 def recover(data, pe):
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
 

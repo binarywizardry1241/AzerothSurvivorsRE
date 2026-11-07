@@ -19,7 +19,7 @@ from script_sources import load_script
 
 SHA = "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
 REL = "docs/analysis/evidence/0.119.0/rewards-tabard-localization"
-WORK = ROOT / "runtime/rewards-tabard-0.119.0"
+WORK = ROOT / "runtime/analysis/history/interface/rewards-tabard/dade7ef4383b"
 # Each extent was independently located in current .pdata; historical addresses
 # were routing leads only. Only the name helper/card need full curated assembly.
 FUNCTIONS = [

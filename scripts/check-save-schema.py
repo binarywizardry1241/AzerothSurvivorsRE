@@ -19,27 +19,27 @@ def vectors():
             "schema",
             json.loads(
                 (
-                    ROOT / "runtime/secondary-pages-0.109.0/schema-vectors.json"
+                    ROOT / "runtime/analysis/history/native-recovery/secondary-pages/408536b1c3c9/schema-vectors.json"
                 ).read_text()
             ),
         ),
         (
             "extra",
             json.loads(
-                (ROOT / "runtime/secondary-pages-0.109.0/schema-extra.json").read_text()
+                (ROOT / "runtime/analysis/history/native-recovery/secondary-pages/408536b1c3c9/schema-extra.json").read_text()
             ),
         ),
         (
             "account",
             json.loads(
-                (ROOT / "runtime/fixgap-7-9/account-record-vectors.json").read_text()
+                (ROOT / "runtime/analysis/history/findings/fixgap-7-9/abb72146abfe/account-record-vectors.json").read_text()
             )["cases"],
         ),
         (
             "seed",
             json.loads(
                 (
-                    ROOT / "runtime/fixgap11-17/save-core/native-schema-seed.json"
+                    ROOT / "runtime/analysis/history/findings/fixgap11-17/65c29149f167/save-core/native-schema-seed.json"
                 ).read_text()
             ),
         ),
@@ -49,7 +49,7 @@ def vectors():
             (
                 role,
                 json.loads(
-                    (ROOT / f"runtime/fixgap-7-9/{role}-vectors.json").read_text()
+                    (ROOT / f"runtime/analysis/history/findings/fixgap-7-9/abb72146abfe/{role}-vectors.json").read_text()
                 )["cases"],
             )
         )

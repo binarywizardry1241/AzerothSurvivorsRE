@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 RETAINED = ROOT / 'docs/analysis/evidence/0.109.0/options-values'
-STAGED = ROOT / 'runtime/native-evidence/0.109.0/options-values'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/options-values'
 RANGES = {
     'number': (0x14001c700, 0x14001c927),
     'dispatch': (0x14001d920, 0x14001de88),
@@ -49,7 +49,7 @@ def encoded(value):
 
 
 def replay(data, pe):
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     machine = Uc(UC_ARCH_X86, UC_MODE_64)
@@ -210,10 +210,10 @@ def main():
               'consumers and batched definitions refresh; no compilation or game')
         return
     STAGED.mkdir(parents=True, exist_ok=True)
-    assembly = (ROOT / 'runtime/menu-lifecycle-0.109.0/14001c700/native.asm').read_text()
+    assembly = (ROOT / 'runtime/analysis/history/interface/menu-lifecycle/969b671942c0/14001c700/native.asm').read_text()
     assembly = ('\n'.join(line.rstrip() for line in assembly.splitlines()) + '\n').encode()
     (STAGED / 'number-format.asm').write_bytes(assembly)
-    response = json.loads((ROOT / 'runtime/menu-lifecycle-0.109.0/14001c700/rea/003-procedure_pseudo_code.json').read_text())['response']['result']['structuredContent']
+    response = json.loads((ROOT / 'runtime/analysis/history/interface/menu-lifecycle/969b671942c0/14001c700/rea/003-procedure_pseudo_code.json').read_text())['response']['result']['structuredContent']
     manifest = dict(target_sha256=SHA, native_ranges=ranges,
                     latched_registry_records=registered,
                     extracts=[dict(path='number-format.asm', sha256=hashlib.sha256(assembly).hexdigest())],

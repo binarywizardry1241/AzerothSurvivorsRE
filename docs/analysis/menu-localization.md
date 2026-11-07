@@ -96,7 +96,7 @@ addition to FRIZQT__.TTF, MORPHEUS.TTF and SKURRI.TTF, this version uses
 AZS_NAMES_SC.TTF, AZS_NAMES_JP.TTF, AZS_NAMES_KR.TTF, AZS_SC.TTF, AZS_JP.TTF and
 AZS_KR.TTF. The optional QA utility `python3 scripts/prepare-reference-menu-fonts.py`
 checks the current reference digest and copies nine exact native ranges into
-ignored `runtime/menu-fonts-0.97.2`; `--target-version 0.92.0` preserves the old
+ignored `runtime/analysis/history/interface/menu-fonts/464de1c5cd8f`; `--target-version 0.92.0` preserves the old
 workflow. Its [textual range manifest](evidence/0.97.2/locales-font-inputs.json)
 is tracked. Binary font data remain ignored and are not source deliverables.
 

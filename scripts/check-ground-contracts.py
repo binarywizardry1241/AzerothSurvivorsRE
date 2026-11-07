@@ -5,12 +5,13 @@ Executes isolated native instructions with explicit seams, never Rust or a game.
 Default checks canonical byte/result commitments; --stage writes ignored output.
 Ghidra provenance and the remaining shared-client contract are in the owning report.
 """
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json, portable_record
 import sys,struct,math,json,importlib.util
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
-sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/armory-recovery/python-libs')]
-sys.path.append(str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'))
+sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
+sys.path.append(str(ROOT/'runtime/tool-state/python/camera/python-libs'))
 from coverage_common import latest_target,target_bytes
 import argparse,hashlib
 from mob_movement_fixtures import fixtures
@@ -23,7 +24,7 @@ def check_indoor_surface(evidence, stage=False):
     import random
     manifest, target, data, pe = verified_input(evidence)
     for query in manifest['queries']:
-        receipt = query['result']; raw = (ROOT/receipt['path']).read_bytes()
+        receipt = query['result']; raw = (retained_runtime_path(ROOT/receipt['path'], ROOT)).read_bytes()
         require(hashlib.sha256(raw).hexdigest() == receipt['sha256'], 'Native result changed')
         result = json.loads(raw)
         native = result.get('structuredContent') or json.loads(result['content'][0]['text'])
@@ -278,7 +279,7 @@ if args.evidence:
 SHA='58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 assert latest_target(verify=True)['sha256']==SHA
 KEPT=ROOT/'docs/analysis/evidence/0.113.2/ground-contracts'
-STAGE=ROOT/'runtime/movement-0.113.2/staged'
+STAGE=ROOT/'runtime/analysis/history/movement/movement/3da3103d4c50/staged'
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn import x86_const as r
 s=importlib.util.spec_from_file_location('pe',ROOT/'scripts/inventory-executable.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);d=target_bytes(latest_target());p=m.PE(d)

@@ -109,7 +109,7 @@ Reproduce focused collection with:
 
 ```sh
 python3 scripts/recover-native-overlays.py --prepare
-python3 scripts/rea-batch.py runtime/native-overlays-0.97.2/plan-1400c1d40.json
+python3 scripts/rea-batch.py runtime/analysis/history/native-recovery/native-overlays/09f281cf4862/plan-1400c1d40.json
 python3 scripts/recover-native-overlays.py --collect
 ```
 

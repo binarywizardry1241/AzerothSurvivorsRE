@@ -50,7 +50,7 @@ multiplayer delivery equivalence.
 ## Checks and limits
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs:runtime/camera-recovery-0.105.0/python-libs python3 -B scripts/check-player-aura-grouping.py
+PYTHONPATH=runtime/tool-state/python/armory/python-libs:runtime/tool-state/python/camera/python-libs python3 -B scripts/check-player-aura-grouping.py
 ```
 
 **278 bounded original-instruction cases pass.** They cover mixed and repeated

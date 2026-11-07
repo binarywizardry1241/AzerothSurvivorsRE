@@ -13,7 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe'
 SHA='17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
 START,END=0x14544d300,0x14544d440
-WORK=ROOT/'runtime/consolidation-2026-10-19/custom-roster'
+WORK=ROOT/'runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/custom-roster'
 OUT=ROOT/'docs/analysis/evidence/0.100.1/custom-roster'
 def main():
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('action',choices=['prepare','collect','fixtures']);args=parser.parse_args()
@@ -37,7 +37,7 @@ def main():
    entry_chain.append(dict(role=role,address=hex(address),end_exclusive=hex(end),file_offset=hex(offset),sha256=hashlib.sha256(body).hexdigest()))
    (OUT/(role+'.asm')).write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={address:#x}',f'--stop-address={end:#x}',str(TARGET)],text=True,cwd=ROOT))
   (OUT/'manifest.json').write_text(portable_json(dict(target_sha256=SHA,source=source,method=__doc__,custom_guid=0xfffffe,entry_chain=entry_chain),indent=2)+'\n');return
- sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+ sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
  from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
  import unicorn.x86_const as reg
  u=Uc(UC_ARCH_X86,UC_MODE_64);end=max(s['rva']+max(s['virtual_size'],s['raw_size'])for s in pe.sections);u.mem_map(pe.image_base,(end+4095)&~4095)

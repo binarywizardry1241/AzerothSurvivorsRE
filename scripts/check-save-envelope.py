@@ -26,7 +26,7 @@ for row in manifest['functions']:
   if kind in row:assert hashlib.sha256((R/row[kind]).read_bytes()).hexdigest()==row[kind+'_sha256']
 if args.prepare_rea:
  for row in manifest['functions']:
-  destination=R/'runtime/save-core-0.109.0/reproduce'/row['name'];destination.mkdir(parents=True,exist_ok=True)
+  destination=R/'runtime/analysis/history/progression/save-core/b436cb5b213a/reproduce'/row['name'];destination.mkdir(parents=True,exist_ok=True)
   start=int(row['address'],16);offset=p.rva_offset(start-p.image_base)
   (destination/'owner.bin').write_bytes(d[offset:offset+row['byte_count']])
   plan=dict(target=str((destination/'owner.bin').relative_to(R)),output=str((destination/'rea').relative_to(R)),
@@ -36,7 +36,7 @@ if args.prepare_rea:
  print(f"Prepared {len(manifest['functions'])} current project-local Ghidra plans; no application launch.")
  raise SystemExit(0)
 cases=[]
-sys.path.insert(0,str(R/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(R/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn import x86_const as rr
 

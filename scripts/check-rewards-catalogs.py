@@ -7,7 +7,7 @@ placeholder substitution. Unknown calls fail closed. No OS/game/save is run.
 from script_sources import load_script
 from pathlib import Path
 import sys, struct, json, hashlib
-R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/armory-recovery/python-libs'))
+R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 m = load_script('iv', R/'scripts/inventory-executable.py')
@@ -183,7 +183,7 @@ source=(R/'crates/azeroth-survivors-re/src/progression.rs').read_text();actors=(
 assert 'include_str!("../assets/rewards-catalogs-0.112.0.json")' in source
 assert 'include_str!("../../assets/rewards-catalogs-0.112.0.json")' in actors
 record=dict(target_sha256=target['sha256'],application_executed=False,rebuilt_code_executed=False,native_instructions_executed=True,entries=len(rows),points=sum(row['points']for row in rows),compared_fields=len(rows)*5,fields_digest=digest(checked),unlock_rows=sum(map(len,unlocks.values())),unlock_digest=digest(unlocks),metadata_digest={kind:digest(values)for kind,values in metadata.items()},tables=tables,native_constructor=span(0x1459adf40,0x1459b307f),native_gear_iterator=span(0x1459d3570,0x1459d3a3b),native_unlock_iterator=span(0x1459db860,0x1459dbc88),per_class_gear_counts={str(key):len(value)for key,value in gear_ids.items()},calls={hex(k):v for k,v in sorted(calls.items())},limits=['Original constructor, gear iterator and ordered unlock iterator instructions execute under Unicorn; no application, OS/file operation or rebuilt Rust executes.','Allocator, Vec growth, memcpy/memcmp, locale miss, compact formatting, named-token substitution and prerequisite lookup are explicit host seams.','This checks presentation data, account reward descriptors and lookup inputs. Achievement awarding predicates and companion actor behavior remain separate recovery owners.'])
-path=R/('runtime/native-evidence/0.112.0/rewards-catalogs'if args.stage else'docs/analysis/evidence/0.112.0/rewards-catalogs')/'catalogs.json'
+path=R/('runtime/analysis/staging/native-evidence/0.112.0/rewards-catalogs'if args.stage else'docs/analysis/evidence/0.112.0/rewards-catalogs')/'catalogs.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print(f"Passed 420 native display fields, 84 entries/1775 points, {record['unlock_rows']} unlock rows, 13 perks/20 tabards/22 companions and 9 table copies")

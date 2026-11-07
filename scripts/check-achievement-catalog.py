@@ -161,7 +161,7 @@ def main():
         ranges.append(dict(role=role,virtual_address=hex(start),file_offset=hex(offset),byte_count=len(raw),sha256=hashlib.sha256(raw).hexdigest()))
     from discovery_native_subject import verify_native_query_subject
     queries=[]
-    receipt,native=query_receipt('runtime/fixgap230239/achievements/query','0x145b973b0')
+    receipt,native=query_receipt('runtime/analysis/history/findings/fixgap230239/aed9aeb16797/achievements/query','0x145b973b0')
     verify_native_query_subject(ROOT,native,receipt,{k:x[k] for k in ('version','path','sha256','size_bytes')},image=data,pe=p)
     queries.append(receipt)
     consumer_path = 'crates/azeroth-survivors-re/src/progression.rs'

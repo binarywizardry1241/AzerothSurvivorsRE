@@ -83,7 +83,7 @@ Packet delivery and client movement code remain unchanged.
 
 Run `python3 -B scripts/check-raid-forced-position.py`; `--stage`
 writes a candidate under ignored
-`runtime/native-evidence/0.112.0/raid-forced-position`.
+`runtime/analysis/staging/native-evidence/0.112.0/raid-forced-position`.
 
 **229 native profiles** pass: 208 pending admission boundaries, 4 actual Pull
 publications, a sequence of 13 distant reports, and 4 two-lair marker input

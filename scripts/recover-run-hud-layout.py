@@ -19,8 +19,8 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/fixgap7-layout"
-OUT = ROOT / "runtime/native-evidence/0.105.0/run-hud"
+WORK = ROOT / "runtime/analysis/history/findings/fixgap7-layout/9e57035e83b9"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/0.105.0/run-hud"
 RETAINED = ROOT / "docs/analysis/evidence/0.105.0/run-hud"
 OWNERS = {
     "layout-update": 0x14026F450,
@@ -360,7 +360,7 @@ def main():
             row["assembly_sha256"] = digest(assembly.encode())
             response = WORK / ("rea-" + role) / "003-procedure_pseudo_code.json"
             if role == "layout-persistent-init" and not response.exists():
-                response = ROOT / "runtime/fixgap7-controls/rea-owner-140272060/003-procedure_pseudo_code.json"
+                response = ROOT / "runtime/analysis/history/findings/fixgap7-controls/0a67d4e83b28/rea-owner-140272060/003-procedure_pseudo_code.json"
             if response.exists():
                 raw = json.loads(response.read_text())["response"]["result"]
                 record = raw.get("structuredContent") or json.loads(raw["content"][0]["text"])

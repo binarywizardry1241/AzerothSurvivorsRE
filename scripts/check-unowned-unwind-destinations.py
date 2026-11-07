@@ -17,11 +17,11 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 if ROOT.name == 'runtime':
     ROOT = ROOT.parent
-sys.path[:0] = [str(ROOT/'scripts'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+sys.path[:0] = [str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
 from coverage_common import latest_target, target_bytes
 
 SHA='0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
-WORK=ROOT/'runtime/q41-unwind-0.115.0'
+WORK=ROOT/'runtime/analysis/history/findings/q41-unwind/987fae9ded96'
 KEEP=ROOT/'docs/analysis/evidence/0.115.0/unowned-unwind-destinations.json'
 GENERATOR='scripts/check-unowned-unwind-destinations.py'
 GENERATOR_SHA256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()

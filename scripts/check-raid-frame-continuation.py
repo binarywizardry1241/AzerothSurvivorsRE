@@ -11,7 +11,7 @@ def load():
  module = load_script('guardian_providers', ROOT/'scripts/check-raid-guardian-lifecycle.py');return module
 
 g=load();r=g.r
-STAGE=ROOT/'runtime/native-evidence/0.112.0/raid-frame-continuation'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-frame-continuation'
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-frame-continuation'
 RANGES={'after-hostile':(0x145900736,0x1459028d6),'after-actor':(0x1459028d6,0x14590412c),
  'xp-choice':(0x1459128da,0x145912914),'choice-publish':(0x14595d970,0x14595d995),

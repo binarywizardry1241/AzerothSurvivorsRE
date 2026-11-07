@@ -6,6 +6,7 @@ results and native observations. Default only verifies retained evidence and
 runs isolated instruction checks with explicit string/allocator/count seams.
 No compiler, game, window, save or platform adapter is executed.
 """
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json
 from script_sources import load_script
 import argparse
@@ -18,7 +19,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-WORK = ROOT / 'runtime/portrait-0.109.0'
+WORK = ROOT / 'runtime/analysis/history/interface/portrait/968a66465324'
 OUT = ROOT / 'docs/analysis/evidence/0.109.0/picker-name'
 RANGES = {
     'content-update': (0x140078c10, 0x140079fa6),
@@ -34,12 +35,12 @@ def check_ime(write):
     """Current AS commit bridge, frame-boundary filter and caret publication."""
     from native_terminal import verified_input, NativeReplay
     from native_recovery import f32, bits
-    sys.path.insert(0, str(ROOT/'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT/'runtime/tool-state/python/armory/python-libs'))
     evidence = ROOT/'docs/analysis/evidence/0.127.0/ime-bridge'
     manifest, target, data, pe = verified_input(evidence)
     for query in manifest['queries']:
         for key in ['plan', 'journal', 'result', 'raw_input']:
-            row = query[key]; assert hashlib.sha256((ROOT/row['path']).read_bytes()).hexdigest() == row['sha256']
+            row = query[key]; assert hashlib.sha256((retained_runtime_path(ROOT/row['path'], ROOT)).read_bytes()).hexdigest() == row['sha256']
         native = json.loads((ROOT/query['result']['path']).read_text())['structuredContent']
         assert native['provider']['id'] == 'ghidra' and native['evidence_id'] == query['evidence_id']
         assert native['subject']['digest']['sha256'] == query['raw_input']['sha256']
@@ -289,8 +290,8 @@ def main():
             (WORK / f'{stem}-plan.json').write_text(portable_json(plan, indent=2) + '\n')
         print('Prepared two exact current-target REA/Ghidra inputs; analysis not started.')
         return
-    sys.path[:0] = [str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'),
-                    str(ROOT / 'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'),
+                    str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
     import capstone
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED
     from unicorn import x86_const as reg

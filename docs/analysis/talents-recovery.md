@@ -58,7 +58,7 @@ the discriminant. Direct variants 30 and 31 use their own numeric fields
 and unit selectors. Other variants include raw counts, percentages and
 non-numeric effects to skip. The extractor rounds each arithmetic operation
 to f32, formats one decimal and removes a trailing `.0`. An independent native
-hover capture (`runtime/reference-captures/talents-anger-management.png`)
+hover capture (`runtime/analysis/history/native-recovery/reference-captures/1415f0451c23/talents-anger-management.png`)
 confirmed “Regenerate 0.6 more health per second.” and the red ten-point row
 requirement for unallocated Anger Management. Every recovered description containing `{v}` now has a numeric
 value for every rank; examples are 5–25 for Improved Heroic Strike, 1–5 for
@@ -110,7 +110,7 @@ background and description consumers are retained in the scoped
 [page](evidence/0.92/talent-page-slices-provenance.json) and
 [art](evidence/0.92/talent-art-slices-provenance.json) provenance files.
 Disposable disassembly and captured reference pixels stay under
-`runtime/menu-recovery` and `runtime/reference-captures`.
+`runtime/analysis/history/interface/menu-recovery/0558cac00653` and `runtime/analysis/history/native-recovery/reference-captures/1415f0451c23`.
 
 ## Implemented and unverified
 
@@ -125,7 +125,7 @@ header suffix.
 The module includes four focused tests for budget boundaries, previous-row
 gating, refused cascading refunds and the native 80-XP save round trip.
 All four passed in the integrated binary harness (`--bin AzerothSurvivorsRE`),
-recorded at `runtime/menu-recovery/talent-rule-tests.log`. Integrated build 7,
+recorded at `runtime/analysis/history/interface/menu-recovery/0558cac00653/talent-rule-tests.log`. Integrated build 7,
 including the native Canvas propagation and Armory baseline changes, passed.
 Source25 now uses the recovered shared flow, intrinsic tree headers and
 milestone rows, and pane-owned details padding. Its source formatting passed;

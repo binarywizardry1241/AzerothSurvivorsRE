@@ -28,7 +28,7 @@ spell-scale consumers read those guest snapshots.
 [metadata publication](../../crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs).
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-coop-replication.py --guest-spell-rows
 ```
 

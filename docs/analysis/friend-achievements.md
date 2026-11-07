@@ -76,7 +76,7 @@ delivery remain unverified; source tracing does not establish native I/O parity.
 
 ```sh
 python3 -B scripts/check-friend-achievements.py --require-retained-queries
-PYTHONPATH=runtime/armory-recovery/python-libs python3 -B scripts/check-friend-achievements.py --require-retained-queries --replay-instructions
+PYTHONPATH=runtime/tool-state/python/armory/python-libs python3 -B scripts/check-friend-achievements.py --require-retained-queries --replay-instructions
 python3 -B scripts/check-reconstruction-coverage.py
 ```
 

@@ -36,7 +36,7 @@ The [portable catalog regressions](../../crates/azeroth-survivors-re/tests/boss_
 
 Changed Rust files parse with the existing `rustfmt` parser; Python source parses with `ast.parse`. Rust regressions, compilation, actor/terrain interaction, visual model/reach comparison and audible playback are **not run**. This completes the source/data portion of #34's boss dimensions; gameplay and presentation comparison remain open.
 
-For a fresh static Ghidra extraction, `--prepare-rea` stages the hash-bound creator slice/plan under ignored `runtime/boss-catalog-0.105.0`, then `python3 scripts/rea-batch.py runtime/boss-catalog-0.105.0/constructor-plan.json` uses the project `./scripts/rea` wrapper. The default catalog recovery stages outputs under that same ignored directory for review. Normal application builds need neither the reference EXE nor these recovery tools.
+For a fresh static Ghidra extraction, `--prepare-rea` stages the hash-bound creator slice/plan under ignored `runtime/analysis/history/raid/boss-catalog/58c176b71827`, then `python3 scripts/rea-batch.py runtime/analysis/history/raid/boss-catalog/58c176b71827/constructor-plan.json` uses the project `./scripts/rea` wrapper. The default catalog recovery stages outputs under that same ignored directory for review. Normal application builds need neither the reference EXE nor these recovery tools.
 
 ## Retained reports
 

@@ -17,8 +17,8 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-sys.path[:0] = [str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'),
-               str(ROOT / 'runtime/armory-recovery/python-libs')]
+sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'),
+               str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 import unicorn.x86_const as r
@@ -212,7 +212,7 @@ def derive(stage, queries):
 
     completed = []
     for folder in ['card-query', 'card-input-query', 'remote-hero-query']:
-        journal = ROOT / 'runtime/fixgap-188' / folder / 'journal.json'
+        journal = ROOT / 'runtime/analysis/history/findings/fixgap-188/6855dc2a6553' / folder / 'journal.json'
         if stage or queries:
             j = json.loads(journal.read_text())
             assert j['status'] == 'completed'

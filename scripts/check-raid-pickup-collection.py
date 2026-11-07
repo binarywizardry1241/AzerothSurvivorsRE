@@ -6,7 +6,7 @@ Synthetic installed-instruction fixtures; no compiler, Rust or game process.
 from script_sources import load_script
 import argparse, hashlib, json, re, sys, struct, math
 from coverage_common import ROOT
-STAGE=ROOT/'runtime/native-evidence/0.112.0/raid-pickup-collection'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-pickup-collection'
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-pickup-collection'
 g = load_script('g', ROOT/'scripts/check-raid-guardian-lifecycle.py');r=g.r
 g.RANGES.clear();g.RANGES.update({'loop':(0x1459028e1,0x1459035f4),'reserved':(0x1459d4d20,0x1459d4edc),'remove':(0x14594d9e0,0x14594dbfd),'attract':(0x14594eb50,0x14594ee2e)})

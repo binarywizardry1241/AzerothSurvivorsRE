@@ -12,7 +12,7 @@ from script_sources import load_script
 from pathlib import Path
 import hashlib, json, struct, subprocess, sys
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 SHA = '17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
@@ -104,7 +104,7 @@ for role,lo,hi,session in [('timed-initial-iterator',0x145545650,0x14554573a,'it
     row=dict(role=role,address=hex(lo),end_exclusive=hex(hi),file_offset=hex(offset),sha256=hashlib.sha256(raw).hexdigest())
     (OUT/(role+'.asm')).write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={lo:#x}',f'--stop-address={hi:#x}',str(TARGET)],text=True))
     if session:
-        path=ROOT/f'runtime/timed-initial-0.100.1/rea-{session}/003-procedure_pseudo_code.json'
+        path=ROOT/f'runtime/analysis/history/native-recovery/timed-initial/7a360761b460/rea-{session}/003-procedure_pseudo_code.json'
         ev=json.loads(path.read_text())['response']['result']['structuredContent']
         assert ev['subject']['digest']['sha256']==row['sha256'] and ev['provider']['id']=='ghidra'
         row['rea_evidence_id']=ev['evidence_id']; row['analysis_profile']=ev['analysis_profile']

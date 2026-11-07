@@ -132,7 +132,7 @@ def main():
     parser.add_argument('--stage', action='store_true')
     args = parser.parse_args()
     proof = recover()
-    directory = ('runtime/native-evidence/0.112.0/tabard-availability' if args.stage
+    directory = ('runtime/analysis/staging/native-evidence/0.112.0/tabard-availability' if args.stage
                  else 'docs/analysis/evidence/0.112.0/tabard-availability')
     path = ROOT / directory / 'cases.json'
     if args.stage:

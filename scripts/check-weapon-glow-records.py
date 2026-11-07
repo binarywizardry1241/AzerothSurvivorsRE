@@ -152,7 +152,7 @@ def main():
     from discovery_native_subject import verify_native_query_subject
     queries=[]
     for procedure in ('0x145aa6a10','0x145aaf840'):
-        receipt,native=query_receipt('runtime/fixgap220229/heroic/save/query-v2',procedure)
+        receipt,native=query_receipt('runtime/analysis/history/findings/fixgap220229/03231eb4cb7b/heroic/save/query-v2',procedure)
         verify_native_query_subject(ROOT,native,receipt,{key:target[key]for key in ('version','path','sha256','size_bytes')},image=image,pe=pe)
         queries.append(receipt)
     source=ROOT/'crates/azeroth-survivors-re/src/save/weapon_glow.rs'

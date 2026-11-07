@@ -210,7 +210,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--coop', action='store_true', help='Check the installed cooperative request contract')
     parser.add_argument('--prepare-rea', action='store_true')
-    parser.add_argument('--output', default='runtime/raid-target-0.115.0/checks')
+    parser.add_argument('--output', default='runtime/analysis/history/raid/raid-target/ca17b844a933/checks')
     args = parser.parse_args()
     if args.coop:
         check_coop()

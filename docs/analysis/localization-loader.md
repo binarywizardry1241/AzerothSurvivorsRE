@@ -80,7 +80,7 @@ all fourteen languages. Native parser/loader algorithm changes are unnecessary.
 The non-compiling replay command is:
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs python3 -B scripts/check-locale-loader.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs python3 -B scripts/check-locale-loader.py
 ```
 
 The check passes **10 current native ranges, 10,020 bytes, 2,459 instructions,

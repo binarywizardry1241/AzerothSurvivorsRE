@@ -5,6 +5,7 @@ Original instructions run in synthetic memory. Class naming, localization,
 formatting, allocation/copy and text-widget construction are observed seams.
 The source assertions check the live consumer; Rust and rendering do not run.
 """
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json
 import argparse
 import hashlib
@@ -157,7 +158,7 @@ def main():
         if args.queries:
             for key in ('plan', 'journal', 'result'):
                 receipt = query[key]
-                assert sha((ROOT / receipt['path']).read_bytes()) == receipt['sha256']
+                assert sha((retained_runtime_path(ROOT / receipt['path'], ROOT)).read_bytes()) == receipt['sha256']
             assert json.loads((ROOT / query['journal']['path']).read_text())['status'] == 'completed'
             evidence = json.loads((ROOT / query['result']['path']).read_text())['structuredContent']
             assert evidence['evidence_id'] == query['evidence_id']

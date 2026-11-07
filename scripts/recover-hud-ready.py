@@ -2,7 +2,7 @@
 """Check/recover the selected 0.109.0 ready-label pulse without building a game.
 
 --prepare stages the selected raw Ghidra plans, without starting a provider.
---collect stages compact evidence under runtime/hud-gap7-0.109.0/curated.
+--collect stages compact evidence under runtime/analysis/history/interface/hud-gap7/696062fa29c4/curated.
 --check verifies retained target/byte/extract identities and the live source path.
 --verify additionally replays the original scalar instructions with Unicorn;
 the Windows sinf result is an explicit input seam, never a host-libm parity claim.
@@ -19,7 +19,7 @@ import struct
 from coverage_common import ROOT, latest_target, project_path, target_bytes
 
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
-WORK = ROOT / "runtime/hud-gap7-0.109.0"
+WORK = ROOT / "runtime/analysis/history/interface/hud-gap7/696062fa29c4"
 RETAINED = ROOT / "docs/analysis/evidence/0.109.0/hud-ready"
 OWNERS = {
     "hud-update": (0x14028E670, "hud/session/007-0x14028e670.json"),
@@ -120,7 +120,7 @@ def main():
     parser.add_argument("--collect", action="store_true")
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--verify", action="store_true")
-    parser.add_argument("--work", default="runtime/hud-gap7-0.109.0", help="Project-local analysis output")
+    parser.add_argument("--work", default="runtime/analysis/history/interface/hud-gap7/696062fa29c4", help="Project-local analysis output")
     args = parser.parse_args()
     WORK = project_path(args.work)
     target = latest_target(verify=True)

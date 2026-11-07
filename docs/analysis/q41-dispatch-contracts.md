@@ -66,7 +66,7 @@ Twelve fresh journaled Ghidra queries cover the twelve distinct declared
 owners. Their exact target, Evidence IDs, profile/result digests, warning
 counts and selected warnings are retained in the proof; original query
 results and the resumable operation journal remain under
-`runtime/q41-dispatch-contracts-0.115.0/rea-owners/`.
+`runtime/analysis/history/findings/q41-dispatch-contracts/25b277c5dc32/rea-owners/`.
 
 Several native enums have no local range check because their actual type or
 producer supplies the invariant. Ghidra consequently either reports that

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Verify bounded reconnect/departure contracts without compiling or networking."""
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import itertools
@@ -20,7 +21,7 @@ def digest(raw):
 
 
 def verified(row):
-    path = ROOT / row['path']
+    path = retained_runtime_path(ROOT / row['path'], ROOT)
     assert digest(path.read_bytes()) == row['sha256'], row['path']
     return path
 

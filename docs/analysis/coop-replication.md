@@ -256,7 +256,7 @@ hero and live Game before dispatching the action through `0x145ef8950`.
 [command drain](../../crates/azeroth-survivors-re/src/gameplay/coop_commands.rs).
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-coop-replication.py --protocol-13
 ```
 

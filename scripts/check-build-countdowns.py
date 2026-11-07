@@ -181,7 +181,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--collect", action="store_true")
     parser.add_argument("--verify", action="store_true")
-    parser.add_argument("--work", default="runtime/build-countdowns-0.112.0/curated")
+    parser.add_argument("--work", default="runtime/analysis/history/combat/build-countdowns/8ffa7440efbf/curated")
     args = parser.parse_args()
     target = latest_target(verify=True)
     assert target["sha256"] == SHA, "Installed target changed; recover its HUD contract first"
@@ -231,7 +231,7 @@ def main():
             ("build-row-constructor", "timer-update/session/003-procedure_pseudo_code.json", "timer-update/range.bin"),
             ("icon-loader", "timer-icon/session/003-procedure_pseudo_code.json", "timer-icon/range.bin"),
         ]:
-            root = ROOT / "runtime/build-countdowns-0.112.0"
+            root = ROOT / "runtime/analysis/history/combat/build-countdowns/8ffa7440efbf"
             observed = json.loads((root / record).read_text())["response"]["result"]["structuredContent"]
             value = observed["normalized_result"]
             manifest["ghidra"].append(dict(role=role,evidence_id=observed["evidence_id"],

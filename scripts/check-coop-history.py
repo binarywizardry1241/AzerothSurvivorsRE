@@ -6,6 +6,7 @@ start the game, a client, a socket, or a server. Native dependencies are optiona
 and can be supplied through an existing project-local PYTHONPATH.
 """
 
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import json
@@ -30,7 +31,7 @@ def verify():
         assert len(raw) == row["byte_count"]
         assert hashlib.sha256(raw).hexdigest() == row["sha256"], row["label"]
     for row in manifest["query_receipts"]:
-        path = ROOT / row["path"]
+        path = retained_runtime_path(ROOT / row["path"], ROOT)
         assert hashlib.sha256(path.read_bytes()).hexdigest() == row["sha256"], path
     catalog = json.loads((ROOT / "crates/azeroth-survivors-re/assets/menu.json").read_text())
     source_keys = [zone["key"] for zone in catalog["zones"]]

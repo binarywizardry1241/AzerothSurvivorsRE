@@ -61,7 +61,7 @@ def main():
     assert native['target']['sha256'] == SHA
     from unicorn import UC_HOOK_CODE
     from unicorn import x86_const as r
-    sys.path.insert(0, str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'))
+    sys.path.insert(0, str(ROOT/'runtime/tool-state/python/camera/python-libs'))
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     md = Cs(CS_ARCH_X86, CS_MODE_64)
     u.hook_del(native['hook_id'])
@@ -490,7 +490,7 @@ def main():
                 'No compiler, rebuilt Rust, application/game, real save/file/OS clock, rendering or original/rebuilt comparison runs.'])
     account_vectors=dict(target_sha256=SHA,entry='0x1459b47d0',grant='0x1459b6410',keys=[row['key']for row in rows],
         states=[dict(state,progress=[row['progress']for row in state['progress']])for state in retained_accounts])
-    destination=ROOT/('runtime/achievement-grants-0.112.0/curated'if args.stage else'docs/analysis/evidence/0.112.0/achievement-grants')
+    destination=ROOT/('runtime/analysis/history/progression/achievement-grants/6d75f76be1b4/curated'if args.stage else'docs/analysis/evidence/0.112.0/achievement-grants')
     if args.stage:
         destination.mkdir(parents=True,exist_ok=True);(destination/'native-vectors.json').write_text(json.dumps(result,indent=2)+'\n');(destination/'selected-native.asm').write_text('\n'.join(assembly))
         (destination/'native-account-vectors.json').write_text(json.dumps(account_vectors,indent=2)+'\n')
@@ -526,7 +526,7 @@ def source_check(definitions):
 def prepare_rea():
     target=latest_target(verify=True);assert target['sha256']==SHA;data=target_bytes(target)
     module = load_script('achievement_pe', ROOT/'scripts/inventory-executable.py');pe=module.PE(data)
-    work=ROOT/'runtime/achievement-grants-0.112.0';work.mkdir(parents=True,exist_ok=True)
+    work=ROOT/'runtime/analysis/history/progression/achievement-grants/6d75f76be1b4';work.mkdir(parents=True,exist_ok=True)
     disabled='Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables'
     scopes=[('feats','feat-grant'),('lethal','lethal-attribution'),('incoming','incoming-boss-history'),('save','save-grant'),('earned','earned-insert'),
             ('ordinary','ordinary-eval'),('account','account-grant'),('legendary','legendary-selector'),('rarity','legendary-filter')]
@@ -541,7 +541,7 @@ def prepare_rea():
             open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(lo)),
             operations=[dict(name='procedure_pseudo_code',arguments=dict(procedure=hex(a)))for a in entries])
         (work/(name+'-plan.json')).write_text(json.dumps(plan,indent=2)+'\n')
-    print('Prepared nine bounded REA/Ghidra plans under runtime/achievement-grants-0.112.0; target not launched')
+    print('Prepared nine bounded REA/Ghidra plans under runtime/analysis/history/progression/achievement-grants/6d75f76be1b4; target not launched')
 
 
 if __name__=='__main__':

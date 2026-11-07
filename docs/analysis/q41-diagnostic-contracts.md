@@ -95,7 +95,7 @@ role and infers a `void` return:
 `ev_60ca12a67b465a56e188414f0e4aca5ddddc3f9cc96447d812aa834364ccece2`.
 Its raw-function input exactly matches `140054020..1400551d0` in the selected
 EXE. The full result, plan, input receipt and query journal remain under
-ignored `runtime/q41-diagnostics-0.115.0/cards/`. A raw-function decompiler
+ignored `runtime/analysis/history/findings/q41-diagnostics/1e0c7e1c9978/cards/`. A raw-function decompiler
 inference is not original types or complete callback ABI proof.
 
 ## Checks and remaining scope

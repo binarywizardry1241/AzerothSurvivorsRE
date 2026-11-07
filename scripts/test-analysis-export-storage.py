@@ -16,7 +16,7 @@ spec.loader.exec_module(storage)
 
 class ExportStorage(unittest.TestCase):
     def setUp(self):
-        scratch = ROOT / 'runtime/analysis-export-tests'
+        scratch = ROOT / 'runtime/tests/analysis-export'
         scratch.mkdir(parents=True, exist_ok=True)
         self.temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.root = Path(self.temporary.name)
@@ -105,7 +105,7 @@ class ExportStorage(unittest.TestCase):
         self.assertEqual(storage.consolidate(index, self.root)['redundant_bytes'], 0)
 
     def test_build_cache_roots_and_parent_traversal_are_rejected(self):
-        for name in ['runtime/cargo-target', 'runtime/optimized-2026-10-21/target',
+        for name in ['runtime/cargo-target', 'runtime/client/optimized/target',
                      '.tools/rust', '../outside']:
             with self.subTest(name=name):
                 self.index['roots'][0]['path'] = name

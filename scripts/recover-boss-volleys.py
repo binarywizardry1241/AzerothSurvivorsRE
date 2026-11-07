@@ -16,7 +16,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b'
-WORK = ROOT / 'runtime/boss-volleys-0.108.0'
+WORK = ROOT / 'runtime/analysis/history/raid/boss-volleys/4de5482ea03e'
 EVIDENCE = ROOT / 'docs/analysis/evidence/0.108.0/boss-volleys'
 SOURCE = ROOT / 'crates/azeroth-survivors-re/src/guardians/catalog.rs'
 RANGES = {
@@ -88,7 +88,7 @@ def recover():
                    limits=['Only recurring native tag4 volleys; phase/sequence/stance replacement and guardian signatures remain unreconstructed.',
                            'Semantic tag1 records are not the current 48-byte enum or 56-byte schedule ABI. Other source ability kinds retain separate provenance.'])
 
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as x
     uc = Uc(UC_ARCH_X86, UC_MODE_64)

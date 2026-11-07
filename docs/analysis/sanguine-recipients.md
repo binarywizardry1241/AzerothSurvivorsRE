@@ -46,7 +46,7 @@ the repair does not use the elite flag as a guardian test.
 ## Static validation and limits
 
 ```sh
-python3 -B scripts/check-sanguine-recipients.py --python-path runtime/tests/query-python-deps --python-path runtime/armory-recovery/python-libs
+python3 -B scripts/check-sanguine-recipients.py --python-path runtime/tests/query-python-deps --python-path runtime/tool-state/python/armory/python-libs
 ```
 
 The [bounded check](evidence/0.123.0/sanguine/static-check.json) verifies all six

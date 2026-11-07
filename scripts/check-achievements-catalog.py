@@ -7,7 +7,7 @@ placeholder substitution. Unknown calls fail closed. No OS/game/save is run.
 from script_sources import load_script
 from pathlib import Path
 import sys, struct, json, hashlib
-R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/armory-recovery/python-libs'))
+R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 m = load_script('iv', R/'scripts/inventory-executable.py')
@@ -126,7 +126,7 @@ record=dict(target_sha256=target['sha256'],target_executed=False,
                     'Only menu keys/text/icons/points/categories are compared. Gameplay grants, achievement predicates and unlock vectors are not certified.'])
 import argparse
 parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args()
-path=R/('runtime/native-evidence/0.109.0/achievements-menu' if args.stage else 'docs/analysis/evidence/0.109.0/achievements-menu')/'catalog.json'
+path=R/('runtime/analysis/staging/native-evidence/0.109.0/achievements-menu' if args.stage else 'docs/analysis/evidence/0.109.0/achievements-menu')/'catalog.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print('Passed365 native menu fields, all73entries/1520points and live summary consumers')

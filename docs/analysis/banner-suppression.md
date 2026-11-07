@@ -238,7 +238,7 @@ Reproduce the static checks and prepare the optional durable query with:
 python3 -B scripts/check-banner-takeover.py
 lua scripts/check-addon-bootstrap.lua docs/analysis/evidence/0.115.0/embedded-api.lua
 python3 -B scripts/check-banner-takeover.py --prepare-rea
-./scripts/rea query runtime/banner-takeover-0.115.0/checks/rea-reproduce-6ac15e9be5ba64fe/plan.json
+./scripts/rea query runtime/analysis/history/addon/banner-takeover/d697375a5b27/checks/rea-reproduce-6ac15e9be5ba64fe/plan.json
 ```
 
 The final command starts static Ghidra only; the preceding checks do not. The

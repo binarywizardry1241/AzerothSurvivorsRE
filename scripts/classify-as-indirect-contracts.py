@@ -7,6 +7,7 @@ neither a nearby diagnostic nor a table expression proves a source owner,
 admitted index, actual receiver, successful execution or runtime destination.
 Default operation verifies the retained compact proof without writing.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from collections import Counter, defaultdict
 import csv
@@ -19,7 +20,7 @@ from coverage_common import ROOT, file_sha256, latest_target, project_path, targ
 from script_sources import load_script
 
 PROOF = ROOT / "docs/analysis/evidence/0.115.0/as-indirect-contracts.json"
-OUTPUT = ROOT / "runtime/q41-indirect-contracts-0.115.0"
+OUTPUT = ROOT / "runtime/analysis/history/findings/q41-indirect-contracts/ed87b1986939"
 PREFIXES = ("crates/wenilla-rogue/", "crates/wenilla-rogue-app/")
 
 
@@ -209,7 +210,7 @@ def main():
     encoded = ("\n".join(json.dumps(row, sort_keys=True, separators=(",", ":")) for row in rows) + "\n").encode()
     artifact_path = OUTPUT / "contextual-indirects.jsonl.gz"
     for item in inputs.values():
-        require(file_sha256(ROOT/item["path"]) == item["sha256"], "Input changed during classification")
+        require(file_sha256(retained_runtime_path(ROOT/item["path"], ROOT)) == item["sha256"], "Input changed during classification")
     require(hashlib.sha256(target_bytes(target)).hexdigest() == identity["sha256"], "Target changed during classification")
     if args.write:
         OUTPUT.mkdir(parents=True, exist_ok=True)

@@ -8,7 +8,7 @@ import argparse, ast, hashlib, itertools, json, math, re, struct, sys
 from pathlib import Path
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import x86_const as R
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 BASE = ROOT / 'docs/analysis/evidence/0.115.0/coop-spell-text'

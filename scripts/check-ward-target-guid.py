@@ -27,8 +27,8 @@ def receipt(path):
 
 
 def derive():
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                   str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                   str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64
     import unicorn.x86_const as reg
@@ -67,12 +67,12 @@ def derive():
         verify_native_query_subject(ROOT, native, value, target, image=image, pe=pe)
         return value
 
-    queries = [query("runtime/fixgap-0.121.0/resource-query/player-identity-initializer", 0x145B12840),
-               query("runtime/fixgap-0.121.0/resource-query/custom-roster-factory", 0x145B2A2A0),
-               query("runtime/fixgap-238-239-0.121.0/heroic-party-dispatch", 0x145B21EB0),
-               query("runtime/fixgap219/constructor", 0x145BDCB10, "read_function_instructions"),
-               query("runtime/fixgap-238-239-0.121.0/hero-context-swap", 0x145BE6F10),
-               query("runtime/fixgap220229/affixes/actor-hit", 0x145C159A0)]
+    queries = [query("runtime/analysis/history/findings/fixgap/de557e34e98e/resource-query/player-identity-initializer", 0x145B12840),
+               query("runtime/analysis/history/findings/fixgap/de557e34e98e/resource-query/custom-roster-factory", 0x145B2A2A0),
+               query("runtime/analysis/history/findings/fixgap-238-239/efeee1fba607/heroic-party-dispatch", 0x145B21EB0),
+               query("runtime/analysis/history/findings/fixgap219/888a65e3edb9/constructor", 0x145BDCB10, "read_function_instructions"),
+               query("runtime/analysis/history/findings/fixgap-238-239/efeee1fba607/hero-context-swap", 0x145BE6F10),
+               query("runtime/analysis/history/findings/fixgap220229/03231eb4cb7b/affixes/actor-hit", 0x145C159A0)]
     dispatch_table = 0x147665AB8
     login_index = 0x3D - 0x36
     login_destination = dispatch_table + struct.unpack("<i", raw(dispatch_table + login_index * 4,

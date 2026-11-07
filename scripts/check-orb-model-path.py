@@ -26,8 +26,8 @@ FUNCTIONS = {
 
 
 def derive():
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                   str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                   str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from capstone.x86_const import X86_OP_MEM, X86_REG_RIP
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
@@ -49,7 +49,7 @@ def derive():
     decoder.detail = True
     queries, ranges, instructions = [], [], {}
     for role, (start, end) in FUNCTIONS.items():
-        directory = ROOT / "runtime/fixgap248" / role
+        directory = ROOT / "runtime/analysis/history/findings/fixgap248/b8f5beae6e87" / role
         journal_path = directory / "query/journal.json"
         journal = json.loads(journal_path.read_text())
         assert journal["status"] == "completed"
@@ -76,7 +76,7 @@ def derive():
 
     # Preserve the one bounded loader navigation result for a later missing-file
     # investigation. Its unresolved async dispatch is not a recovered consumer.
-    directory = ROOT / "runtime/fixgap248/model-loader"
+    directory = ROOT / "runtime/analysis/history/findings/fixgap248/b8f5beae6e87/model-loader"
     journal_path = directory / "query/journal.json"
     journal = json.loads(journal_path.read_text())
     assert journal["status"] == "completed"

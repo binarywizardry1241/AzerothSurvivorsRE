@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Reproduce #61's current-target loader counters and cover consumer, without builds.
 
---collect stages curated evidence under runtime/fixgap58-61-0.113.2/curated-entry-ui.
+--collect stages curated evidence under runtime/analysis/history/findings/fixgap58-61/5000ae89a404/curated-entry-ui.
 --check verifies retained ranges, executes bounded native scalar replays and traces
 the source connection. It does not execute the EXE, Lua, Rust or the ECS schedule.
 The scoped REA plans and raw results remain disposable in runtime.
@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-WORK = ROOT / "runtime/fixgap58-61-0.113.2"
+WORK = ROOT / "runtime/analysis/history/findings/fixgap58-61/5000ae89a404"
 RETAINED = ROOT / "docs/analysis/evidence/0.113.2/entry-ui-progress"
 RANGES = {
     "row-total": (0x1405A5267, 0x1405A5272),
@@ -69,8 +69,8 @@ def f32(value):
 
 
 def dependencies():
-    for directory in ("runtime/camera-recovery-0.105.0/python-libs",
-                      "runtime/armory-recovery/python-libs"):
+    for directory in ("runtime/tool-state/python/camera/python-libs",
+                      "runtime/tool-state/python/armory/python-libs"):
         sys.path.insert(0, str(ROOT / directory))
 
 

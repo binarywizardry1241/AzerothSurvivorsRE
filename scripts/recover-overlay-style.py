@@ -181,7 +181,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("prepare", "collect", "check", "verify"):
         parser.add_argument("--" + name, action="store_true")
-    parser.add_argument("--work", type=project_path, default=ROOT / "runtime/fixgap-7-9/shared-style")
+    parser.add_argument("--work", type=project_path, default=ROOT / "runtime/analysis/history/findings/fixgap-7-9/abb72146abfe/shared-style")
     args = parser.parse_args()
     require(args.work.is_relative_to(ROOT / "runtime"), "Work must remain in runtime")
     target = latest_target(verify=True)

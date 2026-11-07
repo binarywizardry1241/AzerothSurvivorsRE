@@ -73,7 +73,7 @@ the separate pure-instruction checks govern the stated contracts.
 ## Validation and remaining scope
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/classify-q41-data-slots.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/classify-q41-data-slots.py
 ```
 
 Default operation is read-only. It verifies all native/query/target commitments,

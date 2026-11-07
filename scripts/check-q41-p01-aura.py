@@ -17,7 +17,7 @@ from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 KEEP = ROOT / 'docs/analysis/evidence/0.113.2/q41-p01-aura'
-WORK = ROOT / 'runtime/q41-p01-aura-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/findings/q41-p01-aura/ebd7af99df13'
 ALIAS, END = 0x14580b380, 0x14580b64e
 SOURCE = 'crates/azeroth-survivors-re/src/run_effects/player_auras.rs'
 NAMES = ['Flurry', 'Fortified', 'Soul Link', 'Last Stand', 'Cheat Death',
@@ -34,8 +34,8 @@ def artifact(path):
 
 
 def derive():
-    sys.path[:0] = [str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'),
-                   str(ROOT / 'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'),
+                   str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r

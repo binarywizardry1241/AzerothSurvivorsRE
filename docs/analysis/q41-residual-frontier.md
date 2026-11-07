@@ -80,7 +80,7 @@ alone does not reopen implementation.
 
 Both completed journaled Ghidra batches are bound by the compact proof, covering
 the exact **463 caller subjects** with nonempty saved pseudocode. Plans, seeds,
-journals and original results remain under `runtime/fixgap41-callers/` for reuse.
+journals and original results remain under `runtime/analysis/history/findings/fixgap41-callers/9f74cd4f0ce3/` for reuse.
 The saved/static pass now records each subject's bounded immediate role or
 reliable prefix, source interface/candidate and specific remaining boundary.
 Two whole saved subjects remain unsafe because of overlapping/bad-flow tails.

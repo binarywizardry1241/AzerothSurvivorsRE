@@ -2,7 +2,7 @@
 """Replay bounded current Rewards input instructions or stage REA/Ghidra plans.
 
 No build/application/OS file operation from the target is executed. Output stays
-in runtime/rewards-menu-0.105.0; unreviewed native calls fail closed.
+in runtime/analysis/history/interface/rewards-menu/aae945e150f0; unreviewed native calls fail closed.
 """
 from script_sources import load_script
 import argparse
@@ -15,7 +15,7 @@ module = load_script("rewards_data", ROOT / "scripts/recover-rewards-data.py")
 WORK, SHA, load, write = module.WORK, module.SHA, module.load, module.write
 
 def fixtures(data, pe):
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import UC_X86_REG_RAX, UC_X86_REG_RBP, UC_X86_REG_R14, UC_X86_REG_RSP, UC_X86_REG_RIP
 
@@ -98,8 +98,8 @@ def prepare(data, pe):
         start, end = addresses[0], functions[addresses[-1]]
         at = pe.rva_offset(start - pe.image_base)
         (WORK / f"{name}.bin").write_bytes(data[at:at + end - start])
-        write(WORK / f"{name}-plan.json", dict(target=f"runtime/rewards-menu-0.105.0/{name}.bin",
-              output=f"runtime/rewards-menu-0.105.0/rea-{name}", init_timeout=60, timeout=240,
+        write(WORK / f"{name}-plan.json", dict(target=f"runtime/analysis/history/interface/rewards-menu/aae945e150f0/{name}.bin",
+              output=f"runtime/analysis/history/interface/rewards-menu/aae945e150f0/rea-{name}", init_timeout=60, timeout=240,
               open_options=dict(format="raw-binary", architecture="x86_64", entry_point=hex(start)),
               operations=[dict(name="procedure_pseudo_code", arguments=dict(procedure=hex(a))) for a in addresses]))
     print("Staged four exact native slices and REA/Ghidra plans")

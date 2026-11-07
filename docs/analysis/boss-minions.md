@@ -123,9 +123,9 @@ To stage fresh bounded REA inputs/plans inside ignored `runtime/`:
 
 ```sh
 python3 -B scripts/prepare-boss-minion-rea.py
-python3 -B scripts/rea-batch.py runtime/boss-minions-0.108.0/rea-preparation/actor-plan.json
-python3 -B scripts/rea-batch.py runtime/boss-minions-0.108.0/rea-preparation/dispatch-plan.json
-python3 -B scripts/rea-batch.py runtime/boss-minions-0.108.0/rea-preparation/constructor-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/boss-minions/0d6660367d5f/rea-preparation/actor-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/boss-minions/0d6660367d5f/rea-preparation/dispatch-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/boss-minions/0d6660367d5f/rea-preparation/constructor-plan.json
 ```
 
 Preparation alone does not start REA. Raw EXE slices, databases and full tool

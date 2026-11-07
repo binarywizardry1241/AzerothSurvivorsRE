@@ -20,7 +20,7 @@ TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 SHA256 = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
 OUTPUT = ROOT / "docs/analysis/evidence/0.97.2/enemies"
 SOURCE = ROOT / "crates/azeroth-survivors-re/src/enemies/catalog.rs"
-RUNTIME = ROOT / "runtime/enemies-catalog-0.97.2"
+RUNTIME = ROOT / "runtime/analysis/history/native-recovery/enemies-catalog/cb147ed49eac"
 ZONE_TABLE, ZONE_STRIDE, ENEMY_STRIDE = 0x146716438, 240, 80
 ZONE_KEYS = ("elwynn", "duskwood", "wsg", "ungoro", "ab", "feralas",
              "arena", "sm", "av", "brm", "aq", "naxx")
@@ -228,7 +228,7 @@ def main():
             if args.prepare_native:
                 path.write_bytes(read(start, end - start))
                 plan = dict(target=str(path.relative_to(ROOT)),
-                            output=f"runtime/enemies-catalog-0.97.2/rea-{start:x}",
+                            output=f"runtime/analysis/history/native-recovery/enemies-catalog/cb147ed49eac/rea-{start:x}",
                             open_options=dict(format="raw-binary", architecture="x86_64", entry_point=hex(start)),
                             timeout=180, open_timeout=60,
                             operations=[dict(name="analyze_function", arguments=dict(procedure=hex(start)))])

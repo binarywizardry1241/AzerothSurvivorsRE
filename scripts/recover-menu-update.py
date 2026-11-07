@@ -27,7 +27,7 @@ def main():
         return data[offset:offset + size]
 
     # No target process is started: only these pure string helpers may execute in Unicorn.
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import (UC_X86_REG_RAX, UC_X86_REG_RCX, UC_X86_REG_RDX,
                                   UC_X86_REG_R8, UC_X86_REG_R9, UC_X86_REG_RSP,
@@ -115,7 +115,7 @@ def main():
         ("140063aa0", "ScreensPlugin native lifecycle resource construction"),
         ("14000ea60", "Always-one-decimal MiB formatting with translated MB template"),
     ]:
-        record = json.loads((ROOT / f"runtime/menu-recovery/rea-{address}/evidence-bundle.json").read_text())["records"][0]
+        record = json.loads((ROOT / f"runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-{address}/evidence-bundle.json").read_text())["records"][0]
         functions.append(dict(address="0x" + address, role=role, rea_evidence_id=record["evidence_id"]))
     strings = []
     for address, size, role in [
@@ -155,7 +155,7 @@ def main():
                    download="parts array required and nonempty; name defaults empty; size defaults0; sha256 defaults empty, ASCII-lowercased, must have64 UTF-8 bytes (no parser hex validation)",
                    part="url string defaults empty, nonnegative integer JSON size defaults0; url containing '://' retained, otherwise concatenated with manifest prefix through last '/'",
                    errors=["latest.json is incomplete", "no parts", "a download is listed incomplete"]),
-        runtime=dict(capture="runtime/reference-captures/update-dialog.png", observed_version="0.92.0 → 0.94.1", observed_size="43.0 MB",
+        runtime=dict(capture="runtime/analysis/history/native-recovery/reference-captures/1415f0451c23/update-dialog.png", observed_version="0.92.0 → 0.94.1", observed_size="43.0 MB",
                      observed_notes="Druids in Cat Form and Dire Bear Form are visible again.",
                      actions="Banner clicked, dialog captured, Later clicked, banner returned. No download or restart."),
         implementation=dict(source26_validation='Build26 final --locked --offline PASS in11.08s (menu-build-26-final.log); preceding combined build PASS in29.09s. All169 focused harness cases with overlap PASS:74 binary,19 native-save,6 config,1 run-modifier,14 save-browser,37 updater,18 installer; test compilation12.95s (menu-tests-26-menu-bridges.log). The five connected memory-only fixtures passed within those harnesses. No live adapter, app, metadata/HTTP request, download, staging/replacement/install or process launch was executed.',
@@ -176,7 +176,7 @@ def main():
         http=dict(builder="0x1401185f0", default_builder="0x14039bb50", library="ureq2.12.1", tls="rustls0.23.43",
                   timeout_connect_seconds=10,timeout_read_seconds=30,user_agent="AzerothSurvivors/0.2.0",
                   configuration_binding="AgentBuilder config offset+0x68 connect/+0x78 read matches exact primary ureq2.12.1 source and native default constructor; native fetch stores10/30 at those offsets.",
-                  acquired_primary_source=dict(path="runtime/menu-update-recovery/ureq-2.12.1.crate",sha256="02d1a66277ed75f640d608235660df48c8e3c19f3b4edb6a263315626cc3c01d"),
+                  acquired_primary_source=dict(path="runtime/analysis/history/interface/menu-update-recovery/5c4b1380715f/ureq-2.12.1.crate",sha256="02d1a66277ed75f640d608235660df48c8e3c19f3b4edb6a263315626cc3c01d"),
                   response="Native GET.call().into_reader(), then JSON reader10bf70; source now uses serde_json::from_reader(response.into_reader()), compiled in build21 (12.05s;54 focused harness cases PASS). No part URL was fetched during validation; source26 now supplies the gated part adapter as code."),
         visibility=dict(registrar="0x140056c20",type_id_address="0x1458b5270",type_id_bytes=payload(0x1458B5270,16).hex(),
                         native_layout_size=20,alignment=4,drop=None,

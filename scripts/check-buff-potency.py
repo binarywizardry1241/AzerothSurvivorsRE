@@ -56,8 +56,8 @@ def main():
             actual = base + struct.unpack_from("<i", data, offset + row["index"] * 4)[0]
             assert actual == int(row["destination"], 16), row
 
-    sys.path[:0] = [str(ROOT / "runtime/armory-recovery/python-libs"),
-                   str(ROOT / "runtime/camera-recovery-0.105.0/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/armory/python-libs"),
+                   str(ROOT / "runtime/tool-state/python/camera/python-libs")]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as r
     machine = Uc(UC_ARCH_X86, UC_MODE_64)

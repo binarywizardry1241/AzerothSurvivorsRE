@@ -19,7 +19,7 @@ from script_sources import load_script
 
 TARGET_SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
 OUTPUT = "docs/analysis/evidence/0.121.0/as-reference-frontier.json"
-SITE_ARTIFACT = "runtime/fixgap41-dispatch/contextual-reference-sites.jsonl.gz"
+SITE_ARTIFACT = "runtime/analysis/history/findings/fixgap41-dispatch/a2c8543de22f/contextual-reference-sites.jsonl.gz"
 REFERENCE_KINDS = frozenset(("address", "call_direct", "jump_direct", "memory"))
 FLOW_TYPES = frozenset(("CONDITIONAL_JUMP", "UNCONDITIONAL_JUMP", "UNCONDITIONAL_CALL"))
 

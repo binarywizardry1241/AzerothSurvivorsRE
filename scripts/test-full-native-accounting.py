@@ -20,7 +20,7 @@ class Findings:
     def warn(self,category,detail):self.warnings.append((category,detail))
 class Accounting(unittest.TestCase):
     def setUp(self):
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         self.folder=tempfile.TemporaryDirectory(dir=scratch);self.root=Path(self.folder.name);self.findings=Findings()
     def tearDown(self):self.folder.cleanup()
     def test_disposable_absence_warns_but_missing_durable_evidence_fails(self):

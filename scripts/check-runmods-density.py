@@ -4,7 +4,7 @@ from native_recovery import f32 as _shared_f32, bits as _shared_bits
 from script_sources import load_script
 import argparse, hashlib, itertools, json, math, struct, sys
 from coverage_common import ROOT,latest_target,target_bytes
-sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn import x86_const as R
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
@@ -69,7 +69,7 @@ for role,(a,b)in RANGES.items():
  if args.write:file.write_text(assembly)
  else:assert file.read_text()==assembly
  ranges.append(dict(role=role,start=hex(a),end_exclusive=hex(b),sha256=hashlib.sha256(raw).hexdigest(),assembly=file.name))
-query=ROOT/'runtime/menu-lifecycle-0.109.0/14592f370/rea-fast/003-procedure_pseudo_code.json'
+query=ROOT/'runtime/analysis/history/interface/menu-lifecycle/969b671942c0/14592f370/rea-fast/003-procedure_pseudo_code.json'
 if query.exists():
  z=json.loads(query.read_text())['response']['result']['structuredContent'];ghidra=dict(procedure='0x14592f370',evidence_id=z['evidence_id'],subject_sha256=z['subject']['digest']['sha256'],analysis_profile_digest=z['analysis_profile']['digest'],normalized_result_sha256=hashlib.sha256(z['normalized_result'].encode()).hexdigest())
 else:ghidra=json.loads((out/'density-manifest.json').read_text())['ghidra']

@@ -82,7 +82,7 @@ python3 scripts/recover-boundary-pillars.py --check
 ```
 
 For fresh static decompilation, `--prepare-rea` stages two plans under ignored
-`runtime/boundary-pillars-0.105.0/`; run each through `scripts/rea-batch.py` and the
+`runtime/analysis/history/movement/boundary-pillars/ca2d08dc2dd8/`; run each through `scripts/rea-batch.py` and the
 project `scripts/rea` wrapper. The source build needs neither tool nor EXE.
 
 The emulation controls terrain answers, allocations, field-map insertion and

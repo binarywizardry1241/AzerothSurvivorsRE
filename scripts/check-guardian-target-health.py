@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 START, END, CONTINUATION = 0x14594AD5C, 0x14594ADDE, 0x14594AF3F
-STAGE = ROOT / "runtime/native-evidence/0.113.2/guardian-target-health"
+STAGE = ROOT / "runtime/analysis/staging/native-evidence/0.113.2/guardian-target-health"
 KEPT = ROOT / "docs/analysis/evidence/0.113.2/guardian-target-health"
 
 
@@ -44,8 +44,8 @@ def main():
         return dict(va=hex(address), file_offset=hex(pe.rva_offset(address - pe.image_base)),
                     byte_count=count, sha256=hashlib.sha256(raw(address, count)).hexdigest())
 
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                    str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                    str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as r

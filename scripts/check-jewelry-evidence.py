@@ -2,7 +2,7 @@
 """Verify retained current jewelry native evidence, or prepare its Ghidra inputs.
 
 Default is read-only. --prepare-rea writes bounded source-code slices and static
-REA plans under runtime/jewelry-0.112.0. It never copies or executes the EXE.
+REA plans under runtime/analysis/history/native-recovery/jewelry/2686e0c0745b. It never copies or executes the EXE.
 """
 from script_sources import load_script
 import argparse
@@ -13,7 +13,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 EVIDENCE = ROOT / 'docs/analysis/evidence/0.112.0/jewelry'
-WORK = ROOT / 'runtime/jewelry-0.112.0'
+WORK = ROOT / 'runtime/analysis/history/native-recovery/jewelry/2686e0c0745b'
 
 
 def main():
@@ -52,7 +52,7 @@ def main():
                         environment={'REA_GHIDRA_SEED_FILE': str((work / 'seeds.tsv').relative_to(ROOT))},
                         operations=[dict(name='procedure_pseudo_code', arguments=dict(procedure=hex(a))) for a in entries])
             (work / 'plan.json').write_text(json.dumps(plan, indent=2) + '\n')
-        print('Prepared current hash-bound static REA plans under runtime/jewelry-0.112.0')
+        print('Prepared current hash-bound static REA plans under runtime/analysis/history/native-recovery/jewelry/2686e0c0745b')
     else:
         print('Checked 9 canonical native intervals and 5 fresh Ghidra owner observations; no compiler/game')
 

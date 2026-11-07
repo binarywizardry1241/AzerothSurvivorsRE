@@ -9,8 +9,8 @@ from pathlib import Path
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = ROOT / "runtime/consolidation-2026-10-19"
-OUT = ROOT / "runtime/native-evidence/0.100.1/upgrade-flow"
+WORK = ROOT / "runtime/analysis/history/native-recovery/consolidation/11a8f25258b7"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/0.100.1/upgrade-flow"
 ROLES = ("choice-complete", "cards-animate", "card-tooltip", "cards-ray-image", "cards-root")
 
 
@@ -21,7 +21,7 @@ def main():
     target = json.loads((ROOT / "docs/analysis/target-refresh-0.100.1.json").read_text())["current_target"]
     image = (ROOT / target["path"]).read_bytes()
     assert hashlib.sha256(image).hexdigest() == target["sha256"]
-    mapping = json.loads((ROOT / "runtime/levelup-0.100.1/mapping.json").read_text())
+    mapping = json.loads((ROOT / "runtime/analysis/history/native-recovery/levelup/0595bd29ad58/mapping.json").read_text())
     assert mapping["target_sha256"] == target["sha256"]
     records = []
     for role in ROLES:

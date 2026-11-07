@@ -69,7 +69,7 @@ def derive(root, source_root):
     def binding(path, source=False):
         return dict(path=path, sha256=sha(((source_root if source else root) / path).read_bytes()))
 
-    query_root = "runtime/q41-party-meter-0.121.0"
+    query_root = "runtime/analysis/history/findings/q41-party-meter/0ed71522308c"
     journal_path = query_root + "/query/journal.json"
     journal = json.loads((root / journal_path).read_text())
     queries = []

@@ -64,7 +64,7 @@ not establish an observed original-game defect or live reconstructed behavior.
 ## Static checks and limits
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-again-runes.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-again-runes.py
 ```
 
 The checker verifies **1,428 current instructions**, all five query commitments

@@ -208,7 +208,7 @@ def run():
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', default='runtime/gap101-0.119.0/decoder-replay.json')
+    parser.add_argument('--output', default='runtime/analysis/history/findings/gap101/44963486c7a7/decoder-replay.json')
     args = parser.parse_args()
     result = run()
     output = project_path(args.output)

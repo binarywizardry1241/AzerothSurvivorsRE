@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from coverage_common import latest_target
 
-WORK = ROOT / 'runtime/forms-0.105.0'
+WORK = ROOT / 'runtime/analysis/history/co-op/forms/bdf1935e7cdb'
 RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/permanent-forms'
 SPANS = [('selector', 0x1458F5F7D, 0x1458F6026),
          ('bear', 0x1458F6C6A, 0x1458F6C8E),
@@ -36,7 +36,7 @@ def main():
     data = (ROOT / target['path']).read_bytes()
     module = load_script('pe', ROOT / 'scripts/inventory-executable.py')
     pe = module.PE(data)
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)

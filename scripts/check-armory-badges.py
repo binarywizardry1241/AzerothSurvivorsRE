@@ -16,7 +16,7 @@ from script_sources import load_script
 from equipment_native import EquipmentProbe
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
-WORK = ROOT / 'runtime/armory-marks-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/inventory/armory-marks/3d405be0d7ba'
 CURATED = ROOT / 'docs/analysis/evidence/0.113.2/armory-badges'
 OWNERS = {'item-badges': (0x1402be5a0, 0x1402be839),
           'badge-text': (0x140304e60, 0x140305377)}

@@ -21,7 +21,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/balance-catalog-0.105.0"
+WORK = ROOT / "runtime/analysis/history/combat/balance-catalog/a8787b6f4df0"
 RETAINED = ROOT / "docs/analysis/evidence/0.105.0/balance-catalog/manifest.json"
 ASSETS = ROOT / "crates/azeroth-survivors-re/assets"
 SOURCE = ROOT / "crates/azeroth-survivors-re/src"

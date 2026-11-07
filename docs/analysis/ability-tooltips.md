@@ -51,7 +51,7 @@ application validation.
 [Curated provenance](evidence/0.92/ability-tooltip-native-format.json)
 records byte hashes, menu definition locations, intercepted boundaries and
 validation. Raw REA scopes, disassembly, full expression input traces and
-isolated emulation output remain under ignored `runtime/menu-recovery`.
+isolated emulation output remain under ignored `runtime/analysis/history/interface/menu-recovery/0558cac00653`.
 
 Current limits: Cleave is independently checked in the original runtime;
 additional original hover samples and rebuilt rendering comparisons remain

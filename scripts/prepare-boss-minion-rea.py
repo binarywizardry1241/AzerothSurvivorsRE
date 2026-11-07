@@ -19,7 +19,7 @@ def main():
     spec.loader.exec_module(module)
     pe = module.PE(data)
     bounds = {pe.image_base + a: pe.image_base + b for a, b, _ in pe.functions()}
-    output = ROOT / "runtime/boss-minions-0.108.0/rea-preparation"
+    output = ROOT / "runtime/analysis/history/raid/boss-minions/0d6660367d5f/rea-preparation"
     output.mkdir(parents=True, exist_ok=True)
     spans = []
     for name, start, end in (("actor", 0x145971120, 0x145976768),

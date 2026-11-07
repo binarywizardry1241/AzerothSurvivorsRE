@@ -74,7 +74,7 @@ def main():
         return dict(**location(at), length_bytes=count, text=text(offset))
 
     if args.prepare_native or args.collect_native:
-        directory = ROOT / "runtime/catalog-0.97.2"
+        directory = ROOT / "runtime/analysis/history/native-recovery/catalog/12a875fe3fca"
         directory.mkdir(parents=True, exist_ok=True)
         functions = {pe.image_base + start: pe.image_base + end for start, end, _ in pe.functions()}
         native = []
@@ -87,7 +87,7 @@ def main():
             path = directory / f"{va:x}.bin"
             if args.prepare_native:
                 path.write_bytes(data[offset:offset + end - va])
-                plan = dict(target=str(path.relative_to(ROOT)), output=f"runtime/catalog-0.97.2/rea-{va:x}",
+                plan = dict(target=str(path.relative_to(ROOT)), output=f"runtime/analysis/history/native-recovery/catalog/12a875fe3fca/rea-{va:x}",
                             open_options=dict(format="raw-binary", architecture="x86_64", entry_point=hex(va)),
                             timeout=180, open_timeout=60, cleanup_timeout=60,
                             environment={"REA_GHIDRA_STARTUP_TIMEOUT_MS": "180000"},

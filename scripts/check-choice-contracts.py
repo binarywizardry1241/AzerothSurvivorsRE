@@ -21,7 +21,7 @@ from coverage_common import ROOT, file_sha256, json_text, latest_target, project
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 TABLE, COUNT, STRIDE = 0x146bf5eb0, 113, 120
 OUT = ROOT / 'docs/analysis/evidence/0.112.0/choice-contracts.json'
-RUNTIME = ROOT / 'runtime/choice-contracts-0.112.0'
+RUNTIME = ROOT / 'runtime/analysis/history/native-recovery/choice-contracts/d1999c75543b'
 CALL_TARGETS = {0x145961590, 0x145993420, 0x1459cb2a0, 0x1459f4900, 0x1459d8300}
 EXPECTED_CALLS = {
     0x1458965c0: 0x145993420, 0x14596748a: 0x145993420, 0x1459f49d2: 0x145993420,

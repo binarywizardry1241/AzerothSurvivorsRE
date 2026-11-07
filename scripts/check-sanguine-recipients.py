@@ -5,6 +5,7 @@ This checks original PE bytes, retained Ghidra results and the reviewed source,
 then replays bounded original instructions in synthetic memory. It compiles no
 Rust, starts no application/server and establishes no gameplay or parity.
 """
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json
 import hashlib
 import json
@@ -198,7 +199,7 @@ def main():
     source = manifest["source_review"]
     current_source = digest(source["path"]) == source["sha256"]
     assert current_source, "Reviewed source changed; revalidate the recipient/source assessment"
-    text = (ROOT / source["path"]).read_text()
+    text = (retained_runtime_path(ROOT / source["path"], ROOT)).read_text()
     start = text.index("pub(super) fn tick_affix_pools")
     end = text.index("// Native removes expired", start)
     assert "self.actors.iter_mut()" in text[start:end]

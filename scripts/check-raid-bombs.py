@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check current player-bomb producer/follow/burst contracts without building or launching.
 
---write stages textual evidence under runtime/native-evidence/0.109.0/raid-bombs.
+--write stages textual evidence under runtime/analysis/staging/native-evidence/0.109.0/raid-bombs.
 The shared hazard constructor remains canonical under raid-lines; external
 height, serializers, localization and canonical damage are controlled seams.
 """
@@ -16,12 +16,12 @@ import struct
 import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
-sys.path[:0]=[str(p) for p in [ROOT/'runtime/camera-recovery-0.105.0/python-libs',
-    ROOT/'runtime/armory-recovery/python-libs'] if p.is_dir()]
+sys.path[:0]=[str(p) for p in [ROOT/'runtime/tool-state/python/camera/python-libs',
+    ROOT/'runtime/tool-state/python/armory/python-libs'] if p.is_dir()]
 
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 RETAINED=ROOT/'docs/analysis/evidence/0.109.0/raid-bombs'
-STAGED=ROOT/'runtime/native-evidence/0.109.0/raid-bombs'
+STAGED=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/raid-bombs'
 RANGES={
     'producer':(0x145957d4b,0x145957f34),
     'player-follow-height':(0x14594f1b5,0x14594f1f8),

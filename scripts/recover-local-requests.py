@@ -9,7 +9,7 @@ from script_sources import load_script
 from pathlib import Path
 import hashlib, json, struct, subprocess, sys
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 SHA='17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
@@ -65,7 +65,7 @@ for role,start in [('action-publication',0x1454f5f00),('action-packet',0x14545c4
  end=ends[start];at=p.rva_offset(start-p.image_base);raw=data[at:at+end-start]
  owner=dict(role=role,start=hex(start),end_exclusive=hex(end),file_offset=hex(at),sha256=hashlib.sha256(raw).hexdigest())
  (OUT/(role+'.asm')).write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={start:#x}',f'--stop-address={end:#x}',str(exe)],text=True))
- path=ROOT/'runtime/local-requests-0.100.1'/('rea-'+role)/'003-procedure_pseudo_code.json'
+ path=ROOT/'runtime/analysis/history/native-recovery/local-requests/1a72011562a1'/('rea-'+role)/'003-procedure_pseudo_code.json'
  if path.exists():
   ev=json.loads(path.read_text())['response']['result']['structuredContent'];assert ev['subject']['digest']['sha256']==owner['sha256'];owner['rea_evidence']=ev;(OUT/(role+'.ghidra.c')).write_text(ev['normalized_result'])
  owners.append(owner)

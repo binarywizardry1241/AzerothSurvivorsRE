@@ -30,7 +30,7 @@ conversion constants, query receipt and the source clock expression are bound
 independently; the surrounding JSON library is not reconstructed here.
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-meter-clock.py
 ```
 

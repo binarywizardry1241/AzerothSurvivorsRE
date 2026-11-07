@@ -11,7 +11,7 @@ from script_sources import load_script
 from pathlib import Path
 import hashlib, json, struct, subprocess, sys
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 SHA = '17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
@@ -77,7 +77,7 @@ owners = []
 for role, lo, hi in [('level-experience', 0x1454c69e0, 0x1454c74c6), ('level-system-message', 0x14545dc90, 0x14545ded4)]:
     offset = pe.rva_offset(lo - pe.image_base); raw = data[offset:offset + hi - lo]
     owner = dict(role=role, address=hex(lo), end_exclusive=hex(hi), file_offset=hex(offset), sha256=hashlib.sha256(raw).hexdigest())
-    response = ROOT / f'runtime/level-packet-0.100.1/rea-{"xp" if role == "level-experience" else "message"}/003-procedure_pseudo_code.json'
+    response = ROOT / f'runtime/analysis/history/native-recovery/level-packet/a3d36d0fc1cb/rea-{"xp" if role == "level-experience" else "message"}/003-procedure_pseudo_code.json'
     if response.exists():
         ev = json.loads(response.read_text())['response']['result']['structuredContent']
         assert ev['subject']['digest']['sha256'] == owner['sha256'] and ev['provider']['id'] == 'ghidra'

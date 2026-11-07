@@ -141,7 +141,7 @@ only for local analysis storage, not for building or distributing the source.
 python3 scripts/verify-rea.py --native
 ```
 
-The verification script checks the MCP transport and, with `--native`, native analysis. Raw installation-verification output belongs under `runtime/verification`; a tool handshake/probe is not recovered game behavior and is not a tracked deliverable.
+The verification script checks the MCP transport and, with `--native`, native analysis. Raw installation-verification output belongs under `runtime/tool-state/verification`; a tool handshake/probe is not recovered game behavior and is not a tracked deliverable.
 
 For a target already inside this repository:
 
@@ -642,7 +642,7 @@ Raw protocol logs, tool-probe results, failures and bulk inventories stay under 
 ## Curate shared native extracts
 
 The shared menu, run, overlay, notification, enemy/guardian and passive extraction
-helpers stage regenerated files under `runtime/native-evidence/<version>/<scope>/`.
+helpers stage regenerated files under `runtime/analysis/staging/native-evidence/<version>/<scope>/`.
 Review this local output before promoting it into `docs/analysis/evidence`.
 Retained manifests use explicit `assembly` / `pseudocode` paths when a role shares
 an extract with another scope; paths are relative to the manifest directory unless

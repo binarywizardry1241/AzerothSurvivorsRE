@@ -69,7 +69,7 @@ under #29 remain independent; kit8449 is not removed from the sound-kit catalog.
 ## Static checks and limits
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs python3 -B scripts/check-creature-death-sound.py --queries
+PYTHONPATH=runtime/tool-state/python/camera/python-libs python3 -B scripts/check-creature-death-sound.py --queries
 ```
 
 The checker passes **505 bounded original-instruction cases**, including the

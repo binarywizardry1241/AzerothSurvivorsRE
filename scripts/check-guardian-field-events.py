@@ -9,11 +9,11 @@ in ignored runtime; default verifies the canonical reviewed evidence.
 """
 import argparse,hashlib,json,sys,importlib.util,struct
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/armory-recovery/python-libs')]
+ROOT=Path(__file__).resolve().parents[1];sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
 from coverage_common import latest_target,target_bytes
 parser=argparse.ArgumentParser(description="Check gap57 current unit health event mapping/token interface without compilation or game execution")
 parser.add_argument("--collect",action="store_true");args=parser.parse_args()
-STAGE=ROOT/"runtime/native-evidence/0.113.2/guardian-target-health"
+STAGE=ROOT/"runtime/analysis/staging/native-evidence/0.113.2/guardian-target-health"
 KEPT=ROOT/"docs/analysis/evidence/0.113.2/guardian-target-health"
 SHA="58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
@@ -61,7 +61,7 @@ def raw(address,size):
  offset=p.rva_offset(address-p.image_base);value=d[offset:offset+size];assert len(value)==size;return value
 def span(address,size):
  return dict(va=hex(address),file_offset=hex(p.rva_offset(address-p.image_base)),byte_count=size,sha256=hashlib.sha256(raw(address,size)).hexdigest())
-sys.path.insert(0,str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/camera/python-libs'))
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 md=Cs(CS_ARCH_X86,CS_MODE_64)
 assembly='';intervals=[]

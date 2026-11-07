@@ -6,6 +6,7 @@ regenerable row inventories and a proposed compact proof under runtime/; default
 reproduces and verifies the curated proof. Structural/reference/source-literal
 connections do not certify schemas, dynamic aliases, loading or game parity.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 import bisect
 from collections import Counter, defaultdict
@@ -23,7 +24,7 @@ from script_sources import load_script
 from shared_native_inventory import open_readonly_uri as open_native_inventory
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
-WORK = ROOT / "runtime/q41-data-0.115.0"
+WORK = ROOT / "runtime/analysis/history/findings/q41-data/6a6f0540f967"
 KEEP = ROOT / "docs/analysis/evidence/0.115.0/data-classification/manifest.json"
 TALENTXP_QUERIES = [
     ("owner",0x14013d690,0x14013eea1,"plan.json","seeds.tsv","rea","talentxp-native-key-domain"),
@@ -78,7 +79,7 @@ def main():
     inputs = []
 
     def checked(record):
-        path = ROOT / record["path"]
+        path = retained_runtime_path(ROOT / record["path"], ROOT)
         assert file_sha256(path) == record["sha256"], record["path"]
         inputs.append(commitment(path))
         return path
@@ -414,7 +415,7 @@ def main():
         j = bisect.bisect_right(unwind_union_starts,address)-1
         return j >= 0 and address < unwind_union_vas[j][1]
 
-    ownerless_path = ROOT/"runtime/q41-ownership-0.115.0/residuals/ownerless-reference-sources.tsv.gz"
+    ownerless_path = ROOT/"runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/residuals/ownerless-reference-sources.tsv.gz"
     ownerless_input = commitment(ownerless_path)
     assert ownerless_input["sha256"] == "485e342e02ae6db461b9ee647bece6f66459ebcc2b67e109b846bc24a24d0af0"
     ownerless_domains,ownerless_kinds = Counter(),Counter()

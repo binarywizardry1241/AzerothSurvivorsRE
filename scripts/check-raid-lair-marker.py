@@ -13,7 +13,7 @@ from coverage_common import ROOT
 
 g = load_script('guardian_fixture', ROOT/'scripts/check-raid-guardian-lifecycle.py')
 r = g.r
-STAGE = ROOT/'runtime/native-evidence/0.112.0/raid-lair-marker'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-lair-marker'
 KEPT = ROOT/'docs/analysis/evidence/0.112.0/raid-lair-marker'
 RANGES = {'marker': (0x1459073c5, 0x145907826), 'packet': (0x1458c28a0, 0x1458c2b46)}
 RANGES.update({'flag-read':(0x14005ca50,0x14005d01b),'flag-command':(0x14005d112,0x14005d129),
@@ -336,7 +336,7 @@ def main():
         # The two families form one consumer repair. Stage may reference its
         # exact companion candidate before root promotes the pair together.
         if args.stage and not file.exists() and path.startswith('raid-forced-position/'):
-            file = ROOT/'runtime/native-evidence/0.112.0'/path
+            file = ROOT/'runtime/analysis/staging/native-evidence/0.112.0'/path
         for line in file.read_text().splitlines():
             hit = re.match(r'^([0-9a-f]+): ([0-9a-f]+) ',line)
             if hit: canonical.setdefault(int(hit[1],16),(bytes.fromhex(hit[2]),'../'+path))

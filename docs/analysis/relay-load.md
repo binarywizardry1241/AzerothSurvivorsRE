@@ -119,7 +119,7 @@ remains unverified.
 Run the existing checker with the current proof explicitly:
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-relay-load.py --proof docs/analysis/evidence/0.127.0/relay-load/manifest.json
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-relay-load.py --proof docs/analysis/evidence/0.127.0/relay-load/manifest.json
 ```
 
 The checker preserves its historical mode and records its previous source

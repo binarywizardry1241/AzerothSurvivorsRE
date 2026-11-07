@@ -105,7 +105,7 @@ callbacks are preserved.
 
 Run `python3 -B scripts/check-raid-pickup-collection.py`; `--stage`
 writes ignored candidate evidence under
-`runtime/native-evidence/0.112.0/raid-pickup-collection`.
+`runtime/analysis/staging/native-evidence/0.112.0/raid-pickup-collection`.
 
 **2,406 native profiles pass**: 392 Gold admission cases, 224 XP activation
 cases, 128 multiplier/counter cases, 21 mixed Magnet/order/serial cases, 1,600

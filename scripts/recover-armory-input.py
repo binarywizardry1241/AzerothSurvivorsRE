@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.100.1.exe'
 SHA = '17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
 OUT = ROOT / 'docs/analysis/evidence/0.100.1/armory-input'
-WORK = ROOT / 'runtime/target-menu-consolidation'
+WORK = ROOT / 'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0'
 
 
 def main():
@@ -70,7 +70,7 @@ def main():
     (OUT/'manifest.json').write_text(portable_json(manifest,indent=2)+'\n')
     if not args.fixtures:
         return
-    sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64
     from unicorn.x86_const import UC_X86_REG_RAX, UC_X86_REG_RBP, UC_X86_REG_RSI, UC_X86_REG_R10, UC_X86_REG_R14
 

@@ -80,7 +80,7 @@ scaling cases remain [separate evidence](evidence/0.105.0/pvp-gear/native-scalin
 
 Run `python3 scripts/recover-equipment-catalog.py --check` for the
 noncompiling source/native checks. `--prepare` stages three focused REA plans
-under ignored `runtime/equipment-catalog-0.105.0/`; run a selected plan with
+under ignored `runtime/analysis/history/inventory/equipment-catalog/c4fa4e50a04f/`; run a selected plan with
 `scripts/rea-batch.py`. The checked source assets build independently of the
 reference EXE and Unicorn. The constructor recovery uses reviewed vector
 reservation, successful allocation, locale miss, string formatting and memcpy

@@ -49,18 +49,18 @@ export REA_DURABLE_QUERY_ROOT="${REA_DURABLE_QUERY_ROOT:-$rea_project_root/runti
 
 export PATH="$(dirname -- "$rea_node"):$PATH"
 export TMPDIR="$rea_project_root/runtime/tmp"
-export XDG_CACHE_HOME="$rea_project_root/runtime/cache"
-export XDG_CONFIG_HOME="$rea_project_root/runtime/config"
-export XDG_DATA_HOME="$rea_project_root/runtime/data"
-export XDG_STATE_HOME="$rea_project_root/runtime/state"
-export XDG_RUNTIME_DIR="$rea_project_root/runtime/run"
-export PLAYWRIGHT_BROWSERS_PATH="$rea_project_root/runtime/browsers"
-export REA_CUTTER_BRIDGE_DIR="$rea_project_root/runtime/cutter-bridge"
+export XDG_CACHE_HOME="$rea_project_root/runtime/tool-state/cache"
+export XDG_CONFIG_HOME="$rea_project_root/runtime/tool-state/config"
+export XDG_DATA_HOME="$rea_project_root/runtime/tool-state/data"
+export XDG_STATE_HOME="$rea_project_root/runtime/tool-state/state"
+export XDG_RUNTIME_DIR="$rea_project_root/runtime/tool-state/run"
+export PLAYWRIGHT_BROWSERS_PATH="$rea_project_root/runtime/tool-state/browsers"
+export REA_CUTTER_BRIDGE_DIR="$rea_project_root/runtime/tool-state/cutter-bridge"
 export GHIDRA_INSTALL_DIR="$rea_project_root/.tools/ghidra/ghidra_12.1.4_PUBLIC"
 # HotSpot performance data otherwise uses a shared system temporary directory.
 export JAVA_TOOL_OPTIONS=-XX:-UsePerfData
 # Hopper's macOS provider hardcodes /tmp; keep it unavailable under our workspace rule.
-export HOPPER_LAUNCHER_PATH="$rea_project_root/runtime/unconfigured-hopper"
+export HOPPER_LAUNCHER_PATH="$rea_project_root/runtime/tool-state/unconfigured-hopper"
 
 if [ -n "${REA_JAVA_HOME-}" ]; then
   export JAVA_HOME=$REA_JAVA_HOME

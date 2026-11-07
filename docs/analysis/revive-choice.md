@@ -39,7 +39,7 @@ Ghidra queries to the exact declared PE slice, their original results, selected
 native instructions and constants. Run the maintained checker without compiling:
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs:runtime/camera-recovery-0.105.0/python-libs python3 -B scripts/check-revive-choice.py --parallel-current
+PYTHONPATH=runtime/tool-state/python/armory/python-libs:runtime/tool-state/python/camera/python-libs python3 -B scripts/check-revive-choice.py --parallel-current
 ```
 
 The check passes **496 isolated original-instruction cases** over zero through

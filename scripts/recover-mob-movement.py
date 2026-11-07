@@ -17,7 +17,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-OUT = ROOT / 'runtime/mob-movement-0.105.0'
+OUT = ROOT / 'runtime/analysis/history/movement/mob-movement/46a02b277df9'
 ACTOR = 0x14593ac20
 PROFILE = dict(
     dispatch=(0x14593d6bb, 0x14593d801),

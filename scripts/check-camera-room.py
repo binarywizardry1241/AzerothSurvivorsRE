@@ -46,7 +46,7 @@ def main():
     for name, digest in manifest['extract_sha256'].items():
         assert hashlib.sha256((OUT / name).read_bytes()).hexdigest() == digest, name
 
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)

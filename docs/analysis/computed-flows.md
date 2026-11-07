@@ -61,7 +61,7 @@ writes a proposed compact proof under ignored `runtime/` for review.
 Regenerate the candidate pass with the existing project-local Capstone runtime:
 
 ```sh
-PYTHONPATH="$PWD/runtime/camera-recovery-0.105.0/python-libs:$PWD/scripts" python3 -B scripts/classify-native-ownership.py --census-summary docs/analysis/coverage/full-image-execheck.json --output runtime/execheck-0.113.2/current-ownership.json --write
+PYTHONPATH="$PWD/runtime/tool-state/python/camera/python-libs:$PWD/scripts" python3 -B scripts/classify-native-ownership.py --census-summary docs/analysis/coverage/full-image-execheck.json --output runtime/analysis/history/target-audit/execheck/69d2f07fbba6/current-ownership.json --write
 ```
 
 Bulk gzip bytes can vary on regeneration; review the new commitments before

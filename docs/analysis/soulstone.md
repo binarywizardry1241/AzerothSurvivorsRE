@@ -51,7 +51,7 @@ consumers retire the protection; no new save, wire or global field is needed.
 The existing resurrection checker provides the current `--soulstone` suite:
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-revive-choice.py --soulstone
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-revive-choice.py --soulstone
 ```
 
 The [result](evidence/0.127.0/soulstone/static-check.json) records **40 cases

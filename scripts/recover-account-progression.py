@@ -8,7 +8,7 @@ from portable_paths import objdump_output, portable_json
 from script_sources import load_script
 from pathlib import Path
 import sys, struct, json, hashlib
-R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/armory-recovery/python-libs'))
+R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 m = load_script('iv', R/'scripts/inventory-executable.py')
@@ -82,7 +82,7 @@ for i in range(q(out+16)):
  at=q(out+8)+i*112;raw=bytes(u.mem_read(at,112))
  row=dict(key=pair(at+8),name=pair(at+32),description=pair(at+56),kind=raw[72],payload=raw[73:88].hex(),icon=pair(at+88),points=struct.unpack_from('<I',raw,104)[0],category=raw[108])
  rows.append(row)
-(R/'runtime/target-menu-consolidation/achievement-catalog-decoded.json').write_text(portable_json(dict(rows=rows,gear_ids=gear_ids,formats=formats,replacements=replacements,calls={hex(k):v for k,v in calls.items()}),indent=2)+'\n')
+(R/'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/achievement-catalog-decoded.json').write_text(portable_json(dict(rows=rows,gear_ids=gear_ids,formats=formats,replacements=replacements,calls={hex(k):v for k,v in calls.items()}),indent=2)+'\n')
 print(len(rows),'achievements',sum(x['points'] for x in rows),'points')
 
 
@@ -142,7 +142,7 @@ def span(a,n):return dict(address=hex(a),file_offset=hex(p.rva_offset(a-p.image_
 procedures=[]
 for role,a in [('achievement-catalog',0x14551e7f0),('run-snapshot',0x1454502d0),('feat-grant',0x14552f770),('account-grant',0x14552fae0),('achievement-evaluate',0x14552e100),('achievement-save-grant',0x14542e180),('earned-set-insert',0x145435f00),('gear-id-iterator',0x14553eda0),('gear-legendary-filter',0x1455590f0),('best-legendary-class',0x14554dcd0),('date-format',0x14552d690),('perk-lookup',0x14547e770),('tabard-lookup',0x1454304f0),('unlock-list',0x14547f730),('companion-lookup',0x14547fd70),('lazy-catalog-wrapper',0x145524640),('system-time',0x145703e20),('achievement-notification',0x14544f390),('achievement-system-line',0x14552f600),('achievement-banner-line',0x14552dd50),('system-message-packet',0x14545dc90)]:
  z=ends[a];row=dict(role=role,end_exclusive=hex(z),**span(a,z-a));(O/f'{role}.asm').write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={a:#x}',f'--stop-address={z:#x}',str(R/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe')],cwd=R,text=True).replace(str(R)+'/', ''))
- evpath=R/f'runtime/target-menu-consolidation/rea-{role}/003-procedure_pseudo_code.json'
+ evpath=R/f'runtime/analysis/history/native-recovery/target-menu-consolidation/1af1b394d2c0/rea-{role}/003-procedure_pseudo_code.json'
  if evpath.exists():
   result=json.loads(evpath.read_text())['response']['result'];ev=result.get('structuredContent') or json.loads(result['content'][0]['text']);assert ev['provider']['id']=='ghidra'and ev['subject']['digest']['sha256']==row['sha256'];row.update(evidence_id=ev['evidence_id'],provider=ev['provider']);(O/f'{role}.ghidra.c').write_text(ev['normalized_result'].rstrip()+'\n')
  procedures.append(row)

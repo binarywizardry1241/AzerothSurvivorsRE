@@ -4,6 +4,7 @@
 Optional replay executes only bounded original instructions with typed memory;
 it does not run the game, reconstructed code, a server, Save I/O or networking.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import json
@@ -170,7 +171,7 @@ def main():
         assert pe.rva_offset(int(row['start'], 16) - pe.image_base) == int(row['file_offset'], 16)
         assert digest(raw(int(row['start'], 16), row['byte_count'])) == row['sha256']
     for row in (proof['assembly'], previous['assembly']):
-        assembly = (ROOT / row['path']).read_bytes()
+        assembly = (retained_runtime_path(ROOT / row['path'], ROOT)).read_bytes()
         assert digest(assembly) == row['sha256']
         for line in assembly.decode().splitlines():
             if line and not line.startswith(';'):

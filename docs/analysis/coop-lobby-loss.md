@@ -54,7 +54,7 @@ owned by #185 and was not replaced.
 Run from the checkout root with the existing Python dependency installation:
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs python3 -B scripts/check-coop-lobby-loss.py
+PYTHONPATH=runtime/tool-state/python/armory/python-libs python3 -B scripts/check-coop-lobby-loss.py
 ```
 
 The check passes **128 original-instruction cases / 2,684 instructions**:

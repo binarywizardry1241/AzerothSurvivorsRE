@@ -18,7 +18,7 @@ audit=importlib.util.module_from_spec(spec);spec.loader.exec_module(audit)
 
 class HistoricalCacheTests(unittest.TestCase):
     def setUp(self):
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         self.temporary=tempfile.TemporaryDirectory(dir=scratch);self.root=Path(self.temporary.name)
         self.image=b'prefixUNIQUE-tail-repeat-repeat';self.target=hashlib.sha256(self.image).hexdigest()
         self.raw=b'UNIQUE';self.digest=hashlib.sha256(self.raw).hexdigest()
@@ -157,7 +157,7 @@ class HistoricalCacheTests(unittest.TestCase):
 
 class HistoricalBulkSearchTests(unittest.TestCase):
     def setUp(self):
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         self.temporary=tempfile.TemporaryDirectory(dir=scratch);self.directory=Path(self.temporary.name)
 
     def tearDown(self):self.temporary.cleanup()
@@ -251,8 +251,8 @@ class HistoricalRanges(unittest.TestCase):
         inventory,summary=audit.output_paths(target)
         self.assertEqual(inventory,ROOT/'runtime/coverage'/target['sha256']/'historical-range-revalidation.json')
         self.assertEqual(summary,ROOT/'docs/analysis/coverage/historical-range-revalidation.json')
-        self.assertEqual(audit.output_paths(target,'runtime/benchmarks/history/inventory.json','runtime/benchmarks/history/summary.json'),
-            (ROOT/'runtime/benchmarks/history/inventory.json',ROOT/'runtime/benchmarks/history/summary.json'))
+        self.assertEqual(audit.output_paths(target,'runtime/analysis/benchmarks/legacy/history/inventory.json','runtime/analysis/benchmarks/legacy/history/summary.json'),
+            (ROOT/'runtime/analysis/benchmarks/legacy/history/inventory.json',ROOT/'runtime/analysis/benchmarks/legacy/history/summary.json'))
         for inventory,summary in (('../outside.json',None),('docs/inventory.json',None),('runtime/same.json','runtime/same.json'),(None,'../outside.json')):
             with self.assertRaises(ValueError):audit.output_paths(target,inventory,summary)
 
@@ -274,7 +274,7 @@ class HistoricalRanges(unittest.TestCase):
         self.assertIsNone(audit.target_digest({'artifact':{'path':'catalog.json','sha256':'a'*64}}))
     def test_owning_manifest_admits_only_an_exact_document_hash(self):
         import json
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as folder:
             directory=Path(folder);catalog=directory/'catalog.json';catalog.write_text('{}');manifest=directory/'manifest.json'
             document={'target_sha256':'a'*64,'output':'catalog.json','output_sha256':hashlib.sha256(b'{}').hexdigest()};manifest.write_text(json.dumps(document))
@@ -285,7 +285,7 @@ class HistoricalRanges(unittest.TestCase):
             {'file_offset':'0x10','start':'0x140001000','end':'0x140001005','sha256':'f'*64}]}))
         self.assertEqual(len(rows),1);self.assertEqual(rows[0]['byte_count'],5)
     def test_canonical_byte_columns_must_match_the_historical_hash(self):
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as folder:
             directory=Path(folder);assembly=directory/'native.asm'
             assembly.write_text('140001000: 48 83 ec 28 \tsubq $0x28, %rsp\n140001004: c3 \tretq\n140001005:      pushq %rbp\n')
@@ -295,7 +295,7 @@ class HistoricalRanges(unittest.TestCase):
             self.assertIsNone(audit.reconstruct_range({**record,'sha256':'f'*64},directory/'manifest.json',{}))
             self.assertNotIn(0x140001005,audit.assembly_instructions(str(assembly)))
     def test_compact_hex_columns_reconstruct_only_hash_matching_ranges(self):
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as folder:
             directory=Path(folder);assembly=directory/'native.asm'
             assembly.write_text('14594f765: f3410f104570 movss 0x70(%r13), %xmm0\n14594f76b: c3 retq\n14594f76c: fadd qword ptr [rax]\n14594f76e: add eax, eax\n14594f770: db 0xc3\n')
@@ -305,7 +305,7 @@ class HistoricalRanges(unittest.TestCase):
             self.assertIsNone(audit.reconstruct_range({**record,'sha256':'f'*64},directory/'manifest.json',{}))
             self.assertEqual(set(audit.assembly_instructions(str(assembly))),{0x14594f765,0x14594f76b})
     def test_explicit_json_preimages_require_exact_length_and_digest(self):
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as folder:
             directory=Path(folder);manifest=directory/'manifest.json';manifest.write_text('{}')
             raw=bytes.fromhex('4883ec28c3');digest=hashlib.sha256(raw).hexdigest()
@@ -318,7 +318,7 @@ class HistoricalRanges(unittest.TestCase):
             self.assertEqual(list(audit.explicit_raw({'raw_hex':'mov rax, rbx'})),[])
     def test_sibling_json_spans_require_contiguous_same_target_conflict_free_bytes(self):
         import json
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as folder:
             directory=Path(folder);manifest=directory/'manifest.json';manifest.write_text('{}')
             target='a'*64;document={'target_sha256':target};raw=bytes.fromhex('4883ec28c3')
@@ -330,7 +330,7 @@ class HistoricalRanges(unittest.TestCase):
             self.assertIsNone(audit.reconstruct_range(record,manifest,document))
     def test_utf8_literals_require_exact_bytes_and_preserve_source_identity(self):
         import json
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as folder:
             path=Path(folder)/'strings.json';text='Elwynn Forest';raw=text.encode('utf8');digest=hashlib.sha256(raw).hexdigest()
             path.write_text(json.dumps({'target_sha256':'b'*64,'name':text}))
@@ -339,7 +339,7 @@ class HistoricalRanges(unittest.TestCase):
             self.assertEqual(found[(len(raw),digest)][1]['source_target_sha256'],'b'*64)
             self.assertEqual(found[(len(raw),digest)][1]['json_pointer'],'/name')
     def test_source_artifact_admission_requires_exact_bytes_and_keeps_reference_copies_forbidden(self):
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as folder:
             directory=Path(folder);manifest=directory/'manifest.json';manifest.write_text('{}')
             raw=b'return 1';digest=hashlib.sha256(raw).hexdigest()
@@ -354,7 +354,7 @@ class HistoricalRanges(unittest.TestCase):
                 (directory/name).write_bytes(raw)
                 self.assertIsNone(audit.reconstruct_range({**record,'raw_artifact':name},manifest,{}))
     def test_global_verbatim_candidates_require_length_hash_and_source_identity(self):
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as folder:
             path=Path(folder)/'source.json';raw=bytes.fromhex('4883ec28c3');digest=hashlib.sha256(raw).hexdigest()
             document={'target_sha256':'a'*64,'row':{'payload':raw.hex()}}
@@ -370,14 +370,14 @@ class HistoricalRanges(unittest.TestCase):
     def test_ordered_effect_arrays_keep_all_union_bytes_and_do_not_pad(self):
         raw1=bytes(range(64));raw2=bytes(reversed(range(64)))
         document={'effects':[{'payload':raw1.hex()},{'payload':raw2.hex()}]}
-        path=ROOT/'runtime/coverage-tests/effects.json'
+        path=ROOT/'runtime/tests/coverage/effects.json'
         rows=list(audit.serialized_json_candidates(document,path))
         self.assertIn((raw1+raw2,'/effects','ordered-verbatim-64-byte-effects'),rows)
         self.assertNotIn((raw2+raw1,'/effects','ordered-verbatim-64-byte-effects'),rows)
         partial={'effects':[{'payload':raw1.hex()},{'payload':raw2[:-1].hex()}]}
         self.assertFalse(any(encoding=='ordered-verbatim-64-byte-effects' for _,_,encoding in audit.serialized_json_candidates(partial,path)))
     def test_before_after_effect_arrays_remain_separate_exact_preimages(self):
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as folder:
             path=Path(folder)/'delta.json';old=bytes(range(64))*2;current=bytes(reversed(range(64)))*2
             effects={side:[{'payload':raw[:64].hex()},{'payload':raw[64:].hex()}] for side,raw in [('old',old),('current',current)]}
@@ -399,7 +399,7 @@ class HistoricalRanges(unittest.TestCase):
         document={'ordinary_upgrade_tables':[{'name':'TARGETS','values':[1,1,1,2,2]},{'name':'POWER','values':[.25]*5},{'name':'UNKNOWN','values':[1]*5}]}
         rows=list(audit.serialized_json_candidates(document,path))
         self.assertEqual([v[0] for v in rows],[struct.pack('<5I',1,1,1,2,2),struct.pack('<5f',*([.25]*5))])
-        self.assertEqual(list(audit.serialized_json_candidates(document,ROOT/'runtime/coverage-tests/unknown-layout.json')),[])
+        self.assertEqual(list(audit.serialized_json_candidates(document,ROOT/'runtime/tests/coverage/unknown-layout.json')),[])
     def test_pvp_wide_indices_are_not_truncated_or_inferred_from_percentages(self):
         path=ROOT/'docs/analysis/evidence/0.105.0/pvp-gear/data-evidence.json'
         order=[0,1,2,3,2**40,4]
@@ -433,7 +433,7 @@ class HistoricalRanges(unittest.TestCase):
             command.assert_not_called()
         audit.committed_json_output.cache_clear()
     def test_archived_asset_preimage_retains_manifest_target_and_git_witness(self):
-        scratch=ROOT/'runtime/coverage-tests';scratch.mkdir(parents=True,exist_ok=True)
+        scratch=ROOT/'runtime/tests/coverage';scratch.mkdir(parents=True,exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as folder:
             path=Path(folder)/'manifest.json';raw=bytes(range(64))*2;asset={'effects':[{'payload':raw[:64].hex()},{'payload':raw[64:].hex()}]}
             blob=json.dumps(asset).encode();output='crates/azeroth-survivors-re/assets/talents.json'

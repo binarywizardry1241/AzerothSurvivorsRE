@@ -358,7 +358,7 @@ def current_lifestealing():
     assert target["sha256"] == "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
     image = target_bytes(target)
     pe = load_script("lifestealing_pe", ROOT / "scripts/inventory-executable.py").PE(image)
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from native_terminal import NativeReplay
     replay = NativeReplay(image, pe)
     vm, r = replay.machine, replay.registers
@@ -464,7 +464,7 @@ def current_peer_glow():
     assert target["sha256"] == "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9"
     image = target_bytes(target)
     pe = load_script("peer_glow_pe", ROOT / "scripts/inventory-executable.py").PE(image)
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from native_terminal import NativeReplay
 
     replay = NativeReplay(image, pe)

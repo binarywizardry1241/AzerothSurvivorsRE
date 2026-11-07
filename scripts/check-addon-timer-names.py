@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = next(p for p in Path(__file__).resolve().parents
             if (p / "scripts/coverage_common.py").is_file())
-sys.path[:0] = [str(ROOT / "scripts"), str(ROOT / "runtime/armory-recovery/python-libs")]
+sys.path[:0] = [str(ROOT / "scripts"), str(ROOT / "runtime/tool-state/python/armory/python-libs")]
 from coverage_common import latest_target, target_bytes
 from script_sources import load_script
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED

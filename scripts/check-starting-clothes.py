@@ -16,7 +16,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
 from coverage_common import latest_target, target_bytes
 from equipment_native import EquipmentProbe
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64

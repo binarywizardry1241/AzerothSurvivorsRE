@@ -19,7 +19,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from coverage_common import latest_target
 
 RETAINED = ROOT / "docs/analysis/evidence/0.105.0/stored-level-bindings"
-WORK = ROOT / "runtime/keyboard-y-0.105.0"
+WORK = ROOT / "runtime/analysis/history/movement/keyboard-y/2009d7578a0a"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 
 

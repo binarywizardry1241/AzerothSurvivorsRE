@@ -147,9 +147,9 @@ To stage reproducible Ghidra inputs without starting analysis:
 
 ```sh
 python3 -B scripts/recover-guardian-signatures.py --prepare-rea
-python3 -B scripts/rea-batch.py runtime/guardian-mechanics-0.109.0/selector-plan.json
-python3 -B scripts/rea-batch.py runtime/guardian-mechanics-0.109.0/decision-plan.json
-python3 -B scripts/rea-batch.py runtime/guardian-mechanics-0.109.0/scheduler-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/guardian-mechanics/fe168fb12728/selector-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/guardian-mechanics/fe168fb12728/decision-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/guardian-mechanics/fe168fb12728/scheduler-plan.json
 ```
 
 Raw slices, databases and full protocol responses remain ignored under

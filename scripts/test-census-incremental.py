@@ -91,7 +91,7 @@ class CensusIncremental(unittest.TestCase):
         self.assertEqual(benchmark.bounded_flow(self.pe(), self.decoder({0x1000: ('jump', 0x1000)}), 0x1000), {0x1000})
 
     def test_completed_receipt_guard_rejects_byte_and_mtime_changes(self):
-        scratch = ROOT / 'runtime/coverage-tests'
+        scratch = ROOT / 'runtime/tests/coverage'
         scratch.mkdir(parents=True, exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as temporary:
             path = Path(temporary) / 'progress.json'
@@ -108,7 +108,7 @@ class CensusIncremental(unittest.TestCase):
                 benchmark.require_unchanged_receipt(path, before)
 
     def test_equivalence_compares_record_bytes_not_gzip_headers_or_only_totals(self):
-        scratch = ROOT / 'runtime/coverage-tests'
+        scratch = ROOT / 'runtime/tests/coverage'
         scratch.mkdir(parents=True, exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as temporary:
             left, right = Path(temporary) / 'left', Path(temporary) / 'right'

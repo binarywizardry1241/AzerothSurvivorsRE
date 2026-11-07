@@ -49,7 +49,7 @@ def main():
         ("1401c8d40", "Escape Menu constructor and per-button loop"),
         ("1401a5f90", "528-byte Escape Menu button spawn bundle writer"),
     ]:
-        bundle = ROOT / f"runtime/menu-recovery/rea-{address}/evidence-bundle.json"
+        bundle = ROOT / f"runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-{address}/evidence-bundle.json"
         records = json.loads(bundle.read_text())["records"]
         record = next(record for record in records if record["operation"] == "analyze_function")
         native.append(dict(address="0x" + address, role=role, rea_evidence_id=record["evidence_id"]))

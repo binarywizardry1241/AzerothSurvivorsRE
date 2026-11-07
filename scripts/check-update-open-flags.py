@@ -20,7 +20,7 @@ def main():
     inventory = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(inventory)
     pe = inventory.PE(data)
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import UC_X86_REG_RCX, UC_X86_REG_RDX, UC_X86_REG_R8, UC_X86_REG_RSP, UC_X86_REG_RIP
     machine = Uc(UC_ARCH_X86, UC_MODE_64)

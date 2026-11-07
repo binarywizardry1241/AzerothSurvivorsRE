@@ -20,7 +20,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-RUN = ROOT / "runtime/boss-catalog-0.105.0"
+RUN = ROOT / "runtime/analysis/history/raid/boss-catalog/58c176b71827"
 OUT = ROOT / "docs/analysis/evidence/0.105.0/boss-catalog"
 SOURCE = ROOT / "crates/azeroth-survivors-re/src/guardians/catalog.rs"
 TABLE, CREATOR, CREATOR_END = 0x146BA9450, 0x14592FF90, 0x145930DF2
@@ -48,7 +48,7 @@ def current_reach(contract_path, collect):
         return data[at:at + size]
     for row in contract['reach_ranges'] + contract['reach_constants']:
         assert hashlib.sha256(raw(number(row['start']), row['byte_count'])).hexdigest() == row['sha256']
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as x
     machine = Uc(UC_ARCH_X86, UC_MODE_64)
@@ -170,7 +170,7 @@ def main():
                     open_options=dict(format="raw-binary", architecture="x86_64", entry_point=hex(CREATOR)),
                     operations=[dict(name="procedure_pseudo_code", arguments=dict(procedure=hex(CREATOR)))])
         (RUN / "constructor-plan.json").write_text(serialized(plan))
-        print("Prepared current-hash constructor REA/Ghidra plan under runtime/boss-catalog-0.105.0")
+        print("Prepared current-hash constructor REA/Ghidra plan under runtime/analysis/history/raid/boss-catalog/58c176b71827")
         return
 
     zones = []
@@ -258,7 +258,7 @@ def main():
         assert current_words == historical_words
 
     # Execute only five no-call native instructions with synthetic XMM9 scale.
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as x
     uc = Uc(UC_ARCH_X86, UC_MODE_64)

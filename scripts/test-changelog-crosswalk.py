@@ -20,7 +20,7 @@ spec.loader.exec_module(index)
 
 class HistoricalCrosswalk(unittest.TestCase):
     def setUp(self):
-        scratch = PROJECT / 'runtime/changelog-crosswalk-tests'
+        scratch = PROJECT / 'runtime/tests/changelog-crosswalk'
         scratch.mkdir(parents=True, exist_ok=True)
         temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.addCleanup(temporary.cleanup)

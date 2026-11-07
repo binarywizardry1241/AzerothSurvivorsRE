@@ -104,7 +104,7 @@ instructions. No broad whole-text execution fallback remains. Unwindless leaf
 ranges are explicit bounds, not claims of a complete EXE function census.
 
 The instruction checkers require the Python `unicorn` package; the repository
-uses project-local `runtime/armory-recovery/python-libs` when available. They
+uses project-local `runtime/tool-state/python/armory/python-libs` when available. They
 read the configured reference EXE without launching it.
 
 Rustfmt syntax parsing, manual source/type review and diff whitespace checks ran.

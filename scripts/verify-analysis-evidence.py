@@ -15,7 +15,7 @@ import struct
 import subprocess
 
 ROOT = Path(__file__).resolve().parent.parent
-OUT = ROOT / "runtime/verification/historical-evidence.json"
+OUT = ROOT / "runtime/tool-state/verification/historical-evidence.json"
 
 
 def main():

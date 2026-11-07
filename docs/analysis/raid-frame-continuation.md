@@ -93,7 +93,7 @@ damage and delayed player movement; an unopened stored level does not.
 
 Run `python3 -B scripts/check-raid-frame-continuation.py`; `--stage`
 writes a candidate under ignored
-`runtime/native-evidence/0.112.0/raid-frame-continuation`.
+`runtime/analysis/staging/native-evidence/0.112.0/raid-frame-continuation`.
 
 **272 native profiles** pass:
 

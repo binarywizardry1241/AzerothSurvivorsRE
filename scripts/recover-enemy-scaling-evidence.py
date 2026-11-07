@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 EXPECTED = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
 OUTPUT = ROOT / "docs/analysis/evidence/0.97.2/enemies"
-RUNTIME = ROOT / "runtime/enemies-0.97.2/scaling"
+RUNTIME = ROOT / "runtime/analysis/history/native-recovery/enemies/b24ae4fa5276/scaling"
 FUNCTIONS = [("constructor", 0x1454c2040, 0x1454c293c),
              ("flagged-health-polynomial", 0x1454f0830, 0x1454f0875),
              ("zero-flag-health-polynomial", 0x1454f0880, 0x1454f08c5)]
@@ -59,8 +59,8 @@ def main():
         functions.append(row)
         offset = int(row["file_offset"],16)
         (RUNTIME / f"{start:x}.bin").write_bytes(data[offset:offset+end-start])
-        plan = {"target":f"runtime/enemies-0.97.2/scaling/{start:x}.bin",
-            "output":f"runtime/enemies-0.97.2/scaling/rea-{start:x}",
+        plan = {"target":f"runtime/analysis/history/native-recovery/enemies/b24ae4fa5276/scaling/{start:x}.bin",
+            "output":f"runtime/analysis/history/native-recovery/enemies/b24ae4fa5276/scaling/rea-{start:x}",
             "open_options":{"format":"raw-binary","architecture":"x86_64","entry_point":hex(start)},
             "timeout":240,"open_timeout":90,
             "operations":[{"name":"analyze_function","arguments":{"procedure":hex(start)}}]}

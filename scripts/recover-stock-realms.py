@@ -50,7 +50,7 @@ def f32(value):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "runtime/stock-realms-0.105.0")
+    parser.add_argument("--output", type=Path, default=ROOT / "runtime/analysis/history/interface/stock-realms/c9f14f3b788e")
     args = parser.parse_args()
     output = args.output.resolve()
     require(output.is_relative_to(ROOT / "runtime"), "Generated output must remain in runtime/")

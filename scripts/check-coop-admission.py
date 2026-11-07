@@ -57,7 +57,7 @@ def verify(manifest, require_source=False):
     gate = proof['admission_range']
     assert int(owner['virtual_address'], 16) <= int(gate['virtual_address'], 16)
     assert int(gate['end_exclusive'], 16) <= int(owner['end_exclusive'], 16)
-    sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     decoder = Cs(CS_ARCH_X86, CS_MODE_64)
     for row in (owner, gate, *proof.get('producer_ranges', ())):

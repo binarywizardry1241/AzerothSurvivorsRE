@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Verify #118 and optional #164 through static contracts and bounded instructions."""
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import json
@@ -23,7 +24,7 @@ def main():
         at = pe.rva_offset(int(row["va"], 16) - pe.image_base)
         assert hashlib.sha256(image[at:at + row["byte_count"]]).hexdigest() == row["sha256"], row["label"]
     for row in proof["query_receipts"]:
-        assert hashlib.sha256((ROOT / row["path"]).read_bytes()).hexdigest() == row["sha256"]
+        assert hashlib.sha256((retained_runtime_path(ROOT / row["path"], ROOT)).read_bytes()).hexdigest() == row["sha256"]
     raw = lambda address, count: image[pe.rva_offset(address - pe.image_base):pe.rva_offset(address - pe.image_base) + count]
     assert raw(0x1475c6a18, 9) == b"coop:team"
     assert raw(0x146174a34, 4) == struct.pack("<I", 0x3dcccccd)

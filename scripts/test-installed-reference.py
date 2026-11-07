@@ -19,7 +19,7 @@ spec.loader.exec_module(registration)
 
 class InstalledReference(unittest.TestCase):
     def setUp(self):
-        scratch = common.ROOT / "runtime/reference-tests"
+        scratch = common.ROOT / "runtime/tests/reference"
         scratch.mkdir(parents=True, exist_ok=True)
         temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.addCleanup(temporary.cleanup)

@@ -12,7 +12,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 SHA = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-WORK = ROOT / "runtime/menu-zone-scroll-0.97.2"
+WORK = ROOT / "runtime/analysis/history/interface/menu-zone-scroll/3034a9fcf3c9"
 START = 0x140096AF0
 
 
@@ -40,8 +40,8 @@ def main():
     source = span(start, functions[start])
     if args.prepare or args.prepare_producer:
         (WORK / f"{start:x}.bin").write_bytes(bytes.fromhex(source["raw_hex"]))
-        plan = dict(target=f"runtime/menu-zone-scroll-0.97.2/{start:x}.bin",
-                    output=f"runtime/menu-zone-scroll-0.97.2/rea-{start:x}",
+        plan = dict(target=f"runtime/analysis/history/interface/menu-zone-scroll/3034a9fcf3c9/{start:x}.bin",
+                    output=f"runtime/analysis/history/interface/menu-zone-scroll/3034a9fcf3c9/rea-{start:x}",
                     open_options=dict(format="raw-binary", architecture="x86_64", entry_point=hex(start)),
                     timeout=180, open_timeout=60, cleanup_timeout=60,
                     environment={"REA_GHIDRA_STARTUP_TIMEOUT_MS": "180000"},

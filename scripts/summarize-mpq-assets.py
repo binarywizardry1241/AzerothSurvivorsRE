@@ -153,8 +153,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", required=True, help="runtime asset-recovery JSON inventory")
     parser.add_argument("--paths-file", required=True, help="the exact probe list used for the inventory")
-    parser.add_argument("--output-dir", default="runtime/asset-recovery-summary",
-                        help="bulk inventory directory beneath runtime/ (default: runtime/asset-recovery-summary)")
+    parser.add_argument("--output-dir", default="runtime/analysis/history/native-recovery/asset-recovery-summary/c0d01a7a811d",
+                        help="bulk inventory directory beneath runtime/ (default: runtime/analysis/history/native-recovery/asset-recovery-summary/c0d01a7a811d)")
     parser.add_argument("--target-manifest", help="optional target-refresh JSON for explicit version binding")
     parser.add_argument("--date", help="explicit review date (YYYY-MM-DD)")
     parser.add_argument("--verify-extracted", action="store_true", help="independently hash every extracted file")

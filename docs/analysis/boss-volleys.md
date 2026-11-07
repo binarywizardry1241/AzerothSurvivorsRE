@@ -88,7 +88,7 @@ Fresh bounded REA inputs can be staged without starting analysis:
 
 ```sh
 python3 -B scripts/prepare-boss-volley-rea.py
-python3 -B scripts/rea-batch.py runtime/boss-volleys-0.108.0/rea-preparation/plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/boss-volleys/4de5482ea03e/rea-preparation/plan.json
 ```
 
 Raw slices, databases and tool responses remain ignored. The existing minion

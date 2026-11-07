@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Check hash-bound party arithmetic without compilation or game execution."""
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json, portable_record
 import argparse
 import hashlib
@@ -48,7 +49,7 @@ def verify(proof, selected=None):
     for query in proof["queries"]:
         for name in ("plan", "journal", "result", "raw_input"):
             receipt = query[name]
-            assert sha((ROOT / receipt["path"]).read_bytes()) == receipt["sha256"]
+            assert sha((retained_runtime_path(ROOT / receipt["path"], ROOT)).read_bytes()) == receipt["sha256"]
         result = json.loads((ROOT / query["result"]["path"]).read_text())
         native = result.get("structuredContent") or json.loads(result["content"][0]["text"])
         assert sha(native["normalized_result"].encode()) == query["normalized_text_sha256"]

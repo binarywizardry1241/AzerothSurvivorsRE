@@ -19,8 +19,8 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/meter-accounting-0.105.0"
-OUT = ROOT / "runtime/native-evidence/0.105.0/run-meters/accounting"
+WORK = ROOT / "runtime/analysis/history/native-recovery/meter-accounting/09505f8efe24"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/0.105.0/run-meters/accounting"
 OWNERS = {"hit": 0x145933EC0, "source": 0x1458F2EE0,
           "breakdown": 0x1458F27A0, "record": 0x14595F3C0,
           "summary": 0x1458FAD90, "healing-credit": 0x1458F8050,
@@ -41,7 +41,7 @@ def bits(value, fmt="f"):
 
 
 def native_vectors(pe):
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, __version__
     import unicorn.x86_const as reg
     u = Uc(UC_ARCH_X86, UC_MODE_64)

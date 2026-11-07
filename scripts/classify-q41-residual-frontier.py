@@ -342,7 +342,7 @@ def derive():
     for plan_name, directory in (
         ("seeded-plan.json", "seeded-query"), ("all-plan.json", "all-query")
     ):
-        base = "runtime/fixgap41-callers/"
+        base = "runtime/analysis/history/findings/fixgap41-callers/9f74cd4f0ce3/"
         plan_receipt = receipt(base + plan_name)
         journal_receipt = receipt(base + directory + "/journal.json")
         plan = json.loads(checked(plan_receipt).read_text())

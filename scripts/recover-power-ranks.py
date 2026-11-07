@@ -19,7 +19,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-OUT = ROOT / 'runtime/power-scaling-0.105.0/ranks'
+OUT = ROOT / 'runtime/analysis/history/combat/power-scaling/11f43211b8a5/ranks'
 START, END = 0x1458e17f0, 0x1458e1dfe
 
 
@@ -32,7 +32,7 @@ def bits(value):
 
 
 def vectors(pe):
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)

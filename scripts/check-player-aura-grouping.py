@@ -4,6 +4,7 @@
 Only the selected original instructions execute in synthetic memory. Vector
 reserve is a hooked allocation seam; no Rust, game, client or server executes.
 """
+from runtime_layout import retained_runtime_path
 from portable_paths import objdump_output, portable_json, portable_record
 import hashlib
 import importlib.util
@@ -16,8 +17,8 @@ import argparse
 import sys
 
 from coverage_common import ROOT, latest_target, target_bytes, project_path
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
-sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn import x86_const as R
@@ -426,7 +427,7 @@ def shout_contract(args):
     if args.collect:
         output.mkdir(parents=True,exist_ok=True);manifest['queries']=[]
         for key,folder_name in [('145b760b0','rea'),('145c18970','rea'),('145c68a30','rea'),('145c0c300','rea-v2')]:
-            folder=ROOT/'runtime/warlock-current'/key;journal_path=folder/folder_name/'journal.json'
+            folder=ROOT/'runtime/analysis/history/combat/warlock-current/867d2347c452'/key;journal_path=folder/folder_name/'journal.json'
             journal=json.loads(journal_path.read_text());operation=next(v for v in journal['operations'].values()if v['name']=='procedure_pseudo_code')
             assert operation['status']=='completed';result_path=ROOT/operation['result']['path']
             result=json.loads(result_path.read_text());native=result.get('structuredContent')or json.loads(result['content'][0]['text'])
@@ -452,7 +453,7 @@ def shout_contract(args):
             result_path=ROOT/query['result']['path']
             if result_path.is_file():
                 for field in ['raw_input','plan','journal','result']:
-                    item=query[field];assert receipt(ROOT/item['path'])==item
+                    item=query[field];assert receipt(retained_runtime_path(ROOT/item['path'], ROOT))==item
                 result=json.loads(result_path.read_text());native=result.get('structuredContent')or json.loads(result['content'][0]['text'])
                 verify_native_query_subject(ROOT,native,query,manifest['target'],image=data,pe=pe)
     cases=shout_cases(data,pe);parsed=shout_source_check()
@@ -642,7 +643,7 @@ def main():
     parser.add_argument('--contract',choices=['aura-grouping','shouts','battle-shout-potency'],default='aura-grouping')
     parser.add_argument('--collect',action='store_true')
     parser.add_argument('--verify',action='store_true')
-    parser.add_argument('--work',default='runtime/warlock-current/shouts-curated')
+    parser.add_argument('--work',default='runtime/analysis/history/combat/warlock-current/867d2347c452/shouts-curated')
     args=parser.parse_args()
     if args.contract=='shouts':return shout_contract(args)
     if args.contract=='battle-shout-potency':return battle_shout_potency(args)

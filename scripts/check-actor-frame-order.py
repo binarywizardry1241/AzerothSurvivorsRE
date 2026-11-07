@@ -12,7 +12,7 @@ from coverage_common import ROOT
 
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 KEPT=ROOT/'docs/analysis/evidence/0.109.0/actor-frame-order'
-STAGE=ROOT/'runtime/native-evidence/0.109.0/actor-frame-order'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/actor-frame-order'
 RANGES={
  'actor-vector':(0x14597830a,0x14597832a),
  'actor-iterator':(0x1459783dc,0x14597841a),
@@ -78,7 +78,7 @@ def main():
  ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');args=ap.parse_args()
  mod = load_script('actor_inputs', ROOT/'scripts/recover-raid-actions.py')
  target,raw,span,_,_=mod.recover();assert target['sha256']==SHA
- sys.path[:0]=[str(ROOT/'runtime/armory-recovery/python-libs'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+ sys.path[:0]=[str(ROOT/'runtime/tool-state/python/armory/python-libs'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
  from capstone import Cs,CS_ARCH_X86,CS_MODE_64
  from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE,UC_HOOK_MEM_UNMAPPED
  from unicorn import x86_const as r

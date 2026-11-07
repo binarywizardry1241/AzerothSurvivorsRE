@@ -25,7 +25,7 @@ def digest(path):
 
 def correspondence_proof(manifest, image):
     """Reuse the canonical current extract instead of duplicating native bytes."""
-    sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 
     row = next(row for row in manifest['ranges'] if row['role'] == 'exact-version-admission')
@@ -190,7 +190,7 @@ def verify_source(proof, allow_pending):
 
 
 def replay(proof):
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import UC_X86_REG_RDX, UC_X86_REG_R10
 

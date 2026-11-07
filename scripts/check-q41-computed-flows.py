@@ -18,7 +18,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes, file_sha256, json_text
 from script_sources import load_script
 
-sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64, CS_GRP_CALL, CS_GRP_JUMP
 from capstone.x86_const import X86_OP_IMM
 import capstone
@@ -27,7 +27,7 @@ from shared_native_inventory import open_readonly_uri as open_native_inventory
 PROOF = ROOT / 'docs/analysis/evidence/0.113.2/unknown-recovery.json'
 OUT = ROOT / 'docs/analysis/evidence/0.113.2/computed-flows.json'
 CLASSIFIER = ROOT / 'docs/analysis/evidence/0.113.2/native-call-candidates.json'
-WORK = ROOT / 'runtime/q41-computed-flows-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/findings/q41-computed-flows/2db2898f8393'
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 
 

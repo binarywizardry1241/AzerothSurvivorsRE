@@ -42,7 +42,7 @@ class ProgramArchiveTests(unittest.TestCase):
         self.assertFalse(path.exists())
 
     def setUp(self):
-        scratch = ROOT / "runtime/program-archive-tests"
+        scratch = ROOT / "runtime/tests/program-archive"
         scratch.mkdir(parents=True, exist_ok=True)
         self.temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.root = Path(self.temporary.name)
@@ -61,7 +61,7 @@ class ProgramArchiveTests(unittest.TestCase):
     def tearDown(self):
         self.temporary.cleanup()
         try:
-            (ROOT / "runtime/program-archive-tests").rmdir()
+            (ROOT / "runtime/tests/program-archive").rmdir()
         except OSError:
             pass
 

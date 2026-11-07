@@ -39,7 +39,7 @@ Mixed intervals and actual AS producer/consumer questions remain actionable.
 
 `python3 -B scripts/check-q41-range-encodings.py` reproduces all results
 read-only. `--stage` writes proposed proof and complete JSONL records under
-ignored `runtime/q41-all-0.113.2/`; each record preserves original bounds,
+ignored `runtime/analysis/history/findings/q41-all/f1125d689593/`; each record preserves original bounds,
 location/category and native hash alongside its encoding classification.
 The records are reproducible inventories, not additional copies of assembly.
 

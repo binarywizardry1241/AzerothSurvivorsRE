@@ -38,8 +38,8 @@ The final build26 passed with `--locked --offline` in11.08s; the preceding
 combined build passed in29.09s. All169 focused harness cases passed with overlap:
 74 binary,19 native-save,6 config,1 run-modifier,14 save-browser,37 updater and18
 installer. Test compilation took12.95s. Logs are
-`runtime/menu-recovery/menu-build-26-final.log` and
-`runtime/menu-recovery/menu-tests-26-menu-bridges.log`. No live adapter, app,
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-build-26-final.log` and
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-tests-26-menu-bridges.log`. No live adapter, app,
 metadata/HTTP request, download, staging/replacement/install or process launch
 was executed.
 
@@ -129,7 +129,7 @@ of these states remains not run.
 The isolated reference profile displayed an update from **v0.92.0 to v0.94.1**.
 Clicking the bottom-right banner opened a dialog with the new version, release
 notes, a **43.0 MB** download label, **Download & restart**, and **Later**.
-`runtime/reference-captures/update-dialog.png` records that state. Clicking Later
+`runtime/analysis/history/native-recovery/reference-captures/1415f0451c23/update-dialog.png` records that state. Clicking Later
 closed the dialog and restored the banner. No update was downloaded or installed,
 and the target remained 0.92.0. This is a dated native runtime observation, not a
 claim about the current server response.

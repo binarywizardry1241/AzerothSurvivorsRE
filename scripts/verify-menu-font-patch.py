@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Verify owned patched QA fonts against ignored SHA-bound native font inputs.
 
-Run the owned font_patch.rs augmentation first to runtime/menu-recovery/patched-*.ttf.
+Run the owned font_patch.rs augmentation first to runtime/analysis/history/interface/menu-recovery/0558cac00653/patched-*.ttf.
 This analysis helper reads neither the reference EXE nor operating-system fonts.
 """
 import hashlib
@@ -58,8 +58,8 @@ def main():
     records = []
     fontmaps = {}
     for name in ['FRIZQT__', 'MORPHEUS']:
-        original = (ROOT / f'runtime/menu-fonts/{name}.TTF').read_bytes()
-        patched = (ROOT / f'runtime/menu-recovery/patched-{name}.ttf').read_bytes()
+        original = (ROOT / f'runtime/analysis/history/interface/menu-fonts/b488d8153517/{name}.TTF').read_bytes()
+        patched = (ROOT / f'runtime/analysis/history/interface/menu-recovery/0558cac00653/patched-{name}.ttf').read_bytes()
         before, after = tables(original), tables(patched)
         oldmap, newmap = cmap(before), cmap(after)
         oldglyphs, newglyphs = glyphs(before), glyphs(after)
@@ -73,7 +73,7 @@ def main():
                             preserved_original_glyphs=True, preserved_existing_cmap=True,
                             valid_sfnt_checksum=True, patched_sha256=hashlib.sha256(patched).hexdigest()))
     for name in ['AZS_NAMES_SC', 'AZS_NAMES_KR', 'AZS_SC', 'AZS_KR']:
-        fontmaps[name] = cmap(tables((ROOT / f'runtime/menu-fonts/{name}.TTF').read_bytes()))
+        fontmaps[name] = cmap(tables((ROOT / f'runtime/analysis/history/interface/menu-fonts/b488d8153517/{name}.TTF').read_bytes()))
     base = set().union(*(fontmaps[name] for name in ['FRIZQT__', 'MORPHEUS', 'AZS_NAMES_SC', 'AZS_NAMES_KR']))
     full = base | set(fontmaps['AZS_SC']) | set(fontmaps['AZS_KR'])
     locales = []

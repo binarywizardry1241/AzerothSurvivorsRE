@@ -62,7 +62,7 @@ def fixture_pe(overlap=False, virtual_tail=False):
 
 class ComplementEvidence(unittest.TestCase):
     def setUp(self):
-        scratch = ROOT / "runtime/coverage-tests"
+        scratch = ROOT / "runtime/tests/coverage"
         scratch.mkdir(parents=True, exist_ok=True)
         temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.addCleanup(temporary.cleanup)

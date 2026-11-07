@@ -55,7 +55,7 @@ actual provenance. Rustfmt syntax parsing is separate from compilation or test
 execution; neither Rust test was executed in this repair.
 
 Run `python3 -B scripts/check-player-aura-indices.py`. `--stage` writes
-candidate contracts inside ignored `runtime/gameplay-frontiers-0.112.0` for
+candidate contracts inside ignored `runtime/analysis/history/native-recovery/gameplay-frontiers/1d609cc38fa0` for
 review. Exact source hashes, native byte ranges and allocator/byte-operation
 seams are retained in the contracts. The complete aura publisher, shared field
 map allocation, whole native body ownership and arbitrary incoming pointer/alias

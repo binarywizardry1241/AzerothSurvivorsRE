@@ -33,9 +33,9 @@ def main():
  for a,n in STRINGS:
   o=pe.rva_offset(a-pe.image_base);strings.append({**rec(a,a+n),'text':data[o:o+n].decode('ascii')})
  records=[];functions=[]
- for a,bundlepath,rawpath in [(0x1454c2eb0,'runtime/guardians-0.97.2/rea-1454c2eb0/evidence-bundle.json','runtime/guardians-0.97.2/1454c2eb0.bin'),
-     (0x14549d550,'runtime/guardians-0.97.2/rea-14549d550/evidence-bundle.json','runtime/guardians-0.97.2/14549d550.bin'),
-     (0x1454d2380,'runtime/bosses-0.97.2/scaling/rea-1454d2380/evidence-bundle.json','runtime/bosses-0.97.2/scaling/1454d2380.bin')]:
+ for a,bundlepath,rawpath in [(0x1454c2eb0,'runtime/analysis/history/raid/guardians/b4a536d2fa6d/rea-1454c2eb0/evidence-bundle.json','runtime/analysis/history/raid/guardians/b4a536d2fa6d/1454c2eb0.bin'),
+     (0x14549d550,'runtime/analysis/history/raid/guardians/b4a536d2fa6d/rea-14549d550/evidence-bundle.json','runtime/analysis/history/raid/guardians/b4a536d2fa6d/14549d550.bin'),
+     (0x1454d2380,'runtime/analysis/history/raid/bosses/c18a36bfd52c/scaling/rea-1454d2380/evidence-bundle.json','runtime/analysis/history/raid/bosses/c18a36bfd52c/scaling/1454d2380.bin')]:
   native=rec(a,ext[a]);assert hashlib.sha256((ROOT/rawpath).read_bytes()).hexdigest()==native['sha256'];functions.append(native)
   bundle=json.loads((ROOT/bundlepath).read_text())
   for e in bundle['records']:

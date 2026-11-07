@@ -120,7 +120,7 @@ account proof. Actual peer/run/client delivery and parity remain unverified.
 Reproduce the retained bounded native liveness fixture with:
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs python3 -B docs/analysis/evidence/0.120.0/coop-correspondence/check-liveness.py
+PYTHONPATH=runtime/tool-state/python/armory/python-libs python3 -B docs/analysis/evidence/0.120.0/coop-correspondence/check-liveness.py
 ```
 
 The original manifest verifier also compares its pre-repair source snapshots;

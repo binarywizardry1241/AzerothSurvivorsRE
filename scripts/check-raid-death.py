@@ -16,7 +16,7 @@ from coverage_common import ROOT, latest_target, project_path, target_bytes
 from script_sources import load_script
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
-STAGE = ROOT / "runtime/native-evidence/0.115.0/raid-death"
+STAGE = ROOT / "runtime/analysis/staging/native-evidence/0.115.0/raid-death"
 KEPT = ROOT / "docs/analysis/evidence/0.115.0/raid-death"
 RANGES = {
     "source-gate": (0x145923D40, 0x145923E05,
@@ -373,16 +373,16 @@ def prepare_rea():
     offset = pe.rva_offset(GATE_START - pe.image_base)
     value = data[offset:offset + LIVE - GATE_START]
     assert digest(value) == "913c11df87a209d1bb502440e4f2c4c7d72c41193c2888448275596d4508fdab"
-    directory = ROOT / "runtime/raid-death-0.115.0"
+    directory = ROOT / "runtime/analysis/history/raid/raid-death/b1b638db1912"
     directory.mkdir(parents=True, exist_ok=True)
     (directory / "source-gate.bin").write_bytes(value)
-    plan = dict(target="runtime/raid-death-0.115.0/source-gate.bin",
-        output="runtime/raid-death-0.115.0/rea-source-gate", init_timeout=60, timeout=240,
+    plan = dict(target="runtime/analysis/history/raid/raid-death/b1b638db1912/source-gate.bin",
+        output="runtime/analysis/history/raid/raid-death/b1b638db1912/rea-source-gate", init_timeout=60, timeout=240,
         open_options=dict(format="raw-binary", architecture="x86_64", entry_point=hex(GATE_START)),
         operations=[dict(name="procedure_pseudo_code", arguments=dict(procedure=hex(GATE_START)),
                          label="source-gate")])
     (directory / "source-gate-plan.json").write_text(json.dumps(plan, indent=2) + "\n")
-    print("Prepared runtime/raid-death-0.115.0/source-gate-plan.json; no native query/game run")
+    print("Prepared runtime/analysis/history/raid/raid-death/b1b638db1912/source-gate-plan.json; no native query/game run")
 
 
 def check_rea(raw, directory):

@@ -63,8 +63,8 @@ and the original Time resource's generic specialization remain unverified.
 The independent root is the reconstruction's integration boundary, rather than
 a claim that its ECS entity IDs, type tuple or scheduling match the original.
 
-Validation frame: `runtime/menu-recovery/reconstructed-picker-15-small.jpg`, compared
-with `runtime/menu-recovery/native-picker-current-small.jpg`. The previously different
+Validation frame: `runtime/analysis/history/interface/menu-recovery/0558cac00653/reconstructed-picker-15-small.jpg`, compared
+with `runtime/analysis/history/interface/menu-recovery/0558cac00653/native-picker-current-small.jpg`. The previously different
 background opacity/gradient appearance is corrected, and animated ember sprites render.
 These single frames do not verify animation speed, elapsed-time phase or all aspect ratios.
 

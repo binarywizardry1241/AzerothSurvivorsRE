@@ -122,7 +122,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     for flag in ("prepare", "collect", "check", "verify"):
         parser.add_argument("--" + flag, action="store_true")
-    parser.add_argument("--work", type=project_path, default=ROOT / "runtime/fixgap-7-9/shared-canvas")
+    parser.add_argument("--work", type=project_path, default=ROOT / "runtime/analysis/history/findings/fixgap-7-9/abb72146abfe/shared-canvas")
     args = parser.parse_args()
     require(args.work.is_relative_to(ROOT / "runtime"), "Work must remain under runtime")
     target = latest_target(verify=True)

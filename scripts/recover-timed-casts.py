@@ -10,7 +10,7 @@ from native_recovery import bits as _shared_bits
 from script_sources import load_script
 from pathlib import Path
 import hashlib, json, struct, subprocess, sys
-ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 SHA='17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b';data=(ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe').read_bytes();assert hashlib.sha256(data).hexdigest()==SHA
@@ -37,7 +37,7 @@ for base in [0.,1.5,14.3]:
      for lo,hi in SPANS:u.emu_start(lo,0,count=1000);assert u.reg_read(UC_X86_REG_RIP)==hi
      actual=u.reg_read(UC_X86_REG_XMM10)&0xffffffff
      cases.append(dict(base_cooldown=base,ordinary_cooldown=ordinary,talent_cooldown=talent,global_cooldown=global_cd,interval_override=override,success_interval_bits=actual))
-OUT=ROOT/'runtime/native-evidence/0.100.1/treasure-interface';OUT.mkdir(parents=True,exist_ok=True);owners=[]
+OUT=ROOT/'runtime/analysis/staging/native-evidence/0.100.1/treasure-interface';OUT.mkdir(parents=True,exist_ok=True);owners=[]
 for role,lo,hi in [('timed-collector',0x14553a530,0x14553a683),('timed-tick',0x1454b0e66,0x1454b1105),('timed-refresh',0x1454ca1d9,0x1454ca511)]:
  off=p.rva_offset(lo-p.image_base);owners.append(dict(role=role,start=hex(lo),end_exclusive=hex(hi),sha256=hashlib.sha256(data[off:off+hi-lo]).hexdigest()));(OUT/(role+'.asm')).write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={lo:#x}',f'--stop-address={hi:#x}',str(ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe')],text=True))
 (OUT/'timed-cast-native.json').write_text(portable_json(dict(target_sha256=SHA,method=__doc__,owners=owners,failure_interval_bits=0x3e99999a,cases=cases),separators=(',',':'))+'\n');print('Recovered',len(cases),'native timed-cast intervals')

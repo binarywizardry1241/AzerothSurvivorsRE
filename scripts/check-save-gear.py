@@ -23,8 +23,8 @@ def retain(name, rows):
 
 sys.path[:0] = [
     "scripts",
-    "runtime/armory-recovery/python-libs",
-    "runtime/camera-recovery-0.105.0/python-libs",
+    "runtime/tool-state/python/armory/python-libs",
+    "runtime/tool-state/python/camera/python-libs",
 ]
 from coverage_common import latest_target, target_bytes
 from unicorn import *
@@ -568,7 +568,7 @@ for role, a in roles.items():
         response = json.loads(
             (
                 ROOT
-                / f"runtime/secondary-pages-0.109.0/{role}-rea/003-procedure_pseudo_code.json"
+                / f"runtime/analysis/history/native-recovery/secondary-pages/408536b1c3c9/{role}-rea/003-procedure_pseudo_code.json"
             ).read_text()
         )["response"]["result"]["structuredContent"]
         assert response["subject"]["digest"]["sha256"] == record["sha256"]

@@ -227,7 +227,7 @@ def prepare_rea():
  target=latest_target(verify=True);assert target['sha256']==SHA;data=target_bytes(target);pe=load('balance_prepare_pe','scripts/inventory-executable.py').PE(data)
  manifest=json.loads((OUT.parent/'manifest.json').read_text())
  for row in manifest['ghidra_observations']:
-  a,b=int(row['address'],16),int(row['end_exclusive'],16);off=pe.rva_offset(a-pe.image_base);work=ROOT/'runtime/balance-0.112.0/reproduce'/row['role'];work.mkdir(parents=True,exist_ok=True)
+  a,b=int(row['address'],16),int(row['end_exclusive'],16);off=pe.rva_offset(a-pe.image_base);work=ROOT/'runtime/analysis/history/combat/balance/b7a3722a6153/reproduce'/row['role'];work.mkdir(parents=True,exist_ok=True)
   (work/'code.bin').write_bytes(data[off:off+b-a]);entries=[0x1459f39e0,0x1459f3c20,0x1459f3e60]if row['role']=='gear-scalers'else[a]
   (work/'seeds.tsv').write_text(''.join(f'{x:#x}\tcode\n{x:#x}\tfunction\n'for x in entries))
   plan=dict(target=str((work/'code.bin').relative_to(ROOT)),output=str((work/'rea').relative_to(ROOT)),open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(a)),init_timeout=60,timeout=240,environment={'REA_GHIDRA_SEED_FILE':str((work/'seeds.tsv').relative_to(ROOT))},operations=[dict(name='procedure_pseudo_code',arguments=dict(procedure=hex(x)))for x in entries])
@@ -352,7 +352,7 @@ def main():
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--write',action='store_true');p.add_argument('--apply-gear',action='store_true');p.add_argument('--prepare-rea',action='store_true');p.add_argument('--class-leech-contract',type=Path,help='Selected hash-bound leech evidence manifest');args=p.parse_args();
  if args.class_leech_contract:
   evidence=(ROOT/args.class_leech_contract).resolve();assert evidence.is_relative_to(ROOT)
-  sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+  sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
   proof=check_class_leech(evidence.parent);text=json.dumps(proof,indent=2)+'\n'
   if args.write:(evidence.parent/'validation.json').write_text(text)
   else:assert(evidence.parent/'validation.json').read_text()==text,'Selected leech proof missing/stale'

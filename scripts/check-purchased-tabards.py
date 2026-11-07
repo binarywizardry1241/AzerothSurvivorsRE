@@ -23,7 +23,7 @@ ROUTINE_SHA = "c18c75d0d13a2f1d3ec67afa14902cf0a87cd6bf9c438a8bcd11591b074b9d55"
 POINTER_TABLE = (0x1475C60A0, 0x1475C6168)
 MASK = 0x1FFFC3F
 KEPT = ROOT / "docs/analysis/evidence/0.117.0/tabard-admission/purchases.json"
-STAGED = ROOT / "runtime/0.117.0/tabard-admission/checker-purchases.json"
+STAGED = ROOT / "runtime/analysis/history/native-recovery/target/6f083622318f/tabard-admission/checker-purchases.json"
 
 
 def digest(value):
@@ -54,7 +54,7 @@ def main():
     code = raw(*ROUTINE)
     assert hashlib.sha256(code).hexdigest() == ROUTINE_SHA
     sys.path[:0] = [str(ROOT / "runtime/tests/query-python-deps"),
-                    str(ROOT / "runtime/armory-recovery/python-libs")]
+                    str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import UC_HOOK_MEM_WRITE
     from equipment_native import EquipmentProbe

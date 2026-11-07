@@ -31,7 +31,7 @@ def main():
     parser.add_argument("--python-libs", type=Path, required=True,
                         help="Existing checkout-local Unicorn package directory")
     parser.add_argument("--output", type=Path,
-                        default=Path("runtime/terminal-hook-recovery-0.105.0/native-vectors.json"))
+                        default=Path("runtime/analysis/history/interface/terminal-hook-recovery/5d46c400ecfb/native-vectors.json"))
     parser.add_argument("--prepare-rea", action="store_true",
                         help="Also stage reproducible raw-function Ghidra plans below runtime/")
     args = parser.parse_args()
@@ -70,7 +70,7 @@ def main():
                 f"Terminal insertion call changed at {site:#x}")
 
     if args.prepare_rea:
-        work = ROOT / "runtime/terminal-hook-recovery-0.105.0/reproduction"
+        work = ROOT / "runtime/analysis/history/interface/terminal-hook-recovery/5d46c400ecfb/reproduction"
         work.mkdir(parents=True, exist_ok=True)
         for row in manifest["ranges"]:
             if row.get("provider") != "ghidra":

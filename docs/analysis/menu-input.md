@@ -144,10 +144,10 @@ owns the picker content invalidation and entering-label binding.
 
 ```sh
 python3 scripts/recover-menu-input.py --prepare
-python3 scripts/rea-batch.py runtime/menu-input-0.97.2/plan-140067ee0.json
-python3 scripts/rea-batch.py runtime/menu-input-0.97.2/plan-140099120.json
-python3 scripts/rea-batch.py runtime/menu-input-0.97.2/plan-1400732d0.json
-python3 scripts/rea-batch.py runtime/menu-input-0.97.2/plan-140071dd0.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-input/413d65871dec/plan-140067ee0.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-input/413d65871dec/plan-140099120.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-input/413d65871dec/plan-1400732d0.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-input/413d65871dec/plan-140071dd0.json
 python3 scripts/recover-menu-input.py --collect
 ```
 

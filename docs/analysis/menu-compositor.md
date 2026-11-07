@@ -63,7 +63,7 @@ changing native byte-space UI blending when the zone becomes visible.
 
 `python3 scripts/recover-menu-compositor.py` refreshes hash-bound textual
 provenance and complete shader comparisons. `--prepare` additionally writes exact
-raw slices and static REA plans inside ignored `runtime/menu-compositor-0.97.2`.
+raw slices and static REA plans inside ignored `runtime/analysis/history/interface/menu-compositor/3ea950dbe91c`.
 Selected plans can be passed to `python3 scripts/rea-batch.py <plan>`, which uses
 `./scripts/rea` and Ghidra. The script never executes the reference or rebuilt app.
 The first combined raw import could not resolve its second unseeded function;

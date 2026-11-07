@@ -16,7 +16,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/boss-voices-0.105.0"
+WORK = ROOT / "runtime/analysis/history/raid/boss-voices/f6c50f31a263"
 OUT = ROOT / "docs/analysis/evidence/0.105.0/boss-voices/native-vectors.json"
 BEGIN, END = 0x1459309B6, 0x145930AB9
 ZONES = 0x146BA9450
@@ -56,7 +56,7 @@ def main():
             rows.append(dict(zone=key, index=index, boss_id=original(address + 48, "<I")[0],
                              name=string(address), voice_id=original(address + 80, "<I")[0]))
 
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as registers
     uc = Uc(UC_ARCH_X86, UC_MODE_64)

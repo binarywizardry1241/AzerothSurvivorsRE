@@ -14,7 +14,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.100.1.exe"
 SHA = "17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b"
-WORK = ROOT / "runtime/generic-kill-effects-0.100.1"
+WORK = ROOT / "runtime/analysis/history/native-recovery/generic-kill-effects/a31511a59095"
 OUT = ROOT / "docs/analysis/evidence/0.100.1/run-callbacks"
 
 

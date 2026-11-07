@@ -21,11 +21,11 @@ EVIDENCE = ROOT / 'docs/analysis/evidence/0.105.0/custom-dbc'
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', default='runtime/gap41-dbc-consumers/checks.json')
+    parser.add_argument('--output', default='runtime/analysis/history/findings/gap41-dbc-consumers/9cd399de5299/checks.json')
     args = parser.parse_args()
     output = (ROOT / args.output).resolve()
     assert output.is_relative_to(ROOT / 'runtime')
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_WRITE
     import unicorn.x86_const as reg
     target = latest_target(verify=True)

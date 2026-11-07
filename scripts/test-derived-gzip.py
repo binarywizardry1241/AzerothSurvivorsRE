@@ -14,7 +14,7 @@ from derived_gzip import CHUNK_SIZE, DerivedGzipMismatch, derived_gzip_text
 
 class DerivedGzip(unittest.TestCase):
     def setUp(self):
-        fixtures = ROOT / "runtime/derived-gzip-tests"
+        fixtures = ROOT / "runtime/tests/derived-gzip"
         fixtures.mkdir(parents=True, exist_ok=True)
         self.directory = tempfile.TemporaryDirectory(dir=fixtures)
         self.addCleanup(self.directory.cleanup)

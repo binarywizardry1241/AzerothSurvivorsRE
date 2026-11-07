@@ -18,7 +18,7 @@ from coverage_common import ROOT, file_sha256, latest_target, target_bytes
 from script_sources import load_script
 from shared_native_inventory import open_readonly_uri as open_native_inventory
 
-WORK = ROOT / 'runtime/q41-layout-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/findings/q41-layout/2aa5dfce908e'
 KEEP = ROOT / 'docs/analysis/evidence/0.113.2/pe-layout-classification.json'
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 
@@ -54,7 +54,7 @@ def main():
             row['classification'] = 'supporting_16bit_DOS_stub_and_Rich_metadata_context'
         else:
             row['classification'] = 'supporting_PE_header_format_context'
-    references_path = ROOT / 'runtime/execheck-0.113.2/ghidra-comprehensive/references.tsv.gz'
+    references_path = ROOT / 'runtime/analysis/history/target-audit/execheck/69d2f07fbba6/ghidra-comprehensive/references.tsv.gz'
     references = 0
     with gzip.open(references_path, 'rt') as stream:
         for ref in csv.DictReader(stream, delimiter='\t'):
@@ -92,7 +92,7 @@ def main():
     assert optional + optional_size + 40 * sections == 0x300
     assert struct.unpack_from('<I', image, optional + 60)[0] == 0x400
     # Decode only the actual stub prefix. The remaining bytes are not guessed code.
-    sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
     from capstone import Cs, CS_ARCH_X86, CS_MODE_16, CS_MODE_64
     stub = [dict(address=hex(i.address), bytes=bytes(i.bytes).hex(), mnemonic=i.mnemonic, operands=i.op_str)
             for i in Cs(CS_ARCH_X86, CS_MODE_16).disasm(image[0x40:0x4e], 0x40)]

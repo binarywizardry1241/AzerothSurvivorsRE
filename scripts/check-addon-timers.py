@@ -128,8 +128,8 @@ def main():
                         34: 0x145972409}
     assert [0x14733303C + item for item in switch] == [expected_targets.get(tag, 0x14597237E) for tag in range(35)]
 
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                   str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                   str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED
     from unicorn import x86_const as registers
 

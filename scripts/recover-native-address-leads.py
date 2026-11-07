@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Validate address-taken executable candidates as code-only recovery leads."""
+from runtime_layout import retained_runtime_path
 import argparse
 from array import array
 from bisect import bisect_right
@@ -162,7 +163,7 @@ def main():
             'Previously verified target starts remain code-only seeds for fresh imports; prior decoding does not remove their seed provenance.',
             'All bounded successors must decode consistently with prior established instructions. Calls are followed on their return path; computed exits preserve unresolved alias/type state.']}
     verify_inventory(payload,target,pe,capstone);compact={key:value for key,value in payload.items() if key not in ('code_only_seeds','exceptions')}
-    if any(file_sha256(ROOT/row['path'])!=row['sha256'] for row in dependencies) or file_sha256(ROOT/'scripts/recover-native-address-leads.py')!=GENERATOR_SHA256 or file_sha256(operand_path)!=operand_digest:raise ValueError('Address generator/input changed during analysis')
+    if any(file_sha256(retained_runtime_path(ROOT/row['path'], ROOT))!=row['sha256'] for row in dependencies) or file_sha256(ROOT/'scripts/recover-native-address-leads.py')!=GENERATOR_SHA256 or file_sha256(operand_path)!=operand_digest:raise ValueError('Address generator/input changed during analysis')
     if args.write:operand_snapshot.write_bytes(operand_raw);output.write_text(json_text(payload));compact['inventory']={'path':output.relative_to(ROOT).as_posix(),'sha256':file_sha256(output)};project_path(args.summary_output).write_text(json_text(compact))
     print(json_text(compact))
 if __name__=='__main__':main()

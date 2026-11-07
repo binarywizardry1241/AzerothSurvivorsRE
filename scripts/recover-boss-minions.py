@@ -16,7 +16,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b"
-WORK = ROOT / "runtime/boss-minions-0.108.0"
+WORK = ROOT / "runtime/analysis/history/raid/boss-minions/0d6660367d5f"
 EVIDENCE = ROOT / "docs/analysis/evidence/0.108.0/boss-minions"
 CATALOG = ROOT / "crates/azeroth-survivors-re/src/guardians/catalog.rs"
 PHASES = ROOT / "crates/azeroth-survivors-re/src/bosses/minion_phases.rs"
@@ -130,7 +130,7 @@ def recover():
     assert len(seen) == 14 and len(catalog["phase_locales"]) == 14
 
     # Optional installed libraries remain project-local; this never installs them.
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as x
     uc = Uc(UC_ARCH_X86, UC_MODE_64)

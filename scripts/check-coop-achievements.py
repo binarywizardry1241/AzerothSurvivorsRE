@@ -22,7 +22,7 @@ parser.add_argument('--constructor-only', action='store_true',
 args = parser.parse_args()
 if args.constructor_only and (args.stage or args.require_retained_queries):
     parser.error('--constructor-only is read-only and does not consume Ghidra receipts')
-EVIDENCE = ROOT / ('runtime/0.117.0/coop-achievements/staged' if args.stage else 'docs/analysis/evidence/0.117.0/coop-achievements')
+EVIDENCE = ROOT / ('runtime/analysis/history/native-recovery/target/6f083622318f/coop-achievements/staged' if args.stage else 'docs/analysis/evidence/0.117.0/coop-achievements')
 def emit_json(name, value):
     path = EVIDENCE / name
     if args.stage:
@@ -30,7 +30,7 @@ def emit_json(name, value):
         path.write_text(json.dumps(value, indent=2, ensure_ascii=False)+'\n')
     else:
         assert json.loads(path.read_text()) == value, name
-sys.path[:0] = [str(ROOT / 'scripts'), str(ROOT / 'runtime/armory-recovery/python-libs')]
+sys.path[:0] = [str(ROOT / 'scripts'), str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
 from coverage_common import latest_target, target_bytes
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn import x86_const as r

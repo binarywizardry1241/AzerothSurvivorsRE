@@ -7,7 +7,7 @@ This selected AS contract belongs to #41 (`Q41-S01`/`Q41-M03`).
 [proof](evidence/0.113.2/card-delivery/proof.json) binds the selected current bytes, fresh REA/Ghidra queries,
 native fixtures and source. [delivery.asm](evidence/0.113.2/card-delivery/delivery.asm) retains the canonical
 selected instruction excerpts; complete disposable owner decodes remain under
-`runtime/q41-card-delivery-0.113.2/`.
+`runtime/analysis/history/findings/q41-card-delivery/4f64e372ed30/`.
 
 ## Native input-to-consumer chain
 

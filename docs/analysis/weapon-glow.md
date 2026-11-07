@@ -101,7 +101,7 @@ bound by [the locale proof](evidence/0.121.0/weapon-glow-localization.json).
 The complete integration status remains in `CURRENT-STATE`.
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-weapon-glow.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-weapon-glow.py
 ```
 
 The non-compiling check verifies exact target/code/data and the successful Ghidra

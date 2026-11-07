@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Replay the bounded relay implementation proof without compiling or running a client."""
 
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import json
@@ -21,7 +22,7 @@ def require(condition, message):
 
 
 def verify_file(record):
-    path = ROOT / record["path"]
+    path = retained_runtime_path(ROOT / record["path"], ROOT)
     require(file_sha256(path) == record["sha256"], "Changed proof input: " + record["path"])
     return path
 

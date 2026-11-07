@@ -17,8 +17,8 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/card-layout-0.105.0"
-OUT = ROOT / "runtime/native-evidence/0.105.0/card-layout"
+WORK = ROOT / "runtime/analysis/history/interface/card-layout/fd1edd7b94a7"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/0.105.0/card-layout"
 OWNERS = {
     "card-tile": 0x14011D220,
     "card-content": 0x1401BCFE0,

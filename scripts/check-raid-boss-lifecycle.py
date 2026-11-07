@@ -11,13 +11,13 @@ import argparse, hashlib, json, math, re, struct, sys
 from pathlib import Path
 from coverage_common import ROOT, target_bytes
 
-sys.path[:0] = [str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),
-               str(ROOT/'runtime/armory-recovery/python-libs')]
+sys.path[:0] = [str(ROOT/'runtime/tool-state/python/camera/python-libs'),
+               str(ROOT/'runtime/tool-state/python/armory/python-libs')]
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED
 from unicorn import x86_const as r
 
-STAGE = ROOT/'runtime/native-evidence/0.112.0/raid-boss-lifecycle'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-boss-lifecycle'
 KEPT = ROOT/'docs/analysis/evidence/0.112.0/raid-boss-lifecycle'
 RANGES = {
     'minutes': (0x14590412c, 0x145904141),
@@ -587,7 +587,7 @@ def rea_provenance(out,raw,span,target,stage):
     if stage:
         operations=[]
         for role in ['placement','fallback','equipment']:
-            response=ROOT/('runtime/raid-boss-lifecycle-0.112.0/rea-'+role+'/003-analyze_function.json')
+            response=ROOT/('runtime/analysis/history/raid/raid-boss-lifecycle/d87bc07907c3/rea-'+role+'/003-analyze_function.json')
             result=json.loads(response.read_text())['response']['result']['structuredContent'];profile=result['analysis_profile'];parameters=profile['parameters']
             start,end=RANGES[{'placement':'placement','fallback':'fallback-placement','equipment':'equipment-provider'}[role]]
             raw_pseudo=result['normalized_result']['pseudocode'];assert isinstance(raw_pseudo,str)and raw_pseudo

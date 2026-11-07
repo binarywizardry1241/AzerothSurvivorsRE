@@ -120,8 +120,8 @@ Python libraries, use:
 
 ```sh
 python3 -B scripts/check-release-raid.py --marks \
-  --python-libs runtime/camera-recovery-0.105.0/python-libs \
-  --python-libs runtime/armory-recovery/python-libs
+  --python-libs runtime/tool-state/python/camera/python-libs \
+  --python-libs runtime/tool-state/python/armory/python-libs
 ```
 
 Coverage includes all 23 current Marks, six Heroic ranks, producer/constructor

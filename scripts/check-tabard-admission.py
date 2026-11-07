@@ -28,7 +28,7 @@ EXPECTED = {
     ADMISSION: "ba53b73770b933718eb360c15c0d37a92f6d0ed59c6d2684087a40c857251ce4",
 }
 KEPT = ROOT / "docs/analysis/evidence/0.117.0/tabard-admission/cases.json"
-STAGED = ROOT / "runtime/0.117.0/tabard-admission/checker-cases.json"
+STAGED = ROOT / "runtime/analysis/history/native-recovery/target/6f083622318f/tabard-admission/checker-cases.json"
 
 
 def canonical(value):
@@ -60,7 +60,7 @@ def main():
         return value
 
     sys.path[:0] = [str(ROOT / "runtime/tests/query-python-deps"),
-                    str(ROOT / "runtime/armory-recovery/python-libs")]
+                    str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import UC_HOOK_MEM_WRITE
     from equipment_native import EquipmentProbe

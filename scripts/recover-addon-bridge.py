@@ -17,7 +17,7 @@ import struct
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/addon-bridge-0.105.0/lists"
+WORK = ROOT / "runtime/analysis/history/addon/addon-bridge/c88825b8ee6e/lists"
 OWNERS = {
     "buffs": 0x1458EC060,
     "lairs": 0x1458EC180,

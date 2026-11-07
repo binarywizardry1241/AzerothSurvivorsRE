@@ -22,7 +22,7 @@ from script_sources import load_script
 
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 OUT = ROOT / 'docs/analysis/evidence/0.115.0/banner-takeover'
-WORK = ROOT / 'runtime/banner-takeover-0.115.0/checks'
+WORK = ROOT / 'runtime/analysis/history/addon/banner-takeover/d697375a5b27/checks'
 RANGES = {
     'banner-registry-read': (0x1402B220F, 0x1402B226C),
     'banner-predicate': (0x1402B2258, 0x1402B226C),
@@ -180,8 +180,8 @@ def main():
         offset = pe.rva_offset(address - pe.image_base)
         return data[offset:offset + count]
 
-    for directory in ('runtime/camera-recovery-0.105.0/python-libs',
-                      'runtime/armory-recovery/python-libs'):
+    for directory in ('runtime/tool-state/python/camera/python-libs',
+                      'runtime/tool-state/python/armory/python-libs'):
         sys.path.insert(0, str(ROOT / directory))
     import capstone as c
     import unicorn as u

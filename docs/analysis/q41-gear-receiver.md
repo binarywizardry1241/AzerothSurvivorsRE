@@ -107,7 +107,7 @@ remain in the shared analysis store; the
 selected ranges, without duplicate whole-function decompiler output.
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs python3 -B scripts/check-q41-gear-receiver.py --require-tester-source
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-q41-gear-receiver.py --require-tester-source
 ```
 
 The bounded checker verifies **185 original-instruction cases / 5,705

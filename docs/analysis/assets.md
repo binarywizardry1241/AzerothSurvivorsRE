@@ -15,9 +15,9 @@ No game was launched and no installed game directory outside this checkout was r
 | EXE embedded assets and path references | [EXE asset evidence](evidence/0.97.2/exe-assets.json), [extractor](../../scripts/recover-exe-assets.py) | Validated embedded payloads; original offsets, hashes, names and path-string boundaries |
 | Native font registration and Data candidates | [Native loader evidence](evidence/0.97.2/asset-native.json), [reproducer](../../scripts/recover-asset-native.py) | Four current-target function slices analysed by REA/Ghidra, with EXE-to-slice provenance |
 | MPQ assets and path matches | [MPQ evidence](evidence/0.97.2/mpq-assets.json), [Rust extraction source](../../crates/asset-recovery/src/main.rs) | Per-archive identity, listfile/read status and requested member resolution |
-| Regenerable member path map | `runtime/asset-recovery-0.97.2/summary/mpq-paths.tsv` | Local bulk inventory; the compact archive summary above retains its hash and counts |
-| Local extracted payloads | `runtime/asset-recovery-0.97.2/exe-assets/` and `runtime/asset-recovery-0.97.2/mpq/` | Ignored binary analysis outputs; not source-build inputs or Git deliverables |
-| Complete local archive inventory | `runtime/asset-recovery-0.97.2/mpq-inventory.json` | Every discovered name/probe match, original archive, payload hash and extraction result |
+| Regenerable member path map | `runtime/analysis/history/native-recovery/asset-recovery/3d2191ace2ff/summary/mpq-paths.tsv` | Local bulk inventory; the compact archive summary above retains its hash and counts |
+| Local extracted payloads | `runtime/analysis/history/native-recovery/asset-recovery/3d2191ace2ff/exe-assets/` and `runtime/analysis/history/native-recovery/asset-recovery/3d2191ace2ff/mpq/` | Ignored binary analysis outputs; not source-build inputs or Git deliverables |
+| Complete local archive inventory | `runtime/analysis/history/native-recovery/asset-recovery/3d2191ace2ff/mpq-inventory.json` | Every discovered name/probe match, original archive, payload hash and extraction result |
 
 The supplied Data snapshot contains `patch.MPQ`, `patch-2.MPQ` and
 `patch-3.MPQ.update`. The last file is staged: it is inventoried independently,
@@ -114,15 +114,15 @@ python3 scripts/recover-exe-assets.py
 # Choose a fresh extraction directory on repeat runs; existing files are refused.
 ./scripts/cargo run --locked --offline -p asset-recovery -- \
   --data-dir AzerothSurvivors/Data \
-  --paths runtime/asset-recovery-0.97.2/exe-paths.txt \
-  --output runtime/asset-recovery-0.97.2/mpq-inventory.json \
-  --extract runtime/asset-recovery-0.97.2/mpq
+  --paths runtime/analysis/history/native-recovery/asset-recovery/3d2191ace2ff/exe-paths.txt \
+  --output runtime/analysis/history/native-recovery/asset-recovery/3d2191ace2ff/mpq-inventory.json \
+  --extract runtime/analysis/history/native-recovery/asset-recovery/3d2191ace2ff/mpq
 
 # Export the complete textual path map and independently verify extracted bytes.
 python3 scripts/summarize-mpq-assets.py \
-  --input runtime/asset-recovery-0.97.2/mpq-inventory.json \
-  --paths-file runtime/asset-recovery-0.97.2/exe-paths.txt \
-  --output-dir runtime/asset-recovery-0.97.2/summary \
+  --input runtime/analysis/history/native-recovery/asset-recovery/3d2191ace2ff/mpq-inventory.json \
+  --paths-file runtime/analysis/history/native-recovery/asset-recovery/3d2191ace2ff/exe-paths.txt \
+  --output-dir runtime/analysis/history/native-recovery/asset-recovery/3d2191ace2ff/summary \
   --target-manifest docs/analysis/target-refresh-0.97.2.json \
   --verify-extracted
 

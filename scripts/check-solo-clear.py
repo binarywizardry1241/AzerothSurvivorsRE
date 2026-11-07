@@ -5,6 +5,7 @@ Synthetic instruction fixtures stop before native account calls. Retained
 queries and canonical parent ranges are reused; no native query is launched.
 """
 
+from runtime_layout import retained_runtime_path
 from script_sources import current_path, recorded_input_matches
 import argparse
 import hashlib
@@ -26,7 +27,7 @@ def sha(raw):
 
 
 def receipt(row):
-    path = current_path(ROOT / row["path"])
+    path = current_path(retained_runtime_path(ROOT / row["path"], ROOT))
     assert recorded_input_matches(path, row['sha256']), row['path']
     return path
 

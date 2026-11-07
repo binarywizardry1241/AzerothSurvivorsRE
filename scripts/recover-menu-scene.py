@@ -54,7 +54,7 @@ def main():
     inventory = load_script('inventory', ROOT/'scripts/inventory-executable.py')
     pe = inventory.PE(binary)
     functions = {pe.image_base+a:pe.image_base+z for a,z,_ in pe.functions()}
-    runtime = ROOT/'runtime/menu-scene-0.97.2'
+    runtime = ROOT/'runtime/analysis/history/interface/menu-scene/fb386d6b198c'
     runtime.mkdir(exist_ok=True)
     records = []
     for start, role in FUNCTIONS.items():
@@ -62,8 +62,8 @@ def main():
         offset = pe.rva_offset(start-pe.image_base)
         payload = binary[offset:offset+end-start]
         stem = f'{start:x}'
-        plan = dict(target=f'runtime/menu-scene-0.97.2/{stem}.bin',
-                    output=f'runtime/menu-scene-0.97.2/rea-{stem}',
+        plan = dict(target=f'runtime/analysis/history/interface/menu-scene/fb386d6b198c/{stem}.bin',
+                    output=f'runtime/analysis/history/interface/menu-scene/fb386d6b198c/rea-{stem}',
                     open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(start)),
                     timeout=240,open_timeout=60,
                     operations=[dict(name='analyze_function',arguments=dict(procedure=hex(start)))])
@@ -78,7 +78,7 @@ def main():
             curated.write_text(assembly.read_text())
         record=dict(address=hex(start),end_exclusive=hex(end),file_offset=hex(offset),
                     sha256=hashlib.sha256(payload).hexdigest(),byte_count=len(payload),role=role)
-        for directory in [runtime,ROOT/'runtime/menu-background-0.97.2']:
+        for directory in [runtime,ROOT/'runtime/analysis/history/interface/menu-background/e0b5933e8c20']:
             bundle=directory/f'rea-{stem}'/'evidence-bundle.json'
             if bundle.exists():
                 r=next(r for r in json.loads(bundle.read_text())['records'] if r['operation']=='analyze_function')

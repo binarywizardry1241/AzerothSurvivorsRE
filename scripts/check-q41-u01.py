@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Replay one AS-linked U01 interval without compiling or starting a game."""
+from runtime_layout import retained_runtime_path
 import argparse
 import csv
 import gzip
@@ -17,7 +18,7 @@ SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 FIRST, LAST = 0x145840D60, 0x145840F61
 START, END = 0x145840D78, 0x145840F24
 KEEP = ROOT / 'docs/analysis/evidence/0.113.2/q41-u01'
-PROBE = ROOT / 'runtime/q41-u01-0.113.2/rea-pe'
+PROBE = ROOT / 'runtime/analysis/history/findings/q41-u01/df7f818123c7/rea-pe'
 TABLES = [('POWER', 0x14700BD34, 'f'), ('COOLDOWN', 0x14700BD60, 'f'),
           ('TARGETS', 0x14700BD90, 'I'), ('AREA', 0x14700BDC0, 'f'),
           ('DURATION', 0x14700BDF0, 'f')]
@@ -26,7 +27,7 @@ SOURCE = 'crates/azeroth-survivors-re/src/player_abilities/upgrades.rs'
 
 
 def committed(record):
-    path = ROOT / record['path']
+    path = retained_runtime_path(ROOT / record['path'], ROOT)
     assert path.resolve().is_relative_to(ROOT)
     assert file_sha256(path) == record['sha256'], f'Input drift: {path}'
     return path

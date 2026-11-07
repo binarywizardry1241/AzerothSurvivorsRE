@@ -9,7 +9,7 @@ from coverage_common import ROOT, latest_target, file_sha256
 from creature_query_native import PE,D,ENDS
 from request_lifetime_native import LifetimeProbe,H
 
-WORK=ROOT/'runtime/q41-all-0.113.2'
+WORK=ROOT/'runtime/analysis/history/findings/q41-all/f1125d689593'
 KEEP=ROOT/'docs/analysis/evidence/0.113.2/request-lifetimes.json'
 
 

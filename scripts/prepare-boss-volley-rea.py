@@ -23,7 +23,7 @@ def main():
     assert entry == 0x145950FF8
     offset = pe.rva_offset(start - pe.image_base)
     raw = data[offset:offset + end - start]
-    output = ROOT / 'runtime/boss-volleys-0.108.0/rea-preparation'
+    output = ROOT / 'runtime/analysis/history/raid/boss-volleys/4de5482ea03e/rea-preparation'
     output.mkdir(parents=True, exist_ok=True)
     (output / 'dispatch.bin').write_bytes(raw)
     (output / 'seed.tsv').write_text(f'{entry:#x}\tfunction\n{entry:#x}\tcode\n')

@@ -13,7 +13,7 @@ import argparse, hashlib, json, math, struct, sys
 ROOT = Path(__file__).resolve().parents[1]
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
-OUT = ROOT / 'runtime/demon-offers-01050/check'
+OUT = ROOT / 'runtime/analysis/history/combat/demon-offers/eeb381e7f5f4/check'
 RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/demon-offers'
 OWNERS = {
     'upgrade-magnitude': (0x145986de0, 0x1459870f0),
@@ -107,7 +107,7 @@ def main():
     assert text(int(scorch['effects_range']['virtual_address'], 16) + 64 + 40) == 'hellfire'
     assert struct.unpack_from('<fIff', status, 4) == (f32(.05), 1, f32(.4), 3.)
 
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)

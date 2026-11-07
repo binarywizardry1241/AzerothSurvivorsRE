@@ -16,7 +16,7 @@ import sys
 
 ROOT = Path.cwd()
 sys.path.insert(0,str(ROOT/"scripts"))
-sys.path[:0]=[str(ROOT / "runtime/armory-recovery/python-libs"),str(ROOT / "runtime/camera-recovery-0.105.0/python-libs")]
+sys.path[:0]=[str(ROOT / "runtime/tool-state/python/armory/python-libs"),str(ROOT / "runtime/tool-state/python/camera/python-libs")]
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 
@@ -198,7 +198,7 @@ for name,a,b in [('guardian-health-prologue',0x14599c1f0,0x14599c230),('guardian
  ranges.append(dict(role=name,start=hex(a),end_exclusive=hex(b),sha256=hashlib.sha256(raw).hexdigest(),assembly=p.name))
 queries=[]
 for a in ['14599c1f0','14599c5f0']:
- path=ROOT/'runtime/menu-lifecycle-0.109.0'/a/'rea-fast/003-procedure_pseudo_code.json'
+ path=ROOT/'runtime/analysis/history/interface/menu-lifecycle/969b671942c0'/a/'rea-fast/003-procedure_pseudo_code.json'
  if path.exists():
   z=json.loads(path.read_text())['response']['result']['structuredContent'];queries.append(dict(procedure='0x'+a,evidence_id=z['evidence_id'],subject_sha256=z['subject']['digest']['sha256'],analysis_profile_digest=z['analysis_profile']['digest']))
 if not queries:queries=json.loads((out/'guardian-manifest.json').read_text())['ghidra']

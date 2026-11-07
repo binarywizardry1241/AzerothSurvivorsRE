@@ -20,7 +20,7 @@ spec.loader.exec_module(manage)
 
 class SharedStoreTests(unittest.TestCase):
     def setUp(self):
-        scratch = ROOT / "runtime/analysis-store-tests"
+        scratch = ROOT / "runtime/tests/analysis-store"
         scratch.mkdir(parents=True, exist_ok=True)
         self.temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.root = Path(self.temporary.name)
@@ -29,7 +29,7 @@ class SharedStoreTests(unittest.TestCase):
     def tearDown(self):
         self.temporary.cleanup()
         try:
-            (ROOT / "runtime/analysis-store-tests").rmdir()
+            (ROOT / "runtime/tests/analysis-store").rmdir()
         except OSError:
             pass
 
@@ -230,7 +230,7 @@ class SharedStoreTests(unittest.TestCase):
         protected = ["runtime/history/journal.json", "runtime/history/native-progress.json",
                      "runtime/history/native-instructions.sqlite", "runtime/history/seeds.tsv",
                      "runtime/history/project/test.rep/data.bin", "runtime/ghidra-queries/a/b/ready.json",
-                     "runtime/menu-state/characters.bin", "runtime/cargo/cache.bin",
+                     "runtime/menu-state/characters.bin", "runtime/tool-state/cargo/cache.bin",
                      "runtime/history/plan.json", "runtime/history/001-open_binary.json"]
         for name in allowed + protected:
             self.file(name, b"x" * 128)
@@ -241,6 +241,21 @@ class SharedStoreTests(unittest.TestCase):
         for name in protected:
             self.assertFalse((self.root / name).is_symlink())
             self.assertEqual(file_digest(self.root / name), before[name])
+
+    def test_stale_alias_retirement_keeps_old_proof_and_replacement(self):
+        missing = self.root / "runtime/history/missing.json"
+        replaced = self.root / "runtime/history/replaced.json"
+        receipt = self.store.put_bytes(b"original proof")
+        for alias in (missing, replaced):
+            self.store.link_alias(alias, receipt, {"target": "original"})
+            alias.unlink()
+        replaced.write_bytes(b"new output")
+        self.assertEqual(self.store.retire_stale_aliases(), 2)
+        self.assertEqual(replaced.read_bytes(), b"new output")
+        self.assertEqual(self.store.verify_receipt(receipt).read_bytes(), b"original proof")
+        self.assertEqual(self.store.verify()["aliases"], 0)
+        result = self.store.find_objects(text="runtime/history/missing.json")
+        self.assertEqual(result[0]["sha256"], receipt["sha256"])
 
     def test_concurrent_publication_produces_one_verified_object(self):
         def publish(i):

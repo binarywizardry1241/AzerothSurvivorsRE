@@ -4,6 +4,7 @@
 Read-only: no compilation, original/rebuilt application, or geometry loading.
 The idle ray's result is an explicit supplied seam, not an executed world query.
 """
+from runtime_layout import retained_runtime_path
 import hashlib
 import importlib.util
 import json
@@ -24,8 +25,8 @@ def main():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     pe = module.PE(data)
-    sys.path[:0] = [str(ROOT / "runtime/armory-recovery/python-libs"),
-                    str(ROOT / "runtime/camera-recovery-0.105.0/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/armory/python-libs"),
+                    str(ROOT / "runtime/tool-state/python/camera/python-libs")]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_WRITE
     from unicorn import x86_const as r
@@ -33,7 +34,7 @@ def main():
     manifest = json.loads((KEPT / "manifest.json").read_text())
     assert manifest["target_sha256"] == SHA
     for source in manifest["reviewed_source"]:
-        assert hashlib.sha256((ROOT / source["path"]).read_bytes()).hexdigest() == source["sha256"], source["path"]
+        assert hashlib.sha256((retained_runtime_path(ROOT / source["path"], ROOT)).read_bytes()).hexdigest() == source["sha256"], source["path"]
     decoder = Cs(CS_ARCH_X86, CS_MODE_64)
     counts = 0
     for owner in manifest["owners"]:

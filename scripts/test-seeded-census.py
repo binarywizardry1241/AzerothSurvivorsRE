@@ -27,7 +27,7 @@ class ToolRepair(unittest.TestCase):
     def test_exact_repair_is_idempotent_and_unknown_dependency_changes_fail_closed(self):
         fixtures = {"bridge/ghidra/ReaGhidraApplySeeds.java": b'class Seed { String format = "rea-ghidra-seeds-v1";\n        String[] args = getScriptArgs();\n        String report = "";\n}',
                     "dist/ghidra/GhidraAnalysisSeeds.js": b'const format = "rea-ghidra-seeds-v1";'}
-        scratch = ROOT / "runtime/coverage-tests"
+        scratch = ROOT / "runtime/tests/coverage"
         scratch.mkdir(parents=True, exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as folder, patch.dict(
                 repair.UPSTREAM, {k: hashlib.sha256(v).hexdigest() for k,v in fixtures.items()}, clear=True):

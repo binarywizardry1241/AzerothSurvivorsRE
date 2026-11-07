@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 EVIDENCE = ROOT / 'docs/analysis/evidence/0.109.0/raid-volley'
-WORK = ROOT / 'runtime/raid-volley-0.109.0/curated'
+WORK = ROOT / 'runtime/analysis/history/raid/raid-volley/b39e0d299b2e/curated'
 RANGES = {
     'speed-prefix': (0x145957ce8, 0x145957d4b),
     'speed-low': (0x14595bf03, 0x14595bf44),
@@ -48,8 +48,8 @@ def main():
     data = target_bytes(target)
     module = load_script('volley_pe', ROOT / 'scripts/inventory-executable.py')
     pe = module.PE(data)
-    sys.path[:0] = [str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'),
-                    str(ROOT / 'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'),
+                    str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
     import capstone
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED
     from unicorn import x86_const as r

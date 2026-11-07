@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Replay service31/32 and their shared peer flags; never compile or use sockets."""
+from runtime_layout import retained_runtime_path
 import hashlib
 import itertools
 import json
@@ -14,7 +15,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 sys.path[:0] = [str(ROOT / 'runtime/tests/query-python-deps'),
-                str(ROOT / 'runtime/armory-recovery/python-libs')]
+                str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn import x86_const as reg
@@ -33,7 +34,7 @@ def digest(raw):
 
 def check_evidence(proof, image, pe):
     def verify(record):
-        assert digest((ROOT / record['path']).read_bytes()) == record['sha256'], record['path']
+        assert digest((retained_runtime_path(ROOT / record['path'], ROOT)).read_bytes()) == record['sha256'], record['path']
     predecessor = json.loads((ROOT / proof['reused_native_manifest']).read_text())
     assert all(predecessor['target'][k] == v for k, v in proof['target'].items())
     roles = {'outer-control-parser-prefix', 'control-guest-flag', 'control-host-flag'}

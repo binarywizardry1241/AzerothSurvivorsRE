@@ -69,7 +69,7 @@ full-output commitments. [Wire fixtures](evidence/0.113.2/template-query-wire.js
 retain 21 exact original response bodies and the inspected decoder's expected
 field projections. No second complete incoming-handler extract is added.
 The fresh Ghidra plans/responses remain under ignored
-`runtime/q41-object-query-0.113.2/`.
+`runtime/analysis/history/findings/q41-object-query/bf123ebeeebd/`.
 
 `python3 -B scripts/check-template-queries.py` passes:
 

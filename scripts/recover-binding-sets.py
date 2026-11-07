@@ -108,7 +108,7 @@ def main():
     if args.check:
         assert portable_record(json.loads(RETAINED.read_text())) == portable_record(record)
     else:
-        out = ROOT/'runtime/secondary-options-0.105.0/binding-sets.json'
+        out = ROOT/'runtime/analysis/history/native-recovery/secondary-options/5690c1d4900f/binding-sets.json'
         out.parent.mkdir(parents=True,exist_ok=True)
         out.write_text(portable_json(record,ensure_ascii=False,indent=2)+'\n')
     check_lua(record)

@@ -81,7 +81,7 @@ def main():
             if kind in row:
                 assert hashlib.sha256((ROOT / row[kind]).read_bytes()).hexdigest() == row[kind + '_sha256']
     if args.prepare_rea:
-        work = ROOT / 'runtime/talent-allocations-0.112.0/reproduce'
+        work = ROOT / 'runtime/analysis/history/progression/talent-allocations/205cde7ec765/reproduce'
         work.mkdir(parents=True, exist_ok=True)
         lo = min(int(row['address'], 16) for row in manifest['functions'])
         hi = max(int(row['end_exclusive'], 16) for row in manifest['functions'])

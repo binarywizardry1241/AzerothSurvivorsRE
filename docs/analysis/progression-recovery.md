@@ -33,7 +33,7 @@ remaining entries. There are **66 achievements worth 1,365 points**:
 The native Summary screen independently confirmed every total. Its empty
 account has no earned achievements, while an isolated nine-piece gear fixture
 shows Almost There progress 9/25, 9/100, 9/250 and 9/415. Reference pixels are
-retained at `runtime/reference-captures/achievements-default.png`.
+retained at `runtime/analysis/history/native-recovery/reference-captures/1415f0451c23/achievements-default.png`.
 
 Reward definitions are **13 contiguous 120-byte records** at
 `0x1468afa88`. Native key lookup `0x145444e70` independently returns those
@@ -229,7 +229,7 @@ Bounded static provenance is retained in
 [rule](evidence/0.92/progression-rules-slices-provenance.json) and
 [control](evidence/0.92/progression-control-slices-provenance.json) records.
 Full raw slices, REA bundles and disposable disassembly stay in the checkout's
-ignored `runtime/menu-recovery` directory. A large constructor analysis exceeded
+ignored `runtime/analysis/history/interface/menu-recovery/0558cac00653` directory. A large constructor analysis exceeded
 the MCP response limit; its complete retained evidence was successfully read
 from the exported bundle, rather than treating the transport error as missing
 analysis.

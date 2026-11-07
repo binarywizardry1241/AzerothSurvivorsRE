@@ -16,7 +16,7 @@ import sys
 from coverage_common import ROOT
 
 KEPT = ROOT/'docs/analysis/evidence/0.112.0/raid-inputs'
-STAGE = ROOT/'runtime/native-evidence/0.112.0/raid-inputs'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-inputs'
 RANGES = {
     'boss-health-endless': (0x14593b2d9, 0x14593b386),
     'boss-damage-actor-stats': (0x14593b6e1, 0x14593b848),
@@ -48,8 +48,8 @@ def bits(value):
 
 
 def fixture(raw):
-    sys.path[:0] = [str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),
-                   str(ROOT/'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT/'runtime/tool-state/python/camera/python-libs'),
+                   str(ROOT/'runtime/tool-state/python/armory/python-libs')]
     import unicorn as u
     machine = u.Uc(u.UC_ARCH_X86, u.UC_MODE_64)
     mem = 0x70000000

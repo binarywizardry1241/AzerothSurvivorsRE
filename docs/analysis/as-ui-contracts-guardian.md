@@ -70,7 +70,7 @@ and their separate native fixtures are described in the dependency report. Rust
 regressions were not run.
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-guardian-choices.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-guardian-choices.py
 ```
 
 Compilation, Rust execution, real UI/input/persistence and original/rebuilt parity

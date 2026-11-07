@@ -173,11 +173,11 @@ otherwise overwrite slot32. Existing file-operation source policy is retained.
 
 Run `python3 scripts/recover-menu-save.py` to hash-check the supplied target,
 extract current tables/instructions and regenerate the item-bounds asset. It also
-prepares exact-entry Ghidra plans under `runtime/menu-save-0.97.2`. For example:
+prepares exact-entry Ghidra plans under `runtime/analysis/history/interface/menu-save/0aae226f7152`. For example:
 
 ```sh
-python3 scripts/rea-batch.py runtime/menu-save-0.97.2/plan-14541f1c0.json
-python3 scripts/rea-batch.py runtime/menu-save-0.97.2/plan-14545a320.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-save/0aae226f7152/plan-14541f1c0.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-save/0aae226f7152/plan-14545a320.json
 python3 scripts/recover-menu-save.py
 ```
 

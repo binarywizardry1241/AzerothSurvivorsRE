@@ -40,7 +40,7 @@ late teardown grant or packet.
 The existing checker now supports:
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-run-achievements.py --photosynthesis-current
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-run-achievements.py --photosynthesis-current
 ```
 
 It passed **162 isolated original-instruction cases / 2,673 steps**, including
@@ -102,8 +102,8 @@ locale payloads. The menu insertion preserves the constructor order.
 The maintained non-compiling checks are:
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-run-achievements.py --insane-current
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-weapon-glow.py --current-unholy
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-run-achievements.py --insane-current
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-weapon-glow.py --current-unholy
 ```
 
 The survival/normalizer check passes **4,117 isolated native cases / 58,949

@@ -5,6 +5,7 @@ The exact original selector and body ownership remain unchanged. Site roles
 are not complete gameplay contracts. --stage writes compact evidence below
 runtime; default verifies the curated proof. No compiler or game is invoked.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 import bisect
 from collections import Counter
@@ -19,7 +20,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-WORK = ROOT / "runtime/q41-remaining-0.113.2"
+WORK = ROOT / "runtime/analysis/history/findings/q41-remaining/687b5b35cf28"
 KEEP = ROOT / "docs/analysis/evidence/0.113.2/q41-custom-diagnostics.json"
 
 
@@ -32,8 +33,8 @@ def artifact(path):
 
 
 def derive():
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                   str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                   str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as reg
@@ -57,7 +58,7 @@ def derive():
     assert queue["target"]["sha256"] == SHA
     inputs = {k: queue["inputs"][k] for k in ["bodies.tsv.gz", "diagnostic-ownership.json"]}
     for record in inputs.values():
-        assert sha((ROOT / record["path"]).read_bytes()) == record["sha256"]
+        assert sha((retained_runtime_path(ROOT / record["path"], ROOT)).read_bytes()) == record["sha256"]
     with gzip.open(ROOT / inputs["bodies.tsv.gz"]["path"], "rt") as stream:
         bodies = sorted((int(r["start"], 16), int(r["end"], 16), int(r["entry"], 16))
                         for r in csv.DictReader(stream, delimiter="\t") if r["external"] == "false")

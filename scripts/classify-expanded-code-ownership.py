@@ -4,6 +4,7 @@
 Read immutable saved Ghidra exports and exact installed bytes. No native query,
 compilation or execution. --write publishes the reviewed compact receipt.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from bisect import bisect_right
 from collections import Counter, defaultdict
@@ -18,7 +19,7 @@ from coverage_common import ROOT, file_sha256, latest_target, target_bytes
 from derived_gzip import derived_gzip_text
 
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
-WORK = ROOT/'runtime/q41-expanded-ownership-0.115.0'
+WORK = ROOT/'runtime/analysis/history/findings/q41-expanded-ownership/6304bee20684'
 PROOF = ROOT/'docs/analysis/evidence/0.115.0/expanded-code-ownership.json'
 
 
@@ -48,7 +49,7 @@ def main():
     inputs = {}
 
     def checked(record):
-        path = ROOT/record['path']
+        path = retained_runtime_path(ROOT/record['path'], ROOT)
         assert file_sha256(path) == record['sha256'], str(path)
         inputs[record['path']] = dict(path=record['path'], sha256=record['sha256'])
         return path
@@ -318,7 +319,7 @@ def main():
             'Canonical metadata field roles are reused only after complete source/destination/type multiset equality, not from equal totals.',
             'No generic engine recovery, application compilation, native/game execution or original/rebuilt comparison.'])
     for record in inputs.values():
-        assert file_sha256(ROOT/record['path']) == record['sha256'], record['path']
+        assert file_sha256(retained_runtime_path(ROOT/record['path'], ROOT)) == record['sha256'], record['path']
     assert file_sha256(Path(__file__)) == generator_sha256, 'Generator changed during derivation'
     text = json.dumps(proof,indent=2)+'\n'
     (WORK/'proof.json').write_text(text)

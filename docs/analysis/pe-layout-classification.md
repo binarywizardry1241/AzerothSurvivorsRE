@@ -11,7 +11,7 @@ The [proof](evidence/0.113.2/pe-layout-classification.json) retains all twelve
 interval/hash records, complete retained incoming-reference checks, two encoded
 reference inventories, fresh REA/Ghidra observations and their Evidence/response
 commitments. Run `python3 -B scripts/check-q41-pe-layout.py`; `--stage`
-writes a candidate under ignored `runtime/q41-layout-0.113.2/`. The existing
+writes a candidate under ignored `runtime/analysis/history/findings/q41-layout/2aa5dfce908e/`. The existing
 [file-range generator](evidence/0.113.2/refresh-baseline/file-range-summary.json) owns the 26-interval
 whole-file partition. No bytes are removed or reclassified in that inventory.
 

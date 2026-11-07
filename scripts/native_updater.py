@@ -19,8 +19,8 @@ from coverage_common import latest_target
 
 ROOT = Path(__file__).resolve().parents[1]
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-WORK = ROOT / 'runtime/updater-0.105.0'
-STAGED = ROOT / 'runtime/native-evidence/0.105.0/updater'
+WORK = ROOT / 'runtime/analysis/history/target-audit/updater/cbe8022a39a2'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.105.0/updater'
 RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/updater'
 OWNERS = {
     'gate': 0x140080fa0, 'download-schema': 0x14007ef40,
@@ -88,7 +88,7 @@ def digest(value):
 
 
 def native_vectors(pe):
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_WRITE
     import unicorn.x86_const as r
     machine = Uc(UC_ARCH_X86, UC_MODE_64)

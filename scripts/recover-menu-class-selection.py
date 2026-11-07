@@ -2,7 +2,7 @@
 from pathlib import Path
 import sys,struct,hashlib,importlib.util,json
 R=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(R/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(R/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 sp=importlib.util.spec_from_file_location('inv',R/'scripts/inventory-executable.py');m=importlib.util.module_from_spec(sp);sp.loader.exec_module(m)

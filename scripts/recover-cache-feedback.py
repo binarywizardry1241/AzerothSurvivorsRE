@@ -10,7 +10,7 @@ from script_sources import load_script
 from pathlib import Path
 import hashlib, json, struct, subprocess, sys
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 SHA='17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
@@ -38,7 +38,7 @@ OUT=ROOT/'docs/analysis/evidence/0.100.1/cache-feedback';OUT.mkdir(parents=True,
 roles=[('purchase',0x1454e5660,0x1454e59ff),('click',0x1454d2760,0x1454d28d7),('walk-hint',0x1454b77b0,0x1454b782e),('toast-producer',0x1454e4340,ends[0x1454e4340]),('notification-packet',0x14545bee0,ends[0x14545bee0])]
 for role,lo,hi in roles:
  at=p.rva_offset(lo-p.image_base);raw=data[at:at+hi-lo];owner=dict(role=role,start=hex(lo),end_exclusive=hex(hi),sha256=hashlib.sha256(raw).hexdigest());(OUT/(role+'.asm')).write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={lo:#x}',f'--stop-address={hi:#x}',str(exe)],text=True))
- path=ROOT/'runtime/cache-feedback-0.100.1'/('rea-'+role)/'003-procedure_pseudo_code.json'
+ path=ROOT/'runtime/analysis/history/native-recovery/cache-feedback/f0b4c387be8d'/('rea-'+role)/'003-procedure_pseudo_code.json'
  if path.exists():
   ev=json.loads(path.read_text())['response']['result']['structuredContent'];assert ev['subject']['digest']['sha256']==owner['sha256'];owner['rea']=ev;(OUT/(role+'.ghidra.c')).write_text('\n'.join(s.rstrip() for s in ev['normalized_result'].splitlines()).strip()+'\n')
  owners.append(owner)

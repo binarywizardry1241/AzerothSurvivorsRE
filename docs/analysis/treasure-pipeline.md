@@ -155,7 +155,7 @@ not original/rebuilt application parity. Native padding and host math-library
 bit identity are not claimed.
 
 Central Rust validation passed the full14-case `loot_rewards` integration suite
-(`runtime/consolidation-2026-10-19/treasure-regressions-r3.log`). Those cases
+(`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/treasure-regressions-r3.log`). Those cases
 compare every387 amulet description,110 jewelry descriptions,204 scaling
 vectors,660 jewelry increment vectors and12 rarity vectors. A failed first
 prose pass exposed a hardcoded bounce count; the producer now reads the native

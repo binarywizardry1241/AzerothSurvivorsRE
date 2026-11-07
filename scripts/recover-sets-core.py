@@ -17,7 +17,7 @@ from script_sources import load_script
 START, END = 0x145ac1b40, 0x145ac3ddc
 ALLOCATOR, ROUNDF = 0x142d22130, 0x145febc75
 ACTIVATION, SET_ID, CATALOG, FREE = 0x145ac4160, 0x145ac19f0, 0x145b01970, 0x1400021d0
-OUTPUT = ROOT / 'runtime/fixgap-sets-0.121.0/descriptor-replay.json'
+OUTPUT = ROOT / 'runtime/analysis/history/findings/fixgap-sets/8f9b1315b0e8/descriptor-replay.json'
 
 
 def recover():

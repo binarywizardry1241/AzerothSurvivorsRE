@@ -14,7 +14,7 @@ from collections import Counter
 
 from creature_query_native import Probe, ROOT, T, D, PE, FS, ENDS
 
-WORK = ROOT / 'runtime/q41-creature-query-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/findings/q41-creature-query/2dca5c5bd546'
 KEEP = ROOT / 'docs/analysis/evidence/0.113.2/creature-queries.json'
 
 

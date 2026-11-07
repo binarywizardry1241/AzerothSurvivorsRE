@@ -184,7 +184,7 @@ facing, damage, meters and private events. Shared actor mutation/removal occurs 
 Run from the owning checkout with the existing project Python dependencies:
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-affixes.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-affixes.py
 ```
 
 The [result](evidence/0.121.0/affixes/static-check.json) binds the installed

@@ -16,8 +16,8 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 SHA = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-OUT = ROOT / "runtime/native-evidence/0.97.2/enemies"
-RUNTIME = ROOT / "runtime/enemy-spawning-0.97.2"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/0.97.2/enemies"
+RUNTIME = ROOT / "runtime/analysis/history/native-recovery/enemy-spawning/20e2f3691d48"
 FUNCTIONS = (0x1454beef0, 0x145536a90, 0x14552ef30, 0x1454c2040, 0x1454c17b0, 0x1454c2a20, 0x14552f110, 0x14552f4d0, 0x145529990, 0x1454d1b70)
 BRANCHES = (0x1454a7f41, 0x1454a818a, 0x1454a7fb1, 0x1454a8050)
 SCOPES = (("spawning-tick", 0x1454a701a, 0x1454a792f),
@@ -50,7 +50,7 @@ def main():
     for a in FUNCTIONS:
         b=ends[a];row=bound(a,b);functions.append(row)
         offset=int(row['file_offset'],16); path=RUNTIME/f'{a:x}.bin';path.write_bytes(data[offset:offset+b-a])
-        plan=dict(target=str(path.relative_to(ROOT)),output=f'runtime/enemy-spawning-0.97.2/rea-{a:x}',
+        plan=dict(target=str(path.relative_to(ROOT)),output=f'runtime/analysis/history/native-recovery/enemy-spawning/20e2f3691d48/rea-{a:x}',
                   open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(a)),
                   timeout=240,open_timeout=60,operations=[dict(name='analyze_function',arguments=dict(procedure=hex(a)))])
         (RUNTIME/f'plan-{a:x}.json').write_text(portable_json(plan,indent=2)+'\n')
@@ -60,7 +60,7 @@ def main():
         row['boundary_note']='Unmodified branch-entry-through-shared-tail slice; not an original function boundary.'
         branch_slices.append(row)
         offset=int(row['file_offset'],16); path=RUNTIME/f'{a:x}.bin';path.write_bytes(data[offset:offset+b-a])
-        plan=dict(target=str(path.relative_to(ROOT)),output=f'runtime/enemy-spawning-0.97.2/rea-{a:x}',
+        plan=dict(target=str(path.relative_to(ROOT)),output=f'runtime/analysis/history/native-recovery/enemy-spawning/20e2f3691d48/rea-{a:x}',
                   open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(a)),
                   timeout=240,open_timeout=60,operations=[dict(name='analyze_function',arguments=dict(procedure=hex(a)))])
         (RUNTIME/f'plan-{a:x}.json').write_text(portable_json(plan,indent=2)+'\n')
@@ -82,7 +82,7 @@ def main():
             if a in (0x1458e83f8,0x1458e8428):imports.append(dict(iat_va=hex(a),library=module['library'],name=name))
     records=[]
     bundles=list(RUNTIME.glob('rea-*/evidence-bundle.json'))
-    bundles.append(ROOT/'runtime/guardians-0.97.2/rea-14549d550/evidence-bundle.json')
+    bundles.append(ROOT/'runtime/analysis/history/raid/guardians/b4a536d2fa6d/rea-14549d550/evidence-bundle.json')
     for bundle in bundles:
         if not bundle.exists():continue
         for record in json.loads(bundle.read_text())['records']:

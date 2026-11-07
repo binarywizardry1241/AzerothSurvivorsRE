@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Verify bounded 0.120.2 original boss-credit contracts; run no game or Rust code."""
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json
 import argparse
 import hashlib
@@ -11,7 +12,7 @@ import subprocess
 import sys
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/armory-recovery/python-libs')]
+sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
 from coverage_common import latest_target,target_bytes,project_path
 from script_sources import load_script
 from native_terminal import NativeReplay
@@ -94,7 +95,7 @@ def main():
             require(len(args.source_at)==40 and all(c in '0123456789abcdef' for c in args.source_at),'Expected exact source commit')
             text=subprocess.run(['git','show',args.source_at+':'+row['path']],cwd=ROOT,
                 check=True,capture_output=True,text=True).stdout
-        else:text=(ROOT/row['path']).read_text()
+        else:text=(retained_runtime_path(ROOT/row['path'], ROOT)).read_text()
         lo=text.index(row['start_marker']);hi=text.index(row['end_marker'],lo+len(row['start_marker']))
         require(digest(text[lo:hi].encode())==row['sha256'],'Source observation changed; review independently: '+row['role'])
     result=dict(target_sha256=target['sha256'],native_ranges=len(manifest['native_ranges']),native_bytes=sum(r['size_bytes'] for r in manifest['native_ranges']),native_instructions=instructions,retained_queries_verified=retained,**replay(data,pe),source_omissions=manifest['source_status'],limits=['Original instruction windows in scratch memory; preallocated vectors avoid allocator branches.','Equipment callback is an explicit argument-recording seam; no loot/RNG behavior is executed.','Source observations describe missing reconstruction branches; this passing native proof does not mean source is implemented.','No application compilation, Rust tests, client/game/server/network execution, save operation or parity comparison.'])

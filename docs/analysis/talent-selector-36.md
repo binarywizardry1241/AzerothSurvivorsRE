@@ -59,7 +59,7 @@ this classification does not silently promote the whole combat contract to
 Run with the existing project Python dependencies:
 
 ```sh
-PYTHONPATH=scripts:runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-talent-selector.py
+PYTHONPATH=scripts:runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-talent-selector.py
 ```
 
 The checker verifies current definition/payload/table bytes, complete original

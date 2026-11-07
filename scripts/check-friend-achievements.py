@@ -5,6 +5,7 @@
 typed memory and an explicit ability-lookup seam. This is an isolated instruction
 fixture, not game, network, server, Save I/O or original/rebuilt parity validation.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import json
@@ -157,7 +158,7 @@ def main():
 
     checked = 0
     for receipt in [manifest["query_plan"], manifest["query_journal"]]:
-        path = ROOT / receipt["path"]
+        path = retained_runtime_path(ROOT / receipt["path"], ROOT)
         if path.is_file():
             assert digest(path.read_bytes()) == receipt["sha256"]
         else:

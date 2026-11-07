@@ -13,8 +13,8 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-WORK = ROOT / 'runtime/demon-effects-01050'
-OUT = ROOT / 'runtime/native-evidence/0.105.0/demon-effects'
+WORK = ROOT / 'runtime/analysis/history/combat/demon-effects/5bf09d547ac6'
+OUT = ROOT / 'runtime/analysis/staging/native-evidence/0.105.0/demon-effects'
 RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/demon-effects'
 OWNERS = [('demon-hit', 0x14594c4e0, 0x14594cce9),
           ('shard-prune', 0x145995f70, 0x145996047)]
@@ -63,7 +63,7 @@ def main():
         if args.mode == 'prepare':
             (WORK / f'{role}.bin').write_bytes(blob)
             save(WORK / f'{role}-plan.json', dict(target=str((WORK / f'{role}.bin').relative_to(ROOT)),
-                output=f'runtime/demon-effects-01050/rea-{role}', init_timeout=60,
+                output=f'runtime/analysis/history/combat/demon-effects/5bf09d547ac6/rea-{role}', init_timeout=60,
                 open_timeout=60, timeout=180,
                 open_options=dict(format='raw-binary', architecture='x86_64', entry_point=hex(lo)),
                 operations=[dict(name='procedure_pseudo_code', arguments=dict(procedure=hex(lo)))]))
@@ -88,7 +88,7 @@ def main():
             offset=pe.rva_offset(lo-pe.image_base)
             (WORK/f'{role}.bin').write_bytes(data[offset:offset+hi-lo])
             save(WORK/f'{role}-plan.json',dict(target=str((WORK/f'{role}.bin').relative_to(ROOT)),
-                output=f'runtime/demon-effects-01050/rea-{role}',init_timeout=60,open_timeout=60,timeout=180,
+                output=f'runtime/analysis/history/combat/demon-effects/5bf09d547ac6/rea-{role}',init_timeout=60,open_timeout=60,timeout=180,
                 open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(lo)),
                 operations=[dict(name='procedure_pseudo_code',arguments=dict(procedure=hex(lo)))]))
         return
@@ -143,7 +143,7 @@ def main():
 
 
 def vectors(pe):
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)

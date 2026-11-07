@@ -97,7 +97,7 @@ and `a2656991c5b69d8616ea495494251de3ab6bed541b8593d1253425e37f2c198d`.
 The direct PE references provide the table inputs and external calls.
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs python3 -B scripts/check-coop-seen.py
+PYTHONPATH=runtime/tool-state/python/armory/python-libs python3 -B scripts/check-coop-seen.py
 ```
 
 The check joins the nine class pools, native talent extras, shared key

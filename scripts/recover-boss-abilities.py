@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA='a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
 OUT=ROOT/'docs/analysis/evidence/0.97.2/bosses'
-RUNTIME=ROOT/'runtime/boss-abilities-0.97.2'
+RUNTIME=ROOT/'runtime/analysis/history/raid/boss-abilities/16e013fe9d5f'
 BRANCHES=(0x1454ccd0a,0x1454ccf5e,0x1454ccd73,0x1454ccf2a,0x1454ccd44)
 FUNCTIONS=(0x1454eeaa0,0x14544b1a0,0x1454f0710,0x1454f08d0)
 SCOPES=(('dispatch',0x1454ccbb0,0x1454cdd0b),('effect-resolution',0x1454a3caa,0x1454a417d))
@@ -28,7 +28,7 @@ def main():
  for a,b,owner in [(a,0x1454cdd0b,'0x1454c9510') for a in BRANCHES]+[(0x1454a3caa,0x1454a417d,'0x14549d550')]+[(a,ends[a],hex(a)) for a in FUNCTIONS]:
   row=bound(a,b);row['owning_function']=owner;row['boundary_source']=('Explicit leaf interval through last RET' if a in (0x1454f0710,0x1454f08d0) else 'PE RUNTIME_FUNCTION') if a in FUNCTIONS else 'Original branch-entry-through-shared-tail interval, not a function boundary';slices.append(row)
   path=RUNTIME/f'{a:x}.bin';off=int(row['file_offset'],16);path.write_bytes(data[off:off+b-a])
-  plan=dict(target=str(path.relative_to(ROOT)),output=f'runtime/boss-abilities-0.97.2/rea-{a:x}',open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(a)),timeout=240,open_timeout=60,operations=[dict(name='analyze_function',arguments=dict(procedure=hex(a)))])
+  plan=dict(target=str(path.relative_to(ROOT)),output=f'runtime/analysis/history/raid/boss-abilities/16e013fe9d5f/rea-{a:x}',open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(a)),timeout=240,open_timeout=60,operations=[dict(name='analyze_function',arguments=dict(procedure=hex(a)))])
   (RUNTIME/f'plan-{a:x}.json').write_text(portable_json(plan,indent=2)+'\n')
  scopes=[]
  for name,a,b in SCOPES+tuple((f'{a:x}',a,ends[a]) for a in FUNCTIONS):

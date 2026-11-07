@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Check the current finite CreatureQuery contract without compiling or running a client."""
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import json
@@ -15,7 +16,7 @@ import capstone
 import unicorn
 
 KEEP = ROOT / 'docs/analysis/evidence/0.120.2/creature-query-tables/native-check.json'
-WORK = ROOT / 'runtime/0.120.2/creature-query-tables'
+WORK = ROOT / 'runtime/analysis/history/native-recovery/target/4c8611f1a165/creature-query-tables'
 
 
 def verify_receipts():
@@ -23,13 +24,13 @@ def verify_receipts():
     assert all(proof['target'][key] == T[key] for key in ('version', 'sha256', 'size_bytes'))
     assert proof['native_tool_versions'] == {'unicorn': unicorn.__version__, 'capstone': capstone.__version__}
     for record in proof['inputs'] + proof['source_first']['paths'] + [proof['native_check']]:
-        assert file_sha256(ROOT / record['path']) == record['sha256'], record['path']
+        assert file_sha256(retained_runtime_path(ROOT / record['path'], ROOT)) == record['sha256'], record['path']
     for record in proof['tools']:
-        assert recorded_input_matches(ROOT / record['path'], record['sha256']), record['path']
+        assert recorded_input_matches(retained_runtime_path(ROOT / record['path'], ROOT), record['sha256']), record['path']
     for query in proof['queries']:
         for key in ('plan', 'journal', 'result'):
             record = query[key]
-            assert file_sha256(ROOT / record['path']) == record['sha256'], record['path']
+            assert file_sha256(retained_runtime_path(ROOT / record['path'], ROOT)) == record['sha256'], record['path']
         result = json.loads((ROOT / query['result']['path']).read_text())
         native = json.loads(result['content'][0]['text'])
         assert native['subject']['digest']['sha256'] == T['sha256']

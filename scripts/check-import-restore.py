@@ -3,7 +3,7 @@
 from script_sources import load_script
 import sys, json, struct, argparse, hashlib, re, itertools
 from pathlib import Path
-sys.path[:0]=['scripts','runtime/camera-recovery-0.105.0/python-libs','runtime/armory-recovery/python-libs']
+sys.path[:0]=['scripts','runtime/tool-state/python/camera/python-libs','runtime/tool-state/python/armory/python-libs']
 from coverage_common import latest_target,target_bytes
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn import x86_const as R
@@ -90,7 +90,7 @@ for role,a,b in [('restore',0x140062330,0x14006253f),('normalize-pick',0x1458a7f
  records.append(dict(role=role,start=hex(a),end_exclusive=hex(b),sha256=hashlib.sha256(raw).hexdigest(),assembly=file.name))
 queries=[]
 for a in ['140062330','1458a7fc0','14589c030','140063ff0']:
- file=ROOT/'runtime/menu-lifecycle-0.109.0'/a/'rea-fast/003-procedure_pseudo_code.json'
+ file=ROOT/'runtime/analysis/history/interface/menu-lifecycle/969b671942c0'/a/'rea-fast/003-procedure_pseudo_code.json'
  if file.exists():
   z=json.loads(file.read_text())['response']['result']['structuredContent'];queries.append(dict(procedure='0x'+a,evidence_id=z['evidence_id'],subject_sha256=z['subject']['digest']['sha256'],analysis_profile_digest=z['analysis_profile']['digest']))
 if not queries:queries=json.loads((out/'manifest.json').read_text())['ghidra']

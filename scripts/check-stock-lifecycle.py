@@ -50,7 +50,7 @@ NAME_SPANS = {
 
 def current_name_cases(data, pe):
     import functools
-    sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
     from native_terminal import NativeReplay
     m=NativeReplay(data,pe);u=m.machine;x=m.registers
     m.raw=functools.lru_cache(maxsize=8192)(m.raw)
@@ -173,7 +173,7 @@ def current_name_contract(args):
     if args.collect:
         output.mkdir(parents=True,exist_ok=True);manifest['queries']=[]
         for key in ['145b20840','145b20960']:
-            folder=ROOT/'runtime/names-0.127.0'/key;jp=folder/'rea-v3/journal.json';j=json.loads(jp.read_text())
+            folder=ROOT/'runtime/analysis/history/interface/names/33127c1b6b32'/key;jp=folder/'rea-v3/journal.json';j=json.loads(jp.read_text())
             op=next(v for v in j['operations'].values()if v['name']=='procedure_pseudo_code');require(op['status']=='completed','Pending name query')
             rp=ROOT/op['result']['path'];native=json.loads(rp.read_text())['structuredContent']
             query=dict(procedure=hex(int(key,16)),slice_virtual_address=hex(int(key,16)),raw_input=receipt(folder/'body.bin'),
@@ -223,18 +223,18 @@ def current_name_contract(args):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--evidence', default=str(EVIDENCE.relative_to(ROOT)))
-    parser.add_argument('--output', default='runtime/gap9-startup-0.109.0/checks.json')
+    parser.add_argument('--output', default='runtime/analysis/history/findings/gap9-startup/e1a098f8d4fb/checks.json')
     parser.add_argument('--scope', choices=['lifecycle','names','all'], default='lifecycle', help='Separate lifecycle/auth and hero-name source contracts')
     parser.add_argument('--prepare-rea', action='store_true', help='Stage selected-target raw Ghidra plans under runtime/')
     parser.add_argument('--current-names',action='store_true',help='Selected0.127.0 Unicode names, independent of historical lifecycle')
     parser.add_argument('--collect',action='store_true')
     parser.add_argument('--verify',action='store_true')
-    parser.add_argument('--work',default='runtime/names-0.127.0/curated')
+    parser.add_argument('--work',default='runtime/analysis/history/interface/names/33127c1b6b32/curated')
     args = parser.parse_args()
     if args.current_names: return current_name_contract(args)
     evidence, output = ((ROOT / value).resolve() for value in (args.evidence, args.output))
     require(evidence.is_relative_to(ROOT) and output.is_relative_to(ROOT / 'runtime'), 'Path leaves checkout/runtime')
-    sys.path[:0] = [str(ROOT / 'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_WRITE
     import unicorn.x86_const as reg
     target = latest_target(verify=True)
@@ -262,7 +262,7 @@ def main():
         if 'pseudocode' in row:
             require(hashlib.sha256((evidence / row['pseudocode']).read_bytes()).hexdigest() == row['pseudocode_sha256'], 'Pseudocode changed')
     if args.prepare_rea:
-        directory = ROOT / 'runtime/gap9-startup-0.109.0/rea-reproduction'
+        directory = ROOT / 'runtime/analysis/history/findings/gap9-startup/e1a098f8d4fb/rea-reproduction'
         directory.mkdir(parents=True, exist_ok=True)
         for row in manifest['ranges']:
             if row['kind'] != 'code':

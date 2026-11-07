@@ -222,7 +222,7 @@ test('raw close archival is opt-out, bounded and nonfatal; full-image Programs s
 });
 test('one supported packed-database cache path is safely quoted without changing analysis identity',()=>{
  assert.equal(sharedJavaToolOptions('/project/runtime/analysis/tool-cache/packed-db-cache'),'-XX:-UsePerfData "-Dpdb.cache.dir=/project/runtime/analysis/tool-cache/packed-db-cache"');
- assert.equal(sharedJavaToolOptions('/project with spaces/runtime/cache'),'-XX:-UsePerfData "-Dpdb.cache.dir=/project with spaces/runtime/cache"');
+ assert.equal(sharedJavaToolOptions('/project with spaces/runtime/tool-state/cache'),'-XX:-UsePerfData "-Dpdb.cache.dir=/project with spaces/runtime/tool-state/cache"');
  assert.equal(sharedJavaToolOptions('/project "quoted"/cache'),"-XX:-UsePerfData '-Dpdb.cache.dir=/project \"quoted\"/cache'");
  for(const path of ['relative/cache','/project\n-Dother=true',"/project'\"/cache"] )assert.throws(()=>sharedJavaToolOptions(path),/cache path/);
 });

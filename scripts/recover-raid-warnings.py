@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check current warning routing/names/packet instructions without a build or game.
 
---write stages reviewed evidence under runtime/native-evidence/0.109.0/raid-warnings.
+--write stages reviewed evidence under runtime/analysis/staging/native-evidence/0.109.0/raid-warnings.
 Optional Capstone/Unicorn packages must already exist; no install is performed.
 Allocator, formatter, localization, copy and Vec growth are explicit synthetic
 seams. The EXE is read in place; its process and the reconstructed Rust never run.
@@ -16,7 +16,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-STAGED = ROOT / 'runtime/native-evidence/0.109.0/raid-warnings'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/raid-warnings'
 RETAINED = ROOT / 'docs/analysis/evidence/0.109.0/raid-warnings'
 WARNINGS = [
     ('SweepingGaze', 15, 0x1459588b3, 0x14722ac08, "%s's gaze sweeps the field!"),
@@ -36,8 +36,8 @@ def dump(value):
 
 
 def run(write):
-    sys.path[:0] = [str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'),
-                    str(ROOT / 'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'),
+                    str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
     import capstone
     import unicorn
     from capstone.x86 import X86_OP_IMM

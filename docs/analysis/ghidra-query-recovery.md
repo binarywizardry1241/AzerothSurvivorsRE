@@ -39,7 +39,7 @@ The [compact evidence](evidence/tooling/ghidra-query-recovery.json) binds the
 executed tools and synthetic input. Ghidra 12.1.4 analyzed 4,096 raw x86_64
 functions without executing them. The fixture is reproducible from its byte and
 seed construction in that record; all databases, plans and raw logs remain under
-ignored `runtime/rea-query-recovery-smoke/`.
+ignored `runtime/analysis/history/native-recovery/rea-query-recovery-smoke/9c753ee1b053/`.
 
 A controlled test suspended only its validated owned JVM after search entry
 1,024. The 30-second query deadline expired. Automatic attempt two reopened the

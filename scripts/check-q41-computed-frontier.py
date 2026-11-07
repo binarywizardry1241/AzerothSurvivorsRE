@@ -5,6 +5,7 @@ This checks immutable saved Ghidra reference/body observations and original
 instruction prefixes. A Rust Location in a body supplies context, not semantic
 ownership, callback identity, a valid enum domain or a missing source feature.
 """
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json, portable_record
 import argparse
 import bisect
@@ -21,7 +22,7 @@ from script_sources import load_script
 
 SHA = '6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f'
 PROOF = ROOT / 'docs/analysis/evidence/0.119.0/computed-source-frontier.json'
-OUTPUT = ROOT / 'runtime/q41-computed-context-0.119.0/contextual-sites.jsonl.gz'
+OUTPUT = ROOT / 'runtime/analysis/history/findings/q41-computed-context/0331bdd120bb/contextual-sites.jsonl.gz'
 PREFIXES = ('crates/wenilla-rogue/', 'crates/wenilla-rogue-app/')
 
 
@@ -41,7 +42,7 @@ def run(write):
 
     def consume(name):
         row = proof['artifacts'][name]
-        path = ROOT / row['path']
+        path = retained_runtime_path(ROOT / row['path'], ROOT)
         assert file_sha256(path) == row['sha256'], name
         inputs.append(dict(path=row['path'], sha256=row['sha256'], rows=row['rows']))
         return path
@@ -135,7 +136,7 @@ def run(write):
             result['declared_import'] = dict(slot=hex(slot), library=imports[slot][0], symbol=imports[slot][1])
         results.append(result)
 
-    query_root = ROOT / 'runtime/q41-computed-context-0.119.0/party-control-query'
+    query_root = ROOT / 'runtime/analysis/history/findings/q41-computed-context/0331bdd120bb/party-control-query'
     result_path, = (query_root / 'results').glob('*.json')
     raw = json.loads(result_path.read_text())['structuredContent']
     assert raw['provider']['id'] == 'ghidra'
@@ -147,12 +148,12 @@ def run(write):
     assert operation['arguments'] == {'procedure': '0x145b74070'}
     assert operation['status'] == 'completed'
     assert operation['result']['sha256'] == file_sha256(result_path)
-    query_target = ROOT / 'runtime/q41-computed-context-0.119.0/party-control.bin'
+    query_target = ROOT / 'runtime/analysis/history/findings/q41-computed-context/0331bdd120bb/party-control.bin'
     query_offset = pe.rva_offset(0x145b74070 - pe.image_base)
     assert query_target.read_bytes() == image[query_offset:query_offset + 0x493]
     assert raw['subject']['digest']['sha256'] == file_sha256(query_target)
-    query = dict(plan=dict(path='runtime/q41-computed-context-0.119.0/party-control-plan.json',
-                          sha256=file_sha256(ROOT / 'runtime/q41-computed-context-0.119.0/party-control-plan.json')),
+    query = dict(plan=dict(path='runtime/analysis/history/findings/q41-computed-context/0331bdd120bb/party-control-plan.json',
+                          sha256=file_sha256(ROOT / 'runtime/analysis/history/findings/q41-computed-context/0331bdd120bb/party-control-plan.json')),
                  journal=dict(path=journal_path.relative_to(ROOT).as_posix(), sha256=file_sha256(journal_path)),
                  result=dict(path=result_path.relative_to(ROOT).as_posix(), sha256=file_sha256(result_path)),
                  evidence_id=raw['evidence_id'], analysis_profile_digest=raw['analysis_profile']['digest'],
@@ -209,7 +210,7 @@ def run(write):
                            'The party-control query classifies this branch and existing source correspondence; it does not admit arbitrary byte selectors or prove native full type/alias closure.',
                            'No compilation, game/client/network/server execution or original/rebuilt parity comparison.'])
     for row in inputs:
-        assert file_sha256(ROOT / row['path']) == row['sha256']
+        assert file_sha256(retained_runtime_path(ROOT / row['path'], ROOT)) == row['sha256']
     if write:
         PROOF.write_text(portable_json(receipt, indent=2) + '\n')
     else:

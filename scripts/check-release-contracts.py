@@ -33,7 +33,7 @@ def verify(proof):
     assert selected["version"] == "0.120.4"
     image = target_bytes(selected)
     pe = load_script("release_1204_pe", ROOT / "scripts/inventory-executable.py").PE(image)
-    sys.path.insert(0, str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/camera/python-libs"))
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     decoder = Cs(CS_ARCH_X86, CS_MODE_64)
     for row in proof["native_owners"] + proof["native_ranges"] + proof["native_data"]:
@@ -82,7 +82,7 @@ def verify(proof):
 
 
 def relay_cases(proof):
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import (UC_X86_REG_RAX, UC_X86_REG_RDX, UC_X86_REG_RSI,
                                     UC_X86_REG_RCX, UC_X86_REG_R14, UC_X86_REG_R13,

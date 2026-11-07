@@ -68,7 +68,7 @@ record=dict(target_sha256=t['sha256'],application_executed=False,rebuilt_code_ex
     'Source assertions trace unconditional account file commit, fresh file-model refresh, loaded-VM-only account publication and existing capture/held/repeat/release/layout/mouse/wheel consumers. Rust regressions remain uncompiled.',
     'No compiler, application, device, native filesystem/network/IPC or original/rebuilt comparison. Shared engine and upstream event producer completeness remain #41.'])
 parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args()
-path=(ROOT/'runtime/native-evidence/0.112.0/in-run-bindings' if args.stage else OUT)/'cases.json'
+path=(ROOT/'runtime/analysis/staging/native-evidence/0.112.0/in-run-bindings' if args.stage else OUT)/'cases.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==record
 print('Passed99 current native binding branches and account/capture source consumer checks; no compilation/game')

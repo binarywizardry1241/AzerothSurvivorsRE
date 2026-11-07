@@ -37,8 +37,8 @@ def main():
     raw = lambda a, n: data[pe.rva_offset(a-pe.image_base):pe.rva_offset(a-pe.image_base)+n]
     bounds = {pe.image_base+a:pe.image_base+b for a,b,_ in pe.functions()}
     assert bounds[0x1459508f0] == 0x145950af7 and bounds[0x145947920] == 0x14594cf62
-    sys.path[:0] = [str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),
-                    str(ROOT/'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT/'runtime/tool-state/python/camera/python-libs'),
+                    str(ROOT/'runtime/tool-state/python/armory/python-libs')]
     import capstone
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED
     from unicorn import x86_const as r

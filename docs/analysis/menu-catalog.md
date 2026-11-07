@@ -113,14 +113,14 @@ REA plan, then collect the returned Evidence:
 
 ```sh
 python3 scripts/recover-menu-catalog.py --prepare-native
-python3 scripts/rea-batch.py runtime/catalog-0.97.2/plan-14540eb90.json
-python3 scripts/rea-batch.py runtime/catalog-0.97.2/plan-1454193f0.json
-python3 scripts/rea-batch.py runtime/catalog-0.97.2/plan-145427b30.json
+python3 scripts/rea-batch.py runtime/analysis/history/native-recovery/catalog/12a875fe3fca/plan-14540eb90.json
+python3 scripts/rea-batch.py runtime/analysis/history/native-recovery/catalog/12a875fe3fca/plan-1454193f0.json
+python3 scripts/rea-batch.py runtime/analysis/history/native-recovery/catalog/12a875fe3fca/plan-145427b30.json
 python3 scripts/recover-menu-catalog.py --collect-native
 ```
 
 The batch runner requires new output directories; remove an already completed
-disposable `runtime/catalog-0.97.2/rea-*` directory before rerunning that plan.
+disposable `runtime/analysis/history/native-recovery/catalog/12a875fe3fca/rea-*` directory before rerunning that plan.
 All three original REA queries completed and closed their native sessions.
 No game launch or build was performed in this catalog-recovery subtask;
 integration/build validation is owned by the main-menu task.

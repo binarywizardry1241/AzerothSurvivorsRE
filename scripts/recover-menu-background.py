@@ -90,7 +90,7 @@ def main():
         record = dict(address=hex(address), end_exclusive=hex(end), role=role,
                       file_offset=hex(pe.rva_offset(address-pe.image_base)),
                       sha256=hashlib.sha256(payload).hexdigest(), byte_count=len(payload))
-        bundle = ROOT/f'runtime/menu-background-0.97.2/rea-{address:x}/evidence-bundle.json'
+        bundle = ROOT/f'runtime/analysis/history/interface/menu-background/e0b5933e8c20/rea-{address:x}/evidence-bundle.json'
         if bundle.exists():
             records=json.loads(bundle.read_text())['records']
             found=next(r for r in records if r['operation']=='analyze_function')

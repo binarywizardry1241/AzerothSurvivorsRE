@@ -37,8 +37,8 @@ def main():
     # Leaf has no unwind record; final RET is at1454d43ce, followed by INT3.
     functions[0x1454d42f0] = 0x1454d43cf
     functions[0x145512d50] = 0x145512df7
-    runtime = ROOT/'runtime/player-passive-tick-0.97.2'; runtime.mkdir(exist_ok=True)
-    evidence = ROOT/'runtime/native-evidence/0.97.2/player-passive-tick'; evidence.mkdir(parents=True, exist_ok=True)
+    runtime = ROOT/'runtime/analysis/history/native-recovery/player-passive-tick/d94a2c1f9116'; runtime.mkdir(exist_ok=True)
+    evidence = ROOT/'runtime/analysis/staging/native-evidence/0.97.2/player-passive-tick'; evidence.mkdir(parents=True, exist_ok=True)
     rows = []
     for start, end, name in SPANS+[(a, functions[a], f'{a:x}') for a in HELPERS]:
         offset = pe.rva_offset(start-pe.image_base); payload = binary[offset:offset+end-start]
@@ -52,8 +52,8 @@ def main():
         if start in HELPERS:
             if args.prepare:
                 (runtime/f'{start:x}.bin').write_bytes(payload)
-                plan = dict(target=f'runtime/player-passive-tick-0.97.2/{start:x}.bin',
-                    output=f'runtime/player-passive-tick-0.97.2/rea-{start:x}',
+                plan = dict(target=f'runtime/analysis/history/native-recovery/player-passive-tick/d94a2c1f9116/{start:x}.bin',
+                    output=f'runtime/analysis/history/native-recovery/player-passive-tick/d94a2c1f9116/rea-{start:x}',
                     open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(start)),
                     timeout=240,open_timeout=90,
                     operations=[dict(name='analyze_function',arguments=dict(procedure=hex(start)))])

@@ -16,7 +16,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-OUT = ROOT / 'runtime/power-scaling-0.105.0/pet-update'
+OUT = ROOT / 'runtime/analysis/history/combat/power-scaling/11f43211b8a5/pet-update'
 HELPERS = [
     ('movement', 'move', 0x14592ea80, 0x14592ed7a,
      'dbf608a629aa80b33dfcf33c90bb59e24137d0ecff216fdba94e754d0e1a85ea'),
@@ -74,7 +74,7 @@ def main():
                 'The special-target helper includes Demonology branches; retaining it does not establish their live implementation.',
                 'No original or rebuilt game process was launched.'])
     (OUT / 'helpers-manifest.json').write_text(portable_json(manifest, indent=2) + '\n')
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)

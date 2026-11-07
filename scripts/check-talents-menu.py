@@ -15,7 +15,7 @@ from pathlib import Path
 import struct
 import sys
 from coverage_common import ROOT, latest_target, target_bytes
-sys.path[:0] = [str(ROOT / 'runtime/armory-recovery/python-libs')]
+sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 EVIDENCE = ROOT / 'docs/analysis/evidence/0.109.0/talents-menu'
@@ -109,7 +109,7 @@ def main():
             assert raw(int(field['typeid_address'],16),16).hex()==field['typeid']
     if args.prepare_rea:
         for row in manifest['functions']:
-            folder=ROOT/'runtime/talents-menu-0.109.0/reproduce'/row['name']
+            folder=ROOT/'runtime/analysis/history/progression/talents-menu/9f85a55f7663/reproduce'/row['name']
             folder.mkdir(parents=True,exist_ok=True)
             carrier=folder/'owner.bin'
             carrier.write_bytes(raw(int(row['address'],16),row['byte_count']))
@@ -304,7 +304,7 @@ def main():
         retained=json.loads((EVIDENCE/'ui-native-cases.json').read_text())
         assert retained['target_sha256']==target['sha256'] and retained['cases']==cases[data_case_count:]
     report=dict(target_sha256=target['sha256'],target_process_launched=False,description_cases=len(descriptions),description_sha256=hashlib.sha256(json.dumps(descriptions,separators=(',',':')).encode()).hexdigest(),metadata_cases=sum(len(rows)for _,rows in definitions),other_cases=cases,host_seams=[hex(a)for a in sorted(vm.seams)],native_instruction_addresses=len(vm.executed))
-    folder=ROOT/'runtime/talents-menu-0.109.0'
+    folder=ROOT/'runtime/analysis/history/progression/talents-menu/9f85a55f7663'
     folder.mkdir(parents=True,exist_ok=True)
     (folder/('checked-ui-cases.json' if args.ui else 'checked-cases.json')).write_text(json.dumps(report,indent=2)+'\n')
     print(f"PASS {len(descriptions)} native descriptions; {report['metadata_cases']} metadata/milestone records; {len(cases)} other instruction cases; {len(manifest['functions'])} current owners. No compilation or game launch.")

@@ -253,7 +253,7 @@ Reproduction within the project checkout:
 ```sh
 python3 scripts/recover-enemy-catalog.py --check
 python3 scripts/recover-enemy-catalog.py --prepare-native
-python3 scripts/rea-batch.py runtime/enemies-catalog-0.97.2/plan-14540e950.json
+python3 scripts/rea-batch.py runtime/analysis/history/native-recovery/enemies-catalog/cb147ed49eac/plan-14540e950.json
 python3 scripts/recover-enemy-catalog.py --collect-native
 ```
 

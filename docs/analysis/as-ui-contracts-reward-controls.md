@@ -57,7 +57,7 @@ currency/source preservation and owned-equipment Banish rejection. They were not
 run.
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-reward-controls.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-reward-controls.py
 ```
 
 Skip fixtures stop before CRT `roundf`, then resume the original conversion and

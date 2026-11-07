@@ -15,11 +15,11 @@ from pathlib import Path
 import struct
 import sys
 ROOT=next(p for p in Path(__file__).resolve().parents if(p/'scripts/coverage_common.py').is_file())
-sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/armory-recovery/python-libs'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/armory/python-libs'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
 from coverage_common import latest_target,target_bytes
 from script_sources import load_script
 SHA='0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
-WORK=ROOT/'runtime/q41-amulet-inventory-0.115.0'
+WORK=ROOT/'runtime/analysis/history/findings/q41-amulet-inventory/6aef085d4857'
 KEEP=ROOT/'docs/analysis/evidence/0.115.0/amulet-names.json'
 
 

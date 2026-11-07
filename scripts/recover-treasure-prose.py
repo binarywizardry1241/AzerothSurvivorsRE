@@ -6,7 +6,7 @@ Unknown calls fail closed. Extracted numeric-template fixtures are textual data.
 """
 from pathlib import Path
 import hashlib,importlib.util,json,math,struct,sys
-ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 s=importlib.util.spec_from_file_location('inventory',ROOT/'scripts/inventory-executable.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
@@ -117,6 +117,6 @@ for index in range(22):
   for r,v in [(UC_X86_REG_RSP,sp),(UC_X86_REG_RCX,out),(UC_X86_REG_RDX,definition),(UC_X86_REG_XMM2,value_bits)]:u.reg_write(r,v)
   u.emu_start(0x145424a90,STOP,count=1000000);assert reg(UC_X86_REG_RIP)==STOP
   jewelry.append({'key':pair(definition),'amount_bits':value_bits,'text':pair(out+8),'pieces':pieces,'numbers':numbers})
-work=ROOT/'runtime/treasure-interface-0.100.1';work.mkdir(parents=True,exist_ok=True);(work/'amulet-prose-fixtures.json').write_text(json.dumps({'target_sha256':SHA,'admitted_owners':[hex(a)for a in ADMITTED],'calls':{hex(a):n for a,n in calls.items()},'rows':rows,'jewelry':jewelry},indent=2)+'\n')
+work=ROOT/'runtime/analysis/history/native-recovery/treasure-interface/bc4d3872616f';work.mkdir(parents=True,exist_ok=True);(work/'amulet-prose-fixtures.json').write_text(json.dumps({'target_sha256':SHA,'admitted_owners':[hex(a)for a in ADMITTED],'calls':{hex(a):n for a,n in calls.items()},'rows':rows,'jewelry':jewelry},indent=2)+'\n')
 fixture={'target_sha256':SHA,'method':__doc__,'admitted_owners':[hex(a)for a in ADMITTED],'cases':[{k:r[k]for k in ['key','picks','lines']}for r in rows],'jewelry_cases':[{k:r[k]for k in ['key','amount_bits','text']}for r in jewelry]}
 (ROOT/'crates/azeroth-survivors-re/tests/fixtures/amulet-prose-0.100.1-native.json').write_text(json.dumps(fixture,indent=2)+'\n')

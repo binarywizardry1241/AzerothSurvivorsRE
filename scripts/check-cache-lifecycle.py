@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-WORK = ROOT / "runtime/chest-lifecycle-0.113.2"
+WORK = ROOT / "runtime/analysis/history/inventory/chest-lifecycle/cf9c18b2353c"
 KEPT = ROOT / "docs/analysis/evidence/0.113.2/cache-lifecycle"
 RANGES = {
     "create-go": (0x145954610, 0x145954940),
@@ -50,8 +50,8 @@ def digest(value):
 
 
 def dependencies():
-    for name in ("runtime/camera-recovery-0.105.0/python-libs",
-                 "runtime/armory-recovery/python-libs"):
+    for name in ("runtime/tool-state/python/camera/python-libs",
+                 "runtime/tool-state/python/armory/python-libs"):
         sys.path.insert(0, str(ROOT / name))
 
 

@@ -118,7 +118,7 @@ def main():
             == registration["component_type_id_hex"], "Terminal action TypeId changed")
 
     if args.prepare_rea:
-        work = ROOT / "runtime/terminal-hover-recovery-0.105.0"
+        work = ROOT / "runtime/analysis/history/interface/terminal-hover-recovery/9fb119dbad5e"
         work.mkdir(parents=True, exist_ok=True)
         for row in manifest["ranges"]:
             if "rea_evidence_id" not in row:

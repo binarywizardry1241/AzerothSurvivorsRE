@@ -34,7 +34,7 @@ separate from summary XP, run counts, result acknowledgement and choice closure.
 No new state, message, save format or terminal event is introduced.
 
 ```sh
-python3 -B scripts/check-solo-clear.py --python-path runtime/tests/query-python-deps --python-path runtime/armory-recovery/python-libs
+python3 -B scripts/check-solo-clear.py --python-path runtime/tests/query-python-deps --python-path runtime/tool-state/python/armory/python-libs
 ```
 
 The check passes **48 isolated original-instruction cases / 384 steps** over

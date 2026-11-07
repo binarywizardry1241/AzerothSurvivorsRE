@@ -14,7 +14,7 @@ import struct
 from creature_query_native import ROOT, T, D, PE, ENDS
 from template_query_native import TemplateQueryProbe
 
-WORK = ROOT / 'runtime/q41-object-query-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/findings/q41-object-query/bf123ebeeebd'
 KEEP = ROOT / 'docs/analysis/evidence/0.113.2'
 
 

@@ -117,7 +117,7 @@ and compact textual evidence remain.
 
 Reproduce with `python3 scripts/recover-mob-movement.py --rea`.
 The helper verifies the exact target hash and stages all output under ignored
-`runtime/mob-movement-0.105.0/`; only curated textual evidence is retained here.
+`runtime/analysis/history/movement/mob-movement/46a02b277df9/`; only curated textual evidence is retained here.
 
 ## Retained reports
 

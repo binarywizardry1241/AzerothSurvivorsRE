@@ -91,7 +91,7 @@ ownership are outside the observations. Multibyte/long names test presentation
 arithmetic, not the separate input acceptance policy.
 
 Run `--prepare` to stage two exact raw function imports under ignored
-`runtime/portrait-0.109.0/`, then run their plans with
+`runtime/analysis/history/interface/portrait/968a66465324/`, then run their plans with
 `python3 -B scripts/rea-batch.py <plan>`. After completed REA/Ghidra analysis,
 `--write` regenerates the curated extracts and native observations. Raw imports
 omit referenced callees/data and use generic GCC ABI; the original full-PE

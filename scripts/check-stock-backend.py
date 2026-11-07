@@ -14,8 +14,8 @@ SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--python-libs", default="runtime/armory-recovery/python-libs")
-    parser.add_argument("--output", default="runtime/stock-frontend-0.105.0/backend-vectors.json")
+    parser.add_argument("--python-libs", default="runtime/tool-state/python/armory/python-libs")
+    parser.add_argument("--output", default="runtime/analysis/history/interface/stock-frontend/495a718b17f0/backend-vectors.json")
     args = parser.parse_args()
     libs, output = [(ROOT / value).resolve() for value in (args.python_libs, args.output)]
     assert libs.is_relative_to(ROOT) and output.is_relative_to(ROOT / "runtime")

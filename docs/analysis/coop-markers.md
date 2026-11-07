@@ -42,7 +42,7 @@ owner/extract/literal/instruction hashes, the two branches to ordinary `in`
 handling, the true branch to the next-message loop, the actual `keep` key
 address and source ordering. The completed query result digest was checked
 before promotion. Full raw query results and derived function bytes remain
-ignored under `runtime/coop-transport-0.115.0`; only the necessary selected
+ignored under `runtime/analysis/history/co-op/coop-transport/4fd00ac85af1`; only the necessary selected
 extracts are retained here.
 
 Two authored Rust regressions cover actual `forward_to_peers` output decoded

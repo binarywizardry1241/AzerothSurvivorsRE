@@ -57,7 +57,7 @@ through `SessionEvent::GossipPoi`. This establishes AS payload construction
 and the live interface mapping; it does not certify actual client display.
 
 Run `python3 -B scripts/check-raid-lair-marker.py`; `--stage` writes
-the candidate under ignored `runtime/native-evidence/0.112.0/raid-lair-marker`.
+the candidate under ignored `runtime/analysis/staging/native-evidence/0.112.0/raid-lair-marker`.
 **530 native profiles** pass: 54 selection cases, 384 publication cases and
 92 CVar/command/construction input profiles.
 They cover held/empty/tied selection, signed zero and NaN deadline ordering,

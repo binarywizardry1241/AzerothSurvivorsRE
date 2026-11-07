@@ -78,7 +78,7 @@ Lower counters leave the correction armed. Proximity and elapsed simulation
 time retain their existing movement-report behavior.
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-coop-correction.py --teleport-ack
 ```
 

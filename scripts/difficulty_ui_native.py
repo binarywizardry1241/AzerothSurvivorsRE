@@ -7,7 +7,7 @@ explicit seams recorded separately from the original constructor behavior.
 """
 import sys,struct,json
 from pathlib import Path
-ROOT=Path(__file__).resolve().parent.parent;sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+ROOT=Path(__file__).resolve().parent.parent;sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
 from coverage_common import latest_target,target_bytes
 from script_sources import load_script
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE

@@ -457,7 +457,7 @@ def replay(raw):
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     for flag in ('prepare','collect','check','verify'):parser.add_argument('--'+flag,action='store_true')
-    parser.add_argument('--work',default='runtime/fixgap7-complete-0.109.0')
+    parser.add_argument('--work',default='runtime/analysis/history/findings/fixgap7-complete/7440840c0273')
     args=parser.parse_args();work=project_path(args.work)
     target=latest_target(verify=True);assert target['sha256']==SHA,'Installed target changed; recover its contracts first'
     data=target_bytes(target)

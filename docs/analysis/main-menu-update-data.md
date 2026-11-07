@@ -26,8 +26,8 @@ combined build passed in29.09s. All169 focused harness cases passed with overlap
 74 binary,19 native-save,6 config,1 run-modifier,14 save-browser,37 updater and18
 installer, including all five connected memory-only worker fixtures. Test
 compilation took12.95s. Logs are
-`runtime/menu-recovery/menu-build-26-final.log` and
-`runtime/menu-recovery/menu-tests-26-menu-bridges.log`. No app, metadata/HTTP
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-build-26-final.log` and
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-tests-26-menu-bridges.log`. No app, metadata/HTTP
 request, download, staging/replacement/install or process launch was executed.
 
 ## Manifest validation

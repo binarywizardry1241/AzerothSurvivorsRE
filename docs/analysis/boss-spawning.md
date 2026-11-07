@@ -46,7 +46,7 @@ Reproduce static evidence inside this checkout:
 python3 scripts/recover-boss-point-data.py --check
 python3 scripts/recover-boss-spawning.py
 python3 scripts/recover-boss-spawning.py --prepare-native
-python3 scripts/rea-batch.py runtime/boss-spawning-0.97.2/plan-145529b50.json
+python3 scripts/rea-batch.py runtime/analysis/history/raid/boss-spawning/dbb1dbd025ec/plan-145529b50.json
 python3 scripts/recover-boss-spawning.py --collect-native
 ```
 

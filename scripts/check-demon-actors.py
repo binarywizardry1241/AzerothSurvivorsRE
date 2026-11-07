@@ -17,7 +17,7 @@ if t["sha256"] != SHA:
 d = target_bytes(t)
 module = load_script("pe_inventory", ROOT / "scripts/inventory-executable.py")
 p = module.PE(d)
-sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 import unicorn.x86_const as r
 
@@ -51,8 +51,8 @@ def target_cases():
     game,pets,actors,ids,statuses,missiles=[mem+x for x in [0,0x2000,0x10000,0x20000,0x24000,0x30000]]
     def put(a,f,*v):u.mem_write(a,struct.pack(f,*v))
     def get(a,f):return struct.unpack(f,u.mem_read(a,struct.calcsize(f)))
-    sys.path.insert(0,'runtime/camera-recovery-0.105.0/python-libs')
-    sys.path.insert(0,'runtime/armory-recovery/python-libs')
+    sys.path.insert(0,'runtime/tool-state/python/camera/python-libs')
+    sys.path.insert(0,'runtime/tool-state/python/armory/python-libs')
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
     import unicorn.x86_const as r
     u=Uc(UC_ARCH_X86,UC_MODE_64);sz=max(s['rva']+max(s['virtual_size'],s['raw_size'])for s in p.sections)

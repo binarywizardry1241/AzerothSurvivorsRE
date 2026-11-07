@@ -36,7 +36,7 @@ def context():
 
 def prepare():
     target, image, pe = context()
-    directory = ROOT / "runtime/fixgap219/constructor"
+    directory = ROOT / "runtime/analysis/history/findings/fixgap219/888a65e3edb9/constructor"
     result_path = next((directory / "query/results").glob("*.json"))
     result = json.loads(result_path.read_text())
     native = result.get("structuredContent") or json.loads(result["content"][0]["text"])
@@ -47,7 +47,7 @@ def prepare():
         "plan": receipt(directory / "plan.json"),
         "journal": receipt(directory / "query/journal.json"),
         "result": receipt(result_path),
-        "raw_input": receipt(ROOT / "runtime/execheck-0.121.0/heroic-native/caller/code.bin"),
+        "raw_input": receipt(ROOT / "runtime/analysis/history/target-audit/execheck/60f68e86a5e9/heroic-native/caller/code.bin"),
         "slice_virtual_address": "0x145bdcb10",
     }
     rows = []

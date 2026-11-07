@@ -17,7 +17,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [
     str(ROOT / "scripts"),
-    str(ROOT / "runtime/armory-recovery/python-libs"),
+    str(ROOT / "runtime/tool-state/python/armory/python-libs"),
 ]
 from coverage_common import latest_target, target_bytes
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE

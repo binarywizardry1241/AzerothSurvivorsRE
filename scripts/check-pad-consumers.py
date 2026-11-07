@@ -19,7 +19,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA='dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 OUT=ROOT/'docs/analysis/evidence/0.112.0/pad'
-WORK=ROOT/'runtime/input-0.112.0'
+WORK=ROOT/'runtime/analysis/history/movement/input/8d261063d4b4'
 OWNERS={'pad-state':(0x1401b8090,0x1401b8543),'pad-handoff':(0x1401c0a70,0x1401c114e),
         'pad-world':(0x1401c1150,0x1401c18d2),'pad-focus':(0x1401c1c50,0x1401c3673),
         'pad-settings':(0x1401c3da0,0x1401c4260),'button-edge':(0x1401b6c60,0x1401b6e10),
@@ -61,7 +61,7 @@ def main():
     m = load_script('pad_pe', ROOT/'scripts/inventory-executable.py');pe=m.PE(data)
     def raw(a,n):
         off=pe.rva_offset(a-pe.image_base);v=data[off:off+n];assert len(v)==n;return v
-    sys.path[:0]=[str(ROOT/'runtime/armory-recovery/python-libs'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+    sys.path[:0]=[str(ROOT/'runtime/tool-state/python/armory/python-libs'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
     from capstone import Cs,CS_ARCH_X86,CS_MODE_64
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE,UC_HOOK_MEM_UNMAPPED
     from unicorn import x86_const as x

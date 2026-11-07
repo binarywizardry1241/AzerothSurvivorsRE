@@ -12,7 +12,7 @@ from script_sources import load_script
 from creature_query_native import PE, D, ENDS
 from font_input_native import FontProbe, CJK, BASE, AUTO
 
-WORK = ROOT / 'runtime/q41-all-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/findings/q41-all/f1125d689593'
 KEEP = ROOT / 'docs/analysis/evidence/0.113.2/font-inputs.json'
 ASSETS = load_script('font_inputs_assets', 'scripts/recover-exe-assets.py')
 SUPPLY = {family: name for family, name in ASSETS.FONT_NAMES.items()

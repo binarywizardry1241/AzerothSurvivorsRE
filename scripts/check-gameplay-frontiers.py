@@ -16,14 +16,14 @@ import sys
 
 from coverage_common import ROOT, latest_target, file_sha256, json_text
 
-sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 import capstone
 import native_talent_fixture as native
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 KEPT = ROOT / 'docs/analysis/evidence/0.112.0/gameplay-frontiers'
-STAGE = ROOT / 'runtime/gameplay-frontiers-0.112.0/staged'
+STAGE = ROOT / 'runtime/analysis/history/native-recovery/gameplay-frontiers/1d609cc38fa0/staged'
 RESET = (0x1459b7f00, 0x1459b82a6)
 FILTER = (0x1459cbd40, 0x1459cbeab)
 

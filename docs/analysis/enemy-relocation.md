@@ -62,7 +62,7 @@ Reproduction from this checkout:
 ```sh
 python3 scripts/recover-enemy-relocation.py
 python3 scripts/recover-enemy-relocation.py --prepare-native
-python3 scripts/rea-batch.py runtime/enemies-relocation-0.97.2/plan-145531cb0.json
+python3 scripts/rea-batch.py runtime/analysis/history/native-recovery/enemies-relocation/2f83a9a2dd04/plan-145531cb0.json
 python3 scripts/recover-enemy-relocation.py --collect-native
 ```
 

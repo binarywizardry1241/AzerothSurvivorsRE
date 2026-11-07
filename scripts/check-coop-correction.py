@@ -368,7 +368,7 @@ if __name__ == "__main__":
                              native_evidence_revalidated=False, compilation=False,
                              game_or_service_execution=False, parity_verified=False), indent=2))
         sys.exit(0)
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"), str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"), str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     proof = json.loads((BASE / "manifest.json").read_text())
     queries = verify(proof)
     cases, steps = native_cases(proof)

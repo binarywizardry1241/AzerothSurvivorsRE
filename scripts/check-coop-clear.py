@@ -4,6 +4,7 @@
 Original instruction fixtures use synthetic wrapper/stack memory and stop at
 the account boundary. No client, server, network or filesystem save executes.
 """
+from runtime_layout import retained_runtime_path
 import hashlib
 import json
 import platform
@@ -58,9 +59,9 @@ def verify(proof):
         instruction = instructions[int(row["address"], 16)]
         assert [instruction.mnemonic, instruction.op_str] == row["instruction"]
     for row in proof["source_bindings"]:
-        assert sha((ROOT / row["path"]).read_bytes()) == row["sha256"], row["path"]
+        assert sha((retained_runtime_path(ROOT / row["path"], ROOT)).read_bytes()) == row["sha256"], row["path"]
     for row in proof["source_scopes"]:
-        text = (ROOT / row["path"]).read_text()
+        text = (retained_runtime_path(ROOT / row["path"], ROOT)).read_text()
         start = text.index(row["start_marker"])
         end = text.index(row["end_marker"], start)
         assert sha(text[start:end].encode()) == row["sha256"], row["path"]

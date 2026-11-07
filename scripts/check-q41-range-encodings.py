@@ -4,6 +4,7 @@
 Default operation is read-only. --stage writes only ignored candidate evidence.
 U01/U02 and U04 are independent overlapping inventories, never additive totals.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from bisect import bisect_right
 import collections
@@ -18,13 +19,13 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes, file_sha256, load_json, project_path
 from script_sources import load_script
 
-sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
 import capstone
 from shared_native_inventory import open_readonly_uri as open_native_inventory
 
 PROOF = ROOT / 'docs/analysis/evidence/0.113.2/unknown-recovery.json'
 KEEP = ROOT / 'docs/analysis/evidence/0.113.2/residual-encodings.json'
-WORK = ROOT / 'runtime/q41-all-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/findings/q41-all/f1125d689593'
 
 
 def encoding(raw, address, decoder):
@@ -483,7 +484,7 @@ def main():
     names = ['missing-executable-ranges.tsv.gz', 'unwind-complement.sqlite']
     inputs = {name: proof['inputs'][name] for name in names}
     for item in inputs.values():
-        assert file_sha256(ROOT / item['path']) == item['sha256']
+        assert file_sha256(retained_runtime_path(ROOT / item['path'], ROOT)) == item['sha256']
 
     # Counterexamples distinguish complete encoding from an arbitrary plausible decode.
     for raw, wanted in [(b'\xcc', 'uniform-INT3-encoding'), (b'\x90', 'uniform-NOP-encoding'),

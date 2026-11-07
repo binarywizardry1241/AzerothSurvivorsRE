@@ -80,7 +80,7 @@ Texture interface\addons\-dragonflightreloaded\media\tex\chat\cleaner_coins.tga 
 ```
 
 The compact excerpt is retained here; its source was
-`runtime/build-ship/game.log:28`. This is existing evidence, not a fresh launch
+`runtime/client/ship-evidence/game.log:28`. This is existing evidence, not a fresh launch
 or controlled correlation of the screenshot with that process. The decoder’s
 comments cite a historical Vanilla client; that is not proof of the current
 Azeroth Survivors loader contract. A reported case indicates that the original game

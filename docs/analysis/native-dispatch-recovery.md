@@ -168,7 +168,7 @@ computed edges, aliases, mixed bytes and padding candidates remain unproved.
 Use project-local Capstone/Unicorn dependencies:
 
 ```sh
-export PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs
+export PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs
 python3 -B scripts/test-custom-native-dispatch-selection.py
 python3 -B scripts/test-full-native-accounting.py
 python3 -B scripts/test-native-source-roles.py

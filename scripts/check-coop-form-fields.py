@@ -374,7 +374,7 @@ def check_source():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", default="docs/analysis/evidence/0.115.0/coop-forms/manifest.json")
-    parser.add_argument("--output-dir", default="runtime/coop-form-fields-0.115.0")
+    parser.add_argument("--output-dir", default="runtime/analysis/history/co-op/coop-form-fields/a2edc9bc58f3")
     args = parser.parse_args()
     target = latest_target(verify=True)
     data = target_bytes(target)

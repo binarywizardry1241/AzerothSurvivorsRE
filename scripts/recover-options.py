@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
 TABLE, COUNT, STRIDE = 0x145DA1810, 104, 152
 ASSET = ROOT / "crates/azeroth-survivors-re/assets/options.json"
-WORK = ROOT / "runtime/options-0.109.0"
+WORK = ROOT / "runtime/analysis/history/interface/options/9d5d040da63a"
 EVIDENCE = ROOT / "docs/analysis/evidence/0.109.0/options"
 # Registered name/default pairs, independently located in this target's table.
 ADDED = {
@@ -150,8 +150,8 @@ def check_card_rays(contract_path):
         entries = json.loads((ROOT / row["source"]).read_text())
         if any(entries.get(key) != value for key, value in row["entries"].items()):
             raise ValueError("Connected card-rays locale entries differ: " + row["code"])
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                   str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                   str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED
     import unicorn.x86_const as reg
     machine = Uc(UC_ARCH_X86, UC_MODE_64)
@@ -259,7 +259,7 @@ def recover(data, pe):
 
 def vectors(data, pe, rows):
     # Use an already installed project-local Unicorn; do not download dependencies.
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)
@@ -350,7 +350,7 @@ def main():
     target, data, pe = load()
     if args.prepare:
         prepare(data, pe)
-        print("Prepared original-VA bounded Ghidra plans in runtime/options-0.109.0")
+        print("Prepared original-VA bounded Ghidra plans in runtime/analysis/history/interface/options/9d5d040da63a")
         return
     asset, defaults = recover(data, pe)
     if args.stage:

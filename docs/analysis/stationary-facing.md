@@ -34,7 +34,7 @@ the original client consumer, a game process or real MPQ geometry.
 
 Reproduce with `python3 scripts/recover-mob-movement.py`. The helper checks
 the exact EXE hash, reuses its explicit current ABI and stages output under
-`runtime/mob-movement-0.105.0/` for review. `--rea` uses the project wrapper and
+`runtime/analysis/history/movement/mob-movement/46a02b277df9/` for review. `--rea` uses the project wrapper and
 Ghidra for the selected function slices.
 
 ## Live source correction

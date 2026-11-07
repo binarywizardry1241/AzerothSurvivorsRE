@@ -9,7 +9,7 @@ selectors without promoting structural observations to native semantic closure.
 The [compact proof](evidence/0.115.0/data-classification/manifest.json) commits
 every selected input and all regenerable row inventories. Reproduce with
 `python3 -B scripts/classify-target-data.py`; `--stage` proposes updated
-proof/inventories under ignored `runtime/q41-data-0.115.0/`. Installed EXE/MPQs
+proof/inventories under ignored `runtime/analysis/history/findings/q41-data/6a6f0540f967/`. Installed EXE/MPQs
 are read in place; no binary assets are copied into the repository. The proof
 uses the current committed file-range summary's exact ledger commitment.
 

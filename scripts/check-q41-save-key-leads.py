@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Classify all five string leads; no save/config mutation, game or compiler."""
+from runtime_layout import retained_runtime_path
 import argparse
 import gzip
 import hashlib
@@ -11,7 +12,7 @@ from coverage_common import ROOT, latest_target, target_bytes, file_sha256, json
 from script_sources import load_script
 
 KEEP = ROOT/'docs/analysis/evidence/0.113.2/save-key-leads.json'
-WORK = ROOT/'runtime/q41-save-key-leads-0.113.2'
+WORK = ROOT/'runtime/analysis/history/findings/q41-save-key-leads/1b5e8184d5b5'
 
 
 def record(path):
@@ -25,8 +26,8 @@ def main():
     image=target_bytes(target)
     pe=load_script('save_key_pe',ROOT/'scripts/inventory-executable.py').PE(image)
     queue=ROOT/'docs/analysis/evidence/0.113.2/unknown-recovery.json';q=json.loads(queue.read_text())
-    item=q['inputs']['inventory.json'];assert file_sha256(ROOT/item['path'])==item['sha256']
-    inventory=json.loads((ROOT/item['path']).read_text());leads=inventory['embedded_candidates']['save_configuration_key_lead']
+    item=q['inputs']['inventory.json'];assert file_sha256(retained_runtime_path(ROOT/item['path'], ROOT))==item['sha256']
+    inventory=json.loads((retained_runtime_path(ROOT/item['path'], ROOT)).read_text());leads=inventory['embedded_candidates']['save_configuration_key_lead']
     assert len(leads)==5
     for lead in leads:
         at=int(lead['file_offset'],16);raw=image[at:at+lead['byte_count']]
@@ -50,7 +51,7 @@ def main():
     assert '"before",6' in pseudo['0x14587b0e0'] and '"parts",5' in pseudo['0x14587b0e0']
     assert '&DAT_1473002c7,0xe' in pseudo['0x1458988e0']
     assert '&DAT_1473002d5,0xe' in pseudo['0x1458988e0']
-    sys.path.insert(0,str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/camera/python-libs'))
     from capstone import Cs,CS_ARCH_X86,CS_MODE_64
     at=pe.rva_offset(0x1400e9c45-pe.image_base);raw=image[at:at+19]
     instructions=list(Cs(CS_ARCH_X86,CS_MODE_64).disasm(raw,0x1400e9c45))

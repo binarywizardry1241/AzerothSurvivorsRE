@@ -4,6 +4,7 @@
 No compiler, client, game, socket or server is started. --write publishes the
 compact target-bound evidence and canonical assembly used by this check.
 """
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json, portable_record
 import argparse
 import hashlib
@@ -19,8 +20,8 @@ from coverage_common import ROOT, latest_target, project_path, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
-sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-               str(ROOT / "runtime/armory-recovery/python-libs")]
+sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+               str(ROOT / "runtime/tool-state/python/armory/python-libs")]
 
 SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
 KEPT = ROOT / "docs/analysis/evidence/0.121.0/heroic-twists"
@@ -234,7 +235,7 @@ def source_evidence(native_path, image, pe, raw, rustfmt=None):
     assert rustfmt, "An installed Rust formatter is required for non-compiling syntax parsing."
     for row in files:
         result = subprocess.run([rustfmt, "--edition", "2021", "--config", "skip_children=true",
-                                 "--emit", "stdout", str(ROOT / row["path"])],
+                                 "--emit", "stdout", str(retained_runtime_path(ROOT / row["path"], ROOT))],
                                 stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)
         assert result.returncode == 0, (row["path"], result.stderr.decode())
     return dict(schema_version=1, target_sha256=SHA,
@@ -306,13 +307,13 @@ def assemble_evidence(target, image, pe, raw, write):
         data.append(dict(role=role, virtual_address=hex(address), byte_count=count,
                          sha256=sha(payload), values_bits=list(struct.unpack("<" + "I" * (count // 4), payload))))
     queries = []
-    query_inputs = [(family, ROOT / "runtime/fixgap219/twists" / family / "query", None)
+    query_inputs = [(family, ROOT / "runtime/analysis/history/findings/fixgap219/888a65e3edb9/twists" / family / "query", None)
                     for family in ("healing", "guardian-stats", "warning", "gold")]
     query_inputs += [
-        ("configuration", ROOT / "runtime/fixgap219/constructor/query", None),
-        ("shared-spawning", ROOT / "runtime/fixgap220229/affixes/query-fixed",
-         ROOT / "runtime/fixgap220229/affixes/plan-fixed.json"),
-        ("shared-dispatch", ROOT / "runtime/fixgap225-0.121.0/query", None),
+        ("configuration", ROOT / "runtime/analysis/history/findings/fixgap219/888a65e3edb9/constructor/query", None),
+        ("shared-spawning", ROOT / "runtime/analysis/history/findings/fixgap220229/03231eb4cb7b/affixes/query-fixed",
+         ROOT / "runtime/analysis/history/findings/fixgap220229/03231eb4cb7b/affixes/plan-fixed.json"),
+        ("shared-dispatch", ROOT / "runtime/analysis/history/findings/fixgap225/7b8f2d33efb5/query", None),
     ]
     for family, output, chosen_plan in query_inputs:
         for path in sorted((output / "results").glob("*.json")):

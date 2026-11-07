@@ -38,7 +38,7 @@ def main():
             if key in row:
                 assert hashlib.sha256((ROOT / row[key]).read_bytes()).hexdigest() == row[key + '_sha256']
     if args.prepare_rea:
-        destination = ROOT / 'runtime/menu-fidelity-0.109.0/reproduce'
+        destination = ROOT / 'runtime/analysis/history/interface/menu-fidelity/7d09140bff3e/reproduce'
         for row in manifest['functions']:
             address = int(row['rea_procedure'], 16)
             end = EXPLICIT_ENDS.get(address, ends.get(address))
@@ -54,8 +54,8 @@ def main():
         print(f"Prepared {len(manifest['functions'])} project-local REA plans; target never launched.")
         return
 
-    sys.path[:0] = [str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'),
-                   str(ROOT / 'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'),
+                   str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_MEM_UNMAPPED, UC_HOOK_CODE
     from unicorn import x86_const as reg
     cases = []
@@ -311,7 +311,7 @@ def main():
     assert 'PickerBackdropRoot' in (ROOT / 'crates/azeroth-survivors-re/src/menu.rs').read_text()
     report = dict(target_sha256=target['sha256'], native_cases=cases, shaders=shaders,
                   limitations=manifest['limitations'])
-    output = ROOT / 'runtime/menu-fidelity-0.109.0/native-cases.json'
+    output = ROOT / 'runtime/analysis/history/interface/menu-fidelity/7d09140bff3e/native-cases.json'
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2) + '\n')
     print(f"PASS {len(cases)} native menu cases; {len(shaders)} full embedded shaders; {len(manifest['functions'])} retained owner ranges. No compilation or game launch.")

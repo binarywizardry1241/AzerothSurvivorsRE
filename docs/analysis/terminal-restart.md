@@ -63,7 +63,7 @@ From the repository root, using an existing local Unicorn installation:
 
 ```sh
 python3 -B scripts/check-terminal-restart.py \
-  --python-libs runtime/armory-recovery/python-libs
+  --python-libs runtime/tool-state/python/armory/python-libs
 ```
 
 The checker rehashes the installed target and curated code/text, verifies both

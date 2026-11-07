@@ -232,7 +232,7 @@ def run():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', default='runtime/gap101/native-item-text-cases.json')
+    parser.add_argument('--output', default='runtime/analysis/history/findings/gap101/3d83db8dabbf/native-item-text-cases.json')
     args = parser.parse_args()
     output = project_path(args.output)
     assert output.is_relative_to(ROOT / 'runtime'), 'bulk replay output belongs under runtime/'

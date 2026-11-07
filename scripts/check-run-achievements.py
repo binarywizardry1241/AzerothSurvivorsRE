@@ -588,13 +588,13 @@ def main():
         ranges.append(dict(role=role,virtual_address=hex(start),file_offset=hex(at),byte_count=len(raw),sha256=hashlib.sha256(raw).hexdigest()))
     from discovery_native_subject import verify_native_query_subject
     queries=[]
-    receipt,native=query_receipt('runtime/fixgap230239/feat-evaluator/query','0x145ba6470')
+    receipt,native=query_receipt('runtime/analysis/history/findings/fixgap230239/aed9aeb16797/feat-evaluator/query','0x145ba6470')
     verify_native_query_subject(ROOT,native,receipt,{k:target[k] for k in ('version','path','sha256','size_bytes')},image=image,pe=pe)
     queries.append(receipt)
-    receipt,native=query_receipt('runtime/fixgap230239/feat-snapshot/query','0x145b306b0')
+    receipt,native=query_receipt('runtime/analysis/history/findings/fixgap230239/aed9aeb16797/feat-snapshot/query','0x145b306b0')
     verify_native_query_subject(ROOT,native,receipt,{k:target[k] for k in ('version','path','sha256','size_bytes')},image=image,pe=pe)
     queries.append(receipt)
-    receipt,native=query_receipt('runtime/fixgap230239/party-condition/query','0x145b90f00')
+    receipt,native=query_receipt('runtime/analysis/history/findings/fixgap230239/aed9aeb16797/party-condition/query','0x145b90f00')
     verify_native_query_subject(ROOT,native,receipt,{k:target[k] for k in ('version','path','sha256','size_bytes')},image=image,pe=pe)
     queries.append(receipt)
     proof=dict(schema_version=1,target={key:target[key]for key in ('version','path','sha256','size_bytes')},gap_ids=[237],

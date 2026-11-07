@@ -19,7 +19,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 OUT = ROOT / 'docs/analysis/evidence/0.112.0/xinput'
-WORK = ROOT / 'runtime/input-0.112.0'
+WORK = ROOT / 'runtime/analysis/history/movement/input/8d261063d4b4'
 RANGES = {'poll': (0x14031d0a0, 0x14031dd31), 'axis': (0x140300240, 0x140300377),
           'backend': (0x140305f10, 0x14030611e), 'loader': (0x1403058d0, 0x140305e82),
           'registration': (0x1401b6e3d, 0x1401b6e75)}
@@ -55,7 +55,7 @@ def main():
         return
     def cstr(a):
         return raw(a,128).split(b'\0',1)[0].decode('ascii')
-    sys.path[:0]=[str(ROOT/'runtime/armory-recovery/python-libs'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+    sys.path[:0]=[str(ROOT/'runtime/tool-state/python/armory/python-libs'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
     from capstone import Cs,CS_ARCH_X86,CS_MODE_64
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE,UC_HOOK_MEM_UNMAPPED
     from unicorn import x86_const as x

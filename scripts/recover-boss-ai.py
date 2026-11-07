@@ -19,7 +19,7 @@ ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA='a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
 OUT=ROOT/'docs/analysis/evidence/0.97.2/bosses'
-RUNTIME=ROOT/'runtime/boss-ai-0.97.2'
+RUNTIME=ROOT/'runtime/analysis/history/raid/boss-ai/d107ee102a48'
 
 
 def save(path,value):
@@ -37,12 +37,12 @@ def main():
         return dict(va=hex(a),end_exclusive=hex(b),file_offset=hex(off),byte_count=len(raw),sha256=hashlib.sha256(raw).hexdigest())
     end=dict((pe.image_base+a,pe.image_base+b) for a,b,_ in pe.functions())[0x1454c9510]
     owner=span(0x1454c9510,end)
-    bundle=ROOT/'runtime/guardians-0.97.2/rea-1454c9510/evidence-bundle.json'
+    bundle=ROOT/'runtime/analysis/history/raid/guardians/b4a536d2fa6d/rea-1454c9510/evidence-bundle.json'
     if not bundle.exists():
         # The enemy recovery has the same original owner and prepares/runs a
         # replacement project-local REA session if the retained one is absent.
         subprocess.run(['python3','scripts/recover-enemy-ai.py'],cwd=ROOT,check=True)
-        bundle=ROOT/'runtime/enemies-ai-0.97.2/rea-actor/evidence-bundle.json'
+        bundle=ROOT/'runtime/analysis/history/native-recovery/enemies-ai/8567196e8174/rea-actor/evidence-bundle.json'
     record=next(e for e in json.loads(bundle.read_text())['records']
         if e['operation']=='analyze_function' and e['parameters']['procedure']=='0x1454c9510')
     assert record['subject']['digest']['sha256']==owner['sha256']
@@ -69,7 +69,7 @@ def main():
             'Native source enqueue uses actor-vector indices; later dispatch checks current index bounds/dead status.',
             'Common actor status/aura/packet stages require actual owning engine; static evidence is not runtime parity.']))
 
-    sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
     import unicorn.x86_const as r
     uc=Uc(UC_ARCH_X86,UC_MODE_64)

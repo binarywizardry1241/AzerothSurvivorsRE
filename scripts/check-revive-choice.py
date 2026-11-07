@@ -5,6 +5,7 @@ The instruction fixtures run only selected unmodified instructions in scratch
 memory. They do not start the client, game, networking or any server. --guest-hud
 also checks the independent recipient HUD correction under #179.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import itertools
@@ -42,7 +43,7 @@ def check_soulstone():
     query = proof['query']
     for name in ('plan', 'journal', 'result', 'raw_input'):
         row = query[name]
-        assert digest((ROOT / row['path']).read_bytes()) == row['sha256']
+        assert digest((retained_runtime_path(ROOT / row['path'], ROOT)).read_bytes()) == row['sha256']
     evidence = json.loads((ROOT / query['result']['path']).read_text())['structuredContent']
     assert evidence['evidence_id'] == query['evidence_id']
     assert digest(evidence['normalized_result'].encode()) == query['normalized_text_sha256']
@@ -419,7 +420,7 @@ def main():
             assert len(instructions) == row['instruction_count']
             assert sum(i.size for i in instructions) == len(raw)
     for row in [proof['assembly']] + proof['source_receipts']:
-        assert digest((ROOT / row['path']).read_bytes()) == row['sha256'], row['path']
+        assert digest((retained_runtime_path(ROOT / row['path'], ROOT)).read_bytes()) == row['sha256'], row['path']
     for line in (ROOT / proof['assembly']['path']).read_text().splitlines():
         if line and not line.startswith(';'):
             address, encoded, _ = line.split(' ', 2)

@@ -13,7 +13,7 @@ OUT=ROOT/'docs/analysis/evidence/0.109.0/raid-native'
 
 def prepare_rea(raw):
  """Stage fresh target-bound raw inputs and portable REA batch plans only."""
- work=ROOT/'runtime/raid-native-recovery-0.109.0';work.mkdir(parents=True,exist_ok=True)
+ work=ROOT/'runtime/analysis/history/raid/raid-native-recovery/354e1b81a02a';work.mkdir(parents=True,exist_ok=True)
  disabled='Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables'
  branches=[(9,0x14595a4d0),(10,0x14595950f),(11,0x14595a66c),(13,0x14595a60b),(14,0x145958553),(15,0x14595870b),(16,0x14595a082),(17,0x145958025),(20,0x145959a10),(21,0x14595a587),(25,0x14595ab76),(26,0x14595b097),(29,0x14595b8f7),(31,0x14595b1dd),(32,0x14595b75c),(33,0x14595a795)]
  def stage(name,a,b,entries):

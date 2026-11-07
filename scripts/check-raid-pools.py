@@ -16,7 +16,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 OUT = ROOT / 'docs/analysis/evidence/0.109.0/raid-pools'
-STAGE = ROOT / 'runtime/native-evidence/0.109.0/raid-pools'
+STAGE = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/raid-pools'
 
 def f32(v):
     return _shared_f32(v)
@@ -66,7 +66,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__); ap.add_argument('--write',action='store_true')
     args = ap.parse_args()
     target, raw, span, rows = recover()
-    sys.path[:0] = [str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED
     from unicorn import x86_const as r

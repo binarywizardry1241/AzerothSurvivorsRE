@@ -15,7 +15,7 @@ import script_sources as sources
 
 class ScriptSources(unittest.TestCase):
     def setUp(self):
-        scratch = sources.ROOT / 'runtime/script-source-tests'
+        scratch = sources.ROOT / 'runtime/tests/script-source'
         scratch.mkdir(parents=True, exist_ok=True)
         self.temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.addCleanup(self.temporary.cleanup)
@@ -92,7 +92,7 @@ class ScriptSources(unittest.TestCase):
         }}))
         self.assertEqual(sources.retained_runtime_path(old, self.root), new)
         self.assertEqual(sources.current_path(old, self.root), new)
-        with self.assertRaisesRegex(ValueError, 'leaves the shared history'):
+        with self.assertRaisesRegex(ValueError, 'leaves the shared runtime'):
             sources.current_path('runtime/invalid/file.json', self.root)
 
     def test_stable_name_selects_exact_historical_source_by_digest(self):

@@ -18,7 +18,7 @@ ROOT=Path(__file__).resolve().parents[1]
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA='a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
 OUT=ROOT/'docs/analysis/evidence/0.97.2/bosses'
-RUNTIME=ROOT/'runtime/boss-spawning-0.97.2'
+RUNTIME=ROOT/'runtime/analysis/history/raid/boss-spawning/dbb1dbd025ec'
 FUNCTION=0x145529b50
 
 
@@ -46,7 +46,7 @@ def main():
         offset=int(fn['file_offset'],16);path=RUNTIME/f'{FUNCTION:x}.bin'
         path.write_bytes(data[offset:offset+end-FUNCTION])
         save(RUNTIME/f'plan-{FUNCTION:x}.json',dict(target=str(path.relative_to(ROOT)),
-            output=f'runtime/boss-spawning-0.97.2/rea-{FUNCTION:x}',
+            output=f'runtime/analysis/history/raid/boss-spawning/dbb1dbd025ec/rea-{FUNCTION:x}',
             open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(FUNCTION)),
             timeout=180,open_timeout=60,operations=[dict(name='analyze_function',arguments=dict(procedure=hex(FUNCTION)))]))
         print('Prepared selected boss-point filter REA plan');return
@@ -67,9 +67,9 @@ def main():
         path=OUT/f'spawning-{name}.asm';path.parent.mkdir(parents=True,exist_ok=True);path.write_text(asm)
         scopes.append(dict(label=name,**span(a,b),assembly=path.name,assembly_sha256=hashlib.sha256(asm.encode()).hexdigest()))
     reused=[]
-    for start,path in [(0x14549d550,'runtime/guardians-0.97.2/rea-14549d550/evidence-bundle.json'),
-                       (0x1454b07c0,'runtime/guardians-0.97.2/rea-1454b07c0/evidence-bundle.json'),
-                       (0x14549bb90,'runtime/enemies-0.97.2/scaling/rea-14549bb90/evidence-bundle.json')]:
+    for start,path in [(0x14549d550,'runtime/analysis/history/raid/guardians/b4a536d2fa6d/rea-14549d550/evidence-bundle.json'),
+                       (0x1454b07c0,'runtime/analysis/history/raid/guardians/b4a536d2fa6d/rea-1454b07c0/evidence-bundle.json'),
+                       (0x14549bb90,'runtime/analysis/history/native-recovery/enemies/b24ae4fa5276/scaling/rea-14549bb90/evidence-bundle.json')]:
         records=json.loads((ROOT/path).read_text())['records']
         e=next(e for e in records if e['operation']=='analyze_function' and e['parameters']['procedure']==hex(start))
         original=span(start,extents[start]);assert e['subject']['digest']['sha256']==original['sha256']
@@ -95,7 +95,7 @@ def main():
 
 
 def fixtures(data,pe):
-    sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
     import unicorn.x86_const as r
     uc=Uc(UC_ARCH_X86,UC_MODE_64)

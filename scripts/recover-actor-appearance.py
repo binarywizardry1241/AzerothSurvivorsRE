@@ -16,7 +16,7 @@ data = TARGET.read_bytes()
 assert hashlib.sha256(data).hexdigest() == SHA
 module = load_script('inventory', ROOT / 'scripts/inventory-executable.py')
 pe = module.PE(data)
-OUT = ROOT / 'runtime/native-evidence/0.100.1/run-effects'
+OUT = ROOT / 'runtime/analysis/staging/native-evidence/0.100.1/run-effects'
 OUT.mkdir(parents=True, exist_ok=True)
 owners = []
 for role, lo, hi in [
@@ -35,7 +35,7 @@ for role, lo, hi in [
         'objdump', '-d', '--no-show-raw-insn', f'--start-address={lo:#x}',
         f'--stop-address={hi:#x}', str(TARGET)], text=True))
     if role == 'actor-create':
-        path = ROOT / 'runtime/actor-appearance-0.100.1/batch.json/003-procedure_pseudo_code.json'
+        path = ROOT / 'runtime/analysis/history/native-recovery/actor-appearance/79f65ca98450/batch.json/003-procedure_pseudo_code.json'
         if path.exists():
             evidence = json.loads(path.read_text())['response']['result']['structuredContent']
             assert evidence['subject']['digest']['sha256'] == owner['sha256']

@@ -138,9 +138,9 @@ These source changes were not compiled or executed.
 
 ```sh
 python3 scripts/recover-zone-scroll.py --prepare
-python3 scripts/rea-batch.py runtime/menu-zone-scroll-0.97.2/plan-140096af0.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-zone-scroll/3034a9fcf3c9/plan-140096af0.json
 python3 scripts/recover-zone-scroll.py --prepare-producer
-python3 scripts/rea-batch.py runtime/menu-zone-scroll-0.97.2/plan-14009b220.json
+python3 scripts/rea-batch.py runtime/analysis/history/interface/menu-zone-scroll/3034a9fcf3c9/plan-14009b220.json
 python3 scripts/recover-zone-scroll.py --collect
 ```
 

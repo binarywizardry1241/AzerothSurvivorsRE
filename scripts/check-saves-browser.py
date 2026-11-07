@@ -14,7 +14,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 OUT = ROOT / 'docs/analysis/evidence/0.109.0/saves-browser'
-STAGE = ROOT / 'runtime/native-evidence/0.109.0/saves-browser'
+STAGE = ROOT / 'runtime/analysis/staging/native-evidence/0.109.0/saves-browser'
 OWNERS = {'page': 0x1400184d0, 'row': 0x140259810,
           'confirmation': 0x140259c40,
           'close': 0x14000ece0, 'import-save': 0x1458a84b0,
@@ -45,7 +45,7 @@ def main():
         result = data[offset:offset+n]
         assert len(result) == n
         return result
-    for path in [ROOT/'runtime/camera-recovery-0.105.0/python-libs', ROOT/'runtime/armory-recovery/python-libs']:
+    for path in [ROOT/'runtime/tool-state/python/camera/python-libs', ROOT/'runtime/tool-state/python/armory/python-libs']:
         if path.is_dir(): sys.path.insert(0, str(path))
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE

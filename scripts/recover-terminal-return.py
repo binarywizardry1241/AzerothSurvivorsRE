@@ -28,9 +28,9 @@ def local(value):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--python-libs', type=Path,
-                        default=Path('runtime/armory-recovery/python-libs'))
+                        default=Path('runtime/tool-state/python/armory/python-libs'))
     parser.add_argument('--output', type=Path,
-                        default=Path('runtime/terminal-return-0.105.0/native-vectors.json'))
+                        default=Path('runtime/analysis/history/interface/terminal-return/5d922e72d3d7/native-vectors.json'))
     args = parser.parse_args()
     output = local(args.output)
     if not output.is_relative_to(ROOT / 'runtime'):

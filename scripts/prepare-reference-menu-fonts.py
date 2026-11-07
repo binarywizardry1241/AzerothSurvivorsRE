@@ -47,7 +47,7 @@ def main():
     inventory = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(inventory)
     pe = inventory.PE(data)
-    destination = ROOT / ('runtime/menu-fonts-0.97.2' if current else 'runtime/menu-fonts')
+    destination = ROOT / ('runtime/analysis/history/interface/menu-fonts/464de1c5cd8f' if current else 'runtime/analysis/history/interface/menu-fonts/b488d8153517')
     destination.mkdir(parents=True, exist_ok=True)
     records = []
     for filename, address, count, family, augment in (FONTS_0_97_2 if current else FONTS_0_92):

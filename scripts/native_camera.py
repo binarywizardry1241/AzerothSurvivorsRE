@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from coverage_common import latest_target, json_text
 OUT = ROOT / 'docs/analysis/evidence/0.105.0/camera-room'
-RUN = ROOT / 'runtime/camera-recovery-0.105.0'
+RUN = ROOT / 'runtime/tool-state/python/camera'
 
 
 def f32(v):
@@ -71,7 +71,7 @@ def source_model(case, inside, cast):
 
 
 def vectors(pe):
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, __version__
     from unicorn import x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)

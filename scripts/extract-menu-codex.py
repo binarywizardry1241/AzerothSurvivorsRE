@@ -2,7 +2,7 @@
 import sys,struct,json,importlib.util,hashlib
 from pathlib import Path
 R=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(R/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(R/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 s=importlib.util.spec_from_file_location('inv',R/'scripts/inventory-executable.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
@@ -134,8 +134,8 @@ for i in range(22):
 for i in range(17):
  at=0x1466de600+i*80;current=pair(at);descriptions=describe(q(at+48),q(at+56))
  shared.append(dict(key=current,name=pair(at+16),icon=pair(at+32),group='amulets',effects=[bytes(u.mem_read(q(at+48)+j*64,64)).hex()for j in range(q(at+56))],descriptions=descriptions,quality=q(at+64)))
-(R/'runtime/armory-recovery/shared-native-results.json').write_text(json.dumps(shared,indent=2)+'\n')
-(R/'runtime/armory-recovery/legendary-native-text-results.json').write_text(json.dumps(dict(method='Unicorn x86_64 executes exact native145406780; only Vec reserve, English locale miss, Rust-string formatting, and deallocation are stubbed; no OS/files/network calls',calls={hex(a):n for a,n in calls.items()},entries=rows),indent=2)+'\n')
+(R/'runtime/tool-state/python/armory/shared-native-results.json').write_text(json.dumps(shared,indent=2)+'\n')
+(R/'runtime/tool-state/python/armory/legendary-native-text-results.json').write_text(json.dumps(dict(method='Unicorn x86_64 executes exact native145406780; only Vec reserve, English locale miss, Rust-string formatting, and deallocation are stubbed; no OS/files/network calls',calls={hex(a):n for a,n in calls.items()},entries=rows),indent=2)+'\n')
 
 for item in rows:
  item['group']='legendary'

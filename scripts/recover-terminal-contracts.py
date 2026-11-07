@@ -12,7 +12,7 @@ import argparse, hashlib, json, math, random, struct, sys
 from pathlib import Path
 ROOT = next(p for p in Path(__file__).resolve().parents if (p/'scripts/inventory-executable.py').is_file())
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-WORK = ROOT/'runtime/terminal-totals-0.105.0'
+WORK = ROOT/'runtime/analysis/history/interface/terminal-totals/0a6f0cbcd97f'
 MASK = (1 << 64)-1
 
 def f32(x):
@@ -52,7 +52,7 @@ def model(c,legacy=False):
     return parts
 
 def main():
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--python-libs',type=Path,default=ROOT/'runtime/armory-recovery/python-libs');p.add_argument('--output',type=Path,default=WORK/'native-fixtures.json');p.add_argument('--compact-output',type=Path,default=WORK/'native-fixtures-summary.json');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--python-libs',type=Path,default=ROOT/'runtime/tool-state/python/armory/python-libs');p.add_argument('--output',type=Path,default=WORK/'native-fixtures.json');p.add_argument('--compact-output',type=Path,default=WORK/'native-fixtures-summary.json');a=p.parse_args()
     out=a.output.resolve();compact=a.compact_output.resolve();assert out.is_relative_to(ROOT) and compact.is_relative_to(ROOT),'Output escapes checkout'
     sys.path.insert(0,str(a.python_libs.resolve()))
     import unicorn

@@ -65,7 +65,7 @@ for ci,c in enumerate(menu['classes']):
   assert reg(UC_X86_REG_RIP)==STOP
   row=dict(key=key,subtitle=pair(out+8),body=pair(out+32),name=pair(out+48),pieces=pieces)
   rows.append(row);print(key, flush=True)
-Path('runtime/menu-recovery/ability-native-results.json').write_text(json.dumps(rows,indent=2)+'\n')
+Path('runtime/analysis/history/interface/menu-recovery/0558cac00653/ability-native-results.json').write_text(json.dumps(rows,indent=2)+'\n')
 
 
 def render(expr):

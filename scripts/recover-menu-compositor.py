@@ -11,7 +11,7 @@ import struct
 ROOT = Path(__file__).resolve().parent.parent
 SHA = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
-RUNTIME = ROOT / 'runtime/menu-compositor-0.97.2'
+RUNTIME = ROOT / 'runtime/analysis/history/interface/menu-compositor/3ea950dbe91c'
 FUNCTIONS = [
     (0x140fa1d50, 'scale-default', 'WOW_RENDER_SCALE parsing, finite check and 0.25..4 clamp'),
     (0x140fb77e0, '140fb77e0', 'backdrop image creation and startup render-size math'),

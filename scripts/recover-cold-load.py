@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Recover bounded cold-load timing contracts without compiling or launching a game.
 
-All generated material stays under runtime/cold-load-0.105.0 for review. --rea
+All generated material stays under runtime/analysis/history/native-recovery/cold-load/a805f76a72be for review. --rea
 decompiles selected unchanged function slices with the project REA/Ghidra wrapper.
 """
 from portable_paths import objdump_output, portable_json
@@ -17,7 +17,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-OUT = ROOT / 'runtime/cold-load-0.105.0'
+OUT = ROOT / 'runtime/analysis/history/native-recovery/cold-load/a805f76a72be'
 HOLD = (0x140836110, 0x14083647b)
 WATCH = (0x140abbd60, 0x140abc282)
 
@@ -28,7 +28,7 @@ def save(path, value):
 
 def machine(pe, data):
     # Reuse the already-installed project-local native instruction emulator.
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64
     import unicorn.x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)

@@ -26,8 +26,8 @@ def require(value, message):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--python-libs', default='runtime/armory-recovery/python-libs')
-    parser.add_argument('--output', default='runtime/terminal-gap9-0.109.0/native-check.json')
+    parser.add_argument('--python-libs', default='runtime/tool-state/python/armory/python-libs')
+    parser.add_argument('--output', default='runtime/analysis/history/interface/terminal-gap9/ce4e1464fa53/native-check.json')
     args = parser.parse_args()
     libs, output = [(ROOT / value).resolve() for value in (args.python_libs, args.output)]
     require(libs.is_relative_to(ROOT) and output.is_relative_to(ROOT / 'runtime'), 'Paths leave checkout/runtime')

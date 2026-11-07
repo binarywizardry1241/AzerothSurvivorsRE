@@ -169,7 +169,7 @@ def recover():
                                 "fragment_sha256": digest(fragment.encode())})
     source_bindings.append({"path": sources[1], "sha256": digest((ROOT / sources[1]).read_bytes())})
     queries = []
-    subject_root = ROOT / "runtime/fixgap-0.121.0/resource-query/talent-selector"
+    subject_root = ROOT / "runtime/analysis/history/findings/fixgap/de557e34e98e/resource-query/talent-selector"
     for role, plan_path, output, procedure, mapping in (
         ("rank-owner", subject_root / "plan-v2.json", subject_root / "query-v2", BASE, BASE),
         ("aggregate-caller", subject_root / "caller/plan.json", subject_root / "caller/query",

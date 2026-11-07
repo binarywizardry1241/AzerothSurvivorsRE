@@ -42,7 +42,7 @@ class ResidualSummarySelection(unittest.TestCase):
         from unittest.mock import patch
         with patch('native_residual_summary.LEGACY_SUMMARY', str(self.summary)):
             self.assertEqual(residual_summary_path(self.directory/'new.json'), self.summary)
-        self.assertEqual(LEGACY_SUMMARY, 'runtime/q41-ownership-0.115.0/residual-summary-v2.json')
+        self.assertEqual(LEGACY_SUMMARY, 'runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/residual-summary-v2.json')
 
     def test_existing_proof_without_summary_does_not_fall_back(self):
         self.write('proof.json', {'inputs': []})

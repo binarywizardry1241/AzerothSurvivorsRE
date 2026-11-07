@@ -5,7 +5,7 @@ No compilation or game process runs. Amulet construction uses bounded original
 x64 instructions in Unicorn with reviewed allocation, locale-miss, formatting,
 memcmp and memcpy seams. Unknown calls fail closed. --prepare stages focused
 REA/Ghidra input; --check compares the compact retained result. Output otherwise
-stays under ignored runtime/equipment-catalog-0.105.0.
+stays under ignored runtime/analysis/history/inventory/equipment-catalog/c4fa4e50a04f.
 """
 from native_recovery import digest as _shared_digest
 from script_sources import load_script
@@ -19,7 +19,7 @@ import struct
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = ROOT / "runtime/equipment-catalog-0.105.0"
+WORK = ROOT / "runtime/analysis/history/inventory/equipment-catalog/c4fa4e50a04f"
 RETAINED = ROOT / "docs/analysis/evidence/0.105.0/equipment-catalog"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
@@ -58,8 +58,8 @@ def prepare(data, pe):
         at = pe.rva_offset(start - pe.image_base)
         (WORK / f"amulet-{name}.bin").write_bytes(data[at:at + end - start])
         write(WORK / f"{name}-plan.json", dict(
-            target=f"runtime/equipment-catalog-0.105.0/amulet-{name}.bin",
-            output=f"runtime/equipment-catalog-0.105.0/rea-{name}",
+            target=f"runtime/analysis/history/inventory/equipment-catalog/c4fa4e50a04f/amulet-{name}.bin",
+            output=f"runtime/analysis/history/inventory/equipment-catalog/c4fa4e50a04f/rea-{name}",
             open_options=dict(format="raw-binary", architecture="x86_64", entry_point=hex(start)),
             timeout=240, open_timeout=90, init_timeout=60,
             environment={"REA_GHIDRA_STARTUP_TIMEOUT_MS": "180000"},
@@ -68,7 +68,7 @@ def prepare(data, pe):
 
 
 def amulets(data, pe):
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)

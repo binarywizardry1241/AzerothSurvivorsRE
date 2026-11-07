@@ -14,8 +14,8 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 EXPECTED = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
-OUTPUT = ROOT / 'runtime/native-evidence/0.97.2/guardians'
-RUNTIME = ROOT / 'runtime/guardians-0.97.2'
+OUTPUT = ROOT / 'runtime/analysis/staging/native-evidence/0.97.2/guardians'
+RUNTIME = ROOT / 'runtime/analysis/history/raid/guardians/b4a536d2fa6d'
 RANGES = [
     ('guardian-lair-selection',0x1454b22ba,0x1454b237f),
     ('guardian-lair-placement',0x1454b2ced,0x1454b37e1),
@@ -66,7 +66,7 @@ def main():
         functions.append(row)
         offset=int(row['file_offset'],16);raw=data[offset:offset+end-start]
         path=RUNTIME/f'{start:x}.bin';path.write_bytes(raw)
-        plan=dict(target=str(path.relative_to(ROOT)),output=f'runtime/guardians-0.97.2/rea-{start:x}',
+        plan=dict(target=str(path.relative_to(ROOT)),output=f'runtime/analysis/history/raid/guardians/b4a536d2fa6d/rea-{start:x}',
                   open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(start)),
                   timeout=240,open_timeout=60,operations=[dict(name='analyze_function',arguments=dict(procedure=hex(start)))])
         (RUNTIME/f'plan-{start:x}.json').write_text(portable_json(plan,indent=2)+'\n')

@@ -618,6 +618,10 @@ preserve required evidence and unfinished recovery, remove finished disposable
 output and retire an unused temporary worktree after integration. Check that
 retained reports/checks do not rely on deleted runtime payloads; missing optional
 regenerable inventories must remain explicitly optional.
+Keep the exact audit receipts in the existing coverage owner. Remove superseded
+reports, successful command transcripts and task-local copies once the ledgers
+and retained evidence are verified. Run the shared runtime layout check before
+delivery and correct any producer that wrote loose output.
 Review the full diff and commit cohesive durable changes in focused commits.
 Push each commit to `origin/main` and verify delivery under the
 [commit delivery rules](../../../AGENTS.md#commit-delivery), including when

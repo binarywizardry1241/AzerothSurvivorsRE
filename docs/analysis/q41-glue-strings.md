@@ -85,7 +85,7 @@ python3 -B scripts/check-q41-glue-strings.py --prepare-rea
 
 The second command recreates or verifies the exact native input/seed/plan files
 and prints their serial `./scripts/rea query` reproduction commands. Saved query
-results and journals remain under ignored `runtime/q41-data-contracts-0.115.0/`;
+results and journals remain under ignored `runtime/analysis/history/findings/q41-data-contracts/27d2ef7f9d9d/`;
 matching Programs may be reopened by those same plans.
 
 The checker verifies all selected native/table bytes and source-field matches.

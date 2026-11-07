@@ -19,14 +19,14 @@ if [ ! -x "$rust_toolchain/bin/cargo" ] || [ ! -f "$rust_toolchain/installation.
   printf '%s\n' 'Install the project toolchain with: python3 scripts/install-rust.py' >&2
   exit 1
 fi
-export CARGO_HOME="$rust_shared_root/runtime/cargo"
+export CARGO_HOME="$rust_shared_root/runtime/tool-state/cargo"
 export RUSTUP_HOME="$rust_shared_root/.tools/rust/rustup"
 export TMPDIR="$rust_project_root/runtime/tmp"
-export XDG_CACHE_HOME="$rust_project_root/runtime/cache"
+export XDG_CACHE_HOME="$rust_project_root/runtime/tool-state/cache"
 export CARGO_TARGET_DIR="$rust_project_root/runtime/cargo-target"
-export SCCACHE_DIR="$rust_project_root/runtime/cache/sccache"
-export CCACHE_DIR="$rust_project_root/runtime/cache/ccache"
-export CLANG_MODULE_CACHE_PATH="$rust_project_root/runtime/cache/clang-modules"
+export SCCACHE_DIR="$rust_project_root/runtime/tool-state/cache/sccache"
+export CCACHE_DIR="$rust_project_root/runtime/tool-state/cache/ccache"
+export CLANG_MODULE_CACHE_PATH="$rust_project_root/runtime/tool-state/cache/clang-modules"
 export RUSTC="$rust_toolchain/bin/rustc"
 export RUSTDOC="$rust_toolchain/bin/rustdoc"
 export PATH="$rust_toolchain/bin:$PATH"

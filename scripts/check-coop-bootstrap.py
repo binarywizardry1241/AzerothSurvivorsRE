@@ -146,8 +146,8 @@ def check(path=PROOF, stage=False):
 def check_current(path, proof, stage=False):
     """Current AS handshake gates/queue ordering; no application is launched."""
     import sys
-    sys.path[:0] = [str(ROOT / 'runtime/armory-recovery/python-libs'),
-                   str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/armory/python-libs'),
+                   str(ROOT / 'runtime/tool-state/python/camera/python-libs')]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as r

@@ -2,7 +2,7 @@
 """Check current warned-line producer/delayed movement using bounded native instructions.
 
 No compiler, process launch or game is used. --write stages reviewed evidence
-under runtime/native-evidence/0.109.0/raid-lines; default checks retained evidence.
+under runtime/analysis/staging/native-evidence/0.109.0/raid-lines; default checks retained evidence.
 Capstone and Unicorn are optional analysis dependencies, never build inputs.
 """
 from native_recovery import f32 as _shared_f32, bits as _shared_bits
@@ -18,12 +18,12 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 # Existing optional analysis packages stay project-local; normal Python
 # installations with these dependencies also work without these directories.
-sys.path[:0]=[str(p) for p in [ROOT/'runtime/camera-recovery-0.105.0/python-libs',
-    ROOT/'runtime/armory-recovery/python-libs'] if p.is_dir()]
+sys.path[:0]=[str(p) for p in [ROOT/'runtime/tool-state/python/camera/python-libs',
+    ROOT/'runtime/tool-state/python/armory/python-libs'] if p.is_dir()]
 
 SHA = '76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 RETAINED = ROOT/'docs/analysis/evidence/0.109.0/raid-lines'
-STAGED = ROOT/'runtime/native-evidence/0.109.0/raid-lines'
+STAGED = ROOT/'runtime/analysis/staging/native-evidence/0.109.0/raid-lines'
 RANGES = {
     'producer-prefix': (0x145958665, 0x14595870b),
     'producer-tail': (0x14595bf44, 0x14595c0e9),

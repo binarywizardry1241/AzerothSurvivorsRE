@@ -23,15 +23,15 @@ All six new fixture tests passed within18 installer cases in parent build25.
 The locked offline build passed in14.34s, test compilation took7.54s, and105
 harness cases with overlap passed:41 binary,15 native-save,6 Options config,
 1 run-modifier,10 save-browser,14 updater and18 installer. Logs are
-`runtime/menu-recovery/menu-build-25-save-events-talents-progress.log` and
-`runtime/menu-recovery/menu-tests-25-save-events-talents-progress.log`.
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-build-25-save-events-talents-progress.log` and
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-tests-25-save-events-talents-progress.log`.
 The final build26 passed with `--locked --offline` in11.08s; the preceding
 combined build passed in29.09s. All169 focused harness cases passed with overlap:
 74 binary,19 native-save,6 config,1 run-modifier,14 save-browser,37 updater and18
 installer, including all five connected memory-only worker fixtures. Test
 compilation took12.95s. Logs are
-`runtime/menu-recovery/menu-build-26-final.log` and
-`runtime/menu-recovery/menu-tests-26-menu-bridges.log`.
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-build-26-final.log` and
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-tests-26-menu-bridges.log`.
 No requests, update downloads, file replacements or app/process launches occurred.
 
 ## Part sequencing

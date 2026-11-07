@@ -117,7 +117,7 @@ assert files['gameplay/coop.rs'].count('runtime.roster_profile.clone()')==2
 assert not files['coop_profile.rs'].startswith('/Users/')
 for forbidden in ['DirectTcp::Host','DirectTcp::Join','TcpConnection::connect','send_text(']:
     assert forbidden not in files['coop_directory.rs'],forbidden
-out=ROOT/'runtime/coop-service-integration-0.115.0';out.mkdir(exist_ok=True)
+out=ROOT/'runtime/analysis/history/co-op/coop-service-integration/09935d836d1c';out.mkdir(exist_ok=True)
 (out/'checks.json').write_text(json.dumps({'target_sha256':SHA,'native_clock_cases':cases,
     'source_guards':count,'source_executed':False,'compiled':False,'network_executed':False,
     'parity':'unverified'},indent=2)+'\n')

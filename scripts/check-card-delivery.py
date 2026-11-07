@@ -12,7 +12,7 @@ from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 KEEP = ROOT/'docs/analysis/evidence/0.113.2/card-delivery'
-PROBE = ROOT/'runtime/q41-card-delivery-0.113.2/rea'
+PROBE = ROOT/'runtime/analysis/history/findings/q41-card-delivery/4f64e372ed30/rea'
 SOURCE = ROOT/'crates/azeroth-survivors-re/src/gameplay/mod.rs'
 RANGES = [(0x1400dd4a0, 0x1400dd55b), (0x14586b5f5, 0x14586b700),
           (0x14586b700, 0x14586b717), (0x14586b7e0, 0x14586b7f7),
@@ -159,7 +159,7 @@ def derive():
         generator=commitment(ROOT/'scripts/check-card-delivery.py'), lead_ids=['Q41-S01','Q41-M03'], gap_ids=[41],
         native_ranges=ranges, assembly='delivery.asm', command_table=dict(address=hex(table), bytes_hex=raw(table,8).hex(), targets=['0x14587e30c','0x14587e42e']),
         append_cases=append_cases, cursor_cases=cursor_cases, dispatch_cases=len(dispatch_cases), dispatch_output_sha256=hashlib.sha256(json.dumps(dispatch_cases,separators=(',',':')).encode()).hexdigest(),
-        source=commitment(SOURCE), animation_source=commitment(animation), rea=dict(profile=profile, plan=commitment(PROBE/'plan.json'), seed_rows=(ROOT/'runtime/q41-card-delivery-0.113.2/seeds.tsv').read_text().splitlines(), observations=observations),
+        source=commitment(SOURCE), animation_source=commitment(animation), rea=dict(profile=profile, plan=commitment(PROBE/'plan.json'), seed_rows=(ROOT/'runtime/analysis/history/findings/q41-card-delivery/4f64e372ed30/seeds.tsv').read_text().splitlines(), observations=observations),
         limits=['Original append/cursor/dispatch instructions execute with synthetic shared resource, spare vector capacity, server Option and command payloads.',
                 'Lock acquisition, byte-copy, stack probe, command drop and final accept/reroll callees are explicit fixture seams. Handler seams record order/arguments without simulating acceptance effects.',
                 'Actual acceptance/completion and reroll admission retain their separately bound native contracts; source transactions are traced, not executed.',

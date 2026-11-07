@@ -47,7 +47,7 @@ def derive(root, source_root):
     def binding(name):
         return dict(path=name, sha256=sha((root / name).read_bytes()))
 
-    query_root = "runtime/q41-party-meter-0.121.0"
+    query_root = "runtime/analysis/history/findings/q41-party-meter/0ed71522308c"
     journal_path = query_root + "/query/journal.json"
     journal = json.loads((root / journal_path).read_text())
     operation = next(row for row in journal["operations"].values()

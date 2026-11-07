@@ -240,7 +240,7 @@ def source_checks(current):
 
 
 if __name__ == "__main__":
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"), str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"), str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     target = latest_target(verify=True)
     current = target["version"] == "0.140.0"
     proof = json.loads((CURRENT if current else BASE / "manifest.json").read_text())

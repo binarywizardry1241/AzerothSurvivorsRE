@@ -47,7 +47,7 @@ def main():
     for row in manifest['tables']:
         assert raw(int(row['address'], 16), row['byte_count']).hex() == row['bytes_hex']
 
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_WRITE
     import unicorn.x86_const as reg
     machine = Uc(UC_ARCH_X86, UC_MODE_64)
@@ -202,7 +202,7 @@ def main():
     assert source.index('Table::parse(&spells)?') < source.index('.read_file("DBFilesClient\\\\SpellIcon.dbc")')
     observed = dict(target_sha256=target['sha256'], cases=vectors, seams=sorted(seams), limitations=manifest['limitations'])
     if args.record:
-        output = ROOT / 'runtime/gap41-dbc-lazy/lazy-native-vectors.json'
+        output = ROOT / 'runtime/analysis/history/findings/gap41-dbc-lazy/db0c64c0fd51/lazy-native-vectors.json'
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json.dumps(observed, indent=2) + '\n')
     else:

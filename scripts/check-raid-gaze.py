@@ -248,7 +248,7 @@ def main():
     result = inspect()
     text = json.dumps(result, indent=2, ensure_ascii=False) + "\n"
     if arguments.stage:
-        out = ROOT / "runtime/native-evidence/0.113.2/raid-gaze/manifest.json"
+        out = ROOT / "runtime/analysis/staging/native-evidence/0.113.2/raid-gaze/manifest.json"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(text)
     else:

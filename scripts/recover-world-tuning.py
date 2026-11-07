@@ -36,7 +36,7 @@ for i in range(12):
             record=raw(pointer+j*88,88)
             bosses.append(dict(id=struct.unpack_from('<I',record,48)[0],
                 scale_bits=struct.unpack_from('<I',record,56)[0], source=span(pointer+j*88,88)))
-sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 u=Uc(UC_ARCH_X86,UC_MODE_64)

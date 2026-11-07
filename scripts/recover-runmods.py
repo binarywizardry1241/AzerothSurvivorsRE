@@ -5,14 +5,14 @@ from native_recovery import f32 as _shared_f32
 from script_sources import load_script
 import argparse, hashlib, itertools, json, struct, sys
 from coverage_common import ROOT,latest_target,target_bytes
-sys.path[:0]=[str(ROOT/'runtime/armory-recovery/python-libs'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+sys.path[:0]=[str(ROOT/'runtime/tool-state/python/armory/python-libs'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn import x86_const as r
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
 OWNERS={'parse':(0x14590e190,0x14590e3bf),'difficulty':(0x14590e3c0,0x14590e420),'adjust':(0x14590e420,0x14590e496),'reward':(0x14590e4a0,0x14590e508),'csv':(0x1459c3dd0,0x1459c4445),'split':(0x1459c7330,0x1459c74ea),'memchr':(0x145bd5860,0x145bd5945),'input':(0x1401cac30,0x1401cb2ab),'frame':(0x1401ca600,0x1401cac22),'canvas':(0x140267da0,0x140268065),'page':(0x140268070,0x140269117),'row-wrapper':(0x1401c0e30,0x1401c10a4),'row':(0x140269200,0x140269d6e),'summary':(0x1401bfcc0,0x1401bff1e),'summary-child':(0x1402678f0,0x140267d31)}
 RETAINED=ROOT/'docs/analysis/evidence/0.109.0/runmods'
-STAGED=ROOT/'runtime/native-evidence/0.109.0/runmods'
+STAGED=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/runmods'
 target=latest_target(verify=False);assert target['sha256']==SHA and target['version']=='0.109.0';data=target_bytes(target)
 module = load_script('runmods_pe', ROOT/'scripts/inventory-executable.py');pe=module.PE(data)
 u=Uc(UC_ARCH_X86,UC_MODE_64);extent=max(s['rva']+max(s['raw_size'],s['virtual_size'])for s in pe.sections);u.mem_map(pe.image_base,(extent+4095)&~4095)
@@ -95,7 +95,7 @@ def collect():
   off=pe.rva_offset(a-pe.image_base);ranges[role]=dict(start=hex(a),end_exclusive=hex(b),byte_count=b-a,sha256=hashlib.sha256(data[off:off+b-a]).hexdigest())
  queries=[]
  for group,folder in [('runmods-core','rea'),('runmods-ui','rea'),('runmods-ui','rea-input')]:
-  for path in sorted((ROOT/'runtime/menu-lifecycle-0.109.0'/group/folder).glob('*procedure_pseudo_code.json')):
+  for path in sorted((ROOT/'runtime/analysis/history/interface/menu-lifecycle/969b671942c0'/group/folder).glob('*procedure_pseudo_code.json')):
    j=json.loads(path.read_text());z=j['response']['result']['structuredContent'];queries.append(dict(procedure=j['params']['arguments']['procedure'],evidence_id=z['evidence_id'],subject_sha256=z['subject']['digest']['sha256'],analysis_profile_digest=z['analysis_profile']['digest']))
  if not queries:queries=json.loads((RETAINED/'manifest.json').read_text())['ghidra']
  manifest=dict(target=dict(version='0.109.0',sha256=SHA),owners=ranges,definitions=definitions,descriptor_range=dict(start=hex(base),byte_count=192,sha256=hashlib.sha256(bytes(u.mem_read(base,192))).hexdigest()),ghidra=queries,canvas=dict(address='0x145deb740',design=[760,560],max_scale_bits='3fb33333'),checks=dict(parse=len(parsed),formulas=len(formulas),steps=len(steps)),limits=['Unchanged native CSV split/u16 parser, normalization, sign-step/clamp, uncapped difficulty and capped reward instructions execute in Unicorn.','Allocation/free, memcpy/memcmp and RawVec growth use explicit scratch-only seams.','UI typed constructors are separately captured; full ECS input and command delivery remain static review.','No compilation, Rust tests, application, gameplay, save writes or original/rebuilt comparisons.'])

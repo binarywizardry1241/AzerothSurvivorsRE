@@ -4,6 +4,7 @@
 A lexical table/base/selector candidate does not establish its incoming state or
 valid enum domain. No compilation, Ghidra mutation or native execution.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from bisect import bisect_right
 from collections import Counter
@@ -18,7 +19,7 @@ import struct
 from coverage_common import ROOT,file_sha256,latest_target,target_bytes
 from derived_gzip import derived_gzip_text
 
-WORK=ROOT/'runtime/q41-expanded-ownership-0.115.0'
+WORK=ROOT/'runtime/analysis/history/findings/q41-expanded-ownership/6304bee20684'
 KEEP=ROOT/'docs/analysis/evidence/0.115.0/expanded-gap-dispatch.json'
 
 
@@ -34,7 +35,7 @@ def main():
     generator_sha256=file_sha256(Path(__file__))
     inputs={}
     def checked(record):
-        path=ROOT/record['path'];assert file_sha256(path)==record['sha256'],record['path']
+        path=retained_runtime_path(ROOT/record['path'], ROOT);assert file_sha256(path)==record['sha256'],record['path']
         inputs[record['path']]=dict(path=record['path'],sha256=record['sha256']);return path
     def read(path):return json.loads(checked(dict(path=path,sha256=file_sha256(ROOT/path))).read_text())
     target=latest_target(verify=True)

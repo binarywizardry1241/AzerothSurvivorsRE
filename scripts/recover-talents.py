@@ -164,7 +164,7 @@ def main():
         tables.append(dict(name=name, **provenance(address, 23 * 4),
                            relative_entries=list(relative), destinations=[hex(x) for x in destinations]))
 
-    directory = ROOT / "runtime/talents-0.97.2"
+    directory = ROOT / "runtime/analysis/history/progression/talents/8dad8e2dd72d"
     directory.mkdir(parents=True, exist_ok=True)
     functions = {pe.image_base + a: pe.image_base + b for a, b, _ in pe.functions()}
     slices = []
@@ -179,7 +179,7 @@ def main():
                                      if address in LEAF_ENDS else "Original PE exception-directory RUNTIME_FUNCTION"),
                            path=str(path.relative_to(ROOT))))
         plan = dict(target=str(path.relative_to(ROOT)),
-                    output=f"runtime/talents-0.97.2/rea-{address:x}",
+                    output=f"runtime/analysis/history/progression/talents/8dad8e2dd72d/rea-{address:x}",
                     open_options=dict(format="raw-binary", architecture="x86_64", entry_point=hex(address)),
                     timeout=120, open_timeout=60, cleanup_timeout=60,
                     environment={"REA_GHIDRA_STARTUP_TIMEOUT_MS": "180000"},

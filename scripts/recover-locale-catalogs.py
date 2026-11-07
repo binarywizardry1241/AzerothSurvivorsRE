@@ -24,7 +24,7 @@ SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 TABLE, INDEX = 0x1472FFEF0, 0x1481ED0E0
 GETTER, GETTER_END = 0x1458971E0, 0x145897203
 SETTER, SETTER_END = 0x145895970, 0x145895AC7
-WORK = ROOT / "runtime/q41-remaining-0.113.2/locales"
+WORK = ROOT / "runtime/analysis/history/findings/q41-remaining/687b5b35cf28/locales"
 KEEP = ROOT / "docs/analysis/evidence/0.113.2/q41-language"
 
 
@@ -95,8 +95,8 @@ def inspect_keys(pattern, code="en"):
 
 
 def derive(write=False):
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                   str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                   str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64
     import unicorn.x86_const as reg

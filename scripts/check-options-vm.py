@@ -11,13 +11,13 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 RETAINED = ROOT / 'docs/analysis/evidence/0.112.0/options-vm'
-STAGED = ROOT / 'runtime/native-evidence/0.112.0/options-vm'
-WORK = ROOT / 'runtime/options-vm-0.112.0'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.112.0/options-vm'
+WORK = ROOT / 'runtime/analysis/history/interface/options-vm/c009572f297f'
 
 
 class Native:
     def __init__(self, data, pe):
-        sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+        sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
         from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
         from unicorn import x86_const
         self.r = x86_const

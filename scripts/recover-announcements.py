@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from coverage_common import latest_target
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-WORK = ROOT / 'runtime/arrival-announcements-0.105.0'
+WORK = ROOT / 'runtime/analysis/history/native-recovery/arrival-announcements/cce8ae90fdde'
 OUT = ROOT / 'docs/analysis/evidence/0.105.0/arrival-announcements'
 RANGES = [
     ('elite', 0x14590E0D4, 0x14590E273),
@@ -133,7 +133,7 @@ def main():
         assert all(text in catalog for _, text in LITERALS)
         locales.append(path.stem)
 
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as registers
     uc = Uc(UC_ARCH_X86, UC_MODE_64)

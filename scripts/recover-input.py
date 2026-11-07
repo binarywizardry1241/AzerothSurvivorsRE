@@ -13,7 +13,7 @@ from pathlib import Path
 import struct
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = ROOT / 'runtime/input-0.105.0'
+WORK = ROOT / 'runtime/analysis/history/movement/input/dfe894095d7c'
 RETAINED = ROOT / 'docs/analysis/evidence/0.105.0/input'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 
@@ -174,7 +174,7 @@ def main():
         seeds=WORK/'reproduction-seeds.tsv'
         seeds.write_text(''.join(f'{a:#x}\tfunction\n{a:#x}\tcode\n'for a in parents))
         plan=dict(target=str((WORK/'reproduction-map.bin').relative_to(ROOT)),
-            output='runtime/input-0.105.0/rea-reproduction',init_timeout=60,timeout=240,
+            output='runtime/analysis/history/movement/input/dfe894095d7c/rea-reproduction',init_timeout=60,timeout=240,
             open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(base)),
             environment={'REA_GHIDRA_SEED_FILE':str(seeds.relative_to(ROOT)),
                 'REA_GHIDRA_DISABLED_ANALYZERS':'Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls'},

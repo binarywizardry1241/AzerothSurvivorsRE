@@ -18,7 +18,7 @@ EVIDENCE = ROOT / "docs/analysis/evidence/0.105.0/custom-dbc"
 
 
 def vectors(raw, utf8_raw, utf8_widths):
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, __version__
     from unicorn import x86_const as r
     start, utf8, panic = 0x145873b10, 0x145ba4cf0, 0x145d699f0
@@ -116,7 +116,7 @@ def main():
         ranges[row["role"]] = raw
     observed = vectors(ranges["string-reader"], ranges["utf8-validator"], ranges["utf8-width-table"])
     if args.record:
-        path = ROOT / "runtime/fixgap-2026-10-21/coverage/dbc-curation/native-vectors.json"
+        path = ROOT / "runtime/analysis/history/findings/fixgap/1f94da23ce36/coverage/dbc-curation/native-vectors.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json_text(observed))
     else:

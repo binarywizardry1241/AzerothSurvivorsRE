@@ -62,8 +62,8 @@ def main():
             assert hashlib.sha256(data[off:off+hi-lo]).hexdigest()==row['raw_input_sha256']
         else:assert row['sha256']==row['raw_input_sha256']
         if 'pseudocode'in row:assert hashlib.sha256((OUT/row['pseudocode']).read_bytes()).hexdigest()==row['pseudocode_sha256']
-    sys.path[:0] = [str(ROOT / 'runtime/armory-recovery/python-libs'),
-                   str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/armory/python-libs'),
+                   str(ROOT / 'runtime/tool-state/python/camera/python-libs')]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as x
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64

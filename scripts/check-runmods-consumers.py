@@ -3,7 +3,7 @@
 from script_sources import load_script
 import sys, struct, math, argparse, hashlib, json
 from pathlib import Path
-ROOT=Path.cwd();sys.path[:0]=['scripts','runtime/camera-recovery-0.105.0/python-libs','runtime/armory-recovery/python-libs']
+ROOT=Path.cwd();sys.path[:0]=['scripts','runtime/tool-state/python/camera/python-libs','runtime/tool-state/python/armory/python-libs']
 from coverage_common import latest_target,target_bytes
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
@@ -75,7 +75,7 @@ for role,(a,b)in RANGES.items():
  records.append(dict(role=role,start=hex(a),end_exclusive=hex(b),byte_count=b-a,sha256=hashlib.sha256(raw).hexdigest(),assembly=file.name,assembly_sha256=hashlib.sha256(assembly.encode()).hexdigest()))
 queries=[]
 for address in ['14592d7e0','145926c90']:
- file=ROOT/'runtime/menu-lifecycle-0.109.0'/address/'rea-fast/003-procedure_pseudo_code.json'
+ file=ROOT/'runtime/analysis/history/interface/menu-lifecycle/969b671942c0'/address/'rea-fast/003-procedure_pseudo_code.json'
  if file.exists():
   z=json.loads(file.read_text())['response']['result']['structuredContent'];queries.append(dict(procedure='0x'+address,evidence_id=z['evidence_id'],subject_sha256=z['subject']['digest']['sha256'],analysis_profile_digest=z['analysis_profile']['digest'],normalized_result_sha256=hashlib.sha256(z['normalized_result'].encode()).hexdigest()))
 if not queries:queries=json.loads((OUT/'manifest.json').read_text())['ghidra']

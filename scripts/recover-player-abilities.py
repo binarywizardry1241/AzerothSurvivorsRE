@@ -64,7 +64,7 @@ def main():
         return f"f32::from_bits(0x{u32(offset):08x})"
 
     if args.prepare_native or args.collect_native:
-        directory = ROOT / 'runtime/player-abilities-0.97.2'
+        directory = ROOT / 'runtime/analysis/history/native-recovery/player-abilities/f36879d4a545'
         directory.mkdir(parents=True, exist_ok=True)
         analyses = []
         for address, end, name, boundary in NATIVE:
@@ -74,8 +74,8 @@ def main():
             original.update(end_virtual_address_exclusive=hex(end), boundary_source=boundary)
             if args.prepare_native:
                 (directory / f'{address:x}.bin').write_bytes(data[at:at + end - address])
-                plan = dict(target=f'runtime/player-abilities-0.97.2/{address:x}.bin',
-                            output=f'runtime/player-abilities-0.97.2/rea-{address:x}',
+                plan = dict(target=f'runtime/analysis/history/native-recovery/player-abilities/f36879d4a545/{address:x}.bin',
+                            output=f'runtime/analysis/history/native-recovery/player-abilities/f36879d4a545/rea-{address:x}',
                             open_options=dict(format='raw-binary', architecture='x86_64', entry_point=hex(address)),
                             timeout=180, open_timeout=90, cleanup_timeout=60,
                             environment={'REA_GHIDRA_STARTUP_TIMEOUT_MS': '180000'},

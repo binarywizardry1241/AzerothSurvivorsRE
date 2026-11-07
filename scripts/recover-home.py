@@ -18,7 +18,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.97.2.exe"
 SHA = "a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589"
-WORK = ROOT / "runtime/menu-0972"
+WORK = ROOT / "runtime/analysis/history/interface/menu-0972/ae941624b762"
 OUT = ROOT / "docs/analysis/evidence/0.97.2"
 FUNCTIONS = {
     "picker-root": 0x140097180,

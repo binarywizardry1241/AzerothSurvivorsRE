@@ -5,6 +5,7 @@ This classifies lexical source inclusion. It recovers no native callback,
 schema, lifetime, runtime behavior or current applicability of older contracts.
 Default operation compares the compact proof without writing.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from collections import Counter
 import hashlib
@@ -41,7 +42,7 @@ def derive():
     if baseline["target"] != target:
         raise ValueError("Candidate manifest target differs")
     record = baseline["outputs"]["embedded-classification.jsonl"]
-    path = (ROOT / record["path"]).resolve()
+    path = (retained_runtime_path(ROOT / record["path"], ROOT)).resolve()
     if not path.is_relative_to(ROOT):
         raise ValueError("Candidate input is outside the checkout")
     raw = path.read_bytes()

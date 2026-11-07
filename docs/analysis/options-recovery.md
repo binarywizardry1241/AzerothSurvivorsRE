@@ -59,7 +59,7 @@ The 40px title uses Morpheus. The shared panel helper sets a 10px radius,
 1px border, dark brown gradient and a 14px-down/40px-blur shadow.
 
 The original Controls and Key Bindings screens were also captured separately
-under `runtime/reference-captures/options*.png`. Geometry recovery and runtime
+under `runtime/analysis/history/native-recovery/reference-captures/1415f0451c23/options*.png`. Geometry recovery and runtime
 captures are evidence of the target; source rendering still needs comparison.
 
 Useful native functions:

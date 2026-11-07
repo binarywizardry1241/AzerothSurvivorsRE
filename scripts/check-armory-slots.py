@@ -176,7 +176,7 @@ def main():
     parser.add_argument('--stage', action='store_true')
     args = parser.parse_args()
     record = recover()
-    directory = ('runtime/native-evidence/0.112.0/armory-slots' if args.stage
+    directory = ('runtime/analysis/staging/native-evidence/0.112.0/armory-slots' if args.stage
                  else 'docs/analysis/evidence/0.112.0/armory-slots')
     path = ROOT / directory / 'cases.json'
     if args.stage:

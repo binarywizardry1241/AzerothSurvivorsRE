@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run a resumable static REA/Ghidra plan; never execute the target.
 
-Plan: {"target":"...", "output":"runtime/rea-batch/run", "timeout":180,
+Plan: {"target":"...", "output":"runtime/analysis/history/native-recovery/rea-batch/05ee7c1d2f98/run", "timeout":180,
 "open_timeout":1800, "environment":{"REA_GHIDRA_STARTUP_TIMEOUT_MS":"1800000"},
 "operations":[{"name":"analyze_function", "arguments":{"procedure":"0x..."},
 "label":"guardian", "timeout":1800}]}. Completed queries are retained. Timeout
@@ -22,6 +22,7 @@ import tempfile
 import time
 
 from coverage_common import artifact_path
+from runtime_layout import owned_runtime_path
 from shared_analysis import SharedAnalysis
 from script_sources import retained_runtime_path
 
@@ -37,6 +38,7 @@ STATIC_TOOLS = set("binary_overview binary_session procedure_pseudo_code analyze
 
 def local_path(value):
     path = (ROOT / value).resolve()
+    path = retained_runtime_path(path, ROOT)
     if not path.is_relative_to(ROOT):
         raise ValueError(f"Path escapes project: {value}")
     return path
@@ -266,7 +268,7 @@ class OutputLock:
 
 
 def tooling_commitments():
-    names = ["scripts/rea-batch.py", "scripts/rea", "scripts/repair-rea-reference-input.py",
+    names = ["scripts/rea-batch.py", "scripts/rea", "scripts/runtime_layout.py", "scripts/repair-rea-reference-input.py",
              "scripts/repair-rea-durable-queries.py", "scripts/rea-durable-queries.mjs",
              "scripts/shared-ghidra-programs.mjs",
              "scripts/ghidra/ReaDurableQueryPrepare.java", "scripts/ghidra/ReaDurableQueryBridge.fragment.java",
@@ -759,7 +761,8 @@ def main():
                 open_options.get("architecture") not in {"6502", "x86", "x86_64", "arm", "arm64"} or
                 not re.fullmatch(r"0x[0-9a-fA-F]+", str(open_options.get("entry_point", "")))):
             parser.error("open_options must select raw-binary with a supported architecture and hexadecimal entry_point")
-    output = runtime_output(args.output or plan.get("output", "runtime/analysis/tasks/" + plan_path.stem + "-" + file_digest(plan_path)[:16]))
+    output = owned_runtime_path(runtime_output(args.output or plan.get(
+        "output", "runtime/analysis/tasks/" + plan_path.stem + "-" + file_digest(plan_path)[:16])), ROOT)
     configured = dict(plan.get("environment", {}))
     if set(configured) - ENV_KEYS:
         parser.error("Plan environment only accepts " + ", ".join(sorted(ENV_KEYS)))

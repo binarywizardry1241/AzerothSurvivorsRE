@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Check the selected Codex field+0x44 classification; no compiler or game."""
+from runtime_layout import retained_runtime_path
 import hashlib
 import json
 import re
@@ -164,7 +165,7 @@ def check_growth_ceiling(proof):
         assert native(int(case["template_address"], 16), len(template)) == template
 
     for record in proof["source_receipts"]:
-        assert file_sha256(ROOT / record["path"]) == record["sha256"], record["path"]
+        assert file_sha256(retained_runtime_path(ROOT / record["path"], ROOT)) == record["sha256"], record["path"]
     from discovery_native_subject import verify_native_query_subject
 
     query = proof["query"]
@@ -192,7 +193,7 @@ def check_classification(proof_path):
         return image[offset:offset + size]
 
     def verify(record):
-        assert file_sha256(ROOT / record["path"]) == record["sha256"], record["path"]
+        assert file_sha256(retained_runtime_path(ROOT / record["path"], ROOT)) == record["sha256"], record["path"]
 
     for record in proof["inputs"] + proof["source_first"]:
         verify(record)
@@ -314,7 +315,7 @@ def run():
         return image[offset:offset + size]
 
     def verify(record):
-        assert file_sha256(ROOT / record["path"]) == record["sha256"], record["path"]
+        assert file_sha256(retained_runtime_path(ROOT / record["path"], ROOT)) == record["sha256"], record["path"]
 
     for record in proof["inputs"] + proof["source_first"]:
         verify(record)

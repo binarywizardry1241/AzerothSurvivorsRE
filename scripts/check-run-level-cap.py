@@ -22,7 +22,7 @@ from equipment_native import EquipmentProbe
 from script_sources import load_script
 
 SHA = "6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f"
-WORK = ROOT / "runtime/q41-embedded-resources-0.119.0"
+WORK = ROOT / "runtime/analysis/history/findings/q41-embedded-resources/0d964184062b"
 KEEP = ROOT / "docs/analysis/evidence/0.119.0/run-level-cap"
 START, END = 0x145B44190, 0x145B443C1
 BOOT_START, BOOT_END = 0x145AA8A20, 0x145AA8B5B
@@ -199,7 +199,7 @@ def check_current(args, target):
     assert target["version"] == "0.127.0"
     assert target["sha256"] == "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb"
     keep = ROOT / "docs/analysis/evidence/0.127.0/run-level-cap"
-    work = ROOT / "runtime/level-cap-0.127.0"
+    work = ROOT / "runtime/analysis/history/progression/level-cap/2f947655c618"
     suffix_path = keep.with_suffix(".lua")
     image = target_bytes(target)
     pe = load_script("levelcap_current_pe", ROOT / "scripts/inventory-executable.py").PE(image)

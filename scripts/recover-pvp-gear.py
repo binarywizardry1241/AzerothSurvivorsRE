@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Recover selected-target PvP gear; source builds never require the EXE.
 
-Stage data/evidence under runtime/pvp-gear-0.105.0. --write-assets updates only
+Stage data/evidence under runtime/analysis/history/inventory/pvp-gear/cf55d61c5cf0. --write-assets updates only
 the supplemental PvP/drop catalog. --fixtures replays the three native scaling
 consumers with explicit allocation-free buffers and a roundf import seam.
 """
@@ -19,7 +19,7 @@ import subprocess
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = ROOT / "runtime/pvp-gear-0.105.0"
+WORK = ROOT / "runtime/analysis/history/inventory/pvp-gear/cf55d61c5cf0"
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 ASSET = ROOT / "crates/azeroth-survivors-re/assets/pvp-gear-0.105.0.json"
@@ -229,9 +229,9 @@ def prepare(data, pe):
             seeds.append(0x1458BEAD0)  # leaf PvP pointer lookup lacks an unwind row
         (WORK / f"{name}-seeds.tsv").write_text(
             "".join(f"{a:#x}\tfunction\n{a:#x}\tcode\n" for a in sorted(seeds)))
-        write(WORK / f"{name}-plan.json", dict(target=f"runtime/pvp-gear-0.105.0/{name}.bin",
-            output=f"runtime/pvp-gear-0.105.0/rea-{name}", init_timeout=60, timeout=240,
-            environment={"REA_GHIDRA_SEED_FILE": f"runtime/pvp-gear-0.105.0/{name}-seeds.tsv"},
+        write(WORK / f"{name}-plan.json", dict(target=f"runtime/analysis/history/inventory/pvp-gear/cf55d61c5cf0/{name}.bin",
+            output=f"runtime/analysis/history/inventory/pvp-gear/cf55d61c5cf0/rea-{name}", init_timeout=60, timeout=240,
+            environment={"REA_GHIDRA_SEED_FILE": f"runtime/analysis/history/inventory/pvp-gear/cf55d61c5cf0/{name}-seeds.tsv"},
             open_options=dict(format="raw-binary", architecture="x86_64", entry_point=hex(start)),
             operations=[dict(name="procedure_pseudo_code", arguments=dict(procedure=hex(a)), label=role)
                         for a, role in operations]))
@@ -256,7 +256,7 @@ def prepare(data, pe):
 
 
 def replay(data, pe, cases):
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import UC_X86_REG_RCX, UC_X86_REG_RDX, UC_X86_REG_RSP, UC_X86_REG_RIP, UC_X86_REG_XMM0
     u = Uc(UC_ARCH_X86, UC_MODE_64)

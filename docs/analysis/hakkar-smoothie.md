@@ -68,7 +68,7 @@ instructions and table bytes rather than extrapolating whole-function semantics.
 
 ```sh
 python3 -B scripts/check-hakkar-smoothie.py --require-retained-queries
-PYTHONPATH=runtime/armory-recovery/python-libs python3 -B scripts/check-hakkar-smoothie.py --require-retained-queries --replay-instructions
+PYTHONPATH=runtime/tool-state/python/armory/python-libs python3 -B scripts/check-hakkar-smoothie.py --require-retained-queries --replay-instructions
 python3 -B scripts/check-reconstruction-coverage.py
 ```
 

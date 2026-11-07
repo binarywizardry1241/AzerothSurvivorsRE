@@ -8,11 +8,11 @@ from script_sources import load_script
 import argparse,hashlib,importlib.util,json,math,re,struct,sys
 from pathlib import Path
 from coverage_common import ROOT,latest_target,target_bytes
-sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE,UC_HOOK_MEM_UNMAPPED
 from unicorn import x86_const as r
-STAGE=ROOT/'runtime/native-evidence/0.112.0/raid-guardian-lifecycle'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-guardian-lifecycle'
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-guardian-lifecycle'
 RANGES={'health':(0x14596a3e0,0x14596a740),'damage':(0x14596a7e0,0x14596a96f),
  'knots':(0x1459cdd20,0x1459cde5e),'candidates':(0x1459d2440,0x1459d25c5),

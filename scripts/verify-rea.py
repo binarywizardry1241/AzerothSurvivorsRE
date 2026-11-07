@@ -16,7 +16,7 @@ def main():
     parser.add_argument("--native", action="store_true")
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent
-    output = root / "runtime" / "verification"
+    output = root / "runtime/tool-state/verification"
     output.mkdir(parents=True, exist_ok=True)
     launcher = root / "scripts" / "rea"
     report = {
@@ -43,7 +43,7 @@ def main():
                     break
                 line = process.stdout.readline()
                 if not line:
-                    raise RuntimeError("REA MCP exited; inspect runtime/verification/mcp-stderr.log")
+                    raise RuntimeError("REA MCP exited; inspect runtime/tool-state/verification/mcp-stderr.log")
                 message = json.loads(line)
                 if message.get("id") != current_id:
                     continue

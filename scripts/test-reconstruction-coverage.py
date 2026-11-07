@@ -19,7 +19,7 @@ spec.loader.exec_module(check)
 
 class LatestSuppliedTarget(unittest.TestCase):
     def setUp(self):
-        scratch = ROOT / "runtime/coverage-tests"
+        scratch = ROOT / "runtime/tests/coverage"
         scratch.mkdir(parents=True, exist_ok=True)
         temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.addCleanup(temporary.cleanup)
@@ -86,7 +86,7 @@ class LatestSuppliedTarget(unittest.TestCase):
 
 class CoverageAccounting(unittest.TestCase):
     def setUp(self):
-        scratch = ROOT / "runtime/coverage-tests"
+        scratch = ROOT / "runtime/tests/coverage"
         scratch.mkdir(parents=True, exist_ok=True)
         self.temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.addCleanup(self.temporary.cleanup)

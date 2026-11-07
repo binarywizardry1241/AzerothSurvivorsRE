@@ -62,7 +62,7 @@ Rust source tests consume those cases; they have not been compiled or run.
 
 The recovery script requires Python's Unicorn package, with the existing
 project-local recovery environment supported. Raw scenario output and durable
-query journals remain under ignored `runtime/gap102/`. `--collect` regenerates the
+query journals remain under ignored `runtime/analysis/history/findings/gap102/6d5d1bb31515/`. `--collect` regenerates the
 retained catalog and compact evidence after recovery; `--check` compares them.
 
 This is derived static instruction evidence. Compilation, native process

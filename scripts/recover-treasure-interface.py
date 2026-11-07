@@ -12,8 +12,8 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 SHA='17abcc4caad41f4150b0a05cc9bf8c428a4666121c49091db19f887a9b79eb7b'
 TARGET=ROOT/'AzerothSurvivors/AzerothSurvivors-0.100.1.exe'
-WORK=ROOT/'runtime/treasure-interface-0.100.1'
-OUT=ROOT/'runtime/native-evidence/0.100.1/treasure-interface'
+WORK=ROOT/'runtime/analysis/history/native-recovery/treasure-interface/bc4d3872616f'
+OUT=ROOT/'runtime/analysis/staging/native-evidence/0.100.1/treasure-interface'
 OWNERS={'choice-payload':0x1454f0f10,'cards-root':0x14021aed0,'card-tile':0x1401f47e0,'card-content':0x140109b00,'card-tooltip':0x1401f3210,'cards-layout':0x14010cdf0,'cards-animate':0x14021ce50,'effect-scale-map':0x145544de0,'effect-description-map':0x1455526c0,'amulet-current-description':0x1454251d0,'amulet-comparison-lines':0x145542df0}
 LEADS={'jewelry-description':0x145413220,'amulet-worn-description':0x145413bc0,'amulet-new-description':0x145414120,'effect-description':0x145413430}
 def load(name,path):
@@ -46,7 +46,7 @@ def check_confirmation(contract_path):
   original=json.loads(value)
   for key,value in row['entries'].items():
    assert source[key]==original[key]==value;locale_cases+=1
- sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+ sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
  from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
  import unicorn.x86_const as reg
  machine=Uc(UC_ARCH_X86,UC_MODE_64)

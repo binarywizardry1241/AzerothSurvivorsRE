@@ -27,7 +27,7 @@ def main():
                         help="Resolve and hash-verify the configured installed target")
     target_mode.add_argument("--installed-sha256",
                         help="Verify the installed EXE by exact SHA-256 without requiring a coverage registration")
-    parser.add_argument("--workdir", default="runtime/menu-recovery",
+    parser.add_argument("--workdir", default="runtime/analysis/history/interface/menu-recovery/0558cac00653",
                         help="Project-local query workspace")
     args = parser.parse_args()
     workdir = (ROOT / args.workdir).resolve()

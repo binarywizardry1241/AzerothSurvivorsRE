@@ -20,11 +20,11 @@ EVIDENCE = ROOT / 'docs/analysis/evidence/0.105.0/card-layout'
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', default='runtime/card-span-style-0.105.0/checks.json')
+    parser.add_argument('--output', default='runtime/analysis/history/interface/card-span-style/94e6bda7e138/checks.json')
     args = parser.parse_args()
     output = (ROOT / args.output).resolve()
     assert output.is_relative_to(ROOT / 'runtime')
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as reg
 

@@ -116,7 +116,7 @@ def main():
     if (system, machine) not in hosts:
         raise SystemExit(f"Unsupported bootstrap host: {system} {machine}")
     host = hosts[system, machine]
-    cache = root / "runtime/cache/rust"
+    cache = root / "runtime/tool-state/cache/rust"
     cache.mkdir(parents=True, exist_ok=True)
     with (cache / "install.lock").open("a+b") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
@@ -127,8 +127,8 @@ def install(root, host, cache):
     prefix = root / ".tools/rust" / f"{VERSION}-{host}"
     temporary = root / "runtime/tmp/rust-install"
     environment = dict(os.environ)
-    environment.update(CARGO_HOME=str(root / "runtime/cargo"), RUSTUP_HOME=str(root / ".tools/rust/rustup"),
-                       TMPDIR=str(root / "runtime/tmp"), XDG_CACHE_HOME=str(root / "runtime/cache"),
+    environment.update(CARGO_HOME=str(root / "runtime/tool-state/cargo"), RUSTUP_HOME=str(root / ".tools/rust/rustup"),
+                       TMPDIR=str(root / "runtime/tmp"), XDG_CACHE_HOME=str(root / "runtime/tool-state/cache"),
                        CARGO_TARGET_DIR=str(root / "runtime/cargo-target"))
     marker = prefix / "installation.json"
     tools = ("rustc", "cargo", "cargo-clippy", "rustfmt")
@@ -154,7 +154,7 @@ def install(root, host, cache):
     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:
         futures = [pool.submit(download, entry["url"], cache / Path(urllib.parse.urlparse(entry["url"]).path).name, entry["sha256"]) for entry in components]
         archives = [future.result() for future in futures]
-    log_path = root / "runtime/rust-install.log"
+    log_path = root / "runtime/tool-state/rust-install.log"
     with log_path.open("ab") as log:
         for entry, archive in zip(components, archives):
             source = temporary / archive.name.removesuffix(".tar.xz")

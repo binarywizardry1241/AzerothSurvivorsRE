@@ -20,7 +20,7 @@ from script_sources import load_script
 
 SHA = "22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150"
 OUTPUT = "docs/analysis/evidence/0.121.0/as-data-slots.json"
-ARTIFACT = "runtime/q41-data-slots-0.121.0/exact-slot-operands.jsonl.gz"
+ARTIFACT = "runtime/analysis/history/findings/q41-data-slots/3c0eb7d6c150/exact-slot-operands.jsonl.gz"
 QUERIES = [
     ("locale-selector", 0x145AEB1E0, 0x145AEB337),
     ("locale-cache", 0x145B96C70, 0x145B96CC9),
@@ -194,7 +194,7 @@ def collect():
 
     queries = []
     for name, start, end in QUERIES:
-        base = f"runtime/q41-data-slots-0.121.0/{name}"
+        base = f"runtime/analysis/history/findings/q41-data-slots/3c0eb7d6c150/{name}"
         journal_path = base + "/query/journal.json"
         journal = json.loads(project_path(journal_path).read_text())
         operation, = journal["operations"].values()

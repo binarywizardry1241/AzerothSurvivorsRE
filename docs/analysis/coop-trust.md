@@ -64,7 +64,7 @@ uncompiled and unrun. Source syntax is checked with the existing rustfmt
 parser through stdin, without module traversal or compilation.
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs python3 -B scripts/check-coop-trust.py
+PYTHONPATH=runtime/tool-state/python/armory/python-libs python3 -B scripts/check-coop-trust.py
 python3 -B scripts/check-reconstruction-coverage.py
 ```
 

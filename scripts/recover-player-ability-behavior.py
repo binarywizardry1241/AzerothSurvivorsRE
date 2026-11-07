@@ -16,7 +16,7 @@ CASES=[0x1454e7cf6,0x1454e7ea6,0x1454e82bb,0x1454e86dd,0x1454e8880,
 def check_contract(evidence):
  """Current shield lifetime/admission arithmetic in unchanged scratch-only code."""
  import sys,itertools
- sys.path.insert(0,str(R/'runtime/armory-recovery/python-libs'))
+ sys.path.insert(0,str(R/'runtime/tool-state/python/armory/python-libs'))
  from native_terminal import verified_input,NativeReplay
  from native_recovery import f32,bits
  manifest,target,data,pe=verified_input(evidence);vm=NativeReplay(data,pe);r=vm.registers
@@ -201,15 +201,15 @@ def main():
   print(text);return
  d=TARGET.read_bytes();assert hashlib.sha256(d).hexdigest()==SHA
  s=importlib.util.spec_from_file_location('inventory',R/'scripts/inventory-executable.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m);p=m.PE(d)
- f={p.image_base+a:p.image_base+b for a,b,_ in p.functions()};folder=R/'runtime/player-abilities-0.97.2';folder.mkdir(parents=True,exist_ok=True);rows=[]
+ f={p.image_base+a:p.image_base+b for a,b,_ in p.functions()};folder=R/'runtime/analysis/history/native-recovery/player-abilities/f36879d4a545';folder.mkdir(parents=True,exist_ok=True);rows=[]
  for a in FUNCTIONS:
   end=f[a];at=p.rva_offset(a-p.image_base);raw=d[at:at+end-a];path=folder/f'{a:x}.bin';path.write_bytes(raw)
   rows.append(dict(address=hex(a),end_exclusive=hex(end),file_offset=hex(at),byte_count=len(raw),sha256=hashlib.sha256(raw).hexdigest(),path=str(path.relative_to(R)),boundary='Original PE RUNTIME_FUNCTION'))
-  plan=dict(target=str(path.relative_to(R)),output=f'runtime/player-abilities-0.97.2/rea-{a:x}',open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(a)),timeout=180,open_timeout=90,cleanup_timeout=60,environment={'REA_GHIDRA_STARTUP_TIMEOUT_MS':'180000'},operations=[dict(name='analyze_function',arguments=dict(procedure=hex(a)),timeout=300)])
+  plan=dict(target=str(path.relative_to(R)),output=f'runtime/analysis/history/native-recovery/player-abilities/f36879d4a545/rea-{a:x}',open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(a)),timeout=180,open_timeout=90,cleanup_timeout=60,environment={'REA_GHIDRA_STARTUP_TIMEOUT_MS':'180000'},operations=[dict(name='analyze_function',arguments=dict(procedure=hex(a)),timeout=300)])
   (folder/f'plan-{a:x}.json').write_text(portable_json(plan,indent=2)+'\n')
  for a in CASES:
   end=f[0x1454e7a20];at=p.rva_offset(a-p.image_base);path=folder/f'case-{a:x}.bin';path.write_bytes(d[at:at+end-a])
-  plan=dict(target=str(path.relative_to(R)),output=f'runtime/player-abilities-0.97.2/rea-case-{a:x}',open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(a)),timeout=180,open_timeout=90,cleanup_timeout=60,environment={'REA_GHIDRA_STARTUP_TIMEOUT_MS':'180000'},operations=[dict(name='analyze_function',arguments=dict(procedure=hex(a)),timeout=300)])
+  plan=dict(target=str(path.relative_to(R)),output=f'runtime/analysis/history/native-recovery/player-abilities/f36879d4a545/rea-case-{a:x}',open_options=dict(format='raw-binary',architecture='x86_64',entry_point=hex(a)),timeout=180,open_timeout=90,cleanup_timeout=60,environment={'REA_GHIDRA_STARTUP_TIMEOUT_MS':'180000'},operations=[dict(name='analyze_function',arguments=dict(procedure=hex(a)),timeout=300)])
   (folder/f'plan-case-{a:x}.json').write_text(portable_json(plan,indent=2)+'\n')
  out=R/'docs/analysis/evidence/0.97.2/player-abilities';out.mkdir(parents=True,exist_ok=True)
  limitations=['Static code recovery only. Raw Ghidra slices omit data and callees; original PE instructions control Win64 argument mapping.',

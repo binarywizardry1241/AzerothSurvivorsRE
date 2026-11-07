@@ -54,14 +54,14 @@ Reproduce from the checkout, supplying existing project-local Python packages:
 
 ```sh
 python3 -B scripts/recover-card-layout.py --check \
-  --python-libs runtime/camera-recovery-0.105.0/python-libs \
-  --python-libs runtime/armory-recovery/python-libs
+  --python-libs runtime/tool-state/python/camera/python-libs \
+  --python-libs runtime/tool-state/python/armory/python-libs
 ```
 
-`--prepare` stages five raw-function plans under `runtime/card-layout-0.108.0/`.
+`--prepare` stages five raw-function plans under `runtime/analysis/history/interface/card-layout/a253b785ead7/`.
 Run each `*-plan.json` with `python3 -B scripts/rea-batch.py <plan>`, which uses
 `./scripts/rea`. `--collect` stages textual extracts and the manifest under
-`runtime/native-evidence/0.108.0/card-layout/`; review them before promotion.
+`runtime/analysis/staging/native-evidence/0.108.0/card-layout/`; review them before promotion.
 These modes never start REA or the game implicitly. All modes reject a different
 installed target, including changed bytes with the same version.
 

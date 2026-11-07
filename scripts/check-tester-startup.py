@@ -22,8 +22,8 @@ EVIDENCE = ROOT / 'docs/analysis/evidence/0.105.0/stock-frontend/tester'
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--python-libs', default='runtime/armory-recovery/python-libs')
-    parser.add_argument('--output', default='runtime/gap9-startup/checks.json')
+    parser.add_argument('--python-libs', default='runtime/tool-state/python/armory/python-libs')
+    parser.add_argument('--output', default='runtime/analysis/history/findings/gap9-startup/d2cb47f5253e/checks.json')
     args = parser.parse_args()
     libs, output = [(ROOT / value).resolve() for value in (args.python_libs, args.output)]
     assert libs.is_relative_to(ROOT) and output.is_relative_to(ROOT / 'runtime')

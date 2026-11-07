@@ -497,7 +497,7 @@ def main():
     result = dict(target_sha256=SHA, cases=cases, source_guarded=True,
                   compilation_run=False, target_executed=False, parity_verified=False,
                   limits='Bounded original-instruction replay with allocation seams; no Rust or live simulation/network proof.')
-    output = ROOT / 'runtime/coop-game-party-0.115.0/check-results.json'
+    output = ROOT / 'runtime/analysis/history/co-op/coop-game-party/2a091839c6b3/check-results.json'
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, indent=2) + '\n')
     print(f'{len(cases)} native party state/target/revive/reward/hazard/pause/terminal cases pass; source guards and evidence hashes pass.')

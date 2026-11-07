@@ -37,7 +37,7 @@ def main():
             if key in row:
                 assert hashlib.sha256((ROOT / row[key]).read_bytes()).hexdigest() == row[key + '_sha256']
     if args.prepare_rea:
-        destination = ROOT / 'runtime/menu-zone-background-0.112.5/reproduce'
+        destination = ROOT / 'runtime/analysis/history/interface/menu-zone-background/a5bdaa4e1cdb/reproduce'
         for row in manifest['functions']:
             address = int(row['address'], 16)
             end = int(row['end_exclusive'], 16)
@@ -53,8 +53,8 @@ def main():
         print(f"Prepared {len(manifest['functions'])} project-local REA plans; target never launched.")
         return
 
-    sys.path[:0] = [str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'),
-                   str(ROOT / 'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/camera/python-libs'),
+                   str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_MEM_UNMAPPED, UC_HOOK_CODE
     from unicorn import x86_const as reg
     cases = []
@@ -282,7 +282,7 @@ def main():
     assert 'menu.ready = runtime.presentable()' in scene
     assert '*camera = pose' in scene
 
-    output = ROOT / 'runtime/menu-zone-background-0.112.5/native-cases.json'
+    output = ROOT / 'runtime/analysis/history/interface/menu-zone-background/a5bdaa4e1cdb/native-cases.json'
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(dict(target_sha256=target['sha256'], native_cases=cases,
                                      limitations=manifest['limitations']), indent=2) + '\n')

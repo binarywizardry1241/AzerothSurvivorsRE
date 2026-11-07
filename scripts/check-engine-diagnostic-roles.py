@@ -4,6 +4,7 @@
 Static current PE, saved body census and diagnostic records only. No fresh native
 provider, source execution, compiler or game. --stage writes ignored runtime proof.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 import bisect
 from collections import Counter
@@ -18,12 +19,12 @@ import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 if ROOT.name=='runtime':ROOT=ROOT.parent
-sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
 from coverage_common import file_sha256,latest_target,target_bytes
 from script_sources import load_script
 from compact_evidence import proof_text,SOURCE_SHA256 as RENDERER_SHA256
 SHA='0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
-WORK=ROOT/'runtime/q41-e01-0.115.0'
+WORK=ROOT/'runtime/analysis/history/findings/q41-e01/6240452bd976'
 KEEP=ROOT/'docs/analysis/evidence/0.115.0/engine-diagnostic-roles.json'
 D01=ROOT/'docs/analysis/evidence/0.115.0/q41-custom-diagnostics.json'
 GENERATOR='scripts/check-engine-diagnostic-roles.py'
@@ -101,7 +102,7 @@ def derive():
     assert queue['target']['sha256']==SHA
     diag_input=queue['inputs']['diagnostic-ownership']['inventory']
     body_input=queue['inputs']['ghidra-census']['execution_artifacts']['bodies.tsv.gz']
-    for item in [diag_input,body_input]:assert sha((ROOT/item['path']).read_bytes())==item['sha256']
+    for item in [diag_input,body_input]:assert sha((retained_runtime_path(ROOT/item['path'], ROOT)).read_bytes())==item['sha256']
     diagnostics=json.loads((ROOT/diag_input['path']).read_text());assert diagnostics['target']['sha256']==SHA
     with gzip.open(ROOT/body_input['path'],'rt')as stream:
         bodies=sorted((int(r['start'],16),int(r['end'],16),int(r['entry'],16))

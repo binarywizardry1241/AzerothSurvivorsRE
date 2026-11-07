@@ -71,7 +71,7 @@ stock functions or overriding later addon changes.
 ## Static checks and limits
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs python3 -B scripts/check-run-level-cap.py --queries
+PYTHONPATH=runtime/tool-state/python/camera/python-libs python3 -B scripts/check-run-level-cap.py --queries
 ```
 
 The maintained checker verifies current PE extents, exact bytes/templates,

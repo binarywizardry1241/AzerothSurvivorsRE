@@ -48,7 +48,7 @@ def main():
     def string(a):
         p,n=struct.unpack('<QQ',raw(a,16)); assert n<4096; return raw(p,n).decode()
     if args.prepare_rea:
-        work=ROOT/'runtime/guardian-mechanics-0.109.0';work.mkdir(parents=True,exist_ok=True)
+        work=ROOT/'runtime/analysis/history/raid/guardian-mechanics/fe168fb12728';work.mkdir(parents=True,exist_ok=True)
         disabled='Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables'
         for role in ['selector','decision','scheduler']:
             a,b=RANGES[role];path=work/(role+'.bin');path.write_bytes(raw(a,b-a))
@@ -73,7 +73,7 @@ def main():
             phases.append(dict(index=j,tag=v[61],yell=string(at),words=w,record=span(at,72)))
         rows.append(dict(enemy_id=identity,record=span(a,56),alternatives=span(alts,na*16) if na else None,variants=variants,phases=phases))
     assert len({r['enemy_id'] for r in rows})==37
-    sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+    sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
     from capstone import Cs,CS_ARCH_X86,CS_MODE_64
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_MEM_UNMAPPED,UC_HOOK_CODE
     from unicorn import x86_const as x

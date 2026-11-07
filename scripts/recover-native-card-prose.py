@@ -15,7 +15,7 @@ if __name__ == '__main__':
 from native_recovery import expression
 from pathlib import Path
 import sys,struct,json,importlib.util,hashlib,math,re,subprocess
-R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/armory-recovery/python-libs'))
+R=Path(__file__).resolve().parents[1];sys.path.insert(0,str(R/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 s=importlib.util.spec_from_file_location('inv',R/'scripts/inventory-executable.py');m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
@@ -70,7 +70,7 @@ def verify_expressions(baseline, modified):
  return {'shared_numeric_outputs':compared,'mismatches':0,'comparison':'f32 equality of baseline expressions evaluated with modified inputs against independently emulated native modified callsite outputs'}
 
 SCENARIOS=('baseline','modified','large_area','singular_overlap','plural_no_overlap')
-WORK=R/'runtime/gap102'
+WORK=R/'runtime/analysis/history/findings/gap102/6d5d1bb31515'
 ASSET=R/'crates/azeroth-survivors-re/assets/native-spell-descriptions-0.115.0.json'
 EVIDENCE=R/'docs/analysis/evidence/0.115.0/spell-descriptions'
 SOFT_RADIUS={'0x14585cb7b','0x14596c2d2','0x14585d8f0'}
@@ -413,7 +413,7 @@ for idx,key in enumerate(keys):
   value=int(match[1].replace('_',''),16)if match else struct.unpack('<I',struct.pack('<f',float(text)))[0]
   assert value==struct.unpack_from('<I',raw,offset)[0],(key,'effect',offset)
 
-WORK=R/'runtime/gap102';WORK.mkdir(parents=True,exist_ok=True)
+WORK=R/'runtime/analysis/history/findings/gap102/6d5d1bb31515';WORK.mkdir(parents=True,exist_ok=True)
 (WORK/'base-current-definitions.json').write_text(portable_json(rows,indent=2)+'\n')
 scenario=sys.argv[1]if len(sys.argv)>1 else'baseline'
 outputs=[]

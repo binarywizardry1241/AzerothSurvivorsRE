@@ -16,7 +16,7 @@ SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 START, END, SITE = 0x14583f9c0, 0x145840035, 0x14583fa56
 TABLE, SECOND = 0x147014f3c, 0x147014f8c
 KEEP = ROOT / 'docs/analysis/evidence/0.113.2/q41-m01-jewelry'
-PROBE = ROOT / 'runtime/q41-m01-jewelry-0.113.2/rea-pe'
+PROBE = ROOT / 'runtime/analysis/history/findings/q41-m01-jewelry/1c9142944e3d/rea-pe'
 SOURCE = 'crates/azeroth-survivors-re/src/loot_rewards.rs'
 
 
@@ -45,7 +45,7 @@ def derive():
     boundaries = {i.address: i for i in instructions}
     assert raw(END, 11) == b'\xcc' * 11
     assembly = ''.join(f'{i.address:x}: {i.mnemonic} {i.op_str}'.rstrip() + '\n' for i in instructions)
-    proof_input = ROOT / 'runtime/execheck-0.113.2/proofs/guarded-jump-tables.json'
+    proof_input = ROOT / 'runtime/analysis/history/target-audit/execheck/69d2f07fbba6/proofs/guarded-jump-tables.json'
     census = json.loads(proof_input.read_text())
     assert census['target']['sha256'] == SHA and len(census['candidate_tables']) == 205
     candidate = next(row for row in census['candidate_tables'] if row['site'] == hex(SITE))
@@ -181,7 +181,7 @@ def derive():
         dict(start='0x145840028', end='0x145840034')]
     ownership = observations[-5:]
     assert [row['result']['found'] for row in ownership] == [False, False, False, True, False]
-    assert file_sha256(ROOT/'runtime/q41-m01-jewelry-0.113.2/seeds.tsv') == profile['parameters']['analysis_seeds']['sha256']
+    assert file_sha256(ROOT/'runtime/analysis/history/findings/q41-m01-jewelry/1c9142944e3d/seeds.tsv') == profile['parameters']['analysis_seeds']['sha256']
     result = dict(schema_version=1, target={key: target[key] for key in ['version', 'path', 'sha256', 'size_bytes']},
         generator=commitment(ROOT/'scripts/check-q41-m01-jewelry.py'),
         lead_id='Q41-M01', classification_id='Q41-M01-jewelry-cap-14583fa56', gap_ids=[34, 41],
@@ -194,7 +194,7 @@ def derive():
         expected_model=commitment(model_path), source=[commitment(ROOT/name) for name in [SOURCE, *consumers]],
         incoming_reference_input=commitment(refs_path), incoming_references=incoming,
         caller_to_description=dict(start_preferred_va='0x1402afbdd', end_exclusive_preferred_va='0x1402afc05', sha256=hashlib.sha256(raw(0x1402afbdd, 0x28)).hexdigest()),
-        rea=dict(profile=profile, plan=commitment(PROBE/'plan.json'), seed_rows=(ROOT/'runtime/q41-m01-jewelry-0.113.2/seeds.tsv').read_text().splitlines(), observations=observations),
+        rea=dict(profile=profile, plan=commitment(PROBE/'plan.json'), seed_rows=(ROOT/'runtime/analysis/history/findings/q41-m01-jewelry/1c9142944e3d/seeds.tsv').read_text().splitlines(), observations=observations),
         classification='AS jewelry increment cap and multiplier dispatch; existing connected source matches',
         source_mismatch_established=False, global_admission_or_census_changed=False,
         limits=['Current original leaf instructions execute with synthetic descriptor/Option and stack memory; no callee seams occur.',

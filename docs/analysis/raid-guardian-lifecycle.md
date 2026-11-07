@@ -140,7 +140,7 @@ parity. Fresh dead/completed/paused ticks remain barred at entry in both designs
 
 Run `python3 -B scripts/check-raid-guardian-lifecycle.py` against the
 reviewed evidence, or `--stage` to produce a fresh candidate under ignored
-`runtime/native-evidence/0.112.0/raid-guardian-lifecycle`.
+`runtime/analysis/staging/native-evidence/0.112.0/raid-guardian-lifecycle`.
 
 The checker hash-verifies the installed target, current graph, PE exception
 owners and direct caller edges. It runs current native instructions in

@@ -114,7 +114,7 @@ The non-compiling checker is:
 
 ```sh
 python3 -B scripts/check-service-peer-flags.py
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs python3 -B scripts/check-service-reconnection-presentation.py
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-service-reconnection-presentation.py
 ```
 
 It checks **1,037 exact original instructions**, eight retained Ghidra receipts,

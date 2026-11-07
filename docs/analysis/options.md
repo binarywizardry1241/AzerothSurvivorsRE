@@ -68,7 +68,7 @@ registry mutation, Lua VM, file operation, UI or game process executes.
 
 The script's `--prepare` recreates original-VA Ghidra slices and seeds the four
 storage branches from the current jump table. `--stage` writes candidate JSON
-under ignored `runtime/options-0.109.0/` for review. Neither mode writes the
+under ignored `runtime/analysis/history/interface/options/9d5d040da63a/` for review. Neither mode writes the
 live catalog. Only necessary assembly/target identities are retained; full tool
 responses remain ignored. Unchanged nonliteral defaults outside the eight
 additions retain the [historical Options report](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/options-0.105.0.md)'s provenance

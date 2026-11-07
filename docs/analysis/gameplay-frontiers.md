@@ -181,7 +181,7 @@ and original-byte replay worked; there is no unavailable-tool blocker.
 
 Run `python3 -B scripts/check-gameplay-frontiers.py` for the selected
 original-byte/dataflow/source checks; `--stage` writes candidate contracts under
-ignored `runtime/gameplay-frontiers-0.112.0/staged`. Run
+ignored `runtime/analysis/history/native-recovery/gameplay-frontiers/1d609cc38fa0/staged`. Run
 `scripts/check-warlock-effects.py` for current ordered Warlock payloads.
 The current amulet and demonic-empowerment checks retain their existing scopes.
 They pass 1,860 native magnitude/selector cases and 183 empowerment cases;

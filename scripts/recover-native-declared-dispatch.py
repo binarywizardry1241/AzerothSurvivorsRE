@@ -5,6 +5,7 @@ This is a mechanical code-only discovery stage. Its proposals must pass the
 whole-domain/table-byte/code-boundary merge before any census uses their edges.
 An incomplete linear extent is retained as a failure, never completed by guess.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from array import array
 from collections import Counter
@@ -121,7 +122,7 @@ def main():
                          'These proposals must pass the independent whole-domain merge before census use. Known-source code is not required, but source/case seeds remain code-only.',
                          'No application compilation, target execution, full type/alias reconstruction or parity claim.']
     (output / 'guarded-jump-tables-summary.json').write_text(json_text(compact))
-    if file_sha256(ROOT / generation['path']) != generation['sha256'] or any(file_sha256(ROOT / row['path']) != row['sha256'] for row in dependencies):
+    if file_sha256(ROOT / generation['path']) != generation['sha256'] or any(file_sha256(retained_runtime_path(ROOT / row['path'], ROOT)) != row['sha256'] for row in dependencies):
         raise ValueError('Declared-dispatch generator changed during analysis')
 
 

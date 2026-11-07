@@ -23,7 +23,7 @@ import time
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_READ_UNMAPPED
 from unicorn import x86_const as registers
 
@@ -490,7 +490,7 @@ def main():
     nodes = check_nodes(data, pe, functions)
     locales = check_locales(manifest, data)
     source = check_source()
-    output = ROOT / "runtime/coop-ui-0.115.0/checks" / f"run-{time.time_ns()}"
+    output = ROOT / "runtime/analysis/history/co-op/coop-ui/15b6f844a5dc/checks" / f"run-{time.time_ns()}"
     output.mkdir(parents=True, exist_ok=False)
     result = dict(target_sha256=target["sha256"], manifest_sha256=digest((directory / "manifest.json").read_bytes()),
                   input_cases=inputs, count_cases=counts, startup_cases=startup,

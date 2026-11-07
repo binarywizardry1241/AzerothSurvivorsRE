@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from coverage_common import latest_target
 OUT = ROOT / 'docs/analysis/evidence/0.105.0/boss-math'
-WORK = ROOT / 'runtime/boss-math-0.105.0'
+WORK = ROOT / 'runtime/analysis/history/raid/boss-math/5dbad0250cf7'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
 
 
@@ -39,7 +39,7 @@ def main():
     data = (ROOT / target['path']).read_bytes()
     module = load_script('inventory', ROOT / 'scripts/inventory-executable.py')
     pe = module.PE(data)
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as x
     uc = Uc(UC_ARCH_X86, UC_MODE_64)

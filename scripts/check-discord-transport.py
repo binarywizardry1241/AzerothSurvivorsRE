@@ -3,7 +3,7 @@
 from script_sources import load_script
 import argparse, hashlib, json, struct, sys
 from coverage_common import ROOT,latest_target,target_bytes
-sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn import x86_const as r
 parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--stage',action='store_true');args=parser.parse_args()
@@ -105,7 +105,7 @@ if manifest_path.exists():
   for kind in ('assembly','pseudocode'):
    assert hashlib.sha256((manifest_path.parent/row[kind]).read_bytes()).hexdigest()==row[kind+'_sha256']
 record=dict(target_sha256=t['sha256'],case_count=len(results),cases=results,ranges=ranges,limits=['Full native frame helpers execute against explicit JSON serializer/read_exact/write_all/allocation/free seams; no OS, pipe, server or application runs.','Throttle and nonce are isolated no-OS worker fragments. Worker endpoint, retry, JSON command, deduplication, channel and reply paths are statically traced, not certified by these fragment cases.','Windows is the only supplied platform artifact. Unix endpoint discovery remains unsupported instead of inventing native behavior.'])
-path=ROOT/('runtime/native-evidence/0.109.0/discord-transport'if args.stage else'docs/analysis/evidence/0.109.0/discord-transport')/'native.json'
+path=ROOT/('runtime/analysis/staging/native-evidence/0.109.0/discord-transport'if args.stage else'docs/analysis/evidence/0.109.0/discord-transport')/'native.json'
 if args.stage:path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(record,indent=2)+'\n')
 else:assert json.loads(path.read_text())==json.loads(json.dumps(record))
 print(f'Passed {len(results)} native Discord frame/throttle/nonce cases; no IPC or game')

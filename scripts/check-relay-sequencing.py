@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Verify the bounded 0.120.2 relay discovery evidence without compilation."""
+from runtime_layout import retained_runtime_path
 import hashlib
 import json
 import struct
@@ -26,9 +27,9 @@ def main():
             if hashlib.sha256(raw).hexdigest() != record["sha256"]:
                 raise ValueError("Changed historical source: " + record["path"])
             return raw.decode()
-        if file_sha256(ROOT / record["path"]) != record["sha256"]:
+        if file_sha256(retained_runtime_path(ROOT / record["path"], ROOT)) != record["sha256"]:
             raise ValueError("Changed evidence: " + record["path"])
-        return (ROOT / record["path"]).read_text()
+        return (retained_runtime_path(ROOT / record["path"], ROOT)).read_text()
 
     for record in proof["inputs"] + proof["source_first"]["paths"]:
         verify(record)

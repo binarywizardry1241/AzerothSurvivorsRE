@@ -108,10 +108,10 @@ To recreate bounded Ghidra inputs without starting analysis:
 
 ```sh
 python3 -B scripts/check-raid-shields.py --prepare-rea
-python3 -B scripts/rea-batch.py runtime/raid-shields-0.109.0/reproduce/producer-plan.json
-python3 -B scripts/rea-batch.py runtime/raid-shields-0.109.0/reproduce/damage-plan.json
-python3 -B scripts/rea-batch.py runtime/raid-shields-0.109.0/reproduce/aura-plan.json
-python3 -B scripts/rea-batch.py runtime/raid-shields-0.109.0/reproduce/applications-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/raid-shields/bf0080d61274/reproduce/producer-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/raid-shields/bf0080d61274/reproduce/damage-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/raid-shields/bf0080d61274/reproduce/aura-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/raid-shields/bf0080d61274/reproduce/applications-plan.json
 ```
 
 The damage decompilation includes unrelated tail code; only its provenance/hash

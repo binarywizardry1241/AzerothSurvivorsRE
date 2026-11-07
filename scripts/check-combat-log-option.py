@@ -51,7 +51,7 @@ def main():
     for record in json.loads((EVIDENCE / "manifest.json").read_text())["ranges"]:
         assert hashlib.sha256(raw(int(record["address"], 16), record["byte_count"])).hexdigest() == record["sha256"]
 
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as reg
     cpu = Uc(UC_ARCH_X86, UC_MODE_64)
@@ -120,7 +120,7 @@ def main():
     record = dict(target_sha256=SHA, cases=cases, descriptor_index=62,
         limits=["Native registry read/register, allocator and engine LoggingCombat setter are explicit seams.",
                 "Wrapper and Unicode trim instructions execute unchanged; this does not execute Rust source, script VM, file operations, scheduling or a game."])
-    output = ROOT / "runtime/menu-pages-0.112.0/combat-log-cases.json" if args.stage else EVIDENCE / "cases.json"
+    output = ROOT / "runtime/analysis/history/interface/menu-pages/c17e2425557b/combat-log-cases.json" if args.stage else EVIDENCE / "cases.json"
     if args.stage:
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json.dumps(record, ensure_ascii=False, indent=2) + "\n")

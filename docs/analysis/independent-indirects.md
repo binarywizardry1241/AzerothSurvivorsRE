@@ -60,10 +60,10 @@ Reproduce with an existing Capstone 5 Python environment:
 
 ```sh
 python3 -B scripts/classify-independent-indirects.py \
-  --ownership-summary runtime/q41-ownership-0.115.0/ownership-summary-final.json \
-  --residual-summary runtime/q41-ownership-0.115.0/residual-summary-v2.json \
-  --output-directory runtime/q41-ownership-0.115.0/independent-indirects-final \
-  --summary-output runtime/q41-ownership-0.115.0/independent-indirect-summary-final.json
+  --ownership-summary runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/ownership-summary-final.json \
+  --residual-summary runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/residual-summary-v2.json \
+  --output-directory runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/independent-indirects-final \
+  --summary-output runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/independent-indirect-summary-final.json
 python3 -B scripts/check-independent-indirects.py \
   --proof docs/analysis/evidence/0.115.0/independent-indirects.json \
   --negative-tests

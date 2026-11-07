@@ -10,7 +10,7 @@ import argparse, hashlib, json, struct, sys
 from coverage_common import ROOT,latest_target,target_bytes
 from pathlib import Path
 R=ROOT
-sys.path[:0]=[str(R/'runtime/camera-recovery-0.105.0/python-libs'),str(R/'runtime/armory-recovery/python-libs')]
+sys.path[:0]=[str(R/'runtime/tool-state/python/camera/python-libs'),str(R/'runtime/tool-state/python/armory/python-libs')]
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *
 target=latest_target(verify=True)

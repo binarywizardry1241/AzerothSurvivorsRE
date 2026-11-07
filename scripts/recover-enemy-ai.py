@@ -4,6 +4,7 @@
 Never launches the game. Unicorn executes only the listed unchanged instruction
 ranges; external calls and all unexpected control flow fail closed.
 """
+from runtime_layout import retained_runtime_path
 from portable_paths import objdump_output, portable_json, portable_record
 from pathlib import Path
 import argparse
@@ -19,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe'
 SHA = 'a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589'
 OUT = ROOT / 'docs/analysis/evidence/0.97.2/enemies'
-RUNTIME = ROOT / 'runtime/enemies-ai-0.97.2'
+RUNTIME = ROOT / 'runtime/analysis/history/native-recovery/enemies-ai/8567196e8174'
 FUNCTION = 0x1454c9510
 
 
@@ -74,7 +75,7 @@ def check_current(evidence, write):
     for row in manifest['queries']:
         for key in ['raw_input', 'plan', 'journal', 'result']:
             receipt = row[key]
-            assert hashlib.sha256((ROOT / receipt['path']).read_bytes()).hexdigest() == receipt['sha256']
+            assert hashlib.sha256((retained_runtime_path(ROOT / receipt['path'], ROOT)).read_bytes()).hexdigest() == receipt['sha256']
         start = int(row['start'], 16)
         raw = (ROOT / row['raw_input']['path']).read_bytes()
         offset = pe.rva_offset(start - pe.image_base)
@@ -84,8 +85,8 @@ def check_current(evidence, write):
         assert native['provider']['id'] == 'ghidra'
         assert native['subject']['digest']['sha256'] == row['raw_input']['sha256']
         assert native['parameters'] == {'procedure': row['start']}
-    sys.path[:0] = [str(ROOT / 'runtime/armory-recovery/python-libs'),
-                   str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/armory/python-libs'),
+                   str(ROOT / 'runtime/tool-state/python/camera/python-libs')]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as reg
     uc = Uc(UC_ARCH_X86, UC_MODE_64)
@@ -230,7 +231,7 @@ def check_current(evidence, write):
                 'Source connections are inspected, not compiled or executed; no game/server/network or parity validation.'])
     out = manifest_path.parent / 'native-cases.json'
     if write:
-        stage = ROOT / 'runtime/caster-navigation-0.127.0/native-cases.json'
+        stage = ROOT / 'runtime/analysis/history/combat/caster-navigation/2a8c2c3c1d0d/native-cases.json'
         save(stage, result); print(stage.relative_to(ROOT))
     else: assert portable_record(json.loads(out.read_text())) == portable_record(result)
     print(f'{len(cases)} current caster LOS/chase/completion/impact native cases pass; no compiler/game')
@@ -245,7 +246,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--prepare-current', action='store_true')
     parser.add_argument('--address', action='append', type=lambda value: int(value, 0))
-    parser.add_argument('--output', default='runtime/enemy-ai-current')
+    parser.add_argument('--output', default='runtime/analysis/history/native-recovery/enemy-ai-current/ab380a5d5c3f')
     parser.add_argument('--check-current', action='store_true')
     parser.add_argument('--write-current', action='store_true')
     parser.add_argument('--evidence', default='docs/analysis/evidence/0.127.0/caster-navigation/manifest.json')
@@ -269,7 +270,7 @@ def main():
     function_sha = hashlib.sha256(data[offset:offset+end-FUNCTION]).hexdigest()
     # Reuse the matching completed REA session instead of reanalysing the same
     # function. Its byte identity is checked independently against the PE.
-    bundle = ROOT / 'runtime/guardians-0.97.2/rea-1454c9510/evidence-bundle.json'
+    bundle = ROOT / 'runtime/analysis/history/raid/guardians/b4a536d2fa6d/rea-1454c9510/evidence-bundle.json'
     if not bundle.exists():
         RUNTIME.mkdir(parents=True, exist_ok=True)
         binary_slice = RUNTIME / 'actor-update.bin'
@@ -324,7 +325,7 @@ def main():
           'Actor source returns engine requests; world, packets, aura lists and spell resolution require real adapters.',
           'Host trigonometry/hypot and full Windows CRT equivalence are unverified.']))
 
-    sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as reg
     uc=Uc(UC_ARCH_X86,UC_MODE_64)

@@ -92,8 +92,18 @@ publishing or verifying the useful result. Reuse canonical inventory, journal,
 checkpoint and Program paths instead of creating per-version copies of the
 same payload. Preserve separate target identities and distinct required evidence.
 Keep durable recovery work in the owning category. Record target identity in
-the receipt or manifest and reuse the existing category directory. Avoid new
-version-stamped folders directly under `runtime/`.
+the receipt or manifest and reuse the existing category directory. Create no
+top-level runtime folder or file outside the owners defined by
+`scripts/runtime_layout.py`. Use `runtime/analysis/tasks/<category>/` for
+resumable bounded work and the shared catalog for reusable results.
+
+Keep findings in the owning Markdown report under `docs/analysis/`. Runtime
+is for machine evidence and work in progress. After publication, remove
+duplicate reports, successful command transcripts, staging copies and temporary
+plans that no retained check opens. Retain one receipt for required proof and
+keep unfinished checkpoints in their existing owner. Before delivery, run
+`python3 -B scripts/manage-runtime-layout.py --check` and resolve any loose
+outputs created by the task. Fix a recurring producer at its output boundary.
 
 ## Source gaps and verification ownership
 

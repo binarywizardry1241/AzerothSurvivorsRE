@@ -134,7 +134,7 @@ shared-engine equivalence is outside this bounded claim.
 
 ## Retained reported-defect evidence
 
-A historical `runtime/build-ship/game.log` recorded 40 loading-screen catalog
+A historical `runtime/client/ship-evidence/game.log` recorded 40 loading-screen catalog
 rows at 12:12:40 on 2026-10-23, map-0 entry at 12:12:51.564572 and readiness at
 12:12:57.760838 without `loading screen: up` between them. Its later logout
 blackout was separate. This corroborated the original absent-activation report,

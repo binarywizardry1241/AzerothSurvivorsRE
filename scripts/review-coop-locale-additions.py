@@ -7,6 +7,7 @@ actual source-consumer receipts, never duplicate complete catalog payloads.
 It runs no native query, compilation, emulation, application or server.
 """
 
+from runtime_layout import retained_runtime_path
 import argparse
 from collections import Counter
 import hashlib
@@ -164,7 +165,7 @@ def check_consumers():
         elif raw.hex() != row["bytes"]:
             raise ValueError("Native format record changed")
     for row in proof["source_inputs"]:
-        if file_sha256(ROOT / row["path"]) != row["sha256"]:
+        if file_sha256(retained_runtime_path(ROOT / row["path"], ROOT)) != row["sha256"]:
             raise ValueError("Native consumer source/input receipt changed")
     for row in proof["query_receipts"]:
         for key in ("plan", "journal", "result"):

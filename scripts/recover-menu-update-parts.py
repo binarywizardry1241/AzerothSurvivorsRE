@@ -28,9 +28,9 @@ def main():
                          (0x1403A3C30,"HTTP error-to-I/O wrapper; decompiler truncates after allocation"),
                          (0x1456DAE10,"I/O Display dispatch; original table-bound branch names kind41 Other")]:
         boundary=next(item for item in pe.functions() if pe.image_base+item[0]==address);end=pe.image_base+boundary[1]
-        record=json.loads((ROOT/f"runtime/menu-recovery/rea-{address:x}/evidence-bundle.json").read_text())["records"][0]
+        record=json.loads((ROOT/f"runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-{address:x}/evidence-bundle.json").read_text())["records"][0]
         owners.append(dict(address=hex(address),end=hex(end),sha256=hashlib.sha256(raw(address,end-address)).hexdigest(),rea_evidence_id=record["evidence_id"],role=role))
-    sys.path.insert(0,str(ROOT/"runtime/armory-recovery/python-libs"))
+    sys.path.insert(0,str(ROOT/"runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
     from unicorn.x86_const import UC_X86_REG_RAX,UC_X86_REG_RDX,UC_X86_REG_RBX,UC_X86_REG_R14,UC_X86_REG_XMM0,UC_X86_REG_RIP
     machine=Uc(UC_ARCH_X86,UC_MODE_64)
@@ -91,7 +91,7 @@ def main():
         kind_checks.append(dict(index=index,display=display,display_pointer=hex(pointer),debug=debug,debug_pointer=hex(debug_pointer)))
     kind_branch=dict(start=hex(kind_start),end=hex(0x1456DAEF1),sha256=hashlib.sha256(raw(kind_start,0x1456DAEF1-kind_start)).hexdigest(),
                      boundary="Exact original in-owner branch, not an original standalone function; replay stops before formatting callback or stack epilogue.",
-                     rea_evidence_id=json.loads((ROOT/'runtime/menu-recovery/rea-1456dae9a/evidence-bundle.json').read_text())["records"][0]["evidence_id"])
+                     rea_evidence_id=json.loads((ROOT/'runtime/analysis/history/interface/menu-recovery/0558cac00653/rea-1456dae9a/evidence-bundle.json').read_text())["records"][0]["evidence_id"])
     report=dict(date="2026-10-16",target_sha256=SHA,owners=owners,
                 native_checks=dict(threshold=thresholds,rate=rates,intervals=[dict(start=hex(a),end=hex(b),sha256=hashlib.sha256(raw(a,b-a)).hexdigest()) for a,b in [(threshold_start,threshold_no),(rate_start,rate_end)]],
                                    boundary="Only pure conversion/threshold/rate instructions run in Unicorn. Threshold stops at either branch; rate stops before Instant::now call12b9cd. Any other call/branch aborts. Rate block precondition elapsed>=.25; zero elapsed is checked separately at the threshold. No OS, HTTP, file or full updater instructions execute."),

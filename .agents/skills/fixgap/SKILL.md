@@ -20,6 +20,9 @@ integrating their durable changes. Reuse suitable tools/caches; preserve active
 work and required evidence rather than duplicating or retaining every output.
 Apply the shared [report and storage rules](../shared/autonomy.md#consolidate-reports-and-analysis-storage).
 Add a repair to its existing category report even when the target version changes.
+Use the existing category's bounded-query workspace under `runtime/analysis/tasks/`.
+Keep one necessary receipt and remove task scratch and superseded copies before
+the runtime layout check. Gap IDs and versions belong in the receipt.
 
 When fresh native recovery is needed, apply the shared
 [analysis-script reuse rules](../shared/autonomy.md#reuse-analysis-scripts) and

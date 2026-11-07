@@ -69,7 +69,7 @@ override-filesystem or language-index equivalence.
 ## Checks and limits
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs python3 -B scripts/check-achievement-unlock-names.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs python3 -B scripts/check-achievement-unlock-names.py
 ```
 
 The checker verifies the installed identity; **24,901 code bytes / 4,270

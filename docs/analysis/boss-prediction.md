@@ -91,7 +91,7 @@ has been completely revalidated.
 Run the non-compiling check using the existing project Python dependencies:
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-boss-prediction.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-boss-prediction.py
 ```
 
 The [result](evidence/0.121.0/boss-prediction/static-check.json) records original

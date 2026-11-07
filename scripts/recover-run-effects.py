@@ -48,23 +48,23 @@ for name,va,n in [('race',0x1469f85c8,12),('gear',0x1469f85f8,13),('jewelry',0x1
  record['tables'].append({'role':name,'address':hex(va),'sha256':hashlib.sha256(raw).hexdigest(),'destinations':[hex(va+r) for r in struct.unpack('<'+'i'*n,raw)]})
 for va in [0x14593f7c0,0x145915914,0x145913300,0x1459132f8,0x1459158a0,0x1459132f4,0x145907534,0x145915800,0x145a47630,0x145a2e6b8,0x14593fc74,0x145907498,0x145907508]:
  record['constants'].append({'address':hex(va),'bits':struct.unpack_from('<I',data,offset(va))[0],'value':struct.unpack_from('<f',data,offset(va))[0]})
-out=ROOT/'runtime/native-evidence/0.100.1/run-effects';out.mkdir(parents=True,exist_ok=True)
+out=ROOT/'runtime/analysis/staging/native-evidence/0.100.1/run-effects';out.mkdir(parents=True,exist_ok=True)
 (out/'tables-and-payloads.json').write_text(portable_json(record,indent=2)+'\n')
-work=ROOT/'runtime/run-effects-0.100.1';work.mkdir(parents=True,exist_ok=True)
+work=ROOT/'runtime/analysis/history/native-recovery/run-effects/9094f1b4dd32';work.mkdir(parents=True,exist_ok=True)
 start,end=0x1454848a0,0x145484c07
 raw=data[offset(start):offset(start)+end-start]
 (work/'effect-scale-leaf.bin').write_bytes(raw)
-plan={'target':str((work/'effect-scale-leaf.bin').relative_to(ROOT)),'output':'runtime/run-effects-0.100.1/rea-scale-leaf','open_options':{'format':'raw-binary','architecture':'x86_64','entry_point':hex(start)},'environment':{'REA_GHIDRA_DISABLED_ANALYZERS':'Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Non-Returning Functions - Discovered','REA_GHIDRA_STARTUP_TIMEOUT_MS':'120000'},'init_timeout':120,'timeout':120,'operations':[{'name':'procedure_pseudo_code','arguments':{'procedure':hex(start)}}]}
+plan={'target':str((work/'effect-scale-leaf.bin').relative_to(ROOT)),'output':'runtime/analysis/history/native-recovery/run-effects/9094f1b4dd32/rea-scale-leaf','open_options':{'format':'raw-binary','architecture':'x86_64','entry_point':hex(start)},'environment':{'REA_GHIDRA_DISABLED_ANALYZERS':'Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Non-Returning Functions - Discovered','REA_GHIDRA_STARTUP_TIMEOUT_MS':'120000'},'init_timeout':120,'timeout':120,'operations':[{'name':'procedure_pseudo_code','arguments':{'procedure':hex(start)}}]}
 (work/'plan-scale-leaf.json').write_text(portable_json(plan,indent=2)+'\n')
 functions=[]
 bounds={a+pe.image_base:b+pe.image_base for a,b,c in pe.functions()}
 for role,va,session in [
- ('run-factory',0x14544f710,'runtime/run-effects-0.100.1/rea-run-factory'),
- ('perk-run-grants',0x14547ede0,'runtime/run-effects-0.100.1/rea-perk-run-grants'),
- ('account-xp-factor',0x14547f960,'runtime/run-effects-0.100.1/rea-account-xp-factor'),
- ('run-result',0x14544a260,'runtime/run-progression-0.100.1/rea-run-result'),
- ('account-consumer',0x14543f4f0,'runtime/run-progression-0.100.1/rea-account-consumer'),
- ('shared-status',0x1454ff860,'runtime/generic-status-0.100.1/rea-status')]:
+ ('run-factory',0x14544f710,'runtime/analysis/history/native-recovery/run-effects/9094f1b4dd32/rea-run-factory'),
+ ('perk-run-grants',0x14547ede0,'runtime/analysis/history/native-recovery/run-effects/9094f1b4dd32/rea-perk-run-grants'),
+ ('account-xp-factor',0x14547f960,'runtime/analysis/history/native-recovery/run-effects/9094f1b4dd32/rea-account-xp-factor'),
+ ('run-result',0x14544a260,'runtime/analysis/history/native-recovery/run-progression/4c78b97d85bc/rea-run-result'),
+ ('account-consumer',0x14543f4f0,'runtime/analysis/history/native-recovery/run-progression/4c78b97d85bc/rea-account-consumer'),
+ ('shared-status',0x1454ff860,'runtime/analysis/history/native-recovery/generic-status/c956b6c98eb2/rea-status')]:
  end=bounds[va];raw=data[offset(va):offset(va)+end-va]
  owner_source={'address':hex(va),'end_exclusive':hex(end),'file_offset':hex(offset(va)),
          'byte_count':len(raw),'sha256':hashlib.sha256(raw).hexdigest()}

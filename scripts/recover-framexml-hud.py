@@ -51,12 +51,12 @@ def main():
                           file_offset=hex(offset), byte_count=len(raw), sha256=hashlib.sha256(raw).hexdigest()),
         limits=["Exact Lua and bounded native file/format/write owner only; external callees, complete installer/engine ownership and runtime parity are unverified."])
     if args.write:
-        output = ROOT / "runtime/hud-framexml-0.108.0/curated"
+        output = ROOT / "runtime/analysis/history/interface/hud-framexml/ae22ad4062d9/curated"
         output.mkdir(parents=True, exist_ok=True)
         (output / "world-state-patch.lua").write_bytes(patch)
         (output / "manifest.json").write_text(json.dumps(metadata, indent=2) + "\n")
-        sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                        str(ROOT / "runtime/armory-recovery/python-libs")]
+        sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                        str(ROOT / "runtime/tool-state/python/armory/python-libs")]
         from capstone import Cs, CS_ARCH_X86, CS_MODE_64
         decoded = list(Cs(CS_ARCH_X86, CS_MODE_64).disasm(raw, owner))
         assert b"".join(bytes(i.bytes) for i in decoded) == raw

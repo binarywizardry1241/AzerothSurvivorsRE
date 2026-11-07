@@ -20,7 +20,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 EXE = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/pickup-effects-0.105.0"
+WORK = ROOT / "runtime/analysis/history/inventory/pickup-effects/1fa80c104cd1"
 RETAINED = ROOT / "docs/analysis/evidence/0.105.0/pickup-effects"
 RANGES = {
     "create-special": (0x14593A644, 0x14593A920),
@@ -116,7 +116,7 @@ def main():
         print("Prepared selected-target pickup REA plans; target not executed")
         return
 
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     import unicorn as uni
     import unicorn.x86_const as x86
     uc = uni.Uc(uni.UC_ARCH_X86, uni.UC_MODE_64)

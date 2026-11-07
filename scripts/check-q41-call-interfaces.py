@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.insert(0,'scripts')
 from creature_query_native import EquipmentProbe,PE,D,ROOT,ENDS,T
 from script_sources import load_script
-sys.path.insert(0,str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/camera/python-libs'))
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 
 class InterfaceProbe(EquipmentProbe):
@@ -68,7 +68,7 @@ def main():
     from coverage_common import file_sha256
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--stage',action='store_true');args=parser.parse_args()
-    work=ROOT/'runtime/q41-call-interfaces-0.113.2'
+    work=ROOT/'runtime/analysis/history/findings/q41-call-interfaces/3d285c807f09'
     parent=ROOT/'docs/analysis/evidence/0.113.2/q41-p01-aura/manifest.json'
     routing=json.loads(parent.read_text())['target_routing']
     assert len(routing)==21 and sum(r['record_count']for r in routing)==244

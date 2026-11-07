@@ -110,7 +110,7 @@ parses with the existing pinned formatter; no Rust code was compiled or run.
 Reproduce the bounded instruction/asset recovery with the existing dependencies:
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs python3 -B scripts/recover-sets-core.py --write --asset
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs python3 -B scripts/recover-sets-core.py --write --asset
 ```
 
 Allocation, roundf, catalog return tuples, class-catalog presence, the skipped

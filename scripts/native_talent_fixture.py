@@ -9,7 +9,7 @@ from script_sources import load_script
 from pathlib import Path
 import sys, json, hashlib, struct
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from coverage_common import *
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
 from unicorn.x86_const import *

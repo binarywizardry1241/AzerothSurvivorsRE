@@ -20,8 +20,8 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b'
-WORK = ROOT / 'runtime/card-layout-0.108.0'
-STAGED = ROOT / 'runtime/native-evidence/0.108.0/card-layout'
+WORK = ROOT / 'runtime/analysis/history/interface/card-layout/a253b785ead7'
+STAGED = ROOT / 'runtime/analysis/staging/native-evidence/0.108.0/card-layout'
 CURATED = ROOT / 'docs/analysis/evidence/0.108.0/card-layout'
 OWNERS = {
     'card-tile': 0x1401356B0,
@@ -376,7 +376,7 @@ def main():
                                        engines={'Capstone': capstone.__version__, 'Unicorn': unicorn.__version__},
                                        cases=cases, source_connections='checked', limitations=manifest['limitations']))
         print(f'Card layout 0.108.0: {len(cases)} native cases and live source checks passed; no compiler/game/renderer.')
-    else: print('Card evidence staged under runtime/card-layout-0.108.0 and runtime/native-evidence/0.108.0/card-layout.')
+    else: print('Card evidence staged under runtime/analysis/history/interface/card-layout/a253b785ead7 and runtime/analysis/staging/native-evidence/0.108.0/card-layout.')
 
 
 if __name__ == '__main__':

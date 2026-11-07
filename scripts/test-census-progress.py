@@ -14,7 +14,7 @@ spec.loader.exec_module(census)
 
 class ProgressReporting(unittest.TestCase):
     def setUp(self):
-        scratch = ROOT / 'runtime/coverage-tests'
+        scratch = ROOT / 'runtime/tests/coverage'
         scratch.mkdir(parents=True, exist_ok=True)
         temporary = tempfile.TemporaryDirectory(dir=scratch)
         self.addCleanup(temporary.cleanup)

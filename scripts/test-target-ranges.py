@@ -102,7 +102,7 @@ class FileRangeAccounting(unittest.TestCase):
         self.assertIsNone(after[-1]["uniform_byte_observation"])
 
     def test_data_files_extra_missing_changed_and_symlinked(self):
-        scratch = ROOT / "runtime/coverage-tests"
+        scratch = ROOT / "runtime/tests/coverage"
         scratch.mkdir(parents=True, exist_ok=True)
         with tempfile.TemporaryDirectory(dir=scratch) as directory:
             root = Path(directory)

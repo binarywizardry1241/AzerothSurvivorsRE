@@ -4,7 +4,7 @@ import sys,json,struct,itertools,hashlib,argparse
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]));from native_save_fixture import CPU,SHA
 from unicorn.x86_const import *
-ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'));asset=json.loads((ROOT/'crates/azeroth-survivors-re/assets/progression.json').read_text());c=CPU();added=[0x1458d7780,0x1458d8080,0x1458d7590,0x1459cbdd0,0x1459bae00,0x1459c7c20,0x1459cdc50,0x145bcd2f0,0x1458bb9f0,0x1458e5690,0x140261c80]
+ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'runtime/tool-state/python/camera/python-libs'));asset=json.loads((ROOT/'crates/azeroth-survivors-re/assets/progression.json').read_text());c=CPU();added=[0x1458d7780,0x1458d8080,0x1458d7590,0x1459cbdd0,0x1459bae00,0x1459c7c20,0x1459cdc50,0x145bcd2f0,0x1458bb9f0,0x1458e5690,0x140261c80]
 for a in added:c.allow_owner(a)
 c.admit={a for a in c.admit if not 0x1458e54e0<=a<0x1458e5689};c.allow_range(0x1458e54e0,0x1458e5689)
 
@@ -165,7 +165,7 @@ for role,a in [('owned-perks-clone',0x1459cbdd0),('instinct-count',0x1459bae00),
  new.append(dict(role=role,start=hex(a),end_exclusive=hex(b),sha256=hashlib.sha256(raw).hexdigest(),assembly=file.name))
 rea=[]
 for i,a in enumerate([0x1459bae00,0x1459cbdd0,0x1459c7c20,0x1459cdc50],3):
- file=ROOT/f'runtime/fixgap11-17/backend-helpers/rea/{i:03d}-procedure_pseudo_code.json'
+ file=ROOT/f'runtime/analysis/history/findings/fixgap11-17/65c29149f167/backend-helpers/rea/{i:03d}-procedure_pseudo_code.json'
  if file.exists():
   item=json.loads(file.read_text())['response']['result']['structuredContent'];rea.append(dict(procedure=hex(a),evidence_id=item['evidence_id'],subject_sha256=item['subject']['digest']['sha256'],analysis_profile_digest=item['analysis_profile']['digest']))
 if not rea:rea=json.loads((out/'manifest.json').read_text())['ghidra']

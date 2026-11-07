@@ -59,7 +59,7 @@ Unowned pieces can be inspected but have no Equip action. Locked zones can be
 browsed in Drop Tables without unlocking progression. Native Common Head displays
 +8 Health and0.7% critical chance; Uncommon Head displays+14 Health,1.9% critical
 chance and1.4% speed, matching recovered scaling. Original screenshots are disposable
-runtime evidence under `runtime/reference-captures/armory-*.png`.
+runtime evidence under `runtime/analysis/history/native-recovery/reference-captures/1415f0451c23/armory-*.png`.
 
 ## Implemented and remaining
 

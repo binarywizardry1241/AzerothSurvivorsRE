@@ -4,6 +4,7 @@
 --stage prepares compact evidence beneath runtime/. The source correspondence
 and synthetic Win64 inputs do not execute reconstructed Rust or an ECS World.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 import bisect
 import csv
@@ -19,7 +20,7 @@ from coverage_common import file_sha256
 from shared_native_inventory import open_readonly_uri as open_native_inventory
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-WORK = ROOT / "runtime/q41-flow-relations-0.113.2"
+WORK = ROOT / "runtime/analysis/history/findings/q41-flow-relations/710b14cd9802"
 CURATED = ROOT / "docs/analysis/evidence/0.113.2/q41-options-flow"
 RANGES = {
     "descriptor-dispatch": (0x1401A6770, 0x1401A67D9),
@@ -52,7 +53,7 @@ def main():
              "diagnostic_code_input", "guarded_table_input"]
     inputs = {name: queue["inputs"][name] for name in names}
     for row in inputs.values():
-        assert digest(ROOT / row["path"]) == row["sha256"], row["path"]
+        assert digest(retained_runtime_path(ROOT / row["path"], ROOT)) == row["sha256"], row["path"]
 
     def raw(address, size):
         offset = pe.rva_offset(address - pe.image_base)

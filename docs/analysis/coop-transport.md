@@ -74,7 +74,7 @@ ranges, five dispatch tables, eight retained Ghidra identities and source
 contract anchors. The durable query runner's completed result digests were
 verified before the compact query certificates were promoted. Raw responses,
 query journals, programs and function byte slices remain under ignored
-`runtime/coop-transport-0.115.0` and `runtime/ghidra-queries`.
+`runtime/analysis/history/co-op/coop-transport/4fd00ac85af1` and `runtime/ghidra-queries`.
 
 Both owned Rust files passed `rustfmt` syntax parsing using the existing local
 toolchain. Seven Rust regression tests are authored for strict route admission,

@@ -15,7 +15,7 @@ import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 SHA='8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-OUT=ROOT/'runtime/demon-actors-01050'
+OUT=ROOT/'runtime/analysis/history/combat/demon-actors/269e7d343165'
 
 def model(case,definition):
     """Independent semantic tracing of the source selector for finite vectors."""
@@ -77,7 +77,7 @@ def main():
             if field in row:assert (manifest_path.parent/row[field]).is_file()
         for name,digest in row.get('text_sha256',{}).items():
             assert hashlib.sha256((manifest_path.parent/name).read_bytes()).hexdigest()==digest
-    sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
     import unicorn.x86_const as r
     u=Uc(UC_ARCH_X86,UC_MODE_64)

@@ -15,7 +15,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
-WORK = ROOT / "runtime/q41-c01-0.113.2"
+WORK = ROOT / "runtime/analysis/history/findings/q41-c01/53e633ec2c9b"
 CURATED = ROOT / "docs/analysis/evidence/0.113.2/q41-c01"
 RANGES = {
     "dispatch": (0x140147509, 0x140147528),

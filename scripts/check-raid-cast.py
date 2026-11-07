@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b"
 EVIDENCE = ROOT / "docs/analysis/evidence/0.108.0/raid-cast"
-WORK = ROOT / "runtime/cast-presentation-0.108.0"
+WORK = ROOT / "runtime/analysis/history/combat/cast-presentation/e6d958ff3e6f"
 RANGES = {
     "hold": (0x145950630, 0x145950872),
     "actor-hold-gate": (0x1459721A4, 0x1459721B6),
@@ -48,8 +48,8 @@ def main(write):
     data = target_bytes(target)  # Rechecks the complete selected EXE hash.
     module = load_script("cast_pe", ROOT / "scripts/inventory-executable.py")
     pe = module.PE(data)
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                    str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                    str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     import capstone
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as r

@@ -16,7 +16,7 @@ from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
 OUT = ROOT / 'docs/analysis/evidence/0.113.2/banner-takeover'
-WORK = ROOT / 'runtime/fixgap58-dispatch-0.113.2/chat-proof'
+WORK = ROOT / 'runtime/analysis/history/findings/fixgap58-dispatch/e85d4625034a/chat-proof'
 LOOKUP, LENGTHS, POINTERS = 0x1410330A0, 0x1460CC128, 0x1460CC410
 SOURCE = 'crates/benilla-app/src/ui_chat/event.rs'
 
@@ -42,8 +42,8 @@ def main():
         offset = pe.rva_offset(address - pe.image_base)
         return data[offset:offset + count]
 
-    for path in ('runtime/camera-recovery-0.105.0/python-libs',
-                 'runtime/armory-recovery/python-libs'):
+    for path in ('runtime/tool-state/python/camera/python-libs',
+                 'runtime/tool-state/python/armory/python-libs'):
         sys.path.insert(0, str(ROOT / path))
     import capstone as c
     import unicorn as u

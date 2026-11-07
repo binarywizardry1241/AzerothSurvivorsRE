@@ -18,7 +18,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 
@@ -254,7 +254,7 @@ def replay():
         functions.append(dict(start=hex(address), end_exclusive=hex(end), file_offset=hex(at), sha256=hashlib.sha256(data[at:at + end - address]).hexdigest()))
     # Durable vectors share scenario inputs and expected text. All raw cases stay
     # disposable, retaining direct per-case inputs for investigation.
-    (ROOT / 'runtime/gap102/append-raw-cases.json').write_text(json.dumps(cases, separators=(',', ':'), ensure_ascii=False) + '\n')
+    (ROOT / 'runtime/analysis/history/findings/gap102/6d5d1bb31515/append-raw-cases.json').write_text(json.dumps(cases, separators=(',', ':'), ensure_ascii=False) + '\n')
     inputs = []
     for name in variants:
         example = next(case for case in cases if case['scenario'] == name['name'])

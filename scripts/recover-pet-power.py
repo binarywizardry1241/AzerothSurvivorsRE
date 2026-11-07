@@ -18,7 +18,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-OUT = ROOT / 'runtime/power-scaling-0.105.0/pet-power'
+OUT = ROOT / 'runtime/analysis/history/combat/power-scaling/11f43211b8a5/pet-power'
 SPANS = [('pet-stat17-entry', 0x145906479, 0x1459064ad),
          ('pet-stat17-and-melee-power', 0x145906960, 0x145906a0d),
          ('pet-ranged-power', 0x1459062ef, 0x14590634b)]
@@ -37,7 +37,7 @@ def main():
     assert hashlib.sha256(data).hexdigest() == SHA, 'wrong selected target'
     inventory = load_script('inventory', ROOT / 'scripts/inventory-executable.py')
     pe = inventory.PE(data)
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64
     import unicorn.x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)
@@ -131,7 +131,7 @@ def main():
                               sha256=hashlib.sha256(raw).hexdigest(), bits=struct.unpack('<I', raw)[0]))
     # One canonical extract owns the shared inline tick ranges. Scope fixtures
     # refer to it instead of retaining overlapping copies of these instructions.
-    curated = ROOT / 'runtime/native-evidence/0.105.0/power-scaling'
+    curated = ROOT / 'runtime/analysis/staging/native-evidence/0.105.0/power-scaling'
     curated.mkdir(parents=True, exist_ok=True)
     assembly = []
     for start, end in [(0x145904e91, 0x1459077f2)]:

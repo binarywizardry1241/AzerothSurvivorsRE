@@ -20,7 +20,7 @@ def main():
     assert target["sha256"] == SHA
     data = target_bytes(target)
     pe = load_script("talent_dispatch_pe", ROOT / "scripts/inventory-executable.py").PE(data)
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from native_terminal import NativeReplay
     n = NativeReplay(data, pe)
     u, r, m, bp = n.machine, n.registers, n.mem, n.bp
@@ -101,7 +101,7 @@ def main():
         offset = pe.rva_offset(start - pe.image_base)
         observed.append(dict(role=role, start=hex(start), end_exclusive=hex(end),
                              sha256=hashlib.sha256(data[offset:offset + end - start]).hexdigest()))
-    output = ROOT / "runtime/gap98-context-0.115.0/dispatch-check.json"
+    output = ROOT / "runtime/analysis/history/findings/gap98-context/b58b81f03b57/dispatch-check.json"
     output.parent.mkdir(parents=True, exist_ok=True)
     proof = dict(target=target["sha256"], ranges=observed, dispatch_cases=len(dispatch),
                  object_guard_cases=len(objects), instructions=n.instructions,

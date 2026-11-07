@@ -19,7 +19,7 @@ from native_recovery import f32
 from script_sources import load_script
 
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
-WORK = ROOT / 'runtime/meter-gap56-0.113.2'
+WORK = ROOT / 'runtime/analysis/history/native-recovery/meter-gap56/bfc9fcca3800'
 RETAINED = ROOT / 'docs/analysis/evidence/0.113.2/meter-minimap'
 OWNERS = [(0x1402b23f0, 0x1402b33e5), (0x1402137d0, 0x14021475c)]
 RANGES = {
@@ -63,7 +63,7 @@ def source_check():
 
 
 def replay(pe):
-    sys.path[:0] = [str(ROOT / 'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as reg
     machine = Uc(UC_ARCH_X86, UC_MODE_64)
@@ -272,7 +272,7 @@ def main():
     cases = replay(pe)
     source_check()
     if args.collect:
-        sys.path.insert(0, str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs'))
+        sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/camera/python-libs'))
         import capstone as cs
         destination = WORK / 'curated'
         destination.mkdir(parents=True, exist_ok=True)

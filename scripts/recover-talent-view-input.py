@@ -13,7 +13,7 @@ import struct
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 
@@ -164,7 +164,7 @@ def main():
     if args.check:
         assert result == json.loads(RETAINED.read_text())
     else:
-        out = ROOT / 'runtime/talent-view-0.105.0'
+        out = ROOT / 'runtime/analysis/history/progression/talent-view/94ac5e46bada'
         out.mkdir(parents=True, exist_ok=True)
         (out / 'input-vectors.json').write_text(json.dumps(result, indent=2) + '\n')
     print(f"Verified {len(result['cases'])} native talent-view watcher cases; no build or game launch")

@@ -42,7 +42,7 @@ and `native_panel` feed `gameplay::terminal_view` and `menu_overlay`:
 ## Static checks and limits
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/recover-overlay-style.py --check --verify
 ```
 

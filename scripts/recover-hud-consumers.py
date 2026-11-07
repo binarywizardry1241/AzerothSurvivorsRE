@@ -13,7 +13,7 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
 from coverage_common import latest_target
 SHA='8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-WORK=ROOT/'runtime/fixgap32-33'
+WORK=ROOT/'runtime/analysis/history/findings/fixgap32-33/9040a2da4887'
 OUT=ROOT/'docs/analysis/evidence/0.105.0/hud-consumers'
 SPANS={
  'loot-root':(0x140279050,0x140279ced),

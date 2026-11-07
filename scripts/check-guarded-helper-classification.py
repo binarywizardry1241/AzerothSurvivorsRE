@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Verify the nine bounded helper-table classifications without target execution."""
+from runtime_layout import retained_runtime_path
 import hashlib
 import json
 import struct
@@ -22,7 +23,7 @@ def main():
     pe = load_script("helper_classification_pe", ROOT / "scripts/inventory-executable.py").PE(image)
 
     def verify(record):
-        if file_sha256(ROOT / record["path"]) != record["sha256"]:
+        if file_sha256(retained_runtime_path(ROOT / record["path"], ROOT)) != record["sha256"]:
             raise ValueError("Changed evidence: " + record["path"])
 
     for record in proof["inputs"] + proof["source_first"]["paths"]:

@@ -73,5 +73,5 @@ For fresh Ghidra reproduction, use `scripts/rea-batch.py` against the configured
 installed input with current function/code seeds `1458dd920`, `1458fd2b0` and
 `14590b550`, the disabled-analyzer profile retained in the contract, and a fresh
 ignored project-local output directory. Original raw plans/results remain under
-`runtime/q41-local-handlers-0.113.2`, `runtime/q41-local-movement-0.113.2` and
-`runtime/q41-local-begin-0.113.2`. Original census populations are unchanged.
+`runtime/analysis/history/findings/q41-local-handlers/40df7123fccd`, `runtime/analysis/history/findings/q41-local-movement/0c550a598fd4` and
+`runtime/analysis/history/findings/q41-local-begin/87c7d513caa2`. Original census populations are unchanged.

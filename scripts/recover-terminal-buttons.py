@@ -3,7 +3,7 @@
 
 This proves only the selected constructor, queued spawn bundle and common
 default style. It does not infer absence of an external/global visual updater.
-Fresh Ghidra work is staged under runtime/terminal-hover-0.105.0 before the
+Fresh Ghidra work is staged under runtime/analysis/history/interface/terminal-hover/960d5253cdc3 before the
 reviewed textual extracts are promoted. All generated output stays in runtime/.
 """
 from portable_paths import objdump_output, portable_json
@@ -19,7 +19,7 @@ import subprocess
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/terminal-hover-0.105.0"
+WORK = ROOT / "runtime/analysis/history/interface/terminal-hover/960d5253cdc3"
 RANGES = {
     "button-style": (0x140012180, 0x140012325,
                      "73cd6f4ecec26bc0b6ee81eeb1801cb67da034eac344667994954d5f8ae2b4d7",

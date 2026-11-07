@@ -59,7 +59,7 @@ retain their recorded version until a current owner or comparison confirms them.
 ## Validation and remaining work
 
 The latest combined check passed45 library and147 application tests
-(`runtime/consolidation-2026-10-19/shared-serial-integration-r14b.log`), including
+(`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/shared-serial-integration-r14b.log`), including
 stored-level draining, immediate level stats, combined-XP rounding, cache/level
 isolation, repeated identical offers and pause eligibility. An earlier broad
 check passed220 library, binary and selected integration cases

@@ -208,7 +208,7 @@ measurements do not establish native loading-time parity. The full
 [MPQ input SHA-256 manifest](evidence/0.100.1/floor-recovery/mpq-inputs.json)
 record every row, exact separately supplied archive and probe hash. MPQs are
 excluded from delivery. Runtime logs remain under
-`runtime/consolidation-2026-10-19/floor-mpq-probe.{json,log}`.
+`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/floor-mpq-probe.{json,log}`.
 
 ## Verification
 
@@ -233,7 +233,7 @@ The expanded10-test Rust harness passed on2026-10-19 under the shared `menu`
 profile (`--locked --offline --test floor_recovery`), including all native fixture
 replays and connected-storey/raised-floor boundary checks. The command also
 compiled the current binary integration. Log:
-`runtime/consolidation-2026-10-19/floor-cache-regressions.log`.
+`runtime/analysis/history/native-recovery/consolidation/11a8f25258b7/floor-cache-regressions.log`.
 
 No original game process was launched by this recovery. Host `_hypotf`, `cosf`
 and`sinf`bit parity with Windows CRT remains unverified. Native instruction fixtures alone do not validate real MPQ cache generation.

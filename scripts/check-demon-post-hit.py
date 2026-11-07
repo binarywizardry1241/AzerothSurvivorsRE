@@ -329,7 +329,7 @@ def population_caps(args):
         output.mkdir(parents=True,exist_ok=True)
         manifest['queries'] = []
         for key in ['145c6fa80','145c88720','145cf2080']:
-            folder=ROOT/'runtime/warlock-current'/key
+            folder=ROOT/'runtime/analysis/history/combat/warlock-current/867d2347c452'/key
             journal=json.loads((folder/'rea/journal.json').read_text())
             operation=next(v for v in journal['operations'].values() if v['name']=='procedure_pseudo_code')
             assert operation['status']=='completed'
@@ -388,7 +388,7 @@ def population_caps(args):
             input=(base/path).read_text(),text=True,stdout=subprocess.DEVNULL,stderr=subprocess.PIPE)
         assert parsed.returncode==0,parsed.stderr
     if args.verify:
-        sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+        sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
         from native_terminal import NativeReplay
         m=NativeReplay(data,pe);u=m.machine;x=m.registers
         cases=dict(shield=[],shield_cap=[],gate=[])
@@ -476,7 +476,7 @@ def population_caps(args):
     print('Current population-cap bytes, query receipts and live source verified'+('; original-instruction cases passed'if args.verify else ''))
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--collect',action='store_true');parser.add_argument('--verify',action='store_true');parser.add_argument('--work',default='runtime/soul-reaping-0.112.0/curated');parser.add_argument('--contract',choices=['post-hit','population-caps'],default='post-hit');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--collect',action='store_true');parser.add_argument('--verify',action='store_true');parser.add_argument('--work',default='runtime/analysis/history/combat/soul-reaping/40796f10ac6f/curated');parser.add_argument('--contract',choices=['post-hit','population-caps'],default='post-hit');args=parser.parse_args()
     if args.contract=='population-caps':return population_caps(args)
     target=latest_target(verify=True);assert target['sha256']==SHA
     data=target_bytes(target);pe_module = load_script('post_pe', ROOT/'scripts/inventory-executable.py');pe=pe_module.PE(data)
@@ -487,14 +487,14 @@ def main():
     manifest['owners']=[dict(role=k,**record(a,bounds[a]))for k,a in OWNERS.items()]
     manifest['generator']={'path':'scripts/check-demon-post-hit.py','sha256':sha(Path(__file__).read_bytes())}
     if args.collect:
-        sys.path.insert(0,str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'));import capstone
+        sys.path.insert(0,str(ROOT/'runtime/tool-state/python/camera/python-libs'));import capstone
         output=project_path(args.work);output.mkdir(parents=True,exist_ok=True);decoder=capstone.Cs(capstone.CS_ARCH_X86,capstone.CS_MODE_64)
         for row in manifest['ranges']:
             a,b=int(row['address'],16),int(row['end_exclusive'],16);value=raw(a,b);instructions=list(decoder.disasm(value,a));assert b''.join(bytes(i.bytes)for i in instructions)==value,row['role']
             text=''.join(f'{i.address:x} {i.bytes.hex()} {i.mnemonic} {i.op_str}'.rstrip()+'\n'for i in instructions);name=row['role']+'.asm';(output/name).write_text(text);row.update(assembly=name,assembly_sha256=sha(text.encode()))
         manifest['ghidra']=[]
         for key in ['1459efc30','145939fb0','1459eabc0','query-iterator']:
-            root=ROOT/'runtime/soul-reaping-0.112.0';d=json.loads((root/(key+'-rea')/'003-procedure_pseudo_code.json').read_text())['response']['result']['structuredContent'];manifest['ghidra'].append(dict(role=key,evidence_id=d['evidence_id'],import_sha256=d['subject']['digest']['sha256'],decompiler_sha256=sha(d['normalized_result'].encode()),limitations='Raw Ghidra import; ABI/globals/callers are bounded.'))
+            root=ROOT/'runtime/analysis/history/combat/soul-reaping/40796f10ac6f';d=json.loads((root/(key+'-rea')/'003-procedure_pseudo_code.json').read_text())['response']['result']['structuredContent'];manifest['ghidra'].append(dict(role=key,evidence_id=d['evidence_id'],import_sha256=d['subject']['digest']['sha256'],decompiler_sha256=sha(d['normalized_result'].encode()),limitations='Raw Ghidra import; ABI/globals/callers are bounded.'))
         dump(output/'manifest.json',manifest)
         if args.verify:dump(output/'native-cases.json',replay())
         print('Staged native post-hit evidence:',output.relative_to(ROOT))

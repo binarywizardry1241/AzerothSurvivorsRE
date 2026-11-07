@@ -17,7 +17,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b'
-WORK = ROOT / 'runtime/locale-overrides-0.108.0'
+WORK = ROOT / 'runtime/analysis/history/interface/locale-overrides/f85c9ec06bba'
 RETAINED = ROOT / 'docs/analysis/evidence/0.108.0/localization-overrides'
 RANGES = {
     'loader': (0x1458E4B30, 0x1458E527E),
@@ -97,7 +97,7 @@ def main():
             (directory / (name + '-plan.json')).write_text(encoded(plan))
         print('Prepared bounded Ghidra plans:', directory.relative_to(ROOT))
         return
-    sys.path[:0] = [str(ROOT / 'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT / 'runtime/tool-state/python/armory/python-libs')]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as reg
     machine = Uc(UC_ARCH_X86, UC_MODE_64)

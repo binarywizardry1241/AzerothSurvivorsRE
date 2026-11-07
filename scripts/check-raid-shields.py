@@ -12,7 +12,7 @@ import sys
 from coverage_common import ROOT
 
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
-STAGE=ROOT/'runtime/native-evidence/0.109.0/raid-shields'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/raid-shields'
 KEPT=ROOT/'docs/analysis/evidence/0.109.0/raid-shields'
 SOURCE=ROOT/'crates/azeroth-survivors-re/src/bosses/raid_shields.rs'
 RANGES={
@@ -65,7 +65,7 @@ def recover():
     return target,raw,span,rows
 
 def check_native(raw,rows):
-    sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+    sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
     from capstone import Cs,CS_ARCH_X86,CS_MODE_64
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_MEM_UNMAPPED,UC_HOOK_CODE
     from unicorn import x86_const as r
@@ -198,7 +198,7 @@ def check_integration():
 def main():
     ap=argparse.ArgumentParser(description=__doc__);ap.add_argument('--write',action='store_true');ap.add_argument('--check',action='store_true');ap.add_argument('--prepare-rea',action='store_true');ap.add_argument('--check-integration',action='store_true');args=ap.parse_args()
     if args.prepare_rea:
-        target,raw,span,rows=recover();work=ROOT/'runtime/raid-shields-0.109.0/reproduce';work.mkdir(parents=True,exist_ok=True)
+        target,raw,span,rows=recover();work=ROOT/'runtime/analysis/history/raid/raid-shields/bf0080d61274/reproduce';work.mkdir(parents=True,exist_ok=True)
         disabled='Stack,Decompiler Switch Analysis,Function ID,Function Start Search,Disassemble Entry Points,Subroutine References,Data Reference,Reference,Non-Returning Functions - Discovered,Shared Return Calls,Create Address Tables'
         inputs=[('producer',0x1459578e0,0x14595cd42,0x145959aa1),('damage',0x145971490,0x145974c42,0x145971998),
                 ('aura',*RANGES['aura-helper'],RANGES['aura-helper'][0]),('applications',*RANGES['aura-applications'],RANGES['aura-applications'][0])]

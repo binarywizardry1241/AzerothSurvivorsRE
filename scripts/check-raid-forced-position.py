@@ -14,7 +14,7 @@ from coverage_common import ROOT
 
 g = load_script('guardian_fixture', ROOT/'scripts/check-raid-guardian-lifecycle.py')
 r = g.r
-STAGE = ROOT/'runtime/native-evidence/0.112.0/raid-forced-position'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-forced-position'
 KEPT = ROOT/'docs/analysis/evidence/0.112.0/raid-forced-position'
 RANGES = {'report-prefix': (0x1458f1b50, 0x1458f1c13),
           'report-return': (0x1458f26b1, 0x1458f26f7),

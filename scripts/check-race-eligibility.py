@@ -7,6 +7,7 @@ The Pick check stops before sex/appearance/name/zone handling. Source assertions
 are connection guards, not an execution of reconstructed Rust.
 """
 
+from runtime_layout import retained_runtime_path
 from script_sources import current_path, recorded_input_matches
 
 import argparse
@@ -21,8 +22,8 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 sys.path[:0] = [
-    str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-    str(ROOT / "runtime/armory-recovery/python-libs"),
+    str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+    str(ROOT / "runtime/tool-state/python/armory/python-libs"),
 ]
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
@@ -41,7 +42,7 @@ def sha(raw):
 
 
 def receipt(row):
-    path = current_path((ROOT / row["path"]).resolve())
+    path = current_path((retained_runtime_path(ROOT / row["path"], ROOT)).resolve())
     assert path.is_relative_to(ROOT), row["path"]
     assert recorded_input_matches(path, row['sha256']), row['path']
     return path
@@ -263,7 +264,7 @@ def main():
     image = target_bytes(target)
     pe = load_script("race_eligibility_pe", "scripts/inventory-executable.py").PE(image)
     promoted = ROOT / "docs/analysis/evidence/0.120.0/race-account/manifest.json"
-    path = args.manifest or (promoted if promoted.exists() else ROOT / "runtime/gap187/loader/curated/manifest.json")
+    path = args.manifest or (promoted if promoted.exists() else ROOT / "runtime/analysis/history/findings/gap187/7b90808b1bfc/loader/curated/manifest.json")
     path = path.resolve()
     assert path.is_relative_to(ROOT), "Manifest must be inside the project"
     new_proof = verify_manifest(path, image, pe, args.queries)

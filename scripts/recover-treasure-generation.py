@@ -72,7 +72,7 @@ def main():
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text("\n".join(generated)+"\n")
 
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn.x86_const import (UC_X86_REG_RCX, UC_X86_REG_RDX, UC_X86_REG_R8,
         UC_X86_REG_RSP, UC_X86_REG_RIP, UC_X86_REG_XMM0, UC_X86_REG_MXCSR,
@@ -150,7 +150,7 @@ def main():
                                  span(0x1454f4954,0x1454f49d2-0x1454f4954)])
     path=ROOT/"crates/azeroth-survivors-re/tests/fixtures/jewelry-0.100.1-native.json"
     path.write_text(portable_json(fixture,indent=2)+"\n")
-    log=ROOT/"runtime/treasure-0.100.1-generation/jewelry-increment.asm"
+    log=ROOT/"runtime/analysis/history/native-recovery/treasure-generation/5c80ae533c9d/jewelry-increment.asm"
     log.write_text(objdump_output(["objdump","-d","--no-show-raw-insn",
         "--start-address="+hex(START),"--stop-address="+hex(END),str(TARGET)],cwd=ROOT,text=True))
     print(f"Recovered {len(records)} jewelry definitions, {len(cases)} increment and {len(rarity_cases)} rarity cases")

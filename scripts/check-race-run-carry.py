@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Selected 0.120.0 race data and starter contract; no game or compilation."""
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import importlib.util
@@ -9,7 +10,7 @@ import struct
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path[:0] = [str(ROOT / 'scripts'), str(ROOT / 'runtime/camera-recovery-0.105.0/python-libs')]
+sys.path[:0] = [str(ROOT / 'scripts'), str(ROOT / 'runtime/tool-state/python/camera/python-libs')]
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 from capstone.x86 import X86_OP_MEM, X86_REG_RIP, X86_REG_R13
 from equipment_native import EquipmentProbe
@@ -178,7 +179,7 @@ assert json.loads((HERE / 'vectors.json').read_text()) == json.loads(json.dumps(
 manifest = json.loads((HERE / 'manifest.json').read_text())
 assert manifest['target']['sha256'] == SHA
 for receipt in manifest['source_receipts'] + [manifest['vectors']] + manifest['assembly']:
-    assert hashlib.sha256((ROOT / receipt['path']).read_bytes()).hexdigest() == receipt['sha256'], receipt['path']
+    assert hashlib.sha256((retained_runtime_path(ROOT / receipt['path'], ROOT)).read_bytes()).hexdigest() == receipt['sha256'], receipt['path']
 for assembly in manifest['assembly']:
     extent = assembly['native_range']
     start, end = int(extent['va'], 16), int(extent['end_exclusive'], 16)
@@ -191,7 +192,7 @@ if args.queries:
     for query in manifest['queries']:
         for field in ['result', 'journal', 'plan']:
             receipt = query[field]
-            assert hashlib.sha256((ROOT / receipt['path']).read_bytes()).hexdigest() == receipt['sha256'], receipt['path']
+            assert hashlib.sha256((retained_runtime_path(ROOT / receipt['path'], ROOT)).read_bytes()).hexdigest() == receipt['sha256'], receipt['path']
         journal = json.loads((ROOT / query['journal']['path']).read_text())
         assert journal['status'] == 'completed'
         evidence = json.loads((ROOT / query['result']['path']).read_text())['structuredContent']

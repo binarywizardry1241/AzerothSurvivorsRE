@@ -13,27 +13,27 @@ ordering, the Ready timer and a stream decoder behind injected readers/writers. 
 no I/O backend internally. Source26 now calls it from the connected
 [worker/UI adapters](main-menu-update-worker.md), which supply the native-gated
 filesystem/network/process code. Six standalone Rust fixture tests passed;
-`runtime/menu-update-recovery/update-install-rule-tests.log` records the result.
+`runtime/analysis/history/interface/menu-update-recovery/5c4b1380715f/update-install-rule-tests.log` records the result.
 The same six fixtures passed through normal Cargo tests in parent build21
 (12.05s;54 total focused harness cases). No real backend was supplied.
 Six additional stream fixtures passed in parent build24: the offline build passed
 in16.29s and53 focused harness cases passed (35 binary,6 Options config and12
 installer cases;8.49s test compilation). Logs are
-`runtime/menu-recovery/menu-build-24-typed-config-update-streams.log` and
-`runtime/menu-recovery/menu-tests-24-typed-config-update-streams.log`. The source
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-build-24-typed-config-update-streams.log` and
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-tests-24-typed-config-update-streams.log`. The source
 module was unreferenced at that historical checkpoint; source26 now connects it.
 Parent build25 also passed (`--locked --offline`,14.34s;7.54s test compilation).
 All18 installer cases passed, including the six new injected part-reader cases;
 105 focused harness cases passed with overlap. Its logs are
-`runtime/menu-recovery/menu-build-25-save-events-talents-progress.log` and
-`runtime/menu-recovery/menu-tests-25-save-events-talents-progress.log`.
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-build-25-save-events-talents-progress.log` and
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-tests-25-save-events-talents-progress.log`.
 The final build26 passed with `--locked --offline` in11.08s; the preceding
 combined build passed in29.09s. All169 focused harness cases passed with overlap:
 74 binary,19 native-save,6 config,1 run-modifier,14 save-browser,37 updater and18
 installer. This includes all five new connected memory-only worker fixtures.
 Test compilation took12.95s. Logs are
-`runtime/menu-recovery/menu-build-26-final.log` and
-`runtime/menu-recovery/menu-tests-26-menu-bridges.log`.
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-build-26-final.log` and
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-tests-26-menu-bridges.log`.
 Fixtures record operations in memory. No update was requested, downloaded,
 installed or launched, and no reference file was changed. No Cargo build or app
 launch was started by this subtask.

@@ -34,6 +34,14 @@ Users still supply their MPQs; source builds do not require the reference EXE.
 The local `recovery-layout.json` maps former loose paths to retained category
 locations. Move only closed recovery whose consumers can resolve the new path.
 Retain the exact payloads, target commitments and catalogued object links.
+Use `python3 -B scripts/manage-runtime-layout.py --check` to check the root.
+Use `--apply --check` to migrate inactive legacy output and resume an
+interrupted relocation. The command preserves catalog aliases and relative
+links. The root holds only the documented storage owners.
+
+Closed narrative snapshots can be inspected with
+`tar -tzf runtime/analysis/history/reports.tar.gz`. The archive records their
+original paths and SHA-256 digests. Maintained reports live in `docs/analysis/`.
 
 The primary checkout owns this project-wide workspace. Linked-worktree source
 tasks route native operations through the primary checkout instead of creating
@@ -177,6 +185,7 @@ python3 -B scripts/manage-analysis-store.py --consolidate-proof-files
 python3 -B scripts/manage-analysis-store.py --consolidate-identical-legacy
 python3 -B scripts/index-analysis-history.py --apply
 python3 -B scripts/manage-analysis-store.py --verify
+python3 -B scripts/manage-analysis-store.py --retire-stale-aliases
 python3 -B scripts/shared_native_inventory.py
 python3 -B scripts/shared_native_inventory.py --apply
 python3 -B scripts/shared_native_inventory.py --verify

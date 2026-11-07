@@ -2,7 +2,7 @@
 
 from coverage_common import file_sha256, load_json, project_path
 
-LEGACY_SUMMARY = 'runtime/q41-ownership-0.115.0/residual-summary-v2.json'
+LEGACY_SUMMARY = 'runtime/analysis/history/findings/q41-ownership/2bcdf9438d76/residual-summary-v2.json'
 
 
 def _is_summary(value):

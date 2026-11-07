@@ -50,7 +50,7 @@ for relative in (
         require(token in compact, f"Run race metadata connection: {relative}: {token}")
     require("menu.race" not in source, f"Frontend race still supplies loot: {relative}")
 
-output = ROOT / "runtime/fixgap-7-9/loot-race-check.json"
+output = ROOT / "runtime/analysis/history/findings/fixgap-7-9/abb72146abfe/loot-race-check.json"
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(
     json.dumps(

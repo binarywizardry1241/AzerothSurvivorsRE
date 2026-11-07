@@ -5,6 +5,7 @@ Only the original packet-builder instructions execute in synthetic memory.
 Allocation, byte copying and vector growth are declared fixture seams. Locale
 payloads, Ghidra receipts and source syntax have independent checks.
 """
+from runtime_layout import retained_runtime_path
 import hashlib
 import json
 import platform
@@ -22,7 +23,7 @@ HELPER = 'crates/azeroth-survivors-re/src/coop/reconnection.rs'
 
 
 def verify_receipt(row):
-    assert file_sha256(ROOT / row['path']) == row['sha256'], row['path']
+    assert file_sha256(retained_runtime_path(ROOT / row['path'], ROOT)) == row['sha256'], row['path']
 
 
 class PacketProbe(EquipmentProbe):

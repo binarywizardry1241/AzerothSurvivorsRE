@@ -66,7 +66,7 @@ for class_id in range(256):
 
 source = (ROOT / "crates/azeroth-survivors-re/src/gameplay/stored_hud.rs").read_text()
 require("let class = menu.class_id();" in source, "Stored HUD frontend class connection")
-output = ROOT / "runtime/fixgap-7-9/hud-class-provider-check.json"
+output = ROOT / "runtime/analysis/history/findings/fixgap-7-9/abb72146abfe/hud-class-provider-check.json"
 output.parent.mkdir(parents=True, exist_ok=True)
 output.write_text(
     json.dumps(

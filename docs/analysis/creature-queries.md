@@ -65,7 +65,7 @@ hashes, REA/Ghidra Evidence IDs, all 246 hit records, source projections and res
 commitments. The [selected branch transcription](evidence/0.113.2/creature-query-branches.asm)
 retains only the field/publication/miss/leaf boundaries, without another complete
 protocol-handler extract. Fresh Ghidra plans/raw outputs stay under ignored
-`runtime/q41-creature-query-0.113.2/`.
+`runtime/analysis/history/findings/q41-creature-query/2dca5c5bd546/`.
 
 `python3 -B scripts/check-creature-queries.py` verifies the installed
 identity, executes original instructions and compares the current source inputs:

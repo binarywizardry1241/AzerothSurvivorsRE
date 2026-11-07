@@ -29,7 +29,7 @@ def native_vectors(data, speeds):
     """Replay unchanged instructions only; all serializer/queue calls remain explicit seams."""
     module = load_script('selected_pe', ROOT/'scripts/inventory-executable.py')
     pe=module.PE(data)
-    sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, __version__
     from unicorn import x86_const as reg
     u=Uc(UC_ARCH_X86,UC_MODE_64)
@@ -90,7 +90,7 @@ def native_vectors(data, speeds):
                   seams=['Speed prefix stops before serializer call or no-change continuation.',
                          'Root/unroot counter read and post-queue increment replay separately; packet serialization and queue execution are not emulated.',
                          'Relocation cases execute counter read/increment only; floor and sink-test admission are outside these cases.'])
-    out=ROOT/'runtime/player-mover-0.105.0';out.mkdir(parents=True,exist_ok=True)
+    out=ROOT/'runtime/analysis/history/movement/player-mover/70ff35508c62';out.mkdir(parents=True,exist_ok=True)
     (out/'native-vectors.json').write_text(json.dumps(evidence,indent=2)+'\n')
     retained=json.loads((EVIDENCE/'player-mover-native-vectors.json').read_text())
     assert evidence==retained, 'Native mover vectors drifted from retained selected-target evidence'
@@ -118,7 +118,7 @@ def main():
         else:
             assert (EVIDENCE / row['assembly']).is_file(), row['assembly']
         if options.extract and 'start' in row:
-            output = ROOT / 'runtime/player-mover-0.105.0'
+            output = ROOT / 'runtime/analysis/history/movement/player-mover/70ff35508c62'
             output.mkdir(parents=True,exist_ok=True)
             (output / (row['role']+'.bin')).write_bytes(raw)
             plan = dict(target=str((output / (row['role']+'.bin')).relative_to(ROOT)),

@@ -107,7 +107,7 @@ PYTHONPATH=runtime/tests/query-python-deps python3 -B scripts/recover-expanded-g
 Default mode regenerates complete deterministic projections, rehashes all inputs
 and verifies equality with the curated receipts. `--write` publishes a reviewed
 proposal. The full component, instruction-role and range-boundary rows remain
-under ignored `runtime/q41-expanded-ownership-0.115.0/`; the computed-gap artifact
+under ignored `runtime/analysis/history/findings/q41-expanded-ownership/6304bee20684/`; the computed-gap artifact
 is retained there for the exact producer/type follow-through and later replay.
 Existing source-byte-verified Ghidra exports and canonical support contracts are
 reused; no new Program/import or generic engine recovery is needed for these

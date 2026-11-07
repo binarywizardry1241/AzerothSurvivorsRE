@@ -131,7 +131,7 @@ the player/camera, Escape paused, and Return to menu restored the picker and
 resident animated backdrop. The scenario used the isolated
 `runtime/menu-qa-state` profile. See the
 [manual check record](evidence/0.97.2/run-entry/manual-check.json); native log is
-`runtime/menu-recovery/menu-interaction.log`. Arrow keys, both-mouse movement,
+`runtime/analysis/history/interface/menu-recovery/0558cac00653/menu-interaction.log`. Arrow keys, both-mouse movement,
 digit-choice keys, death/retry and victory were not manually checked. This one
 short interaction does not establish all-class control or original-game parity.
 

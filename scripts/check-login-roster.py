@@ -107,7 +107,7 @@ source = "".join((ROOT / "crates/azeroth-survivors-re/src/menu_state.rs").read_t
 for method in ("select_roster_character", "selected_roster_guid"):
     body = source.split("fn" + method + "(", 1)[1].split("pubfn", 1)[0]
     assert ".startup_character.iter().cloned().chain(self.backend_save.characters())" in body
-output = ROOT / "runtime/fixgap-7-9/login-roster-check.json"
+output = ROOT / "runtime/analysis/history/findings/fixgap-7-9/abb72146abfe/login-roster-check.json"
 output.write_text(json.dumps(dict(target_sha256=SHA, cases=results, limits=[
     "Ordinary roster mode only; all factory/collector/row clone instructions execute.",
     "Packet-decoded GUID partials, scratch allocation/bytes/free are explicit seams.",

@@ -20,7 +20,7 @@ from script_sources import load_script
 
 SHA = "58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb"
 START, END = 0x145C30ED0, 0x145C31E46
-WORK = ROOT / "runtime/tga-0.113.2"
+WORK = ROOT / "runtime/analysis/history/native-recovery/tga/f4a37f701d98"
 RETAINED = ROOT / "docs/analysis/evidence/0.113.2/addon-gold"
 ATLAS_SHA = "7e2b57533361f224e01171dbc857247b04096fdc33e58364901b230b75b270be"
 ATLAS_RGBA_SHA = "df19b43c5a4b9af721a620bce4b638202b2c6c4004b9a8e23ee8d46361b4a60c"
@@ -45,8 +45,8 @@ class NativeDecoder:
     """Whole original function; only allocation/copy/free/platform-probe seams."""
 
     def __init__(self, raw):
-        for directory in ("runtime/camera-recovery-0.105.0/python-libs",
-                          "runtime/armory-recovery/python-libs"):
+        for directory in ("runtime/tool-state/python/camera/python-libs",
+                          "runtime/tool-state/python/armory/python-libs"):
             sys.path.insert(0, str(ROOT / directory))
         import unicorn as u
         from unicorn import x86_const as x
@@ -257,7 +257,7 @@ def main():
                                      REA_GHIDRA_DISABLED_ANALYZERS="Function ID,Function Start Search,Create Address Tables"),
                     operations=[dict(name="procedure_pseudo_code", arguments=dict(procedure=hex(START)), label="decoder")])
         (WORK / "plan.json").write_text(encoded(plan))
-        print("Prepared runtime/tga-0.113.2/plan.json for scripts/rea-batch.py")
+        print("Prepared runtime/analysis/history/native-recovery/tga/f4a37f701d98/plan.json for scripts/rea-batch.py")
         return
     result = replay(raw)
     if args.collect:

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check bounded guest settlement instructions and evidence without compilation."""
 
+from runtime_layout import retained_runtime_path
 import argparse
 import hashlib
 import json
@@ -174,7 +175,7 @@ def source_connections(proof):
         for path, anchor in row['anchors']:
             assert path in source and anchor in source[path], row['id']
     for row in proof.get('source_receipts', []):
-        assert digest((ROOT / row['path']).read_bytes()) == row['sha256'], row['path']
+        assert digest((retained_runtime_path(ROOT / row['path'], ROOT)).read_bytes()) == row['sha256'], row['path']
     host = {('Darwin', 'arm64'): 'aarch64-apple-darwin',
             ('Darwin', 'x86_64'): 'x86_64-apple-darwin',
             ('Linux', 'aarch64'): 'aarch64-unknown-linux-gnu',

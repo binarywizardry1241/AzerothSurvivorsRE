@@ -121,8 +121,8 @@ def run(write):
                     payload = original(address, 16)
                     install(address, payload)
                     data[hex(address)] = dict(byte_count=16, sha256=sha(payload))
-    queries = [query_record(ROOT / "runtime/fixgap-238-239-0.121.0/ordinary-constructor", "0x145c14ae0"),
-               query_record(ROOT / "runtime/fixgap219/scaling/boss", "0x145c275f0", "plan-fixed.json", "query-fixed")]
+    queries = [query_record(ROOT / "runtime/analysis/history/findings/fixgap-238-239/efeee1fba607/ordinary-constructor", "0x145c14ae0"),
+               query_record(ROOT / "runtime/analysis/history/findings/fixgap219/888a65e3edb9/scaling/boss", "0x145c275f0", "plan-fixed.json", "query-fixed")]
     for query in queries:
         result = json.loads(project_path(query["result"]["path"]).read_text())
         native = result.get("structuredContent") or json.loads(result["content"][0]["text"])

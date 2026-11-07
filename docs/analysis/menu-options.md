@@ -61,7 +61,7 @@ language leaves and the AddOns page, with
 Raw imports omit external memory/callees and infer a generic ABI; the original
 instructions and Windows-register fixtures govern. `--write --stage` reproduces
 the source payloads and compact proof
-under ignored `runtime/menu-options-0.115.0/` before review/promotion.
+under ignored `runtime/analysis/history/interface/menu-options/22af7f7d012d/` before review/promotion.
 
 The existing Rust catalog regression now expects the current equal key sets and
 checks the six added text/template categories across languages; it was not

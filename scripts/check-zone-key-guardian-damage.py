@@ -15,7 +15,7 @@ import struct
 from coverage_common import ROOT, latest_target, file_sha256
 from zone_key_native import ModeProbe, KEYS, TABLE, PARSER, END, PE, D, bits, value, f, raw, model
 
-WORK=ROOT/'runtime/q41-mode-parser-0.113.2'
+WORK=ROOT/'runtime/analysis/history/findings/q41-mode-parser/a2d5061954ed'
 KEEP=ROOT/'docs/analysis/evidence/0.113.2/zone-key-guardian-damage.json'
 
 

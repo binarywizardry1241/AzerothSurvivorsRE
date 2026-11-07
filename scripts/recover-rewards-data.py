@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Recover 0.105.0 Rewards records/labels after checking the selected EXE hash.
 
-Output stays in runtime/rewards-menu-0.105.0; --write-assets applies only the
+Output stays in runtime/analysis/history/interface/rewards-menu/aae945e150f0; --write-assets applies only the
 selected Rewards records/labels. No compilation or application is run.
 """
 from script_sources import load_script
@@ -14,7 +14,7 @@ import struct
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-WORK = ROOT / "runtime/rewards-menu-0.105.0"
+WORK = ROOT / "runtime/analysis/history/interface/rewards-menu/aae945e150f0"
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
 PERKS, COMPANIONS, TABARDS = 0x145DBA1B8, 0x145DBBE98, 0x145DBC598

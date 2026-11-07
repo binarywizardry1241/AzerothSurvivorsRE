@@ -4,6 +4,7 @@
 This is operand/interface classification, not source or gameplay equivalence.
 All native instructions come from the installed, hash-verified reference input.
 """
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json, portable_record
 import argparse
 from collections import Counter
@@ -67,7 +68,7 @@ def main():
     expanded = projection['profiles']['expanded_all_seeds']
     source = expanded['artifacts']['jsonl']
     consume(source['path'], source['sha256'])
-    selected = [json.loads(line) for line in (ROOT / source['path']).read_text().splitlines()]
+    selected = [json.loads(line) for line in (retained_runtime_path(ROOT / source['path'], ROOT)).read_text().splitlines()]
     selected = [r for r in selected if r['actual_native_owner'] is None and r['custom_game_crate']]
     require(len(selected) == 60 and len({r['path'] for r in selected}) == 14, 'Expanded selection differs')
     prior = {r['site']: r for r in canonical['sites']}
@@ -229,8 +230,8 @@ def main():
                                   continuation_instruction_count=len(continuation), return_site=hex(continuation[-1].address),
                                   flow_address_bytes_sha256=digest(b''.join(struct.pack('<Q', i.address)+bytes(i.bytes) for i in continuation)),
                                   concrete_callback_ABI_certified=False))
-    native_root = ROOT / 'runtime/q41-diagnostics-0.115.0/cards'
-    native_receipt = json.loads(consume('runtime/q41-diagnostics-0.115.0/cards/input-receipt.json').read_text())
+    native_root = ROOT / 'runtime/analysis/history/findings/q41-diagnostics/1e0c7e1c9978/cards'
+    native_receipt = json.loads(consume('runtime/analysis/history/findings/q41-diagnostics/1e0c7e1c9978/cards/input-receipt.json').read_text())
     require(native_receipt['target'] == identity and native_receipt['start'] == '0x140054020' and
             native_receipt['end_exclusive'] == '0x1400551d0' and native_receipt['sha256'] == digest(raw(0x140054020, 0x11b0)), 'Changed Ghidra input receipt')
     native_result_paths = list((native_root / 'rea/results').glob('*.json'))

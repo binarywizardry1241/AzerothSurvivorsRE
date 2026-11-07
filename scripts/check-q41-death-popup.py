@@ -15,7 +15,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
-WORK = ROOT / "runtime/q41-data-contracts-0.115.0/static-popup"
+WORK = ROOT / "runtime/analysis/history/findings/q41-data-contracts/27d2ef7f9d9d/static-popup"
 KEEP = ROOT / "docs/analysis/evidence/0.115.0/q41-death-popup.json"
 START, END = 0x145995680, 0x1459958a1
 

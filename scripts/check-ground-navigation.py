@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'e069bf3152f8d8f7160d66388907fc181c733bd170aa150d3b7ff7adf251e048'
 KEPT = ROOT/'docs/analysis/evidence/0.110.0/ground-navigation'
-STAGE = ROOT/'runtime/native-evidence/0.110.0/ground-navigation'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.110.0/ground-navigation'
 OWNERS = {
     'segment': 0x1459a3a00, 'occupancy-finalize': 0x1459a3dd0,
     'occupancy-rasterize': 0x1459a4390, 'footprint': 0x1459a4b70,
@@ -49,7 +49,7 @@ def main():
     spec=importlib.util.spec_from_file_location('ground_pe',ROOT/'scripts/inventory-executable.py')
     mod=importlib.util.module_from_spec(spec);spec.loader.exec_module(mod);pe=mod.PE(data)
     bounds={a+pe.image_base:b+pe.image_base for a,b,_ in pe.functions()}
-    sys.path[:0]=[str(ROOT/'runtime/armory-recovery/python-libs'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+    sys.path[:0]=[str(ROOT/'runtime/tool-state/python/armory/python-libs'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
     from capstone import Cs,CS_ARCH_X86,CS_MODE_64
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
     from unicorn import x86_const as r

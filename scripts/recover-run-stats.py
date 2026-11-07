@@ -105,7 +105,7 @@ def main():
                     byte_count=len(source), sha256=hashlib.sha256(source).hexdigest(),
                     source="character-pane.lua", fields=fields, labels=labels, locales=sorted(catalogs),
                     limits=["Exact embedded Lua source; host FrameXML/load/event/render behavior is not established by extraction."])
-    output = RETAINED if args.check else ROOT / "runtime/fixgap20-26-27/run-stats-curated"
+    output = RETAINED if args.check else ROOT / "runtime/analysis/history/findings/fixgap20-26-27/f1152a393fb1/run-stats-curated"
     if args.check:
         assert (output / "character-pane.lua").read_bytes() == source
         assert json.loads((output / "manifest.json").read_text()) == metadata

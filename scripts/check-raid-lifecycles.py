@@ -10,8 +10,8 @@ from script_sources import load_script
 import argparse, hashlib, json, math, re, struct, sys
 from pathlib import Path
 from coverage_common import ROOT
-sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
-STAGE=ROOT/'runtime/native-evidence/0.112.0/raid-lifecycles'
+sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-lifecycles'
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-lifecycles'
 def f32(v):
     return _shared_f32(v)
@@ -37,7 +37,7 @@ RANGES={
  'guardian-engage-scalars':(0x14594a153,0x14594a1ba),
 }
 def shield_contracts(raw,rows):
-    sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+    sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
     from capstone import Cs,CS_ARCH_X86,CS_MODE_64
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_MEM_UNMAPPED,UC_HOOK_CODE
     from unicorn import x86_const as r
@@ -142,7 +142,7 @@ def shield_contracts(raw,rows):
 
 def sequence_contracts(raw,catalog):
  selected=[(i,row)for i,row in enumerate(catalog['actions'])if row['native_tag']in[18,24]]
- sys.path[:0]=[str(ROOT/'runtime/armory-recovery/python-libs'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+ sys.path[:0]=[str(ROOT/'runtime/tool-state/python/armory/python-libs'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
  from capstone import Cs,CS_ARCH_X86,CS_MODE_64
  from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_MEM_UNMAPPED,UC_HOOK_CODE
  from unicorn import x86_const as r
@@ -633,7 +633,7 @@ def wave_contracts(raw,records):
 
 def action_contracts(raw, records):
     # Existing optional analysis dependencies; never install anything here.
-    sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+    sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
     from capstone import Cs,CS_ARCH_X86,CS_MODE_64
     from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_MEM_UNMAPPED,UC_HOOK_CODE
     from unicorn import x86_const as r
@@ -904,7 +904,7 @@ def volley_contracts(raw):
     return cases
 
 def pool_contracts(raw,rows):
-    sys.path[:0] = [str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_UNMAPPED
     from unicorn import x86_const as r

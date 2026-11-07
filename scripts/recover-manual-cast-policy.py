@@ -22,7 +22,7 @@ data = EXE.read_bytes()
 assert hashlib.sha256(data).hexdigest() == SHA
 inventory = load_script('inventory', ROOT / 'scripts/inventory-executable.py')
 pe = inventory.PE(data)
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 
@@ -156,7 +156,7 @@ for role, start, stop, before, dest in [
 
 evidence = []
 for role in ['choices', 'results']:
-    source = ROOT / f'runtime/manual-cast-0.100.1/rea-{role}/003-procedure_pseudo_code.json'
+    source = ROOT / f'runtime/analysis/history/native-recovery/manual-cast/9fc27b445ad1/rea-{role}/003-procedure_pseudo_code.json'
     if source.exists():
         result = json.loads(json.loads(source.read_text())['response']['result']['content'][0]['text'])
         (OUT / (role + '.ghidra.c')).write_text('\n'.join(line.rstrip() for line in result['normalized_result'].splitlines()).rstrip() + '\n')

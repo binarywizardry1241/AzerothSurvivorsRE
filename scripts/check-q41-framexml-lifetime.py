@@ -12,7 +12,7 @@ from coverage_common import ROOT,latest_target,target_bytes
 from script_sources import load_script
 
 KEEP=ROOT/'docs/analysis/evidence/0.115.0/q41-framexml-lifetime.json'
-WORK=ROOT/'runtime/q41-framexml-lifetime-0.115.0'
+WORK=ROOT/'runtime/analysis/history/findings/q41-framexml-lifetime/1227bd6a2f14'
 RUST=ROOT/'crates/azeroth-survivors-re/src/gameplay/client/talent_view.rs'
 SHA='0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 

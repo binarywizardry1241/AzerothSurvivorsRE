@@ -60,7 +60,7 @@ the sampled state and clock, Off and active branch selection, and terminal
 role/close/reason order. Source guards check the poll and departure wiring.
 
 ```sh
-PYTHONPATH=runtime/armory-recovery/python-libs python3 -B scripts/check-coop-directory-transport.py --primary-failure
+PYTHONPATH=runtime/tool-state/python/armory/python-libs python3 -B scripts/check-coop-directory-transport.py --primary-failure
 ```
 
 The retained socket source guards and pinned Rust syntax parser also passed.

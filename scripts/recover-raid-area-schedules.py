@@ -20,7 +20,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = "dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b"
-WORK = ROOT / "runtime/raid-area-schedules-0.108.0"
+WORK = ROOT / "runtime/analysis/history/raid/raid-area-schedules/2d7891e075b8"
 EVIDENCE = ROOT / "docs/analysis/evidence/0.108.0/raid-area-schedules"
 SOURCE = ROOT / "crates/azeroth-survivors-re/src/bosses/raid_area_catalog.rs"
 
@@ -112,7 +112,7 @@ def recover():
     for record in manifest["spans"]:
         at = int(record["file_offset"], 16)
         assert hashlib.sha256(data[at:at + record["byte_count"]]).hexdigest() == record["sha256"]
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64
     from unicorn import x86_const as r
     uc = Uc(UC_ARCH_X86, UC_MODE_64)

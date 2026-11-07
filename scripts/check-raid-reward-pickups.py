@@ -10,7 +10,7 @@ def load(name,path):
 base=load('reward_boss_cpu','scripts/check-raid-boss-lifecycle.py')
 r=base.r;f=base.f;bits=base.bits;fb=base.fb
 base.RANGES=dict(base.RANGES,**{'reward-pickup':(0x145944310,0x14594544f),'reward-object':(0x14594f020,0x14594fb4d),'guardian-magnet':(0x14593d3f0,0x14593d4f6)})
-STAGE=ROOT/'runtime/native-evidence/0.112.0/raid-reward-pickups'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-reward-pickups'
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-reward-pickups'
 
 class Machine(base.Machine):
@@ -220,7 +220,7 @@ def provenance(out,mod,target,raw,span,stage):
     if stage:
         operations=[]
         for role in['pickup','object']:
-            response=ROOT/('runtime/raid-reward-pickups-0.112.0/rea-'+role+'/003-analyze_function.json');result=json.loads(response.read_text())['response']['result']['structuredContent'];a,b=base.RANGES['reward-'+role];pseudo=result['normalized_result']['pseudocode'];text='\n'.join(line.rstrip()for line in pseudo.strip().splitlines())+'\n';name=role+'.pseudo.c';(out/name).write_text(text);assert result['subject']['digest']['sha256']==span(a,b-a)['sha256']
+            response=ROOT/('runtime/analysis/history/raid/raid-reward-pickups/6fbd4421bdf7/rea-'+role+'/003-analyze_function.json');result=json.loads(response.read_text())['response']['result']['structuredContent'];a,b=base.RANGES['reward-'+role];pseudo=result['normalized_result']['pseudocode'];text='\n'.join(line.rstrip()for line in pseudo.strip().splitlines())+'\n';name=role+'.pseudo.c';(out/name).write_text(text);assert result['subject']['digest']['sha256']==span(a,b-a)['sha256']
             operations.append(dict(role=role,operation=result['operation'],provider=result['provider'],va=hex(a),byte_count=b-a,input_sha256=span(a,b-a)['sha256'],evidence_id=result['evidence_id'],analysis_profile_sha256=result['analysis_profile']['digest'],pseudocode=name,pseudocode_sha256=hashlib.sha256(text.encode()).hexdigest(),raw_pseudocode_sha256=hashlib.sha256(pseudo.encode()).hexdigest(),pseudocode_normalization='outer blank lines and trailing whitespace removed; original response retained under ignored runtime'))
         record=dict(target_version=target['version'],target_sha256=target['sha256'],target_executed=False,operations=operations,limits=['Headerless raw imports map file offset0 to current independently checked PE entries; external data/callers/engine implementations and concrete Win64 types remain unresolved.','Ghidra does not recover the pickup computed switch from this bounded raw import. Exact installed switch slots and executed cases own the AS branch contracts; no function census completeness is claimed.'])
         (out/'rea-provenance.json').write_text(portable_json(record,indent=2)+'\n')

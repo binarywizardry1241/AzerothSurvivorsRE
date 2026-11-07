@@ -13,7 +13,7 @@ from pathlib import Path
 import hashlib, json, struct, subprocess, sys
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 
@@ -208,7 +208,7 @@ for role,lo,hi in [
     row=dict(role=role,address=hex(lo),end_exclusive=hex(hi),file_offset=hex(offset),sha256=hashlib.sha256(raw).hexdigest())
     (OUT/(role+'.asm')).write_text(objdump_output(['objdump','-d','--no-show-raw-insn',f'--start-address={lo:#x}',f'--stop-address={hi:#x}',str(TARGET)],text=True))
     if role=='milestone-companion-create':
-        path=ROOT/'runtime/milestone-effects-0.100.1/rea-companion-create/003-procedure_pseudo_code.json'
+        path=ROOT/'runtime/analysis/history/native-recovery/milestone-effects/b4353eaea23f/rea-companion-create/003-procedure_pseudo_code.json'
         evidence=json.loads(path.read_text())['response']['result']['structuredContent']
         assert evidence['subject']['digest']['sha256']==row['sha256'] and evidence['provider']['id']=='ghidra'
         row['rea_evidence_id']=evidence['evidence_id']; row['analysis_profile']=evidence['analysis_profile']

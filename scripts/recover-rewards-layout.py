@@ -9,7 +9,7 @@ Unknown external calls fail closed. The source byte hash is checked on every run
 from script_sources import load_script
 from pathlib import Path
 import hashlib, json, struct, sys
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import *
 
@@ -147,7 +147,7 @@ def main():
                           'Account/selection inputs are supplied fixtures. Emitted nodes/text values are not rendered layout or interaction parity.',
                           'Card/command samples stop immediately after the first outer Node submission; their child typography/hover comes from separately retained instructions.',
                           'Panel input Node is captured before the common panel style is applied. Generic raw-slice Ghidra signatures are provisional; source assembly binds Windows arguments.'])
- (ROOT/'runtime/rewards-menu-0.105.0/layout-vectors.json').write_text(json.dumps(report,indent=2)+'\n')
+ (ROOT/'runtime/analysis/history/interface/rewards-menu/aae945e150f0/layout-vectors.json').write_text(json.dumps(report,indent=2)+'\n')
  print('Recovered',sum(len(v['snapshots'])for v in results.values()),'typed constructor snapshots across',len(results),'scopes')
 
 if __name__=='__main__':main()

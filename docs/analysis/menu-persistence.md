@@ -93,7 +93,7 @@ cases, **625** formula pairs and **140** adjustments. Clock APIs, allocation/fre
 memcmp, RawVec growth and UTC formatting/field capture are explicit seams.
 Unexpected instruction destinations abort. The check also verifies native call
 order, retained hashes and live source ordering. `--stage` creates candidate
-evidence under ignored `runtime/menu-persistence-0.115.0/curated/` for review.
+evidence under ignored `runtime/analysis/history/interface/menu-persistence/9f64de07bf02/curated/` for review.
 
 An authored Rust regression checks that the injected clock observes the completed
 active payload, is skipped for a default account, and still advances a due backup

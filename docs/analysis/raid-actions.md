@@ -108,9 +108,9 @@ Recreate the bounded Ghidra inputs without starting analysis:
 
 ```sh
 python3 -B scripts/recover-raid-actions.py --prepare-rea
-python3 -B scripts/rea-batch.py runtime/raid-actions-0.109.0/reproduce/dispatch-plan.json
-python3 -B scripts/rea-batch.py runtime/raid-actions-0.109.0/reproduce/hazard-create-plan.json
-python3 -B scripts/rea-batch.py runtime/raid-actions-0.109.0/reproduce/knockback-packet-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/raid-actions/cb67164bf8c6/reproduce/dispatch-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/raid-actions/cb67164bf8c6/reproduce/hazard-create-plan.json
+python3 -B scripts/rea-batch.py runtime/analysis/history/raid/raid-actions/cb67164bf8c6/reproduce/knockback-packet-plan.json
 ```
 
 Raw imports, databases, protocol output and parser output stay ignored under

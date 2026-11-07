@@ -8,7 +8,7 @@ The140-entry catalog is recovered and the new [`CodexPlugin`](../../crates/azero
 
 ## Catalog and text
 
-[`scripts/extract-menu-codex.py`](../../scripts/extract-menu-codex.py) verifies the original digest and produces [`assets/codex.json`](../../crates/azeroth-survivors-re/assets/codex.json). Building the reconstruction does not require the EXE, Python or Unicorn. The extraction-only Unicorn dependency is local under ignored`runtime/armory-recovery/python-libs`.
+[`scripts/extract-menu-codex.py`](../../scripts/extract-menu-codex.py) verifies the original digest and produces [`assets/codex.json`](../../crates/azeroth-survivors-re/assets/codex.json). Building the reconstruction does not require the EXE, Python or Unicorn. The extraction-only Unicorn dependency is local under ignored`runtime/tool-state/python/armory/python-libs`.
 
 The recovered catalog consists of:
 

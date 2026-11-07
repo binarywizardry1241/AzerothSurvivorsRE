@@ -144,10 +144,10 @@ and 56 slide cases, 8 pop and 8 flash cases, 48 pop-state and 48 pop-text cases,
 40 fill cases, 8 rarity cases, 40 effective-damage cases, 3 complete stat
 projections and 4 color-constructor cases. Eleven color literal groups and all
 8 rarity colors match the source f32 bits exactly. Representative vectors and
-complete generated results stay under ignored `runtime/terminal-flow-0.109.0/`.
+complete generated results stay under ignored `runtime/analysis/history/interface/terminal-flow/4e862d14c1ed/`.
 
 `python3 -B scripts/check-terminal-layout.py --python-libs
-runtime/armory-recovery/python-libs` passes13 current initializer vectors.
+runtime/tool-state/python/armory/python-libs` passes13 current initializer vectors.
 Only four reviewed memcpy call sites are replaced with bounded scratch copies.
 Projection checks substitute JSON property lookup with native enum-number
 layouts and roundf with its stated f32 leaf model; empty-name part fixtures

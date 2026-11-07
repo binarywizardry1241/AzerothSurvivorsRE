@@ -13,7 +13,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 from script_sources import load_script
 
 TARGET_SHA256 = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
-WORK = ROOT / 'runtime/gap98-context-0.115.0'
+WORK = ROOT / 'runtime/analysis/history/findings/gap98-context/b58b81f03b57'
 RANGES = {
     'parser': (0x140160020, 0x14016070f, '22f67bc3e433e222404ffd449c42c88666c8d2d9d799a88e10dd5f7747cb4812'),
     'positive-parts': (0x1400e0890, 0x1400e0a42, '60683d8aef838ceedafa0979836e1a8df6fcb5e54e3cd6f32d32ffecdd84f1ed'),
@@ -25,8 +25,8 @@ RANGES = {
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('--python-libs', default='runtime/armory-recovery/python-libs')
-    ap.add_argument('--output', default='runtime/gap98-context-0.115.0/parser-check.json')
+    ap.add_argument('--python-libs', default='runtime/tool-state/python/armory/python-libs')
+    ap.add_argument('--output', default='runtime/analysis/history/findings/gap98-context/b58b81f03b57/parser-check.json')
     args = ap.parse_args()
     libs, output = (ROOT / args.python_libs).resolve(), (ROOT / args.output).resolve()
     if not libs.is_relative_to(ROOT) or not output.is_relative_to(ROOT / 'runtime'):
@@ -58,7 +58,7 @@ def main():
                 require(evidence['subject']['digest']['sha256'] == digest, role + ' query target changed')
                 queries.append(dict(role=role, evidence_id=evidence['evidence_id'], result=op['result']))
 
-    producer_path = ROOT / 'runtime/gap98-producer-0.115.0/producer-evidence-v3.json'
+    producer_path = ROOT / 'runtime/analysis/history/findings/gap98-producer/fbf0877cc396/producer-evidence-v3.json'
     if producer_path.exists():
         producer = json.loads(producer_path.read_text())
         require(producer['target']['sha256'] == target['sha256'], 'Producer evidence selected another target')

@@ -67,7 +67,7 @@ class NativeValues(unittest.TestCase):
         self.assertEqual(classifier.debug_payload(13,raw[:-1]),{})
 class OwnershipPublication(unittest.TestCase):
     def setUp(self):
-        base=ROOT/'runtime/ownership-publication-tests';base.mkdir(parents=True,exist_ok=True)
+        base=ROOT/'runtime/tests/ownership-publication';base.mkdir(parents=True,exist_ok=True)
         self.temporary=tempfile.TemporaryDirectory(dir=base);self.addCleanup(self.temporary.cleanup)
         self.root=Path(self.temporary.name)
 

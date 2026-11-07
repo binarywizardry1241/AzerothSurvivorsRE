@@ -92,8 +92,8 @@ def source_connection():
 
 
 def derive(publication_target=0x123456789ABCDEF0):
-    sys.path[:0] = [str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-                   str(ROOT / "runtime/armory-recovery/python-libs")]
+    sys.path[:0] = [str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+                   str(ROOT / "runtime/tool-state/python/armory/python-libs")]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     import unicorn.x86_const as reg
@@ -114,14 +114,14 @@ def derive(publication_target=0x123456789ABCDEF0):
     model_path = ROOT / "docs/analysis/evidence/0.121.0/resource-consumer-9612.json"
     model = json.loads(model_path.read_text())
     assert model["target"]["sha256"] == SHA
-    query_dir = ROOT / "runtime/fixgap220229/affixes/orb-create/query"
+    query_dir = ROOT / "runtime/analysis/history/findings/fixgap220229/03231eb4cb7b/affixes/orb-create/query"
     journal = json.loads((query_dir / "journal.json").read_text())
     assert journal["status"] == "completed"
     operation = next(iter(journal["operations"].values()))
     result = json.loads((ROOT / operation["result"]["path"]).read_text())
     native = result.get("structuredContent") or json.loads(result["content"][0]["text"])
-    plan = ROOT / "runtime/fixgap220229/affixes/orb-create/plan.json"
-    subject = ROOT / "runtime/fixgap220229/affixes/orb-create/code.bin"
+    plan = ROOT / "runtime/analysis/history/findings/fixgap220229/03231eb4cb7b/affixes/orb-create/plan.json"
+    subject = ROOT / "runtime/analysis/history/findings/fixgap220229/03231eb4cb7b/affixes/orb-create/code.bin"
     receipt = {"role": "world-ward-create", "procedure": "0x145be8d10",
                "evidence_id": native["evidence_id"], "provider": native["provider"],
                "analysis_profile_digest": native["analysis_profile"]["digest"],
@@ -304,7 +304,7 @@ def derive(publication_target=0x123456789ABCDEF0):
                 publication_cases.append({"display_input": display, "target_guid_input": publication_target, "run_level": level,
                                           "health_input": health, "fields": publication_state["fields"],
                                           "packet_guid": guid, "packet_object_kind": 3})
-    publication_dir = ROOT / "runtime/fixgap-0.121.0/resource-query/world-create-publication"
+    publication_dir = ROOT / "runtime/analysis/history/findings/fixgap/de557e34e98e/resource-query/world-create-publication"
     publication_journal = json.loads((publication_dir / "query/journal.json").read_text())
     assert publication_journal["status"] == "completed"
     publication_operation = next(iter(publication_journal["operations"].values()))

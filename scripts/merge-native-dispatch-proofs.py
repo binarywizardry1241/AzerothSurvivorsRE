@@ -6,6 +6,7 @@ case must match an existing instruction or an independent complete declared
 linear decode without conflicting with established instructions. This expands
 machine-code coverage without asserting source semantics or function identity.
 """
+from runtime_layout import retained_runtime_path
 import argparse
 from array import array
 from bisect import bisect_right
@@ -326,7 +327,7 @@ def main():
                            'Every whole domain and source is independently boundary-checked; declared extents never become function owners.',
                            'Guarded/static-descriptor fallthrough edges remain distinct from unknown incoming contexts, aliases, full native semantics and parity.'])
     (output / 'guarded-jump-tables-summary.json').write_text(json_text(compact))
-    if file_sha256(ROOT / generation['path']) != generation['sha256'] or any(file_sha256(ROOT / row['path']) != row['sha256'] for row in dependencies):
+    if file_sha256(ROOT / generation['path']) != generation['sha256'] or any(file_sha256(retained_runtime_path(ROOT / row['path'], ROOT)) != row['sha256'] for row in dependencies):
         raise ValueError('Native merge generator changed during analysis')
     print(json_text({key: compact[key] for key in ('counts', 'case_entries', 'unique_target_addresses')}))
 

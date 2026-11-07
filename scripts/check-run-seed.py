@@ -33,7 +33,7 @@ def main():
     for row in manifest['ghidra']:
         if 'pseudocode' in row:
             assert hashlib.sha256((evidence/row['pseudocode']).read_bytes()).hexdigest() == row['pseudocode_sha256']
-    sys.path[:0] = [str(ROOT/'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT/'runtime/tool-state/python/armory/python-libs')]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, UC_HOOK_MEM_WRITE
     from unicorn import x86_const as reg
     machine = Uc(UC_ARCH_X86,UC_MODE_64)
@@ -116,7 +116,7 @@ def main():
     assert 'app.insert_resource(run_seeds);' in main_source
     assert 'let seed = run_seeds.next();' in gameplay and 'getrandom::fill(&mut seed_bytes)' not in gameplay
     assert 'if !menu.entering || menu.in_run {' in gameplay
-    output=ROOT/'runtime/gap9-startup-0.109.0/run-seed-checks.json'
+    output=ROOT/'runtime/analysis/history/findings/gap9-startup/e1a098f8d4fb/run-seed-checks.json'
     output.write_text(json.dumps(dict(target=manifest['target'],cases=cases,source_guards='passed; Rust not executed',limits=manifest['limits']),indent=2)+'\n')
     print(f'{len(cases)} current native clock/run-seed cases passed; source guards and {len(roles)} range hashes checked')
 

@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'scripts'))
 from coverage_common import latest_target
 SHA='8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-WORK=ROOT/'runtime/fixgap32-33';OUT=ROOT/'docs/analysis/evidence/0.105.0/attached-spell-scales'
+WORK=ROOT/'runtime/analysis/history/findings/fixgap32-33/9040a2da4887';OUT=ROOT/'docs/analysis/evidence/0.105.0/attached-spell-scales'
 SPANS={
  'self-player-type-id':(0x140515ffa,0x14051601b),
  'self-player-type-name':(0x140516108,0x140516121),
@@ -65,7 +65,7 @@ def main():
  canonical=ROOT/'docs/analysis/evidence/0.105.0/spell-presentation/manifest.json';cm=json.loads(canonical.read_text());assert cm['target_sha256']==SHA
  for role in ['kit-scale','scale-lookup']:
   r=next(r for r in cm['owners']if r['role']==role);assert sha(raw(int(r['start'],16),int(r['end_exclusive'],16)-int(r['start'],16)))==r['sha256']
- sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+ sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
  from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE
  from unicorn import x86_const as x
  u=Uc(UC_ARCH_X86,UC_MODE_64);u.mem_map(pe.image_base,(max(s['rva']+max(s['raw_size'],s['virtual_size'])for s in pe.sections)+4095)&~4095)

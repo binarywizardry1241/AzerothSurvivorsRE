@@ -32,7 +32,7 @@ def find_root():
 ROOT = find_root()
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('--python-libs', type=Path, help='Existing checkout-local directory containing Unicorn')
-parser.add_argument('--output', type=Path, default=Path('runtime/terminal-flow-0.109.0/layout-vectors.json'))
+parser.add_argument('--output', type=Path, default=Path('runtime/analysis/history/interface/terminal-flow/4e862d14c1ed/layout-vectors.json'))
 args = parser.parse_args()
 
 

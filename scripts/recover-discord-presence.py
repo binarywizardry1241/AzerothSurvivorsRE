@@ -8,7 +8,7 @@ from script_sources import load_script
 import argparse, hashlib, struct, json, sys, math
 from pathlib import Path
 from coverage_common import ROOT,latest_target,target_bytes
-sys.path.insert(0,str(ROOT/'runtime/armory-recovery/python-libs'))
+sys.path.insert(0,str(ROOT/'runtime/tool-state/python/armory/python-libs'))
 from unicorn import *
 from unicorn import x86_const as r
 SHA='76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0'
@@ -160,7 +160,7 @@ OWNERS={
  'json-number':(0x1458edff0,0x1458ee116),
 }
 RETAINED=ROOT/'docs/analysis/evidence/0.109.0/discord-presence'
-STAGED=ROOT/'runtime/native-evidence/0.109.0/discord-presence'
+STAGED=ROOT/'runtime/analysis/staging/native-evidence/0.109.0/discord-presence'
 
 def vectors():
     base={'phase':'playing','endless':False,'level':10,'kills':1000,'time':123,'dealt':24600,'meter':[]}
@@ -217,7 +217,7 @@ def contracts():
     for role,(a,b)in OWNERS.items():
         off=pe.rva_offset(a-pe.image_base);records[role]=dict(start=hex(a),end_exclusive=hex(b),byte_count=b-a,sha256=hashlib.sha256(data[off:off+b-a]).hexdigest())
     rows=vectors();numbers=numeric_vectors();queries=[]
-    for path in [ROOT/'runtime/menu-lifecycle-0.109.0/discord-current/rea',ROOT/'runtime/menu-lifecycle-0.109.0/145928330/rea-fast',ROOT/'runtime/menu-lifecycle-0.109.0/14599cb60/rea',ROOT/'runtime/menu-lifecycle-0.109.0/1458e6790/rea']:
+    for path in [ROOT/'runtime/analysis/history/interface/menu-lifecycle/969b671942c0/discord-current/rea',ROOT/'runtime/analysis/history/interface/menu-lifecycle/969b671942c0/145928330/rea-fast',ROOT/'runtime/analysis/history/interface/menu-lifecycle/969b671942c0/14599cb60/rea',ROOT/'runtime/analysis/history/interface/menu-lifecycle/969b671942c0/1458e6790/rea']:
         for f in sorted(path.glob('*-procedure_pseudo_code.json')):
             j=json.loads(f.read_text());address=j['params']['arguments']['procedure']
             if int(address,16) not in {a for a,b in OWNERS.values()}:continue
@@ -234,7 +234,7 @@ def main():
         STAGED.mkdir(parents=True,exist_ok=True)
         (STAGED/'manifest.json').write_text(portable_json(manifest,indent=2,ensure_ascii=False)+'\n')
         (STAGED/'native-vectors.json').write_text(portable_json(result,ensure_ascii=False,separators=(',',':'))+'\n')
-        sys.path.insert(0,str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'));from capstone import Cs,CS_ARCH_X86,CS_MODE_64
+        sys.path.insert(0,str(ROOT/'runtime/tool-state/python/camera/python-libs'));from capstone import Cs,CS_ARCH_X86,CS_MODE_64
         decoder=Cs(CS_ARCH_X86,CS_MODE_64)
         for role,(a,b)in OWNERS.items():
             off=pe.rva_offset(a-pe.image_base);raw=data[off:off+b-a]

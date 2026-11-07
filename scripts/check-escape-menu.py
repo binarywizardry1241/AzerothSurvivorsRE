@@ -15,7 +15,7 @@ from coverage_common import ROOT, installed_identity, latest_target, target_byte
 from script_sources import load_script
 
 # Reuse the retained analysis dependency when no ordinary Unicorn install exists.
-sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 from unicorn.x86_const import (
     UC_X86_REG_RAX, UC_X86_REG_RBP, UC_X86_REG_RBX, UC_X86_REG_RCX,

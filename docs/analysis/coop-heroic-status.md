@@ -39,7 +39,7 @@ existing translations. The same checker verifies every selected native value.
 ## Static checks and remaining scope
 
 ```sh
-PYTHONPATH=runtime/camera-recovery-0.105.0/python-libs:runtime/armory-recovery/python-libs python3 -B scripts/check-coop-heroic-status.py
+PYTHONPATH=runtime/tool-state/python/camera/python-libs:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-coop-heroic-status.py
 ```
 
 The [result](evidence/0.121.0/coop-heroic-status/static-check.json) records

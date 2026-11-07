@@ -141,7 +141,7 @@ def collect():
                        "address": hex(listener_slot), "file_offset": hex(listener_offset),
                        "byte_count": 8, "sha256": hashlib.sha256(listener_raw).hexdigest(),
                        "target": "0x145b5caa0"}
-    journal_path = "runtime/fixgap41-dispatch/party-send/query/journal.json"
+    journal_path = "runtime/analysis/history/findings/fixgap41-dispatch/a2c8543de22f/party-send/query/journal.json"
     journal = json.loads(project_path(journal_path).read_text())
     operation = next(iter(journal["operations"].values()))
     if journal["status"] != "completed" or operation["status"] != "completed":
@@ -153,12 +153,12 @@ def collect():
     if file_sha256(project_path(result["path"])) != result["sha256"]:
         raise ValueError("Party wrapper native result changed")
     value = json.loads(project_path(result["path"]).read_text())["structuredContent"]
-    raw_path = "runtime/fixgap41-dispatch/party-send/code.bin"
+    raw_path = "runtime/analysis/history/findings/fixgap41-dispatch/a2c8543de22f/party-send/code.bin"
     offset = pe.rva_offset(0x145B34840 - pe.image_base)
     if project_path(raw_path).read_bytes() != image[offset:offset + 485]:
         raise ValueError("Native query raw subject differs from installed bytes")
     query = {"procedure": "0x145b34840", "slice_virtual_address": "0x145b34840",
-             "plan": receipt("runtime/fixgap41-dispatch/party-send/plan.json"),
+             "plan": receipt("runtime/analysis/history/findings/fixgap41-dispatch/a2c8543de22f/party-send/plan.json"),
              "journal": receipt(journal_path), "result": result,
              "raw_input": receipt(raw_path), "evidence_id": value["evidence_id"],
              "provider": value["provider"],

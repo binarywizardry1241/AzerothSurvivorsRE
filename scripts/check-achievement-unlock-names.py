@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Verify #172's current native/data/source connections without compiling or running the game."""
 
+from runtime_layout import retained_runtime_path
 from script_sources import current_path, recorded_input_matches
 import hashlib
 import json
@@ -23,7 +24,7 @@ def exported_pseudocode(text):
 
 
 def receipt(row, optional=False):
-    path = current_path(ROOT / row["path"])
+    path = current_path(retained_runtime_path(ROOT / row["path"], ROOT))
     if optional and not path.is_file():
         return None
     assert recorded_input_matches(path, row['sha256']), row['path']
@@ -135,7 +136,7 @@ def main():
     source_path = ROOT / "crates/azeroth-survivors-re/src/progression.rs"
     source = source_path.read_text()
     for row in proof["source_connections"]:
-        text = (ROOT / row["path"]).read_text()
+        text = (retained_runtime_path(ROOT / row["path"], ROOT)).read_text()
         start = text.index(row["start_marker"])
         end = text.index(row["end_marker"], start) if row["end_marker"] else len(text)
         assert digest(text[start:end].encode()) == row["sha256"]

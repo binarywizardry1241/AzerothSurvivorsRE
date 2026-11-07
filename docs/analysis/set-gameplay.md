@@ -104,7 +104,7 @@ crowd armor lane remains the separate incoming-damage contract above.
 ## Static verification and limits
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs python3 -B scripts/check-set-consumers.py
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs python3 -B scripts/check-set-consumers.py
 ```
 
 The check validates12 completed durable Ghidra query subjects against the

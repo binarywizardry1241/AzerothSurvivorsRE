@@ -76,7 +76,7 @@ python3 -B scripts/check-addon-tga.py
 python3 -B scripts/check-addon-tga.py --atlas runtime/menu-state/AddOns/-DragonflightReloaded/media/tex/chat/cleaner_coins.tga
 ```
 
-`--prepare-rea` stages a fresh scoped plan under `runtime/tga-0.113.2/` for
+`--prepare-rea` stages a fresh scoped plan under `runtime/analysis/history/native-recovery/tga/f4a37f701d98/` for
 `scripts/rea-batch.py`; `--collect` stages its compact manifest there for review.
 The optional atlas input must be inside this checkout. These commands perform
 static recovery and instruction replay only, with no application build/launch.

@@ -4,6 +4,7 @@
 Conditional cells are not a claim that every incoming discriminant is valid.
 No compilation, application launch or native target process is performed.
 """
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json, portable_record
 import argparse
 import gzip
@@ -60,7 +61,7 @@ def current_coop_contract():
         return pe.data[offset:offset + count]
 
     def receipt(record):
-        path = (ROOT / record['path']).resolve()
+        path = (retained_runtime_path(ROOT / record['path'], ROOT)).resolve()
         require(path.is_relative_to(ROOT), 'Co-op evidence escapes this checkout')
         require(file_sha256(path) == record['sha256'], 'Changed co-op evidence: ' + record['path'])
         return path
@@ -323,7 +324,7 @@ def current_coop_contract():
     source_paths = {row['path'] for row in proof['source_first']}
     for row in proof.get('source_assertions', []):
         require(row['path'] in source_paths, 'Source guard lacks an inspected source receipt')
-        content = (ROOT / row['path']).read_text()
+        content = (retained_runtime_path(ROOT / row['path'], ROOT)).read_text()
         require(all(value in content for value in row['required']),
                 'Changed co-op source interface guard: ' + row['path'])
         for sequence in row['ordered']:
@@ -713,7 +714,7 @@ def main():
     # Exact native evidence receipts include failure/overreach warnings. An
     # oversized inferred Ghidra body is never used to admit cells or meanings.
     native_queries = []
-    results = ROOT/'runtime/q41-dispatch-contracts-0.115.0/rea-owners/results'
+    results = ROOT/'runtime/analysis/history/findings/q41-dispatch-contracts/25b277c5dc32/rea-owners/results'
     for path in sorted(results.glob('*.json')):
         receipt = json.loads(json.loads(consume(path.relative_to(ROOT).as_posix()).read_text())['content'][0]['text'])
         require(receipt['subject']['digest']['sha256'] == target['sha256'] and receipt['provider']['id'] == 'ghidra', 'Wrong native query target/provider')

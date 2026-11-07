@@ -19,7 +19,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / 'AzerothSurvivors/AzerothSurvivors-0.105.0.exe'
 SHA = '8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7'
-OUT = ROOT / 'runtime/power-scaling-0.105.0/weapon'
+OUT = ROOT / 'runtime/analysis/history/combat/power-scaling/11f43211b8a5/weapon'
 STAGE = (0x145902c51, 0x145902f6b)
 SELECTOR = 0x145925e50
 
@@ -37,7 +37,7 @@ def f32(value):
 
 
 def machine(pe):
-    sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64
     import unicorn.x86_const as r
     u = Uc(UC_ARCH_X86, UC_MODE_64)

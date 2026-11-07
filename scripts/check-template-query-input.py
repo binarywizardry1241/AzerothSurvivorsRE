@@ -5,6 +5,7 @@ Only the original opcode dispatch and prefix readers execute in Unicorn. The
 probe stops before item/catalog lookup, allocation, serialization or delivery.
 Source guards check the live co-op routes; they do not execute reconstructed Rust.
 """
+from runtime_layout import retained_runtime_path
 from portable_paths import portable_json, portable_record
 import argparse
 import hashlib
@@ -30,7 +31,7 @@ def verify_query():
     query = manifest['query']
     for name in ('plan', 'journal', 'result'):
         record = query[name]
-        assert file_sha256(ROOT / record['path']) == record['sha256'], name
+        assert file_sha256(retained_runtime_path(ROOT / record['path'], ROOT)) == record['sha256'], name
     native = json.loads((ROOT / query['result']['path']).read_text())['structuredContent']
     assert native['provider']['id'] == 'ghidra'
     assert native['subject']['digest']['sha256'] == SHA

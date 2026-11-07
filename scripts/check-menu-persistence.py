@@ -15,7 +15,7 @@ from script_sources import load_script
 
 SHA = "0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c"
 OUT = ROOT / "docs/analysis/evidence/0.115.0/menu-persistence"
-STAGE = ROOT / "runtime/menu-persistence-0.115.0/curated"
+STAGE = ROOT / "runtime/analysis/history/interface/menu-persistence/9f64de07bf02/curated"
 RANGES = {
     "export-clock": (0x145002900, 0x145002944),
     "export-account": (0x145836BB0, 0x145836C40),
@@ -43,8 +43,8 @@ def main():
     data = target_bytes(target)
     pe = load_script("menu_save_pe", ROOT / "scripts/inventory-executable.py").PE(data)
     sys.path[:0] = [
-        str(ROOT / "runtime/camera-recovery-0.105.0/python-libs"),
-        str(ROOT / "runtime/armory-recovery/python-libs"),
+        str(ROOT / "runtime/tool-state/python/camera/python-libs"),
+        str(ROOT / "runtime/tool-state/python/armory/python-libs"),
     ]
     from capstone import Cs, CS_ARCH_X86, CS_MODE_64
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE

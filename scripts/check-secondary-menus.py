@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from coverage_common import latest_target, target_bytes
 from script_sources import load_script
-sys.path.insert(0, str(ROOT / 'runtime/armory-recovery/python-libs'))
+sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
 from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
 import unicorn.x86_const as x
 
@@ -311,7 +311,7 @@ def main():
     args = parser.parse_args()
     value = verify()
     if args.stage:
-        path = ROOT / 'runtime/native-evidence/0.115.0/secondary-menus/contracts.json'
+        path = ROOT / 'runtime/analysis/staging/native-evidence/0.115.0/secondary-menus/contracts.json'
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\n')
     else:

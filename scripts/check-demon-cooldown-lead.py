@@ -6,6 +6,7 @@ current descriptor tables, callers, aura producers or the complete demon clock.
 Default mode reads retained evidence and writes nothing. --output may write a
 fresh observation only beneath the project-local ignored runtime directory.
 """
+from runtime_layout import retained_runtime_path
 from native_recovery import f32 as _shared_f32
 from script_sources import load_script
 import argparse
@@ -41,9 +42,9 @@ def main():
     assert evidence['target']['sha256'] == SHA
     lead = evidence['demon_cooldown']
     for row in lead['source_witnesses']:
-        assert hashlib.sha256((ROOT/row['path']).read_bytes()).hexdigest() == row['sha256'], row['path']
-    sys.path[:0] = [str(ROOT/'runtime/armory-recovery/python-libs'),
-                   str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+        assert hashlib.sha256((retained_runtime_path(ROOT/row['path'], ROOT)).read_bytes()).hexdigest() == row['sha256'], row['path']
+    sys.path[:0] = [str(ROOT/'runtime/tool-state/python/armory/python-libs'),
+                   str(ROOT/'runtime/tool-state/python/camera/python-libs')]
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE
     from unicorn import x86_const as r
     module = load_script('pe_inventory', ROOT/'scripts/inventory-executable.py')

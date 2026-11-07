@@ -7,12 +7,12 @@ cast/hold, allocation and field-map seams are explicit; no Rust/compiler/game.
 from script_sources import load_script
 import argparse, hashlib, json, math, re, struct, sys
 from coverage_common import ROOT
-sys.path[:0]=[str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),str(ROOT/'runtime/armory-recovery/python-libs')]
+sys.path[:0]=[str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64,UC_HOOK_CODE,UC_HOOK_MEM_UNMAPPED
 from unicorn.x86_const import *
 from capstone import Cs,CS_ARCH_X86,CS_MODE_64
 KEPT=ROOT/'docs/analysis/evidence/0.112.0/raid-hazards'
-STAGE=ROOT/'runtime/native-evidence/0.112.0/raid-hazards'
+STAGE=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid-hazards'
 RANGES={
  'dispatcher':(0x14591f790,0x145924bf2),
  'transform-unit':(0x145915340,0x14591599b),

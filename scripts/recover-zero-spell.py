@@ -19,8 +19,8 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 TARGET = ROOT / "AzerothSurvivors/AzerothSurvivors-0.105.0.exe"
 SHA = "8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7"
-WORK = ROOT / "runtime/power-scaling-0.105.0/zero-spell"
-OUT = ROOT / "runtime/native-evidence/0.105.0/power-scaling/zero-spell"
+WORK = ROOT / "runtime/analysis/history/combat/power-scaling/11f43211b8a5/zero-spell"
+OUT = ROOT / "runtime/analysis/staging/native-evidence/0.105.0/power-scaling/zero-spell"
 OWNERS = {"selector": 0x14592E820, "condition": 0x145929AA0}
 
 
@@ -30,7 +30,7 @@ def save(path, value):
 
 def verify(pe, blob):
     # Reuse the installed project-local interpreter dependency, if present.
-    sys.path.insert(0, str(ROOT / "runtime/armory-recovery/python-libs"))
+    sys.path.insert(0, str(ROOT / "runtime/tool-state/python/armory/python-libs"))
     from unicorn import Uc, UC_ARCH_X86, UC_MODE_64, UC_HOOK_CODE, __version__
     import unicorn.x86_const as reg
 

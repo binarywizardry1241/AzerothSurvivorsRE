@@ -71,7 +71,7 @@ previously unexplained current field/table/call; it does not repeat the whole
 catalog recovery or certify every current localized string.
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-codex-growth-dispatch.py
 ```
 
@@ -126,7 +126,7 @@ the text submission through `1403536dc..140353815`, including the explicit
 `detail`'s `entry_text.growth` consumer already supply these families.
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-codex-growth-dispatch.py \
   --proof docs/analysis/evidence/0.127.0/codex-growth-dispatch/manifest.json
 ```
@@ -170,7 +170,7 @@ recovered reward and actor-targeted DoT policy remains under
 [#308](../verification-needed.md#gap-308).
 
 ```sh
-PYTHONPATH=runtime/tests/query-python-deps:runtime/armory-recovery/python-libs \
+PYTHONPATH=runtime/tests/query-python-deps:runtime/tool-state/python/armory/python-libs \
   python3 -B scripts/check-codex-growth-dispatch.py \
   --proof docs/analysis/evidence/0.141.0/codex-growth-ceiling.json
 ```

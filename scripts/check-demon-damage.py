@@ -9,7 +9,7 @@ from pathlib import Path
 import argparse,hashlib
 ROOT=Path(__file__).resolve().parents[1]
 
-sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/armory-recovery/python-libs'),str(ROOT/'runtime/camera-recovery-0.105.0/python-libs')]
+sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/armory/python-libs'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
 from coverage_common import latest_target,target_bytes
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64
 from unicorn import x86_const as r
@@ -69,7 +69,7 @@ parser.add_argument('--write',action='store_true',help='stage a compact proof un
 args=parser.parse_args()
 proof_path=ROOT/'docs/analysis/evidence/0.112.0/demon-damage/critical-vectors.json'
 if args.write:
-    out=ROOT/'runtime/native-evidence/0.112.0/demon-damage';out.mkdir(parents=True,exist_ok=True)
+    out=ROOT/'runtime/analysis/staging/native-evidence/0.112.0/demon-damage';out.mkdir(parents=True,exist_ok=True)
     (out/'critical-vectors.json').write_text(json.dumps(proof,indent=2)+'\n')
 else:
     assert json.loads(proof_path.read_text())==proof,'Current native critical proof differs'

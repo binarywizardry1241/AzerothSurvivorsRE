@@ -15,6 +15,8 @@ import re
 import subprocess
 import sys
 
+from runtime_layout import retained_runtime_path
+
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = 'docs/analysis/script-provenance.json'
 REPORT_INDEX = 'docs/analysis/report-provenance.json'
@@ -42,28 +44,6 @@ def retained_report(name, expected=None, root=ROOT):
             or name not in index['reports'] or not re.fullmatch('[0-9a-f]{40}', commit)):
         raise ValueError(f'No archived report commitment for {name}')
     return committed_bytes(name, commit, expected, root)
-
-
-def retained_runtime_path(path, root=ROOT):
-    """Find a relocated closed recovery path without following an unsafe redirect."""
-    path = Path(path)
-    runtime = root / 'runtime'
-    if not path.is_relative_to(runtime) or path == runtime or path.exists() or path.is_symlink():
-        return path
-    layout = runtime / 'analysis/recovery-layout.json'
-    if not layout.is_file():
-        return path
-    first, *parts = path.relative_to(runtime).parts
-    destination = json.loads(layout.read_text())['relocations'].get(first)
-    if destination is None:
-        return path
-    history = runtime / 'analysis/history'
-    base = root / destination
-    resolved = base.joinpath(*parts)
-    if (not base.is_relative_to(history) or base.resolve() != base
-            or '..' in parts or not resolved.parent.resolve().is_relative_to(history)):
-        raise ValueError('Historical recovery relocation leaves the shared history directory')
-    return resolved
 
 
 def current_path(value, root=ROOT):
@@ -189,12 +169,13 @@ def recorded_input_matches(value, expected, root=ROOT):
 class _RecordedInputChecks(ast.NodeTransformer):
     """Keep frozen producer checks explicit after a suite's live paths move."""
     def __init__(self, functions, producer_hash_functions=(), reference_paths=(), reference_path=None,
-                 command_rewrites=None):
+                 command_rewrites=None, root=ROOT):
         self.functions = set(functions)
         self.producer_hash_functions = set(producer_hash_functions)
         self.reference_paths = set(reference_paths)
         self.reference_path = reference_path
         self.command_rewrites = command_rewrites or {}
+        self.root = root
 
     def visit_List(self, node):
         self.generic_visit(node)
@@ -212,6 +193,11 @@ class _RecordedInputChecks(ast.NodeTransformer):
     def visit_Constant(self, node):
         if isinstance(node.value, str) and node.value in self.reference_paths:
             return ast.copy_location(ast.Constant(value=self.reference_path), node)
+        if isinstance(node.value, str) and node.value.startswith("runtime/"):
+            original = self.root / node.value
+            current = retained_runtime_path(original, self.root)
+            if current != original:
+                return ast.copy_location(ast.Constant(value=current.relative_to(self.root).as_posix()), node)
         return node
 
     def visit_Call(self, node):
@@ -270,7 +256,7 @@ def run_contract(tool, arguments=None, root=ROOT):
     tree = ast.parse(raw, filename=str(tool))
     tree = _RecordedInputChecks(row.get('file_hash_functions', []),
         row.get('producer_hash_functions', []), row.get('reference_paths', []),
-        str(reference) if reference is not None else None, row.get('command_rewrites')).visit(tree)
+        str(reference) if reference is not None else None, row.get('command_rewrites'), root).visit(tree)
     ast.fix_missing_locations(tree)
     def producer_input_hash(value):
         path = Path(value)

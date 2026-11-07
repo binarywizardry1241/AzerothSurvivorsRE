@@ -18,7 +18,7 @@ from coverage_common import ROOT, latest_target, target_bytes
 
 SHA = 'dc10453398ceb398076f6d3b6ac7859470de2ff7ccd68ac1d00a02f9f1e5209a'
 HISTORICAL = ROOT/'docs/analysis/evidence/0.109.0/raid-native/catalog.json'
-STAGE = ROOT/'runtime/native-evidence/0.112.0/raid'
+STAGE = ROOT/'runtime/analysis/staging/native-evidence/0.112.0/raid'
 KEPT = ROOT/'docs/analysis/evidence/0.112.0/raid'
 ZONE_TABLE, GUARDIAN_TABLE = 0x146bf2630, 0x146bfb470
 DURATION = (0x145896950, 0x145896b44)
@@ -224,8 +224,8 @@ def check_guardian_signatures(source, guardians, actions, semantic):
 
 
 def native_checks(raw, graph):
-    sys.path[:0] = [str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'),
-                   str(ROOT/'runtime/armory-recovery/python-libs')]
+    sys.path[:0] = [str(ROOT/'runtime/tool-state/python/camera/python-libs'),
+                   str(ROOT/'runtime/tool-state/python/armory/python-libs')]
     import unicorn as u
     from unicorn import x86_const as r
     machine = u.Uc(u.UC_ARCH_X86,u.UC_MODE_64)
@@ -361,7 +361,7 @@ def main():
                  limitations=['Graph/header and bounded original-instruction checks do not certify remaining native dependencies.',
                               'Historical source/native payload pointer words keep their actual 0.109.0 provenance; source uses recursive indices.',
                               'No compilation, Rust tests, game process, MPQ terrain, input/rendering or original/rebuilt parity comparison.'])
-    sys.path.insert(0,str(ROOT/'runtime/camera-recovery-0.105.0/python-libs'))
+    sys.path.insert(0,str(ROOT/'runtime/tool-state/python/camera/python-libs'))
     from capstone import Cs,CS_ARCH_X86,CS_MODE_64
     decoder = Cs(CS_ARCH_X86,CS_MODE_64)
     directory = STAGE if args.stage else KEPT
