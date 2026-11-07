@@ -13,6 +13,7 @@ from pathlib import Path
 import re
 import sqlite3
 
+from artifact_history import has_archived_artifact
 from coverage_common import ROOT, file_sha256, json_text, latest_target, load_json
 from native_residual_inputs import verified_classifications
 from portable_paths import portable_record
@@ -30,10 +31,10 @@ def ghidra_census_input(selected, *, root=None, census_summary=None):
     optimistic commitments fail closed rather than silently reverting to it.
     """
     root = (ROOT if root is None else Path(root)).resolve()
-    summary_path = (root / (census_summary or 'docs/analysis/coverage/full-image-census.json')).resolve()
+    summary_path = (root / (census_summary or 'docs/analysis/coverage/full-image-selected.json')).resolve()
     if not summary_path.is_relative_to(root):
         raise ValueError('Ghidra census summary escapes project')
-    if not summary_path.is_file():
+    if not summary_path.is_file() and not has_archived_artifact(summary_path, root):
         if census_summary is not None:
             raise ValueError('Explicit Ghidra census summary is missing')
         return None
@@ -244,7 +245,7 @@ def main():
     parser.add_argument("--census-summary", help="Exact current verified census; preserves any separate seed-input pointer")
     args = parser.parse_args()
     report = summarize(args.census_summary)
-    output = ROOT / f"docs/analysis/evidence/{report['target']['version']}/unknown-recovery.json"
+    output = ROOT / "docs/analysis/evidence/unknown-recovery.json"
     if args.write:
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(json_text(report))

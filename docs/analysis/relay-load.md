@@ -3,7 +3,7 @@
 This report owns the bounded source/static repair of **#198** for the installed
 0.127.0 EXE, SHA-256
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`.
-The [manifest](evidence/0.127.0/relay-load/manifest.json) binds current original
+The [manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.127.0/relay-load/manifest.json) binds current original
 owners, selected instructions, dispatch tables, data and five completed
 journaled Ghidra queries. [0.123.0 recovery](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/relay-load-0.123.0.md) retains its
 original provenance; its forward-gap delivery and two-second ACK policy are
@@ -100,7 +100,7 @@ The retained pump calls the receiver for guest and host traffic at
 `145cb7ed7` and `145cb9161`. Within that receive call, the control/missing-range
 reply and the requested-payload loop submit to the shared writer `145cb76a0`
 at `145cbdc3e` and `145cbdcfe`. The historical
-[0.123.0 control-reply proof](coop-reconnect.md#permanent-departure-and-source-repair)
+[0.123.0 control-reply proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-reconnect.md#permanent-departure-and-source-repair)
 also binds direct submission before the next event.
 
 The directory response handler now drains its staged inner receive replies
@@ -110,7 +110,7 @@ drain could submit an old worker's reply to its replacement and interleave it
 with the new connection's authentication and control exchange. Retry admission,
 pending replay and the fresh-party reset keep their existing source owners.
 This source repair used the retained 0.127.0 contract. The bounded
-[0.139.2 assessment](coop-reconnect-replies.md) independently
+[0.139.2 assessment](coop.md#interruption-departure-and-settlement) independently
 corroborates the receive and writer ordering. Actual socket delivery
 remains unverified.
 
@@ -131,7 +131,7 @@ range filtering and the 256-KiB boundary, first/missing-clock gap requests,
 0.6/1/3/5-second thresholds and strict buffer/tail timeout boundaries.
 It verifies **720 selected instructions**, current native owner hashes, all five
 query/input receipts, exact constants/tables and bounded source connections.
-The [result](evidence/0.127.0/relay-load/static-check.json) records these counts.
+The [result](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.127.0/relay-load/static-check.json) records these counts.
 
 Fixtures supply synthetic peer/queue state, one-leaf receive-map state and
 explicit monotonic timestamps/deltas. Deallocation is opaque, and range

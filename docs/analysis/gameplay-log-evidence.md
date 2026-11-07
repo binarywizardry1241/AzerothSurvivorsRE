@@ -14,7 +14,7 @@ by a five-player Scholomance Heroic 3 run with Bolstering.
 The WoWSilicon bootstrap checks the Wine launch argument against
 the configured original EXE before assigning the log path. The installed
 `installed-game/AzerothSurvivors.exe` matched the
-[registered 0.141.0 identity](target-refresh-0.141.0.json) when inspected
+[registered 0.141.0 identity](coverage/targets.json) when inspected
 (SHA-256 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`).
 The captures lack launch-time EXE hashes. Use them as original-game
 observations with the exact launch bytes unconfirmed.
@@ -80,7 +80,7 @@ same numeric caster GUIDs as `SPELL_GO` at lines 234765, 234762, 234776 and
 `down` and `left` (lines 376029 and 376855). The final list retains that
 token as `left` alongside three `ended` rows (lines 378786–379140).
 
-The [0.140.0 producer recovery](coop-downed.md) identifies the
+The [0.140.0 producer recovery](coop.md#shared-simulation-and-replication) identifies the
 world unit GUID as the formatter input. The rebuilt
 [`Party::downed_payload`](../../crates/azeroth-survivors-re/src/coop/game_party.rs#L258)
 uses decimal formatting for that field. The [Lua getter](evidence/0.140.0/embedded-api.lua#L596)

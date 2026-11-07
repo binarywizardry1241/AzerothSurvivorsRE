@@ -14,7 +14,8 @@ from pathlib import Path
 
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
 import capstone
-from coverage_common import ROOT, file_sha256, latest_target, target_bytes
+from artifact_history import has_archived_artifact
+from coverage_common import ROOT, file_sha256, latest_target, load_json, target_bytes
 from script_sources import load_script, recorded_input_matches
 from shared_native_inventory import open_readonly_uri as open_native_inventory
 
@@ -25,7 +26,7 @@ PROBE = ROOT / 'runtime/analysis/history/findings/fixgap-u04/0947d2a831c0/rea-bo
 
 
 def load(path):
-    return json.loads(path.read_text())
+    return load_json(path)
 
 
 def commitment(path):
@@ -190,10 +191,13 @@ def complement_stops():
     analysis = ROOT / 'docs/analysis'
     version = identity['version']
     evidence = analysis / 'evidence' / version
+    census_path = analysis / f'coverage/full-image-selected-{version}.json'
+    if not has_archived_artifact(census_path, ROOT):
+        census_path = analysis / 'coverage/full-image-selected.json'
     inputs = [commitment(path) for path in (
-        evidence / 'unknown-recovery.json', evidence / 'native-residuals.json',
+        analysis / 'evidence/unknown-recovery.json', evidence / 'native-residuals.json',
         analysis / 'coverage/unwind-complement-summary.json',
-        analysis / f'coverage/full-image-selected-{version}.json',
+        census_path,
     )]
     queue, residual, summary, census = (load(committed(record)) for record in inputs)
     assert all(record['target'] == identity for record in (queue, residual, summary, census))

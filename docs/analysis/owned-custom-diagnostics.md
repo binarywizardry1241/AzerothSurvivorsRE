@@ -8,7 +8,7 @@ The [compact proof](evidence/0.115.0/owned-custom-diagnostics.json) commits ever
 selected row and its guarded first-interface paths in ignored runtime storage.
 It establishes no new source defect or missing AS implementation.
 
-The [D01 follow-up](q41-diagnostic-contracts.md) extends this original
+The [D01 follow-up](native-recovery.md#diagnostic-consumers) extends this original
 first-boundary projection for all 31 cycle/return operands. Its finite-state
 graphs and complete saved direct-caller continuations classify their retained
 pointer flow; it also checks the expanded profile's sixty ownerless custom

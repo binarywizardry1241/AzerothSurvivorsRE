@@ -11,9 +11,11 @@ import json
 import shutil
 import subprocess
 
+from artifact_history import read_artifact
 from coverage_common import ROOT, latest_target, target_bytes
 
 EVIDENCE = ROOT / "docs/analysis/evidence/0.113.0/party-api"
+LUA_FIXTURES = ROOT / "docs/analysis/evidence/addon-api"
 
 
 def main():
@@ -21,7 +23,7 @@ def main():
     parser.add_argument("--lua", action="store_true")
     parser.add_argument("--prepare-rea", action="store_true")
     args = parser.parse_args()
-    evidence = json.loads((EVIDENCE / "manifest.json").read_text())
+    evidence = json.loads(read_artifact(EVIDENCE / "manifest.json"))
     target = latest_target(verify=True)
     assert target["sha256"] == evidence["target"]["sha256"], "Changed target needs fresh recovery"
     data = target_bytes(target)
@@ -35,7 +37,7 @@ def main():
         return value
 
     lua = check(evidence["embedded_api"])
-    assert lua == (EVIDENCE / evidence["embedded_api"]["path"]).read_bytes()
+    assert lua == (LUA_FIXTURES / "party-reference.lua").read_bytes()
     for row in evidence["native_owners"] + evidence["supplemental_ranges"] + evidence["constants"]:
         check(row)
     for row in evidence["classes"]:
@@ -70,8 +72,8 @@ def main():
         interpreter = shutil.which("lua")
         if interpreter is None:
             raise SystemExit("Existing Lua interpreter unavailable; no package was installed")
-        subprocess.run([interpreter, str(EVIDENCE / "lua-contract-cases.lua"),
-                        str(EVIDENCE / "embedded-api.lua")], cwd=ROOT, check=True)
+        subprocess.run([interpreter, str(LUA_FIXTURES / "party-contract-cases.lua"),
+                        str(LUA_FIXTURES / "party-reference.lua")], cwd=ROOT, check=True)
 
 
 if __name__ == "__main__":

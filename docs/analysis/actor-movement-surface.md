@@ -2,7 +2,7 @@
 
 The installed `installed-game/AzerothSurvivors.exe` has SHA-256
 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`.
-The [range and Ghidra receipts](evidence/0.140.0/actor-movement-surface/manifest.json)
+The [range and Ghidra receipts](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.140.0/actor-movement-surface/manifest.json)
 bind the stop producer, dispatcher, both terrain queries and the facing serializer
 to this image. This resolves the 0.140.0 slope release claim
 `changelog:0.140.0:e6cc6393427136d3` at the source boundary of [#1](../CURRENT-STATE.md#gap-1).

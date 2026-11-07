@@ -13,7 +13,7 @@ import gzip
 import hashlib
 import json
 
-from coverage_common import ROOT, file_sha256, latest_target, project_path, target_bytes
+from coverage_common import ROOT, file_sha256, latest_target, load_json, project_path, target_bytes
 from script_sources import load_script
 from shared_native_inventory import open_readonly_uri
 
@@ -58,7 +58,7 @@ def complement_projection(census_path):
     identity = {key: target[key] for key in ("version", "path", "sha256", "size_bytes")}
     inventory_path = "docs/analysis/coverage/unwind-complement-summary.json"
     inputs = [receipt(census_path), receipt(inventory_path)]
-    census, summary = [json.loads(checked(item).read_text()) for item in inputs]
+    census, summary = [load_json(checked(item)) for item in inputs]
     independent = census["independent_instructions"]
     executable = independent["executable_sections"]
     if (summary["target"] != identity or census["target"] != identity
@@ -179,7 +179,7 @@ def derive():
         "docs/analysis/evidence/0.121.0/as-residual-ranges.json",
         "docs/analysis/evidence/0.121.0/as-ownerless-sites.json",
     )]
-    census, residual, prior, prior_ownerless = [json.loads(checked(row).read_text()) for row in inputs]
+    census, residual, prior, prior_ownerless = [load_json(checked(row)) for row in inputs]
     if any(value["target"] != identity for value in (census, residual, prior, prior_ownerless)):
         raise ValueError("Mixed native targets")
     artifacts = residual["artifacts"]

@@ -1,6 +1,6 @@
 # Executable inventory and decompilation leads
 
-> Historical analysis of **0.91.4** (SHA-256 `719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150`); that EXE is no longer present. Current inventory follows the [newest supplied target](reconstruction-coverage.md). This report remains bound to 0.91.4 and is not current-target proof. See the [historical 0.92 refresh](target-refresh-0.92.json).
+> Historical analysis of **0.91.4** (SHA-256 `719da61487e0ffaf6491a1ca65410a6666028e83271f059692ad46bc4d8af150`); that EXE is no longer present. Current inventory follows the [newest supplied target](reconstruction-coverage.md). This report remains bound to 0.91.4 and is not current-target proof. See the [historical 0.92 refresh](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/target-refresh-0.92.json).
 
 This records a static inspection of `AzerothSurvivors/AzerothSurvivors.exe` on
 2026-10-15. The executable was not run. No MPQ was inspected. The purpose is to

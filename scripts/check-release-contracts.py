@@ -10,6 +10,7 @@ import re
 import struct
 import sys
 
+from artifact_history import read_artifact
 from coverage_common import ROOT, latest_target, project_path, target_bytes
 from script_sources import load_script
 
@@ -21,10 +22,10 @@ def sha(data):
     return hashlib.sha256(data).hexdigest()
 
 
-def verified_file(row):
-    path = project_path(row["path"])
-    assert sha(path.read_bytes()) == row["sha256"], ("changed retained input", row["path"])
-    return path
+def verified_bytes(row):
+    raw = read_artifact(project_path(row["path"]))
+    assert sha(raw) == row["sha256"], ("changed retained input", row["path"])
+    return raw
 
 
 def verify(proof):
@@ -49,7 +50,7 @@ def verify(proof):
             assert sum(i.size for i in ins) == len(raw)
             assert len(ins) == row["instruction_count"]
             expected = "".join(f"{i.address:016x} {i.bytes.hex():<30} {i.mnemonic} {i.op_str}".rstrip() + "\n" for i in ins)
-            assert verified_file(row["assembly"]).read_text() == expected, row["role"]
+            assert verified_bytes(row["assembly"]).decode() == expected, row["role"]
         if row.get("encoding") == "f32":
             assert struct.unpack("<f", raw)[0] == row["value"]
         if row.get("encoding") == "f64":
@@ -57,20 +58,20 @@ def verify(proof):
         if row.get("encoding") == "relative_i32":
             assert [hex(start + x[0]) for x in struct.iter_unpack("<i", raw)] == row["targets"]
     for query in proof["queries"]:
-        result = json.loads(verified_file(query["result"]).read_text())["structuredContent"]
-        journal = json.loads(verified_file(query["journal"]).read_text())
-        plan = json.loads(verified_file(query["plan"]).read_text())
-        raw = verified_file(query["raw_input"])
+        result = json.loads(verified_bytes(query["result"]))["structuredContent"]
+        journal = json.loads(verified_bytes(query["journal"]))
+        plan = json.loads(verified_bytes(query["plan"]))
+        raw = verified_bytes(query["raw_input"])
         assert journal["status"] == "completed"
         assert result["provider"]["id"] == "ghidra"
         assert result["evidence_id"] == query["evidence_id"]
-        assert result["subject"]["digest"]["sha256"] == sha(raw.read_bytes())
+        assert result["subject"]["digest"]["sha256"] == sha(raw)
         assert sha(result["normalized_result"].encode()) == query["normalized_text_sha256"]
         assert result["parameters"]["procedure"] == query["procedure"]
         assert plan["open_options"] == {"format": "raw-binary", "architecture": "x86_64", "entry_point": query["slice_virtual_address"]}
         offset = pe.rva_offset(int(query["slice_virtual_address"], 16) - pe.image_base)
-        assert image[offset:offset + raw.stat().st_size] == raw.read_bytes()
-    locations = json.loads(verified_file(proof["module_location_evidence"]).read_text())
+        assert image[offset:offset + len(raw)] == raw
+    locations = json.loads(verified_bytes(proof["module_location_evidence"]))
     assert locations["target"] == proof["target"]
     for module, owner in (("custom-game-coop-relay", "0x145c61910"),
                           ("custom-game-server-party", "0x145b25ad0")):
@@ -98,7 +99,7 @@ def relay_cases(proof):
         start = int(row["virtual_address"], 16)
         raw = bytes.fromhex(row["bytes_hex"])
         machine.mem_write(start, raw)
-        admitted.update(int(line.split()[0], 16) for line in verified_file(row["assembly"]).read_text().splitlines())
+        admitted.update(int(line.split()[0], 16) for line in verified_bytes(row["assembly"]).splitlines())
     stop_addresses = {0x145c62260, 0x145c622f1, 0x145c6232e,
                       0x145c61cad, 0x145c61e91, 0x145c61f25}
     stops = []
@@ -187,11 +188,12 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", help="Optional result path below runtime/")
     args = parser.parse_args()
-    proof = json.loads(MANIFEST.read_text())
+    manifest = read_artifact(MANIFEST)
+    proof = json.loads(manifest)
     target = verify(proof)
     from coop_handshake_check import replay
     result = {"target": {k: target[k] for k in ("version", "sha256", "size_bytes")},
-              "manifest_sha256": sha(MANIFEST.read_bytes()), "native_ranges": len(proof["native_ranges"]),
+              "manifest_sha256": sha(manifest), "native_ranges": len(proof["native_ranges"]),
               "query_receipts": len(proof["queries"]), "relay_branches": relay_cases(proof),
               "exact_version_admission": replay(proof["admission_replay"]),
               "source": source_observation(),

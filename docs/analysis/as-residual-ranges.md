@@ -102,7 +102,7 @@ interval selectors. The broader context groups are:
 
 Each name above is diagnostic **context**, not an assignment of every byte to
 that mechanic. Existing source and historical recovery remain owned by the
-[system ledger](coverage/systems.json) and [incremental correspondence](evidence/0.121.0/incremental-correspondence.json).
+[system ledger](coverage/systems.json) and [incremental correspondence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.121.0/incremental-correspondence.json).
 The query metadata and affix/gear branches retain their independently numbered
 findings. This structural review proves no additional missing mechanic or
 source defect. Missing newest-target applicability for an existing source

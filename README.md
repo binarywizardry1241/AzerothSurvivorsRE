@@ -1,7 +1,7 @@
 # AzerothSurvivorsRE
 
 Source reconstruction targeting **Azeroth Survivors 0.141.0**, using the Rust/Bevy
-benilla engine. The [installed identity](docs/analysis/target-refresh-0.141.0.json)
+benilla engine. The [installed identity](docs/analysis/coverage/targets.json)
 binds the reference EXE and twelve MPQ archives. The
 [current state](docs/CURRENT-STATE.md) tracks release claims and their source and
 recovery findings.
@@ -112,8 +112,8 @@ instances so configuration and account writes cannot overlap.
 This integration has not been compiled or exercised with two clients. The
 [integration report](docs/analysis/coop.md) records source ownership,
 static checks and remaining service/presentation limits. The menu's
-[public directory](docs/analysis/coop-directory.md) and
-[Host/Code requests](docs/analysis/coop-forms.md) use the shared native
+[public directory](docs/analysis/coop.md#lobby-admission-and-transport) and
+[Host/Code requests](docs/analysis/coop.md#lobby-admission-and-transport) use the shared native
 WebSocket service. `WOW_ROGUE_LOBBY_URL` overrides its endpoint for a compatible
 service. Directory, form, input and rendered behavior remain unverified.
 

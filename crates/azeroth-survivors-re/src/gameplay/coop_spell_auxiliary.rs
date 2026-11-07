@@ -244,7 +244,7 @@ mod tests {
     fn current_native_battle_shout_tooltip_uses_the_received_winner() {
         use crate::player_abilities::{StatusEffect, behavior::buffs::Aura};
         let proof: Value = serde_json::from_str(include_str!(
-            "../../../../docs/analysis/evidence/0.141.1/battle-shout.json"
+            "../../../../docs/analysis/evidence/battle-shout.json"
         )).unwrap();
         let locale = Localization::english_for_tests();
         for case in proof["aura_consumers"].as_array().unwrap() {

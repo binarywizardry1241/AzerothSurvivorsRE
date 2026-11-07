@@ -384,7 +384,8 @@ def derive(root):
     sys.path.insert(0, str(root / "scripts"))
     import capstone
     from capstone.x86 import X86_OP_IMM
-    from coverage_common import latest_target, target_bytes
+    from artifact_history import has_archived_artifact
+    from coverage_common import latest_target, project_bytes, target_bytes
     from script_sources import load_script
 
     target = latest_target(verify=True)
@@ -406,12 +407,14 @@ def derive(root):
         return path
 
     def source(name):
-        path = root / name
-        raw = path.read_bytes()
+        raw = project_bytes(name, root=root)
         inputs[name] = {"path": name, "sha256": digest(raw)}
         return json.loads(raw)
 
-    summary = source(f"docs/analysis/coverage/full-image-{summary_kind}-{version}.json")
+    summary_name = f"docs/analysis/coverage/full-image-{summary_kind}-{version}.json"
+    if not historical and not has_archived_artifact(summary_name, root):
+        summary_name = "docs/analysis/coverage/full-image-selected.json"
+    summary = source(summary_name)
     residuals = source(f"{evidence}/native-residuals.json")
     assert summary["target"] == residuals["target"] == identity
     missing_path = receipt("missing-executable-ranges", summary["independent_instructions"]["executable_sections"]["range_inventory"])

@@ -3,7 +3,7 @@
 Selected installed EXE SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 [#41](../CURRENT-STATE.md#gap-41) owns whole-image closure. The
-[current selector inventory](evidence/0.141.0/unknown-recovery.json) binds
+[current selector inventory](evidence/unknown-recovery.json) binds
 exact file, extent, complement, instruction, reference and diagnostic
 populations. The [0.140.0 queue](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/unknown-recovery-0.140.0.md) preserves
 earlier selectors and their evidence.
@@ -18,15 +18,15 @@ earlier selectors and their evidence.
 | `Q41-U02` | **Empty.** The declared-linear undecoded suffix selector has zero rows. | The other passes retain their separate omissions. |
 | `Q41-U03` | **Classified in part.** Alignment, shared heap, 70 reused formatter ranges, and the 1,654-byte shader/DXGI spans have bounded roles. [Complement proof](executable-residual-roles.md#q41-u03-executable-complement). | Unassigned mixed spans remain in the exact complement inventory. Establish candidate entry or data boundaries before assigning roles. |
 | `Q41-U04` | **Classified.** All 5,943 traversal stops have structural roles. [Stop proof](executable-residual-roles.md#q41-u04-seeded-traversal-stops). | The 539 dynamic transfers are the overlapping `F02` work. |
-| `Q41-F01` | **Repair delivered.** The Host/Join credential slot is shared and consumed on role reply. Fixed slots, the selected secondary admission, and hit/death branches have bounded traces. [Relay repair](coop-relay-selection.md#host-and-join-form-credential-lifetime), [computed transfers](computed-transfers.md). | The desktop-exit/service classification requires the input under #206. Newly identified AS dynamic writers retain separate proof. |
+| `Q41-F01` | **Repair delivered.** The Host/Join credential slot is shared and consumed on role reply. Fixed slots, the selected secondary admission, and hit/death branches have bounded traces. [Relay repair](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-relay-selection.md#host-and-join-form-credential-lifetime), [computed transfers](computed-transfers.md). | The desktop-exit/service classification requires the input under #206. Newly identified AS dynamic writers retain separate proof. |
 | `Q41-F02` | **Classified in part.** The selected AS-callable read and parse failures reach shared destruction, including concrete M2, WMO and tagged text-I/O error receivers. [Cleanup trace](computed-transfers.md#f02-shared-failure-cleanup). | The 198 transfers outside applied guards and known IAT stops require another AS producer or typed receiver assignment. The selected staff-key failures use the shared tag guard. |
-| `Q41-A01` | **Client repair delivered.** Scripted Sweep, `poly` and `rotor` decode and project through the live marker view. [Marker trace](q41-reference-frontier.md#marker-geometry-and-local-continuations). | The [0.141.1 encounter trace](scripted-attack-producers.md#rotor-and-polygon) identifies the serializer and same-tag copies. A live server constructor still needs a fresh part writer for tag 6 or 7 before publication. |
-| `Q41-A02` | **Classified.** The nine additional adapters use shared Bevy registration. All 32 immediate and 234 second-hop direct callers were checked for AS diagnostic ownership. [Registration trace](q41-reference-frontier.md#q41-a02-complement-references-and-imports). | An AS dependency would require an independent typed registration or dynamic receiver edge. |
-| `Q41-G01` | **Repairs delivered.** Recovered the immediate weakening recipient and strongest-value timer, then restored [periodic Insect Swarm weakening](status-weakening.md#periodic-projectile-recipient-in-01410) under [#136](../CURRENT-STATE.md#gap-136) and [ordinary stacked projectile cadence](projectile-timing.md) under [#322](../verification-needed.md#gap-322). [Ownerless flow](q41-reference-frontier.md#q41-g01-ownerless-instructions-and-reference-sources). | Remaining attack-part writer and descriptor questions use the exact `U01` and `G01` run selectors. |
+| `Q41-A01` | **Client repair delivered.** Scripted Sweep, `poly` and `rotor` decode and project through the live marker view. [Marker trace](native-recovery.md#marker-geometry-and-local-continuations). | The [0.141.1 encounter trace](scripted-attack-producers.md#rotor-and-polygon) identifies the serializer and same-tag copies. A live server constructor still needs a fresh part writer for tag 6 or 7 before publication. |
+| `Q41-A02` | **Classified.** The nine additional adapters use shared Bevy registration. All 32 immediate and 234 second-hop direct callers were checked for AS diagnostic ownership. [Registration trace](native-recovery.md#q41-a02-complement-references-and-imports). | An AS dependency would require an independent typed registration or dynamic receiver edge. |
+| `Q41-G01` | **Repairs delivered.** Recovered the immediate weakening recipient and strongest-value timer, then restored [periodic Insect Swarm weakening](status-weakening.md#periodic-projectile-recipient-in-01410) under [#136](../CURRENT-STATE.md#gap-136) and [ordinary stacked projectile cadence](projectile-timing.md) under [#322](../verification-needed.md#gap-322). [Ownerless flow](native-recovery.md#q41-g01-ownerless-instructions-and-reference-sources). | Remaining attack-part writer and descriptor questions use the exact `U01` and `G01` run selectors. |
 | `Q41-I01` | **Classified in part.** The 230 complete bundle names resolve 237 interior namespace matches. Two progression image consumers and four creature diagnostics have exact paths. [Bundle trace](source-frontier.md#ui-tuple-metadata), [resource trace](mpq-mount.md#progression-images-and-creature-table-diagnostics). | Recover the next typed loader or registration edge from its exact row in the [2,901-candidate inventory](evidence/0.141.0/data-classification/manifest.json). |
 | `Q41-R01` | **Classified in part.** Verified 22 DBC readers, nine override writers, and both progression image consumers under [#103](../verification-needed.md#gap-103) and [#104](../verification-needed.md#gap-104). [MPQ proof](mpq-mount.md). | Mixed-locale precedence requires Data with competing variants. Other resource aliases need a specific typed producer. |
 | [#75](../verification-needed.md#gap-75) | **Source connected.** The recorder, actor/loadout projection and recipient replay are connected. | Compilation, delivery and parity remain in verification. |
-| [#206](../CURRENT-STATE.md#gap-206) | **Blocked on service evidence.** The typed key, departure commands and four Last callbacks are mapped. [Desktop exit](coop-desktop-exit.md#last-callbacks-and-process-exit). | An authoritative relay artifact or hash-bound trace must distinguish desktop process exit from recoverable loss. |
+| [#206](../CURRENT-STATE.md#gap-206) | **Blocked on service evidence.** The typed key, departure commands and four Last callbacks are mapped. [Desktop exit](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-desktop-exit.md#last-callbacks-and-process-exit). | An authoritative relay artifact or hash-bound trace must distinguish desktop process exit from recoverable loss. |
 | [#300](../verification-needed.md#gap-300) | **Source connected.** Selected recap payload and presentation reach the existing view. [Renderer replay](native-interface-correspondence.md#death-recap-payload-consumption). | Compilation, interaction and rendered comparison remain in verification. |
 
 ### Q41-B02 import payload span
@@ -41,10 +41,10 @@ partition classifies this selected span as PE import data and spacing.
 The [#317 callback trace](world-anchors.md#frame-callback-registration)
 establishes the common native phase and separate registrations. Actual order
 when both callbacks run remains in [verification](../verification-needed.md#gap-317).
-The [#110 aura trace](coop-guest-spell-rows.md#friendly-aura-lineage)
+The [#110 aura trace](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-guest-spell-rows.md#friendly-aura-lineage)
 now connects subject and recipient publication to the FrameXML tooltip.
 Its remaining checks are in [verification](../verification-needed.md#gap-110).
-The [#299 inspector trace](coop-inspection.md) connects the item,
+The [#299 inspector trace](coop.md#joining-readiness-and-world-start) connects the item,
 model stage and achievement transitions. Interaction and rendering checks
 remain in [verification](../verification-needed.md#gap-299).
 The [#306 Ready Check trace](native-interface-correspondence.md#game-side-ready-check-routing)
@@ -72,7 +72,7 @@ observation retains its historical target.
 The references at `0x145fc2364` and `0x145fc262f` both load
 `c0 c0 00` at `0x147aeece6` into `0x146378290`. Its interpreter at
 `0x14637fd90` consumes two default argument descriptors before the
-terminator. The [caller and record trace](q41-diagnostic-consumers.md)
+terminator. The [caller and record trace](native-recovery.md#diagnostic-consumers)
 connects these operands to temporary equipment display names for jewelry and
 amulets under [#55](../verification-needed.md#gap-55). The choice-title
 and upgrade-line token producers are also resolved there. Their source

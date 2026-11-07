@@ -13,7 +13,8 @@ import hashlib
 import json
 from pathlib import Path
 import re
-from coverage_common import file_sha256
+from artifact_history import archived_artifact
+from coverage_common import file_sha256, project_bytes
 from script_sources import current_path, historical_matches
 
 
@@ -84,7 +85,9 @@ class Inputs:
             # Shared SQLite receipts preserve the original archived byte stream's
             # commitment. Hashing the receipt itself would reject valid inputs
             # after lossless inventory migration.
-            self.commitments[relative] = dict(path=relative, sha256=file_sha256(path))
+            archived = archived_artifact(path, expected, root=self.root) if not path.is_file() else None
+            digest_value = digest(archived) if archived is not None else file_sha256(path)
+            self.commitments[relative] = dict(path=relative, sha256=digest_value)
         result = self.commitments[relative]
         if result.get("exists") is False:
             raise FileNotFoundError("Explicit commitment names absent file: " + relative)
@@ -110,7 +113,7 @@ class Inputs:
 
     def load(self, value, expected=None):
         path = self.path(value)
-        raw = path.read_bytes()
+        raw = project_bytes(path, root=self.root, expected=expected)
         actual = dict(path=path.relative_to(self.root).as_posix(), sha256=digest(raw))
         previous = self.commitments.get(actual["path"], actual)
         if previous != actual or expected is not None and actual["sha256"] != expected:
@@ -745,7 +748,7 @@ def main():
     parser.add_argument("--classification", default="docs/analysis/evidence/0.115.0/data-classification/manifest.json")
     parser.add_argument("--unknown", default="docs/analysis/evidence/0.115.0/unknown-recovery.json")
     parser.add_argument("--connections", default="docs/analysis/coverage/exe-connections.json")
-    parser.add_argument("--census", default="docs/analysis/coverage/full-image-census.json")
+    parser.add_argument("--census", default="docs/analysis/coverage/full-image-selected.json")
     parser.add_argument("--reviews", help="Project-local explicit bounded review JSON")
     parser.add_argument("--retain-stale-source-reviews", action="store_true",
                         help="Preserve stale source snapshots in bounded reviews and pending native/correspondence leads, never as current reviewed source")

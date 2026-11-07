@@ -31,6 +31,8 @@ both documents; moving a finding does not close its verification.
 | Check native addon API, timers or co-op directory | `check-addon-api.py`, `check-addon-timers.py` and `check-coop-directory-transport.py` expose their retained suites through `--list-contracts` |
 | Consolidate identical analysis payloads | `consolidate-analysis-exports.py` |
 | Inspect a recorded execution source | `script_sources.py --show ... --sha256 ...` |
+| Inspect a retired exact evidence record | `artifact_history.py <original-path> --sha256 <recorded-hash>` |
+| Inspect packed local historical output | `manage-runtime-layout.py --show-retained <original-path>` |
 
 These paths are relative to `scripts/`. Native checkers keep explicit target/hash
 guards. Their stable names do not imply that an old profile accepts a new EXE.

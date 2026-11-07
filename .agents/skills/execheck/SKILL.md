@@ -622,6 +622,10 @@ Keep the exact audit receipts in the existing coverage owner. Remove superseded
 reports, successful command transcripts and task-local copies once the ledgers
 and retained evidence are verified. Run the shared runtime layout check before
 delivery and correct any producer that wrote loose output.
+Keep the installed identity in the target registry and the selected census in
+the maintained full-image record. Archive superseded exact receipts through
+Git provenance when a verifier needs them. Avoid a new versioned target
+refresh, coverage, evidence category or script for each release.
 Review the full diff and commit cohesive durable changes in focused commits.
 Push each commit to `origin/main` and verify delivery under the
 [commit delivery rules](../../../AGENTS.md#commit-delivery), including when

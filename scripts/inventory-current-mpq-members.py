@@ -48,7 +48,7 @@ def main():
     verify_resources(target)
     identity = {key: target[key] for key in ('version', 'path', 'sha256', 'size_bytes')}
     work = ROOT / 'runtime/coverage' / target['sha256'] / 'mpq-members'
-    output = ROOT / 'docs/analysis/evidence' / target['version'] / 'mpq-member-coverage.json'
+    output = ROOT / 'docs/analysis/evidence/mpq-member-coverage.json'
     parser_path = ROOT / 'scripts/check-minimap-lifecycle.py'
     mpq = load_script('current_mpq_reader', parser_path)
     records = supported_source_order(target)

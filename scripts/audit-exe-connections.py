@@ -13,7 +13,8 @@ import json
 from pathlib import Path
 import re
 
-from coverage_common import ROOT, file_sha256, json_text, latest_target, load_json, project_path, target_bytes
+from artifact_history import iter_artifact_paths
+from coverage_common import ROOT, file_sha256, json_text, latest_target, load_json, project_path, same_artifact, target_bytes
 
 OUTPUT = "docs/analysis/coverage/exe-connections.json"
 LITERAL_INCLUDE = re.compile(r'include_(?:str|bytes)!\s*\(\s*"([^"\n]+)"\s*\)', re.S)
@@ -21,7 +22,7 @@ INPUTS = (
     "docs/analysis/coverage/systems.json",
     "docs/analysis/coverage/native-summary.json",
     "docs/analysis/coverage/historical-range-revalidation.json",
-    "docs/analysis/evidence/{version}/native-custom-coverage.json",
+    "docs/analysis/evidence/native-custom-coverage.json",
     "docs/analysis/coverage/changelog.json",
 )
 
@@ -65,7 +66,10 @@ def census_input(historical, target, requested=None):
         raise ValueError("A current --census-summary or historical-audit census commitment is required")
     path = project_path(name)
     digest = file_sha256(path)
-    if selected.get("path") != path.relative_to(ROOT).as_posix() or selected.get("sha256") != digest:
+    relative = path.relative_to(ROOT).as_posix()
+    if selected.get("sha256") != digest or (
+        selected.get("path") != relative and not same_artifact(selected.get("path"), path, digest)
+    ):
         raise ValueError("Historical range audit must use the selected native census")
     record = load_json(path)
     same_target(record, target)
@@ -75,7 +79,7 @@ def census_input(historical, target, requested=None):
         artifact = project_path(Path(record["artifacts"]["directory"]) / filename)
         if file_sha256(artifact) != value["sha256"]:
             raise ValueError("Selected native artifact differs: " + filename)
-    return path.relative_to(ROOT).as_posix(), record
+    return relative, record
 
 
 def contract_owners(binding, registered_ids=None):
@@ -169,7 +173,7 @@ def evidence_documents(target):
     helper = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(helper)
     rows = []
-    for path in sorted((ROOT / "docs/analysis/evidence").rglob("*.json")):
+    for path in iter_artifact_paths(ROOT / "docs/analysis/evidence", ".json", recursive=True):
         value = load_json(path)
         if not isinstance(value, dict):
             digest = None
@@ -218,14 +222,14 @@ def connection_records(target, census_summary=None, replacements=None):
             return {"path": name, "sha256": hashlib.sha256(replacements[name]).hexdigest()}
         return commitment(name)
 
-    names = [name.format(version=target["version"]) for name in INPUTS]
+    names = INPUTS
     records = {name: read(name) for name in names}
     for record in records.values():
         same_target(record, target)
     historical = records[names[2]]
     census_name, census = census_input(historical, target, census_summary)
     systems, custom = records[names[0]], records[names[3]]
-    if not any(row["path"] == census_name and row["sha256"] == file_sha256(project_path(census_name))
+    if not any(same_artifact(row["path"], census_name, row["sha256"])
                for row in custom["inputs"]):
         raise ValueError("Custom native partition must use the selected native census")
     site_inventory = bound_inventory(custom)

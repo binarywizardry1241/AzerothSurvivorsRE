@@ -135,7 +135,7 @@ selects 1120 × 680 instead and updates both canvas dimensions and Node
 width. The inspector's outer constructor at `0x1401c6bf0` packs alpha
 0.8 and layer 5600 at `0x1401c72d9`. The inspector's design dimensions
 and scale cap remain independently traced in the
-[inspection report](coop-inspection.md#read-only-screen).
+[inspection report](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-inspection.md#read-only-screen).
 
 The [co-op UI plugin](../../crates/azeroth-survivors-re/src/coop_ui.rs)
 now spawns the fullscreen lobby backdrop and its fitted canvas. The

@@ -15,7 +15,7 @@ from instruction_facts import artifact_path, derived_bytes
 from shared_analysis import SharedAnalysis
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--census-summary',default='docs/analysis/coverage/full-image-switches-v2.json');parser.add_argument('--inventory-output',help='Project-local inventory path; defaults beside the source census');parser.add_argument('--write',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--census-summary',default='docs/analysis/coverage/full-image-selected.json');parser.add_argument('--inventory-output',help='Project-local inventory path; defaults beside the source census');parser.add_argument('--write',action='store_true');args=parser.parse_args()
     target=latest_target();summary=load_json(project_path(args.census_summary))
     if summary['target']['sha256']!=target['sha256'] or not summary['independent_instructions'].get('exact_source_bytes_verified'):raise ValueError('A current independently verified census is required')
     directory=project_path(summary['artifacts']['directory'])

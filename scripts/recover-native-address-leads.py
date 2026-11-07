@@ -102,7 +102,7 @@ def verify_inventory(payload,target,pe,capstone):
     return {int(row['site'],16) for row in payload['code_only_seeds']}
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--operand-summary',required=True);parser.add_argument('--inventory-output',help='Project-local full inventory path; operand snapshot is written beside it');parser.add_argument('--summary-output',default='docs/analysis/coverage/native-address-code-leads.json',help='Project-local compact summary path');parser.add_argument('--write',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--operand-summary',required=True);parser.add_argument('--inventory-output',help='Project-local full inventory path; operand snapshot is written beside it');parser.add_argument('--summary-output',help='Project-local compact summary path; defaults beside the runtime inventory');parser.add_argument('--write',action='store_true');args=parser.parse_args()
     import capstone
     target=latest_target();operand_path=project_path(args.operand_summary);operand_digest=file_sha256(operand_path);operand=load_json(operand_path)
     if operand['target']['sha256']!=target['sha256']:raise ValueError('Operand target differs')
@@ -164,6 +164,6 @@ def main():
             'All bounded successors must decode consistently with prior established instructions. Calls are followed on their return path; computed exits preserve unresolved alias/type state.']}
     verify_inventory(payload,target,pe,capstone);compact={key:value for key,value in payload.items() if key not in ('code_only_seeds','exceptions')}
     if any(file_sha256(retained_runtime_path(ROOT/row['path'], ROOT))!=row['sha256'] for row in dependencies) or file_sha256(ROOT/'scripts/recover-native-address-leads.py')!=GENERATOR_SHA256 or file_sha256(operand_path)!=operand_digest:raise ValueError('Address generator/input changed during analysis')
-    if args.write:operand_snapshot.write_bytes(operand_raw);output.write_text(json_text(payload));compact['inventory']={'path':output.relative_to(ROOT).as_posix(),'sha256':file_sha256(output)};project_path(args.summary_output).write_text(json_text(compact))
+    if args.write:operand_snapshot.write_bytes(operand_raw);output.write_text(json_text(payload));compact['inventory']={'path':output.relative_to(ROOT).as_posix(),'sha256':file_sha256(output)};(project_path(args.summary_output) if args.summary_output else output.with_name('address-code-leads-summary.json')).write_text(json_text(compact))
     print(json_text(compact))
 if __name__=='__main__':main()

@@ -2,7 +2,7 @@
 
 `Q41-R01` under [#41](../CURRENT-STATE.md#gap-41) identified the mount
 regression tracked in [#320](../verification-needed.md#gap-320).
-The [twelve archive receipts](evidence/0.141.0/mpq-member-coverage.json) bind
+The [twelve archive receipts](evidence/mpq-member-coverage.json) bind
 the installed Data to `installed-game/AzerothSurvivors.exe` SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 The archive identities, tables and listfiles match 0.140.0. A fresh in-place
@@ -123,7 +123,7 @@ comparison remain open.
 
 ## Exact URI and locale accounting
 
-The selected [member inventory](evidence/0.141.0/mpq-member-coverage.json)
+The selected [member inventory](evidence/mpq-member-coverage.json)
 has locale and platform zero in all 30,172 active hash slots. Its only
 repeated normalized name is `(LISTFILE)`, once per archive. Thus the
 installed gameplay payloads have no competing locale or archive variant.
@@ -226,7 +226,7 @@ read/write paths under Q41-R01.
 | --- | --- |
 | 0x145dd50b1, 0x145ddb206, 0x145ddb6be, 0x145ddbbee | StaticPopup, ReputationFrame, WorldStateFrame, and [PaperDoll](source-frontier.md#paperdoll-core-file-and-localized-gear-prefix) core-file appends. |
 | 0x145dd6add, 0x145dda6f0 | [Locale-dependent font replacement and provider rows](font-table-publication.md). |
-| 0x145fda6d3 | The [GlueStrings transform](q41-glue-strings.md) republishes its result under the existing 33-byte path. The exact current producer is 0x145fda5e0. |
+| 0x145fda6d3 | The [GlueStrings transform](native-recovery.md#gluestrings) republishes its result under the existing 33-byte path. The exact current producer is 0x145fda5e0. |
 | 0x145e5fe3c | Startup at 0x145e80f20 invokes the CreatureSoundData producer at 0x145e5fd70. It reads the 35-byte key at 0x14772a8b4 and calls 0x145e5fc30. The current transform checks the WDBC header, stride and record extent, clones the bytes, and replaces field six only when it equals 8449. The installed input has one matching row, 2068. The existing [voice-cache transform](creature-death-sound.md) supplies this behavior under [#182](../verification-needed.md#gap-182). The adjacent spell label in Q41-I01 resource selector 227 is outside the key. |
 | 0x145fee154 | Startup at 0x145e80f16 invokes the binding file publisher at 0x145fedfc0. Two 24-byte local descriptors carry path pointer, length and transform pointer. The successful read branch calls the selected transform at 0x145fee11c and publishes under the same path. The read-failure branch logs and advances without writing an override. |
 

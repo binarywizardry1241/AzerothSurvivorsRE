@@ -2,7 +2,7 @@
 
 The installed and registered reconstruction target is **0.141.0**, SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`
-(151,493,632 bytes). The [identity](target-refresh-0.141.0.json) and
+(151,493,632 bytes). The [identity](coverage/targets.json) and
 [CURRENT-STATE](../CURRENT-STATE.md) record the input and audit status.
 The [0.140.0 census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/native-census-0.140.0.md) and
 [0.140.0 graph](as-discovery.md#switch-and-caller-correspondence) retain their original target.
@@ -11,7 +11,7 @@ The 26-range ledger partitions the whole image. The independent linear pass
 decodes 24,893,474 instructions across 372,623 declared extents, covering
 100,845,169 bytes with zero undecoded suffix. The 5,376,717-byte executable
 complement is separate. All twelve MPQ hashes match the prior chain.
-[Member accounting](evidence/0.141.0/mpq-member-coverage.json)
+[Member accounting](evidence/mpq-member-coverage.json)
 
 The [selected census](native-census.md) verifies 24,328,399 instructions,
 97,600,287 instruction bytes and 4,218,711 references. It retains 8,621,599
@@ -203,7 +203,7 @@ those reports. No reliable overall reconstruction percentage is claimed.
 
 The [0.109.0 native census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/native-census-0.109.0.md) supports discovery of
 Survivors-specific additions and target changes over the existing public
-benilla/wenilla source. The [custom partition](evidence/0.109.0/native-custom-coverage.json)
+benilla/wenilla source. The [custom partition](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.109.0/native-custom-coverage.json)
 maps all 53 discovered custom paths, now all with reviewed partial source
 correspondences. [Current XInput acquisition](input.md) supplies the
 previously unmapped Windows producer under #22/#41; full input/platform parity
@@ -281,19 +281,21 @@ workers. Survivors-specific engine/ownership limits remain under #41.
 | [diagnostic-ownership.json](coverage/diagnostic-ownership.json) | Instruction-verified references for every custom path, owner range hashes and tool identity; ownership leads only. |
 | [instruction-summary.json](coverage/instruction-summary.json) | Complete declared-extent linear decoding, static operands/flow leads and unresolved dispatch counts; no semantic certification. |
 | [unwind-complement-summary.json](coverage/unwind-complement-summary.json) | Disjoint accounting of every executable byte outside declared extents, candidate decoding and residual classes. |
-| [Declared seed census](coverage/full-image-declared-0.127.0.json) | Independently verified 0.127.0 declared-entry Program; exact native seed commitments remain with its saved plan. |
 | [Current installed-target review](target.md#native-and-data-evidence) | Current native/source findings, complete input accounting and exact pending semantic frontiers. |
-| [Historical atomic selection](evidence/0.109.0/native-image-current.json) | Preserved 0.109.0 census/switch/ownership selection; no 0.112.0 or parity certification. |
-| [Full-image records](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/native-census-0.127.0.md) | Current independently verified profiles, body/reference counts and executable residual limits. |
+| [Selected whole-image census](coverage/full-image-selected.json) | Verified native observations, body/reference counts and executable residual limits. |
 | [Current atomic selection](coverage/native-image-current.json) | Matching expanded census, ownership, applied switch proof and historical-range audit; static observations only. |
 | [Current native ownership](coverage/native-ownership-classification.json) | Exact source candidates, native body/reference/dispatch observations and unresolved ownership; no whole-system semantics. |
-| [Historical native ownership](evidence/0.109.0/refresh-baseline/native-ownership-classification.json) | Historical 0.109.0 source candidates, imports, encoded pointers, dispatch and debug/source revision limits; current revalidation remains open. |
 | [Historical range audit](coverage/historical-range-revalidation.json) | Range/preimage checks against the selected target and the explicitly bound current body census. Exact byte matches do not revalidate dependencies or whole contracts. |
 | [systems.json](coverage/systems.json) | Stable system IDs, diagnostic bytes, source/report correspondence, separate evidence dimensions, historical assessments and permanent gaps. |
 | [changelog.json](coverage/changelog.json) | Individual supplied paragraphs/bullets, stable content IDs, line provenance, scope and explicit unresolved recovery. |
 | [changelog-reviews.json](coverage/changelog-reviews.json) | Claim-specific assessments bound to exact target and evidence/source hashes; older-target reviews remain unapplied. |
 | [System coverage](system-coverage.md) | Readable ownership map and shared-engine/source boundaries. |
 | [EXE connection crosswalk](coverage/exe-connections.json) | Current custom diagnostic/native/source links, bounded contract attribution and permanent gaps; historical classifier inputs retain their original target. No whole-system certification. |
+
+Update the maintained record for each coverage category after verifying the
+installed target. The [provenance index](artifact-history.json) resolves
+superseded identity receipts and audit snapshots from Git when a retained
+proof names their exact bytes. Keep working passes and bulk outputs in runtime.
 
 Recovery, source connection, static validation, runtime validation and parity
 are independent. Release-level crosswalks are context rather than proof for

@@ -9,7 +9,7 @@ from pathlib import Path
 import hashlib,importlib.util,json,struct,sys
 ROOT=next(path for path in Path(__file__).resolve().parents if (path/'AGENTS.md').is_file())
 sys.path[:0]=[str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/camera/python-libs'),str(ROOT/'runtime/tool-state/python/armory/python-libs')]
-from coverage_common import latest_target,target_bytes,reference_config
+from coverage_common import latest_target,target_bytes,reference_config,load_json
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_64
 from unicorn.x86_const import *
 SHA='58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
@@ -108,7 +108,7 @@ for record in records:
 from script_sources import load_script
 from coverage_common import artifact_path
 mpq = load_script('portrait_mpq', ROOT/'scripts/check-minimap-lifecycle.py')
-registered = json.loads((ROOT/'docs/analysis/target-refresh-0.113.2.json').read_text())['registered_identity']['runtime_data']['archives']
+registered = load_json(ROOT/'docs/analysis/target-refresh-0.113.2.json')['registered_identity']['runtime_data']['archives']
 ordered = sorted(registered, key=lambda row: (not row['path'].lower().endswith('/patch.mpq'), row['path'].lower()))
 assert [row['path'].split('/')[-1] for row in ordered] == ['patch.MPQ', *[f'patch-{i}.MPQ' for i in range(2,10)]]
 assert {p.name.lower() for p in reference_config()['data_dir'].iterdir() if p.suffix.lower()=='.mpq'} == {row['path'].split('/')[-1].lower() for row in ordered}

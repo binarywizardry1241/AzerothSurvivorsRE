@@ -26,7 +26,7 @@ def profile():
           outputs=["crates/azeroth-survivors-re/assets/menu-identity/{version}.json"])
     stage("linear", "inventory-native-instructions.py", ["--write"], needs=["pe"], inputs=[coverage+"native-summary.json"], outputs=[coverage+"instruction-summary.json"], memory=2048)
     stage("complement", "inventory-unwind-complement.py", ["--write"], needs=["linear"], inputs=[coverage+"native-summary.json", coverage+"instruction-summary.json"], outputs=[coverage+"unwind-complement-summary.json", runtime+"unwind-complement.sqlite"], memory=2048)
-    stage("mpq", "inventory-current-mpq-members.py", ["--write"], needs=["pe"], inputs=[coverage+"native-summary.json"], outputs=["docs/analysis/evidence/{version}/mpq-member-coverage.json"], memory=2048)
+    stage("mpq", "inventory-current-mpq-members.py", ["--write"], needs=["pe"], inputs=[coverage+"native-summary.json"], outputs=["docs/analysis/evidence/mpq-member-coverage.json"], memory=2048)
     rawfiles = ("plan.json", "progress.json", "session-result.json", "instructions.tsv.gz", "bodies.tsv.gz", "references.tsv.gz", "externals.tsv.gz", "direct-call-helpers.tsv.gz")
     stage("declared", "census-native-image.py", ["--run", "--seed-scope", "declared", "--output", "{work}/declared", "--heap", "6G"],
           needs=["pe"], inputs=[coverage+"native-summary.json", "package-lock.json"],
@@ -58,16 +58,16 @@ def profile():
           needs=["operands", "dispatch", "constant-dispatch"], inputs=[selected, "{work}/derived/operands.json", coverage+"systems.json", "crates/**/*.rs"], outputs=["{work}/derived/ownership.json"], phase="derive", memory=2048)
     # Reconciliation uses the selected, reviewed census and existing canonical
     # evidence choices. A new native frontier must be reviewed/published first.
-    stage("custom", "summarize-custom-native-coverage.py", ["--census-summary", selected, "--write"], needs=["ownership"], inputs=[selected, coverage+"systems.json", "crates/**/*.rs"], outputs=["docs/analysis/evidence/{version}/native-custom-coverage.json"], phase="reconcile")
+    stage("custom", "summarize-custom-native-coverage.py", ["--census-summary", selected, "--write"], needs=["ownership"], inputs=[selected, coverage+"systems.json", "crates/**/*.rs"], outputs=["docs/analysis/evidence/native-custom-coverage.json"], phase="reconcile")
     stage("history", "revalidate-historical-native-ranges.py", ["--census-summary", selected, "--write"], needs=["custom"], inputs=[selected, coverage+"systems.json", "docs/analysis/evidence/**/*.json"], outputs=[coverage+"historical-range-revalidation.json"], phase="reconcile", memory=2048)
     stages[-1]["git_history"] = True
     stages[-1].update(cache=False, transitive_inputs=False)
-    stage("selection", "select-native-image-evidence.py", ["--write"], needs=["history"], inputs=[selected, coverage+"native-ownership-classification.json", coverage+"native-jump-tables.json", coverage+"historical-range-revalidation.json"], outputs=[coverage+"native-image-current.json"], phase="reconcile")
+    stage("selection", "check-full-image-native.py", ["--write"], needs=["history"], inputs=[selected, coverage+"native-ownership-classification.json", coverage+"native-jump-tables.json", coverage+"historical-range-revalidation.json"], outputs=[coverage+"native-image-current.json"], phase="reconcile")
     # The connection audit validates the selected target of this ledger. Generate
     # it first so a new target cannot consume the predecessor's changelog.
     stage("changelog", "index-current-changelog.py", ["--write"], needs=["selection"], inputs=["docs/CHANGELOG.md", coverage+"systems.json", coverage+"changelog-reviews.json"], outputs=[coverage+"changelog.json"], phase="reconcile")
     stage("connections", "audit-exe-connections.py", ["--census-summary", selected, "--write"], needs=["selection", "changelog"], inputs=[selected, coverage+"systems.json", coverage+"historical-range-revalidation.json", coverage+"changelog.json", "docs/analysis/evidence/**/*.json", "crates/**/*.rs"], outputs=[coverage+"exe-connections.json"], phase="reconcile")
     stages[-1].update(cache=False, transitive_inputs=False)
-    stage("unknown", "summarize-refresh-unknowns.py", ["--census-summary", selected, "--write"], needs=["connections"], inputs=[selected, coverage+"exe-connections.json", coverage+"file-range-summary.json"], outputs=["docs/analysis/evidence/{version}/unknown-recovery.json"], phase="reconcile")
+    stage("unknown", "summarize-refresh-unknowns.py", ["--census-summary", selected, "--write"], needs=["connections"], inputs=[selected, coverage+"exe-connections.json", coverage+"file-range-summary.json"], outputs=["docs/analysis/evidence/unknown-recovery.json"], phase="reconcile")
     stage("accounting", "check-reconstruction-coverage.py", needs=["unknown", "changelog", "menu-identity"], inputs=["docs/analysis/coverage/*.json", "docs/CURRENT-STATE.md", "docs/verification-needed.md"], phase="reconcile", cache=False)
     return {"format": "execheck-dag-v1", "stages": stages}

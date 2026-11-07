@@ -1,7 +1,7 @@
 # Heroic clear persistence and admission
 
 Current final-boss clear timing and its source repair are owned by
-[the 0.123.0 report](coop-clear.md). This report retains its original
+[the 0.123.0 report](coop.md#choices-progression-and-rewards). This report retains its original
 save/admission evidence and does not establish the newer cooperative timing.
 
 Installed EXE SHA-256:

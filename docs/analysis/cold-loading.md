@@ -8,7 +8,7 @@ pause adapter. [verification-needed](../verification-needed.md) owns application
 ## Native release contract
 
 REA/Ghidra recovery of `140836110`–`14083647b`, original-PE assembly and byte
-identity are retained in the [settle manifest](evidence/0.105.0/cold-load/settle-manifest.json).
+identity are retained in the [settle manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.105.0/cold-load/settle-manifest.json).
 The function checks the body's focus tile, residency, scene readiness and
 collider/merge/retained-render backlogs. It compares six progress counters. A
 stale world or changed counters extends the deadline by the native **6 seconds**;
@@ -37,7 +37,7 @@ cannot become ready; this correction does not invent missing assets or success.
 
 ## Verification and limits
 
-[Six instruction cases](evidence/0.105.0/cold-load/settle-fixtures.json) execute
+[Six instruction cases](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.105.0/cold-load/settle-fixtures.json) execute
 the unchanged selected-EXE release owner in Unicorn: expired clock, accounted
 pause, readiness during pause, resumed stall, changing counters and stale world.
 Clock/resource/tile inputs and the log callback are explicit seams. Supplied
@@ -53,14 +53,14 @@ Rustfmt syntax/format checking passed; compilation and these regressions were
 
 The selected target's stream-watch owner `140abbd60`–`140abc282` has been
 recovered independently with REA/Ghidra and original-PE instructions. The
-[audio manifest](evidence/0.105.0/cold-load/audio-manifest.json) binds its bytes,
+[audio manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.105.0/cold-load/audio-manifest.json) binds its bytes,
 provider and constants: a one-second window, loss threshold 0.1 seconds and
 three-second startup wait. The native meter adds frame-start deltas to its
 expected time but samples playback position and a monotonic timestamp later
 in the frame. Loading work before that poll can be credited to two different
 windows when a window closes on the delayed frame.
 
-[Three native replays](evidence/0.105.0/cold-load/audio-fixtures.json) confirm:
+[Three native replays](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.105.0/cold-load/audio-fixtures.json) confirm:
 
 - Healthy regular polling: no warning.
 - Healthy playback with one poll delayed 400 ms: a **false 400 ms warning**;

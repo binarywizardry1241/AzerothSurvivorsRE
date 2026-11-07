@@ -15,6 +15,8 @@ import sys
 
 from coverage_common import ROOT, file_sha256, json_text, latest_target, load_json, project_path, target_bytes
 
+from script_sources import recorded_input_matches
+
 SUMMARY = ROOT / "docs/analysis/coverage/seeded-census.json"
 GENERATOR = "scripts/summarize-seeded-census.py"
 
@@ -100,13 +102,12 @@ def summarize(target, root, capstone):
     ownership = load_json(ROOT / "docs/analysis/coverage/diagnostic-ownership.json")
     if ownership["inventory"]["sha256"] != selection["diagnostic_inventory_sha256"]:
         raise ValueError("Selected census diagnostic inventory changed")
-    selection_tool = module("selected_census_preparer", "scripts/prepare-native-census-selection.py")
     bulk = load_json(root / "diagnostic-ownership.json")
-    selection_tool.validate_ownership_summary(ownership, target, (root / "diagnostic-ownership.json").relative_to(ROOT).as_posix(), file_sha256(root / "diagnostic-ownership.json"))
-    if selection_tool.select_owners(bulk, target) != selection["mappings"]:
+    census.validate_ownership_summary(ownership, target, (root / "diagnostic-ownership.json").relative_to(ROOT).as_posix(), file_sha256(root / "diagnostic-ownership.json"))
+    if census.select_owners(bulk, target) != selection["mappings"]:
         raise ValueError("Selected census no longer reproduces all diagnostic owners")
     pe = module("selected_census_pe", "scripts/inventory-current-target.py").pe_parser(target_bytes(target))
-    selection_tool.validate_owner_bytes(selection["mappings"], pe.data)
+    census.validate_owner_bytes(selection["mappings"], pe.data)
     decoder = capstone.Cs(capstone.CS_ARCH_X86, capstone.CS_MODE_64)
     by_address, reference_kinds = {}, dict(outgoing=Counter(), incoming=Counter())
     unresolved_reasons = Counter()
@@ -176,7 +177,7 @@ def summarize(target, root, capstone):
                 profile=dict(name=census.SELECTED_PROFILE, digest=profile["digest"], provider=profile["provider"],
                     disabled_analyzers=profile["parameters"]["analysis_options"]["disabled_analyzers"],
                     seed_format=selection["format"], seed_sha256=selection["seed_sha256"], tooling=selection["tooling"]),
-                generator={path:file_sha256(ROOT / path) for path in (GENERATOR, "scripts/census-current-target.py", "scripts/repair-rea-seeded-bodies.py", "scripts/prepare-native-census-selection.py")},
+                generator={path:file_sha256(ROOT / path) for path in (GENERATOR, "scripts/census-current-target.py", "scripts/repair-rea-seeded-bodies.py")},
                 independent_decoder=dict(name="Capstone", version=capstone.__version__),
                 counts=counts, reference_kinds={k:dict(sorted(v.items())) for k,v in reference_kinds.items()},
                 unresolved_call_reasons=dict(sorted(unresolved_reasons.items())), mappings=mappings,
@@ -203,7 +204,7 @@ def validate_summary(record, target, systems, data, findings):
         "global_native_semantics_complete", "global_references_complete", "native_source_ownership_complete", "parity_verified"))
         and 41 in record.get("gap_ids", []), "Selected body queries cannot certify global recovery or parity")
     for path, digest in record.get("generator", {}).items():
-        require(file_sha256(project_path(path)) == digest, f"Seeded census generator changed: {path}")
+        require(recorded_input_matches(path, digest), f"Seeded census generator commitment differs: {path}")
     repair = module("summary_seed_repair", "scripts/repair-rea-seeded-bodies.py")
     require(record.get("profile", {}).get("seed_format") == repair.FORMAT, "Missing repaired seed-format profile commitment")
     pe = module("summary_seeded_pe", "scripts/inventory-current-target.py").pe_parser(data)

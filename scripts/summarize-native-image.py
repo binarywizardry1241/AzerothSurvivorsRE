@@ -18,7 +18,7 @@ import sys
 from coverage_common import ROOT, latest_target, target_bytes, load_json, json_text, file_sha256, project_path
 from portable_paths import portable_record
 from derived_gzip import derived_gzip_text
-from instruction_facts import BoundaryVerifier, HELPER_SHA256 as FACTS_SHA256, derived_json, artifact_path
+from instruction_facts import BoundaryVerifier, HELPER_SHA256 as FACTS_SHA256, derived_bytes, derived_json, artifact_path
 from shared_native_inventory import open_readonly_uri as open_native_inventory, inventory_size
 GENERATOR_SHA256=file_sha256(ROOT/'scripts/summarize-native-image.py')
 DERIVED_GZIP_SHA256=file_sha256(ROOT/'scripts/derived_gzip.py')
@@ -376,18 +376,71 @@ def summarize(directory,target,check_instructions=True,*,publish=False,artifact_
             'No application compilation, target execution or original/rebuilt comparison.']}
 
 
+def compact(report, original, *, artifact_directory=None, publish=True):
+    """Keep bulk bindings in runtime and preserve the original summary bytes."""
+    if 'diagnostic_bindings' not in report:
+        return report
+    directory = project_path(artifact_directory or report['artifacts']['directory'])
+    snapshot = directory / 'full-summary.json'
+    if snapshot.exists() and snapshot.read_bytes() != original:
+        raise ValueError('Refusing to replace an immutable full-summary snapshot')
+    derived_bytes(snapshot, original, publish=publish)
+    bindings = report['diagnostic_bindings']
+    audit = directory / 'diagnostic-bindings.json'
+    derived_json(audit, {'target': report['target'], 'diagnostic_bindings': bindings}, publish=publish)
+    result = {key: value for key, value in report.items() if key != 'diagnostic_bindings'}
+    result['curation_generator'] = {
+        'path': 'scripts/summarize-native-image.py',
+        'sha256': GENERATOR_SHA256,
+        'dependencies': [{'path': 'scripts/instruction_facts.py', 'sha256': FACTS_SHA256}],
+    }
+    result['diagnostic_binding_counts'] = {
+        'paths': len(bindings),
+        'custom_paths': sum(row['custom_game_crate'] for row in bindings),
+        'paths_with_verified_diagnostic_sites': sum(bool(row['verified_sites']) for row in bindings),
+        'paths_with_actual_native_owners': sum(bool(row['actual_native_body_owners']) for row in bindings),
+        'verified_sites': sum(row['verified_sites'] for row in bindings),
+        'sites_without_actual_native_owner': sum(row['sites_without_actual_ghidra_owner'] for row in bindings),
+    }
+    exceptions = [row for row in bindings if row['verified_sites'] and row['sites_without_actual_ghidra_owner']]
+    result['diagnostic_owner_exceptions'] = {
+        'paths_with_unowned_verified_sites': len(exceptions),
+        'custom_paths': [
+            {'path': row['path'], 'unowned_sites': row['sites_without_actual_ghidra_owner']}
+            for row in exceptions if row['custom_game_crate']
+        ],
+        'whole_queue_paths_without_any_owner': [
+            row['path'] for row in exceptions if not row['actual_native_body_owners']
+        ] if report['seed_scope'] in ('all', 'declared') else [],
+        'complete_exception_records_in_diagnostic_binding_audit': True,
+    }
+    result['diagnostic_binding_audit'] = {'path': audit.relative_to(ROOT).as_posix(), 'sha256': file_sha256(audit)}
+    result['full_summary_snapshot'] = {
+        'path': snapshot.relative_to(ROOT).as_posix(), 'sha256': hashlib.sha256(original).hexdigest(),
+    }
+    return result
+
+
+def summary_output(directory, requested=None):
+    """Stage candidate passes in runtime. Only the selected report is tracked."""
+    output = artifact_path(requested or directory / 'summary.json')
+    if not output.is_relative_to(ROOT / 'runtime') and output != ROOT / 'docs/analysis/coverage/full-image-selected.json':
+        raise ValueError('Write the summary inside runtime/ or to the canonical full-image-selected.json')
+    return output
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--input');parser.add_argument('--write',action='store_true');parser.add_argument('--skip-instruction-check',action='store_true');parser.add_argument('--summary-output');parser.add_argument('--artifact-directory',help='Fresh runtime directory for verifier derivatives; preserves the native census bundle')
     parser.add_argument('--complement-inventory', help='Alternate inventory path with the exact complement digest in the frozen plan')
     args=parser.parse_args()
     target=latest_target();directory=project_path(args.input or f"runtime/coverage/{target['sha256']}/ghidra/full-image-durable")
     if args.write and args.skip_instruction_check:raise ValueError('Curated evidence requires all independent instruction checks')
+    if args.write:
+        output = summary_output(project_path(args.artifact_directory) if args.artifact_directory else directory,
+                                args.summary_output)
     report=summarize(directory,target,not args.skip_instruction_check,publish=args.write,artifact_directory=args.artifact_directory,complement_inventory=args.complement_inventory)
     if args.write:
-        name='full-image-census.json' if report['seed_scope']=='declared' else 'full-image-integrated.json' if report['seed_scope']=='all' else f"full-image-{report['seed_scope']}.json"
-        output=artifact_path(args.summary_output or 'docs/analysis/coverage/'+name)
-        spec=importlib.util.spec_from_file_location('compact_native_census',ROOT/'scripts/compact-native-census.py')
-        compact=importlib.util.module_from_spec(spec);spec.loader.exec_module(compact)
-        derived_json(output,compact.compact(report,json_text(report).encode(),artifact_directory=args.artifact_directory),publish=True)
+        derived_json(output, compact(report, json_text(report).encode(), artifact_directory=args.artifact_directory),
+                     publish=True)
     else:print(json_text(report))
 if __name__=='__main__':main()

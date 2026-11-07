@@ -1421,4 +1421,4 @@ since the one before, that the game applies whole and in order (asking the serve
   and the ordinary recipient-owned meter snapshots.
 - The [earlier supplied reference](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/addon-api/reference-supplied-0.139.0.md) and
   [local-clock proposal](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/addon-api/local-clock-proposal-supplied.md) are retained
-  as historical inputs with [recorded hashes](analysis/evidence/0.139.0/source-frontier.json).
+  as historical inputs with [recorded hashes](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.139.0/source-frontier.json).

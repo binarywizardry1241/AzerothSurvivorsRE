@@ -16,6 +16,7 @@ import uuid
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
+from artifact_history import read_artifact
 from coverage_common import file_sha256, json_text, latest_target, project_path, target_bytes
 from shared_analysis import SharedAnalysis
 
@@ -221,7 +222,7 @@ def predecessor_input(root, previous, supplied, role):
     if not requested.is_relative_to(root) or not path.is_relative_to(root):
         raise ValueError("Predecessor input leaves the project")
     requested_relative = requested.relative_to(root).as_posix()
-    raw = path.read_bytes()
+    raw = read_artifact(path, root=root)
     checksum = file_sha256_bytes(raw)
     records = previous.get("inputs", [])
     position = positions[role]
@@ -283,7 +284,7 @@ def predecessor_proposal_input(root, previous):
         raise ValueError("Predecessor proposed inventory leaves the project")
     if file_sha256(path) != reference["sha256"]:
         raise ValueError("Predecessor proposed inventory hash differs")
-    proposals = json.loads(path.read_text())
+    proposals = json.loads(read_artifact(path, root=root))
     if proposals.get("target") != previous["target"]:
         raise ValueError("Predecessor proposed inventory target differs")
     return path, proposals, summary_path
@@ -415,7 +416,7 @@ def main():
         parser.error("complete context reconciliation needs both predecessor census and applied summaries")
     census_path, applied_summary_path, proposed_summary_path, previous_path = [
         project_path(value) for value in (args.census_summary, args.applied_summary, args.proposed_summary, args.predecessor)]
-    census, applied_summary, proposed_summary, previous = [json.loads(path.read_text()) for path in (
+    census, applied_summary, proposed_summary, previous = [json.loads(read_artifact(path)) for path in (
         census_path, applied_summary_path, proposed_summary_path, previous_path)]
     registered = latest_target(verify=True)
     target = {key: registered[key] for key in ("version", "path", "sha256", "size_bytes")}
@@ -465,13 +466,13 @@ def main():
         assert previous_census["target"] == previous["target"]
         assert previous_census["independent_instructions"]["exact_source_bytes_verified"]
         previous_applied_path, previous_frozen_path = verify_applied_input(previous_census, previous_applied_summary)
-        previous_applied = json.loads(previous_applied_path.read_text())
+        previous_applied = json.loads(read_artifact(previous_applied_path))
         previous_directory = project_path(previous_census["artifacts"]["directory"])
         previous_bodies = previous_directory / "bodies.tsv.gz"
         assert file_sha256(previous_bodies) == previous_census["artifacts"]["files"]["bodies.tsv.gz"]["sha256"]
         previous_diagnostics_path = ROOT / "runtime/coverage" / previous["target"]["sha256"] / "diagnostic-ownership.json"
         assert previous_inputs.get(previous_diagnostics_path.relative_to(ROOT).as_posix()) == file_sha256(previous_diagnostics_path)
-        previous_diagnostics = json.loads(previous_diagnostics_path.read_text())
+        previous_diagnostics = json.loads(read_artifact(previous_diagnostics_path))
         assert previous_diagnostics["target"] == previous["target"]
         previous_owner = helper.owner_lookup([(int(r["start"], 16), int(r["end"], 16), int(r["entry"], 16))
                                              for r in helper.rows(previous_bodies) if r["external"] == "false"])

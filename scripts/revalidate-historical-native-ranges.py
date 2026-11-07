@@ -21,7 +21,8 @@ import time
 import zlib
 from functools import lru_cache
 from pathlib import Path
-from coverage_common import ROOT, latest_target, target_bytes, load_json, json_text, file_sha256, project_path, artifact_path
+from coverage_common import ROOT, latest_target, target_bytes, load_json, json_text, file_sha256, project_path, artifact_path, same_artifact
+from artifact_history import has_archived_artifact, iter_artifact_paths, read_artifact
 from shared_analysis import SharedAnalysis, canonical, file_digest, require_primary_checkout
 
 LEGACY_SEARCH_ALGORITHM='python-bytes-find-first-two-v1'
@@ -253,7 +254,7 @@ def preimage_identity(target,documents,document_hashes,string_sources):
     inputs={str(path.relative_to(ROOT)):digest for path,digest in document_hashes.items()}
     candidates=set(string_sources)
     for path,document in documents:
-        candidates.update(path.parent.glob('*.asm'))
+        candidates.update(iter_artifact_paths(path.parent,'.asm'))
         values=[(document.get('assembly'),('docs/',))]
         for record in ranges(document):
             values.extend(((record.get('assembly'),('docs/',)),(record.get('raw_artifact'),('runtime/','docs/','assets/'))))
@@ -267,7 +268,7 @@ def preimage_identity(target,documents,document_hashes,string_sources):
         'scripts/recover-balance-catalog.py','scripts/recover-pvp-gear.py'))
     for path in sorted(candidates):
         name=path.relative_to(ROOT).as_posix()
-        if name not in inputs:inputs[name]=file_digest(path) if path.is_file() else None
+        if name not in inputs:inputs[name]=file_sha256(path) if path.is_file() or has_archived_artifact(path) else None
     # An imported Git object can make an archived asset recoverable. Changing
     # history must invalidate a cached negative preimage, even with equal docs.
     try:
@@ -334,14 +335,14 @@ def manifest_target_bindings(documents):
         if not digest:continue
         for value,commitment,pointer in references(document):
             path=(ROOT/value if value.startswith(('docs/','assets/','runtime/')) else manifest.parent/value).resolve()
-            if not path.is_relative_to(ROOT) or not path.is_file() or file_sha256(path)!=commitment:continue
+            if not path.is_relative_to(ROOT) or not (path.is_file() or has_archived_artifact(path)) or file_sha256(path)!=commitment:continue
             bindings.setdefault(path,{}).setdefault(digest,[]).append({'path':manifest.relative_to(ROOT).as_posix(),'sha256':file_sha256(manifest),'json_pointer':pointer})
     return bindings
 
 def utf8_preimages(wanted,paths):
     result={};lengths={count for count,_ in wanted}
     for path in paths:
-        try:document=json.loads(path.read_text())
+        try:document=load_json(path)
         except (ValueError,UnicodeDecodeError):continue
         digest=None
         for pointer,value in json_strings(document):
@@ -533,7 +534,7 @@ def ranges(value,pointer=''):
 def assembly_instructions(path):
     """Only explicit byte columns count; mnemonic-only listings stay unknown."""
     instructions={}
-    for line in Path(path).read_text(errors='replace').splitlines():
+    for line in read_artifact(path).decode(errors='replace').splitlines():
         match=re.match(r'^\s*(?:0x)?([0-9a-fA-F]{8,16}):[ \t]+((?:[0-9a-fA-F]{2}[ \t]+)+|(?:[0-9a-fA-F]{2}){2,}[ \t]+)([A-Za-z][A-Za-z0-9_.]*)(?=[ \t]|$)',line)
         if match:
             # These x86 mnemonics/directives also happen to be even-length hex.
@@ -560,8 +561,8 @@ def sibling_json_bytes(directory,digest):
             for child in value.values():yield from spans(child)
         elif isinstance(value,list):
             for child in value:yield from spans(child)
-    for path in sorted(Path(directory).glob('*.json')):
-        try:document=json.loads(path.read_text())
+    for path in iter_artifact_paths(directory,'.json'):
+        try:document=load_json(path)
         except (ValueError,UnicodeDecodeError):continue
         if not isinstance(document,dict) or target_digest(document)!=digest:continue
         for address,raw in spans(document):
@@ -583,8 +584,10 @@ def reconstruct_range(record,manifest,document):
         path=(ROOT/value if value.startswith(('runtime/','docs/','assets/')) else manifest.parent/value).resolve()
         # Extracts may be source text, not just .bin/.dat/.json. Former full
         # reference copies remain forbidden even when a historical row names one.
-        if path.is_relative_to(ROOT) and path.suffix.lower() not in ('.exe','.mpq') and path.is_file() and path.stat().st_size in (record['byte_count'],record['byte_count']+1):
-            artifact=path.read_bytes()
+        allowed_sizes=(record['byte_count'],record['byte_count']+1)
+        if path.is_relative_to(ROOT) and path.suffix.lower() not in ('.exe','.mpq') and (
+                (path.is_file() and path.stat().st_size in allowed_sizes) or has_archived_artifact(path)):
+            artifact=read_artifact(path)
             candidates=[(artifact,'committed-native-range-artifact')]
             if len(artifact)==record['byte_count']+1 and artifact.endswith(b'\n'):
                 candidates.append((artifact[:-1],'native-range-artifact-with-added-terminal-LF'))
@@ -598,8 +601,8 @@ def reconstruct_range(record,manifest,document):
         if isinstance(value,dict):value=value.get('path')
         if isinstance(value,str):
             path=(ROOT/value if value.startswith('docs/') else manifest.parent/value).resolve()
-            if path.is_relative_to(ROOT) and path.is_file():references.append(path)
-    references.extend(path for path in sorted(manifest.parent.glob('*.asm')) if path not in references)
+            if path.is_relative_to(ROOT) and (path.is_file() or has_archived_artifact(path)):references.append(path)
+    references.extend(path for path in iter_artifact_paths(manifest.parent,'.asm') if path not in references)
     for path in references:
         instructions=assembly_instructions(str(path));cursor=start;raw=bytearray()
         while cursor in instructions and len(raw)<record['byte_count']:
@@ -629,6 +632,9 @@ def current_census_path(target, requested=None):
     selected=previous.get('current_native_body_census',{})
     if not selected.get('path') or not selected.get('sha256'):
         raise ValueError('--census-summary is required without a current census commitment')
+    canonical=ROOT/'docs/analysis/coverage/full-image-selected.json'
+    if canonical.is_file() and same_artifact(selected['path'],canonical,selected['sha256']):
+        return canonical
     path=project_path(selected['path'])
     if file_sha256(path)!=selected['sha256']:
         raise ValueError('Selected native census commitment differs')
@@ -680,9 +686,10 @@ def main():
     spec=importlib.util.spec_from_file_location('historical_body_owners',ROOT/'scripts/summarize-native-image.py');native_helpers=importlib.util.module_from_spec(spec);spec.loader.exec_module(native_helpers)
     owner=native_helpers.owner_lookup([(int(row['start'],16),int(row['end'],16),int(row['entry'],16)) for row in native_helpers.rows(body_path) if row['external']=='false'])
     counts=Counter();by_target={};records=[];unique={};raw_bytes={};documents=[];document_hashes={};admitted_bindings=[]
-    for path in sorted((ROOT/'docs/analysis/evidence').rglob('*.json')):
+    evidence_documents=iter_artifact_paths(ROOT/'docs/analysis/evidence','.json',recursive=True)
+    for path in evidence_documents:
         try:
-            source_bytes=path.read_bytes();document=json.loads(source_bytes)
+            source_bytes=read_artifact(path);document=json.loads(source_bytes)
         except (ValueError,UnicodeDecodeError):counts['non-json-or-utf8-evidence-files']+=1;continue
         if not isinstance(document,dict):continue
         documents.append((path,document));document_hashes[path]=hashlib.sha256(source_bytes).hexdigest()
@@ -693,7 +700,7 @@ def main():
         except (ValueError,UnicodeDecodeError):continue
         if isinstance(document,dict):
             serialized_sources.append((path,document));document_hashes[path]=hashlib.sha256(source_bytes).hexdigest()
-    string_sources=sorted(set((ROOT/'docs/analysis/evidence').rglob('*.json'))|set((ROOT/'assets').rglob('*.json')))
+    string_sources=sorted(set(evidence_documents)|set((ROOT/'assets').rglob('*.json')))
     identity=preimage_identity(target,serialized_sources,document_hashes,string_sources)
     cache=HistoricalCache(target['sha256'],write=args.write)
     cached_preimages=cache.preimages(identity)
@@ -793,7 +800,7 @@ def main():
         preimage_records_recovered=len(raw_bytes),preimage_records_unavailable=len(unique)-len(raw_bytes),
         recovery_and_join_wall_seconds=time.perf_counter()-preimage_began,wall_seconds=time.perf_counter()-began)
     cache.close()
-    if any(file_digest(path)!=digest for path,digest in document_hashes.items()) or preimage_identity(target,serialized_sources,document_hashes,string_sources)!=identity:
+    if any(file_sha256(path)!=digest for path,digest in document_hashes.items()) or preimage_identity(target,serialized_sources,document_hashes,string_sources)!=identity:
         raise ValueError('Historical preimage source inputs changed during recovery')
     cache.publish(identity,{canonical(key):(raw,unique[key]['canonical_preimage']) for key,raw in raw_bytes.items()})
     publish_text(output,serialized,args.write)

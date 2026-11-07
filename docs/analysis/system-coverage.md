@@ -120,11 +120,11 @@ complete native ownership and hardware/runtime parity remain open.
 | Native diagnostic owner | Reviewed source anchors | Other canonical gaps |
 | --- | --- | --- |
 | `app:legacy_config.rs` | [Current migration/merge source and bounded proof](legacy-config.md); Windows file operations and preservation parity remain unverified | #17, #62 |
-| `app:screens/coop.rs` | [Current capacity/roster/list UI adapter and bounded proof](coop-ui.md); direct-peer roster consumer connected; public discovery/full forms and UI execution/parity remain open | #17, #63 |
-| `game:coop/route.rs` | [Native event projection](coop-transport.md) and [actual world-owned private/shared recipients](coop-session.md); execution/parity unverified | #63 |
-| `game:coop/tcp.rs` | [Native TCP framing/lifecycle/startup](coop-transport.md); direct session integration, no runtime/interoperability proof | #63 |
-| `game:game/party.rs` | [Shared-world/per-hero simulation, targeting, revive, rewards, health scaling and guest HUD source](coop-game-party.md); compilation/gameplay/parity unverified | #63 |
-| `game:server/party.rs` | [Admission/binary lifecycle](coop-server-party.md) and [actual profile/world/bootstrap/replication integration](coop.md); public service and execution/parity open | #63 |
+| `app:screens/coop.rs` | [Current capacity/roster/list UI adapter and bounded proof](coop.md#shared-simulation-and-replication); direct-peer roster consumer connected; public discovery/full forms and UI execution/parity remain open | #17, #63 |
+| `game:coop/route.rs` | [Native event projection](coop.md#lobby-admission-and-transport) and [actual world-owned private/shared recipients](coop.md#lobby-admission-and-transport); execution/parity unverified | #63 |
+| `game:coop/tcp.rs` | [Native TCP framing/lifecycle/startup](coop.md#lobby-admission-and-transport); direct session integration, no runtime/interoperability proof | #63 |
+| `game:game/party.rs` | [Shared-world/per-hero simulation, targeting, revive, rewards, health scaling and guest HUD source](coop.md#shared-simulation-and-replication); compilation/gameplay/parity unverified | #63 |
+| `game:server/party.rs` | [Admission/binary lifecycle](coop.md#interruption-departure-and-settlement) and [actual profile/world/bootstrap/replication integration](coop.md); public service and execution/parity open | #63 |
 | `app:lib.rs` | [main.rs: `main`](../../crates/azeroth-survivors-re/src/main.rs); [gameplay/mod.rs: `enter`](../../crates/azeroth-survivors-re/src/gameplay/mod.rs) | #9, #17 |
 | `app:screens/armory.rs` | [armory.rs: `ArmoryCatalog`](../../crates/azeroth-survivors-re/src/armory.rs); [armory.rs: `input`](../../crates/azeroth-survivors-re/src/armory.rs) | #4, #17 |
 | `app:screens/backdrop.rs` | [background.rs: `SceneProfile`](../../crates/azeroth-survivors-re/src/background.rs); [menu_scene.rs: `drive_camera`](../../crates/azeroth-survivors-re/src/menu_scene.rs) | #17, #35, #39 |

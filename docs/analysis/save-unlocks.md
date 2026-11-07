@@ -11,7 +11,7 @@ remain unverified.
 
 The authority is `AzerothSurvivors/AzerothSurvivors-0.105.0.exe`, SHA-256
 `8dfa009f6915e68898d18bb631ddfad1606c20f92f7ec3109dff9d4769f8eeb7`.
-The [target record](target-refresh-0.105.0.json) supplies its identity.
+The [target record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/target-refresh-0.105.0.json) supplies its identity.
 
 | Owner | Recovered behavior |
 | --- | --- |

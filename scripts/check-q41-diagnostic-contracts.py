@@ -15,7 +15,7 @@ import importlib.util
 import json
 import struct
 
-from coverage_common import ROOT, file_sha256, latest_target, target_bytes
+from coverage_common import ROOT, file_sha256, latest_target, load_json, target_bytes
 
 
 def require(value, message):
@@ -61,9 +61,9 @@ def main():
             require(pe.rva_offset(address + size - 1 - pe.image_base) - off == size - 1, 'Noncontiguous mapped bytes')
         return pe.data[off:off + size]
 
-    canonical = json.loads(consume('docs/analysis/evidence/0.115.0/q41-custom-diagnostics.json').read_text())
-    owned = json.loads(consume('docs/analysis/evidence/0.115.0/owned-custom-diagnostics.json').read_text())
-    projection = json.loads(consume('docs/analysis/evidence/0.115.0/execheck-diagnostic-sites.json').read_text())
+    canonical = load_json(consume('docs/analysis/evidence/0.115.0/q41-custom-diagnostics.json'))
+    owned = load_json(consume('docs/analysis/evidence/0.115.0/owned-custom-diagnostics.json'))
+    projection = load_json(consume('docs/analysis/evidence/0.115.0/execheck-diagnostic-sites.json'))
     require(all(p['target'] == identity for p in (canonical, owned, projection)), 'Proof target mismatch')
     expanded = projection['profiles']['expanded_all_seeds']
     source = expanded['artifacts']['jsonl']
@@ -186,7 +186,7 @@ def main():
                             graph_instruction_commitment=digest(json.dumps(sorted(instructions.items()), separators=(',', ':')).encode()),
                             exits=sorted(exits.values(), key=lambda r: (r['site'], r['kind'])),
                             successful_AS_semantics_complete=False, output_ABI_certified=False))
-    census = json.loads(consume('docs/analysis/coverage/full-image-census.json').read_text())
+    census = load_json(consume('docs/analysis/coverage/full-image-census.json'))
     reference_path = census['artifacts']['directory'] + '/references.tsv.gz'
     consume(reference_path, census['artifacts']['files']['references.tsv.gz']['sha256'])
     owners = {r['owner'][2:] for r in results}

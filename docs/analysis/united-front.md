@@ -11,7 +11,7 @@ earned-key set for exactly `coop:team`. A match selects f32 bits **3dcccccd**
 This is an automatic achievement reward, independent of purchased perk ranks.
 Its unlock row uses `Spell_Holy_PrayerOfHealing`; the achievement's separate
 icon ends in `02`. Current descriptors and exact ordered unlock rows belong
-to [#114's achievement report](coop-achievements.md).
+to [#114's achievement report](coop.md#choices-progression-and-rewards).
 
 The source now carries that automatic grant through local `account_run_grants`
 and remote `coop_profile::build`. The current Hero builder `145aa9390` puts the

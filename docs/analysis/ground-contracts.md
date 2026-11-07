@@ -59,7 +59,7 @@ instead of presenting its conditional failure route as a current reproduction.
 
 ## Evidence and validation
 
-The [manifest](evidence/0.127.0/ground-contracts/manifest.json) binds four
+The [manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.127.0/ground-contracts/manifest.json) binds four
 journaled Ghidra observations to exact declared owners, six nonoverlapping
 canonical instruction extracts and the threshold. The curated postprocess
 pseudocode is an exact excerpt; raw Ghidra subjects omit external code/data and

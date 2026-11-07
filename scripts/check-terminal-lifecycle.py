@@ -14,6 +14,7 @@ import re
 import struct
 import sys
 
+from artifact_history import read_artifact
 from coverage_common import ROOT, latest_target, target_bytes
 
 EVIDENCE = ROOT / 'docs/analysis/evidence/0.107.0/terminal-lifecycle'
@@ -37,7 +38,7 @@ def main():
     import unicorn.x86_const as reg
 
     target = latest_target(verify=True)
-    manifest = json.loads((EVIDENCE / 'manifest.json').read_text())
+    manifest = json.loads(read_artifact(EVIDENCE / 'manifest.json'))
     require(all(target[k] == v for k, v in manifest['target'].items()), 'Evidence belongs to another target')
     data = target_bytes(target)
     module = load_script('native_pe', ROOT / 'scripts/inventory-executable.py')
@@ -54,7 +55,7 @@ def main():
         require(len(raw(a, b - a)) == b - a and hashlib.sha256(raw(a, b - a)).hexdigest() == row['sha256'], row['role'])
         for key in ('assembly', 'pseudocode'):
             if key in row:
-                require(hashlib.sha256((EVIDENCE / row[key]).read_bytes()).hexdigest() == row[key + '_sha256'], key)
+                require(hashlib.sha256(read_artifact(EVIDENCE / row[key])).hexdigest() == row[key + '_sha256'], key)
     if args.prepare_rea:
         directory = ROOT / 'runtime/analysis/history/findings/gap9/d9983efe90eb/lifecycle-reproduction'
         directory.mkdir(parents=True, exist_ok=True)

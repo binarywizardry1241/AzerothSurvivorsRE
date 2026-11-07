@@ -18,6 +18,7 @@ from urllib.parse import unquote
 
 sys.dont_write_bytecode = True
 
+from artifact_history import archived_artifact, has_archived_artifact
 from coverage_common import latest_target, version_key
 from script_sources import current_path, historical_source, report_provenance, retained_report
 
@@ -399,7 +400,9 @@ def apply_reviews(entries, path, target, system_ids):
             expected = hashes.get(name)
             if not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected):
                 raise ValueError(f"review reference needs its exact file SHA-256: {name}")
-            if name in report_provenance(ROOT)['reports']:
+            if has_archived_artifact(name, ROOT):
+                data = archived_artifact(name, expected if current else None, ROOT)
+            elif name in report_provenance(ROOT)['reports']:
                 data = retained_report(name, expected if current else None, ROOT)
             elif file_path.is_file():
                 data = file_path.read_bytes()

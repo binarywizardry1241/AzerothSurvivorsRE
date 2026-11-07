@@ -38,7 +38,7 @@ keys and full-qword storage words against the connected asset; it does not
 transfer the old formatter's different `control` field or source layout into
 this storage selector.
 
-The [thirteen historical dispatch contracts](q41-dispatch-contracts.md),
+The [thirteen historical dispatch contracts](native-recovery.md#indirect-dispatch-and-fixed-data-slots),
 [marker renderer](raid-markers.md),
 [Discord publisher](discord-presence.md) and
 [transport](discord-transport.md),

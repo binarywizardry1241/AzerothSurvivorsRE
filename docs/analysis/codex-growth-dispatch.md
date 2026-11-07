@@ -13,7 +13,7 @@ original query results, six exact native ranges, native input data and live
 source. Historical recovery retains its actual targets: the
 [0.109.0 Codex report](codex.md),
 [0.119.0 computed frontier](computed-source-frontier.md) and
-[0.119.1 table assessment](evidence/0.119.1/native-switch-proposals.json).
+[0.119.1 table assessment](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.119.1/native-switch-proposals.json).
 
 ## Producer, selector and consumer
 
@@ -93,7 +93,7 @@ and rendering behavior and original/rebuilt parity remain unverified.
 
 The additional current selector `AS-context-table:0x140352e9a` is the
 existing **growth text-family selector**, rather than another Codex action.
-Its [bounded proof](evidence/0.127.0/codex-growth-dispatch/manifest.json)
+Its [bounded proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.127.0/codex-growth-dispatch/manifest.json)
 binds installed 0.127.0 SHA-256
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`,
 the raw-owner Ghidra query, exact original instruction/data ranges and the

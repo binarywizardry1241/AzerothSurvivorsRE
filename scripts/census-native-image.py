@@ -221,7 +221,7 @@ def snapshot_bytes(raw,destination):
 
 def observed_body_index(target,expected_summary_sha256=None,primary_summary=None):
     """Load only independently verified, target-bound Ghidra body ranges."""
-    report_path=(ROOT/(primary_summary or 'docs/analysis/coverage/full-image-census.json')).resolve()
+    report_path=(ROOT/(primary_summary or 'docs/analysis/coverage/full-image-selected.json')).resolve()
     if not report_path.is_relative_to(ROOT):raise ValueError('Primary body summary escapes checkout')
     report=load_json(report_path)
     summary_sha=file_sha256(report_path)

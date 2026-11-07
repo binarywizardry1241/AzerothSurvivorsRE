@@ -20,7 +20,7 @@ class CurrentCensus(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.directory = self.root / 'runtime/census'
         self.directory.mkdir(parents=True)
-        self.path = self.root / 'docs/analysis/coverage/full-image-census.json'
+        self.path = self.root / 'docs/analysis/coverage/full-image-selected.json'
         self.path.parent.mkdir(parents=True)
         self.target = dict(version='0.115.0', path='installed-game/fixture.exe', sha256='a' * 64, size_bytes=12)
         self.counts = dict(instructions=3, instruction_bytes=7, native_functions=2, references=4)

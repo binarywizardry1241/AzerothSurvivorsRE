@@ -27,6 +27,7 @@ import time
 from urllib.parse import unquote, urlsplit, parse_qs
 import zlib
 
+from artifact_history import iter_artifact_paths, read_artifact
 from shared_analysis import SharedAnalysis, canonical, file_digest
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -235,9 +236,9 @@ def _historical_contract(root, path, digest):
 def _documented_inventory_receipts(root):
     """Admit historical decode reuse only from retained hash-bound evidence."""
     result = set()
-    for path in (Path(root) / "docs/analysis").rglob("*.json"):
+    for path in iter_artifact_paths("docs/analysis", ".json", recursive=True, root=Path(root)):
         try:
-            value = json.loads(path.read_text())
+            value = json.loads(read_artifact(path, root=Path(root)))
         except (OSError, UnicodeError, json.JSONDecodeError):
             continue
         stack = [value]

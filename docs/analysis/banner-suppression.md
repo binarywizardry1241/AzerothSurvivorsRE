@@ -70,7 +70,7 @@ wrap. The desktop consumes those outputs independently.
 
 Guest wire 9 admits the event at `0x145ecd571` and calls Core's
 frontend slot `+0x18` at `0x145ecd5ce` with the raw pointer and length.
-The [desktop vtable registration](coop-command-ingress.md#desktop-and-guest-gossip-capability-initialization)
+The [desktop vtable registration](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-command-ingress.md#desktop-and-guest-gossip-capability-initialization)
 binds that slot to `0x145e94430`. That callback optionally logs the
 record and observes the separate choices diagnostic, then copies the
 bytes into a queue of 24-byte owned strings at `0x145e94588..0x145e945ba`.

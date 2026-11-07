@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from script_sources import load_script, run_contract
 from coverage_common import project_path
+from artifact_history import iter_artifact_paths, read_artifact
 
 
 def sha(raw):
@@ -21,8 +22,10 @@ def select_manifest(raw, explicit=None):
         return project_path(explicit)
     expected = sha(raw)
     matches = []
-    for path in (ROOT / 'docs/analysis/evidence').glob('*/addon-api/manifest.json'):
-        if json.loads(path.read_text()).get('target', {}).get('sha256') == expected:
+    for path in iter_artifact_paths(ROOT / 'docs/analysis/evidence', '.json', recursive=True):
+        if not path.match('*/addon-api/manifest.json'):
+            continue
+        if json.loads(read_artifact(path)).get('target', {}).get('sha256') == expected:
             matches.append(path)
     if len(matches) != 1:
         raise ValueError('Select one reviewed addon API manifest matching the installed EXE with --manifest')
@@ -40,13 +43,13 @@ def main():
     manifest = select_manifest(raw, args.manifest)
     base = manifest.parent.parent
     extract_path = project_path(args.extract) if args.extract else base / 'addon-api-extract.json'
-    extract = json.loads(extract_path.read_text())
-    native = json.loads(manifest.read_text())
+    extract = json.loads(read_artifact(extract_path))
+    native = json.loads(read_artifact(manifest))
     assert sha(raw) == extract["target"]["sha256"] == native["target"]["sha256"]
     assert len(raw) == extract["target"]["size_bytes"] == native["target"]["size_bytes"]
     lua = extract["embedded_api"]
     offset = int(lua["file_offset"], 16)
-    payload = project_path(lua["path"]).read_bytes()
+    payload = read_artifact(project_path(lua["path"]))
     assert len(payload) == lua["byte_count"] and sha(payload) == lua["sha256"]
     assert raw[offset:offset + len(payload)] == payload
     pe = load_script("addon_api_pe", ROOT / "scripts/inventory-executable.py").PE(raw)
@@ -62,11 +65,11 @@ def main():
         for kind in ("assembly", "pseudocode"):
             if kind in row:
                 path = project_path(manifest.parent / row[kind])
-                assert sha(path.read_bytes()) == row[kind + "_sha256"], path
+                assert sha(read_artifact(path)) == row[kind + "_sha256"], path
         if "assembly" in row:
             original = bytearray()
             cursor = address
-            for line in project_path(manifest.parent / row["assembly"]).read_text().splitlines():
+            for line in read_artifact(project_path(manifest.parent / row["assembly"])).decode().splitlines():
                 at, encoded, _ = line.split("  ", 2)
                 assert int(at, 16) == cursor
                 chunk = bytes.fromhex(encoded)

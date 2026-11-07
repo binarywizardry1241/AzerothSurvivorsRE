@@ -1,6 +1,6 @@
 # Ahn’Qiraj Rifle
 
-The [bounded evidence](evidence/0.141.1/ahn-qiraj-rifle.json) uses installed
+The [bounded evidence](evidence/ahn-qiraj-rifle.json) uses installed
 0.141.1, SHA-256
 `47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6`.
 It assesses claim `changelog:0.141.1:737de64a7a82f25e` under

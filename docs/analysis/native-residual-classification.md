@@ -3,7 +3,7 @@
 Permanent **#41**, target SHA-256
 `0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c`.
 This report classifies complete selected populations from the independently
-verified [canonical declared Ghidra census](evidence/0.115.0/refresh-baseline/full-image-census.json), the separate declared
+verified [canonical declared Ghidra census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.115.0/refresh-baseline/full-image-census.json), the separate declared
 linear decode and the unwind-complement decode. Their rows overlap; they are
 not disjoint implementation coverage and must not be added into a percentage.
 Current source status belongs to [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md).

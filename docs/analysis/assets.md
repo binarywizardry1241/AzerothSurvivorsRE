@@ -11,7 +11,7 @@ No game was launched and no installed game directory outside this checkout was r
 
 | Input or output | Owning source/evidence | Meaning |
 | --- | --- | --- |
-| EXE identity | [Target manifest](target-refresh-0.97.2.json) | Exact version, size and immutable target hash |
+| EXE identity | [Target manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/target-refresh-0.97.2.json) | Exact version, size and immutable target hash |
 | EXE embedded assets and path references | [EXE asset evidence](evidence/0.97.2/exe-assets.json), [extractor](../../scripts/recover-exe-assets.py) | Validated embedded payloads; original offsets, hashes, names and path-string boundaries |
 | Native font registration and Data candidates | [Native loader evidence](evidence/0.97.2/asset-native.json), [reproducer](../../scripts/recover-asset-native.py) | Four current-target function slices analysed by REA/Ghidra, with EXE-to-slice provenance |
 | MPQ assets and path matches | [MPQ evidence](evidence/0.97.2/mpq-assets.json), [Rust extraction source](../../crates/asset-recovery/src/main.rs) | Per-archive identity, listfile/read status and requested member resolution |

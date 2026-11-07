@@ -2,7 +2,7 @@
 
 Selected installed target SHA-256:
 `507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293`.
-[Identity](target-refresh-0.117.0.json), [target review](target.md#native-and-data-evidence),
+[Identity](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/target-refresh-0.117.0.json), [target review](target.md#native-and-data-evidence),
 [native census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/native-census-0.117.0.md), [release findings](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-review-0.117.0.md)
 and [canonical unknown queue](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/unknown-recovery-0.117.0.md) own exact proof scopes.
 This audit changes evidence, tools, documentation and package accounting only;
@@ -56,7 +56,7 @@ semantic completeness, implementation percentage or parity is claimed.
   domain and consumer remain unknown until traced; its regex category does not
   prove that it is a save field or the old runtime-context contract.
 
-The [current frontier proof](evidence/0.117.0/as-discovery-frontier.json) binds
+The [current frontier proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.117.0/as-discovery-frontier.json) binds
 these three exact leads, complete URI bytes, reference rows and source-first
 questions without assigning native semantic ownership.
 
@@ -78,7 +78,7 @@ with fourteen current ownership reviews and all older reviews unapplied.
 
 Current PE/range/diagnostic/MPQ reproducibility, release-evidence byte/record/query
 admission and non-compiling graph/accounting regressions were run. Their owning
-reports record exact commands and scope. The separate [expanded operand audit](coverage/native-operands-0.117.0.json)
+reports record exact commands and scope. The separate [expanded operand audit](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coverage/native-operands-0.117.0.json)
 inspects all 23,291,285 instructions and retains 674,740 explicit static relations
 (495,264 address expressions and 179,476 fixed-memory operands). Its 5,794
 unowned executable destinations include 5,774 exact decoded starts and twenty

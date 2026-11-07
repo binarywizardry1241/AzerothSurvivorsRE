@@ -5,6 +5,7 @@ Exact fragment matches locate candidates only. Target assembly/Ghidra evidence,
 not the historical address, determines the current implementation.
 """
 from portable_paths import objdump_output, portable_json
+from coverage_common import load_json
 from script_sources import load_script
 import argparse
 import bisect
@@ -42,7 +43,7 @@ def main():
     paths = [ROOT / 'AzerothSurvivors/AzerothSurvivors-0.97.2.exe',
              ROOT / 'AzerothSurvivors/AzerothSurvivors-0.100.1.exe']
     expected = ['a64895f593c02d41aa682570f4ebabb67838146ba9b32e4ff4184b8958a92589',
-                json.loads((ROOT / 'docs/analysis/target-refresh-0.100.1.json').read_text())['current_target']['sha256']]
+                load_json(ROOT / 'docs/analysis/target-refresh-0.100.1.json')['current_target']['sha256']]
     images = []
     for path, sha in zip(paths, expected):
         data = path.read_bytes()

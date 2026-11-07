@@ -5,7 +5,7 @@ if suite == "--timers" then
     assert(arg[1], "pass the installed bootstrap Lua fixture");
 elseif suite == "--totems" then
     table.remove(arg, 1);
-    arg[1] = arg[1] or "docs/analysis/evidence/0.125.0/embedded-api.lua";
+    arg[1] = arg[1] or "docs/analysis/evidence/addon-api/embedded-reference.lua";
 else
     arg[1] = arg[1] or "docs/analysis/evidence/0.112.0/addon-api.lua";
 end;

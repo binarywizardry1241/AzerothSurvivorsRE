@@ -7,7 +7,7 @@ Gap #10. [verification-needed](../verification-needed.md) owns integrated status
 
 The current 0.115.0 full core patch now owns talent functions, counter
 initialization and button layout before addons. Its
-[lifetime follow-through](q41-framexml-lifetime.md) supersedes the late
+[lifetime follow-through](native-recovery.md#complete-worldstateframe-behavior) supersedes the late
 installation/restoration adapter described below. This report preserves the
 actual 0.105.0 native watcher/layout evidence and its limits.
 
@@ -75,7 +75,7 @@ cases. These use explicit allocation, Lua getter, UI submission and localization
 seams; they do not execute the game or a layout engine.
 
 `lua scripts/check-talent-view-bridge.lua` now delegates to the current
-[core/addon/publication lifetime regression](q41-framexml-lifetime.md).
+[core/addon/publication lifetime regression](native-recovery.md#complete-worldstateframe-behavior).
 It checks that publication preserves the core counter and later addon hooks,
 visibility and anchors while retaining the pointer/wheel guard. The earlier
 late-installation/stock-restoration adapter is removed.

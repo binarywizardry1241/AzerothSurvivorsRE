@@ -37,7 +37,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output-directory', required=True)
     parser.add_argument('--summary-output', required=True)
-    parser.add_argument('--census-summary', default='docs/analysis/coverage/full-image-census.json')
+    parser.add_argument('--census-summary', default='docs/analysis/coverage/full-image-selected.json')
     args = parser.parse_args()
     out = project_path(args.output_directory)
     if not out.is_relative_to(ROOT / 'runtime'):

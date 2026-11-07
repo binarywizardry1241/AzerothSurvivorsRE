@@ -63,6 +63,18 @@ class ScriptSources(unittest.TestCase):
     def test_unrelated_paths_keep_their_identity(self):
         self.assertEqual(sources.current_path('docs/REA.md', self.root), self.root / 'docs/REA.md')
 
+    def test_git_artifact_keeps_exact_proof_separate_from_topic_owner(self):
+        name = 'docs/analysis/coop-admission.md'
+        owner = self.root / 'docs/analysis/coop.md'
+        commit = 'b4117154651e507abec7d190207174568a802a29'
+        owner.write_text('# Co-op mechanics\n')
+        (owner.parent / 'artifact-history.json').write_text(json.dumps([{
+            'source_commit': commit, 'paths': [name], 'replacement': 'docs/analysis/coop.md'}]))
+        original = subprocess.check_output(['git', 'cat-file', 'blob', f'{commit}:{name}'], cwd=sources.ROOT)
+        self.assertEqual(sources.current_path(name, self.root), owner)
+        self.assertTrue(sources.recorded_input_matches(name, hashlib.sha256(original).hexdigest(), self.root))
+        self.assertFalse(sources.recorded_input_matches(name, hashlib.sha256(owner.read_bytes()).hexdigest(), self.root))
+
     def test_archived_report_keeps_exact_proof_and_a_separate_live_guide(self):
         original_path = 'docs/addon-api/local-clock-proposal-supplied.md'
         guide = self.root / 'docs/addon-api.md'

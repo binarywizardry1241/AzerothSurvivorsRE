@@ -2,7 +2,7 @@
 
 Finding **#292** is bound to installed EXE SHA-256
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`.
-The [native evidence](evidence/0.127.0/mage-leech/manifest.json) owns the exact
+The [native evidence](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.127.0/mage-leech/manifest.json) owns the exact
 class data, scalar producer, hit/healing consumers and static validation.
 [verification-needed](../verification-needed.md#gap-292) records source/static
 completion, compilation,

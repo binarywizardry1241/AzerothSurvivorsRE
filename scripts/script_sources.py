@@ -15,6 +15,7 @@ import re
 import subprocess
 import sys
 
+from artifact_history import archived_artifact, archived_replacement, committed_bytes, has_archived_artifact
 from runtime_layout import retained_runtime_path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -63,6 +64,8 @@ def current_path(value, root=ROOT):
     record = provenance(root)['relocations'].get(name)
     report = report_provenance(root)['reports'].get(name)
     replacement = root / (record['replacement'] if record else report or name)
+    if not record and not report:
+        replacement = archived_replacement(name, root) or replacement
     if not replacement.resolve().is_relative_to(root.resolve()):
         raise ValueError('Script relocation leaves the project')
     return replacement
@@ -82,26 +85,6 @@ def load_script(name, reference, root=ROOT):
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
-
-
-def committed_bytes(name, commit, expected, root):
-    def matching_blob(revision):
-        result = subprocess.run(['git', 'cat-file', 'blob', revision + ':' + name],
-                                cwd=root, capture_output=True)
-        if result.returncode == 0 and (expected is None or hashlib.sha256(result.stdout).hexdigest() == expected):
-            return result.stdout
-        return None
-
-    original = matching_blob(commit)
-    if original is not None:
-        return original
-    if expected is not None:
-        history = subprocess.run(['git', 'log', '--format=%H', commit, '--', name],
-                                 cwd=root, capture_output=True, text=True)
-        for revision in dict.fromkeys(history.stdout.splitlines()):
-            if revision != commit and (original := matching_blob(revision)) is not None:
-                return original
-    raise ValueError(f'Exact historical bytes unavailable for {name}; retain Git history')
 
 
 def historical_source(name, expected, root=ROOT):
@@ -148,6 +131,13 @@ def recorded_input_matches(value, expected, root=ROOT):
     except ValueError:
         return False
     current = current_path(path, root)
+    if has_archived_artifact(name, root):
+        if not isinstance(expected, str) or not re.fullmatch('[0-9a-f]{64}', expected):
+            return False
+        try:
+            return archived_artifact(name, expected, root) is not None
+        except (OSError, ValueError):
+            return False
     if current != path and name in report_provenance(root)['reports']:
         if not isinstance(expected, str) or not re.fullmatch('[0-9a-f]{64}', expected):
             return False

@@ -7,7 +7,8 @@ import hashlib
 import json
 from pathlib import Path
 
-from coverage_common import ROOT, latest_target, load_json, project_path, file_sha256
+from artifact_history import archived_artifact
+from coverage_common import ROOT, latest_target, load_json, project_path, file_sha256, same_artifact
 from native_residual_inputs import residual_input_matches
 
 ARTIFACT_NAMES = frozenset(('diagnostic-sites.jsonl.gz', 'static-reference-roles.tsv.gz',
@@ -24,7 +25,7 @@ def require(condition, message):
 
 
 def validate(record, target, census, *, artifacts=True, root=None,
-             census_summary='docs/analysis/coverage/full-image-census.json'):
+             census_summary='docs/analysis/coverage/full-image-selected.json'):
     root = (ROOT if root is None else Path(root)).resolve()
     def artifact_path(value):
         path = (root / value).resolve()
@@ -44,7 +45,7 @@ def validate(record, target, census, *, artifacts=True, root=None,
     require(census['target'] == record['target'], 'Residual owning census target differs')
     require(census['independent_instructions']['exact_source_bytes_verified'] is True,
             'Residual owning census lacks exact source-byte verification')
-    require(dict(path=census_path.relative_to(root).as_posix(), sha256=file_sha256(census_path)) in record['inputs'],
+    require(any(same_artifact(census_path, row['path'], row['sha256'], root) for row in record['inputs']),
             'Residual owning census commitment missing or stale')
     for name in ('instructions.tsv.gz', 'bodies.tsv.gz', 'references.tsv.gz', 'externals.tsv.gz', 'direct-call-helpers.tsv.gz'):
         source = artifact_path(census['artifacts']['directory'])/name
@@ -99,8 +100,11 @@ def validate(record, target, census, *, artifacts=True, root=None,
     if artifacts:
         for item in [record['generator'],*record['dependencies'],*record['inputs'],*rows.values()]:
             path=artifact_path(item['path'])
-            require(path.is_file() and residual_input_matches(path, item['sha256'], file_sha256(path), root),
-                    'Changed residual commitment: '+item['path'])
+            if path.is_file():
+                exact = residual_input_matches(path, item['sha256'], file_sha256(path), root)
+            else:
+                exact = archived_artifact(path, item['sha256'], root) is not None
+            require(exact, 'Changed residual commitment: '+item['path'])
         for name,item in rows.items():
             with gzip.open(artifact_path(item['path']),'rt') as stream:
                 observed=sum(1 for _ in stream)-(1 if name.endswith('.tsv.gz') else 0)
@@ -111,7 +115,7 @@ def validate(record, target, census, *, artifacts=True, root=None,
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--proof',required=True)
-    parser.add_argument('--census-summary',default='docs/analysis/coverage/full-image-census.json')
+    parser.add_argument('--census-summary',default='docs/analysis/coverage/full-image-selected.json')
     parser.add_argument('--negative-tests',action='store_true')
     args=parser.parse_args()
     record=load_json(project_path(args.proof));target=latest_target(verify=True)

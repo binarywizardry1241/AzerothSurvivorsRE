@@ -21,7 +21,7 @@ import struct
 import sys
 import tarfile
 import tempfile
-from coverage_common import ROOT, latest_target, target_bytes, load_json, json_text, file_sha256, project_path
+from coverage_common import ROOT, latest_target, target_bytes, load_json, json_text, file_sha256, project_path, same_artifact
 from shared_native_inventory import open_readonly_uri as open_native_inventory, selected_inventory
 from derived_gzip import derived_gzip_text
 from instruction_facts import InstructionFacts, HELPER_SHA256 as FACTS_SHA256
@@ -297,7 +297,9 @@ def run_full_native(args):
     explicit_union=None
     if args.operand_summary:
         operand_path=project_path(args.operand_summary);operand_digest=file_sha256(operand_path);operand_summary=load_json(operand_path)
-        if operand_summary['target']!=summary['target'] or project_path(operand_summary['source_census']['path'])!=project_path(args.census_summary) or operand_summary['source_census']['sha256']!=file_sha256(project_path(args.census_summary)):
+        source_census = operand_summary['source_census']
+        if operand_summary['target'] != summary['target'] or not same_artifact(
+                source_census['path'], args.census_summary, source_census['sha256']):
             raise ValueError('Explicit operand audit selects a different census')
         for commitment in (operand_summary['generator'],*operand_summary.get('generator_dependencies',[]),operand_summary['inventory'],operand_summary['details']):
             if file_sha256(project_path(commitment['path']))!=commitment['sha256']:raise ValueError('Explicit operand generator/input/artifact differs')
@@ -507,7 +509,9 @@ def native_core_inputs(args):
         if metadata['target_sha256']!=target['sha256']:raise ValueError('Independent reference target differs')
     if args.operand_summary:
         path=project_path(args.operand_summary);operand=load_json(path);inputs[args.operand_summary]=file_sha256(path)
-        if operand['target']!=summary['target'] or project_path(operand['source_census']['path'])!=summary_path or operand['source_census']['sha256']!=inputs[args.census_summary]:
+        source_census = operand['source_census']
+        if operand['target'] != summary['target'] or not same_artifact(
+                source_census['path'], summary_path, source_census['sha256']):
             raise ValueError('Explicit operand audit selects a different census')
         for commitment in (operand['generator'],*operand.get('generator_dependencies',[]),operand['inventory'],operand['details']):
             actual=file_sha256(project_path(commitment['path']))
@@ -647,7 +651,7 @@ def run(args):
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--census-summary',default='docs/analysis/coverage/full-image-census.json')
+    parser.add_argument('--census-summary',default='docs/analysis/coverage/full-image-selected.json')
     parser.add_argument('--operand-summary',help='Exact same-census full instruction operand audit')
     parser.add_argument('--source-mapping',help='Current-target reviewed systems/source mapping; does not invalidate native resolution')
     parser.add_argument('--artifact-directory',help='New project runtime directory for derivatives; preserves the selected census bundle')

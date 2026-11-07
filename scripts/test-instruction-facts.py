@@ -235,7 +235,7 @@ class Facts(unittest.TestCase):
         self.assertEqual(outputs(legacy),outputs(cached))
 
     def test_compaction_preserves_original_bytes_and_readonly_artifacts(self):
-        compact = module('facts_compact','compact-native-census.py')
+        compact = module('facts_compact','summarize-native-image.py')
         directory = self.root.relative_to(ROOT).as_posix()
         report = {'target':{'sha256':'a' * 64},'artifacts':{'directory':directory},
                   'seed_scope':'declared','diagnostic_bindings':[]}

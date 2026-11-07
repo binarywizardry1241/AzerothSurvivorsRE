@@ -7,7 +7,7 @@ layout, font/rendering and original/rebuilt parity remain unverified.
 
 ## Producer and consumer
 
-The [picker contract](evidence/0.120.0/race-picker/manifest.json) and
+The [picker contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.120.0/race-picker/manifest.json) and
 [hover contract](evidence/0.120.0/race-hover/contract.json) retain the current
 native chain. They preserve two durable Ghidra query commitments and 309
 independently decoded original instructions, including the previously retained

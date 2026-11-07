@@ -198,7 +198,7 @@ lines through the authenticated engine packet path. This keeps meter
 rates and shares on their fractional authority inputs and supplies
 world-anchor units, debuffs, timers, pets and terminal rows from actual
 game state. The native HUD keeps using its HUD JSON. The guest target
-row now uses the [admitted guest selection](coop-command-ingress.md)
+row now uses the [admitted guest selection](coop.md#shared-simulation-and-replication)
 through the same target formatter.
 
 The retained 0.140.0 Lua stream consumers, byte-identical in 0.141.0,

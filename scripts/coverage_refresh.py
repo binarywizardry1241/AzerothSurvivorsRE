@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 import subprocess
 
-from coverage_common import ROOT, file_sha256, json_text, load_json, project_path
+from coverage_common import ROOT, file_sha256, json_text, load_json, project_bytes, project_path
 from instruction_facts import derived_bytes
 from script_sources import load_script
 
@@ -75,10 +75,10 @@ def changelog_inputs(target):
 
 
 def read_bound(receipt):
-    path = project_path(receipt["path"])
-    if not path.is_file() or file_sha256(path) != receipt["sha256"]:
-        raise ValueError(f"Restore the retained audit input {receipt['path']} before refreshing coverage")
-    return load_json(path)
+    try:
+        return json.loads(project_bytes(receipt["path"], expected=receipt["sha256"]))
+    except (OSError, ValueError) as error:
+        raise ValueError(f"Restore the retained audit input {receipt['path']} before refreshing coverage") from error
 
 
 def ownership_records(target, systems, selection, unknown_path):
@@ -160,12 +160,13 @@ def refresh(*, staged=False):
         if staged_connections["generator"]["sha256"] == sha(git("show", ":" + AUDIT_TOOL)):
             return []
 
-    unknown_path = f"docs/analysis/evidence/{target['version']}/unknown-recovery.json"
+    unknown_path = "docs/analysis/evidence/unknown-recovery.json"
     tracked_outputs = {CHANGELOG, DIAGNOSTICS, CLASSIFICATION, SELECTION, CONNECTIONS, unknown_path}
     inputs |= tracked_outputs | {census, AUDIT_TOOL, COVERAGE + "targets.json",
                                   COVERAGE + "native-summary.json",
                                   COVERAGE + "historical-range-revalidation.json",
-                                  "scripts/coverage_refresh.py", "scripts/coverage_common.py",
+                                  "scripts/artifact_history.py", "scripts/coverage_refresh.py", "scripts/coverage_common.py",
+                                  "docs/analysis/artifact-history.json",
                                   "scripts/discover-native-ownership.py", "scripts/instruction_facts.py",
                                   "scripts/script_sources.py", "scripts/revalidate-historical-native-ranges.py"}
     if staged:

@@ -15,7 +15,7 @@ import importlib.util
 import json
 from pathlib import Path
 
-from coverage_common import ROOT, file_sha256, latest_target, target_bytes
+from coverage_common import ROOT, file_sha256, latest_target, load_json, target_bytes
 from derived_gzip import derived_gzip_text
 
 SHA = '0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
@@ -55,7 +55,7 @@ def main():
         return path
 
     def read(path):
-        return json.loads(checked(dict(path=path, sha256=file_sha256(ROOT/path))).read_text())
+        return load_json(checked(dict(path=path, sha256=file_sha256(ROOT/path))))
 
     dependencies = [dict(path=path,sha256=file_sha256(ROOT/path)) for path in (
         'scripts/coverage_common.py','scripts/derived_gzip.py',

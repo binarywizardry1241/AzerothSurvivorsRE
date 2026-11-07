@@ -23,6 +23,9 @@ Add a repair to its existing category report even when the target version change
 Use the existing category's bounded-query workspace under `runtime/analysis/tasks/`.
 Keep one necessary receipt and remove task scratch and superseded copies before
 the runtime layout check. Gap IDs and versions belong in the receipt.
+Keep Q41 work in the native recovery category report and co-op work in the
+co-op mechanics report. Extend the existing checker or proof reader for the
+category and retire superseded local copies after validation.
 
 When fresh native recovery is needed, apply the shared
 [analysis-script reuse rules](../shared/autonomy.md#reuse-analysis-scripts) and

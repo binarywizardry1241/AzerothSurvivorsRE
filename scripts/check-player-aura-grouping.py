@@ -630,7 +630,7 @@ def battle_shout_potency(args):
         output.mkdir(parents=True, exist_ok=True)
         (output/'battle-shout.json').write_text(portable_json(proof, indent=2)+'\n')
     else:
-        expected = ROOT/'docs/analysis/evidence/0.141.1/battle-shout.json'
+        expected = ROOT/'docs/analysis/evidence/battle-shout.json'
         assert json.loads(expected.read_text()) == proof
     parsed = shout_source_check()
     print(f"Battle Shout 0.141.1: {len(consumers)} stat/tooltip pairs, 16 producers, "

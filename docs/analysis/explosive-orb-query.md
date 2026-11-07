@@ -48,7 +48,7 @@ not execute the constructor's serializer or certify wire output.
 current entry reader and `client/creature_queries.rs::creature_query`.
 The pre-repair source's `SPECIALS` row for **9612** supplied an **empty name**,
 **type 8** and **display 10990**. That captured empty-name behavior and the
-[0.120.2 finite CreatureQuery contract](creature-query-tables.md) retain
+[0.120.2 finite CreatureQuery contract](creature-queries.md) retain
 their historical target and source provenance; this update changes the selected
 entry's current native identity. The [source repair](explosive-orb-source.md)
 now applies the recovered name/type/display through the existing row and all

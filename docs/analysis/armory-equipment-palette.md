@@ -24,7 +24,7 @@ the same color selection.
 The 32 × 32 px icon has a one-pixel border and a four-pixel corner
 radius. Each side receives the same color. The empty icon has a black
 border and uses the same white image tint as an occupied icon. The
-empty name is RGB (.42, .39, .33). The [descriptor trace for inspection](coop-inspection.md#item-kind-and-model-stage)
+empty name is RGB (.42, .39, .33). The [descriptor trace for inspection](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-inspection.md#item-kind-and-model-stage)
 binds the tier and class fields to the live item producer, including
 the stored PvP digit 6 normalizing to tier 5. The catalog already exposes
 that tier as rarity 5.

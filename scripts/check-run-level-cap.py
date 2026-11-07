@@ -17,7 +17,7 @@ import subprocess
 from pathlib import Path
 
 from capstone import Cs, CS_ARCH_X86, CS_MODE_64
-from coverage_common import ROOT, latest_target, target_bytes, file_sha256, verify_resources
+from coverage_common import ROOT, latest_target, target_bytes, file_sha256, verify_resources, load_json
 from equipment_native import EquipmentProbe
 from script_sources import load_script
 
@@ -251,7 +251,7 @@ def check_current(args, target):
         if 0x145C8E970 <= address < 0x145C8FA34:
             assert "0x530" not in instruction.op_str  # no direct run-level read/rejection
     census_path = ROOT / "docs/analysis/coverage/full-image-declared-0.127.0.json"
-    census = json.loads(census_path.read_text()); assert census["target"]["sha256"] == target["sha256"]
+    census = load_json(census_path); assert census["target"]["sha256"] == target["sha256"]
     bodies_path = ROOT / census["artifacts"]["directory"] / "bodies.tsv.gz"
     assert file_sha256(bodies_path) == census["artifacts"]["files"]["bodies.tsv.gz"]["sha256"]
     with gzip.open(bodies_path, "rt") as stream:

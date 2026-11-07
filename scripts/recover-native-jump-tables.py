@@ -307,7 +307,7 @@ def merge_linear_tables(observed,linear):
 
 def arguments(argv=None):
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--census-summary',default='docs/analysis/coverage/full-image-integrated.json')
+    parser.add_argument('--census-summary',default='docs/analysis/coverage/full-image-selected.json')
     parser.add_argument('--inventory-output');parser.add_argument('--summary-output',default='docs/analysis/coverage/native-jump-tables.json')
     parser.add_argument('--include-declared-linear',action='store_true',help='Opt in to strict byte/boundary-verified candidates from the current declared-linear inventory; no reachability or function ownership inferred')
     parser.add_argument('--linear-summary',help='Current declared-linear summary; requires --include-declared-linear (default: docs/analysis/coverage/instruction-summary.json)')

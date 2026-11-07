@@ -1,103 +1,119 @@
-# AS co-op source integration
+# Co-op mechanics
 
-Selected EXE SHA-256:
-`0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c`.
-All **60/60 known AS diagnostic modules have partial source correspondence**.
-The denominator excludes the shared engine and measures module mapping. It does
-not measure recovered code, complete systems, working multiplayer or parity.
+This guide owns the reconstructed co-op contracts from lobby discovery through
+run settlement. The source and recovery register owns [#63](../CURRENT-STATE.md#gap-63)
+and related findings. The [verification register](../verification-needed.md)
+owns build, service, gameplay and parity checks. An exact proof applies to its
+recorded executable, instruction ranges and inputs.
 
-Current [0.123.0 ordered input and party-list proof](coop-party-frames.md)
-supplements the historical contracts below. Its resumable host pump applies each
-assigned Sync and departure before advancing the native peer loop, retaining
-intermediate world/status snapshots; profile storage and world assignment remain
-separate. Compilation and runtime/parity remain unverified.
+## Lobby, admission and transport
 
-## Direct session and world bootstrap
+The public directory uses a binary WebSocket service. Directory and game
+handshakes have separate protocols. The game handshake checks the exact admitted
+version and the password before assigning a peer. The directory handshake carries
+its staff key separately. The shared version field and checks live in the co-op
+server-party and service source. Protocol identifiers and field order are wire
+contracts. EXE identity and build-specific values belong in the underlying proof.
 
-The application reads `WOW_ROGUE_COOP_HOST`, `WOW_ROGUE_COOP_JOIN` and
-`WOW_ROGUE_COOP_PASSWORD` through the recovered direct-session driver. The
-[session integration](coop-session.md) composes actual TCP, all nineteen
-native envelopes, bounded raw-DEFLATE batches, profile/roster lifecycle and exact
-private/shared engine-packet routing. Denials drain before closure; host polling
-caps outer frames at 200 per peer and writes at 1/60 second. Guests drain all
-available frames. No static checker opens sockets.
+The directory publishes real lobby rows to the browser, including capacity,
+difficulty, rank and lock reason. Local filtering does not change service rows.
+Host and Code forms send through the same service. Host publication supplies the
+name, password, description, visibility and capacity. An admitted guest sends the
+inner handshake before requesting the game handle. A refusal and a service
+transport failure have separate presentation paths. Closing the service clears
+pending form credentials.
 
-`gameplay/coop.rs` builds the real local profile, sanitizes remote profiles using
-the [native bootstrap helpers](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/coop-bootstrap-0.115.0.md), and creates each hero
-with actual class/race, equipment, talents, account progression and options.
-Roster GUIDs, native world GUIDs and compact simulation indices have separate
-owners. Listening alone does not activate a party. Remote insertion calls the
-real world-assignment port; synchronization follows actual login and initial
-world publication. Guest login is allowed before MPQ world loading completes.
+The direct-session driver uses TCP and bounded compressed frame batches. The
+game handles its own typed envelopes and private/shared engine routes. Host input
+is admitted by connection identity and dispatched against the assigned hero.
+Relay selection and primary directory state are separate owners. The directory
+samples primary status before pumping events, then evaluates failure against the
+resulting relay state before accepting new form requests. A connecting primary
+expires after strictly more than eight seconds. A surviving relay can preserve
+an active role. Once the terminal gate admits departure, role teardown precedes
+service Leave and stop. The original instructions prove ordering at the writer
+boundary. Live delivery needs separate verification.
 
-Initial publication supplies the current zone environment, ordinary client
-login packets, complete class/racial spellbook, action buttons, actual player
-fields, inventory, other heroes and already registered world objects. Accepted
-state/HUD arriving before replica creation is applied when that replica is
-constructed. No readiness is inferred from a handshake or roster.
+## Joining, readiness and world start
+
+A handshake, profile row or open transport does not establish world readiness.
+The host sanitizes the admitted hero profile and assigns the hero to the actual
+world through the ordinary client engine. The initial publication includes the
+zone environment, login state, spells, action buttons, fields, inventory and
+already registered actors. Previously received state can apply once the target
+replica exists. Roster identities, simulation slots and engine GUIDs have
+separate lifetimes.
+
+Ready Check is owned by the hosting lobby. It starts with the ordered admitted
+roster and at least one guest. A response binds to the authenticated connection
+and updates its first pending answer. Cancellation or a changed roster takes
+precedence over the answer outcome. A pending check expires at thirty seconds.
+The start path checks the result and live roster before entering the run.
+Inspect and hero-refresh messages have separate admission and presentation
+owners.
 
 ## Shared simulation and replication
 
-`gameplay/mechanics/coop.rs` advances one world, RNG, clock, actor/boss/pickup set
-and spawn queues while swapping each hero's actual private state. The
-[party proof](coop-game-party.md) owns per-hero input, targeting, damage,
-revive, rewards, terminal and endless contracts. Shared hazards retain their
-native target owner; they do not damage every geometrically overlapping hero.
-Opening a co-op menu does not pause the shared simulation. Hosting with no
-remote hero retains the ordinary local path.
+The host owns one clock, RNG, world, actor set, pickup set and spawn queue.
+During party updates it seats each hero's private talents, gear, effects and
+inputs. A guest consumes replicas and sends admitted commands. It does not
+advance a second world simulation. A co-op menu does not pause the shared run.
+Without a remote hero, the host uses the ordinary local path.
 
-`gameplay/coop_commands.rs` admits received movement through the existing
-native floor-recovery owner and dispatches commands against the assigned hero.
-Guest movement retains original conditional tails; the host supplies the actual
-GUID and relays admitted positions. The production client encoder captures
-guest commands. The host observes its ordinary controller stream. Guests never
-advance a second AI/combat simulation.
+The publisher orders create/value/destroy before movement and cast packets,
+then emits the appropriate recipient state. State15 has a per-peer one-second
+period. Effective terminal state can publish between periodic updates without
+moving the next deadline. A personally downed hero in a continuing party does
+not take the terminal fast path. HUD, resource and visual updates have separate
+admission and cadence. The engine bridge preserves the private and shared packet
+lanes, movement correction uses native floor recovery, and queued recipient
+events resolve their stable GUID before dispatch.
 
-`gameplay/coop_publish.rs` publishes actual create/value/destroy descriptors
-before queued movement and casts, then per-hero fields, action bars, inventory,
-gear, Seen and native run state. State15 uses its one-second/terminal cadence;
-HUD/resource/visual-radius messages retain their independent 0.2-second gate.
-Queued event recipients are resolved by stable GUID after member changes.
-The [replication contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/coop-replication-0.115.0.md),
-[engine inverse codec](coop-engine-packets.md),
-[Seen allowlist](coop-seen.md) and
-[spell text](coop-spell-text.md) own their individual native evidence.
+Member identities also gate downed and revive state, party frames, hazard
+occupancy and raid-target requests. Use the existing FrameXML and
+[addon API](../addon-api.md) consumers. Recipient-local positions, effect clocks
+and meters come from the admitted hero context. The downed-party GUID report and
+its runtime verification remain separately tracked.
 
-The [choice/HUD adapter](coop-overlay.md) routes guest selections to the
-actual host hero and presents received choices, boss bars, build icons, timers
-and meters. The [addon feed](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/coop-addon-feed-0.115.0.md) supplies actual received
-party/revive/resource/run data to the existing FrameXML/Lua consumers. Received
-cooldowns, auras and visual spell radii retain their ordinary engine consumers.
+## Choices, progression and rewards
 
-End18 clears the guest world and returns to the lobby while retaining TCP.
-Guest logout sends Disconnect16 and closes the upstream link through the
-[native logout owner](coop-logout.md). Host world teardown notifies peers
-and clears assignments. Transport loss has an explicit local-session teardown.
-Disconnect retains an abandoned hero in its existing world slot. The native
-world vector still permits only four remote rows, including departed heroes;
-network capacity and world insertion are separate guards. Repeated pre-run
-reconnections can therefore exhaust world admission until that world ends.
+The host owns active offers and applies picks to the addressed hero. During a
+choosing HUD update, a guest with no retained choices requests a resend after
+three seconds. The resend returns the authoritative offer or Resume without
+advancing the offer ID. Leaving the choosing phase clears the pending retry.
+Dismissal alone does not permanently blacklist an authoritative repeated offer.
 
-## Remaining scope and validation
+The party settlement path carries shared run history and recipient-local
+rewards. Zone, phase, identity and packet bounds gate the individual receivers.
+The shared Codex membership feeds account achievements and guest Seen admission,
+with separately retained explicit receiver allowances. Account achievement
+progress counts only displayed eligible keys. Historical or unknown saved
+entries retain save compatibility without expanding those achievement totals.
+Item, spell and effect prose have their own request and delivery owners. A
+partially connected text registry does not establish full guest text parity.
 
-The requested direct-peer world/bootstrap/simulation/replication source paths
-are connected. Their execution is **unverified**: no compilation, compiling
-tests, actual TCP session, application launch, multiplayer play, rendering or
-controlled original/rebuilt comparison has been run for this integration.
-Authored Rust regressions remain uncompiled/unrun. Native/static checks and Rust
-syntax parsing are separate evidence and do not establish playable co-op.
+## Interruption, departure and settlement
 
-Public WebSocket lobby discovery (**#99**) and Host/Code request forms
-(**#100**) have separate source/static repairs through the shared service.
-Recipient item-description construction is connected, while the guest synthetic
-effect-text registry population/identity/lifetime bridge remains unrecovered
-(**#101**). Spell/resource base, bonus/talent and auxiliary prose is source-connected;
-the native raw-resource-to-FrameXML-cache lineage remains unproven (**#102**).
-Broader native alias/type/dependency closure, compilation, live service/session
-execution, rendering and parity remain open; packet coverage alone does not
-certify those contracts. Global historical catalogs
-retain their actual target and must not be treated as current parity evidence.
-The [unknown queue](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/unknown-recovery-0.115.0.md) records each distinct lead's
-current native selectors, source boundary and next static recovery step.
-The [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md), system ledger and #41 retain these
-limits independently from the 60/60 partial-module metric.
+Transient relay interruption and explicit departure have distinct paths. A
+permanent departure settles the admitted cached run, submits the role's game
+departure, then closes the applicable transport. Guest End Run can clear the
+world and return to the lobby while the service remains connected. Host world
+teardown notifies peers and clears assignments. A departed hero can retain a
+world slot, so the four-remote world cap is distinct from current connection
+count. A returning transport does not by itself create a new hero.
+
+## Evidence and open checks
+
+The maintained source entry points are
+[co-op protocol and services](../../crates/azeroth-survivors-re/src/coop/mod.rs),
+[world integration](../../crates/azeroth-survivors-re/src/gameplay/coop.rs),
+[host publication](../../crates/azeroth-survivors-re/src/gameplay/coop_publish.rs)
+and [party simulation](../../crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs).
+Check admission, dispatch, party, publication and settlement against their
+recorded source and proof in the finding registers. The
+[historical proof index](artifact-history.json) identifies the prior exact
+reports. Read a specific report from Git through `scripts/artifact_history.py`.
+Historical proofs preserve their original producer and target identity.
+
+Static checks leave actual sockets, lobby and relay operation, world entry,
+multiplayer rendering, save lifecycle and original/rebuilt parity open.

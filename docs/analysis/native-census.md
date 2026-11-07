@@ -2,7 +2,7 @@
 
 The installed reference is 151,493,632 bytes with SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
-The [identity receipt](target-refresh-0.141.0.json) binds the exact inputs.
+The [target registry](coverage/targets.json) binds the exact inputs.
 [CURRENT-STATE](../CURRENT-STATE.md) owns source and recovery status.
 
 The [PE inventory](coverage/native-summary.json) found six sections, 845
@@ -13,9 +13,13 @@ byte. The [independent linear scan](coverage/instruction-summary.json) decoded
 24,893,474 instructions covering 100,845,169 bytes with zero undecoded suffix.
 The [complement](coverage/unwind-complement-summary.json) separately accounts for
 5,376,717 executable bytes and 78,661 seeded instructions. All twelve MPQ hashes
-match the prior chain. [Current member inventory](evidence/0.141.0/mpq-member-coverage.json)
+match the prior chain. [Current member inventory](evidence/mpq-member-coverage.json)
 
 ## Whole-image passes
+
+The [selection record](coverage/native-image-current.json) binds the active
+census to its companion proofs. Intermediate snapshots remain accessible through
+[coverage provenance](artifact-history.json) for exact historical checks.
 
 The audit checked the bytes and boundaries of every instruction in each
 Ghidra export against the installed EXE using Capstone 5.0.7. The expanded
@@ -24,10 +28,10 @@ body entries and repaired three after adding four guarded sites.
 
 | Pass | Instructions / bytes | Functions / body ranges | Static references |
 | --- | ---: | ---: | ---: |
-| [Declared](coverage/full-image-declared-0.141.0.json) | 23,413,257 / 93,631,178 | 375,139 / 434,628 | 4,033,740 |
-| [Initial expanded](coverage/full-image-expanded-0.141.0.json) | 24,265,076 / 97,313,995 | 448,241 / 506,378 | 4,199,488 |
-| [Guarded expansion](coverage/full-image-guarded-0.141.0.json) | 24,328,365 / 97,600,132 | 448,241 / 505,175 | 4,218,694 |
-| [Selected](coverage/full-image-selected-0.141.0.json) | 24,328,399 / 97,600,287 | 448,241 / 505,170 | 4,218,711 |
+| [Declared](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coverage/full-image-declared-0.141.0.json) | 23,413,257 / 93,631,178 | 375,139 / 434,628 | 4,033,740 |
+| [Initial expanded](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coverage/full-image-expanded-0.141.0.json) | 24,265,076 / 97,313,995 | 448,241 / 506,378 | 4,199,488 |
+| [Guarded expansion](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coverage/full-image-guarded-0.141.0.json) | 24,328,365 / 97,600,132 | 448,241 / 505,175 | 4,218,694 |
+| [Selected](coverage/full-image-selected.json) | 24,328,399 / 97,600,287 | 448,241 / 505,170 | 4,218,711 |
 
 Every requested final code seed has an instruction. The selected pass leaves
 8,621,599 executable bytes outside the instruction union in 488,306 ranges.

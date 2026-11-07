@@ -16,6 +16,7 @@ from pathlib import Path
 import re
 import subprocess
 
+from artifact_history import archived_artifact, has_archived_artifact
 from coverage_common import (ROOT, file_sha256, finding_reference, finding_register,
                              latest_target, load_json, project_path, target_bytes)
 from script_sources import current_path
@@ -53,6 +54,10 @@ def reference_path(value, root=ROOT):
     if not path.is_relative_to(root.resolve()):
         raise ValueError(f"Reference escapes project: {value}")
     return current_path(path, root)
+
+
+def reference_exists(path, root):
+    return path.is_file() or archived_artifact(path, root=root) is not None
 
 
 def same_target(record, target, label, findings):
@@ -108,8 +113,9 @@ def validate_systems(ledger, target, data, gap_ids, findings, root=ROOT):
                              "references", f"{sid}: empty {group} without an explicit missing implementation or pending source assignment with valid candidates")
             for ref in refs:
                 try:
-                    valid = reference_path(ref, root).is_file()
-                except (ValueError, TypeError, AttributeError):
+                    path = reference_path(ref, root)
+                    valid = path.is_file() if group == "source_refs" else reference_exists(path, root)
+                except (OSError, ValueError, TypeError, AttributeError):
                     valid = False
                 findings.require(valid, "references", f"{sid}: missing/invalid {group}: {ref}")
         gaps = system.get("gap_ids", [])
@@ -159,8 +165,9 @@ def validate_changelog(ledger, target, systems, gap_ids, findings, root=ROOT):
         for group in ("source_refs", "evidence_refs"):
             for ref in claim.get(group, []):
                 try:
-                    valid = reference_path(ref, root).is_file()
-                except (ValueError, TypeError, AttributeError):
+                    path = reference_path(ref, root)
+                    valid = path.is_file() if group == "source_refs" else reference_exists(path, root)
+                except (OSError, ValueError, TypeError, AttributeError):
                     valid = False
                 findings.require(valid, "references", f"{cid}: missing {ref}")
         if claim.get("status") == "pending_claim_recovery":
@@ -392,7 +399,8 @@ def main():
                 refs.update(seeded["generator"])
             for ref in sorted(refs):
                 path = reference_path(ref).relative_to(ROOT).as_posix()
-                findings.require(path in tracked, "source_delivery", f"Referenced file is absent from Git index: {path}")
+                archived = has_archived_artifact(path, ROOT) and archived_artifact(path, root=ROOT) is not None
+                findings.require(path in tracked or archived, "source_delivery", f"Referenced file is absent from Git index and evidence history: {path}")
         # Reparse the supplied text rather than trusting the recorded claim count.
         check = subprocess.run(["python3", "-B", str(ROOT / "scripts/index-current-changelog.py"), "--check"], cwd=ROOT, text=True, capture_output=True)
         findings.require(check.returncode == 0, "changelog_reproduction", (check.stderr or check.stdout).strip()[-1800:])

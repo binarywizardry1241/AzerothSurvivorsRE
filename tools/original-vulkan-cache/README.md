@@ -25,7 +25,7 @@ the compute cache field at `0x1449941d0`. The render Vulkan HAL passes the
 resulting null cache in RDX at `0x144d9e050`, then calls the dispatch slot at
 `0x144d9e059`. The loader fills that slot with `vkCreateGraphicsPipelines` at
 `0x144e3efea..0x144e3effd`. The layer itself uses the Vulkan loader ABI rather
-than EXE-specific offsets. [Registered EXE identity](../../docs/analysis/target-refresh-0.141.0.json)
+than EXE-specific offsets. [Registered EXE identity](../../docs/analysis/coverage/targets.json)
 
 ## Build
 

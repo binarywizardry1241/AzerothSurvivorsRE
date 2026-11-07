@@ -14,7 +14,7 @@ binds fourteen exact native ranges, 1,260 independently decoded instructions
 and eight durable Ghidra results. The ordered base-plus-purchases union
 `145a97aa0..145a97c00` reuses its existing
 [canonical extract](evidence/0.120.0/race-unlocks/allowed-races-union.asm).
-The [picker proof](evidence/0.120.0/race-picker/manifest.json) separately follows
+The [picker proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.120.0/race-picker/manifest.json) separately follows
 the account union into each portrait's allowed byte and race-action admission.
 The detailed [release contract](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-contracts-0.120.0.md) owns purchase
 admission and the separate tooltip interface.

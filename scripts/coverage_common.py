@@ -12,6 +12,8 @@ from pathlib import Path
 import re
 import struct
 
+from artifact_history import archived_artifact, has_archived_artifact
+
 ROOT = Path(__file__).resolve().parent.parent
 REGISTRY = ROOT / "docs/analysis/coverage/targets.json"
 REFERENCE_CONFIG = ROOT / ".codex/reference-game.json"
@@ -299,9 +301,26 @@ def installed_identity():
             "sha256": hashlib.sha256(data).hexdigest(), "size_bytes": len(data)}
 
 
+def project_bytes(path, *, root=ROOT, expected=None):
+    """Read a project input or its exact archived bytes without restoring it."""
+    root = Path(root).resolve()
+    resolved = (root / path).resolve()
+    if not resolved.is_relative_to(root):
+        raise ValueError(f"Path leaves project: {path}")
+    if not resolved.is_file():
+        archived = archived_artifact(resolved, expected, root=root)
+        if archived is not None:
+            return archived
+    from script_sources import current_path
+    data = current_path(resolved, root).read_bytes()
+    if expected is not None and hashlib.sha256(data).hexdigest() != expected:
+        raise ValueError(f"Input differs from its SHA-256: {path}")
+    return data
+
+
 def load_json(path):
     try:
-        return json.loads(project_path(path).read_text(encoding="utf-8"))
+        return json.loads(project_bytes(path))
     except (OSError, json.JSONDecodeError) as error:
         raise ValueError(f"Cannot read project JSON {path}: {error}") from error
 
@@ -309,6 +328,11 @@ def load_json(path):
 def file_sha256(path):
     result = hashlib.sha256()
     try:
+        original = (ROOT / path).resolve()
+        if not original.is_file():
+            archived = archived_artifact(original, root=ROOT)
+            if archived is not None:
+                return hashlib.sha256(archived).hexdigest()
         resolved = artifact_path(path)
         # A shared native receipt transports a losslessly archived historical
         # SQLite byte stream. Preserve that manifest identity, verifying both
@@ -328,6 +352,29 @@ def file_sha256(path):
     except OSError as error:
         raise ValueError(f"Cannot hash input {path}: {error}") from error
     return result.hexdigest()
+
+
+def same_artifact(first, second, expected, root=None):
+    """Require the exact commitment when a retained record changes its live name."""
+    if not first or not second or not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected):
+        return False
+    root = ROOT if root is None else Path(root).resolve()
+    paths = [(root / value).resolve() for value in (first, second)]
+    if not all(path.is_relative_to(root) for path in paths):
+        return False
+    if paths[0] != paths[1] and not any(has_archived_artifact(path, root=root) for path in paths):
+        return False
+    try:
+        for path in paths:
+            if path.is_file():
+                actual = file_sha256(path) if root == ROOT else hashlib.sha256(path.read_bytes()).hexdigest()
+                if actual != expected:
+                    return False
+            elif archived_artifact(path, expected, root=root) is None:
+                return False
+    except (OSError, ValueError):
+        return False
+    return True
 
 
 def version_key(value):

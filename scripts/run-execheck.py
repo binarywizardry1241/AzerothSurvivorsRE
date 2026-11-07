@@ -11,7 +11,7 @@ from pathlib import Path
 import subprocess
 import sys
 
-from coverage_common import ROOT, file_sha256, latest_target, load_json, project_path
+from coverage_common import ROOT, file_sha256, latest_target, load_json, project_path, same_artifact
 from execheck_pipeline import Pipeline, source_closure, AuditSession
 from runtime_layout import owned_runtime_path
 from shared_analysis import file_digest
@@ -59,15 +59,14 @@ def reconcile_frontier(root, target, census_summary):
     census = (root / census_summary).resolve()
     if not census.is_relative_to(root):
         raise ValueError("Census summary leaves the project")
-    if ((root / document.get("census_summary", "")).resolve() != census
-            or document.get("census_summary_sha256") != file_digest(census)):
+    if not same_artifact(document.get("census_summary"), census, document.get("census_summary_sha256"), root):
         raise ValueError(action + ": classification census differs")
     switches = root / "docs/analysis/coverage/native-jump-tables.json"
     if (not switches.resolve().is_relative_to(root) or not switches.is_file()
             or json.loads(switches.read_bytes()).get("target", {}).get("sha256") != target["sha256"]):
         raise ValueError(action + ": applied switch target is stale")
     switch_proof = json.loads(switches.read_bytes())
-    census_proof = json.loads(census.read_bytes())
+    census_proof = load_json(census)
     if (not census_proof.get("guarded_edge_digest")
             or switch_proof.get("edge_digest") != census_proof["guarded_edge_digest"]):
         raise ValueError(action + ": applied switch edges differ from the selected census")
@@ -127,7 +126,7 @@ def main():
     work = args.work or f"runtime/coverage/{target['sha256']}/pipeline/{profile_hash}"
     work = owned_runtime_path(project_path(work), ROOT).relative_to(ROOT).as_posix()
     bindings = {"python": sys.executable, "target_sha": target["sha256"], "version": target["version"], "work": work,
-                "census_summary": args.census_summary or "docs/analysis/coverage/full-image-census.json", "summary_profile": summary_profile}
+                "census_summary": args.census_summary or "docs/analysis/coverage/full-image-selected.json", "summary_profile": summary_profile}
     for value in args.bind:
         key, separator, replacement = value.partition("=")
         if not separator or key in ("python", "target_sha", "version"):

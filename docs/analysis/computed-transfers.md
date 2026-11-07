@@ -12,7 +12,7 @@ diagnostic owners, and both exact indirect-site lists.
 
 The selectors are `sqlite_selectors[lead_id=Q41-F01]` and
 `sqlite_selectors[lead_id=Q41-F02]` in the
-[queue inventory](evidence/0.141.0/unknown-recovery.json). The operand pass
+[queue inventory](evidence/unknown-recovery.json). The operand pass
 matched each selected site and transfer kind to the residual list and checked
 its decoded instruction bytes against the installed PE. It used Capstone and
 the existing [operand decoder](../../scripts/classify-independent-indirects.py).
@@ -102,13 +102,13 @@ actual instruction boundaries. The exact producers narrow their next actions.
 
 | Transfer | Original prefix and bounded interpretation |
 | --- | --- |
-| `0x145ef89a5` | Prefix `0x145ef8993..0x145ef89a7` reads the command byte at `[r8]`. The first eleven signed cells at `0x147af2de8..0x147af2e14` all enter the local party command extent `0x145ef8950..0x145ef8e32`. Their SHA-256 is `a0e63d7be81906edae734b07acbe193d898bc3cb5ef0090021da341693541bf9`. Cell 11 of the broad candidate leaves that extent and lands inside an instruction. The known selection, Skip and refresh cases retain their [existing source owners](coop-command-ingress.md#guest-gossip-option-ingress) and [party control handler](../../crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs). Follow actual command constructors for any remaining alias. |
+| `0x145ef89a5` | Prefix `0x145ef8993..0x145ef89a7` reads the command byte at `[r8]`. The first eleven signed cells at `0x147af2de8..0x147af2e14` all enter the local party command extent `0x145ef8950..0x145ef8e32`. Their SHA-256 is `a0e63d7be81906edae734b07acbe193d898bc3cb5ef0090021da341693541bf9`. Cell 11 of the broad candidate leaves that extent and lands inside an instruction. The known selection, Skip and refresh cases retain their [existing source owners](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-command-ingress.md#guest-gossip-option-ingress) and [party control handler](../../crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs). Follow actual command constructors for any remaining alias. |
 | `0x145f1bcf4` | Prefix `0x145f1bccd..0x145f1bcf6` loads Game bytes `+0x2a5` and `+0x2a6`. Zero `+0x2a5` takes a separate path. The other path uses `+0x2a6` as the index into `0x147af2ec8` and carries `+0x2a5` into the destinations. This lies in the [hit source and combat-packet owner](combat-meter-attribution.md#source-selection). Follow the scoped writes to both fields before treating any finite prefix as the full domain. |
 | `0x145f25cd5` | [Guardian wake and leash](#guardian-wake-and-leash) resolves all four return tags of `0x145e5ff00`, their caller records, and their source consumers. |
 
 ### Guardian wake and leash
 
-The [party actor owner](coop-incoming.md#shared-inputs-and-recipient-state)
+The [party actor owner](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-incoming.md#shared-inputs-and-recipient-state)
 loads the lair position at `0x145f25b63` or substitutes the sampled actor
 position for an invalid lair index. At `0x145f25cbe` it passes the actor,
 home, selected player position and clock to `0x145e5ff00`. The four signed
@@ -171,7 +171,7 @@ actor-pass ordering remain in [#89 verification](../verification-needed.md#gap-8
 
 ### Three additional CreatureQuery tables
 
-The [host ingress trace](coop-command-ingress.md#nested-creaturequery-selectors)
+The [host ingress trace](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-command-ingress.md#nested-creaturequery-selectors)
 identifies thirteen applied tables inside opcode `0x60`. Three additional
 tables in the same owner are present in the independent F01 list. The
 zero-filled entry reaches `r14d` at `0x145e9efeb`. The special-template
@@ -203,7 +203,7 @@ and rank in the [shared catalog](../../crates/azeroth-survivors-re/src/guardians
 and [query-specific source](../../crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs).
 The 600 and companion selectors continue `retained-table-145afb3fb` and
 `retained-table-145afb49a` from the
-[0.120.2 proof](creature-query-tables.md#thirteen-stable-table-questions).
+[0.120.2 proof](creature-queries.md#thirteen-stable-table-questions).
 The 1406–1494 table covers the high part of the earlier 1000–1494 family.
 Exact current fallback paths, other descriptors, localized values and
 recipient cache behavior stay under [#64](../CURRENT-STATE.md#gap-64) and
@@ -222,7 +222,7 @@ blocks absent from its Ghidra body.
 
 ### Co-op form and app action dispatch
 
-The [local poller trace](coop-relay-selection.md#local-poller-commands)
+The [local poller trace](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-relay-selection.md#local-poller-commands)
 accounts for all eight destinations at `0x145ea7797`. The app-side jump
 at `0x1401046a7` supplies an additional typed action selector that has no
 same-body diagnostic in the join above. The pressed check at `0x14010467e`
@@ -302,7 +302,7 @@ and its [admitted host and guest consumers](../../crates/azeroth-survivors-re/sr
 ### Relay event rows after the transport pump
 
 The locked wrapper at `0x145e8da50` runs the
-[outer pump](coop-relay-selection.md), drains its retained event
+[outer pump](coop.md#lobby-admission-and-transport), drains its retained event
 vector and clears the original length at `0x145e8dab4`. The poller loop
 advances by 120 bytes at `0x145ea3fcc`. A first word of `-1` terminates the
 iteration. It normalizes the negative first word by XOR with the sign bit,
@@ -327,14 +327,14 @@ and [directory pump](../../crates/azeroth-survivors-re/src/coop_directory.rs)
 use separate source arms for these wire types. The native peer and payload
 arms operate in the transport pump before its local status consumer. The
 reconstruction keeps that ordering in the selected send and reset paths
-already traced in the relay report. The [form credential repair](coop-relay-selection.md#host-and-join-form-credential-lifetime)
+already traced in the relay report. The [form credential repair](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-relay-selection.md#host-and-join-form-credential-lifetime)
 connects both request producers and both role consumers through the same
 take-on-reply password slot. The constructors at `0x145ec7000` and
 `0x145ec7250` test both local game `+0x10` and party role `+0x1100` for
 Off independently of password ownership. For wire 29, `0x145ea4303`
 tests the directory slot and the admitted branch moves the profile into
 `+0x1ee0` through `+0x1f48`. The absent-directory branch reaches the
-existing [guarded Hero4 refresh](coop-replication.md#guest-login-and-synchronized-recipients)
+existing [guarded Hero4 refresh](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-replication.md#guest-login-and-synchronized-recipients)
 at `0x145eca010` and drops the new profile. On the native pump's ordinary
 path the same directory slot is required before collecting the event vector.
 
@@ -383,7 +383,7 @@ call at `0x145eaab4f`. It agrees with the existing opcode classifier's
 fixed list and its three payload-length-dependent branches.
 
 The applied table at `0x14604a075` has a current AS producer and
-consumer in the [guest Gossip option path](coop-command-ingress.md#guest-gossip-option-ingress).
+consumer in the [guest Gossip option path](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-command-ingress.md#guest-gossip-option-ingress).
 
 ### Codex jewelry stat labels
 
@@ -446,9 +446,9 @@ The declared direct-reference projection has one caller of
 comes from the peer's `+8` field. Positive assigned slots within the
 Game roster enter the separately recovered seated locale wrapper at
 `0x145ef8baa`. The direct arm takes the same typed command, including
-the host slot. The [wire admission](coop-replication.md#engine7-and-control8)
+the host slot. The [wire admission](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-replication.md#engine7-and-control8)
 limits Control8 to subtypes 0–10. The other wrapper caller at
-`0x145e9fd97` uses the [Gossip option translation](coop-command-ingress.md#guest-gossip-option-ingress)
+`0x145e9fd97` uses the [Gossip option translation](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-command-ingress.md#guest-gossip-option-ingress)
 and excludes the `0xff` sentinel first.
 
 The eleven entries at `0x147af2de8` select Pick, Reroll, Banish, Skip,

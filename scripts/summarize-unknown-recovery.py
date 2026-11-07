@@ -10,7 +10,7 @@ import argparse
 import bisect, collections, csv, gzip, hashlib, json, sqlite3
 from pathlib import Path
 
-from coverage_common import ROOT, latest_target
+from coverage_common import ROOT, latest_target, load_json
 from coverage_common import file_sha256
 from shared_native_inventory import open_readonly_uri as open_native_inventory, inventory_size
 SHA = '58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb'
@@ -25,7 +25,7 @@ EXPANDED_INPUTS = {
     'address_code_input':'address_leads',
 }
 
-def load(p): return json.loads(p.read_text())
+def load(p): return load_json(p)
 def sha(p): return file_sha256(p)
 def artifact(p): return {'path':p.relative_to(ROOT).as_posix(),'sha256':sha(p),'bytes':inventory_size(p)}
 def tsv(p):

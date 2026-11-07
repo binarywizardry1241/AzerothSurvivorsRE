@@ -6,7 +6,7 @@ The [compact reconciliation](evidence/0.121.0/included-source-frontier.json)
 joins the complete current [data-classification population](evidence/0.121.0/data-classification/manifest.json)
 to actual AS-source `include_str!` inputs. It preserves that classifier's original
 decisions and source receipts. [CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md) own current
-implementation status; [the historical container review](q41-embedded-containers.md)
+implementation status; [the historical container review](native-recovery.md#data-and-included-scripts)
 retains its 0.115.0 evidence.
 
 ## Complete source-container boundary

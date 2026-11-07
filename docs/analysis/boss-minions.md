@@ -10,7 +10,7 @@ gameplay and original/rebuilt presentation have not been validated.
 
 The installed 0.108.0 EXE is 140,203,520 bytes, SHA-256
 `dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b`.
-[Registration](target-refresh-0.108.0.json) owns its identity and resource chain.
+[Registration](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/target-refresh-0.108.0.json) owns its identity and resource chain.
 The recovery tool resolves and verifies this target before reading it; changed
 bytes are rejected rather than interpreted with this layout.
 

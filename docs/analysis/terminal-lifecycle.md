@@ -2,7 +2,7 @@
 
 Target: installed **0.107.0**, SHA-256
 `92eaef3bc806144860ca838660286c02b66f9d7bbee0771f1f07a628209e9f7a`.
-The [manifest](evidence/0.107.0/terminal-lifecycle/manifest.json) binds fresh
+The [manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.107.0/terminal-lifecycle/manifest.json) binds fresh
 Ghidra 12.1.4 imports to the current PE ranges and data dependencies. It does
 not redirect or relabel the historical [0.105.0 return](terminal-return.md)
 or [Tester](tester-startup.md) evidence.

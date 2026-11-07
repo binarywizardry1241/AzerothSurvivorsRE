@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Prepare/collect selected-target upgrade owners; raw Ghidra is corroborated by PE assembly."""
 from portable_paths import objdump_output, portable_json
+from coverage_common import load_json
 import argparse
 import hashlib
 import importlib.util
@@ -18,7 +19,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("prepare", "collect"))
     args = parser.parse_args()
-    target = json.loads((ROOT / "docs/analysis/target-refresh-0.100.1.json").read_text())["current_target"]
+    target = load_json(ROOT / "docs/analysis/target-refresh-0.100.1.json")["current_target"]
     image = (ROOT / target["path"]).read_bytes()
     assert hashlib.sha256(image).hexdigest() == target["sha256"]
     mapping = json.loads((ROOT / "runtime/analysis/history/native-recovery/levelup/0595bd29ad58/mapping.json").read_text())

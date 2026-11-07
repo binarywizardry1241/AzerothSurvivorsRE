@@ -85,6 +85,16 @@ owner and reference it from the report. A mutable narrative report is a guide
 to the evidence and should not become a new immutable verifier input. Check
 inbound links, path consumers and recorded hashes before merging existing files.
 
+Use a stable filename for each live machine-record category too. Put target
+versions and hashes inside the record. Reuse the target registry, selected
+census and existing coverage ledgers. When an earlier receipt is needed only
+to verify historical provenance, register its exact Git bytes for
+`scripts/artifact_history.py` and remove the duplicate working file. Preserve
+actual application inputs and unfinished native checkpoints. Update all live
+readers before removing a consumed file. Consolidate recovery and checking
+scripts around their maintained entry point, with exact producer provenance for
+older contracts.
+
 Use the shared analysis catalog and content store for reusable native results.
 Keep temporary analysis outputs in a task-owned scratch directory under
 `runtime/tmp/` unless the runner has a canonical path. Clean up scratch after
@@ -104,6 +114,10 @@ plans that no retained check opens. Retain one receipt for required proof and
 keep unfinished checkpoints in their existing owner. Before delivery, run
 `python3 -B scripts/manage-runtime-layout.py --check` and resolve any loose
 outputs created by the task. Fix a recurring producer at its output boundary.
+Check inside category directories as well. Pack closed recovery whose original
+bytes remain useful into its verified category archive and remove the loose
+copies after checking consumers. Keep only the active working set and required
+retained paths expanded.
 
 ## Source gaps and verification ownership
 

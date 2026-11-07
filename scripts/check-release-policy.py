@@ -9,6 +9,7 @@ import itertools
 import json
 import struct
 
+from artifact_history import read_artifact
 from coverage_common import ROOT, latest_target, project_path, target_bytes
 from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
@@ -22,9 +23,9 @@ def sha(raw):
 
 
 def retained(row):
-    path = project_path(row["path"])
-    assert sha(path.read_bytes()) == row["sha256"], row["path"]
-    return path
+    raw = read_artifact(project_path(row["path"]))
+    assert sha(raw) == row["sha256"], row["path"]
+    return raw
 
 
 def verify(proof):
@@ -47,9 +48,9 @@ def verify(proof):
             assert len(instructions) == row["instruction_count"]
             text = "".join(f"{i.address:016x} {i.bytes.hex():<30} {i.mnemonic} {i.op_str}".rstrip() + "\n"
                            for i in instructions)
-            assert retained(row["assembly"]).read_text() == text
+            assert retained(row["assembly"]).decode() == text
     for query in proof["queries"]:
-        raw = json.loads(retained(query["result"]).read_text())
+        raw = json.loads(retained(query["result"]))
         native = raw.get("structuredContent") or json.loads(raw["content"][0]["text"])
         assert sha(native["normalized_result"].encode()) == query["normalized_text_sha256"]
         verify_native_query_subject(ROOT, native, query, target, image=image, pe=pe)
@@ -184,7 +185,7 @@ def branch_cases(proof):
 
 
 def main():
-    proof = json.loads(MANIFEST.read_text())
+    proof = json.loads(read_artifact(MANIFEST))
     verify(proof)
     result = branch_cases(proof)
     print(json.dumps({"target": proof["target"]["version"], "queries": len(proof["queries"]),

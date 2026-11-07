@@ -11,7 +11,7 @@ mechanics and complete volley hazard/presentation equivalence remain open.
 
 The installed 0.108.0 input is SHA-256
 `dc0040043fff7995a9137d96509c08debd1dbf8b0125a935273d718c66cb698b`.
-[Registration](target-refresh-0.108.0.json) owns its identity. The
+[Registration](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/target-refresh-0.108.0.json) owns its identity. The
 [catalog](evidence/0.108.0/boss-volleys/catalog.json) records all sixty boss IDs,
 including the 34 with no recurring native tag4 move, and exact current move
 bytes/addresses/hashes. Current records use the already recovered 104-byte boss,

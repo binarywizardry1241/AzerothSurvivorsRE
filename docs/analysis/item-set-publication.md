@@ -166,7 +166,7 @@ cooperative delivery, rendering and original/rebuilt parity remain unverified.
 The installed EXE/Data, saves and settings were read-only inputs.
 
 The shared-registry side effect of this same metadata callback is now connected
-under [#254](coop-item-registry.md): accepted set demands intern bonus
+under [#254](coop.md#choices-progression-and-rewards): accepted set demands intern bonus
 text in first-request order through the persistent item description registry.
 This preserves the existing direct text presentation; it does not establish
 #101 host-to-guest item-effect delivery or runtime/parity.

@@ -1,6 +1,6 @@
 # Raid forced player position
 
-The current 0.123.0 [correction/recipient repair](coop-correction.md)
+The current 0.123.0 [correction/recipient repair](coop.md#shared-simulation-and-replication)
 replaces the historical twelve-report pending gate with a three-second
 simulation deadline. This report and its original native fixtures retain their
 actual historical target; their report-count source correspondence is superseded.

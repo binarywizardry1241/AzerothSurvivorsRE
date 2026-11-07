@@ -2,7 +2,7 @@
 
 This bounded font portion of **#293** uses installed EXE SHA-256
 `3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb`.
-The [evidence manifest](evidence/0.127.0/mixed-script-fonts/manifest.json) binds
+The [evidence manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.127.0/mixed-script-fonts/manifest.json) binds
 current code, descriptors, font payloads and three journaled Ghidra results.
 [CURRENT-STATE #293](../CURRENT-STATE.md#gap-293) owns the combined source scope;
 [verification-needed #293](../verification-needed.md#gap-293) owns execution and

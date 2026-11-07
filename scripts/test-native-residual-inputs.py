@@ -26,7 +26,7 @@ class ClassificationInputs(unittest.TestCase):
         self.directory = self.root/'docs/analysis/evidence/fixture'
         self.directory.mkdir(parents=True)
         self.path = self.directory/'native-residuals.json'
-        self.census_path = 'docs/analysis/coverage/full-image-census.json'
+        self.census_path = 'docs/analysis/coverage/full-image-selected.json'
         files = {}
         for name in ('instructions.tsv.gz', 'bodies.tsv.gz', 'references.tsv.gz', 'externals.tsv.gz', 'direct-call-helpers.tsv.gz'):
             text = ('address\tlength\tbytes\tflow\n1000\t1\t90\tFALL_THROUGH\n1002\t2\tffd0\tCOMPUTED_CALL\n1004\t1\tc3\tTERMINATOR\n'

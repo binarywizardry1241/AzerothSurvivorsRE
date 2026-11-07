@@ -56,7 +56,7 @@ def verify_inventory(payload,target,pe,capstone):
     return entries
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--census-summary',required=True);parser.add_argument('--inventory-output',help='Project-local full inventory path');parser.add_argument('--summary-output',default='docs/analysis/coverage/native-import-thunks.json',help='Project-local compact summary path');parser.add_argument('--write',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--census-summary',required=True);parser.add_argument('--inventory-output',help='Project-local full inventory path');parser.add_argument('--summary-output',help='Project-local compact summary path; defaults beside the runtime inventory');parser.add_argument('--write',action='store_true');args=parser.parse_args()
     import capstone
     target=latest_target();summary=load_json(project_path(args.census_summary))
     if summary['target']['sha256']!=target['sha256'] or not summary['independent_instructions'].get('exact_source_bytes_verified'):raise ValueError('Verified current census required')
@@ -98,6 +98,6 @@ def main():
         else:
             derived_bytes(output, serialized, publish=True)
         compact['inventory'] = {'path': output.relative_to(ROOT).as_posix(), 'sha256': file_sha256(output)}
-        derived_bytes(args.summary_output, json_text(compact).encode(), publish=True)
+        derived_bytes(args.summary_output or output.with_name('lea-import-thunks-summary.json'), json_text(compact).encode(), publish=True)
     print(json_text(compact))
 if __name__=='__main__':main()

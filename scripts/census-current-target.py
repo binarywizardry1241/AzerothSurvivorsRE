@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Resume a bounded Ghidra instruction/reference census of the latest target.
 
-Default is read-only progress. --run explicitly performs static REA/Ghidra work;
+Default is read-only progress. --prepare-selection writes a bounded plan without
+starting Ghidra. --run explicitly performs static REA/Ghidra work;
 --limit bounds the number of discovered procedures processed in this pass.
 --sample verifies the pipeline on the first supplied .pdata extent as a raw
 slice; it never counts as analysis of the entire PE. The full-image queue uses
@@ -20,6 +21,7 @@ from pathlib import Path
 import sys
 
 from coverage_common import ROOT, file_sha256, json_text, latest_target, load_json, project_path, artifact_path, target_bytes
+from runtime_layout import owned_runtime_path
 
 # Matches the project's documented bounded PE analysis profile. All exclusions
 # remain part of the recorded profile and limit discovery/reference completeness.
@@ -119,6 +121,92 @@ def batch_module():
     return module
 
 
+def validate_ownership_summary(summary, target, source_path, source_sha):
+    if any(summary.get("target", {}).get(key) != target[key]
+           for key in ("version", "path", "sha256", "size_bytes")):
+        raise ValueError("Canonical diagnostic summary belongs to another selected target")
+    inventory = summary.get("inventory", {})
+    if inventory.get("path") != source_path or inventory.get("sha256") != source_sha:
+        raise ValueError("Diagnostic bulk inventory differs from the canonical path/digest")
+
+
+def validate_owner_bytes(selected, image):
+    for row in selected:
+        reference = row["reference"]
+        offset, count = int(reference["owner_file_offset"], 16), reference["owner_byte_count"]
+        if (offset < 0 or count < 1 or offset + count > len(image)
+                or hashlib.sha256(image[offset:offset + count]).hexdigest() != reference["owner_sha256"]):
+            raise ValueError(f"Selected native owner bytes differ for {row['path']}")
+
+
+# Require an explicit review when the number of custom diagnostic paths increases.
+def select_owners(ownership, target, limit=60):
+    if any(ownership.get("target", {}).get(key) != target[key]
+           for key in ("version", "path", "sha256", "size_bytes")):
+        raise ValueError("Diagnostic ownership belongs to another selected target")
+    selected = []
+    for path in sorted((row for row in ownership["diagnostics"] if row["custom_game_crate"]), key=lambda row: row["path"]):
+        references = [row for row in path["verified_references"] if row.get("owner_sha256")]
+        if not references:
+            raise ValueError(f"No instruction-verified owner for {path['path']}")
+        reference = min(references, key=lambda row: (row["owner_byte_count"], int(row["runtime_function_start"], 16),
+                                                      int(row["instruction_address"], 16)))
+        selected.append({"path": path["path"], "reference": reference})
+    if not selected or len(selected) > limit:
+        raise ValueError(f"Selected diagnostic paths must number 1..{limit}; review a changed scope explicitly")
+    return selected
+
+
+def selected_owner_addresses(selected):
+    return sorted({row["reference"]["runtime_function_start"] for row in selected}, key=lambda address: int(address, 16))
+
+
+def selected_seeds(addresses):
+    return "".join(f"{address}\tfunction\n{address}\tcode\n" for address in addresses)
+
+
+def bounded_plan(target, selected, output, disabled):
+    addresses = selected_owner_addresses(selected)
+    seeds = selected_seeds(addresses)
+    operations = []
+    for address in addresses:
+        for name, parameters, label in (("read_function_instructions", {}, "instructions"),
+                ("procedure_references", {"direction": "outgoing"}, "outgoing"),
+                ("procedure_references", {"direction": "incoming"}, "incoming"), ("procedure_info", {}, "info")):
+            operations.append({"name": name, "arguments": {"procedure": address, **parameters},
+                               "label": f"{address}-{label}", "timeout": 360 if not operations else 60})
+    plan = {"target": target["path"], "output": (output / "session").relative_to(ROOT).as_posix(),
+            "init_timeout": 60, "open_timeout": 180, "cleanup_timeout": 60, "timeout": 60, "stop_on_error": True,
+            "environment": {"REA_GHIDRA_STARTUP_TIMEOUT_MS": "300000",
+                            "REA_GHIDRA_SEED_FILE": (output / "seeds.tsv").relative_to(ROOT).as_posix(),
+                            "REA_GHIDRA_DISABLED_ANALYZERS": disabled}, "operations": operations}
+    return seeds, plan
+
+
+def prepare_selection(target, root, requested_output):
+    source = root / "diagnostic-ownership.json"
+    source_bytes = source.read_bytes()
+    source_sha = hashlib.sha256(source_bytes).hexdigest()
+    summary_path = ROOT / "docs/analysis/coverage/diagnostic-ownership.json"
+    validate_ownership_summary(load_json(summary_path), target, source.relative_to(ROOT).as_posix(), source_sha)
+    selected = select_owners(json.loads(source_bytes), target)
+    validate_owner_bytes(selected, target_bytes(target))
+    output = project_path(requested_output) if requested_output else root / "ghidra/diagnostic-owner-decoding-plan"
+    output = owned_runtime_path(output)
+    seeds, plan = bounded_plan(target, selected, output, FULL_PROFILES["full-image-no-address-tables"])
+    output.mkdir(parents=True, exist_ok=False)
+    (output / "seeds.tsv").write_text(seeds, encoding="utf-8")
+    (output / "plan.json").write_text(json_text(plan), encoding="utf-8")
+    (output / "selection.json").write_text(json_text({"target": target, "source": source.relative_to(ROOT).as_posix(),
+        "source_sha256": source_sha, "canonical_summary": summary_path.relative_to(ROOT).as_posix(),
+        "selected_owner_bytes_verified": True, "rule": "Minimum owner_byte_count per custom path; ties by owner then instruction address; unique owner queue in numeric order.",
+        "mappings": selected, "seed_sha256": file_sha256(output / "seeds.tsv"),
+        "generator_sha256": file_sha256(Path(__file__).resolve()), "global_native_completeness": False}), encoding="utf-8")
+    print(json_text({"plan": (output / "plan.json").relative_to(ROOT).as_posix(),
+                     "paths": len(selected), "unique_owners": len(plan["operations"]) // 4,
+                     "analysis_started": False}).rstrip())
+
+
 def selected_diagnostic_queue(target, root, directory, image, environment):
     """Reproduce the complete diagnostic selection and commit the tool repair.
 
@@ -126,16 +214,14 @@ def selected_diagnostic_queue(target, root, directory, image, environment):
     in the original PE so original global/import addresses remain available;
     disabled analyzers and unseeded bodies still limit reference completeness.
     """
-    spec = importlib.util.spec_from_file_location("census_selection", ROOT / "scripts/prepare-native-census-selection.py")
-    selection = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(selection)
     source = root / "diagnostic-ownership.json"
     digest = file_sha256(source)
-    selection.validate_ownership_summary(load_json(ROOT / "docs/analysis/coverage/diagnostic-ownership.json"),
+    validate_ownership_summary(load_json(ROOT / "docs/analysis/coverage/diagnostic-ownership.json"),
                                        target, source.relative_to(ROOT).as_posix(), digest)
-    selected = selection.select_owners(load_json(source), target)
-    selection.validate_owner_bytes(selected, image)
-    seeds, _ = selection.bounded_plan(target, selected, directory, FULL_PROFILES[SELECTED_PROFILE])
+    selected = select_owners(load_json(source), target)
+    validate_owner_bytes(selected, image)
+    addresses = selected_owner_addresses(selected)
+    seeds = selected_seeds(addresses)
     path = directory / "seeds.tsv"
     if path.exists() and path.read_text() != seeds:
         raise ValueError("Stored diagnostic seed selection changed; preserve the earlier census")
@@ -147,7 +233,6 @@ def selected_diagnostic_queue(target, root, directory, image, environment):
         raise ValueError("Apply scripts/repair-rea-seeded-bodies.py --apply before the repaired census")
     path.write_text(seeds, encoding="utf-8")
     environment["REA_GHIDRA_SEED_FILE"] = str(path)
-    addresses = sorted({row["reference"]["runtime_function_start"] for row in selected}, key=lambda a: int(a, 16))
     commitment = dict(seed_sha256=file_sha256(path), format=repair.FORMAT,
                       diagnostic_inventory_sha256=digest,
                       tooling={p.relative_to(ROOT).as_posix(): hashlib.sha256(data).hexdigest() for p, data, _ in tooling},
@@ -510,7 +595,10 @@ def run(args, target, root):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--run", action="store_true")
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--run", action="store_true")
+    mode.add_argument("--prepare-selection", action="store_true", help="Write a bounded diagnostic-owner plan without starting Ghidra")
+    parser.add_argument("--output", help="New runtime directory for --prepare-selection")
     parser.add_argument("--sample", action="store_true")
     parser.add_argument("--full-profile", choices=tuple(FULL_PROFILES), default=PROFILES[0],
                         help="Isolated full-image analyzer profile for --run; progress always reports every profile")
@@ -519,13 +607,18 @@ def main():
     parser.add_argument("--timeout", type=int, default=180)
     parser.add_argument("--startup-timeout", type=int, default=600)
     args = parser.parse_args()
+    if args.output and not args.prepare_selection:
+        parser.error("--output requires --prepare-selection")
     try:
         if min(args.limit, args.timeout, args.startup_timeout) < 1:
             raise ValueError("Limits and deadlines must be positive")
         if args.sample and args.full_profile != PROFILES[0]:
             raise ValueError("A full-image profile cannot be combined with --sample")
-        target = latest_target()
+        target = latest_target(verify=True) if args.prepare_selection else latest_target()
         root = ROOT / "runtime/coverage" / target["sha256"]
+        if args.prepare_selection:
+            prepare_selection(target, root, args.output)
+            return 0
         if args.run:
             return run(args, target, root)
         print(json_text(progress_report(target, root, args.sample)).rstrip())

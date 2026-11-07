@@ -40,7 +40,7 @@ def explicit_operands(instruction,capstone):
                 'width':operand.size,'access':operand.access}
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--census-summary',required=True);parser.add_argument('--inventory-output',help='Project-local gzip operand inventory path; details are written beside it');parser.add_argument('--summary-output',help='Project-local compact summary path; defaults to the selected version evidence');parser.add_argument('--write',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--census-summary',required=True);parser.add_argument('--inventory-output',help='Project-local gzip operand inventory path; details are written beside it');parser.add_argument('--summary-output',help='Project-local compact summary path; defaults beside the runtime operand inventory');parser.add_argument('--write',action='store_true');args=parser.parse_args()
     import capstone
     target=latest_target();summary_path=project_path(args.census_summary);summary_digest=file_sha256(summary_path);summary=load_json(summary_path)
     if summary['target']['sha256']!=target['sha256'] or not summary['independent_instructions'].get('exact_source_bytes_verified'):raise ValueError('Verified selected-target census required')
@@ -152,7 +152,7 @@ def main():
     if any(file_sha256(retained_runtime_path(ROOT/row['path'], ROOT))!=row['sha256'] for row in dependencies) or file_sha256(ROOT/'scripts/audit-native-operands.py')!=GENERATOR_SHA256 or file_sha256(summary_path)!=summary_digest or file_sha256(diagnostic_path)!=diagnostic_digest:raise ValueError('Operand generator or selected census changed during audit')
     derived_json(detail_path,detail,publish=args.write)
     compact['details']={'path':detail_path.relative_to(ROOT).as_posix(),'sha256':file_sha256(detail_path)}
-    summary_output=artifact_path(args.summary_output) if args.summary_output else ROOT/f"docs/analysis/evidence/{target['version']}/native-operand-boundaries.json"
+    summary_output=artifact_path(args.summary_output) if args.summary_output else output.parent/'explicit-operands-summary.json'
     derived_json(summary_output,compact,publish=args.write)
     print(json_text(compact))
 if __name__=='__main__':main()

@@ -22,7 +22,7 @@ and next steps. Refer to its target identity before applying a proof.
 ## Historical correspondence
 
 Use the [0.139.1 source frontier](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/source-frontier-0.139.1.md) and
-[0.140.0 incremental record](evidence/0.140.0/incremental-correspondence.json)
+[0.140.0 incremental record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.140.0/incremental-correspondence.json)
 for predecessor source assignments and bounded contracts. Earlier source work
 retains its permanent issue and evidence when a new EXE needs separate
 applicability proof.

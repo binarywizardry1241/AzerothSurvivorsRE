@@ -5,6 +5,7 @@ Analysis only: never executes the target and is never required by source builds.
 Binary outputs stay in ignored runtime; only the JSON evidence is deliverable.
 """
 from portable_paths import portable_json
+from coverage_common import load_json
 
 import argparse
 import bisect
@@ -427,7 +428,7 @@ def main():
     parser.add_argument("--pe-resource-evidence", default="docs/analysis/evidence/0.97.2/pe-resources.json")
     args = parser.parse_args()
     manifest_path = local(args.manifest)
-    manifest = json.loads(manifest_path.read_text())
+    manifest = load_json(manifest_path)
     target = manifest["current_target"]
     binary = local(target["path"])
     data = binary.read_bytes()

@@ -377,7 +377,7 @@ over the existing public benilla/wenilla source. The commands in this section
 document completed coverage tooling and reproducibility. They are not a mandate
 to reconstruct generic engine/compiler/graphics/Windows internals. Start further
 native recovery only for a concrete Survivors-specific contract or dependency.
-The selected `full-image-addresses.json` profile remains valid supporting
+The selected `full-image-selected.json` profile remains valid supporting
 evidence even when later generic exploratory proposals are left unapplied.
 
 The [historical 0.109.0 census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/native-census-0.109.0.md) introduced
@@ -406,11 +406,11 @@ python3 -B scripts/repair-rea-reference-input.py --apply
 python3 -B scripts/repair-rea-native-census.py --apply
 python3 -B scripts/census-native-image.py --run --seed-scope declared --output runtime/coverage/<target-sha>/ghidra/declared
 python3 -B scripts/summarize-native-image.py --input runtime/coverage/<target-sha>/ghidra/declared --write
-python3 -B scripts/census-native-image.py --run --seed-scope all --output runtime/coverage/<target-sha>/ghidra/integrated
-python3 -B scripts/summarize-native-image.py --input runtime/coverage/<target-sha>/ghidra/integrated --summary-output docs/analysis/coverage/full-image-integrated.json --write
-python3 -B scripts/recover-native-jump-tables.py --write
-python3 -B scripts/census-native-image.py --run --seed-scope all --jump-tables docs/analysis/coverage/native-jump-tables.json --output runtime/coverage/<target-sha>/ghidra/guarded
-python3 -B scripts/summarize-native-image.py --input runtime/coverage/<target-sha>/ghidra/guarded --summary-output docs/analysis/coverage/full-image-switches.json --write
+python3 -B scripts/census-native-image.py --run --seed-scope all --primary-summary runtime/coverage/<target-sha>/ghidra/declared/summary.json --output runtime/coverage/<target-sha>/ghidra/integrated
+python3 -B scripts/summarize-native-image.py --input runtime/coverage/<target-sha>/ghidra/integrated --write
+python3 -B scripts/recover-native-jump-tables.py --census-summary runtime/coverage/<target-sha>/ghidra/integrated/summary.json --summary-output runtime/coverage/<target-sha>/ghidra/integrated/jump-summary.json --write
+python3 -B scripts/census-native-image.py --run --seed-scope all --primary-summary runtime/coverage/<target-sha>/ghidra/declared/summary.json --jump-tables runtime/coverage/<target-sha>/ghidra/integrated/jump-summary.json --output runtime/coverage/<target-sha>/ghidra/guarded
+python3 -B scripts/summarize-native-image.py --input runtime/coverage/<target-sha>/ghidra/guarded --write
 ```
 
 Replace `<target-sha>` with the selected installed hash. Use a new output
@@ -491,11 +491,11 @@ function entry. For example, after preparing leads from the verified guarded
 summary, use its runtime inventory in a fresh pass:
 
 ```sh
-python3 -B scripts/prepare-native-diagnostic-leads.py --census-summary docs/analysis/coverage/full-image-switches.json --write
-python3 -B scripts/census-native-image.py --run --seed-scope all --jump-tables docs/analysis/coverage/native-jump-tables.json --diagnostic-leads runtime/coverage/<target-sha>/ghidra/guarded/diagnostic-code-leads.json --output runtime/coverage/<target-sha>/ghidra/diagnostics
-python3 -B scripts/summarize-native-image.py --input runtime/coverage/<target-sha>/ghidra/diagnostics --summary-output docs/analysis/coverage/full-image-diagnostics.json --write
-python3 -B scripts/recover-native-jump-tables.py --census-summary docs/analysis/coverage/full-image-diagnostics.json --write
-python3 -B scripts/prepare-native-diagnostic-leads.py --census-summary docs/analysis/coverage/full-image-diagnostics.json --write
+python3 -B scripts/prepare-native-diagnostic-leads.py --census-summary runtime/coverage/<target-sha>/ghidra/guarded/summary.json --write
+python3 -B scripts/census-native-image.py --run --seed-scope all --primary-summary runtime/coverage/<target-sha>/ghidra/declared/summary.json --jump-tables runtime/coverage/<target-sha>/ghidra/integrated/jump-summary.json --diagnostic-leads runtime/coverage/<target-sha>/ghidra/guarded/diagnostic-code-leads.json --output runtime/coverage/<target-sha>/ghidra/diagnostics
+python3 -B scripts/summarize-native-image.py --input runtime/coverage/<target-sha>/ghidra/diagnostics --write
+python3 -B scripts/recover-native-jump-tables.py --census-summary runtime/coverage/<target-sha>/ghidra/diagnostics/summary.json --summary-output runtime/coverage/<target-sha>/ghidra/diagnostics/jump-summary.json --write
+python3 -B scripts/prepare-native-diagnostic-leads.py --census-summary runtime/coverage/<target-sha>/ghidra/diagnostics/summary.json --write
 ```
 
 Publish only switch proofs actually applied in the selected census. Do not
@@ -508,8 +508,8 @@ Address-taken import thunks and explicit PE metadata supply further bounded
 entry classes. Recover them against a verified profile:
 
 ```sh
-python3 -B scripts/recover-native-import-thunks.py --census-summary docs/analysis/coverage/full-image-diagnostics.json --write
-python3 -B scripts/recover-native-unwind-handlers.py --census-summary docs/analysis/coverage/full-image-diagnostics.json --write
+python3 -B scripts/recover-native-import-thunks.py --census-summary runtime/coverage/<target-sha>/ghidra/diagnostics/summary.json --write
+python3 -B scripts/recover-native-unwind-handlers.py --census-summary runtime/coverage/<target-sha>/ghidra/diagnostics/summary.json --write
 python3 -B scripts/check-native-volatile-metadata.py --output runtime/coverage/volatile-metadata.json
 ```
 
@@ -518,8 +518,8 @@ boundaries and an executable JMP to a declared IAT slot. The second follows
 AMD64 version-1 handler RVAs, chained records, executable export/entrypoint/TLS
 addresses and present guarded-entry/pointer tables with size/count bounds. It
 does not infer language-specific handler payloads or force bodies to unwind
-extents. Add both `--import-thunks docs/analysis/coverage/native-import-thunks.json`
-and `--unwind-handlers docs/analysis/coverage/native-unwind-handlers.json` to a
+extents. Add both `--import-thunks runtime/coverage/<target-sha>/ghidra/diagnostics/lea-import-thunks-summary.json`
+and `--unwind-handlers runtime/coverage/<target-sha>/ghidra/diagnostics/unwind-handlers-summary.json` to a
 fresh all-seed census command, retaining the final switch and diagnostic inputs.
 Verify its new summary, then rescan again until the applied edge digest agrees.
 
@@ -531,8 +531,8 @@ mapped numeric candidates separately from register/index/segment-dependent
 operands. Address relations gain no inferred READ, WRITE or CALL semantics.
 
 ```sh
-python3 -B scripts/audit-native-operands.py --census-summary docs/analysis/coverage/full-image-pe-entries.json --write
-python3 -B scripts/recover-native-address-leads.py --operand-summary docs/analysis/evidence/0.109.0/native-operand-boundaries.json --write
+python3 -B scripts/audit-native-operands.py --census-summary runtime/coverage/<target-sha>/ghidra/pe-entries/summary.json --summary-output runtime/coverage/<target-sha>/ghidra/pe-entries/operand-summary.json --write
+python3 -B scripts/recover-native-address-leads.py --operand-summary runtime/coverage/<target-sha>/ghidra/pe-entries/operand-summary.json --write
 ```
 
 The address helper requires exact independently verified RIP-LEA sources and a
@@ -540,7 +540,7 @@ coherent code graph or already verified boundary at the executable target.
 Source body ownership remains separate. Entire instructions must stay
 inside one contiguous executable file-backed mapping. Established-boundary and
 cross-candidate conflicts are rejected; open computed exits retain their alias
-limits. Add `--address-leads docs/analysis/coverage/native-address-code-leads.json`
+limits. Add `--address-leads runtime/coverage/<target-sha>/ghidra/pe-entries/address-code-leads-summary.json`
 to the next fresh all-seed census. These starts seed code without creating
 function entries or incoming edges. Already verified target starts stay in the
 code-only queue when a fresh import repeats it. Strong function-entry seeds
@@ -562,17 +562,18 @@ separately. No body count, exact short byte match, vendored path or import bindi
 establishes gameplay or parity.
 
 Bind all final derivatives to the same independently verified report before
-publishing the atomic selector. The commands below use `full-image-addresses.json`
-as the final report; substitute the actual final verified summary consistently:
+publishing the atomic selector. Stage candidates under `runtime/coverage/` and
+promote the reviewed summary to `full-image-selected.json` before binding the
+final derivatives:
 
 ```sh
-python3 -B scripts/audit-native-operands.py --census-summary docs/analysis/coverage/full-image-addresses.json --write
-python3 -B scripts/audit-native-constant-dispatch.py --census-summary docs/analysis/coverage/full-image-addresses.json --write
-python3 -B scripts/audit-native-dispatch.py --census-summary docs/analysis/coverage/full-image-addresses.json --write
-python3 -B scripts/classify-native-ownership.py --census-summary docs/analysis/coverage/full-image-addresses.json --operand-summary docs/analysis/evidence/0.109.0/native-operand-boundaries.json --write
-python3 -B scripts/revalidate-historical-native-ranges.py --census-summary docs/analysis/coverage/full-image-addresses.json --write
+python3 -B scripts/audit-native-operands.py --census-summary docs/analysis/coverage/full-image-selected.json --summary-output runtime/coverage/selected-operands.json --write
+python3 -B scripts/audit-native-constant-dispatch.py --census-summary docs/analysis/coverage/full-image-selected.json --write
+python3 -B scripts/audit-native-dispatch.py --census-summary docs/analysis/coverage/full-image-selected.json --write
+python3 -B scripts/classify-native-ownership.py --census-summary docs/analysis/coverage/full-image-selected.json --operand-summary runtime/coverage/selected-operands.json --write
+python3 -B scripts/revalidate-historical-native-ranges.py --census-summary docs/analysis/coverage/full-image-selected.json --write
 python3 -B scripts/summarize-custom-native-coverage.py --site-role-proof docs/analysis/evidence/0.109.0/native-custom-site-roles.json --write
-python3 -B scripts/select-native-image-evidence.py --executed-tool-sources docs/analysis/coverage/native-executed-tool-sources.json --write
+python3 -B scripts/check-full-image-native.py --write
 python3 -B scripts/check-reconstruction-coverage.py
 ```
 

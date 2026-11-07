@@ -15,7 +15,8 @@ import json
 import re
 import subprocess
 
-from coverage_common import ROOT, file_sha256, load_json
+from artifact_history import archived_artifact
+from coverage_common import ROOT, file_sha256, load_json, project_bytes, same_artifact
 from script_sources import historical_matches, provenance
 
 DIAGNOSTIC_SUMMARY = 'docs/analysis/coverage/diagnostic-ownership.json'
@@ -111,7 +112,10 @@ class SupportInputs:
         self.cache = {}
 
     def read(self, receipt):
-        return load_json(self.root/self.bound(receipt)['path'])
+        path = self.bound(receipt)['path']
+        if not (self.root / path).is_file():
+            return json.loads(project_bytes(path, root=self.root, expected=receipt['sha256']))
+        return load_json(self.root / path)
 
     def receipt(self, name):
         return self.bound(dict(path=name, sha256=file_sha256(self.root/name)))
@@ -162,12 +166,19 @@ class SupportInputs:
         return self.cache['diagnostic_rows']
 
     def same_receipt(self, actual, expected):
-        require(self.bound(actual) == self.bound(expected), 'owning input commitment differs')
+        require(self.receipt_matches(self.bound(actual), self.bound(expected)), 'owning input commitment differs')
+
+    def receipt_matches(self, actual, expected):
+        return actual == expected or (
+            expected['path'] == self.census_summary and actual['sha256'] == expected['sha256']
+            and same_artifact(actual['path'], expected['path'], expected['sha256'], self.root)
+        )
 
     def input_set(self, record, required):
         require(isinstance(record['inputs'], list), 'support inputs must be receipts')
         actual = [self.bound(r) for r in record['inputs']]
-        require(all(self.bound(r) in actual for r in required), 'support required input omitted or substituted')
+        require(all(any(self.receipt_matches(a, expected) for a in actual)
+                    for expected in map(self.bound, required)), 'support required input omitted or substituted')
 
     def snapshot_input(self, record, expected):
         matches = [r for r in record['inputs'] if r['path'].endswith('.json') and self.read(r) == expected]
@@ -401,7 +412,8 @@ class SupportInputs:
             # The residual-based engine proof has its own bounded checker and
             # binds the exact census through the native residual proof.
             residual = self.residual()
-            require(self.receipt(self.census_summary) in residual['inputs'],
+            expected = self.receipt(self.census_summary)
+            require(any(self.receipt_matches(row, expected) for row in residual['inputs']),
                     'engine diagnostic owning census differs')
             owner = checker('check-engine-diagnostic-roles')
             require(owner.derive_residual_roles(self.selected, record['interfaces']) == record,
@@ -431,7 +443,8 @@ def validate_ownership(record, selected, root, bound, census_summary):
     """
     import capstone
     census_name = census_summary
-    if record['census_summary'] != census_name:
+    if record['census_summary'] != census_name and not same_artifact(
+            record['census_summary'], census_name, record['census_summary_sha256'], root):
         raise ValueError('Ownership must select the current owning census')
     bound(dict(path=census_name, sha256=record['census_summary_sha256']))
     census = load_json(root / census_name)
@@ -496,7 +509,7 @@ def validate_ownership(record, selected, root, bound, census_summary):
 
 def verified_classifications(selected, *, root=None, census_summary=None):
     root = (ROOT if root is None else Path(root)).resolve()
-    census_path = (root / (census_summary or 'docs/analysis/coverage/full-image-census.json')).resolve()
+    census_path = (root / (census_summary or 'docs/analysis/coverage/full-image-selected.json')).resolve()
     if not census_path.is_relative_to(root):
         raise ValueError('Native classification census escapes project')
     census_name = census_path.relative_to(root).as_posix()
@@ -516,9 +529,11 @@ def verified_classifications(selected, *, root=None, census_summary=None):
         path = (root / name).resolve()
         if not path.is_relative_to(root):
             raise ValueError('Native classification artifact escapes project: ' + name)
-        if path not in hashes:
-            if not path.is_file():
+        if not path.is_file():
+            if archived_artifact(path, expected, root=root) is None:
                 raise ValueError('Native classification artifact missing: ' + name)
+            return dict(path=path.relative_to(root).as_posix(), sha256=expected)
+        if path not in hashes:
             hashes[path] = file_sha256(path)
         if hashes[path] != expected and not (allow_residual_predecessors and
                 residual_input_matches(path, expected, hashes[path], root)):

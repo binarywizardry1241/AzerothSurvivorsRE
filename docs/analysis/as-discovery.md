@@ -17,10 +17,10 @@ for candidate evidence. The PaperDoll override illustrates the complete join
 from an exact resource and its localized labels to the core loader.
 
 Earlier reviews preserve narrower conclusions. The
-[co-op correspondence](coop-correspondence.md) follows transport and
-session owners. The [0.120.5 release frontier](evidence/0.120.5/release-policy-frontier.json)
+[co-op correspondence](coop.md#shared-simulation-and-replication) follows transport and
+session owners. The [0.120.5 release frontier](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.120.5/release-policy-frontier.json)
 retains callback, authentication, timer and cleanup leads. The
-[0.121.0 review input](evidence/0.121.0/as-discovery-reviews.json) records the
+[0.121.0 review input](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.121.0/as-discovery-reviews.json) records the
 selected Heroic and Explosive Orb classifications and their evidence limits.
 
 ## Switch and caller correspondence
@@ -28,9 +28,9 @@ selected Heroic and Explosive Orb classifications and their evidence limits.
 Applied guarded-table targets establish edges. Follow selector values, caller
 state, aliases and layouts separately to determine their meaning. The
 [switch context review](switch-context-source-review.md) and
-[reference frontier](q41-reference-frontier.md) own the selected proof and
+[reference frontier](native-recovery.md#q41-a01-declared-references) own the selected proof and
 remaining caller questions. Use the [0.139.1 context input](evidence/0.139.1/switch-context-source-review.json)
-and [0.140.0 correspondence record](evidence/0.140.0/incremental-correspondence.json)
+and [0.140.0 correspondence record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.140.0/incremental-correspondence.json)
 to trace inherited findings back to their earlier scope.
 
 ## Source reconciliation

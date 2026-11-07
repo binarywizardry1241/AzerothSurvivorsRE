@@ -67,7 +67,7 @@ local FrameXML feed and the existing wire11 resource feed use this path.
 
 ## Evidence and verification
 
-[The fixture](evidence/0.141.1/battle-shout.json) records the selected original
+[The fixture](evidence/battle-shout.json) records the selected original
 byte ranges and test vectors. The shared journaled Ghidra runner confirmed six
 procedures. Both raw slice subjects were checked against the installed EXE,
 including their mapped virtual address, input digest and completed result.

@@ -9,7 +9,7 @@ import importlib.util
 import json
 from pathlib import Path
 
-from coverage_common import ROOT, latest_target, project_path, file_sha256, load_json
+from coverage_common import ROOT, latest_target, project_path, file_sha256, load_json, same_artifact
 
 
 def require(condition, message):
@@ -25,7 +25,7 @@ def producer_module():
 
 
 def validate(record, target, *, files=True, root=None,
-             census_summary='docs/analysis/coverage/full-image-census.json'):
+             census_summary='docs/analysis/coverage/full-image-selected.json'):
     root = (ROOT if root is None else Path(root)).resolve()
     def artifact_path(value):
         path = (root / value).resolve()
@@ -42,7 +42,8 @@ def validate(record, target, *, files=True, root=None,
     census_path = census_summary
     census = load_json(root/census_path)
     require(census['target'] == identity and census['independent_instructions']['exact_source_bytes_verified'], 'Census identity differs')
-    require(record['source_census'] == dict(path=census_path, sha256=file_sha256(root/census_path)), 'Census commitment differs')
+    source = record['source_census']
+    require(same_artifact(source['path'], census_path, source['sha256'], root), 'Census commitment differs')
     require(record['source_census'] in record['inputs'], 'Census missing from commitments')
     ownership = load_json(artifact_path(record['ghidra_ownership']['path']))
     residual = load_json(artifact_path(record['residual_summary']['path']))

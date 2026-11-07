@@ -6,7 +6,7 @@ from pathlib import Path
 import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
-spec = importlib.util.spec_from_file_location('selection', ROOT / 'scripts/prepare-native-census-selection.py')
+spec = importlib.util.spec_from_file_location('selection', ROOT / 'scripts/census-current-target.py')
 selection = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(selection)
 

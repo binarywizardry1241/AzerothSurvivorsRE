@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if ROOT.name == 'runtime':
     ROOT = ROOT.parent
 sys.path[:0] = [str(ROOT/'scripts'),str(ROOT/'runtime/tool-state/python/camera/python-libs')]
-from coverage_common import latest_target, target_bytes
+from coverage_common import file_sha256, latest_target, load_json, target_bytes
 
 SHA='0258b8a43d9ba3170b15e5fc07a646a606eb2972a5dd6aa0e6349a07ec390e2c'
 WORK=ROOT/'runtime/analysis/history/findings/q41-unwind/987fae9ded96'
@@ -34,7 +34,7 @@ THUNKS={0x145d145f5:(0x145eb8240,'VCRUNTIME140.dll','__CxxFrameHandler3'),
 def sha(raw):return hashlib.sha256(raw).hexdigest()
 
 
-def artifact(path):return dict(path=path.relative_to(ROOT).as_posix(),sha256=sha(path.read_bytes()))
+def artifact(path):return dict(path=path.relative_to(ROOT).as_posix(),sha256=file_sha256(path))
 
 
 def module(name,path):
@@ -95,7 +95,7 @@ def derive():
     helpers=module('unowned_unwind_census','scripts/summarize-native-image.py')
     unwind=module('unowned_unwind_reader','scripts/recover-native-unwind-handlers.py')
     census_path=ROOT/'docs/analysis/coverage/full-image-census.json'
-    census=json.loads(census_path.read_text())
+    census=load_json(census_path)
     assert census['target']['sha256']==SHA and census['independent_instructions']['exact_source_bytes_verified']
     directory=ROOT/census['artifacts']['directory']
     inputs={}

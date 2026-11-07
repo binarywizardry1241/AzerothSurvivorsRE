@@ -2,7 +2,7 @@
 
 The installed EXE is 151,493,632 bytes with SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
-This review uses the [selected Ghidra census](coverage/full-image-selected-0.141.0.json),
+This review uses the [selected Ghidra census](coverage/full-image-selected.json),
 the original EXE bytes and the independent declared and complement inventories.
 It covers the four selected leads in the [#41 queue](unknown-recovery.md).
 The selected instruction union and the original selectors retain their counts.
@@ -218,7 +218,7 @@ byte. The ordinary receive, send and close wrappers reach the same pump at
 `0x145e3e614`, `0x145e3e7b0` and `0x145e3e838`. The live
 [`TcpConnection::pump`](../../crates/azeroth-survivors-re/src/coop/tcp.rs) implements
 these conditions, with callers in the [co-op session](../../crates/azeroth-survivors-re/src/coop/session.rs).
-The existing [transport contract](coop-transport.md) retains its
+The existing [transport contract](coop.md#lobby-admission-and-transport) retains its
 original provenance. A separately known interval at
 `0x145e27318..0x145e274c4` is the
 [five-lane Soulfire upgrade calculation](soulfire.md).
@@ -318,9 +318,9 @@ Some exact cells also have reviewed producers:
   composite function already uses this placement.
 - **Party command row 52569.** Index zero at `0x145ef89a5` reaches the
   generation check at `0x145ef89a7` and applies the selected card. The
-  [seated ingress and republish trace](coop-replication.md)
+  [seated ingress and republish trace](coop.md#shared-simulation-and-replication)
   supplies the live Game and hero. The
-  [choice owner](q41-reference-frontier.md#choice-completion-and-republish)
+  [choice owner](native-recovery.md#choice-completion-and-republish)
   supplies the generation and index conditions, with the remaining
   aliases of the wider dispatcher still under
   [`Q41-F01`](computed-transfers.md#q41-f01-declared-range-as-context).
@@ -482,7 +482,7 @@ Some exact cells also have reviewed producers:
   and [live periodic projection](../../crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs)
   already supply this Imp preference.
 - **Choice row 53291.** The
-  [five-case constructor proof](q41-reference-frontier.md#choice-card-variants)
+  [five-case constructor proof](native-recovery.md#choice-card-variants)
   already supplies the admitted payload tags and the live card producer.
   The same table's index zero enters `0x145fbc00c`.
 
@@ -502,7 +502,7 @@ instructions and data supply the exact case and row bindings.
 | --- | --- |
 | 451, 466, 467 | The adjacent six-cell vectors at `0x146565b10` and `0x146565b28` clone JSON values inside the Discord paths. Cases 1 at `0x140093fb3` and `0x14009d833` copy the boolean payload byte. Case 4 at `0x14009d88d` clones the 32-byte array rows through `0x140034e20`. Row 451 follows the worker's event-error data log. Rows 466 and 467 reach the same publisher continuation at `0x14012f740`. The [Discord source](../../crates/azeroth-survivors-re/src/discord.rs) clones the activity value for its worker. |
 | 1124 | The Picker class grid takes the class ID from descriptor `+0x8c` at `0x14039f7a0`, writes it after action tag 0, and passes the action to the 60-pixel class icon builder at `0x14039f813`. The builder reads the action pointer at `0x140138f43` and passes the descriptor to `0x1403a2e20` at `0x140138fb2`. The consumer reads the class byte at `0x1401488e7`, upserts the previous class's eight-byte selection row through `0x145de50b0`, and queues Pick command 12 at `0x140148a15`. The [Picker grid](../../crates/azeroth-survivors-re/src/picker.rs) produces `Action::Class`, and the [menu input path](../../crates/azeroth-survivors-re/src/menu.rs) dispatches it into `choose_class`. |
-| 1555, 1587 | The [Options checkbox repair](options-checkbox.md) joins the kind-5 click to the queued 56-byte update, storage setter at `0x1401f1ec0`, and inverted draw path. The [binding-header removal](q41-diagnostic-consumers.md#returning-removals) is a separate case in the same function. |
+| 1555, 1587 | The [Options checkbox repair](options-checkbox.md) joins the kind-5 click to the queued 56-byte update, storage setter at `0x1401f1ec0`, and inverted draw path. The [binding-header removal](native-recovery.md#returning-removals) is a separate case in the same function. |
 | 1761 | The Rewards action takes a signed delta from record `+1`, a key pointer and length from `+8/+0x10`, and the current rank from `0x145e46460`. `0x145e5f500` returns the named descriptor. `0x1402b87e7..0x1402b8818` clamps the new rank between zero and its limit and updates the draft through `0x145e47880`. The UI admits decreases at `0x1403d21f8..0x1403d2245` using the dependent-perk and owned-rank gates and increases at `0x1403d2257..0x1403d22c1` using the catalog and point budget. The [Rewards editor](../../crates/azeroth-survivors-re/src/progression.rs) validates its candidate at input as well. The builder only inserts the action into the deferred bundle when enabled. The consumer accepts each fresh Pressed row and clamps its rank before updating the draft. It reads no budget or dependency gate at this point. Whether stale or simultaneous presses reach these controls remains open. |
 | 1845 | The Armory header loads `options.done` at `0x14039352b`, writes dword action 2 at `0x14039353f`, and passes its pointer to button builder `0x1402dd410` at `0x14039356a`. The handler enters `0x1402ed729` and requests destination `0xff` through `0x1402cb5a0`. The shared helper chooses Picker and checks for an edited Rewards draft. The button caller supplies `0x41800000` at `0x140393558`. The builder copies that float into the text style at `0x1402ddb61..0x1402ddbba`, giving the 16-pixel label now used by the [Armory header](../../crates/azeroth-survivors-re/src/armory.rs). The [rebuilt page request](../../crates/azeroth-survivors-re/src/progression.rs) owns the leave guard. The adjacent lookup `0x145df0470` copies the 232-byte Armory class row keyed by its byte at `+0xe4`, with a default when absent. |
 | 1999 | The [ordinary equipment palette repair](armory-equipment-palette.md) connects this tier and item-class selector to the native icon border and text consumers and reuses the same palette in the rebuilt inspector. |

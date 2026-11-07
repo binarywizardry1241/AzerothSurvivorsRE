@@ -88,7 +88,7 @@ def reference_join(diagnostics,observed,owner,candidates,excluded=None):
         'distinct_native_location_body_owners':len(location_owners),**dict(totals)}
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);selection=parser.add_mutually_exclusive_group();selection.add_argument('--classification');selection.add_argument('--census-summary',help='Current independently verified census without asserting a current semantic classifier');parser.add_argument('--output',help='Compact report output; defaults to selected target evidence directory');parser.add_argument('--site-role-proof');parser.add_argument('--write',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);selection=parser.add_mutually_exclusive_group();selection.add_argument('--classification');selection.add_argument('--census-summary',help='Current independently verified census without asserting a current semantic classifier');parser.add_argument('--output',help='Override the canonical compact evidence output');parser.add_argument('--site-role-proof');parser.add_argument('--write',action='store_true');args=parser.parse_args()
     target=latest_target();inputs=[];classification=None
     if args.census_summary:
         census_path=project_path(args.census_summary)
@@ -146,7 +146,7 @@ def main():
             'The path inventory cannot prove absence of systems that emit no diagnostic filename. Their discovery remains an AS-specific evidence question, not a mandate to reconstruct the engine.']}
     if file_sha256(ROOT/'scripts/summarize-custom-native-coverage.py')!=GENERATOR_SHA256 or any(file_sha256(project_path(row['path']))!=row['sha256'] for row in inputs+dependencies):raise ValueError('Custom coverage input/generator drift')
     if semantic_projection(load_json(systems_path),names)!=projection:raise ValueError('Custom semantic mapping changed during audit')
-    output=project_path(args.output or f"docs/analysis/evidence/{target['version']}/native-custom-coverage.json")
+    output=project_path(args.output or 'docs/analysis/evidence/native-custom-coverage.json')
     if args.write:inventory.write_text(raw);projection_path.write_text(projection_raw);output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json_text(report))
     print(json_text(counts))
 if __name__=='__main__':main()

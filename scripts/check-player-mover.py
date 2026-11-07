@@ -5,6 +5,7 @@ This is a non-compiling static contract check, not execution of the Rust source.
 --extract stages the named unchanged native slices and focused REA plans in runtime/.
 """
 from native_recovery import f32 as _shared_f32
+from coverage_common import load_json
 from script_sources import load_script
 from pathlib import Path
 import argparse
@@ -102,7 +103,7 @@ def main():
     args.add_argument('--extract', action='store_true')
     options = args.parse_args()
     manifest = json.loads((EVIDENCE / 'player-mover-manifest.json').read_text())
-    target_record = json.loads((ROOT / 'docs/analysis/target-refresh-0.105.0.json').read_text())
+    target_record = load_json(ROOT / 'docs/analysis/target-refresh-0.105.0.json')
     target = ROOT / target_record['current_target']['path']
     data = target.read_bytes()
     assert hashlib.sha256(data).hexdigest() == manifest['target_sha256'] == target_record['current_target']['sha256']
