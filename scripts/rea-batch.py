@@ -200,7 +200,7 @@ class _TransportClient:
     def call(self, name, arguments, timeout, label=None):
         return self.request("tools/call", {"name": name, "arguments": arguments}, timeout, label or name)
 
-    def stop(self):
+    def stop(self, *, discard_transcript=False):
         try:
             self.process.stdin.close()
         except BrokenPipeError:
@@ -217,6 +217,9 @@ class _TransportClient:
         self.stdout.close()
         self.stderr.close()
         self.process.stdout.close()
+        if discard_transcript and self.process.returncode == 0:
+            (self.output / "mcp-stdout.jsonl").unlink(missing_ok=True)
+            (self.output / "mcp-stderr.log").unlink(missing_ok=True)
 
 
 def digest(value):
@@ -707,10 +710,10 @@ class ResumableClient:
                     raise
                 print(f"[{label or name}] transient failure; reopening saved analysis and retrying unfinished query ({attempt + 2}/{self.retry_attempts})", flush=True)
 
-    def stop(self):
+    def stop(self, *, discard_transcript=False):
         try:
             if self.transport is not None:
-                self.transport.stop()
+                self.transport.stop(discard_transcript=discard_transcript)
             elif (self.deferred and self.request_directory is not None
                   and (self.request_directory / "current-program.json").is_file()
                   and self.shared_context() is not None):
@@ -843,12 +846,14 @@ def main():
         if client.state is not None:
             client.state["status"] = "interrupted" if failure and failure.startswith("KeyboardInterrupt:") else "failed" if failure or operation_errors else "completed"
             save(client.journal_path, client.state)
+        completed = False
         try:
             save(output / "run.json", {"target": str(target), "environment": {k: environment[k] for k in ENV_KEYS if k in environment},
                                        "failure": failure, "operation_errors": operation_errors, "cleanup_errors": cleanup_errors,
                                        "calls": client.calls})
+            completed = not (failure or operation_errors or cleanup_errors)
         finally:
-            client.stop()
+            client.stop(discard_transcript=completed)
     print(f"Results: {output}", flush=True)
     return int(bool(failure or operation_errors or cleanup_errors))
 

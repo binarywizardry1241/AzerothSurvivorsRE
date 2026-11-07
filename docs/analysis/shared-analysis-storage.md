@@ -42,6 +42,11 @@ links. The root holds only the documented storage owners.
 Closed narrative snapshots can be inspected with
 `tar -tzf runtime/analysis/history/reports.tar.gz`. The archive records their
 original paths and SHA-256 digests. Maintained reports live in `docs/analysis/`.
+Cold recovery data that has no live path consumer is packed into one
+`retained.tar.gz` per history category. Inspect an individual original file
+with `scripts/manage-runtime-layout.py --show-retained <path>`. Its original
+relative name and exact bytes remain available without restoring a directory.
+The live recovery working set remains expanded for its registered consumers.
 
 The primary checkout owns this project-wide workspace. Linked-worktree source
 tasks route native operations through the primary checkout instead of creating

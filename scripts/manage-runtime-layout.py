@@ -4,12 +4,15 @@
 import argparse
 from contextlib import ExitStack
 import fcntl
+import hashlib
 import json
 import os
 from pathlib import Path
 import subprocess
+import sys
+import tarfile
 
-from runtime_layout import LAYOUT, ROOT, destination, loose_entries, relocations
+from runtime_layout import LAYOUT, ROOT, destination, loose_entries, relocations, retained_runtime_path
 from shared_analysis import SharedAnalysis, _fsync_directory
 
 PENDING = Path("runtime/analysis/.runtime-layout-pending.json")
@@ -158,11 +161,50 @@ def apply(root=ROOT, *, check_processes=True):
         return len(moves), aliases
 
 
+def retained_bytes(value, root=ROOT):
+    """Read a packed cold file without recreating a loose history scope."""
+    path = Path(os.path.normpath(root / value))
+    path = retained_runtime_path(path, root)
+    history = root / "runtime/analysis/history"
+    if not path.is_relative_to(history) or path == history:
+        raise ValueError("Expected a retained recovery path under runtime history")
+    category = path.relative_to(history).parts[0]
+    name = path.relative_to(root).as_posix()
+    archive_path = history / category / "retained.tar.gz"
+    with tarfile.open(archive_path, "r:gz") as archive:
+        with archive.extractfile("retained-scopes.json") as source:
+            receipt = json.load(source)["entries"].get(name)
+        if not receipt:
+            raise ValueError(f"Path is not in the cold archive: {name}")
+        if receipt[0] == "file":
+            with archive.extractfile(name) as source:
+                data = source.read()
+            expected = receipt[2]
+        elif receipt[0] == "link":
+            target = Path(os.path.normpath(path.parent / receipt[1]))
+            objects = root / "runtime/analysis/objects"
+            if not target.is_relative_to(objects) or target.resolve() != target:
+                raise ValueError(f"Archived link does not directly identify a shared object: {name}")
+            data = target.read_bytes()
+            expected = target.name
+        else:
+            raise ValueError(f"Expected an archived file: {name}")
+        if hashlib.sha256(data).hexdigest() != expected:
+            raise ValueError(f"Archived bytes differ from the receipt: {name}")
+        return data
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--apply", action="store_true", help="Relocate inactive loose roots and rebase catalog links")
     parser.add_argument("--check", action="store_true", help="Fail if the runtime root contains unmanaged entries")
+    parser.add_argument("--show-retained", metavar="PATH", help="Read one packed historical file using its old or category path")
     args = parser.parse_args()
+    if args.show_retained:
+        if args.apply or args.check:
+            parser.error("--show-retained cannot be combined with migration or layout checking")
+        sys.stdout.buffer.write(retained_bytes(args.show_retained))
+        return 0
     if args.apply:
         roots, aliases = apply()
         print(f"Relocated {roots} runtime entries and verified {aliases} catalog aliases")
