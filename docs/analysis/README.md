@@ -1,17 +1,24 @@
 # Recovered behavior and evidence
 
-Selected installed target **0.121.0**, SHA-256
+Use [target reviews](target.md), [AS discovery](as-discovery.md) and the
+[module contract register](module-contracts.md) to compare findings by release
+within a topic. Some earlier reports retain their exact files because frozen
+evidence references those paths or bytes. Add new findings to the owning topic
+and keep hash-bound machine inputs with the evidence.
+
+Use [CURRENT-STATE](../CURRENT-STATE.md) for the selected target and source gaps,
+and [verification-needed](../verification-needed.md) for runtime and comparison
+work. [Coverage](reconstruction-coverage.md) describes the audit accounting.
+
+## Historical 0.121.0 audit
+
+Audited target **0.121.0**, SHA-256
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
-[Identity](target-refresh-0.121.0.json), [target review](target-0.121.0.md),
+[Identity](target-refresh-0.121.0.json), [target review](target.md#native-and-data-evidence),
 [native census](native-census-0.121.0.md),
 [individual release findings](release-review-0.121.0.md),
-[AS discovery](as-discovery-0.121.0.md) and
-[unknown queue](unknown-recovery-0.121.0.md) own current discovery.
-[CURRENT-STATE](../CURRENT-STATE.md) and [verification-needed](../verification-needed.md)
-jointly preserve permanent issue identities and separate source/recovery work
-from execution/comparison requirements;
-[coverage](reconstruction-coverage.md) separates recovery, implementation,
-static checks, compilation, execution and parity.
+[AS discovery](as-discovery.md#feature-and-resource-ownership) and
+[unknown queue](unknown-recovery-0.121.0.md) record that target's discovery.
 
 All **22** supplied items have independent findings **#218–#239**. The
 [source frontier](source-frontier-0.121.0.md) reviews the three new diagnostic

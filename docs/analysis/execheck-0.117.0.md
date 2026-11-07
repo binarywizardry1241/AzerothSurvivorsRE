@@ -2,7 +2,7 @@
 
 Selected installed target SHA-256:
 `507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293`.
-[Identity](target-refresh-0.117.0.json), [target review](target-0.117.0.md),
+[Identity](target-refresh-0.117.0.json), [target review](target.md#native-and-data-evidence),
 [native census](native-census-0.117.0.md), [release findings](release-review-0.117.0.md)
 and [canonical unknown queue](unknown-recovery-0.117.0.md) own exact proof scopes.
 This audit changes evidence, tools, documentation and package accounting only;

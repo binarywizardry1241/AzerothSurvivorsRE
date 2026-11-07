@@ -68,12 +68,13 @@ reading it; remove session leftovers with no remaining use.
 
 ## Consolidate reports and analysis storage
 
-Keep one readable Markdown report per category. Search for an existing owner
-before creating a file, and extend that report when a release changes the same
-category. Use headings for version/hash-specific findings and link the relevant
-section from the registers. Keep shared behavior, methods and limitations in
-one place. Record the changed facts and their applicability under each target
-without copying unchanged tables, repeated background or whole reports.
+Keep one readable Markdown report per category, with a stable filename and
+headings organized by subject. Search for an existing owner before creating a
+file. When a release changes a category, revise its affected sections and carry
+forward only relevant historical differences. Put exact target identities and
+reproduction details in the linked evidence. Avoid version-suffixed narrative
+reports, parallel version sections and concatenation of prior reports. Keep
+shared behavior, methods and limitations in one place.
 
 Keep exact historical inputs whose bytes or original paths a verifier still
 requires. Store new hash-bound machine evidence under its canonical evidence

@@ -5,7 +5,7 @@ The installed and registered reconstruction target is **0.141.0**, SHA-256
 (151,493,632 bytes). The [identity](target-refresh-0.141.0.json) and
 [CURRENT-STATE](../CURRENT-STATE.md) record the input and audit status.
 The [0.140.0 census](native-census-0.140.0.md) and
-[0.140.0 graph](as-discovery-0.140.0.md) retain their original target.
+[0.140.0 graph](as-discovery.md#switch-and-caller-correspondence) retain their original target.
 
 The 26-range ledger partitions the whole image. The independent linear pass
 decodes 24,893,474 instructions across 372,623 declared extents, covering
@@ -282,7 +282,7 @@ workers. Survivors-specific engine/ownership limits remain under #41.
 | [instruction-summary.json](coverage/instruction-summary.json) | Complete declared-extent linear decoding, static operands/flow leads and unresolved dispatch counts; no semantic certification. |
 | [unwind-complement-summary.json](coverage/unwind-complement-summary.json) | Disjoint accounting of every executable byte outside declared extents, candidate decoding and residual classes. |
 | [Declared seed census](coverage/full-image-declared-0.127.0.json) | Independently verified 0.127.0 declared-entry Program; exact native seed commitments remain with its saved plan. |
-| [Current installed-target review](target-0.127.0.md) | Current native/source findings, complete input accounting and exact pending semantic frontiers. |
+| [Current installed-target review](target.md#native-and-data-evidence) | Current native/source findings, complete input accounting and exact pending semantic frontiers. |
 | [Historical atomic selection](evidence/0.109.0/native-image-current.json) | Preserved 0.109.0 census/switch/ownership selection; no 0.112.0 or parity certification. |
 | [Full-image records](native-census-0.127.0.md) | Current independently verified profiles, body/reference counts and executable residual limits. |
 | [Current atomic selection](coverage/native-image-current.json) | Matching expanded census, ownership, applied switch proof and historical-range audit; static observations only. |
