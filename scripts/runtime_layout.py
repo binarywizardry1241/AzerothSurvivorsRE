@@ -12,6 +12,7 @@ OWNERS = frozenset({
     "tests", "tmp", "tool-state",
 })
 LAYOUT = Path("runtime/analysis/recovery-layout.json")
+NATIVE_STAGING = Path("runtime/analysis/staging/native-evidence")
 TOOL_STATE = frozenset({"browsers", "cache", "config", "cutter-bridge", "data", "run", "state"})
 SPECIAL = {
     **{name: f"runtime/tool-state/{name}" for name in TOOL_STATE},
@@ -46,11 +47,9 @@ CATEGORIES = {
 }
 
 
-def relocations(root=ROOT):
+def layout_document(root=ROOT):
     index = root / LAYOUT
-    if index.is_file():
-        return json.loads(index.read_text())["relocations"]
-    return {}
+    return json.loads(index.read_text()) if index.is_file() else {}
 
 
 def destination(name, is_directory):
@@ -73,15 +72,21 @@ def retained_runtime_path(path, root=ROOT):
     runtime = root / "runtime"
     if not path.is_relative_to(runtime) or path == runtime or path.exists() or path.is_symlink():
         return path
+    document = layout_document(root)
     first, *parts = path.relative_to(runtime).parts
-    registered = relocations(root).get(first)
-    if registered is None:
+    registered = document.get("relocations", {}).get(first)
+    resolved = (root / registered).joinpath(*parts) if registered else path
+    staging = root / NATIVE_STAGING
+    stage_parts = resolved.relative_to(staging).parts if resolved.is_relative_to(staging) else ()
+    if len(stage_parts) >= 2:
+        replacement = document.get("staging_relocations", {}).get("/".join(stage_parts[:2]))
+        if replacement:
+            resolved = staging.joinpath(replacement, *stage_parts[2:])
+    if resolved == path:
         return path
-    base = root / registered
-    resolved = base.joinpath(*parts)
-    relative = base.relative_to(runtime)
-    if (not relative.parts or relative.parts[0] not in OWNERS or ".." in (*relative.parts, *parts)
-            or not resolved.parent.resolve().is_relative_to(runtime.resolve())):
+    if (not resolved.is_relative_to(runtime) or resolved == runtime
+            or resolved.relative_to(runtime).parts[0] not in OWNERS
+            or ".." in resolved.parts or not resolved.parent.resolve().is_relative_to(runtime.resolve())):
         raise ValueError("Historical recovery relocation leaves the shared runtime")
     return resolved
 

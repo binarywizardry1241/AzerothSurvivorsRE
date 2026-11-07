@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Check current grouped-tower instructions/source without compiling or launching.
 
---write stages selected textual evidence under runtime/analysis/staging/native-evidence/0.109.0.
+--write stages selected textual evidence under runtime/analysis/staging/native-evidence/raid-towers.
 CRT trigonometry/hypot, terrain, zone lookup, packets and allocation are explicit
 synthetic seams. Original RNG, placement, grouping and failure admission execute.
 """

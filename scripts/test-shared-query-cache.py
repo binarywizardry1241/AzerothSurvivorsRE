@@ -19,6 +19,7 @@ batch = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(batch)
 REAL_POPEN = subprocess.Popen
 PEER = ROOT / "scripts/fixtures/fake-rea-mcp.py"
+TASKS = Path("runtime/analysis/tasks")
 
 
 class SharedQueryCache(unittest.TestCase):
@@ -53,7 +54,7 @@ class SharedQueryCache(unittest.TestCase):
         operations = [{"name": "procedure_pseudo_code", "arguments": {"procedure": "0x140001000"}}]
         if session:
             operations.append({"name": "binary_session", "arguments": {}})
-        plan = {"target": str(self.target), "output": "runtime/" + name,
+        plan = {"target": str(self.target), "output": (TASKS / name).as_posix(),
                 "timeout": 1, "open_timeout": 1, "init_timeout": 1,
                 "operations": operations}
         path = self.root / (name + ".json")
@@ -71,7 +72,7 @@ class SharedQueryCache(unittest.TestCase):
                 and r["request"]["params"]["name"] == name]
 
     def result(self, name):
-        journal = json.loads((self.root / "runtime" / name / "journal.json").read_text())
+        journal = json.loads((self.root / TASKS / name / "journal.json").read_text())
         return next(r["result"] for r in journal["operations"].values())
 
     def program_fixture(self):
@@ -81,7 +82,7 @@ class SharedQueryCache(unittest.TestCase):
                 "ready": True, "revision": 1, "preparation_sha256": "c" * 64}
 
     def worker(self, name, timeout=1):
-        plan = {"target": str(self.target), "output": "runtime/" + name,
+        plan = {"target": str(self.target), "output": (TASKS / name).as_posix(),
                 "timeout": timeout, "open_timeout": 1, "init_timeout": 1,
                 "operations": [{"name": "procedure_pseudo_code", "arguments": {"procedure": "0x140001000"}}]}
         path = self.root / (name + ".json")
@@ -153,7 +154,7 @@ with patch.object(batch.subprocess,'Popen',launch):raise SystemExit(batch.main()
             output = child.communicate(timeout=20)
             self.assertEqual(child.returncode, 0, output)
             self.assertEqual(len(self.requests("procedure_pseudo_code")), 1)
-            journal = json.loads((self.root / "runtime/waiting/journal.json").read_text())
+            journal = json.loads((self.root / TASKS / "waiting/journal.json").read_text())
             self.assertEqual(next(iter(journal["operations"].values()))["attempts"], 1)
         finally:
             for slot in slots:
@@ -181,7 +182,7 @@ with patch.object(batch.subprocess,'Popen',launch):raise SystemExit(batch.main()
         self.assertEqual(len(self.requests("procedure_pseudo_code")), 1)
         self.assertEqual(len(self.requests("open_binary")), 1)
         self.assertEqual(self.result("first")["sha256"], self.result("second")["sha256"])
-        self.assertFalse((self.root / "runtime/second/attempts").exists())
+        self.assertFalse((self.root / TASKS / "second/attempts").exists())
 
     def test_new_program_revision_retains_old_result_and_runs_again(self):
         self.assertEqual(self.run_plan("first"), 0)
@@ -190,7 +191,7 @@ with patch.object(batch.subprocess,'Popen',launch):raise SystemExit(batch.main()
         self.assertEqual(self.run_plan("first"), 0)
         self.assertEqual(len(self.requests("procedure_pseudo_code")), 2)
         self.assertTrue((self.root / previous["path"]).is_file())
-        journal = json.loads((self.root / "runtime/first/journal.json").read_text())
+        journal = json.loads((self.root / TASKS / "first/journal.json").read_text())
         self.assertEqual(len(next(iter(journal["operations"].values()))["prior_results"]), 1)
 
     def test_other_target_bytes_do_not_reuse_old_native_result(self):
@@ -226,7 +227,7 @@ with patch.object(batch.subprocess,'Popen',launch):raise SystemExit(batch.main()
         self.assertEqual(self.run_plan('first'), 0)
         self.assertEqual(len(self.requests('procedure_pseudo_code')), 2)
         self.assertTrue((self.root / old['path']).is_file())
-        journal = json.loads((self.root / 'runtime/first/journal.json').read_text())
+        journal = json.loads((self.root / TASKS / 'first/journal.json').read_text())
         self.assertIsNone(next(iter(journal['operations'].values()))['prior_results'][0]['shared_identity'])
 
     def test_corrupted_shared_object_is_rejected_before_query_replay(self):
@@ -252,13 +253,13 @@ with patch.object(batch.subprocess,'Popen',launch):raise SystemExit(batch.main()
         with patch.object(batch._TransportClient, 'call', observe_open):
             self.assertEqual(self.run_plan('first'), 0)
         self.assertEqual(len(self.requests('procedure_pseudo_code')), 2)
-        journal = json.loads((self.root / 'runtime/first/journal.json').read_text())
+        journal = json.loads((self.root / TASKS / 'first/journal.json').read_text())
         operation = next(iter(journal['operations'].values()))
         self.assertEqual(operation['shared_identity']['program']['revision'], 2)
 
     def test_real_launcher_receipt_and_saved_readiness_are_bound(self):
         with patch.object(batch, 'ROOT', self.root):
-            client = batch.ResumableClient('runtime/task', {})
+            client = batch.ResumableClient(TASKS / 'task', {})
             try:
                 client.prepare_open({'path': str(self.target), 'provider_id': 'ghidra'})
                 program = self.root / 'runtime/analysis/programs' / ('a' * 64)
@@ -286,11 +287,10 @@ with patch.object(batch.subprocess,'Popen',launch):raise SystemExit(batch.main()
         with patch.object(batch, 'ROOT', self.root):
             store = SharedAnalysis(self.root)
             receipt = store.put_bytes(b'{"retained":true}\n')
-            old = self.root / 'runtime/old-task'
+            old = self.root / TASKS / 'old-task'
             logical = old / 'results/operation.json'
             store.link_alias(logical, receipt)
-            current = self.root / 'runtime/analysis/tasks/adopted'
-            current.parent.mkdir(parents=True)
+            current = self.root / TASKS / 'adopted'
             old.rename(current)
             old.symlink_to(current, target_is_directory=True)
             # Rebase the leaf as the Program move journal does, preserving its

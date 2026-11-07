@@ -8,11 +8,12 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import subprocess
 import sys
 import tarfile
 
-from runtime_layout import LAYOUT, ROOT, destination, loose_entries, relocations, retained_runtime_path
+from runtime_layout import LAYOUT, NATIVE_STAGING, ROOT, destination, layout_document, loose_entries, retained_runtime_path
 from shared_analysis import SharedAnalysis, _fsync_directory
 
 PENDING = Path("runtime/analysis/.runtime-layout-pending.json")
@@ -152,10 +153,11 @@ def apply(root=ROOT, *, check_processes=True):
                         else:
                             aliases += 1
                     connection.execute(f"UPDATE {table} SET path=? WHERE path=?", (new, path))
-        registered = relocations(root)
+        layout = layout_document(root)
+        registered = layout.get("relocations", {})
         if any(name in registered and registered[name] != value for name, value in moves.items()):
             raise ValueError("A legacy root already has a different registered destination")
-        save(root / LAYOUT, {"relocations": {**registered, **moves}})
+        save(root / LAYOUT, {**layout, "relocations": {**registered, **moves}})
         pending.unlink()
         _fsync_directory(pending.parent)
         return len(moves), aliases
@@ -211,10 +213,15 @@ def main():
     entries = loose_entries()
     if entries:
         print("\n".join(p.name for p in entries))
+    stage = ROOT / NATIVE_STAGING
+    version_dirs = sorted(path for path in stage.iterdir()
+                          if path.is_dir() and re.fullmatch(r"0(?:\.\d+)+", path.name)) if stage.is_dir() else []
+    for path in version_dirs:
+        print(f"Use a category directory for staged evidence: {path.relative_to(ROOT)}")
     if (ROOT / PENDING).exists():
         print("A runtime relocation is pending. Resume with --apply.")
         return 1
-    return int(args.check and bool(entries))
+    return int(args.check and bool(entries or version_dirs))
 
 
 if __name__ == "__main__":

@@ -47,6 +47,10 @@ Cold recovery data that has no live path consumer is packed into one
 with `scripts/manage-runtime-layout.py --show-retained <path>`. Its original
 relative name and exact bytes remain available without restoring a directory.
 The live recovery working set remains expanded for its registered consumers.
+Stage proof in `runtime/analysis/staging/native-evidence/<category>/` before
+publication. The local layout index resolves retained legacy staging paths.
+Remove staged copies after their exact bytes are available in the owning proof
+or the category archive and their readers have been checked.
 
 The primary checkout owns this project-wide workspace. Linked-worktree source
 tasks route native operations through the primary checkout instead of creating

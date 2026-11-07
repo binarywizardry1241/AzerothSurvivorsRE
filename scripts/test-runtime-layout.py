@@ -6,7 +6,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from runtime_layout import ROOT, destination, loose_entries, owned_runtime_path, retained_runtime_path
+from runtime_layout import LAYOUT, NATIVE_STAGING, ROOT, destination, loose_entries, owned_runtime_path, retained_runtime_path
 from script_sources import load_script
 from shared_analysis import SharedAnalysis
 
@@ -63,6 +63,18 @@ class RuntimeLayout(unittest.TestCase):
             owned_runtime_path(self.root / "runtime/fixgap-next", self.root)
         path = self.root / "runtime/analysis/tasks/raid"
         self.assertEqual(owned_runtime_path(path, self.root), path)
+
+    def test_staged_evidence_resolves_without_the_version_directory(self):
+        proof = self.root / NATIVE_STAGING / "raid/cases.json"
+        proof.parent.mkdir(parents=True)
+        proof.write_bytes(b"raid proof")
+        manager.save(self.root / LAYOUT, {
+            "relocations": {"native-evidence": NATIVE_STAGING.as_posix()},
+            "staging_relocations": {"0.109.0/raid": "raid"},
+        })
+        for base in ("runtime/native-evidence", NATIVE_STAGING):
+            old = self.root / base / "0.109.0/raid/cases.json"
+            self.assertEqual(retained_runtime_path(old, self.root), proof)
 
 
 if __name__ == "__main__":
