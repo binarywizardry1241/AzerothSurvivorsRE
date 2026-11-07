@@ -1,17 +1,11 @@
-<!-- Supplied reference provenance
-Title: User-supplied addon API reference
-Received: 2026-11-03
-User-supplied filename: addon_docs(3).md
-Original SHA-256: 85c3532ed0d458cc96cd10afee4cc6481979eba4c9b2ed7af7ff9454e456d8e2
-Context: supplied for recovery of the 0.139.2 addon API release leads and finding #307.
-Evidence limit: supplied documentation. Confirm the interface and its native
-producers against the selected EXE before claiming recovery or parity.
-Original document follows unchanged. Relative links retain original context.
--->
+# Azeroth Survivors addon API
 
-> User-supplied addon API reference for the 0.139.2 leads and #307. The SHA-256 above identifies the supplied document. Native behavior remains to be recovered from the selected EXE.
+This guide uses the supplied addon reference for the interface and links to
+native evidence where recovery establishes a contract. Feature-detect APIs on
+the running client. Use the [source and recovery register](CURRENT-STATE.md#gap-11)
+and [verification register](verification-needed.md#gap-11) for reconstruction status.
 
-# Azeroth Survivors: Addon API
+[Original supplied reference](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/606b8b217b5d292aa0cb5818a65641c0f270c157/docs/addon-api/reference-supplied-0.139.2.md)
 
 Azeroth Survivors runs inside the World of Warcraft 1.12.1 client, so addons are ordinary 1.12
 addons (`## Interface: 11200`, Lua, XML, the stock frame API). The game also lets addons read
@@ -39,7 +33,6 @@ previous run's values, so check `AZS_GetPhase()` first.
 9. [Raw addon messages](#raw-addon-messages)
 10. [Reference values](#reference-values)
 11. [Limits and tips](#limits-and-tips)
-12. [Examples](#examples)
 
 ---
 
@@ -217,13 +210,34 @@ Nathrezim's and Butcher's next demon) and every wait a talent keeps between two 
 | `remaining` | seconds left, counted down off the run's clock; 0 when it may go now |
 | `ready` | `true` when `remaining` is 0 |
 
-With `name`, only that talent's: `AZS_GetTimers("Butcher")`.
+A truthy `name` filter uses exact, case-sensitive Lua equality. The result
+remains a list and multiple rows can have the same localized name. A new table
+is returned for each row. Feature-detect the function on older clients.
+
+The raw `AZS_TIMERS` cache stores a run-clock deadline in `ready` and the full
+wait in `wait`. The getter calculates
+`max(deadline - (AZS_GetRunTime() or 0), 0)` and exposes a boolean `ready`.
+The timer can continue to count down between snapshots. `AZSTIMERS` replaces the
+cache and stamps `AZS_TIMERS_UPDATED` only when a payload arrives. Read on a
+throttled refresh and clear the display when changing worlds rather than treating
+an unchanged timestamp as an expired timer.
+[Native timer contract](analysis/addon-timers-0.115.0.md)
 
 ### `AZS_GetRevive()` → `revive`
-A party's revives: `{ down, share, by, reviving, rshare }`. `down` is 1 while you are down,
-`share` how far (0 to 1) a friend has brought you back and `by` that friend's name; `reviving` is
-the downed friend you stand over and `rshare` how far it is. Empty out of a party. To draw your
-own revive bar, hide the game's with `AZS_SetHudShown("revive", false)`.
+Returns the local hero's revive context. A snapshot is empty outside the
+party or before an update. During an interaction, `share` tracks your own
+revive progress and `by` names your helper. `reviving` names your outgoing
+revive target and `rshare` tracks that interaction. Both progress fields
+use the 0–1 range. Check `down == 1` explicitly because Lua treats zero as
+true. Missing fields are `nil`. Format display names with `tostring` because
+the recovered parser converts numeric-looking fields.
+
+The getter returns the shared cache. Re-read it after each refresh and treat
+the table as read-only. `AZSREVIVE` replaces it and updates
+`AZS_REVIVE_UPDATED`, a timestamp global. `AZS_GetDownedPartyMembers()` serves
+party-wide downed state where available. To replace the stock bar on clients
+that expose the `revive` HUD part, use `AZS_SetHudShown("revive", false)`.
+[Native revive contract](analysis/addon-party-api-0.113.0.md)
 
 ### `AZS_GetDownedPartyMembers()` → `list, nil` or `nil, err`
 The other heroes of your party who are down, with where each can be brought back: the spot a friend
@@ -1394,100 +1408,17 @@ since the one before, that the game applies whole and in order (asking the serve
 
 ---
 
-## Examples
+## Native evidence
 
-### Boss timer bar
-
-```lua
-local bar = CreateFrame("Frame", "MyBossTimer", UIParent);
-bar:SetWidth(200); bar:SetHeight(20);
-bar:SetPoint("TOP", UIParent, "TOP", 0, -120);
-local text = bar:CreateFontString(nil, "OVERLAY", "GameFontNormal");
-text:SetPoint("CENTER", bar, "CENTER");
-
-bar:SetScript("OnUpdate", function()
-	local next = AZS_GetUpcomingBosses()[1];
-	if ( AZS_GetPhase() == nil or not next ) then
-		text:SetText("");
-		return;
-	end
-	local left = math.max(0, next.left);
-	text:SetText(string.format("%s in %d:%02d", next.name, math.floor(left / 60), math.mod(left, 60)));
-end);
-```
-
-### Every boss alive, with health
-
-```lua
-local bosses = AZS_GetBosses();
-for i = 1, table.getn(bosses) do
-	local b = bosses[i];
-	local tag = b.final and " (final)" or "";
-	if ( b.enraged ) then tag = tag .. " ENRAGED"; end
-	DEFAULT_CHAT_FRAME:AddMessage(string.format("#%d %s%s: %d/%d (%.0f%%)",
-		b.id, b.name, tag, b.hp, b.hpm, 100 * b.hp / b.hpm));
-end
-```
-
-### Replacing the damage meter
-
-```lua
-AZS_SetHudShown("meter", false);
-
-local f = CreateFrame("Frame");
-f:SetScript("OnUpdate", function()
-	local lines, total, dps = AZS_GetMeter();
-	-- draw `lines` your way: lines[i].name, .dmg, .dps, .share, .proc
-end);
-```
-
-### Your summons and their time left
-
-```lua
-local f = CreateFrame("Frame");
-f:SetScript("OnUpdate", function()
-	local groups, total = AZS_GetSummonGroups();
-	for i = 1, table.getn(groups) do
-		local g = groups[i];
-		local left = g.remaining and string.format(" (next goes in %.0fs)", g.remaining) or "";
-		-- e.g. "Infernal x2 (next goes in 12s)", "Imp x1"
-		local line = string.format("%s x%d%s", g.name, g.count, left);
-	end
-end);
-```
-
-### Your own banners
-
-```lua
-AZS_SetHudShown("banners", false);
-AZS_RegisterBannerHandler(function(b)
-	local r, g, bl = 1, 0.82, 0;
-	if ( b.boss ) then r, g, bl = 1, 0.1, 0.1; end
-	UIErrorsFrame:AddMessage(b.text, r, g, bl);
-end);
-```
-
-### Open stored level-ups when no boss is up
-
-```lua
-AZS_SetStoringLevels(true);
-local f = CreateFrame("Frame");
-f:SetScript("OnUpdate", function()
-	if ( AZS_GetPhase() == "playing" and AZS_GetStoredLevels() > 0
-			and table.getn(AZS_GetBosses()) == 0 ) then
-		AZS_OpenStoredLevels();
-	end
-end);
-```
-
-### Warn when the target is a guardian
-
-```lua
-local f = CreateFrame("Frame");
-f:RegisterEvent("CHAT_MSG_ADDON");
-f:SetScript("OnEvent", function()
-	if ( arg1 == "AZSTGT" and AZS_TARGET.kind == "guardian" ) then
-		UIErrorsFrame:AddMessage("Guardian: " .. AZS_TARGET.name, 1, 0.5, 0);
-	end
-end);
-```
+- [Addon bridge and VM lifetime](analysis/addon-bridge-0.109.0.md) covers FrameXML
+  registration, snapshot admission and new-run cache invalidation.
+- [Heroic affixes and totems](analysis/addon-affixes-totems-0.125.0.md) traces
+  the published affix keys, live totem groups and recipient-specific delivery.
+- [Player position](analysis/addon-player-position-0.139.2.md) and
+  [run space](analysis/addon-run-space-0.139.2.md) cover the position sample,
+  run key, destination transitions and reload requests.
+- [Detailed meter](analysis/detailed-meter-0.141.0.md) traces the query interface
+  and the ordinary recipient-owned meter snapshots.
+- The [earlier supplied reference](addon-api/reference-supplied-0.139.0.md) and
+  [local-clock proposal](addon-api/local-clock-proposal-supplied.md) are retained
+  as historical inputs with [recorded hashes](analysis/evidence/0.139.0/source-frontier.json).
