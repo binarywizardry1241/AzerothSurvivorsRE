@@ -15,7 +15,7 @@ The local [vendor manifest](benilla-vendor.json) now pins
 [`samwhosung/benilla@0367a2c2180d777392470860693009465495a30d`](https://github.com/samwhosung/benilla/commit/0367a2c2180d777392470860693009465495a30d),
 dated 2026-10-22 07:07:23 UTC. Its source archive SHA-256 is
 `5ee3fc618bcd361e0378441079fe6e24cea0c5bae29e07c0e3b507a4397ff9fb`.
-The [2026-10-25 import report](benilla-update-2026-10-25.md) records the 23-commit
+The [2026-10-25 import report](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/benilla-update-2026-10-25.md) records the 23-commit
 advance from `66b73cd6`, preserved AS adapters and static validation. Pristine
 upstream hashes do not describe the adapted local files. The source comparison
 below retains the pre-import `66b73cd6` baseline for its ancestry counts.

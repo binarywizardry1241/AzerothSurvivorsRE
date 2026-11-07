@@ -121,7 +121,7 @@ write booleans.
   `0x14025da71`. It also writes the keyboard-press gate at
   `0x14025da87`, from the separate predicate at `0x14025d925`.
   The ordered-record and typed keyboard buffers have separate
-  consumers. The [Escape repair](escape-game-menu-2026-10-23.md#ordered-input-and-stock-menu-handoff-in-01392)
+  consumers. The [Escape repair](escape-game-menu.md#ordered-input-and-stock-menu-handoff-in-01392)
   joins the current request resource to its pause consumer and covers the
   reconstructed stock-menu handoff.
 - **Process (#293).** The client setup at `0x140255d97` obtains a

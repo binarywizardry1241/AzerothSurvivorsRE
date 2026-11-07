@@ -1,11 +1,11 @@
-# Cards keyboard, typing capture and transaction collection — 0.113.2
+# Cards keyboard, typing capture and transaction collection
 
 Target SHA-256
 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
 This owns selected #41 `Q41-S01`/`Q41-M03` source/static recovery for the
 standalone card-input contract associated with changelog claim
 `cc745d386a67e806`. Current implementation status belongs to
-[CURRENT-STATE](../../../../CURRENT-STATE.md).
+[CURRENT-STATE](../CURRENT-STATE.md).
 
 The complete current native keyboard handler admits **Digit/Numpad 1–4 in
 ascending slot order, then R**, from one Cards snapshot. Typing capture gates
@@ -13,13 +13,13 @@ the entire handler before any key query. The current keyboard and pointer
 selection threshold is **0.45 seconds**; the closing hierarchy's revision gate
 uses a separate **0.32-second** threshold. Selection enqueues its transaction
 before the closing presentation finishes. The
-[delivery proof](../card-delivery/report.md) owns actual local backend delivery
+[delivery proof](card-delivery.md) owns actual local backend delivery
 and accept/reroll consumers.
 
 ## Native keyboard contract
 
 The complete **921-byte** handler is `[0x1400b3420,0x1400b37b9)`.
-[Ghidra](ghidra.json) independently reports precisely this inclusive function
+[Ghidra](evidence/0.113.2/card-keyboard/ghidra.json) independently reports precisely this inclusive function
 body through `0x1400b37b8`. Its early gates require Cards `+0x18 != 0`, Cards
 closing byte `+0x10 == 0`, and InputCapture byte `+1 == 0`. Nonzero capture bytes,
 including synthetic malformed 2 and 255, reach the epilogue without calling
@@ -57,7 +57,7 @@ through `Digit4`, `Numpad1` through `Numpad4`, and `KeyR` to exactly those value
 For example, comparison `0x14435139e` branches to `0x1443524d6`, which writes
 **37**. Only the visited selected paths are retained in
 `key-name-decoder.asm`; the guarded 19-entry length table and admitted lengths
-4/6/7 are committed in the [manifest](manifest.json). The retained Bevy 0.18.1
+4/6/7 are committed in the [manifest](evidence/0.113.2/card-keyboard/manifest.json). The retained Bevy 0.18.1
 enum independently agrees, counting payload-bearing `Unidentified` as one
 variant. This source correspondence is additional evidence, not the sole basis
 for assigning names to native values.

@@ -104,3 +104,11 @@ Compilation, actual Rust/ECS/VM/core-loader execution, key/tooltip interactions,
 rendering and original/rebuilt gameplay/visual parity remain unverified. The
 supported source omissions are repaired; this does not close #41's remaining
 mixed-schema, dynamic-reference, ownership or native/source-semantic populations.
+
+## Retained analyses
+
+- [Q41-U01 — ordinary upgrade magnitude branches](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-u01/report.md)
+- [Q41-A02/A03/O02: Armory formatting and metadata relations](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-pointer-relations/report.md)
+- [Options descriptor dispatch and failure blocks — 0.113.2](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-options-flow/report.md)
+- [Q41-M01 — jewelry increment cap table](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-m01-jewelry/report.md)
+- [Q41-D01/D02: custom Options binding-header data](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-data-bindings/report.md)

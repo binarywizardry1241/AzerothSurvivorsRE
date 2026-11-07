@@ -47,3 +47,8 @@ unregistered installed 0.139.2 identity. Existing native evidence retains its
 recorded target and source-review fingerprints. Compilation, Rust tests, actual
 FrameXML and rendering, client/game execution, co-op execution and comparison
 with the original EXE remain open. [Verification register](../verification-needed.md#gap-36).
+
+## Retained analyses
+
+- [benilla source update to wenilla's merged revision](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/benilla-update-2026-10-25.md)
+- [benilla source update](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/benilla-update-2026-10-20.md)

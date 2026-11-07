@@ -1,19 +1,19 @@
-# Card command delivery and selection lifetime — 0.113.2
+# Card command delivery and selection lifetime
 
 Installed EXE SHA-256
 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
 This selected AS contract belongs to #41 (`Q41-S01`/`Q41-M03`).
-[CURRENT-STATE](../../../../CURRENT-STATE.md) owns overall status. The
-[proof](proof.json) binds the selected current bytes, fresh REA/Ghidra queries,
-native fixtures and source. [delivery.asm](delivery.asm) retains the canonical
+[CURRENT-STATE](../CURRENT-STATE.md) owns overall status. The
+[proof](evidence/0.113.2/card-delivery/proof.json) binds the selected current bytes, fresh REA/Ghidra queries,
+native fixtures and source. [delivery.asm](evidence/0.113.2/card-delivery/delivery.asm) retains the canonical
 selected instruction excerpts; complete disposable owner decodes remain under
 `runtime/q41-card-delivery-0.113.2/`.
 
 ## Native input-to-consumer chain
 
-The current [keyboard proof](../card-keyboard/report.md) establishes the actual
+The current [keyboard proof](card-keyboard.md) establishes the actual
 digit/Numpad aliases, typing admission, ascending digit priority and subsequent
-R command. The earlier [pointer report](../../../as-ui-contracts-0.113.2-reroll.md)
+R command. The earlier [pointer report](as-ui-contracts-0.113.2-reroll.md)
 owns pointer selection collection after its other row actions. These producers
 call `1400dd4a0` with UI command **2** plus the selected index, or command **3**
 for Reroll.
@@ -55,7 +55,7 @@ or an original/rebuilt scheduling comparison.
 
 ## Source correction
 
-[`gameplay/mod.rs`](../../../../../crates/azeroth-survivors-re/src/gameplay/mod.rs)
+[`gameplay/mod.rs`](../../crates/azeroth-survivors-re/src/gameplay/mod.rs)
 previously processed R before digits, omitted Numpad aliases and delayed actual
 `game.choose` until the visual exit. A later Reroll revision could suppress that
 pending acceptance. This reversed the native transaction relation.
@@ -75,7 +75,7 @@ through its independently recovered **0.32-second** exit, while the game already
 owns the accepted effect and any following reward state. The exit gate only
 reveals or removes the hierarchy; it never applies or discards a transaction.
 Both that gate and
-[`native_overlays::animate`](../../../../../crates/azeroth-survivors-re/src/gameplay/native_overlays.rs)
+[`native_overlays::animate`](../../crates/azeroth-survivors-re/src/gameplay/native_overlays.rs)
 use `CHOICE_EXIT_SECONDS` (`3ea3d70a`). Replacement/teardown retires this retained
 root and latch even during loading. Absent/dead/completed runs take precedence
 over pending card presentation.

@@ -24,7 +24,7 @@ UTF-8/free seams and the current inline ASCII comparison. Existing live
 `CheckRequest::from_environment` and `eligible_executable` remain connected; no
 new updater source defect was demonstrated and no request or installation ran.
 
-The [0.113.2 binding-header recovery](evidence/0.113.2/q41-data-bindings/report.md)
+The [0.113.2 binding-header recovery](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-data-bindings/report.md)
 retains its actual target and existing heading-after-VM-snapshot source repair.
 
 The [0.112.0 AS interface map](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/menu-pages-0.112.0.md) and

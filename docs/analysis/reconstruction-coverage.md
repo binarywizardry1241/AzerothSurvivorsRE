@@ -35,27 +35,27 @@ and the meter-button alignment/guardian target-health updates are tracked as
 The [current meter-button repair](meter-minimap.md) binds #56's native
 child geometry, centered whole-button scale/placement and source/input connection;
 actual layout/picking/rendering comparison remains unverified.
-The [guardian target-health repair](guardian-target-health-2026-10-23.md) connects
+The [guardian target-health repair](guardian-target-health.md) connects
 local health/max changes to the existing unit-notice dispatcher under #57;
 48 native vital and ten current watcher/token cases pass. Actual cadence,
 stock/addon rendering and original/rebuilt comparison remain unverified.
-The [banner suppression trace](banner-suppression-2026-10-23.md) binds #58's
+The [banner suppression trace](banner-suppression.md) binds #58's
 current wave/boss emote routes and repaired same-pass CVar snapshot timing.
 Eight predicate, thirty emote-packet and 93 event-name cases pass. The installed
 addon chat-type and stock FrameXML hook contracts are recorded read-only. The reported sustained duplicate cause,
 actual addon hook activity and rendered parity remain unverified.
-The [Escape/menu trace](escape-game-menu-2026-10-23.md) records reported menu
+The [Escape/menu trace](escape-game-menu.md) records reported menu
 access failure under #59, with the intentional stock-frame hide/custom-panel
 handoff and native focus/close/cancel priority still requiring runtime proof.
-The [zone-background trace](menu-zone-background-2026-10-23.md) records missing
+The [zone-background trace](menu-zone-background.md) records missing
 animated main-menu scenery under #60; existing profiles and scene code do not
 establish successful world loading, camera motion or cover/compositor output.
-The [zone-entry loading-screen trace](zone-entry-loading-screen-2026-10-23.md)
+The [zone-entry loading-screen trace](zone-entry-loading-screen.md)
 connects #61's local admission and current staged entry-UI work counters to the
 cover. Current counter/state, eight-millisecond boundary and 80/20 progress
 replays pass; historical readiness/art evidence retains its target. Actual
 all-zone execution, presentation and original/rebuilt parity remain unverified.
-The [historical addon source/file/log trace](addon-presentation-gaps-2026-10-23.md)
+The [historical addon source/file/log trace](addon-presentation-gaps.md)
 records the original artwork/inventory defects. Current source repairs connect
 [atlas admission](jewelry-texture-admission.md) under #53,
 [gold-atlas decoding](addon-gold-texture.md) under #54, and

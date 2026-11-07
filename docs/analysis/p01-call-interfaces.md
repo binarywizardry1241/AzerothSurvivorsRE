@@ -5,7 +5,7 @@ Target SHA-256
 installed 0.113.2, 141,932,032 bytes. Parent **#41**, selector `Q41-P01`.
 The original 245 selected-owner unresolved-call records remain unchanged:
 244 records name 21 static targets and one is the separately classified XInput
-call. The [original routing/alias proof](evidence/0.113.2/q41-p01-aura/report.md)
+call. The [original routing/alias proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-p01-aura/report.md)
 retains their exact target/caller partitions. This report classifies four more
 bounded interfaces accounting for ten of those original records; it establishes
 no additional AS source defect or whole-system equivalence.
@@ -53,7 +53,7 @@ allocator, reference-count, bigint, auth/server or engine implementation is
 reconstructed. The concrete configuration payload/method and general
 semantic/source/alias inventory remain open under #41; no census/selector
 count or original P01 denominator is reduced. Existing [language](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/locale-catalogs-0.113.2.md),
-[aura](evidence/0.113.2/q41-p01-aura/report.md), [picker artwork](picker-equipment-art.md),
+[aura](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-p01-aura/report.md), [picker artwork](picker-equipment-art.md),
 [race-image](race-portraits.md) and [configuration](legacy-config.md)
 proofs retain their own exact scope. The zone-key/guardian arithmetic route is
 separate from these four interfaces and retains its own recovery obligation.

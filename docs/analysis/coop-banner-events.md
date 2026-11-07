@@ -2,7 +2,7 @@
 
 Installed `installed-game/AzerothSurvivors.exe` has SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
-These immediate events use the [current banner publisher](banner-suppression-2026-10-23.md#01410-banner-whisper-identity).
+These immediate events use the [current banner publisher](banner-suppression.md#01410-banner-whisper-identity).
 The [downed-party snapshot](coop-downed.md) retains its separate
 position, fall epoch and readiness behavior.
 

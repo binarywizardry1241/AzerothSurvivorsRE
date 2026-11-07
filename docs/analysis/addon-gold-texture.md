@@ -3,7 +3,7 @@
 This report owns the source/static repair for **#54**. The selected EXE is
 0.113.2, SHA-256
 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
-The earlier [screenshot/log/source finding](addon-presentation-gaps-2026-10-23.md#54--gold-atlas-rejected-and-replaced-by-white)
+The earlier [screenshot/log/source finding](addon-presentation-gaps.md#54--gold-atlas-rejected-and-replaced-by-white)
 retains its original provenance. [verification-needed](../verification-needed.md) owns current
 status; this repair does not establish rendered parity.
 

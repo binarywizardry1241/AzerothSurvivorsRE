@@ -4,7 +4,7 @@ This report owns the source repair for **gap #53**. The authoritative target is
 Azeroth Survivors **0.113.2**, SHA-256
 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
 Current implementation status belongs to [verification-needed](../verification-needed.md).
-The [earlier presentation report](addon-presentation-gaps-2026-10-23.md) retains
+The [earlier presentation report](addon-presentation-gaps.md) retains
 the supplied screenshot context and the original input hashes.
 
 The missing five rims and attached rail have a shared source cause: the

@@ -1,7 +1,7 @@
 # Zone-entry loading progress
 
 [#61](../verification-needed.md#gap-61) tracks zone-entry correspondence. The
-[0.113.2 recovery](zone-entry-loading-screen-2026-10-23.md) retains the
+[0.113.2 recovery](zone-entry-loading-screen.md) retains the
 original staged-loader and cover implementation evidence.
 
 The [deployed browser WASM](https://wow.aethus.pl/wenilla_bg.wasm?v=f3a3d645a1ed)

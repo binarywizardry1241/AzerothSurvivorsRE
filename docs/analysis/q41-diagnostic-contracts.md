@@ -123,3 +123,10 @@ or establish executed branch choices and loop termination. Those broader
 unknowns remain #41. This pass supplies no evidence-based gameplay change to
 implement. No compilation, compiling test, game/application/network launch
 or original/rebuilt comparison occurred.
+
+## Retained analyses
+
+- [Q41-P01 — current aura alias and remaining-call routing](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-p01-aura/report.md)
+- [Q41-P01 — XInput function-slot producer](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-p01/report.md)
+- [Q41-C01: ordinary upgrade choice index diagnostic](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-c01-upgrade-constructor/report.md)
+- [Q41-C01: Armory slot-selection diagnostic](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/evidence/0.113.2/q41-c01/report.md)
