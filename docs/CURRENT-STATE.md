@@ -60,6 +60,12 @@ the [current release review](analysis/release-review.md). The
 
 | Lead group | Releases and claim IDs | Next source/recovery question | Existing finding | Category and tags |
 | --- | --- | --- | --- | --- |
+| Hyper Mode unlock and Difficulty toggle | [0.143.0](CHANGELOG.md#01430) `changelog:0.143.0:2052657ed900be9c` | Trace the saved Champion of Naxxramas gate, including previously earned achievements, and the Difficulty toggle through Normal and every Heroic rank into run selection. | Related [achievement gate #235](verification-needed.md#gap-235), [Difficulty state #219](verification-needed.md#gap-219) | Progression & saves · Hyper Mode, Difficulty |
+| Hyper Mode boss schedule and mob scaling | [0.143.0](CHANGELOG.md#01430) `changelog:0.143.0:874ebdc6e9a66c37`, `changelog:0.143.0:d9930831bf9a59da` | Trace the run clock inputs for half-time primary bosses at full strength, the zone-specific final-boss deadlines, accelerated mob strength, counts and composition, and the retained Endless lead with 150-second boss repeats. | — | Runs & difficulty · Hyper Mode, Endless |
+| Hyper Mode guardian lair respawns | [0.143.0](CHANGELOG.md#01430) `changelog:0.143.0:850ed6c5a1af2d9e` | Trace the [guardian death-to-respawn deadline](analysis/raid-guardian-lifecycle.md#current-owners-and-inputs) and how Hyper Mode halves the difficulty-specific refill interval. | Related [guardian provenance #89](#gap-89) | Bosses & guardians · Hyper Mode, Lairs |
+| Hyper Mode reward settlement | [0.143.0](CHANGELOG.md#01430) `changelog:0.143.0:d829b1125a14e67a` | Identify the difficulty, boss and clock inputs that preserve marks, loot and win talent experience, including which time value win settlement reads. | Related [reward XP #226](verification-needed.md#gap-226), [boss loot #228](verification-needed.md#gap-228), [private receipts #238](verification-needed.md#gap-238) | Progression & saves · Hyper Mode, Rewards |
+| Hyper Mode real-time achievements | [0.143.0](CHANGELOG.md#01430) `changelog:0.143.0:b818f572e247d44b` | Trace which elapsed-time field timed achievements read in Hyper Mode, including the 40-minute Naxxramas party gate and its guest grants. | Related [40-minute achievement #285](verification-needed.md#gap-285) | Progression & saves · Hyper Mode, Achievements |
+| Hyper Mode co-op admission and display | [0.143.0](CHANGELOG.md#01430) `changelog:0.143.0:d9da87b3033fb4b5` | Trace the host's selection through directory and party metadata into the shared run, the unlock check for every joining player, and the label beside difficulty in both lobby and party views. | Related [co-op #63](#gap-63), [lobby difficulty #258](verification-needed.md#gap-258), [party eligibility #260](verification-needed.md#gap-260) | Co-op & networking · Hyper Mode, Difficulty |
 
 [0.141.1](CHANGELOG.md#01411) context: the summary
 `changelog:0.141.1:303cc692c90057b9` repeats the Every Bauble and Battle
@@ -76,6 +82,10 @@ native package and first-launch instructions (`changelog:0.142.0:97ee6c8f365508a
 and startup updates for the Mac client (`changelog:0.142.0:e268b7f6ce6a673d`).
 These platform-specific distribution and update notes provide context for the
 existing [updater finding #133](#gap-133) and add no `$fixgap` choice.
+
+[0.143.0](CHANGELOG.md#01430) context: the summary
+`changelog:0.143.0:20eeba1dc4defaf3` repeats the Naxxramas unlock and the
+accelerated boss and mob pacing covered by the corresponding choices above.
 
 ## Gap register
 
