@@ -351,6 +351,49 @@ Exact PE instructions bind the dispatch, payload and timer. The source
 was syntax-parsed. Actual network and UI behavior remains in
 [#306 verification](../verification-needed.md#gap-306).
 
+## Inspector item and set descriptions
+
+The [0.143.0 descriptor audit](locale-catalogs.md#01430-payload-correspondence)
+also binds the inspection builders below. The item-stat view checks the
+effect vector length at `0x14011aeb1`. Its empty branch resolves
+`Looks only: it adds nothing.` at `0x14011aec5` and emits 12 px muted text
+at `0x14011af81..0x14011affd`. Nonempty vectors retain the bonus rows.
+The rebuilt slot still uses the worn ID for effects and the separate
+appearance override for the model.
+
+The hovered-set builder fills `{n} pieces: {what}` with four at
+`0x14011ba9a..0x14011bb21`. It fills the ordinary eight-piece description
+with three stars at `0x14011bc92..0x14011bd9e`. Only tier 7 with a class
+descriptor emits a separate five-star preview
+(`0x14011bf0a..0x14011c196`). The nine 72-byte class records constructed
+by `0x146018510..0x146018914` place the ordinary and empowered descriptions
+at offsets 0x28 and 0x38. All 27 four-piece, ordinary and empowered
+descriptions match the existing Tier 0.5 source strings.
+
+The summary checks its active set vector length at `0x14011c906`. With
+no active sets it emits the 12 px muted `No set bonus on.` caption.
+Otherwise it shows the set name and the `4/4` and applicable `8/8` rows.
+The eight-piece row matches the selected tier at `0x14011ce26..0x14011ce72`,
+and appends the localized empowered tag when applicable. The tier-7
+description helper at `0x145e60116..0x145e601a3` joins the ordinary and
+empowered prose with a space for the empowered summary. The
+[inspector](../../crates/azeroth-survivors-re/src/coop_inspect.rs) uses the
+existing equipment set selectors for summary admission and the separate
+preview templates for the hovered piece.
+
+| Native span | File offset | SHA-256 | Shared Ghidra result SHA-256 |
+| --- | --- | --- | --- |
+| `0x14011a9b0..0x14011b45f` | `0x119db0` | `8de39341d2ec3d4352249cf6e61c8110003638661453cce6a08ec96054c194e0` | `26d85586457631a036daaa298d4d0d29ccba1be06ed7dc08b5cad33fa166f429` |
+| `0x14011b550..0x14011c1c1` | `0x11a950` | `3f30f0536e5d5a666109dc7cd19f0ffe2eb80423378bd67b7e0838f19a3b6acd` | `9ab3c4e0da51f658b271d2d3f37f1f31b22825b96a33c7efb97d26187609841b` |
+| `0x14011c3a0..0x14011d159` | `0x11b7a0` | `11d761a4b3425c3890fc677d33d416f1fb077228d9e464bd00a0e7a98763f6ac` | `b8979c3117affd764fda98e1796d6a77579f09243b0bb1436c98c14db8a87e51` |
+| Class descriptions `0x146018510..0x146018914` | `0x6017910` | `1a257ffa5bc293d41bcc0a8a6261c1c6ffe23f4a5ba1b4b0b85ad6a1dae50c0e` | Independent PE decode |
+
+The raw Ghidra queries verify the selected function bytes and local
+control flow. The original instructions provide external table and format
+references. Static validation and source tracing cover the caption and
+set text paths. Compilation, actual hover and rendering remain open
+under [#299](../verification-needed.md#gap-299).
+
 ## Exact current ranges
 
 | Scope | VA range | File offset | Bytes | SHA-256 |

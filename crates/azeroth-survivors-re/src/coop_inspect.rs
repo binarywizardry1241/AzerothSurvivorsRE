@@ -39,6 +39,7 @@ pub(super) struct EquipmentHover {
     title: String,
     subtitle: String,
     stars: Option<String>,
+    looks_only: Option<String>,
     body: String,
     palette: ItemPalette,
     icon: Option<Handle<Image>>,
@@ -194,6 +195,9 @@ pub(super) fn update_sidebar(
                     }
                 });
             });
+            if let Some(caption) = &text.looks_only {
+                super::text(ui, &art, caption, 12., MUTED);
+            }
             if !text.body.is_empty() {
                 super::text(ui, &art, &text.body, 14., PAPER);
             }
@@ -510,7 +514,6 @@ fn equipment(
                         catalog,
                         hero,
                         data,
-                        &gear,
                         outfitted[slot],
                         slot,
                     );
@@ -575,7 +578,6 @@ fn equipment(
                             catalog,
                             hero,
                             data,
-                            &gear,
                             outfitted[slot],
                             slot,
                         );
@@ -744,7 +746,6 @@ fn equipment_slot(
     catalog: &ArmoryCatalog,
     hero: &HeroRow,
     data: &NativeInspection,
-    gear: &GearSave,
     appearance: u32,
     slot: usize,
 ) {
@@ -780,36 +781,27 @@ fn equipment_slot(
             &[("n", stars.to_string()), ("of", "5".into())],
         )
     });
+    let effects = piece.map_or_else(Vec::new, |piece| piece.effects_at_stars(stars));
+    let looks_only = effects.is_empty().then(|| labels.label("Looks only: it adds nothing.").into());
     let mut body = Vec::new();
-    if let Some(piece) = piece {
+    if !effects.is_empty() {
         body.push(labels.label("armory.card_bonuses").into());
         body.extend(
-            piece
-                .effects_at_stars(stars)
-                .into_iter()
-                .map(|(tag, value)| armory::localized_bonus(labels, u32::from(tag), value)),
+            effects.into_iter().map(|(tag, value)| armory::localized_bonus(labels, u32::from(tag), value)),
         );
-        if piece.slot < 8 {
-            let worn = data
-                .equipped
-                .iter()
-                .filter_map(|id| catalog.piece(*id))
-                .filter(|row| row.slot < 8 && row.rarity == piece.rarity)
-                .count();
-            body.push(format!(
-                "{} ({worn}/8)",
-                armory::set_name(labels, hero.class_id, piece.rarity)
-            ));
-            set_bonuses(
-                &mut body,
-                labels,
-                catalog,
-                hero.class_id,
-                gear,
-                piece.rarity,
-                false,
-            );
-        }
+    }
+    if let Some(piece) = piece.filter(|piece| piece.slot < 8) {
+        let worn = data
+            .equipped
+            .iter()
+            .filter_map(|id| catalog.piece(*id))
+            .filter(|row| row.slot < 8 && row.rarity == piece.rarity)
+            .count();
+        body.push(format!(
+            "{} ({worn}/8)",
+            armory::set_name(labels, hero.class_id, piece.rarity)
+        ));
+        set_detail(&mut body, labels, hero.class_id, piece.rarity as u8);
     }
     if let Some(shown) = data.looks[slot] {
         body.push(if shown == 0 {
@@ -843,6 +835,7 @@ fn equipment_slot(
             title: item.name,
             subtitle,
             stars: rank.clone(),
+            looks_only,
             body: body.join("\n"),
             palette,
             icon: icon.cloned(),
@@ -901,21 +894,27 @@ fn equipment_slot(
     });
 }
 
-fn set_bonuses(
-    out: &mut Vec<String>,
-    labels: &MenuCatalog,
-    catalog: &ArmoryCatalog,
-    class: u8,
-    gear: &GearSave,
-    tier: usize,
-    active_only: bool,
-) {
-    let (one, three, empowered) = armory::worn_set_progress(catalog, gear, class, tier);
-    let four = armory::set_four_bonus(labels, class, tier as u8);
-    let eight = armory::set_eight_bonus(labels, class, tier as u8, empowered);
-    for (need, have, text) in [(4, one, Some(four)), (8, three, eight)] {
-        if let Some(text) = text.filter(|text| !text.is_empty() && (!active_only || have >= need)) {
-            out.push(format!("({}/{need}) {text}", have.min(need)));
+fn set_detail(out: &mut Vec<String>, labels: &MenuCatalog, class: u8, tier: u8) {
+    use azeroth_survivors_re::sets::TIER_HALF;
+
+    let four = armory::set_four_bonus(labels, class, tier);
+    if !four.is_empty() {
+        out.push(crate::localization::format(
+            labels,
+            "{n} pieces: {what}",
+            &[("n", "4".into()), ("what", four)],
+        ));
+    }
+    for rank in [3, 5] {
+        if rank == 5 && tier != TIER_HALF {
+            break;
+        }
+        if let Some(bonus) = armory::set_eight_bonus(labels, class, tier, rank == 5) {
+            out.push(crate::localization::format(
+                labels,
+                "{n} pieces at {stars} stars: {what}",
+                &[("n", "8".into()), ("stars", rank.to_string()), ("what", bonus)],
+            ));
         }
     }
 }
@@ -971,22 +970,42 @@ fn equipment_summary(
                     12.,
                     MUTED,
                 );
-                let mut bonuses = Vec::new();
-                for tier in [
-                    0,
-                    1,
-                    2,
-                    3,
-                    4,
-                    5,
-                    usize::from(azeroth_survivors_re::sets::TIER_HALF),
-                ] {
-                    set_bonuses(&mut bonuses, labels, catalog, class, gear, tier, true);
+                use azeroth_survivors_re::sets;
+                let piece = |id| crate::save::gear::decode(id).map(|row| sets::Piece {
+                    class_id: row.class,
+                    slot: usize::from(row.slot),
+                    tier: usize::from(row.set_tier()),
+                });
+                let tiers = sets::four_piece_tiers(&data.equipped, &data.stars, piece);
+                let active = sets::active(&data.equipped, &data.stars, piece);
+                crate::codex::section_heading(side, art, labels.label("Set bonuses"));
+                if tiers.is_empty() {
+                    super::text(side, art, labels.label("No set bonus on."), 12., MUTED);
                 }
-                if !bonuses.is_empty() {
-                    crate::codex::section_heading(side, art, labels.label("Set bonuses"));
-                    for line in bonuses {
-                        super::text(side, art, line, 14., PAPER);
+                for tier in tiers {
+                    super::text(
+                        side, art, armory::set_name(labels, class, usize::from(tier)), 13.,
+                        armory::item_quality_color(usize::from(tier), 4),
+                    );
+                    let four = armory::set_four_bonus(labels, class, tier);
+                    if !four.is_empty() {
+                        super::text(side, art, format!("4/4: {four}"), 12., PAPER);
+                    }
+                    if let Some(set) = active.filter(|set| set.tier == tier) {
+                        if let Some(bonus) = armory::set_eight_bonus(labels, class, tier, set.empowered) {
+                            let suffix = if set.empowered {
+                                format!(" · {}", labels.label("empowered"))
+                            } else {
+                                String::new()
+                            };
+                            let text = if set.empowered && tier == sets::TIER_HALF {
+                                let ordinary = armory::set_eight_bonus(labels, class, tier, false).unwrap_or_default();
+                                format!("{ordinary} {bonus}")
+                            } else {
+                                bonus
+                            };
+                            super::text(side, art, format!("8/8{suffix}: {text}"), 12., PAPER);
+                        }
                     }
                 }
                 if let Some(sum) = armory::equipment_summary_for(gear, class, catalog, labels) {
