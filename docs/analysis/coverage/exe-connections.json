@@ -23,7 +23,7 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "9cc298d3ce5aa4f3afcf5f5b26abec55c54c3ea74f1a51e9df3b8cc4bf9f4a9e"
+      "sha256": "95aee5ceabf9a681e94a02ee8a16d6e5fc04c8f7cbf6ec0c1926f272e1c49278"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
@@ -39,7 +39,7 @@
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "3fd9764683bf0f95df619a0af5792a118248ee02ed5d950fd37393dba622044b"
+      "sha256": "75490d815ff5b6d95eb0f865d24e4249bd53b875c2f84b7ce0fd5ba9a26ff391"
     },
     {
       "path": "docs/analysis/coverage/full-image-selected.json",
@@ -53,7 +53,7 @@
   "supporting_inputs": [
     {
       "path": "docs/analysis/coverage/native-ownership-classification.json",
-      "sha256": "b7e44cb72f21e6908da5d8a777d06363cd0fc06e815d15d4ce48c620368a2372",
+      "sha256": "c65b3dac5cc60059899cea002d06e7e7c726a739e8691aebc725b98f37631a37",
       "target": {
         "version": "0.143.0",
         "path": "installed-game/AzerothSurvivors.exe",
@@ -65,10 +65,10 @@
   ],
   "counts": {
     "custom_system_rows": 83,
-    "with_registered_current_evidence": 5,
-    "without_registered_current_evidence": 78,
-    "with_registered_current_bounded_contract": 5,
-    "without_registered_current_bounded_contract": 78,
+    "with_registered_current_evidence": 6,
+    "without_registered_current_evidence": 77,
+    "with_registered_current_bounded_contract": 6,
+    "without_registered_current_bounded_contract": 77,
     "without_source_correspondence": 0,
     "ownerless_native_location_references": 67,
     "paths_with_ownerless_native_location_references": 15,
@@ -3577,7 +3577,8 @@
         "scripts/check-amulet-names-0.115.0.py",
         "crates/azeroth-survivors-re/src/gameplay/talent_view.rs",
         "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
-        "scripts/check-white-devilsaur-0.117.0.py"
+        "scripts/check-white-devilsaur-0.117.0.py",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/prepared.rs"
       ],
       "source_anchors": [
         {
@@ -3589,6 +3590,11 @@
           "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/milestones.rs",
           "symbol": "milestone_event",
           "line": 58
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/prepared.rs",
+          "symbol": "note_prepared_event",
+          "line": 116
         }
       ],
       "gap_ids": [
@@ -3603,6 +3609,7 @@
         47,
         119,
         141,
+        148,
         157,
         163,
         198,
@@ -3621,7 +3628,8 @@
         289,
         290,
         305,
-        309
+        309,
+        315
       ],
       "location_reference_count": 17,
       "location_body_owners": [
@@ -3635,13 +3643,16 @@
         "0x145fd0c53"
       ],
       "remaining_source_work": [
-        "Trace the authored raw-22 effect population for wildcard, pet or active-record lookup dependencies. Keep Prepared class dispatch under #315.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-talents]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": false,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/evidence/talent-selector/runtime-dispatch.json": "The two authored raw-22 talent rows reach kill-event admission, the per-row deadline and learned cooldown writeback. The nine-case Prepared dispatch reaches existing class and use consumers; the separate Druid route retains its historical evidence."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/talent-selector/runtime-dispatch.json"
+      ]
     },
     {
       "id": "custom-game-game-upgrades",
@@ -6919,6 +6930,6 @@
   "parity_verified": false,
   "inventory": {
     "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/exe-connections.json",
-    "sha256": "33406ec761cd81eea0fc03f1aeffb573e901a910b1821f77905bf1f962a1b27f"
+    "sha256": "d15dac3630bb44711af648e8bf31a6bf3637e03e933c619285e23da4ca35f818"
   }
 }

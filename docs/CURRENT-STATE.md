@@ -20,7 +20,7 @@ correspondence are tracked under [#41](#gap-41).
 | AS-only module measure | Verified connection ledger |
 | --- | ---: |
 | Known modules with partial reconstructed source | 100% — 83/83 |
-| Modules with registered current-target bounded recovery contracts | 6.0% — 5/83 |
+| Modules with registered current-target bounded recovery contracts | 7.2% — 6/83 |
 
 The [connection ledger](analysis/coverage/exe-connections.json) counts diagnostic
 modules. A bounded contract covers a specific behavior. Total AS implementation,

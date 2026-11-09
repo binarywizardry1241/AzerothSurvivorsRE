@@ -18,7 +18,7 @@
     "parity_certified_systems": 0,
     "custom_paths_with_partial_source_mapping": 83,
     "custom_paths_without_reviewed_native_source_mapping": 0,
-    "custom_paths_with_registered_current_bounded_contract": 5
+    "custom_paths_with_registered_current_bounded_contract": 6
   },
   "review_basis": "0.143.0 verified PE, all diagnostic paths, independent declared and complement inventories, complete installed MPQ tables and independently verified guarded Ghidra census. Bounded registrations, pending correspondence and earlier recovery retain distinct evidence.",
   "status_rules": {
@@ -39379,7 +39379,8 @@
         "scripts/check-amulet-names-0.115.0.py",
         "crates/azeroth-survivors-re/src/gameplay/talent_view.rs",
         "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
-        "scripts/check-white-devilsaur-0.117.0.py"
+        "scripts/check-white-devilsaur-0.117.0.py",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/prepared.rs"
       ],
       "evidence_refs": [
         "docs/analysis/evidence/0.141.0/status-talent-selectors.json",
@@ -39464,7 +39465,8 @@
         "docs/analysis/native-census-0.139.1.md",
         "docs/analysis/evidence/0.139.1/switch-context-source-review.json",
         "docs/analysis/switch-context-source-review-0.139.1.md",
-        "docs/analysis/improved-mind-blast-0.141.0.md"
+        "docs/analysis/improved-mind-blast-0.141.0.md",
+        "docs/analysis/evidence/talent-selector/runtime-dispatch.json"
       ],
       "gap_ids": [
         6,
@@ -39478,6 +39480,7 @@
         47,
         119,
         141,
+        148,
         157,
         163,
         198,
@@ -39496,7 +39499,8 @@
         289,
         290,
         305,
-        309
+        309,
+        315
       ],
       "recovery": {
         "status": "partial",
@@ -39519,7 +39523,6 @@
         "summary": "Current original/rebuilt behavior and presentation remain unverified."
       },
       "remaining_source_work": [
-        "Trace the authored raw-22 effect population for wildcard, pet or active-record lookup dependencies. Keep Prepared class dispatch under #315.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-talents]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
       "native_evidence_validity": "current_exact_diagnostic_path",
@@ -39533,6 +39536,11 @@
           "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/milestones.rs",
           "symbol": "milestone_event",
           "line": 58
+        },
+        {
+          "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/prepared.rs",
+          "symbol": "note_prepared_event",
+          "line": 116
         }
       ],
       "source_review_scope": "Retained partial source correspondence and prior repairs, with exact historical status in incremental-correspondence.json. Current diagnostic joining supplies navigation only; register current bounded contracts separately.",
@@ -40446,6 +40454,13 @@
         "static_validation": "432 original-instruction cases / 190061 steps, three journaled queries, current producer/semantic value mapping and fourteen locale payloads; Rust regression sources parsed but uncompiled/unrun.",
         "runtime_validation": "not_run",
         "parity_verified": false
+      },
+      "current_runtime_talent_dispatch": {
+        "evidence_ref": "docs/analysis/evidence/talent-selector/runtime-dispatch.json",
+        "source_status": "existing_bounded_source_connected",
+        "scope": "The two authored raw-22 talent rows reach kill-event admission, the per-row deadline and learned cooldown writeback. The nine-case Prepared dispatch reaches existing class and use consumers; the separate Druid route retains its historical evidence.",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
       }
     },
     {
@@ -78137,6 +78152,21 @@
         "custom-game-gear": "Tabard item 90012 enters the current item metadata resolver, emits display 16078 and has its original crest members in the verified Data chain.",
         "custom-app-screens-codex": "Current Codex membership of 141 distinct eligible pieces across jewelry, shared and class/talent amulets. The current source membership matches this exact set.",
         "custom-game-achievements": "Every Bauble reads the shared 141-key Codex population, counts Seen flags and uses a 100 percent threshold. Current startup, grants and guest delivery remain separate."
+      }
+    },
+    "docs/analysis/evidence/talent-selector/runtime-dispatch.json": {
+      "path": "docs/analysis/evidence/talent-selector/runtime-dispatch.json",
+      "target_version": "0.143.0",
+      "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-game-game-talents"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-game-game-talents"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-game-game-talents": "The two authored raw-22 talent rows reach kill-event admission, the per-row deadline and learned cooldown writeback. The nine-case Prepared dispatch reaches existing class and use consumers; the separate Druid route retains its historical evidence."
       }
     }
   },
