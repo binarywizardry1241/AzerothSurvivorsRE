@@ -609,6 +609,74 @@ def check_primary_failure(target, data, pe):
     print(f"PASS: {cases} original primary failure cases, nine PE spans, two native constants and live source guards")
 
 
+def check_local_lobby_dispatch(target, data, pe):
+    proof = json.loads(path("docs/analysis/evidence/coop-dispatch/local-lobby-requests.json").read_text())
+    assert proof["target"] == target
+
+    def raw(address, length):
+        offset = pe.rva_offset(address - pe.image_base)
+        return data[offset:offset + length]
+
+    def destination(address, opcode):
+        instruction = raw(address, 5)
+        assert instruction[0] == opcode
+        return address + 5 + struct.unpack_from("<i", instruction, 1)[0]
+
+    for row in proof["native_ranges"]:
+        start, end = int(row["start"], 16), int(row["end_exclusive"], 16)
+        assert pe.rva_offset(start - pe.image_base) == int(row["file_offset"], 16)
+        assert digest(raw(start, end - start)) == row["sha256"], row["role"]
+
+    dispatch = proof["dispatch"]
+    assert raw(int(dispatch["dequeue_call"], 16), 3) == bytes.fromhex("ff 50 28")
+    assert raw(int(dispatch["guard"], 16), 6) == bytes.fromhex("83 c0 ec 83 f8 07")
+    jump = int(dispatch["jump"], 16)
+    assert raw(jump, 2) == bytes.fromhex("ff e0")
+    table = next(row for row in proof["native_ranges"] if row["role"] == "local request jump table")
+    table_address = int(table["start"], 16)
+    cells = struct.unpack("<8i", raw(table_address, 32))
+    for tag, cell, action in zip(range(22, 30), cells, dispatch["actions"], strict=True):
+        assert action["request"] == tag
+        assert table_address + cell == int(action["destination"], 16)
+
+    flush = next(row for row in proof["native_ranges"] if row["role"] == "guest pending-frame flush")
+    serializer = proof["serializer"]
+    for sender in proof["senders"]:
+        variant, flush_call, encode_call, send_call, writer = (
+            int(sender[key], 16)
+            for key in ("variant_at", "flush_call", "encode_call", "send_call", "wire_writer")
+        )
+        assert variant < flush_call < encode_call < send_call
+        assert raw(variant, 2) == bytes.fromhex("48 b8")
+        assert struct.unpack("<Q", raw(variant + 2, 8))[0] == (1 << 63) | sender["variant"]
+        assert destination(flush_call, 0xe8) == int(flush["start"], 16)
+        assert destination(encode_call, 0xe8) == int(serializer["entry"], 16)
+        assert raw(send_call, 3) in (bytes.fromhex("ff 57 18"), bytes.fromhex("ff 55 18"))
+        serializer_table = int(serializer["table"], 16)
+        cell = struct.unpack("<i", raw(serializer_table + sender["variant"] * 4, 4))[0]
+        assert serializer_table + cell == writer - 4
+        assert raw(writer, 2) == bytes((0xb2, sender["wire"]))
+        assert destination(writer + 2, 0xe8) == int(serializer["tag_writer"], 16)
+
+    session = path("crates/azeroth-survivors-re/src/coop/session.rs").read_text()
+    for method, packet in (("send_guest_lobby_chat", "LobbyChat"), ("send_ready_answer", "ReadyAnswer")):
+        assert f"self.send_guest_lobby_action(LifecyclePacket::{packet}(" in block_after(session, f"pub fn {method}(")
+    action = block_after(session, "fn send_guest_lobby_action(")
+    ordered = [action.index(token) for token in (
+        "self.accepted.is_none()", "upstream.is_alive()", "Self::flush_upstream(",
+        "|| !upstream.is_alive()", "encode_lifecycle(&packet)", "upstream.send(&bytes)",
+    )]
+    assert ordered == sorted(ordered)
+    periodic = block_after(session, "pub fn flush(&mut self")
+    assert "Self::flush_upstream(upstream, &mut self.upstream_outgoing)" in periodic
+    queued = block_after(session, "fn flush_upstream(")
+    assert queued.index("encode_batch(pending)?") < queued.index("upstream.send(&bytes)") < queued.index("pending.clear()")
+    assert "guest_lobby_actions_flush_pending_frames_then_send_separately" in session
+    print(f"PASS: {len(proof['native_ranges'])} native ranges, 8 local dispatch branches, "
+          f"{len(proof['senders'])} isolated wire sends and source ordering; "
+          "Rust compilation, networking and game execution not run")
+
+
 def main():
     run_contract(__file__)
     parser = argparse.ArgumentParser(description=__doc__)
@@ -619,12 +687,14 @@ def main():
     mode.add_argument("--host-terminal-failure", action="store_true", help="Check 0.141.0 host failure departure order and source")
     mode.add_argument("--form-credentials", action="store_true", help="Check 0.141.0 shared Host/Join password lifetime and source")
     mode.add_argument("--primary-failure", action="store_true", help="Check 0.141.1 primary lobby failure timing, order and source")
+    mode.add_argument("--local-lobby-dispatch", action="store_true", help="Check local lobby request dispatch and isolated guest sends")
     args = parser.parse_args()
     if args.source_only:
         check_source()
         print("PASS: retained socket source guards; native evidence not revalidated; no compilation or execution")
         return
-    use_installed = args.current_close or args.host_terminal_failure or args.form_credentials or args.primary_failure
+    use_installed = (args.current_close or args.host_terminal_failure or args.form_credentials
+                     or args.primary_failure or args.local_lobby_dispatch)
     target = installed_identity() if use_installed else latest_target(verify=True)
     data = target_bytes(target)
     pe = load_script("coop_directory_transport_pe", ROOT / "scripts/inventory-executable.py").PE(data)
@@ -638,6 +708,8 @@ def main():
         return check_form_credentials(target, data, pe)
     if args.primary_failure:
         return check_primary_failure(target, data, pe)
+    if args.local_lobby_dispatch:
+        return check_local_lobby_dispatch(target, data, pe)
     owners, tables, literals, certificates, local_results = check_manifest(target, data, pe)
     check_source()
     print(f"PASS: {owners} current native transport ranges/extracts, {tables} tables, "

@@ -4,7 +4,9 @@
 //! owners. Unsupported frames remain explicit inputs, rather than being
 //! decoded using a replacement protocol or a fabricated party snapshot.
 
-use super::replication::{EnginePacket, NativeMessage, decode_frame, encode_batch, encode_message};
+use super::replication::{
+    EnginePacket, NativeMessage, WireError, decode_frame, encode_batch, encode_message,
+};
 use super::route;
 use super::server_party::{
     ClientId, HostConfig, JoinAccepted, JoinRequest, LifecyclePacket, MAX_MESSAGES_PER_CLIENT_TICK,
@@ -1146,11 +1148,19 @@ impl Session {
             }
         }
         if let Some(upstream) = &mut self.upstream {
-            if let Ok(Some(bytes)) = encode_batch(&self.upstream_outgoing) {
-                upstream.send(&bytes);
-                self.upstream_outgoing.clear();
-            }
+            let _ = Self::flush_upstream(upstream, &mut self.upstream_outgoing);
         }
+    }
+
+    fn flush_upstream(
+        upstream: &mut Connection,
+        pending: &mut Vec<NativeMessage>,
+    ) -> Result<(), WireError> {
+        if let Some(bytes) = encode_batch(pending)? {
+            upstream.send(&bytes);
+            pending.clear();
+        }
+        Ok(())
     }
 
     /// Retire the hosted world in connection order while keeping the lobby.
@@ -1325,11 +1335,27 @@ impl Session {
     ///145bb6ee6 supplies empty sender metadata; the host replaces it using the
     /// actual admitted Hero. A merely connected pre-admission guest cannot chat.
     pub fn send_guest_lobby_chat(&mut self, text: Vec<u8>) -> bool {
+        self.send_guest_lobby_action(LifecyclePacket::LobbyChat(
+            NativeLobbyChat { hero_identity: 0, name: Vec::new(), class: 0, text }))
+    }
+
+    /// Local lobby requests 27 and 29 flush pending game traffic before
+    /// sending the action in its own transport frame.
+    fn send_guest_lobby_action(&mut self, packet: LifecyclePacket) -> bool {
         if self.is_hosting() || self.accepted.is_none() || self.denial.is_some() {
             return false;
         }
-        self.send_message(None, NativeMessage::Lifecycle(LifecyclePacket::LobbyChat(
-            NativeLobbyChat { hero_identity: 0, name: Vec::new(), class: 0, text })))
+        let Some(upstream) = self.upstream.as_mut().filter(|upstream| upstream.is_alive()) else {
+            return false;
+        };
+        if Self::flush_upstream(upstream, &mut self.upstream_outgoing).is_err() || !upstream.is_alive() {
+            return false;
+        }
+        let Ok(bytes) = encode_lifecycle(&packet) else {
+            return false;
+        };
+        upstream.send(&bytes);
+        true
     }
 
     pub fn set_lobby_ping(&mut self, enabled: bool) {
@@ -1346,9 +1372,7 @@ impl Session {
     }
 
     pub fn send_ready_answer(&mut self, ready: bool) {
-        if !self.is_hosting() && self.accepted.is_some() && self.denial.is_none() {
-            self.send_message(None, NativeMessage::Lifecycle(LifecyclePacket::ReadyAnswer(ready)));
-        }
+        self.send_guest_lobby_action(LifecyclePacket::ReadyAnswer(ready));
     }
 
     /// Consume a host action against the same normalized roster just published to peers.
@@ -1547,6 +1571,44 @@ impl Session {
 #[cfg(test)]
 mod relay_protocol_tests {
     use super::*;
+
+    #[test]
+    fn guest_lobby_actions_flush_pending_frames_then_send_separately() {
+        let mut guest = Session::service_join(Vec::new());
+        guest.take_service_commands();
+        assert!(!guest.send_guest_lobby_chat(b"too early".to_vec()));
+        guest.send_ready_answer(true);
+        assert!(guest.take_service_commands().is_empty());
+
+        guest.accepted = Some(JoinAccepted { slot: 1, capacity: 2 });
+        let pending = [NativeMessage::Time(23), NativeMessage::Time(24)];
+        guest.upstream_outgoing.extend(pending.clone());
+        assert!(guest.send_guest_lobby_chat(b"hello".to_vec()));
+        guest.send_ready_answer(false);
+
+        let commands = guest.take_service_commands();
+        let [RelayCommand::Send { id: 0, payload: queued },
+            RelayCommand::Send { id: 0, payload: chat },
+            RelayCommand::Send { id: 0, payload: answer }] = commands.as_slice()
+        else {
+            panic!("each lobby action must retain its own frame after the pending batch");
+        };
+        assert_eq!(queued[9], 19);
+        assert_eq!(decode_frame(&queued[9..]).unwrap().as_slice(), &pending);
+        let packet = LifecyclePacket::LobbyChat(NativeLobbyChat {
+            hero_identity: 0, name: Vec::new(), class: 0, text: b"hello".to_vec(),
+        });
+        assert_eq!(&chat[9..], encode_lifecycle(&packet).unwrap().as_slice());
+        assert_eq!(&answer[9..], &[27, 0]);
+        assert!(guest.upstream_outgoing.is_empty());
+
+        let invalid = NativeMessage::Control { kind: 11, argument: 0, offer: 0 };
+        guest.upstream_outgoing.push(invalid.clone());
+        assert!(!guest.send_guest_lobby_chat(b"blocked".to_vec()));
+        guest.send_ready_answer(true);
+        assert!(guest.take_service_commands().is_empty());
+        assert_eq!(guest.upstream_outgoing, [invalid]);
+    }
 
     #[test]
     fn guest_departure_flushes_pending_traffic_before_a_separate_disconnect() {

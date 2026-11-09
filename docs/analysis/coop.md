@@ -168,6 +168,40 @@ The start path checks the result and live roster before entering the run.
 Inspect and hero-refresh messages have separate admission and presentation
 owners.
 
+### Local lobby request dispatch
+
+The [0.143.0 dispatch proof](evidence/coop-dispatch/local-lobby-requests.json)
+connects the party tick's local application dequeue at `0x145e24a4a` to
+eight cases at `0x145e24c09`. The selector subtracts 22 and admits indices
+0 through 7. The input is an application request, separate from incoming
+peer wire tags.
+
+| Request | Action | Destination |
+| ---: | --- | --- |
+| 22 | Refresh | `0x145e24c0b` |
+| 23 | Host | `0x145e25171` |
+| 24 | Join | `0x145e24ee9` |
+| 25 | Leave | `0x145e25056` |
+| 26 | Kick | `0x145e24cc7` |
+| 27 | Chat | `0x145e25262` |
+| 28 | Start Ready Check | `0x145e25486` |
+| 29 | Ready Answer or cancel | `0x145e250e8` |
+
+Guest Chat and Ready Answer require an accepted lobby connection before
+ZoneKey and Sync. The Chat producer normalizes text and skips an empty
+result. Both actions flush pending upstream game traffic, then send their
+own frames with wire tags 22 and 27. The [shared session](../../crates/azeroth-survivors-re/src/coop/session.rs)
+now follows that order over its existing TCP and relay connections. A
+local batch-encoding failure preserves the queue and stops the action.
+The [gameplay bridge](../../crates/azeroth-survivors-re/src/gameplay/coop.rs)
+retains the zone and synchronization guards.
+
+`python3 -B scripts/check-coop-directory-transport.py --local-lobby-dispatch`
+checks seven native ranges, all eight destinations and the two send
+paths. The Rust regression covers the pending batch and separate guest
+frames. Compilation, delivery and client comparison remain under
+[#154](../verification-needed.md#gap-154).
+
 ## Shared simulation and replication
 
 The host owns one clock, RNG, world, actor set, pickup set and spawn queue.

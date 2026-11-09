@@ -17,7 +17,7 @@ in the full proof. Each table retains its exact range and applied census edge.
 | New current geometry | Exact table | Source boundary and next proof |
 | --- | --- | --- |
 | `0x1403b5039` | `0x1465cc69c`, 5 cells | [#96](../CURRENT-STATE.md#gap-96). Marker diagnostic extent, with no matching diagnostic body owner. Trace the selector input to `raid_markers.rs` shape and paint consumers. |
-| `0x145e24c09` | `0x1473c71b8`, 8 cells | [#154](../CURRENT-STATE.md#gap-154). Server/party body `0x145e207e0`. Trace the event producer, admitted peer phase and dispatch side effects in the existing session path. |
+| `0x145e24c09` | `0x1473c71b8`, 8 cells | [#154](../verification-needed.md#gap-154). The [local lobby request trace](coop.md#local-lobby-request-dispatch) identifies Refresh through Ready Answer and connects the isolated guest Chat and Ready Answer sends. |
 | `0x145e5d4f7` | `0x1473d3880`, 7 cells | [#92](../verification-needed.md#gap-92). The [gear trace](equipped-inventory.md#01430-equipment-selectors-and-local-queries) identifies PvP armor slot, inventory type, robe bypass and Armory/ItemQuery consumers. |
 | `0x145fcce5a` and `0x145fd09c4` | `0x147b04f80`, 7 cells and `0x147b04e18`, 9 cells | [#148](../verification-needed.md#gap-148). The [current trace](#runtime-dispatch-correspondence-in-01430) joins both sites to the runtime talent owner and identifies the kill cooldown-reset and Prepared class consumers. |
 

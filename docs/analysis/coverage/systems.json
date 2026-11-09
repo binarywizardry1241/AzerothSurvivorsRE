@@ -62166,7 +62166,8 @@
         "docs/analysis/coop-inspection-0.141.0.md",
         "docs/analysis/party-achievement-settlement-0.141.0.md",
         "docs/analysis/detailed-meter-0.141.0.md",
-        "docs/analysis/evidence/bounded-native-frontier.json"
+        "docs/analysis/evidence/bounded-native-frontier.json",
+        "docs/analysis/evidence/coop-dispatch/local-lobby-requests.json"
       ],
       "gap_ids": [
         1,
@@ -78391,6 +78392,21 @@
       ],
       "bounded_contract_owner_scopes": {
         "custom-game-gear": "Starter outfit, special-item and PvP armor metadata selectors, Armory/ItemQuery consumers, and local saved-star fallback when the Game is absent. Wider gear behavior and parity remain open."
+      }
+    },
+    "docs/analysis/evidence/coop-dispatch/local-lobby-requests.json": {
+      "path": "docs/analysis/evidence/coop-dispatch/local-lobby-requests.json",
+      "target_version": "0.143.0",
+      "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-game-server-party"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-game-server-party"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-game-server-party": "The selected local request dispatch maps tags 22 through 29. Rebuilt accepted-lobby guest Chat and Ready Answer flush queued game frames before separate wire 22 and 27 sends."
       }
     }
   },

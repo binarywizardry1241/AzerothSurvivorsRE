@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "gap_id": 154,
+  "target": {
+    "version": "0.143.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+    "size_bytes": 151566336
+  },
+  "native_ranges": [
+    {
+      "role": "party tick",
+      "start": "0x145e207e0",
+      "end_exclusive": "0x145e2a49e",
+      "file_offset": "0x5e1fbe0",
+      "sha256": "d2008785d1dd60831f8154682fe51a55ec7e3542a4016d1372986b9508582d68"
+    },
+    {
+      "role": "trait request dequeue, phase pre-handler and guarded switch",
+      "start": "0x145e24a35",
+      "end_exclusive": "0x145e24c0b",
+      "file_offset": "0x5e23e35",
+      "sha256": "f4d903a543af23863690419cf2adf4bb6a97b55de018d8af041212fddfa9e464"
+    },
+    {
+      "role": "local request jump table",
+      "start": "0x1473c71b8",
+      "end_exclusive": "0x1473c71d8",
+      "file_offset": "0x73c65b8",
+      "sha256": "5f78a5fe630ec57631fd94cf2fedf391b14a71f826e7614d90f9b077efd20546"
+    },
+    {
+      "role": "guest pending-frame flush",
+      "start": "0x145df7410",
+      "end_exclusive": "0x145df7577",
+      "file_offset": "0x5df6810",
+      "sha256": "1cde66ec9daa35de8cf5f5b4e1677281a201dc932e82979851b3f9d50a0258e1"
+    },
+    {
+      "role": "selected party serializer header and table dispatch",
+      "start": "0x145dd787d",
+      "end_exclusive": "0x145dd78b1",
+      "file_offset": "0x5dd6c7d",
+      "sha256": "a2abf992980984522dff97f0177ef05d7e6e7bf83bc9b129ba8d81e5bcc1a6be"
+    },
+    {
+      "role": "guest Ready Answer admission and direct send",
+      "start": "0x145e25709",
+      "end_exclusive": "0x145e25814",
+      "file_offset": "0x5e24b09",
+      "sha256": "b156186beff9c97bbbeca235324268b130e67617998b56e39f59d209effa48e3"
+    },
+    {
+      "role": "guest Chat admission and direct send",
+      "start": "0x145e25849",
+      "end_exclusive": "0x145e25971",
+      "file_offset": "0x5e24c49",
+      "sha256": "9e08a4c1d401764e2d805ccc28ca53439e159a186f1c965e08406417f860b3cd"
+    }
+  ],
+  "dispatch": {
+    "dequeue_call": "0x145e24a4a",
+    "record_stride": 232,
+    "guard": "0x145e24bef",
+    "jump": "0x145e24c09",
+    "actions": [
+      {
+        "request": 22,
+        "role": "Refresh",
+        "destination": "0x145e24c0b"
+      },
+      {
+        "request": 23,
+        "role": "Host",
+        "destination": "0x145e25171"
+      },
+      {
+        "request": 24,
+        "role": "Join",
+        "destination": "0x145e24ee9"
+      },
+      {
+        "request": 25,
+        "role": "Leave",
+        "destination": "0x145e25056"
+      },
+      {
+        "request": 26,
+        "role": "Kick",
+        "destination": "0x145e24cc7"
+      },
+      {
+        "request": 27,
+        "role": "Chat",
+        "destination": "0x145e25262"
+      },
+      {
+        "request": 28,
+        "role": "Start Ready Check",
+        "destination": "0x145e25486"
+      },
+      {
+        "request": 29,
+        "role": "Answer Ready Check",
+        "destination": "0x145e250e8"
+      }
+    ]
+  },
+  "senders": [
+    {
+      "request": 27,
+      "variant": 21,
+      "wire": 22,
+      "packet": "LobbyChat",
+      "variant_at": "0x145e258c0",
+      "flush_call": "0x145e258e6",
+      "encode_call": "0x145e2590b",
+      "send_call": "0x145e25939",
+      "wire_writer": "0x145dd89ba"
+    },
+    {
+      "request": 29,
+      "variant": 26,
+      "wire": 27,
+      "packet": "ReadyAnswer",
+      "variant_at": "0x145e2574c",
+      "flush_call": "0x145e25779",
+      "encode_call": "0x145e2579b",
+      "send_call": "0x145e257c9",
+      "wire_writer": "0x145dd8c3c"
+    }
+  ],
+  "serializer": {
+    "entry": "0x145dd7840",
+    "table": "0x1473bb584",
+    "tag_writer": "0x1462112d0"
+  },
+  "ghidra": {
+    "subject": "exact raw slice of the party tick native range",
+    "evidence_id": "ev_76ec3d97d428b65dae3f3819413b1bab83323dc679ba2e42ade2b4667c62bb29",
+    "slice_sha256": "d2008785d1dd60831f8154682fe51a55ec7e3542a4016d1372986b9508582d68",
+    "analysis_profile_digest": "7ab430c00c30d2848ecb3378b356c7a75459779f3d3a9e11d7769c6342903a23",
+    "result_sha256": "87b921017054df178bac4832486c245bbb4f28e63dd004464bf7ee42f40dbded",
+    "normalized_result_sha256": "ec7037906be9ff58be526f6b36b6fcf8088efff4e244d9c2f27f28b1f79bcafc",
+    "journal_identity_sha256": "7c0a9ad7656b40879221cee99b752ae0a968abad0bae1e71b7bbf57a9058e3e4"
+  }
+}
