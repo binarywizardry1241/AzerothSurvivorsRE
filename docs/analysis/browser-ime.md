@@ -4,7 +4,71 @@ Finding [#293](../CURRENT-STATE.md#gap-293) covers this separate browser
 artifact. The [downloaded-client commit repair](ime-bridge.md) and
 [current preedit trace](native-ime-preedit.md) own the Windows path.
 
-## Deployed inputs
+## Current browser startup and data
+
+The official browser page selected stamp `26b3e1491fee` on 2026-11-09.
+Its WASM identifies the app as **0.143.0** and is independent of the
+installed Windows PE. The launcher and IME module match their retained
+0.141.0 digests. The current generated glue and WASM have new digests.
+
+| Deployed input | Bytes | SHA-256 |
+| --- | ---: | --- |
+| [Page](https://wow.aethus.pl/) | 1,640 | `73040be608e411939c1eeb1fc06bcd6dfc83f5aafd0861a213714b0aea37d770` |
+| [Launcher](https://wow.aethus.pl/rogue.js?v=26b3e1491fee) | 24,224 | `7644df9f61fdca9865d20b9995ff3f57c51223de53ae9d926c5c539ac739a515` |
+| [IME module](https://wow.aethus.pl/ime.js?v=26b3e1491fee) | 4,702 | `b785f05a37e1a08172b98e656630368accc432f6cfbf8ca7ec45eedaf6ef065c` |
+| [Boot module](https://wow.aethus.pl/boot.js?v=26b3e1491fee) | 14,453 | `268a698dd5b550d46229c300156cca6120847fe4644cd374ba653b4dfb12ea79` |
+| [Generated glue](https://wow.aethus.pl/wenilla.js?v=26b3e1491fee) | 187,604 | `8c4cfb89bb93688cb7dc64462d6c0332b4961ef7a17b8b4991704460cabd266b` |
+| [WASM](https://wow.aethus.pl/wenilla_bg.wasm?v=26b3e1491fee) | 93,129,008 | `c69ce2ca83be27507e186d4db99b333f955b7d132a5451d82fc69d73d7acda4b` |
+| [Data name index](https://wow.aethus.pl/data/__index?v=26b3e1491fee) | 1,734,520 | `eb133d7527f16e0ddd220669ad83e89046f02ad8cc597e5c4a9ed09f077b7e70` |
+
+The page supplies a focusable `canvas#benilla`. The launcher checks WebGPU,
+publishes startup choices through `__rogue_config` and mounts the add-on,
+save and IME modules before importing the generated client. The boot
+module compiles the stamped WASM while the 517-name startup manifest
+warms the HTTP cache. Instantiation waits for both and runs
+`__wbindgen_start`, which initializes the externref table and calls
+`start`. The launcher binds WASI memory after initialization returns.
+In the current module, function 4351 reads `__rogue_config` at file
+offset `0x14dfa66`.
+
+The launcher sets `__wenilla_data_layout` to `static`, resolves
+`__wenilla_data_base` to the page-relative `./data`, and supplies the
+stamp through `__wenilla_data_stamp`. The boot reader lowercases the
+name, splits on both slash forms, omits empty segments and percent-encodes
+each segment before joining. Only `__index` takes the stamp. The index
+contains 30,040 original member names. The lowercase segmented URL for
+`Interface\GlueXML\GlueStrings.lua` returned 33,563 bytes. The whole-name
+encoded URL used by stock wenilla's host returned HTTP 404 on the same site.
+WASM functions 50019, 23454 and 78775 read the layout, base and stamp
+properties respectively. The layout reader requires the exact six-byte
+value `static`.
+
+WABT 1.0.42 validated the complete current module. A decode projection
+retained the selected original function bytes and indices. The table
+records original file ranges, excluding the variable-length body size
+prefix and including the local declarations.
+
+| Current function | File range | SHA-256 |
+| ---: | --- | --- |
+| 178214, wasm-bindgen start | `0x4bde3a9..0x4bde3b1` | `5d085f1618d860182782b2be984d0b3b047efa5bdfe67d2b473fc628f3d0ce88` |
+| 4351, app startup | `0x14df48c..0x150bbac` | `14e2cb14df5f3f15d67366f3cd746995ce24a5d616f926466d3e78d7b8ec263a` |
+| 50019, data layout | `0x3f2ce72..0x3f2d583` | `11fcf4e96551a7027846335f6d595b11245aad269d6af93b2492e6076e84b79f` |
+| 23454, data base | `0x2e73e78..0x2e7410a` | `264bd6168d42d41736572c69943cf50d1cf8395941957f5a9429f2017a828333` |
+| 78775, data stamp | `0x45421b0..0x45425c8` | `cd97a93aabc6c08345c8eb196a57b32e08219598dff1a59ebdb7d10e9890133d` |
+| 6565, IME publication | `0x1a75e45..0x1a766c3` | `e2440bc712c4c146be3df2a2d4072a9a7b77527a6dab25c47ed5f90ef44777b2` |
+| 29260, key press | `0x33b6c4a..0x33b6e37` | `48280c4216d55d4d646ce905d294114fa7d7413db0449f71863c79e468278aca` |
+| 29261, key release | `0x33b6e39..0x33b7026` | `6a7dfe1a068db7ee0637cb7aeda7c9e032e30cefb0299bdd8cac49eb5ef25817` |
+
+Function 6565 retains the 2% and 80% fallback and focus/caret change
+gate. It materializes `__rogue_ime` and `typing` at file offsets
+`0x1a7627c` and `0x1a762f3`, then calls Function.apply at `0x1a76377`.
+The press and release readers both call the `key` and `code` wrappers
+88450 and 88451, whose body hashes match the retained 0.141.0 wrappers.
+The readers build the text through 27054 and reach the common dispatch
+6126 with distinct state bytes. The current browser still identifies
+Winit 0.30.13 and Bevy Winit 0.18.1.
+
+## Retained 0.141.0 inputs
 
 The official index selected stamp `f3a3d645a1ed` on 2026-11-04. The
 launcher imports the DOM bridge before initializing the generated WASM glue.
@@ -75,7 +139,7 @@ the keyboard consumers for custom text fields and FrameXML.
 · [Bevy Winit publication](https://github.com/bevyengine/bevy/blob/v0.18.1/crates/bevy_winit/src/state.rs)
 · [FrameXML input](../../crates/benilla-app/src/ui_script/records.rs).
 
-## Evidence and source boundary
+## Retained body evidence
 
 WABT 1.0.42 validated the complete WASM. Its objdump decoded exact selected
 function bodies in a temporary projection retaining their original function
@@ -94,12 +158,37 @@ and SHA-256 over the full bodies including local declarations.
 | 88448 | `0x484e7a1..0x484e7e5` | `2a7d84f367903f3175060a31e740236743237c65a8a3a92fae11fd52d4e77db3` |
 | 92338 | `0x489526a..0x48952c3` | `5a5190fa924a939e8e94a571d661da79c587cc6f047bc015bd35d2d9b49b93f6` |
 
-The current [app entry point](../../crates/azeroth-survivors-re/src/main.rs)
-uses native arguments, files and the local MPQ data path. Its manifest and
-the existing engine provide no browser app/data bootstrap or game canvas
-entry. Once that platform boundary exists, the AS hook can use the existing
+## Rebuilt source boundary
+
+The [app entry point](../../crates/azeroth-survivors-re/src/main.rs)
+uses native arguments and creates its primary Winit window after sampling
+`std::time::SystemTime` through
+[`RunSeeds::default`](../../crates/azeroth-survivors-re/src/run_seed.rs).
+The installed-data discovery feeds both
+[`load_menu_art`](../../crates/azeroth-survivors-re/src/assets.rs) and
+[`register_mpq_source`](../../crates/benilla-assets/src/lib.rs). Both
+construct the native [MPQ chain](../../crates/benilla-formats/src/chain.rs),
+which opens OS files. The [skin composite](../../crates/benilla-app/src/entities/skin_composite.rs)
+and [zone sound](../../crates/benilla-app/src/sound/zone.rs) also call
+`archive_for` directly. A page has no archive handle to supply.
+
+The existing [wenilla browser entry](https://github.com/Arnesen/wenilla/blob/ba8ab06dab11e3dc72e4ff0391dcff15211cf8de/crates/wenilla/src/lib.rs)
+and [WebGPU canvas bootstrap](https://github.com/Arnesen/wenilla/blob/ba8ab06dab11e3dc72e4ff0391dcff15211cf8de/web/index.html)
+provide the app boundary for reuse. Its
+[WASM Chain](https://github.com/Arnesen/wenilla/blob/ba8ab06dab11e3dc72e4ff0391dcff15211cf8de/crates/benilla-formats/src/chain.rs)
+provides synchronous catalog reads and name lookup, while
+[its asset source](https://github.com/Arnesen/wenilla/blob/ba8ab06dab11e3dc72e4ff0391dcff15211cf8de/crates/benilla-assets/src/lib.rs)
+fetches asynchronously. Both would need the recovered static URL contract.
+Wenilla already has separate browser skin and audio paths and a
+browser-backed engine state store. The vendored engine lacks these routes.
+The rebuilt AS application also needs its browser startup clock, save and
+add-on host adapters before the real picker and FrameXML can run on that
+canvas.
+
+Once those platform paths reach the real app, the existing
 [focus and caret publisher](../../crates/azeroth-survivors-re/src/ime.rs)
-to deliver this DOM call and the browser's normal Winit path to receive the
-keys. Browser source integration and execution remain open. The static
-browser trace leaves downloaded-client preedit, actual browser/IME behavior,
-and original/rebuilt parity for separate verification.
+can call the recovered DOM bridge. Winit already supplies the keyboard
+events to the custom text fields and FrameXML. The present checkout has
+no browser entry that can reach those consumers. Browser source
+integration remains open. The static trace leaves downloaded-client
+preedit, browser execution and original/rebuilt parity for verification.
