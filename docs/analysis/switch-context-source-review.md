@@ -18,8 +18,8 @@ in the full proof. Each table retains its exact range and applied census edge.
 | --- | --- | --- |
 | `0x1403b5039` | `0x1465cc69c`, 5 cells | [#96](../CURRENT-STATE.md#gap-96). Marker diagnostic extent, with no matching diagnostic body owner. Trace the selector input to `raid_markers.rs` shape and paint consumers. |
 | `0x145e24c09` | `0x1473c71b8`, 8 cells | [#154](../CURRENT-STATE.md#gap-154). Server/party body `0x145e207e0`. Trace the event producer, admitted peer phase and dispatch side effects in the existing session path. |
-| `0x145e5d4f7` | `0x1473d3880`, 7 cells | [#92](../CURRENT-STATE.md#gap-92). The gear body at `0x145e5c710` uses the same scalar from the `edi` bound through `eax` to index the table. Identify the selector producer and metadata/Armory destinations. |
-| `0x145fcce5a` and `0x145fd09c4` | `0x147b04f80`, 7 cells and `0x147b04e18`, 9 cells | [#148](../verification-needed.md#gap-148). The [current trace](evidence/talent-selector/runtime-dispatch.json) joins both sites to the runtime talent owner and identifies the kill cooldown-reset and Prepared class consumers. |
+| `0x145e5d4f7` | `0x1473d3880`, 7 cells | [#92](../verification-needed.md#gap-92). The [gear trace](equipped-inventory.md#01430-equipment-selectors-and-local-queries) identifies PvP armor slot, inventory type, robe bypass and Armory/ItemQuery consumers. |
+| `0x145fcce5a` and `0x145fd09c4` | `0x147b04f80`, 7 cells and `0x147b04e18`, 9 cells | [#148](../verification-needed.md#gap-148). The [current trace](#runtime-dispatch-correspondence-in-01430) joins both sites to the runtime talent owner and identifies the kill cooldown-reset and Prepared class consumers. |
 
 The retained Codex question `retained-table-1403076a2` maps to `0x14015aed5`
 and table `0x14657ebb8`. Its exact indexed value and live Details consumer
@@ -28,6 +28,57 @@ retained questions have no unique current geometry candidate. Keep their
 CreatureQuery selectors and prior source under [#64](../CURRENT-STATE.md#gap-64)
 and [#65](../CURRENT-STATE.md#gap-65) while locating current producers and
 recipients.
+
+## Runtime dispatch correspondence in 0.143.0
+
+[#148](../verification-needed.md#gap-148) resolves both guarded sites in
+the current `game/talents.rs` extent `0x145fcc910..0x145fd0c65`.
+The [current receipt](evidence/talent-selector/runtime-dispatch.json)
+binds the owner, original switch cells and the Ghidra raw-slice result to
+installed SHA-256
+`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
+The retained census has no body owner at the seven-cell site. The raw
+decompiler alone cannot resolve the external table. The original unwind
+extent, outer table cell, effect-row load and verified instruction
+destinations join that interior site to the runtime owner.
+
+- **Kill reset.** The outer effect-22 cell enters `0x145fccdf8` from
+  the 64-byte equipped-row loop. The handler requires event kind 2 and
+  bounds the low byte of row `+8` before the seven-cell dispatch at
+  `0x145fcce5a`. Key, list and kind cases resolve through
+  `0x145fc60c0` and `0x145ec8740`. The lookup checks the class pool,
+  learned records and timed casts for either spell ID. The admitted
+  handler reads the indexed Game `+0x88/+0x90` deadline, updates an
+  existing lane with clock plus the effect duration, and caps matching
+  learned primary-spell timers at 0.05 seconds. An absent lane goes
+  directly to the cap. The current 27 trees contain 355 definitions and
+  431 effects. Mortal Wounds and Kill Shot supply the only raw-22 talent
+  rows. Their keys and duration bits match the live tag-10 source
+  payloads and reach `generic_event_with_demons`. Their keys resolve in
+  the existing class pool. The broader timed fallback and the unobserved
+  wildcard/pet producer cases remain outside this bounded source match.
+- **Prepared.** Pending use at Game `+0x10ee` enters the class path before
+  the effect rows are copied. The nine-cell dispatch at `0x145fd09c4`
+  indexes Game class byte `+0x465` minus one. The class-6 cell bypasses
+  use. The Warrior, Paladin, Priest and Shaman cells retain their
+  respective keyed predicates. Hunter tests the Matriarch-hit flag, Mage
+  tests pet-origin spell 116, and Rogue and Warlock require a live
+  boss, elite or guardian. Warlock also matches its Immolate-producing
+  effect and the victim's stored Immolate. The admitted cases call the
+  loadout helper at `0x145dde5a0` and store confirmed or ineligible
+  before returning to the effect loop. The rebuilt
+  `note_prepared_event` runs before its effect loop. It checks the
+  solo loadout at run entry, before the tick and at the award. The
+  admitted solo route keeps gear and talent allocation fixed between
+  those checks. Druid uses the separate retained Tranquility/Seed route
+  documented under [#315](../verification-needed.md#gap-315).
+
+The [selector checker](../../scripts/check-talent-selector.py) verifies
+all 16 signed table cells, selected original instruction boundaries,
+the two authored talent payloads and the hash-bound Ghidra journal.
+Run it with the existing Capstone environment and `--runtime-dispatch`.
+Both selected paths already have live source consumers. Compilation,
+gameplay, cooldown display and original/rebuilt comparisons remain open.
 
 ## 0.141.0 retained correspondence
 
@@ -55,7 +106,7 @@ identify the producer, consumer, or semantics of a table's cases.
 | Inspection [#299](../CURRENT-STATE.md#gap-299) and Armory [#123](../CURRENT-STATE.md#gap-123) | Keep the three read-only inspection candidates distinct from the three Armory candidates. Reuse the [current wire and UI connection](coop.md#joining-readiness-and-world-start) for the roster and sidebar scope. Identify the exact inspection item-kind detail branches, preview lighting and achievement selection where their producers can be bound. For Armory, follow the selectors into the existing build, input, equipment summary and item detail paths and the save gear model. [Inspection](../../crates/azeroth-survivors-re/src/coop_inspect.rs), [Armory](../../crates/azeroth-survivors-re/src/armory.rs), [save gear](../../crates/azeroth-survivors-re/src/save/gear.rs). |
 | Codex [#73](../CURRENT-STATE.md#gap-73) and [#17](../CURRENT-STATE.md#gap-17) | The [current growth-ceiling trace](codex-growth-dispatch.md#admitted-growth-ceilings-in-01410) resolves `retained-table-1403076a2` at `0x140374fd5` through the indexed row and Hand of Justice formatter. It also confirms the separate Seal of the Damned finite-growth branch at `0x140374f2d`. The other row families and wider menu dependencies retain separate proof scopes. [Codex](../../crates/azeroth-survivors-re/src/codex.rs), [catalog](../../crates/azeroth-survivors-re/src/catalog.rs). |
 | Font augmentation [#135](../CURRENT-STATE.md#gap-135) | The [current exact font proof](font-table-publication.md) independently identifies `0x145dd9057` as the nested second-byte dispatch for the `h` branch. Its 40-byte table at `0x1476f3d18` matches the proved SHA-256 `1e34d391a995f7082ae67a16640be5dc1744de10c921ff55caae093eff0906ba`. Keep the repaired scaler, post table and original-provider fallback paths. Trace remaining font selection and layout dependencies only where required by AS. [Font patch](../../crates/azeroth-survivors-re/src/font_patch.rs), [provider](../../crates/azeroth-survivors-re/src/menu_fonts.rs). |
-| Save [#146](../CURRENT-STATE.md#gap-146) and gear [#92](../CURRENT-STATE.md#gap-92) | The two save sites retain candidates for row-family dispatch and normalization. The three standalone gear sites retain candidates for descriptor and ranking work. Trace row tags through `save.rs::Save`, `save/schema.rs` and the talent allocation parser, and equipment/rank selectors through the actual gear and Armory consumers. Preserve the independent Scholomance reward scope under [#314](../verification-needed.md#gap-314). [Save](../../crates/azeroth-survivors-re/src/save.rs), [schema](../../crates/azeroth-survivors-re/src/save/schema.rs), [talents](../../crates/azeroth-survivors-re/src/save/talents.rs), [gear](../../crates/azeroth-survivors-re/src/save/gear.rs). |
+| Save [#146](../CURRENT-STATE.md#gap-146) and gear [#92](../verification-needed.md#gap-92) | The two save sites retain candidates for row-family dispatch and normalization. The [0.143.0 gear trace](equipped-inventory.md#01430-equipment-selectors-and-local-queries) maps starter outfits, special-item lookup, PvP armor metadata and the ItemQuery rank consumer. [Save](../../crates/azeroth-survivors-re/src/save.rs), [schema](../../crates/azeroth-survivors-re/src/save/schema.rs), [talents](../../crates/azeroth-survivors-re/src/save/talents.rs). |
 | Peer trust [#186](../CURRENT-STATE.md#gap-186), relay [#197](../CURRENT-STATE.md#gap-197) and [#198](../verification-needed.md#gap-198), and route [#151](../CURRENT-STATE.md#gap-151) | Verify the trust selector through `validate_hero_identity` and the gameplay admission adapter. Follow the relay selector through event bytes, ACK/replay state and recipient delivery, and the separate route selector into peer forwarding and fallback. The unmatched predecessor TCP lifecycle table retains [#152](../CURRENT-STATE.md#gap-152). [Party](../../crates/azeroth-survivors-re/src/coop/server_party.rs), [relay](../../crates/azeroth-survivors-re/src/coop/relay.rs), [route](../../crates/azeroth-survivors-re/src/coop/route.rs), [TCP](../../crates/azeroth-survivors-re/src/coop/tcp.rs). |
 | Mixed command and template queries [#63](../CURRENT-STATE.md#gap-63), [#64](../CURRENT-STATE.md#gap-64) and [#65](../CURRENT-STATE.md#gap-65) | The [current ingress trace](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coop-command-ingress.md#nested-creaturequery-selectors) identifies two outer opcode tables and thirteen CreatureQuery entry selectors in owner `0x145e9e690`. The thirteen inner selectors remain under #64 for exact descriptor fields and recipient-cache correspondence. GameObjectQuery, inventory and cast denial and guest selection retain their separate branches. |
 | Service and party lifecycle [#63](../CURRENT-STATE.md#gap-63) and [#154](../CURRENT-STATE.md#gap-154) | The current-only eight-cell site `0x145ea7797` belongs to the existing service/peer poller at `0x145ea3420`. Trace its event producer, admitted peer phase and destination side effects. Four other lifecycle sites retain geometry candidates. The [current desktop exit trace](coop.md#interruption-departure-and-settlement) and [meter request trace](detailed-meter.md#recipient-request-and-publication) separately establish uses of the poller without identifying this eight-cell dispatch. Retain the current exact Join, wire-17 and guest-spell-row scopes separately. [Session](../../crates/azeroth-survivors-re/src/coop/session.rs), [party](../../crates/azeroth-survivors-re/src/coop/server_party.rs), [replication](../../crates/azeroth-survivors-re/src/coop/replication.rs). |
@@ -64,7 +115,7 @@ identify the producer, consumer, or semantics of a table's cases.
 | Runtime talents [#141](../verification-needed.md#gap-141) and Prepared [#315](../verification-needed.md#gap-315) | The [current typed selector trace](kill-selector.md#kill-reset-and-prepared-selectors-in-01410) binds `0x145f8ebbd` to raw-22 kill cooldown reset and `0x145f927b4` to class-specific Prepared use. The [authored reset rows and lookup](kill-selector.md#authored-rows-and-live-admission) account for all seven connected rows and classify the separate wildcard and pet gates. The [Counterattack tag-12 cell](counterattack.md) at `0x147af368c` sits just beyond the Prepared table and keeps its own role. |
 | Demon effects [#24](../verification-needed.md#gap-24) and [#138](../CURRENT-STATE.md#gap-138), mixed content and localization [#85](../CURRENT-STATE.md#gap-85) and [#142](../verification-needed.md#gap-142) | The demon pair retains its prior geometry candidates. Follow the actual timer/target and hit/effect producers through the existing companion adapters. The mixed content/locale table retains its candidate. Prove the tag/value producer and its formatting or data consumer before assigning the dispatch to locale selection. [Demons](../../crates/azeroth-survivors-re/src/run_effects/demons.rs), [localization](../../crates/azeroth-survivors-re/src/localization.rs). |
 
-## Exact current selectors
+## Exact 0.141.0 selectors
 
 Each dispatch site is `AS-context-table:<site>` in the proof above. Table
 and guard addresses below use preferred PE VAs. A predecessor address means
