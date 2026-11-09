@@ -445,7 +445,14 @@ impl Mechanics {
         self.events.extend(trailing);
     }
 
-    pub(super) fn expire_scripted_attacks(&mut self, world: &mut impl RunWorld) {
+    pub(super) fn expire_scripted_attacks(&mut self, elapsed: f32, world: &mut impl RunWorld) {
+        self.boss_state.gandling.publish_launches(
+            self.clock,
+            elapsed,
+            self.zone,
+            world,
+            &mut self.events,
+        );
         let blood_hits = self.boss_state.gandling.take_blood_hits();
         for (_, _, source, count) in blood_hits {
             self.apply_kirtonos_blood(source, count as usize);

@@ -309,7 +309,7 @@ impl<W: RunWorld> BossCombat<'_, W> {
                     Timing {
                         windup,
                         lock_lead: windup - 0.8 * warning,
-                        cast: true,
+                        visuals: gandling::CastVisuals::DedicatedLaunch,
                     },
                     vec![part],
                     None,
@@ -352,7 +352,17 @@ impl<W: RunWorld> BossCombat<'_, W> {
                 part.duration = STORM_SECONDS;
                 part.interval = 0.5;
                 part.tail = 0.3;
-                let id = self.spawn_scripted(state, source, BLADESTORM, windup, vec![part], None);
+                let id = self.spawn_scripted_with(
+                    state,
+                    source,
+                    BLADESTORM,
+                    Timing {
+                        visuals: gandling::CastVisuals::DedicatedLaunch,
+                        ..Timing::standard(windup)
+                    },
+                    vec![part],
+                    None,
+                );
                 let start = now + windup;
                 let end = start + STORM_SECONDS;
                 Some(Pending::Storm {
@@ -421,7 +431,7 @@ impl<W: RunWorld> BossCombat<'_, W> {
             Timing {
                 windup,
                 lock_lead: windup - warning,
-                cast: true,
+                visuals: gandling::CastVisuals::DedicatedLaunch,
             },
             vec![part],
             None,

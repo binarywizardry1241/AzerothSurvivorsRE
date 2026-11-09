@@ -42,7 +42,7 @@ Run time is the `AZSRUN` clock. Trace time is the elapsed `t=` on each row.
 
 ## Scholomance scripted cast packets
 
-**[#313](../CURRENT-STATE.md#gap-313).** G's first attempt ends with `left`
+**[#313](../verification-needed.md#gap-313).** G's first attempt ends with `left`
 at run 50.5 (line 22088). The second starts at line 22360. Its schedule
 publishes Kirtonos, Ras and Krastinov `up` at run 240.11, 480.11 and 720.12
 (lines 152204, 445993 and 898374). Kirtonos and Ras go `dead` at 300.01 and
@@ -53,21 +53,16 @@ The incoming `SPELL_GO` trace identifies each caster by the creature entry
 in its packed GUID (10506, 10508 and 11261 respectively). The following rows
 all report an indexed caster and zero hits and misses.
 
-| Caster | Spell IDs and G lines | Rebuilt source |
-| --- | --- | --- |
-| Kirtonos | Shadow Bolt Volley 17228 at 154726, Blood Offering 7154 at 156424, Vampiric Swoop 18144 at 184917, Wing Flap 12882 at 187799 | The [four scripted actions](../../crates/azeroth-survivors-re/src/gameplay/mechanics/kirtonos.rs#L365) share the windup publisher. The separate form-change path already emits `SpellGo` for 16467, also seen at 177661. |
-| Ras | Frostbolt Volley 8398 at 451700 and spell 18099 at 467261, 492363 and 521972 | [Volley](../../crates/azeroth-survivors-re/src/gameplay/mechanics/ras.rs#L332) uses the windup publisher. The Frozen Checkmate grid carries spell 0. Trace 18099 back to its native action before assigning it to that grid or its damage. The separate Frost Armor path already emits 18100, seen at 506716. |
-| Krastinov | Twin Cleaver 15284 at 908931 and 913084, then again at 948107 and 951669 | [Both cleaves](../../crates/azeroth-survivors-re/src/gameplay/mechanics/krastinov.rs#L371) use the windup publisher. Rush, Hook and Bladestorm already have dedicated launch publishers. |
+| Caster | Spell IDs and G lines |
+| --- | --- |
+| Kirtonos | Shadow Bolt Volley 17228 at 154726, Blood Offering 7154 at 156424, Vampiric Swoop 18144 at 184917, Wing Flap 12882 at 187799, and form change 16467 at 177661 |
+| Ras | Frostbolt Volley 8398 at 451700, Chill Nova 18099 at 467261, 492363 and 521972, and Frost Armor 18100 at 506716 |
+| Krastinov | Twin Cleaver 15284 at 908931 and 913084, then again at 948107 and 951669 |
 
-The shared [scripted producer](../../crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs#L812)
-requests a windup at creation and publishes `atka` at activation. The
-[packet adapter](../../crates/azeroth-survivors-re/src/gameplay/client/events.rs#L494)
-translates that windup to `SpellStart` only. Scripted damage uses the separate
-damage path. Recover the launch-packet timing, destination and flags for
-the observed missing casts and connect them to the existing recipient path
-without duplicating the dedicated launches. The capture confirms reception
-of the spell IDs but does not include the full packet fields, marker timing
-or resulting visual effects.
+The capture confirms reception and empty hit and miss counts. The
+[0.143.0 native launch trace](scholomance-encounters.md#scripted-spell-launches)
+establishes the missing packet fields, marker order and Ras's spell identity
+and connects the rebuilt launch path.
 
 ## Downed-party addon IDs
 

@@ -2559,7 +2559,7 @@ impl Mechanics {
                 game.resolve_boss_effects(delta, input.position, input.facing, world)
             });
         }
-        self.expire_scripted_attacks(world);
+        self.expire_scripted_attacks(delta, world);
         self.tick_actor_frame(delta, player, facing, world);
         self.capture_party(false);
         self.schedule_party_world(delta, world);

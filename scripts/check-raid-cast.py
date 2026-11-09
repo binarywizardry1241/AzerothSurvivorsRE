@@ -42,6 +42,24 @@ def bits(value):
     return _shared_bits(value)
 
 
+def check_scripted_launch():
+    receipt = json.loads((EVIDENCE.parent / "scholomance-launches.json").read_text())
+    target = latest_target(verify=False)
+    assert all(target[key] == value for key, value in receipt["target"].items())
+    data = target_bytes(target)
+    module = load_script("scripted_launch_pe", ROOT / "scripts/inventory-executable.py")
+    pe = module.PE(data)
+    intervals = receipt["native_ranges"] + receipt["query_slices"]
+    slice_hashes = {row["sha256"] for row in receipt["query_slices"]}
+    assert {query["slice_sha256"] for query in receipt["ghidra_queries"]} == slice_hashes
+    for row in intervals:
+        first, limit, offset = (int(row[key], 0) for key in ("start", "end_exclusive", "file_offset"))
+        assert pe.rva_offset(first - pe.image_base) == offset, row["start"]
+        assert pe.rva_offset(limit - 1 - pe.image_base) == offset + limit - first - 1, row["end_exclusive"]
+        assert hashlib.sha256(data[offset:offset + limit - first]).hexdigest() == row["sha256"], row["start"]
+    print(f"Scholomance launch: {len(intervals)} PE ranges verified against {target['version']}; no compiler/game")
+
+
 def main(write):
     target = latest_target(verify=False)
     assert target["sha256"] == SHA, "Changed target requires fresh recovery"
@@ -241,5 +259,11 @@ def main(write):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--write", action="store_true")
-    main(parser.parse_args().write)
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument("--write", action="store_true")
+    mode.add_argument("--scripted-launch", action="store_true")
+    args = parser.parse_args()
+    if args.scripted_launch:
+        check_scripted_launch()
+    else:
+        main(args.write)

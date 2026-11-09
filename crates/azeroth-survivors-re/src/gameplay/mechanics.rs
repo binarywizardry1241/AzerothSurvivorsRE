@@ -1405,7 +1405,7 @@ impl Mechanics {
         // Individual damage/movement callbacks retain their own mode gates.
         if !player_only {
             self.resolve_boss_effects(delta, player, facing, world);
-            self.expire_scripted_attacks(world);
+            self.expire_scripted_attacks(delta, world);
         }
         if let Some((point, angle)) = self.boss_state.player_override.take() {
             player = point; facing = angle;

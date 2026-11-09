@@ -277,11 +277,11 @@ impl<W: RunWorld> BossCombat<'_, W> {
                 let id = self.spawn_scripted_with(
                     state,
                     source,
-                    FROST_ARMOR,
+                    0,
                     gandling::Timing {
                         windup: SHIELD_SECONDS,
                         lock_lead: 0.0,
-                        cast: false,
+                        visuals: gandling::CastVisuals::None,
                     },
                     parts,
                     None,

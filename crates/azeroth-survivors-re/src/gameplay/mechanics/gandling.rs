@@ -1,7 +1,10 @@
 //! 0.140.0 Gandling script and live attack history. See scholomance-encounters-0.140.0.md.
 use super::*;
 use azeroth_survivors_re::{
-    bosses::{abilities::CombatPort, scripted_attack_geometry::Shape},
+    bosses::{
+        abilities::{CastTarget, CombatPort},
+        scripted_attack_geometry::Shape,
+    },
     coop::replication::BossFlagRow,
 };
 use serde_json::{json, Value};
@@ -121,18 +124,25 @@ impl Part {
 }
 
 #[derive(Clone, Copy)]
+pub(super) enum CastVisuals {
+    None,
+    Scripted,
+    DedicatedLaunch,
+}
+
+#[derive(Clone, Copy)]
 pub(super) struct Timing {
     pub(super) windup: f32,
     pub(super) lock_lead: f32,
-    pub(super) cast: bool,
+    pub(super) visuals: CastVisuals,
 }
 
 impl Timing {
-    fn standard(windup: f32) -> Self {
+    pub(super) fn standard(windup: f32) -> Self {
         Self {
             windup,
             lock_lead: 1.2,
-            cast: true,
+            visuals: CastVisuals::Scripted,
         }
     }
 }
@@ -149,6 +159,7 @@ struct Attack {
     blocks_until: f32,
     locked: bool,
     activated: bool,
+    launch: bool,
     tracking_dirty: bool,
     last_update: f32,
     tracked: Option<u64>,
@@ -336,6 +347,7 @@ impl State {
             blocks_until: ends_at,
             locked: false,
             activated: false,
+            launch: matches!(timing.visuals, CastVisuals::Scripted),
             tracking_dirty: false,
             last_update: now,
             tracked,
@@ -818,7 +830,7 @@ impl<W: RunWorld> BossCombat<'_, W> {
         mut parts: Vec<Part>,
         tracked: Option<u64>,
     ) -> u32 {
-        if timing.cast && kind.spell() != 0 {
+        if !matches!(timing.visuals, CastVisuals::None) && kind.spell() != 0 {
             self.raid_cast(source, kind.spell(), timing.windup);
         }
         for part in &mut parts {
@@ -1074,6 +1086,51 @@ pub(super) fn repeat_factor(rank: u8, enraged: bool) -> f32 {
 }
 
 impl State {
+    pub(super) fn publish_launches(
+        &self,
+        now: f32,
+        elapsed: f32,
+        zone: &ZoneDefinition,
+        world: &mut impl RunWorld,
+        events: &mut Vec<RunEvent>,
+    ) {
+        let previous = now - elapsed;
+        for row in &self.attacks {
+            let spell_id = row.kind.spell();
+            if !row.launch || spell_id == 0 {
+                continue;
+            }
+            let parts = row.parts.iter().enumerate().filter_map(|(index, part)| {
+                (!row.retired_parts.contains(&index)).then_some(part)
+            });
+            let mut launched = HashSet::new();
+            for part in parts.clone() {
+                let end = row.impact_at + part.offset + part.duration;
+                if !(part.interval <= 0.0 && previous < end && end <= now)
+                    || !launched.insert(part.id)
+                {
+                    continue;
+                }
+                // Several shapes can share a native part ID. Use the first
+                // live shape in the group after tracking has updated.
+                let [x, y] = parts
+                    .clone()
+                    .find(|candidate| candidate.id == part.id)
+                    .expect("the due part belongs to the live group")
+                    .anchor(zone);
+                let z = Terrain::height(world, [x, y])
+                    .or_else(|| Terrain::secondary_height(world, [x, y]))
+                    .unwrap_or_else(|| Terrain::fallback_height(world));
+                events.push(RunEvent::RaidSpellGo(SpellCast {
+                    source_guid: row.source,
+                    spell_id,
+                    target: CastTarget::Ground(Position { x, y, z }),
+                    hit_targets: Vec::new(),
+                }));
+            }
+        }
+    }
+
     fn update_warnings(
         &mut self,
         now: f32,
@@ -1230,6 +1287,51 @@ impl State {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use super::super::rng_integration::TerrainFixture;
+
+    #[test]
+    fn scripted_launches_use_distinct_live_parts_at_their_end_times() {
+        let zone = ZoneDefinition::by_key("scholomance").unwrap();
+        let mut state = State::default();
+        let mut events = Vec::new();
+        let circle = |x| Part::impact(
+            Shape::Circle { center: [x, 3.0], radius: 1.0 },
+            1.0,
+            "blue",
+        );
+        state.spawn(
+            12,
+            Kind::Quiz,
+            0.0,
+            Timing::standard(2.0),
+            vec![
+                circle(1.0),
+                circle(2.0),
+                circle(3.0),
+                Part { id: 1, duration: 1.0, ..circle(4.0) },
+                Part { id: 2, duration: 1.0, interval: 0.5, ..circle(5.0) },
+            ],
+            None,
+            zone,
+            &mut events,
+        );
+        state.attacks[0].retired_parts.insert(0);
+        events.clear();
+        state.publish_launches(2.0, 0.5, zone, &mut TerrainFixture, &mut events);
+        state.publish_launches(3.0, 1.0, zone, &mut TerrainFixture, &mut events);
+        state.publish_launches(3.5, 0.5, zone, &mut TerrainFixture, &mut events);
+        assert!(matches!(
+            events.as_slice(),
+            [
+                RunEvent::RaidSpellGo(first),
+                RunEvent::RaidSpellGo(second),
+            ] if first.source_guid == 12
+                && first.spell_id == 17950
+                && first.hit_targets.is_empty()
+                && matches!(first.target, CastTarget::Ground(point) if point.x == 2.0)
+                && matches!(second.target, CastTarget::Ground(point) if point.x == 4.0)
+        ));
+    }
 
     #[test]
     fn gandling_reads_live_shared_hits_before_retiring_the_source() {

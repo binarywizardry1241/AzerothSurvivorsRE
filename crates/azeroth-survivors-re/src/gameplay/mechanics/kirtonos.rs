@@ -369,7 +369,7 @@ impl<W: RunWorld> BossCombat<'_, W> {
             gandling::Timing {
                 windup,
                 lock_lead,
-                cast: true,
+                visuals: gandling::CastVisuals::Scripted,
             },
             parts,
             None,

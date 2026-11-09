@@ -1,6 +1,6 @@
 # Scholomance encounter dispatch
 
-The [evidence manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.140.0/scholomance-encounters.json) binds these observations to the installed `0.140.0` EXE, SHA-256 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`. It records the original PE ranges and the result digests for the bounded Ghidra queries. Raw imports omit external code and jump tables. The original instructions govern the call arguments and branches. [Finding #313](../CURRENT-STATE.md#gap-313).
+The [evidence manifest](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/869aa7fbc7a177d6dacaa1b3e69b12b24842cc47/docs/analysis/evidence/0.140.0/scholomance-encounters.json) binds these observations to the installed `0.140.0` EXE, SHA-256 `27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9`. It records the original PE ranges and the result digests for the bounded Ghidra queries. Raw imports omit external code and jump tables. The original instructions govern the call arguments and branches. [Finding #313](../verification-needed.md#gap-313).
 
 ## Scheduled bosses and their placement
 
@@ -53,15 +53,48 @@ The hit stage uses the accepted positions on both sides of the impact time and t
 
 The [script adapter](../../crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs) sends the native warning lifecycle through the existing marker stream. The [client](../../crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs) decodes these parts separately from legacy hazards and projects the field, strips and circles onto terrain. The [account path](scholomance.md#graduation-and-straight-as-combat-records) delivers the resulting bit to each admitted recipient, including the cached State15 path. Native replay covered 1,458 hit geometry cases, 528 hit sampler cases and 2,560 bit-exact square mask alpha cases. Compilation, rendered output, network delivery and original/rebuilt parity remain open.
 
-## Remaining source work
+## Scripted spell launches
 
-The remaining bosses need their attack producers, recipient state and renderer parts connected.
+The [0.143.0 PE ranges and Ghidra receipts](evidence/scholomance-launches.json)
+are bound to SHA-256
+`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
+The [Heroic 3 capture](gameplay-log-evidence.md#scholomance-scripted-cast-packets)
+identifies the boss GUIDs and spell IDs that led to this trace.
 
-| Boss | Native source frontier |
+The shared constructor at `0x145fdc470` reads definition spell `+0x78`,
+start flag `+0x90` and launch flag `+0x91` separately. It sets part
+`+0x98` to impact plus the part's offset and `+0x9c` to that result plus
+duration. At `0x145f8b670..0x145f8b6bd`, the frame selects parts with
+repeat interval `+0x84` at or below zero and
+`now - frame_delta < part_end <= now`. It deduplicates their `+0xa0`
+part IDs in order within each attack. Each launch uses the first live
+shape with that ID and resolves Z from ADT, then WMO, then the map fallback.
+The Office field's shape case 9 uses the arena polygon's first vertex.
+
+The `atka` marker and recipient damage stage precede the launch queue.
+At `0x145f8bbf7` the shared path calls `0x145f1b250` with the boss
+GUID, spell, empty hit slice and a ground target. The serializer writes
+opcode `0x132`, both caster GUIDs, flags `0x100`, zero hits and misses,
+mask `0x40` and XYZ. Damage and launch use separate paths, so a cast still
+launches when its geometry hits nobody.
+
+| Encounter | Connected producers |
 | --- | --- |
-| Kirtonos | Tags 1 to 4 select `0x145eea200`, `0x145ee92e0`, `0x145ee9c00` and `0x145eebaa0`. Connect their attack rows, per-recipient admission, and hit-dependent state through the normal and fixed-loop calls. |
-| Ras | Header `0x147af49c8` binds the 60% phase to thunk `0x145ee66d0` and body `0x145ee55a0`. The checkerboard action is `0x145ee6300`. Trace tile partitioning and the touch-to-remove armor and vulnerability path into the same scripted attack state. |
-| Krastinov | Header `0x147af4ab0` binds four actions and the movement update `0x145eedb80`. Join its interpolated movement and victim choice to both cleaves, dash, moving Bladestorm, and farthest-target hook delivery. |
-| Barov | Header `0x147af4b98` binds four actions, update `0x145ddc870` and hit callback `0x145ddb1f0`. Recover the changing ring, cross and wall rows and their retirement, then bind their warnings and active damage tests. |
+| Kirtonos | Shadow Bolt Volley, Blood Offering, Vampiric Swoop and Wing Flap. All Offering circles share one part ID, as do the Volley lanes. The form change keeps its dedicated no-target send. |
+| Ras | Frostbolt Volley 8398 and Chill Nova 18099. Chill Nova's radius-11 circle also supplies its existing knockback. Frozen Checkmate and the Frost Armor rune markers carry spell zero. Frost Armor 18100 keeps its dedicated no-target send. |
+| Krastinov | Both Twin Cleaver rows use the shared launch. Surgical Rush, Hook and Bladestorm publish through their dedicated callbacks with the shared launch flag cleared. |
+| Barov | Every Death Knell ring, both Shadow Verdict shapes, Immolate's initial hit and Veil of Shadow's nonperiodic group. Death Knell and Shadow Verdict follow-up rows also start their own windups. |
+| Gandling | The damaging Office field, Class Dismissed, Pop Quiz's initial hit and both damaging Examination strips. The pre-Office warning, harmless Examination line and Quiz's periodic part do not launch. |
 
-Rustfmt parsed the changed files and the scoped diff passed whitespace checks. The authored schedule and form regressions still need compilation. Game, cooperative execution and original/rebuilt parity remain open.
+The [shared attack state](../../crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs)
+publishes launches after the final recipient's damage sampling and before
+attack retirement. The [packet adapter](../../crates/azeroth-survivors-re/src/gameplay/client/events.rs)
+uses the same serializer shape for the local client and the existing co-op
+broadcast route. The retained 0.141.0 mechanic traces for
+[Kirtonos](scholomance-kirtonos.md), [Ras](scholomance-ras.md),
+[Krastinov](scholomance-krastinov.md) and [Barov](scholomance-barov.md)
+describe their own target's schedules and geometry.
+
+`python3 -B scripts/check-raid-cast.py --scripted-launch` verified 40
+hash-bound PE ranges. Compilation, the authored Rust regression,
+runtime packet/visual behavior and original/rebuilt parity remain open.

@@ -1,7 +1,7 @@
 //! Scholomance's Lord Alexei Barov script. See scholomance-barov-0.141.0.md.
 
 use super::{
-    gandling::{self, HeroPose, Part, State, Timing},
+    gandling::{self, CastVisuals, HeroPose, Part, State, Timing},
     scripted_arena::clip_segment,
     *,
 };
@@ -222,7 +222,7 @@ impl<W: RunWorld> BossCombat<'_, W> {
                         Timing {
                             windup,
                             lock_lead: 0.0,
-                            cast: false,
+                            visuals: CastVisuals::Scripted,
                         },
                         vec![death_knell(center, index, power)],
                         None,
@@ -242,7 +242,7 @@ impl<W: RunWorld> BossCombat<'_, W> {
                         Timing {
                             windup: 1.75 * warning_factor,
                             lock_lead: 0.0,
-                            cast: false,
+                            visuals: CastVisuals::Scripted,
                         },
                         parts,
                         None,
@@ -352,7 +352,7 @@ impl<W: RunWorld> BossCombat<'_, W> {
             Timing {
                 windup,
                 lock_lead: 0.9,
-                cast: true,
+                visuals: CastVisuals::Scripted,
             },
             vec![
                 Part {

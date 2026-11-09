@@ -67454,6 +67454,25 @@
         "runtime_validation": "not_run",
         "parity": "unverified"
       },
+      "gap_313_scripted_launch_0_143_0": {
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "gap_id": 313,
+        "source_status": "connected",
+        "scope": "Shared part-end launch, caster/destination wire fields, and the Kirtonos, Barov and Gandling producers.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/kirtonos.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/barov.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/events.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/scholomance-encounters.md#scripted-spell-launches",
+          "docs/analysis/evidence/scholomance-launches.json"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
       "source_review_anchors": []
     },
     {
@@ -67536,6 +67555,24 @@
         ],
         "evidence_refs": [
           "docs/analysis/scholomance-krastinov-0.141.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
+      "gap_313_scripted_launch_0_143_0": {
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "gap_id": 313,
+        "source_status": "connected",
+        "scope": "Each Twin Cleaver row enables the shared launch. Rush, Hook and Bladestorm use dedicated launch callbacks.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/krastinov.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/events.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/scholomance-encounters.md#scripted-spell-launches",
+          "docs/analysis/evidence/scholomance-launches.json"
         ],
         "static_validation": "bounded_native_and_source_checks",
         "runtime_validation": "not_run",
@@ -67624,6 +67661,24 @@
         ],
         "evidence_refs": [
           "docs/analysis/scholomance-ras-0.141.0.md"
+        ],
+        "static_validation": "bounded_native_and_source_checks",
+        "runtime_validation": "not_run",
+        "parity": "unverified"
+      },
+      "gap_313_scripted_launch_0_143_0": {
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "gap_id": 313,
+        "source_status": "connected",
+        "scope": "Frostbolt Volley and Chill Nova enable shared launches. Frozen Checkmate is spell zero and Frost Armor uses a dedicated send.",
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/ras.rs",
+          "crates/azeroth-survivors-re/src/gameplay/mechanics/gandling.rs",
+          "crates/azeroth-survivors-re/src/gameplay/client/events.rs"
+        ],
+        "evidence_refs": [
+          "docs/analysis/scholomance-encounters.md#scripted-spell-launches",
+          "docs/analysis/evidence/scholomance-launches.json"
         ],
         "static_validation": "bounded_native_and_source_checks",
         "runtime_validation": "not_run",

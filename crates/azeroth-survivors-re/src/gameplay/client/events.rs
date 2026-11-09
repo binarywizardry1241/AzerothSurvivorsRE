@@ -502,17 +502,13 @@ fn project(events:Vec<RunEvent>,player_guid:u64,ranged_gun:bool,source_slot:u8,p
                 if let Some(cast_time_ms)=azeroth_survivors_re::raid_markers::windup_millis(spell_id,seconds) {
                     packets.0.push(SessionEvent::SpellStart {caster:source,spell_id,cast_flags:2,
                         cast_time_ms,target:None,ammo_display_id:None});
-                    let mut packet = spell_go(SpellCast {source_guid:source,spell_id,
-                        target:CastTarget::None,hit_targets:Vec::new()},None);
-                    if let SessionEvent::SpellGo {cast_flags,..} = &mut packet { *cast_flags = 8; }
-                    packets.0.push(packet);
+                    packets.0.push(spell_go(SpellCast {source_guid:source,spell_id,
+                        target:CastTarget::None,hit_targets:Vec::new()},None));
                 }
                 None
             },
             RunEvent::RaidSpellGo(cast)=>{
-                let mut packet=spell_go(cast,None);
-                if let SessionEvent::SpellGo {cast_flags,..}=&mut packet { *cast_flags=8; }
-                packets.0.push(packet);None
+                packets.0.push(spell_go(cast,None));None
             },
             RunEvent::RaidMarker(value)=>{
                 if let Some(coop)=coop.as_mut() { coop.send_value_from(source_slot,&value); }
