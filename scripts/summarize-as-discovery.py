@@ -58,7 +58,7 @@ resolved = review_input.get("resolved_correspondence_questions", [])
 
 
 def sha(p):
-    return file_sha256(project_path(p))
+    return file_sha256(p)
 
 
 def ref(p):
