@@ -71,7 +71,7 @@ def retained_question_geometry(root, previous_path, previous, question):
             raise ValueError("Retained question input leaves the project")
         if file_sha256(candidate) != reference["sha256"]:
             raise ValueError("Retained question input hash differs: " + reference["path"])
-        return candidate, json.loads(candidate.read_text())
+        return candidate, json.loads(read_artifact(candidate, root=root))
 
     while True:
         if path in visited:
