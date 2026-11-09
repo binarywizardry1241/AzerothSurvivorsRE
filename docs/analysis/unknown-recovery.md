@@ -26,6 +26,11 @@ owns the independent exact Join source mismatch. [#158](../CURRENT-STATE.md#gap-
 owns current locale key and consumer correspondence. Prior classifications
 below retain their original addresses and evidence.
 
+The current `talent-seven-way-dispatch` and `talent-nine-way-dispatch`
+leads are classified in the [runtime talent dispatch report](evidence/talent-selector/runtime-dispatch.json).
+Their existing kill-reset and Prepared source paths are connected under
+[#148](../verification-needed.md#gap-148).
+
 ## 0.141.0 retained recovery
 
 Original audited EXE SHA-256

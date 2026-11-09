@@ -19,7 +19,7 @@ in the full proof. Each table retains its exact range and applied census edge.
 | `0x1403b5039` | `0x1465cc69c`, 5 cells | [#96](../CURRENT-STATE.md#gap-96). Marker diagnostic extent, with no matching diagnostic body owner. Trace the selector input to `raid_markers.rs` shape and paint consumers. |
 | `0x145e24c09` | `0x1473c71b8`, 8 cells | [#154](../CURRENT-STATE.md#gap-154). Server/party body `0x145e207e0`. Trace the event producer, admitted peer phase and dispatch side effects in the existing session path. |
 | `0x145e5d4f7` | `0x1473d3880`, 7 cells | [#92](../CURRENT-STATE.md#gap-92). The gear body at `0x145e5c710` uses the same scalar from the `edi` bound through `eax` to index the table. Identify the selector producer and metadata/Armory destinations. |
-| `0x145fcce5a` and `0x145fd09c4` | `0x147b04f80`, 7 cells and `0x147b04e18`, 9 cells | [#148](../CURRENT-STATE.md#gap-148). Both are in a declared talent diagnostic extent. The seven-cell site lacks a Ghidra body owner. Establish ownership, then recover the selector and typed effect producer/consumer pair for each site. |
+| `0x145fcce5a` and `0x145fd09c4` | `0x147b04f80`, 7 cells and `0x147b04e18`, 9 cells | [#148](../verification-needed.md#gap-148). The [current trace](evidence/talent-selector/runtime-dispatch.json) joins both sites to the runtime talent owner and identifies the kill cooldown-reset and Prepared class consumers. |
 
 The retained Codex question `retained-table-1403076a2` maps to `0x14015aed5`
 and table `0x14657ebb8`. Its exact indexed value and live Details consumer
