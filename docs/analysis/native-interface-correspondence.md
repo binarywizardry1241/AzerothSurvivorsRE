@@ -266,6 +266,29 @@ expanded and collapsed cards through the scroll viewport, wrapping of localized
 descriptions and boss chips, loaded art, and the footer subtitle and animated
 highlight at the same window size. Compilation and rendered comparison are open.
 
+### Picker entry wait states
+
+The [0.143.0 target](coverage/targets.json) selects the disabled Enter
+title from the party admission state at `0x14018de6e..0x14018df5e`.
+State 1 resolves `Waiting for players`. The other blocked branch resolves
+`Waiting for the host`. At `0x14018e173..0x14018e200`, the blocked
+host gets `Co-op needs at least two players. Share your lobby code.` and
+the guest gets `You come along when the host enters the zone.`. The
+available branch still builds the selected zone's final-boss preview.
+
+| Native span | File offset | SHA-256 |
+| --- | --- | --- |
+| Enter title `0x14018de6e..0x14018df5e` | `0x18d26e` | `f5d15e35355a8772b89f13dd30ac41a13b78814c82627f32c1e25ec93bd700a1` |
+| Enter subtitle `0x14018e173..0x14018e200` | `0x18d573` | `7600a031753e1fcbb7dd8d0f902dc4c95d32439cbf3762d8f70678aafee47e82` |
+
+The [menu](../../crates/azeroth-survivors-re/src/menu.rs) rebuilds the footer
+when the existing host roster gate or active guest state changes. The
+[picker](../../crates/azeroth-survivors-re/src/picker.rs) renders each disabled
+title and hint through the shared catalog. Enter still uses the existing
+host/guest request handling. Static checks verified the two native ranges and
+all four strings in each locale. Verify roster changes and the three rendered
+states under [#150](../verification-needed.md#gap-150).
+
 ## Ready Check visibility and answer routing
 
 The modal owner calls `0x1400e49c0` with the current clock and the f32

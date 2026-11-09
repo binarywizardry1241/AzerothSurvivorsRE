@@ -4,6 +4,7 @@ use crate::{
     catalog::MenuCatalog,
     menu_state::{Dialog, MenuState, Page},
     options::{OptionsSet, OptionsState},
+    picker::EntryAvailability,
     preview::{HeroLook, HeroPreview, HeroPreviewOutput},
 };
 use bevy::{
@@ -536,7 +537,7 @@ fn rebuild(
     armory_view: Res<crate::armory::ArmoryState>,
     coop: Res<crate::coop_ui::CoopUi>,
     update: Res<crate::update_ui::UpdateUi>,
-    mut previous_waiting: Local<bool>,
+    mut previous_entry: Local<EntryAvailability>,
 ) {
     if state.in_run {
         for root in &roots {
@@ -553,12 +554,18 @@ fn rebuild(
         return;
     };
     let dimensions = Vec2::new(window.width(), window.height());
-    let waiting = coop.waiting_for_players();
+    let entry = if coop.waiting_for_players() {
+        EntryAvailability::WaitingForPlayers
+    } else if coop.role == "guest" && coop.party_active() {
+        EntryAvailability::WaitingForHost
+    } else {
+        EntryAvailability::Available
+    };
     if !state.dirty && size.0 == dimensions && !art.is_changed() && !preview.is_changed()
-        && *previous_waiting == waiting {
+        && *previous_entry == entry {
         return;
     }
-    *previous_waiting = waiting;
+    *previous_entry = entry;
     state.dirty = false;
     size.0 = dimensions;
     zone_visibility.observe_content(
@@ -590,7 +597,7 @@ fn rebuild(
             },
         ))
         .with_children(|canvas| {
-            crate::picker::build(canvas, &art, &catalog, &state, &preview, &armory, waiting);
+            crate::picker::build(canvas, &art, &catalog, &state, &preview, &armory, entry);
             if let Some(error) = &state.error {
                 caption(
                     canvas,

@@ -391,15 +391,19 @@ def check_chat():
     menu = (ROOT / "crates/azeroth-survivors-re/src/menu.rs").read_text()
     picker = (ROOT / "crates/azeroth-survivors-re/src/picker.rs").read_text()
     import re
-    admission_sites = list(re.finditer(r"state\.begin_enter\(&catalog, time\.elapsed_secs\(\)\)", menu))
+    admission_sites = list(re.finditer(r"request_enter\(&mut state, &catalog, time\.elapsed_secs\(\), &mut runtime\)", menu))
     assert len(admission_sites) == 2
     assert all("!coop.waiting_for_players()" in menu[max(0, site.start()-220):site.start()]
                for site in admission_sites)
-    assert "let waiting = coop.waiting_for_players();" in menu
-    assert "*previous_waiting == waiting" in menu
-    assert "footer(root, art, catalog, state, waiting_for_players)" in picker
-    assert re.search(r"fn footer\([^)]*waiting_for_players: bool", picker, re.S)
-    assert re.search(r'if waiting_for_players\s*{\s*"Waiting for players"', picker)
+    assert 'coop.role == "guest" && coop.party_active()' in menu
+    assert "*previous_entry == entry" in menu
+    assert "footer(root, art, catalog, state, entry)" in picker
+    for name, title, hint in (
+        ("WaitingForPlayers", "Waiting for players", "Co-op needs at least two players. Share your lobby code."),
+        ("WaitingForHost", "Waiting for the host", "You come along when the host enters the zone."),
+    ):
+        assert f'EntryAvailability::{name} => "{title}"' in picker
+        assert f'.label("{hint}")' in picker
 
     class ChatProbe(EquipmentProbe):
         def hook(self, machine, pc, size, unused):

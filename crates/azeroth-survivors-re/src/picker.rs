@@ -343,14 +343,22 @@ fn rule(ui: &mut ChildSpawnerCommands) {
     ));
 }
 
-pub fn build(
+#[derive(Clone, Copy, Default, PartialEq, Eq)]
+pub(crate) enum EntryAvailability {
+    #[default]
+    Available,
+    WaitingForPlayers,
+    WaitingForHost,
+}
+
+pub(crate) fn build(
     ui: &mut ChildSpawnerCommands,
     art: &MenuArt,
     catalog: &MenuCatalog,
     state: &MenuState,
     preview: &HeroPreviewOutput,
     armory: &crate::armory::ArmoryCatalog,
-    waiting_for_players: bool,
+    entry: EntryAvailability,
 ) {
     // 0x140207f90 supplies the entire picker flow; only overlays live outside it.
     ui.spawn(Node {
@@ -404,7 +412,7 @@ pub fn build(
             });
             pane(panes, 1., |body| zones(body, art, catalog, state));
         });
-        footer(root, art, catalog, state, waiting_for_players);
+        footer(root, art, catalog, state, entry);
     });
 }
 fn classes(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, state: &MenuState) {
@@ -1374,7 +1382,7 @@ pub(crate) fn animate_enter_sweep(time: Res<Time>, mut sweeps: Query<&mut Node, 
 }
 
 fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, state: &MenuState,
-    waiting_for_players: bool) {
+    entry: EntryAvailability) {
     let zone = &catalog.zones[state.zone];
     let hyper = state.hyper_mode();
     ui.spawn(Node {
@@ -1458,7 +1466,7 @@ fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, s
                 ),
                 true,
                 true,
-                waiting_for_players,
+                entry != EntryAvailability::Available,
                 |button| {
                     // 0.141.0 1403a7c1a–1403a7f37: a clipped gradient child behind the text.
                     button.spawn((
@@ -1486,12 +1494,11 @@ fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, s
                         art,
                         crate::localization::format(
                             catalog,
-                            if waiting_for_players {
-                                "Waiting for players"
-                            } else if state.entering {
-                                "picker.entering"
-                            } else {
-                                "picker.enter"
+                            match entry {
+                                EntryAvailability::WaitingForPlayers => "Waiting for players",
+                                EntryAvailability::WaitingForHost => "Waiting for the host",
+                                EntryAvailability::Available if state.entering => "picker.entering",
+                                EntryAvailability::Available => "picker.enter",
                             },
                             &[("zone", zone.name.clone())],
                         ),
@@ -1499,10 +1506,14 @@ fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, s
                         GOLD,
                         true,
                     );
-                    text(
-                        button,
-                        art,
-                        crate::localization::format(
+                    let hint = match entry {
+                        EntryAvailability::WaitingForPlayers => catalog
+                            .label("Co-op needs at least two players. Share your lobby code.")
+                            .to_owned(),
+                        EntryAvailability::WaitingForHost => catalog
+                            .label("You come along when the host enters the zone.")
+                            .to_owned(),
+                        EntryAvailability::Available => crate::localization::format(
                             catalog,
                             "picker.awaits",
                             &[
@@ -1511,10 +1522,8 @@ fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, s
                                 ("minute", if hyper { (zone.minute as f32 * 0.5).to_string() } else { zone.minute.to_string() }),
                             ],
                         ),
-                        13.,
-                        PAPER,
-                        false,
-                    );
+                    };
+                    text(button, art, hint, 13., PAPER, false);
                 },
             );
             actions.commands().entity(enter).insert((
