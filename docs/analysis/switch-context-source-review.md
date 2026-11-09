@@ -1,8 +1,39 @@
 # AS guarded dispatch and source correspondence
 
+## 0.143.0 guarded correspondence
+
+The [current switch proof](evidence/native-switch-proposal-review.json) and
+[correspondence record](evidence/computed-correspondence-frontier.json) bind
+0.143.0 EXE SHA-256
+`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
+All 51 current AS diagnostic-context tables are applied. Forty-six have
+a unique predecessor geometry candidate, and five have no candidate.
+Eight predecessor tables lack a current AS geometry match. Keep the
+geometry, actual producer/consumer behavior and implementation separate.
+
+Select `complete_AS_context_reconciliation.current_AS_context_tables[site]`
+in the full proof. Each table retains its exact range and applied census edge.
+
+| New current geometry | Exact table | Source boundary and next proof |
+| --- | --- | --- |
+| `0x1403b5039` | `0x1465cc69c`, 5 cells | [#96](../CURRENT-STATE.md#gap-96). Marker diagnostic extent, with no matching diagnostic body owner. Trace the selector input to `raid_markers.rs` shape and paint consumers. |
+| `0x145e24c09` | `0x1473c71b8`, 8 cells | [#154](../CURRENT-STATE.md#gap-154). Server/party body `0x145e207e0`. Trace the event producer, admitted peer phase and dispatch side effects in the existing session path. |
+| `0x145e5d4f7` | `0x1473d3880`, 7 cells | [#92](../CURRENT-STATE.md#gap-92). The gear body at `0x145e5c710` uses the same scalar from the `edi` bound through `eax` to index the table. Identify the selector producer and metadata/Armory destinations. |
+| `0x145fcce5a` and `0x145fd09c4` | `0x147b04f80`, 7 cells and `0x147b04e18`, 9 cells | [#148](../CURRENT-STATE.md#gap-148). Both are in a declared talent diagnostic extent. The seven-cell site lacks a Ghidra body owner. Establish ownership, then recover the selector and typed effect producer/consumer pair for each site. |
+
+The retained Codex question `retained-table-1403076a2` maps to `0x14015aed5`
+and table `0x14657ebb8`. Its exact indexed value and live Details consumer
+remain [#73](../CURRENT-STATE.md#gap-73) correspondence. The other thirteen
+retained questions have no unique current geometry candidate. Keep their
+CreatureQuery selectors and prior source under [#64](../CURRENT-STATE.md#gap-64)
+and [#65](../CURRENT-STATE.md#gap-65) while locating current producers and
+recipients.
+
+## 0.141.0 retained correspondence
+
 The installed EXE contains 151,493,632 bytes and has SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
-The [applied and proposed switch proof](evidence/native-switch-proposal-review.json)
+The [historical applied and proposed switch proof](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/70576100b062d6d2d68830e6dbbadddfaf4b007e/docs/analysis/evidence/native-switch-proposal-review.json)
 selects each current context under
 `complete_AS_context_reconciliation.current_AS_context_tables[site]`.
 Thirty of 54 AS diagnostic-context tables have one exact predecessor

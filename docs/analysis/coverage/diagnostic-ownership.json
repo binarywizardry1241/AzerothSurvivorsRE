@@ -1,31 +1,31 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.141.0",
+    "version": "0.143.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-    "size_bytes": 151493632
+    "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+    "size_bytes": 151566336
   },
   "generator": {
     "path": "scripts/discover-native-ownership.py",
-    "sha256": "0cfff625453c85627d1f11fb35292b590c9a8cdbb497b59424cf23da56633ea5",
+    "sha256": "565db0aa3c57507906f9ade9081cb026b0a2cc876d0b4e8c879d82b2bebebf5a",
     "candidate_parser_path": "scripts/inventory-executable.py",
     "candidate_parser_sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa",
     "decoder": "Capstone",
     "decoder_version": "5.0.7"
   },
   "inventory": {
-    "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/diagnostic-ownership.json",
-    "sha256": "752192ffd18c4aa84bac2c038bedb848424a79a9c19cc9dfd5f92b3ae3f335cf",
+    "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/diagnostic-ownership.json",
+    "sha256": "7cdfc6efdfbebbb06047a47698265a7ac8591a07845bf91b73c85cdc8c11c832",
     "regenerate": "python3 -B scripts/discover-native-ownership.py --write"
   },
   "counts": {
-    "candidate_unwind_extents_decoded": 7170,
-    "instructions_in_candidate_extents": 2179467,
-    "decoded_bytes_summed_across_candidate_extents": 10107413,
+    "candidate_unwind_extents_decoded": 7169,
+    "instructions_in_candidate_extents": 2176782,
+    "decoded_bytes_summed_across_candidate_extents": 10090302,
     "diagnostic_paths": 845,
     "custom_diagnostic_paths": 83,
-    "verified_instruction_references": 19956,
+    "verified_instruction_references": 19948,
     "paths_with_verified_references": 690,
     "custom_paths_with_verified_references": 83,
     "unverified_candidates": 7
@@ -48,8 +48,8 @@
     {
       "path": "crates/wenilla-rogue-app/src/screens/armory.rs",
       "system_id": "custom-app-screens-armory",
-      "verified_instruction_references": 33,
-      "candidate_native_owner_count": 17,
+      "verified_instruction_references": 35,
+      "candidate_native_owner_count": 18,
       "unverified_byte_candidates": 0
     },
     {
@@ -69,14 +69,14 @@
     {
       "path": "crates/wenilla-rogue-app/src/screens/codex.rs",
       "system_id": "custom-app-screens-codex",
-      "verified_instruction_references": 41,
-      "candidate_native_owner_count": 15,
+      "verified_instruction_references": 39,
+      "candidate_native_owner_count": 13,
       "unverified_byte_candidates": 0
     },
     {
       "path": "crates/wenilla-rogue-app/src/screens/coop.rs",
       "system_id": "custom-app-screens-coop",
-      "verified_instruction_references": 11,
+      "verified_instruction_references": 8,
       "candidate_native_owner_count": 4,
       "unverified_byte_candidates": 0
     },
@@ -90,7 +90,7 @@
     {
       "path": "crates/wenilla-rogue-app/src/screens/hud.rs",
       "system_id": "custom-app-screens-hud",
-      "verified_instruction_references": 22,
+      "verified_instruction_references": 23,
       "candidate_native_owner_count": 7,
       "unverified_byte_candidates": 0
     },
@@ -104,8 +104,8 @@
     {
       "path": "crates/wenilla-rogue-app/src/screens/ime.rs",
       "system_id": "custom-app-screens-ime",
-      "verified_instruction_references": 4,
-      "candidate_native_owner_count": 3,
+      "verified_instruction_references": 8,
+      "candidate_native_owner_count": 4,
       "unverified_byte_candidates": 0
     },
     {
@@ -146,7 +146,7 @@
     {
       "path": "crates/wenilla-rogue-app/src/screens/mod.rs",
       "system_id": "custom-app-screens-mod",
-      "verified_instruction_references": 34,
+      "verified_instruction_references": 33,
       "candidate_native_owner_count": 12,
       "unverified_byte_candidates": 0
     },
@@ -251,8 +251,8 @@
     {
       "path": "crates/wenilla-rogue/src/achievements.rs",
       "system_id": "custom-game-achievements",
-      "verified_instruction_references": 8,
-      "candidate_native_owner_count": 4,
+      "verified_instruction_references": 7,
+      "candidate_native_owner_count": 3,
       "unverified_byte_candidates": 0
     },
     {
@@ -279,8 +279,8 @@
     {
       "path": "crates/wenilla-rogue/src/content.rs",
       "system_id": "custom-game-content",
-      "verified_instruction_references": 63,
-      "candidate_native_owner_count": 50,
+      "verified_instruction_references": 66,
+      "candidate_native_owner_count": 52,
       "unverified_byte_candidates": 0
     },
     {
@@ -426,8 +426,8 @@
     {
       "path": "crates/wenilla-rogue/src/game/kill_command.rs",
       "system_id": "custom-game-game-kill-command",
-      "verified_instruction_references": 34,
-      "candidate_native_owner_count": 13,
+      "verified_instruction_references": 33,
+      "candidate_native_owner_count": 12,
       "unverified_byte_candidates": 0
     },
     {
@@ -454,8 +454,8 @@
     {
       "path": "crates/wenilla-rogue/src/game/party.rs",
       "system_id": "custom-game-game-party",
-      "verified_instruction_references": 61,
-      "candidate_native_owner_count": 28,
+      "verified_instruction_references": 62,
+      "candidate_native_owner_count": 29,
       "unverified_byte_candidates": 0
     },
     {
@@ -475,8 +475,8 @@
     {
       "path": "crates/wenilla-rogue/src/game/scripts/mod.rs",
       "system_id": "custom-game-game-scripts-mod",
-      "verified_instruction_references": 23,
-      "candidate_native_owner_count": 5,
+      "verified_instruction_references": 15,
+      "candidate_native_owner_count": 3,
       "unverified_byte_candidates": 0
     },
     {
@@ -622,42 +622,5 @@
     "Current systems provide source ownership questions; no whole-system, individual changelog claim, runtime or parity status is promoted by this pass."
   ],
   "native_source_ownership_complete": false,
-  "parity_verified": false,
-  "source_mapping_projection": {
-    "format": "diagnostic-source-map-projection-v1",
-    "generator": {
-      "path": "scripts/discover-native-ownership.py",
-      "sha256": "565db0aa3c57507906f9ade9081cb026b0a2cc876d0b4e8c879d82b2bebebf5a"
-    },
-    "source_mapping": {
-      "path": "docs/analysis/coverage/systems.json",
-      "sha256": "411822032375d92a53ca54d3b16059a5c3ebd79152cd6145ed2ae32d57a96fd7"
-    },
-    "native_execution_sources": [
-      {
-        "path": "scripts/discover-native-ownership.py",
-        "sha256": "0cfff625453c85627d1f11fb35292b590c9a8cdbb497b59424cf23da56633ea5",
-        "git_commit": "054d7a8918f1f94dc48fca406b23888a97cea3bd"
-      },
-      {
-        "path": "scripts/inventory-executable.py",
-        "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa",
-        "git_commit": "054d7a8918f1f94dc48fca406b23888a97cea3bd"
-      }
-    ],
-    "native_fact_sha256": "766062e4b14217bd363f05ce04f07655e7c697f145d0fdb8aec52f18fb210893",
-    "scope": "Current system IDs/custom membership only; frozen native payload and original producer remain unchanged. No source or semantic proof is promoted."
-  },
-  "fresh_native_verification": {
-    "generator": {
-      "path": "scripts/discover-native-ownership.py",
-      "sha256": "565db0aa3c57507906f9ade9081cb026b0a2cc876d0b4e8c879d82b2bebebf5a",
-      "candidate_parser_path": "scripts/inventory-executable.py",
-      "candidate_parser_sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa",
-      "decoder": "Capstone",
-      "decoder_version": "5.0.7"
-    },
-    "native_fact_sha256": "766062e4b14217bd363f05ce04f07655e7c697f145d0fdb8aec52f18fb210893",
-    "method": "fresh_decode_exact_native_fact_comparison"
-  }
+  "parity_verified": false
 }

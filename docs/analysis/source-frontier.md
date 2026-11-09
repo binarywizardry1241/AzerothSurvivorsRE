@@ -1,8 +1,36 @@
 # Source-first discovery frontier
 
+## 0.143.0 structural delta
+
+The [current PE delta](evidence/discovery-delta.json) compares the installed
+0.143.0 EXE, SHA-256
+`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`,
+with 0.141.0. All 83 diagnostic paths remain present. The single new import,
+`dbghelp.dll!MiniDumpWriteDump`, has a verified registration and callback
+under [#326](../CURRENT-STATE.md#gap-326). The
+[Hyper Mode trace](release-review.md#01430-hyper-mode) uses additional
+direct string references outside the diagnostic-name inventory.
+
+| Current PE lead | Source boundary and remaining trace |
+| --- | --- |
+| `module_type_namespace` at file `0x65baa10`, `0x6593678` | The prior combined Hero Preview/menu-scene registration string is split. Follow exact descriptor references to the existing preview/menu scene in [#60](../CURRENT-STATE.md#gap-60) to test whether registration or composition changed. |
+| `module_type_namespace` at file `0x65baa50`, `0x656d960` | CombatTextAnchors, OverScreens and WorldAnchors names are current registration leads. Compare their registering functions and data handoffs with `benilla-app/src/combat_text`, `local_client/extension.rs` and the existing AS addon bootstrap. Keep [#307](../verification-needed.md#gap-307), [#317](../verification-needed.md#gap-317) and [#11](../verification-needed.md#gap-11) as separate source and prior verification scopes. |
+| `module_type_namespace` at file `0x6584910`, `0x656b20c`, `0x668f5ea` | WorldHold, GameWindow, Screens and UI Quad names appear in different packed boundaries. Start with current call/descriptor references and the existing AS menu composition and shared engine interfaces. The packed strings do not establish a plugin or draw-pass change. |
+| `game_binding_identifier` at file `0x655cc44` | The candidate scanner includes adjacent `Message` bytes after `AZS_ON_TOP_FRAMES`. `gameplay/client/addon_bootstrap.rs` already supplies the exact global name. Check the native descriptor length and VM registration handoff under [#11](../verification-needed.md#gap-11). |
+| `resource_path` at file `0x7b7d288` | `DBFilesClient\PetPersonality.dbc` has the shared loader `benilla-formats/src/pet_stats.rs` and consumer `benilla-app/src/ui_pet_stats.rs`. The removed `LoadingScreens.dbc` text candidate has `benilla-formats/src/loading_screen.rs` as its source boundary. Check native resource loaders before assigning either change to an AS override. |
+
+The other changed module candidates are suffix changes in generic GPU BLP,
+entity shading and skybox strings. Existing `benilla-assets` and `benilla-world`
+source owns those interfaces. Lua function/registration, textual ID and save-key
+candidate sets are unchanged. The 28,656-byte addon API fragment is byte-identical
+to the retained extract. Its current data and registration dependencies require
+separate proof.
+
+## 0.141.0 structural delta
+
 The installed PE contains 151,493,632 bytes and has SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
-The [whole-image discovery delta](evidence/discovery-delta.json)
+The [historical whole-image discovery delta](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/70576100b062d6d2d68830e6dbbadddfaf4b007e/docs/analysis/evidence/discovery-delta.json)
 compares the verified 0.141.0 and 0.140.0 inventories. Addresses are
 preferred PE virtual addresses.
 

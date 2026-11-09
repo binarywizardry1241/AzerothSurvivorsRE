@@ -1,263 +1,468 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.141.0",
+    "version": "0.143.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-    "size_bytes": 151493632
+    "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+    "size_bytes": 151566336
   },
-  "queries": [
+  "inputs": [
     {
-      "id": "soulfire-upgrade",
-      "procedure": "0x145e27300",
-      "file_offset": "0x5e26700",
-      "byte_count": 513,
-      "operations": [
-        {
-          "name": "procedure_pseudo_code",
-          "proof": {
-            "raw_input": {
-              "path": "runtime/fixgap-soulfire-01410/upgrade.bin",
-              "sha256": "56fab00d07bd0fe36ebf5d8fd5fdc58df6b338a61dbcb28bc7a4d36e520950c4"
-            },
-            "plan": {
-              "path": "runtime/fixgap-soulfire-01410/upgrade.json",
-              "sha256": "2297d6e897cc774c6f3a6d56de4df599a4e9ff09627de834923739a90b226a50"
-            },
-            "journal": {
-              "path": "runtime/fixgap-soulfire-01410/upgrade/journal.json",
-              "sha256": "a8ce4487492b00eef546e9be47eb20dbe4c90e2e645f60679668400954e5bd57"
-            },
-            "result": {
-              "path": "runtime/fixgap-soulfire-01410/upgrade/results/f4a7febef848954c9a48ab33564fbe109e46e17201a8619d9940bce66e20002b-491ffb12a4fcf9c7.json",
-              "sha256": "0f89191dd79ab2754e15ee248c4d97f8caf403c0e73597adb50130775550b48e"
-            },
-            "procedure": "0x145e27300",
-            "slice_virtual_address": "0x145e27300",
-            "evidence_id": "ev_4ea3ab6b12e0ed5a9201bdda73cf58af6a67cbc5998714ed7e71975c28a3166f",
-            "provider": {
-              "id": "ghidra",
-              "name": "Ghidra",
-              "version": "12.1.4"
-            },
-            "analysis_profile_digest": "643b0d03b8d3baf1f08d1cb08cdd228fb48017139f599b4735584a24cb73636c"
-          },
-          "result_scope": {
-            "pseudocode_bytes": 318
-          },
-          "subject_binding": {
-            "kind": "exact_declared_PE_raw_slice",
-            "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-            "raw_sha256": "56fab00d07bd0fe36ebf5d8fd5fdc58df6b338a61dbcb28bc7a4d36e520950c4",
-            "virtual_address": "0x145e27300",
-            "file_offset": "0x5e26700",
-            "byte_count": 513,
-            "result": "runtime/analysis/objects/0f/0f89191dd79ab2754e15ee248c4d97f8caf403c0e73597adb50130775550b48e",
-            "semantic_or_runtime_correspondence_established": false
-          }
-        }
-      ]
+      "path": "docs/analysis/coverage/native-summary.json",
+      "sha256": "91612fea66ff90ff7b862bfb0de004e7e739bcc30523b166292d1ab94f799632"
     },
     {
-      "id": "soulfire-launch",
-      "procedure": "0x145fac590",
-      "file_offset": "0x5fab990",
-      "byte_count": 2374,
-      "operations": [
-        {
-          "name": "procedure_pseudo_code",
-          "proof": {
-            "raw_input": {
-              "path": "runtime/fixgap-soulfire-01410/cast.bin",
-              "sha256": "b19ccf847c2def18dcd54ff0b65bbf40430e7353351f93ce3d9083b1c294ef86"
-            },
-            "plan": {
-              "path": "runtime/fixgap-soulfire-01410/cast.json",
-              "sha256": "5c1c1d4ce830962c44ccebcf9e2bac0cb5d77a75bcc2d4eaf8017a61decd5fd9"
-            },
-            "journal": {
-              "path": "runtime/fixgap-soulfire-01410/cast/journal.json",
-              "sha256": "3f8ff165e3012959c9e3933f0f3271dd8a6116f453b0075feca2a256ee956604"
-            },
-            "result": {
-              "path": "runtime/fixgap-soulfire-01410/cast/results/e5cd96340c7d917a1790b9bf982e2a830a003cd2621037f5ae1100d56a5095cd-682919d6b3ae2895.json",
-              "sha256": "f2f0283521d1214f97ba219f32dbf67586ca11acb96f1fc62ea18b67049df39c"
-            },
-            "procedure": "0x145fac590",
-            "slice_virtual_address": "0x145fac590",
-            "evidence_id": "ev_2b4435372c2fcbdcd881a7ae1cd1116c751d06ee974de421b5f73de304dc3416",
-            "provider": {
-              "id": "ghidra",
-              "name": "Ghidra",
-              "version": "12.1.4"
-            },
-            "analysis_profile_digest": "0940268e6af5393685614db69d50e7ec8b58c9354559e6fdafce52772041f625"
-          },
-          "result_scope": {
-            "pseudocode_bytes": 10275
-          },
-          "subject_binding": {
-            "kind": "exact_declared_PE_raw_slice",
-            "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-            "raw_sha256": "b19ccf847c2def18dcd54ff0b65bbf40430e7353351f93ce3d9083b1c294ef86",
-            "virtual_address": "0x145fac590",
-            "file_offset": "0x5fab990",
-            "byte_count": 2374,
-            "result": "runtime/analysis/objects/f2/f2f0283521d1214f97ba219f32dbf67586ca11acb96f1fc62ea18b67049df39c",
-            "semantic_or_runtime_correspondence_established": false
-          }
-        }
-      ]
+      "path": "docs/analysis/coverage/diagnostic-ownership.json",
+      "sha256": "2bbc3f3db5c380a4e18b17137d406f861c13915fd06aaef4e10e399416250cc0"
     },
     {
-      "id": "soulfire-tooltip",
-      "procedure": "0x145fae6c0",
-      "file_offset": "0x5fadac0",
-      "byte_count": 6133,
-      "operations": [
-        {
-          "name": "procedure_pseudo_code",
-          "proof": {
-            "raw_input": {
-              "path": "runtime/fixgap-soulfire-01410/tooltip.bin",
-              "sha256": "2d66c06588b104b7749b84e496031cc74dcff053b3467a5f3c20dfcd96a0201c"
-            },
-            "plan": {
-              "path": "runtime/fixgap-soulfire-01410/tooltip.json",
-              "sha256": "240ac5f840dca8c8d9938604e9219722d0c706e819fd1a0703e9a019aacd5b53"
-            },
-            "journal": {
-              "path": "runtime/fixgap-soulfire-01410/tooltip/journal.json",
-              "sha256": "9e694834b6013bc652b37988450235a406552dc18b7633821aab49ad9731091c"
-            },
-            "result": {
-              "path": "runtime/fixgap-soulfire-01410/tooltip/results/b1d32bca6775c99fddc61a2f0ed8eadb60de21837e1e7ea69e54e926d6ac407d-1f0382626d1043f6.json",
-              "sha256": "5a276ae53c2bd5565b333b80f463d550e2656225f69ac6e344d9eb4fe3ad2f07"
-            },
-            "procedure": "0x145fae6c0",
-            "slice_virtual_address": "0x145fae6c0",
-            "evidence_id": "ev_0f06e9abaaad47596735ed8200317699cbd30f1e590d02db667f460f4e810024",
-            "provider": {
-              "id": "ghidra",
-              "name": "Ghidra",
-              "version": "12.1.4"
-            },
-            "analysis_profile_digest": "dce8ddf6f5f09d75a6c9fa48b64c17b036d23a7d66b17fc09f5c456292a12983"
-          },
-          "result_scope": {
-            "pseudocode_bytes": 1966
-          },
-          "subject_binding": {
-            "kind": "exact_declared_PE_raw_slice",
-            "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-            "raw_sha256": "2d66c06588b104b7749b84e496031cc74dcff053b3467a5f3c20dfcd96a0201c",
-            "virtual_address": "0x145fae6c0",
-            "file_offset": "0x5fadac0",
-            "byte_count": 6133,
-            "result": "runtime/analysis/objects/5a/5a276ae53c2bd5565b333b80f463d550e2656225f69ac6e344d9eb4fe3ad2f07",
-            "semantic_or_runtime_correspondence_established": false
-          }
-        }
-      ]
+      "path": "scripts/inventory-executable.py",
+      "sha256": "e2a4746cf3c5c0a8433c2000d6000b768a2a17b01b25040505705f61ddf1f6fa"
     },
     {
-      "id": "coop-terminal-close",
-      "procedure": "0x145e8dc70",
-      "file_offset": "0x5e8d070",
-      "byte_count": 377,
-      "operations": [
-        {
-          "name": "analyze_function",
-          "proof": {
-            "raw_input": {
-              "path": "runtime/analysis/tasks/fixgap-206-exit-0.141.0/slices/picker-145e8dc70.bin",
-              "sha256": "74c021af31c50e669826d2d84a85b3b5b5273d26ab2ed29c466a598155c99153"
-            },
-            "plan": {
-              "path": "runtime/analysis/tasks/fixgap-206-exit-0.141.0/slices/plan-145e8dc70.json",
-              "sha256": "c3330518c487d49a8d93c33b6f9bb463ae89d9941d5a49680c3f5f7c032e3c13"
-            },
-            "journal": {
-              "path": "runtime/analysis/tasks/fixgap-206-exit-0.141.0/rea-145e8dc70/journal.json",
-              "sha256": "6c8e698d695c89bb1a1a2030b41fac2ce56829c5e4c4834635223655b7a09edc"
-            },
-            "result": {
-              "path": "runtime/analysis/tasks/fixgap-206-exit-0.141.0/rea-145e8dc70/results/92e289136a0296e7f3840f638d03b64f44f0915749a3e6e2c6bb34f15ba57176-1e2e869e9872c762.json",
-              "sha256": "86f28251737e790dd0ffc56e2bab4843f6bd6c1ea7910128c78a5878284f07f5"
-            },
-            "procedure": "0x145e8dc70",
-            "slice_virtual_address": "0x145e8dc70",
-            "evidence_id": "ev_2a83f2a975a7f83bb74c928e77019ddb28ed74b807f2c883d4ce60f2c251cffe",
-            "provider": {
-              "id": "ghidra",
-              "name": "Ghidra",
-              "version": "12.1.4"
-            },
-            "analysis_profile_digest": "ecf4f14a906578ab6772f73c38fa4f822e16b7f4b6da8f3beb22394bfe9a4c50"
-          },
-          "result_scope": {},
-          "subject_binding": {
-            "kind": "exact_declared_PE_raw_slice",
-            "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-            "raw_sha256": "74c021af31c50e669826d2d84a85b3b5b5273d26ab2ed29c466a598155c99153",
-            "virtual_address": "0x145e8dc70",
-            "file_offset": "0x5e8d070",
-            "byte_count": 377,
-            "result": "runtime/analysis/objects/86/86f28251737e790dd0ffc56e2bab4843f6bd6c1ea7910128c78a5878284f07f5",
-            "semantic_or_runtime_correspondence_established": false
-          }
-        }
-      ]
-    },
-    {
-      "id": "coop-inspection-lifecycle",
-      "procedure": "0x1401c6bf0",
-      "file_offset": "0x1c5ff0",
-      "byte_count": 1908,
-      "operations": [
-        {
-          "name": "analyze_function",
-          "proof": {
-            "raw_input": {
-              "path": "runtime/analysis/tasks/fixgap-299-inspect-0.141.0/slices/picker-1401c6bf0.bin",
-              "sha256": "1460373ddc06f32e62bd6160e461ff8349ecbfc8b69bd539d7d6c126a366309b"
-            },
-            "plan": {
-              "path": "runtime/analysis/tasks/fixgap-299-inspect-0.141.0/slices/plan-1401c6bf0.json",
-              "sha256": "3c4149b7215bf637c17d714c6a16e6dbdb4b1f39ad36084c5ac36e2523f85a88"
-            },
-            "journal": {
-              "path": "runtime/analysis/tasks/fixgap-299-inspect-0.141.0/rea-1401c6bf0/journal.json",
-              "sha256": "254da82c434e2b78190a23adc097a3d61a9dbe2414e5493cc49e8a7c93f8744d"
-            },
-            "result": {
-              "path": "runtime/analysis/tasks/fixgap-299-inspect-0.141.0/rea-1401c6bf0/results/77262a76aa6c62f5229a0b466daa00acc6cb5ed4143d63c9cc92157183a1c312-29bdadb42c93ccb3.json",
-              "sha256": "ff29ebc46f80c77bda2a63526a768146a2fdbdebe4e764d1bf70a97c723a9c97"
-            },
-            "procedure": "0x1401c6bf0",
-            "slice_virtual_address": "0x1401c6bf0",
-            "evidence_id": "ev_85d5b9a1c9d6482e13fd5233f47dc0fc7bacc20f0cbd789ba105efb92277729f",
-            "provider": {
-              "id": "ghidra",
-              "name": "Ghidra",
-              "version": "12.1.4"
-            },
-            "analysis_profile_digest": "5bbee2bbe898754771635a799d64ccd7fb5fec9f44a93b5642484832b458aa57"
-          },
-          "result_scope": {},
-          "subject_binding": {
-            "kind": "exact_declared_PE_raw_slice",
-            "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-            "raw_sha256": "1460373ddc06f32e62bd6160e461ff8349ecbfc8b69bd539d7d6c126a366309b",
-            "virtual_address": "0x1401c6bf0",
-            "file_offset": "0x1c5ff0",
-            "byte_count": 1908,
-            "result": "runtime/analysis/objects/ff/ff29ebc46f80c77bda2a63526a768146a2fdbdebe4e764d1bf70a97c723a9c97",
-            "semantic_or_runtime_correspondence_established": false
-          }
-        }
-      ]
+      "path": "scripts/discover-native-ownership.py",
+      "sha256": "565db0aa3c57507906f9ade9081cb026b0a2cc876d0b4e8c879d82b2bebebf5a"
     }
   ],
-  "limits": "Retained Ghidra receipts for selected exact PE raw slices. External producers and consumers need their separately recorded PE evidence. These results establish no full-image semantic closure or runtime parity."
+  "native_ranges": {
+    "hyper-difficulty": {
+      "virtual_address": "0x1401bbfd0",
+      "end_exclusive": "0x1401bceda",
+      "file_offset": "0x1bb3d0",
+      "byte_count": 3850,
+      "sha256": "9dad454950a2fe0e939abbdb61240888ac89d9756ee4bfb004e2585e5e36f910"
+    },
+    "hyper-selection": {
+      "virtual_address": "0x14023f800",
+      "end_exclusive": "0x14023fb83",
+      "file_offset": "0x23ec00",
+      "byte_count": 899,
+      "sha256": "f21bc7103bcf66604fd452364463599ba80d760407606d93d5a262301327db93"
+    },
+    "hyper-achievement": {
+      "virtual_address": "0x145e76430",
+      "end_exclusive": "0x145e76502",
+      "file_offset": "0x5e75830",
+      "byte_count": 210,
+      "sha256": "c46eea9cf0ea7b97c315df2d3d1bcbe5ce207d012fcbb8091d40c56d52cf32a8"
+    },
+    "hyper-guest-admission": {
+      "virtual_address": "0x145e4c990",
+      "end_exclusive": "0x145e4cf32",
+      "file_offset": "0x5e4bd90",
+      "byte_count": 1442,
+      "sha256": "4fb29eb06e0b1156580913acbe560e701d0f4cb0b1221dfaea0a4b827d0bb4f5"
+    },
+    "hyper-denial-producer": {
+      "virtual_address": "0x145e47310",
+      "end_exclusive": "0x145e4743f",
+      "file_offset": "0x5e46710",
+      "byte_count": 303,
+      "sha256": "320b7264b88f585ca4ceddbfd43dd772be010b1948c9d8c6df2f51af9f3158e3"
+    },
+    "hyper-denial-consumer": {
+      "virtual_address": "0x1402224e0",
+      "end_exclusive": "0x140223482",
+      "file_offset": "0x2218e0",
+      "byte_count": 4002,
+      "sha256": "3c0184d3b164ddc69417eb8ffa6df9b10873270f80a42b7d2b923cc2f596cc69"
+    },
+    "hyper-lobby-reason": {
+      "virtual_address": "0x140227900",
+      "end_exclusive": "0x140227aa8",
+      "file_offset": "0x226d00",
+      "byte_count": 424,
+      "sha256": "b9ec041a349035cfc8942efc2f223f2039e078c220259dddb32b8d2af46636fa"
+    },
+    "hyper-host-profile-candidate": {
+      "virtual_address": "0x145e41f30",
+      "end_exclusive": "0x145e41f60",
+      "file_offset": "0x5e41330",
+      "byte_count": 48,
+      "sha256": "a850b589ee80283649907d888cba2111b3a501cadbe0171a4e3127bd5fa1a27e"
+    },
+    "windows-crash-startup": {
+      "virtual_address": "0x140007490",
+      "end_exclusive": "0x1400076bb",
+      "file_offset": "0x6890",
+      "byte_count": 555,
+      "sha256": "9f9fc16b779e9ede98262abd101982fcc7f8393b501018405cf64315c298bf23"
+    },
+    "windows-crash-register": {
+      "virtual_address": "0x140360300",
+      "end_exclusive": "0x140360416",
+      "file_offset": "0x35f700",
+      "byte_count": 278,
+      "sha256": "45250ad97e1d30b30be8e956ef5dab2fe6c4b24c031175a8e783c8bd16d0311a"
+    },
+    "windows-crash-callback": {
+      "virtual_address": "0x14035e680",
+      "end_exclusive": "0x14035fab1",
+      "file_offset": "0x35da80",
+      "byte_count": 5169,
+      "sha256": "6297d31ceb2e6c902bae15f01b0e59b76f9aa51c498d23ff8f1caffcbff73ba1"
+    },
+    "join-gate": {
+      "virtual_address": "0x145e484f1",
+      "end_exclusive": "0x145e4852b",
+      "file_offset": "0x5e478f1",
+      "byte_count": 58,
+      "sha256": "e7464727e6255ac51330f6ff77c5af1f85c197b8deb2cb7f25803e9370fee8c0"
+    },
+    "guest-join": {
+      "virtual_address": "0x145e4465c",
+      "end_exclusive": "0x145e447a5",
+      "file_offset": "0x5e43a5c",
+      "byte_count": 329,
+      "sha256": "583736ba9c4aa5529c1852986357c4e665e822f0ef79d82ea03ceb00c35f89de"
+    },
+    "directory-handshake": {
+      "virtual_address": "0x145e0ad89",
+      "end_exclusive": "0x145e0ae93",
+      "file_offset": "0x5e0a189",
+      "byte_count": 266,
+      "sha256": "844abd0fcae4753eaa7a9572ceb794877efa33a0e752258299c5774923058673"
+    },
+    "gear-metadata": {
+      "virtual_address": "0x145e5c710",
+      "end_exclusive": "0x145e5da68",
+      "file_offset": "0x5e5bb10",
+      "byte_count": 4952,
+      "sha256": "c22225f073038aa09886bdb28055a2e35179fa188b0f6eef3702ec3890624c1d"
+    },
+    "tabard-rewards-descriptor": {
+      "virtual_address": "0x14657d050",
+      "end_exclusive": "0x14657d090",
+      "file_offset": "0x657c450",
+      "byte_count": 64,
+      "sha256": "8fa9b142fc957dbcf0e0b9aa383eb8f3e138ad2cd04fb2bc4be079bb1e91ead5"
+    },
+    "tabard-catalog-descriptor": {
+      "virtual_address": "0x1473b98f8",
+      "end_exclusive": "0x1473b9938",
+      "file_offset": "0x73b8cf8",
+      "byte_count": 64,
+      "sha256": "72e259881b927ec5b4ccf3426772c1485031730e137d39f757d4743138031e95"
+    },
+    "tabard-metadata-descriptor": {
+      "virtual_address": "0x1473c9cc0",
+      "end_exclusive": "0x1473c9d00",
+      "file_offset": "0x73c90c0",
+      "byte_count": 64,
+      "sha256": "1b42450d20e649ebedd9e825a3e1f7e30c386cc63a89e1e0aad3eb0b415366d7"
+    },
+    "hyper-toggle-writer": {
+      "virtual_address": "0x14023ec60",
+      "end_exclusive": "0x14023f376",
+      "file_offset": "0x23e060",
+      "byte_count": 1814,
+      "sha256": "e163b0a1a3bb7ae653bf34df51c64ee87a34f053f14deef4ceb123f7e566cd9f"
+    },
+    "hyper-pick-queue": {
+      "virtual_address": "0x140009b00",
+      "end_exclusive": "0x140009bbb",
+      "file_offset": "0x8f00",
+      "byte_count": 187,
+      "sha256": "272b751da04ca77f8792fff0dbd557d89ead6bd4b5417d960946b0993e508aa5"
+    },
+    "hyper-next-constructor": {
+      "virtual_address": "0x145ea8260",
+      "end_exclusive": "0x145ea8329",
+      "file_offset": "0x5ea7660",
+      "byte_count": 201,
+      "sha256": "bb13de1f578ae52253fb367fa0e1f5744f91737681cb6b419930efd4f30ca5bd"
+    },
+    "hyper-mode-float": {
+      "virtual_address": "0x14018e381",
+      "end_exclusive": "0x14018e3a0",
+      "file_offset": "0x18d781",
+      "byte_count": 31,
+      "sha256": "1b413b02d19f2fd6bbeb320c6cfab0006f8ab3ca9a9574598abab2a81b359da4"
+    },
+    "hyper-directory-host-suffix": {
+      "virtual_address": "0x14620ee9a",
+      "end_exclusive": "0x14620ef0b",
+      "file_offset": "0x620e29a",
+      "byte_count": 113,
+      "sha256": "82d42fabbb8f82bace9e4c7e5926afbb6c2158f56971517571665f86989420d2"
+    },
+    "hyper-directory-update-suffix": {
+      "virtual_address": "0x14620f065",
+      "end_exclusive": "0x14620f0d6",
+      "file_offset": "0x620e465",
+      "byte_count": 113,
+      "sha256": "9a4fcdd29cbfbd1af2258fbbb7d06a2ef179bb4f69306433ca3b88bba8069120"
+    },
+    "codex-lists-ui": {
+      "virtual_address": "0x140157de0",
+      "end_exclusive": "0x14015b1f2",
+      "file_offset": "0x1571e0",
+      "byte_count": 13330,
+      "sha256": "70efab80d53d6054cb129d3f6ea9b5467515ef7272f23683407185b514114f84"
+    },
+    "codex-lists-account": {
+      "virtual_address": "0x145ec25e0",
+      "end_exclusive": "0x145ec26c2",
+      "file_offset": "0x5ec19e0",
+      "byte_count": 226,
+      "sha256": "5bf8bbd6250a88cf2383078712f2bd713883f094a870962e6e40ef6e598b2e08"
+    },
+    "codex-threshold-evaluator": {
+      "virtual_address": "0x145dec8c0",
+      "end_exclusive": "0x145dee702",
+      "file_offset": "0x5debcc0",
+      "byte_count": 7746,
+      "sha256": "9c2458eb5c12ff6f7fdc1da8014756d67b60c6affb8622f3b4f48075c2682691"
+    },
+    "codex-threshold-replay": {
+      "virtual_address": "0x145dedbc1",
+      "end_exclusive": "0x145dedc05",
+      "file_offset": "0x5decfc1",
+      "byte_count": 68,
+      "sha256": "96f79d094942de807fa07b17fe865ffd5af2944c96b6bf34c2b906c9df3e70db"
+    },
+    "codex-class-pools": {
+      "virtual_address": "0x1473ae0e0",
+      "end_exclusive": "0x1473ae5f0",
+      "file_offset": "0x73ad4e0",
+      "byte_count": 1296,
+      "sha256": "23d22284c4f1d2a9787a8bf587c15ba182781adc79df63f5a3fc90dbda27253d"
+    },
+    "codex-talent-trees": {
+      "virtual_address": "0x147742e20",
+      "end_exclusive": "0x147743528",
+      "file_offset": "0x7742220",
+      "byte_count": 1800,
+      "sha256": "98513774e758ba38830929238b74296a1b059c8fec391c731b86874b89f79bc8"
+    },
+    "codex-jewelry": {
+      "virtual_address": "0x147722740",
+      "end_exclusive": "0x147722db8",
+      "file_offset": "0x7721b40",
+      "byte_count": 1656,
+      "sha256": "637de93383368271c54da0495776395eeb145c466a7b9dc86a21ca6ca3cd02ff"
+    },
+    "codex-shared-amulets": {
+      "virtual_address": "0x1477239a0",
+      "end_exclusive": "0x147723ea0",
+      "file_offset": "0x7722da0",
+      "byte_count": 1280,
+      "sha256": "3b9f9624ef4f4e05310112c21af6d564a1cadf5e3a8bd62f4e6e4acc87a18295"
+    },
+    "hyper-preview-minute": {
+      "virtual_address": "0x14018e333",
+      "end_exclusive": "0x14018e474",
+      "file_offset": "0x18d733",
+      "byte_count": 321,
+      "sha256": "ef0a8739cce83d454d3a183c5d7bd67d2c266de6ca8d1bb952ff3c426897abdf"
+    },
+    "hyper-difficulty-label": {
+      "virtual_address": "0x145ea8260",
+      "end_exclusive": "0x145ea8329",
+      "file_offset": "0x5ea7660",
+      "byte_count": 201,
+      "sha256": "bb13de1f578ae52253fb367fa0e1f5744f91737681cb6b419930efd4f30ca5bd"
+    },
+    "hyper-directory-incoming": {
+      "virtual_address": "0x146210570",
+      "end_exclusive": "0x14621068f",
+      "file_offset": "0x620f970",
+      "byte_count": 287,
+      "sha256": "f70ab377114fa246a14e394cbf2c8c65aa70df8419f97f76492b4d84652098fb"
+    },
+    "hyper-party-roster-writer": {
+      "virtual_address": "0x145dd8c56",
+      "end_exclusive": "0x145dd8c81",
+      "file_offset": "0x5dd8056",
+      "byte_count": 43,
+      "sha256": "f5b029803251cfd0897e30769d6046023612c82845a8915e092f17be9f1d0bbe"
+    },
+    "hyper-party-roster-reader": {
+      "virtual_address": "0x145dd3f0b",
+      "end_exclusive": "0x145dd404e",
+      "file_offset": "0x5dd330b",
+      "byte_count": 323,
+      "sha256": "f184210d379052ad2f7fcdcd5eefbd0691eba29f679f3d153a0a2f795a6928d9"
+    },
+    "hyper-world-entry-lead": {
+      "virtual_address": "0x145e35de6",
+      "end_exclusive": "0x145e35e3c",
+      "file_offset": "0x5e351e6",
+      "byte_count": 86,
+      "sha256": "356bbbab038cbff684a5ccb2dda4b709d6899c3742caf644b5cfa3ba0f803cd6"
+    },
+    "marker-dispatch": {
+      "virtual_address": "0x1465cc69c",
+      "end_exclusive": "0x1465cc6b0",
+      "file_offset": "0x65cba9c",
+      "byte_count": 20,
+      "sha256": "a21988b6e22bbf8b286b10761245a748a396cbb8d2ce0f5bd3f998b9a242d29f",
+      "dispatch_site": "0x1403b5039"
+    },
+    "party-dispatch": {
+      "virtual_address": "0x1473c71b8",
+      "end_exclusive": "0x1473c71d8",
+      "file_offset": "0x73c65b8",
+      "byte_count": 32,
+      "sha256": "5f78a5fe630ec57631fd94cf2fedf391b14a71f826e7614d90f9b077efd20546",
+      "dispatch_site": "0x145e24c09"
+    },
+    "gear-dispatch": {
+      "virtual_address": "0x1473d3880",
+      "end_exclusive": "0x1473d389c",
+      "file_offset": "0x73d2c80",
+      "byte_count": 28,
+      "sha256": "16109a3cfbb7ef30f7e8f705394a504cc4f74a3b1991c4cb35fe432f338c2318",
+      "dispatch_site": "0x145e5d4f7"
+    },
+    "talent-seven-way-dispatch": {
+      "virtual_address": "0x147b04f80",
+      "end_exclusive": "0x147b04f9c",
+      "file_offset": "0x7b04380",
+      "byte_count": 28,
+      "sha256": "b3c454a6c76d2fd6dc8b6767bead66b673962bcfbf0ba6dc50c791e050e0c602",
+      "dispatch_site": "0x145fcce5a"
+    },
+    "talent-nine-way-dispatch": {
+      "virtual_address": "0x147b04e18",
+      "end_exclusive": "0x147b04e3c",
+      "file_offset": "0x7b04218",
+      "byte_count": 36,
+      "sha256": "1bdf228222e435b57d98502490f1a995e99a2846a83f6cb60e1ddffbd9d9d581",
+      "dispatch_site": "0x145fd09c4"
+    }
+  },
+  "bounded_contracts": {
+    "custom-app-lib": {
+      "gap_ids": [
+        326
+      ],
+      "ranges": [
+        "windows-crash-startup",
+        "windows-crash-register",
+        "windows-crash-callback"
+      ],
+      "scope": "The Windows startup constructs its Diagnostics path and supplies the filter callback that calls MiniDumpWriteDump. Filename formatting, all errors and runtime file effects remain open."
+    },
+    "custom-game-server-party": {
+      "gap_ids": [
+        163,
+        325
+      ],
+      "ranges": [
+        "join-gate",
+        "guest-join",
+        "directory-handshake",
+        "hyper-guest-admission",
+        "hyper-denial-producer",
+        "hyper-directory-host-suffix",
+        "hyper-directory-update-suffix",
+        "hyper-party-roster-writer",
+        "hyper-party-roster-reader"
+      ],
+      "scope": "Exact Join protocol/version, separate directory handshake, Hyper first-profile achievement refusal and required roster mode byte after rank. Directory mode carriage and UI projections are mapped; world entry remains pending."
+    },
+    "custom-game-gear": {
+      "gap_ids": [
+        324
+      ],
+      "ranges": [
+        "gear-metadata",
+        "tabard-rewards-descriptor",
+        "tabard-catalog-descriptor",
+        "tabard-metadata-descriptor"
+      ],
+      "scope": "Tabard item 90012 enters the current item metadata resolver, emits display 16078 and has its original crest members in the verified Data chain."
+    },
+    "custom-app-screens-codex": {
+      "gap_ids": [
+        19,
+        73
+      ],
+      "ranges": [
+        "codex-lists-ui",
+        "codex-class-pools",
+        "codex-talent-trees",
+        "codex-jewelry",
+        "codex-shared-amulets"
+      ],
+      "scope": "Current Codex membership of 141 distinct eligible pieces across jewelry, shared and class/talent amulets. The current source membership matches this exact set."
+    },
+    "custom-game-achievements": {
+      "gap_ids": [
+        19,
+        73
+      ],
+      "ranges": [
+        "codex-lists-account",
+        "codex-threshold-evaluator",
+        "codex-threshold-replay"
+      ],
+      "scope": "Every Bauble reads the shared 141-key Codex population, counts Seen flags and uses a 100 percent threshold. Current startup, grants and guest delivery remain separate."
+    }
+  },
+  "limits": [
+    "Ranges are observed in the verified installed PE and checked from declared instruction boundaries.",
+    "Current bounded observations do not establish whole module semantics, source execution or parity."
+  ],
+  "queries": {
+    "hyper-world-peer-filter": {
+      "raw_input": {
+        "path": "runtime/analysis/tasks/execheck-frontier/slices/picker-14603ec70.bin",
+        "sha256": "f5bd6373167dfd7461c7cc191d8a2d73d54ebb64b6a8c211ea30a98bad7728ff"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/execheck-frontier/slices/plan-14603ec70.json",
+        "sha256": "7c8d55b11a9872b489465f46bad5f452b668ceddfac3363793e895a735ed86be"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/execheck-frontier/rea-14603ec70/journal.json",
+        "sha256": "af3c220655ad52da593b6358fc45ea674bc00902196084c7612099d04d27df5b"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/execheck-frontier/rea-14603ec70/results/7dc9fdd8175616dcc8097189143fc0170e9c3f784d8ea1ff8b6f5947bdaea5df-821894df3a3c370b.json",
+        "sha256": "95b42d7eab0ac1da7cf34a6d246bec2398148a100c729eef16b1d514214a3d45"
+      },
+      "procedure": "0x14603ec70",
+      "slice_virtual_address": "0x14603ec70",
+      "evidence_id": "ev_79038e05c59474c7bfa75b4eccb3da16b85474b55bf47764d784420a4db7858b",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "842da07eae9b773dc154703123d30a3779cd3aab2e1be980af2b6a3636bbc024"
+    },
+    "hyper-pick-queue-helper": {
+      "raw_input": {
+        "path": "runtime/analysis/tasks/execheck-frontier/slices/picker-140009b00.bin",
+        "sha256": "272b751da04ca77f8792fff0dbd557d89ead6bd4b5417d960946b0993e508aa5"
+      },
+      "plan": {
+        "path": "runtime/analysis/tasks/execheck-frontier/slices/plan-140009b00.json",
+        "sha256": "5d92809b4d800d4f412b44deb726cb5df5f767b80a92ee0922907b9ac547011e"
+      },
+      "journal": {
+        "path": "runtime/analysis/tasks/execheck-frontier/rea-140009b00/journal.json",
+        "sha256": "d2c4fc027fa13c5c5d115749f3fbb7485bae35f0e63848087e2e88a27fdd5e85"
+      },
+      "result": {
+        "path": "runtime/analysis/tasks/execheck-frontier/rea-140009b00/results/7a74aac547df2155f6079721b418e186c7b1fe9b0dcbf86ed3c525cbfb1796b4-b76bc353cb019eb7.json",
+        "sha256": "3997b56d6198282fa6d2c7f11e875c43ae0e5369fbfd546e4dc70986bcf6f2c2"
+      },
+      "procedure": "0x140009b00",
+      "slice_virtual_address": "0x140009b00",
+      "evidence_id": "ev_1140bf3834ed8b33a347474a88e02cc2fa5ee5c50f74aa90bb72e40aaef5884c",
+      "provider": {
+        "id": "ghidra",
+        "name": "Ghidra",
+        "version": "12.1.4"
+      },
+      "analysis_profile_digest": "39dbc786c0748018d9d0e276c0da4c0cd3c9617de236125cf8214c75c7707152"
+    }
+  },
+  "guarded_context_proof": {
+    "path": "runtime/analysis/objects/12/125017beb95b04f55507f4b3ddf07d26bf353b55299faebafb60af01b5f5021d",
+    "sha256": "125017beb95b04f55507f4b3ddf07d26bf353b55299faebafb60af01b5f5021d"
+  }
 }

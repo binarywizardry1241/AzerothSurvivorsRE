@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.141.0",
+    "version": "0.143.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-    "size_bytes": 151493632
+    "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+    "size_bytes": 151566336
   },
   "gap_ids": [
     41
@@ -15,19 +15,19 @@
   ],
   "generator": {
     "path": "scripts/inventory-current-mpq-members.py",
-    "sha256": "f3e67f161e3d4c6eb93df4140c4f3fafba6aaf14da8846d73163c5b060e833ca"
+    "sha256": "e3ea231c8603ec5d14cceffbe6baf0fe87da1c74929f68edfdd98a451d0b2bd2"
   },
   "parser": {
     "path": "scripts/check-minimap-lifecycle.py",
-    "sha256": "e933ce82e4fc51ba9ba0a90b45f4ac81819efae55edad6a4992aa6e78e51457c"
+    "sha256": "3788cf39cefb9f95575378920f136b478735c3aaef397bca379c76bae56c7403"
   },
   "source_chain": {
     "path": "crates/benilla-formats/src/chain.rs",
     "sha256": "5de7ec4a0c308360a2bacb3b2e8af9627ccb11c74c17e5887805795776fb847a"
   },
   "native_resource_candidate_input": {
-    "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/inventory.json",
-    "sha256": "8046a544fabb021092d44e317fb230e945a57050bfa31201f63bbafac092f145",
+    "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/inventory.json",
+    "sha256": "b1ac71f49fdd599b122e496d504763aac4ecd6122e92e1c773f16983591ea941",
     "regenerate": "python3 scripts/inventory-current-target.py --write"
   },
   "archives": [
@@ -186,35 +186,48 @@
       "opaque_hash_slots": [],
       "blocks_without_active_hash": [],
       "source_priority": 11
+    },
+    {
+      "path": "installed-game/Data/patch-D.MPQ",
+      "sha256": "4ea58417c035e2ea70e0460eaaf10b47f0ed92616c110c3716f338d67e5880f7",
+      "size_bytes": 35594,
+      "hash_table_sha256": "dc58d8df1bd09acfc46900a1c497ef00a68796785c1800e75268a3a2c2ad2a7f",
+      "block_table_sha256": "639ceaf11b3376fa60836f634510fd5ea78158aecceee9849132c7c16ed0569b",
+      "listfile_sha256": "77132b94cbaac0e9bf299e169c550a5cca32e34366ba6d803af7b99e8c7d599d",
+      "listed_names": 3,
+      "active_hash_slots": 3,
+      "opaque_hash_slots": [],
+      "blocks_without_active_hash": [],
+      "source_priority": 12
     }
   ],
   "outputs": {
     "members.jsonl": {
-      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/mpq-members/members.jsonl",
-      "sha256": "51bb5dac0aa642bca4e54acc8d7e7de0c84be7152bb2a0f12760314dfb7bc06c",
-      "records": 30172,
-      "bytes": 9934932
+      "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/mpq-members/members.jsonl",
+      "sha256": "eee7c962d56ca3f226540d8e0e8a81e85e05ba6ac35d5170dc28e0fb1b1058e5",
+      "records": 30175,
+      "bytes": 9935883
     },
     "source-overrides.jsonl": {
-      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/mpq-members/source-overrides.jsonl",
-      "sha256": "6e1b8eb2f35a3197b650be90a70bcb2d8a910d2a21a695590f0f8c9867e7007b",
-      "records": 30161,
-      "bytes": 4732503
+      "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/mpq-members/source-overrides.jsonl",
+      "sha256": "03b61b63a0422f5302bc58737e94ce2ee01000c7f129094f5485bc99ec39ec60",
+      "records": 30163,
+      "bytes": 4732891
     },
     "resource-leads.jsonl": {
-      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/mpq-members/resource-leads.jsonl",
-      "sha256": "8c7bc78686f37707c31b33b55132bd5fc4c2e7d88cb31e152fb78b8c8bb213fb",
-      "records": 325,
-      "bytes": 118148
+      "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/mpq-members/resource-leads.jsonl",
+      "sha256": "903fb03dc01bcf6433f9ef4c786a61ded382537ad0f11acd2d9cee4c547d5fbe",
+      "records": 326,
+      "bytes": 118518
     }
   },
   "counts": {
-    "archives": 12,
-    "active_hash_slots": 30172,
-    "unique_names": 30161,
+    "archives": 13,
+    "active_hash_slots": 30175,
+    "unique_names": 30163,
     "opaque_hash_slots": 0,
     "blocks_without_active_hash": 0,
-    "resource_path_candidates": 325
+    "resource_path_candidates": 326
   },
   "limits": [
     "Only listfiles and MPQ tables read; assets remain in installed archives.",

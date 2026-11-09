@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.141.0",
+    "version": "0.143.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-    "size_bytes": 151493632
+    "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+    "size_bytes": 151566336
   },
   "generator": [
     {
       "path": "scripts/inventory-target-ranges.py",
-      "sha256": "0f54f9deb467c80dae7080812662a4a6d4eb4218e7242605a3695ff1f348a6c4"
+      "sha256": "dcfd787f8c76b4ee223d059252d23432591925e9dac57d442739f21e11fc7008"
     },
     {
       "path": "scripts/inventory-executable.py",
@@ -17,40 +17,40 @@
     },
     {
       "path": "scripts/coverage_common.py",
-      "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
+      "sha256": "a0f259154e481a9e6b51c29e0bf9d13cae7522d26c5e108e7c6fa95d6f3e71ab"
     }
   ],
   "ledger": {
-    "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/file-ranges.json",
-    "sha256": "958f77b943e09318035ba54637c3651888ec5dd67234c87ecffdb99b8a246ae5"
+    "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/file-ranges.json",
+    "sha256": "a9e2f936c44564070936fce40a0d1e21cf512be865ba84d73f9256e45f4674fb"
   },
   "counts": {
     "ranges": 26,
-    "partition_bytes": 151493632,
+    "partition_bytes": 151566336,
     "overlap_bytes": 0,
     "omitted_bytes": 0,
     "bytes_by_structural_class": {
       "coff_header": 20,
       "dos_header": 64,
-      "dos_stub_unknown": 208,
-      "executable_section_semantics_unknown": 106221886,
-      "header_slack_unknown": 248,
-      "nonexecutable_section_semantics_unknown": 45269610,
+      "dos_stub_unknown": 192,
+      "executable_section_semantics_unknown": 106266302,
+      "header_slack_unknown": 264,
+      "nonexecutable_section_semantics_unknown": 45298022,
       "optional_header": 240,
       "pe_signature": 4,
-      "raw_alignment_tail_unknown": 1112,
+      "raw_alignment_tail_unknown": 988,
       "section_table": 240
     },
     "semantic_recovery_status": "unknown_not_measured_by_structural_partition",
-    "data_files": 12,
-    "registered_archives": 12,
+    "data_files": 13,
+    "registered_archives": 13,
     "unregistered_data_files": 0
   },
   "selectors": {
     "exe": "ranges[selector]; exact file_start/file_end_exclusive and sha256",
     "data": "data_resources[selector]; exact portable path and complete sha256"
   },
-  "unknown_queue": "docs/analysis/unknown-recovery-0.141.0.md#whole-file-and-data-range-leads",
+  "unknown_queue": "docs/analysis/unknown-recovery.md",
   "limits": [
     "Structural PE classes do not establish semantic/source recovery.",
     "Uniform bytes and raw alignment tails remain unknown; no padding is proved.",

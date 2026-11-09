@@ -1,12 +1,33 @@
 # Embedded locale data and restoration
 
+## 0.143.0 payload correspondence
+
+The [current descriptor audit](evidence/locale-catalog-review.json) binds
+the 0.143.0 EXE SHA-256
+`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
+It located all fourteen seven-u64 descriptors at preferred VA `0x147afa770`
+and independently checked the full payloads. The native catalogs contain
+49,322 values and the current source catalogs contain 48,664. The native English
+catalog has 62 keys absent from source, and the other catalogs have 806 missing
+keys in total. These differences compare the live source to the installed PE.
+
+The current English payload includes the Hyper Mode toggle, Champion of
+Naxxramas unlock description and both party denial variants. The source catalog
+still names only the Crusader glow in the achievement description. Follow the
+exact caller keys and fallback behavior in [#158](../CURRENT-STATE.md#gap-158),
+with Hyper Mode consumers in [#325](../CURRENT-STATE.md#gap-325). The earlier
+Ready Check UI also has string keys whose source translations need checking.
+Runtime lookup and rendering remain separate.
+
+## 0.119.0 payload baseline
+
 Selected installed EXE: **0.119.0**, 145,357,824 bytes, SHA-256
 `6cb443c6ee7bd8c6e08ea9fd22f715f21ef4bd9aab4f58caff83371fdb9e198f`.
 The configured EXE and Data were read in place. This bounded data review does
 not execute the game or promote earlier native lookup/UI contracts.
 [verification-needed](../verification-needed.md) owns permanent finding status.
 
-The [descriptor review](evidence/locale-catalog-review.json) independently
+The [historical descriptor review](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/70576100b062d6d2d68830e6dbbadddfaf4b007e/docs/analysis/evidence/locale-catalog-review.json) independently
 locates fourteen flat UTF-8 JSON payloads and the contiguous fourteen-record
 seven-u64 table `[0x1475d7350,0x1475d7660)`, raw
 `[0x75d6150,0x75d6460)`. The 784-byte table hashes to

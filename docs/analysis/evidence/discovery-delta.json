@@ -1,77 +1,85 @@
 {
   "target": {
+    "version": "0.143.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+    "size_bytes": 151566336
+  },
+  "previous_target": {
     "version": "0.141.0",
     "path": "installed-game/AzerothSurvivors.exe",
     "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
     "size_bytes": 151493632
   },
-  "previous_target": {
-    "version": "0.140.0",
-    "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9",
-    "size_bytes": 151521280
-  },
   "generator": {
     "path": "scripts/review-target-refresh.py",
-    "sha256": "17d7290fc1367856a6c001ae214b5c8c2e5a874d4dd67d350e0f0c83c71ffe25"
+    "sha256": "ecf68fa6fafd3fd9c07626345085b432f2497681ad6a7ead9bb0573d8e59b7f8"
   },
   "inventories": {
     "current": {
-      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/inventory.json",
-      "sha256": "ce00895479bdd89872b3bf6523e439a205622b832f9daf1371ba3ccb6fe956ba",
+      "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/inventory.json",
+      "sha256": "b1ac71f49fdd599b122e496d504763aac4ecd6122e92e1c773f16983591ea941",
       "regenerate": "python3 scripts/inventory-current-target.py --write"
     },
     "historical": {
-      "path": "runtime/coverage/27c8df53c87e38a98d474bf7106d2444e11e7634ca70dbffc5c2b0aecb894fd9/inventory.json",
-      "sha256": "e93ee5d9a14025b8e7b717dca1013af5a1417076818a66c58666d02e8c397cc4",
+      "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/inventory.json",
+      "sha256": "8046a544fabb021092d44e317fb230e945a57050bfa31201f63bbafac092f145",
       "regenerate": "python3 scripts/inventory-current-target.py --write"
     }
   },
   "version_evidence": {
     "updater": {
-      "file_offset": "0x659c67c",
-      "virtual_address": "0x14659e07c",
-      "byte_count": 60,
-      "sha256": "71b81804de7cde88afefe2aa7752d2be6671cbcccdcd160be8f3ae1ac004a36f",
+      "file_offset": "0x65c08a6",
+      "virtual_address": "0x1465c14a6",
+      "byte_count": 58,
+      "sha256": "fc76482fcc73171c4f9b0c4d8c68597f00923c0bc30e3f17a407d06cb63bb9ff",
       "kind": "mapped_manual_update_remote_version_slice",
-      "descriptor_file_offset": "0x659c6a8"
+      "descriptor_file_offset": "0x65c08d0"
     },
     "platform_descriptors": [
       {
-        "file_offset": "0x6591821",
-        "virtual_address": "0x146593221",
+        "file_offset": "0x65b8589",
+        "virtual_address": "0x1465b9189",
         "byte_count": 33,
-        "sha256": "dc2815c136fe5e883a1ce999ad842d7e259997e223dcf6256ba67ed16ac2b225",
+        "sha256": "4616cccf04caaa88e8d8cab289a2e42969b8d3659792145b771d536b478ecc40",
         "kind": "mapped_version_display_slice",
-        "descriptor_file_offset": "0x6591828"
+        "descriptor_file_offset": "0x65b8590"
       }
     ]
   },
-  "custom_paths_added": [
-    "crates/wenilla-rogue/src/gear/t05.rs"
-  ],
+  "custom_paths_added": [],
   "custom_paths_removed": [],
   "candidate_changes": {
     "module_type_namespace": {
       "added": [
-        "benilla_app::menu_scene::MenuScenePluginbenilla_app::hero_preview::HeroPreviewPluginbenilla_app::host_controls::LocalClockPluginbenilla_app::host_controls::TouchDrivePluginbenilla_app::host_controls::PlayerPositionPluginbenilla_app::host_controls::input_gate::InputGatePluginbenilla_app::host_controls::combat_text::CombatTextAnchorsPluginbenilla_app::host_controls::over_screens::OverScreensPluginbenilla_app::host_controls::world_anchors::WorldAnchorsPlugin",
-        "benilla_app::spell_override::WorldHoldPlugindescription",
-        "benilla_assets::gpu_blpmessage9",
-        "benilla_world::skyboxmessageA"
+        "benilla_app::hero_preview::HeroPreviewPlugin",
+        "benilla_app::host_controls::combat_text::CombatTextAnchorsPluginbenilla_app::host_controls::over_screens::OverScreensPlugin",
+        "benilla_app::host_controls::world_anchors::WorldAnchorsPlugin",
+        "benilla_app::menu_scene::MenuScenePluginbenilla_app::host_controls::LocalClockPluginbenilla_app::host_controls::TouchDrivePluginbenilla_app::host_controls::PlayerPositionPluginbenilla_app::host_controls::input_gate::InputGatePlugin",
+        "benilla_app::spell_override::WorldHoldPluginwenilla_rogue_app::window::GameWindowPlugin",
+        "benilla_app::ui_pass::UiQuadMaterialbevy_image::image::Image",
+        "benilla_assets::gpu_blpmessageQ4",
+        "benilla_world::entity_shademessageq",
+        "benilla_world::skyboxmessage",
+        "wenilla_rogue_app::screens::ScreensPlugin"
       ],
       "removed": [
-        "benilla_app::hero_preview::HeroPreviewPluginbenilla_app::host_controls::LocalClockPluginbenilla_app::host_controls::TouchDrivePluginbenilla_app::host_controls::PlayerPositionPluginbenilla_app::host_controls::input_gate::InputGatePlugin",
-        "benilla_app::host_controls::world_anchors::WorldAnchorsPlugin",
-        "benilla_app::menu_scene::MenuScenePluginbenilla_app::spell_override::WorldHoldPluginbenilla_app::host_controls::combat_text::CombatTextAnchorsPluginbenilla_app::host_controls::over_screens::OverScreensPlugindescription",
-        "benilla_assets::gpu_blpmessagey",
-        "benilla_world::skyboxmessage"
+        "benilla_app::menu_scene::MenuScenePluginbenilla_app::hero_preview::HeroPreviewPluginbenilla_app::host_controls::LocalClockPluginbenilla_app::host_controls::TouchDrivePluginbenilla_app::host_controls::PlayerPositionPluginbenilla_app::host_controls::input_gate::InputGatePluginbenilla_app::host_controls::combat_text::CombatTextAnchorsPluginbenilla_app::host_controls::over_screens::OverScreensPluginbenilla_app::host_controls::world_anchors::WorldAnchorsPlugin",
+        "benilla_app::spell_override::WorldHoldPlugindescription",
+        "benilla_app::ui_pass::UiQuadMaterialbevy_image::image::ImageSayPartyRaidGuildOfficerYellWhisperWhisperInformEmoteTextEmoteSystemMonsterSayMonsterYellMonsterEmoteMonsterWhisperChannelChannelJoinChannelLeaveChannelNoticeChannelNoticeUserChannelListAfkDndIgnoredSkillLootMoneyCombatXpGainCombatHonorGainRaidLeaderRaidWarningRaidBossEmoteFilteredBattlegroundBattlegroundLeaderBgSystemNeutralBgSystemAllianceBgSystemHordeCombatMiscInfoCombatSelfHitsCombatSelfMissesCombatPetHitsCombatPetMissesCombatPartyHitsCombatPartyMissesCombatFriendlyPlayerHitsCombatFriendlyPlayerMissesCombatHostilePlayerHitsCombatHostilePlayerMissesCombatCreatureVsSelfHitsCombatCreatureVsSelfMissesCombatCreatureVsPartyHitsCombatCreatureVsPartyMissesCombatCreatureVsCreatureHitsCombatCreatureVsCreatureMissesCombatFriendlyDeathCombatHostileDeathSpellSelfDamageSpellSelfBuffSpellPetDamageSpellPetBuffSpellPartyDamageSpellPartyBuffSpellFriendlyPlayerDamageSpellFriendlyPlayerBuffSpellHostilePlayerDamageSpellHostilePlayerBuffSpellCreatureVsSelfDamageSpellCreatureVsSelfBuffSpellCreatureVsPartyDamageSpellCreatureVsPartyBuffSpellCreatureVsCreatureDamageSpellCreatureVsCreatureBuffSpellTradeskillsSpellDamageShieldsOnSelfSpellDamageShieldsOnOthersSpellAuraGoneSelfSpellAuraGonePartySpellAuraGoneOtherSpellItemEnchantmentsSpellBreakAuraSpellPeriodicSelfDamageSpellPeriodicSelfBuffsSpellPeriodicPartyDamageSpellPeriodicPartyBuffsSpellPeriodicFriendlyPlayerDamageSpellPeriodicFriendlyPlayerBuffsSpellPeriodicHostilePlayerDamageSpellPeriodicHostilePlayerBuffsSpellPeriodicCreatureDamageSpellPeriodicCreatureBuffsSpellFailedLocalPlayerCombatFactionChange",
+        "benilla_assets::gpu_blpmessage9",
+        "benilla_world::entity_shademessage",
+        "benilla_world::skyboxmessageA",
+        "wenilla_rogue_app::window::GameWindowPluginwenilla_rogue_app::screens::ScreensPlugin"
       ],
       "same_distinct_literals": false
     },
     "game_binding_identifier": {
-      "added": [],
+      "added": [
+        "AZS_ON_TOP_FRAMESMessage"
+      ],
       "removed": [],
-      "same_distinct_literals": true
+      "same_distinct_literals": false
     },
     "lua_ui_registration": {
       "added": [],
@@ -94,9 +102,13 @@
       "same_distinct_literals": true
     },
     "resource_path": {
-      "added": [],
-      "removed": [],
-      "same_distinct_literals": true
+      "added": [
+        "DBFilesClient\\PetPersonality.dbc"
+      ],
+      "removed": [
+        "DBFilesClient\\LoadingScreens.dbc"
+      ],
+      "same_distinct_literals": false
     },
     "lua_function_declaration": {
       "added": [],
@@ -104,13 +116,13 @@
       "same_distinct_literals": true
     }
   },
-  "import_library_function_sets_equal": true,
+  "import_library_function_sets_equal": false,
   "embedded_api": {
-    "file_offset": "0x7ae141a",
-    "virtual_address": "0x147ae2e1a",
+    "file_offset": "0x73bb852",
+    "virtual_address": "0x1473bc452",
     "byte_count": 28656,
     "sha256": "24be94eb96a3e539ab7d30a9171090cfd15e2667efa0a9423802b37705f4e8e6",
-    "canonical_extract": "docs/analysis/evidence/0.140.0/embedded-api.lua",
+    "canonical_extract": "docs/analysis/evidence/addon-api/selected-reference.lua",
     "boundary": "Exact start comment through final event-handler registration; adjacent packed constants excluded.",
     "native_dependencies_revalidated": false
   },

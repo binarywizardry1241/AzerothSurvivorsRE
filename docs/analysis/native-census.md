@@ -1,23 +1,79 @@
 # Native discovery census
 
+## 0.143.0 structural accounting
+
+The installed reference is 151,566,336 bytes with SHA-256
+`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
+The [PE inventory](coverage/native-summary.json) records six sections, 845
+diagnostic paths, 372,776 declared extents, 431 imports and 644,124 nonpadding
+relocations. The [diagnostic pass](coverage/diagnostic-ownership.json)
+independently verifies references for all 83 Survivors paths. The
+[26-range ledger](coverage/file-range-summary.json) partitions every file byte
+with zero overlap or omission.
+
+The [independent linear pass](coverage/instruction-summary.json) decoded
+24,905,113 instructions and 100,888,004 bytes across all declared extents,
+with zero undecoded suffix. The [complement](coverage/unwind-complement-summary.json)
+accounts for 5,378,298 executable bytes and 78,489 instructions from
+2,860 seed addresses. Its unclassified regions and candidate padding are
+separate from the independently decoded population. The
+[MPQ member inventory](evidence/mpq-member-coverage.json) covers all thirteen
+archives. These static populations have different scopes and may overlap.
+
+### Verified whole-image passes
+
+Ghidra 12.1.4 collected instruction, body and reference exports. The
+independent Capstone 5.0.7 verifier checked instruction bytes and boundaries
+against the registered EXE. The expanded profile reused the declared Program.
+
+| Pass | Instructions / bytes | Functions / body ranges | Static references |
+| --- | ---: | ---: | ---: |
+| Declared | 23,422,807 / 93,665,683 | 375,293 / 434,848 | 4,035,859 |
+| First expanded | 24,275,189 / 97,350,476 | 448,393 / 506,571 | 4,201,815 |
+| Guarded expansion | 24,338,597 / 97,637,103 | 448,393 / 505,364 | 4,221,092 |
+| [Selected](coverage/full-image-selected.json) | 24,338,631 / 97,637,258 | 448,393 / 505,359 | 4,221,109 |
+
+Both passes decoded an instruction at every requested code seed. Collection
+and independent verification took 741s and 175s for the cold declared pass.
+The expanded pass reused saved state and took 184s and 133s. These are
+per-stage wall times. The pipeline also includes inventory, lead generation,
+semantic review and reconciliation.
+
+The first expansion applied 2,664 guarded tables. The next pass added
+1,275 tables using independently verified declared-linear boundaries and the
+expanded census. It exposed four more guarded sites outside declared unwind
+extents at `0x141f81d13`, `0x141f822c6`, `0x141f82417` and `0x141f82716`.
+Each matches the normalized geometry of a site from the 0.141.0 expansion's
+four-site frontier. That comparison supplies a predecessor lead. The current
+table proof and static target instructions have their own receipts.
+
+The final pass applies all 3,943 guarded tables, with 76,571 entries and
+25,189 distinct destinations. The last independently generated proposal
+has the same edge digest. The final Program reuses the previously verified
+target and leaves 8,629,044 bytes outside its instruction union in 488,497
+ranges. Those include 5,270,250 bytes in declared extents and 3,358,794 in
+their executable complement. The [queue](unknown-recovery.md) gives exact
+selectors for residual ranges, owners, aliases and data-consumer questions.
+
+## 0.141.0 structural accounting
+
 The installed reference is 151,493,632 bytes with SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 The [target registry](coverage/targets.json) binds the exact inputs.
 [CURRENT-STATE](../CURRENT-STATE.md) owns source and recovery status.
 
-The [PE inventory](coverage/native-summary.json) found six sections, 845
+The [PE inventory](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/70576100b062d6d2d68830e6dbbadddfaf4b007e/docs/analysis/coverage/native-summary.json) found six sections, 845
 diagnostic paths, 372,623 declared extents, 430 imports and 643,985 nonpadding
 relocations. All 83 Survivors paths have verified instruction references.
-The [26-range ledger](coverage/file-range-summary.json) partitions every file
-byte. The [independent linear scan](coverage/instruction-summary.json) decoded
+The 26-range ledger partitions every file byte. The independent linear scan decoded
 24,893,474 instructions covering 100,845,169 bytes with zero undecoded suffix.
-The [complement](coverage/unwind-complement-summary.json) separately accounts for
+The complement separately accounts for
 5,376,717 executable bytes and 78,661 seeded instructions. All twelve MPQ hashes
-match the prior chain. [Current member inventory](evidence/mpq-member-coverage.json)
+match the prior chain.
 
-## Whole-image passes
+## 0.141.0 whole-image passes
 
-The [selection record](coverage/native-image-current.json) binds the active
+The [historical selection record](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/70576100b062d6d2d68830e6dbbadddfaf4b007e/docs/analysis/coverage/native-image-current.json) binds that
 census to its companion proofs. Intermediate snapshots remain accessible through
 [coverage provenance](artifact-history.json) for exact historical checks.
 
@@ -31,7 +87,7 @@ body entries and repaired three after adding four guarded sites.
 | [Declared](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coverage/full-image-declared-0.141.0.json) | 23,413,257 / 93,631,178 | 375,139 / 434,628 | 4,033,740 |
 | [Initial expanded](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coverage/full-image-expanded-0.141.0.json) | 24,265,076 / 97,313,995 | 448,241 / 506,378 | 4,199,488 |
 | [Guarded expansion](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/coverage/full-image-guarded-0.141.0.json) | 24,328,365 / 97,600,132 | 448,241 / 505,175 | 4,218,694 |
-| [Selected](coverage/full-image-selected.json) | 24,328,399 / 97,600,287 | 448,241 / 505,170 | 4,218,711 |
+| [Selected](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/70576100b062d6d2d68830e6dbbadddfaf4b007e/docs/analysis/coverage/full-image-selected.json) | 24,328,399 / 97,600,287 | 448,241 / 505,170 | 4,218,711 |
 
 Every requested final code seed has an instruction. The selected pass leaves
 8,621,599 executable bytes outside the instruction union in 488,306 ranges.

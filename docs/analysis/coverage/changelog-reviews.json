@@ -36013,6 +36013,560 @@
           "evidence_ref": "docs/analysis/coop-codex-0.141.1.md"
         }
       ]
+    },
+    {
+      "claim_id": "changelog:0.143.0:20eeba1dc4defaf3",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Release summary. The current Difficulty selector and achievement gate are bounded; the timing branches remain separate claim questions under #325.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_options.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/run_options.rs": "a69c2892588525ec8f5f62afbc30c77b3fa797e1aa6e0c549ce5c005b15b5768",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "bd4ce9a3a0c372849afe348d23204f983e7b5d4ea127731dda627b8765534aaa",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+      },
+      "systems": [
+        "custom-app-screens-picker",
+        "custom-game-game-mod"
+      ],
+      "gap_ids": [
+        325
+      ]
+    },
+    {
+      "claim_id": "changelog:0.143.0:2052657ed900be9c",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Current Difficulty action 1 gates and toggles a separate Pick mode byte using heroic:naxx5, then queues a Pick update. Trace persistent representation and the run constructor handoff. The source has the Crusader achievement gate and rank controls but no Hyper selection.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/run_options.rs",
+        "crates/azeroth-survivors-re/src/armory_cosmetics.rs",
+        "crates/azeroth-survivors-re/src/menu_state.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json",
+        "docs/analysis/evidence/locale-catalog-review.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/run_options.rs": "a69c2892588525ec8f5f62afbc30c77b3fa797e1aa6e0c549ce5c005b15b5768",
+        "crates/azeroth-survivors-re/src/armory_cosmetics.rs": "fd3b718e33719448f7591fb9533464eeb25391aa4ecc751acca87d70d5727be9",
+        "crates/azeroth-survivors-re/src/menu_state.rs": "9d0f6cc75023fcd0d917b23c7ddcb829e176d0d53e9b846b9192c5277a6d67b8",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42",
+        "docs/analysis/evidence/locale-catalog-review.json": "33ad1fdcb246465428fd0c85a7a0b25ecdb57820bbb9a95af2e3653161d579bb"
+      },
+      "systems": [
+        "custom-app-screens-picker",
+        "custom-game-achievements"
+      ],
+      "gap_ids": [
+        325
+      ]
+    },
+    {
+      "claim_id": "changelog:0.143.0:874ebdc6e9a66c37",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Current Enter preview halves the final encounter minute when Hyper is selected and earned. Follow the actual boss schedule, full-strength admission and exact deadlines independently of display formatting.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/bosses/spawning.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/bosses/spawning.rs": "ae92e24b1c8a09732d6f58d7e15d2c775f79c2c242853a5721cdabd707789a16",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "779b88ebe06536c88aff501f6d8ec4b0122652c77cba721064de6aa25561cced",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+      },
+      "systems": [
+        "custom-game-game-mod",
+        "custom-game-heroic"
+      ],
+      "gap_ids": [
+        325
+      ]
+    },
+    {
+      "claim_id": "changelog:0.143.0:850ed6c5a1af2d9e",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "The current tooltip names accelerated lair return. Follow actual death-to-refill timing and its difficulty inputs; the rebuilt lair path has only rank-dependent delay.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/guardians/mod.rs",
+        "crates/azeroth-survivors-re/src/heroic.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/guardians/mod.rs": "6e330189d8db0731545506495ea4e7dc1cf20ace7d665be61884330ab79f3784",
+        "crates/azeroth-survivors-re/src/heroic.rs": "05bd834f650440b8a6dbecdc53db1da22fed4acc81240d1ad28eb12e491b3bd3",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+      },
+      "systems": [
+        "custom-game-game-guardians"
+      ],
+      "gap_ids": [
+        325,
+        89
+      ]
+    },
+    {
+      "claim_id": "changelog:0.143.0:d9930831bf9a59da",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Follow the mode into mob strength/count/composition clock, the post-final lead and Endless 150-second boss repeat. The existing spawn and Endless consumers use the single clock and a 300-second repeat.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs": "b7ee7aef7980557db5d2392499cfadad257c951f302d8d7477d0bfdbdcecc7f7",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs": "5ec522e824a840e318de0bd5fd66b06b452359adafebb5a9115899bc9c72a204",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "779b88ebe06536c88aff501f6d8ec4b0122652c77cba721064de6aa25561cced",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+      },
+      "systems": [
+        "custom-game-game-enemy",
+        "custom-game-game-mod"
+      ],
+      "gap_ids": [
+        325
+      ]
+    },
+    {
+      "claim_id": "changelog:0.143.0:d829b1125a14e67a",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Trace which clock and difficulty inputs reach solo, host and private guest reward XP, marks and loot. The pacing tooltip describes preserved rewards; it does not establish the settlement clock.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/mob_loot.rs",
+        "crates/azeroth-survivors-re/src/run_progression.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+        "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/mob_loot.rs": "d442bd4be8f9a8b24cff0e73a85a93f25eaca89187acd9a54671a9dd813562c5",
+        "crates/azeroth-survivors-re/src/run_progression.rs": "f75d8bcf5eedbf633ce3d032db3c98dcaaae47eebebfb78cfa976ae856ec53d4",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs": "8f84abf2bec664f77865d4bcd2fcd5cfd03457acee8ab3a65a10f5e0f2f4046f",
+        "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs": "d51d4bffe5bfe5f4ecf5623924da74159f1ec5ce5601beef9f67d095183b86a9",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+      },
+      "systems": [
+        "custom-game-game-mod",
+        "custom-game-gear"
+      ],
+      "gap_ids": [
+        325,
+        226,
+        228,
+        238
+      ]
+    },
+    {
+      "claim_id": "changelog:0.143.0:b818f572e247d44b",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Trace actual elapsed time and first-fall eligibility in local and party achievement settlement. The native achievement text and known real-clock test scope require a separate current consumer proof.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/account_progression.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json",
+        "docs/analysis/evidence/locale-catalog-review.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/account_progression.rs": "98bd9bd149a1f85235cae69e46eb00198ee6123a2d8e9e28c29c61a41a7096fb",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs": "8f84abf2bec664f77865d4bcd2fcd5cfd03457acee8ab3a65a10f5e0f2f4046f",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "a367a0ca699849498c799ebaaf3e80eab333d9a6408a2594f2c062a6c43d140c",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42",
+        "docs/analysis/evidence/locale-catalog-review.json": "33ad1fdcb246465428fd0c85a7a0b25ecdb57820bbb9a95af2e3653161d579bb"
+      },
+      "systems": [
+        "custom-game-achievements",
+        "custom-game-game-party"
+      ],
+      "gap_ids": [
+        325,
+        285
+      ]
+    },
+    {
+      "claim_id": "changelog:0.143.0:d9da87b3033fb4b5",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Current first-profile admission checks host selection/achievement and guest ordinal. Directory Host3/UpdateProfile4 append mode after rank, list20 has an optional mode vector, and game tag17 requires a mode byte after rank. Both views use the common difficulty label. The accepted-peer world entry and shared run mode remain pending.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop_directory.rs",
+        "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+        "crates/azeroth-survivors-re/src/coop_ui.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/coop_directory.rs": "36925b91a8d387a9670a2fc03a09fbff506411e52a23e91036600bcb61b4d176",
+        "crates/azeroth-survivors-re/src/coop/directory_wire.rs": "87266fbd03729099d82e1f2e754ac75cad6377e37015045d85d8d6999471dd26",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs": "ce1ee283a7e576537954046cb31f7ef8f8d60d72955eb08b013091941593bbcb",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "f62458c082dca1c7b3ddd1f8706d8a5aeca3599493bea1c547a04bd1daf41b73",
+        "crates/azeroth-survivors-re/src/coop_ui.rs": "70937e4cb85486e5a3431aa4dff74e88c9a8600bb98aa059cce7f7fd914fb385",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+      },
+      "systems": [
+        "custom-app-screens-coop",
+        "custom-game-server-party",
+        "custom-game-game-party"
+      ],
+      "gap_ids": [
+        325,
+        63,
+        258,
+        260
+      ]
+    },
+    {
+      "claim_id": "changelog:0.141.1:303cc692c90057b9",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Summary links the distinct Every Bauble, rifle, tabard and Battle Shout assessments. Keep each feature proof separate.",
+      "source_refs": [],
+      "evidence_refs": [
+        "docs/analysis/evidence/discovery-delta.json"
+      ],
+      "reviewed_ref_sha256": {
+        "docs/analysis/evidence/discovery-delta.json": "b9286b7a731a65c993b5bff4c64ca78f3e827fbe0f7f28ae811af1435e8551f8"
+      },
+      "systems": [
+        "custom-app-screens-codex",
+        "custom-game-gear",
+        "custom-game-game-party"
+      ],
+      "gap_ids": [
+        19,
+        6,
+        324,
+        289
+      ]
+    },
+    {
+      "claim_id": "changelog:0.141.1:548650aa574f4367",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "The current installed PE registers a Windows exception filter and calls MiniDumpWriteDump from that callback. Trace text output, exact filename formatting and handler failure/chaining before connecting source.",
+      "source_refs": [
+        "crates/benilla-app/src/crash.rs",
+        "crates/benilla-app/src/local_state.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/benilla-app/src/crash.rs": "f833f5b2471397f3a8e1ef734cbe8f533d5c40a5bbedb0af7b836ab28cd1038e",
+        "crates/benilla-app/src/local_state.rs": "7f5790150b8d2e48a2bb2afdd16c115307cf6983fff34077c5fe0c38e47c48b0",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+      },
+      "systems": [
+        "custom-app-lib"
+      ],
+      "gap_ids": [
+        326
+      ]
+    },
+    {
+      "claim_id": "changelog:0.142.0:834d0a8114d2f92f",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "macOS release summary. The matching Apple silicon package is necessary for launch and update assessment.",
+      "source_refs": [],
+      "evidence_refs": [
+        "docs/analysis/evidence/discovery-delta.json"
+      ],
+      "reviewed_ref_sha256": {
+        "docs/analysis/evidence/discovery-delta.json": "b9286b7a731a65c993b5bff4c64ca78f3e827fbe0f7f28ae811af1435e8551f8"
+      },
+      "systems": [
+        "custom-app-screens-update",
+        "custom-app-update"
+      ],
+      "gap_ids": [
+        133
+      ]
+    },
+    {
+      "claim_id": "changelog:0.142.0:97ee6c8f365508a6",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "First-launch and minimum OS claims apply to the Apple silicon package. The selected Windows PE cannot provide that package evidence.",
+      "source_refs": [],
+      "evidence_refs": [
+        "docs/analysis/evidence/discovery-delta.json"
+      ],
+      "reviewed_ref_sha256": {
+        "docs/analysis/evidence/discovery-delta.json": "b9286b7a731a65c993b5bff4c64ca78f3e827fbe0f7f28ae811af1435e8551f8"
+      },
+      "systems": [
+        "custom-app-lib",
+        "custom-app-update"
+      ],
+      "gap_ids": [
+        133
+      ]
+    },
+    {
+      "claim_id": "changelog:0.142.0:e268b7f6ce6a673d",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Follow the original macOS startup updater and data chain when its matching artifact is available. The selected Windows PE version witness has Windows scope.",
+      "source_refs": [],
+      "evidence_refs": [
+        "docs/analysis/evidence/discovery-delta.json"
+      ],
+      "reviewed_ref_sha256": {
+        "docs/analysis/evidence/discovery-delta.json": "b9286b7a731a65c993b5bff4c64ca78f3e827fbe0f7f28ae811af1435e8551f8"
+      },
+      "systems": [
+        "custom-app-screens-update",
+        "custom-app-update"
+      ],
+      "gap_ids": [
+        133
+      ]
+    },
+    {
+      "claim_id": "changelog:0.141.1:eaa7fb6599d2747c",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "native_recovered",
+      "rationale": "The current source Codex membership, intersection and percentage calculation correspond within the recovered bound. Current native startup grant and save normalization need separate proof. Original/rebuilt execution and parity remain unverified.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/account_progression.rs",
+        "crates/azeroth-survivors-re/src/codex.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+        "crates/azeroth-survivors-re/src/progression.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/account_progression.rs": "98bd9bd149a1f85235cae69e46eb00198ee6123a2d8e9e28c29c61a41a7096fb",
+        "crates/azeroth-survivors-re/src/codex.rs": "ac8ce87badd13d64ec660679d769ad88b665e82ff18ff098049f5be84ee08e24",
+        "crates/azeroth-survivors-re/src/loot_rewards.rs": "433d7fa4c62cd9e877e90c512e42117b4d161fd05f62ade1c776cc10e2e583ae",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "c2ccfe7fae7d4f9b374c2f71befad7c7f15fafcd134b26fdacc0d06646e91fec",
+        "crates/azeroth-survivors-re/src/progression.rs": "c381c11d3e7fa09789114fb6558d85064f0889d0a9c77ff123d70bbcfc32bf94",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+      },
+      "systems": [
+        "custom-app-screens-codex",
+        "custom-game-achievements"
+      ],
+      "gap_ids": [
+        19,
+        73
+      ],
+      "native_contract": "The current Codex and achievement paths consume the same 141 distinct item keys. The 100 percent evaluator counts Seen flags over that list and uses a ceiling threshold. Exact native startup grant delivery remains pending."
+    },
+    {
+      "claim_id": "changelog:0.141.1:e9b58d2529ae6b7e",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Retain the 0.141.1 guest Rockbiter repair. Map the current host grant and private guest settlement before transferring native applicability.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop/client_state.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards.rs",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs",
+        "crates/azeroth-survivors-re/src/save/progress.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/discovery-delta.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/coop/client_state.rs": "af9a4aff1f876b0830fbc5a0d8a34cddedff9cad8de5b2ae8f50be91c39597ea",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "f62458c082dca1c7b3ddd1f8706d8a5aeca3599493bea1c547a04bd1daf41b73",
+        "crates/azeroth-survivors-re/src/gameplay/coop_publish.rs": "7bae9161af5af72f729786958d96d991871dd0b61f192c46ec22ec8e23c3cef8",
+        "crates/azeroth-survivors-re/src/loot_rewards.rs": "433d7fa4c62cd9e877e90c512e42117b4d161fd05f62ade1c776cc10e2e583ae",
+        "crates/azeroth-survivors-re/src/loot_rewards/amulets.rs": "c2ccfe7fae7d4f9b374c2f71befad7c7f15fafcd134b26fdacc0d06646e91fec",
+        "crates/azeroth-survivors-re/src/save/progress.rs": "97034e8786559c4f95a7b66f3f3bee47ea43f0e856b87c6ce8613afcc0647d44",
+        "docs/analysis/evidence/discovery-delta.json": "b9286b7a731a65c993b5bff4c64ca78f3e827fbe0f7f28ae811af1435e8551f8"
+      },
+      "systems": [
+        "custom-app-screens-codex",
+        "custom-game-achievements",
+        "custom-game-proto"
+      ],
+      "gap_ids": [
+        19,
+        63,
+        73
+      ]
+    },
+    {
+      "claim_id": "changelog:0.141.1:737de64a7a82f25e",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "The current resolver recognizes display 34484, inventory 26 and subclass 3. Map the item admission, weapon visual/ammo and exact tooltip/damage paths before transferring wider applicability.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/armory.rs",
+        "crates/azeroth-survivors-re/src/save/gear.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/coop_profile.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs",
+        "crates/azeroth-survivors-re/src/coop/engine_packets.rs",
+        "crates/benilla-protocol/src/messages/spells.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/armory.rs": "de50a8702b5201d2f423d2fdb6a3e466dcf664198ac2193a0e8d1898025680c1",
+        "crates/azeroth-survivors-re/src/save/gear.rs": "898792caf03532eea660a7f74c4790ce10ddc21ec7b8afcc6b0e067fabd1a5c0",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs": "7bf3518c33dc8970856f08c4c9d3629e3969bc4fbecefa10a0764a64aa86f964",
+        "crates/azeroth-survivors-re/src/coop_profile.rs": "638e247500a316fdc454e9a13f6773e36bfa27ceb7f5ca48bdc0747d04c8dcdd",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "a367a0ca699849498c799ebaaf3e80eab333d9a6408a2594f2c062a6c43d140c",
+        "crates/azeroth-survivors-re/src/gameplay/client/events.rs": "bbac2a31032b8cd7ae669d04520e11ed17b5891d7e03f25015835eeed074d2b2",
+        "crates/azeroth-survivors-re/src/coop/engine_packets.rs": "c5341936f79cd2424b4f20863a8e92d2acfe36a3b6fca8ba33aead97bd815001",
+        "crates/benilla-protocol/src/messages/spells.rs": "90c2bc89592ee3ba38be9f712e2b90a04ecf4185c8e58b3c14af4d847cbbb680",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+      },
+      "systems": [
+        "custom-game-gear",
+        "custom-app-screens-armory"
+      ],
+      "gap_ids": [
+        6
+      ]
+    },
+    {
+      "claim_id": "changelog:0.141.1:f254ac47b93d1ae2",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "native_recovered",
+      "rationale": "Current Rewards/item metadata and installed Data connect item 90012 to display 16078 and both original crest textures. The rebuilt source has the current item/display constants and uses the shared tabard resolver. Runtime loading, render and parity remain open.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/progression.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/bounded-native-frontier.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/progression.rs": "c381c11d3e7fa09789114fb6558d85064f0889d0a9c77ff123d70bbcfc32bf94",
+        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+      },
+      "systems": [
+        "custom-app-screens-armory",
+        "custom-app-screens-rewards",
+        "custom-game-appearance",
+        "custom-game-gear"
+      ],
+      "gap_ids": [
+        324
+      ],
+      "native_contract": "The current item metadata case for 90012 copies display 16078, and the current installed DBC and patch-D resolve both authored tabard members. Bounded static item/Data correspondence only."
+    },
+    {
+      "claim_id": "changelog:0.141.1:5fb431ffa62f27ff",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "pending_claim_recovery",
+      "rationale": "Retain the 0.141.1 shouter-authority repair. Revalidate current Horn, Bloodlust, co-op aura and recipient tooltip producer/consumer edges.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs",
+        "crates/azeroth-survivors-re/src/gameplay/coop_spell_auxiliary.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/discovery-delta.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/gameplay/coop_overlay.rs": "fe09d9da54a8a9e0b7502fab18a932892e0ec2b7d5b9a8c667d95357adbfc97a",
+        "crates/azeroth-survivors-re/src/gameplay/coop_spell_auxiliary.rs": "9ab13dd49a0628240425844758d6833539f2bcac7dc199919eb734332d175f07",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "bd4ce9a3a0c372849afe348d23204f983e7b5d4ea127731dda627b8765534aaa",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "a367a0ca699849498c799ebaaf3e80eab333d9a6408a2594f2c062a6c43d140c",
+        "crates/azeroth-survivors-re/src/player_abilities/behavior/buffs.rs": "3bed098472ab3de8c076818b0a64e9094bf32393340fe30c43e55a16488ac64e",
+        "docs/analysis/evidence/discovery-delta.json": "b9286b7a731a65c993b5bff4c64ca78f3e827fbe0f7f28ae811af1435e8551f8"
+      },
+      "systems": [
+        "custom-game-game-abilities",
+        "custom-game-game-auras",
+        "custom-game-game-party"
+      ],
+      "gap_ids": [
+        289
+      ]
     }
   ]
 }

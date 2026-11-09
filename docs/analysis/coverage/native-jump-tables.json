@@ -1,38 +1,38 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.141.0",
+    "version": "0.143.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-    "size_bytes": 151493632
+    "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+    "size_bytes": 151566336
   },
-  "census_summary": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-1/summary.json",
-  "census_summary_sha256": "7ece476a23c0cf538d229986810fcc45c8d49ef4f426f2a3a2afef7a1767b330",
+  "census_summary": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/pipeline/3b9c8f97ee7e8dea/guarded-expanded-summary.json",
+  "census_summary_sha256": "e4765609c606011f69318fd97f3d98932387ad11c255e92783e25d8f7498efb6",
   "generator": {
     "path": "scripts/recover-native-jump-tables.py",
-    "sha256": "111ad371f8548af040f08a386b5a892b1e5964241feb64dad5fb3a7ba4718594",
+    "sha256": "9ec4c6e53292077834514218ebc50d030d095077fb9dcc6d51f098f0d7b90e7b",
     "capstone_version": "5.0.7"
   },
   "counts": {
-    "bounded-table-has-non-executable-target": 1160,
+    "bounded-table-has-non-executable-target": 1162,
     "guarded-fallthrough-has-empty-proved-domain": 2,
-    "guarded-relative-tables": 3936,
-    "not-register-jump": 159,
-    "not-relative-add": 3951,
+    "guarded-relative-tables": 3943,
+    "not-register-jump": 161,
+    "not-relative-add": 3945,
     "not-signed-table-load": 15,
-    "relative-table-without-proven-unsigned-bound": 1927,
-    "scalar-domain-has-unproved-or-conflicting-instruction-targets": 304,
+    "relative-table-without-proven-unsigned-bound": 1929,
+    "scalar-domain-has-unproved-or-conflicting-instruction-targets": 303,
     "short-context": 284,
     "table-base-not-static": 592
   },
   "linear_boundary_input": {
-    "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals-linear-boundaries.json",
-    "sha256": "de66cfa65b9c4e3840951f9ccaa766154164bb68782faf3a9bb81b5d433f9944"
+    "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/pipeline/3b9c8f97ee7e8dea/guarded-review-next/guarded-proposals-linear-boundaries.json",
+    "sha256": "1d7feac65f4349c63806a91f51ab327fdc1cf20cd7da753e2bd3c99917883c04"
   },
   "pe_parser_helpers": [
     {
       "path": "scripts/inventory-current-target.py",
-      "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+      "sha256": "8546d8c0eca641dffe1a295c9066e886764369cf16d76664e10a52e84ccd2a66"
     },
     {
       "path": "scripts/inventory-executable.py",
@@ -43,11 +43,11 @@
   "declared_linear_input": {
     "summary": {
       "path": "docs/analysis/coverage/instruction-summary.json",
-      "sha256": "783f8e6499ac6130b17abd764eb64da8bf8d9d635418837c246f0dbe6c227d2b"
+      "sha256": "a3181537bfcb95a6e6b25644f94f6fa3bfd286e1564cf0efe70aefd98c26533e"
     },
     "inventory": {
-      "path": "runtime/analysis/inventories/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/native-instructions-6d426134cd43f4eb.sqlite",
-      "sha256": "90f53f4a3315cbf15295900bf2a61dc5ba0173d812a60e901506d4647df20e47"
+      "path": "runtime/analysis/inventories/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/native-instructions-4716725f426565ef.sqlite",
+      "sha256": "cc52cc94b12fbcb4225debbb36e784a94d1c70e2f018d2ebea6e50313e4c89c6"
     },
     "decoder_contract": "22e53e8f4827fbf7cbfe1aa982077d79fc59e4b16668ea5f06f7701f4e05b20d",
     "decoder": {
@@ -72,11 +72,11 @@
       },
       {
         "path": "scripts/shared_native_inventory.py",
-        "sha256": "9ffc961c281d4eacaa38916a41b23bb78f48961191a4332e565efe04f871ea36"
+        "sha256": "0ee5d0e1db6f3e5e7cd585e8cf21e77790bdbf23ef55059c249f278c8b79f3cb"
       },
       {
         "path": "scripts/coverage_common.py",
-        "sha256": "fc822cd7fb76f61442c20288907bf2eef9c5cd162512901496dbb6b47e4131f6"
+        "sha256": "a0f259154e481a9e6b51c29e0bf9d13cae7522d26c5e108e7c6fa95d6f3e71ab"
       },
       {
         "path": "scripts/native_scalar_aliases.py",
@@ -84,15 +84,15 @@
       },
       {
         "path": "scripts/classify-native-ownership.py",
-        "sha256": "5c6ec1b54808da1b09cf2ffa0a5d7b54456237869f3ff69d7e40d973d11ab265"
+        "sha256": "e3e54046722d2fef8a93e57776e9c8e1f17ad80a9a7ebf00ac697392e053ea0c"
       },
       {
         "path": "scripts/summarize-native-image.py",
-        "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
+        "sha256": "15d10ba5d0ca34361b38b3fb184f24aa246a66615b6fca763610b3d461353e26"
       },
       {
         "path": "scripts/inventory-current-target.py",
-        "sha256": "f2cf5be70267aa01865b7c34bef7eeb87898d67b5e36f0a91d20d37e3b1299c5"
+        "sha256": "8546d8c0eca641dffe1a295c9066e886764369cf16d76664e10a52e84ccd2a66"
       },
       {
         "path": "scripts/inventory-executable.py",
@@ -101,32 +101,32 @@
     ]
   },
   "candidate_origin_counts": {
-    "ghidra_observed": 3819,
+    "ghidra_observed": 3826,
     "declared_linear_only": 117,
-    "observed_and_declared_linear": 2547,
+    "observed_and_declared_linear": 2554,
     "rejected_declared_linear_tables": 503
   },
-  "rejected_scalar_domain_tables": 304,
-  "rejected_candidate_tables": 807,
+  "rejected_scalar_domain_tables": 303,
+  "rejected_candidate_tables": 806,
   "selector_alias_helpers": {
     "path": "scripts/native_scalar_aliases.py",
     "sha256": "d262801367fbfd316920a73f051f744edc1cd5126913a591288c93c08abba335"
   },
   "alias_guard_tables": 179,
-  "case_entries": 76491,
-  "unique_target_addresses": 25153,
-  "edge_digest": "c9e5a35cffef79f98e9f5cce13c81a000ffa1052ad7955050e5115b052caa233",
+  "case_entries": 76571,
+  "unique_target_addresses": 25189,
+  "edge_digest": "8473defa5f7d4a781e1efebe17ef08039e26a98ce5c809825fb0e41a5bc3fa29",
   "census_helpers": {
     "path": "scripts/summarize-native-image.py",
-    "sha256": "78d82d1db8f9b5e2d8212d57f77ef7782d2a524f34465697e77532f6184f3588"
+    "sha256": "15d10ba5d0ca34361b38b3fb184f24aa246a66615b6fca763610b3d461353e26"
   },
   "scalar_helpers": {
     "path": "scripts/classify-native-ownership.py",
-    "sha256": "5c6ec1b54808da1b09cf2ffa0a5d7b54456237869f3ff69d7e40d973d11ab265"
+    "sha256": "e3e54046722d2fef8a93e57776e9c8e1f17ad80a9a7ebf00ac697392e053ea0c"
   },
   "inventory": {
-    "path": "runtime/coverage/6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa/pipeline/bad04410420fd563/guarded-2/guarded-proposals.json",
-    "sha256": "a9b333c7a19cd439ed6eb3e64e303b3a41b46ddd112eb43994fe9530991ea3d5"
+    "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/pipeline/3b9c8f97ee7e8dea/guarded-review-next/guarded-proposals.json",
+    "sha256": "8fc82a80961d1271198380a3e64431827efa466bffc413e4ddafbceddcc0a63c"
   },
   "gap_ids": [
     41

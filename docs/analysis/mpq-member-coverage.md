@@ -1,5 +1,24 @@
 # Installed MPQ member and source map
 
+## 0.143.0 member and path accounting
+
+The [current inventory](evidence/mpq-member-coverage.json) binds all thirteen
+archives to EXE SHA-256
+`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
+The twelve 0.141.0 archives retain their exact hashes. The added `patch-D.MPQ`
+has three active slots including the listfile, plus the two Lordaeron tabard
+texture members traced under [#324](lordaeron-tabard.md#01430-correspondence).
+
+The full chain contains 30,175 active hash slots and 30,163 distinct
+normalized names, with zero opaque active slots and zero unreferenced blocks.
+The `resource-leads.jsonl` commitment covers all 326 current PE candidates.
+Select `Q41-I01:resource_path:<ordinal>` for exact file ranges and exact or
+basename member matches. Source archive precedence comes from the existing
+engine chain. Native parser selection and resource consumers remain tracked
+under [#41](../CURRENT-STATE.md#gap-41).
+
+## Earlier nine-archive inventory
+
 EXE SHA-256 `58b484d4a5f145ba41b1241c184c38202e871fdd7aa4a6b90536d0503ecba6bb`.
 The [proof](evidence/mpq-member-coverage-comparison-2.json) resolves the previously
 unproduced member/override inventory portion of `Q41-R01` under #41. The nine

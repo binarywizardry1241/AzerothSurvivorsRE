@@ -1,26 +1,23 @@
 # Current-target reconstruction coverage
 
-The installed and registered reconstruction target is **0.141.0**, SHA-256
-`6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`
-(151,493,632 bytes). The [identity](coverage/targets.json) and
-[CURRENT-STATE](../CURRENT-STATE.md) record the input and audit status.
-The [0.140.0 census](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/native-census-0.140.0.md) and
-[0.140.0 graph](as-discovery.md#switch-and-caller-correspondence) retain their original target.
+The installed and registered target is **0.143.0**, SHA-256
+`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`
+(151,566,336 bytes). The [identity](coverage/targets.json) binds the EXE and
+all thirteen MPQs. [CURRENT-STATE](../CURRENT-STATE.md) owns findings and
+the current AS-only module counts.
 
-The 26-range ledger partitions the whole image. The independent linear pass
-decodes 24,893,474 instructions across 372,623 declared extents, covering
-100,845,169 bytes with zero undecoded suffix. The 5,376,717-byte executable
-complement is separate. All twelve MPQ hashes match the prior chain.
-[Member accounting](evidence/mpq-member-coverage.json)
+The [native census](native-census.md) separates file ranges, independent
+linear decoding, the executable complement and verified Ghidra exports.
+The [MPQ member accounting](mpq-member-coverage.md#01430-member-and-path-accounting)
+records the added patch-D and exact resource path selectors. The
+[source frontier](source-frontier.md#01430-structural-delta) owns the literal,
+diagnostic and addon payload comparison. The [exact queue](unknown-recovery.md)
+and [#41](../CURRENT-STATE.md#gap-41) track remaining recovery.
 
-The [selected census](native-census.md) verifies 24,328,399 instructions,
-97,600,287 instruction bytes and 4,218,711 references. It retains 8,621,599
-executable residual bytes. The [exact queue](unknown-recovery.md) and
-[#41](../CURRENT-STATE.md#gap-41) track remaining recovery.
-
-The [release review](release-review.md) records the 11 supplied
-0.141.0 claims. The [module register](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/module-contracts-0.141.0.md) records 83
-diagnostic module assignments and their bounded and pending contracts.
+The [release review](release-review.md) records current Hyper Mode claims,
+0.141.1 applicability and the distinct macOS artifact requirement. The
+[module register](module-contracts.md#01430-applicability) maps the 83
+diagnostic assignments and their bounded and pending contracts.
 Compilation, runtime and original/rebuilt comparisons belong to the
 [verification register](../verification-needed.md).
 

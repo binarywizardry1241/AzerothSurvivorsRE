@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
   "target": {
-    "version": "0.141.0",
+    "version": "0.143.0",
     "path": "installed-game/AzerothSurvivors.exe",
-    "sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-    "size_bytes": 151493632
+    "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+    "size_bytes": 151566336
   },
   "target_policy": "Resolve and hash-verify the configured installed EXE before coverage. Every new version/hash requires fresh whole-file discovery, source/evidence reassessment and explicit historical-contract revalidation; never fall back to older inventory.",
   "scope": "Azeroth Survivors custom-system discovery and source reconstruction, including cooperative gameplay, transport and server source. Reuse necessary target-specific benilla/wenilla interfaces; generic engine reconstruction remains outside scope. Source correspondence, complete implementation, compilation, runtime and parity are independent.",
@@ -18,9 +18,9 @@
     "parity_certified_systems": 0,
     "custom_paths_with_partial_source_mapping": 83,
     "custom_paths_without_reviewed_native_source_mapping": 0,
-    "custom_paths_with_registered_current_bounded_contract": 38
+    "custom_paths_with_registered_current_bounded_contract": 5
   },
-  "review_basis": "0.141.0 whole-file PE, diagnostic, linear, complement and installed Data inventories. Independently verified declared, expanded and guarded Ghidra passes. Current bounded registrations, pending correspondence and earlier source recovery keep distinct evidence.",
+  "review_basis": "0.143.0 verified PE, all diagnostic paths, independent declared and complement inventories, complete installed MPQ tables and independently verified guarded Ghidra census. Bounded registrations, pending correspondence and earlier recovery retain distinct evidence.",
   "status_rules": {
     "recovery": "unknown or partial until native producers, state transitions, values, dispatches and consumers in the full recorded scope are recovered; path evidence is identity only.",
     "implementation": "missing or partial here; source file or adjacent seam presence alone never implies the native whole-system behavior exists.",
@@ -35,8 +35,8 @@
       "original_path": "crates/wenilla-rogue-app/src/lib.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6552cf8",
-          "virtual_address": "0x1465546f8",
+          "file_offset": "0x655cb1c",
+          "virtual_address": "0x14655d71c",
           "byte_count": 35,
           "sha256": "142686f55cabd8449ce2b74eeb49eeb6568bda1eaa5baff4b62578240c2509fd"
         }
@@ -197,7 +197,8 @@
         "docs/analysis/evidence/0.139.0/source-frontier.json",
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
-        "docs/analysis/native-census-0.139.1.md"
+        "docs/analysis/native-census-0.139.1.md",
+        "docs/analysis/evidence/bounded-native-frontier.json"
       ],
       "gap_ids": [
         9,
@@ -222,7 +223,8 @@
         174,
         181,
         182,
-        300
+        300,
+        326
       ],
       "recovery": {
         "status": "partial",
@@ -279,7 +281,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -1219,9 +1221,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 122,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -1243,14 +1245,14 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/armory.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x65be930",
-          "virtual_address": "0x1465c0330",
+          "file_offset": "0x65780df",
+          "virtual_address": "0x146578cdf",
           "byte_count": 46,
           "sha256": "3296790129f4ac04bbeb1b96079d2be7d027fc0cc7ad5cb09a5840fe88e94862"
         },
         {
-          "file_offset": "0x65c411f",
-          "virtual_address": "0x1465c5b1f",
+          "file_offset": "0x65bc408",
+          "virtual_address": "0x1465bd008",
           "byte_count": 46,
           "sha256": "3296790129f4ac04bbeb1b96079d2be7d027fc0cc7ad5cb09a5840fe88e94862"
         }
@@ -1537,7 +1539,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -2560,9 +2562,9 @@
         "limits": "Only the named selected consumer contracts are supplied; system-level native recovery and unrelated retained contracts remain separate."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 123,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -2587,8 +2589,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/backdrop.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6591e16",
-          "virtual_address": "0x146593816",
+          "file_offset": "0x65b8b7e",
+          "virtual_address": "0x1465b977e",
           "byte_count": 48,
           "sha256": "4f1625bd76e6ef68a379bc5201fbf1d957353cb61dd12f42836e8afc203882b9"
         }
@@ -2692,7 +2694,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -3347,9 +3349,9 @@
         ]
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 72,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -3400,8 +3402,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/cards.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6597cfc",
-          "virtual_address": "0x1465996fc",
+          "file_offset": "0x65719ec",
+          "virtual_address": "0x1465725ec",
           "byte_count": 45,
           "sha256": "a8be1d98379600d77b91f514fd82cbff38a564ebeba16d6d2ce5eb876ab8f4d3"
         }
@@ -3567,7 +3569,7 @@
         "native_evidence_validity": "historical_0_105_0_bounded_native_and_source_contracts",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -4313,9 +4315,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 124,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -4381,32 +4383,32 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/codex.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6562b28",
-          "virtual_address": "0x146564528",
+          "file_offset": "0x657af9d",
+          "virtual_address": "0x14657bb9d",
           "byte_count": 45,
           "sha256": "decf7fa144e4fa9445da68776e2a5e86c3501ab1ee343a4076acf736f68d1f23"
         },
         {
-          "file_offset": "0x6564b85",
-          "virtual_address": "0x146566585",
+          "file_offset": "0x65b73bd",
+          "virtual_address": "0x1465b7fbd",
           "byte_count": 45,
           "sha256": "decf7fa144e4fa9445da68776e2a5e86c3501ab1ee343a4076acf736f68d1f23"
         },
         {
-          "file_offset": "0x6567260",
-          "virtual_address": "0x146568c60",
+          "file_offset": "0x65bc3c0",
+          "virtual_address": "0x1465bcfc0",
           "byte_count": 45,
           "sha256": "decf7fa144e4fa9445da68776e2a5e86c3501ab1ee343a4076acf736f68d1f23"
         },
         {
-          "file_offset": "0x65bea28",
-          "virtual_address": "0x1465c0428",
+          "file_offset": "0x65c0328",
+          "virtual_address": "0x1465c0f28",
           "byte_count": 45,
           "sha256": "decf7fa144e4fa9445da68776e2a5e86c3501ab1ee343a4076acf736f68d1f23"
         },
         {
-          "file_offset": "0x65c6fd5",
-          "virtual_address": "0x1465c89d5",
+          "file_offset": "0x65ca249",
+          "virtual_address": "0x1465cae49",
           "byte_count": 45,
           "sha256": "decf7fa144e4fa9445da68776e2a5e86c3501ab1ee343a4076acf736f68d1f23"
         }
@@ -4473,10 +4475,12 @@
         "docs/analysis/native-census-0.139.1.md",
         "docs/analysis/evidence/0.139.1/switch-context-source-review.json",
         "docs/analysis/switch-context-source-review-0.139.1.md",
-        "docs/analysis/evidence/0.141.0/codex-growth-ceiling.json"
+        "docs/analysis/evidence/0.141.0/codex-growth-ceiling.json",
+        "docs/analysis/evidence/bounded-native-frontier.json"
       ],
       "gap_ids": [
         17,
+        19,
         34,
         41,
         73,
@@ -4537,7 +4541,7 @@
         "native_evidence_validity": "selected_target_bounded_codex_catalog_description_growth_and_language_outputs",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -5424,9 +5428,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
         "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 73,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -5464,26 +5468,26 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/discord.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x656265a",
-          "virtual_address": "0x14656405a",
+          "file_offset": "0x656e222",
+          "virtual_address": "0x14656ee22",
           "byte_count": 47,
           "sha256": "68b9983a5d61bfc6b7ace042dc4763d121c69973391b7baae1c5f895b68d2828"
         },
         {
-          "file_offset": "0x65634d3",
-          "virtual_address": "0x146564ed3",
+          "file_offset": "0x656f6b3",
+          "virtual_address": "0x1465702b3",
           "byte_count": 47,
           "sha256": "68b9983a5d61bfc6b7ace042dc4763d121c69973391b7baae1c5f895b68d2828"
         },
         {
-          "file_offset": "0x6563570",
-          "virtual_address": "0x146564f70",
+          "file_offset": "0x656f750",
+          "virtual_address": "0x146570350",
           "byte_count": 47,
           "sha256": "68b9983a5d61bfc6b7ace042dc4763d121c69973391b7baae1c5f895b68d2828"
         },
         {
-          "file_offset": "0x656361e",
-          "virtual_address": "0x14656501e",
+          "file_offset": "0x656f7fe",
+          "virtual_address": "0x1465703fe",
           "byte_count": 47,
           "sha256": "68b9983a5d61bfc6b7ace042dc4763d121c69973391b7baae1c5f895b68d2828"
         }
@@ -5581,7 +5585,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -6326,9 +6330,9 @@
         "limits": "These source repairs were not compiled or game-tested. Actual IO/worker/platform/input/fonts/audio/rendering and original/rebuilt parity remain unverified. Complete shared-engine/global/indirect native/source ownership remains #41."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 74,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -6340,8 +6344,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/hud.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6594b5c",
-          "virtual_address": "0x14659655c",
+          "file_offset": "0x656c0b0",
+          "virtual_address": "0x14656ccb0",
           "byte_count": 43,
           "sha256": "59b92dc9ad8881b78e566402037146ae6e2c4db065ff0dad353d1b660af4cebb"
         }
@@ -6538,7 +6542,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -7359,9 +7363,9 @@
         ]
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 125,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -7388,8 +7392,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/hudparts.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6598d58",
-          "virtual_address": "0x14659a758",
+          "file_offset": "0x6572ca0",
+          "virtual_address": "0x1465738a0",
           "byte_count": 48,
           "sha256": "b75bb101dba0dbd42e6f66d70446f79db345bc3f48e83dd00cd6d8acec95f256"
         }
@@ -7524,7 +7528,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -8196,9 +8200,9 @@
         "scope": "Bounded current banner visibility/emote/local text boundary only; actual VM/addon/rendered duplicate causality and parity remain open."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 126,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -8210,8 +8214,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/language.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x65685f8",
-          "virtual_address": "0x146569ff8",
+          "file_offset": "0x658139c",
+          "virtual_address": "0x146581f9c",
           "byte_count": 48,
           "sha256": "87c48bdc84ef7237ec40e3fe595412dbc8b0efb2a327d88876c0871bccaa60ca"
         }
@@ -8322,6 +8326,7 @@
         43,
         127,
         135,
+        158,
         163,
         169,
         217,
@@ -8395,7 +8400,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -9155,16 +9160,18 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 127,
       "source_correspondence_status": "retained_partial_source_correspondence",
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue-app/src/screens/language.rs]",
       "unicode_input_0_127_0": {
         "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "gap_ids": [293],
+        "gap_ids": [
+          293
+        ],
         "source_refs": [
           "crates/azeroth-survivors-re/src/hero_name.rs",
           "crates/azeroth-survivors-re/tests/current_menu_save.rs",
@@ -9223,20 +9230,20 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/meter.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6550d39",
-          "virtual_address": "0x146552739",
+          "file_offset": "0x656e128",
+          "virtual_address": "0x14656ed28",
           "byte_count": 45,
           "sha256": "0e02fc0a553b10afa848e06914040282c3006feef83cf5389b863f0e9f1dcb3d"
         },
         {
-          "file_offset": "0x6562560",
-          "virtual_address": "0x146563f60",
+          "file_offset": "0x657e8e9",
+          "virtual_address": "0x14657f4e9",
           "byte_count": 45,
           "sha256": "0e02fc0a553b10afa848e06914040282c3006feef83cf5389b863f0e9f1dcb3d"
         },
         {
-          "file_offset": "0x65ca8fb",
-          "virtual_address": "0x1465cc2fb",
+          "file_offset": "0x65cc25b",
+          "virtual_address": "0x1465cce5b",
           "byte_count": 45,
           "sha256": "0e02fc0a553b10afa848e06914040282c3006feef83cf5389b863f0e9f1dcb3d"
         }
@@ -9357,7 +9364,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -10089,9 +10096,9 @@
         "scope": "Current fourth-mode inputs and consumers plus exact HUD time/default selection only; not complete meter/accounting/rendering or party execution/parity."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 75,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -10103,8 +10110,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/mod.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6552eba",
-          "virtual_address": "0x1465548ba",
+          "file_offset": "0x655cc18",
+          "virtual_address": "0x14655d818",
           "byte_count": 43,
           "sha256": "27c0dc8d34b03e7c6bcb33e60a6fc70967b0ce200df3945dd7617a1e1d8b44d0"
         }
@@ -10291,7 +10298,7 @@
         "native_evidence_validity": "historical_0_105_0_bounded_native_and_source_contracts",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -11058,9 +11065,9 @@
         ]
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 128,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -11110,26 +11117,26 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/options.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x659cd20",
-          "virtual_address": "0x14659e720",
+          "file_offset": "0x65c10e0",
+          "virtual_address": "0x1465c1ce0",
           "byte_count": 47,
           "sha256": "78c476e84d2cca57675f5fdfca64ac482a78a1c167d5f9ee4d712c7c4c111803"
         },
         {
-          "file_offset": "0x65a3bde",
-          "virtual_address": "0x1465a55de",
+          "file_offset": "0x65c7f9e",
+          "virtual_address": "0x1465c8b9e",
           "byte_count": 47,
           "sha256": "78c476e84d2cca57675f5fdfca64ac482a78a1c167d5f9ee4d712c7c4c111803"
         },
         {
-          "file_offset": "0x65a3c35",
-          "virtual_address": "0x1465a5635",
+          "file_offset": "0x65c7ff5",
+          "virtual_address": "0x1465c8bf5",
           "byte_count": 47,
           "sha256": "78c476e84d2cca57675f5fdfca64ac482a78a1c167d5f9ee4d712c7c4c111803"
         },
         {
-          "file_offset": "0x65a3ce6",
-          "virtual_address": "0x1465a56e6",
+          "file_offset": "0x65c80a6",
+          "virtual_address": "0x1465c8ca6",
           "byte_count": 47,
           "sha256": "78c476e84d2cca57675f5fdfca64ac482a78a1c167d5f9ee4d712c7c4c111803"
         }
@@ -11368,7 +11375,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -12251,9 +12258,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 129,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -12277,8 +12284,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/pad.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6553797",
-          "virtual_address": "0x146555197",
+          "file_offset": "0x655d5e5",
+          "virtual_address": "0x14655e1e5",
           "byte_count": 43,
           "sha256": "f6039c3861b02ff7899e6604d5eae19b9aeae4461a4a3b594d040c5e74590e6c"
         }
@@ -12393,7 +12400,7 @@
         "native_evidence_validity": "selected_target_bounded_instruction_contracts_typed_constructor_snapshots_and_exact_diagnostic_identity",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -13057,9 +13064,9 @@
         "remaining": "Original census/P01 counts unchanged. Concrete configuration payload/method and counter-object identities, other converter variants, source/controller/OS/auth/gameplay and original/rebuilt parity remain unverified."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 76,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -13145,26 +13152,26 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/picker.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6591380",
-          "virtual_address": "0x146592d80",
+          "file_offset": "0x657a28d",
+          "virtual_address": "0x14657ae8d",
           "byte_count": 46,
           "sha256": "79fdc4dc3176bb3e1d2869878543151c4ea0a4e8341f4d78357d6e3f37c678ee"
         },
         {
-          "file_offset": "0x6591ea8",
-          "virtual_address": "0x1465938a8",
+          "file_offset": "0x65b80e8",
+          "virtual_address": "0x1465b8ce8",
           "byte_count": 46,
           "sha256": "79fdc4dc3176bb3e1d2869878543151c4ea0a4e8341f4d78357d6e3f37c678ee"
         },
         {
-          "file_offset": "0x6591f48",
-          "virtual_address": "0x146593948",
+          "file_offset": "0x65b8c10",
+          "virtual_address": "0x1465b9810",
           "byte_count": 46,
           "sha256": "79fdc4dc3176bb3e1d2869878543151c4ea0a4e8341f4d78357d6e3f37c678ee"
         },
         {
-          "file_offset": "0x65c62cd",
-          "virtual_address": "0x1465c7ccd",
+          "file_offset": "0x65b8cb0",
+          "virtual_address": "0x1465b98b0",
           "byte_count": 46,
           "sha256": "79fdc4dc3176bb3e1d2869878543151c4ea0a4e8341f4d78357d6e3f37c678ee"
         }
@@ -13255,7 +13262,8 @@
         295,
         305,
         321,
-        323
+        323,
+        325
       ],
       "recovery": {
         "status": "partial",
@@ -13312,7 +13320,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -14110,16 +14118,18 @@
         "limits": "Only this registered Difficulty consumer scope is supplied. Other existing subsystem contracts retain their source ownership and provenance; no complete system, compilation, execution or parity claim."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 77,
       "source_correspondence_status": "retained_partial_source_correspondence",
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue-app/src/screens/picker.rs]",
       "unicode_input_0_127_0": {
         "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "gap_ids": [293],
+        "gap_ids": [
+          293
+        ],
         "source_refs": [
           "crates/azeroth-survivors-re/src/hero_name.rs",
           "crates/azeroth-survivors-re/tests/current_menu_save.rs",
@@ -14212,14 +14222,14 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/rewards.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x65bc8c0",
-          "virtual_address": "0x1465be2c0",
+          "file_offset": "0x6578a20",
+          "virtual_address": "0x146579620",
           "byte_count": 47,
           "sha256": "fc55b4779c4d3281eec14f828e61ef333699a32610ceb56c5889cde2ab2cdaa5"
         },
         {
-          "file_offset": "0x65c4a60",
-          "virtual_address": "0x1465c6460",
+          "file_offset": "0x65921f0",
+          "virtual_address": "0x146592df0",
           "byte_count": 47,
           "sha256": "fc55b4779c4d3281eec14f828e61ef333699a32610ceb56c5889cde2ab2cdaa5"
         }
@@ -14445,7 +14455,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -15400,9 +15410,9 @@
         ]
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 130,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -15414,8 +15424,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/runmods.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x656858b",
-          "virtual_address": "0x146569f8b",
+          "file_offset": "0x658131b",
+          "virtual_address": "0x146581f1b",
           "byte_count": 47,
           "sha256": "97b8a8570fc92fde4b4e4b2d24f3846f4f95f8002dcd39cc511af71e81e49d92"
         }
@@ -15595,7 +15605,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -16359,9 +16369,9 @@
         "limits": "Source/static completion within this stated contract only. Shared helper, unlock, affix, reward, party and supporting set-stat producer contracts retain their own evidence. Allocation/UI/terrain/curve/powf/publication seams and unexecuted compilation/game/network/server/rendering/parity remain explicit."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 131,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -16379,14 +16389,14 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/talents.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x65bcc0b",
-          "virtual_address": "0x1465be60b",
+          "file_offset": "0x657aaae",
+          "virtual_address": "0x14657b6ae",
           "byte_count": 47,
           "sha256": "608c6d2a0cc3e20e582bf636aa6e6ebd487bbe9456c4740576d46eefca95bb70"
         },
         {
-          "file_offset": "0x65c6ae6",
-          "virtual_address": "0x1465c84e6",
+          "file_offset": "0x659253b",
+          "virtual_address": "0x14659313b",
           "byte_count": 47,
           "sha256": "608c6d2a0cc3e20e582bf636aa6e6ebd487bbe9456c4740576d46eefca95bb70"
         }
@@ -16549,7 +16559,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -17353,9 +17363,9 @@
         "limits": "Selected source/static completion only; no whole-module/native completeness, compilation, runtime validation or original/rebuilt parity is claimed."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 78,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -17373,8 +17383,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/talentview.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x659128c",
-          "virtual_address": "0x146592c8c",
+          "file_offset": "0x65b7ff4",
+          "virtual_address": "0x1465b8bf4",
           "byte_count": 50,
           "sha256": "2052d3e2304cb9ed1ea55f18dcdf33463029afe964efc1c3d946cf3092f7a926"
         }
@@ -17506,7 +17516,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -18169,9 +18179,9 @@
         ]
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 79,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -18183,8 +18193,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/touch.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x65bf0f8",
-          "virtual_address": "0x1465c0af8",
+          "file_offset": "0x65bcd29",
+          "virtual_address": "0x1465bd929",
           "byte_count": 45,
           "sha256": "f8cd314246ed64bbca31e3f6c5fbadbd8df4a835ef0f7b1fb0e99015137fcf2b"
         }
@@ -18280,7 +18290,7 @@
         "native_evidence_validity": "selected_target_bounded_instruction_contracts_typed_constructor_snapshots_and_exact_diagnostic_identity",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -18919,9 +18929,9 @@
         }
       ],
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 80,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -18951,8 +18961,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/update.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x659c8cd",
-          "virtual_address": "0x14659e2cd",
+          "file_offset": "0x65c0c8d",
+          "virtual_address": "0x1465c188d",
           "byte_count": 46,
           "sha256": "5a7d0d79ed68283796eabc02589f605aeb72e3f44899547f43543ce09d748286"
         }
@@ -19055,7 +19065,7 @@
         "native_evidence_validity": "historical_0_105_0_bounded_native_and_source_contracts",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -19714,9 +19724,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 132,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -19728,26 +19738,26 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/xinput.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x659caf3",
-          "virtual_address": "0x14659e4f3",
+          "file_offset": "0x65c0eb3",
+          "virtual_address": "0x1465c1ab3",
           "byte_count": 46,
           "sha256": "ef16d1a75ff6e8271edd9693f88ada3794c647fe29c75c7e85162cfee4584948"
         },
         {
-          "file_offset": "0x65a39de",
-          "virtual_address": "0x1465a53de",
+          "file_offset": "0x65c7d9e",
+          "virtual_address": "0x1465c899e",
           "byte_count": 46,
           "sha256": "ef16d1a75ff6e8271edd9693f88ada3794c647fe29c75c7e85162cfee4584948"
         },
         {
-          "file_offset": "0x65a3a80",
-          "virtual_address": "0x1465a5480",
+          "file_offset": "0x65c7e40",
+          "virtual_address": "0x1465c8a40",
           "byte_count": 46,
           "sha256": "ef16d1a75ff6e8271edd9693f88ada3794c647fe29c75c7e85162cfee4584948"
         },
         {
-          "file_offset": "0x65a3b2e",
-          "virtual_address": "0x1465a552e",
+          "file_offset": "0x65c7eee",
+          "virtual_address": "0x1465c8aee",
           "byte_count": 46,
           "sha256": "ef16d1a75ff6e8271edd9693f88ada3794c647fe29c75c7e85162cfee4584948"
         }
@@ -19859,7 +19869,7 @@
         "native_evidence_validity": "selected_target_controller_poll_and_axis_publisher_with_host_boundary",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -20621,9 +20631,9 @@
         }
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 81,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -20653,8 +20663,8 @@
       "original_path": "crates/wenilla-rogue-app/src/update.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x656d1c0",
-          "virtual_address": "0x14656ebc0",
+          "file_offset": "0x6594520",
+          "virtual_address": "0x146595120",
           "byte_count": 38,
           "sha256": "4069566d83a229c5ea858dd6005fc4f729b48094a930d1e98e25628030790837"
         }
@@ -20772,7 +20782,7 @@
         "native_evidence_validity": "historical_0_105_0_bounded_native_and_source_contracts",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -21431,9 +21441,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_part_reader_resume_contract": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -21481,8 +21491,8 @@
       "original_path": "crates/wenilla-rogue/src/achievements.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7724475",
-          "virtual_address": "0x147725e75",
+          "file_offset": "0x73b5aed",
+          "virtual_address": "0x1473b66ed",
           "byte_count": 40,
           "sha256": "491ea098b73acad5c5baf6e8c83dbad4e96d0224a2e366c91a680597239763b3"
         }
@@ -21623,7 +21633,8 @@
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
         "docs/analysis/native-census-0.139.1.md",
-        "docs/analysis/party-achievement-settlement-0.141.0.md"
+        "docs/analysis/party-achievement-settlement-0.141.0.md",
+        "docs/analysis/evidence/bounded-native-frontier.json"
       ],
       "gap_ids": [
         19,
@@ -21631,6 +21642,7 @@
         27,
         34,
         41,
+        73,
         82,
         113,
         114,
@@ -21664,7 +21676,8 @@
         289,
         290,
         299,
-        315
+        315,
+        325
       ],
       "recovery": {
         "status": "partial",
@@ -21731,7 +21744,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -22658,9 +22671,9 @@
         "limits": "Only the named selected consumer contracts are supplied; system-level native recovery and unrelated retained contracts remain separate."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
         "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 82,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -22762,8 +22775,8 @@
       "original_path": "crates/wenilla-rogue/src/appearance.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x771a0d8",
-          "virtual_address": "0x14771bad8",
+          "file_offset": "0x73c6f92",
+          "virtual_address": "0x1473c7b92",
           "byte_count": 38,
           "sha256": "50e9f6bed87e2a4064e8c2609ae19d04107a09457ea3aeb52c666ce899bc825a"
         }
@@ -22935,7 +22948,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -23621,9 +23634,9 @@
       },
       "equipped_inventory_0_113_2_ref": "custom-game-proto.equipped_inventory_0_113_2",
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 83,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -23680,8 +23693,8 @@
       "original_path": "crates/wenilla-rogue/src/bindings.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7af2f07",
-          "virtual_address": "0x147af4907",
+          "file_offset": "0x7afdac7",
+          "virtual_address": "0x147afe6c7",
           "byte_count": 36,
           "sha256": "1f0ec43ec4b155376220e82f0c8cd7163f028881d2ff457653b5ffbc677fc8f2"
         }
@@ -23816,7 +23829,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -24468,9 +24481,9 @@
         "limits": "Synthetic state and explicit OS/ECS/query/allocation/predicate/hash/parent/spawn seams. No reconstructed Rust execution,build,game,device,live binding/file I/O,real layout/GPU/scheduling or original/rebuilt parity; complete shared/global ownership remains#41."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 84,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -24482,8 +24495,8 @@
       "original_path": "crates/wenilla-rogue/src/content.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7392658",
-          "virtual_address": "0x147394058",
+          "file_offset": "0x739ea40",
+          "virtual_address": "0x14739f640",
           "byte_count": 35,
           "sha256": "274664eb58a5ce0038ae762e1eaa17722ad12cf7516db53734216b86a55893a2"
         }
@@ -24641,7 +24654,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -25389,9 +25402,9 @@
         "remaining": "Actual Rust/parser/events/cache/FrameXML execution, native client-parser equivalence and original/rebuilt parity remain unverified. Global protocol/alias/census closure remains #41."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 85,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -25432,8 +25445,8 @@
       "original_path": "crates/wenilla-rogue/src/dbc.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x76f6268",
-          "virtual_address": "0x1476f7c68",
+          "file_offset": "0x77202c0",
+          "virtual_address": "0x147720ec0",
           "byte_count": 31,
           "sha256": "c960b216e8e710801f721328515af3c4f183ac2532f6dc80dafa975bf00f4414"
         }
@@ -25536,7 +25549,7 @@
         "native_evidence_validity": "historical_0_105_0_bounded_native_and_source_contracts",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -26165,9 +26178,9 @@
         }
       ],
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 86,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -26179,8 +26192,8 @@
       "original_path": "crates/wenilla-rogue/src/driver.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7aec7d9",
-          "virtual_address": "0x147aee1d9",
+          "file_offset": "0x73d58c8",
+          "virtual_address": "0x1473d64c8",
           "byte_count": 34,
           "sha256": "c5f7453e4ffdd01c15cc26e4f8646f26d86b8ad39f1b1451963ff01956683570"
         }
@@ -26401,7 +26414,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -27085,9 +27098,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "coop_clear_0_123_0": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -27232,9 +27245,16 @@
       "id": "custom-game-fonts",
       "font_table_publication_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "gap_ids": [135],
-        "evidence_refs": ["docs/analysis/font-table-publication-0.141.0.md"],
-        "source_refs": ["crates/azeroth-survivors-re/src/font_patch.rs", "crates/azeroth-survivors-re/src/menu_fonts.rs"],
+        "gap_ids": [
+          135
+        ],
+        "evidence_refs": [
+          "docs/analysis/font-table-publication-0.141.0.md"
+        ],
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/font_patch.rs",
+          "crates/azeroth-survivors-re/src/menu_fonts.rs"
+        ],
         "recovery": "First-byte and suffix dispatch, unchanged return, admitted scaler, post admission, payload serialization and native provider fallback.",
         "implementation": "Retain the original scaler and enforce the post header on changed fonts through the existing original-font fallback.",
         "static_validation": "Journaled Ghidra slice, 12,545 bounded native cases and Rust syntax parsing.",
@@ -27245,14 +27265,14 @@
       "original_path": "crates/wenilla-rogue/src/fonts.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x73a8fee",
-          "virtual_address": "0x1473aa9ee",
+          "file_offset": "0x73d396e",
+          "virtual_address": "0x1473d456e",
           "byte_count": 33,
           "sha256": "561ec7c9aba5b5083e6964d46418ae097c5e79568191aeeb803a01272702d720"
         },
         {
-          "file_offset": "0x76f27a6",
-          "virtual_address": "0x1476f41a6",
+          "file_offset": "0x73d6b46",
+          "virtual_address": "0x1473d7746",
           "byte_count": 33,
           "sha256": "561ec7c9aba5b5083e6964d46418ae097c5e79568191aeeb803a01272702d720"
         }
@@ -27376,7 +27396,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -28099,16 +28119,18 @@
         "scope": "Exact augmentation serialization filter/change gate and copy/replacement boundary only; not a full font or rendering contract."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 135,
       "source_correspondence_status": "retained_partial_source_correspondence",
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/fonts.rs]",
       "unicode_input_0_127_0": {
         "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "gap_ids": [293],
+        "gap_ids": [
+          293
+        ],
         "source_refs": [
           "crates/azeroth-survivors-re/src/hero_name.rs",
           "crates/azeroth-survivors-re/tests/current_menu_save.rs",
@@ -28278,20 +28300,20 @@
       "original_path": "crates/wenilla-rogue/src/game/abilities.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x771aa85",
-          "virtual_address": "0x14771c485",
+          "file_offset": "0x73c7945",
+          "virtual_address": "0x1473c8545",
           "byte_count": 42,
           "sha256": "6a7a32bb2ecf37b959a6f9a121d5411dfbf517b300e93983baf54e34bbc9a994"
         },
         {
-          "file_offset": "0x7aee888",
-          "virtual_address": "0x147af0288",
+          "file_offset": "0x7b00e38",
+          "virtual_address": "0x147b01a38",
           "byte_count": 42,
           "sha256": "6a7a32bb2ecf37b959a6f9a121d5411dfbf517b300e93983baf54e34bbc9a994"
         },
         {
-          "file_offset": "0x7af8340",
-          "virtual_address": "0x147af9d40",
+          "file_offset": "0x7b07ef0",
+          "virtual_address": "0x147b08af0",
           "byte_count": 42,
           "sha256": "6a7a32bb2ecf37b959a6f9a121d5411dfbf517b300e93983baf54e34bbc9a994"
         }
@@ -28529,7 +28551,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -29374,9 +29396,9 @@
         "remaining_source_work": "No additional selected source omission identified; wider party/type/alias/transport and runtime/parity remain under their existing gaps."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_fire_nova_contract": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -29657,8 +29679,8 @@
       "original_path": "crates/wenilla-rogue/src/game/addon.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7af6f51",
-          "virtual_address": "0x147af8951",
+          "file_offset": "0x7b06b01",
+          "virtual_address": "0x147b07701",
           "byte_count": 38,
           "sha256": "daa977ffda3b02ca5645c28edbfca58905995d2fc331dfb6779b1626ee34fed9"
         }
@@ -29679,10 +29701,6 @@
         "crates/azeroth-survivors-re/src/gameplay/terminal.rs",
         "crates/azeroth-survivors-re/src/gameplay/notifications.rs",
         "crates/azeroth-survivors-re/src/gameplay/client.rs",
-        "scripts/check-addon-snapshot-0.109.0.py",
-        "scripts/check-addon-lifecycle-0.109.0.py",
-        "scripts/check-addon-contracts-0.109.0.py",
-        "scripts/check-addon-banners-0.109.0.py",
         "crates/azeroth-survivors-re/src/gameplay/mod.rs",
         "crates/azeroth-survivors-re/src/gameplay/client/addon_summons.rs",
         "crates/azeroth-survivors-re/assets/addon-summons-0.112.0.json",
@@ -29701,13 +29719,7 @@
         "crates/azeroth-survivors-re/src/gameplay/mechanics/demons.rs",
         "scripts/check-addon-timer-api.lua",
         "scripts/check-addon-timers-0.115.0.py",
-        "scripts/check-addon-metadata-0.115.0.py",
         "scripts/check-addon-timer-names-0.115.0.py",
-        "scripts/check-addon-cache-0.115.0.py",
-        "scripts/check-addon-localizer-0.115.0.py",
-        "scripts/check-addon-cooldown-0.115.0.py",
-        "scripts/check-addon-recovery-base-0.115.0.py",
-        "scripts/check-addon-timer-bridge-0.115.0.py",
         "crates/azeroth-survivors-re/src/localization/amulet_names.rs",
         "scripts/check-amulet-names-0.115.0.py"
       ],
@@ -29862,7 +29874,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -30597,9 +30609,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 137,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -30654,8 +30666,8 @@
       "original_path": "crates/wenilla-rogue/src/game/auras.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7aeda55",
-          "virtual_address": "0x147aef455",
+          "file_offset": "0x7b00005",
+          "virtual_address": "0x147b00c05",
           "byte_count": 38,
           "sha256": "e645d891a3f1e887b6e91a4b387caf0622ee3023575af5a2e1e8fa1c0bab30f3"
         }
@@ -30827,7 +30839,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -31502,9 +31514,9 @@
         "source_runtime_and_parity_verified": false
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "again_runes_0_123_0": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -31595,8 +31607,8 @@
       "original_path": "crates/wenilla-rogue/src/game/companions.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7aefab0",
-          "virtual_address": "0x147af14b0",
+          "file_offset": "0x7b02060",
+          "virtual_address": "0x147b02c60",
           "byte_count": 43,
           "sha256": "d5b0d0dd0b314915b6ec1cd2d329172ecd7d988dc5cc78588e55441595882794"
         }
@@ -31748,7 +31760,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -32456,9 +32468,9 @@
         "limits": "Selected source/static completion only; no whole-module/native completeness, compilation, runtime validation or original/rebuilt parity is claimed."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "again_retirement_0_123_0": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -32506,20 +32518,20 @@
       "original_path": "crates/wenilla-rogue/src/game/demons.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x77243cd",
-          "virtual_address": "0x147725dcd",
+          "file_offset": "0x73b5a9d",
+          "virtual_address": "0x1473b669d",
           "byte_count": 39,
           "sha256": "d131d84a5180258faebdb484b197b9e73498c4d7c3758f7e40ab1ccab10e65cc"
         },
         {
-          "file_offset": "0x7af05e8",
-          "virtual_address": "0x147af1fe8",
+          "file_offset": "0x7b02b98",
+          "virtual_address": "0x147b03798",
           "byte_count": 39,
           "sha256": "d131d84a5180258faebdb484b197b9e73498c4d7c3758f7e40ab1ccab10e65cc"
         },
         {
-          "file_offset": "0x7af8411",
-          "virtual_address": "0x147af9e11",
+          "file_offset": "0x7b07fc1",
+          "virtual_address": "0x147b08bc1",
           "byte_count": 39,
           "sha256": "d131d84a5180258faebdb484b197b9e73498c4d7c3758f7e40ab1ccab10e65cc"
         }
@@ -32730,7 +32742,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -33581,9 +33593,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 138,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -33641,20 +33653,20 @@
       "original_path": "crates/wenilla-rogue/src/game/enemy.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x73920be",
-          "virtual_address": "0x147393abe",
+          "file_offset": "0x739e49e",
+          "virtual_address": "0x14739f09e",
           "byte_count": 38,
           "sha256": "3ecd8cdd0a81d56a1a39dcac76f4971aa53e64d9251c60e56bf8a52fea03ec17"
         },
         {
-          "file_offset": "0x7aedd77",
-          "virtual_address": "0x147aef777",
+          "file_offset": "0x7b00327",
+          "virtual_address": "0x147b00f27",
           "byte_count": 38,
           "sha256": "3ecd8cdd0a81d56a1a39dcac76f4971aa53e64d9251c60e56bf8a52fea03ec17"
         },
         {
-          "file_offset": "0x7af826e",
-          "virtual_address": "0x147af9c6e",
+          "file_offset": "0x7b07e1e",
+          "virtual_address": "0x147b08a1e",
           "byte_count": 38,
           "sha256": "3ecd8cdd0a81d56a1a39dcac76f4971aa53e64d9251c60e56bf8a52fea03ec17"
         }
@@ -33957,7 +33969,8 @@
         294,
         295,
         312,
-        313
+        313,
+        325
       ],
       "recovery": {
         "status": "partial",
@@ -34034,7 +34047,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -35075,9 +35088,9 @@
         "limits": "Only this registered Difficulty consumer scope is supplied. Other existing subsystem contracts retain their source ownership and provenance; no complete system, compilation, execution or parity claim."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 139,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -35180,14 +35193,14 @@
       "original_path": "crates/wenilla-rogue/src/game/guardians.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x77246d0",
-          "virtual_address": "0x1477260d0",
+          "file_offset": "0x7744358",
+          "virtual_address": "0x147744f58",
           "byte_count": 42,
           "sha256": "99c5ffa74b4942a5a389f0c79c51c9ddbee5a98b8a727bc7bd2a14a642f4aae3"
         },
         {
-          "file_offset": "0x7af0c6e",
-          "virtual_address": "0x147af266e",
+          "file_offset": "0x7b0321e",
+          "virtual_address": "0x147b03e1e",
           "byte_count": 42,
           "sha256": "99c5ffa74b4942a5a389f0c79c51c9ddbee5a98b8a727bc7bd2a14a642f4aae3"
         }
@@ -35420,7 +35433,8 @@
         89,
         219,
         312,
-        313
+        313,
+        325
       ],
       "recovery": {
         "status": "partial",
@@ -35446,7 +35460,7 @@
         "Map remaining guardian producer and consumer correspondence beyond the selected wake and leash path.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-guardians]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "native_evidence_validity": "current_bounded_selected_native_interface_contract",
+      "native_evidence_validity": "current_exact_diagnostic_path",
       "source_review_anchors": [
         {
           "path": "crates/azeroth-survivors-re/src/guardians/mod.rs",
@@ -35477,7 +35491,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -36472,9 +36486,9 @@
         "limits": "Only this registered Difficulty consumer scope is supplied. Other existing subsystem contracts retain their source ownership and provenance; no complete system, compilation, execution or parity claim."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 89,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -36516,8 +36530,8 @@
       "original_path": "crates/wenilla-rogue/src/game/mod.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7aed045",
-          "virtual_address": "0x147aeea45",
+          "file_offset": "0x7aff5f5",
+          "virtual_address": "0x147b001f5",
           "byte_count": 36,
           "sha256": "3aa0af4b6de07d2ed3164d991428779a1d805c30750bfec4677b97f0d4b91bea"
         }
@@ -36862,7 +36876,8 @@
         294,
         295,
         296,
-        300
+        300,
+        325
       ],
       "recovery": {
         "status": "partial",
@@ -36919,7 +36934,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -38115,9 +38130,9 @@
         "limits": "Only the named selected consumer contracts are supplied; system-level native recovery and unrelated retained contracts remain separate."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "solo_clear_0_123_0": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -38251,8 +38266,8 @@
       "original_path": "crates/wenilla-rogue/src/game/procs.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7aefc9c",
-          "virtual_address": "0x147af169c",
+          "file_offset": "0x7b0224c",
+          "virtual_address": "0x147b02e4c",
           "byte_count": 38,
           "sha256": "872f86e990392a67268d4233f90ee60d28d0de1b883daa802f1768f3265aaed8"
         }
@@ -38423,7 +38438,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -39107,9 +39122,9 @@
         "remaining": "Only the named contracts are recovered; arbitrary aliases, complete native ownership, compilation, actual client/gameplay/rendering and original/rebuilt parity remain unverified."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 90,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -39311,8 +39326,8 @@
       "original_path": "crates/wenilla-rogue/src/game/talents.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7aef309",
-          "virtual_address": "0x147af0d09",
+          "file_offset": "0x7b018b9",
+          "virtual_address": "0x147b024b9",
           "byte_count": 40,
           "sha256": "7b9b0aebf93d1256a428f8244eaaeb66e2db90203666b4c572647702a6afe62b"
         }
@@ -39538,7 +39553,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -40402,9 +40417,9 @@
         "limits": "Selected source/static completion only; no whole-module/native completeness, compilation, runtime validation or original/rebuilt parity is claimed."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 141,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -40462,20 +40477,20 @@
       "original_path": "crates/wenilla-rogue/src/game/upgrades.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x76f2178",
-          "virtual_address": "0x1476f3b78",
+          "file_offset": "0x771fce0",
+          "virtual_address": "0x1477208e0",
           "byte_count": 41,
           "sha256": "d1ce8f5ef043174352eceef6a820c4a6e0427ecf4a4df664603f72eae780d948"
         },
         {
-          "file_offset": "0x7aecf90",
-          "virtual_address": "0x147aee990",
+          "file_offset": "0x7aff540",
+          "virtual_address": "0x147b00140",
           "byte_count": 41,
           "sha256": "d1ce8f5ef043174352eceef6a820c4a6e0427ecf4a4df664603f72eae780d948"
         },
         {
-          "file_offset": "0x7af8460",
-          "virtual_address": "0x147af9e60",
+          "file_offset": "0x7b08010",
+          "virtual_address": "0x147b08c10",
           "byte_count": 41,
           "sha256": "d1ce8f5ef043174352eceef6a820c4a6e0427ecf4a4df664603f72eae780d948"
         }
@@ -40662,7 +40677,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -41522,9 +41537,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 91,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -41571,14 +41586,14 @@
       "original_path": "crates/wenilla-rogue/src/gear.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x771a118",
-          "virtual_address": "0x14771bb18",
+          "file_offset": "0x73c6fd8",
+          "virtual_address": "0x1473c7bd8",
           "byte_count": 32,
           "sha256": "8521dd41e063f72b9cad7aa491e6cba59187d4a68910bbc52b2aeddbb880a2c6"
         },
         {
-          "file_offset": "0x7af8618",
-          "virtual_address": "0x147afa018",
+          "file_offset": "0x7b081c8",
+          "virtual_address": "0x147b08dc8",
           "byte_count": 32,
           "sha256": "8521dd41e063f72b9cad7aa491e6cba59187d4a68910bbc52b2aeddbb880a2c6"
         }
@@ -41705,7 +41720,8 @@
         "docs/analysis/switch-context-source-review-0.139.1.md",
         "docs/analysis/scholomance-0.140.0.md",
         "docs/analysis/scholomance-loot-0.141.0.md",
-        "docs/analysis/lordaeron-tabard-0.141.1.md"
+        "docs/analysis/lordaeron-tabard-0.141.1.md",
+        "docs/analysis/evidence/bounded-native-frontier.json"
       ],
       "gap_ids": [
         4,
@@ -41805,7 +41821,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -42643,9 +42659,9 @@
         "limits": "Only the named selected consumer contracts are supplied; system-level native recovery and unrelated retained contracts remain separate."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
         "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 92,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -42710,8 +42726,12 @@
       "id": "custom-game-i18n",
       "scholomance_text_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "gap_ids": [142],
-        "evidence_refs": ["docs/analysis/scholomance-localization-0.141.0.md"],
+        "gap_ids": [
+          142
+        ],
+        "evidence_refs": [
+          "docs/analysis/scholomance-localization-0.141.0.md"
+        ],
         "source_refs": [
           "crates/azeroth-survivors-re/src/gameplay/client/creature_queries.rs",
           "crates/azeroth-survivors-re/src/gameplay/mod.rs",
@@ -42729,14 +42749,14 @@
       "original_path": "crates/wenilla-rogue/src/i18n.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x772cb4e",
-          "virtual_address": "0x14772e54e",
+          "file_offset": "0x7743fa6",
+          "virtual_address": "0x147744ba6",
           "byte_count": 32,
           "sha256": "becd2af943c68160ab22274933e244f4017f07dbcecf159e41300bdec25a84a8"
         },
         {
-          "file_offset": "0x7af6fc9",
-          "virtual_address": "0x147af89c9",
+          "file_offset": "0x7b06b79",
+          "virtual_address": "0x147b07779",
           "byte_count": 32,
           "sha256": "becd2af943c68160ab22274933e244f4017f07dbcecf159e41300bdec25a84a8"
         }
@@ -42975,7 +42995,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -43828,9 +43848,9 @@
         "limits": "Standard OS/filesystem/hash/allocation calls and arbitrary TLS producer lifetime are unexecuted interfaces. Compilation, actual locale/save/UI/rendering and original/rebuilt parity remain unverified."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 142,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -43881,14 +43901,14 @@
       "original_path": "crates/wenilla-rogue/src/jewelry.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x76f62dd",
-          "virtual_address": "0x1476f7cdd",
+          "file_offset": "0x7720335",
+          "virtual_address": "0x147720f35",
           "byte_count": 35,
           "sha256": "682447f53892300248081b0365d75bf1e6b987699e453f020edcb307216267d1"
         },
         {
-          "file_offset": "0x7af893a",
-          "virtual_address": "0x147afa33a",
+          "file_offset": "0x7b084ea",
+          "virtual_address": "0x147b090ea",
           "byte_count": 35,
           "sha256": "682447f53892300248081b0365d75bf1e6b987699e453f020edcb307216267d1"
         }
@@ -44072,7 +44092,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -44840,9 +44860,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 143,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -45776,8 +45796,8 @@
       "original_path": "crates/wenilla-rogue/src/nav.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7391ec0",
-          "virtual_address": "0x1473938c0",
+          "file_offset": "0x739e2a0",
+          "virtual_address": "0x14739eea0",
           "byte_count": 31,
           "sha256": "64c87e4e982bc74682e4045e5a84ea262080f550c1eff0151982ac967eb6d028"
         }
@@ -45907,7 +45927,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -46558,9 +46578,9 @@
         "source_runtime_and_parity_verified": false
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 93,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -46652,8 +46672,8 @@
       "original_path": "crates/wenilla-rogue/src/proto.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7aea330",
-          "virtual_address": "0x147aebd30",
+          "file_offset": "0x73c49a0",
+          "virtual_address": "0x1473c55a0",
           "byte_count": 33,
           "sha256": "7387e5963878033d536a600d944ec9216de64a06450b726837dbd4efa0008cc4"
         }
@@ -46894,7 +46914,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -47784,9 +47804,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 145,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -47817,8 +47837,8 @@
       "original_path": "crates/wenilla-rogue/src/realmd.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x76f644a",
-          "virtual_address": "0x1476f7e4a",
+          "file_offset": "0x77204a2",
+          "virtual_address": "0x1477210a2",
           "byte_count": 34,
           "sha256": "ee6bb63195ef3bad89fd9357fb45f7980629811e152d791d2f424f12e8b0ffc4"
         }
@@ -47963,7 +47983,7 @@
         "native_evidence_validity": "selected_target_bounded_report_contracts_and_exact_diagnostic_bytes_with_older_scopes_retained",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -48635,9 +48655,9 @@
         "size_bytes": 145498624
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 94,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -48662,8 +48682,8 @@
       "original_path": "crates/wenilla-rogue/src/save.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x76f27f8",
-          "virtual_address": "0x1476f41f8",
+          "file_offset": "0x73d39c0",
+          "virtual_address": "0x1473d45c0",
           "byte_count": 32,
           "sha256": "c252c8f93f0f1959c6deedb61473d6c7c6f1e4ae1db73a0f025c73c5d8744afb"
         }
@@ -49014,7 +49034,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -50089,9 +50109,9 @@
         "limits": "Only the named selected consumer contracts are supplied; system-level native recovery and unrelated retained contracts remain separate."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 146,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -50117,14 +50137,14 @@
       "original_path": "crates/wenilla-rogue/src/server.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7ae8d65",
-          "virtual_address": "0x147aea765",
+          "file_offset": "0x73c32ed",
+          "virtual_address": "0x1473c3eed",
           "byte_count": 34,
           "sha256": "78170b2152d926669fe41d9cd547f852740bf38cd96c1215152ac2bf50f9589b"
         },
         {
-          "file_offset": "0x7af7024",
-          "virtual_address": "0x147af8a24",
+          "file_offset": "0x7b06bd4",
+          "virtual_address": "0x147b077d4",
           "byte_count": 34,
           "sha256": "78170b2152d926669fe41d9cd547f852740bf38cd96c1215152ac2bf50f9589b"
         }
@@ -50363,7 +50383,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -51270,9 +51290,9 @@
         "summary": "#184 source/static repair preserves selected party/run/queued traffic/UI after primary-only loss, with independent relay heartbeats; actual failure and Leave retain cleanup.128 native cases/2,684 instructions and two Rust syntax parses pass. No further selected source omission identified; runtime/parity remain unverified."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 147,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -51297,8 +51317,8 @@
       "original_path": "crates/wenilla-rogue/src/talents.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x76f6297",
-          "virtual_address": "0x1476f7c97",
+          "file_offset": "0x77202ef",
+          "virtual_address": "0x147720eef",
           "byte_count": 35,
           "sha256": "a1d5559d291ee8beca996c5c876398c30976af59d7db7a8ab51250c27bb1eff0"
         }
@@ -51500,7 +51520,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -52336,9 +52356,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 148,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -52350,8 +52370,8 @@
       "original_path": "crates/wenilla-rogue/src/terrain.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7af4690",
-          "virtual_address": "0x147af6090",
+          "file_offset": "0x7b048d0",
+          "virtual_address": "0x147b054d0",
           "byte_count": 35,
           "sha256": "c58235b27cc2cff32c542d75528df38ada1c5111478871c4cdab5e898fe2b69d"
         }
@@ -52512,7 +52532,7 @@
         "native_evidence_validity": "selected_target_exact_diagnostic_bytes_only",
         "limits": "Historical bounded evidence only; no native contract is relabeled as 0.107.0."
       },
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "historical_assessments": [
         {
           "target": {
@@ -53172,9 +53192,9 @@
         "remaining": "Reported finite-position terrain penetration, real geometry/client/source execution and original/rebuilt parity remain open #1/#41."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "coop_correction_0_123_0": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -53239,7 +53259,10 @@
       "id": "engine-selected-target-deltas",
       "mpq_mount_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "gap_ids": [41, 320],
+        "gap_ids": [
+          41,
+          320
+        ],
         "evidence_refs": [
           "docs/analysis/mpq-mount-0.141.0.md",
           "docs/analysis/evidence/0.141.0/mpq-member-coverage.json"
@@ -55117,20 +55140,20 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/markers.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6550d67",
-          "virtual_address": "0x146552767",
+          "file_offset": "0x656e6e0",
+          "virtual_address": "0x14656f2e0",
           "byte_count": 47,
           "sha256": "385ec0d8b732d4e6868a4cdf83dfe8ec046be091902756b7c751ae2c78954a13"
         },
         {
-          "file_offset": "0x6562c40",
-          "virtual_address": "0x146564640",
+          "file_offset": "0x657e917",
+          "virtual_address": "0x14657f517",
           "byte_count": 47,
           "sha256": "385ec0d8b732d4e6868a4cdf83dfe8ec046be091902756b7c751ae2c78954a13"
         },
         {
-          "file_offset": "0x6564b20",
-          "virtual_address": "0x146566520",
+          "file_offset": "0x65ca020",
+          "virtual_address": "0x1465cac20",
           "byte_count": 47,
           "sha256": "385ec0d8b732d4e6868a4cdf83dfe8ec046be091902756b7c751ae2c78954a13"
         }
@@ -55324,7 +55347,7 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-markers]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_review_anchors": [
         {
@@ -56064,9 +56087,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 96,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -56095,8 +56118,8 @@
       "original_path": "crates/wenilla-rogue-app/src/legacy_config.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x65511e5",
-          "virtual_address": "0x146552be5",
+          "file_offset": "0x655d245",
+          "virtual_address": "0x14655de45",
           "byte_count": 45,
           "sha256": "3b4e0c41483c78fb2f15ee2bbbff911f061d5479f50697fca6338568fa277900"
         }
@@ -56164,7 +56187,7 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-legacy-config]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_review_scope": "Retained partial source correspondence and prior repairs, with exact historical status in incremental-correspondence.json. Current diagnostic joining supplies navigation only; register current bounded contracts separately.",
       "historical_assessments": [
@@ -56671,9 +56694,9 @@
         "remaining": "Original census/P01 counts unchanged. Concrete configuration payload/method and counter-object identities, other converter variants, source/controller/OS/auth/gameplay and original/rebuilt parity remain unverified."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 97,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -56685,14 +56708,14 @@
       "original_path": "crates/wenilla-rogue/src/game/hazards.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7392148",
-          "virtual_address": "0x147393b48",
+          "file_offset": "0x739e530",
+          "virtual_address": "0x14739f130",
           "byte_count": 40,
           "sha256": "7cd715b31ccbcf013433a464527b8065ca4082c9e10727f35a3f9b85d4a5b395"
         },
         {
-          "file_offset": "0x7aed0cb",
-          "virtual_address": "0x147aeeacb",
+          "file_offset": "0x7aff67b",
+          "virtual_address": "0x147b0027b",
           "byte_count": 40,
           "sha256": "7cd715b31ccbcf013433a464527b8065ca4082c9e10727f35a3f9b85d4a5b395"
         }
@@ -56931,7 +56954,7 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-hazards]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_review_anchors": [
         {
@@ -57911,9 +57934,9 @@
         "limits": "Only this registered Difficulty consumer scope is supplied. Other existing subsystem contracts retain their source ownership and provenance; no complete system, compilation, execution or parity claim."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 149,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -57942,8 +57965,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/coop.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x65672a8",
-          "virtual_address": "0x146568ca8",
+          "file_offset": "0x6580104",
+          "virtual_address": "0x146580d04",
           "byte_count": 44,
           "sha256": "9d606269cbf1c5bd433b2091d7fce44f7bd8e6822067392b69114493d4dbd97a"
         }
@@ -57961,15 +57984,11 @@
         "crates/azeroth-survivors-re/src/coop_runtime.rs",
         "crates/azeroth-survivors-re/src/coop/session.rs",
         "crates/azeroth-survivors-re/src/coop/directory.rs",
-        "scripts/check-coop-directory-0.115.0.py",
         "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
         "crates/azeroth-survivors-re/src/coop/directory_refresh.rs",
         "crates/azeroth-survivors-re/src/coop/websocket.rs",
-        "scripts/check-coop-directory-response-0.115.0.py",
-        "scripts/check-coop-directory-refresh-0.115.0.py",
         "scripts/check-coop-directory-transport-0.115.0.py",
         "crates/azeroth-survivors-re/src/coop/directory_lifetime.rs",
-        "scripts/check-coop-directory-lifetime-0.115.0.py",
         "crates/azeroth-survivors-re/src/coop/service.rs",
         "scripts/check-coop-service-codec-0.115.0.py",
         "crates/azeroth-survivors-re/src/coop_forms.rs",
@@ -58004,7 +58023,6 @@
         "scripts/check-relay-failure-0.121.0.py",
         "scripts/check-coop-heroic-status-0.121.0.py",
         "scripts/check-coop-selection-0.123.0.py",
-        "scripts/check-coop-directory-schema-0.123.0.py",
         "scripts/check-coop-lobby-ui-0.123.0.py",
         "scripts/restore-coop-lobby-locales-0.123.0.py",
         "crates/azeroth-survivors-re/src/run_options.rs",
@@ -58108,7 +58126,8 @@
         291,
         296,
         299,
-        306
+        306,
+        325
       ],
       "recovery": {
         "status": "partial",
@@ -58134,7 +58153,7 @@
         "The three current app event/status switches are connected. Retain the wider co-op window applicability questions under their individual owners.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-coop]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_review_scope": "Retained partial source correspondence and prior repairs, with exact historical status in incremental-correspondence.json. Current diagnostic joining supplies navigation only; register current bounded contracts separately.",
       "historical_assessments": [
@@ -58780,9 +58799,9 @@
         "limits": "Only the named selected consumer contracts are supplied; system-level native recovery and unrelated retained contracts remain separate."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "selection_metadata_0_123_0": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -58873,8 +58892,8 @@
       "original_path": "crates/wenilla-rogue/src/coop/route.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7ae84d2",
-          "virtual_address": "0x147ae9ed2",
+          "file_offset": "0x73c290a",
+          "virtual_address": "0x1473c350a",
           "byte_count": 38,
           "sha256": "fa12788f6fd0d5520fca7c3b5795218fb75da95b7932c4f2562fcbc121b885c7"
         }
@@ -59011,7 +59030,7 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-route]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_review_scope": "Retained partial source correspondence and prior repairs, with exact historical status in incremental-correspondence.json. Current diagnostic joining supplies navigation only; register current bounded contracts separately.",
       "historical_assessments": [
@@ -59538,9 +59557,9 @@
         "summary": "#184 source/static repair preserves selected party/run/queued traffic/UI after primary-only loss, with independent relay heartbeats; actual failure and Leave retain cleanup.128 native cases/2,684 instructions and two Rust syntax parses pass. No further selected source omission identified; runtime/parity remain unverified."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "coop_correction_0_123_0": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -59584,8 +59603,8 @@
       "original_path": "crates/wenilla-rogue/src/coop/tcp.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x771aa35",
-          "virtual_address": "0x14771c435",
+          "file_offset": "0x73c78f5",
+          "virtual_address": "0x1473c84f5",
           "byte_count": 36,
           "sha256": "4ce02eb6a1f70b87313e0f8cc161a5186a1cea6808059e086b776986061ecfed"
         }
@@ -59695,7 +59714,7 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-tcp]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_review_scope": "Retained partial source correspondence and prior repairs, with exact historical status in incremental-correspondence.json. Current diagnostic joining supplies navigation only; register current bounded contracts separately.",
       "historical_assessments": [
@@ -60243,9 +60262,9 @@
         "summary": "#184 source/static repair preserves selected party/run/queued traffic/UI after primary-only loss, with independent relay heartbeats; actual failure and Leave retain cleanup.128 native cases/2,684 instructions and two Rust syntax parses pass. No further selected source omission identified; runtime/parity remain unverified."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 152,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -60332,14 +60351,14 @@
       "original_path": "crates/wenilla-rogue/src/game/party.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x772cba0",
-          "virtual_address": "0x14772e5a0",
+          "file_offset": "0x7744003",
+          "virtual_address": "0x147744c03",
           "byte_count": 38,
           "sha256": "e2312318a8c70c9680c428410a8ff64b16e012f37835f823ca4980f5ab180d32"
         },
         {
-          "file_offset": "0x7aecf38",
-          "virtual_address": "0x147aee938",
+          "file_offset": "0x7aff4e8",
+          "virtual_address": "0x147b000e8",
           "byte_count": 38,
           "sha256": "e2312318a8c70c9680c428410a8ff64b16e012f37835f823ca4980f5ab180d32"
         }
@@ -60595,7 +60614,7 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-party]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_review_scope": "Retained partial source correspondence and prior repairs, with exact historical status in incremental-correspondence.json. Current diagnostic joining supplies navigation only; register current bounded contracts separately.",
       "historical_assessments": [
@@ -61360,9 +61379,9 @@
         "limits": "Only the named selected consumer contracts are supplied; system-level native recovery and unrelated retained contracts remain separate."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "coop_clear_0_123_0": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -61504,7 +61523,10 @@
       "id": "custom-game-server-party",
       "admission_0_141_1": {
         "target_sha256": "47f4da62a0ab17f10ef420c82ea4a6b66ad65be931aae2713bc938e191d72de6",
-        "gap_ids": [63, 163],
+        "gap_ids": [
+          63,
+          163
+        ],
         "evidence_ref": "docs/analysis/evidence/0.141.1/coop-admission.json",
         "report_ref": "docs/analysis/coop-admission-0.141.1.md",
         "source_version": "0.141.1",
@@ -61725,7 +61747,10 @@
       },
       "coop_version_admission_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
-        "gap_ids": [63, 163],
+        "gap_ids": [
+          63,
+          163
+        ],
         "source_status": "connected",
         "scope": "Native Join version 0.139.2 and protocol 9 producer and exact admission gate, with separate directory protocol 3 and shared game version.",
         "evidence_refs": [
@@ -61756,32 +61781,32 @@
       "original_path": "crates/wenilla-rogue/src/server/party.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x772cb00",
-          "virtual_address": "0x14772e500",
+          "file_offset": "0x73c2fb8",
+          "virtual_address": "0x1473c3bb8",
           "byte_count": 40,
           "sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7"
         },
         {
-          "file_offset": "0x7ae8b30",
-          "virtual_address": "0x147aea530",
+          "file_offset": "0x7743f58",
+          "virtual_address": "0x147744b58",
           "byte_count": 40,
           "sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7"
         },
         {
-          "file_offset": "0x7aecfd8",
-          "virtual_address": "0x147aee9d8",
+          "file_offset": "0x7aff588",
+          "virtual_address": "0x147b00188",
           "byte_count": 40,
           "sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7"
         },
         {
-          "file_offset": "0x7af6493",
-          "virtual_address": "0x147af7e93",
+          "file_offset": "0x7b06163",
+          "virtual_address": "0x147b06d63",
           "byte_count": 40,
           "sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7"
         },
         {
-          "file_offset": "0x7af8388",
-          "virtual_address": "0x147af9d88",
+          "file_offset": "0x7b07f38",
+          "virtual_address": "0x147b08b38",
           "byte_count": 40,
           "sha256": "7bda69dbe493bd70e45f0ea40666494a42213c70ee6981629eacc1c4202f2cf7"
         }
@@ -61851,7 +61876,6 @@
         "crates/benilla-app/src/local_client/item_sets.rs",
         "crates/benilla-app/src/ui_items/feed.rs",
         "scripts/check-coop-selection-0.123.0.py",
-        "scripts/check-coop-directory-schema-0.123.0.py",
         "scripts/check-coop-reconnect-0.123.0.py",
         "crates/azeroth-survivors-re/src/coop/party_frames.rs",
         "crates/azeroth-survivors-re/src/gameplay/coop_party_frames.rs",
@@ -62010,7 +62034,8 @@
         "docs/analysis/coop-admission-0.141.0.md",
         "docs/analysis/coop-inspection-0.141.0.md",
         "docs/analysis/party-achievement-settlement-0.141.0.md",
-        "docs/analysis/detailed-meter-0.141.0.md"
+        "docs/analysis/detailed-meter-0.141.0.md",
+        "docs/analysis/evidence/bounded-native-frontier.json"
       ],
       "gap_ids": [
         1,
@@ -62085,7 +62110,8 @@
         306,
         312,
         314,
-        317
+        317,
+        325
       ],
       "recovery": {
         "status": "partial",
@@ -62112,7 +62138,7 @@
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-server-party]; pending applicability alone is excluded from ordinary fixgap choices.",
         "Update the 0.140.0 Join protocol/version in the existing constructor and admission, using #163. Verify other current arms separately."
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_review_scope": "Retained partial source correspondence and prior repairs, with exact historical status in incremental-correspondence.json. Current diagnostic joining supplies navigation only; register current bounded contracts separately.",
       "historical_assessments": [
@@ -63056,13 +63082,16 @@
         "native_routing_instruction_steps": 1610
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
         "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "admission_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "gap_ids": [63, 163],
+        "gap_ids": [
+          63,
+          163
+        ],
         "evidence_ref": "docs/analysis/evidence/0.141.0/coop-admission.json",
         "report_ref": "docs/analysis/coop-admission-0.141.0.md",
         "source_version": "0.141.0",
@@ -63326,8 +63355,8 @@
       "original_path": "crates/wenilla-rogue/src/banners.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7ae11d8",
-          "virtual_address": "0x147ae2bd8",
+          "file_offset": "0x73bb610",
+          "virtual_address": "0x1473bc210",
           "byte_count": 35,
           "sha256": "2014320a4430614efa08455a7855e5ce0c4f1613c530ce3e8248a7f0b4962da2"
         }
@@ -63391,7 +63420,7 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-banners]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "desktop_banner_delivery_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
@@ -63801,9 +63830,9 @@
       ],
       "source_review_scope": "Retained partial source correspondence and prior repairs, with exact historical status in incremental-correspondence.json. Current diagnostic joining supplies navigation only; register current bounded contracts separately.",
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 155,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -63815,13 +63844,13 @@
       "original_path": "crates/wenilla-rogue/src/coop/trust.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x771a7ff",
-          "virtual_address": "0x14771c1ff",
+          "file_offset": "0x73c76bf",
+          "virtual_address": "0x1473c82bf",
           "byte_count": 38,
           "sha256": "f85eec71baddae72f1a00d963131809c5c0e2730aa795f5bcaa8b9cc11f5d5b0"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/coop.rs",
@@ -64098,9 +64127,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 186,
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -64232,8 +64261,8 @@
       "original_path": "crates/wenilla-rogue/src/coop/relay.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7ae0f01",
-          "virtual_address": "0x147ae2901",
+          "file_offset": "0x73bb2b9",
+          "virtual_address": "0x1473bbeb9",
           "byte_count": 38,
           "sha256": "db80dcfcb4fa1da067578f9cc276308f943d1f19d39ed2d2d590d7fa7986013a"
         }
@@ -64406,7 +64435,7 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-coop-relay]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_review_scope": "Retained partial source correspondence and prior repairs, with exact historical status in incremental-correspondence.json. Current diagnostic joining supplies navigation only; register current bounded contracts separately.",
       "historical_assessments": [
@@ -64568,9 +64597,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "relay_load_0_123_0": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -64668,13 +64697,13 @@
       "original_path": "crates/wenilla-rogue/src/heroic.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x76f329f",
-          "virtual_address": "0x1476f4c9f",
+          "file_offset": "0x73d434b",
+          "virtual_address": "0x1473d4f4b",
           "byte_count": 34,
           "sha256": "c59878f42226ef4219da210bb687afb8fd72291e51b217be587a3f20a154a4e3"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_refs": [
         "crates/azeroth-survivors-re/src/heroic.rs",
@@ -64778,7 +64807,8 @@
         291,
         293,
         294,
-        295
+        295,
+        325
       ],
       "recovery": {
         "status": "partial",
@@ -64855,9 +64885,9 @@
         "limits": "Supporting source links do not certify whole-module native completeness or execution; each report owns its actual native/static scope."
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "historical_assessments": [],
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -64910,13 +64940,13 @@
       "original_path": "crates/wenilla-rogue/src/game/affixes.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7aedc34",
-          "virtual_address": "0x147aef634",
+          "file_offset": "0x7b001e4",
+          "virtual_address": "0x147b00de4",
           "byte_count": 40,
           "sha256": "37e473322a0a109d98e619b67a118ee54c168262b375a72a6d34c24948118e21"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/mechanics/affixes.rs",
@@ -65053,9 +65083,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "current_sanguine_recipient_contract": {
         "target_sha256": "de7147a2a3a01b4fb84f3a7f036bc940f9e7d4fdfc42a7fdb79f3f1b2bd798be",
@@ -65085,13 +65115,13 @@
       "original_path": "crates/wenilla-rogue/src/sets.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x771a7de",
-          "virtual_address": "0x14771c1de",
+          "file_offset": "0x73c769e",
+          "virtual_address": "0x1473c829e",
           "byte_count": 32,
           "sha256": "3b9c1cad5abdd611d7f6b5844a005976d154922a0ad733ec9f9c001b15d053ca"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_refs": [
         "crates/azeroth-survivors-re/src/sets.rs",
@@ -65275,9 +65305,9 @@
         "native_routing_instruction_steps": 1610
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "historical_assessments": [],
       "source_correspondence_status": "retained_partial_source_correspondence",
@@ -65431,13 +65461,13 @@
       "original_path": "crates/wenilla-rogue/src/coop/pick.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7ae8432",
-          "virtual_address": "0x147ae9e32",
+          "file_offset": "0x73c286a",
+          "virtual_address": "0x1473c346a",
           "byte_count": 37,
           "sha256": "3173a0390815ff3702108f9af5ea188ce9228aefd3a568be3978d7655915f1b2"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_refs": [
         "crates/azeroth-survivors-re/src/coop/pick.rs",
@@ -65552,9 +65582,9 @@
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/coop/pick.rs]",
       "historical_assessments": [],
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "source_correspondence_status": "retained_partial_source_correspondence"
     },
@@ -65564,13 +65594,13 @@
       "original_path": "crates/wenilla-rogue/src/coop/smooth.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x771ad74",
-          "virtual_address": "0x14771c774",
+          "file_offset": "0x73c7c34",
+          "virtual_address": "0x1473c8834",
           "byte_count": 39,
           "sha256": "53f08128e0bf9077cc7bdd4786bc71fd07ca5348cd5220c24e54669b621f4bb4"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_refs": [
         "crates/azeroth-survivors-re/src/coop/smooth.rs",
@@ -65659,9 +65689,9 @@
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/coop/smooth.rs]",
       "historical_assessments": [],
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "source_correspondence_status": "retained_partial_source_correspondence"
     },
@@ -65669,9 +65699,15 @@
       "id": "custom-app-screens-ime",
       "native_preedit_0_141_0": {
         "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "gap_ids": [293],
-        "evidence_refs": ["docs/analysis/native-ime-preedit-0.141.0.md"],
-        "source_refs": ["crates/azeroth-survivors-re/src/ime.rs"],
+        "gap_ids": [
+          293
+        ],
+        "evidence_refs": [
+          "docs/analysis/native-ime-preedit-0.141.0.md"
+        ],
+        "source_refs": [
+          "crates/azeroth-survivors-re/src/ime.rs"
+        ],
         "recovery": "Windows caret and preedit event production, nine typed IME identity references, and the existing two-stream Commit consumer. No separate AS renderer within the selected typed references.",
         "static_validation": "Hash-bound PE decode, retained forwarder comparison and journaled Ghidra analysis.",
         "runtime_validation": "unverified",
@@ -65679,8 +65715,12 @@
       },
       "browser_input_0_141_0": {
         "wasm_sha256": "c1b2c99d39f5809215079951e5df46f091c2d57669ffd9e96edcea61169a17c0",
-        "gap_ids": [293],
-        "evidence_refs": ["docs/analysis/browser-ime-0.141.0.md"],
+        "gap_ids": [
+          293
+        ],
+        "evidence_refs": [
+          "docs/analysis/browser-ime-0.141.0.md"
+        ],
         "recovery": "The deployed WASM calls the DOM bridge with focus and caret coordinates. DOM composition ends in the normal Winit key and text path.",
         "static_validation": "WABT validation and eight exact function-range checks.",
         "remaining_source_work": "Connect focus and DOM input once a rebuilt browser app/data bootstrap provides the canvas and event loop.",
@@ -65689,7 +65729,9 @@
       },
       "input_bridge_0_139_2": {
         "target_sha256": "0bb6c557c5f6cfeea212761a33554f9a5647ce7cb7e03b8a163b95489496e908",
-        "gap_ids": [293],
+        "gap_ids": [
+          293
+        ],
         "evidence_refs": [
           "docs/analysis/ime-bridge-0.139.2.md",
           "docs/analysis/evidence/0.139.2/ime-bridge.json"
@@ -65709,13 +65751,13 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/ime.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x65536ee",
-          "virtual_address": "0x1465550ee",
+          "file_offset": "0x65806c7",
+          "virtual_address": "0x1465812c7",
           "byte_count": 43,
           "sha256": "0daeb944229a8d26f0a663d011e1fea07ffd4c951a4344b36783e749963f9edc"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_refs": [
         "crates/azeroth-survivors-re/src/ime.rs",
@@ -65808,7 +65850,9 @@
       "missing_dimensions": [],
       "unicode_input_0_127_0": {
         "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "gap_ids": [293],
+        "gap_ids": [
+          293
+        ],
         "source_refs": [
           "crates/azeroth-survivors-re/src/hero_name.rs",
           "crates/azeroth-survivors-re/tests/current_menu_save.rs",
@@ -65840,7 +65884,9 @@
       },
       "current_bounded_recovery": {
         "target_sha256": "3ef9d74c30bb6b435d739b3d960c8535486836c540e0d8c20f98549a6f1dcbbb",
-        "gap_ids": [293],
+        "gap_ids": [
+          293
+        ],
         "evidence_ref": "docs/analysis/evidence/0.127.0/ime-bridge/manifest.json",
         "scope": "Native AS process-key filtering, Commit-to-key forwarding, focused picker/FrameXML request, caret/window updates and the recovered PreUpdate/BeforeInputSystems boundary are connected. Visible Preedit presentation, composing-Enter behavior and browser resource/source consumers remain unresolved; no whole-module or runtime/parity claim.",
         "source_status": "selected_interface_connected_remaining_preedit_browser_recovery_open",
@@ -65849,9 +65895,9 @@
         "parity_verified": false
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       }
     },
     {
@@ -65869,13 +65915,13 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/ontop.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x65bf068",
-          "virtual_address": "0x1465c0a68",
+          "file_offset": "0x655d848",
+          "virtual_address": "0x14655e448",
           "byte_count": 45,
           "sha256": "4581abeba8463f93e99e0a145a44b4cbe13ba3992458c51e3acd437b4533ebae"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_refs": [
         "crates/azeroth-survivors-re/src/gameplay/client/addon_bootstrap.rs",
@@ -66018,9 +66064,9 @@
         "parity_verified": false
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       }
     },
     {
@@ -66029,13 +66075,13 @@
       "original_path": "crates/wenilla-rogue/src/smsg.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7af2715",
-          "virtual_address": "0x147af4115",
+          "file_offset": "0x7afd2cd",
+          "virtual_address": "0x147afdecd",
           "byte_count": 32,
           "sha256": "7b7a70b5be0d30d095f3a2906b2f3b991032b0e411e26eebc58c5d7014dc9d2d"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "source_refs": [
         "crates/azeroth-survivors-re/src/coop/engine_packets.rs",
@@ -66153,9 +66199,9 @@
         "parity": "unverified"
       },
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "pending_wider_current_target_contract_correspondence",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       }
     },
     {
@@ -66179,14 +66225,14 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/inspect.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6597d2a",
-          "virtual_address": "0x14659972a",
+          "file_offset": "0x6571a1a",
+          "virtual_address": "0x14657261a",
           "byte_count": 47,
           "sha256": "84e82baba41563566a2b70114ffd2369546f914c32d4b1cb5ea6245ebf0ab2c3"
         },
         {
-          "file_offset": "0x65c49d7",
-          "virtual_address": "0x1465c63d7",
+          "file_offset": "0x6578997",
+          "virtual_address": "0x146579597",
           "byte_count": 47,
           "sha256": "84e82baba41563566a2b70114ffd2369546f914c32d4b1cb5ea6245ebf0ab2c3"
         }
@@ -66245,15 +66291,15 @@
         "Recover native detail-panel item-kind formatting, preview lighting and achievement scroll/selection under #299."
       ],
       "native_evidence_validity": "current_exact_diagnostic_path",
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "source_correspondence_status": "bounded_source_correspondence",
       "current_contract_finding": 299,
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue-app/src/screens/inspect.rs]",
       "source_review_scope": "Candidate source interfaces only; exact source hashes/native diagnostic ranges in the current source-frontier record.",
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "source_review_anchors": []
     },
@@ -66283,8 +66329,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/localclock.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x65982db",
-          "virtual_address": "0x146599cdb",
+          "file_offset": "0x6572203",
+          "virtual_address": "0x146572e03",
           "byte_count": 50,
           "sha256": "edb9db6df3e84002940298001a9d9a892f9b30d6b6baac2e494d38c9c7b19ae9"
         }
@@ -66341,15 +66387,15 @@
         "Map remaining VM and widget lifetimes outside the descriptor and callback."
       ],
       "native_evidence_validity": "current_exact_diagnostic_path",
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "source_correspondence_status": "bounded_source_correspondence",
       "current_contract_finding": 302,
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue-app/src/screens/localclock.rs]",
       "source_review_scope": "Candidate source interfaces only; exact source hashes/native diagnostic ranges in the current source-frontier record.",
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       }
     },
     {
@@ -66380,8 +66426,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/readycheck.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x6591015",
-          "virtual_address": "0x146592a15",
+          "file_offset": "0x65b7d7d",
+          "virtual_address": "0x1465b897d",
           "byte_count": 50,
           "sha256": "614060a5a65ecf8c21fec360e04bd1a6d9475620e2e4db6633f03712b959672e"
         }
@@ -66437,15 +66483,15 @@
         "Recover modal button routing and surrounding native layer ordering. The renderer uses layer 5800 while the rebuilt backdrop uses 6100 above lobby and inspection."
       ],
       "native_evidence_validity": "current_exact_diagnostic_path",
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "source_correspondence_status": "bounded_source_correspondence",
       "current_contract_finding": 306,
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue-app/src/screens/readycheck.rs]",
       "source_review_scope": "Candidate source interfaces only; exact source hashes/native diagnostic ranges in the current source-frontier record.",
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "source_review_anchors": [
         {
@@ -66483,8 +66529,8 @@
       "original_path": "crates/wenilla-rogue-app/src/screens/recap.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x65672d6",
-          "virtual_address": "0x146568cd6",
+          "file_offset": "0x6580132",
+          "virtual_address": "0x146580d32",
           "byte_count": 45,
           "sha256": "91c9446a4ae9a73b3269f16cf9e1cba8c2582b63f22e9eafd8332207bec0e3c1"
         }
@@ -66539,15 +66585,15 @@
       },
       "remaining_source_work": [],
       "native_evidence_validity": "current_exact_diagnostic_path",
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "source_correspondence_status": "bounded_source_correspondence",
       "current_contract_finding": 300,
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue-app/src/screens/recap.rs]",
       "source_review_scope": "Candidate source interfaces only; exact source hashes/native diagnostic ranges in the current source-frontier record.",
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       }
     },
     {
@@ -66593,8 +66639,8 @@
       "original_path": "crates/wenilla-rogue/src/game/enhancement.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7aed530",
-          "virtual_address": "0x147aeef30",
+          "file_offset": "0x7affae0",
+          "virtual_address": "0x147b006e0",
           "byte_count": 44,
           "sha256": "d9c91ea1928cc1f20e394b05f928253f763b47e0891c40175aacfc4005890a21"
         }
@@ -66653,15 +66699,15 @@
         "Recover remaining rank, radius and ordering contracts beyond the selected Resonant Shocks paths. The prior Flurry trace retains its historical target."
       ],
       "native_evidence_validity": "current_exact_diagnostic_path",
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "source_correspondence_status": "bounded_source_correspondence",
       "current_contract_finding": 305,
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/game/enhancement.rs]",
       "source_review_scope": "Candidate source interfaces only; exact source hashes/native diagnostic ranges in the current source-frontier record.",
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "gap_305_source_review_0_140_0": {
         "gap_id": 305,
@@ -66730,20 +66776,20 @@
       "original_path": "crates/wenilla-rogue/src/game/meterfeed.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x76f6348",
-          "virtual_address": "0x1476f7d48",
+          "file_offset": "0x77203a0",
+          "virtual_address": "0x147720fa0",
           "byte_count": 42,
           "sha256": "50a98296ea8c6a14f8850b14c9a058c46d80b81cca2ad6d6a24713d136a9f01b"
         },
         {
-          "file_offset": "0x7aed2e9",
-          "virtual_address": "0x147aeece9",
+          "file_offset": "0x7aff899",
+          "virtual_address": "0x147b00499",
           "byte_count": 42,
           "sha256": "50a98296ea8c6a14f8850b14c9a058c46d80b81cca2ad6d6a24713d136a9f01b"
         },
         {
-          "file_offset": "0x7af9345",
-          "virtual_address": "0x147afad45",
+          "file_offset": "0x7b08ef5",
+          "virtual_address": "0x147b09af5",
           "byte_count": 42,
           "sha256": "50a98296ea8c6a14f8850b14c9a058c46d80b81cca2ad6d6a24713d136a9f01b"
         }
@@ -66803,15 +66849,15 @@
       },
       "remaining_source_work": [],
       "native_evidence_validity": "current_exact_diagnostic_path",
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "source_correspondence_status": "bounded_source_correspondence",
       "current_contract_finding": 75,
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/game/meterfeed.rs]",
       "source_review_scope": "The request prefix and ordinary-line replay reach their live consumer. Detailed frame production is still missing.",
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "source_review_anchors": []
     },
@@ -66853,32 +66899,32 @@
       "original_path": "crates/wenilla-rogue/src/game/meterlog.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7392190",
-          "virtual_address": "0x147393b90",
+          "file_offset": "0x739e578",
+          "virtual_address": "0x14739f178",
           "byte_count": 41,
           "sha256": "11874a22dcdbd2dcefb9d4b8fbeaf4cfb74a2c0c0f432cac86a1fa3dcfcd298b"
         },
         {
-          "file_offset": "0x73a8f72",
-          "virtual_address": "0x1473aa972",
+          "file_offset": "0x73d6aca",
+          "virtual_address": "0x1473d76ca",
           "byte_count": 41,
           "sha256": "11874a22dcdbd2dcefb9d4b8fbeaf4cfb74a2c0c0f432cac86a1fa3dcfcd298b"
         },
         {
-          "file_offset": "0x76f60b0",
-          "virtual_address": "0x1476f7ab0",
+          "file_offset": "0x7720058",
+          "virtual_address": "0x147720c58",
           "byte_count": 41,
           "sha256": "11874a22dcdbd2dcefb9d4b8fbeaf4cfb74a2c0c0f432cac86a1fa3dcfcd298b"
         },
         {
-          "file_offset": "0x7aec4ec",
-          "virtual_address": "0x147aedeec",
+          "file_offset": "0x7afaa58",
+          "virtual_address": "0x147afb658",
           "byte_count": 41,
           "sha256": "11874a22dcdbd2dcefb9d4b8fbeaf4cfb74a2c0c0f432cac86a1fa3dcfcd298b"
         },
         {
-          "file_offset": "0x7af4c78",
-          "virtual_address": "0x147af6678",
+          "file_offset": "0x7b04db8",
+          "virtual_address": "0x147b059b8",
           "byte_count": 41,
           "sha256": "11874a22dcdbd2dcefb9d4b8fbeaf4cfb74a2c0c0f432cac86a1fa3dcfcd298b"
         }
@@ -66943,15 +66989,15 @@
       },
       "remaining_source_work": [],
       "native_evidence_validity": "current_exact_diagnostic_path",
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "source_correspondence_status": "bounded_source_correspondence",
       "current_contract_finding": 75,
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/game/meterlog.rs]",
       "source_review_scope": "Legacy counters and current companion and ranked talent attribution are connected; the detailed recorder and remaining source identities are open.",
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "source_review_anchors": []
     },
@@ -66983,8 +67029,8 @@
       "original_path": "crates/wenilla-rogue/src/server/party/readycheck.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7ae95d8",
-          "virtual_address": "0x147aeafd8",
+          "file_offset": "0x73c3be8",
+          "virtual_address": "0x1473c47e8",
           "byte_count": 51,
           "sha256": "45c79aa350bbfc746bd296aee9abe9f830560eb8ef449ebb092787a597acb5e1"
         }
@@ -67042,15 +67088,15 @@
         "Map initiating packet, raw input, timers, response publication and UI lifecycle independently."
       ],
       "native_evidence_validity": "current_exact_diagnostic_path",
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "source_correspondence_status": "bounded_source_correspondence",
       "current_contract_finding": 306,
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/server/party/readycheck.rs]",
       "source_review_scope": "Candidate source interfaces only; exact source hashes/native diagnostic ranges in the current source-frontier record.",
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       }
     },
     {
@@ -67059,19 +67105,19 @@
       "original_path": "crates/wenilla-rogue/src/game/attacks.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7aef568",
-          "virtual_address": "0x147af0f68",
+          "file_offset": "0x7b01b18",
+          "virtual_address": "0x147b02718",
           "byte_count": 40,
           "sha256": "6b57e8abe8877055cd5e49569544a6e768b68961d1705174fa26432a8635ae67"
         },
         {
-          "file_offset": "0x7af4900",
-          "virtual_address": "0x147af6300",
+          "file_offset": "0x7b04b40",
+          "virtual_address": "0x147b05740",
           "byte_count": 40,
           "sha256": "6b57e8abe8877055cd5e49569544a6e768b68961d1705174fa26432a8635ae67"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/game/attacks.rs]",
       "source_refs": [
@@ -67088,9 +67134,9 @@
       "source_review_scope": "The Rogue reach claim is connected through the class and ability records and shared candidate radius. The exact attacks.rs Location bounds/grid and hazard queue roles are recorded separately from the reach proof.",
       "current_contract_finding": 318,
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "evidence_refs": [
         "docs/analysis/coverage/diagnostic-ownership.json",
@@ -67159,37 +67205,37 @@
       "original_path": "crates/wenilla-rogue/src/game/kill_command.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7392068",
-          "virtual_address": "0x147393a68",
+          "file_offset": "0x739e448",
+          "virtual_address": "0x14739f048",
           "byte_count": 45,
           "sha256": "7021d4b237e7cd9eefb8ab1e964503a29255a81e350f79ab4a33e3970779914b"
         },
         {
-          "file_offset": "0x73a8f1d",
-          "virtual_address": "0x1473aa91d",
+          "file_offset": "0x73d6a75",
+          "virtual_address": "0x1473d7675",
           "byte_count": 45,
           "sha256": "7021d4b237e7cd9eefb8ab1e964503a29255a81e350f79ab4a33e3970779914b"
         },
         {
-          "file_offset": "0x7aec47f",
-          "virtual_address": "0x147aede7f",
+          "file_offset": "0x7afa99f",
+          "virtual_address": "0x147afb59f",
           "byte_count": 45,
           "sha256": "7021d4b237e7cd9eefb8ab1e964503a29255a81e350f79ab4a33e3970779914b"
         },
         {
-          "file_offset": "0x7aed5b2",
-          "virtual_address": "0x147aeefb2",
+          "file_offset": "0x7affb62",
+          "virtual_address": "0x147b00762",
           "byte_count": 45,
           "sha256": "7021d4b237e7cd9eefb8ab1e964503a29255a81e350f79ab4a33e3970779914b"
         },
         {
-          "file_offset": "0x7af4b30",
-          "virtual_address": "0x147af6530",
+          "file_offset": "0x7b04cb8",
+          "virtual_address": "0x147b058b8",
           "byte_count": 45,
           "sha256": "7021d4b237e7cd9eefb8ab1e964503a29255a81e350f79ab4a33e3970779914b"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/game/kill_command.rs]",
       "source_refs": [
@@ -67215,9 +67261,9 @@
       "source_review_scope": "The current kind-12 offer/cast/tick/completion, set, jewelry, save and presentation branches are connected. Wider module ownership and execution remain separate.",
       "current_contract_finding": 316,
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "evidence_refs": [
         "docs/analysis/coverage/diagnostic-ownership.json",
@@ -67283,25 +67329,25 @@
       "original_path": "crates/wenilla-rogue/src/game/scripts/mod.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7aed128",
-          "virtual_address": "0x147aeeb28",
+          "file_offset": "0x7afaa0c",
+          "virtual_address": "0x147afb60c",
           "byte_count": 44,
           "sha256": "7395c81b804d0cf8087f80645d7ddf910e58a7c096a85329d015cfec40468b4d"
         },
         {
-          "file_offset": "0x7af4b82",
-          "virtual_address": "0x147af6582",
+          "file_offset": "0x7aff6d8",
+          "virtual_address": "0x147b002d8",
           "byte_count": 44,
           "sha256": "7395c81b804d0cf8087f80645d7ddf910e58a7c096a85329d015cfec40468b4d"
         },
         {
-          "file_offset": "0x7af82c8",
-          "virtual_address": "0x147af9cc8",
+          "file_offset": "0x7b07e78",
+          "virtual_address": "0x147b08a78",
           "byte_count": 44,
           "sha256": "7395c81b804d0cf8087f80645d7ddf910e58a7c096a85329d015cfec40468b4d"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/game/scripts/mod.rs]",
       "source_refs": [
@@ -67325,9 +67371,9 @@
       "source_review_scope": "The schedule gate, fixed placement, Kirtonos forms and scripted armor adjustment have bounded source correspondence.",
       "current_contract_finding": 313,
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "evidence_refs": [
         "docs/analysis/coverage/diagnostic-ownership.json",
@@ -67400,13 +67446,13 @@
       "original_path": "crates/wenilla-rogue/src/game/scripts/krastinov.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x7af5988",
-          "virtual_address": "0x147af7388",
+          "file_offset": "0x7b05ac8",
+          "virtual_address": "0x147b066c8",
           "byte_count": 50,
           "sha256": "377762033856f4d4c0a9c432ce880b07f33d98906ca7f8dac83af07048eb3572"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/game/scripts/krastinov.rs]",
       "source_refs": [
@@ -67422,9 +67468,9 @@
       "source_review_scope": "Candidate interfaces inspected before native expansion. The exact current Location and source leads are in the linked report.",
       "current_contract_finding": 313,
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "evidence_refs": [
         "docs/analysis/coverage/diagnostic-ownership.json",
@@ -67487,13 +67533,13 @@
       "original_path": "crates/wenilla-rogue/src/game/scripts/ras.rs",
       "native_path_evidence": [
         {
-          "file_offset": "0x73a88c8",
-          "virtual_address": "0x1473aa2c8",
+          "file_offset": "0x73b4cb0",
+          "virtual_address": "0x1473b58b0",
           "byte_count": 44,
           "sha256": "47b2e9ba6288f4ea518092b4030fe83fc7668d4c57aa48183b7e057a258de7cf"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/game/scripts/ras.rs]",
       "source_refs": [
@@ -67510,9 +67556,9 @@
       "source_review_scope": "Candidate interfaces inspected before native expansion. The exact current Location and source leads are in the linked report.",
       "current_contract_finding": 313,
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       },
       "evidence_refs": [
         "docs/analysis/coverage/diagnostic-ownership.json",
@@ -67614,13 +67660,13 @@
       ],
       "native_path_evidence": [
         {
-          "file_offset": "0x7724429",
-          "virtual_address": "0x147725e29",
+          "file_offset": "0x73c6f09",
+          "virtual_address": "0x1473c7b09",
           "byte_count": 36,
           "sha256": "999bf4f35b358332d1337c4a90bdac388e93f29012a0dcf1a4f069d5ea3a72d9"
         }
       ],
-      "native_evidence_target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+      "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
       "discovery_selector": "custom_diagnostics[path=crates/wenilla-rogue/src/gear/t05.rs]",
       "source_review_anchors": [
@@ -67636,9 +67682,9 @@
         }
       ],
       "current_applicability": {
-        "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
-        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
-        "assessment": "docs/analysis/module-contracts-0.141.0.md"
+        "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+        "status": "pending_current_target_contract_correspondence",
+        "assessment": "docs/analysis/module-contracts.md"
       }
     }
   ],
@@ -78065,6 +78111,33 @@
         "custom-game-server-party-readycheck": "First valid unanswered peer response mutation, phase/identity/row gates and exact response byte write.",
         "custom-app-screens-readycheck": "Current Ready Check backdrop, fullscreen dimensions and 460×400 canvas with 1.4 scale cap. Compare native layer 5800 with rebuilt 6100 in the shared lobby and inspection schedule."
       }
+    },
+    "docs/analysis/evidence/bounded-native-frontier.json": {
+      "path": "docs/analysis/evidence/bounded-native-frontier.json",
+      "target_version": "0.143.0",
+      "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-app-lib",
+        "custom-game-server-party",
+        "custom-game-gear",
+        "custom-app-screens-codex",
+        "custom-game-achievements"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-app-lib",
+        "custom-game-server-party",
+        "custom-game-gear",
+        "custom-app-screens-codex",
+        "custom-game-achievements"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-app-lib": "The Windows startup constructs its Diagnostics path and supplies the filter callback that calls MiniDumpWriteDump. Filename formatting, all errors and runtime file effects remain open.",
+        "custom-game-server-party": "Exact Join protocol/version, separate directory handshake, Hyper first-profile achievement refusal and required roster mode byte after rank. Directory mode carriage and UI projections are mapped; world entry remains pending.",
+        "custom-game-gear": "Tabard item 90012 enters the current item metadata resolver, emits display 16078 and has its original crest members in the verified Data chain.",
+        "custom-app-screens-codex": "Current Codex membership of 141 distinct eligible pieces across jewelry, shared and class/talent amulets. The current source membership matches this exact set.",
+        "custom-game-achievements": "Every Bauble reads the shared 141-key Codex population, counts Seen flags and uses a 100 percent threshold. Current startup, grants and guest delivery remain separate."
+      }
     }
   },
   "source_mapping_contract": "Source files/anchors are historical implementation candidates until current native contracts and dependencies are recovered.",
@@ -82505,26 +82578,26 @@
   },
   "linear_instruction_census": {
     "evidence_ref": "docs/analysis/coverage/instruction-summary.json",
-    "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
     "status": "complete_independent_inventory_semantics_incomplete",
     "counts": {
-      "unwind_extents": 372623,
-      "processed_extents": 372623,
+      "unwind_extents": 372776,
+      "processed_extents": 372776,
       "pending_extents": 0,
-      "completely_decoded_extents": 372623,
+      "completely_decoded_extents": 372776,
       "extents_with_undecoded_suffix": 0,
-      "linear_instruction_records": 24893474,
-      "decoded_bytes_summed": 100845169,
-      "decoded_bytes_union": 100845169,
+      "linear_instruction_records": 24905113,
+      "decoded_bytes_summed": 100888004,
+      "decoded_bytes_union": 100888004,
       "undecoded_suffix_bytes_summed": 0,
-      "executable_bytes_outside_unwind_extents": 5376717,
+      "executable_bytes_outside_unwind_extents": 5378298,
       "reference_kinds": {
-        "address": 500991,
-        "call_direct": 1202837,
-        "call_indirect": 74376,
-        "jump_direct": 2109225,
-        "jump_indirect": 10645,
-        "memory": 174967
+        "address": 501206,
+        "call_direct": 1203380,
+        "call_indirect": 74397,
+        "jump_direct": 2110877,
+        "jump_indirect": 10657,
+        "memory": 175071
       }
     },
     "native_source_semantics_established": false,
@@ -82535,35 +82608,35 @@
   },
   "executable_complement_census": {
     "evidence_ref": "docs/analysis/coverage/unwind-complement-summary.json",
-    "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
     "status": "complete_independent_inventory_semantics_incomplete",
     "counts": {
-      "complement_regions": 351512,
-      "mapped_regions": 351512,
-      "executable_complement_bytes": 5376717,
-      "file_backed_bytes": 5376717,
+      "complement_regions": 351650,
+      "mapped_regions": 351650,
+      "executable_complement_bytes": 5378298,
+      "file_backed_bytes": 5378298,
       "virtual_zero_fill_bytes": 0,
-      "incoming_seed_leads": 409790,
+      "incoming_seed_leads": 409983,
       "unique_seed_addresses": 2860,
       "seed_kinds": {
-        "call_direct": 393950,
-        "jump_direct": 15840
+        "call_direct": 394132,
+        "jump_direct": 15851
       },
-      "decoded_instruction_records": 78661,
-      "decoded_bytes_summed": 337610,
-      "decoded_bytes_union": 337610,
+      "decoded_instruction_records": 78489,
+      "decoded_bytes_summed": 336741,
+      "decoded_bytes_union": 336741,
       "overlapping_decode_bytes": 0,
       "reference_kinds": {
         "address": 1628,
         "call_direct": 18,
-        "jump_direct": 10360,
-        "jump_indirect": 665,
-        "memory": 1274
+        "jump_direct": 10315,
+        "jump_indirect": 666,
+        "memory": 1273
       },
       "stop_reasons": {
-        "jump_no_fallthrough": 2850,
+        "jump_no_fallthrough": 2851,
         "outside_file_backed_complement": 39,
-        "return": 3047,
+        "return": 3045,
         "trap_or_privileged_exit": 7
       },
       "imported_pointer_transfer_sites": 126,
@@ -82576,28 +82649,28 @@
     ]
   },
   "native_census": {
-    "evidence_ref": "docs/analysis/native-census-0.141.0.md",
-    "target_sha256": "6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa",
+    "evidence_ref": "docs/analysis/native-census.md",
+    "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
     "status": "independently_verified_guarded_census_with_semantic_frontier_open",
     "counts": {
-      "instructions": 24328399,
-      "instruction_bytes": 97600287,
-      "computed_calls": 72791,
-      "computed_jumps": 145557,
-      "native_functions": 448241,
-      "body_ranges": 505170,
-      "references": 4218711,
-      "external_locations": 430,
+      "instructions": 24338631,
+      "instruction_bytes": 97637258,
+      "computed_calls": 72816,
+      "computed_jumps": 145586,
+      "native_functions": 448393,
+      "body_ranges": 505359,
+      "references": 4221109,
+      "external_locations": 431,
       "seeds_without_instructions": 0,
       "seeds_without_functions": 0,
-      "seeded_functions_repaired": 445616
+      "seeded_functions_repaired": 445767
     },
     "native_source_semantics_established": false,
     "parity_verified": false,
     "gap_ids": [
       41
     ],
-    "census_summary": "docs/analysis/coverage/full-image-selected-0.141.0.json",
+    "census_summary": "docs/analysis/coverage/full-image-selected.json",
     "selector_ref": "docs/analysis/coverage/native-image-current.json"
   },
   "source_diff_review_0_121_0": {

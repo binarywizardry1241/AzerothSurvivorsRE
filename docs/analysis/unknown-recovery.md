@@ -1,9 +1,37 @@
 # Unknown recovery queue
 
-Selected installed EXE SHA-256
+## 0.143.0 selectors
+
+The [current selector inventory](evidence/unknown-recovery.json) binds the
+installed 0.143.0 EXE SHA-256
+`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
+[#41](../CURRENT-STATE.md#gap-41) owns whole-image closure. Select the
+current exact rows and preserve their source, dynamic and runtime limits.
+
+| Lead | Current exact selector and next static action |
+| --- | --- |
+| `Q41-B01`, `Q41-U01`, `Q41-U03` | Use `inputs.ghidra-census.artifact_selectors` and the executable residual range inventory. Separate candidate padding from mixed code/data. Start with incoming edges and proved instruction boundaries for each selected region. |
+| `Q41-B02`, `Q41-B03`, `Q41-B05` | Select `file_range_groups` by `lead_id`, then the corresponding exact offset/hash rows in the file ledger. Establish nonexecutable consumers, PE header/slack roles and the alignment-tail bytes separately. |
+| `Q41-U02`, `Q41-U04` | The declared suffix selector has zero rows. Select complement traversal `stops` by site/reason and resolve the associated successors or data boundary. |
+| `Q41-F01`, `Q41-F02` | Select the computed transfers in `sqlite_selectors` and the current ownership/classification inputs. Trace the register, pointer-slot, or indexed-table producer and its guards. Keep initial PE slot contents distinct from mutable/runtime targets. |
+| `Q41-A01`, `Q41-A02`, `Q41-G01` | Select encoded references and verified Ghidra reference/body ranges. Follow direct destinations, read/write fields and ownerless edges into their current source boundary. |
+| `Q41-D01`, `Q41-E01` | Select exact diagnostic sites in `diagnostic_selectors.sites` and the connection ledger's ownerless rows. Compare the receiving body with existing benilla or AS source before expanding. |
+| `Q41-I01`, `Q41-D03`, `Q41-R01` | Use `embedded_candidate_selectors`, the [data join](evidence/data-classification.json) and [MPQ member rows](evidence/mpq-member-coverage.json). Bind remaining IDs, script/config formats and resource paths to live callers, member winners and consumers. |
+| `Q41-NEW:hyper-*` | Select the [exact native leads](evidence/as-discovery-reviews.json) for the Pick receiver, solo/host simulation and reward clocks, timed achievements and accepted peer path. [#325](../CURRENT-STATE.md#gap-325) owns the connected issue. |
+| `Q41-NEW:windows-crash-files` | Select `native_ranges.windows-crash-callback` in the [bounded frontier](evidence/bounded-native-frontier.json) and trace Diagnostics filenames, report writes and failure/return behavior. [#326](../CURRENT-STATE.md#gap-326) owns the source and recovery work. |
+
+The [candidate graph](coverage/as-discovery.json) retains exact parent
+edges, current proof scopes and open predecessors. [#163](../CURRENT-STATE.md#gap-163)
+owns the independent exact Join source mismatch. [#158](../CURRENT-STATE.md#gap-158)
+owns current locale key and consumer correspondence. Prior classifications
+below retain their original addresses and evidence.
+
+## 0.141.0 retained recovery
+
+Original audited EXE SHA-256
 `6ca5f4ba4eb6b26716e4b7d9e03cbd25ddafe7582dcd8e55333e070a28058afa`.
 [#41](../CURRENT-STATE.md#gap-41) owns whole-image closure. The
-[current selector inventory](evidence/unknown-recovery.json) binds
+[historical selector inventory](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/70576100b062d6d2d68830e6dbbadddfaf4b007e/docs/analysis/evidence/unknown-recovery.json) binds
 exact file, extent, complement, instruction, reference and diagnostic
 populations. The [0.140.0 queue](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/unknown-recovery-0.140.0.md) preserves
 earlier selectors and their evidence.
