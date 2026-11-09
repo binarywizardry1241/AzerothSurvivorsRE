@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "target": {
+    "version": "0.143.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+    "size_bytes": 151566336
+  },
+  "gap_ids": [
+    141,
+    148,
+    315
+  ],
+  "bounded_contract_system_ids": [
+    "custom-game-game-talents"
+  ],
+  "owner": {
+    "start": "0x145fcc910",
+    "end_exclusive": "0x145fd0c65",
+    "file_offset": "0x5fcbd10",
+    "sha256": "487bfe6257d8b7e9506bd729770703a6f0be8fae232a4de7a696b772af0d8267"
+  },
+  "tables": {
+    "kill_reset": {
+      "selector": "AS-context-table:0x145fcce5a",
+      "start": "0x147b04f80",
+      "end_exclusive": "0x147b04f9c",
+      "file_offset": "0x7b04380",
+      "sha256": "b3c454a6c76d2fd6dc8b6767bead66b673962bcfbf0ba6dc50c791e050e0c602",
+      "targets": [
+        "0x145fcce5c",
+        "0x145fcd2c5",
+        "0x145fcd2c5",
+        "0x145fcd25e",
+        "0x145fcd2c5",
+        "0x145fcd253",
+        "0x145fcd276"
+      ]
+    },
+    "prepared": {
+      "selector": "AS-context-table:0x145fd09c4",
+      "start": "0x147b04e18",
+      "end_exclusive": "0x147b04e3c",
+      "file_offset": "0x7b04218",
+      "sha256": "1bdf228222e435b57d98502490f1a995e99a2846a83f6cb60e1ddffbd9d9d581",
+      "targets": [
+        "0x145fd09c6",
+        "0x145fd0a17",
+        "0x145fd0b76",
+        "0x145fd0bab",
+        "0x145fd0bdf",
+        "0x145fcc98e",
+        "0x145fd09f2",
+        "0x145fd0a3c",
+        "0x145fd0a74"
+      ]
+    }
+  },
+  "ranges": {
+    "reset_outer_cell": {
+      "start": "0x147b04e64",
+      "end_exclusive": "0x147b04e68",
+      "file_offset": "0x7b04264",
+      "sha256": "fc7018b3e375d15ff791bf99e862ffdb0f779ee4981a2f558963c56fd069735a"
+    },
+    "reset_lookup": {
+      "start": "0x145fc60c0",
+      "end_exclusive": "0x145fc624f",
+      "file_offset": "0x5fc54c0",
+      "sha256": "dc1418a7c2098c0190315b9ce85d7a7c29c2726aed7d323de8ffce3732f7397a"
+    },
+    "reset_writeback": {
+      "start": "0x145fcfbd1",
+      "end_exclusive": "0x145fcfcb4",
+      "file_offset": "0x5fcefd1",
+      "sha256": "8175859145c1c576c50886303f7818a01b8f26bb7449d2d0e15a7acd2e78795e"
+    },
+    "prepared_class_and_use": {
+      "start": "0x145fd0928",
+      "end_exclusive": "0x145fd0c53",
+      "file_offset": "0x5fcfd28",
+      "sha256": "5a3ca0f1af01b3c3d8558d044622fe317249d851ab8134b666a76a68e51da9c7"
+    },
+    "prepared_loadout": {
+      "start": "0x145dde5a0",
+      "end_exclusive": "0x145dde7d4",
+      "file_offset": "0x5ddd9a0",
+      "sha256": "972608ea6592eaaf143aeb9d854e0e40e36575403a6fc09acb75b12b6efad66d"
+    }
+  },
+  "talent_catalog": {
+    "start": "0x147742e20",
+    "end_exclusive": "0x147743528",
+    "file_offset": "0x7742220",
+    "sha256": "98513774e758ba38830929238b74296a1b059c8fec391c731b86874b89f79bc8",
+    "talents": 355,
+    "effects": 431,
+    "kill_reset_rows": [
+      {
+        "talent": "mortal_wounds",
+        "selector": 2,
+        "keys": [
+          "mortal_strike",
+          "execute"
+        ],
+        "seconds": 1.0,
+        "effect": {
+          "start": "0x147725180",
+          "end_exclusive": "0x1477251c0",
+          "file_offset": "0x7724580",
+          "sha256": "2a11407685b0f5c51542ab66081e1a02f6c183171787c7a01ba89b941108a340"
+        }
+      },
+      {
+        "talent": "kill_shot",
+        "selector": 1,
+        "keys": [
+          "aimed_shot"
+        ],
+        "seconds": 2.0,
+        "effect": {
+          "start": "0x14772d4c8",
+          "end_exclusive": "0x14772d508",
+          "file_offset": "0x772c8c8",
+          "sha256": "dd839a3d51af6a8f5a53d41e4f006216d15d4a98f483df720388f15756919fea"
+        }
+      }
+    ]
+  },
+  "source_bindings": [
+    {
+      "path": "crates/azeroth-survivors-re/assets/talents.json",
+      "sha256": "010903233c2376de79d1c892d8ef03eb17548f0b8cece32dffdbad7a5ad2df32"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/run_effects/conditions.rs",
+      "sha256": "69fad6866e3b738d1a74f96bbe053e310d345f8be6e4c7ae138034a7b69c6bdd"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/callbacks.rs",
+      "sha256": "cc87caefd2eff7c6c5b8a181c527a8143873b12c6f4fc1ebdc3863747ba2c5e5"
+    },
+    {
+      "path": "crates/azeroth-survivors-re/src/gameplay/mechanics/prepared.rs",
+      "sha256": "2cbae6e745bd028175170da183e850ba27fdb13cdfb72878476610683ef0b7c7"
+    }
+  ],
+  "query": {
+    "procedure": "0x145fcc910",
+    "slice_virtual_address": "0x145fcc910",
+    "raw_input": {
+      "path": "runtime/analysis/tasks/talent-selector/slices/picker-145fcc910.bin",
+      "sha256": "487bfe6257d8b7e9506bd729770703a6f0be8fae232a4de7a696b772af0d8267"
+    },
+    "plan": {
+      "path": "runtime/analysis/tasks/talent-selector/slices/plan-145fcc910.json",
+      "sha256": "706fee0d683ac5ed32ecc10516faa71bd895ffc3744a3f02e79db47a21d4e1bd"
+    },
+    "journal": {
+      "path": "runtime/analysis/tasks/talent-selector/rea-145fcc910/journal.json",
+      "sha256": "419ab999047bc5adee6f546629d77699890201ce23b4519a8792a2b86de34aba"
+    },
+    "result": {
+      "path": "runtime/analysis/tasks/talent-selector/rea-145fcc910/results/e77ae2a0b1acfc4ab997b2fca7657f36d2d81fd7d6195d725c331123c6f553ce-9e8a7bb5ca011925.json",
+      "sha256": "7afa8763edbc53868b9e7b5124146d12df1a2a9f12bf6c9d1de51ed0b897c4b9"
+    },
+    "provider": {
+      "id": "ghidra",
+      "name": "Ghidra",
+      "version": "12.1.4"
+    },
+    "evidence_id": "ev_0070e450bf0354d640e3d71f47075de1dabda7cc81f32a327b33c53cecf8643f",
+    "analysis_profile_digest": "2df189a8086f70f97f48b44369006e4082c0ba84be7b8b19c7676519daca771f"
+  },
+  "limits": "Exact selected runtime dispatches and authored talent reset rows. The raw Ghidra slice omits external tables and callees; original PE bytes bind those boundaries separately. No full talent-module, build, execution or parity claim."
+}

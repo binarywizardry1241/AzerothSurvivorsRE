@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check #249's current Soul Reaping selector without compiling or running a game."""
+"""Check bounded talent selectors without compiling or running a game."""
 import argparse
 import hashlib
 import json
@@ -21,6 +21,175 @@ DIRECTORY = ROOT / "docs/analysis/evidence/talent-selector"
 
 def digest(raw):
     return hashlib.sha256(raw).hexdigest()
+
+
+def recover_runtime_dispatch():
+    """Join the 0.143.0 reset and Prepared tables to their source consumers."""
+    from capstone import Cs, CS_ARCH_X86, CS_MODE_64
+
+    target = latest_target(verify=True)
+    if target["sha256"] != "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b":
+        raise ValueError("Runtime dispatch correspondence requires the installed 0.143.0 bytes")
+    target = {key: target[key] for key in ("version", "path", "sha256", "size_bytes")}
+    image = target_bytes(target)
+    pe = load_script("dispatch_pe", ROOT / "scripts/inventory-executable.py").PE(image)
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+
+    def raw(address, size):
+        offset = pe.rva_offset(address - pe.image_base)
+        if (offset is None or size <= 0
+                or pe.rva_offset(address + size - 1 - pe.image_base) != offset + size - 1):
+            raise ValueError(f"Unmapped talent range at {address:#x}")
+        return image[offset:offset + size]
+
+    def span(start, end):
+        return {"start": hex(start), "end_exclusive": hex(end),
+                "file_offset": hex(pe.rva_offset(start - pe.image_base)),
+                "sha256": digest(raw(start, end - start))}
+
+    def pair(address):
+        return struct.unpack("<QQ", raw(address, 16))
+
+    def string(address):
+        pointer, count = pair(address)
+        return raw(pointer, count).decode()
+
+    start, end = 0x145FCC910, 0x145FD0C65
+    assert any((lo + pe.image_base, hi + pe.image_base) == (start, end)
+               for lo, hi, _ in pe.functions())
+    code = raw(start, end - start)
+    instructions = {i.address: i for i in decoder.disasm(code, start)}
+    assert sum(i.size for i in instructions.values()) == len(code)
+
+    def instruction(address, mnemonic, operands):
+        item = instructions[address]
+        assert (item.mnemonic, item.op_str) == (mnemonic, operands)
+
+    def table(site, address, targets):
+        instruction(site, "jmp", "rcx")
+        offsets = struct.unpack(f"<{len(targets)}i", raw(address, 4 * len(targets)))
+        assert tuple(address + offset for offset in offsets) == targets
+        assert all(target in instructions for target in targets)
+        return {"selector": f"AS-context-table:{site:#x}", **span(address, address + 4 * len(targets)),
+                "targets": [hex(target) for target in targets]}
+
+    reset = table(0x145FCCE5A, 0x147B04F80, (
+        0x145FCCE5C, 0x145FCD2C5, 0x145FCD2C5, 0x145FCD25E,
+        0x145FCD2C5, 0x145FCD253, 0x145FCD276,
+    ))
+    prepared = table(0x145FD09C4, 0x147B04E18, (
+        0x145FD09C6, 0x145FD0A17, 0x145FD0B76, 0x145FD0BAB, 0x145FD0BDF,
+        0x145FCC98E, 0x145FD09F2, 0x145FD0A3C, 0x145FD0A74,
+    ))
+    outer_cell = 0x147B04E3C + (22 - 12) * 4
+    assert 0x147B04E3C + struct.unpack("<i", raw(outer_cell, 4))[0] == 0x145FCCDF8
+    instruction(0x145FCCBDE, "mov", "r12, qword ptr [rdx + 8]")
+    instruction(0x145FCCE1C, "cmp", "byte ptr [rbp + 0x18d], 2")
+    instruction(0x145FCCE30, "cmp", "r12b, 6")
+    instruction(0x145FCD2DE, "call", "0x145fc60c0")
+    instruction(0x145FCD2FA, "call", "0x145ec8740")
+    instruction(0x145FCD2B7, "jbe", "0x145fcfbd1")
+    instruction(0x145FCFBD6, "movss", "dword ptr [rax + r10*4], xmm8")
+    instruction(0x145FCFC2D, "cmp", "dword ptr [r9 + 0x40], r10d")
+    assert raw(0x14656C380, 4) == struct.pack("<f", 0.05)
+    instruction(0x145FCC981, "cmp", "byte ptr [rcx + 0x10ee], 0")
+    instruction(0x145FCC988, "je", "0x145fd0928")
+    instruction(0x145FD09A2, "movzx", "edi, byte ptr [r15 + 0x465]")
+    instruction(0x145FD09AA, "lea", "ecx, [rdi - 1]")
+    instruction(0x145FD09AD, "cmp", "ecx, 8")
+    instruction(0x145FD0C3E, "call", "0x145dde5a0")
+    instruction(0x145FD0C45, "sub", "cl, al")
+    instruction(0x145FD0C47, "mov", "byte ptr [r15 + 0x10ee], cl")
+
+    catalog = 0x147742E20
+    talents = effects = 0
+    rows = []
+    for class_index, class_id in enumerate((1, 2, 3, 4, 5, 7, 8, 9, 11)):
+        descriptor = catalog + class_index * 200
+        assert struct.unpack("<Q", raw(descriptor + 192, 8))[0] == class_id
+        for tree in range(3):
+            records, talent_count = pair(descriptor + tree * 64 + 48)
+            assert 13 <= talent_count <= 14
+            talents += talent_count
+            for talent_index in range(talent_count):
+                definition = records + talent_index * 176
+                payloads, effect_count = pair(definition + 112)
+                assert 1 <= effect_count <= 6
+                effects += effect_count
+                for effect_index in range(effect_count):
+                    payload = payloads + effect_index * 64
+                    effect = raw(payload, 64)
+                    if struct.unpack_from("<I", effect)[0] != 22:
+                        continue
+                    selector = effect[8]
+                    assert selector in (1, 2)
+                    if selector == 1:
+                        keys = [string(payload + 16)]
+                    else:
+                        keys_start, keys_count = pair(payload + 16)
+                        keys = [string(keys_start + i * 16) for i in range(keys_count)]
+                    rows.append({"talent": string(definition + 64), "selector": selector, "keys": keys,
+                                 "seconds": struct.unpack_from("<f", effect, 32)[0],
+                                 "effect": span(payload, payload + 64)})
+    assert (talents, effects) == (355, 431)
+    assert [(r["talent"], r["selector"], r["keys"], r["seconds"]) for r in rows] == [
+        ("mortal_wounds", 2, ["mortal_strike", "execute"], 1.0),
+        ("kill_shot", 1, ["aimed_shot"], 2.0),
+    ]
+
+    work = ROOT / "runtime/analysis/tasks/talent-selector/rea-145fcc910"
+    journal_path = work / "journal.json"
+    journal = json.loads(journal_path.read_text())
+    plan_path = ROOT / journal["identity"]["plan"]["plan_path"]
+    plan = json.loads(plan_path.read_text())
+    operation, = journal["operations"].values()
+    assert journal["status"] == operation["status"] == "completed"
+    result = json.loads((ROOT / operation["result"]["path"]).read_text())
+    native = result.get("structuredContent") or json.loads(result["content"][0]["text"])
+
+    def receipt(path):
+        return {"path": path.relative_to(ROOT).as_posix(), "sha256": digest(path.read_bytes())}
+
+    query = {"procedure": hex(start), "slice_virtual_address": hex(start),
+             "raw_input": receipt(ROOT / plan["target"]), "plan": receipt(plan_path),
+             "journal": receipt(journal_path), "result": operation["result"],
+             "provider": native["provider"], "evidence_id": native["evidence_id"],
+             "analysis_profile_digest": native["analysis_profile"]["digest"]}
+    verify_native_query_subject(ROOT, native, query, target, image=image, pe=pe)
+
+    source = ROOT / "crates/azeroth-survivors-re"
+    source_catalog = source / "assets/talents.json"
+    source_talents = {talent["key"]: talent for cls in json.loads(source_catalog.read_text())["classes"]
+                      for tree in cls["trees"] for talent in tree["talents"]}
+    for row in rows:
+        effect, = (item for item in source_talents[row["talent"]]["effects"] if item["tag"] == 10)
+        payload = bytes.fromhex(effect["payload"])
+        assert payload[8] == row["selector"]
+        assert struct.unpack_from("<f", payload, 4)[0] == row["seconds"]
+        keys = [item["value"] for item in effect["strings"] if item["offset"] == 16]
+        keys += [key for item in effect["lists"] if item["offset"] == 16 for key in item["values"]]
+        assert keys == row["keys"]
+    source_bindings = [
+        receipt(source_catalog),
+        *(receipt(source / f"src/{path}") for path in (
+            "run_effects/conditions.rs", "gameplay/mechanics/callbacks.rs",
+            "gameplay/mechanics/prepared.rs",
+        )),
+    ]
+    return {
+        "schema_version": 1, "target": target, "gap_ids": [141, 148, 315],
+        "bounded_contract_system_ids": ["custom-game-game-talents"],
+        "owner": span(start, end), "tables": {"kill_reset": reset, "prepared": prepared},
+        "ranges": {"reset_outer_cell": span(outer_cell, outer_cell + 4),
+                   "reset_lookup": span(0x145FC60C0, 0x145FC624F),
+                   "reset_writeback": span(0x145FCFBD1, 0x145FCFCB4),
+                   "prepared_class_and_use": span(0x145FD0928, 0x145FD0C53),
+                   "prepared_loadout": span(0x145DDE5A0, 0x145DDE7D4)},
+        "talent_catalog": {**span(catalog, catalog + 9 * 200), "talents": talents,
+                           "effects": effects, "kill_reset_rows": rows},
+        "source_bindings": source_bindings, "query": query,
+        "limits": "Exact selected runtime dispatches and authored talent reset rows. The raw Ghidra slice omits external tables and callees; original PE bytes bind those boundaries separately. No full talent-module, build, execution or parity claim.",
+    }
 
 
 def recover():
@@ -218,7 +387,18 @@ def recover():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--runtime-dispatch", action="store_true", help="Verify the 0.143.0 runtime selectors")
     args = parser.parse_args()
+    if args.runtime_dispatch:
+        proof = recover_runtime_dispatch()
+        path = DIRECTORY / "runtime-dispatch.json"
+        value = json.dumps(proof, indent=2, ensure_ascii=False) + "\n"
+        if args.write:
+            path.write_text(value)
+        elif path.read_text() != value:
+            raise ValueError("Stale runtime talent dispatch contract")
+        print("0.143.0 runtime talent dispatch: 16 table cells, 355 talent records and 2 live reset rows verified")
+        return
     proof, assembly = recover()
     outputs = {DIRECTORY / "contract.json": json.dumps(proof, indent=2, ensure_ascii=False) + "\n",
                DIRECTORY / "rank-owner.asm": assembly}
