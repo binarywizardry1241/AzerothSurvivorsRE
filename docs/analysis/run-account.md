@@ -125,3 +125,19 @@ now connects terminal readers and backend-only snapshots, while preserving the
 independent imported frontend cache. Its native command/helper fixtures have
 separate declared seams and do not execute Rust or native workers. Actual
 codec/file-operation parity is not inferred from these bounded current caller checks.
+
+## 0.143.0 zone XP weights
+
+The 0.143.0 Windows EXE with SHA-256
+`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`
+assigns ordinal weights 0–9 directly. The summary at
+`0x145e38abf..0x145e38b04` maps Scholomance (10) to 9.5, Ahn'Qiraj (11)
+to 10 and Naxxramas (12) to 11. `0x145e38bd2` bounds the weight at 11.
+The current 13-row table at `0x1473abc98` matches the source zone order.
+The live Heroic XP adapter now applies these weights before the existing
+shared component calculation. The older multiplier adapter retains
+its ordinal-based contract for historical fixtures.
+
+Bounded native summary replay exercised all 13 zones. The authored
+Rust regression checks four adjacent zone bonuses for identical inputs.
+Compilation and original/rebuilt settlement comparisons remain open.

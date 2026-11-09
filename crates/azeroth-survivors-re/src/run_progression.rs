@@ -115,7 +115,15 @@ pub fn talent_experience_parts_heroic(
     kills: u32, bosses: u32, seconds: f32, won: bool, zone: usize,
     rank: u8, veteran_bonus: f32,
 ) -> [i64; 7] {
-    talent_experience_parts_with_multipliers(kills, bosses, seconds, won, zone,
+    // Scholomance sits between Blackrock Mountain and Ahn'Qiraj in the
+    // 0.143.0 table. Its half step leaves Ahn'Qiraj and Naxxramas at 10/11.
+    let zone_weight = match zone {
+        0..=9 => zone as f32,
+        10 => 9.5,
+        11 => 10.0,
+        _ => 11.0,
+    };
+    talent_experience_parts_for_zone_weight(kills, bosses, seconds, won, zone_weight,
         1.0, crate::heroic::reward_multiplier(rank.min(5)), veteran_bonus)
 }
 
@@ -126,12 +134,20 @@ pub fn talent_experience_parts_with_multipliers(
     kills: u32, bosses: u32, seconds: f32, won: bool, zone: usize,
     density: f32, reward: f32, veteran_bonus: f32,
 ) -> [i64; 7] {
+    talent_experience_parts_for_zone_weight(kills, bosses, seconds, won, zone as f32,
+        density, reward, veteran_bonus)
+}
+
+fn talent_experience_parts_for_zone_weight(
+    kills: u32, bosses: u32, seconds: f32, won: bool, zone_weight: f32,
+    density: f32, reward: f32, veteran_bonus: f32,
+) -> [i64; 7] {
     let normalized = (kills as f32 / density) as u32;
     let raw_kills = normalized as f32 * 0.1;
     let raw_time = (seconds / 60.0) * 12.0;
     let raw_bosses = bosses as f32 * 40.0;
     let raw_victory = if won { 200.0 } else { 0.0 };
-    let zone = 1.0 + (zone as f32 * 1.6) / 11.0;
+    let zone = 1.0 + (zone_weight * 1.6) / 11.0;
     let base = (zone * ((raw_bosses + (raw_time + raw_kills)) + raw_victory)).round() as u32;
     let time = raw_time.round() as i64;
     let kills = raw_kills.round() as i64;
@@ -176,6 +192,15 @@ pub fn talent_experience(
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn current_heroic_xp_preserves_zone_weights_after_scholomance_insertion() {
+        for (zone, zone_xp) in [(9, 144), (10, 152), (11, 160), (12, 176)] {
+            let parts = talent_experience_parts_heroic(0, 0, 550.0, false, zone, 0, 0.0);
+            assert_eq!(parts, [110, 0, 0, 0, zone_xp, 0, 0]);
+        }
+    }
+
     #[test]
     fn host_transmitted_factors_determine_guest_components() {
         assert_eq!(talent_experience_parts_with_multipliers(100,1,60.,true,0,2.,1.5,0.4),
