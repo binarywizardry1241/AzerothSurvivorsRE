@@ -31,6 +31,7 @@ struct PickerContentKey {
     hero: crate::save::Hero,
     zone: String,
     heroic_rank: u8,
+    hyper: bool,
     entering: bool,
     save_revision: u64,
 }
@@ -46,6 +47,7 @@ impl ZoneVisibility {
             hero: pick.hero,
             zone: pick.zone,
             heroic_rank: pick.heroic_rank,
+            hyper: pick.hyper,
             entering,
             save_revision,
         };
@@ -1374,6 +1376,7 @@ pub(crate) fn animate_enter_sweep(time: Res<Time>, mut sweeps: Query<&mut Node, 
 fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, state: &MenuState,
     waiting_for_players: bool) {
     let zone = &catalog.zones[state.zone];
+    let hyper = state.hyper_mode();
     ui.spawn(Node {
         align_items: AlignItems::Center,
         ..column(7.)
@@ -1404,9 +1407,9 @@ fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, s
                         GOLD,
                         false,
                     );
-                    let modified = state.heroic_rank != 0;
+                    let modified = state.heroic_rank != 0 || hyper;
                     let subtitle = if modified {
-                        crate::run_options::rank_name(state.heroic_rank, catalog)
+                        crate::run_options::difficulty_name(state.heroic_rank, hyper, |key| catalog.label(key))
                     } else {
                         catalog.label("picker.normal_difficulty").to_owned()
                     };
@@ -1505,7 +1508,7 @@ fn footer(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, s
                             &[
                                 ("subtitle", zone.subtitle.clone()),
                                 ("boss", zone.boss.clone()),
-                                ("minute", zone.minute.to_string()),
+                                ("minute", if hyper { (zone.minute as f32 * 0.5).to_string() } else { zone.minute.to_string() }),
                             ],
                         ),
                         13.,

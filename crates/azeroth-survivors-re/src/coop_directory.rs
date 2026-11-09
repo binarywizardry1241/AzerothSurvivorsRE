@@ -189,6 +189,7 @@ fn profile(
         heroic_rank: pick.heroic_rank
             .min(menu.backend_save.max_heroic_rank(pick.hero.class, &pick.zone))
             .min(azeroth_survivors_re::heroic::MAX_RANK),
+        hyper: pick.hyper && menu.backend_save.hyper_unlocked(),
     }
 }
 
@@ -429,12 +430,12 @@ fn poll(
                                 .unlock_value(menu.backend_pick().hero.class)
                                 .unwrap_or(1)
                                 .clamp(1, azeroth_survivors_re::zones::COUNT as u64),
+                            menu.backend_save.hyper_unlocked(),
                             |id| display_class(&locale, id),
                             |key| display_zone(&locale, key),
                             |key| menu.backend_save.max_heroic_rank(menu.backend_pick().hero.class, key),
-                            |rank| azeroth_survivors_re::heroic::rank_name(rank,
-                                locale.lookup("Normal").unwrap_or("Normal"),
-                                locale.lookup("Heroic").unwrap_or("Heroic")),
+                            |rank, hyper| crate::run_options::difficulty_name(rank, hyper,
+                                |key| locale.label(key)),
                         );
                         if service.directory.accept(&message) {
                             publish_directory(&service.directory, &mut view);

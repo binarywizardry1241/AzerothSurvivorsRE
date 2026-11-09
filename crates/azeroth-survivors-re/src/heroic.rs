@@ -9,6 +9,8 @@ mod affix_calendar;
 pub use self::affix_calendar::{current_week, zone_selector};
 
 pub const MAX_RANK: u8 = 5;
+/// The saved Champion of Naxxramas key unlocks both Crusader and Hyper Mode.
+pub const HYPER_ACHIEVEMENT: &str = "heroic:naxx5";
 
 /// Current Pick rank fields parse an ASCII u8 before clamping to I–V.
 /// A leading `+` is accepted; empty, signed-negative, non-decimal and u8

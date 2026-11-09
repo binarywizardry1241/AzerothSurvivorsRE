@@ -153,6 +153,7 @@ pub enum Action {
     Community,
     RunOptions,
     Heroic(u8),
+    ToggleHyper,
     Language,
     Enter,
     Unavailable(String),
@@ -206,7 +207,7 @@ fn input(
         return;
     }
     let mut enter_requested = false;
-    let heroic_before = state.heroic_rank;
+    let difficulty_before = (state.heroic_rank, state.hyper);
     for (interaction, action, face) in &clicks {
         if *interaction != Interaction::Pressed || face.disabled {
             continue;
@@ -252,6 +253,11 @@ fn input(
             },
             Action::RunOptions=>state.dialog=Some(Dialog::RunOptions),
             Action::Heroic(rank)=>if *rank <= state.max_heroic_rank() { state.heroic_rank=(*rank).min(azeroth_survivors_re::heroic::MAX_RANK); },
+            Action::ToggleHyper => {
+                if state.save.hyper_unlocked() {
+                    state.hyper = !state.hyper;
+                }
+            }
             Action::Language=>state.dialog=if matches!(state.dialog,Some(Dialog::Language)) {None} else {Some(Dialog::Language)},
             Action::Enter=>enter_requested=true,
             Action::Unavailable(title)=>state.dialog=Some(Dialog::Notice(title.clone(),"This screen's native behavior is still being recovered from the 0.92.0 executable.".into())),
@@ -261,9 +267,9 @@ fn input(
             state.dirty = true;
         }
     }
-    // Current140289500 compares the final rank after processing pressed rows.
+    // 0.143.0 compares rank and Hyper after processing the pressed rows.
     // Selection stays open and publishes one changed Pick.
-    if state.heroic_rank != heroic_before {
+    if (state.heroic_rank, state.hyper) != difficulty_before {
         state.commit_pick(&catalog);
     }
     if enter_requested {
@@ -561,6 +567,7 @@ fn rebuild(
             name: state.name.clone(),
             zone: catalog.zones[state.zone].key.clone(),
             heroic_rank: state.heroic_rank,
+            hyper: state.hyper_mode(),
             mods: state.run_mods,
         },
         state.entering,

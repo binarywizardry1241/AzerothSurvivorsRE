@@ -2,94 +2,80 @@
 
 ## 0.143.0 Hyper Mode
 
-The [eight supplied claims](../CHANGELOG.md#01430) share the run mode tracked in
-[#325](../CURRENT-STATE.md#gap-325). The Windows PE evidence below comes from
-`installed-game/AzerothSurvivors.exe`, 151,566,336 bytes, SHA-256
-`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
-The existing Difficulty and co-op paths carry the zone and Heroic rank. Neither
-the persisted `Pick` nor the admitted `RunRules` carries Hyper Mode. The current
-EXE supplies exact text and instruction selectors for recovery. The clock,
-reward and packet contracts still require tracing to their actual consumers.
+The [eight supplied claims](../CHANGELOG.md#01430) share [#325](../verification-needed.md#gap-325).
+The selected Windows PE is `installed-game/AzerothSurvivors.exe`, 151,566,336
+bytes, SHA-256 `f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
+The source carries one admitted mode through the picker, run construction,
+scheduler, terminal accounting and co-op replication.
 
-| Claim ID suffix | Assessment and live source | Next static proof and related findings |
-| --- | --- | --- |
-| `20eeba1dc4defaf3` | Release summary. The Difficulty lock/help literals corroborate the advertised achievement and pacing. The following assessments own the individual mode changes. | Trace the common selection-to-run handoff under [#325](../CURRENT-STATE.md#gap-325). |
-| `2052657ed900be9c` | The Champion description in the EXE names both Crusader and Hyper Mode. The [source description](../../crates/azeroth-survivors-re/assets/achievement-catalog-0.121.0.json) only names Crusader. The [Armory unlock](../../crates/azeroth-survivors-re/src/armory_cosmetics.rs) already reads saved `heroic:naxx5` for enchant 1900. [Difficulty](../../crates/azeroth-survivors-re/src/run_options.rs), [menu state](../../crates/azeroth-survivors-re/src/menu_state.rs), [Pick](../../crates/azeroth-survivors-re/src/save.rs) and [run admission](../../crates/azeroth-survivors-re/src/gameplay/mod.rs) have no Hyper Mode field or toggle. | Follow the Difficulty labels from `0x1401bbfd0` and the saved achievement lookups into the pick and run constructors. Verify the old-achievement path, default, selection across Normal and Heroic ranks, and entry/restart lifetime. See [#219](../verification-needed.md#gap-219) and [#235](../verification-needed.md#gap-235). |
-| `874ebdc6e9a66c37` | The pacing help says bosses arrive in half the time. The [source scheduler](../../crates/azeroth-survivors-re/src/bosses/spawning.rs) compares clock minutes with the zone's boss row. It receives no mode from [run state](../../crates/azeroth-survivors-re/src/gameplay/mechanics.rs). | Recover the native deadline input and zone-specific final thresholds from the scheduling and boss table consumers. Check full-strength initialization separately from schedule timing. The advertised 8/9/10 minutes and unchanged strength are pending native proof. |
-| `850ed6c5a1af2d9e` | The same help says guardians return twice as fast. The [guardian death owner](../../crates/azeroth-survivors-re/src/guardians/mod.rs) adds the [rank-only refill interval](../../crates/azeroth-survivors-re/src/heroic.rs) to the current clock. | Trace the mode read in the death-to-lair deadline path and its interaction with difficulty and respawn suppression. Use [the existing lifecycle boundary](raid-guardian-lifecycle.md#current-owners-and-inputs) and [#89](../CURRENT-STATE.md#gap-89). |
-| `d9930831bf9a59da` | The help names accelerated mob strength. [Run scheduling](../../crates/azeroth-survivors-re/src/gameplay/mechanics.rs), [ordinary spawning](../../crates/azeroth-survivors-re/src/enemies/spawning.rs) and [waves](../../crates/azeroth-survivors-re/src/enemies/waves.rs) use clock minutes for ordinary selection, strength/count and wave inputs. [Endless entry](../../crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs), [repeat spawning](../../crates/azeroth-survivors-re/src/bosses/spawning.rs) and [co-op presentation](../../crates/azeroth-survivors-re/src/coop/client_state.rs) retain 300-second values. | Trace the effective mob clock into strength, counts and composition, then inspect the final-deadline boundary and retained lead in Endless. Locate both the initial and repeating 150-second boss deadlines and their published consumers. |
-| `d829b1125a14e67a` | The help says rewards stay the same. [Boss loot and marks](../../crates/azeroth-survivors-re/src/mob_loot.rs) take zone, boss, rank and Endless reward inputs. [Local/live XP](../../crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs) uses `self.clock`, and [cached guest XP](../../crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs) uses `projection.clock`. The [XP formula](../../crates/azeroth-survivors-re/src/run_progression.rs) awards 12 XP per input minute before its other modifiers. | Trace rank, boss reward and win settlement producers through the local and private guest consumers. Establish the exact clock value sent to the XP formula and compare marks/loot inputs for the same rank. See [#226](../verification-needed.md#gap-226), [#228](../verification-needed.md#gap-228) and [#238](../verification-needed.md#gap-238). |
-| `b818f572e247d44b` | The [live feat snapshot](../../crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs) uses `self.clock` and the [cached guest snapshot](../../crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs) uses `projection.clock`. [Party publication](../../crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs) retains the first fall from `self.clock`. [The timed feat predicate](../../crates/azeroth-survivors-re/src/account_progression.rs) checks elapsed and first-fall time separately. | Establish which current fields feed timed achievements, including the 40-minute Naxxramas threshold, first-fall capture and guest grants. The retained source alone cannot establish whether those inputs remain tied to real time in Hyper Mode. See [#285](../verification-needed.md#gap-285). |
-| `d9da87b3033fb4b5` | Separate join-denial and lobby eligibility text have verified references. [Host advertising](../../crates/azeroth-survivors-re/src/coop/service.rs), [directory rows](../../crates/azeroth-survivors-re/src/coop/directory_wire.rs), [Hero profile](../../crates/azeroth-survivors-re/src/coop_profile.rs), [roster and admission](../../crates/azeroth-survivors-re/src/coop/server_party.rs), [world entry](../../crates/azeroth-survivors-re/src/gameplay/coop.rs) and [State15](../../crates/azeroth-survivors-re/src/coop/replication.rs) carry rank-related inputs. The [directory badge](../../crates/azeroth-survivors-re/src/coop_directory_row.rs) and [party card](../../crates/azeroth-survivors-re/src/coop_ui.rs) have no mode display. | Follow both denial references through capability, host selection, directory/roster wire fields, world entry and shared run publication. Resolve eligibility order and localization on both views. See [#63](../CURRENT-STATE.md#gap-63), [#258](../verification-needed.md#gap-258) and [#260](../verification-needed.md#gap-260). |
+| Claim ID suffix | Bounded result |
+| --- | --- |
+| `20eeba1dc4defaf3` | The release summary combines the achievement gate, timing changes and downstream consumers below. |
+| `2052657ed900be9c` | The [Difficulty and save contract](difficulty-ui.md#hyper-mode-in-01430) connects the existing Champion key, independent mode toggle, Pick reload, admission and Again. |
+| `874ebdc6e9a66c37` | The primary scheduler at `0x145f71793..0x145f71836` halves the due minute and passes the same 1.0 constructor factor. All 65 native row times across 13 zones match the source table. Hyper finals land at 8, 9 or 10 real minutes. |
+| `850ed6c5a1af2d9e` | Lair death at `0x145f5b8a6..0x145f5b910` and `0x145f5bca8..0x145f5bcd1` selects the rank delay (180 or 150 seconds), divides by two in Hyper and adds real elapsed time. Respawn suppression still uses the existing lifecycle gate. |
+| `d9930831bf9a59da` | The scheduling path retains the effective mob-clock lead after the final-boss threshold. Initial and repeating Endless boss deadlines use 150 real seconds in Hyper and 300 otherwise. |
+| `d829b1125a14e67a` | Terminal XP uses the capped lead for selected-and-earned Hyper, including defeat and Endless. The loot owner uses the same rank, boss, phase, repeat count and per-hero inputs across modes. |
+| `b818f572e247d44b` | Timed achievements read actual elapsed time and the separately captured actual first-fall time. The 40-minute cutoff still consumes 2,400 real seconds. |
+| `d9da87b3033fb4b5` | [Co-op admission and projection](coop.md#01430-hyper-mode-admission) carry the host mode through directory, roster and State15. Admission checks Champion after zone and rank eligibility. |
 
-Exact literal byte ranges use the PE file offset and preferred VA. The reference
-sites are RIP-relative `lea` instructions independently decoded with the existing
-Capstone diagnostic reader from their enclosing PE unwind extent. They establish
-static address formation within those extents. Runtime reachability, the
-underlying gate, field layout and timing arithmetic remain open.
+### Clocks and live consumers
 
-| Literal | File offset | Preferred VA | Bytes | SHA-256 | Decoded site |
-| --- | --- | --- | ---: | --- | --- |
-| Difficulty mode label | `0x0657d788` | `0x14657e388` | 10 | `25eaac946cf7b29497e0950c2d91302b447a293a7e2b535f276c2d6c25ad5495` | `0x1401bc2a7` |
-| Difficulty unlock help | `0x0657d792` | `0x14657e392` | 43 | `f4e548c0fea7997c4863c3f01492120e3233e76c8fc3c04825ad5d9cfb59143f` | `0x1401bc4d4` |
-| Difficulty pacing and rewards help | `0x0657d7c1` | `0x14657e3c1` | 122 | `08e78645a5206ad6854a7a8b857de9f138234b31a2c13893e5bd6c8ae007f49c` | `0x1401bc454` |
-| Join denial | `0x06580be1` | `0x1465817e1` | 33 | `b42587a39dd5529f9d5e2a7a62d043980a049b3968b22f82edd07c2a91ecb990` | `0x1402226b0` |
-| Lobby denial | `0x06581091` | `0x146581c91` | 34 | `7c9cfd51c343b405e4888ee1b23ce312d80630582b82dcca563594433bcaaba4` | `0x140227a38` |
-| Champion description suffix | `0x073b7834` | `0x1473b8434` | 46 | `b29bbec2c47dddd6b233e23e869536bd54c6c2be7610d210966c48967eaa740b` | Pending. The adjacent name and achievement key are referenced at `0x145de2a3d` and `0x145de2b5b`. |
+`Game+0x464` is admitted Hyper and `Game+0x1030` is actual elapsed seconds.
+The mob clock at `0x145f6f1dc..0x145f6f27a` and
+`0x145f6f3f0..0x145f6f48b` uses
+`2 * min(real_minutes, half_final) + max(real_minutes - half_final, 0)`.
+`half_final` is half the fifth boss row's minute or 10 if the row is absent.
+The zone table at `0x1473abc98` uses a `0xf0` zone stride, a boss pointer at
+`+0x88`, a `0x68` boss stride and due minute at `+0x50`. The same effective
+clock reaches the spawn budget, ordinary enemy strength and guardian strength
+at `0x145f561c1..0x145f562cc`, `0x145f58045..0x145f5816d`,
+`0x146004686..0x146004705` and `0x146004bc1..0x146004c3d`. The Explosive
+ward HP calculation at `0x145f6f27a..0x145f6f358` uses that clock for its
+ordinary HP polynomial. Per-actor deadlines, real delta and the separate
+Endless elapsed growth input use actual time.
 
-### Selected and unlocked state
+The initial Endless deadline at `0x145f9c8fb..0x145f9c943` and repeating
+deadline at `0x145f71e70..0x145f71ee3` add 150 or 300 to actual elapsed
+seconds. The rebuild shares these values across scheduling and guest
+projection. The native HUD and addon owners scale primary countdowns and
+schedule rows (`0x145fb2263..0x145fb22f2`, `0x145f3f55c..0x145f3f5fe`,
+`0x145f3f9f0..0x145f3fa70`, `0x145f40936..0x145f409b1`,
+`0x146064ad2..0x146064af5`). The Begin magnet window uses the scaled final
+deadline at `0x145fbfc6c..0x145fbfcce`, with its 1,200-second missing-row
+fallback preserved. Source connects the shared schedule to live spawning,
+lair refill, magnet, affix and addon consumers.
 
-`0x145e76430..0x145e76502` binary-searches the account's sorted 24-byte
-string records for the exact `heroic:naxx5` key at `0x1473d4b10` and returns
-the equality byte. `0x14023f800..0x14023f844` admits the selected mode byte
-only when the achievement check succeeds. `0x14023f849..0x14023f853`
-separately computes unlock state. The parent passes both bytes through
-`0x1401bab50` and `0x14022eeb0` to the Difficulty panel. At `0x1401bc44c`
-the unlock byte selects the pacing or locked tooltip, and `0x1401bc8fc`
-reads the admitted selection for checked styling.
+### Rewards and timed achievements
 
-The writer at `0x14023ec60..0x14023f376` snapshots Pick mode at `+0x30`
-and Heroic rank at `+0x39`. Action tag 1 requires the same achievement
-lookup and toggles the mode byte at `0x14023ef73` or `0x14023f1ee`.
-The rank and close branches are separate. If rank or mode changes,
-`0x14023f267..0x14023f362` queues a single tag-12 Pick update through
-`0x140009b00`. The full writer starts at file `0x23e060`, spans 1,814
-bytes and hashes to
-`e163b0a1a3bb7ae653bf34df51c64ee87a34f053f14deef4ceb123f7e566cd9f`.
-The rebuilt menu already handles rank/close in `menu.rs::apply_actions`.
-Trace the update consumer, persistent representation and run handoff.
+The summary owner `0x145e38830..0x145e39d9d` uses snapshot `+0xfc` and
+the account's earned Champion key. Its XP input is real seconds plus
+`min(real_seconds, half_final * 60)` when both are true. The source shares
+this calculation across local and both guest settlement paths. Best time,
+terminal time, counters and feat inputs retain actual elapsed time.
+The native feat delivery at `0x145e418c8` and `0x145e41a15` forwards raw
+snapshot `+0xd0`. The first-fall producer at `0x145fb0919..0x145fb095a`
+captures the real clock into an empty latch in started co-op. The party
+context writes it at `0x145f4d6f7` for the evaluator. The current achievement
+description selected at `0x145de7801` includes the no-deaths clause. The
+source now uses that localized key. The ordinary boss
+reward owner `0x145f56550..0x145f56cc2` reads boss/zone, rank, phase,
+Endless count, final flag and per-hero inputs. The reconstructed marks and
+loot paths already share those inputs across modes.
 
-The Enter preview reads the final encounter row's minute at `+0x50`.
-`0x14018e381..0x14018e3a0` gates a multiply by 0.5 on selected and earned
-Hyper, then `0x14018e421..0x14018e46d` supplies the result to the
-`picker.awaits` minute field. The rebuilt `picker.rs` sends unscaled
-`zone.minute` to that template. The separate difficulty formatter at
-`0x145ea8260..0x145ea8329` joins the normal rank label with localized
-`Hyper` when the mode byte is set. These establish presentation paths.
-The actual encounter deadlines and simulation clocks still need recovery.
+### Static checks
 
-### Cooperative lock and presentation
-
-In the `server/party.rs` owner `0x145e4c990..0x145e4cf32`, a mode-gated
-branch tests the same achievement and combines its absence with the rank
-gate. `0x145e4ceb9` calls `0x145e47310`, which emits `locked:hyper` for
-its nonzero Hyper discriminator. The join renderer at `0x14022250f`
-recognizes that exact 12-byte value and selects the lower-case denial.
-The lobby's locked-row tooltip separately matches the five-byte `hyper`
-reason at `0x1402279bd`. The
-[co-op trace](coop.md#01430-hyper-mode-admission) follows the host's earned
-gate, the guest's achievement ordinal, and the outbound directory profile.
-The incoming directory row, party publication and game-start carrier still
-need proof.
-
-For the next journaled Ghidra pass, select the Difficulty extent
-`[0x1401bbfd0,0x1401bceda)`, join denial `[0x1402224e0,0x140223482)`,
-lobby denial `[0x140227900,0x140227aa8)` and Champion definition
-`[0x145ddef20,0x145de8f9a)`. Follow the Pick update and its aliases before
-assigning the gameplay, reward or wire fields. Compilation and controlled
-solo/host/guest comparisons remain pending, including Normal and Heroic
-selection, final-boss and Endless timing, reward delivery, and the 40-minute
-achievement boundary.
+`python3 -B scripts/check-difficulty-ui.py --hyper` checks 17 bound PE
+ranges, the picker/save/entry seams and all 14 locale catalogs. It also
+replays 44 bounded Pick parse/write and solo-admission cases. Bounded
+original-instruction replay passed 704 pacing cases and 464 settlement
+cases (416 XP, 36 first-fall and 12 timed-feat). Ghidra queries covered
+the row constructor, boss scheduler, reward summary and co-op wire and
+admission helpers. Raw-slice analysis preserves the original VA and byte
+digest; external calls and data are checked separately at their PE sites.
+The underlying Ghidra results remain in the shared catalog. Compilation,
+authored Rust regressions, rendered input, actual service traffic and
+original/rebuilt parity remain open in [#325](../verification-needed.md#gap-325).
 
 ## 0.141.0 gameplay and UI
 

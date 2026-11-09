@@ -43,7 +43,7 @@ pub fn get(id: u32) -> Option<&'static Cosmetic> {
 pub fn weapon_glow_unlocked(id: u32, achieved: impl Fn(&str) -> bool) -> bool {
     match id {
         0 | 1894 => true,
-        1900 => achieved("heroic:naxx5"),
+        1900 => achieved(crate::heroic::HYPER_ACHIEVEMENT),
         803 => achieved("radiantarmory"),
         1899 => achieved("coop:insane"),
         1898 => achieved("heroic:prepared"),

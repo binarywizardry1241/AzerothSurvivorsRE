@@ -157,6 +157,8 @@ impl<T: Terrain + ai::World + azeroth_survivors_re::guardians::placement::LairTe
 pub struct RunRules {
     /// Selected 0.121.0 Heroic rank, copied into native Game+0x36f.
     pub heroic_rank: u8,
+    /// Admitted mode carried by 0.143.0 Game+0x464.
+    pub hyper: bool,
     pub difficulty: f32,
     pub density_percent: u16,
     pub hp_percent: u16,
@@ -716,6 +718,10 @@ pub struct Mechanics {
 }
 
 impl Mechanics {
+    pub(crate) fn hyper_mode(&self) -> bool {
+        self.replica_state().map_or(self.rules.hyper, |state| state.hyper)
+    }
+
     pub fn visual_spell_scales(&self) -> Vec<player_abilities::visual_scale::SpellScale> {
         //145928460/145928710: timed26 owns a neutral instance plus its
         // interval override, then refreshes its spell modifiers. Learned
@@ -1443,6 +1449,10 @@ impl Mechanics {
     ) {
         let now = self.clock;
         let rules = self.rules;
+        let effective_minutes = azeroth_survivors_re::bosses::spawning::effective_enemy_minutes(
+            now,
+            azeroth_survivors_re::bosses::spawning::hyper_half_minutes(self.zone.key, rules.hyper),
+        );
         let active_bosses: Vec<_> = self
             .bosses
             .iter()
@@ -1456,9 +1466,10 @@ impl Mechanics {
             })
             .collect();
         self.tick_affix_pools();
-        self.tick_affix_orbs(player, world);
+        self.tick_affix_orbs(effective_minutes, player, world);
         let input = spawning::TickInput {
             clock_seconds: now,
+            effective_minutes,
             delta_seconds: delta,
             density_percent: rules.density_percent,
             cooperative_density: self.party_scaling().map(|scaling| scaling.density),
@@ -1475,6 +1486,7 @@ impl Mechanics {
             phase: self.boss_state.phase(),
             endless_started_at: self.boss_state.endless_started_at(),
             now,
+            effective_minutes,
             run_level: self.level,
             player,
             velocity,
@@ -1484,7 +1496,7 @@ impl Mechanics {
             world,
             events: &mut self.events,
         };
-        if !spawning::admitted_enemy_indices(self.zone, now / 60.0).is_empty() {
+        if !spawning::admitted_enemy_indices(self.zone, effective_minutes).is_empty() {
             self.spawner.tick_with_expf(
                 self.zone,
                 input,
@@ -2024,6 +2036,7 @@ struct SpawnAdapter<'a, W> {
     phase: u32,
     endless_started_at: f32,
     now: f32,
+    effective_minutes: f32,
     run_level: u32,
     player: Position,
     velocity: [f32; 2],
@@ -2062,6 +2075,7 @@ impl<W: RunWorld> SpawnAdapter<'_, W> {
                 endless_start_seconds: self.endless_started_at,
             },
             definition,
+            self.effective_minutes,
             self.zone.key,
             self.rules.heroic_rank,
         );
@@ -3220,7 +3234,7 @@ mod rng_integration {
         let mut game = Mechanics::new(
             "elwynn",
             class,
-            RunRules { heroic_rank: 0,
+            RunRules { heroic_rank: 0, hyper: false,
                 difficulty: 1.0,
                 density_percent: 100,
                 hp_percent: 100,
@@ -3272,6 +3286,10 @@ mod rng_integration {
             phase: game.boss_state.phase(),
             endless_started_at: game.boss_state.endless_started_at(),
             now: game.clock,
+            effective_minutes: azeroth_survivors_re::bosses::spawning::effective_enemy_minutes(
+                game.clock,
+                azeroth_survivors_re::bosses::spawning::hyper_half_minutes(game.zone.key, game.rules.hyper),
+            ),
             run_level: game.level,
             player,
             velocity: [0.0; 2],
@@ -3586,7 +3604,7 @@ mod rng_integration {
         game.tick(0.01, player, [0.0; 2], 0.0, &mut terrain);
         assert_eq!(game.kills, 2);
         assert_eq!(game.elite_kills(), 1);
-        game.mark_run_result_saved();
+        game.mark_run_result_saved(false);
         for guid in victims {
             fixture_hit(&mut game, guid, 100.0);
         }

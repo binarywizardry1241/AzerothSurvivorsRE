@@ -9,6 +9,7 @@ fn input(clock_seconds: f32) -> ScalingInput {
     ScalingInput {
         heroic_rank: 0,
         clock_seconds,
+        hyper_half_minutes: None,
         difficulty: 1.0,
         zone_scale: 999.0,
         guardian_kills: 999,

@@ -210,6 +210,7 @@ fn unrelated_account_commands_and_picker_mutations_retain_race_ownership() {
         name: "Arthas".into(),
         zone: "elwynn".into(),
         heroic_rank: 0,
+        hyper: false,
         mods: RunMods::default(),
     };
     save.set_hero(&pick.hero).unwrap();

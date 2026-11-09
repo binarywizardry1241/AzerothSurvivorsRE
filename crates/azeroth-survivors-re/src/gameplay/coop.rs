@@ -45,6 +45,18 @@ struct HeroAdmission {
     zone_key: &'static str,
     zone_index: usize,
     heroic_rank: u8,
+    hyper: bool,
+}
+
+fn hero_lock_reason(hero: &NativeHero, zone_index: usize, zone_key: &str,
+    heroic_rank: u8, hyper: bool) -> Option<Vec<u8>> {
+    if !hero.permits_zone(zone_index, heroic_rank) {
+        Some(NativeHero::locked_reason(zone_key, heroic_rank))
+    } else if hyper && !crate::coop_profile::hyper_unlocked(hero) {
+        Some(b"locked:hyper".to_vec())
+    } else {
+        None
+    }
 }
 
 #[derive(Resource, Default)]
@@ -113,10 +125,12 @@ impl CoopGame {
                 return None;
             }
         };
-        if !self.profiles.contains_key(&client)
-            && !hero.permits_zone(admission.zone_index, admission.heroic_rank)
-        {
-            return Some(NativeHero::locked_reason(admission.zone_key, admission.heroic_rank));
+        if !self.profiles.contains_key(&client) {
+            if let Some(reason) = hero_lock_reason(&hero, admission.zone_index,
+                admission.zone_key, admission.heroic_rank, admission.hyper)
+            {
+                return Some(reason);
+            }
         }
         if hero.guid == admission.host_guid || admission.active_guid == Some(hero.guid)
             || self.profiles.iter().any(|(id, profile)| *id != client && profile.guid == hero.guid)
@@ -308,7 +322,9 @@ impl CoopGame {
     fn receive_victory(&mut self, run: &mut RunSession, menu: &mut MenuState) {
         let Some(entry) = self.entry.filter(|_| self.zone.is_some()) else { return; };
         let Some(state) = self.state.as_ref() else { return; };
-        let snapshot = guest_settlement::Snapshot::from_cached(state, entry, &self.checkpoints)
+        let snapshot = guest_settlement::Snapshot::from_cached(
+            state, entry, &self.checkpoints, menu.backend_save.hyper_unlocked(),
+        )
             .with_duplicate_marks(&self.duplicate_marks)
             .with_notice_ready(self.sync_sent);
         let events = snapshot.victory(menu, entry.roster_guid);
@@ -321,7 +337,9 @@ impl CoopGame {
     pub(super) fn receive_live_feats(&mut self, run: &mut RunSession, menu: &mut MenuState, now: u64) {
         let Some(entry) = self.entry.filter(|_| self.zone.is_some()) else { return; };
         let Some(state) = self.state.as_ref() else { return; };
-        let snapshot = guest_settlement::Snapshot::from_cached(state, entry, &self.checkpoints)
+        let snapshot = guest_settlement::Snapshot::from_cached(
+            state, entry, &self.checkpoints, menu.backend_save.hyper_unlocked(),
+        )
             .with_duplicate_marks(&self.duplicate_marks);
         let events = snapshot.live_feats(menu, entry.roster_guid, now);
         if let Some(game) = run.mechanics.as_mut() { game.events.extend(events); }
@@ -346,7 +364,7 @@ impl CoopGame {
         };
         if let Some(game) = run.mechanics.as_mut().filter(|game| game.is_party_replica()) {
             if !closing {
-                self.terminal_delivery = game.summary_delivery();
+                self.terminal_delivery = game.summary_delivery(menu.backend_save.hyper_unlocked());
                 self.terminal_unlocked_zone = Some(self.terminal_delivery.as_ref()
                     .filter(|_| entry.roster_guid.is_some_and(|guid| guid != crate::startup::TESTER_GUID))
                     .and_then(|delivery| terminal::unlocked_zone(delivery, menu, catalog)));
@@ -359,7 +377,8 @@ impl CoopGame {
             } else { Vec::new() };
         }
         let snapshot = guest_settlement::Snapshot::from_cached(self.state.as_ref().unwrap(), entry,
-            &self.checkpoints).with_duplicate_marks(&self.duplicate_marks).with_notice_ready(self.sync_sent);
+            &self.checkpoints, menu.backend_save.hyper_unlocked())
+            .with_duplicate_marks(&self.duplicate_marks).with_notice_ready(self.sync_sent);
         if !closing {
             self.terminal_delivery = snapshot.delivery().cloned();
             self.terminal_unlocked_zone = Some(self.terminal_delivery.as_ref()
@@ -612,6 +631,7 @@ fn receive(
         zone_key: selected_zone.key,
         zone_index,
         heroic_rank: selected_rank,
+        hyper: pick.hyper && menu.backend_save.hyper_unlocked(),
     };
     loop {
         let event = events.pop_front().or_else(|| runtime.driver.as_mut()
@@ -822,10 +842,9 @@ fn receive(
             NativeMessage::State(value) if guest => {
                 let zone = azeroth_survivors_re::zones::resolve(&value.text);
                 let bosses = zone.bosses.iter().map(|row| row.id).collect::<Vec<_>>();
-                let duration = zone
-                    .bosses
-                    .last()
-                    .map_or(1200., |row| f64::from(row.time_minutes) * 60.);
+                let duration = azeroth_survivors_re::bosses::spawning::final_boss_minutes(
+                    zone.key, value.hyper,
+                ).map_or(1200., |minutes| f64::from(minutes) * 60.);
                 if let Some(value) = azeroth_survivors_re::coop::client_state::validate_state(
                     value,
                     azeroth_survivors_re::coop::client_state::StateValidation {
@@ -998,14 +1017,16 @@ fn receive(
                 .filter(|row| row.joined && row.closing_since.is_none())
             {
                 if let Some(hero) = state.profiles.get(&client.id) {
-                    let mut row = roster_row(hero, hero.permits_zone(zone_index, selected_rank));
+                    let eligible = hero_lock_reason(hero, zone_index, selected_zone.key, selected_rank,
+                        hero_admission.hyper).is_none();
+                    let mut row = roster_row(hero, eligible);
                     let (ping, country) = driver.peer_lobby_metadata(client.id);
                     row.ping_ms = ping;
                     row.country = country.into_bytes();
                     rows.push(row);
                 }
             }
-            driver.publish_roster(rows, selected_zone.key.into(), selected_rank);
+            driver.publish_roster(rows, selected_zone.key.into(), selected_rank, hero_admission.hyper);
             if driver.advance_ready_check(time.elapsed_secs_f64(), begin_ready_check, cancel_ready_check)
                 && !menu.in_run && !menu.entering {
                 menu.admit_enter(time.elapsed_secs());
@@ -1381,6 +1402,7 @@ fn bootstrap(
                 &profile,
                 &zone,
                 RunRules { heroic_rank,
+                    hyper: snapshot.hyper,
                     difficulty: 1.0,
                     density_percent: 100,
                     hp_percent: 100,
@@ -1520,9 +1542,10 @@ fn bootstrap(
         let host_pick = menu.backend_pick();
         let admission_rank = host_pick.heroic_rank.min(
             menu.backend_save.max_heroic_rank(host_pick.hero.class, game.zone.key));
-        if !hero.permits_zone(zone_index, admission_rank) {
-            runtime.send(Some(client), NativeMessage::Lifecycle(LifecyclePacket::Denied(
-                NativeHero::locked_reason(game.zone.key, admission_rank))));
+        if let Some(reason) = hero_lock_reason(&hero, zone_index, game.zone.key,
+            admission_rank, game.hyper_mode())
+        {
+            runtime.send(Some(client), NativeMessage::Lifecycle(LifecyclePacket::Denied(reason)));
             if let Some(driver) = runtime.driver.as_mut() {
                 driver.server.begin_closing(client, time.elapsed_secs_f64());
             }
@@ -2034,6 +2057,7 @@ mod guest_engine_tests {
             zone_key: "elwynn",
             zone_index: 0,
             heroic_rank: 0,
+            hyper: false,
         }
     }
 
@@ -2096,11 +2120,16 @@ mod guest_engine_tests {
         profile.byte_1e3 = 1;
         profile.heroic_unlocks = vec![0];
         let mut state = CoopGame::default();
-        let locked = HeroAdmission { heroic_rank: 1, ..elwynn_admission(0.) };
+        let locked = HeroAdmission { heroic_rank: 1, hyper: true, ..elwynn_admission(0.) };
         let duplicate = HeroAdmission { host_guid: profile.guid, ..locked };
         assert_eq!(
             state.receive_hero(client, Box::new(profile.clone()), duplicate).as_deref(),
             Some(b"locked:elwynn:1".as_slice()),
+        );
+        let hyper = HeroAdmission { hyper: true, ..elwynn_admission(0.1) };
+        assert_eq!(
+            state.receive_hero(client, Box::new(profile.clone()), hyper).as_deref(),
+            Some(b"locked:hyper".as_slice()),
         );
         let ongoing = HeroAdmission { run_under_way: true, ..elwynn_admission(0.2) };
         assert!(state.receive_hero(client, Box::new(profile.clone()), ongoing).is_none());
@@ -2110,7 +2139,11 @@ mod guest_engine_tests {
         };
         assert!(state.receive_hero(client, Box::new(profile.clone()), active_collision).is_none());
         assert!(!state.profiles.contains_key(&client));
-        assert!(state.receive_hero(client, Box::new(profile.clone()), elwynn_admission(0.4)).is_none());
+        let champion = crate::coop_profile::achievement_keys().iter()
+            .position(|key| key == crate::save::HYPER_ACHIEVEMENT).unwrap() as u16;
+        profile.achievements.push((champion, 0));
+        assert!(state.receive_hero(client, Box::new(profile.clone()),
+            HeroAdmission { now: 0.4, ..hyper }).is_none());
         profile.name = b"Refresh".to_vec();
         assert!(state.receive_hero(client, Box::new(profile), HeroAdmission { now: 0.6, ..locked }).is_none());
         assert_eq!(state.profiles[&client].name.as_slice(), b"Refresh");
@@ -2206,7 +2239,7 @@ mod guest_equipment_tests {
             .unwrap();
         let catalog = MenuCatalog::embedded();
         let hero = crate::save::Hero { class: 1, race: 1, sex: 0, features: [0; 5] };
-        Mechanics::new("elwynn", "warrior", RunRules { heroic_rank: 0,
+        Mechanics::new("elwynn", "warrior", RunRules { heroic_rank: 0, hyper: false,
             difficulty: 1., density_percent: 100, hp_percent: 100,
             damage_percent: 100, speed_percent: 100, endless: false,
         }, entry_player_stats(&catalog.classes[0], &hero, &entry), [1, 2, 3, 4]).unwrap()
@@ -2293,7 +2326,8 @@ mod guest_equipment_tests {
         menu.backend_save.upgrade_star(101000).unwrap();
         assert!(menu.backend_save.class_marks(1) < 8.0);
         let cached = guest_settlement::Snapshot::from_cached(&value,
-            state.entry.unwrap(), &state.checkpoints).with_duplicate_marks(&state.duplicate_marks);
+            state.entry.unwrap(), &state.checkpoints, menu.backend_save.hyper_unlocked())
+            .with_duplicate_marks(&state.duplicate_marks);
         cached.account(&mut menu, Some(42), 0);
         let earned = menu.backend_save.earned_achievements();
         assert!(earned.contains("feat:marks100"));

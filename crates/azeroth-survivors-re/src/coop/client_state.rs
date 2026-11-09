@@ -59,6 +59,7 @@ pub struct RunProjection {
     pub boss_kills: u32,
     pub caches_bought: u32,
     pub heroic_rank: u8,
+    pub hyper: bool,
     pub boss_counter: u32,
     pub max_equipment_stars: u8,
     pub active_set: u8,
@@ -81,7 +82,7 @@ impl RunProjection {
             guardian_kills: state.words_70[2],
             boss_kills: state.words_70[3],
             caches_bought: state.words_70[4],
-            heroic_rank: state.heroic_rank, boss_counter: state.boss_counter,
+            heroic_rank: state.heroic_rank, hyper: state.hyper, boss_counter: state.boss_counter,
             max_equipment_stars: state.max_equipment_stars, active_set: state.active_set,
             run_marks: f32::from_bits(state.float_84_bits),
             max_boss_marks: f32::from_bits(state.float_88_bits),
@@ -104,6 +105,7 @@ impl RunProjection {
             self.caches_bought,
         ];
         state.heroic_rank = self.heroic_rank;
+        state.hyper = self.hyper;
         state.boss_counter = self.boss_counter;
         state.max_equipment_stars = self.max_equipment_stars;
         state.active_set = self.active_set;
@@ -133,12 +135,13 @@ pub struct StateValidation<'a> {
     pub class: u8,
     pub seconds_since_zone_start: f64,
     /// Current zone's final-boss time in seconds, or1200 when none exists.
+    /// Effective final-boss deadline for the received mode.
     pub zone_duration_seconds: f64,
     /// All five current zone boss IDs in native catalog order.
     pub boss_ids: &'a [u32],
 }
 
-/// Native 0x145e36520 rejects wrong class/zone or nonfinite run clocks, clamps
+/// Native 0x145e66210 rejects wrong class/zone or nonfinite run clocks, clamps
 /// the scalar record and filters boss histories in their existing order.
 pub fn validate_state(mut state: NativeState, context: StateValidation<'_>) -> Option<NativeState> {
     let clock = f32::from_bits(state.float_68_bits);
@@ -153,7 +156,8 @@ pub fn validate_state(mut state: NativeState, context: StateValidation<'_>) -> O
     }
     let clock = f64::from(clock).max(0.0).min(ceiling);
     // cvttsd2si after the native saturating-u32 bound, then add edi,5.
-    let boss_limit = (1.0 + clock * (1.0 / 300.0)) as u32;
+    let interval = f64::from(crate::bosses::spawning::endless_interval_seconds(state.hyper));
+    let boss_limit = (1.0 + clock * (1.0 / interval)) as u32;
     let history_limit = boss_limit.wrapping_add(5);
     state.float_68_bits = (clock as f32).to_bits();
     // 0.127.0 validator145b52b13..145b52dc9 clamps the run level to120.
@@ -296,7 +300,7 @@ mod tests {
             word_6c: 7,
             flag_8d: true,
             words_70: [100, 200, 3, 4, 5],
-            heroic_rank: 0, boss_counter: 0, max_equipment_stars: 0, active_set: 0,
+            heroic_rank: 0, hyper: false, boss_counter: 0, max_equipment_stars: 0, active_set: 0,
             float_84_bits: 2.0_f32.to_bits(),
             float_88_bits: 1.5_f32.to_bits(),
             flag_8e: true,

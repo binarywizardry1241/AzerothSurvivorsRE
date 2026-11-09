@@ -101,7 +101,7 @@ pub(super) fn heroes(lines: &[String], loading: bool) -> Vec<Hero> {
 pub(super) fn pick(lines: &[String], loading: bool) -> Option<Pick> {
     lines.iter().find_map(|line| {
         let f = line.trim().split('|').collect::<Vec<_>>();
-        if !(6..=8).contains(&f.len()) || f[0] != "pick" {
+        if !(6..=9).contains(&f.len()) || f[0] != "pick" {
             return None;
         }
         let mut pick = Pick {
@@ -117,6 +117,7 @@ pub(super) fn pick(lines: &[String], loading: bool) -> Option<Pick> {
             zone: f[4].to_owned(),
             name: f[5].to_owned(),
             heroic_rank: f.get(7).map_or(0, |value| azeroth_survivors_re::heroic::parse_rank(value)),
+            hyper: f.get(8) == Some(&"1"),
             mods: RunMods::default(),
         };
         if loading {
@@ -124,6 +125,20 @@ pub(super) fn pick(lines: &[String], loading: bool) -> Option<Pick> {
         }
         Some(pick)
     })
+}
+
+pub(super) fn pick_record(pick: &Pick) -> String {
+    format!(
+        "pick|{}|{}|{}|{}|{}|{}|{}|{}",
+        pick.hero.class,
+        pick.hero.race,
+        pick.hero.sex,
+        pick.zone,
+        pick.name,
+        joined(&pick.hero.features),
+        pick.heroic_rank,
+        u8::from(pick.hyper),
+    )
 }
 
 fn csv<'a>(lines: &'a [String], prefix: &'a str) -> impl Iterator<Item = &'a str> {
@@ -211,16 +226,7 @@ pub(super) fn normalize(lines: &[String], loading: bool) -> Vec<String> {
         ));
     }
     if let Some(pick) = pick(lines, loading) {
-        output.push(format!(
-            "pick|{}|{}|{}|{}|{}|{}|{}",
-            pick.hero.class,
-            pick.hero.race,
-            pick.hero.sex,
-            pick.zone,
-            pick.name,
-            joined(&pick.hero.features),
-            pick.heroic_rank
-        ));
+        output.push(pick_record(&pick));
     }
     output.extend(progress::values(lines).into_iter().map(|(class, count)| {
         format!(

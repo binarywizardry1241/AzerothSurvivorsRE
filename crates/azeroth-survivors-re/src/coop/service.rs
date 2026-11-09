@@ -15,8 +15,9 @@ pub struct LobbyProfile {
     pub opened: bool,
     pub classes: Vec<u8>,
     pub max: u8,
-    /// Current service profile suffix, after party capacity.
+    /// Current service profile rank, after party capacity.
     pub heroic_rank: u8,
+    pub hyper: bool,
 }
 
 /// Secondary-connection authentication forwarded by the native service pump.
@@ -90,6 +91,7 @@ fn profile(out: &mut Vec<u8>, value: &LobbyProfile) -> Result<(), EncodeError> {
     bytes(out, &value.classes)?;
     out.push(value.max);
     out.push(value.heroic_rank);
+    out.push(u8::from(value.hyper));
     Ok(())
 }
 
@@ -190,9 +192,10 @@ mod tests {
             classes: vec![7, 9],
             max: 5,
             heroic_rank: 3,
+            hyper: true,
         };
         let expected_profile = [
-            1, 0, 0, 0, b'H', 7, 1, 0, 0, 0, b'Z', 1, 2, 0, 0, 0, 7, 9, 5, 3,
+            1, 0, 0, 0, b'H', 7, 1, 0, 0, 0, b'Z', 1, 2, 0, 0, 0, 7, 9, 5, 3, 1,
         ];
         assert_eq!(
             ClientMessage::UpdateProfile(value.clone())

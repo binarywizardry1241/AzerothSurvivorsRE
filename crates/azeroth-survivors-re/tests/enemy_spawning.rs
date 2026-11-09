@@ -9,6 +9,7 @@ fn number(row: &Value, key: &str) -> u32 { row[key].as_u64().unwrap() as u32 }
 fn float(row: &Value, key: &str) -> f32 { f32::from_bits(number(row, key)) }
 fn input() -> TickInput<'static> {
     TickInput { clock_seconds: 0.0, delta_seconds: 0.0, density_percent: 100,
+        effective_minutes: 0.0,
         cooperative_density: None,
         active_bosses: &[], suppressed: false, endless: false,
         endless_phase_one: false, endless_started_at: 0.0 }
@@ -36,7 +37,9 @@ fn selected_native_budget_arithmetic() {
         let bosses: Vec<_> = match row["boss"].as_bool() {
             Some(false) => vec![ActiveBoss::Ordinary], Some(true) => vec![ActiveBoss::Flagged], None => vec![],
         };
-        let input = TickInput { clock_seconds: float(row, "clock_bits"), delta_seconds: float(row, "delta_bits"),
+        let clock_seconds = float(row, "clock_bits");
+        let input = TickInput { clock_seconds, effective_minutes: clock_seconds / 60.0,
+            delta_seconds: float(row, "delta_bits"),
             density_percent: number(row, "density") as u16, active_bosses: &bosses,
             endless: row["endless"].as_bool().unwrap(), endless_phase_one: row["phase_one"].as_bool().unwrap(),
             endless_started_at: float(row, "start_bits"), ..input() };
@@ -51,7 +54,8 @@ fn selected_native_budget_arithmetic() {
         let factor = float(row, "boss_factor_bits");
         let bosses: Vec<_> = if factor == 0.3 { vec![ActiveBoss::Flagged] }
             else if factor == 0.45 { vec![ActiveBoss::Ordinary] } else { vec![] };
-        let input = TickInput { clock_seconds: float(row, "minutes_bits") * 60.0,
+        let clock_seconds = float(row, "minutes_bits") * 60.0;
+        let input = TickInput { clock_seconds, effective_minutes: clock_seconds / 60.0,
             density_percent: number(row, "density") as u16, active_bosses: &bosses, ..input() };
         assert_eq!(population_target(input).saturating_sub(number(row, "live") as usize), number(row, "missing") as usize);
     }

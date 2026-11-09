@@ -123,6 +123,7 @@ pub struct NativeState {
     pub flag_8d: bool,
     pub words_70: [u32; 5],
     pub heroic_rank: u8,
+    pub hyper: bool,
     /// Shared post-clear boss counter (Game+cd8), excluded from hero swaps.
     pub boss_counter: u32,
     /// Raw boss-mark sum; duplicate conversion remains recipient-owned.
@@ -316,6 +317,7 @@ pub fn encode_message(message: &NativeMessage) -> Result<Vec<u8>, WireError> {
                 out.extend_from_slice(&word.to_le_bytes());
             }
             out.push(state.heroic_rank);
+            out.push(u8::from(state.hyper));
             out.extend_from_slice(&state.boss_counter.to_le_bytes());
             out.extend_from_slice(&state.float_84_bits.to_le_bytes());
             out.extend_from_slice(&state.float_88_bits.to_le_bytes());
@@ -606,6 +608,7 @@ pub fn decode_message(bytes: &[u8]) -> Result<(NativeMessage, usize), WireError>
                 *word = reader.word()?;
             }
             let heroic_rank = reader.byte()?;
+            let hyper = reader.flag()?;
             let boss_counter = reader.word()?;
             let float_84_bits = reader.word()?;
             let float_88_bits = reader.word()?;
@@ -671,7 +674,7 @@ pub fn decode_message(bytes: &[u8]) -> Result<(NativeMessage, usize), WireError>
                 word_6c,
                 flag_8d,
                 words_70,
-                heroic_rank, boss_counter, max_equipment_stars, active_set,
+                heroic_rank, hyper, boss_counter, max_equipment_stars, active_set,
                 float_84_bits,
                 float_88_bits,
                 flag_8e,
@@ -757,7 +760,7 @@ pub fn decode_frame(bytes: &[u8]) -> Result<Vec<NativeMessage>, WireError> {
 mod tests {
     use super::*;
 
-    const EMPTY_STATE_PREFIX: usize = 74;
+    const EMPTY_STATE_PREFIX: usize = 75;
 
     #[test]
     fn native_state_scalar_layout_and_invalid_row_kind_are_exact() {
@@ -769,7 +772,7 @@ mod tests {
         for value in 4_u32..=8 {
             bytes.extend_from_slice(&value.to_le_bytes());
         }
-        bytes.push(5); // Heroic rank, followed by current boss counter.
+        bytes.extend_from_slice(&[5, 2]); // Heroic rank and nonzero Hyper.
         bytes.extend_from_slice(&17_u32.to_le_bytes());
         bytes.extend_from_slice(&1.5_f32.to_le_bytes());
         bytes.extend_from_slice(&2.0_f32.to_le_bytes());
@@ -800,6 +803,7 @@ mod tests {
         assert_eq!(used, bytes.len());
         assert_eq!(state.words_70, [4, 5, 6, 7, 8]);
         assert_eq!((state.heroic_rank, state.boss_counter, state.max_equipment_stars, state.active_set), (5,17,4,6));
+        assert!(state.hyper);
         assert_eq!(state.pairs, [[11, 12]]);
         assert_eq!(
             state.rows,

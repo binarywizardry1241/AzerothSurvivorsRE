@@ -1280,6 +1280,7 @@ impl Mechanics {
                 self.caches_bought(),
             ],
             heroic_rank: self.rules.heroic_rank,
+            hyper: self.hyper_mode(),
             boss_counter: self.endless_boss_kills(),
             max_equipment_stars: self.equipment_stars().into_iter().max().unwrap_or(0),
             active_set: self.effect_state.set_descriptor.map_or(0, |set| set.tier + 1),
@@ -1307,6 +1308,7 @@ impl Mechanics {
         let entering_party = !self.has_party();
         self.clock = state.clock;
         self.rules.heroic_rank = state.heroic_rank;
+        self.rules.hyper = state.hyper;
         self.level = state.level;
         self.kills = state.kills;
         self.gold_earned = state.gold_earned;

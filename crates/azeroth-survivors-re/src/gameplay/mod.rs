@@ -370,7 +370,8 @@ fn enter(
         return;
     }
     let pick = if stock.is_some() { crate::save::Pick { hero: menu.hero(), name: menu.name.clone(),
-        zone: catalog.zones[menu.zone].key.clone(), heroic_rank: menu.heroic_rank, mods: menu.run_mods } } else { menu.backend_pick().clone() };
+        zone: catalog.zones[menu.zone].key.clone(), heroic_rank: menu.heroic_rank,
+        hyper: menu.hyper, mods: menu.run_mods } } else { menu.backend_pick().clone() };
     let zone_key = azeroth_survivors_re::zones::resolve(&pick.zone).key;
     let Some(selected) = catalog.zones.iter().find(|zone| zone.key == zone_key) else {
         return;
@@ -416,14 +417,15 @@ fn enter(
     let (seed_input, seed) = run_seeds.next_with_input();
     // 145b231ce forces the transient Tester's Game to Normal. Later host
     // metadata has its own minimum; the requested Pick stays unchanged.
-    let heroic_rank = menu.heroic_restart_rank.unwrap_or_else(|| {
+    let (heroic_rank, hyper) = menu.restart_difficulty.unwrap_or_else(|| {
         if menu.selected_roster_guid() == Some(crate::startup::TESTER_GUID) {
-            0
+            (0, false)
         } else {
-            pick.heroic_rank.min(menu.backend_save.max_heroic_rank(pick.hero.class, zone_key))
+            let rank = pick.heroic_rank.min(menu.backend_save.max_heroic_rank(pick.hero.class, zone_key));
+            (rank, pick.hyper && menu.backend_save.hyper_unlocked())
         }
     });
-    let rules = RunRules { heroic_rank,
+    let rules = RunRules { heroic_rank, hyper,
         // Current difficulty is selected by Heroic rank. Retained percentage
         // fields support historical helpers; live construction supplies unity.
         difficulty: 1.0,
@@ -464,7 +466,7 @@ fn enter(
                 )
             };
             let entry_owned = session.prepare_entry_loadout(&armory, &menu.backend_save,
-                pick.hero.class, pick.hero.race, menu.heroic_restart_rank);
+                pick.hero.class, pick.hero.race, menu.restart_difficulty.map(|(rank, _)| rank));
             game.configure_armor_set(session.starting_gear, session.starting_stars);
             game.set_ranged_appearance(&armory, session.starting_ranged_appearance);
             game.set_equipment_pity(&session.starting_pity);
@@ -1170,7 +1172,9 @@ fn persist_run_at(
         // Live guest feats use the accepted cache. This path settles the
         // recipient at its terminal edge or before closing that cache.
         if !force_summary { return; }
-        if let Some(snapshot) = guest_settlement::Snapshot::from_mechanics(game, starting_gear) {
+        if let Some(snapshot) = guest_settlement::Snapshot::from_mechanics(
+            game, starting_gear, menu.backend_save.hyper_unlocked(),
+        ) {
             let mut events = snapshot.summary(menu, selected_roster_guid, now);
             if selected_roster_guid.is_some() && snapshot.summary_admitted() {
                 if let Some(delivery) = snapshot.delivery() {
@@ -1320,8 +1324,9 @@ fn persist_run_at(
     });
     let summary_admitted = summary_phase && (force_summary || terminal_edge);
     if summary_admitted {
-        if let (Some(guid), Some(result)) = (selected_roster_guid, game.summary_result()) {
-            let delivery = game.summary_delivery();
+        let hyper_unlocked = menu.backend_save.hyper_unlocked();
+        if let (Some(guid), Some(result)) = (selected_roster_guid, game.summary_result(hyper_unlocked)) {
+            let delivery = game.summary_delivery(hyper_unlocked);
             // Current0.112.0:1458ba545 saves XP before bests/results/tick counters.
             if let Some(delivery) = delivery
                 .as_ref()
@@ -2164,7 +2169,7 @@ mod tests {
         Mechanics::new(
             "elwynn",
             "warrior",
-            RunRules { heroic_rank: 0,
+            RunRules { heroic_rank: 0, hyper: false,
                 difficulty: 1.,
                 density_percent: 100,
                 hp_percent: 100,

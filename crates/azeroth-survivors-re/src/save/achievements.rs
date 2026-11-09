@@ -4,14 +4,20 @@ use super::Save;
 use std::collections::{BTreeMap, BTreeSet};
 
 impl Save {
+    pub(crate) fn hyper_unlocked(&self) -> bool {
+        self.earned_keys().any(|key| key == super::HYPER_ACHIEVEMENT)
+    }
+
     pub fn earned_achievements(&self) -> BTreeSet<String> {
+        self.earned_keys().map(str::to_owned).collect()
+    }
+
+    fn earned_keys(&self) -> impl Iterator<Item = &str> {
         self.lines
             .iter()
             .filter_map(|line| line.trim().strip_prefix("ach|"))
             .flat_map(|row| row.split(','))
             .filter(|key| !key.is_empty())
-            .map(str::to_owned)
-            .collect()
     }
     pub fn achievement_dates(&self) -> BTreeMap<String, u64> {
         super::schema::achievement_dates(&self.lines)

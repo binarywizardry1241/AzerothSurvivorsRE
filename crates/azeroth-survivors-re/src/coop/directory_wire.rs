@@ -26,6 +26,7 @@ pub struct WireLobby {
     pub max: u8,
     /// Optional current extension; legacy rows retain unknown difficulty.
     pub heroic_rank: Option<u8>,
+    pub hyper: bool,
 }
 
 /// Positional payloads retain their native widths without assigning meanings
@@ -121,6 +122,7 @@ pub fn decode_response(bytes: &[u8]) -> Option<DirectoryResponse> {
                     host_title: reader.string()?,
                     max: 5,
                     heroic_rank: None,
+                    hyper: false,
                 });
             }
             // Optional extension after the ENTIRE row vector, not within rows.
@@ -134,6 +136,9 @@ pub fn decode_response(bytes: &[u8]) -> Option<DirectoryResponse> {
                 if let Some(rank) = reader.u8() {
                     row.heroic_rank = Some(rank.min(5));
                 }
+            }
+            for row in &mut rows {
+                row.hyper = reader.u8().is_some_and(|value| value != 0);
             }
             DirectoryResponse::Lobbies(rows)
         }
@@ -187,10 +192,11 @@ pub fn decode_response(bytes: &[u8]) -> Option<DirectoryResponse> {
 pub fn lobbies_message(
     rows: &[WireLobby],
     open_zones: u64,
+    hyper_unlocked: bool,
     class_name: impl Fn(u8) -> String,
     zone_name: impl Fn(&str) -> String,
     heroic_cap: impl Fn(&str) -> u8,
-    difficulty_name: impl Fn(u8) -> String,
+    difficulty_name: impl Fn(u8, bool) -> String,
 ) -> Value {
     let zones = crate::guardians::catalog::ZONES;
     let list: Vec<_> = rows
@@ -214,14 +220,18 @@ pub fn lobbies_message(
             let zone_opened =
                 (zone_index.unwrap_or(0) as u64) < open_zones.clamp(1, crate::zones::COUNT as u64);
             let rank_opened = row.heroic_rank.unwrap_or(0) <= heroic_cap(&row.zone_key);
-            let lacks = if !zone_opened { "zone" } else if !rank_opened { "heroic" } else { "" };
+            let mode_opened = !row.hyper || hyper_unlocked;
+            let lacks = if !zone_opened { "zone" }
+                else if !rank_opened { "heroic" }
+                else if !mode_opened { "hyper" }
+                else { "" };
             json!({
                 "code": row.code, "name": row.name, "description": row.description,
                 "hostTitle": row.host_title, "classes": row.classes, "hero": row.hero,
                 "class": class, "zone": zone,
-                "opened": zone_opened && rank_opened, "lacks": lacks,
+                "opened": zone_opened && rank_opened && mode_opened, "lacks": lacks,
                 "heroic": row.heroic_rank.map_or(-1, i64::from),
-                "difficulty": row.heroic_rank.map(&difficulty_name).unwrap_or_default(),
+                "difficulty": row.heroic_rank.map(|rank| difficulty_name(rank, row.hyper)).unwrap_or_default(),
                 "players": row.players, "max": row.max,
                 "locked": row.locked, "open": row.open, "country": row.country,
             })
@@ -274,10 +284,16 @@ mod tests {
         };
         assert_eq!(rows.iter().map(|row| row.max).collect::<Vec<_>>(), [1, 5]);
         assert_eq!(rows.iter().map(|row| row.heroic_rank).collect::<Vec<_>>(), [Some(5), Some(2)]);
+        assert!(rows.iter().all(|row| !row.hyper));
         assert_eq!(
             (rows[0].players, rows[0].locked, rows[0].open),
             (255, true, false)
         );
+        bytes.push(2); // Nonzero Hyper byte for only the first row.
+        let DirectoryResponse::Lobbies(rows) = decode_response(&bytes).unwrap() else {
+            panic!()
+        };
+        assert_eq!(rows.iter().map(|row| row.hyper).collect::<Vec<_>>(), [true, false]);
     }
 
     #[test]
@@ -319,14 +335,14 @@ mod tests {
         let DirectoryResponse::Lobbies(mut rows) = decode_response(&bytes).unwrap() else {
             panic!()
         };
-        let message = lobbies_message(&rows, 1, |_| "Mage".into(), |_| "Duskwood".into(), |_| 0, |_| "Normal".into());
+        let message = lobbies_message(&rows, 1, false, |_| "Mage".into(), |_| "Duskwood".into(), |_| 0, |_, _| "Normal".into());
         assert_eq!(message["list"][0]["opened"], false);
         assert_eq!(message["list"][0]["locked"], true);
         assert_eq!(message["list"][0]["open"], false);
         assert_eq!(message["list"][0]["class"], "Mage");
         rows[0].zone_key = "unknown".into();
         rows[0].class_id = 6;
-        let message = lobbies_message(&rows, 0, |_| panic!(), |_| panic!(), |_| 0, |_| "Normal".into());
+        let message = lobbies_message(&rows, 0, false, |_| panic!(), |_| panic!(), |_| 0, |_, _| "Normal".into());
         assert_eq!(message["list"][0]["opened"], true);
         assert_eq!(message["list"][0]["class"], "");
         assert_eq!(message["list"][0]["zone"], "unknown");
@@ -337,22 +353,26 @@ mod tests {
         row(&mut bytes, b"A");
         let DirectoryResponse::Lobbies(mut rows) = decode_response(&bytes).unwrap() else { panic!() };
         assert_eq!(rows[0].heroic_rank, None);
-        let project = |rows: &[WireLobby], zones, cap| lobbies_message(
-            rows, zones, |_| "Mage".into(), |_| "Duskwood".into(), |_| cap,
-            |rank| format!("rank{rank}"));
-        let unknown = project(&rows, 12, 0);
+        let project = |rows: &[WireLobby], zones, cap, earned| lobbies_message(
+            rows, zones, earned, |_| "Mage".into(), |_| "Duskwood".into(), |_| cap,
+            |rank, hyper| if hyper { format!("rank{rank} · Hyper") } else { format!("rank{rank}") });
+        let unknown = project(&rows, 12, 0, false);
         assert_eq!(unknown["list"][0]["heroic"], -1);
         assert_eq!(unknown["list"][0]["difficulty"], "");
         rows[0].heroic_rank = Some(3);
-        let zone_lock = project(&rows, 1, 0);
+        rows[0].hyper = true;
+        let zone_lock = project(&rows, 1, 0, false);
         assert_eq!(zone_lock["list"][0]["lacks"], "zone");
-        let rank_lock = project(&rows, 12, 2);
+        let rank_lock = project(&rows, 12, 2, false);
         assert_eq!(rank_lock["list"][0]["lacks"], "heroic");
         assert_eq!(rank_lock["list"][0]["opened"], false);
-        let allowed = project(&rows, 12, 3);
+        let hyper_lock = project(&rows, 12, 3, false);
+        assert_eq!(hyper_lock["list"][0]["lacks"], "hyper");
+        assert_eq!(hyper_lock["list"][0]["opened"], false);
+        let allowed = project(&rows, 12, 3, true);
         assert_eq!(allowed["list"][0]["lacks"], "");
         assert_eq!(allowed["list"][0]["opened"], true);
-        assert_eq!(allowed["list"][0]["difficulty"], "rank3");
+        assert_eq!(allowed["list"][0]["difficulty"], "rank3 · Hyper");
     }
 
 }

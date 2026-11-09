@@ -3,7 +3,10 @@
 
 use std::sync::LazyLock;
 
-use azeroth_survivors_re::player_abilities::{behavior::totem_passives, damage};
+use azeroth_survivors_re::{
+    bosses::spawning::primary_minutes,
+    player_abilities::{behavior::totem_passives, damage},
+};
 use benilla_formats::WorldMapArea;
 use serde::Deserialize;
 
@@ -159,7 +162,7 @@ pub(super) fn snapshot(
                 format!(
                     "{},{:.0},{},{},{}",
                     index + 1,
-                    boss.at_minutes_f32 * 60.,
+                    primary_minutes(boss.at_minutes_f32, game.rules.hyper) * 60.0,
                     field(&addon_scalars::localized(
                         locale,
                         format!("boss.{}.name", boss.id),

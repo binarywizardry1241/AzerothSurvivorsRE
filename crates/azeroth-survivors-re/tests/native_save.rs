@@ -62,6 +62,7 @@ fn picker_changes_preserve_unimplemented_progress_and_reject_invalid_combination
             name: "Testmage".into(),
             zone: "elwynn".into(),
             heroic_rank: 0,
+            hyper: false,
             mods: RunMods::default(),
         })
         .unwrap();
@@ -75,6 +76,21 @@ fn picker_changes_preserve_unimplemented_progress_and_reject_invalid_combination
             features: [0; 5]
         })
         .is_err());
+}
+
+#[test]
+fn pick_hyper_field_is_optional_and_accepts_only_one() {
+    let base = "pick|1|1|0|elwynn|Arthas|0,0,0,0,0|3";
+    for (suffix, expected) in [("", false), ("|0", false), ("|1", true), ("|01", false), ("|2", false)] {
+        let mut save = Save::parse(&format!("{base}{suffix}\n")).unwrap();
+        let pick = save.pick().unwrap();
+        assert_eq!(pick.heroic_rank, 3);
+        assert_eq!(pick.hyper, expected);
+        save.set_pick(&pick).unwrap();
+        let plain = save.plaintext();
+        assert!(plain.lines().any(|line| line == format!("{base}|{}", u8::from(expected))));
+        assert_eq!(Save::parse(&plain).unwrap().pick().unwrap().hyper, expected);
+    }
 }
 
 #[test]

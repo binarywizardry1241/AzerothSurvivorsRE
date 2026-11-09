@@ -145,3 +145,35 @@ engine execution.
 
 Compilation, actual ECS scheduling, fonts/input/layout/rendering, gameplay,
 client/network/server operation and original/rebuilt parity remain unverified.
+
+## Hyper Mode in 0.143.0
+
+The [selection receipt](evidence/difficulty-ui/hyper-selection.json) binds the
+current Windows PE to exact range hashes, including the original-VA Ghidra
+row query. The [release review](release-review.md#01430-hyper-mode) owns the
+pacing and settlement consumers.
+
+`0x145e76430` searches saved keys for `heroic:naxx5`. The Difficulty
+panel separately receives selected-and-earned and unlocked bytes at
+`0x14023f800..0x14023f853`. Action tag 1 checks the same key and toggles
+Pick `+0x30`. The rank byte at `+0x39` and the close branch are separate.
+`0x14023f267..0x14023f362` queues one Pick update if either selection
+changed. The source uses this same account key for the old achievement
+and Crusader, with a separate Hyper row at every rank.
+
+The row owner `0x14022eeb0` places Hyper below the rank list with 12×7 padding,
+14 gap, 1 border and radius 6. The child at `0x1401bbfd0` supplies a 124px
+title gutter with 22px text, a growing 12px help column and a 16px checkbox.
+The title is blue when unlocked and muted when locked. The checked 8px
+center uses the gold shadow. The lock help substitutes localized Naxxramas.
+The picker formats `<rank> · <localized Hyper>` through the shared
+difficulty formatter, preserves the rank-or-mode red tint and halves the
+final encounter minute sent to `picker.awaits`.
+
+The backend checks the earned key at run construction. Solo admission
+`0x145e345d2..0x145e34618` bypasses rank and Hyper for the transient Tester
+GUID, and `0x145e349aa..0x145e349b6` copies the mode to the run
+configuration. Co-op admission separately carries the host's earned mode.
+Again uses the admitted rank and mode with its existing retained-entry
+path. The [Save schema](save-schema.md#hyper-pick-field-in-01430) owns the
+plain text representation.

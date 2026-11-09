@@ -115,3 +115,16 @@ not complete native equivalence or gameplay parity. The broad shared engine and
 complete-image decoding remain separately owned by #41. Actual startup/IO,
 interactive menu behavior, cache residency and original/rebuilt gameplay and
 presentation comparison still require authorized runtime validation.
+
+## Hyper Pick field in 0.143.0
+
+The [0.143.0 selection receipt](evidence/difficulty-ui/hyper-selection.json)
+binds the expanded Pick record to the current EXE. The parser at
+`0x145e7eb26..0x145e7eb5c` accepts six through nine fields. At
+`0x145e7f143..0x145e7f1fa`, the ninth field (after Heroic rank) enables
+Hyper only for the exact single byte `1`. Missing and other values are
+off. The writer at `0x145e82f96..0x145e8307b` reads the mode byte and
+chooses `0` or `1` for the final argument. Both rebuilt write paths use
+the same record formatter. The save stores the selected preference.
+The [Difficulty and run entry gates](difficulty-ui.md#hyper-mode-in-01430)
+consult the earned achievement separately.

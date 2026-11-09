@@ -96,6 +96,7 @@ fn epos(position: native::Position) -> Position {
 
 fn scaling_input(
     now: f32,
+    zone_key: &str,
     rules: RunRules,
     kills: u32,
     phase: u32,
@@ -104,6 +105,7 @@ fn scaling_input(
     native::scaling::ScalingInput {
         heroic_rank: rules.heroic_rank,
         clock_seconds: now,
+        hyper_half_minutes: azeroth_survivors_re::bosses::spawning::hyper_half_minutes(zone_key, rules.hyper),
         difficulty: rules.difficulty,
         zone_scale: 1.0,
         guardian_kills: kills,
@@ -169,7 +171,7 @@ impl Mechanics {
             });
         }
         let input = scaling_input(
-            self.clock, self.rules, self.guardian_kills(),
+            self.clock, self.zone.key, self.rules, self.guardian_kills(),
             self.boss_state.phase(), self.boss_state.endless_started_at(),
         );
         let mut port = GuardianSpawner {
@@ -370,7 +372,7 @@ impl Mechanics {
             let Some(row) = self.actors.iter_mut().find(|row| row.guid == guid) else { continue; };
             let Some(zone) = native::catalog::ZoneDefinition::by_key(self.zone.key) else { continue; };
             let Some(definition) = zone.enemies.iter().find(|definition| definition.id == row.definition.id) else { continue; };
-            let mut input = scaling_input(self.clock, self.rules, kills,
+            let mut input = scaling_input(self.clock, self.zone.key, self.rules, kills,
                 self.boss_state.phase(), self.boss_state.endless_started_at());
             input.zone_scale = zone.scalar_e0;
             let mut vitals = native::scaling::GuardianVitals {
@@ -519,7 +521,9 @@ impl<W: RunWorld> CombatAdapter<'_, W> {
             rng,
             enemy_id,
         };
-        system.guardian_died_for_rank(lair, self.now, name, gpos(position), &mut port, self.rules.heroic_rank);
+        system.guardian_died_for_rank(
+            lair, self.now, name, gpos(position), &mut port, self.rules.heroic_rank, self.rules.hyper,
+        );
         self.guardian_state.personal_kills = system.guardian_kills();
     }
 }

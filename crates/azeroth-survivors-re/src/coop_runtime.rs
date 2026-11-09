@@ -401,6 +401,7 @@ fn poll(
                 capacity,
                 zone: rows.zone.clone(),
                 heroic_rank: rows.heroic_rank,
+                hyper: rows.hyper,
                 heroes: rows.entries
                     .iter()
                     .enumerate()

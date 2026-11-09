@@ -202,7 +202,9 @@ pub(super) fn capture(
     // First. Keep the receipt until a world/summary can actually be presented.
     let guest_delivery = guest.as_deref_mut().and_then(|guest| guest.terminal_delivery.take());
     let guest_unlock = guest.as_deref_mut().and_then(|guest| guest.terminal_unlocked_zone.take());
-    let delivery = guest_delivery.or_else(|| game.terminal_delivery()).filter(|_| eligible(&session));
+    let delivery = guest_delivery
+        .or_else(|| game.terminal_delivery(menu.backend_save.hyper_unlocked()))
+        .filter(|_| eligible(&session));
     let zone_index = catalog
         .zones
         .iter()
@@ -482,7 +484,7 @@ pub(super) fn input(
         }
         let stock = stock.is_some();
         session.solo_again = action == TerminalAction::Again;
-        let heroic_rank = session.mechanics.as_ref().map(|game| game.rules.heroic_rank);
+        let difficulty = session.mechanics.as_ref().map(|game| (game.rules.heroic_rank, game.hyper_mode()));
         let selected = session.selected_roster_guid;
         let gear = session.starting_gear;
         let showcase = session.showcase;
@@ -545,11 +547,11 @@ pub(super) fn input(
                 if let Some(guid) = selected {
                     if menu.select_roster_character(guid) {
                         menu.zone = zone;
-                        menu.begin_restart(time.elapsed_secs(), heroic_rank);
+                        menu.begin_restart(time.elapsed_secs(), difficulty);
                     }
                 }
             } else {
-                menu.begin_restart(time.elapsed_secs(), heroic_rank);
+                menu.begin_restart(time.elapsed_secs(), difficulty);
             }
             if menu.entering {
                 state.replacing = true;

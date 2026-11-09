@@ -2349,7 +2349,7 @@ mod tests {
         save.select_talent_spec(1,1).unwrap();
         let hero = crate::save::Hero {class:1,race:1,sex:0,features:[0;5]};
         save.set_hero(&hero).unwrap();
-        save.set_pick(&crate::save::Pick {hero,name:"Arthas".into(),zone:"elwynn".into(),heroic_rank:0,mods:Default::default()}).unwrap();
+        save.set_pick(&crate::save::Pick {hero,name:"Arthas".into(),zone:"elwynn".into(),heroic_rank:0,hyper:false,mods:Default::default()}).unwrap();
         save.add_equipment(&[101050]);
         save.record_seen(&[("jewelry.a".into(),2)]);
         assert_eq!(RewardPlan::read(&save).perks,BTreeMap::from([("rerolls".into(),0)]));

@@ -151,7 +151,7 @@ impl Mechanics {
         if !self.completed || self.dead {
             return false;
         }
-        self.boss_state.continue_endless(self.clock);
+        self.boss_state.continue_endless(self.clock, self.rules.hyper);
         self.rules.endless = true;
         self.completed = false;
         self.root_player(false);
@@ -202,24 +202,24 @@ impl Mechanics {
         true
     }
 
-    pub fn run_result(&self) -> Option<RunResult> {
+    pub fn run_result(&self, hyper_unlocked: bool) -> Option<RunResult> {
         if self.effect_state.result_saved {
             return None;
         }
-        self.terminal_result()
+        self.terminal_result(hyper_unlocked)
     }
     /// Stable terminal projection: saving the account result does not remove
     /// the summary inputs while the finished run remains visible.
-    pub fn terminal_result(&self) -> Option<RunResult> {
+    pub fn terminal_result(&self, hyper_unlocked: bool) -> Option<RunResult> {
         if !self.dead && !self.completed {
             return None;
         }
-        self.summary_result()
+        self.summary_result(hyper_unlocked)
     }
 
     /// Explicit Again/Menu invoke native summary1458b9fb0 in any started phase.
-    pub fn summary_result(&self) -> Option<RunResult> {
-        let xp_parts = self.summary_xp_parts()?;
+    pub fn summary_result(&self, hyper_unlocked: bool) -> Option<RunResult> {
+        let xp_parts = self.summary_xp_parts(hyper_unlocked)?;
         Some(RunResult {
             class: self.class.class_id,
             zone_key: self.zone.key,
@@ -266,11 +266,11 @@ impl Mechanics {
     }
 
     /// Cumulative native XP components, retained independently of delivery.
-    pub fn terminal_xp_parts(&self) -> Option<[i64; 7]> {
+    pub fn terminal_xp_parts(&self, hyper_unlocked: bool) -> Option<[i64; 7]> {
         if !self.dead && !self.completed {
             return None;
         }
-        self.summary_xp_parts()
+        self.summary_xp_parts(hyper_unlocked)
     }
 
     /// Guests retain the host's accepted State15 rank. Local play uses the
@@ -279,14 +279,16 @@ impl Mechanics {
         self.replica_state().map_or(self.rules.heroic_rank, |state| state.heroic_rank)
     }
 
-    fn summary_xp_parts(&self) -> Option<[i64; 7]> {
+    fn summary_xp_parts(&self, hyper_unlocked: bool) -> Option<[i64; 7]> {
         let zone = azeroth_survivors_re::bosses::catalog::ZONES
             .iter()
             .position(|zone| zone.key == self.zone.key)?;
         Some(run_progression::talent_experience_parts_heroic(
             self.kills,
             self.boss_kills(),
-            self.clock,
+            run_progression::talent_experience_seconds(
+                self.clock, self.zone.key, hyper_unlocked && self.hyper_mode(),
+            ),
             self.victory_reached(),
             zone,
             self.heroic_rank(),
@@ -328,14 +330,14 @@ impl Mechanics {
     /// Current1458b9fb0 delivers new terminal deltas after endless continuation
     /// while its first-result flag prevents duplicate run/win/unlock rewards.
     /// Reading the projection never advances its saved snapshots.
-    pub fn terminal_delivery(&self) -> Option<TerminalDelivery> {
-        self.terminal_result()?;
-        self.summary_delivery()
+    pub fn terminal_delivery(&self, hyper_unlocked: bool) -> Option<TerminalDelivery> {
+        self.terminal_result(hyper_unlocked)?;
+        self.summary_delivery(hyper_unlocked)
     }
 
-    pub fn summary_delivery(&self) -> Option<TerminalDelivery> {
-        let result = self.summary_result()?;
-        let xp_parts = self.summary_xp_parts()?;
+    pub fn summary_delivery(&self, hyper_unlocked: bool) -> Option<TerminalDelivery> {
+        let result = self.summary_result(hyper_unlocked)?;
+        let xp_parts = self.summary_xp_parts(hyper_unlocked)?;
         let (_, delta_counts) = self.account_count_delivery();
         let delta_xp_parts = std::array::from_fn(|index| {
             xp_parts[index].wrapping_sub(self.effect_state.terminal_xp_parts[index])
@@ -374,8 +376,8 @@ impl Mechanics {
         self.effect_state.result_saved = true;
     }
 
-    pub fn mark_run_result_saved(&mut self) {
-        if let Some(delivery) = self.terminal_delivery() {
+    pub fn mark_run_result_saved(&mut self, hyper_unlocked: bool) {
+        if let Some(delivery) = self.terminal_delivery(hyper_unlocked) {
             self.mark_terminal_delivery_saved(&delivery);
         } else {
             self.effect_state.result_saved = true;
@@ -401,7 +403,7 @@ mod tests {
         let state = game.native_state();
         assert_eq!(state.byte_8f, 2);
         assert!(state.flag_8d && !state.flag_8c);
-        assert!(game.terminal_result().is_none());
+        assert!(game.terminal_result(false).is_none());
 
         let mut menu = crate::menu_state::MenuState::from_save_path(None);
         // A legitimate Heroic run already has this class's Normal clear.
@@ -463,11 +465,11 @@ mod tests {
             1700000000,
             false,
         );
-        assert!(game.terminal_delivery().is_none());
+        assert!(game.terminal_delivery(false).is_none());
         assert!(game.continue_endless());
         game.dead = true;
         game.level = 21;
-        assert!(game.terminal_delivery().is_none());
+        assert!(game.terminal_delivery(false).is_none());
         crate::gameplay::persist_run_at(
             &mut game,
             &mut menu,
@@ -492,24 +494,24 @@ mod tests {
         game.kills = 100;
         game.gold_earned = 9;
         game.dead = true;
-        let first = game.terminal_delivery().unwrap();
+        let first = game.terminal_delivery(false).unwrap();
         assert!(first.first_result);
         assert_eq!(first.delta_counts, [100, 9, 0, 0, 0]);
         assert_eq!(first.delta_xp_parts, [12, 10, 0, 0, 0, 0, 0]);
         assert_eq!(first.talent_xp, 22);
-        assert_eq!(game.terminal_delivery(), Some(first.clone()));
+        assert_eq!(game.terminal_delivery(false), Some(first.clone()));
         game.gold_earned = 12;
         game.mark_terminal_delivery_saved(&first);
-        let pending = game.terminal_delivery().unwrap();
+        let pending = game.terminal_delivery(false).unwrap();
         assert!(!pending.first_result);
         assert_eq!(pending.delta_counts, [0, 3, 0, 0, 0]);
         assert_eq!(pending.talent_xp, 0);
-        assert_eq!(game.run_result(), None);
+        assert_eq!(game.run_result(false), None);
         game.mark_terminal_delivery_saved(&pending);
-        assert_eq!(game.terminal_delivery(), None);
+        assert_eq!(game.terminal_delivery(false), None);
         game.clock = 120.0;
         game.kills = 200;
-        let later = game.terminal_delivery().unwrap();
+        let later = game.terminal_delivery(false).unwrap();
         assert!(!later.first_result);
         assert_eq!(later.delta_counts, [100, 0, 0, 0, 0]);
         assert_eq!(later.delta_xp_parts, [12, 10, 0, 0, 0, 0, 0]);
@@ -522,21 +524,21 @@ mod tests {
         game.clock = 60.0;
         game.gold_earned = 10;
         game.dead = true;
-        let first = game.terminal_delivery().unwrap();
+        let first = game.terminal_delivery(false).unwrap();
         game.mark_terminal_delivery_saved(&first);
         // Preserve a negative part delta rather than filtering positive rows
         // before account arithmetic. Lower counters use unsigned saturation.
         game.clock = 55.0;
         game.gold_earned = 1;
-        let lower = game.terminal_delivery().unwrap();
+        let lower = game.terminal_delivery(false).unwrap();
         assert_eq!(lower.delta_counts, [0; 5]);
         assert_eq!(lower.delta_xp_parts, [-1, 0, 0, 0, 0, 0, 0]);
         assert_eq!(lower.talent_xp, 0);
         game.mark_terminal_delivery_saved(&lower);
-        assert_eq!(game.terminal_delivery(), None);
+        assert_eq!(game.terminal_delivery(false), None);
         game.gold_earned = 2;
         assert_eq!(
-            game.terminal_delivery().unwrap().delta_counts,
+            game.terminal_delivery(false).unwrap().delta_counts,
             [0, 1, 0, 0, 0]
         );
     }
@@ -579,7 +581,7 @@ mod tests {
             175.0,
             "lethal damage keeps its full applied amount"
         );
-        game.mark_run_result_saved();
+        game.mark_run_result_saved(false);
         game.damage_player(20.0, true, 0, player, 0.0, &mut TerrainFixture);
         assert_eq!(game.taken_total(), 175.0);
     }
@@ -587,16 +589,16 @@ mod tests {
     #[test]
     fn terminal_result_survives_account_delivery_without_a_second_account_result() {
         let mut game = class_run("priest", 0);
-        assert_eq!(game.terminal_result(), None);
+        assert_eq!(game.terminal_result(false), None);
         game.clock = 61.5;
         game.kills = 12;
         game.gold_earned = 9;
         game.abandon(|_| None);
-        let result = game.terminal_result().unwrap();
-        assert_eq!(game.run_result(), Some(result.clone()));
-        game.mark_run_result_saved();
-        assert_eq!(game.run_result(), None);
-        assert_eq!(game.terminal_result(), Some(result));
+        let result = game.terminal_result(false).unwrap();
+        assert_eq!(game.run_result(false), Some(result.clone()));
+        game.mark_run_result_saved(false);
+        assert_eq!(game.run_result(false), None);
+        assert_eq!(game.terminal_result(false), Some(result));
     }
 
     #[test]

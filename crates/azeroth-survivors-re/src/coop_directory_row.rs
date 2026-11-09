@@ -261,7 +261,9 @@ pub(crate) fn spawn(
             titled_text(ui, art, subtitle, &row.host_title, 12.);
         }
         if !row.unlocked {
-            let explanation = if row.lacks == "heroic" {
+            let explanation = if row.lacks == "hyper" {
+                label(locale, "You haven't opened Hyper Mode yet.")
+            } else if row.lacks == "heroic" {
                 label(locale, "You haven't opened {difficulty} of {zone} with this class yet.")
                     .replace("{difficulty}", &row.difficulty).replace("{zone}", &row.zone)
             } else {

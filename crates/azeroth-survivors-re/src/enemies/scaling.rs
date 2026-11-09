@@ -80,7 +80,9 @@ pub fn initial_stats_with_powf(
     definition: &EnemyDefinition,
     mut powf: impl FnMut(f32, f32) -> f32,
 ) -> InitialStats {
-    initial_stats_with_health_bonus(input, definition, 0.0, legacy_multipliers(input), &mut powf)
+    initial_stats_with_health_bonus(
+        input, definition, input.clock_seconds / 60.0, 0.0, legacy_multipliers(input), &mut powf,
+    )
 }
 
 /// Selected 0.100.1 zone+e4 values. The ordinary constructor at 1454d4130
@@ -122,6 +124,7 @@ pub fn initial_stats_for_zone_with_powf(
     initial_stats_with_health_bonus(
         input,
         definition,
+        input.clock_seconds / 60.0,
         late_run_health_bonus(zone_key),
         legacy_multipliers(input),
         &mut powf,
@@ -141,11 +144,12 @@ pub fn initial_stats_for_zone(
 pub fn initial_stats_for_heroic_zone(
     input: ScalingInput,
     definition: &EnemyDefinition,
+    effective_minutes: f32,
     zone_key: &str,
     rank: u8,
 ) -> InitialStats {
     initial_stats_with_health_bonus(
-        input, definition, late_run_health_bonus(zone_key),
+        input, definition, effective_minutes, late_run_health_bonus(zone_key),
         [crate::heroic::health_multiplier(rank), crate::heroic::damage_multiplier(rank), 1.0],
         &mut f32::powf,
     )
@@ -160,11 +164,11 @@ fn legacy_multipliers(input: ScalingInput) -> [f32; 3] {
 fn initial_stats_with_health_bonus(
     input: ScalingInput,
     definition: &EnemyDefinition,
+    minutes: f32,
     late_health_bonus: f32,
     multipliers: [f32; 3],
     powf: &mut impl FnMut(f32, f32) -> f32,
 ) -> InitialStats {
-    let minutes = input.clock_seconds / 60.0;
     let zone_difficulty = input.zone_scale * input.difficulty;
     let health_scale = health_polynomial(minutes, zone_difficulty, definition.flag_4c);
     let exponent = input.endless_exponent();

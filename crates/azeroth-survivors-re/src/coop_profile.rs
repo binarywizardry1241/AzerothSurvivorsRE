@@ -30,6 +30,17 @@ pub(crate) fn achievement_keys() -> &'static [String] {
         .keys
 }
 
+fn has_achievement(hero: &NativeHero, key: &str) -> bool {
+    let keys = achievement_keys();
+    hero.achievements.iter().any(|&(id, _)| {
+        keys.get(usize::from(id)).is_some_and(|candidate| candidate == key)
+    })
+}
+
+pub(crate) fn hyper_unlocked(hero: &NativeHero) -> bool {
+    has_achievement(hero, save::HYPER_ACHIEVEMENT)
+}
+
 ///1458e1530 accepts these exact two-byte language codes. Invalid input has no
 /// locale override; it does not silently select the host's locale.
 fn language(value: &[u8]) -> Vec<u8> {
@@ -174,12 +185,7 @@ pub(crate) fn sanitize(mut hero: NativeHero) -> Result<NativeHero, HeroIdentityE
     hero.heroic_unlocks.resize(azeroth_survivors_re::zones::COUNT, 0);
     for rank in &mut hero.heroic_unlocks { *rank = (*rank).min(5); }
     let keys = achievement_keys();
-    if !weapon_glow_unlocked(hero.weapon_glow, |key| {
-        hero.achievements.iter().any(|&(id, _)| {
-            keys.get(usize::from(id))
-                .is_some_and(|candidate| candidate.as_str() == key)
-        })
-    }) {
+    if !weapon_glow_unlocked(hero.weapon_glow, |key| has_achievement(&hero, key)) {
         hero.weapon_glow = 0;
     }
     hero.achievements
@@ -307,6 +313,7 @@ mod tests {
             name: "Peer".into(),
             zone: "elwynn".into(),
             heroic_rank: 0,
+            hyper: false,
             mods: Default::default(),
         };
         let mut hero = build(&save, &pick, 0x800001, "en", [0; 3], None);

@@ -50,7 +50,7 @@ impl Mechanics {
 
     ///145c291e9..145c295cc: the first deadline arms forty seconds from
     /// the first admitted affix tick; subsequent spawns arm now+fifteen.
-    pub(super) fn tick_affix_orbs(&mut self, player: Position, world: &mut impl RunWorld) {
+    pub(super) fn tick_affix_orbs(&mut self, effective_minutes: f32, player: Position, world: &mut impl RunWorld) {
         if !self.affixes.active.contains(&2) {
             return;
         }
@@ -77,7 +77,7 @@ impl Mechanics {
             .or_else(|| world.secondary_height(xy))
             .unwrap_or_else(|| Terrain::fallback_height(world));
         let maximum =
-            scaling::health_polynomial(now / 60.0, self.rules.difficulty * self.zone.scalar_e0, 0)
+            scaling::health_polynomial(effective_minutes, self.rules.difficulty * self.zone.scalar_e0, 0)
                 * (baseline.base_hp * 4.95);
         let maximum = maximum * azeroth_survivors_re::heroic::health_multiplier(self.affixes.rank);
         self.boss_state.wards.spawn(

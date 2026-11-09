@@ -4019,7 +4019,7 @@ mod tests {
             let mut game = Mechanics::new(
                 "elwynn",
                 "warrior",
-                RunRules { heroic_rank: 0,
+                RunRules { heroic_rank: 0, hyper: false,
                     difficulty: 1.,
                     density_percent: 100,
                     hp_percent: 100,

@@ -140,7 +140,7 @@ impl WaveTimers {
     pub fn tick_elite_for_rank(&mut self, zone: &ZoneDefinition, input: TickInput<'_>,
         rng: &mut NativeRng, port: &mut impl WavePort, heroic_rank: u8) -> usize {
         if input.suppressed || !(input.clock_seconds >= self.elite_at) { return 0; }
-        let minutes = input.clock_seconds / 60.0;
+        let minutes = input.effective_minutes;
         let candidates = admitted_elite_indices(zone, minutes);
         // Native even consumes a count-one draw when the candidate list is empty.
         let index = uniform_index(candidates.len().max(1), rng);
@@ -168,7 +168,7 @@ impl WaveTimers {
                         rng: &mut NativeRng, terrain: &mut impl Terrain,
                         math: &mut impl PlacementMath, port: &mut impl WavePort) -> usize {
         if input.suppressed || !(input.clock_seconds >= self.wave_at) { return 0; }
-        let minutes = input.clock_seconds / 60.0;
+        let minutes = input.effective_minutes;
         let ordinary = admitted_enemy_indices(zone, minutes);
         let mut spawned = 0;
         if !ordinary.is_empty() {

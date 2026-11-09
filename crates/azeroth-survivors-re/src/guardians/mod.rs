@@ -276,13 +276,14 @@ impl Guardians {
     /// even if the actor's lair index is out of range. Reward dispatch is owned
     /// by rewards.rs and the actual run's entity/death processing.
     pub fn record_death(&mut self, lair_index: usize, clock_seconds: f32) -> u32 {
-        self.record_death_for_rank(lair_index, clock_seconds, 0)
+        self.record_death_for_rank(lair_index, clock_seconds, 0, false)
     }
 
-    pub fn record_death_for_rank(&mut self, lair_index: usize, clock_seconds: f32, heroic_rank: u8) -> u32 {
+    pub fn record_death_for_rank(&mut self, lair_index: usize, clock_seconds: f32, heroic_rank: u8, hyper: bool) -> u32 {
         if let Some(lair) = self.lairs.get_mut(lair_index) {
             lair.active_guid = None;
-            lair.respawn_at = clock_seconds + crate::heroic::guardian_respawn_seconds(heroic_rank);
+            let delay = crate::heroic::guardian_respawn_seconds(heroic_rank);
+            lair.respawn_at = clock_seconds + delay / if hyper { 2.0 } else { 1.0 };
         }
         self.guardian_kills = self.guardian_kills.wrapping_add(1);
         self.guardian_kills
@@ -299,14 +300,14 @@ impl Guardians {
         death_position: Position,
         port: &mut impl rewards::DeathPort,
     ) {
-        self.guardian_died_for_rank(lair_index, clock_seconds, localized_name, death_position, port, 0);
+        self.guardian_died_for_rank(lair_index, clock_seconds, localized_name, death_position, port, 0, false);
     }
 
     pub fn guardian_died_for_rank(
         &mut self, lair_index: usize, clock_seconds: f32, localized_name: &str,
-        death_position: Position, port: &mut impl rewards::DeathPort, heroic_rank: u8,
+        death_position: Position, port: &mut impl rewards::DeathPort, heroic_rank: u8, hyper: bool,
     ) {
-        let kills = self.record_death_for_rank(lair_index, clock_seconds, heroic_rank);
+        let kills = self.record_death_for_rank(lair_index, clock_seconds, heroic_rank, hyper);
         rewards::emit_guardian_death(
             kills,
             localized_name,

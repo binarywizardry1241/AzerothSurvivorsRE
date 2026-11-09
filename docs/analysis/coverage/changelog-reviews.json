@@ -36053,19 +36053,21 @@
         "version": "0.143.0",
         "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Release summary. The current Difficulty selector and achievement gate are bounded; the timing branches remain separate claim questions under #325.",
+      "status": "source_connected",
+      "rationale": "Hyper Mode selection, run rules and distinct time consumers are connected. Individual records describe their bounded behavior. Compilation, gameplay and original/rebuilt parity remain unverified.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/run_options.rs",
         "crates/azeroth-survivors-re/src/gameplay/mechanics.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/evidence/bounded-native-frontier.json"
+        "docs/analysis/release-review.md",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/run_options.rs": "a69c2892588525ec8f5f62afbc30c77b3fa797e1aa6e0c549ce5c005b15b5768",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "bd4ce9a3a0c372849afe348d23204f983e7b5d4ea127731dda627b8765534aaa",
-        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+        "crates/azeroth-survivors-re/src/run_options.rs": "60731a6b5a15d04245d274f43710983f39051dbbcf5f2dc4ae7ebf0f5dd7ffd2",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics.rs": "acc87f5e04c674f2c0ebd6e837dfac7da2d459819526a534cb019923e0cae468",
+        "docs/analysis/release-review.md": "76ec4b9db0842abc1aa57a419e323cc32c9e9f1e5b74aa20a0c1f48717823db3",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json": "129a5c48c16c87e4fb85f7d8123a2f17ec54281d04ccd1f7b2fca33fe6dca4ba"
       },
       "systems": [
         "custom-app-screens-picker",
@@ -36081,23 +36083,27 @@
         "version": "0.143.0",
         "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Current Difficulty action 1 gates and toggles a separate Pick mode byte using heroic:naxx5, then queues a Pick update. Trace persistent representation and the run constructor handoff. The source has the Crusader achievement gate and rank controls but no Hyper selection.",
+      "status": "static_checked",
+      "rationale": "Champion gates the independent toggle; the ninth Pick field persists it, older rows default to off, and admitted mode survives Again. Tester entry forces Normal and Hyper off. Compilation, gameplay and original/rebuilt parity remain unverified.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/run_options.rs",
-        "crates/azeroth-survivors-re/src/armory_cosmetics.rs",
-        "crates/azeroth-survivors-re/src/menu_state.rs"
+        "crates/azeroth-survivors-re/src/menu_state.rs",
+        "crates/azeroth-survivors-re/src/save/schema.rs",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs",
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/evidence/bounded-native-frontier.json",
-        "docs/analysis/evidence/locale-catalog-review.json"
+        "docs/analysis/release-review.md",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/run_options.rs": "a69c2892588525ec8f5f62afbc30c77b3fa797e1aa6e0c549ce5c005b15b5768",
-        "crates/azeroth-survivors-re/src/armory_cosmetics.rs": "fd3b718e33719448f7591fb9533464eeb25391aa4ecc751acca87d70d5727be9",
-        "crates/azeroth-survivors-re/src/menu_state.rs": "9d0f6cc75023fcd0d917b23c7ddcb829e176d0d53e9b846b9192c5277a6d67b8",
-        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42",
-        "docs/analysis/evidence/locale-catalog-review.json": "33ad1fdcb246465428fd0c85a7a0b25ecdb57820bbb9a95af2e3653161d579bb"
+        "crates/azeroth-survivors-re/src/run_options.rs": "60731a6b5a15d04245d274f43710983f39051dbbcf5f2dc4ae7ebf0f5dd7ffd2",
+        "crates/azeroth-survivors-re/src/menu_state.rs": "7098d46cece8d3004f0ce823d0e5ddc236e1d2adb2f61d81b62039f51650fa39",
+        "crates/azeroth-survivors-re/src/save/schema.rs": "bab7557ce3c574c5dffae9b0f2446646106a85e36cc54f676da989861a9ccb8d",
+        "crates/azeroth-survivors-re/src/gameplay/mod.rs": "229f7fd125d136cc05a00792f59aa0c05f81b3746f291a2c666442ba0264137d",
+        "crates/azeroth-survivors-re/src/gameplay/terminal.rs": "6bd391b0cfb0863102ea105e838290d183ddfbbb4463ce31e82b38460375497e",
+        "docs/analysis/release-review.md": "76ec4b9db0842abc1aa57a419e323cc32c9e9f1e5b74aa20a0c1f48717823db3",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json": "129a5c48c16c87e4fb85f7d8123a2f17ec54281d04ccd1f7b2fca33fe6dca4ba"
       },
       "systems": [
         "custom-app-screens-picker",
@@ -36105,6 +36111,14 @@
       ],
       "gap_ids": [
         325
+      ],
+      "native_contract": "Champion gates the independent toggle; the ninth Pick field persists it, older rows default to off, and admitted mode survives Again. Tester entry forces Normal and Hyper off.",
+      "static_checks": [
+        {
+          "command": "python3 -B scripts/check-difficulty-ui.py --hyper",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/evidence/difficulty-ui/hyper-selection.json"
+        }
       ]
     },
     {
@@ -36113,19 +36127,21 @@
         "version": "0.143.0",
         "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Current Enter preview halves the final encounter minute when Hyper is selected and earned. Follow the actual boss schedule, full-strength admission and exact deadlines independently of display formatting.",
+      "status": "source_connected",
+      "rationale": "Only primary encounter due minutes halve. All 65 authored row times match the current native table, with Hyper final deadlines at 8, 9 or 10 real minutes. Compilation, gameplay and original/rebuilt parity remain unverified.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/bosses/spawning.rs",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/evidence/bounded-native-frontier.json"
+        "docs/analysis/release-review.md",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/bosses/spawning.rs": "ae92e24b1c8a09732d6f58d7e15d2c775f79c2c242853a5721cdabd707789a16",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "779b88ebe06536c88aff501f6d8ec4b0122652c77cba721064de6aa25561cced",
-        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+        "crates/azeroth-survivors-re/src/bosses/spawning.rs": "3d060dce89e9f73f46d1f564156c28adbe72acb958713164089aa398071a1661",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "b2404fe2776c5eef20ab4b3fb77bfcbbab65b7427f1b918fe6c8499a478d8833",
+        "docs/analysis/release-review.md": "76ec4b9db0842abc1aa57a419e323cc32c9e9f1e5b74aa20a0c1f48717823db3",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json": "129a5c48c16c87e4fb85f7d8123a2f17ec54281d04ccd1f7b2fca33fe6dca4ba"
       },
       "systems": [
         "custom-game-game-mod",
@@ -36141,19 +36157,21 @@
         "version": "0.143.0",
         "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "The current tooltip names accelerated lair return. Follow actual death-to-refill timing and its difficulty inputs; the rebuilt lair path has only rank-dependent delay.",
+      "status": "source_connected",
+      "rationale": "Lair deaths add the selected rank refill delay to actual time, halving that delay in Hyper. Compilation, gameplay and original/rebuilt parity remain unverified.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/guardians/mod.rs",
-        "crates/azeroth-survivors-re/src/heroic.rs"
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/evidence/bounded-native-frontier.json"
+        "docs/analysis/release-review.md",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/guardians/mod.rs": "6e330189d8db0731545506495ea4e7dc1cf20ace7d665be61884330ab79f3784",
-        "crates/azeroth-survivors-re/src/heroic.rs": "05bd834f650440b8a6dbecdc53db1da22fed4acc81240d1ad28eb12e491b3bd3",
-        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+        "crates/azeroth-survivors-re/src/guardians/mod.rs": "c1f15409a52d83eb2a93ce317a517f39ce78b39c1365e696621c50b869b4bade",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs": "12c7917e3cd9aa403362f5c0c3227acc5763acadaff8b01edc911efd11abb4a3",
+        "docs/analysis/release-review.md": "76ec4b9db0842abc1aa57a419e323cc32c9e9f1e5b74aa20a0c1f48717823db3",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json": "129a5c48c16c87e4fb85f7d8123a2f17ec54281d04ccd1f7b2fca33fe6dca4ba"
       },
       "systems": [
         "custom-game-game-guardians"
@@ -36169,21 +36187,23 @@
         "version": "0.143.0",
         "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Follow the mode into mob strength/count/composition clock, the post-final lead and Endless 150-second boss repeat. The existing spawn and Endless consumers use the single clock and a 300-second repeat.",
+      "status": "source_connected",
+      "rationale": "Mob minutes double to half the final boss deadline and retain the accrued lead thereafter. Endless repeats use 150 real seconds in Hyper. Compilation, gameplay and original/rebuilt parity remain unverified.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/enemies/spawning.rs",
         "crates/azeroth-survivors-re/src/enemies/waves.rs",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/evidence/bounded-native-frontier.json"
+        "docs/analysis/release-review.md",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/enemies/spawning.rs": "b7ee7aef7980557db5d2392499cfadad257c951f302d8d7477d0bfdbdcecc7f7",
-        "crates/azeroth-survivors-re/src/enemies/waves.rs": "5ec522e824a840e318de0bd5fd66b06b452359adafebb5a9115899bc9c72a204",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "779b88ebe06536c88aff501f6d8ec4b0122652c77cba721064de6aa25561cced",
-        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+        "crates/azeroth-survivors-re/src/enemies/spawning.rs": "97da690d2302d1587de6fafe3298ddad45c060b9299622be2fd01dac90bb33f1",
+        "crates/azeroth-survivors-re/src/enemies/waves.rs": "fc96658182b642ce45e8883c2f7ba2825520cd3cce658eae04840946b7960d85",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/bosses.rs": "b2404fe2776c5eef20ab4b3fb77bfcbbab65b7427f1b918fe6c8499a478d8833",
+        "docs/analysis/release-review.md": "76ec4b9db0842abc1aa57a419e323cc32c9e9f1e5b74aa20a0c1f48717823db3",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json": "129a5c48c16c87e4fb85f7d8123a2f17ec54281d04ccd1f7b2fca33fe6dca4ba"
       },
       "systems": [
         "custom-game-game-enemy",
@@ -36199,8 +36219,8 @@
         "version": "0.143.0",
         "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Trace which clock and difficulty inputs reach solo, host and private guest reward XP, marks and loot. The pacing tooltip describes preserved rewards; it does not establish the settlement clock.",
+      "status": "source_connected",
+      "rationale": "The summary adds the capped Hyper lead to real seconds for talent XP when the admitted mode and saved achievement qualify. The boss reward path uses the same loot and mark inputs across modes. Compilation, gameplay and original/rebuilt parity remain unverified.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/mob_loot.rs",
         "crates/azeroth-survivors-re/src/run_progression.rs",
@@ -36208,14 +36228,16 @@
         "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/evidence/bounded-native-frontier.json"
+        "docs/analysis/release-review.md",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/mob_loot.rs": "d442bd4be8f9a8b24cff0e73a85a93f25eaca89187acd9a54671a9dd813562c5",
-        "crates/azeroth-survivors-re/src/run_progression.rs": "f75d8bcf5eedbf633ce3d032db3c98dcaaae47eebebfb78cfa976ae856ec53d4",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs": "8f84abf2bec664f77865d4bcd2fcd5cfd03457acee8ab3a65a10f5e0f2f4046f",
-        "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs": "d51d4bffe5bfe5f4ecf5623924da74159f1ec5ce5601beef9f67d095183b86a9",
-        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+        "crates/azeroth-survivors-re/src/run_progression.rs": "b408365336510b0731368ca8bfd55d835eb05a88f0039a2195a6495b2e10afb6",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs": "043b05c435c9d0e0e597198986f91d22657bbcaeff6ae9a89e8b7944a330c224",
+        "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs": "1047995c9065754aef8f9df01e0346f27b37ae0f16a04cab51daf69dc210c0e6",
+        "docs/analysis/release-review.md": "76ec4b9db0842abc1aa57a419e323cc32c9e9f1e5b74aa20a0c1f48717823db3",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json": "129a5c48c16c87e4fb85f7d8123a2f17ec54281d04ccd1f7b2fca33fe6dca4ba"
       },
       "systems": [
         "custom-game-game-mod",
@@ -36234,23 +36256,27 @@
         "version": "0.143.0",
         "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Trace actual elapsed time and first-fall eligibility in local and party achievement settlement. The native achievement text and known real-clock test scope require a separate current consumer proof.",
+      "status": "source_connected",
+      "rationale": "Feat settlement retains actual time for both elapsed and first-fall checks, including the 2,400-second Naxxramas boundary. Compilation, gameplay and original/rebuilt parity remain unverified.",
       "source_refs": [
         "crates/azeroth-survivors-re/src/account_progression.rs",
         "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs"
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs",
+        "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs",
+        "crates/azeroth-survivors-re/assets/coop-achievements-0.127.0.json"
       ],
       "evidence_refs": [
-        "docs/analysis/evidence/bounded-native-frontier.json",
-        "docs/analysis/evidence/locale-catalog-review.json"
+        "docs/analysis/release-review.md",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json"
       ],
       "reviewed_ref_sha256": {
         "crates/azeroth-survivors-re/src/account_progression.rs": "98bd9bd149a1f85235cae69e46eb00198ee6123a2d8e9e28c29c61a41a7096fb",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs": "8f84abf2bec664f77865d4bcd2fcd5cfd03457acee8ab3a65a10f5e0f2f4046f",
-        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "a367a0ca699849498c799ebaaf3e80eab333d9a6408a2594f2c062a6c43d140c",
-        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42",
-        "docs/analysis/evidence/locale-catalog-review.json": "33ad1fdcb246465428fd0c85a7a0b25ecdb57820bbb9a95af2e3653161d579bb"
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/progression.rs": "043b05c435c9d0e0e597198986f91d22657bbcaeff6ae9a89e8b7944a330c224",
+        "crates/azeroth-survivors-re/src/gameplay/mechanics/coop.rs": "5459345114a0e71c441e7853415da9ab64afc9e944a9ee72114d8a8baa9fab97",
+        "crates/azeroth-survivors-re/src/gameplay/guest_settlement.rs": "1047995c9065754aef8f9df01e0346f27b37ae0f16a04cab51daf69dc210c0e6",
+        "crates/azeroth-survivors-re/assets/coop-achievements-0.127.0.json": "f50630eaa3ffd6736a16ddd68d3e53add48626b0289dbeec7a6a6b89757fe9bd",
+        "docs/analysis/release-review.md": "76ec4b9db0842abc1aa57a419e323cc32c9e9f1e5b74aa20a0c1f48717823db3",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json": "129a5c48c16c87e4fb85f7d8123a2f17ec54281d04ccd1f7b2fca33fe6dca4ba"
       },
       "systems": [
         "custom-game-achievements",
@@ -36267,25 +36293,27 @@
         "version": "0.143.0",
         "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
       },
-      "status": "pending_claim_recovery",
-      "rationale": "Current first-profile admission checks host selection/achievement and guest ordinal. Directory Host3/UpdateProfile4 append mode after rank, list20 has an optional mode vector, and game tag17 requires a mode byte after rank. Both views use the common difficulty label. The accepted-peer world entry and shared run mode remain pending.",
+      "status": "source_connected",
+      "rationale": "Directory and roster carry the host mode and display it beside rank. First-profile and world admission apply the Champion gate after zone/rank, and State15 carries the admitted mode to guests. Compilation, gameplay and original/rebuilt parity remain unverified.",
       "source_refs": [
-        "crates/azeroth-survivors-re/src/coop_directory.rs",
         "crates/azeroth-survivors-re/src/coop/directory_wire.rs",
         "crates/azeroth-survivors-re/src/coop/server_party.rs",
+        "crates/azeroth-survivors-re/src/coop/replication.rs",
         "crates/azeroth-survivors-re/src/gameplay/coop.rs",
         "crates/azeroth-survivors-re/src/coop_ui.rs"
       ],
       "evidence_refs": [
-        "docs/analysis/evidence/bounded-native-frontier.json"
+        "docs/analysis/release-review.md",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json"
       ],
       "reviewed_ref_sha256": {
-        "crates/azeroth-survivors-re/src/coop_directory.rs": "36925b91a8d387a9670a2fc03a09fbff506411e52a23e91036600bcb61b4d176",
-        "crates/azeroth-survivors-re/src/coop/directory_wire.rs": "87266fbd03729099d82e1f2e754ac75cad6377e37015045d85d8d6999471dd26",
-        "crates/azeroth-survivors-re/src/coop/server_party.rs": "ce1ee283a7e576537954046cb31f7ef8f8d60d72955eb08b013091941593bbcb",
-        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "f62458c082dca1c7b3ddd1f8706d8a5aeca3599493bea1c547a04bd1daf41b73",
-        "crates/azeroth-survivors-re/src/coop_ui.rs": "70937e4cb85486e5a3431aa4dff74e88c9a8600bb98aa059cce7f7fd914fb385",
-        "docs/analysis/evidence/bounded-native-frontier.json": "445c3174b1dc9838f3b475425b535e84c16487898a4cf9be5aab6a915f81ed42"
+        "crates/azeroth-survivors-re/src/coop/directory_wire.rs": "a6b1c5efa664faf7c58e82d5dd1e175edf7ba652f6df54a7354edd586ea5901f",
+        "crates/azeroth-survivors-re/src/coop/server_party.rs": "41da81a148101135362b11f6434867f0af2f462ca18d8241de50365abad99ba3",
+        "crates/azeroth-survivors-re/src/coop/replication.rs": "879a7818da971dfa90981c948e058847b2cdad623e0b0be8561b7431bf32d5b1",
+        "crates/azeroth-survivors-re/src/gameplay/coop.rs": "04339e07d4e45c401a9d81db219352ed374287ed5428a913067cc6443099af5a",
+        "crates/azeroth-survivors-re/src/coop_ui.rs": "39e2a58534bfcc5a5878938a4784ee08b8e22859a2ea06561d8aa0a512b35c2f",
+        "docs/analysis/release-review.md": "76ec4b9db0842abc1aa57a419e323cc32c9e9f1e5b74aa20a0c1f48717823db3",
+        "docs/analysis/evidence/difficulty-ui/hyper-selection.json": "129a5c48c16c87e4fb85f7d8123a2f17ec54281d04ccd1f7b2fca33fe6dca4ba"
       },
       "systems": [
         "custom-app-screens-coop",

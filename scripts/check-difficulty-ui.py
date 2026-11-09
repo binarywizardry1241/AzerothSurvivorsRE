@@ -13,6 +13,7 @@ import re
 import platform
 import struct
 import subprocess
+import sys
 
 from coverage_common import ROOT, latest_target, target_bytes, project_path
 from discovery_native_subject import verify_native_query_subject
@@ -270,15 +271,105 @@ def submissions():
                 'Existing Bevy Node offsets are applied to current original submissions; no computed layout, fonts, GPU, input device or rendered comparison executes.'])
 
 
+def verify_hyper(target, image, pe):
+    proof = json.loads((DEST / 'hyper-selection.json').read_text())
+    assert proof['target'] == target and proof['target_executed'] is False
+    for row in proof['native_ranges']:
+        at = pe.rva_offset(int(row['virtual_address'], 16) - pe.image_base)
+        raw = image[at:at + row['byte_count']]
+        assert at == int(row['file_offset'], 16) and sha(raw) == row['sha256'], row['role']
+
+    base = ROOT / 'crates/azeroth-survivors-re'
+    for name, tokens in {
+        'menu.rs': ('Action::ToggleHyper', 'state.save.hyper_unlocked()', '!= difficulty_before'),
+        'run_options.rs': ('hyper_row(body', 'Val::Px(124.)', 'Val::Px(16.)',
+                           'Val::Px(8.)', '22., if unlocked', '12., if unlocked'),
+        'picker.rs': ('let hyper = state.hyper_mode()', 'difficulty_name(state.heroic_rank, hyper,',
+                      'zone.minute as f32 * 0.5'),
+        'save/schema.rs': ('(6..=9).contains(&f.len())', 'hyper: f.get(8) == Some(&"1")',
+                           'u8::from(pick.hyper)', 'output.push(pick_record(&pick))'),
+        'save.rs': ('self.lines.push(schema::pick_record(&pick))',),
+        'gameplay/mod.rs': ('menu.restart_difficulty.unwrap_or_else', '(0, false)',
+                            'pick.hyper && menu.backend_save.hyper_unlocked()'),
+        'gameplay/terminal.rs': ('game.rules.heroic_rank, game.hyper_mode()',),
+    }.items():
+        text = (base / 'src' / name).read_text()
+        assert all(token in text for token in tokens), name
+    locales = sorted((base / 'assets/locales').glob('??.json'))
+    assert len(locales) == 14
+    for path in locales:
+        labels = json.loads(path.read_text())
+        assert all(labels.get(key) for key in proof['locale_keys']), path.name
+    cases, instructions = replay_hyper_pick(image, pe)
+    print(f'Passed {cases} Hyper Pick parse, write and admission cases ({instructions} original instructions)')
+    print(f'Verified {len(proof["native_ranges"])} Hyper Mode PE ranges, picker/save/entry source paths and {len(locales)} locale catalogs')
+
+
+def replay_hyper_pick(image, pe):
+    sys.path.insert(0, str(ROOT / 'runtime/tool-state/python/armory/python-libs'))
+    from native_terminal import NativeReplay
+
+    replay = NativeReplay(image, pe)
+    registers, machine = replay.registers, replay.machine
+    cases = 0
+    start, end = 0x145e7f143, 0x145e7f17d
+    for count in range(6, 10):
+        for value in (b'', b'0', b'1', b'01', b'2', b'+1', b' 1', b'1 '):
+            replay.reset('pick-load', [(start, end)], [end])
+            machine.reg_write(registers.UC_X86_REG_RDI, count)
+            replay.put(replay.bp + 0x618, '<Q', replay.mem)
+            replay.put(replay.mem + 0x80, '<QQ', replay.mem + 0x200, len(value))
+            if value:
+                machine.mem_write(replay.mem + 0x200, value)
+            replay.run(start)
+            assert machine.reg_read(registers.UC_X86_REG_R9) == int(count == 9 and value == b'1')
+            cases += 1
+
+    start, end = 0x145e82fda, 0x145e82ff5
+    for value in (0, 1, 2, 255):
+        replay.reset('pick-write', [(start, end)], [end])
+        machine.reg_write(registers.UC_X86_REG_R12, replay.mem)
+        replay.put(replay.mem + 0x258, '<B', value)
+        replay.run(start)
+        assert replay.raw(machine.reg_read(registers.UC_X86_REG_R11), 1) == (b'1' if value else b'0')
+        cases += 1
+
+    start, end = 0x145e345d2, 0x145e34616
+    for tester in (False, True):
+        for mode in (False, True):
+            for earned in (False, True):
+                def earned_key(address):
+                    if address != 0x145e76430:
+                        return False
+                    machine.reg_write(registers.UC_X86_REG_RAX, int(earned))
+                    replay.return_seam()
+                    return True
+
+                replay.reset('solo-admission', [(start, end)], [end])
+                replay.seam = earned_key
+                machine.reg_write(registers.UC_X86_REG_RSI, replay.mem)
+                machine.reg_write(registers.UC_X86_REG_R12, 0xffffff if tester else 42)
+                replay.put(replay.mem + 0x18d8, '<B', int(mode))
+                replay.run(start)
+                assert replay.get(replay.bp + 0x3c78, '<I') == (int(mode and earned and not tester),)
+                cases += 1
+    return cases, replay.instructions
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--write', action='store_true')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--write', action='store_true')
+    mode.add_argument('--hyper', action='store_true', help='Verify the 0.143.0 Hyper selection contract')
     args = parser.parse_args()
     selected = latest_target(verify=True)
     target = {key: selected[key] for key in ['version', 'path', 'sha256', 'size_bytes']}
-    assert target['version'] == '0.121.0'
     image = target_bytes(target)
     pe = load_script('difficulty_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+    if args.hyper:
+        verify_hyper(target, image, pe)
+        return
+    assert target['version'] == '0.121.0'
     manifest = build_manifest(target, image, pe) if args.write else json.loads((DEST / 'manifest.json').read_text())
     locales = verify(manifest, target, image, pe)
     source_contracts()

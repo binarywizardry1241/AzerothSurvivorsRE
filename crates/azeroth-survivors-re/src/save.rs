@@ -116,12 +116,15 @@ impl RunMods {
     }
 }
 
+pub(crate) use azeroth_survivors_re::heroic::HYPER_ACHIEVEMENT;
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Pick {
     pub hero: Hero,
     pub name: String,
     pub zone: String,
     pub heroic_rank: u8,
+    pub hyper: bool,
     pub mods: RunMods,
 }
 
@@ -404,16 +407,7 @@ impl Save {
     pub fn set_pick(&mut self, pick: &Pick) -> Result<(), SaveError> {
         let pick = pick.clone().normalized();
         self.lines.retain(|line| !line.trim().starts_with("pick|"));
-        self.lines.push(format!(
-            "pick|{}|{}|{}|{}|{}|{}|{}",
-            pick.hero.class,
-            pick.hero.race,
-            u8::from(pick.hero.sex != 0),
-            pick.zone,
-            pick.name,
-            joined(&pick.hero.features),
-            pick.heroic_rank,
-        ));
+        self.lines.push(schema::pick_record(&pick));
         Ok(())
     }
 
@@ -858,6 +852,7 @@ mod custom_roster_tests {
                 name: input["name"].as_str().unwrap().into(),
                 zone: "elwynn".into(),
                 heroic_rank: 0,
+                hyper: false,
                 mods: RunMods::default(),
             };
             let character = pick.custom_character();

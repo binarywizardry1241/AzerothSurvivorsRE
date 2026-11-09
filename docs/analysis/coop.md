@@ -36,7 +36,7 @@ boundary. Live delivery needs separate verification.
 
 ### 0.143.0 Join and directory admission
 
-[#163](../CURRENT-STATE.md#gap-163) tracks the wire update for
+[#163](../verification-needed.md#gap-163) tracks the wire update for
 `installed-game/AzerothSurvivors.exe` 0.143.0, 151,566,336 bytes, SHA-256
 `f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
 The [0.141.1 admission proof](evidence/coop-admission.json) retains its original
@@ -52,21 +52,18 @@ diagnostic owner at `0x145e48350..0x145e48ff9`.
 | Directory handshake | `0x145e0ad89..0x145e0ae93`, file offset `0x5e0a189`, SHA-256 `844abd0fcae4753eaa7a9572ceb794877efa33a0e752258299c5774923058673`. The constructor stores `0.143.0`, directory protocol 3 at `0x145e0ae08`, and flag 1 at `0x145e0ae44`. Its serializer at `0x14620e960` resolves zero cell `0x147b7c390` to `0x14620e9c3` and emits the tag-1 directory envelope. |
 
 The existing `coop_handshake_check.replay` passed 3,198 comparison cases and
-13,362 instruction steps on the exact current gate with synthetic packet
-memory. Only protocol 14 and `0.143.0` reached the success continuation. The
+13,362 instruction steps on the current gate with synthetic packet memory.
+Only protocol 14 and `0.143.0` reached the success continuation. The
 [shared source constants](../../crates/azeroth-survivors-re/src/coop/server_party.rs)
-still supply protocol 13 and `0.141.1` to the guest Join and host admission.
-The directory [connection owner](../../crates/azeroth-survivors-re/src/coop_directory.rs)
-reads that same stale game version, with directory protocol 3 supplied by the
-[service encoder](../../crates/azeroth-survivors-re/src/coop/service.rs). A
-selected repair can align the shared constants and fixed Join wire fixture
-with this proof. The gate replay ends before password handling. Compilation,
-sockets, deployed service acceptance and original/rebuilt comparisons remain
-open.
+now use those fields for both Join routes, host admission and the fixed Join
+fixture. The directory handshake keeps protocol 3 and supplies the same
+current game version. The replay ends before password handling. Compilation,
+socket behavior, deployed service acceptance and original/rebuilt comparisons
+remain open.
 
 ### 0.143.0 Hyper Mode admission
 
-[#63](../CURRENT-STATE.md#gap-63) and [#325](../CURRENT-STATE.md#gap-325) share
+[#63](../CURRENT-STATE.md#gap-63) and [#325](../verification-needed.md#gap-325) share
 the run selection dependency. In the same 0.143.0 image, the
 `server/party.rs` owner `0x145e4c990..0x145e4cf32` sanitizes the Hero profile
 before its first-profile gate. The selected gate `0x145e4cbe3..0x145e4ced1`
@@ -88,12 +85,9 @@ before resolving its localized sentence. The directory list has a separate
 display reason. `0x1402279bd..0x1402279cf` matches `hyper` and selects the
 localized `You haven't opened Hyper Mode yet.` label.
 
-The reconstructed [first-profile gate](../../crates/azeroth-survivors-re/src/gameplay/coop.rs)
-uses zone and rank. The [co-op view](../../crates/azeroth-survivors-re/src/coop_ui.rs)
-would parse `locked:hyper` as a zone key. The source already carries dated
-Hero achievements through [the profile bridge](../../crates/azeroth-survivors-re/src/coop_profile.rs).
-Trace the current writer, reader and sanitizer around that carrier before
-changing the codec.
+The rebuilt [first-profile gate](../../crates/azeroth-survivors-re/src/gameplay/coop.rs)
+uses the same zone/rank precedence and consumes the Champion ordinal through
+[the profile bridge](../../crates/azeroth-survivors-re/src/coop_profile.rs).
 
 The host profile builder at `0x145e41b40` stores the selected-and-earned
 mode at output `+0x49`, capacity at `+0x4b` and capped rank at `+0x4c`.
@@ -101,7 +95,7 @@ Directory serializer `0x14620e960` selects Host tag 3 at `0x14620ec17` and
 UpdateProfile tag 4 at `0x14620ef0b`. Their profile suffixes read the
 corresponding record bytes at `0x14620ee9a..0x14620ef0b` and
 `0x14620f065..0x14620f0d6` and write capacity, rank and Hyper Mode as three
-consecutive bytes. The source service profile writer ends after rank.
+consecutive bytes. The rebuilt service writer follows the same order.
 
 The incoming directory decoder `0x14620f890` dispatches tag 20 through
 cell `0x147b7c3bc` to `0x14620f901`. Its base rows are `0xc8` bytes and
@@ -125,16 +119,33 @@ before the reader considers the optional country and inspection fields.
 The party projection reads the received selection bytes at
 `0x145df5549..0x145df555b` and calls the same difficulty label helper at
 `0x145df583b`. The helper appends localized `Hyper` when the mode is set.
-The reconstructed directory and party receive records and their views carry
-rank but lack the mode byte and label.
+For world entry, `0x145e35d35..0x145e35dec` passes capped rank and earned
+Hyper to the peer filter at `0x14603ec70..0x14603eef4`. It scans active,
+assigned heroes at a `0x8a0`-byte stride and calls `0x145dcf070` with
+zone, rank and Hyper. Its 16-byte rejection rows carry a peer index and
+zone/rank eligibility flag. `0x145e35dec..0x145e35ec9` sends the same lock
+reason to rejected peers. The accepted path gathers the remaining peers.
+The rebuilt first profile, roster eligibility and world entry use the
+same order of zone/rank and Champion checks. The native Hero4 ordinal
+append at `0x145de36c3` supplies Champion index 65. Its optional appendix
+retains the u32 count and u16 index/u32 date rows at
+`0x145dd95a5..0x145dd95f3` and `0x145dd5d32..0x145dd5d75`.
 
-For world entry, `0x145e35d35..0x145e35de6` passes capped rank and earned
-Hyper to the peer filter. A journaled Ghidra query for `0x14603ec70` and
-the original x64 call operands establish a `0x8a0`-byte peer stride, active
-and assigned-hero gates, a predicate call to `0x145dcf070`, and rejection
-rows with peer index and zone/rank eligibility. The consumer at `0x145e35e37`
-uses the same refusal builder for each returned peer. Follow the accepted
-peer path from `0x145e35ec3` into authoritative run mode and guest bootstrap.
+Host State15 copies `Game+0x464` at `0x145dd99e9` to the packet record
+`+0xfc` at `0x145dda383`. The writer at
+`0x145dd7c1a..0x145dd7c44` and reader at `0x145dd2630..0x145dd2651`
+place the required mode byte between Heroic rank and the u32 boss counter.
+The guest validates the snapshot at `0x145e66210` and copies the record
+to app `+0x1468`, placing mode at `+0x1564`. Its deadline and history
+bound at `0x145e6635b..0x145e663bf` halve a present final boss minute and
+use the 150-second Hyper interval. The absent-row fallback is 1,200 real
+seconds. ZoneKey tag 5 remains the sized zone string. The guest uses
+accepted State15 for world rules, projections and settlement.
+
+The directory list accepts missing entries in its optional mode suffix
+as false. The game roster and State15 require the byte under protocol 14.
+The directory and party views share the localized rank/Hyper formatter.
+Join failure and the directory tooltip use their separate native labels.
 Actual clients, service behavior and original/rebuilt comparisons remain
 open. The relay questions under [#206](../CURRENT-STATE.md#gap-206) and
 [#257](../CURRENT-STATE.md#gap-257) still require service evidence.

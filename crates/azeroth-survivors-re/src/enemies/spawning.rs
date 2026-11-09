@@ -65,6 +65,8 @@ pub fn boss_spawn_multiplier(bosses: &[ActiveBoss]) -> f32 {
 #[derive(Clone, Copy, Debug)]
 pub struct TickInput<'a> {
     pub clock_seconds: f32,
+    /// Mob strength and selection minutes. Absolute deadlines use clock_seconds.
+    pub effective_minutes: f32,
     pub delta_seconds: f32,
     pub density_percent: u16,
     /// Current cooperative horde factor, applied after pressure acceleration
@@ -99,7 +101,7 @@ impl TickInput<'_> {
 
 /// 1454a73dd..1454a7435 before pressure acceleration.
 pub fn budget_rate(input: TickInput<'_>) -> f32 {
-    let minutes = input.clock_seconds / 60.0;
+    let minutes = input.effective_minutes;
     let linear = minutes * 0.32 + 0.9;
     let quadratic = (0.025 * minutes) * minutes;
     let polynomial = (quadratic + linear) * 0.6;
@@ -111,7 +113,7 @@ pub fn budget_rate(input: TickInput<'_>) -> f32 {
 /// 1454a780d..1454a7897. This is a top-up count, separate from the budget.
 /// Guardians/elite definitions and dead rows do not count toward this target.
 pub fn population_target(input: TickInput<'_>) -> usize {
-    let minutes = input.clock_seconds / 60.0;
+    let minutes = input.effective_minutes;
     let density = f32::from(input.density_percent) / 100.0;
     let desired = (minutes * 1.6 + 4.0) * density
         * boss_spawn_multiplier(input.active_bosses);
@@ -184,7 +186,7 @@ impl OrdinarySpawner {
         let mut spawned = SpawnedThisTick::default();
         if input.suppressed { return spawned; }
         self.advance_budget_with_expf(input, death_credit, expf);
-        let minutes = input.clock_seconds / 60.0;
+        let minutes = input.effective_minutes;
         let candidates = admitted_enemy_indices(zone, minutes);
         while self.budget >= 1.0 && spawned.budget < 8 {
             let enemy_index = select_enemy(zone, &candidates, minutes, rng);

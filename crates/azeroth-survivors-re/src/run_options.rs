@@ -27,8 +27,21 @@ impl Plugin for RunOptionsPlugin {
 #[derive(Component)]
 struct Root;
 
-pub(crate) fn rank_name(rank: u8, catalog: &MenuCatalog) -> String {
+fn rank_name(rank: u8, catalog: &MenuCatalog) -> String {
     heroic::rank_name(rank, catalog.label("Normal"), catalog.label("Heroic"))
+}
+
+pub(crate) fn difficulty_name<'a>(
+    rank: u8,
+    hyper: bool,
+    label: impl Fn(&'static str) -> &'a str,
+) -> String {
+    let rank = heroic::rank_name(rank, label("Normal"), label("Heroic"));
+    if hyper {
+        format!("{rank} · {}", label("Hyper"))
+    } else {
+        rank
+    }
 }
 
 // Native140277c10 formats to two decimals, then removes trailing zeroes and dots.
@@ -466,13 +479,110 @@ fn weekly_affixes(
     });
 }
 
+fn hyper_row(ui: &mut ChildSpawnerCommands, art: &MenuArt, catalog: &MenuCatalog, state: &MenuState) {
+    let unlocked = state.save.hyper_unlocked();
+    let selected = unlocked && state.hyper;
+    let blue = Color::srgb(0.38, 0.82, 1.);
+    let help = if unlocked {
+        catalog.label("Bosses arrive in half the time and guardians return twice as fast. Mobs get stronger twice as fast. Rewards stay the same.").to_owned()
+    } else {
+        let zone = catalog.zones.iter().find(|zone| zone.key == "naxx").expect("Naxxramas catalog");
+        catalog.label("Beat Heroic V in {zone} to open Hyper Mode.").replace("{zone}", catalog.label(&zone.name))
+    };
+    let border = if selected {
+        HIGHLIGHT
+    } else if unlocked {
+        blue.with_alpha(0.35)
+    } else {
+        Color::srgb(0.169, 0.129, 0.071)
+    };
+    let check_border = if selected {
+        HIGHLIGHT
+    } else if unlocked {
+        Color::srgb(0.427, 0.333, 0.145)
+    } else {
+        border
+    };
+    let mut row = ui.spawn((
+        Button,
+        Action::ToggleHyper,
+        Face { selected, primary: false, disabled: !unlocked },
+        crate::menu::NativeStaticFrame,
+        Node {
+            padding: UiRect::axes(Val::Px(12.), Val::Px(7.)),
+            column_gap: Val::Px(14.),
+            align_items: AlignItems::Center,
+            border: UiRect::all(Val::Px(1.)),
+            border_radius: BorderRadius::all(Val::Px(6.)),
+            flex_shrink: 0.,
+            ..default()
+        },
+        BorderColor::all(border),
+        BackgroundColor(Color::NONE),
+        BackgroundGradient::from(LinearGradient {
+            angle: std::f32::consts::FRAC_PI_2,
+            stops: vec![
+                blue.with_alpha(if selected { 0.22 } else if unlocked { 0.10 } else { 0.03 }).into(),
+                Color::srgba(0., 0., 0., if selected { 0.25 } else { 0.40 }).into(),
+            ],
+            ..default()
+        }),
+    ));
+    if unlocked {
+        row.insert(crate::hover::NativeHover::new(border, HIGHLIGHT, 0.));
+    }
+    row.with_children(|ui| {
+        ui.spawn(Node { width: Val::Px(124.), flex_shrink: 0., ..default() })
+            .with_children(|label| {
+                text(label, art, catalog.label("Hyper Mode"), 22., if unlocked { blue } else { MUTED }, true);
+            });
+        ui.spawn(Node { flex_grow: 1., min_width: Val::Px(0.), ..default() })
+            .with_children(|body| {
+                text(body, art, help, 12., if unlocked { PAPER } else { MUTED }, false);
+            });
+        ui.spawn((
+            Node {
+                width: Val::Px(16.),
+                height: Val::Px(16.),
+                border: UiRect::all(Val::Px(2.)),
+                border_radius: BorderRadius::all(Val::Px(3.)),
+                justify_content: JustifyContent::Center,
+                align_items: AlignItems::Center,
+                flex_shrink: 0.,
+                ..default()
+            },
+            BorderColor::all(check_border),
+            BackgroundColor(Color::srgba(0., 0., 0., 0.5)),
+        )).with_children(|checkbox| {
+            if selected {
+                checkbox.spawn((
+                    Node {
+                        width: Val::Px(8.),
+                        height: Val::Px(8.),
+                        border_radius: BorderRadius::all(Val::Px(1.5)),
+                        ..default()
+                    },
+                    BackgroundColor(HIGHLIGHT),
+                    BoxShadow::new(
+                        GOLD.with_alpha(0.8),
+                        Val::Px(0.),
+                        Val::Px(0.),
+                        Val::Px(0.),
+                        Val::Px(6.),
+                    ),
+                ));
+            }
+        });
+    });
+}
+
 fn rebuild(
     mut commands: Commands,
     state: Res<MenuState>,
     art: Res<MenuArt>,
     catalog: Res<MenuCatalog>,
     roots: Query<Entity, With<Root>>,
-    mut previous: Local<Option<(usize, u8, u8, u64)>>,
+    mut previous: Local<Option<(usize, u8, u8, bool, u64)>>,
 ) {
     let open = matches!(state.dialog, Some(Dialog::RunOptions | Dialog::CoopDifficulty));
     if !open {
@@ -484,7 +594,7 @@ fn rebuild(
         return;
     }
     let maximum = state.max_heroic_rank();
-    let snapshot = (state.zone, state.heroic_rank, maximum, state.save_revision);
+    let snapshot = (state.zone, state.heroic_rank, maximum, state.hyper, state.save_revision);
     if *previous == Some(snapshot) && !art.is_changed() && !catalog.is_changed() {
         return;
     }
@@ -582,6 +692,7 @@ fn rebuild(
                     for rank in 0..=heroic::MAX_RANK {
                         rank_row(body, &art, &catalog, &state, rank, maximum);
                     }
+                    hyper_row(body, &art, &catalog, &state);
                     weekly_affixes(
                         body,
                         &art,

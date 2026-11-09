@@ -114,7 +114,7 @@ mod tests {
     use super::*;
 
     fn game() -> Mechanics {
-        Mechanics::new("elwynn", "warrior", RunRules { heroic_rank: 0,
+        Mechanics::new("elwynn", "warrior", RunRules { heroic_rank: 0, hyper: false,
             difficulty: 1.0, density_percent: 100, hp_percent: 100,
             damage_percent: 100, speed_percent: 100, endless: false,
         }, RunPlayerStats {

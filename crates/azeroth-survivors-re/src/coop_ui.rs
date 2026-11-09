@@ -116,6 +116,7 @@ pub(crate) struct LobbyView {
     pub heroes: Vec<HeroRow>,
     pub zone: String,
     pub heroic_rank: u8,
+    pub hyper: bool,
 }
 #[derive(Resource)]
 pub(crate) struct CoopUi {
@@ -474,9 +475,10 @@ fn label(locale: &Localization, english: &str) -> String {
     locale.label(english).to_owned()
 }
 fn difficulty_name(locale: &Localization, rank: i64) -> String {
-    azeroth_survivors_re::heroic::rank_name(
+    crate::run_options::difficulty_name(
         (rank as u8).min(azeroth_survivors_re::heroic::MAX_RANK),
-        &label(locale, "Normal"), &label(locale, "Heroic"),
+        false,
+        |key| locale.label(key),
     )
 }
 
@@ -486,11 +488,11 @@ fn host_preview(ui: &mut ChildSpawnerCommands, art: &MenuArt,
         .min(azeroth_survivors_re::heroic::MAX_RANK);
     let zone = &azeroth_survivors_re::guardians::catalog::ZONES[state.zone];
     selection_card(ui, art, locale, "You host", Some((&state.name, state.class_id())),
-        zone.key, rank, true);
+        zone.key, rank, state.hyper_mode(), true);
 }
 
 fn selection_card(ui: &mut ChildSpawnerCommands, art: &MenuArt, locale: &Localization,
-    heading: &str, hero: Option<(&str, u8)>, zone: &str, rank: u8, can_change: bool) {
+    heading: &str, hero: Option<(&str, u8)>, zone: &str, rank: u8, hyper: bool, can_change: bool) {
     let border = if rank == 0 { EDGE } else { Color::srgba(1., 0.353, 0.235, 0.7) };
     ui.spawn((Node {
         padding: UiRect::axes(Val::Px(14.), Val::Px(10.)),
@@ -518,7 +520,8 @@ fn selection_card(ui: &mut ChildSpawnerCommands, art: &MenuArt, locale: &Localiz
                     .with_children(|ui| {
                         text(ui, art, crate::coop_directory::display_zone(locale, zone), 16., GOLD);
                         crate::coop_directory_row::difficulty_pill(
-                            ui, art, difficulty_name(locale, i64::from(rank)), rank != 0, 13.,
+                            ui, art, crate::run_options::difficulty_name(rank, hyper, |key| locale.label(key)),
+                            rank != 0, 13.,
                         );
                     });
             });
@@ -618,7 +621,9 @@ fn control_sized(
 /// remains literal. The phase selects the complete status sentence separately.
 fn status_message(view: &CoopUi, locale: &Localization) -> Option<String> {
     let raw = view.unavailable_reason.as_deref().unwrap_or("");
-    let reason = if let Some(key) = raw.strip_prefix("locked:") {
+    let reason = if raw == "locked:hyper" {
+        label(locale, "you haven't opened Hyper Mode yet")
+    } else if let Some(key) = raw.strip_prefix("locked:") {
         // 0.121.0 140272730: a valid decimal u8 suffix selects the Heroic
         // sentence. Malformed suffixes retain the zone before the first colon.
         let (key, rank) = key.split_once(':').map_or((key, None), |(zone, rank)| {
@@ -1008,7 +1013,7 @@ fn rebuild(
                 if let Some(lobby) = &view.lobby {
                 if !lobby.zone.is_empty() {
                     selection_card(ui, &art, &locale, "The party's run", None,
-                        &lobby.zone, lobby.heroic_rank, view.role == "host");
+                        &lobby.zone, lobby.heroic_rank, lobby.hyper, view.role == "host");
                 }
                 let body = ui.spawn(Node { flex_grow: 100., min_height: Val::Px(0.),
                     column_gap: Val::Px(20.), ..default() }).id();
@@ -1093,11 +1098,12 @@ fn rebuild(
                                     Click::Kick(hero.hero_identity), false, false, false, 13.);
                             }
                             if !hero.eligible {
-                                let reason = if lobby.heroic_rank == 0 {
+                                let reason = if lobby.heroic_rank == 0 && !lobby.hyper {
                                     label(&locale, "hasn't unlocked this zone")
                                 } else {
                                     label(&locale, "hasn't opened {difficulty} here")
-                                        .replace("{difficulty}", &difficulty_name(&locale, i64::from(lobby.heroic_rank)))
+                                        .replace("{difficulty}", &crate::run_options::difficulty_name(
+                                            lobby.heroic_rank, lobby.hyper, |key| locale.label(key)))
                                 };
                                 text(ui, &art, reason, 13., Color::srgb(1., 0.353, 0.235));
                             }
@@ -1358,7 +1364,7 @@ mod tests {
         for role in ["host", "guest", ""] {
             let mut view = CoopUi { role: role.into(), status: "joined".into(),
                 lobby: Some(LobbyView { name: "party".into(), capacity: 2,
-                    zone: "elwynn".into(), heroic_rank: 0,
+                    zone: "elwynn".into(), heroic_rank: 0, hyper: false,
                     heroes: vec![HeroRow { host: true, hero_identity: 11, ..default() },
                         HeroRow { hero_identity: guid, ..default() }] }), ..default() };
             view.kick_member(guid);
@@ -1460,6 +1466,7 @@ mod tests {
             status: "joined".into(),
             role: "guest".into(),
             code: Some("K7QF2".into()),
+                hyper: false,
             lobby: Some(LobbyView {
                 name: "Party".into(),
                 capacity: 5,
@@ -1550,6 +1557,7 @@ mod tests {
         ] {
             let mut view = CoopUi {
                 status: "joined".into(),
+                    hyper: false,
                 lobby: Some(LobbyView {
                     name: String::new(),
                     capacity: 5,
@@ -1671,6 +1679,7 @@ mod tests {
     fn the_live_roster_renders_only_the_selected_capacity() {
         let mut world = world(CoopUi {
             status: "joined".into(),
+                hyper: false,
             role: "host".into(),
             lobby: Some(LobbyView {
                 name: "fixture".into(),
@@ -1836,7 +1845,7 @@ mod tests {
             let mut world = world(CoopUi {
                 status: "joined".into(), role: role.into(),
                 lobby: Some(LobbyView { name: String::new(), capacity: 2,
-                    zone: "elwynn".into(), heroic_rank: 2,
+                    zone: "elwynn".into(), heroic_rank: 2, hyper: false,
                     heroes: vec![HeroRow { name: "locked hero".into(), class: "warrior".into(),
                         achievement_points: 12, eligible: false, ..default() }],
                 }), ..default()

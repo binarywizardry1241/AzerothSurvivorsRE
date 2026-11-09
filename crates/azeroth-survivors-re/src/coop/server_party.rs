@@ -3,9 +3,9 @@
 //! connection/removal pump: 0x145877810/0x145896390.
 //! See docs/analysis/coop-server-party-0.115.0.md for the bounded native proof.
 
-// 0.141.1 Join admission at 0x145edab11 checks both fields.
-pub const GAME_VERSION: &str = "0.141.1";
-pub const PROTOCOL_VERSION: u32 = 13;
+// 0.143.0 Join admission at 0x145e484f1 checks both fields.
+pub const GAME_VERSION: &str = "0.143.0";
+pub const PROTOCOL_VERSION: u32 = 14;
 pub const MAX_PARTY_SIZE: u8 = 5;
 pub const MAX_MESSAGES_PER_CLIENT_TICK: usize = 200;
 pub const REJECTION_DRAIN_SECONDS: f64 = 10.0;
@@ -156,7 +156,7 @@ pub struct NativeRosterEntry {
     pub eligible: bool,
     /// Current wire17 puts this u16 after eligibility; ffff means unavailable.
     pub ping_ms: Option<u16>,
-    /// Country strings form an optional parallel suffix after zone/rank.
+    /// Country strings form an optional parallel suffix after the run selection.
     pub country: Vec<u8>,
     pub inspection: Option<NativeInspection>,
 }
@@ -167,6 +167,7 @@ pub struct NativeRoster {
     pub entries: Vec<NativeRosterEntry>,
     pub zone: String,
     pub heroic_rank: u8,
+    pub hyper: bool,
 }
 
 /// Current 0.127.0 lifecycle variant21 / wire22. The host replaces a guest's
@@ -435,6 +436,7 @@ pub fn encode_lifecycle(packet: &LifecyclePacket) -> Result<Vec<u8>, PacketError
             }
             bytes(&mut out, roster.zone.as_bytes())?;
             out.push(roster.heroic_rank);
+            out.push(u8::from(roster.hyper));
             for entry in entries { bytes(&mut out, &entry.country)?; }
             for entry in entries {
                 out.push(u8::from(entry.inspection.is_some()));
@@ -639,6 +641,7 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
             }
             let zone = String::from_utf8_lossy(&reader.bytes()?).into_owned();
             let heroic_rank = reader.u8()?;
+            let hyper = reader.u8()? != 0;
             for entry in &mut entries {
                 if reader.cursor < reader.bytes.len() {
                     entry.country = normalize_lobby_country(&reader.bytes()?);
@@ -650,7 +653,7 @@ pub fn decode_lifecycle(input: &[u8]) -> Result<(LifecyclePacket, usize), Packet
                 }
             }
             LifecyclePacket::Roster(NativeRoster {
-                entries, zone, heroic_rank,
+                entries, zone, heroic_rank, hyper,
             })
         }
         tag => return Err(PacketError::UnsupportedTag(tag)),
@@ -923,7 +926,7 @@ mod tests {
     #[test]
     fn native_lifecycle_wire_vectors() {
         let hello = LifecyclePacket::Join(JoinRequest::current(b"pw".to_vec()));
-        let expected = b"\x01\x0d\x00\x00\x00\x07\x00\x00\x000.141.1\x02\x00\x00\x00pw";
+        let expected = b"\x01\x0e\x00\x00\x00\x07\x00\x00\x000.143.0\x02\x00\x00\x00pw";
         assert_eq!(encode_lifecycle(&hello).unwrap(), expected);
         assert_eq!(decode_lifecycle(expected).unwrap(), (hello, expected.len()));
         assert_eq!(encode_lifecycle(&LifecyclePacket::Accepted(JoinAccepted { slot: 7, capacity: 5 })).unwrap(), [2, 7, 5]);
@@ -998,10 +1001,11 @@ mod tests {
             ping_ms: None, country: Vec::new(), inspection: None };
         let expected = [17, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
             b'A', 8, 1, 0, 50, 0, 0, 0, 1, 255, 255, 2, 0, 0, 0, b's', b'm', 3,
-            0, 0, 0, 0, 0];
-        let roster = NativeRoster { entries: vec![row], zone: "sm".into(), heroic_rank: 3 };
+            1, 0, 0, 0, 0, 0];
+        let roster = NativeRoster { entries: vec![row], zone: "sm".into(), heroic_rank: 3, hyper: true };
         assert_eq!(encode_lifecycle(&LifecyclePacket::Roster(roster.clone())).unwrap(), expected);
         assert_eq!(decode_lifecycle(&expected).unwrap(), (LifecyclePacket::Roster(roster), expected.len()));
+        assert_eq!(decode_lifecycle(&expected[..35]), Err(PacketError::Truncated));
         assert_eq!(decode_lifecycle(&[17, 255, 255, 255, 255]), Err(PacketError::Truncated));
     }
 
@@ -1014,7 +1018,7 @@ mod tests {
         peer.hero_identity = 2;
         peer.country = b"JP".to_vec();
         let packet = LifecyclePacket::Roster(NativeRoster {
-            entries: vec![row, peer], zone: "sm".into(), heroic_rank: 3,
+            entries: vec![row, peer], zone: "sm".into(), heroic_rank: 3, hyper: false,
         });
         let empty = encode_lifecycle(&packet).unwrap();
         let mut wire = empty[..empty.len() - 1].to_vec();
@@ -1079,7 +1083,7 @@ mod tests {
             race: 1, profile: Some(profile), achievement_points: 0, eligible: true,
             ping_ms: None, country: Vec::new(), inspection: None };
         for packet in [LifecyclePacket::Hero(Box::new(hero)), LifecyclePacket::Roster(
-            NativeRoster { entries: vec![row], zone: "elwynn".into(), heroic_rank: 0 })] {
+            NativeRoster { entries: vec![row], zone: "elwynn".into(), heroic_rank: 0, hyper: false })] {
             let wire = encode_message(&NativeMessage::Lifecycle(packet)).unwrap();
             let (NativeMessage::Lifecycle(decoded), _) = decode_message(&wire).unwrap() else { panic!() };
             let profile = match decoded {
@@ -1100,7 +1104,7 @@ mod tests {
         let mut second = row.clone();
         second.hero_identity = 2;
         second.country = b"JP".to_vec();
-        let roster = NativeRoster { entries: vec![row, second], zone: "sm".into(), heroic_rank: 0 };
+        let roster = NativeRoster { entries: vec![row, second], zone: "sm".into(), heroic_rank: 0, hyper: false };
         let wire = encode_lifecycle(&LifecyclePacket::Roster(roster.clone())).unwrap();
         let last_country = wire.len() - 2 - 6;
         let mut partial = roster.clone();

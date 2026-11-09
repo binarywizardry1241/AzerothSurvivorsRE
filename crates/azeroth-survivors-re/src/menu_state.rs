@@ -69,10 +69,11 @@ pub struct MenuState {
     enter_started_at: Option<f32>,
     pub zone: usize,
     pub heroic_rank: u8,
+    pub(crate) hyper: bool,
     /// Native Play captures the week once into the retained run configuration.
     pub(crate) heroic_week: u32,
     /// Again reuses the admitted rank, even if the completed run opened a level.
-    pub(crate) heroic_restart_rank: Option<u8>,
+    pub(crate) restart_difficulty: Option<(u8, bool)>,
     pub run_mods: RunMods,
     pub page: Page,
     pub dialog: Option<Dialog>,
@@ -128,8 +129,9 @@ impl MenuState {
             enter_started_at: None,
             zone: 0,
             heroic_rank: 0,
+            hyper: false,
             heroic_week: 0,
-            heroic_restart_rank: None,
+            restart_difficulty: None,
             run_mods: RunMods::default(),
             page: Page::Picker,
             dialog: None,
@@ -182,6 +184,7 @@ impl MenuState {
         self.name = pick.name;
         self.zone = catalog.zones.iter().position(|zone| zone.key == pick.zone).unwrap_or(0);
         self.heroic_rank = pick.heroic_rank;
+        self.hyper = pick.hyper;
         self.run_mods = pick.mods;
         self.clamp_zone();
         if self.name == "Hero" {
@@ -262,7 +265,7 @@ impl MenuState {
         if self.entering || self.in_run || !self.select_roster_character(guid) { return false; }
         self.zone = zone;
         self.heroic_week = crate::heroic::current_week();
-        self.heroic_restart_rank = None;
+        self.restart_difficulty = None;
         self.entering = true;
         self.enter_started_at = Some(elapsed);
         self.mark_dirty();
@@ -286,6 +289,9 @@ impl MenuState {
     pub fn max_heroic_rank(&self) -> u8 {
         let zone = &azeroth_survivors_re::guardians::catalog::ZONES[self.zone];
         self.save.max_heroic_rank(self.class_id(), zone.key)
+    }
+    pub(crate) fn hyper_mode(&self) -> bool {
+        self.hyper && self.save.hyper_unlocked()
     }
     fn clamp_zone(&mut self) {
         self.zone = self.zone.min(self.open_zones() - 1);
@@ -354,6 +360,7 @@ impl MenuState {
             name: self.name.clone(),
             zone: catalog.zones[self.zone].key.clone(),
             heroic_rank: self.heroic_rank,
+            hyper: self.hyper,
             mods: self.run_mods,
         };
         match self
@@ -387,18 +394,18 @@ impl MenuState {
     /// The host already committed the selected Pick when requesting a Ready Check.
     pub(crate) fn admit_enter(&mut self, elapsed: f32) {
         self.heroic_week = crate::heroic::current_week();
-        self.heroic_restart_rank = None;
+        self.restart_difficulty = None;
         self.entering = true;
         self.enter_started_at = Some(elapsed);
         self.mark_dirty();
     }
     /// Native command6 rebuilds the retained run; it does not issue the picker's
     /// command11, normalize its name again or save another Pick.
-    pub(crate) fn begin_restart(&mut self, elapsed: f32, heroic_rank: Option<u8>) {
+    pub(crate) fn begin_restart(&mut self, elapsed: f32, difficulty: Option<(u8, bool)>) {
         if self.entering || self.in_run {
             return;
         }
-        self.heroic_restart_rank = heroic_rank;
+        self.restart_difficulty = difficulty;
         self.entering = true;
         self.enter_started_at = Some(elapsed);
         self.mark_dirty();
@@ -468,7 +475,7 @@ impl MenuState {
 
 fn default_pick() -> Pick {
     Pick { hero: Hero { class: 1, race: 1, sex: 0, features: [0; 5] },
-        name: "Hero".into(), zone: "elwynn".into(), heroic_rank: 0, mods: RunMods::default() }
+        name: "Hero".into(), zone: "elwynn".into(), heroic_rank: 0, hyper: false, mods: RunMods::default() }
 }
 
 #[cfg(test)]
@@ -541,8 +548,9 @@ mod class_selection_tests {
             enter_started_at: None,
             zone: 0,
             heroic_rank: 0,
+            hyper: false,
             heroic_week: 0,
-            heroic_restart_rank: None,
+            restart_difficulty: None,
             run_mods: RunMods::default(),
             page: Page::Picker,
             dialog: None,
@@ -784,19 +792,19 @@ mod class_selection_tests {
         state.name = "1".into();
         state.heroic_week = 1234;
         state.heroic_rank = 5;
-        state.begin_restart(4.0, Some(1));
+        state.begin_restart(4.0, Some((1, true)));
         assert!(state.entering);
         assert_eq!(state.enter_started_at, Some(4.0));
-        assert_eq!(state.heroic_restart_rank, Some(1));
+        assert_eq!(state.restart_difficulty, Some((1, true)));
         assert_eq!(state.heroic_week, 1234);
         assert_eq!(state.heroic_rank, 5);
         assert_eq!(state.name, "1");
         assert_eq!(state.save.plaintext(), before);
         assert!(state.pending_saves.is_empty());
         assert_eq!(state.save_revision, 0);
-        state.begin_restart(9.0, Some(2));
+        state.begin_restart(9.0, Some((2, false)));
         assert_eq!(state.enter_started_at, Some(4.0));
-        assert_eq!(state.heroic_restart_rank, Some(1));
+        assert_eq!(state.restart_difficulty, Some((1, true)));
     }
 
     #[test]

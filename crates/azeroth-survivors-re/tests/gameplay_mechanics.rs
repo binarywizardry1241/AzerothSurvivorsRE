@@ -56,7 +56,7 @@ fn run() -> Mechanics {
     Mechanics::new(
         "elwynn",
         "warrior",
-        RunRules { heroic_rank: 0,
+        RunRules { heroic_rank: 0, hyper: false,
             difficulty: 1.0,
             density_percent: 100,
             hp_percent: 100,

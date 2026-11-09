@@ -2,7 +2,7 @@
 //! Current 0.109.0 field/format/lifecycle evidence and separate gameplay limits:
 //! docs/analysis/addon-bridge-0.109.0.md.
 
-use azeroth_survivors_re::enemies::Position;
+use azeroth_survivors_re::{bosses::spawning::primary_minutes, enemies::Position};
 
 use super::super::{RunSession, mechanics::Mechanics};
 use super::addon_feed::field;
@@ -134,7 +134,7 @@ fn next_boss_seconds(scheduled: Option<f32>, endless: bool, endless_deadline: f3
 pub(super) fn zone_snapshot(game: &Mechanics, name: &str, locale: &Localization) -> Option<String> {
     let zone = super::addon_lists::zone_record(game.zone.key)?;
     let final_at = zone.bosses.iter().find(|boss| boss.raw_final)
-        .map_or(-1.0, |boss| boss.at_minutes_f32 * 60.0);
+        .map_or(-1.0, |boss| primary_minutes(boss.at_minutes_f32, game.rules.hyper) * 60.0);
     let zone_name = localized(locale, format!("zone.{}.name", zone.key), &zone.name);
     let zone_subtitle = localized(locale, format!("zone.{}.subtitle", zone.key), &zone.subtitle);
     let (race_key, race_name) = race(game.stats.native_race);
@@ -183,10 +183,10 @@ pub(super) fn snapshot_for(
         .bosses
         .iter()
         .find(|boss| boss.raw_final)
-        .map_or(-1.0, |boss| boss.at_minutes_f32 * 60.0);
+        .map_or(-1.0, |boss| primary_minutes(boss.at_minutes_f32, game.rules.hyper) * 60.0);
     let next = zone.bosses.get(progress.bosses_spawned);
     let next_seconds = next_boss_seconds(
-        next.map(|boss| boss.at_minutes_f32 * 60.0),
+        next.map(|boss| primary_minutes(boss.at_minutes_f32, game.rules.hyper) * 60.0),
         game.rules.endless,
         progress.endless_deadline,
         game.clock,
@@ -404,7 +404,7 @@ mod tests {
         let game = Mechanics::new(
             "elwynn",
             "warrior",
-            RunRules { heroic_rank: 0,
+            RunRules { heroic_rank: 0, hyper: false,
                 difficulty: 1.0,
                 density_percent: 100,
                 hp_percent: 100,

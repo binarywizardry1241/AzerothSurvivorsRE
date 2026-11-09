@@ -147,15 +147,17 @@ impl Snapshot {
         self
     }
 
-    pub(super) fn from_mechanics(game: &Mechanics, starting_gear: [u32; 19]) -> Option<Self> {
+    pub(super) fn from_mechanics(
+        game: &Mechanics, starting_gear: [u32; 19], hyper_unlocked: bool,
+    ) -> Option<Self> {
         let phase = game.replica_phase()?.native();
         let (counts, delta_counts) = game.account_count_delivery();
         Some(Self {
             phase,
             heroic_rank: game.heroic_rank(),
             notice_ready: game.guest_notice_ready(),
-            result: game.summary_result()?,
-            delivery: game.summary_delivery(),
+            result: game.summary_result(hyper_unlocked)?,
+            delivery: game.summary_delivery(hyper_unlocked),
             counts,
             delta_counts,
             feats: game.feat_snapshot(starting_gear),
@@ -171,7 +173,9 @@ impl Snapshot {
 
     /// The caller supplies a validated State15 and its original ZoneKey entry.
     /// Checkpoints include any earlier terminal delivery before world creation.
-    pub(super) fn from_cached(state: &NativeState, entry: Entry, checkpoints: &Checkpoints) -> Self {
+    pub(super) fn from_cached(
+        state: &NativeState, entry: Entry, checkpoints: &Checkpoints, hyper_unlocked: bool,
+    ) -> Self {
         let projection = RunProjection::read(state);
         let zone = azeroth_survivors_re::zones::resolve(&projection.zone);
         let zone_index = azeroth_survivors_re::guardians::catalog::ZONES
@@ -182,7 +186,9 @@ impl Snapshot {
         let xp_parts = run_progression::talent_experience_parts_heroic(
             projection.kills,
             projection.boss_kills,
-            projection.clock,
+            run_progression::talent_experience_seconds(
+                projection.clock, zone.key, hyper_unlocked && projection.hyper,
+            ),
             projection.won,
             zone_index,
             projection.heroic_rank,
@@ -400,7 +406,7 @@ mod tests {
         NativeState {
             float_68_bits: 600_f32.to_bits(), byte_8f: phase, flag_8c: false,
             word_6c: 20, flag_8d: won, words_70: [2500, 9, 0, 1, 2],
-            heroic_rank: 0, boss_counter: 0, max_equipment_stars: 0, active_set: 0,
+            heroic_rank: 0, hyper: false, boss_counter: 0, max_equipment_stars: 0, active_set: 0,
             float_84_bits: 1_f32.to_bits(), float_88_bits: 1_f32.to_bits(),
             flag_8e: false, byte_90: 1, text: "elwynn".into(),
             pairs: Vec::new(), rows: Vec::new(), words: Vec::new(),
@@ -423,7 +429,7 @@ mod tests {
         use super::super::mechanics::{RunPlayerStats, RunRules};
         let mut game = Mechanics::new(
             &state.text, "warrior",
-            RunRules { heroic_rank: 0, difficulty: 1.0, density_percent: 100, hp_percent: 100,
+            RunRules { heroic_rank: 0, hyper: state.hyper, difficulty: 1.0, density_percent: 100, hp_percent: 100,
                 damage_percent: 100, speed_percent: 100, endless: false },
             RunPlayerStats {
                 maximum_health: 100.0, health_per_level: 9.0, health_multiplier: 1.0,
@@ -502,7 +508,7 @@ mod tests {
         ).unwrap();
         let counts_before = menu.backend_save.statistics();
         let checkpoints = Checkpoints::default();
-        let standing = Snapshot::from_cached(&value, entry(42), &checkpoints);
+        let standing = Snapshot::from_cached(&value, entry(42), &checkpoints, false);
         let events = standing.live_feats(&mut menu, Some(42), 100);
         assert!(events.iter().any(|event| matches!(event,
             RunEvent::Achievement(key) if key == "coop:insane")));
@@ -512,7 +518,7 @@ mod tests {
         value.byte_8f = 4;
         value.float_68_bits = 2401.0_f32.to_bits();
         value.coop.as_mut().unwrap().first_fall_bits = 2401.0_f32.to_bits();
-        let down = Snapshot::from_cached(&value, entry(42), &checkpoints);
+        let down = Snapshot::from_cached(&value, entry(42), &checkpoints, false);
         assert!(down.live_feats(&mut menu, Some(42), 200).is_empty());
         down.account(&mut menu, Some(42), 300);
         assert_eq!(menu.backend_save.achievement_dates().get("coop:insane"), Some(&100));
@@ -526,9 +532,9 @@ mod tests {
         let checkpoints = Checkpoints::default();
         for flags in [0, 1] {
             value.boss_flags = vec![BossFlagRow { boss_id: 1853, flags }];
-            let cached = Snapshot::from_cached(&value, entry(42), &checkpoints);
+            let cached = Snapshot::from_cached(&value, entry(42), &checkpoints, false);
             let replica = replica(&value);
-            let live = Snapshot::from_mechanics(&replica, [0; 19]).unwrap();
+            let live = Snapshot::from_mechanics(&replica, [0; 19], false).unwrap();
             let mut menu = menu();
             let earned = cached.live_feats(&mut menu, Some(42), 100);
             assert_eq!(earned.iter().any(|event| matches!(
@@ -549,10 +555,35 @@ mod tests {
             let mut value = state(1, false);
             value.float_68_bits = 2500.0_f32.to_bits();
             value.coop.as_mut().unwrap().first_fall_bits = marker.to_bits();
-            let cached = Snapshot::from_cached(&value, entry(42), &Checkpoints::default());
+            let cached = Snapshot::from_cached(&value, entry(42), &Checkpoints::default(), false);
             let live = replica(&value).cooperative_feat_context();
             assert_eq!(cached.cooperative.as_ref().unwrap().first_fall_bits, marker.to_bits());
             assert_eq!(live, cached.cooperative);
+        }
+    }
+
+    #[test]
+    fn hyper_summary_awards_only_the_admitted_lead_and_keeps_real_feat_time() {
+        let mut value = state(5, true);
+        value.hyper = true;
+        let checkpoints = Checkpoints::default();
+        // Elwynn's final boss arrives at 480 real seconds in Hyper Mode.
+        for (seconds, hyper_unlocked, time_xp) in [
+            (479.0_f32, true, 192),
+            (480.0, true, 192),
+            (900.0, true, 276),
+            (900.0, false, 180),
+        ] {
+            value.float_68_bits = seconds.to_bits();
+            value.coop.as_mut().unwrap().first_fall_bits = seconds.to_bits();
+            let cached = Snapshot::from_cached(&value, entry(42), &checkpoints, hyper_unlocked);
+            let live = Snapshot::from_mechanics(&replica(&value), [0; 19], hyper_unlocked).unwrap();
+            assert_eq!(cached.delivery().unwrap().xp_parts[0], time_xp);
+            assert_eq!(live.delivery(), cached.delivery());
+            assert_eq!(cached.result.seconds, seconds as u32);
+            assert_eq!(cached.feats.elapsed, seconds);
+            assert_eq!(live.feats.elapsed, seconds);
+            assert_eq!(live.cooperative.as_ref().unwrap().first_fall_bits, seconds.to_bits());
         }
     }
 
@@ -563,7 +594,7 @@ mod tests {
         value.flag_8c = true;
         let mut checkpoints = Checkpoints::default();
         assert!(checkpoints.admit_terminal_state(&value));
-        let snapshot = Snapshot::from_cached(&value, entry, &checkpoints);
+        let snapshot = Snapshot::from_cached(&value, entry, &checkpoints, false);
         let mut menu = menu();
         snapshot.summary(&mut menu, entry.roster_guid, 100);
         checkpoints.acknowledge_summary(&snapshot, entry.roster_guid);
@@ -573,13 +604,13 @@ mod tests {
         let xp = menu.backend_save.talent_xp(1);
         let dates = menu.backend_save.achievement_dates();
         assert!(!checkpoints.admit_terminal_state(&value));
-        let repeated = Snapshot::from_cached(&value, entry, &checkpoints);
+        let repeated = Snapshot::from_cached(&value, entry, &checkpoints, false);
         assert!(repeated.delivery().is_none());
         assert!(repeated.summary(&mut menu, entry.roster_guid, 200).is_empty());
         assert!(repeated.account(&mut menu, entry.roster_guid, 200).is_empty());
         let mut game = replica(&value);
         checkpoints.apply_to_game(&mut game);
-        assert!(Snapshot::from_mechanics(&game, [0; 19]).unwrap().delivery().is_none());
+        assert!(Snapshot::from_mechanics(&game, [0; 19], false).unwrap().delivery().is_none());
         assert!(close_live(&mut game, &mut menu, 300).is_empty());
         assert_eq!(menu.backend_save.statistics(), statistics);
         assert_eq!(menu.backend_save.talent_xp(1), xp);
@@ -614,7 +645,7 @@ mod tests {
     #[test]
     fn cached_running_guest_saves_summary_then_account_without_world_construction() {
         let entry = entry(42);
-        let snapshot = Snapshot::from_cached(&state(1, false), entry, &Checkpoints::default());
+        let snapshot = Snapshot::from_cached(&state(1, false), entry, &Checkpoints::default(), false);
         let mut menu = menu();
         let mut events = snapshot.summary(&mut menu, entry.roster_guid, 100);
         assert_eq!(menu.backend_save.statistics().get("runs"), Some(&1));
@@ -632,7 +663,7 @@ mod tests {
     #[test]
     fn cached_victory_keeps_existing_dates_and_writes_both_zone_histories() {
         let entry = entry(42);
-        let snapshot = Snapshot::from_cached(&state(5, true), entry, &Checkpoints::default());
+        let snapshot = Snapshot::from_cached(&state(5, true), entry, &Checkpoints::default(), false);
         let mut menu = menu();
         menu.backend_save.grant_achievements(&["feat:kills2500".into()], Some(7));
         snapshot.summary(&mut menu, entry.roster_guid, 100);
@@ -653,14 +684,14 @@ mod tests {
         let entry = entry(42);
         let mut value = state(2, true);
         value.text = "wsg".into();
-        let snapshot = Snapshot::from_cached(&value, entry, &Checkpoints::default());
+        let snapshot = Snapshot::from_cached(&value, entry, &Checkpoints::default(), false);
         snapshot.live_feats(&mut menu, entry.roster_guid, 90);
         assert!(menu.backend_save.cooperative_beaten_zones().is_empty());
         assert_eq!(crate::progression::account_run_grants(&menu.backend_save, 1).cooperative_luck, 0.0);
 
         value.flag_8c = true;
         value.byte_8f = 5;
-        let snapshot = Snapshot::from_cached(&value, entry, &Checkpoints::default());
+        let snapshot = Snapshot::from_cached(&value, entry, &Checkpoints::default(), false);
         snapshot.account(&mut menu, entry.roster_guid, 100);
         assert_eq!(menu.backend_save.cooperative_beaten_zones(), [2].into());
         assert!(!menu.backend_save.earned_achievements().contains("coop:team"));
@@ -684,7 +715,7 @@ mod tests {
         let mut value = state(2, true);
         value.heroic_rank = 1;
         let checkpoints = Checkpoints::default();
-        let snapshot = Snapshot::from_cached(&value, entry, &checkpoints).with_notice_ready(true);
+        let snapshot = Snapshot::from_cached(&value, entry, &checkpoints, false).with_notice_ready(true);
         let mut menu = menu();
         menu.backend_save.record_beaten_zone(1, "elwynn").unwrap();
         let events = snapshot.victory(&mut menu, entry.roster_guid);
@@ -707,7 +738,7 @@ mod tests {
     fn immediate_clear_keeps_guid_admission_and_notice_readiness_independent() {
         let mut value = state(2, true);
         value.heroic_rank = 1;
-        let snapshot = Snapshot::from_cached(&value, entry(42), &Checkpoints::default());
+        let snapshot = Snapshot::from_cached(&value, entry(42), &Checkpoints::default(), false);
         let mut menu = menu();
         menu.backend_save.record_beaten_zone(1, "elwynn").unwrap();
         let before = menu.backend_save.plaintext();
@@ -755,7 +786,7 @@ mod tests {
     fn ready_and_unknown_phases_skip_summary_but_keep_independent_account_delivery() {
         for phase in [0, 6, 255] {
             let entry = entry(42);
-            let snapshot = Snapshot::from_cached(&state(phase, false), entry, &Checkpoints::default());
+            let snapshot = Snapshot::from_cached(&state(phase, false), entry, &Checkpoints::default(), false);
             let mut menu = menu();
             assert!(snapshot.summary(&mut menu, entry.roster_guid, 100).is_empty());
             assert!(menu.account_snapshots().is_empty());
@@ -769,7 +800,7 @@ mod tests {
     #[test]
     fn tester_preserves_summary_bests_without_account_grants_or_xp() {
         let entry = entry(crate::startup::TESTER_GUID);
-        let snapshot = Snapshot::from_cached(&state(5, true), entry, &Checkpoints::default());
+        let snapshot = Snapshot::from_cached(&state(5, true), entry, &Checkpoints::default(), false);
         let mut menu = menu();
         assert!(snapshot.summary(&mut menu, entry.roster_guid, 100).is_empty());
         let writes = menu.account_snapshots().len();
@@ -783,7 +814,7 @@ mod tests {
     #[test]
     fn captured_veteran_bonus_survives_later_account_changes() {
         let entry = Entry { roster_guid: Some(42), veteran_bonus: 0.4 };
-        let snapshot = Snapshot::from_cached(&state(1, false), entry, &Checkpoints::default());
+        let snapshot = Snapshot::from_cached(&state(1, false), entry, &Checkpoints::default(), false);
         let expected = snapshot.delivery().unwrap().talent_xp;
         let mut menu = menu();
         menu.backend_save.grant_terminal_xp(1, 1000).unwrap();

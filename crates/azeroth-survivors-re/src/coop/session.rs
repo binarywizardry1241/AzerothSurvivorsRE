@@ -1402,8 +1402,8 @@ impl Session {
         self.relay_peers.lock().unwrap().countries.get(&0).cloned().unwrap_or_default()
     }
     /// Publish actual normalized profiles in native party order.
-    pub fn publish_roster(&mut self, rows: Vec<super::server_party::NativeRosterEntry>, zone: String, heroic_rank: u8) {
-        let roster = super::server_party::NativeRoster { entries: rows, zone, heroic_rank };
+    pub fn publish_roster(&mut self, rows: Vec<super::server_party::NativeRosterEntry>, zone: String, heroic_rank: u8, hyper: bool) {
+        let roster = super::server_party::NativeRoster { entries: rows, zone, heroic_rank, hyper };
         if self.roster.as_ref() == Some(&roster) {
             return;
         }
@@ -1626,7 +1626,7 @@ mod relay_protocol_tests {
             NativeMessage::Lifecycle(LifecyclePacket::Denied(b"the host sent you away".to_vec())),
             NativeMessage::Lifecycle(accepted.clone()),
             NativeMessage::Lifecycle(LifecyclePacket::Roster(super::super::server_party::NativeRoster {
-                entries: Vec::new(), zone: "elwynn".into(), heroic_rank: 0 })),
+                entries: Vec::new(), zone: "elwynn".into(), heroic_rank: 0, hyper: false })),
         ]).unwrap().unwrap();
         let later = encode_lifecycle(&accepted).unwrap();
         {

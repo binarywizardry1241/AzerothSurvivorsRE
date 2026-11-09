@@ -87,6 +87,16 @@ pub fn account_grants(
 pub fn cooperative_luck(earned: bool) -> f32 {
     if earned { 0.1 } else { 0.0 }
 }
+
+/// Hyper Mode earns a lead up to half the final-boss deadline. Summary and
+/// achievement time use the real clock independently.
+pub fn talent_experience_seconds(seconds: f32, zone_key: &str, hyper: bool) -> f32 {
+    let Some(half_final_minutes) = crate::bosses::spawning::hyper_half_minutes(zone_key, hyper) else {
+        return seconds;
+    };
+    seconds + seconds.min(half_final_minutes * 60.0)
+}
+
 /// Historical0.112.0 1458ba062 parts, in serialized order: time, kills, bosses, victory,
 /// zone, run options, veteran. Keep f32 operation order before each roundf;
 /// zone is the residual after rounding, rather than independently rounded XP.

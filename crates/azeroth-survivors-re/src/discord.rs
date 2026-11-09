@@ -564,6 +564,7 @@ mod tests {
             ],
             zone: "elwynn".into(),
             heroic_rank: 0,
+            hyper: false,
         });
         let party = PartyActivity::from_coop(&coop).unwrap();
         assert_eq!(party.friends, "One, Two");

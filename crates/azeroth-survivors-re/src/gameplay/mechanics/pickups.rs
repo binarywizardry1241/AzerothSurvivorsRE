@@ -285,8 +285,10 @@ impl Mechanics {
             return;
         }
         self.pickup_state.initialized = true;
-        let seconds = azeroth_survivors_re::bosses::catalog::ZoneDefinition::by_key(self.zone.key)
-            .map_or(1200.0, |zone| zone.bosses[4].time_minutes * 60.0);
+        let seconds = azeroth_survivors_re::bosses::spawning::final_boss_minutes(
+            self.zone.key,
+            self.rules.hyper,
+        ).map_or(1200.0, |minutes| minutes * 60.0);
         self.boss_state.magnet_deadlines = run_pickups::magnet_windows(&mut self.rng, seconds);
     }
 

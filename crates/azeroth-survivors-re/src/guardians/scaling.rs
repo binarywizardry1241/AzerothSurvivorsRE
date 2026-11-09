@@ -13,6 +13,7 @@ use super::catalog::HealthKnot;
 pub struct ScalingInput {
     pub heroic_rank: u8,
     pub clock_seconds: f32,
+    pub hyper_half_minutes: Option<f32>,
     pub difficulty: f32,
     pub zone_scale: f32,
     pub guardian_kills: u32,
@@ -42,6 +43,10 @@ fn sse_min(first: f32, second: f32) -> f32 {
 }
 
 impl ScalingInput {
+    fn minutes(self) -> f32 {
+        crate::bosses::spawning::effective_enemy_minutes(self.clock_seconds, self.hyper_half_minutes)
+    }
+
     /// The native gate requires phase 1 and the endless flag together.
     pub fn endless_exponent(self) -> Option<f32> {
         (self.phase == 1 && self.endless).then(|| {
@@ -94,7 +99,7 @@ pub fn guardian_health_with_powf(
     knots: &[HealthKnot],
     mut powf: impl FnMut(f32, f32) -> f32,
 ) -> f32 {
-    let minutes = input.clock_seconds / 60.0;
+    let minutes = input.minutes();
     let curve = health_curve(minutes, knots);
     let endless = input
         .endless_exponent()
@@ -126,7 +131,7 @@ pub fn guardian_damage_with_powf(
     let endless = input
         .endless_exponent()
         .map_or(1.0, |exponent| powf(1.096, exponent));
-    let minutes = input.clock_seconds / 60.0;
+    let minutes = input.minutes();
     let linear = 0.08 * minutes + 1.0;
     let quadratic = (0.004 * minutes) * minutes;
     let polynomial = quadratic + linear;
@@ -220,6 +225,7 @@ mod tests {
             let input = ScalingInput {
                 heroic_rank: 0,
                 clock_seconds: float(case, "clock_bits"),
+                hyper_half_minutes: None,
                 difficulty: float(case, "difficulty_bits"),
                 zone_scale: float(case, "zone_scale_bits"),
                 guardian_kills: number(case, "guardian_kills"),
@@ -292,6 +298,7 @@ mod tests {
             let input = ScalingInput {
                 heroic_rank: 0,
                 clock_seconds: float(case, "clock_bits"),
+                hyper_half_minutes: None,
                 difficulty: float(case, "difficulty_bits"),
                 zone_scale: float(case, "zone_scale_bits"),
                 guardian_kills: 0,

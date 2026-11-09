@@ -9,6 +9,33 @@ use super::NativeRng;
 pub const PRIMARY_COUNT: usize = 5;
 pub const ENDLESS_INTERVAL_SECONDS: f32 = 300.0;
 
+pub fn primary_minutes(minutes: f32, hyper: bool) -> f32 {
+    if hyper { minutes * 0.5 } else { minutes }
+}
+
+pub fn final_boss_minutes(zone_key: &str, hyper: bool) -> Option<f32> {
+    ZoneDefinition::by_key(zone_key)?
+        .bosses.get(PRIMARY_COUNT - 1)
+        .map(|boss| primary_minutes(boss.time_minutes, hyper))
+}
+
+pub fn endless_interval_seconds(hyper: bool) -> f32 {
+    if hyper { 150.0 } else { ENDLESS_INTERVAL_SECONDS }
+}
+
+pub fn hyper_half_minutes(zone_key: &str, hyper: bool) -> Option<f32> {
+    hyper.then(|| final_boss_minutes(zone_key, true).unwrap_or(10.0))
+}
+
+/// Native0.143.0 doubles mob progression up to the shortened final-boss
+/// deadline, then keeps that lead while advancing at one minute per minute.
+pub fn effective_enemy_minutes(clock_seconds: f32, hyper_half_minutes: Option<f32>) -> f32 {
+    let minutes = clock_seconds / 60.0;
+    let Some(half) = hyper_half_minutes else { return minutes; };
+    let accelerated = minutes.min(half);
+    accelerated + accelerated + (minutes - half).max(0.0)
+}
+
 /// Current0.112.0 creator14593bc2e/14593bcb1 queues SMSG_PLAY_SOUND(8174),
 /// then the definition's +0x50 voice kit only when it is nonzero. Both are
 /// ordinary 2D SoundEntries kits; the client owns MPQ resolution and playback.
@@ -54,11 +81,11 @@ impl Scheduler {
     /// The primary index advances before creation and is never rolled back.
     pub fn tick(&mut self, zone: &ZoneDefinition, clock_seconds: f32, endless: bool,
                 suppressed: bool, rng: &mut NativeRng, port: &mut impl SpawnPort) -> Option<usize> {
-        self.tick_for_rank(zone, clock_seconds, endless, suppressed, rng, port, 0)
+        self.tick_for_rank(zone, clock_seconds, endless, suppressed, rng, port, 0, false)
     }
 
     pub fn tick_for_rank(&mut self, zone: &ZoneDefinition, clock_seconds: f32, endless: bool,
-        suppressed: bool, rng: &mut NativeRng, port: &mut impl SpawnPort, heroic_rank: u8) -> Option<usize> {
+        suppressed: bool, rng: &mut NativeRng, port: &mut impl SpawnPort, heroic_rank: u8, hyper: bool) -> Option<usize> {
         if suppressed { return None; }
         if self.next_primary < PRIMARY_COUNT {
             let index = self.next_primary;
@@ -66,7 +93,9 @@ impl Scheduler {
             if zone.key == "scholomance" && port.has_living_primary_boss() {
                 return None;
             }
-            if !(clock_seconds / 60.0 >= zone.bosses[index].time_minutes) { return None; }
+            if !(clock_seconds / 60.0 >= primary_minutes(zone.bosses[index].time_minutes, hyper)) {
+                return None;
+            }
             self.next_primary += 1;
             port.spawn_boss(index, &zone.bosses[index], rng);
             if heroic_rank >= 5 && zone.bosses[index].flag_54 & 1 != 0 {
@@ -77,7 +106,7 @@ impl Scheduler {
         } else if endless && clock_seconds >= self.endless_deadline {
             let index = endless_index(rng);
             port.spawn_boss(index, &zone.bosses[index], rng);
-            self.endless_deadline = clock_seconds + ENDLESS_INTERVAL_SECONDS;
+            self.endless_deadline = clock_seconds + endless_interval_seconds(hyper);
             Some(index)
         } else { None }
     }

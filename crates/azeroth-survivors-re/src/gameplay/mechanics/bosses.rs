@@ -130,8 +130,8 @@ impl BossState {
     pub(super) fn endless_started_at(&self) -> f32 {
         self.completion.phase_started_at
     }
-    pub(super) fn continue_endless(&mut self, now: f32) {
-        self.scheduler.endless_deadline = now + 300.0;
+    pub(super) fn continue_endless(&mut self, now: f32, hyper: bool) {
+        self.scheduler.endless_deadline = now + native::spawning::endless_interval_seconds(hyper);
         self.completion.endless_enabled = true;
         self.completion.run_state = 1;
     }
@@ -267,8 +267,9 @@ impl Mechanics {
         }
         let scheduler = &self.boss_state.scheduler;
         let deadline = if scheduler.next_primary < native::spawning::PRIMARY_COUNT {
-            native::catalog::ZoneDefinition::by_key(self.zone.key)?
-                .bosses.get(scheduler.next_primary)?.time_minutes * 60.
+            let boss = native::catalog::ZoneDefinition::by_key(self.zone.key)?
+                .bosses.get(scheduler.next_primary)?;
+            native::spawning::primary_minutes(boss.time_minutes, self.rules.hyper) * 60.0
         } else if self.rules.endless {
             scheduler.endless_deadline
         } else {
@@ -321,6 +322,7 @@ impl Mechanics {
             &mut self.rng,
             &mut port,
             self.rules.heroic_rank,
+            self.rules.hyper,
         );
     }
 
@@ -1473,7 +1475,7 @@ mod terminal_tests {
         game.boss_state.scheduler.next_primary = native::spawning::PRIMARY_COUNT;
         game.finish_boss_completion(&mut super::super::rng_integration::TerrainFixture);
         assert!(game.completed && game.victory_reached());
-        let first = game.terminal_delivery().unwrap();
+        let first = game.terminal_delivery(false).unwrap();
         assert!(first.first_result && first.result.won);
         assert_eq!(first.xp_parts[3], 200);
         game.mark_terminal_delivery_saved(&first);
@@ -1487,19 +1489,19 @@ mod terminal_tests {
         assert_eq!(game.boss_state.scheduler.endless_deadline, 600.0);
         assert_eq!(game.boss_state.completion.run_state, 1);
         assert!(game.boss_state.completion.endless_enabled);
-        assert_eq!(game.terminal_delivery(), None);
+        assert_eq!(game.terminal_delivery(false), None);
         assert!(!game.continue_endless());
         game.clock = 360.0;
         game.kills = 200;
         game.dead = true;
-        let later = game.terminal_delivery().unwrap();
+        let later = game.terminal_delivery(false).unwrap();
         assert!(!later.first_result);
         assert!(later.result.won, "victory stays set after the later defeat");
         assert_eq!(later.delta_counts, [100, 0, 0, 0, 0]);
         assert_eq!(later.delta_xp_parts, [12, 10, 0, 0, 0, 0, 0]);
         assert_eq!(later.talent_xp, 22);
-        assert_eq!(game.run_result(), None);
+        assert_eq!(game.run_result(false), None);
         game.mark_terminal_delivery_saved(&later);
-        assert_eq!(game.terminal_delivery(), None);
+        assert_eq!(game.terminal_delivery(false), None);
     }
 }
