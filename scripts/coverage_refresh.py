@@ -84,7 +84,7 @@ def read_bound(receipt):
 def ownership_records(target, systems, selection, unknown_path):
     """Rejoin current system IDs while retaining the original native observations."""
     diagnostic = load_json(DIAGNOSTICS)
-    previous_mapping = diagnostic["source_mapping_projection"]
+    previous_mapping = diagnostic.get("source_mapping_projection")
     classifier_ref = selection["records"]["classification"]
     classifier = read_bound(classifier_ref)
     if classifier_ref["path"] != CLASSIFICATION:
@@ -93,13 +93,17 @@ def ownership_records(target, systems, selection, unknown_path):
     if any(row["target"] != target for row in (diagnostic, selection, classifier, systems)):
         raise ValueError("Coverage targets differ. Reconcile the native audit before refreshing its source records.")
     mapping = {"path": SYSTEMS, "sha256": file_sha256(SYSTEMS)}
-    if mapping == previous_mapping["source_mapping"] and mapping["sha256"] == prior["source_mapping"]["sha256"]:
+    if (mapping["sha256"] == prior["source_mapping"]["sha256"]
+            and (previous_mapping is None or mapping == previous_mapping["source_mapping"])):
         return {}
 
     owner = load_script("coverage_diagnostics", "discover-native-ownership.py")
+    payload = read_bound(diagnostic["inventory"])
+    sources = (previous_mapping["native_execution_sources"] if previous_mapping is not None
+               else owner.execution_sources(payload["generator"]))
     projected = owner.project_source_mapping(
-        read_bound(diagnostic["inventory"]), diagnostic["inventory"], systems, ROOT / SYSTEMS,
-        previous_mapping["native_execution_sources"], fresh_verification=diagnostic.get("fresh_native_verification"),
+        payload, diagnostic["inventory"], systems, ROOT / SYSTEMS, sources,
+        fresh_verification=diagnostic.get("fresh_native_verification"),
     )
     source_audit = read_bound(prior["audit"])
     if source_audit["source_mapping"] != prior["source_mapping"]:
