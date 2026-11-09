@@ -123,7 +123,7 @@ replays passed. The remaining checks follow the linked verification entries.
 ## Windows exception report and dump
 
 The Windows crash claim `changelog:0.141.1:548650aa574f4367` has a
-[source and recovery finding #326](../CURRENT-STATE.md#gap-326). The
+[verification finding #326](../verification-needed.md#gap-326). The
 0.143.0 PE, SHA-256
 `f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`,
 adds the `dbghelp.dll!MiniDumpWriteDump` import relative to 0.141.0.
@@ -141,14 +141,56 @@ The three code ranges have SHA-256 commitments
 and `6297d31ceb2e6c902bae15f01b0e59b76f9aa51c498d23ff8f1caffcbff73ba1`
 in table order. These preferred addresses describe the installed PE.
 
-The rebuilt [`crash::install`](../../crates/benilla-app/src/crash.rs) chains
-the Rust panic hook and writes `Diagnostics/crash-<unix>.txt`. Reuse its
-[startup call](../../crates/benilla-app/src/lib.rs) and
-[local state directory](../../crates/benilla-app/src/local_state.rs) as the
-source boundary. Recover the original startup guard, exception classification,
-filename interpolation, text-write failures and filter return/chaining. The
-static route establishes callback registration and the dump call. Windows
-execution, filesystem results and original/rebuilt comparison remain separate.
+The [callback trace](evidence/windows-crash-report.json) follows startup,
+file handling, report formatting and the filter continuation. At
+`0x1400074e0`, a missing local state home bypasses registration. Otherwise
+startup joins `Diagnostics` to that home and saves the filter returned by
+`SetUnhandledExceptionFilter`. The callback checks for published state,
+then exchanges its one-shot reporting latch. The initial and repeated
+callbacks both pass the original exception pointer to the previous filter
+when present and return its result. The default return is
+`EXCEPTION_CONTINUE_SEARCH`.
+
+Both filenames use the same decimal Unix-second timestamp
+(`fault-<seconds>.dmp` and `fault-<seconds>.txt`). The callback attempts
+directory creation, then opens the dump and passes the current process,
+thread ID and original exception pointers to `MiniDumpWriteDump`. Flags
+`0x1040` include indirectly referenced memory and thread information. It
+closes the handle before deleting an unsuccessful dump. The text attempt
+continues after a dump failure and prints the report path to stderr only
+after a successful write.
+
+The text includes build, timestamp, platform, faulting thread ID and name,
+exception code and label, address, module-relative offset and dump status.
+Access violation parameters add the operation and target address only when
+the record has at least two parameters. The packed fields print alternate
+lowercase hex with zero fill to width 10 for the exception code and 18 for
+the address and access target. The module offset has no fixed width.
+The original callback captures a
+backtrace and waits at most two seconds for the `fault-report` thread's
+oldest-first log snapshot. A stack overflow skips both optional operations.
+
+The [AS entry point](../../crates/azeroth-survivors-re/src/main.rs) constructs
+its app directly. It now registers the
+[Windows callback](../../crates/benilla-app/src/crash/windows.rs) before
+app construction, using the existing
+[local state directory](../../crates/benilla-app/src/local_state.rs).
+The Windows app also attaches the existing [log ring](../../crates/benilla-world/src/log_ring.rs)
+to its Bevy log plugin so the callback's snapshot has a live producer.
+The [launcher stamp](../../crates/azeroth-survivors-re/build.rs) supplies
+the rebuilt build ID and the 8 MiB Windows stack reserve observed in the
+original PE. The existing Rust panic hook has its own entry point and
+report format.
+
+The bounded Ghidra callback result and independent Capstone check cover
+1,660 instructions across eight declared ranges, 12 Windows imports and nine
+exception labels. Run `python3 -B scripts/check-release-review.py --windows-crash-report`
+with the project's Capstone environment to check those ranges, 24 exact report
+operands, startup wiring, file order and optional diagnostics guards.
+`--require-retained-queries` checks the saved callback result from the primary checkout.
+The used Win32 function and struct declarations match the lockfile-verified
+`windows-sys` 0.59.0 crate. Compilation, Windows exception delivery, filesystem
+results and original/rebuilt comparison remain open.
 
 ## 0.141.1 follow-through and the macOS release
 
@@ -164,7 +206,7 @@ Current Windows PE applicability is separate for each retained claim.
 | `737de64a7a82f25e` | The current item resolver compares display `34484` at `0x145e5d6c2` and stores inventory `26` and subclass `3` on the gun branch. DBC row `34484` remains in the unchanged base archive. Trace item admission, animation, shot-ammo/muzzle and tooltip independently from damage under [#6](../verification-needed.md#gap-6). |
 | `f254ac47b93d1ae2` | The [0.143.0 correspondence](lordaeron-tabard.md#01430-correspondence) proves item `90012` resolves to display `16078`, with matching Rewards descriptor, display row and both patch-D textures. Rebuilt lookup and render comparisons remain under [#324](../verification-needed.md#gap-324). |
 | `5fb431ffa62f27ff` | Recheck the shouter's Horn and Bloodlust through ally aura state and individual tooltip fields under [#289](../verification-needed.md#gap-289). |
-| `548650aa574f4367` | The [Windows callback](#windows-exception-report-and-dump) supplies the native lead for [#326](../CURRENT-STATE.md#gap-326). |
+| `548650aa574f4367` | The [Windows callback](#windows-exception-report-and-dump) and the connected report source are tracked in [#326](../verification-needed.md#gap-326). |
 | `1f80975a909f28c0` | Release acknowledgement with no behavior claim. |
 | `834d0a8114d2f92f` | macOS release summary linking the next two claims. |
 | `97ee6c8f365508a6` | Apple silicon package, minimum macOS and first-launch instructions need the distributed macOS artifact for assessment. [#133](../CURRENT-STATE.md#gap-133) owns platform packaging and update applicability. |

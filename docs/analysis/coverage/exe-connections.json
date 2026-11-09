@@ -23,7 +23,7 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "90fc93f39226470ef04d1f156f06385c569818f4dac8fcfc7e02b1d51aec8905"
+      "sha256": "3a5976fe007aa965e33c39c9758395b41f6a9724476716e23315edf5902dd871"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
@@ -39,7 +39,7 @@
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "365f9cccf99b25f04ca7766115bc844b069206bff47366aa1dbd8659969ebc9e"
+      "sha256": "3525ac55339137e4b42defa847eac85879dc6afdbe53ae9fad8f20c5f7b50d0c"
     },
     {
       "path": "docs/analysis/coverage/full-image-selected.json",
@@ -53,7 +53,7 @@
   "supporting_inputs": [
     {
       "path": "docs/analysis/coverage/native-ownership-classification.json",
-      "sha256": "2e80745dcf68c85725ce65aa83349c4ba0e098bf78b87181630a6d4a8937ca33",
+      "sha256": "7fd76cc2ac1aa4fa9e416ca1cef8e78237e96410fa6795d7e2de7f9dfb8dfa45",
       "target": {
         "version": "0.143.0",
         "path": "installed-game/AzerothSurvivors.exe",
@@ -72,9 +72,9 @@
     "without_source_correspondence": 0,
     "ownerless_native_location_references": 67,
     "paths_with_ownerless_native_location_references": 15,
-    "retained_evidence_json_documents": 1892,
+    "retained_evidence_json_documents": 1893,
     "evidence_document_identity_roles": {
-      "current": 16,
+      "current": 17,
       "historical": 1783,
       "requires_owning_manifest_or_review": 93
     },
@@ -186,7 +186,8 @@
         "crates/benilla-app/src/sound/creature.rs",
         "crates/benilla-formats/src/creature_sound.rs",
         "crates/benilla-formats/src/lib.rs",
-        "scripts/check-creature-death-sound-0.119.0.py"
+        "scripts/check-creature-death-sound-0.119.0.py",
+        "crates/benilla-app/src/crash/windows.rs"
       ],
       "source_anchors": [
         {
@@ -238,10 +239,12 @@
       "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": true,
       "current_bounded_contract_scopes": {
-        "docs/analysis/evidence/bounded-native-frontier.json": "The Windows startup constructs its Diagnostics path and supplies the filter callback that calls MiniDumpWriteDump. Filename formatting, all errors and runtime file effects remain open."
+        "docs/analysis/evidence/bounded-native-frontier.json": "The Windows startup constructs its Diagnostics path and supplies the filter callback that calls MiniDumpWriteDump. Filename formatting, all errors and runtime file effects remain open.",
+        "docs/analysis/evidence/windows-crash-report.json": "AS startup installs the Windows exception filter for the local Diagnostics directory. The callback writes the paired fault files with the recovered timestamp, dump flags, failure handling and previous-filter continuation."
       },
       "current_bounded_contract_refs": [
-        "docs/analysis/evidence/bounded-native-frontier.json"
+        "docs/analysis/evidence/bounded-native-frontier.json",
+        "docs/analysis/evidence/windows-crash-report.json"
       ]
     },
     {
@@ -6946,6 +6949,6 @@
   "parity_verified": false,
   "inventory": {
     "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/exe-connections.json",
-    "sha256": "b8c9480450245d9e45e06d695a528a7b6bf925d5dca59f61dc58c29437902489"
+    "sha256": "9d2b90a18d14e3285294d004fde1eb3bccf14071a32a0d570d383fb401a7d395"
   }
 }

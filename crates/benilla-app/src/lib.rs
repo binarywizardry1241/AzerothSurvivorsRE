@@ -215,6 +215,14 @@ pub use benilla_protocol::{messages::ObjectType, ObjectFields};
 pub use net::Objects;
 pub use target::Interact;
 
+/// Installs the native Windows fault reporter for a launcher that constructs its own app.
+#[cfg(windows)]
+pub fn install_windows_fault_reporting(build: BuildId) {
+    if let Some(directory) = local_state::diagnostics_dir() {
+        crash::windows::install(directory, build);
+    }
+}
+
 /// Builds and runs the client app. `build` is the launcher's compile-time git stamp, passed in as
 /// data so the sha lives in the shim's fingerprint and a commit does not recompile this crate.
 pub fn run(build: BuildId) -> AppExit {

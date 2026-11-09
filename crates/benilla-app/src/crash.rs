@@ -18,6 +18,9 @@ use bevy::ecs::error::{BevyError, ErrorContext};
 
 use crate::BuildId;
 
+#[cfg(windows)]
+pub(crate) mod windows;
+
 /// Chains the crash-report hook after the current one. Called once as the client launches
 /// ([`crate::run`], [`crate::run_with`]), before the `App` exists, so a panic while plugins build
 /// is covered.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Replay bounded 0.117.0 release evidence; never compile or execute a game.
+"""Check bounded release evidence; never compile or execute a game.
 
 Configured installed EXE bytes, source receipts and supplied notes are required.
 Saved Ghidra query payloads are local optional evidence unless explicitly required.
@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 import struct
 
-from coverage_common import ROOT, artifact_path, project_path
+from coverage_common import ROOT, artifact_path, latest_target, project_path, target_bytes
 from script_sources import load_script
 
 SHA = "507a791fad3aec59afb2f90d2737cdab4dbbe79b98c5e74d7699fe44bed16293"
@@ -82,6 +82,117 @@ def validate_populations(evidence):
         raise ValueError("Malformed or missing release-review population") from error
 
 
+def check_windows_crash_report(require_query):
+    from capstone import Cs, CS_ARCH_X86, CS_MODE_64
+    from capstone.x86 import X86_OP_MEM, X86_REG_RIP
+
+    proof = json.loads(project_path("docs/analysis/evidence/windows-crash-report.json").read_text())
+    assert proof["finding_id"] == 326 and proof["schema_version"] == 1
+    selected = latest_target(verify=False)
+    assert proof["target"] == {key: selected[key] for key in ("version", "path", "sha256", "size_bytes")}
+    data = target_bytes(selected)
+    pe = load_script("release_review_pe", ROOT / "scripts/inventory-executable.py").PE(data)
+    frontier = json.loads(project_path(proof["frontier"]["path"]).read_text())
+    assert frontier["target"] == proof["target"]
+    ranges = [frontier["native_ranges"][key] for key in proof["frontier"]["native_ranges"]]
+    ranges.extend(proof["additional_ranges"].values())
+    assert len(ranges) == 8
+
+    def read_at(address, size):
+        offset = pe.rva_offset(address - pe.image_base)
+        assert pe.rva_offset(address + size - 1 - pe.image_base) == offset + size - 1
+        return data[offset:offset + size]
+
+    decoder = Cs(CS_ARCH_X86, CS_MODE_64)
+    decoder.detail = True
+    instructions = {}
+    for row in ranges:
+        address = int(row["virtual_address"], 16)
+        size = row["byte_count"]
+        native = read_at(address, size)
+        assert pe.rva_offset(address - pe.image_base) == int(row["file_offset"], 16)
+        assert address + size == int(row["end_exclusive"], 16)
+        assert digest(native) == row["sha256"]
+        decoded = list(decoder.disasm(native, address))
+        assert sum(i.size for i in decoded) == size
+        instructions.update((i.address, i) for i in decoded)
+    assert len(instructions) == proof["static_check"]["verified_instruction_count"]
+    assert pe.u64(pe.optional + 72) == 0x800000
+    assert pe.u64(pe.optional + 80) == 0x1000
+
+    def rip_target(site, operand):
+        instruction = instructions[int(site, 16)]
+        memory = instruction.operands[operand]
+        assert memory.type == X86_OP_MEM and memory.mem.base == X86_REG_RIP
+        return instruction.address + instruction.size + memory.mem.disp
+
+    imports = {int(dll["iat_start_address"], 16) + 8 * i: name
+               for dll in pe.imports() for i, name in enumerate(dll["functions"])}
+    assert len(proof["windows_import_edges"]) == 12
+    for site, name in proof["windows_import_edges"].items():
+        assert instructions[int(site, 16)].mnemonic == "call"
+        assert imports[rip_target(site, 0)] == name
+
+    def source_order(source, *markers):
+        position = 0
+        for marker in markers:
+            position = source.index(marker, position) + len(marker)
+
+    source = project_path("crates/benilla-app/src/crash/windows.rs").read_text()
+    labels = proof["source_contract"]["exception_labels"]
+    assert len(labels) == 9
+    for value, label in labels.items():
+        comparison = instructions[int(label["comparison"], 16)]
+        assert comparison.mnemonic == "cmp" and comparison.operands[1].imm == int(value, 16)
+        text = label["label"].encode()
+        assert read_at(int(label["text_address"], 16), len(text)) == text
+        assert f'=> "{label["label"]}"' in source
+    text_operands = proof["report_text"] + proof["other_text_operands"]
+    assert len(text_operands) == len({row["site"] for row in text_operands}) == 24
+    for row in text_operands:
+        text = bytes.fromhex(row["bytes"])
+        assert read_at(rip_target(row["site"], 1), len(text)) == text
+        assert row["source"] in source
+    for address, operands in {
+        0x14035e955: "r9d, 0x1040", 0x14035ed4e: "r8d, 2", 0x14035ea64: "r15d, 0xc00000fd",
+        0x14035f492: "rax, rax", 0x14035f497: "rax, 1", 0x14035f49d: "rax, 8",
+        0x14035f9b2: "rax", 0x14035f9b4: "r14d, eax", 0x14035f9b7: "eax, r14d",
+    }.items():
+        assert instructions[address].op_str == operands
+    source_order(source, *(row["source"] for row in proof["report_text"]))
+    source_order(source, "REPORTING.swap(true", "reporter.report(exceptions", "previous(exceptions)")
+    source_order(source, 'fault-{unix}.dmp', "write_dump(&dump", 'fault-{unix}.txt', "fs::write(&path")
+    source_order(source, "fn write_dump(", "File::create(path)", "MiniDumpWriteDump(",
+                 "drop(file)", "fs::remove_file(path)")
+    assert "MiniDumpWithIndirectlyReferencedMemory | MiniDumpWithThreadInfo" in source
+    assert "code != EXCEPTION_STACK_OVERFLOW" in source and "Duration::from_secs(2)" in source
+    assert "EXCEPTION_ACCESS_VIOLATION && r.NumberParameters >= 2" in source
+    launcher = project_path("crates/azeroth-survivors-re/src/main.rs").read_text()
+    source_order(launcher, "install_windows_fault_reporting", "let mut app = App::new()",
+                 "benilla_world::log_ring::LogRing", "native_input::device_plugins(plugins)")
+    engine = project_path("crates/benilla-app/src/lib.rs").read_text()
+    source_order(engine, "pub fn install_windows_fault_reporting", "local_state::diagnostics_dir()",
+                 "crash::windows::install")
+
+    query = proof["callback_query"]
+    raw = read_at(int(query["raw_base"], 16), query["raw_size_bytes"])
+    assert pe.rva_offset(int(query["raw_base"], 16) - pe.image_base) == int(query["raw_file_offset"], 16)
+    assert digest(raw) == query["raw_sha256"]
+    checksum = query["result_sha256"]
+    path = project_path(f"runtime/analysis/objects/{checksum[:2]}/{checksum}")
+    if path.is_file():
+        payload = path.read_bytes()
+        assert digest(payload) == checksum
+        record = json.loads(payload)["structuredContent"]
+        assert record["evidence_id"] == query["evidence_id"] and record["provider"]["id"] == "ghidra"
+        assert record["subject"]["digest"]["sha256"] == query["raw_sha256"]
+        assert record["parameters"]["procedure"] == query["procedure"]
+    else:
+        assert not require_query, "Missing local Windows callback query payload"
+    print(f"#326 passed {len(instructions)} instructions, {len(proof['windows_import_edges'])} imports, "
+          f"{len(labels)} exception labels, report templates and live source order.")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--require-retained-queries", action="store_true")
@@ -89,7 +200,14 @@ def main():
                         help="check only #112's live source receipt; retain every native and query check")
     parser.add_argument("--armory-source-only", action="store_true",
                         help="check only #120/#159's live Armory source receipt; retain every native and query check")
+    parser.add_argument("--windows-crash-report", action="store_true",
+                        help="check #326's current Windows fault report evidence and live source")
     args = parser.parse_args()
+    if args.windows_crash_report:
+        if args.discord_source_only or args.armory_source_only:
+            parser.error("Windows crash evidence is separate from the 0.117.0 source receipt scopes")
+        check_windows_crash_report(args.require_retained_queries)
+        return
     if args.discord_source_only and args.armory_source_only:
         parser.error("Choose one source receipt scope")
     evidence = json.loads(EVIDENCE.read_text())

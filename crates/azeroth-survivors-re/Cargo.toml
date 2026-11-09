@@ -63,6 +63,9 @@ objc2-core-audio-types = { version = "0.3", default-features = false, features =
 [target.'cfg(not(target_os = "macos"))'.dependencies]
 cpal = "0.17"
 
+[build-dependencies]
+benilla-buildstamp = { path = "../benilla-buildstamp" }
+
 [[bin]]
 name = "AzerothSurvivorsRE"
 path = "src/main.rs"

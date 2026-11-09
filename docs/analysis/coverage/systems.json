@@ -96,7 +96,8 @@
         "crates/benilla-app/src/sound/creature.rs",
         "crates/benilla-formats/src/creature_sound.rs",
         "crates/benilla-formats/src/lib.rs",
-        "scripts/check-creature-death-sound-0.119.0.py"
+        "scripts/check-creature-death-sound-0.119.0.py",
+        "crates/benilla-app/src/crash/windows.rs"
       ],
       "evidence_refs": [
         "docs/analysis/target-0.105.0.md",
@@ -198,7 +199,8 @@
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
         "docs/analysis/native-census-0.139.1.md",
-        "docs/analysis/evidence/bounded-native-frontier.json"
+        "docs/analysis/evidence/bounded-native-frontier.json",
+        "docs/analysis/evidence/windows-crash-report.json"
       ],
       "gap_ids": [
         9,
@@ -78426,6 +78428,21 @@
       ],
       "bounded_contract_owner_scopes": {
         "custom-app-screens-markers": "Scripted marker safe flag, fill dispatch for tags 5–9, and safe-circle arc progress, geometry and paint."
+      }
+    },
+    "docs/analysis/evidence/windows-crash-report.json": {
+      "path": "docs/analysis/evidence/windows-crash-report.json",
+      "target_version": "0.143.0",
+      "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-app-lib"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-app-lib"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-app-lib": "AS startup installs the Windows exception filter for the local Diagnostics directory. The callback writes the paired fault files with the recovered timestamp, dump flags, failure handling and previous-filter continuation."
       }
     }
   },

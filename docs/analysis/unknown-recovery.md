@@ -18,7 +18,7 @@ current exact rows and preserve their source, dynamic and runtime limits.
 | `Q41-D01`, `Q41-E01` | Select exact diagnostic sites in `diagnostic_selectors.sites` and the connection ledger's ownerless rows. Compare the receiving body with existing benilla or AS source before expanding. |
 | `Q41-I01`, `Q41-D03`, `Q41-R01` | Use `embedded_candidate_selectors`, the [data join](evidence/data-classification.json) and [MPQ member rows](evidence/mpq-member-coverage.json). Bind remaining IDs, script/config formats and resource paths to live callers, member winners and consumers. |
 | `Q41-NEW:hyper-*` | Select the [exact native leads](evidence/as-discovery-reviews.json) for the Pick receiver, solo/host simulation and reward clocks, timed achievements and accepted peer path. [#325](../CURRENT-STATE.md#gap-325) owns the connected issue. |
-| `Q41-NEW:windows-crash-files` | Select `native_ranges.windows-crash-callback` in the [bounded frontier](evidence/bounded-native-frontier.json) and trace Diagnostics filenames, report writes and failure/return behavior. [#326](../CURRENT-STATE.md#gap-326) owns the source and recovery work. |
+| `Q41-NEW:windows-crash-files` | **Source connected.** The [bounded callback and file trace](evidence/windows-crash-report.json) resolves names, writers, failure paths and filter continuation from the selected callback. Windows execution and file results remain in [#326](../verification-needed.md#gap-326). |
 
 The [candidate graph](coverage/as-discovery.json) retains exact parent
 edges, current proof scopes and open predecessors. [#163](../CURRENT-STATE.md#gap-163)

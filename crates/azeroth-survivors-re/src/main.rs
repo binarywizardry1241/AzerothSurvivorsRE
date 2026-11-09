@@ -138,6 +138,17 @@ fn main() {
         }
         return;
     }
+    #[cfg(windows)]
+    benilla_app::install_windows_fault_reporting(benilla_app::BuildId {
+        version: env!("CARGO_PKG_VERSION"),
+        describe: env!("BENILLA_GIT_DESCRIBE"),
+        sha: env!("BENILLA_GIT_SHA"),
+        short: env!("BENILLA_GIT_SHORT"),
+        date: env!("BENILLA_GIT_DATE"),
+        profile: env!("BENILLA_PROFILE"),
+        extended: true,
+        ..Default::default()
+    });
     let mut app = App::new();
     app.insert_resource(run_seeds);
     let native_startup = startup::NativeStartup::positional(&positional, &catalog);
@@ -159,18 +170,24 @@ fn main() {
             eprintln!("Could not register menu world data: {error:#}");
         }
     }
+    let plugins = DefaultPlugins.set(WindowPlugin {
+        primary_window: Some(Window {
+            title: "Azeroth Survivors".into(),
+            focused: !benilla_world::bgwin::background_run(),
+            resolution: WindowResolution::new(1600, 900),
+            ..default()
+        }),
+        ..default()
+    });
+    #[cfg(windows)]
+    let plugins = plugins.set(bevy::log::LogPlugin {
+        custom_layer: |_| Some(Box::new(benilla_world::log_ring::LogRing)),
+        ..default()
+    });
     app.insert_resource(catalog)
         .init_resource::<assets::MenuArt>()
         .insert_resource(ClearColor(Color::srgb(0.025, 0.021, 0.018)))
-        .add_plugins(native_input::device_plugins(DefaultPlugins.set(WindowPlugin {
-            primary_window: Some(Window {
-                title: "Azeroth Survivors".into(),
-                focused: !benilla_world::bgwin::background_run(),
-                resolution: WindowResolution::new(1600, 900),
-                ..default()
-            }),
-            ..default()
-        })));
+        .add_plugins(native_input::device_plugins(plugins));
     benilla_app::local_client::set_enchant_glow_priority(true);
     benilla_assets::register_asset_loaders(&mut app);
     app.add_plugins(benilla_world::world_plugins::WorldPlugins)

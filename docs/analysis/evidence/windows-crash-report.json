@@ -1,0 +1,263 @@
+{
+  "schema_version": 1,
+  "finding_id": 326,
+  "target": {
+    "version": "0.143.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+    "size_bytes": 151566336
+  },
+  "frontier": {
+    "path": "docs/analysis/evidence/bounded-native-frontier.json",
+    "native_ranges": [
+      "windows-crash-startup",
+      "windows-crash-register",
+      "windows-crash-callback"
+    ]
+  },
+  "additional_ranges": {
+    "state-home": {
+      "virtual_address": "0x140752f60",
+      "end_exclusive": "0x140753196",
+      "file_offset": "0x752360",
+      "byte_count": 566,
+      "sha256": "9bc57a580a1d593fef84e61551cd6c10900a17ded0e3ed5632af8355d2ff8bcc"
+    },
+    "system-time": {
+      "virtual_address": "0x14635e060",
+      "end_exclusive": "0x14635e088",
+      "file_offset": "0x635d460",
+      "byte_count": 40,
+      "sha256": "bfc42fa29646abd7617fadb7d984e94840a3b22918da553474d46b4565e89433"
+    },
+    "crash-thread-unwind": {
+      "virtual_address": "0x14635d4d0",
+      "end_exclusive": "0x14635d886",
+      "file_offset": "0x635c8d0",
+      "byte_count": 950,
+      "sha256": "2a584b517beaed08d069b2b59f65428ffb418c9afa2fc9526638978baa747785"
+    },
+    "log-worker-receiver": {
+      "virtual_address": "0x1400ba080",
+      "end_exclusive": "0x1400ba16e",
+      "file_offset": "0xb9480",
+      "byte_count": 238,
+      "sha256": "ff4a0e42805b94aeef851fa4706de112f8afb9b0331fbdc97622ffd7f67b5525"
+    },
+    "failed-dump-file-delete": {
+      "virtual_address": "0x14636fb60",
+      "end_exclusive": "0x14636fca3",
+      "file_offset": "0x636ef60",
+      "byte_count": 323,
+      "sha256": "3aa1efeb20e929b103f0c39b13bc16f6c4a9f6079c0bcf6e04371c80cef63ff3"
+    }
+  },
+  "callback_query": {
+    "procedure": "0x14035e680",
+    "format": "raw-binary",
+    "raw_base": "0x14035e680",
+    "raw_file_offset": "0x35da80",
+    "raw_size_bytes": 7574,
+    "raw_sha256": "722b51df4384e126fd261c63b12609403543eebde599d364c6218c65f2da6035",
+    "result_sha256": "1d9681d1afd00fbd9e44b9d67a8e107668e16d735569a913c5dc7ad049fefdcc",
+    "evidence_id": "ev_f2629dcee77fc7fb346c07489abdf1890e992776a2a654abf91b0d12d0f1efd6",
+    "limits": "The bounded slice omits globals, imports and external routines. The installed PE operands and mapped imports establish those edges."
+  },
+  "windows_import_edges": {
+    "0x140360335": "SetUnhandledExceptionFilter",
+    "0x14635e076": "GetSystemTimePreciseAsFileTime",
+    "0x14035e90d": "GetCurrentThreadId",
+    "0x14035e92a": "GetCurrentProcess",
+    "0x14035e933": "GetCurrentProcessId",
+    "0x14035e95b": "MiniDumpWriteDump",
+    "0x14035e966": "CloseHandle",
+    "0x14636fb6e": "DeleteFileW",
+    "0x14035e9c0": "GetModuleHandleExW",
+    "0x14035e9fb": "GetModuleFileNameW",
+    "0x14635d578": "RtlCaptureContext",
+    "0x14635d72e": "RtlVirtualUnwind"
+  },
+  "source_contract": {
+    "startup": "The 0x1400074e0 guard skips registration without a local state home. 0x140007591 joins Diagnostics and 0x140007627 registers the callback. The PE main thread reserves 0x800000 stack bytes.",
+    "filter": "0x14035e6bb checks published configuration and 0x14035e6d1 sets a one-shot latch. Both the first and repeated callbacks reach the previous filter at 0x14035f9a3 if present, else return 0.",
+    "files": "One Unix-second value (0 if unavailable) names fault-<seconds>.dmp and fault-<seconds>.txt. The minidump flags are 0x1040. The handle closes before a failed write calls file deletion, and the independent text attempt continues.",
+    "exception_labels": {
+      "0xc0000005": {
+        "comparison": "0x14035f277",
+        "text_address": "0x1465c128b",
+        "label": "access violation"
+      },
+      "0xc0000006": {
+        "comparison": "0x14035f280",
+        "text_address": "0x1465c12bc",
+        "label": "in-page error"
+      },
+      "0xc000001d": {
+        "comparison": "0x14035f29e",
+        "text_address": "0x1465c12a9",
+        "label": "illegal instruction"
+      },
+      "0xc0000094": {
+        "comparison": "0x14035f2a7",
+        "text_address": "0x1465c12c9",
+        "label": "integer divide by zero"
+      },
+      "0xc00000fd": {
+        "comparison": "0x14035f2be",
+        "text_address": "0x1465c129b",
+        "label": "stack overflow"
+      },
+      "0xc0000374": {
+        "comparison": "0x14035f2c7",
+        "text_address": "0x1465c12ff",
+        "label": "heap corruption"
+      },
+      "0xc0000409": {
+        "comparison": "0x14035f236",
+        "text_address": "0x1465c12df",
+        "label": "stack buffer overrun / fail-fast"
+      },
+      "0xc0000602": {
+        "comparison": "0x14035f243",
+        "text_address": "0x1465c130e",
+        "label": "unhandled C++ exception"
+      },
+      "0xe06d7363": {
+        "comparison": "0x14035f250",
+        "text_address": "0x1465c1325",
+        "label": "C++ exception"
+      }
+    },
+    "text": "0x14035f0d5..0x14035f6f7 emits the build, Unix time, platform, faulting thread, exception, address and module, guarded access information, dump path, optional backtrace and oldest-first log. The report writer 0x14035f7c3 emits a stderr path only on success.",
+    "optional_diagnostics": "0x14035ea64 skips the crashing-thread unwind and log snapshot on stack overflow. Otherwise it captures a backtrace, starts the named fault-report worker, and reads the log channel with a two-second deadline."
+  },
+  "static_check": {
+    "decoder": "Capstone 5.0.7",
+    "verified_instruction_count": 1660,
+    "limit": "Source checks and PE decoding only. Windows build, exception callback execution, file creation and original/rebuilt comparison remain open."
+  },
+  "report_text": [
+    {
+      "site": "0x14035f0d5",
+      "bytes": "62656e696c6c61206661756c74207265706f72740a",
+      "source": "benilla fault report\\n"
+    },
+    {
+      "site": "0x14035f11a",
+      "bytes": "0b6275696c643a2020202020c0010a00",
+      "source": "build:     {}"
+    },
+    {
+      "site": "0x14035f155",
+      "bytes": "0b74696d653a202020202020c00620756e69780a00",
+      "source": "time:      {unix} unix"
+    },
+    {
+      "site": "0x14035f19e",
+      "bytes": "0b706c6174666f726d3a2020c00120c0010a00",
+      "source": "platform:  windows {}"
+    },
+    {
+      "site": "0x14035f1ee",
+      "bytes": "0b7468726561643a20202020c0052028696420c002290a00",
+      "source": "thread:    {} (id {thread_id})"
+    },
+    {
+      "site": "0x14035f361",
+      "bytes": "0b657863657074696f6e3a20c3200080690a000120c0010a00",
+      "source": "exception: {:#010x} {}"
+    },
+    {
+      "site": "0x14035f39c",
+      "bytes": "0b616464726573733a202020c3200080691200010a00",
+      "source": "address:   {address:#018x}"
+    },
+    {
+      "site": "0x14035f414",
+      "bytes": "0b6d6f64756c653a20202020c002202bc120008060010a00",
+      "source": "module:    {path} +{offset:#x}"
+    },
+    {
+      "site": "0x14035f518",
+      "bytes": "0b6163636573733a20202020c004206f6620c3200080691200010a00",
+      "source": "access:    {label} of {target:#018x}"
+    },
+    {
+      "site": "0x14035f57c",
+      "bytes": "0b64756d703a202020202020c0010a00",
+      "source": "dump:      {}"
+    },
+    {
+      "site": "0x14035f5d1",
+      "bytes": "0c0a6261636b74726163653a0ac0010a00",
+      "source": "\\nbacktrace:\\n{backtrace}"
+    },
+    {
+      "site": "0x14035f62a",
+      "bytes": "056c61737420c01b206c6f67206c696e657320286f6c64657374206669727374293a0a00",
+      "source": "last {} log lines (oldest first):"
+    },
+    {
+      "site": "0x14035f857",
+      "bytes": "186661756c74207265706f7274207772697474656e20746f20c0010a00",
+      "source": "fault report written to {}"
+    }
+  ],
+  "other_text_operands": [
+    {
+      "site": "0x14035e7ad",
+      "bytes": "066661756c742dc0042e646d7000",
+      "source": "fault-{unix}.dmp"
+    },
+    {
+      "site": "0x14035f73b",
+      "bytes": "066661756c742dc0042e74787400",
+      "source": "fault-{unix}.txt"
+    },
+    {
+      "site": "0x14035ef69",
+      "bytes": "3c756e6e616d65643e",
+      "source": "<unnamed>"
+    },
+    {
+      "site": "0x14035f212",
+      "bytes": "657863657074696f6e",
+      "source": "_ => \"exception\""
+    },
+    {
+      "site": "0x14035f456",
+      "bytes": "6d6f64756c653a202020203c6e6f6e653e0a",
+      "source": "module:    <none>\\n"
+    },
+    {
+      "site": "0x14035f53a",
+      "bytes": "3c6e6f74207772697474656e3e",
+      "source": "<not written>"
+    },
+    {
+      "site": "0x14035f6e1",
+      "bytes": "6c6f673a203c6e6f7420726561643e0a",
+      "source": "log: <not read>\\n"
+    },
+    {
+      "site": "0x14035f4c4",
+      "bytes": "72656164",
+      "source": "0 => \"read\""
+    },
+    {
+      "site": "0x14035f4b6",
+      "bytes": "7772697465",
+      "source": "1 => \"write\""
+    },
+    {
+      "site": "0x14035f4a8",
+      "bytes": "65786563757465",
+      "source": "8 => \"execute\""
+    },
+    {
+      "site": "0x14035f4d2",
+      "bytes": "616363657373",
+      "source": "_ => \"access\""
+    }
+  ]
+}

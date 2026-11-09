@@ -60,7 +60,7 @@ the [Tabard of Lordaeron repair #324](verification-needed.md#gap-324).
 The acknowledgement
 `changelog:0.141.1:1f80975a909f28c0` stays with the release. The Windows
 crash report and dump in `Diagnostics` (`changelog:0.141.1:548650aa574f4367`)
-have a current native callback lead under [#326](#gap-326).
+are source-connected under [#326](verification-needed.md#gap-326).
 
 [0.142.0](CHANGELOG.md#01420) covers the Apple silicon macOS release.
 The release summary (`changelog:0.142.0:834d0a8114d2f92f`) repeats the
@@ -117,6 +117,8 @@ tracks model and particle rendering after the resource was located.
 retains the current kill-reset and Prepared proof and remaining verification.
 <a id="gap-154"></a>[#154 Server-party lobby requests](verification-needed.md#gap-154)
 tracks compilation and transport checks for the connected local dispatch.
+<a id="gap-326"></a>[#326 Windows exception reports and dumps](verification-needed.md#gap-326)
+tracks the connected callback and pending Windows checks.
 
 Current applicability/contract registration questions remain static recovery work,
 not proof of missing implementation. They remain excluded from ordinary fixgap
@@ -323,4 +325,3 @@ Selected-target selectors resolve through the [connection ledger](analysis/cover
 | #293 | Browser input recovered; app/data bootstrap required | <a id="gap-293"></a>**Unicode names/chat, IME composition and mixed-script fonts.** The [deployed 0.141.0 browser trace](analysis/browser-ime.md) establishes the exact WASM caret call, textarea composition and synthetic keyboard delivery. Connect that contract when a rebuilt browser app/data bootstrap provides the game canvas and Winit web event loop. The [0.141.0 Windows trace](analysis/native-ime-preedit.md) finds the existing Commit reader as the only AS consumer within its typed selectors. Windows composition display remains under [verification](verification-needed.md#gap-293). | Localization & fonts · IME, chat |
 | #297 | Current native placement/size/material proof pending | <a id="gap-297"></a>**Armory foot-glow geometry and placement correspondence.** `systems[id=custom-app-screens-armory]`, `Q41-I01:module_type_namespace:82` (`armory::Stand`). Existing `armory.rs:1906` already draws an oval radial gradient with left 14%, bottom 14px, width 72%, height 64px, FarthestSide and 50% radius. Recover current native foot projection, dimensions, transform, colors/alpha and preview framing against that consumer. This is missing current correspondence, not proof of absent oval artwork or a demonstrated visual mismatch. [current source frontier](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/source-frontier-0.127.0.md); [0.127.0 release/source review](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/release-review-0.127.0.md) R127-04. [Verification and retained evidence](verification-needed.md#gap-297).  **Selected 0.139.1 selectors:** Stand is `Q41-I01:module_type_namespace:89`, file `0x64e016e`; preview composition is namespace243. Act labels at namespace{81,83,85,87,197} are ambiguous navigation candidates, not one mapped owner. The namespace82 selector above retains 0.127 provenance. | Visuals & audio |
 | #298 | Current-target applicability/contract registration pending; proof-only | <a id="gap-298"></a>**ItemQuery helpers and recipient transformation: current applicability.** Keep completed source and actual historical contract proofs in [verification](verification-needed.md#gap-298). Current 0.139.1 ledger `systems[id=custom-game-smsg]` supplies exact diagnostic/body leads; map relevant inputs, dispatch, layouts/values, dependencies and consumers, then register only the proved bounded scope. Missing registration is not absent implementation. [Module dimensions](analysis/module-contracts.md#historical-correspondence). | Co-op & networking |
-| #326 | Native crash-filter and dump route located; file contract pending | <a id="gap-326"></a>**Windows exception crash reports and dumps.** The [0.143.0 native trace](analysis/release-review.md#windows-exception-report-and-dump) connects the filter registration to a callback that calls `MiniDumpWriteDump`. The rebuilt `benilla-app` crash hook supplies a Rust panic text report. Trace exception classification, the Diagnostics path and file-pair writers, and failure/return behavior before source work. | Engine, platforms & updates · Windows, Diagnostics |
