@@ -3,7 +3,8 @@
 //! loading defers expiry independently of run pause.
 
 use bevy::{picking::Pickable, prelude::*};
-use benilla_app::local_client::{LocalClientCvars, LocalClientInput};
+use benilla_app::local_client::{LocalClientCvars, LocalClientLoadingCover};
+use benilla_world::schedule::WorldStage;
 
 use crate::assets::MenuArt;
 
@@ -73,7 +74,10 @@ pub(super) struct NotificationsPlugin;
 impl Plugin for NotificationsPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<Notifications>()
-            .add_systems(Update, (sync, animate).chain().in_set(RunSet::Present));
+            .add_systems(
+                Update,
+                (sync, animate).chain().after(WorldStage::Present).in_set(RunSet::Present),
+            );
     }
 }
 
@@ -99,10 +103,11 @@ fn banner_color(boss: bool, age: f32) -> Color {
 }
 
 fn sync(mut commands: Commands, time: Res<Time>, session: Res<RunSession>,
-        art: Res<MenuArt>, input: Res<LocalClientInput>, mut state: ResMut<Notifications>,
+        art: Res<MenuArt>, loading: LocalClientLoadingCover, mut state: ResMut<Notifications>,
         settings: Res<super::run_hud::HudSettings>, cvars: LocalClientCvars) {
     let now = time.elapsed_secs();
-    state.defer_expiry = input.loading_screen_covering;
+    let covered = loading.covering();
+    state.defer_expiry = covered;
     state.update(now);
     let in_run = session.mechanics.is_some();
     if !state.rows.iter().any(|row| in_run || row.account) {
@@ -116,7 +121,7 @@ fn sync(mut commands: Commands, time: Res<Time>, session: Res<RunSession>,
     let shown = cvars.get("hudBanners").map_or_else(
         || settings.shown("banners"), super::run_hud::cvar_shown,
     );
-    let visibility = if shown && !input.loading_screen_covering {
+    let visibility = if shown && !covered {
         Visibility::Inherited
     } else { Visibility::Hidden };
     if let Some(root) = state.root { commands.entity(root).insert(visibility); }

@@ -2,7 +2,7 @@
 //! card1401b2970 and seven-second lifetime/animation140279050.
 use super::{super::RunSession, HudSettings};
 use crate::{armory::ArmoryCatalog, assets::MenuArt, localization::Localization};
-use benilla_app::local_client::LocalClientInput;
+use benilla_app::local_client::LocalClientLoadingCover;
 use bevy::{picking::Pickable, prelude::*};
 
 struct Row {
@@ -67,7 +67,7 @@ pub(super) fn sync(
     time: Res<Time>,
     session: Res<RunSession>,
     settings: Res<HudSettings>,
-    input: Res<LocalClientInput>,
+    loading: LocalClientLoadingCover,
     art: Res<MenuArt>,
     armory: Res<ArmoryCatalog>,
     locale: Res<Localization>,
@@ -84,13 +84,14 @@ pub(super) fn sync(
     // Native ScreenState+80 is the current `choices` JSON, and+ea is pause.
     // Terminal messages clear both; terminal visibility alone does not freeze loot.
     let choosing = game.is_paused_for_choice();
-    if session.paused || choosing || input.loading_screen_covering {
+    let covered = loading.covering();
+    if session.paused || choosing || covered {
         for row in &mut state.rows {
             row.born = (row.born + time.delta_secs()).min(now);
         }
     }
     state.rows.retain(|row| now - row.born < 7.);
-    let visibility = if settings.shown("loot") && !input.loading_screen_covering {
+    let visibility = if settings.shown("loot") && !covered {
         Visibility::Inherited
     } else {
         Visibility::Hidden

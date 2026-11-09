@@ -14,6 +14,7 @@ pub(super) use settings::shown as cvar_shown;
 pub(crate) use loot::LootNotices;
 
 use super::RunSet;
+use benilla_world::schedule::WorldStage;
 use bevy::prelude::*;
 
 pub(super) struct RunHudPlugin;
@@ -46,6 +47,7 @@ impl Plugin for RunHudPlugin {
                 Update,
                 (view::sync, controls::place, local_clock::sync, pause::sync, loot::sync, loot::animate)
                     .chain()
+                    .after(WorldStage::Present)
                     .in_set(RunSet::Present),
             );
     }

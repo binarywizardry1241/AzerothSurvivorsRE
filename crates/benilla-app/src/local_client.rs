@@ -350,7 +350,8 @@ pub struct LocalClientInput {
     /// The embedding-declared talent counter changed since its previous observation.
     /// Several increments between observations still produce one toggle.
     pub talent_toggle: bool,
-    /// Actual loading cover; the native custom banner clock defers while covered.
+    /// Loading cover sampled during input. Late overlays read the settled
+    /// state through `LocalClientLoadingCover`.
     pub loading_screen_covering: bool,
     pub consumed_keys: Vec<KeyCode>,
     pub ui_time: f64,
@@ -411,6 +412,18 @@ pub struct LocalClientCvars<'w> {
 impl LocalClientCvars<'_> {
     pub fn get(&self, name: &str) -> Option<&str> {
         self.registry.as_deref()?.get(name)
+    }
+}
+
+/// Read the actual loading screen after `WorldStage::Present` settles its cover.
+#[derive(SystemParam)]
+pub struct LocalClientLoadingCover<'w> {
+    screen: Option<Res<'w, crate::loading_screen::LoadingScreen>>,
+}
+
+impl LocalClientLoadingCover<'_> {
+    pub fn covering(&self) -> bool {
+        self.screen.as_ref().is_some_and(|screen| screen.covering())
     }
 }
 

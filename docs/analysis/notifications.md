@@ -72,9 +72,17 @@ It is not inferred from game pause or the FrameXML menu:
    owning active flag.
 
 While that flag is true, the native updater resets every queued row's birth
-time to the current UI clock before expiry filtering. The implementation reads
-the actual host `LocalClientInput.loading_screen_covering`; the earlier
-explicit deferral-port gap is closed.
+time to the current UI clock before expiry filtering. The rebuilt input
+snapshot precedes the engine's `WorldStage::Present` cover update, which can
+raise or dismiss the cover later in that frame. Native banners and the custom
+HUD now run their presentation after that stage and use
+`LocalClientLoadingCover` to read the same live resource the engine draws.
+Banner expiry and visibility, loot expiry and visibility, and minimap
+clock visibility share the settled cover. Input arbitration still uses the
+early input snapshot. The HUD source check verifies the reader, ordering and
+consumers. Cover transitions and rendered parity still require runtime
+verification. The [sustained banner overlap](banner-suppression.md) has a
+separate callback and display investigation.
 
 ## Source integration and validation
 

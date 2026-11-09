@@ -202,6 +202,33 @@ def dump_compact_vectors(path, fixture):
     path.write_text(value+'\n')
 
 
+def cover_source_check():
+    base = ROOT / "crates/azeroth-survivors-re/src/gameplay"
+    host = ROOT / "crates/benilla-app/src"
+    loading = (host / "loading_screen.rs").read_text()
+    assert "drive_loading_screen.in_set(WorldStage::Present)" in loading
+    client = (host / "local_client.rs").read_text()
+    cover = client.split("pub struct LocalClientLoadingCover<'w>", 1)[1]
+    cover = cover.split("/// Queue the production host's", 1)[0]
+    assert "Option<Res<'w, crate::loading_screen::LoadingScreen>>" in cover
+    assert "self.screen.as_ref().is_some_and(|screen| screen.covering())" in cover
+    notifications = (base / "notifications.rs").read_text()
+    hud = (base / "run_hud/mod.rs").read_text()
+    for source in (notifications, hud):
+        assert ".after(WorldStage::Present)" in source
+    assert 'settings.shown("banners"), super::run_hud::cvar_shown' in notifications
+    assert "state.defer_expiry = covered;" in notifications
+    assert "if shown && !covered {" in notifications
+    loot = (base / "run_hud/loot.rs").read_text()
+    assert 'settings.shown("loot") && !covered' in loot
+    assert "session.paused || choosing || covered" in loot
+    clock = (base / "run_hud/local_clock.rs").read_text()
+    assert '&& !covered\n            && settings.shown("localClock")' in clock
+    for source in (notifications, loot, clock):
+        assert "let covered = loading.covering();" in source
+        assert "input.loading_screen_covering" not in source
+
+
 def source_check():
     base = ROOT / "crates/azeroth-survivors-re/src/gameplay"
     controls = (base / "run_hud/controls.rs").read_text()
@@ -236,9 +263,7 @@ def source_check():
     assert 'game.worn_amulet()' in view and 'game.jewelry()' in view
     assert 'visibility(settings.shown("clock"))' in view
     assert 'spawn_bars(ui, bars, art, settings.shown("bosses"))' in view
-    for filename, part in [("notifications.rs","banners"),("run_hud/loot.rs","loot")]:
-        source = (base / filename).read_text()
-        assert f'settings.shown("{part}") && !input.loading_screen_covering' in source
+    cover_source_check()
     assert 'meter.shown = meter.mirrors[0].effective.trim() != "0";' in (base / "meter.rs").read_text()
     assert 'settings.shown("levels")' in (base / "stored_hud.rs").read_text()
     stored = ''.join((base / 'stored_hud.rs').read_text().split())

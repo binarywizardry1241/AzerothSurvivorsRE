@@ -5,7 +5,7 @@ use std::sync::{
     atomic::{AtomicBool, Ordering},
 };
 
-use benilla_app::local_client::{LocalClientInput, local_hour_minute};
+use benilla_app::local_client::{LocalClientInput, LocalClientLoadingCover, local_hour_minute};
 use benilla_ui::script::UiScript;
 use bevy::{picking::Pickable, prelude::*, time::Real, ui::FocusPolicy};
 
@@ -72,6 +72,7 @@ pub(super) struct ClockText;
 pub(super) fn sync(
     mut commands: Commands,
     input: Res<LocalClientInput>,
+    loading: LocalClientLoadingCover,
     settings: Res<HudSettings>,
     menu: Res<MenuState>,
     format: Res<ClockFormat>,
@@ -115,9 +116,10 @@ pub(super) fn sync(
         return;
     };
 
+    let covered = loading.covering();
     let rect = input.rendered_minimap_rect.filter(|rect| {
         menu.in_run
-            && !input.loading_screen_covering
+            && !covered
             && settings.shown("localClock")
             && rect[2] - rect[0] > 1.
             && !text.is_empty()

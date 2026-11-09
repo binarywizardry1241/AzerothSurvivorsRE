@@ -156,7 +156,7 @@ def main():
  canonical=ROOT/'docs/analysis/evidence/addon-bridge/native-manifest.json';cm=json.loads(canonical.read_text());assert cm['target_sha256']==SHA
  flag=next(r for r in cm['native_observations']if r['role']=='flag-select');assert sha(raw(int(flag['address'],16),flag['byte_count']))==flag['sha256']
  source_checks={
- 'crates/azeroth-survivors-re/src/gameplay/run_hud/loot.rs':['session.paused || choosing || input.loading_screen_covering','row.born + time.delta_secs()','now - row.born < 7.','settings.shown("loot")','state.rows.len(), state.revision','GlobalZIndex(6100)','Val::Percent(38.)','progress / 0.05','progress > 0.85'],
+ 'crates/azeroth-survivors-re/src/gameplay/run_hud/loot.rs':['let covered = loading.covering();','session.paused || choosing || covered','row.born + time.delta_secs()','now - row.born < 7.','settings.shown("loot") && !covered','state.rows.len(), state.revision','GlobalZIndex(6100)','Val::Percent(38.)','progress / 0.05','progress > 0.85'],
  'crates/azeroth-survivors-re/src/gameplay/mechanics/addon_lists.rs':['self.world_flag.selected = Some(index)','self.world_flag.visible','self.clock - self.world_flag.last_sent > 300.','RunEvent::GuardianFlag','self.world_flag.selected = None'],
  'crates/azeroth-survivors-re/src/gameplay/mechanics/guardians.rs':['self.invalidate_world_flag()'],
  'crates/azeroth-survivors-re/src/gameplay/mod.rs':['guid != 0x00ff_ffff','is_new: !owned.contains(&id)','if saves_equipment','game.update_world_flag','hud_settings.shown("flag")'],

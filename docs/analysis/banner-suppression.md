@@ -382,7 +382,14 @@ Retained launch output records addon files loading, but contains no publication
 trace linking the received raw message to the active legacy hook, the official
 callback and the displayed roots. File-load messages alone cannot establish
 successful addon initialization: its module error handler can write to chat
-rather than that output. The extended static trace establishes the expected
+rather than that output. The reviewed portions of gameplay captures B, C, D
+and G contain 131 incoming `AZSBANNER` packets and no repeated ID within a
+capture. They observe packet arrival. The paired UI diagnostics do not
+correlate those arrivals with Lua callbacks, the applied CVar or the rendered
+roots. The [capture index](gameplay-log-evidence.md#captures-reviewed-on-2026-11-06)
+retains the provenance and reviewed bounds.
+
+The extended static trace establishes the expected
 chat-type connections; it does not establish an additional missing operation or
 the actual cause of the sustained duplicate. That causal question remains open
 at the excluded VM/runtime boundary; no speculative second source fix is claimed.
