@@ -100,17 +100,18 @@ def historical_source(name, expected, root=ROOT):
         if name in paths:
             candidates.append((name, commit))
     if not candidates or not isinstance(expected, str) or not re.fullmatch('[0-9a-f]{64}', expected):
-        raise ValueError('No historical source commitment for this script')
+        raise ValueError('No historical source commitment for this path')
     for former, commit in candidates:
         path = PurePosixPath(former)
-        if (path.is_absolute() or '..' in path.parts or path.parts[0] != 'scripts' or
+        retained_asset = retained and former == name and path.is_relative_to('crates/azeroth-survivors-re/assets')
+        if (path.is_absolute() or '..' in path.parts or (path.parts[0] != 'scripts' and not retained_asset) or
                 not re.fullmatch('[0-9a-f]{40}', commit)):
             raise ValueError('Invalid historical source boundary')
         try:
             return committed_bytes(former, commit, expected, root)
         except ValueError:
             continue
-    raise ValueError('Exact historical script bytes are unavailable; retain Git history')
+    raise ValueError('Exact historical source bytes are unavailable; retain Git history')
 
 
 def historical_matches(name, expected, root=ROOT):
@@ -153,7 +154,8 @@ def recorded_input_matches(value, expected, root=ROOT):
                 return True
         except (OSError, ValueError):
             return False
-    return name.startswith('scripts/') and historical_matches(name, expected, root)
+    retained = provenance(root).get('retained_execution_sources', {})
+    return (name.startswith('scripts/') or name in retained) and historical_matches(name, expected, root)
 
 
 class _RecordedInputChecks(ast.NodeTransformer):

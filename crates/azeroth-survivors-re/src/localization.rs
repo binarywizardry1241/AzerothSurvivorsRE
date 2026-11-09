@@ -1,8 +1,8 @@
-//! The fourteen 0.119.0 locale catalogs and the recovered external override loader.
+//! The fourteen embedded locale catalogs and the recovered external override loader.
 //!
-//! Current payloads: docs/analysis/locale-catalogs-0.119.0.md. Loader/parser/lookup:
-//! docs/analysis/localization-loader-0.119.0.md. Persistence: localization-0.109.0.md. Only explicitly keyed menu definitions
-//! are translated; arbitrary text, player names and file names are never searched/replaced.
+//! See docs/analysis/locale-catalogs.md for payloads, localization-loader.md for
+//! loader/parser/lookup and localization.md for persistence. Translation uses
+//! explicit menu keys and preserves player names and file names.
 
 #[path = "localization/catalogs.rs"]
 mod catalogs;

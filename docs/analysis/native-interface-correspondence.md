@@ -145,6 +145,41 @@ their corresponding native layer and opacity. This preserves the lobby,
 inspection and Ready Check order when the three roots coexist. The
 Ready Check root remains blocking while its own canvas refreshes.
 
+## Ready Check and lobby captions
+
+The locale catalog's [0.143.0 target identity](locale-catalogs.md#01430-payload-correspondence)
+also binds these caption branches. The rebuilt Ready Check already used the
+answer gates for its buttons. In the current executable, running status goes
+from `0x14011f125` to `0x14012102d`. The two flags at `+0x64` and `+0x65`
+select the waiting caption at `0x140121039` if either is set. The button
+renderer at `0x140120da5..0x140120e67` uses the same flags to select the
+host cancel route and suppress the guest answer buttons after a response.
+The branch with both flags clear formats the invitation with the host and
+zone at `0x140121090..0x140121127`. The waiting and invitation branches
+load the muted and paper color records at `0x1465786fc` and `0x14657877c`.
+[The Ready Check modal](../../crates/azeroth-survivors-re/src/coop_ready_ui.rs)
+now shares the local pending decision between the caption and button paths.
+
+The active lobby's roster hint in `0x140224950..0x14022564c` calls the
+same minimum-population predicate as the menu input path. The predicate
+at `0x14021ac30..0x14021acb8` requires host role, a live party phase and
+fewer than two roster entries. The renderer selects the minimum-player
+hint at `0x1402253cc`, the host entry hint at `0x140225423`, and the
+guest waiting hint at `0x1402253fa`. All use the common 14 px muted
+caption at `0x1402254b7..0x140225540`. The [co-op lobby](../../crates/azeroth-survivors-re/src/coop_ui.rs)
+uses its existing `waiting_for_players` gate and the shared locale lookup.
+
+| Native span | Raw file offset | SHA-256 |
+| --- | --- | --- |
+| Ready Check caption branches `0x14012102d..0x14012112c` | `0x12042d` | `c1841633886c2ea87cda74182f1b9633d6f88da5a24987ea8138d03485367fdd` |
+| Ready Check button gate `0x140120d9e..0x140120e67` | `0x12019e` | `a08106959a6026e4c2b2a0942d2301437202e3876af47436b10762aac48adf71` |
+| Lobby content owner `0x140224950..0x14022564c` | `0x223d50` | `86c707993c64dc839e6a48b2b8051324a474e215c7040db4208192ccee6a15e1` |
+| Minimum population gate `0x14021ac30..0x14021acb8` | `0x21a030` | `49ae3083c8d79a7e32738882a5485fe2c5c243ef030f670ee69fe0788e208391` |
+
+The descriptor comparison verifies the caption keys in all fourteen catalogs.
+Compilation, role transitions and actual rendering remain under
+[#150](../verification-needed.md#gap-150) and [#306](../verification-needed.md#gap-306).
+
 ## Picker Co-op button and pre-party lobby presentation
 
 [Finding #150](../verification-needed.md#gap-150) connects the picker entry and

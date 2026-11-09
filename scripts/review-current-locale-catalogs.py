@@ -195,12 +195,26 @@ def verify_review(derived, retained):
         raise ValueError("Locale review missing/stale; run --write")
 
 
+def verify_source_values(derived, retained):
+    if derived["target"] != retained["target"] or derived["locale_table"] != retained["locale_table"]:
+        raise ValueError("Selected locale table differs from the retained review")
+    for row, previous in zip(derived["locales"], retained["locales"], strict=True):
+        if any(row[field] != previous[field] for field in ("code", "record", "payload")):
+            raise ValueError(f"Native descriptor differs for {row['code']}")
+        if row["missing_source_keys"] or row["changed_existing_values"]:
+            raise ValueError(f"Source is missing exact native values for {row['code']}")
+        if set(row["removed_native_keys"]) - set(previous["removed_native_keys"]):
+            raise ValueError(f"Unexpected source-only keys for {row['code']}")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument("--write", action="store_true")
     mode.add_argument("--check-source", action="store_true",
                       help="Verify all source catalogs equal the current native payloads without replacing the historical audit")
+    mode.add_argument("--check-values", action="store_true",
+                      help="Verify native values while allowing reviewed source-only keys")
     args = parser.parse_args()
     proof = derive()
     path = ROOT / "docs/analysis/evidence/locale-catalog-review.json"
@@ -214,10 +228,17 @@ def main():
     else:
         if not path.is_file():
             path = path.parent / proof["target"]["version"] / path.name
-        verify_review(proof, load_json(path))
-    print(json.dumps(dict(target=proof["target"], locale_table=proof["locale_table"], counts=proof["counts"],
-                          source_payloads_match=all(row["exact_native_payload_source_bytes_equal"] for row in proof["locales"]),
-                          written=args.write), indent=2))
+        retained = load_json(path)
+        if args.check_values:
+            verify_source_values(proof, retained)
+        else:
+            verify_review(proof, retained)
+    result = dict(target=proof["target"], locale_table=proof["locale_table"], counts=proof["counts"],
+                  source_payloads_match=all(row["exact_native_payload_source_bytes_equal"] for row in proof["locales"]),
+                  written=args.write)
+    if args.check_values:
+        result["native_source_values_match"] = True
+    print(json.dumps(result, indent=2))
 
 
 if __name__ == "__main__":

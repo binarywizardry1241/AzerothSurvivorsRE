@@ -2660,7 +2660,11 @@ fn drops(
                 art,
                 crate::localization::format(
                     menu_catalog,
-                    "armory.zone_drops",
+                    if def.tier == usize::from(TIER_HALF) {
+                        "armory.zone_drops_t05"
+                    } else {
+                        "armory.zone_drops"
+                    },
                     &[
                         ("zone", zone_label(menu_catalog, def)),
                         (
@@ -3316,6 +3320,16 @@ pub(crate) fn effect_line(catalog: &MenuCatalog, tag: u32, value: f32) -> String
         9 => "Increases gold found by {p}.",
         10 => "Increases the area of effect of your spells by {p}.",
         12 => "Gives your spells a {p} chance to cast twice.",
+        13 => {
+            return catalog
+                .label("equip.calm_regen")
+                .replace("{n}", &format!("{:.1}", value * 100.));
+        }
+        14 => {
+            return catalog
+                .label("equip.crowd_armor")
+                .replace("{n}", &(value * 100.).round().to_string());
+        }
         _ => return String::new(),
     };
     catalog

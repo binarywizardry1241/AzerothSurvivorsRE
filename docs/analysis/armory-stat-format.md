@@ -1,5 +1,34 @@
 # Armory compact-stat formatting
 
+## 0.143.0 drop table and item description text
+
+The [0.143.0 locale descriptor audit](locale-catalogs.md#01430-payload-correspondence)
+binds the keys and the same Windows EXE as these instruction ranges.
+In the Drop Tables owner, `0x14016a5ee` compares the tier to 7 and
+`0x14016a604` selects `armory.zone_drops_t05` for that tier. The rebuilt
+Armory reuses its tier-7 Scholomance row and retains the generic template
+for other zones. The [existing loot contract](scholomance-loot.md) connects
+the caption's missing-piece priority and Gandling weapon group.
+
+The item-description switch at `0x145e55182..0x145e55192` uses the
+15-cell relative table at `0x1473d3270`. Tag 13 reaches `0x145e552e7`,
+multiplies by 100 in binary32, applies the one-decimal descriptor at
+`0x1473c8294` and fills `equip.calm_regen`. Tag 14 reaches `0x145e551a9`,
+multiplies by 100 in binary32, calls imported `roundf` and formats the rounded
+float with `equip.crowd_armor`. The [shared description formatter](../../crates/azeroth-survivors-re/src/armory.rs)
+now fills those templates for the Armory and stock item metadata.
+
+| Native span | Raw file offset | SHA-256 |
+| --- | --- | --- |
+| Drop template selector `0x14016a5eb..0x14016a608` | `0x1699eb` | `91ea04d94afb1b6476a05b6e2302582c71b29c581b8a3fc81a1483767a25e705` |
+| Long item descriptions `0x145e55160..0x145e554c0` | `0x5e54560` | `df351d8bf57efec5787871354f1a538fe146dafc9360e1c69f717863067af768` |
+| Description selector table `0x1473d3270..0x1473d32ac` | `0x73d2670` | `7a5ff591d534e860a1041c38c04da43e25f436cf85edf9ed1a3d9cdd08139c9e` |
+
+The locale-value check and non-compiling Rust syntax parse pass. Compilation,
+client item metadata delivery and actual tooltip rendering remain unverified.
+
+## Compact-stat formatter
+
 The installed target is SHA-256
 `22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150`.
 This report owns finding **#236**'s compact-stat formatter. Its collection and

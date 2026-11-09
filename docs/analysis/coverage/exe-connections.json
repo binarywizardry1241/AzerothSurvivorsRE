@@ -23,7 +23,7 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "95aee5ceabf9a681e94a02ee8a16d6e5fc04c8f7cbf6ec0c1926f272e1c49278"
+      "sha256": "283a92dcc56bec0532767c1f35e0d447a513c43333f105a44e7c4df49e901e59"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
@@ -39,7 +39,7 @@
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "75490d815ff5b6d95eb0f865d24e4249bd53b875c2f84b7ce0fd5ba9a26ff391"
+      "sha256": "b38d3db08016d52d6fbf047edf02f963d8f3788068eda3921d49a87695c81b89"
     },
     {
       "path": "docs/analysis/coverage/full-image-selected.json",
@@ -53,7 +53,7 @@
   "supporting_inputs": [
     {
       "path": "docs/analysis/coverage/native-ownership-classification.json",
-      "sha256": "c65b3dac5cc60059899cea002d06e7e7c726a739e8691aebc725b98f37631a37",
+      "sha256": "666d06d7523f5ca491294c2adeafb01d20f198aecc151d41d5ce0be22985180a",
       "target": {
         "version": "0.143.0",
         "path": "installed-game/AzerothSurvivors.exe",
@@ -65,8 +65,8 @@
   ],
   "counts": {
     "custom_system_rows": 83,
-    "with_registered_current_evidence": 6,
-    "without_registered_current_evidence": 77,
+    "with_registered_current_evidence": 7,
+    "without_registered_current_evidence": 76,
     "with_registered_current_bounded_contract": 6,
     "without_registered_current_bounded_contract": 77,
     "without_source_correspondence": 0,
@@ -78,10 +78,10 @@
       "historical": 1783,
       "requires_owning_manifest_or_review": 93
     },
-    "directly_embedded_assets": 192,
+    "directly_embedded_assets": 191,
     "embedded_asset_provenance": {
       "historical": 134,
-      "not_declared_in_asset": 58
+      "not_declared_in_asset": 57
     },
     "historical_range_commitments": 23859,
     "historical_range_results": {
@@ -3975,9 +3975,10 @@
       "ownerless_location_sites": [],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
-        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-i18n]; pending applicability alone is excluded from ordinary fixgap choices."
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-i18n]; pending applicability alone is excluded from ordinary fixgap choices.",
+        "The 0.143.0 payloads are present in the live catalog source. Retain the distinct loader and language-selection applicability questions."
       ],
-      "registered_current_evidence_present": false,
+      "registered_current_evidence_present": true,
       "registered_current_bounded_contract_present": false,
       "current_bounded_contract_scopes": {},
       "current_bounded_contract_refs": []
@@ -5087,7 +5088,6 @@
         "crates/azeroth-survivors-re/src/menu_state.rs",
         "crates/azeroth-survivors-re/src/picker.rs",
         "crates/azeroth-survivors-re/src/scrollbar.rs",
-        "crates/azeroth-survivors-re/assets/coop-locales.json",
         "scripts/check-coop-ui.py",
         "scripts/check-coop-ui-0.115.0.py",
         "crates/azeroth-survivors-re/src/coop_runtime.rs",
@@ -6930,6 +6930,6 @@
   "parity_verified": false,
   "inventory": {
     "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/exe-connections.json",
-    "sha256": "d15dac3630bb44711af648e8bf31a6bf3637e03e933c619285e23da4ca35f818"
+    "sha256": "35e15da17fc5005f76d1ebdf596d722fc5ffc99910eb537182b9cba510b3c97a"
   }
 }

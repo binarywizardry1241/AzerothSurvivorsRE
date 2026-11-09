@@ -163,7 +163,14 @@ fn panel_content(
     })
     .with_children(|title| text(title, art, label(locale, "Ready Check"), 30., gold));
     let running = snapshot.status == Status::Running;
+    let awaiting_local = lobby
+        .and_then(|lobby| lobby.heroes.iter().find(|hero| hero.me))
+        .is_some_and(|hero| snapshot.answers.contains(&(hero.hero_identity, Answer::Pending)));
+    // The running view gives the host and guests who already answered the
+    // waiting caption. Pending guests get the invitation and answer buttons.
+    let waiting = host || !awaiting_local;
     let message = match snapshot.status {
+        Status::Running if waiting => "Waiting for the party to answer...",
         Status::Running => "{host} wants to enter {zone}. Are you ready?",
         Status::Ready => "Everyone is ready!",
         Status::Declined => "Not everyone is ready.",
@@ -171,7 +178,7 @@ fn panel_content(
         Status::Cancelled => "The ready check was called off.",
     };
     let mut message = label(locale, message);
-    if let Some(lobby) = lobby.filter(|_| running) {
+    if let Some(lobby) = lobby.filter(|_| running && !waiting) {
         message = message
             .replace(
                 "{zone}",
@@ -183,6 +190,7 @@ fn panel_content(
             );
     }
     let message_color = match snapshot.status {
+        Status::Running if waiting => muted,
         Status::Running => paper,
         Status::Ready => green,
         Status::Declined | Status::Expired => red,
@@ -201,14 +209,12 @@ fn panel_content(
         },
         BackgroundColor(EDGE),
     ));
-    let mut awaiting_local = false;
     for (id, answer) in &snapshot.answers {
         let Some(hero) =
             lobby.and_then(|lobby| lobby.heroes.iter().find(|hero| hero.hero_identity == *id))
         else {
             continue;
         };
-        awaiting_local |= hero.me && *answer == Answer::Pending;
         let (caption, color) = match answer {
             Answer::Ready => ("Ready", green),
             Answer::NotReady => ("Not ready", red),

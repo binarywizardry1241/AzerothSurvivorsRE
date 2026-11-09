@@ -6,18 +6,33 @@ The [current descriptor audit](evidence/locale-catalog-review.json) binds
 the 0.143.0 EXE SHA-256
 `f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
 It located all fourteen seven-u64 descriptors at preferred VA `0x147afa770`
-and independently checked the full payloads. The native catalogs contain
-49,322 values and the current source catalogs contain 48,664. The native English
-catalog has 62 keys absent from source, and the other catalogs have 806 missing
-keys in total. These differences compare the live source to the installed PE.
+and independently checked the full payloads. The retained pre-repair
+comparison found 62 missing keys in each catalog and no changed shared values.
+The repair adds all 868 missing values directly from the checked payloads. All 49,322
+native key/value pairs now match the embedded source. Each language still
+retains 15 historical keys so existing callers such as the talent menu can
+render older definitions until their behavior is recovered. The resulting
+catalogs contain 49,532 values.
 
-The current English payload includes the Hyper Mode toggle, Champion of
-Naxxramas unlock description and both party denial variants. The source catalog
-still names only the Crusader glow in the achievement description. Follow the
-exact caller keys and fallback behavior in [#158](../CURRENT-STATE.md#gap-158),
-with Hyper Mode consumers in [#325](../CURRENT-STATE.md#gap-325). The earlier
-Ready Check UI also has string keys whose source translations need checking.
-Runtime lookup and rendering remain separate.
+The co-op modal and Ready Check chat now use the same selected-language,
+English, then literal lookup as other direct labels. All 28 supplemental keys
+per language exist in the native payloads, so the duplicate co-op catalog was
+removed. Existing Armory inspector bonus labels and Explosive Orb warning
+strings also resolve through the embedded catalogs. Hyper Mode labels and
+denials are available to the Difficulty, achievement and co-op consumers
+tracked under [#325](../CURRENT-STATE.md#gap-325). The catalog also contains
+updated talent, achievement and gear prose whose caller and gameplay inputs
+must be checked before changing existing descriptions.
+
+The [Ready Check and lobby text trace](native-interface-correspondence.md#ready-check-and-lobby-captions)
+connects the new waiting and lobby captions. The [Armory and item text trace](armory-stat-format.md#01430-drop-table-and-item-description-text)
+connects the Scholomance drop summary and both missing equipment descriptions.
+
+`python3 -B scripts/review-current-locale-catalogs.py --check-values` replays the current
+descriptor and source comparison. It verifies zero missing or changed native
+values while allowing the reviewed source-only keys. Compilation, locale
+selection, overrides, glyph rendering and original/rebuilt comparisons remain
+under [#158](../verification-needed.md#gap-158).
 
 ## 0.119.0 payload baseline
 

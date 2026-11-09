@@ -471,21 +471,7 @@ impl Plugin for CoopUiPlugin {
     }
 }
 fn label(locale: &Localization, english: &str) -> String {
-    if let Some(value) = locale.lookup(english) {
-        return value.to_owned();
-    }
-    static LABELS: std::sync::OnceLock<
-        std::collections::BTreeMap<String, std::collections::BTreeMap<String, String>>,
-    > = std::sync::OnceLock::new();
-    LABELS
-        .get_or_init(|| {
-            serde_json::from_str(include_str!("../assets/coop-locales.json"))
-                .expect("embedded co-op labels")
-        })
-        .get(locale.code())
-        .and_then(|labels| labels.get(english))
-        .cloned()
-        .unwrap_or_else(|| english.to_owned())
+    locale.label(english).to_owned()
 }
 fn difficulty_name(locale: &Localization, rank: i64) -> String {
     azeroth_survivors_re::heroic::rank_name(
@@ -1134,6 +1120,14 @@ fn rebuild(
                     };
                     text(ui, &art, label(&locale, key), 13., Color::srgb(1., 0.353, 0.235));
                 }
+                let entry_hint = if view.waiting_for_players() {
+                    "A co-op run needs at least two players: share the lobby code and wait for someone to join."
+                } else if view.role == "host" {
+                    "Close this window and enter the zone: everyone in the party comes along."
+                } else {
+                    "Waiting for the host to enter the zone. Your hero is the one on your picker."
+                };
+                text(ui, &art, label(&locale, entry_hint), 14., MUTED);
                 });
                 });
                 }
