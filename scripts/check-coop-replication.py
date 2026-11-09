@@ -17,6 +17,7 @@ GUEST_SPELL_ROWS = ROOT / 'docs/analysis/evidence/coop-guest-spell-rows.json'
 PROTOCOL_13 = ROOT / 'docs/analysis/evidence/coop-replication.json'
 ENTRY_NOTICES = ROOT / 'docs/analysis/evidence/coop-entry-notices.json'
 SETTLEMENT = ROOT / 'docs/analysis/evidence/party-achievement-settlement.json'
+DOWNED_GUID = ROOT / 'docs/analysis/evidence/coop-downed-guid.json'
 
 
 def digest(raw):
@@ -37,6 +38,46 @@ def installed_ranges(path):
         assert digest(data[offset:offset + end - start]) == row['sha256'], row['role']
         ranges[row['role']] = (start, end)
     return proof, data, pe, ranges
+
+
+def check_downed_guid():
+    proof, data, pe, ranges = installed_ranges(DOWNED_GUID)
+    replay = NativeReplay(data, pe)
+    for edge in proof['edges']:
+        site, destination = (int(edge[key], 16) for key in ('site', 'destination'))
+        if edge['op'] == 'call':
+            raw = replay.raw(site, 5)
+            assert raw[0] == 0xe8
+        else:
+            assert edge['op'] == 'lea'
+            raw = replay.raw(site, 7)
+            assert raw[0] in (0x48, 0x4c) and raw[1] == 0x8d and raw[2] & 0xc7 == 5
+        assert site + len(raw) + struct.unpack('<i', raw[-4:])[0] == destination
+    assert replay.raw(0x1473bb116, 9) == b'AZSDOWNED'
+    assert replay.raw(ranges['packed_row_format'][0], 6) == b'\x01u\xc0\x01,\xc0'
+    assert replay.raw(ranges['hex_digits'][0], 16) == b'0123456789abcdef'
+
+    reg, cpu = replay.registers, replay.machine
+    formatter = ranges['hex_formatter']
+    output = int(proof['formatter_output'], 16)
+    values = (0, 1, 9, 10, 15, 16, 200, 255, 256, 0xabcdef, 1 << 32, (1 << 64) - 1)
+    for guid in values:
+        replay.reset('downed-guid', [formatter], [output])
+        replay.put(replay.app, '<Q', guid)
+        cpu.reg_write(reg.UC_X86_REG_RCX, replay.app)
+        replay.run(formatter[0])
+        sp = cpu.reg_read(reg.UC_X86_REG_RSP)
+        digits, count = replay.get(sp + 0x28, '<QQ')
+        assert b'u' + bytes(cpu.mem_read(digits, count)) == proof['identifier_format'].format(guid).encode()
+
+    source = ROOT / 'crates/azeroth-survivors-re/src'
+    party = (source / 'coop/game_party.rs').read_text().split('pub fn downed_payload', 1)[1]
+    assert '"' + proof['identifier_format'] + ',' in party
+    assert 'hero.slot != recipient' in party and 'hero.guid, sanitize(&hero.name)' in party
+    assert 'M::new("AZSDOWNED", game.party_downed_payload())' in (source / 'gameplay/client.rs').read_text()
+    assert 'addon_messages(game, scalars, locale, catalog,' in (source / 'gameplay/client/coop_feed.rs').read_text()
+    print(f'PASS: {len(ranges)} native ranges, {len(proof["edges"])} call/format edges, '
+          f'{len(values)} GUID cases across {replay.instructions} instructions, and the shared source publisher')
 
 
 def check_guest_spell_rows():
@@ -656,7 +697,12 @@ def main():
                         help='check 0.141.0 State15 cadence and Control8 wire')
     parser.add_argument('--entry-notices', action='store_true',
                         help='check 0.141.0 localized guest entry messages')
+    parser.add_argument('--downed-guid', action='store_true',
+                        help='check 0.143.0 downed-party addon GUID formatting')
     args = parser.parse_args()
+    if args.downed_guid:
+        check_downed_guid()
+        return
     if args.entry_notices:
         check_entry_notices()
         return

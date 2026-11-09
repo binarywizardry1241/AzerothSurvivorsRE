@@ -60551,7 +60551,8 @@
         "docs/analysis/evidence/0.139.1/source-frontier.json",
         "docs/analysis/native-census-0.139.1.md",
         "docs/analysis/coop-incoming-0.141.0.md",
-        "docs/analysis/party-achievement-settlement-0.141.0.md"
+        "docs/analysis/party-achievement-settlement-0.141.0.md",
+        "docs/analysis/evidence/coop-downed-guid.json"
       ],
       "gap_ids": [
         41,
@@ -61396,7 +61397,7 @@
       },
       "current_applicability": {
         "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
-        "status": "pending_current_target_contract_correspondence",
+        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
         "assessment": "docs/analysis/module-contracts.md"
       },
       "coop_clear_0_123_0": {
@@ -78233,6 +78234,21 @@
       "system_ids": [
         "custom-game-i18n"
       ]
+    },
+    "docs/analysis/evidence/coop-downed-guid.json": {
+      "path": "docs/analysis/evidence/coop-downed-guid.json",
+      "target_version": "0.143.0",
+      "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-game-game-party"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-game-game-party"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-game-game-party": "The common host and seated-recipient AZSDOWNED row iterator sends the world GUID through default-width lowercase hexadecimal formatting. Rebuilt source uses the same format."
+      }
     }
   },
   "source_mapping_contract": "Source files/anchors are historical implementation candidates until current native contracts and dependencies are recovered.",

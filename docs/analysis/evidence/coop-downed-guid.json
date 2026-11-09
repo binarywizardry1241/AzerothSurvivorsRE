@@ -1,0 +1,146 @@
+{
+  "target": {
+    "version": "0.143.0",
+    "path": "installed-game/AzerothSurvivors.exe",
+    "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+    "size_bytes": 151566336
+  },
+  "gap_ids": [
+    63
+  ],
+  "ranges": [
+    {
+      "role": "host_snapshot_call",
+      "start": "0x145ed5d41",
+      "end_exclusive": "0x145ed5d50",
+      "file_offset": "0x5ed5141",
+      "sha256": "0574af1eb3d0160cb3d8a973d73e26b5f1213ce60b1a417aa672e441db4bfd33"
+    },
+    {
+      "role": "seated_snapshot_call",
+      "start": "0x145f3376d",
+      "end_exclusive": "0x145f3377c",
+      "file_offset": "0x5f32b6d",
+      "sha256": "18dd76cee2e3a54b456c3d3a981a691447a44d062278d00bd034d33aee4ddb87"
+    },
+    {
+      "role": "snapshot_iterator_join",
+      "start": "0x145df23e0",
+      "end_exclusive": "0x145df2417",
+      "file_offset": "0x5df17e0",
+      "sha256": "b1d5b438b3032b8b2d427e8bfacd7e1509d8dde3007b5f14c2ed5a3b912128de"
+    },
+    {
+      "role": "snapshot_message_name",
+      "start": "0x145df2872",
+      "end_exclusive": "0x145df288b",
+      "file_offset": "0x5df1c72",
+      "sha256": "394a12d20f37761fac2ebcc117355b531619d5739b791fe80d0e029f8e7b7295"
+    },
+    {
+      "role": "coop_payload",
+      "start": "0x145f42530",
+      "end_exclusive": "0x145f42638",
+      "file_offset": "0x5f41930",
+      "sha256": "2a91521540c83244920fc9c599a2b3b41c12acdf43ec37477ad3cde04b54c4fa"
+    },
+    {
+      "role": "row_collection",
+      "start": "0x146034d60",
+      "end_exclusive": "0x146034ed2",
+      "file_offset": "0x6034160",
+      "sha256": "39b4b0bf946c0f0b71e6551251c73cfcf191af1adfc5bb33ba8ff0a7328923be"
+    },
+    {
+      "role": "recipient_iterator",
+      "start": "0x14604a650",
+      "end_exclusive": "0x14604a802",
+      "file_offset": "0x6049a50",
+      "sha256": "bd47a46ce3cfee15f114db2bd850da6645e3d7e3f95b498c40db5565a3329ba0"
+    },
+    {
+      "role": "packed_row_format",
+      "start": "0x147b06d35",
+      "end_exclusive": "0x147b06d63",
+      "file_offset": "0x7b06135",
+      "sha256": "678ed53b4ce6309d210a55ce3ce13e7d6dfdadca6e2f68ed7d47b1a6742a2f09"
+    },
+    {
+      "role": "hex_formatter",
+      "start": "0x146394650",
+      "end_exclusive": "0x1463946bc",
+      "file_offset": "0x6393a50",
+      "sha256": "4cd0a4dba64e76e79843b1380565cfb8fa87ba28671e67e01e2867431db202da"
+    },
+    {
+      "role": "hex_digits",
+      "start": "0x147b9d288",
+      "end_exclusive": "0x147b9d298",
+      "file_offset": "0x7b9c688",
+      "sha256": "9f9f5111f7b27a781f1f1ddde5ebc2dd2b796bfc7365c9c28b548e564176929f"
+    }
+  ],
+  "edges": [
+    {
+      "op": "call",
+      "site": "0x145ed5d4b",
+      "destination": "0x145df2000"
+    },
+    {
+      "op": "call",
+      "site": "0x145f33777",
+      "destination": "0x145df2000"
+    },
+    {
+      "op": "call",
+      "site": "0x145df23ea",
+      "destination": "0x145f42530"
+    },
+    {
+      "op": "lea",
+      "site": "0x145df2872",
+      "destination": "0x1473bb116"
+    },
+    {
+      "op": "call",
+      "site": "0x145f42581",
+      "destination": "0x146034d60"
+    },
+    {
+      "op": "call",
+      "site": "0x146034d8b",
+      "destination": "0x14604a650"
+    },
+    {
+      "op": "lea",
+      "site": "0x14604a722",
+      "destination": "0x146394650"
+    },
+    {
+      "op": "lea",
+      "site": "0x14604a776",
+      "destination": "0x147b06d35"
+    },
+    {
+      "op": "lea",
+      "site": "0x14639465f",
+      "destination": "0x147b9d288"
+    },
+    {
+      "op": "call",
+      "site": "0x1463946b0",
+      "destination": "0x146388490"
+    }
+  ],
+  "formatter_output": "0x146388490",
+  "identifier_format": "u{:x}",
+  "query": {
+    "operation": "analyze_function",
+    "procedure": "0x14604a650",
+    "subject_sha256": "bd47a46ce3cfee15f114db2bd850da6645e3d7e3f95b498c40db5565a3329ba0",
+    "analysis_profile_sha256": "cb105bc261e1b8da3242f1f391440f6685aaa160c36a4815fc1c492f37af693a",
+    "evidence_id": "ev_13232da9985e5fec90eb8332ff3cf89509b9f81c84f97c2306da4e8804ca004c",
+    "result_sha256": "98d3a54b317f5d019ab4db4987d47398a1d7e011b1dd5e2ab00a3f179f0f5967"
+  },
+  "limits": "Formatter loop replay stops at the generic integral padding call. Packed default argument supplies no prefix or width. Full addon delivery and rendering were not exercised."
+}

@@ -23,7 +23,7 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "1d9f33f8acfb2be1a1b75542b1cab81950744db55e455ee95004a24b5c8d8a87"
+      "sha256": "1c206df3c3943531b0cd377b8b7335a18acf0ef3aca10df5462ef9cfe62719db"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
@@ -39,7 +39,7 @@
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "8952f69e12d268e176e9666dd73f5e03baa05d57db582447ac6a53a398ba38b4"
+      "sha256": "795a2187ebad1ba8e833ce1664d92e6d810400134e36348e94b5766bdee50d85"
     },
     {
       "path": "docs/analysis/coverage/full-image-selected.json",
@@ -53,7 +53,7 @@
   "supporting_inputs": [
     {
       "path": "docs/analysis/coverage/native-ownership-classification.json",
-      "sha256": "ddaeb5d5b517d37383d78fbbe993df954afcb114c63aaecee57adc89962fd250",
+      "sha256": "401ebfb7e4aece28a58ca223ebf77ceb4cfabf1748b624b000ad6235c8cd0bff",
       "target": {
         "version": "0.143.0",
         "path": "installed-game/AzerothSurvivors.exe",
@@ -65,16 +65,16 @@
   ],
   "counts": {
     "custom_system_rows": 83,
-    "with_registered_current_evidence": 7,
-    "without_registered_current_evidence": 76,
-    "with_registered_current_bounded_contract": 6,
-    "without_registered_current_bounded_contract": 77,
+    "with_registered_current_evidence": 8,
+    "without_registered_current_evidence": 75,
+    "with_registered_current_bounded_contract": 7,
+    "without_registered_current_bounded_contract": 76,
     "without_source_correspondence": 0,
     "ownerless_native_location_references": 67,
     "paths_with_ownerless_native_location_references": 15,
-    "retained_evidence_json_documents": 1888,
+    "retained_evidence_json_documents": 1889,
     "evidence_document_identity_roles": {
-      "current": 12,
+      "current": 13,
       "historical": 1783,
       "requires_owning_manifest_or_review": 93
     },
@@ -5533,10 +5533,14 @@
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
         "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-game-game-party]; pending applicability alone is excluded from ordinary fixgap choices."
       ],
-      "registered_current_evidence_present": false,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/evidence/coop-downed-guid.json": "The common host and seated-recipient AZSDOWNED row iterator sends the world GUID through default-width lowercase hexadecimal formatting. Rebuilt source uses the same format."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/coop-downed-guid.json"
+      ]
     },
     {
       "id": "custom-game-server-party",
@@ -6930,6 +6934,6 @@
   "parity_verified": false,
   "inventory": {
     "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/exe-connections.json",
-    "sha256": "a16b1722d8390a8432b0d5ee5fb4f20ba2fd1ba74ded5fe3acc3d838b83fd90f"
+    "sha256": "18ac77bcc43c13c528bb7ffbc0137e142242b1fb24320ba4a3c9ff9d526f57ae"
   }
 }

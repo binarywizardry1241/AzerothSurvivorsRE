@@ -195,7 +195,7 @@ mod tests {
             hero.dead = true;
             hero.fall_epoch = hero.clock;
         }).unwrap();
-        assert_eq!(game.party_downed_payload(), "u200,Remote,1.5,-2.5,3.0,12.5,down");
+        assert_eq!(game.party_downed_payload(), "uc8,Remote,1.5,-2.5,3.0,12.5,down");
         assert!(game.with_party_hero(1, |hero| hero.party_downed_payload()).unwrap().is_empty());
 
         game.with_party_hero(1, |hero| hero.apply_party_revive(
@@ -207,7 +207,7 @@ mod tests {
 
         game.clock = 15.0;
         assert!(game.leave_party_hero(1));
-        assert_eq!(game.party_downed_payload(), "u200,Remote,1.5,-2.5,3.0,15.0,left");
+        assert_eq!(game.party_downed_payload(), "uc8,Remote,1.5,-2.5,3.0,15.0,left");
     }
 
     #[test]

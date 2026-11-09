@@ -32631,6 +32631,39 @@
       ]
     },
     {
+      "claim_id": "changelog:0.139.2:c456a516752982b8",
+      "target": {
+        "version": "0.143.0",
+        "sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b"
+      },
+      "status": "static_checked",
+      "rationale": "The shared publisher now emits the exact unpadded lowercase hexadecimal unit IDs in the selected AZSDOWNED rows. The recipient filter and publication paths remain connected. Live addon delivery and projection remain open.",
+      "source_refs": [
+        "crates/azeroth-survivors-re/src/coop/game_party.rs"
+      ],
+      "evidence_refs": [
+        "docs/analysis/evidence/coop-downed-guid.json"
+      ],
+      "reviewed_ref_sha256": {
+        "crates/azeroth-survivors-re/src/coop/game_party.rs": "f153ad7736082c95f732978d87074c88b640ff0a903ea52ae2cb04e904341af6",
+        "docs/analysis/evidence/coop-downed-guid.json": "cb740486ac73011f75779cc51068653438ed101b72c96abaafd281d8865a58c3"
+      },
+      "systems": [
+        "custom-game-game-party"
+      ],
+      "gap_ids": [
+        63
+      ],
+      "native_contract": "The common host and seated-recipient AZSDOWNED row iterator sends the world GUID through default-width lowercase hexadecimal formatting. Rebuilt source uses the same format.",
+      "static_checks": [
+        {
+          "command": "python3 -B scripts/check-coop-replication.py --downed-guid",
+          "result": "passed",
+          "evidence_ref": "docs/analysis/evidence/coop-downed-guid.json"
+        }
+      ]
+    },
+    {
       "claim_id": "changelog:0.139.2:a6b9bed3be9c9ffa",
       "target": {
         "version": "0.140.0",

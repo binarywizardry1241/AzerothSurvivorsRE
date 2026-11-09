@@ -177,8 +177,26 @@ events resolve their stable GUID before dispatch.
 Member identities also gate downed and revive state, party frames, hazard
 occupancy and raid-target requests. Use the existing FrameXML and
 [addon API](../addon-api.md) consumers. Recipient-local positions, effect clocks
-and meters come from the admitted hero context. The downed-party GUID report and
-its runtime verification remain separately tracked.
+and meters come from the admitted hero context.
+
+### Downed-party addon GUIDs
+
+The [0.143.0 formatter proof](evidence/coop-downed-guid.json) connects the
+host and seated-recipient callers to the same snapshot builder. Its
+`AZSDOWNED` row iterator excludes the receiving party index and passes the
+world unit GUID to the lowercase hexadecimal formatter. The packed row format
+places `u` immediately before the default-width formatter argument. The
+[Scholomance capture](gameplay-log-evidence.md#downed-party-addon-ids)
+independently records stable unpadded IDs across down, departure and wipe.
+
+Both rebuilt callers use [the shared row writer](../../crates/azeroth-survivors-re/src/coop/game_party.rs),
+which now emits `u{:x}` for the world unit GUID. The existing recipient,
+state, epoch and position rules continue to feed the same addon message.
+`python3 -B scripts/check-coop-replication.py --downed-guid` checks ten
+hash-bound ranges, ten call and format edges, and twelve native formatter
+inputs through the handoff to generic integral padding. The Rust fixture
+expects `uc8` for actor 200 in both down and departure rows. Compilation,
+co-op delivery and addon projection remain under [#63](../verification-needed.md#gap-63).
 
 ## Choices, progression and rewards
 

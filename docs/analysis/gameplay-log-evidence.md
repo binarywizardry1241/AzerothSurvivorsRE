@@ -75,15 +75,14 @@ same numeric caster GUIDs as `SPELL_GO` at lines 234765, 234762, 234776 and
 `down` and `left` (lines 376029 and 376855). The final list retains that
 token as `left` alongside three `ended` rows (lines 378786–379140).
 
-The [0.140.0 producer recovery](coop.md#shared-simulation-and-replication) identifies the
-world unit GUID as the formatter input. The rebuilt
-[`Party::downed_payload`](../../crates/azeroth-survivors-re/src/coop/game_party.rs#L258)
-uses decimal formatting for that field. The [Lua getter](evidence/addon-api/selected-reference.lua#L596)
+The [0.143.0 formatter proof](coop.md#downed-party-addon-guids) independently
+identifies the world unit GUID input and lowercase hexadecimal formatter. The
+rebuilt [shared host and recipient publisher](../../crates/azeroth-survivors-re/src/coop/game_party.rs#L258)
+now emits the observed format. The [Lua getter](evidence/addon-api/selected-reference.lua#L596)
 returns the string ID, and the [catalog](../../crates/benilla-app/src/combat_text/world_anchors.rs#L239)
-keys a fall by the string and its epoch. Recover the exact native GUID
-format and align the shared host and recipient publisher. This evidence
-covers the published IDs for these four actors. Lua return values and
-rendered anchors require separate verification.
+keys a fall by the string and its epoch. The capture covers published IDs for
+these four actors. Lua return values and rendered anchors require separate
+verification.
 
 ## Capture D run boundaries
 

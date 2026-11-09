@@ -266,7 +266,7 @@ impl Party {
             }
             let state = if hero.finished { "left" } else if ended { "ended" } else { "down" };
             let [x, y, z] = hero.position;
-            let _ = write!(output, "u{},{},{x:.1},{y:.1},{z:.1},{:.1},{state}",
+            let _ = write!(output, "u{:x},{},{x:.1},{y:.1},{z:.1},{:.1},{state}",
                 hero.guid, sanitize(&hero.name), hero.fall_epoch);
         }
         output
