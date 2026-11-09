@@ -33,6 +33,32 @@ producer boundary stays in [scripted attacks](scripted-attack-producers.md#rotor
 and [#313](../CURRENT-STATE.md#gap-313). Rendering and projection checks remain
 with [#96](../verification-needed.md#gap-96).
 
+#### Scripted fill dispatch and safe-circle countdown
+
+The [0.143.0 marker receipt](evidence/raid-markers/scripted-fill.json) binds
+the current PE ranges, both dispatch tables, and the arc and paint queries.
+The `atk` reader looks up the JSON boolean `safe` at `0x1403ae132` and
+writes it to part byte `+0x78` at `0x1403ae33a`. The fill builder reads
+that byte at `0x1403b2c77` and the shape at `+0xac`. At `0x1403b5039`,
+tags 5, 6 and 7 select Sweep projection, Rotor projection and Polygon
+scaling around the point centroid. Tags 8 and 9 retain their separate
+Grid and Field body groups and add no dynamic fill through this table.
+
+The adjacent safe-part branch suppresses ordinary dynamic fills. An active
+safe circle with warning progress greater than 0.01 builds an arc from π/2 to π/2 + 2π times progress at the part radius plus
+0.6. It passes width 0.22, style 10 and mask 4 to the same projected arc
+builder used for the other marker edges. Fade suppresses the timer arc.
+The painter dispatches style 10 to `0x14039ef72`, mixing 30% white with
+base alpha 1 and additive gain 0.5 before shared marker gains.
+
+The [live fill builder](../../crates/azeroth-survivors-re/src/gameplay/raid_markers/geometry.rs)
+uses this arc instead of the ordinary danger fill for safe circles.
+It retains the existing outline and suppresses ordinary fill for other safe
+parts. `python3 -B scripts/check-raid-markers.py --check-scripted-fill`
+checks the installed hash, the selected instruction ranges, all 16 dispatch
+cells and the data values. Compilation and rendered countdown comparison
+remain in [#96](../verification-needed.md#gap-96).
+
 ## Q41-A02: complement references and imports
 
 Nine newly classified adapter entries belong to shared Bevy registration.

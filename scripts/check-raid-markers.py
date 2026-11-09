@@ -14,7 +14,7 @@ from pathlib import Path
 import struct
 import sys
 
-from coverage_common import ROOT, latest_target, target_bytes
+from coverage_common import ROOT, installed_identity, latest_target, target_bytes
 
 SHA = "76e7fb483ce65a43e3d54cb85fe87e250a28b052dc3a3be01332741b4c932fb0"
 EVIDENCE = ROOT / "docs/analysis/evidence/raid-markers"
@@ -42,6 +42,32 @@ OWNERS = {
 
 def text(value):
     return json.dumps(value, indent=2, ensure_ascii=False) + "\n"
+
+
+def check_scripted_fill():
+    proof = json.loads((EVIDENCE / "scripted-fill.json").read_text())
+    target = installed_identity()
+    assert all(target[key] == value for key, value in proof["target"].items())
+    data = target_bytes(target)
+    pe = load_script("scripted_marker_pe", ROOT / "scripts/inventory-executable.py").PE(data)
+
+    def raw(address, size):
+        offset = pe.rva_offset(int(address, 16) - pe.image_base)
+        return data[offset:offset + size]
+
+    for row in proof["ranges"]:
+        body = raw(row["start"], row["size"])
+        assert len(body) == row["size"] and hashlib.sha256(body).hexdigest() == row["sha256"], row["role"]
+    for table in proof["dispatch"]:
+        address = int(table["address"], 16)
+        payload = raw(table["address"], 4 * len(table["targets"]))
+        destinations = [hex(address + delta) for delta, in struct.iter_unpack("<i", payload)]
+        assert destinations == table["targets"], table["role"]
+    for address, encoded in proof["data"].items():
+        assert raw(address, len(encoded) // 2).hex() == encoded, address
+    print(text({"target_sha256": target["sha256"], "ranges_checked": len(proof["ranges"]),
+                "dispatch_cells_checked": sum(len(table["targets"]) for table in proof["dispatch"]),
+                "compiled_source_executed": False}), end="")
 
 
 def smooth(v):
@@ -810,8 +836,10 @@ if __name__ == "__main__":
     parser.add_argument("--write",action="store_true")
     parser.add_argument("--prepare-rea",action="store_true")
     parser.add_argument("--collect-rea",action="store_true")
+    parser.add_argument("--check-scripted-fill", action="store_true")
     parser.add_argument("--work",default="runtime/analysis/history/raid/raid-markers/c4ee1de5a66a")
     args=parser.parse_args()
     if args.prepare_rea:prepare_rea(args.work)
     elif args.collect_rea:collect_rea(args.work)
+    elif args.check_scripted_fill:check_scripted_fill()
     else:check(args.write)

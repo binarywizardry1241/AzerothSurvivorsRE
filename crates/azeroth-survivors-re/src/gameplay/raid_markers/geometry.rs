@@ -891,6 +891,22 @@ pub(super) fn scripted_fill(
         groups: Vec::new(),
     };
     let progress = row.progress();
+    if row.is_safe() {
+        if let Shape::Circle { radius } = row.shape {
+            if progress > 0.01 && !row.is_fading() {
+                builder.arc(
+                    row.position,
+                    radius + 0.6,
+                    FRAC_PI_2,
+                    FRAC_PI_2 + TAU * progress,
+                    0.22,
+                    10,
+                    4,
+                );
+            }
+        }
+        return builder.groups;
+    }
     if progress <= 0.01 && !matches!(row.shape, Shape::Sweep { .. } | Shape::Rotor { .. }) {
         return builder.groups;
     }
@@ -1007,7 +1023,7 @@ pub(super) fn scripted_fill(
                 builder.rectangle(&marker, *length, *width, length * 0.25 + 4.0, style, 3);
             }
         }
-        Shape::Polygon(points) if points.len() >= 3 && !row.is_safe() => {
+        Shape::Polygon(points) if points.len() >= 3 => {
             let count = points.len() as f32;
             let center = points
                 .iter()

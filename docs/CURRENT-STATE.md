@@ -20,7 +20,7 @@ correspondence are tracked under [#41](#gap-41).
 | AS-only module measure | Verified connection ledger |
 | --- | ---: |
 | Known modules with partial reconstructed source | 100% — 83/83 |
-| Modules with registered current-target bounded recovery contracts | 8.4% — 7/83 |
+| Modules with registered current-target bounded recovery contracts | 9.6% — 8/83 |
 
 The [connection ledger](analysis/coverage/exe-connections.json) counts diagnostic
 modules. A bounded contract covers a specific behavior. Total AS implementation,
@@ -105,6 +105,8 @@ retains the recovered callback phase and remaining runtime comparison.
 tracks compilation, replay and parity for the connected authority.
 <a id="gap-11"></a>[#11 Addon bridge and overlay](verification-needed.md#gap-11)
 retains the connected interface and verification work.
+<a id="gap-96"></a>[#96 Scripted marker fills](verification-needed.md#gap-96)
+tracks the connected safe-circle countdown and remaining presentation checks.
 <a id="gap-158"></a>[#158 Embedded locale catalogs](verification-needed.md#gap-158)
 tracks connected values, historical key retention and UI comparison.
 <a id="gap-312"></a>[#312 Scholomance entry and login position](verification-needed.md#gap-312)
@@ -146,7 +148,6 @@ their original build and comparison obligations.
 | `custom-app-screens-inspect` | [#299](verification-needed.md#gap-299) |
 | `custom-app-screens-language` | [#127](#gap-127) |
 | `custom-app-screens-localclock` | [#302](verification-needed.md#gap-302) |
-| `custom-app-screens-markers` | [#96](#gap-96) |
 | `custom-app-screens-meter` | [#75](verification-needed.md#gap-75) |
 | `custom-app-screens-mod` | [#128](#gap-128) |
 | `custom-app-screens-ontop` | [#11](verification-needed.md#gap-11) |
@@ -230,7 +231,6 @@ Apply source eligibility per member; selecting an exact ID does not select sibli
 | Party progression, achievements and clear settlement | #82, #196 | Source/recovery members only; the exact retained and new constituent actions are below. | Progression & saves · Co-op |
 | Engine compatibility and supporting app boundary | #109, #122 | Source/recovery members only; their exact remaining actions are below. | Engine, platforms & updates |
 | Co-op movement, clocks and correction | #275 | Source/recovery members only; the exact retained and new constituent actions are below. | Co-op & networking |
-| Raid markers and effect layering | #96 | Source/recovery members only; the exact retained and new constituent actions are below. | UI, HUD & menus · Co-op |
 | Guest equipment and template publication | #64, #65, #145 | Retained template contracts and pending current-target correspondence remain separate from the completed ItemQuery text carrier. | Co-op & networking · Gear |
 | Appearance rewards and any-race/class Armory | #83, #123 | Source/recovery members only; their exact remaining actions are below. | Progression & saves · Appearances |
 | Heroic difficulty, affixes and progression | #131, #144, #240, #241 | Source/recovery members only; the exact retained and new constituent actions are below. | Runs & difficulty · Heroic, affixes |
@@ -282,7 +282,6 @@ Selected-target selectors resolve through the [connection ledger](analysis/cover
 | #93 | Current applicability pending; historical bounded contract retained | <a id="gap-93"></a>**Current-target bounded recovery contract: `custom-game-nav`.** `custom-game-nav`: retain the recovered source/contracts and establish the selected-target input, dispatch, state, dependency and consumer correspondence. Register only the proved bounded scope under `systems[id=custom-game-nav]`; missing registration does not establish absent implementation. [Verification and retained evidence](verification-needed.md#gap-93).  [Historical 0.127.0 bounded scope](analysis/evidence/caster-navigation/manifest.json) retains its explicit historical owner scope; selected-target correspondence and registration remain pending. | World & navigation |
 | #94 | Target applicability/contract registration pending | <a id="gap-94"></a>**Local authentication, realm and roster service — 0.120.5 recovery evidence.** `custom-game-realmd`: retain the recovered source/contracts and establish the selected-target input, dispatch, state, dependency and consumer correspondence. Register only the proved bounded scope under `systems[id=custom-game-realmd]`; missing registration does not establish absent implementation. [Verification and retained evidence](verification-needed.md#gap-94). | Co-op & networking |
 | #95 | Current-target applicability/contract registration pending; proof-only | <a id="gap-95"></a>**Local movement and floor packet clock: current interface applicability.** Keep completed source and actual historical contract proofs in [verification](verification-needed.md#gap-95). Current 0.139.1 ledger `systems[id=custom-game-terrain]` supplies exact diagnostic/body leads; map relevant inputs, dispatch, layouts/values, dependencies and consumers, then register only the proved bounded scope. Missing registration is not absent implementation. [Module dimensions](analysis/module-contracts.md#historical-correspondence). | Controls & camera |
-| #96 | Current scripted marker contract registered; wider correspondence pending | <a id="gap-96"></a>**Current-target bounded recovery contract: `custom-app-screens-markers`.** The [0.141.0 marker proof](analysis/native-recovery.md#marker-geometry-and-local-continuations) connects Sweep, Polygon and Rotor client decoding and presentation. The remaining module-wide marker correspondence and encounter server constructors retain separate scope under [#41](#gap-41). [Verification and retained evidence](verification-needed.md#gap-96). The 0.143.0 five-cell marker-context selector `0x1403b5039` needs its tag producer and shape/paint consumer. | UI, HUD & menus |
 | #97 | Target applicability/contract registration pending | <a id="gap-97"></a>**Current-target bounded recovery contract: `custom-app-legacy-config`.** `custom-app-legacy-config`: retain the recovered source/contracts and establish the selected-target input, dispatch, state, dependency and consumer correspondence. Register only the proved bounded scope under `systems[id=custom-app-legacy-config]`; missing registration does not establish absent implementation. [Verification and retained evidence](verification-needed.md#gap-97). | Progression & saves |
 | #98 | Producer/schema/consumer applicability pending | <a id="gap-98"></a>**Runtime talent-context request payload and consumers.** Reuse the retained talent-context implementation and establish the selected-target producer, length/dispatch, schema, queue lifetime and notice/terminal/save consumers. The literal talentxp and old length/queue proofs are leads, not current schema correspondence. [Exact frontier/source receipts](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/b4117154651e507abec7d190207174568a802a29/docs/analysis/evidence/0.120.5/as-discovery-frontier.json), [queue](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/unknown-recovery-0.120.5.md). [Verification and retained evidence](verification-needed.md#gap-98). | Classes & talents |
 | #109 | Compiled engine provenance unproved | <a id="gap-109"></a>**Under-the-hood engine improvements.** Vendored source ancestry is known, but EXE crate-path strings and unchanged candidate files do not identify the exact compiled engine revision. Keep this as the bounded provenance question; recover only demonstrated AS interface differences and do not turn it into generic engine reconstruction. [Engine lineage](analysis/engine-lineage.md), [source update](https://github.com/binarywizardry1241/AzerothSurvivorsRE/blob/229fd4278b9b40ecd552f1561b4e4e92b3f03339/docs/analysis/benilla-update-2026-10-25.md). [Verification and retained evidence](verification-needed.md#gap-109). | Engine, platforms & updates |

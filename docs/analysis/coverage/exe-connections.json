@@ -23,7 +23,7 @@
   "inputs": [
     {
       "path": "docs/analysis/coverage/systems.json",
-      "sha256": "8557eed98761a0337d371f17e7c0720df2108759bb0d1268f154dc2d25bfa85f"
+      "sha256": "90fc93f39226470ef04d1f156f06385c569818f4dac8fcfc7e02b1d51aec8905"
     },
     {
       "path": "docs/analysis/coverage/native-summary.json",
@@ -39,7 +39,7 @@
     },
     {
       "path": "docs/analysis/coverage/changelog.json",
-      "sha256": "771b09f991e8b22d5e3fa873256822bf944c7d5615ebf28332b38aa979c20bbd"
+      "sha256": "365f9cccf99b25f04ca7766115bc844b069206bff47366aa1dbd8659969ebc9e"
     },
     {
       "path": "docs/analysis/coverage/full-image-selected.json",
@@ -53,7 +53,7 @@
   "supporting_inputs": [
     {
       "path": "docs/analysis/coverage/native-ownership-classification.json",
-      "sha256": "519c4b92b25228e9ac5c572289d409c1f189f583dba3f965986fb2fea9cb6e82",
+      "sha256": "2e80745dcf68c85725ce65aa83349c4ba0e098bf78b87181630a6d4a8937ca33",
       "target": {
         "version": "0.143.0",
         "path": "installed-game/AzerothSurvivors.exe",
@@ -65,16 +65,16 @@
   ],
   "counts": {
     "custom_system_rows": 83,
-    "with_registered_current_evidence": 8,
-    "without_registered_current_evidence": 75,
-    "with_registered_current_bounded_contract": 7,
-    "without_registered_current_bounded_contract": 76,
+    "with_registered_current_evidence": 9,
+    "without_registered_current_evidence": 74,
+    "with_registered_current_bounded_contract": 8,
+    "without_registered_current_bounded_contract": 75,
     "without_source_correspondence": 0,
     "ownerless_native_location_references": 67,
     "paths_with_ownerless_native_location_references": 15,
-    "retained_evidence_json_documents": 1891,
+    "retained_evidence_json_documents": 1892,
     "evidence_document_identity_roles": {
-      "current": 15,
+      "current": 16,
       "historical": 1783,
       "requires_owning_manifest_or_review": 93
     },
@@ -4873,7 +4873,9 @@
         "crates/benilla-world/src/sky_order.rs",
         "crates/benilla-world/src/ground_fx.rs",
         "crates/azeroth-survivors-re/src/bosses/prediction.rs",
-        "scripts/check-release-raid.py"
+        "scripts/check-release-raid.py",
+        "crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs",
+        "scripts/check-raid-markers.py"
       ],
       "source_anchors": [
         {
@@ -4935,12 +4937,17 @@
       ],
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
-        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-markers]; pending applicability alone is excluded from ordinary fixgap choices."
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-markers]; pending applicability alone is excluded from ordinary fixgap choices.",
+        "The selected five-cell fill dispatch and safe-circle countdown are connected. Remaining correspondence concerns other marker render and encounter interfaces."
       ],
-      "registered_current_evidence_present": false,
-      "registered_current_bounded_contract_present": false,
-      "current_bounded_contract_scopes": {},
-      "current_bounded_contract_refs": []
+      "registered_current_evidence_present": true,
+      "registered_current_bounded_contract_present": true,
+      "current_bounded_contract_scopes": {
+        "docs/analysis/evidence/raid-markers/scripted-fill.json": "Scripted marker safe flag, fill dispatch for tags 5–9, and safe-circle arc progress, geometry and paint."
+      },
+      "current_bounded_contract_refs": [
+        "docs/analysis/evidence/raid-markers/scripted-fill.json"
+      ]
     },
     {
       "id": "custom-app-legacy-config",
@@ -6939,6 +6946,6 @@
   "parity_verified": false,
   "inventory": {
     "path": "runtime/coverage/f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b/exe-connections.json",
-    "sha256": "de74239ddc8c7dbe25cc15b5a6ff9c2f8f60055bc26805f2a40bebb18dfa764a"
+    "sha256": "b8c9480450245d9e45e06d695a528a7b6bf925d5dca59f61dc58c29437902489"
   }
 }

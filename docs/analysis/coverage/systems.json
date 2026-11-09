@@ -55341,7 +55341,9 @@
         "crates/benilla-world/src/sky_order.rs",
         "crates/benilla-world/src/ground_fx.rs",
         "crates/azeroth-survivors-re/src/bosses/prediction.rs",
-        "scripts/check-release-raid.py"
+        "scripts/check-release-raid.py",
+        "crates/azeroth-survivors-re/src/gameplay/raid_markers/scripted.rs",
+        "scripts/check-raid-markers.py"
       ],
       "evidence_refs": [
         "docs/analysis/raid-markers-0.108.0.md",
@@ -55424,7 +55426,8 @@
         "docs/analysis/evidence/0.139.1/discovery-delta.json",
         "docs/analysis/evidence/0.139.1/source-frontier.json",
         "docs/analysis/native-census-0.139.1.md",
-        "docs/analysis/q41-reference-frontier-0.141.0.md"
+        "docs/analysis/q41-reference-frontier-0.141.0.md",
+        "docs/analysis/evidence/raid-markers/scripted-fill.json"
       ],
       "gap_ids": [
         1,
@@ -55462,7 +55465,8 @@
       },
       "remaining_source_work": [
         "Map retained bounded contracts at current native leads: relevant inputs, dispatch, state, values/layouts, required AS dependencies and actual source consumers.",
-        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-markers]; pending applicability alone is excluded from ordinary fixgap choices."
+        "Retain prior remaining subcases under incremental-correspondence.json:retained_module_assessments[id=custom-app-screens-markers]; pending applicability alone is excluded from ordinary fixgap choices.",
+        "The selected five-cell fill dispatch and safe-circle countdown are connected. Remaining correspondence concerns other marker render and encounter interfaces."
       ],
       "native_evidence_target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
       "native_evidence_validity": "current_exact_diagnostic_path",
@@ -56205,7 +56209,7 @@
       },
       "current_applicability": {
         "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
-        "status": "pending_current_target_contract_correspondence",
+        "status": "registered_current_bounded_scope_with_wider_applicability_pending",
         "assessment": "docs/analysis/module-contracts.md"
       },
       "current_contract_finding": 96,
@@ -78407,6 +78411,21 @@
       ],
       "bounded_contract_owner_scopes": {
         "custom-game-server-party": "The selected local request dispatch maps tags 22 through 29. Rebuilt accepted-lobby guest Chat and Ready Answer flush queued game frames before separate wire 22 and 27 sends."
+      }
+    },
+    "docs/analysis/evidence/raid-markers/scripted-fill.json": {
+      "path": "docs/analysis/evidence/raid-markers/scripted-fill.json",
+      "target_version": "0.143.0",
+      "target_sha256": "f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b",
+      "validity": "current_bounded_selected_native_interface_contract",
+      "system_ids": [
+        "custom-app-screens-markers"
+      ],
+      "bounded_contract_system_ids": [
+        "custom-app-screens-markers"
+      ],
+      "bounded_contract_owner_scopes": {
+        "custom-app-screens-markers": "Scripted marker safe flag, fill dispatch for tags 5–9, and safe-circle arc progress, geometry and paint."
       }
     }
   },
