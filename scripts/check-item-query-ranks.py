@@ -19,6 +19,7 @@ from discovery_native_subject import verify_native_query_subject
 from script_sources import load_script
 
 SHA = '22f7938eb4f99f2857dc091b1c57c147bd848eaabfeaa81e444c0a3393ca8150'
+LOCAL_FALLBACK_SHA = 'f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b'
 ARCHIVED_OUTPUT = ROOT / 'docs/analysis/evidence/0.121.0/item-set-publication/item-query-ranks.json'
 OUTPUT = ROOT / 'docs/analysis/evidence/item-set-publication/item-query-ranks.json'
 
@@ -222,6 +223,61 @@ def replays(image, pe):
                'Only the imported roundf call is supplied for health-row conversion; original conversion/saturation/summing instructions execute.'])
 
 
+def check_local_fallback(target, image, pe):
+    """Replay the 0.143.0 local request routing and no-Game saved-rank branch."""
+    assert target['sha256'] == LOCAL_FALLBACK_SHA
+    base = load_script('set_consumer_replay', ROOT / 'scripts/check-set-consumers.py')
+    machine = base.Replay(image, pe)
+    app, saved, packet = machine.heap, machine.heap + 0x3000, machine.heap + 0x4000
+    dispatcher, item_query = 0x145e1ba40, 0x145e1bde4
+    table = 0x1473c5cac
+    offset = pe.rva_offset(table - pe.image_base) + (0x56 - 0x4b) * 4
+    assert table + struct.unpack_from('<i', image, offset)[0] == item_query
+
+    for coop_state, synchronized, destination in (
+        (0, 0, dispatcher), (1, 0, dispatcher), (3, 1, dispatcher),
+        (1, 1, 0x145e3316e),
+    ):
+        machine.reset()
+        machine.write(app + 0x1108, '<Q', coop_state)
+        machine.write(app + 0x15ad, '<B', synchronized)
+        for reg, value in dict(RCX=app, RSI=app, R14=0x56, RBX=4, RDI=packet, R12=0).items():
+            machine.set(reg, value)
+        assert machine.run(0x145e330d6, (dispatcher, 0x145e3316e),
+                           ((0x145e330d6, 0x145e331b4), (0x145e332a9, 0x145e332c3))) == destination
+        if destination == dispatcher:
+            assert machine.uc.reg_read(machine.reg.UC_X86_REG_RDX) == 0
+            assert machine.uc.reg_read(machine.reg.UC_X86_REG_R9) == 0x56
+
+    star_rows = [(101_000, 1), (101_050, 3), (101_100, 5)]
+    cases = [
+        (b'', [], 0), (b'\x22', star_rows, 0), (b'\x22\x33', star_rows, 0),
+        (struct.pack('<I', 101_060)[:3], star_rows, 3),
+        (struct.pack('<I', 101_050), star_rows, 3),
+        (struct.pack('<I', 101_060), [(101_050, 4)], 4),
+        (struct.pack('<I', 101_100) + b'\xff', star_rows, 5),
+        (struct.pack('<I', 101_020), star_rows, 0),
+        (struct.pack('<I', 900_001), star_rows, 0),
+        (struct.pack('<I', 101_050), [], 0),
+    ]
+    for payload, stars, expected in cases:
+        machine.reset()
+        if payload:
+            machine.uc.mem_write(packet, payload)
+        for i, (item, rank) in enumerate(stars):
+            machine.write(saved + i * 8, '<IB3x', item, rank)
+        machine.write(app + 0x1798, '<QQ', saved, len(stars))
+        machine.write(app + 0x10, '<I', 2)  # No Game.
+        for reg, value in dict(RSI=app, RBX=0, R12=0, R13=len(payload), R15=packet).items():
+            machine.set(reg, value)
+        machine.run(item_query, (0x145e1c4e9,),
+                    ((item_query, 0x145e1c4e9), (0x145e819f0, 0x145e81a9d)))
+        assert machine.uc.reg_read(machine.reg.UC_X86_REG_RDI) == int.from_bytes(payload[:4], 'little')
+        assert machine.uc.reg_read(machine.reg.UC_X86_REG_RDX) == expected
+    print(json.dumps(dict(local_routes=4, saved_rank_cases=len(cases),
+                          original_instruction_steps=machine.steps, application_executed=False)))
+
+
 def main():
     global SOURCE_ROOT
     parser = argparse.ArgumentParser()
@@ -229,15 +285,21 @@ def main():
     parser.add_argument('--source-root', type=Path, default=ROOT,
                         help='Scoped source snapshot inside the project for commit review')
     parser.add_argument('--manifest', type=Path, default=OUTPUT)
+    parser.add_argument('--check-local-fallback', action='store_true')
     args = parser.parse_args()
     SOURCE_ROOT = args.source_root.resolve()
     assert SOURCE_ROOT.is_relative_to(ROOT)
     args.manifest = args.manifest.resolve()
     assert args.manifest.is_relative_to(ROOT)
     target = latest_target(verify=True)
-    assert target['sha256'] == SHA
     image = target_bytes(target)
     pe = load_script('item_query_rank_pe', ROOT / 'scripts/inventory-executable.py').PE(image)
+    if args.check_local_fallback:
+        if args.write:
+            parser.error('--check-local-fallback is read-only')
+        check_local_fallback(target, image, pe)
+        return
+    assert target['sha256'] == SHA
     publication = load_script('item_query_publication', ROOT / 'scripts/check-item-set-publication.py')
     queries = [publication.query(scope) for scope in ('item-query', 'item-query-rank', 'item-query-lines')]
     for row in queries:

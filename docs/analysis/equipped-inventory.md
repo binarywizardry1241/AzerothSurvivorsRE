@@ -99,6 +99,62 @@ Locale changes rebuild temporary names/text and allocate new identities when
 the native equality keys change. Existing ordinary IDs follow the normal
 template cache lifetime; this repair introduces no locale-triggered cache reset.
 
+## 0.143.0 equipment selectors and local queries
+
+The selected EXE has SHA-256
+`f35034ea7d44c99728cc6cd5a07a06db1bc46dff3bbd24e1df2755934dd2b07b`.
+This is the bounded gear dispatch and ItemQuery scope of
+[#92](../verification-needed.md#gap-92). The earlier inventory and
+star-publication evidence above retains its original targets.
+
+| Selector | Producer and consumer |
+| --- | --- |
+| `0x145e5ba33`, eight cells at `0x1473d33cc` | Race minus one selects the starter vector table. The class index is checked against the nine-class mask before reading the vector. The item decoder at `0x145e5bcc0` supplies the equipment lane at +0x68, and `0x145e5bc19` writes the ID into the 19-slot outfit. Armory calls the getter at `0x1403331b6`, and the outfitter calls it at `0x145e5c29d`. All 72 source starter outfits match after the existing Hunter melee-slot correction. |
+| `0x145e5c756`, 114 cells at `0x1473d36b8` | Requested ID minus 90001 selects the tabard and cosmetic records or falls through to the general item constructor. The [Lordaeron trace](lordaeron-tabard.md#01430-correspondence) binds the selected display and shared Rewards, appearance and item metadata owners. The 21 tabard and 14 cosmetic IDs, names and displays match the composed source catalogs. |
+| `0x145e5d4f7`, seven cells at `0x1473d3880` | The hundreds digit of `item_id - 100000` is the compact gear slot. Rarity digits 5 and 6 enter PvP, and slot 7 uses the separate default arm. The seven cells choose effect slices while parallel arrays supply inventory types `[1,3,5,6,7,8,9,10]` and equipment lanes `[0,2,4,5,6,7,8,9]`. Cloth chest slot 2 bypasses the switch with inventory type 20 and the same lane 4. The item constructor publishes display, class, subclass, inventory type, sheath and lane at +0x54 through +0x68. Armory resolves the race-selected ID at `0x14031a476` and reads this descriptor at `0x14031a484`. All 144 faction armor rows and 22 faction weapon rows match the shared source PvP and preview metadata for those fields. |
+| `0x145e1bacc` and `0x145e1bb11` | Engine opcode selects inventory refusals in the high table and ItemQuery 0x56 in the low table. The low-table ItemQuery cell enters `0x145e1bde4`. Nested CreatureQuery entry selectors are tracked under [#64](../CURRENT-STATE.md#gap-64) and [#65](../CURRENT-STATE.md#gap-65). |
+
+The [Armory catalog](../../crates/azeroth-survivors-re/src/armory.rs) and
+[save appearance resolver](../../crates/azeroth-survivors-re/src/save/gear.rs)
+already carry the slot, faction and appearance fields. The
+[inventory adapter](../../crates/azeroth-survivors-re/src/gameplay/client/inventory.rs)
+uses the same gear pieces for ItemQuery templates.
+
+The local router calls the shared dispatcher at `0x145e332be` with route
+zero. A guest with forwarding closed can take that local path. The dispatcher
+assembles the requested ID from up to four bytes. The no-Game test at
+`0x145e1c492` skips frozen rank lookup. The local branch calls the saved rank
+lookup at `0x145e1c4d6`. The helper at `0x145e819f0` canonicalizes digit 6
+to digit 5 and searches the sorted saved ranks, returning zero on a miss.
+The shared dispatcher calls the ordinary descriptor constructor at
+`0x145e1c4f4`. If no ordinary descriptor exists, the temporary resolver
+rejects an absent Game at `0x145e1324c`. The result reaches the existing
+response builder at `0x145e1cde5`.
+
+The local source drains queued requests while the client connection is
+active, even between runs. It uses the frozen rank when the current run
+supplies one and the saved rank on a miss or absent run. Local requests
+queued before guest forwarding also use the local save. Temporary templates
+are scoped to the current run identity.
+
+| Bound native range | File offset | SHA-256 |
+| --- | --- | --- |
+| `0x145e5b9f0..0x145e5bc74` | `0x5e5adf0` | `d03fd6a4ac43f012c2f6ff65d623ffc6658656109603d22071d91e9b9453cc0c` |
+| `0x145e5c710..0x145e5da68` | `0x5e5bb10` | `c22225f073038aa09886bdb28055a2e35179fa188b0f6eef3702ec3890624c1d` |
+| `0x145e1ba40..0x145e1f3b4` | `0x5e1ae40` | `1b07ea94927f66e6e17d0b5731c9b3c8b9dd813205c65c25e0d581f5b99fc58c` |
+| `0x145e33090..0x145e36af8` | `0x5e32490` | `5c714c86eee219a4fffba3645b817df88a04d0db3a841b8a7ae68e8a9af9185d` |
+| `0x145e819f0..0x145e81a9d` | `0x5e80df0` | `d85c253d41bf564d0caddd7ae7b53dbc0f12e640bc1a340a81f77737c2a7878b` |
+
+The gear constructor's verified raw-slice Ghidra result has digest
+`15daa01f2f49a4c4f7f1cb086eaf697bbd64374b78102cf38e6858bec54341ce`.
+The external table cells and Win64 argument roles come from the exact PE
+bytes. The [rank checker](../../scripts/check-item-query-ranks.py)
+`--check-local-fallback` passed four local routing and ten saved-rank cases
+over 832 original instruction steps with synthetic application and save
+memory. The replay stops before the descriptor and response builders.
+Rust syntax parsed. Compilation, the authored Rust checks, actual delivery
+and rendered/original-rebuilt comparison remain open.
+
 ## Checks and limits
 
 Run, without compiling or starting either game:

@@ -227,53 +227,57 @@ fn sync(
         sets.ranked_items = ranked_items;
     }
     if coop.as_ref().is_some_and(|runtime|runtime.is_guest()) {
-        answer_guest_local_queries(client.active, &armory, &labels, &mut queries,
+        answer_guest_local_queries(client.active, &menu.backend_save, &armory, &labels, &mut queries,
             &mut texts, &mut packets);
         return;
     }
-    let Some(game) = session.mechanics.as_ref().filter(|_| menu.in_run && client.active) else {
+    if !client.active {
         queries.0.clear();
         return;
-    };
-    let Some(player) = client.player.as_ref() else { return };
-    let hero = session.entry_hero.as_ref();
-    let race = hero.map_or(player.race, |hero| hero.race);
-    let class = hero.map_or(player.class, |hero| hero.class);
-    let inputs = Inputs { identity: session.identity, language: locale.code(),
-        jewelry: game.jewelry().iter().map(|row| (row.definition.key, row.rarity,
-            row.value.value.to_bits(), row.value.upgrades)).collect(),
-        amulet: game.worn_amulet().map(|row| (row.payload.key.as_str(), row.rarity, row.picks)) };
-    if publisher.inputs.as_ref() != Some(&inputs) {
-        let ordinary = equipped(&armory, &labels, race, class, session.starting_gear,
-            game.equipment_stars());
-        packets.0.extend(publisher.publish(session.identity, player.guid, ordinary,
-            temporary(game, &locale, &labels)));
-        publisher.inputs = Some(inputs);
     }
+    let game = session.mechanics.as_ref().filter(|_| menu.in_run);
+    if let (Some(game), Some(player)) = (game, client.player.as_ref()) {
+        let hero = session.entry_hero.as_ref();
+        let race = hero.map_or(player.race, |hero| hero.race);
+        let class = hero.map_or(player.class, |hero| hero.class);
+        let inputs = Inputs { identity: session.identity, language: locale.code(),
+            jewelry: game.jewelry().iter().map(|row| (row.definition.key, row.rarity,
+                row.value.value.to_bits(), row.value.upgrades)).collect(),
+            amulet: game.worn_amulet().map(|row| (row.payload.key.as_str(), row.rarity, row.picks)) };
+        if publisher.inputs.as_ref() != Some(&inputs) {
+            let ordinary = equipped(&armory, &labels, race, class, session.starting_gear,
+                game.equipment_stars());
+            packets.0.extend(publisher.publish(session.identity, player.guid, ordinary,
+                temporary(game, &locale, &labels)));
+            publisher.inputs = Some(inputs);
+        }
+    }
+    let published = (game.is_some() && publisher.identity == Some(session.identity))
+        .then_some(publisher.rows.as_slice());
     // Collected after the previous UI feed, answered before the gameplay's
-    // separate request drain. No query or template is synthesized by the addon.
+    // separate request drain. The local template path can use saved stars
+    // while the engine connection is active and there is no Game.
     for (entry, _guid) in std::mem::take(&mut queries.0) {
-        let published = publisher.rows.iter().find(|item| item.entry == entry);
-        let stars = game.item_star_rank(entry)
+        let stars = game.and_then(|game| game.item_star_rank(entry))
             .unwrap_or_else(|| menu.backend_save.star_count(entry));
         let definition = definition(&armory, &labels, entry, stars);
-        let info = definition.as_ref().or(published)
+        let info = definition.as_ref()
+            .or_else(|| published?.iter().find(|item| item.entry == entry))
             .map(|item| Box::new(item.template(&mut texts)));
         packets.0.push(SessionEvent::ItemTemplate { entry, info });
     }
 }
 
 fn answer_guest_local_queries(
-    active: bool, armory: &ArmoryCatalog, labels: &MenuCatalog,
+    active: bool, save: &crate::save::Save, armory: &ArmoryCatalog, labels: &MenuCatalog,
     queries: &mut LocalItemQueries, texts: &mut LocalItemDescriptions,
     packets: &mut LocalPresentationEvents,
 ) {
-    // These demands were collected while the native guest forwarding gate was
-    // still closed. Resolve the ordinary constructor without host/run star state;
-    // synchronized host replies arrive on their independent wire path.
+    // Requests queued before guest forwarding use the native local save lookup.
+    // Synchronized host replies carry the recipient's frozen run rank separately.
     for (entry, _guid) in std::mem::take(&mut queries.0) {
         if active {
-            let info = definition(armory, labels, entry, 0)
+            let info = definition(armory, labels, entry, save.star_count(entry))
                 .map(|item| Box::new(item.template(texts)));
             packets.0.push(SessionEvent::ItemTemplate { entry, info });
         }
@@ -777,16 +781,57 @@ mod tests {
     }
 
     #[test]
-    fn queued_guest_local_queries_answer_only_ordinary_zero_star_templates() {
+    fn local_item_queries_use_saved_stars_between_runs() {
+        use bevy::ecs::system::RunSystemOnce;
+
+        let mut world = World::new();
+        let mut menu = MenuState::from_save_path(None);
+        menu.entering = true;
+        menu.backend_save = crate::save::Save::parse("stars|101050:3\n").unwrap();
+        let entry = 101_060;
+        let mut publisher = Publisher::default();
+        let mut previous_ring = ring("previous run");
+        previous_ring.entry = 900_001;
+        publisher.rows.push(previous_ring);
+        world.insert_resource(menu);
+        world.insert_resource(LocalClientSession { active: true, ..Default::default() });
+        world.insert_resource(publisher);
+        world.insert_resource(LocalItemQueries(vec![(entry, 0), (900_001, 0)]));
+        world.init_resource::<RunSession>();
+        world.init_resource::<ArmoryCatalog>();
+        world.init_resource::<MenuCatalog>();
+        world.init_resource::<Localization>();
+        world.init_resource::<LocalPresentationEvents>();
+        world.init_resource::<LocalItemDescriptions>();
+        world.init_resource::<LocalItemSets>();
+
+        world.run_system_once(sync).unwrap();
+
+        assert!(world.resource::<LocalItemQueries>().0.is_empty());
+        let replies = &world.resource::<LocalPresentationEvents>().0;
+        let SessionEvent::ItemTemplate { entry: actual, info: Some(info) } = &replies[0] else {
+            panic!("local query did not receive a template between runs");
+        };
+        let expected = definition(
+            world.resource::<ArmoryCatalog>(), world.resource::<MenuCatalog>(), entry, 3,
+        ).unwrap();
+        assert_eq!(*actual, entry);
+        assert_eq!(info.description, expected.flavor);
+        assert!(matches!(&replies[1], SessionEvent::ItemTemplate { entry: 900_001, info: None }));
+    }
+
+    #[test]
+    fn queued_guest_local_queries_answer_only_ordinary_saved_rank_templates() {
         let catalog = ArmoryCatalog::embedded();
         let labels = MenuCatalog::embedded();
-        let entry = 101_000;
-        let ordinary = definition(&catalog, &labels, entry, 0).unwrap();
+        let save = crate::save::Save::parse("stars|101050:3\n").unwrap();
+        let entry = 101_060;
+        let ordinary = definition(&catalog, &labels, entry, 3).unwrap();
         let mut queries = LocalItemQueries(vec![(entry, 42), (900_001, 0), (u32::MAX, 0)]);
         let mut texts = LocalItemDescriptions::default();
         let first = texts.intern("prior callback text");
         let mut packets = LocalPresentationEvents::default();
-        answer_guest_local_queries(true, &catalog, &labels, &mut queries, &mut texts, &mut packets);
+        answer_guest_local_queries(true, &save, &catalog, &labels, &mut queries, &mut texts, &mut packets);
         assert!(queries.0.is_empty());
         let SessionEvent::ItemTemplate { entry: actual, info: Some(info) } = &packets.0[0] else {
             panic!("ordinary guest query did not receive a template");
@@ -802,7 +847,7 @@ mod tests {
         let before = texts.0.clone();
         queries.0.push((entry, 0));
         packets.0.clear();
-        answer_guest_local_queries(false, &catalog, &labels, &mut queries, &mut texts, &mut packets);
+        answer_guest_local_queries(false, &save, &catalog, &labels, &mut queries, &mut texts, &mut packets);
         assert!(queries.0.is_empty());
         assert!(packets.0.is_empty());
         assert_eq!(texts.0, before, "an absent engine port cannot construct or intern a template");
