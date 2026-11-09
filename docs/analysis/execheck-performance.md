@@ -36,7 +36,7 @@ must already exist; the runner installs nothing. The default profile is
 | `scan` | Fresh full PE and diagnostic scans/checks, disjoint file ledger, verified linear/complement inventories, MPQ inventory |
 | `native` | Scan plus declared census, independent verification, guarded/diagnostic/import/unwind/operand/address inputs, expanded census and verification |
 | `derive` | Scan plus operands, direct/constant dispatch and current ownership against an explicitly reviewed census |
-| `reconcile` | Derive plus custom partition, historical applicability, connections, unknown queue, changelog and final accounting |
+| `reconcile` | Derive plus custom partition, historical applicability, unknown queue, changelog, connections and final accounting |
 
 The native phase ends at a review frontier. Review its new/remaining leads,
 repeat required expansions until the applied inputs reconcile, and preserve the
@@ -46,8 +46,9 @@ numbered findings still follow the execheck skill. New contracts or findings
 cannot be manufactured by a DAG. `reconcile` assumes those reviewed canonical
 inputs exist. A cheap preflight requires reviewed ownership and applied switch
 proofs for that census before expensive readers run. After historical joins,
-the validated selection is refreshed before connections/unknowns/accounting,
-so a changed historical receipt cannot leave the final selector stale.
+the validated selection is refreshed. The connection index waits for both the
+unknown queue and changelog so it records their current receipts before final
+accounting.
 `automated_stages_complete` never means `execheck_semantic_review_complete`.
 
 Use one `--audit-session` file across phases of the same audit, and

@@ -315,9 +315,11 @@ class PipelineTests(unittest.TestCase):
             if phase == "reconcile":
                 by_id = {stage["id"]: stage for stage in stages}
                 self.assertEqual(by_id["selection"]["needs"], ["history"])
-                self.assertEqual(by_id["connections"]["needs"], ["selection", "changelog"])
+                self.assertEqual(by_id["unknown"]["needs"], ["selection"])
+                self.assertNotIn("docs/analysis/coverage/exe-connections.json", by_id["unknown"]["inputs"])
+                self.assertEqual(by_id["connections"]["needs"], ["unknown", "changelog"])
 
-    def test_default_connections_wait_for_current_changelog_on_target_refresh(self):
+    def test_default_connections_wait_for_current_changelog_and_unknowns(self):
         from execheck_profile import profile
         definitions = {stage["id"]: stage for stage in profile()["stages"]}
 
@@ -333,6 +335,8 @@ class PipelineTests(unittest.TestCase):
 
         self.assertIn("changelog", ancestors("connections"))
         self.assertNotIn("connections", ancestors("changelog"))
+        self.assertIn("unknown", ancestors("connections"))
+        self.assertNotIn("connections", ancestors("unknown"))
         self.assertIn("docs/analysis/coverage/changelog.json", definitions["connections"]["inputs"])
         coverage = self.root / "docs/analysis/coverage"
         coverage.mkdir(parents=True)
@@ -340,7 +344,8 @@ class PipelineTests(unittest.TestCase):
         programs = {
             "selection": "from pathlib import Path;Path('docs/analysis/coverage/native-image-current.json').write_text('{}')",
             "changelog": "from pathlib import Path;import json,time;time.sleep(0.25);Path('docs/analysis/coverage/changelog.json').write_text(json.dumps({'target':'current-target'}))",
-            "connections": "from pathlib import Path;import json;p=Path('docs/analysis/coverage');assert json.loads((p/'changelog.json').read_text())['target']=='current-target';(p/'exe-connections.json').write_text('{}')",
+            "unknown": "from pathlib import Path;import time;time.sleep(0.25);Path('docs/analysis/evidence/unknown-recovery.json').write_text('{}')",
+            "connections": "from pathlib import Path;import json;p=Path('docs/analysis/coverage');assert json.loads((p/'changelog.json').read_text())['target']=='current-target';assert Path('docs/analysis/evidence/unknown-recovery.json').is_file();(p/'exe-connections.json').write_text('{}')",
         }
         stages = []
         for definition in definitions.values():
@@ -349,7 +354,7 @@ class PipelineTests(unittest.TestCase):
             stage = dict(definition)
             stage.update(argv=[sys.executable, "-B", "-c", programs[stage["id"]]],
                          tools=["scripts/producer.py"], memory_mb=1,
-                         inputs=(["docs/analysis/coverage/changelog.json"]
+                         inputs=(["docs/analysis/coverage/changelog.json", "docs/analysis/evidence/unknown-recovery.json"]
                                  if stage["id"] == "connections" else ["left.txt"]),
                          needs=[name for name in stage["needs"] if name in programs])
             stages.append(stage)

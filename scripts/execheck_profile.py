@@ -66,8 +66,14 @@ def profile():
     # The connection audit validates the selected target of this ledger. Generate
     # it first so a new target cannot consume the predecessor's changelog.
     stage("changelog", "index-current-changelog.py", ["--write"], needs=["selection"], inputs=["docs/CHANGELOG.md", coverage+"systems.json", coverage+"changelog-reviews.json"], outputs=[coverage+"changelog.json"], phase="reconcile")
-    stage("connections", "audit-exe-connections.py", ["--census-summary", selected, "--write"], needs=["selection", "changelog"], inputs=[selected, coverage+"systems.json", coverage+"historical-range-revalidation.json", coverage+"changelog.json", "docs/analysis/evidence/**/*.json", "crates/**/*.rs"], outputs=[coverage+"exe-connections.json"], phase="reconcile")
+    # Connections index the residual receipt as evidence. Publish it first so
+    # the index records its current bytes and never feeds them back to its writer.
+    residual_inputs = ("native-summary.json", "diagnostic-ownership.json", "file-range-summary.json",
+                       "instruction-summary.json", "unwind-complement-summary.json", "native-image-current.json")
+    stage("unknown", "summarize-refresh-unknowns.py", ["--census-summary", selected, "--write"],
+          needs=["selection"], inputs=[selected, *(coverage+name for name in residual_inputs)],
+          outputs=["docs/analysis/evidence/unknown-recovery.json"], phase="reconcile", cache=False)
+    stage("connections", "audit-exe-connections.py", ["--census-summary", selected, "--write"], needs=["unknown", "changelog"], inputs=[selected, coverage+"systems.json", coverage+"historical-range-revalidation.json", coverage+"changelog.json", "docs/analysis/evidence/**/*.json", "crates/**/*.rs"], outputs=[coverage+"exe-connections.json"], phase="reconcile")
     stages[-1].update(cache=False, transitive_inputs=False)
-    stage("unknown", "summarize-refresh-unknowns.py", ["--census-summary", selected, "--write"], needs=["connections"], inputs=[selected, coverage+"exe-connections.json", coverage+"file-range-summary.json"], outputs=["docs/analysis/evidence/unknown-recovery.json"], phase="reconcile")
-    stage("accounting", "check-reconstruction-coverage.py", needs=["unknown", "changelog", "menu-identity"], inputs=["docs/analysis/coverage/*.json", "docs/CURRENT-STATE.md", "docs/verification-needed.md"], phase="reconcile", cache=False)
+    stage("accounting", "check-reconstruction-coverage.py", needs=["connections", "menu-identity"], inputs=["docs/analysis/coverage/*.json", "docs/CURRENT-STATE.md", "docs/verification-needed.md"], phase="reconcile", cache=False)
     return {"format": "execheck-dag-v1", "stages": stages}
