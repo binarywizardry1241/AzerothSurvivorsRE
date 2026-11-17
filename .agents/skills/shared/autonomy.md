@@ -102,6 +102,18 @@ path through the archive reader. A category relocation gives live consumers a
 new path while recorded hashes continue to verify against the original bytes.
 
 Use the shared analysis catalog and content store for reusable native results.
+Resolve retained encoded streams through `shared_payloads` and the coverage
+helpers. Large gzip exports live once as shared chunks in `knowledge.sqlite`;
+their former filenames are catalog entries, not required loose archives or
+placeholder files. Preserve exact original bytes, version/hash observations and
+snapshot membership. After verified publication, delete redundant archive paths.
+Do not recreate per-task or per-pass copies to satisfy a legacy reader: update
+the reader, or use the lease-owned native view for an exact retained collector.
+When consolidating repeated filenames, check every repeated name in scope with
+`manage-analysis-store.py --audit-repeated` and apply the verified reconciliation
+with `--reconcile-repeated`. Equal names alone never justify dropping distinct
+evidence, source modules or mutable checkpoints. Extend this existing capability
+when a new payload reader or format needs support.
 Keep temporary analysis outputs in a task-owned scratch directory under
 `runtime/tmp/` unless the runner has a canonical path. Clean up scratch after
 publishing or verifying the useful result. Reuse canonical inventory, journal,

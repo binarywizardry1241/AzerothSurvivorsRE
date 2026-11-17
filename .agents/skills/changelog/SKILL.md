@@ -44,7 +44,11 @@ target-bound audit ledger and its reviewed EXE/Data baseline separate. Keep the
 claim-only reader's output in chat. Source drift in a
 prior review stays pending in the audit ledger with the original review
 retained. Apply the [shared cleanup rules](../shared/autonomy.md#completion-cleanup)
-to any task-owned scratch. Review and commit the changelog and queue updates
+and [single-owner storage rules](../shared/autonomy.md#consolidate-reports-and-analysis-storage)
+to any task-owned scratch. Extend the existing changelog, claim and intake owners;
+do not retain duplicate per-release working files. Preserve the unchanged
+historical source archive and every referenced claim/review identity.
+Review and commit the changelog and queue updates
 together. Push the commit to
 `origin/main` and verify delivery under the [commit delivery rules](../../../AGENTS.md#commit-delivery).
 Report the new `$fixgap` choices by category with their release links, exact

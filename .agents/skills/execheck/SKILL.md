@@ -46,6 +46,9 @@ Search retained knowledge first, extend compatible Programs and inventories,
 and keep task outputs as receipts/references. A repeated audit or changed seed
 list does not justify another independent database. Required whole-image scans
 and exact current-target evidence remain mandatory.
+Publish completed encoded streams through the shared payload store, update their
+readers and remove redundant archives under the shared storage rules. Retain
+their exact original bytes and separate target/pass provenance in the catalog.
 
 This workflow authorizes static discovery/recovery and documentation/tools,
 not compilation, game launches or gameplay repairs. Inspect reconstructed source

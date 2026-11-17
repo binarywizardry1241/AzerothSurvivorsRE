@@ -42,6 +42,8 @@ Reuse exact sealed query results and the active census exports where a reader
 needs them. Apply the shared storage retention rules to bulk historical
 instruction and reference streams. Use bounded streaming checks for operand
 work and keep cache experiments in task scratch.
+Read catalogued streams through the shared payload adapter; a removed archive
+filename is not missing evidence. Fix its reader rather than restoring a copy.
 
 Use the **currently installed, hash-verified EXE** for fresh native work. Keep
 its identity separate from the last fully audited target. Historical reports
