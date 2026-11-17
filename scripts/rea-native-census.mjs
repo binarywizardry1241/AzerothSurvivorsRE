@@ -15,7 +15,7 @@ import {cleanupOwnedProcessGroup} from '../node_modules/rea-agents/dist/process/
 import {selectCensusWorkspace,sharedJavaToolOptions,acquireFileLease,acquireNativeSlot,releaseGhidraLease} from './shared-ghidra-programs.mjs';
 const root=await realpath(resolve(dirname(fileURLToPath(import.meta.url)),'..'));
 const executeFile=promisify(execFile),cancelled=new AbortController(),started=Date.now();
-let lock,programLock,registryLock,legacyLock,nativeSlot,active,output,parameters,profileDigest,attempts=[],resultWritten=false,releasingLock=false;
+let lock,programLock,registryLock,legacyLock,nativeSlot,payloadView,active,output,parameters,profileDigest,attempts=[],resultWritten=false,releasingLock=false;
 const STORAGE_PREDECESSORS={
  'scripts/census-native-image.py':'e3cfacf62eb4a49efc06562e3211a1aad2032f889c64ffe1ebb711c4efcf5a51',
  'scripts/rea-native-census.mjs':'234161bf645f2473bfdebea16c9753f2955b7f945236604193536f968670edc4',
@@ -32,6 +32,10 @@ const GIT_SEED_PRODUCERS=new Set([
  'scripts/recover-native-unwind-handlers.py']);
 async function committedTool(name,expected){
  const current=await realConfined(resolve(root,name));if(await sha256(current)===expected)return current;
+ if(['scripts/census-native-image.py','scripts/rea-native-census.mjs'].includes(name)){
+  await executeFile('python3',['-B',resolve(root,'scripts/script_sources.py'),'--show',name,'--sha256',expected],{cwd:root});
+  return null; // Exact historical producer; only the current storage adapter executes.
+ }
  if(GIT_STORAGE_PREDECESSORS[name]===expected){
   const {stdout}=await executeFile('git',['cat-file','blob','0bbcb5f5:'+name],{cwd:root,encoding:'buffer'});
   if(createHash('sha256').update(stdout).digest('hex')!==expected)throw Error('Committed storage predecessor differs: '+name);
@@ -71,7 +75,24 @@ async function atomicJson(path,value) {
  await writeFile(pending,JSON.stringify(value,null,2)+'\n',{mode:0o600,flag:'wx'});await rename(pending,path);
 }
 async function sha256(path) {
+ const info=await sharedPayloadInfo(path);if(info)return info.sha256;
  const hash=createHash('sha256');for await(const chunk of createReadStream(path))hash.update(chunk);return hash.digest('hex');
+}
+async function sharedPayloadInfo(path) {
+ const info=await stat(path).catch(error=>{if(error.code==='ENOENT')return null;throw error;});
+ if(info){if(info.size>4096)return null;
+  const bytes=await readFile(path);if(!bytes.subarray(0,22).toString().startsWith('REA shared payload v1\n'))return null;}
+ const {stdout}=await executeFile('python3',['-B',resolve(root,'scripts/shared_payloads.py'),'--verify',path],{cwd:root});
+ return JSON.parse(stdout);
+}
+async function acquirePayloadView(planPath) {
+ const child=spawn('python3',['-B',resolve(root,'scripts/shared_payloads.py'),'--lease-census',planPath],{cwd:root,stdio:['pipe','pipe','pipe']});
+ let diagnostic='';child.stderr.on('data',chunk=>{diagnostic=(diagnostic+chunk.toString()).slice(-8192);});
+ await new Promise((accept,reject)=>{
+  child.once('error',reject);
+  child.stdout.once('data',chunk=>chunk.toString().trim()==='materialized'?accept():reject(Error('Invalid payload view handshake')));
+  child.once('exit',code=>reject(Error(diagnostic.trim()||'Payload view helper exited: '+code)));
+ });return child;
 }
 async function verifyHash(path,expected,label) {
  if(!/^[a-f0-9]{64}$/i.test(expected??'') || await sha256(path)!==expected.toLowerCase())throw Error(label+' changed or has an invalid hash');
@@ -203,8 +224,10 @@ async function main() {
   if(value.script_sha256!==plan.script_sha256||value.plan_sha256!==planHash)throw Error('Completed collector/plan commitment differs');
   for(const name of ['instructions.tsv.gz','bodies.tsv.gz','references.tsv.gz','externals.tsv.gz','direct-call-helpers.tsv.gz',...(value.reuse_state?['reuse-state.json.gz']:[])]) {
    const record=value.files?.[name];if(!record)throw Error('No completed output commitment: '+name);
-   const path=await realConfined(resolve(output,name),output);
-   if((await stat(path)).size!==record.bytes)throw Error('Output length differs: '+name);await verifyHash(path,record.sha256,'Census output '+name);
+   const path=confined(resolve(output,name),output);
+   const info=await sharedPayloadInfo(path);
+   if(info){if(info.bytes!==record.bytes||info.sha256!==record.sha256)throw Error('Shared output differs: '+name);}
+   else {await realConfined(path,output);if((await stat(path)).size!==record.bytes)throw Error('Output length differs: '+name);await verifyHash(path,record.sha256,'Census output '+name);}
   }await verifyInputs();return true;
  }
  async function writeResult(result) {
@@ -226,6 +249,7 @@ async function main() {
  }
  async function run(mode) {
   await verifyInputs();const number=attempts.length+1,verifyOnly=mode==='verify';
+  if(!verifyOnly&&!payloadView)payloadView=await acquirePayloadView(planPath);
   const attemptDirectory=await directory(resolve(attemptsRoot,String(number).padStart(4,'0')+'-'+mode+'-'+randomUUID().slice(0,8)),output),support=[];
   const attemptTemp=await directory(resolve(attemptDirectory,'tmp'),attemptDirectory);
   const common=[projectRoot,projectName,...(mode==='import'?['-import',targetPath,...loaderOptions]:['-process',programName]),
@@ -351,6 +375,7 @@ catch(error) {
  process.exitCode=cancelled.signal.aborted?130:1;
 }finally {
  if(active){const stop=await active.stop();if(stop.status==='incomplete'){console.error('JVM cleanup incomplete; ownership and database retained');process.exitCode=1;}}
+ await releaseLock(payloadView);
  await releaseLock(lock);await releaseLock(programLock);await releaseLock(legacyLock);await releaseLock(registryLock);
  await releaseGhidraLease(nativeSlot);
 }

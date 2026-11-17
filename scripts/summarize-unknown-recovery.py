@@ -7,7 +7,8 @@ start Ghidra, compile source, execute the game or regenerate a native census.
 Missing runtime inventories must be restored by their documented owning producer.
 """
 import argparse
-import bisect, collections, csv, gzip, hashlib, json, sqlite3
+import bisect, collections, csv, hashlib, json, sqlite3
+import shared_payloads as gzip
 from pathlib import Path
 
 from coverage_common import ROOT, latest_target, load_json

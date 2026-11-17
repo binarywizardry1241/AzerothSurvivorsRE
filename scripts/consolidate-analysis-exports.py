@@ -18,6 +18,8 @@ import shutil
 import stat
 import tempfile
 import uuid
+from shared_analysis import SharedAnalysis, file_digest
+from shared_payloads import descriptor, payload_size, resolve_payload, retire_path
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = 'docs/analysis/evidence/native-export-storage.json'
@@ -37,16 +39,7 @@ def local_path(root, value):
 
 
 def digest(path):
-    before = path.stat()
-    result = hashlib.sha256()
-    with path.open('rb') as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b''):
-            result.update(block)
-    after = path.stat()
-    if (before.st_ino, before.st_size, before.st_mtime_ns, before.st_ctime_ns) != (
-            after.st_ino, after.st_size, after.st_mtime_ns, after.st_ctime_ns):
-        raise ValueError(f'Export changed while hashing: {path}')
-    return result.hexdigest()
+    return file_digest(path)
 
 
 def roots_for(index, root):
@@ -93,7 +86,8 @@ def validate(index, root):
                 or canonical in canonical_paths):
             raise ValueError('Invalid or duplicate canonical export path')
         canonical_paths.add(canonical)
-        if canonical.exists() and (not canonical.is_file() or canonical.stat().st_size != size or digest(canonical) != expected):
+        available = resolve_payload(canonical)
+        if available.is_file() and (payload_size(canonical) != size or digest(canonical) != expected):
             raise ValueError(f'Canonical export differs: {canonical}')
         sources, aliases = [], []
         for name in paths:
@@ -106,12 +100,12 @@ def validate(index, root):
             if path.is_symlink():
                 if os.path.isabs(os.readlink(path)) or path.resolve() != canonical.resolve():
                     raise ValueError(f'Alias points outside its canonical export: {name}')
-            elif path.exists():
-                if not path.is_file() or path.stat().st_size != size or digest(path) != expected:
+            elif resolve_payload(path).is_file():
+                if payload_size(path) != size or digest(path) != expected:
                     raise ValueError(f'Historical export differs: {name}')
-                sources.append(path)
+                if path.is_file(): sources.append(path)
             aliases.append(path)
-        if not canonical.is_file() and not sources:
+        if not available.is_file() and not sources:
             raise ValueError('No retained bytes available for export group')
         prepared.append((group, canonical, sources, aliases))
     return prepared
@@ -160,6 +154,16 @@ def consolidate(index, root, apply=False):
                     for g, canonical, sources, _ in prepared)
     if apply:
         for group, canonical, sources, aliases in prepared:
+            snapshot = resolve_payload(canonical)
+            if snapshot.is_file() and descriptor(snapshot) is not None:
+                store = SharedAnalysis(root)
+                receipt = store._receipt(group['sha256'], group['bytes'], 'migrated-evidence')
+                for alias in aliases:
+                    retire_path(store, alias, receipt, {'target_sha256': group['target_sha256'],
+                                                       'legacy_export_index': INDEX})
+                if canonical != store.object_path(group['sha256']):
+                    retire_path(store, canonical, receipt, {'legacy_export_index': INDEX})
+                continue
             if not canonical.exists():
                 canonical.parent.mkdir(parents=True, exist_ok=True)
                 with tempfile.NamedTemporaryFile(dir=canonical.parent, prefix='.export-', delete=False) as stream:

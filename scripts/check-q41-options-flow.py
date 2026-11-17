@@ -8,7 +8,7 @@ from runtime_layout import retained_runtime_path
 import argparse
 import bisect
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 import sqlite3

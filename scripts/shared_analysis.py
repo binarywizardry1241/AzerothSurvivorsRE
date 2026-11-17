@@ -55,16 +55,19 @@ def canonical(value):
 
 def file_digest(path):
     """Hash stable regular bytes; fail rather than accepting a concurrent write."""
-    path = Path(path)
+    from shared_payloads import resolve_payload
+    path = resolve_payload(path)
     before = path.stat()
     if not stat.S_ISREG(before.st_mode):
         raise ValueError(f"Not a regular analysis payload: {path}")
     signature = lambda s: (s.st_dev, s.st_ino, s.st_size, s.st_mtime_ns, s.st_ctime_ns)
-    key = signature(before)
+    from shared_payloads import descriptor, open_payload
+    shared = descriptor(path)
+    key = signature(before) + (signature(shared[1].stat()) if shared else ())
     if key in _DIGEST_CACHE:
         return _DIGEST_CACHE[key]
     digest = hashlib.sha256()
-    with path.open("rb") as stream:
+    with open_payload(path) as stream:
         for block in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(block)
     after = path.stat()
@@ -207,10 +210,11 @@ class SharedAnalysis:
         return receipt
 
     def verify_receipt(self, receipt):
+        from shared_payloads import payload_size
         path = self.object_path(receipt["sha256"])
         if receipt.get("path") != path.relative_to(self.root).as_posix():
             raise ValueError("Analysis object path differs from its digest")
-        if path.is_symlink() or not path.is_file() or path.stat().st_size != receipt["bytes"]:
+        if path.is_symlink() or not path.is_file() or payload_size(path) != receipt["bytes"]:
             raise ValueError(f"Missing or redirected analysis object: {path}")
         if file_digest(path) != receipt["sha256"]:
             raise ValueError(f"Analysis object bytes differ: {path}")
@@ -252,7 +256,8 @@ class SharedAnalysis:
         if not path.is_relative_to(self.runtime) or not path.is_file():
             raise ValueError("File publication requires a project runtime payload")
         sha256 = file_digest(path)
-        receipt = self._receipt(sha256, path.stat().st_size, kind)
+        from shared_payloads import payload_size
+        receipt = self._receipt(sha256, payload_size(path), kind)
         destination = self.object_path(sha256)
         self._directory(destination.parent)
         with self.lock():
@@ -271,7 +276,10 @@ class SharedAnalysis:
             return self.compress_object(receipt)
 
     def compression_candidate(self, receipt, minimum_bytes=1024 * 1024):
+        from shared_payloads import descriptor
         path = self.object_path(receipt["sha256"])
+        if descriptor(path) is not None:
+            return False, "shared byte snapshot"
         s = path.stat()
         if path.is_symlink() or not stat.S_ISREG(s.st_mode) or s.st_size != receipt["bytes"]:
             raise ValueError("Filesystem compression requires an intact regular CAS object")
@@ -378,7 +386,8 @@ class SharedAnalysis:
         destination = alias.resolve(strict=True)
         if not destination.is_relative_to(self.objects):
             raise ValueError("Alias does not resolve into shared objects")
-        receipt = self._receipt(destination.name, destination.stat().st_size, "migrated-evidence")
+        from shared_payloads import payload_size
+        receipt = self._receipt(destination.name, payload_size(destination), "migrated-evidence")
         self.verify_receipt(receipt)
         self._remember(receipt["sha256"], receipt["bytes"], receipt["kind"])
         with self.connect() as connection:
@@ -444,10 +453,11 @@ class SharedAnalysis:
 
     @_serialized
     def link_alias(self, alias, receipt, provenance=None, *, replace_output=False):
+        from shared_payloads import payload_size
         alias = self.alias_path(alias)
         destination = self.verify_receipt(receipt)
         if not replace_output and (alias.exists() or alias.is_symlink()):
-            if not alias.is_file() or alias.stat().st_size != receipt["bytes"] or file_digest(alias) != receipt["sha256"]:
+            if not alias.is_file() or payload_size(alias) != receipt["bytes"] or file_digest(alias) != receipt["sha256"]:
                 raise ValueError(f"Existing analysis alias has different bytes: {alias}")
         alias.parent.mkdir(parents=True, exist_ok=True)
         self.alias_path(alias)  # Recheck after creating parents.
@@ -487,17 +497,19 @@ class SharedAnalysis:
         migration row permits recovery if the process stops before alias creation.
         Hard-link publication uses the same inode, rather than a second full copy.
         """
+        from shared_payloads import payload_size
         source = self.alias_path(source)
         if source.is_symlink():
             destination = source.resolve(strict=True)
             if destination.is_relative_to(self.objects):
-                receipt = self._receipt(destination.name, destination.stat().st_size, "migrated-evidence")
+                receipt = self._receipt(destination.name, payload_size(destination), "migrated-evidence")
                 self.verify_receipt(receipt)
                 return dict(receipt, reclaimed_allocated_bytes=0, already_shared=True)
             if not destination.is_relative_to(self.runtime):
                 raise ValueError("Historical alias leaves runtime/")
             raise ValueError("Migrate the historical alias's physical source first")
         observed = source.stat()
+        original_bytes = payload_size(source)
         sha256 = file_digest(source)
         destination = self.object_path(sha256)
         self._directory(destination.parent)
@@ -510,9 +522,9 @@ class SharedAnalysis:
                 connection.execute("INSERT INTO analysis_migrations VALUES(?,?,?,?,?,?) ON CONFLICT(path) DO UPDATE SET "
                                    "sha256=excluded.sha256,bytes=excluded.bytes,provenance=excluded.provenance,"
                                    "state=excluded.state,updated=excluded.updated",
-                                   (name, sha256, observed.st_size, canonical(provenance), "prepared", time.time()))
+                                   (name, sha256, original_bytes, canonical(provenance), "prepared", time.time()))
             existed = destination.exists() or destination.is_symlink()
-            receipt = self._receipt(sha256, observed.st_size, "migrated-evidence")
+            receipt = self._receipt(sha256, original_bytes, "migrated-evidence")
             if existed:
                 self.verify_receipt(receipt)
             else:
@@ -522,7 +534,7 @@ class SharedAnalysis:
                 _fsync_directory(destination.parent)
             destination.chmod(0o444)
             self.verify_receipt(receipt)
-            self._remember(sha256, observed.st_size, "migrated-evidence")
+            self._remember(sha256, original_bytes, "migrated-evidence")
             with self.connect() as connection:
                 connection.execute("UPDATE analysis_migrations SET state='published',updated=? WHERE path=?",
                                    (time.time(), name))
@@ -559,11 +571,14 @@ class SharedAnalysis:
         return recovered
 
     def verify(self):
+        from shared_payloads import payload_size, resolve_payload
         with self.connect() as connection:
             objects = connection.execute("SELECT sha256,bytes,kind FROM analysis_objects").fetchall()
             aliases = connection.execute("SELECT path,sha256 FROM analysis_aliases").fetchall()
             pending = connection.execute("SELECT count(*) FROM analysis_migrations WHERE state!='complete'").fetchone()[0]
             check = connection.execute("PRAGMA integrity_check").fetchall()
+            paths = connection.execute("SELECT path,sha256,bytes FROM payload_paths").fetchall() if connection.execute(
+                "SELECT 1 FROM sqlite_master WHERE name='payload_paths'").fetchone() else []
         if check != [("ok",)]:
             raise ValueError(f"Shared analysis catalog integrity failed: {check}")
         for row in objects:
@@ -572,9 +587,13 @@ class SharedAnalysis:
             alias = self.alias_path(name)
             if not alias.is_symlink() or os.path.isabs(os.readlink(alias)) or alias.resolve(strict=True) != self.object_path(sha256):
                 raise ValueError(f"Shared analysis alias commitment differs: {name}")
+        for name, sha256, size in paths:
+            path = self.alias_path(name)
+            if resolve_payload(path) != self.object_path(sha256) or payload_size(path) != size or file_digest(path) != sha256:
+                raise ValueError(f"Retired payload path commitment differs: {name}")
         if pending:
             raise ValueError(f"{pending} interrupted migrations need recovery")
-        return {"objects": len(objects), "aliases": len(aliases), "queries": self.query_count(),
+        return {"objects": len(objects), "aliases": len(aliases), "retired_payload_paths": len(paths), "queries": self.query_count(),
                 "unique_payload_bytes": sum(row[1] for row in objects), "integrity": "ok"}
 
     def retire_stale_aliases(self):

@@ -6,7 +6,7 @@ import argparse
 from bisect import bisect_right
 from collections import Counter, defaultdict
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 import sqlite3

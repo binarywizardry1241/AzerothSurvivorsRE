@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Derived artifact verification/publication regressions; no compiler or target."""
-import gzip
+import shared_payloads as gzip
 import os
 from pathlib import Path
 import struct

@@ -9,7 +9,7 @@ from portable_paths import portable_json, portable_record
 import argparse
 from collections import Counter
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import json

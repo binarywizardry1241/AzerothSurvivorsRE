@@ -7,7 +7,7 @@ No compilation, application launch or native target process is performed.
 from runtime_layout import retained_runtime_path
 from portable_paths import portable_json, portable_record
 import argparse
-import gzip
+import shared_payloads as gzip
 import hashlib
 import itertools
 import importlib.util

@@ -9,7 +9,7 @@ import argparse
 from bisect import bisect_right
 from collections import Counter
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import sqlite3
@@ -206,7 +206,8 @@ def summarize(directory,target,check_instructions=True,*,publish=False,artifact_
     owner=owner_lookup(ranges)
     helper_final={}
     helper_input=directory/'direct-call-helpers.tsv.gz'
-    if helper_input.exists():
+    from shared_payloads import resolve_payload
+    if resolve_payload(helper_input).is_file():
         helper_output=directory/'direct-call-helper-final-owners.tsv.gz';helper_counts=Counter()
         with derived_gzip_text(helper_output,publish=publish) as out:
             out.write('address\towner_before_primary_body_repair\tfinal_native_owner\n')

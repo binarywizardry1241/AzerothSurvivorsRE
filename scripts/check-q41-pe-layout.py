@@ -7,7 +7,7 @@ static references do not establish padding or computed/dynamic unreachability.
 """
 import argparse
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 import sqlite3

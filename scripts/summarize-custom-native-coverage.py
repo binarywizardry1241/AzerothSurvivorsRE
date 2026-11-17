@@ -2,7 +2,7 @@
 """Join Survivors diagnostic sites to verified code and reviewed source groups."""
 import argparse
 from collections import Counter
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 from coverage_common import ROOT,latest_target,load_json,json_text,file_sha256,project_path

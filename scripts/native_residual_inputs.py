@@ -8,7 +8,7 @@ from collections import Counter
 from collections import defaultdict
 from functools import lru_cache
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import json
@@ -528,7 +528,8 @@ def verified_classifications(selected, *, root=None, census_summary=None):
         name, expected = record['path'], record['sha256']
         if not isinstance(name, str) or not isinstance(expected, str) or not re.fullmatch('[0-9a-f]{64}', expected):
             raise ValueError('Invalid native classification commitment')
-        path = (root / name).resolve()
+        from shared_payloads import resolve_payload
+        path = resolve_payload((root / name).resolve())
         if not path.is_relative_to(root):
             raise ValueError('Native classification artifact escapes project: ' + name)
         if not path.is_file():

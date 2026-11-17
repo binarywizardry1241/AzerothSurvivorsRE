@@ -10,7 +10,7 @@ import bisect
 from collections import Counter
 from functools import lru_cache
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 from pathlib import Path

@@ -10,7 +10,7 @@ from array import array
 from bisect import bisect_right
 from collections import Counter
 import copy
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 

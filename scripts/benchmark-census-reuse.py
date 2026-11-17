@@ -12,7 +12,7 @@ whole-target equivalence or a whole-target speedup.
 import argparse
 from bisect import bisect_left
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import json
@@ -126,8 +126,8 @@ def require_unchanged_receipt(path, before):
 def compare_exports(incremental, full):
     rows = {}
     for name in ('instructions.tsv.gz', 'bodies.tsv.gz', 'references.tsv.gz', 'externals.tsv.gz', 'direct-call-helpers.tsv.gz'):
-        left = gzip.decompress((incremental / name).read_bytes())
-        right = gzip.decompress((full / name).read_bytes())
+        with gzip.open(incremental / name, 'rb') as stream: left = stream.read()
+        with gzip.open(full / name, 'rb') as stream: right = stream.read()
         if left != right:
             raise ValueError('Incremental/full exported records differ: ' + name)
         rows[name] = dict(uncompressed_sha256=hashlib.sha256(left).hexdigest(), records=left.count(b'\n') - 1)

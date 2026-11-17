@@ -7,7 +7,7 @@ stock Lua consumer runs separately in a standalone Lua interpreter.
 """
 from portable_paths import portable_json, portable_record
 import argparse
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 import math

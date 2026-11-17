@@ -2,7 +2,7 @@
 """Check residual-set commitments and independent census/count boundaries."""
 import argparse
 from copy import deepcopy
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 from pathlib import Path

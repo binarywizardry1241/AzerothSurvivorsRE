@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Classify all twenty unobserved fixed-address targets without native queries."""
 import argparse
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import json

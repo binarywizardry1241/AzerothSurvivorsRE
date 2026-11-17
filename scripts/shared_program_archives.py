@@ -7,7 +7,7 @@ archive replaces cold .gpr/.rep files. Restoration never runs Ghidra or an EXE.
 
 from contextlib import contextmanager
 import fcntl
-import gzip
+import shared_payloads as gzip
 import hashlib
 import io
 import json

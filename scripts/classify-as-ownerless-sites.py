@@ -14,7 +14,7 @@ from bisect import bisect_right
 from collections import Counter, defaultdict
 import csv
 from functools import lru_cache
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import json

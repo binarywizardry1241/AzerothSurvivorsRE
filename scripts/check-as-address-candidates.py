@@ -7,7 +7,7 @@ start Ghidra, compile Rust, recover generic UI/math systems or run the game.
 """
 import argparse
 from collections import defaultdict
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import json

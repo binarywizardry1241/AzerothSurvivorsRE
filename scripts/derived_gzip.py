@@ -6,7 +6,7 @@ any existing gzip/header when its decoded content matches, and replaces only
 after the producer finishes successfully. Temporary files stay project-local.
 """
 from contextlib import contextmanager
-import gzip
+import shared_payloads as gzip
 import io
 import os
 from pathlib import Path
@@ -94,7 +94,8 @@ file. Callers must let exceptions escape the context for publication to abort.
             with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as compressed:
                 with io.TextIOWrapper(compressed, encoding="utf-8", newline="") as writer:
                     yield writer
-        if not path.exists() or not _same_content(path, temporary):
+        from shared_payloads import resolve_payload
+        if not resolve_payload(path).is_file() or not _same_content(path, temporary):
             os.replace(temporary, path)
     finally:
         temporary.unlink(missing_ok=True)

@@ -182,6 +182,14 @@ class _RecordedInputChecks(ast.NodeTransformer):
             node.elts = arguments
         return node
 
+    def visit_Import(self, node):
+        # Frozen suites retain their original committed source and target guards;
+        # only the explicit execution adapter resolves retired gzip paths.
+        for alias in node.names:
+            if alias.name == 'gzip':
+                alias.name, alias.asname = 'shared_payloads', alias.asname or 'gzip'
+        return node
+
     def visit_Constant(self, node):
         if isinstance(node.value, str) and node.value in self.reference_paths:
             return ast.copy_location(ast.Constant(value=self.reference_path), node)

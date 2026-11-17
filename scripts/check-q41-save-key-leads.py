@@ -2,7 +2,7 @@
 """Classify all five string leads; no save/config mutation, game or compiler."""
 from runtime_layout import retained_runtime_path
 import argparse
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 from pathlib import Path

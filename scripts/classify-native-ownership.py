@@ -5,11 +5,12 @@ Exact diagnostic paths and baseline source hashes are candidates, never proof
 of the target's source revision. Fixed slots preserve their initial image value;
 local register propagation is deliberately bounded and not runtime observation.
 """
+from shared_payloads import payload_size
 from runtime_layout import retained_runtime_path
 import argparse
 from collections import Counter, deque
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import json
@@ -201,7 +202,8 @@ def source_candidates(target,diagnostics,owner,expanded,resource_paths=None,*,sy
     archives=[]
     for archive in sorted((ROOT/'runtime/analysis/history/native-recovery/upstream-sync/30a991f45830').glob('benilla-*.tar.gz')):
         matches=[];archive_digest=file_sha256(archive)
-        with tarfile.open(archive) as source:
+        from shared_payloads import open_tar
+        with open_tar(archive) as source:
             for member in source:
                 name=member.name.split('/',1)[-1]
                 if member.isfile() and name in missing:
@@ -555,7 +557,7 @@ class NativeCoreCache:
             if not re.fullmatch('[0-9a-f]{64}',receipt['sha256']):raise ValueError('Native ownership core artifact digest differs')
             artifact=self.root/receipt['path']
             expected=self.root/'runtime/analysis/objects'/receipt['sha256'][:2]/receipt['sha256']
-            if artifact!=expected or artifact.is_symlink() or artifact.stat().st_size!=receipt['bytes'] or file_digest(artifact)!=receipt['sha256']:
+            if artifact!=expected or artifact.is_symlink() or payload_size(artifact)!=receipt['bytes'] or file_digest(artifact)!=receipt['sha256']:
                 raise ValueError('Native ownership core artifact differs')
         return payload
 
@@ -630,7 +632,7 @@ def run(args):
                 # Read-only reconstruction has already compared these native
                 # outputs. No CAS object or catalog entry is created here.
                 records={'indirect':report['artifact'],'imports':report['import_ownership']['artifact'],'resolvers':report['conditional_export_resolvers']['artifact']}
-                payload={'report':report,'context':context,'artifacts':{name:{**record,'bytes':project_path(record['path']).stat().st_size} for name,record in records.items()}}
+                payload={'report':report,'context':context,'artifacts':{name:{**record,'bytes':payload_size(project_path(record['path']))} for name,record in records.items()}}
             report=refresh_source_mapping(args,payload)
         if native_core_inputs(args)!=inputs:raise ValueError('Native ownership inputs changed during source review')
         validate_source_mapping(report)

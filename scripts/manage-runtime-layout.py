@@ -173,7 +173,8 @@ def retained_bytes(value, root=ROOT):
     category = path.relative_to(history).parts[0]
     name = path.relative_to(root).as_posix()
     archive_path = history / category / "retained.tar.gz"
-    with tarfile.open(archive_path, "r:gz") as archive:
+    from shared_payloads import open_tar, read_payload
+    with open_tar(archive_path, "r:gz") as archive:
         with archive.extractfile("retained-scopes.json") as source:
             receipt = json.load(source)["entries"].get(name)
         if not receipt:
@@ -187,7 +188,7 @@ def retained_bytes(value, root=ROOT):
             objects = root / "runtime/analysis/objects"
             if not target.is_relative_to(objects) or target.resolve() != target:
                 raise ValueError(f"Archived link does not directly identify a shared object: {name}")
-            data = target.read_bytes()
+            data = read_payload(target)
             expected = target.name
         else:
             raise ValueError(f"Expected an archived file: {name}")

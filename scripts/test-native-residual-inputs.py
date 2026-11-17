@@ -4,7 +4,7 @@ from collections import Counter
 from copy import deepcopy
 from contextlib import closing
 import ast
-import gzip
+import shared_payloads as gzip
 import json
 from pathlib import Path
 import sqlite3

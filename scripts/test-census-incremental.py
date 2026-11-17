@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Non-compiling admission/benchmark regressions; real Program proof is separate."""
-import gzip
+import shared_payloads as gzip
 import importlib.util
 import io
 import json

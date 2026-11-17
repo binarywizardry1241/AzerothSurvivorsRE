@@ -166,7 +166,8 @@ def read_artifact(path, root=ROOT):
         archived = archived_artifact(path, root=root)
         if archived is not None:
             return archived
-    return path.read_bytes()
+    from shared_payloads import read_payload
+    return read_payload(path)
 
 
 def main():

@@ -12,7 +12,7 @@ import argparse
 import bisect
 from collections import Counter, defaultdict
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 from pathlib import Path

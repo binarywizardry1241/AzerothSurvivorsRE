@@ -9,7 +9,7 @@ No incoming register state, alias, runtime dispatch or function is inferred.
 import argparse
 from collections import Counter
 from contextlib import closing
-import gzip
+import shared_payloads as gzip
 import importlib.util
 import json
 from pathlib import Path

@@ -312,7 +312,8 @@ def project_bytes(path, *, root=ROOT, expected=None):
         if archived is not None:
             return archived
     from script_sources import current_path
-    data = current_path(resolved, root).read_bytes()
+    from shared_payloads import read_payload
+    data = read_payload(current_path(resolved, root))
     if expected is not None and hashlib.sha256(data).hexdigest() != expected:
         raise ValueError(f"Input differs from its SHA-256: {path}")
     return data
@@ -355,7 +356,8 @@ def file_sha256(path):
             if historical is not None:
                 return historical
         before = resolved.stat()
-        with resolved.open("rb") as stream:
+        from shared_payloads import open_payload
+        with open_payload(resolved) as stream:
             for block in iter(lambda: stream.read(1024 * 1024), b""):
                 result.update(block)
         after = resolved.stat()
@@ -371,7 +373,8 @@ def same_artifact(first, second, expected, root=None):
     if not first or not second or not isinstance(expected, str) or not re.fullmatch(r"[0-9a-f]{64}", expected):
         return False
     root = ROOT if root is None else Path(root).resolve()
-    paths = [(root / value).resolve() for value in (first, second)]
+    from shared_payloads import resolve_payload
+    paths = [resolve_payload((root / value).resolve()) for value in (first, second)]
     if not all(path.is_relative_to(root) for path in paths):
         return False
     if paths[0] != paths[1] and not any(has_archived_artifact(path, root=root) for path in paths):

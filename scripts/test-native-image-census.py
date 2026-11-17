@@ -4,7 +4,7 @@ import importlib.util
 from pathlib import Path
 import unittest
 import hashlib
-import gzip
+import shared_payloads as gzip
 import json
 import sqlite3
 import tempfile

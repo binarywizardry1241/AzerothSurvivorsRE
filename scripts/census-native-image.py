@@ -7,7 +7,7 @@ observations remain distinct from source semantics and verified parity.
 import argparse
 from bisect import bisect_right
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import os
@@ -60,6 +60,8 @@ def committed_tool_path(name, expected, root=ROOT):
     path=(Path(root)/name).resolve()
     if not path.is_relative_to(Path(root).resolve()):raise ValueError('Resume tool/input path escapes project')
     if path.is_file() and hashlib.sha256(path.read_bytes()).hexdigest()==expected:return path
+    if name in {'scripts/census-native-image.py','scripts/rea-native-census.mjs'} and historical_matches(name, expected, Path(root)):
+        return None  # Exact Git producer retained; current byte-stream storage adapter.
     if GIT_STORAGE_PREDECESSORS.get(name)==expected:
         original=subprocess.check_output(['git','cat-file','blob','0bbcb5f5:'+name],cwd=root)
         if hashlib.sha256(original).hexdigest()==expected:return None

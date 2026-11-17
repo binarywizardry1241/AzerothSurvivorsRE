@@ -9,7 +9,7 @@ from runtime_layout import retained_runtime_path
 import argparse
 from array import array
 from collections import Counter
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 

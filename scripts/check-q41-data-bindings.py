@@ -7,7 +7,7 @@ compiler, application, files/save operations, Rust or renderer is exercised.
 from runtime_layout import retained_runtime_path
 import argparse
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 import struct

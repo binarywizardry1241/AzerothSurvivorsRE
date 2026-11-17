@@ -2,7 +2,7 @@
 """Check all newly exposed fixed-address entry candidates; never run/build code."""
 from runtime_layout import retained_runtime_path
 import argparse
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 from pathlib import Path

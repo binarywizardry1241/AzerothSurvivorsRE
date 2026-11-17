@@ -10,7 +10,7 @@ from runtime_layout import retained_runtime_path
 import argparse
 from array import array
 from bisect import bisect_right
-import gzip
+import shared_payloads as gzip
 import hashlib
 from importlib.util import spec_from_file_location, module_from_spec
 

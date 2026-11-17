@@ -8,7 +8,7 @@ become invented function owners or incoming control-flow edges.
 import argparse
 from bisect import bisect_left
 from collections import Counter
-import gzip
+import shared_payloads as gzip
 import importlib.util
 from coverage_common import ROOT,latest_target,target_bytes,load_json,json_text,file_sha256,project_path
 from instruction_facts import artifact_path, derived_bytes

@@ -14,7 +14,7 @@ from collections import OrderedDict
 from contextlib import closing, contextmanager
 from functools import lru_cache
 import fcntl
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 import os
@@ -580,9 +580,11 @@ def _archived_digest(path, signature, expected):
 
 def inventory_size(path, root=None):
     """Logical original byte length for archived SQLite, physical size otherwise."""
+    from shared_payloads import payload_size, resolve_payload
+    path = resolve_payload(path)
     value = descriptor(path)
     if value is None or not value.get("source_sha256"):
-        return Path(path).stat().st_size
+        return payload_size(path)
     root, path = _root(path, root)
     historical_file_sha256(path, root=root)
     archive = root / value["archive"]["path"]

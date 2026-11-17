@@ -9,7 +9,7 @@ from bisect import bisect_right
 from collections import Counter, defaultdict
 from contextlib import closing
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 

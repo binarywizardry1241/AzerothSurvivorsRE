@@ -3,6 +3,7 @@
 Cache receipts are immutable manifests in the common analysis catalog/CAS. They
 are execution evidence, not a semantic review or a completeness certificate.
 """
+from shared_payloads import payload_size, resolve_payload, compact_object, retire_path
 from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 from contextlib import contextmanager
 import ast
@@ -129,6 +130,9 @@ def expand_files(root, patterns):
         if Path(pattern).is_absolute() or ".." in Path(pattern).parts:
             raise ValueError("Use project-relative input patterns")
         matches = list(root.glob(pattern))
+        if not matches and not any(character in pattern for character in '*?['):
+            if resolve_payload(root / pattern).is_file():
+                matches = [root / pattern]
         if not matches:
             raise ValueError(f"Missing pipeline input: {pattern}")
         for path in matches:
@@ -147,7 +151,7 @@ def manifest_inputs(root, inputs, sealed_outputs=None):
     """
     result, pending = dict(inputs), list(inputs)
     def input_path(name):
-        return (sealed_outputs or {}).get(name) or local(root, name)
+        return (sealed_outputs or {}).get(name) or resolve_payload(local(root, name))
 
     def references(value):
         if isinstance(value, dict):
@@ -390,14 +394,14 @@ class Pipeline:
         missing = {}
         for name, item in receipt["outputs"].items():
             path = local(self.root, name)
-            present = path.is_file()
+            present = resolve_payload(path).is_file()
             if present:
                 if file_digest(path) != item["sha256"]:
                     return None
             elif path.exists() or path.is_symlink() or not shareable_stage_output(self.root, path):
                 return None
             sealed = self.store.object_path(item["sha256"])
-            if (not sealed.is_file() or sealed.is_symlink() or sealed.stat().st_size != item["bytes"]
+            if (not sealed.is_file() or sealed.is_symlink() or payload_size(sealed) != item["bytes"]
                     or file_digest(sealed) != item["sha256"]):
                 raise ValueError("Corrupt immutable stage output")
             if not present:
@@ -415,15 +419,24 @@ class Pipeline:
         return receipt | {"seal_sha256": row[0]}
 
     def _seal_file(self, path, key):
+        resolved = resolve_payload(path)
+        if path != resolved:
+            sha = file_digest(path)
+            self.store.verify_receipt({"path": resolved.relative_to(self.root).as_posix(),
+                                       "sha256": sha, "bytes": payload_size(path)})
+            return {"sha256": sha, "bytes": payload_size(path)}
         if shareable_stage_output(self.root, path):
             receipt = self.store.migrate_file(path, {"stage_key": key})
+            if path.name.endswith(('.tsv.gz', '.jsonl.gz', '.json.gz', '.csv.gz')):
+                compact_object(self.store, receipt)
+                retire_path(self.store, path, receipt, {"stage_key": key})
             return {field: receipt[field] for field in ("sha256", "bytes")}
         sha = file_digest(path)
         destination = self.store.object_path(sha)
         if destination.exists():
             if file_digest(destination) != sha:
                 raise ValueError("Corrupt stage output in CAS")
-            return {"sha256": sha, "bytes": path.stat().st_size}
+            return {"sha256": sha, "bytes": payload_size(path)}
         # put_file hard-links; snapshot first so a later producer cannot mutate CAS.
         with tempfile.TemporaryDirectory(prefix=".seal-", dir=self.directory) as staging:
             pending = Path(staging) / "payload"
@@ -432,7 +445,7 @@ class Pipeline:
             if file_digest(pending) != sha or file_digest(path) != sha:
                 raise ValueError("Stage output changed during publication")
             self.store.put_file(pending, "execheck-stage-output", {"stage_key": key})
-        return {"sha256": sha, "bytes": path.stat().st_size}
+        return {"sha256": sha, "bytes": payload_size(path)}
 
     def _detach_output_aliases(self, stage):
         """Protect preexisting CAS objects even for an in-place legacy producer."""

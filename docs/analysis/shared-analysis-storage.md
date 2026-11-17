@@ -20,7 +20,8 @@ streams. Dense boundary/operand audits do not require a persistent detail cache.
 | Component | Canonical owner | Reuse boundary |
 | --- | --- | --- |
 | Provenance, operations, objects, native snapshots, archive records | `knowledge.sqlite` | Project-wide, across targets |
-| Immutable exports, results, historical input slices and compressed originals | `objects/<sha-prefix>/<sha256>` | Exact payload bytes; target applicability remains separate |
+| Immutable exports, results and historical input slices | `objects/<sha-prefix>/<sha256>` | Exact payload identity; large gzip objects are receipts into shared byte chunks |
+| Exact encoded archive snapshots, shared byte chunks and former filenames | `knowledge.sqlite`: `payload_snapshots`, `payload_chunks`, `payload_membership`, `payload_paths` | Identical chunks share bytes; original stream hashes, lengths, ordering and provenance remain independent |
 | Writable query/census Programs | `programs/` | Binary bytes, provider/processor/analysis mode and explicit incompatible variants |
 | Native inventory receipts | `inventories/` and retained legacy paths | Target/tool-bound snapshot membership in the shared catalog |
 | Indexed native query working set | `native-hot/` | One idle materialization plus actively leased users; shared across tasks |
@@ -43,7 +44,8 @@ Closed narrative snapshots can be inspected with
 `tar -tzf runtime/analysis/history/reports.tar.gz`. The archive records their
 original paths and SHA-256 digests. Maintained reports live in `docs/analysis/`.
 Cold recovery data that has no live path consumer is packed into one
-`retained.tar.gz` per history category. Inspect an individual original file
+an exact tar snapshot per history category, addressed by its former
+`retained.tar.gz` name in the shared catalog. Inspect an individual original file
 with `scripts/manage-runtime-layout.py --show-retained <path>`. Its original
 relative name and exact bytes remain available without restoring a directory.
 The live recovery working set remains expanded for its registered consumers.
@@ -103,13 +105,30 @@ Earlier exact collectors/driver commitments remain available for historical
 resume; storage adaptation is not represented as a new native analysis pass.
 
 After the census runner verifies completion against the saved Program, the REA
-launcher publishes the frozen gzip exports to the object store. Each pass keeps
-its original files as read-only hard links to the objects, so existing resume
-checks and historical consumers still open the exact path and bytes they
-recorded. Identical compressed bytes share an inode across passes and with
-other object-store consumers. The collector writes new exports to staging
-files before renaming them into place. Unfinished exports and the writable
-Program remain separate from this immutable publication.
+launcher publishes frozen gzip exports into the shared catalog. Encoded archives
+use content-defined byte chunks with ordered snapshot membership. This preserves
+the exact original compressed byte stream, including its gzip headers, rather
+than recompressing equivalent rows or merging evidence from different targets.
+Chunk publication commits and independently verifies reconstruction before the
+original archive is removed. Its SHA-addressed CAS path becomes a small explicit
+receipt; its former filename is recorded in `payload_paths` and deleted. There
+are no per-pass archive copies or archive placeholders. Small completion records
+and required mutable progress keep their own paths and owners.
+
+Python gzip consumers explicitly import `shared_payloads as gzip`. Encoded-byte
+readers use `open_payload`, `read_payload`, `payload_size` and `resolve_payload`;
+coverage and provenance helpers resolve historical names through the same
+catalog. Missing unregistered names and changed/missing chunks fail closed.
+Original version/hash observations remain in the existing catalog, plans and
+curated evidence. Equal content does not transfer target applicability.
+
+The Node census driver verifies removed outputs through this reader. When an
+exact retained Java collector requires regular files, a pipe-owned custodian
+provides only its leased native views and removes them when the caller closes
+or fails. Completed checkpoint verification needs no materialization. Unfinished
+checkpoint observations retain their actual unfinished status. Their exact
+encoded bytes may share storage, while mutable journals and the writable
+Program retain their own owners and leases.
 
 Completed replays open Ghidra read-only and verify the published progress
 against its saved checkpoint and the exact exports. New work and partial
@@ -190,6 +209,8 @@ publishing aliases or removing expanded copies. Run commands from this checkout:
 python3 -B scripts/manage-analysis-store.py
 python3 -B scripts/manage-analysis-store.py --migrate
 python3 -B scripts/manage-analysis-store.py --migrate-census-exports
+python3 -B scripts/manage-analysis-store.py --audit-repeated
+python3 -B scripts/manage-analysis-store.py --reconcile-repeated
 python3 -B scripts/manage-analysis-store.py --consolidate-proof-files
 python3 -B scripts/manage-analysis-store.py --consolidate-identical-legacy
 python3 -B scripts/index-analysis-history.py --apply
@@ -221,6 +242,13 @@ relative aliases. Historical paths and their exact bytes remain readable.
 Migration journals permit recovery after interrupted publication; use
 `manage-analysis-store.py --recover`. The earlier curated native-export index
 continues to verify its aliases into the shared object store.
+
+Repeated-filename reconciliation checks every repeated project filename outside
+installed dependencies, build outputs and active database/cache owners. It
+compares every byte identity, publishes immutable historical payloads into the
+same store and removes catalogued large gzip paths. Distinct source/module paths
+and mutable task records retain their required owners; a shared filename alone
+does not authorize dropping a different payload. No task inventory is retained.
 
 On supported macOS filesystems, eligible large immutable objects also use
 transparent filesystem compression through the installed `ditto`. Reads still

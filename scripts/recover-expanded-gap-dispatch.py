@@ -9,7 +9,7 @@ import argparse
 from bisect import bisect_right
 from collections import Counter
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import json

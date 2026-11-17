@@ -7,7 +7,7 @@ never establishes a successful AS mechanic or source implementation.
 """
 import argparse
 from collections import Counter, defaultdict
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import json

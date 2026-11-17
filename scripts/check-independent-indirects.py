@@ -4,7 +4,7 @@ import argparse
 from collections import Counter
 from copy import deepcopy
 import csv
-import gzip
+import shared_payloads as gzip
 import importlib.util
 import json
 from pathlib import Path

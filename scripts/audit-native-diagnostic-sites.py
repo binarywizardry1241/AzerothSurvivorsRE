@@ -6,6 +6,7 @@ Outputs retain original references and exact body/instruction observations only;
 they do not infer function entries, source semantics, reachability or parity.
 """
 import argparse
+from shared_payloads import payload_size
 from collections import Counter
 import json
 from pathlib import Path
@@ -32,7 +33,7 @@ def audit(census_name, output_name):
         digest = file_sha256(path)
         if expected is not None and digest != expected:
             raise ValueError("Input commitment differs: " + str(name))
-        if size is not None and path.stat().st_size != size:
+        if size is not None and payload_size(path) != size:
             raise ValueError("Input size differs: " + str(name))
         if path in commitments and commitments[path] != digest:
             raise ValueError("Input changed during analysis: " + str(name))

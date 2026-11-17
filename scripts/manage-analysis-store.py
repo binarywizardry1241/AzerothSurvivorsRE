@@ -16,6 +16,7 @@ from pathlib import Path
 import re
 
 from shared_analysis import SharedAnalysis, _fsync_directory, file_digest
+from shared_payloads import compact_object, descriptor, open_payload, payload_size, resolve_payload, retire_path
 
 ROOT = Path(__file__).resolve().parents[1]
 BLOCKED_PARTS = {"analysis", "cargo", "cargo-target", "node_modules", "target", "project", "runner",
@@ -24,7 +25,7 @@ BLOCKED_PARTS = {"analysis", "cargo", "cargo-target", "node_modules", "target", 
                  "github-account", "original-vulkan-cache", ".git"}
 BLOCKED_NAME = re.compile(r"journal|progress|ready|bootstrap|active.process|ownership|persistent.profile|"
                           r"session.result|^plan[.-]|^attempts[.]|^.*[.]lock$", re.I)
-IMMUTABLE_SUFFIXES = (".tsv.gz", ".csv.gz", ".json.gz", ".asm", ".ghidra.c", ".bin")
+IMMUTABLE_SUFFIXES = (".tsv.gz", ".csv.gz", ".json.gz", ".jsonl.gz", ".asm", ".ghidra.c", ".bin")
 CENSUS_EXPORTS = ("instructions.tsv.gz", "bodies.tsv.gz", "references.tsv.gz",
                   "externals.tsv.gz", "direct-call-helpers.tsv.gz")
 
@@ -55,12 +56,15 @@ def share_census_exports(plan_path, root=ROOT):
         for name in names:
             record = progress["files"][name]
             path = output / name
-            if path.resolve(strict=True) != path or not path.is_file():
+            resolved = resolve_payload(path)
+            if not resolved.is_file():
+                resolved.resolve(strict=True)  # Preserve missing/dangling-input failures.
+            if not resolved.is_file() or (resolved == path and path.resolve(strict=True) != path):
                 raise ValueError(f"Census export is not a local regular file: {path}")
-            with path.open("rb") as stream:
+            with open_payload(path) as stream:
                 if stream.read(2) != b"\x1f\x8b":
                     raise ValueError(f"Census export is not gzip: {path}")
-            if path.stat().st_size != record["bytes"] or file_digest(path) != record["sha256"]:
+            if payload_size(path) != record["bytes"] or file_digest(path) != record["sha256"]:
                 raise ValueError(f"Census export differs from its saved commitment: {path}")
             files.append((path, record))
 
@@ -72,17 +76,26 @@ def share_census_exports(plan_path, root=ROOT):
         shared = reclaimed = 0
         with store.lock():
             for path, record in files:
-                original = path.stat()
+                original = resolve_payload(path).stat()
                 existing = store.object_path(record["sha256"])
                 pending = path.with_name("." + path.name + ".shared.pending")
-                if existing.is_file() and not existing.is_symlink() and path.samefile(existing) and not pending.exists():
+                pack = path.name.endswith(".gz")
+                if (existing.is_file() and not existing.is_symlink() and path.is_file() and path.samefile(existing)
+                        and not pending.exists() and not pack):
                     continue
-                receipt = store.put_file(path, "frozen-native-census-export", {
+                provenance = {
                     "path": path.relative_to(root).as_posix(),
                     "plan_sha256": plan_sha, "target_sha256": plan["target_sha256"],
-                })
+                }
+                receipt = store.put_file(resolve_payload(path), "frozen-native-census-export", provenance)
                 if receipt["sha256"] != record["sha256"] or receipt["bytes"] != record["bytes"]:
                     raise ValueError(f"Census export changed during publication: {path}")
+                if pack:
+                    compact_object(store, receipt)
+                    present = path.is_file() or path.is_symlink()
+                    retire_path(store, path, receipt, provenance)
+                    shared += present
+                    continue
                 destination = store.verify_receipt(receipt)
                 if pending.is_symlink() or (pending.exists() and not pending.samefile(destination)):
                     raise ValueError(f"Unexpected census link staging file: {pending}")
@@ -90,9 +103,10 @@ def share_census_exports(plan_path, root=ROOT):
                     if not path.samefile(destination):
                         pending.unlink(missing_ok=True)
                         os.link(destination, pending)
+                        last_link = path.stat().st_nlink == 1
                         os.replace(pending, path)
                         _fsync_directory(output)
-                        if original.st_nlink == 1:
+                        if last_link:
                             reclaimed += original.st_blocks * 512
                         shared += 1
                 finally:
@@ -212,6 +226,97 @@ def scope_provenance(root, path):
     return result
 
 
+def reconcile_repeated(root=ROOT, apply=False):
+    """Inspect every repeated project filename; share only owned immutable data.
+
+    Source/module paths, mutable journals, installed tools and active databases
+    retain their own owners. Equal names never imply interchangeable evidence.
+    Distinct immutable bytes enter the same CAS with independent observations;
+    gzip snapshots share chunks and their former filenames are removed entirely.
+    """
+    excluded = {".git", ".tools", "node_modules", "vendor", "cargo-target", "target", "native-hot",
+                "programs", "tool-cache", "tool-state", "client", "github-account", "original-vulkan-cache"}
+    groups = defaultdict(list)
+    for parent, directories, names in os.walk(root, followlinks=False):
+        directories[:] = [name for name in directories if name not in excluded
+                          and not name.endswith((".rep", ".app")) and not (Path(parent) / name).is_symlink()
+                          and Path(parent) / name != root / "runtime/analysis/objects"]
+        for name in names:
+            path = Path(parent) / name
+            if path.is_file() and name != ".DS_Store":
+                groups[name].append(path)
+    census = root / "runtime/analysis/census"
+    groups = {name: paths for name, paths in groups.items() if len(paths) > 1
+              or (name.endswith('.gz') and any(path.is_relative_to(census) for path in paths))}
+    eligible = set(candidates(root, minimum=1))
+    history = root / "runtime/analysis/history"
+    for paths in groups.values():
+        for path in paths:
+            # Closed historical JSON evidence is immutable; progress/runner state
+            # remains excluded even when two journals currently have equal bytes.
+            if (path.is_relative_to(history) and path.suffix == ".json" and not BLOCKED_NAME.search(path.name)
+                    and path.name not in {"run.json", "metrics.json", "working.json", "settings.json"}
+                    and not any(part in BLOCKED_PARTS for part in path.relative_to(history).parts[:-1])):
+                eligible.add(path)
+    store = SharedAnalysis(root) if apply else None
+    counts = defaultdict(int)
+    compressed = {".tsv.gz", ".csv.gz", ".json.gz", ".jsonl.gz"}
+    for name, paths in sorted(groups.items()):
+        identities = defaultdict(list)
+        for path in paths:
+            identities[file_digest(path)].append(path)
+            counts["paths_checked"] += 1
+        counts["filename_groups_checked"] += 1
+        counts["distinct_byte_snapshots"] += len(identities)
+        counts["equal_byte_groups"] += sum(len(values) > 1 for values in identities.values())
+        for sha, copies in identities.items():
+            for path in copies:
+                is_census = path.is_relative_to(census)
+                already = path.is_symlink() and path.resolve().is_relative_to(root / "runtime/analysis/objects")
+                if path not in eligible and not already and not (is_census and name.endswith(".gz")):
+                    counts["separate_source_or_mutable_paths"] += 1
+                    continue
+                counts["immutable_paths"] += 1
+                if not apply:
+                    continue
+                lease = None
+                try:
+                    if is_census:
+                        lease = os.fdopen(os.open(path.parent / "census.lock", os.O_RDWR | os.O_CREAT | os.O_NOFOLLOW, 0o600))
+                        try:
+                            fcntl.flock(lease, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                        except BlockingIOError:
+                            counts["active_paths_skipped"] += 1
+                            continue
+                        progress_path = path.parent / "progress.json"
+                        if not progress_path.is_file() and not name.endswith('.gz'):
+                            counts["unfinished_paths_skipped"] += 1
+                            continue
+                        progress = json.loads(progress_path.read_text()) if progress_path.is_file() else {}
+                        commitment = progress.get("files", {}).get(name)
+                        if not name.endswith('.gz') and (progress.get("stage") != "completed" or not commitment):
+                            counts["unfinished_paths_skipped"] += 1
+                            continue
+                        if commitment and (commitment.get('sha256') != sha or commitment.get('bytes') != payload_size(path)):
+                            raise ValueError(f"Census archive differs from its owning receipt: {path}")
+                    provenance = scope_provenance(root, path)
+                    if is_census:
+                        provenance['saved_census_stage'] = progress.get('stage', 'unrecorded-retained-input')
+                        provenance['native_completion_claimed'] = False
+                    receipt = (store.put_file(path, "frozen-native-census-export", provenance) if is_census
+                               else store.migrate_file(path, provenance))
+                    if any(name.endswith(suffix) for suffix in compressed) or name == 'retained.tar.gz':
+                        compact_object(store, receipt)
+                        retire_path(store, path, receipt, provenance)
+                        counts["archive_paths_removed"] += 1
+                    else:
+                        counts["whole_object_paths_shared"] += 1
+                finally:
+                    if lease is not None:
+                        lease.close()
+    return {"mode": "applied" if apply else "read-only", **dict(counts)}
+
+
 def audit(root, minimum=65536):
     grouped = defaultdict(list)
     total = allocated = 0
@@ -276,6 +381,8 @@ def main():
     mode.add_argument("--migrate-census-exports", action="store_true", help="Share completed exports in the canonical census store")
     mode.add_argument("--consolidate-proof-files", action="store_true", help="Share frozen census inputs and immutable PE/stage evidence")
     mode.add_argument("--consolidate-identical-legacy", action="store_true", help="Share only byte-identical legacy immutable payloads")
+    mode.add_argument("--audit-repeated", action="store_true", help="Check every repeated project filename and its byte identity")
+    mode.add_argument("--reconcile-repeated", action="store_true", help="Reconcile immutable repeated names and remove catalogued archive paths")
     parser.add_argument("--find-sha256", help="Find a shared payload and every retained provenance/alias")
     parser.add_argument("--find-target", help="Find observations/query identities mentioning this exact target SHA")
     parser.add_argument("--find-text", help="Find function/range labels, addresses or legacy paths in provenance")
@@ -287,7 +394,7 @@ def main():
     if any([args.find_sha256, args.find_target, args.find_text]):
         if any((args.migrate, args.verify, args.recover, args.repair_aliases, args.audit_aliases,
                 args.share_census_exports, args.migrate_census_exports, args.consolidate_proof_files,
-                args.consolidate_identical_legacy, args.retire_stale_aliases)):
+                args.consolidate_identical_legacy, args.retire_stale_aliases, args.audit_repeated, args.reconcile_repeated)):
             parser.error("Search cannot be combined with a mutation or verification mode")
         if not (ROOT / "runtime/analysis/knowledge.sqlite").is_file():
             parser.error("No shared catalog exists yet")
@@ -314,6 +421,8 @@ def main():
         result = consolidate_proof_files()
     elif args.consolidate_identical_legacy:
         result = consolidate_identical_legacy_files()
+    elif args.audit_repeated or args.reconcile_repeated:
+        result = reconcile_repeated(apply=args.reconcile_repeated)
     else:
         result = audit(ROOT, args.minimum_bytes)
     print(json.dumps(result, indent=2))

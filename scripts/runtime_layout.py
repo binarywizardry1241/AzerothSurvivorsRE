@@ -83,12 +83,14 @@ def retained_runtime_path(path, root=ROOT):
         if replacement:
             resolved = staging.joinpath(replacement, *stage_parts[2:])
     if resolved == path:
-        return path
+        from shared_payloads import resolve_payload
+        return resolve_payload(path)
     if (not resolved.is_relative_to(runtime) or resolved == runtime
             or resolved.relative_to(runtime).parts[0] not in OWNERS
             or ".." in resolved.parts or not resolved.parent.resolve().is_relative_to(runtime.resolve())):
         raise ValueError("Historical recovery relocation leaves the shared runtime")
-    return resolved
+    from shared_payloads import resolve_payload
+    return resolve_payload(resolved)
 
 
 def loose_entries(root=ROOT):

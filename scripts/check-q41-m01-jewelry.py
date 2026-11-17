@@ -3,7 +3,7 @@
 from portable_paths import portable_json, portable_record
 import argparse
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 import struct

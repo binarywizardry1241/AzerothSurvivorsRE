@@ -8,7 +8,7 @@ stack memory. No Rust compiler, target process, save, renderer or game runs.
 import argparse
 import bisect
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 import struct

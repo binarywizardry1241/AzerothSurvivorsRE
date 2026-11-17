@@ -7,7 +7,7 @@ Default operation compares the compact witness and ignored full row artifact.
 """
 import argparse
 from collections import Counter, defaultdict
-import gzip
+import shared_payloads as gzip
 import hashlib
 import io
 import json
@@ -292,18 +292,17 @@ def main():
     parser.add_argument("--write", action="store_true")
     args = parser.parse_args()
     proof, payload = collect()
-    path = project_path(ARTIFACT)
+    path = ROOT / ARTIFACT  # Keep the logical output; never overwrite a CAS receipt.
     if args.write:
-        path.parent.mkdir(parents=True, exist_ok=True)
-        buffer = io.BytesIO()
-        with gzip.GzipFile(fileobj=buffer, mode="wb", mtime=0) as stream:
-            stream.write(payload)
-        path.write_bytes(buffer.getvalue())
+        from derived_gzip import derived_gzip_text
+        with derived_gzip_text(path, publish=True) as stream:
+            stream.write(payload.decode('utf-8'))
         proof["full_operand_artifact"]["sha256"] = file_sha256(path)
         project_path(OUTPUT).write_text(json.dumps(proof, indent=2) + "\n")
     else:
-        if gzip.decompress(path.read_bytes()) != payload:
-            raise ValueError("Changed complete reverse-slot artifact")
+        with gzip.open(path, 'rb') as stream:
+            if stream.read() != payload:
+                raise ValueError("Changed complete reverse-slot artifact")
         proof["full_operand_artifact"]["sha256"] = file_sha256(path)
         if json.loads(project_path(OUTPUT).read_text()) != proof:
             raise ValueError("Changed exact-slot proof; inspect its owning native/source inputs")

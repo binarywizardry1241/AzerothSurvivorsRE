@@ -61,7 +61,8 @@ def ghidra_census_input(selected, *, root=None, census_summary=None):
         name, expected = record.get('path'), record.get('sha256')
         if not isinstance(name, str) or not isinstance(expected, str) or not re.fullmatch('[0-9a-f]{64}', expected):
             raise ValueError('Invalid Ghidra census commitment: ' + label)
-        path = (root / name).resolve()
+        from shared_payloads import resolve_payload
+        path = resolve_payload((root / name).resolve())
         if not path.is_relative_to(root):
             raise ValueError('Ghidra census artifact escapes project: ' + label)
         if not path.is_file() or file_sha256(path) != expected:

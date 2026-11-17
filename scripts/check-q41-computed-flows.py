@@ -8,7 +8,7 @@ The straight-line classifier supplies candidates, never runtime callee identity.
 import argparse
 from collections import Counter
 import csv
-import gzip
+import shared_payloads as gzip
 import hashlib
 import json
 from pathlib import Path

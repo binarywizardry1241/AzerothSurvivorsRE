@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Verify transparent CAS compression with portable injected storage copies."""
 
-import gzip
+import shared_payloads as gzip
 import json
 import os
 from pathlib import Path

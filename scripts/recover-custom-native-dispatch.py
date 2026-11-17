@@ -9,7 +9,7 @@ import argparse
 from array import array
 from bisect import bisect_right
 from collections import Counter
-import gzip
+import shared_payloads as gzip
 import hashlib
 import struct
 

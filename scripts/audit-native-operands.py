@@ -8,7 +8,7 @@ from runtime_layout import retained_runtime_path
 import argparse
 from bisect import bisect_left, bisect_right
 from collections import Counter
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import json

@@ -7,7 +7,7 @@ validation; JSON progress alone is deliberately never treated as that cursor.
 """
 
 from copy import deepcopy
-import gzip
+import shared_payloads as gzip
 import hashlib
 import importlib.util
 import json
@@ -261,10 +261,12 @@ class DurableCensusResume(unittest.TestCase):
 
         store_manager.share_census_exports(first, self.root)
         store_manager.share_census_exports(second, self.root)
-        self.assertTrue(source.samefile(canonical) and peer.samefile(canonical))
-        self.assertEqual(peer.resolve(), peer)  # Existing launchers require an in-pass path.
-        self.assertEqual(peer.stat().st_mode & 0o222, 0)
-        self.assertEqual(gzip.decompress(peer.read_bytes()), source.name.encode())
+        from shared_payloads import read_payload, resolve_payload
+        self.assertFalse(source.exists() or peer.exists())
+        self.assertEqual(resolve_payload(source), canonical)
+        self.assertEqual(resolve_payload(peer), canonical)
+        self.assertEqual(canonical.stat().st_mode & 0o222, 0)
+        self.assertEqual(gzip.decompress(read_payload(peer)), source.name.encode())
         self.assertEqual(first.with_name("progress.json").read_bytes(), saved_progress)
         self.assertEqual(store_manager.share_census_exports(second, self.root)["shared"], 0)
 
